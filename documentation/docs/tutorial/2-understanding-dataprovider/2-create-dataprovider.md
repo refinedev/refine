@@ -2,8 +2,8 @@
 id: create-dataprovider
 title: 3. Create a data provider from scratch
 tutorial:
-    prev: tutorial/understanding-dataprovider/swizzle
-    next: tutorial/understanding-resources/index
+  prev: tutorial/understanding-dataprovider/swizzle
+  next: tutorial/understanding-resources/index
 ---
 
 ## Introduction
@@ -37,7 +37,7 @@ import { DataProvider } from "@refinedev/core";
 import { stringify } from "query-string";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // Methods
+  // Methods
 });
 ```
 
@@ -59,23 +59,23 @@ import { stringify } from "query-string";
 const axiosInstance = axios.create();
 
 axiosInstance.interceptors.response.use(
-    (response) => {
-        return response;
-    },
-    (error) => {
-        const customError: HttpError = {
-            ...error,
-            message: error.response?.data?.message,
-            statusCode: error.response?.status,
-        };
+  (response) => {
+    return response;
+  },
+  (error) => {
+    const customError: HttpError = {
+      ...error,
+      message: error.response?.data?.message,
+      statusCode: error.response?.status,
+    };
 
-        return Promise.reject(customError);
-    },
+    return Promise.reject(customError);
+  },
 );
 // highlight-end
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // Methods
+  // Methods
 });
 ```
 
@@ -127,20 +127,20 @@ The `resource` parameter is the name of the resource that we want to get the dat
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // ...
-    getList: async ({ resource }) => {
-        const url = `${apiUrl}/${resource}`;
+  // ...
+  getList: async ({ resource }) => {
+    const url = `${apiUrl}/${resource}`;
 
-        const { data, headers } = await axiosInstance.get(url);
+    const { data, headers } = await axiosInstance.get(url);
 
-        const total = +headers["x-total-count"];
+    const total = +headers["x-total-count"];
 
-        return {
-            data,
-            total,
-        };
-    },
-    // ...
+    return {
+      data,
+      total,
+    };
+  },
+  // ...
 });
 ```
 
@@ -161,34 +161,32 @@ We can then add the pagination feature. For this, the API takes the following pa
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // ...
-    getList: async ({ resource, pagination }) => {
-        const url = `${apiUrl}/${resource}`;
+  // ...
+  getList: async ({ resource, pagination }) => {
+    const url = `${apiUrl}/${resource}`;
 
-        // highlight-start
-        const { current = 1, pageSize = 10 } = pagination ?? {};
+    // highlight-start
+    const { current = 1, pageSize = 10 } = pagination ?? {};
 
-        const query: {
-            _start?: number;
-            _end?: number;
-        } = {
-            _start: (current - 1) * pageSize,
-            _end: current * pageSize,
-        };
+    const query: {
+      _start?: number;
+      _end?: number;
+    } = {
+      _start: (current - 1) * pageSize,
+      _end: current * pageSize,
+    };
 
-        const { data, headers } = await axiosInstance.get(
-            `${url}?${stringify(query)}`,
-        );
-        // highlight-end
+    const { data, headers } = await axiosInstance.get(`${url}?${stringify(query)}`);
+    // highlight-end
 
-        const total = +headers["x-total-count"];
+    const total = +headers["x-total-count"];
 
-        return {
-            data,
-            total,
-        };
-    },
-    // ...
+    return {
+      data,
+      total,
+    };
+  },
+  // ...
 });
 ```
 
@@ -278,17 +276,17 @@ The `operator` data comes with the [CrudOperators](../../api-reference/core/inte
 ```ts
 // Map refine operators to API operators
 const mapOperator = (operator: CrudOperators): string => {
-    switch (operator) {
-        case "ne":
-        case "gte":
-        case "lte":
-            return `_${operator}`;
-        case "contains":
-            return "_like";
-        case "eq":
-        default:
-            return "";
-    }
+  switch (operator) {
+    case "ne":
+    case "gte":
+    case "lte":
+      return `_${operator}`;
+    case "contains":
+      return "_like";
+    case "eq":
+    default:
+      return "";
+  }
 };
 ```
 
@@ -408,20 +406,20 @@ The conditional filters can also be made using `and` and `or`. For example:
 import { useList } from "@refinedev/core";
 
 const { data } = useList({
-    resource: "posts",
-    sorters: [
-        {
-            field: "id",
-            order: "desc",
-        },
-    ],
-    filters: [
-        {
-            field: "title",
-            operator: "contains",
-            value: "hello",
-        },
-    ],
+  resource: "posts",
+  sorters: [
+    {
+      field: "id",
+      order: "desc",
+    },
+  ],
+  filters: [
+    {
+      field: "title",
+      operator: "contains",
+      value: "hello",
+    },
+  ],
 });
 ```
 
@@ -433,17 +431,17 @@ The `create` method creates a new record with the `resource` and `variables` par
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // ...
-    create: async ({ resource, variables }) => {
-        const url = `${apiUrl}/${resource}`;
+  // ...
+  create: async ({ resource, variables }) => {
+    const url = `${apiUrl}/${resource}`;
 
-        const { data } = await axiosInstance.post(url, variables);
+    const { data } = await axiosInstance.post(url, variables);
 
-        return {
-            data,
-        };
-    },
-    // ...
+    return {
+      data,
+    };
+  },
+  // ...
 });
 ```
 
@@ -467,10 +465,10 @@ import { useCreate } from "@refinedev/core";
 const { mutate } = useCreate();
 
 mutate({
-    resource: "posts",
-    values: {
-        title: "New Post",
-    },
+  resource: "posts",
+  values: {
+    title: "New Post",
+  },
 });
 ```
 
@@ -482,17 +480,17 @@ The `update` method updates the record with the `resource`, `id` and `variables`
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // ...
-    update: async ({ resource, id, variables }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
+  // ...
+  update: async ({ resource, id, variables }) => {
+    const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axiosInstance.patch(url, variables);
+    const { data } = await axiosInstance.patch(url, variables);
 
-        return {
-            data,
-        };
-    },
-    // ...
+    return {
+      data,
+    };
+  },
+  // ...
 });
 ```
 
@@ -517,9 +515,9 @@ import { useUpdate } from "@refinedev/core";
 const { mutate } = useUpdate();
 
 mutate({
-    resource: "posts",
-    id: 2,
-    values: { title: "New Post Title" },
+  resource: "posts",
+  id: 2,
+  values: { title: "New Post Title" },
 });
 ```
 
@@ -531,19 +529,19 @@ The `deleteOne` method delete the record with the `resource` and `id` parameters
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // ...
-    deleteOne: async ({ resource, id, variables }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
+  // ...
+  deleteOne: async ({ resource, id, variables }) => {
+    const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axiosInstance.delete(url, {
-            data: variables,
-        });
+    const { data } = await axiosInstance.delete(url, {
+      data: variables,
+    });
 
-        return {
-            data,
-        };
-    },
-    // ...
+    return {
+      data,
+    };
+  },
+  // ...
 });
 ```
 
@@ -578,17 +576,17 @@ The `getOne` method gets the record with the `resource` and `id` parameters.
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // ...
-    getOne: async ({ resource, id }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
+  // ...
+  getOne: async ({ resource, id }) => {
+    const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await axiosInstance.get(url);
+    const { data } = await axiosInstance.get(url);
 
-        return {
-            data,
-        };
-    },
-    // ...
+    return {
+      data,
+    };
+  },
+  // ...
 });
 ```
 
@@ -621,9 +619,9 @@ The `getApiUrl` method returns the `apiUrl` value.
 import { DataProvider } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // highlight-next-line
-    getApiUrl: () => apiUrl,
-    // ...
+  // highlight-next-line
+  getApiUrl: () => apiUrl,
+  // ...
 });
 ```
 
@@ -644,62 +642,54 @@ It's useful if you have non-standard `REST` API endpoints or want to make a conn
 
 ```ts title="dataProvider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // ...
-    custom: async ({
-        url,
-        method,
-        filters,
-        sorters,
-        payload,
-        query,
-        headers,
-    }) => {
-        let requestUrl = `${url}?`;
+  // ...
+  custom: async ({ url, method, filters, sorters, payload, query, headers }) => {
+    let requestUrl = `${url}?`;
 
-        if (sorters && sorters.length > 0) {
-            const sortQuery = {
-                _sort: sorters[0].field,
-                _order: sorters[0].order,
-            };
-            requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
-        }
+    if (sorters && sorters.length > 0) {
+      const sortQuery = {
+        _sort: sorters[0].field,
+        _order: sorters[0].order,
+      };
+      requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
+    }
 
-        if (filters) {
-            const filterQuery = generateFilters(filters);
-            requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
-        }
+    if (filters) {
+      const filterQuery = generateFilters(filters);
+      requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
+    }
 
-        if (query) {
-            requestUrl = `${requestUrl}&${stringify(query)}`;
-        }
+    if (query) {
+      requestUrl = `${requestUrl}&${stringify(query)}`;
+    }
 
-        let axiosResponse;
-        switch (method) {
-            case "put":
-            case "post":
-            case "patch":
-                axiosResponse = await axiosInstance[method](url, payload, {
-                    headers,
-                });
-                break;
-            case "delete":
-                axiosResponse = await axiosInstance.delete(url, {
-                    data: payload,
-                    headers: headers,
-                });
-                break;
-            default:
-                axiosResponse = await axiosInstance.get(requestUrl, {
-                    headers,
-                });
-                break;
-        }
+    let axiosResponse;
+    switch (method) {
+      case "put":
+      case "post":
+      case "patch":
+        axiosResponse = await axiosInstance[method](url, payload, {
+          headers,
+        });
+        break;
+      case "delete":
+        axiosResponse = await axiosInstance.delete(url, {
+          data: payload,
+          headers: headers,
+        });
+        break;
+      default:
+        axiosResponse = await axiosInstance.get(requestUrl, {
+          headers,
+        });
+        break;
+    }
 
-        const { data } = axiosResponse;
+    const { data } = axiosResponse;
 
-        return { data };
-    },
-    // ...
+    return { data };
+  },
+  // ...
 });
 ```
 
@@ -723,13 +713,13 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 import { useCustom, useApiUrl } from "@refinedev/core";
 
 const { data, isLoading } = useCustom({
-    url: `${apiURL}/posts-unique-check`,
-    method: "get",
-    config: {
-        query: {
-            title: "Foo bar",
-        },
+  url: `${apiURL}/posts-unique-check`,
+  method: "get",
+  config: {
+    query: {
+      title: "Foo bar",
     },
+  },
 });
 ```
 
@@ -747,17 +737,15 @@ The `getMany` method gets the records with the `resource` and `ids` parameters. 
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // ...
-    getMany: async ({ resource, ids }) => {
-        const { data } = await axiosInstance.get(
-            `${apiUrl}/${resource}?${stringify({ id: ids })}`,
-        );
+  // ...
+  getMany: async ({ resource, ids }) => {
+    const { data } = await axiosInstance.get(`${apiUrl}/${resource}?${stringify({ id: ids })}`);
 
-        return {
-            data,
-        };
-    },
-    // ...
+    return {
+      data,
+    };
+  },
+  // ...
 });
 ```
 
@@ -786,16 +774,16 @@ This method allows us to create multiple items in a resource. This method is opt
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // ...
-    createMany: async ({ resource, variables }) => {
-        const url = `${apiUrl}/${resource}/bulk`;
-        const { data } = await axiosInstance.post(url, { values: variables });
+  // ...
+  createMany: async ({ resource, variables }) => {
+    const url = `${apiUrl}/${resource}/bulk`;
+    const { data } = await axiosInstance.post(url, { values: variables });
 
-        return {
-            data,
-        };
-    },
-    // ...
+    return {
+      data,
+    };
+  },
+  // ...
 });
 ```
 
@@ -820,15 +808,15 @@ import { useCreateMany } from "@refinedev/core";
 const { mutate } = useCreateMany();
 
 mutate({
-    resource: "posts",
-    values: [
-        {
-            title: "New Post",
-        },
-        {
-            title: "Another New Post",
-        },
-    ],
+  resource: "posts",
+  values: [
+    {
+      title: "New Post",
+    },
+    {
+      title: "Another New Post",
+    },
+  ],
 });
 ```
 
@@ -840,16 +828,16 @@ This method allows us to delete multiple items in a resource. This method is opt
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // ...
-    deleteMany: async ({ resource, ids }) => {
-        const url = `${apiUrl}/${resource}/bulk?ids=${ids.join(",")}`;
-        const { data } = await axiosInstance.delete(url);
+  // ...
+  deleteMany: async ({ resource, ids }) => {
+    const url = `${apiUrl}/${resource}/bulk?ids=${ids.join(",")}`;
+    const { data } = await axiosInstance.delete(url);
 
-        return {
-            data,
-        };
-    },
-    // ...
+    return {
+      data,
+    };
+  },
+  // ...
 });
 ```
 
@@ -875,8 +863,8 @@ import { useDeleteMany } from "@refinedev/core";
 const { mutate } = useDeleteMany();
 
 mutate({
-    resource: "posts",
-    ids: [2, 3],
+  resource: "posts",
+  ids: [2, 3],
 });
 ```
 
@@ -888,16 +876,16 @@ This method allows us to update multiple items in a resource. This method is opt
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // ...
-    updateMany: async ({ resource, ids, variables }) => {
-        const url = `${apiUrl}/${resource}/bulk`;
-        const { data } = await axiosInstance.patch(url, { ids, variables });
+  // ...
+  updateMany: async ({ resource, ids, variables }) => {
+    const url = `${apiUrl}/${resource}/bulk`;
+    const { data } = await axiosInstance.patch(url, { ids, variables });
 
-        return {
-            data,
-        };
-    },
-    // ...
+    return {
+      data,
+    };
+  },
+  // ...
 });
 ```
 
@@ -909,9 +897,9 @@ import { useUpdateMany } from "@refinedev/core";
 const { mutate } = useUpdateMany();
 
 mutate({
-    resource: "posts",
-    ids: [1, 2],
-    values: { status: "draft" },
+  resource: "posts",
+  ids: [1, 2],
+  values: { status: "draft" },
 });
 ```
 
@@ -921,10 +909,10 @@ mutate({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
+[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 For example, let's say that we want to pass a custom header to the `getOne` method. We can do this by passing the `meta` parameter to the `useOne` data hook.
 
@@ -932,13 +920,13 @@ For example, let's say that we want to pass a custom header to the `getOne` meth
 import { useOne } from "@refinedev/core";
 
 useOne({
-    resource: "post",
-    id: "1",
-    meta: {
-        headers: {
-            "x-custom-header": "hello world",
-        },
+  resource: "post",
+  id: "1",
+  meta: {
+    headers: {
+      "x-custom-header": "hello world",
     },
+  },
 });
 ```
 
@@ -948,25 +936,25 @@ Now, we can access the `meta` parameter in the `getOne` method of the data provi
 import { DataProvider } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // ...
-    getOne: async ({ resource, id, variables, meta }) => {
-        // highlight-next-line
-        const { headers } = meta;
-        const url = `${apiUrl}/${resource}/${id}`;
+  // ...
+  getOne: async ({ resource, id, variables, meta }) => {
+    // highlight-next-line
+    const { headers } = meta;
+    const url = `${apiUrl}/${resource}/${id}`;
 
-        // highlight-start
-        axiosInstance.defaults.headers = {
-            ...headers,
-        };
-        // highlight-end
+    // highlight-start
+    axiosInstance.defaults.headers = {
+      ...headers,
+    };
+    // highlight-end
 
-        const { data } = await axiosInstance.get(url, variables);
+    const { data } = await axiosInstance.get(url, variables);
 
-        return {
-            data,
-        };
-    },
-    // ...
+    return {
+      data,
+    };
+  },
+  // ...
 });
 ```
 

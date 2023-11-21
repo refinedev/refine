@@ -8,22 +8,18 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-10-refine-i
 hide_table_of_contents: false
 ---
 
-
-
 This is the opening post of another 2023 [**#refineWeek**](https://refine.dev/week-of-refine-strapi/) series. It is intended to provide an introduction to the series itself as well as to present [**refine**](https://github.com/refinedev/refine), a React framework that is used to rapidly build any data heavy CRUD apps like dashboards, admin panels and e-commerce storefronts.
 
 This five part guide aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
 
-
 <br />
-
 
 <br/>
 
-
  <div className="centered-image"  >
 
-  <img style={{alignSelf:"center", width:"600px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-10-refine-invoicer-1%2Fmultiple_logo.png" alt="refine banner" />
+<img style={{alignSelf:"center", width:"600px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-10-refine-invoicer-1%2Fmultiple_logo.png" alt="refine banner" />
+
 </div>
 
 <br/>
@@ -31,16 +27,15 @@ This five part guide aims to help developers learn the ins-and-outs of **refine*
 
 In this series we are going to build a **Invoicer - React PDF Invoice Generator** app with [**refine**](https://github.com/refinedev/refine), [**Strapi**](https://strapi.io/) and [**Ant Design**](https://ant.design/).
 
-
 [👉 The live version of the app is be available here.](https://invoice-generator.refine.dev/)
 
 [👉 The final apps source code is available on GitHub.](https://github.com/refinedev/refine/tree/master/examples/refine-week-invoice-generator)
 
-  To get completed client source code simply run:
-   ```
-    npm create refine-app@latest -- --example refine-week-invoice-generator
-   ```
+To get completed client source code simply run:
 
+```
+ npm create refine-app@latest -- --example refine-week-invoice-generator
+```
 
 ## What is **refine** ?
 
@@ -48,13 +43,11 @@ In this series we are going to build a **Invoicer - React PDF Invoice Generator*
 
 **refine**'s (intentionally decapitalized) core is strongly opinionated about RESTful conventions, HTTPS networking, state management, authentication and authorization. It is, however, unopinionated about the UI and render logic. This makes it customizable according to one's choice of UI library and frameworks.
 
-
 ## What is Strapi ?
 
-[**Strapi**](https://strapi.io) is an open source content management system ( CMS ) which allows us to build headless backend services for creating and managing content.  
+[**Strapi**](https://strapi.io) is an open source content management system ( CMS ) which allows us to build headless backend services for creating and managing content.
 
 It is highly customizable and can be hosted locally as well as in the cloud. **Strapi** is especially useful for building readily available RESTful APIs available for consumption from a frontend app.
-
 
 ## refine Architecture
 
@@ -68,10 +61,10 @@ import routerBindings from "@refinedev/react-router-v6";
 <Refine
   dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
   authProvider={authProvider}
-  routerProvider={{routerProvider}}
+  routerProvider={{ routerProvider }}
   resources={[]}
   // ... etc.
-/>
+/>;
 ```
 
 The code above shows a few of the props and their assigned objects. As can be inferred from this, rather than precisely being a component, [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) is largely a monolith of provider configurations backed by a context for each.  
@@ -81,35 +74,20 @@ For example, a `dataProvider` object should have the following signature to whic
 
 ```tsx title=" Data provider object signature"
 const dataProvider: DataProvider = {
-    // required methods
-    getList: ({
-        resource,
-        pagination,
-        sorters,
-        filters,
-        meta,
-    }) => Promise,
-    create: ({ resource, variables, meta }) => Promise,
-    update: ({ resource, id, variables, meta }) => Promise,
-    deleteOne: ({ resource, id, variables, meta }) => Promise,
-    getOne: ({ resource, id, meta }) => Promise,
-    getApiUrl: () => "",
+  // required methods
+  getList: ({ resource, pagination, sorters, filters, meta }) => Promise,
+  create: ({ resource, variables, meta }) => Promise,
+  update: ({ resource, id, variables, meta }) => Promise,
+  deleteOne: ({ resource, id, variables, meta }) => Promise,
+  getOne: ({ resource, id, meta }) => Promise,
+  getApiUrl: () => "",
 
-    // optional methods
-    getMany: ({ resource, ids, meta }) => Promise,
-    createMany: ({ resource, variables, meta }) => Promise,
-    deleteMany: ({ resource, ids, variables, meta }) => Promise,
-    updateMany: ({ resource, ids, variables, meta }) => Promise,
-    custom: ({
-        url,
-        method,
-        filters,
-        sorters,
-        payload,
-        query,
-        headers,
-        meta,
-    }) => Promise,
+  // optional methods
+  getMany: ({ resource, ids, meta }) => Promise,
+  createMany: ({ resource, variables, meta }) => Promise,
+  deleteMany: ({ resource, ids, variables, meta }) => Promise,
+  updateMany: ({ resource, ids, variables, meta }) => Promise,
+  custom: ({ url, method, filters, sorters, payload, query, headers, meta }) => Promise,
 };
 ```
 
@@ -119,7 +97,7 @@ An example hook usage from a UI component looks like this:
 
 ```tsx
 const { listProps } = useSimpleList<IClient>({
-    meta: { populate: ["contacts"] },
+  meta: { populate: ["contacts"] },
 });
 ```
 
@@ -147,15 +125,11 @@ const queryResponse = useQuery<GetListResponse<TData>, TError>(
   {
     ...queryOptions,
     onSuccess: (data) => {
-        queryOptions?.onSuccess?.(data);
+      queryOptions?.onSuccess?.(data);
 
       const notificationConfig =
         typeof successNotification === "function"
-          ? successNotification(
-              data,
-              { metaData, config },
-              resource,
-            )
+          ? successNotification(data, { metaData, config }, resource)
           : successNotification;
 
       handleNotification(notificationConfig);
@@ -188,9 +162,7 @@ We'll be visiting code like this on Day 4, but if we examine the snippet above c
 
 The following diagram illustrates the interactions:
 
-![1-refine-week](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/tutorial_dataprovider_flog.png)
-
-
+![1-refine-week](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.png)
 
 ## Providers and Hooks
 
@@ -206,26 +178,22 @@ For an exhaustive list of providers, please visit the **refine** providers docum
 
 As part of the core package, each method in these providers comes with a corresponding low level hook to be used from inside higher level hooks, partial UI components and pages. As mentioned above with the `useSimpleList()` hook, higher level hooks can be built on top of lower level hooks such as the `useList()` hook. For more details, please refer to the **refine** hooks documentation starting [here](https://refine.dev/docs/api-reference/core/hooks/accessControl/useCan/).
 
-
 ## Support Packages
 
 **refine** is inherently headless in its core API and deliberately agnostic about the UI and backend layers. Being so, it is able to provide fantastic support for major UI libraries and frameworks as well as popular backend frameworks and services. To name a few, **refine**'s UI support packages include [**Ant Design**](https://refine.dev/docs/api-reference/antd/) and [**Material UI**](https://refine.dev/docs/api-reference/mui/). Backend supplementary modules include [**Strapi**](https://strapi.io/), **GraphQL**, **NestJS** and .
 
 For a complete list of all these modules, check out [this page](https://refine.dev/docs/packages/list-of-packages/).
 
-
-
-
 ## A week of refine ft. Strapi
 
  <div className="centered-image"  >
 
-  <img style={{alignSelf:"center", width:"600px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-10-refine-invoicer-1%2Finvoicer_logo.png" alt="refine banner" />
+<img style={{alignSelf:"center", width:"600px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-10-refine-invoicer-1%2Finvoicer_logo.png" alt="refine banner" />
+
 </div>
 
 <br/>
 <br/>
-
 
 In this tutorial series, we will be going through a few vital features of **refine** by building a basic **Invoicer - Pdf Invoice Generator** app. This section is intended to provide more details.
 
@@ -237,14 +205,11 @@ As far as our features and functionalities go, we will cover some key concepts i
 
 <br />
 
-
 Here are the detailed outlines split per day:
 
 ### Day One - On This #refineWeek
 
 This opening post. Hello! :wave: :wave: We are here! :smile: :smile:
-
-
 
 ### Day Two - Setting Up the App
 
@@ -252,10 +217,9 @@ We start with setting up the **React Pdf Invoice Generator** app using **refine*
 
 In the later sections, we also initialize the **Strapi** backend app for our **React Invoice Generator**. Here's what we do step by step after that:
 
-1. Start the **Strapi** server and  sign up for an **admin** user to get access to the dashboard.
+1. Start the **Strapi** server and sign up for an **admin** user to get access to the dashboard.
 2. We create collections for our app using the `Content-Type Manager`.
 3. We set up permissions for `authenticated` role for **refine** app users, i.e. our **React Invoice Generator** app users.
-
 
 ### Day Three - Adding CRUD Actions & Authentication
 
@@ -266,7 +230,6 @@ We complete the app halfway by adding CRUD pages for `companies`, `clients` and 
 We also examine the use of higher level hooks such as `useSimpleList()`, `useModalForm()`, `useDrawerForm()` and `useTable()` that integrate data hooks with **Ant Design** components.
 
 We discuss authentication with the `authProvider` object and implement an email / password based authentication with the `<AuthPage />` component that is provided by **refine-Ant Design** (`@refinedev/antd`) package.
-
 
 ### Day Four - Adding Mission and Invoice Pages
 
@@ -281,8 +244,6 @@ Besides the above mentioned hooks, we examine the source code for the **refine-A
 On the final day, we add a pdf renderer to generate pdf document and view for our invoices. We use the `@react-pdf/renderer` `npm` package for this.
 
 We then wrap up the series by discussing the accomplishments we are about to achieve starting Day 2.
-
-
 
 ## Summary
 

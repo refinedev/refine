@@ -37,17 +37,17 @@ If you want to make a change in the pagination of the `<Table>`. You should pass
 const { tableProps } = useTable<IPost>();
 
 <Table
-    {...tableProps}
-    rowKey="id"
-    // highlight-start
-    pagination={{
-        ...tableProps.pagination,
-        position: ["bottomCenter"],
-        size: "small",
-    }}
-    // highlight-end
+  {...tableProps}
+  rowKey="id"
+  // highlight-start
+  pagination={{
+    ...tableProps.pagination,
+    position: ["bottomCenter"],
+    size: "small",
+  }}
+  // highlight-end
 >
-    // ---
+  // ---
 </Table>;
 ```
 
@@ -170,7 +170,7 @@ method={{
 
 ```tsx
 useTable({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -187,30 +187,30 @@ It's useful when you want to filter the data with any query.
 
 ```tsx
 const { searchFormProps, tableProps } = useTable({
-    onSearch: (values) => {
-        return [
-            {
-                field: "title",
-                operator: "contains",
-                value: values.title,
-            },
-        ];
-    },
+  onSearch: (values) => {
+    return [
+      {
+        field: "title",
+        operator: "contains",
+        value: values.title,
+      },
+    ];
+  },
 });
 
 // --
 <List>
-    <Form {...searchFormProps}>
-        <Space>
-            <Form.Item name="title">
-                <Input placeholder="Search by title" />
-            </Form.Item>
-            <SaveButton onClick={searchFormProps.form?.submit} />
-        </Space>
-    </Form>
-    <Table {...tableProps} rowKey="id">
-        <Table.Column title="Title" dataIndex="title" />
-    </Table>
+  <Form {...searchFormProps}>
+    <Space>
+      <Form.Item name="title">
+        <Input placeholder="Search by title" />
+      </Form.Item>
+      <SaveButton onClick={searchFormProps.form?.submit} />
+    </Space>
+  </Form>
+  <Table {...tableProps} rowKey="id">
+    <Table.Column title="Title" dataIndex="title" />
+  </Table>
 </List>;
 // ---
 ```
@@ -221,7 +221,7 @@ If there is more than one `dataProvider`, you should use the `dataProviderName` 
 
 ```tsx
 useTable({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -231,9 +231,9 @@ Sets the initial value of the page index. It is set to `1` by default.
 
 ```tsx
 useTable({
-    pagination: {
-        current: 2,
-    },
+  pagination: {
+    current: 2,
+  },
 });
 ```
 
@@ -243,9 +243,9 @@ Sets the initial value of the page size. It is set to `10` by default.
 
 ```tsx
 useTable({
-    pagination: {
-        pageSize: 20,
-    },
+  pagination: {
+    pageSize: 20,
+  },
 });
 ```
 
@@ -253,15 +253,15 @@ useTable({
 
 It can be `"off"`, `"server"` or `"client"`. It is set to `"server"` by default.
 
--   **"off":** Pagination is disabled. All records will be fetched.
--   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
--   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+- **"off":** Pagination is disabled. All records will be fetched.
+- **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
+- **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
 
 ```tsx
 useTable({
-    pagination: {
-        mode: "client",
-    },
+  pagination: {
+    mode: "client",
+  },
 });
 ```
 
@@ -273,14 +273,14 @@ Sets the initial value of the sorter. The `initial` is not permanent. It will be
 
 ```tsx
 useTable({
-    sorters: {
-        initial: [
-            {
-                field: "name",
-                order: "asc",
-            },
-        ],
-    },
+  sorters: {
+    initial: [
+      {
+        field: "name",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
@@ -292,14 +292,14 @@ Sets the permanent value of the sorter. The `permanent` is permanent and unchang
 
 ```tsx
 useTable({
-    sorters: {
-        permanent: [
-            {
-                field: "name",
-                order: "asc",
-            },
-        ],
-    },
+  sorters: {
+    permanent: [
+      {
+        field: "name",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
@@ -307,14 +307,14 @@ useTable({
 
 It can be `"off"`, or `"server"`. It is `"server"` by default.
 
--   **"off":** `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
--   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+- **"off":** `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+- **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
 
 ```tsx
 useTable({
-    sorters: {
-        mode: "server",
-    },
+  sorters: {
+    mode: "server",
+  },
 });
 ```
 
@@ -326,15 +326,15 @@ Sets the initial value of the filter. The `initial` is not permanent. It will be
 
 ```tsx
 useTable({
-    filters: {
-        initial: [
-            {
-                field: "name",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  filters: {
+    initial: [
+      {
+        field: "name",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
@@ -346,15 +346,15 @@ Sets the permanent value of the filter. The `permanent` is permanent and unchang
 
 ```tsx
 useTable({
-    filters: {
-        permanent: [
-            {
-                field: "name",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  filters: {
+    permanent: [
+      {
+        field: "name",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
@@ -364,17 +364,17 @@ useTable({
 
 The filtering behavior can be set to either `"merge"` or `"replace"`.
 
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 useTable({
-    filters: {
-        defaultBehavior: "replace",
-    },
+  filters: {
+    defaultBehavior: "replace",
+  },
 });
 ```
 
@@ -382,14 +382,14 @@ useTable({
 
 It can be `"off"` or `"server"`. It is `"server"` by default.
 
--   **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
--   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+- **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+- **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
 
 ```tsx
 useTable({
-    filters: {
-        mode: "off",
-    },
+  filters: {
+    mode: "off",
+  },
 });
 ```
 
@@ -401,7 +401,7 @@ Also, you can set this value globally on [`<Refine>`][refine swl] component.
 
 ```tsx
 useTable({
-    syncWithLocation: true,
+  syncWithLocation: true,
 });
 ```
 
@@ -411,9 +411,9 @@ useTable({
 
 ```tsx
 useTable({
-    queryOptions: {
-        retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -421,47 +421,47 @@ useTable({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useTable({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  getList: async ({
+    resource,
+    pagination,
+    sorters,
+    filters,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    getList: async ({
-        resource,
-        pagination,
-        sorters,
-        filters,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data, headers } = await httpClient.get(`${url}`, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data, headers } = await httpClient.get(`${url}`, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -475,13 +475,13 @@ After data is fetched successfully, `useTable` can call `open` function from [`N
 
 ```tsx
 useTable({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
@@ -495,13 +495,13 @@ After data fetching is failed, `useTable` will call `open` function from [`Notif
 
 ```tsx
 useTable({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -517,7 +517,7 @@ useTable({
 
 ```tsx
 useTable({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
@@ -531,9 +531,9 @@ The callback function is executed when new events from a subscription have arriv
 
 ```tsx
 useTable({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
@@ -555,20 +555,23 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useTable({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
-    }
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
+    },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### ~~`initialCurrent`~~
 
 :::caution Deprecated
@@ -579,7 +582,7 @@ Sets the initial value of the page index. It is set to `1` by default.
 
 ```tsx
 useTable({
-    initialCurrent: 2,
+  initialCurrent: 2,
 });
 ```
 
@@ -593,7 +596,7 @@ Sets the initial value of the page size. It is set to `10` by default.
 
 ```tsx
 useTable({
-    initialPageSize: 20,
+  initialPageSize: 20,
 });
 ```
 
@@ -607,7 +610,7 @@ Determines whether to use server-side pagination or not. It is set to `true` by 
 
 ```tsx
 useTable({
-    hasPagination: false,
+  hasPagination: false,
 });
 ```
 
@@ -621,12 +624,12 @@ Sets the initial value of the sorter. The `initialSorter` is not permanent. It w
 
 ```tsx
 useTable({
-    initialSorter: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
+  initialSorter: [
+    {
+      field: "title",
+      order: "asc",
+    },
+  ],
 });
 ```
 
@@ -640,12 +643,12 @@ Sets the permanent value of the sorter. The `permanentSorter` is permanent and u
 
 ```tsx
 useTable({
-    permanentSorter: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
+  permanentSorter: [
+    {
+      field: "title",
+      order: "asc",
+    },
+  ],
 });
 ```
 
@@ -659,13 +662,13 @@ Sets the initial value of the filter. The `initialFilter` is not permanent. It w
 
 ```tsx
 useTable({
-    initialFilter: [
-        {
-            field: "title",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+  initialFilter: [
+    {
+      field: "title",
+      operator: "contains",
+      value: "Foo",
+    },
+  ],
 });
 ```
 
@@ -679,13 +682,13 @@ Sets the permanent value of the filter. The `permanentFilter` is permanent and u
 
 ```tsx
 useTable({
-    permanentFilter: [
-        {
-            field: "title",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+  permanentFilter: [
+    {
+      field: "title",
+      operator: "contains",
+      value: "Foo",
+    },
+  ],
 });
 ```
 
@@ -697,15 +700,15 @@ Use `filters.defaultBehavior` instead.
 
 The filtering behavior can be set to either `"merge"` or `"replace"`. It is set to `merge` by default.
 
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 useTable({
-    defaultSetFilterBehavior: "replace",
+  defaultSetFilterBehavior: "replace",
 });
 ```
 
@@ -760,44 +763,42 @@ import { List, useTable, SaveButton } from "@refinedev/antd";
 import { Table, Form, Input } from "antd";
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface ISearch {
-    title: string;
+  title: string;
 }
 
 const PostList: React.FC = () => {
-    const { searchFormProps, tableProps } = useTable<IPost, HttpError, ISearch>(
+  const { searchFormProps, tableProps } = useTable<IPost, HttpError, ISearch>({
+    onSearch: (values) => {
+      return [
         {
-            onSearch: (values) => {
-                return [
-                    {
-                        field: "title",
-                        operator: "contains",
-                        value: values.title,
-                    },
-                ];
-            },
+          field: "title",
+          operator: "contains",
+          value: values.title,
         },
-    );
+      ];
+    },
+  });
 
-    return (
-        <List>
-            <Form {...searchFormProps} layout="inline">
-                <Form.Item name="title">
-                    <Input placeholder="Search by title" />
-                </Form.Item>
-                {/* highlight-next-line */}
-                <SaveButton onClick={searchFormProps.form?.submit} />
-            </Form>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column title="Title" dataIndex="title" />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Form {...searchFormProps} layout="inline">
+        <Form.Item name="title">
+          <Input placeholder="Search by title" />
+        </Form.Item>
+        {/* highlight-next-line */}
+        <SaveButton onClick={searchFormProps.form?.submit} />
+      </Form>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column title="Title" dataIndex="title" />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -874,6 +875,7 @@ const { overtime } = useTable();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ### ~~`sorter`~~
 
 :::caution Deprecated
@@ -911,36 +913,36 @@ import { useTable } from "@refinedev/antd";
 import { Table } from "antd";
 
 const ListPage = () => {
-    const { tableProps } = useTable({
-        filters: {
-            mode: "off",
-        },
-    });
+  const { tableProps } = useTable({
+    filters: {
+      mode: "off",
+    },
+  });
 
-    return (
-        <Table {...tableProps} rowKey="id">
-            {/* ... */}
-            <Table.Column
-                dataIndex="status"
-                title="Status"
-                filters={[
-                    {
-                        text: "Published",
-                        value: "published",
-                    },
-                    {
-                        text: "Draft",
-                        value: "draft",
-                    },
-                    {
-                        text: "Rejected",
-                        value: "rejected",
-                    },
-                ]}
-                onFilter={(value, record) => record.status === value}
-            />
-        </Table>
-    );
+  return (
+    <Table {...tableProps} rowKey="id">
+      {/* ... */}
+      <Table.Column
+        dataIndex="status"
+        title="Status"
+        filters={[
+          {
+            text: "Published",
+            value: "published",
+          },
+          {
+            text: "Draft",
+            value: "draft",
+          },
+          {
+            text: "Rejected",
+            value: "rejected",
+          },
+        ]}
+        onFilter={(value, record) => record.status === value}
+      />
+    </Table>
+  );
 };
 ```
 
@@ -953,22 +955,18 @@ import { useTable } from "@refinedev/antd";
 import { Table } from "antd";
 
 const ListPage = () => {
-    const { tableProps } = useTable({
-        sorters: {
-            mode: "off",
-        },
-    });
+  const { tableProps } = useTable({
+    sorters: {
+      mode: "off",
+    },
+  });
 
-    return (
-        <Table {...tableProps} rowKey="id">
-            <Table.Column
-                dataIndex="id"
-                title="ID"
-                sorter={(a, b) => a.id - b.id}
-            />
-            {/* ... */}
-        </Table>
-    );
+  return (
+    <Table {...tableProps} rowKey="id">
+      <Table.Column dataIndex="id" title="ID" sorter={(a, b) => a.id - b.id} />
+      {/* ... */}
+    </Table>
+  );
 };
 ```
 
@@ -980,7 +978,7 @@ const ListPage = () => {
 
 ### Type Parameters
 
-| Property         | Description                                                                                                                                                          | Type                       | Default                    |
+| Property         | Description                                                                                                                                                         | Type                       | Default                    |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData     | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError           | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

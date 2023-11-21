@@ -17,9 +17,9 @@ This hook uses the `useList` hook for fetching data. [Refer to useList hook docu
 :::info-tip DERIVATIVES
 If you're looking for a complete select library, refine has out-of-the-box support for the libraries below:
 
--   refine's `useSelect` (for Headless users) - [Documentation](/docs/api-reference/core/hooks/useSelect/) - [Example](/docs/examples/core/useSelect)
--   [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/docs/api-reference/antd/hooks/field/useSelect) - [Example](/docs/examples/field/useSelect)
--   [Material UI Autocomplete](https://mui.com/material-ui/react-autocomplete) (for Material UI users) - [Documentation](/docs/api-reference/mui/hooks/useAutocomplete)
+- refine's `useSelect` (for Headless users) - [Documentation](/docs/api-reference/core/hooks/useSelect/) - [Example](/docs/examples/core/useSelect)
+- [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/docs/api-reference/antd/hooks/field/useSelect) - [Example](/docs/examples/field/useSelect)
+- [Material UI Autocomplete](https://mui.com/material-ui/react-autocomplete) (for Material UI users) - [Documentation](/docs/api-reference/mui/hooks/useAutocomplete)
 
 :::
 
@@ -48,7 +48,7 @@ It will be passed to the `getList` method from the `dataProvider` as parameter v
 
 ```tsx
 useSelect({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -75,9 +75,9 @@ Supports nested properties with option [Object path](https://lodash.com/docs/4.1
 
 ```tsx
 const { options } = useSelect({
-    resource: "categories",
-    optionLabel: "nested.title",
-    optionValue: "nested.id",
+  resource: "categories",
+  optionLabel: "nested.title",
+  optionValue: "nested.id",
 });
 ```
 
@@ -91,12 +91,12 @@ It allows to show the options in the desired order. `sorters` will be passed to 
 
 ```tsx
 useSelect({
-    sorters: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
+  sorters: [
+    {
+      field: "title",
+      order: "asc",
+    },
+  ],
 });
 ```
 
@@ -110,13 +110,13 @@ It is used to show options by filtering them. `filters` will be passed to the `g
 
 ```tsx
 useSelect({
-    filter: [
-        {
-            field: "isActive",
-            operator: "eq",
-            value: true,
-        },
-    ],
+  filter: [
+    {
+      field: "isActive",
+      operator: "eq",
+      value: true,
+    },
+  ],
 });
 ```
 
@@ -126,7 +126,7 @@ useSelect({
 
 ```tsx
 useSelect({
-    defaultValue: 1, // or [1, 2]
+  defaultValue: 1, // or [1, 2]
 });
 ```
 
@@ -138,7 +138,7 @@ useSelect({
 
 ```tsx
 useSelect({
-    debounce: 500,
+  debounce: 500,
 });
 ```
 
@@ -150,9 +150,9 @@ useSelect({
 
 ```tsx
 useSelect({
-    queryOptions: {
-        retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -166,9 +166,9 @@ You can pass the `current` page number to the `pagination` property.
 
 ```tsx
 useSelect({
-    pagination: {
-        current: 2,
-    },
+  pagination: {
+    current: 2,
+  },
 });
 ```
 
@@ -178,9 +178,9 @@ You can pass the `pageSize` to the `pagination` property.
 
 ```tsx
 useSelect({
-    pagination: {
-        pageSize: 20,
-    },
+  pagination: {
+    pageSize: 20,
+  },
 });
 ```
 
@@ -190,9 +190,9 @@ It can be `"off"`, `"client"` or `"server"`. It is used to determine whether to 
 
 ```tsx
 useSelect({
-    pagination: {
-        mode: "off",
-    },
+  pagination: {
+    mode: "off",
+  },
 });
 ```
 
@@ -202,18 +202,17 @@ When the `defaultValue` property is given, the `useMany` data hook is called for
 
 ```tsx
 const { options } = useSelect({
-    defaultValueQueryOptions: {
-        onSuccess: (data) => {
-            console.log("triggers when on query return on success");
-        },
+  defaultValueQueryOptions: {
+    onSuccess: (data) => {
+      console.log("triggers when on query return on success");
     },
+  },
 });
 ```
 
 ### `onSearch`
 
 `onSearch` allows us to `AutoComplete` the `options`.
-
 
 <OnSearchLivePreview />
 
@@ -229,19 +228,19 @@ Sometimes, you may want to filter the options on the client-side. You can do thi
 
 ```tsx
 const { selectProps } = useSelect({
-    resource: "categories",
+  resource: "categories",
 });
 
 // highlight-next-line
 const [searchValue, onSearchChange] = useState("");
 
 <Select
-    {...selectProps}
-    // highlight-start
-    onSearch={undefined}
-    onSearchChange={onSearchChange}
-    searchValue={searchValue}
-    // highlight-end
+  {...selectProps}
+  // highlight-start
+  onSearch={undefined}
+  onSearchChange={onSearchChange}
+  searchValue={searchValue}
+  // highlight-end
 />;
 ```
 
@@ -249,44 +248,44 @@ const [searchValue, onSearchChange] = useState("");
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useSelect({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  getList: async ({
+    resource,
+    pagination,
+    sorters,
+    filters,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
     //...
-    getList: async ({
-        resource,
-        pagination,
-        sorters,
-        filters,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-        //...
-        //...
-        // highlight-next-line
-        const { data, headers } = await httpClient.get(`${url}`, { headers });
-        return {
-            data,
-        };
-    },
     //...
+    // highlight-next-line
+    const { data, headers } = await httpClient.get(`${url}`, { headers });
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -296,7 +295,7 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 
 ```tsx
 useSelect({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -310,13 +309,13 @@ After data is fetched successfully, `useSelect` can call `open` function from `N
 
 ```tsx
 useSelect({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
@@ -330,13 +329,13 @@ After data fetching is failed, `useSelect` will call `open` function from `Notif
 
 ```tsx
 useSelect({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -348,10 +347,9 @@ useSelect({
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
-
 ```tsx
 useSelect({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
@@ -367,9 +365,9 @@ The callback function that is executed when new events from a subscription are a
 
 ```tsx
 useSelect({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
@@ -390,20 +388,23 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useSelect({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
-    }
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
+    },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### ~~`sort`~~
 
 :::caution Deprecated
@@ -420,7 +421,7 @@ Use `pagination.mode` instead.
 
 ```tsx
 useSelect({
-    hasPagination: true,
+  hasPagination: true,
 });
 ```
 
@@ -447,8 +448,8 @@ To change to `name` and `categoryId`;
 
 ```tsx
 useSelect({
-    optionLabel: "name",
-    optionValue: "categoryId",
+  optionLabel: "name",
+  optionValue: "categoryId",
 });
 ```
 
@@ -460,8 +461,8 @@ Sometimes it may not be enough to create `optionLabel` and `optionValue` options
 const { queryResult } = useSelect();
 
 const options = queryResult.data?.data.map((item) => ({
-    label: item.title,
-    value: item.id,
+  label: item.title,
+  value: item.id,
 }));
 
 return <Select options={options} />;
@@ -479,7 +480,7 @@ return <Select options={options} />;
 
 ### Type Parameters
 
-| Property     | Description                                                                                                                                                          | Type                       | Default                    |
+| Property     | Description                                                                                                                                                         | Type                       | Default                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

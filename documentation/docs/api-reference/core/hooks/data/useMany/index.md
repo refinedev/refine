@@ -8,9 +8,9 @@ import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
 `useMany` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) that supports all of its features and adds some more.
 
--   It uses the `getMany` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
+- It uses the `getMany` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
--   It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
+- It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 
 It is useful when you want to fetch multiple records from the API. It will return the data and some functions to control the query.
 
@@ -44,7 +44,7 @@ This parameter will be passed to the `getMany` method from the `dataProvider` as
 
 ```tsx
 useMany({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -60,7 +60,7 @@ This prop will be passed to the `getMany` method from the `dataProvider` as a pa
 
 ```tsx
 useMany({
-    ids: [1, 2, 3],
+  ids: [1, 2, 3],
 });
 ```
 
@@ -70,7 +70,7 @@ This prop allows you to specify which `dataProvider` if you have more than one. 
 
 ```tsx
 useMany({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -80,10 +80,10 @@ useMany({
 
 ```tsx
 useMany({
-    queryOptions: {
-        retry: 3,
-        enabled: false,
-    },
+  queryOptions: {
+    retry: 3,
+    enabled: false,
+  },
 });
 ```
 
@@ -93,8 +93,8 @@ useMany({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -102,40 +102,40 @@ In the following example, we pass the `headers` property in the `meta` object to
 import { stringify } from "query-string";
 
 useMany({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  getMany: async ({
+    resource,
+    ids,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}?${stringify({ id: ids })}`;
+
     //...
-    getMany: async ({
-        resource,
-        ids,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}?${stringify({ id: ids })}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data } = await httpClient.get(`${url}`, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data } = await httpClient.get(`${url}`, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### `successNotification`
 
@@ -147,13 +147,13 @@ After data is fetched successfully, `useMany` can call `open` function from `Not
 
 ```tsx
 useMany({
-    successNotification: (data, ids, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, ids, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
@@ -167,13 +167,13 @@ After data fetching is failed, `useMany` will call the `open` function from `Not
 
 ```tsx
 useMany({
-    errorNotification: (data, ids, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, ids, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -186,7 +186,7 @@ Determines whether to update data automatically ("auto") or not ("manual") if a 
 
 ```tsx
 useMany({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
@@ -202,9 +202,9 @@ The callback function is executed when new events from a subscription have arriv
 
 ```tsx
 useMany({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
@@ -219,26 +219,29 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
 const { overtime } = useMany({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
-    }
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
+    },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ## Return Values
 
 Returns an object with TanStack Query's `useQuery` return values.
@@ -246,6 +249,7 @@ Returns an object with TanStack Query's `useQuery` return values.
 > For more information, refer to the [ `useQuery` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
 ### Additional Values
+
 #### `overtime`
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
@@ -255,6 +259,7 @@ const { overtime } = useMany();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ## API
 
 ### Properties
@@ -266,7 +271,7 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 ### Type Parameters
 
-| Property     | Description                                                                                                                                                          | Type                       | Default                    |
+| Property     | Description                                                                                                                                                         | Type                       | Default                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

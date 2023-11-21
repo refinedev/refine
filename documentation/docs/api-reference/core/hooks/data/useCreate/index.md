@@ -18,11 +18,11 @@ import { useCreate } from "@refinedev/core";
 const { mutate } = useCreate();
 
 mutate({
-    resource: "products",
-    values: {
-        name: "New Product",
-        material: "Wood",
-    },
+  resource: "products",
+  values: {
+    name: "New Product",
+    material: "Wood",
+  },
 });
 ```
 
@@ -60,9 +60,9 @@ When the `useCreate` mutation runs successfully, it will call the `log` method f
 
 ```tsx
 useCreate({
-    mutationOptions: {
-        retry: 3,
-    },
+  mutationOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -74,21 +74,21 @@ useCreate({
 const { mutate } = useCreate();
 
 mutate(
-    {
-        resource: "products",
-        values: {
-            name: "New Product",
-            material: "Wood",
-        },
+  {
+    resource: "products",
+    values: {
+      name: "New Product",
+      material: "Wood",
     },
-    {
-        onError: (error, variables, context) => {
-            // An error occurred!
-        },
-        onSuccess: (data, variables, context) => {
-            // Let's celebrate!
-        },
+  },
+  {
+    onError: (error, variables, context) => {
+      // An error occurred!
     },
+    onSuccess: (data, variables, context) => {
+      // Let's celebrate!
+    },
+  },
 );
 ```
 
@@ -98,26 +98,29 @@ mutate(
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
 const { overtime } = useCreate({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
-    }
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
+    },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ## Mutation Parameters
 
 ### `resource` <PropTag required />
@@ -128,7 +131,7 @@ This parameter will be passed to the `create` method from the `dataProvider` as 
 const { mutate } = useCreate();
 
 mutate({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -146,10 +149,10 @@ This prop will be passed to the `create` method from the `dataProvider` as a par
 const { mutate } = useCreate();
 
 mutate({
-    values: {
-        name: "New Category",
-        description: "New Category Description",
-    },
+  values: {
+    name: "New Category",
+    description: "New Category Description",
+  },
 });
 ```
 
@@ -165,13 +168,13 @@ This prop allows you to customize the success notification that shows up when th
 const { mutate } = useCreate();
 
 mutate({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
@@ -187,13 +190,13 @@ This prop allows you to customize the error notification that shows up when the 
 const { mutate } = useCreate();
 
 mutate({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -201,8 +204,8 @@ mutate({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. You can pass any properties to specifically handle the data provider methods with similar logic.
 
@@ -210,40 +213,40 @@ In the following example, we pass the `headers` property in the `meta` object to
 const { mutate } = useCreate();
 
 mutate({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  create: async ({
+    resource,
+    variables,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    create: async ({
-        resource,
-        variables,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data } = await httpClient.post(url, variables, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data } = await httpClient.post(url, variables, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### `dataProviderName`
 
@@ -253,7 +256,7 @@ This prop allows you to specify which `dataProvider` if you have more than one. 
 const { mutate } = useCreate();
 
 mutate({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -267,7 +270,7 @@ By default, it invalidates the following queries from the current `resource`: `"
 const { mutate } = useCreate();
 
 mutate({
-    invalidates: ["list", "many"],
+  invalidates: ["list", "many"],
 });
 ```
 
@@ -278,6 +281,7 @@ Returns an object with TanStack Query's `useMutation` return values.
 > For more information, refer to the [`useMutation` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
 ### Additional Values
+
 #### `overtime`
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
@@ -287,6 +291,7 @@ const { overtime } = useCreate();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ## API
 
 ### Mutation Parameters
@@ -303,7 +308,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Type Parameters
 
-| Property   | Description                                                                                        | Type                                                         | Default                                                      |
+| Property   | Description                                                                                       | Type                                                         | Default                                                      |
 | ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |

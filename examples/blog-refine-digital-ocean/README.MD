@@ -1,16 +1,7 @@
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-<picture  style="display: inline-block;" >
-  <source media="(prefers-color-scheme: dark)" srcset="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-white-logo.png">
-  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-dark-logo.png">
-</picture>
-
-<br />
-<br />
+  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
 </a>
-
-<br />
-<br />
 
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
@@ -20,8 +11,6 @@
     <a href="https://refine.dev/docs/">Documentation</a>
 </div>
 </div>
-
-<br />
 
 <div align="center">Build your React-based internal tools, admin panels, dashboards, B2B apps with flexibility in mind.<br>An open source, headless web application framework developed with flexibility in mind.
 
@@ -47,13 +36,13 @@ The application includes features such as dashboard analytics, a calendar for sc
 
 refine is a React-based powerful framework for building low-code applications. It is primarily focused on implementing data-heavy apps such as internal tools, dashboards, admin panels, and storefronts. It comes with a core package that segregates app concerns like data handling, authentication, access control, etc., into React contexts. It also supports integration with industry standard backend systems such and UI frameworks. It is highly customizable and extensible.
 
-## Try it out on your local
+## Try this example on your local
 
 ```bash
 npm create refine-app@latest -- --example blog-refine-digital-ocean
 ```
 
-## Try it out on CodeSandbox
+## Try this example on CodeSandbox
 
 <br/>
 

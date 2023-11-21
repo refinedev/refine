@@ -1,5 +1,19 @@
 # @refinedev/cli
 
+## 2.16.19
+
+### Patch Changes
+
+-   [#5292](https://github.com/refinedev/refine/pull/5292) [`714841da4b24`](https://github.com/refinedev/refine/commit/714841da4b24ef0b392eb9cbb7320cb3be122292) Thanks [@aliemir](https://github.com/aliemir)! - Bump `node-emoji` dependency resolution to `^2.1.3` to fix broken CJS builds.
+
+## 2.16.18
+
+### Patch Changes
+
+-   [#5290](https://github.com/refinedev/refine/pull/5290) [`404f16a947f3`](https://github.com/refinedev/refine/commit/404f16a947f330aad494f11545022684133bf2d0) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: override `node-emoji` package version used by `marked-terminal` to `2.1.0`
+
+    fixes the issue: https://github.com/refinedev/refine/issues/5279
+
 ## 2.16.17
 
 ### Patch Changes

@@ -13,9 +13,9 @@ import SortingLivePreview from "./sorting-live-preview.md";
 
 When you need to fetch data according to sort, filter, pagination, etc. from a `resource` , you can use the `useList` hook. It will return the data and some functions to control the query.
 
--   It uses the `getList` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
+- It uses the `getList` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
--   It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
+- It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 
 ## Basic Usage
 
@@ -65,7 +65,7 @@ This parameter will be passed to the `getList` method from the `dataProvider` as
 
 ```tsx
 useList({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -81,7 +81,7 @@ This prop allows you to specify which `dataProvider` if you have more than one. 
 
 ```tsx
 useList({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -91,13 +91,13 @@ useList({
 
 ```tsx
 useList({
-    filters: [
-        {
-            field: "title",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+  filters: [
+    {
+      field: "title",
+      operator: "contains",
+      value: "Foo",
+    },
+  ],
 });
 ```
 
@@ -109,12 +109,12 @@ useList({
 
 ```tsx
 useList({
-    sorters: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
+  sorters: [
+    {
+      field: "title",
+      order: "asc",
+    },
+  ],
 });
 ```
 
@@ -130,9 +130,9 @@ You can pass the `current` page number to the `pagination` property.
 
 ```tsx
 useList({
-    pagination: {
-        current: 2,
-    },
+  pagination: {
+    current: 2,
+  },
 });
 ```
 
@@ -142,9 +142,9 @@ You can pass the `pageSize` to the `pagination` property.
 
 ```tsx
 useList({
-    pagination: {
-        pageSize: 20,
-    },
+  pagination: {
+    pageSize: 20,
+  },
 });
 ```
 
@@ -154,9 +154,9 @@ This property can be `"off"`, `"client"` or `"server"`. It is used to determine 
 
 ```tsx
 useList({
-    pagination: {
-        mode: "off",
-    },
+  pagination: {
+    mode: "off",
+  },
 });
 ```
 
@@ -166,9 +166,9 @@ useList({
 
 ```tsx
 useList({
-    queryOptions: {
-        retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -178,49 +178,49 @@ useList({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useList({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  getList: async ({
+    resource,
+    pagination,
+    sorters,
+    filters,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    getList: async ({
-        resource,
-        pagination,
-        sorters,
-        filters,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data } = await httpClient.get(`${url}`, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data } = await httpClient.get(`${url}`, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### `successNotification`
 
@@ -232,13 +232,13 @@ After data is fetched successfully, `useList` can call `open` function from `Not
 
 ```tsx
 useList({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
@@ -252,13 +252,13 @@ After data fetching is failed, `useList` will call `open` function from `Notific
 
 ```tsx
 useList({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -272,7 +272,7 @@ Determines whether to update data automatically ("auto") or not ("manual") if a 
 
 ```tsx
 useList({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
@@ -288,9 +288,9 @@ The callback function is executed when new events from a subscription have arriv
 
 ```tsx
 useList({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
@@ -311,20 +311,23 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useList({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
-    }
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
+    },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### ~~`config`~~
 
 :::caution Deprecated
@@ -341,7 +344,7 @@ Use `pagination.mode` instead.
 
 ```tsx
 useList({
-    hasPagination: false,
+  hasPagination: false,
 });
 ```
 
@@ -352,6 +355,7 @@ Returns an object with TanStack Query's `useQuery` return values.
 > For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
 ### Additional Values
+
 #### `overtime`
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
@@ -361,6 +365,7 @@ const { overtime } = useList();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ## API
 
 ### Properties
@@ -372,7 +377,7 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 ### Type Parameters
 
-| Property     | Description                                                                                                                                                          | Type                       | Default                    |
+| Property     | Description                                                                                                                                                         | Type                       | Default                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

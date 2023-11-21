@@ -38,31 +38,31 @@ If you want to handle the pagination on client-side, you can pass the `paginatio
 
 ```tsx
 export const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid();
+  const { dataGridProps } = useDataGrid();
 
-    const {
+  const {
+    //highlight-start
+    paginationMode,
+    paginationModel,
+    onPaginationModelChange,
+    //highlight-end
+    ...restDataGridProps
+  } = dataGridProps;
+
+  return (
+    <List>
+      <DataGrid
+        columns={columns}
+        {...restDataGridProps}
         //highlight-start
-        paginationMode,
-        paginationModel,
-        onPaginationModelChange,
+        paginationMode={paginationMode}
+        paginationModel={paginationModel}
+        onPaginationModelChange={onPaginationModelChange}
         //highlight-end
-        ...restDataGridProps
-    } = dataGridProps;
-
-    return (
-        <List>
-            <DataGrid
-                columns={columns}
-                {...restDataGridProps}
-                //highlight-start
-                paginationMode={paginationMode}
-                paginationModel={paginationModel}
-                onPaginationModelChange={onPaginationModelChange}
-                //highlight-end
-                autoHeight
-            />
-        </List>
-    );
+        autoHeight
+      />
+    </List>
+  );
 };
 ```
 
@@ -74,27 +74,26 @@ It also syncs the sorting state with the URL if you enable the [`syncWithLocatio
 
 ```tsx
 export const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid();
+  const { dataGridProps } = useDataGrid();
 
-    //highlight-start
-    const { sortingMode, sortModel, onSortModelChange, ...restDataGridProps } =
-        dataGridProps;
-    //highlight-end
+  //highlight-start
+  const { sortingMode, sortModel, onSortModelChange, ...restDataGridProps } = dataGridProps;
+  //highlight-end
 
-    return (
-        <List>
-            <DataGrid
-                columns={columns}
-                {...restDataGridProps}
-                //highlight-start
-                sortingMode={sortingMode}
-                sortModel={sortModel}
-                onSortModelChange={onSortModelChange}
-                //highlight-end
-                autoHeight
-            />
-        </List>
-    );
+  return (
+    <List>
+      <DataGrid
+        columns={columns}
+        {...restDataGridProps}
+        //highlight-start
+        sortingMode={sortingMode}
+        sortModel={sortModel}
+        onSortModelChange={onSortModelChange}
+        //highlight-end
+        autoHeight
+      />
+    </List>
+  );
 };
 ```
 
@@ -106,36 +105,36 @@ import { Button, ButtonGroup } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const columns: GridColDef[] = [
-    {
-        field: "id",
-        headerName: "ID",
-        type: "number",
-    },
-    { field: "title", headerName: "Title" },
-    { field: "status", headerName: "Status" },
+  {
+    field: "id",
+    headerName: "ID",
+    type: "number",
+  },
+  { field: "title", headerName: "Title" },
+  { field: "status", headerName: "Status" },
 ];
 
 export const PostsList: React.FC = () => {
-    const { dataGridProps, setSorter } = useDataGrid();
+  const { dataGridProps, setSorter } = useDataGrid();
 
-    const handleSorting = (order: "asc" | "desc") => {
-        setSorter([
-            {
-                field: "title",
-                order,
-            },
-        ]);
-    };
+  const handleSorting = (order: "asc" | "desc") => {
+    setSorter([
+      {
+        field: "title",
+        order,
+      },
+    ]);
+  };
 
-    return (
-        <List>
-            <ButtonGroup variant="outlined">
-                <Button onClick={() => handleSorting("asc")}>Asc</Button>
-                <Button onClick={() => handleSorting("desc")}>Desc</Button>
-            </ButtonGroup>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    <List>
+      <ButtonGroup variant="outlined">
+        <Button onClick={() => handleSorting("asc")}>Asc</Button>
+        <Button onClick={() => handleSorting("desc")}>Desc</Button>
+      </ButtonGroup>
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 ```
 
@@ -161,31 +160,26 @@ It also syncs the filtering state with the URL if you enable the [`syncWithLocat
 
 ```tsx
 export const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid();
+  const { dataGridProps } = useDataGrid();
 
-    //highlight-start
-    const {
-        filterMode,
-        filterModel,
-        onFilterModelChange,
-        ...restDataGridProps
-    } = dataGridProps;
-    //highlight-end
+  //highlight-start
+  const { filterMode, filterModel, onFilterModelChange, ...restDataGridProps } = dataGridProps;
+  //highlight-end
 
-    return (
-        <List>
-            <DataGrid
-                columns={columns}
-                {...restDataGridProps}
-                //highlight-start
-                filterMode={filterMode}
-                filterModel={filterModel}
-                onFilterModelChange={onFilterModelChange}
-                //highlight-end
-                autoHeight
-            />
-        </List>
-    );
+  return (
+    <List>
+      <DataGrid
+        columns={columns}
+        {...restDataGridProps}
+        //highlight-start
+        filterMode={filterMode}
+        filterModel={filterModel}
+        onFilterModelChange={onFilterModelChange}
+        //highlight-end
+        autoHeight
+      />
+    </List>
+  );
 };
 ```
 
@@ -196,40 +190,34 @@ import { useDataGrid, List } from "@refinedev/mui";
 import { FormControlLabel, Checkbox } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 const columns: GridColDef[] = [
-    {
-        field: "id",
-        headerName: "ID",
-        type: "number",
-    },
-    { field: "title", headerName: "Title" },
-    { field: "status", headerName: "Status" },
+  {
+    field: "id",
+    headerName: "ID",
+    type: "number",
+  },
+  { field: "title", headerName: "Title" },
+  { field: "status", headerName: "Status" },
 ];
 
 export const PostsList: React.FC = () => {
-    const { dataGridProps, setFilters } = useDataGrid();
+  const { dataGridProps, setFilters } = useDataGrid();
 
-    const handleFilter = (
-        e: React.ChangeEvent<HTMLInputElement>,
-        checked: boolean,
-    ) => {
-        setFilters([
-            {
-                field: "status",
-                value: checked ? "draft" : undefined,
-                operator: "eq",
-            },
-        ]);
-    };
+  const handleFilter = (e: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    setFilters([
+      {
+        field: "status",
+        value: checked ? "draft" : undefined,
+        operator: "eq",
+      },
+    ]);
+  };
 
-    return (
-        <List>
-            <FormControlLabel
-                label="Filter by Draft Status"
-                control={<Checkbox onChange={handleFilter} />}
-            />
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    <List>
+      <FormControlLabel label="Filter by Draft Status" control={<Checkbox onChange={handleFilter} />} />
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 ```
 
@@ -274,7 +262,7 @@ method={{
 
 ```tsx
 useDataGrid({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -288,7 +276,7 @@ If there is more than one `dataProvider`, you should use the `dataProviderName` 
 
 ```tsx
 useDataGrid({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -300,9 +288,9 @@ Sets the initial value of the page index.
 
 ```tsx
 useDataGrid({
-    pagination: {
-        current: 2,
-    },
+  pagination: {
+    current: 2,
+  },
 });
 ```
 
@@ -312,9 +300,9 @@ Sets the initial value of the page size. It is `25` by default.
 
 ```tsx
 useDataGrid({
-    pagination: {
-        pageSize: 10,
-    },
+  pagination: {
+    pageSize: 10,
+  },
 });
 ```
 
@@ -322,15 +310,15 @@ useDataGrid({
 
 It can be `"off"`, `"server"` or `"client"`. It is `"server"` by default.
 
--   **"off":** Pagination is disabled. All records will be fetched.
--   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
--   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+- **"off":** Pagination is disabled. All records will be fetched.
+- **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
+- **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
 
 ```tsx
 useDataGrid({
-    pagination: {
-        mode: "client",
-    },
+  pagination: {
+    mode: "client",
+  },
 });
 ```
 
@@ -342,14 +330,14 @@ useDataGrid({
 
 ```tsx
 useDataGrid({
-    sorters: {
-        initial: [
-            {
-                field: "name",
-                order: "asc",
-            },
-        ],
-    },
+  sorters: {
+    initial: [
+      {
+        field: "name",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
@@ -361,14 +349,14 @@ useDataGrid({
 
 ```tsx
 useDataGrid({
-    sorters: {
-        permanent: [
-            {
-                field: "name",
-                order: "asc",
-            },
-        ],
-    },
+  sorters: {
+    permanent: [
+      {
+        field: "name",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
@@ -376,14 +364,14 @@ useDataGrid({
 
 It can be `"off"`, or `"server"`. It is `"server"` by default.
 
--   **"off":** `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
--   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+- **"off":** `sorters` are not sent to the server. You can use the `sorters` value to sort the records on the client side.
+- **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
 
 ```tsx
 useDataGrid({
-    sorters: {
-        mode: "server",
-    },
+  sorters: {
+    mode: "server",
+  },
 });
 ```
 
@@ -395,15 +383,15 @@ Sets the initial value of the filter. The `initial` is not permanent. It will be
 
 ```tsx
 useDataGrid({
-    filters: {
-        initial: [
-            {
-                field: "name",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  filters: {
+    initial: [
+      {
+        field: "name",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
@@ -415,15 +403,15 @@ Sets the permanent value of the filter. The `permanent` is permanent and unchang
 
 ```tsx
 useDataGrid({
-    filters: {
-        permanent: [
-            {
-                field: "name",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  filters: {
+    permanent: [
+      {
+        field: "name",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
@@ -431,17 +419,17 @@ useDataGrid({
 
 The filtering behavior can be set to either `"merge"` or `"replace"`. It is `"merge"` by default.
 
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 useDataGrid({
-    filters: {
-        defaultBehavior: "replace",
-    },
+  filters: {
+    defaultBehavior: "replace",
+  },
 });
 ```
 
@@ -449,14 +437,14 @@ useDataGrid({
 
 It can be `"off"` or `"server"`. It is `"server"` by default.
 
--   **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
--   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+- **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+- **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
 
 ```tsx
 useDataGrid({
-    filters: {
-        mode: "off",
-    },
+  filters: {
+    mode: "off",
+  },
 });
 ```
 
@@ -468,7 +456,7 @@ Also, you can set this value globally on [`<Refine>`][refine swl] component.
 
 ```tsx
 useDataGrid({
-    syncWithLocation: true,
+  syncWithLocation: true,
 });
 ```
 
@@ -478,9 +466,9 @@ useDataGrid({
 
 ```tsx
 useDataGrid({
-    queryOptions: {
-        retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -488,45 +476,45 @@ useDataGrid({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-> For more information, refer to the [`meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation for more information &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useDataGrid({
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
 });
 
 const myDataProvider = {
+  //...
+  getList: async ({
+    resource,
+    pagination,
+    sorters,
+    filters,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    getList: async ({
-        resource,
-        pagination,
-        sorters,
-        filters,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data, headers } = await httpClient.get(`${url}`, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data, headers } = await httpClient.get(`${url}`, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -540,13 +528,13 @@ After data is fetched successfully, `useDataGrid` can call `open` function from 
 
 ```tsx
 useDataGrid({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
@@ -560,13 +548,13 @@ After data fetching is failed, `useDataGrid` will call `open` function from [`No
 
 ```tsx
 useDataGrid({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -582,7 +570,7 @@ For more information, please refer to the [Live / Realtime documentation](/docs/
 
 ```tsx
 useDataGrid({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
@@ -596,9 +584,9 @@ The callback function is executed when new events from a subscription have arriv
 
 ```tsx
 useDataGrid({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
@@ -613,26 +601,29 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
 const { overtime } = useDataGrid({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
-    }
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
+    },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ### ~~`initialCurrent`~~
 
 :::caution Deprecated
@@ -643,7 +634,7 @@ Sets the initial value of the page index. It is `1` by default.
 
 ```tsx
 useDataGrid({
-    initialCurrent: 2,
+  initialCurrent: 2,
 });
 ```
 
@@ -657,7 +648,7 @@ Sets the initial value of the page size. It is `25` by default.
 
 ```tsx
 useDataGrid({
-    initialPageSize: 20,
+  initialPageSize: 20,
 });
 ```
 
@@ -671,7 +662,7 @@ Determines whether to use server-side pagination or not. It is `true` by default
 
 ```tsx
 useDataGrid({
-    hasPagination: false,
+  hasPagination: false,
 });
 ```
 
@@ -687,12 +678,12 @@ Sets the initial value of the sorter. The `initialSorter` is not permanent. It w
 
 ```tsx
 useDataGrid({
-    initialSorter: [
-        {
-            field: "name",
-            order: "asc",
-        },
-    ],
+  initialSorter: [
+    {
+      field: "name",
+      order: "asc",
+    },
+  ],
 });
 ```
 
@@ -708,12 +699,12 @@ Sets the permanent value of the sorter. The `permanentSorter` is permanent and u
 
 ```tsx
 useDataGrid({
-    permanentSorter: [
-        {
-            field: "name",
-            order: "asc",
-        },
-    ],
+  permanentSorter: [
+    {
+      field: "name",
+      order: "asc",
+    },
+  ],
 });
 ```
 
@@ -729,13 +720,13 @@ Sets the initial value of the filter. The `initialFilter` is not permanent. It w
 
 ```tsx
 useDataGrid({
-    initialFilter: [
-        {
-            field: "name",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+  initialFilter: [
+    {
+      field: "name",
+      operator: "contains",
+      value: "Foo",
+    },
+  ],
 });
 ```
 
@@ -751,13 +742,13 @@ Sets the permanent value of the filter. The `permanentFilter` is permanent and u
 
 ```tsx
 useDataGrid({
-    permanentFilter: [
-        {
-            field: "name",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+  permanentFilter: [
+    {
+      field: "name",
+      operator: "contains",
+      value: "Foo",
+    },
+  ],
 });
 ```
 
@@ -769,15 +760,15 @@ Use `filters.defaultBehavior` instead.
 
 The filtering behavior can be set to either `"merge"` or `"replace"`. It is `merge` by default.
 
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 useDataGrid({
-    defaultSetFilterBehavior: "replace",
+  defaultSetFilterBehavior: "replace",
 });
 ```
 
@@ -805,13 +796,13 @@ When the user sorts a column, this function is called with the new sort model.
 
 ```tsx
 <DataGrid
-    {...dataGridProps}
-    columns={columns}
-    autoHeight
-    onSortModelChange={(model, details) => {
-        dataGridProps.onSortModelChange(model, details);
-        // do something else
-    }}
+  {...dataGridProps}
+  columns={columns}
+  autoHeight
+  onSortModelChange={(model, details) => {
+    dataGridProps.onSortModelChange(model, details);
+    // do something else
+  }}
 />
 ```
 
@@ -833,13 +824,13 @@ When the user filters a column, this function is called with the new filter mode
 
 ```tsx
 <DataGrid
-    {...dataGridProps}
-    columns={columns}
-    autoHeight
-    onFilterModelChange={(model, details) => {
-        dataGridProps.onFilterModelChange(model, details);
-        // do something else
-    }}
+  {...dataGridProps}
+  columns={columns}
+  autoHeight
+  onFilterModelChange={(model, details) => {
+    dataGridProps.onFilterModelChange(model, details);
+    // do something else
+  }}
 />
 ```
 
@@ -853,13 +844,13 @@ The `onStateChange` callback is used internally by the `useDataGrid` hook. If yo
 
 ```tsx
 <DataGrid
-    {...dataGridProps}
-    columns={columns}
-    autoHeight
-    onStateChange={(state) => {
-        dataGridProps.onStateChange(state);
-        // do something else
-    }}
+  {...dataGridProps}
+  columns={columns}
+  autoHeight
+  onStateChange={(state) => {
+    dataGridProps.onStateChange(state);
+    // do something else
+  }}
 />
 ```
 
@@ -987,9 +978,9 @@ You can set the [`filters.mode: "off"`](#filtersmode) in order to disable server
 
 ```tsx
 useDataGrid({
-    filters: {
-        mode: "off",
-    },
+  filters: {
+    mode: "off",
+  },
 });
 ```
 
@@ -999,9 +990,9 @@ You can set the [`sorting.mode: "off"`](#sortersmode) in order to disable server
 
 ```tsx
 useDataGrid({
-    sorting: {
-        mode: "off",
-    },
+  sorting: {
+    mode: "off",
+  },
 });
 ```
 
@@ -1013,7 +1004,7 @@ useDataGrid({
 
 ### Type Parameters
 
-| Property         | Description                                                                                                                                                          | Type                       | Default                    |
+| Property         | Description                                                                                                                                                         | Type                       | Default                    |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData     | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError           | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

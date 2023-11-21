@@ -11,7 +11,7 @@ Data provider acts as a data layer for your app, making HTTP requests and encaps
 You don’t need to worry about creating data providers from scratch, as **refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers).
 
 <div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/tutorial_dataprovider_flog.png" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.png" />
 </div>
 
 :::note
@@ -36,7 +36,7 @@ import { Refine } from "@refinedev/core";
 import dataProvider from "./dataProvider";
 
 const App: React.FC = () => {
-    return <Refine dataProvider={dataProvider} />;
+  return <Refine dataProvider={dataProvider} />;
 };
 ```
 
@@ -65,108 +65,108 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const FINE_FOODS_API_URL = "https://api.finefoods.refine.dev";
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 
 interface IProduct {
-    id: number;
-    name: string;
-    price: number;
+  id: number;
+  name: string;
+  price: number;
 }
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                // highlight-start
-                dataProvider={{
-                    default: dataProvider(API_URL),
-                    fineFoods: dataProvider(FINE_FOODS_API_URL),
-                }}
-                // highlight-end
-                resources={[
-                    {
-                        // highlight-next-line
-                        // **refine** will use the `default` data provider for this resource
-                        name: "posts",
-                        list: "/posts",
-                    },
-                    {
-                        name: "products",
-                        meta: {
-                            // highlight-start
-                            // **refine** will use the `fineFoods` data provider for this resource
-                            dataProviderName: "fineFoods",
-                            // highlight-end
-                        },
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route path="/posts" element={<PostList />} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        // highlight-start
+        dataProvider={{
+          default: dataProvider(API_URL),
+          fineFoods: dataProvider(FINE_FOODS_API_URL),
+        }}
+        // highlight-end
+        resources={[
+          {
+            // highlight-next-line
+            // **refine** will use the `default` data provider for this resource
+            name: "posts",
+            list: "/posts",
+          },
+          {
+            name: "products",
+            meta: {
+              // highlight-start
+              // **refine** will use the `fineFoods` data provider for this resource
+              dataProviderName: "fineFoods",
+              // highlight-end
+            },
+          },
+        ]}
+      >
+        <Routes>
+          <Route path="/posts" element={<PostList />} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 const PostList: React.FC = () => {
-    const { data: posts } = useList<IPost>({
-        resource: "posts",
-        // highlight-start
-        // Data provider can be selected through props
-        dataProviderName: "default",
-        // highlight-end
-    });
+  const { data: posts } = useList<IPost>({
+    resource: "posts",
     // highlight-start
-    // We've defined the data provider for this resource as "fineFoods" in its config so we don't need to pass it here
-    const { data: products } = useList<IProduct>({ resource: "products" });
+    // Data provider can be selected through props
+    dataProviderName: "default",
     // highlight-end
+  });
+  // highlight-start
+  // We've defined the data provider for this resource as "fineFoods" in its config so we don't need to pass it here
+  const { data: products } = useList<IProduct>({ resource: "products" });
+  // highlight-end
 
-    console.log({
-        posts,
-        products,
-    });
+  console.log({
+    posts,
+    products,
+  });
 
-    return (
-        <Collapse defaultActiveKey={["products"]}>
-            <Collapse.Panel header="Posts" key="posts">
-                {posts?.data.map((post) => (
-                    <div
-                        key={post.title}
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            gap: "0.5rem",
-                            marginBottom: "0.25rem",
-                        }}
-                    >
-                        {post.title}
-                        <Tag>{post.status}</Tag>
-                    </div>
-                ))}
-            </Collapse.Panel>
-            <Collapse.Panel header="Products" key="products">
-                {products?.data.map((product) => (
-                    <div
-                        key={product.name}
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            gap: "0.5rem",
-                            marginBottom: "0.25rem",
-                        }}
-                    >
-                        {product.name}
-                        <Tag>{product.price / 10}</Tag>
-                    </div>
-                ))}
-            </Collapse.Panel>
-        </Collapse>
-    );
+  return (
+    <Collapse defaultActiveKey={["products"]}>
+      <Collapse.Panel header="Posts" key="posts">
+        {posts?.data.map((post) => (
+          <div
+            key={post.title}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "0.5rem",
+              marginBottom: "0.25rem",
+            }}
+          >
+            {post.title}
+            <Tag>{post.status}</Tag>
+          </div>
+        ))}
+      </Collapse.Panel>
+      <Collapse.Panel header="Products" key="products">
+        {products?.data.map((product) => (
+          <div
+            key={product.name}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "0.5rem",
+              marginBottom: "0.25rem",
+            }}
+          >
+            {product.name}
+            <Tag>{product.price / 10}</Tag>
+          </div>
+        ))}
+      </Collapse.Panel>
+    </Collapse>
+  );
 };
 // visible-block-end
 
@@ -178,16 +178,16 @@ When using multiple data providers, the `default` key is required for defining t
 
 ```tsx title="App.tsx"
 const App = () => {
-    return (
-        <Refine
-            dataProvider={{
-                default: defaultDataProvider,
-                example: exampleDataProvider,
-            }}
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      dataProvider={{
+        default: defaultDataProvider,
+        example: exampleDataProvider,
+      }}
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
@@ -201,7 +201,7 @@ You can either use the `dataProviderName` prop in data hooks and data-related co
 
 ```tsx
 useTable({
-    dataProviderName: "example",
+  dataProviderName: "example",
 });
 ```
 
@@ -209,27 +209,27 @@ Or use the `meta.dataProviderName` property in your resource config, which will 
 
 ```tsx
 const App = () => {
-    return (
-        <Refine
-            dataProvider={{
-                default: defaultDataProvider,
-                example: exampleDataProvider,
-            }}
-            resources={[
-                {
-                    // **refine** will use the `default` data provider for this resource
-                    name: "posts",
-                },
-                {
-                    name: "products",
-                    meta: {
-                        // **refine** will use the `exampleDataProvider` data provider for this resource
-                        dataProviderName: "exampleDataProvider",
-                    },
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={{
+        default: defaultDataProvider,
+        example: exampleDataProvider,
+      }}
+      resources={[
+        {
+          // **refine** will use the `default` data provider for this resource
+          name: "posts",
+        },
+        {
+          name: "products",
+          meta: {
+            // **refine** will use the `exampleDataProvider` data provider for this resource
+            dataProviderName: "exampleDataProvider",
+          },
+        },
+      ]}
+    />
+  );
 };
 ```
 
@@ -287,16 +287,16 @@ It takes `resource`, `sorters`, `pagination`, and, `filters` as parameters and r
 
 ```ts
 getList: async ({ resource, pagination, sorters, filters, meta }) => {
-    const { current, pageSize, mode } = pagination;
-    const { field, order } = sorters;
-    const { field, operator, value } = filters;
+  const { current, pageSize, mode } = pagination;
+  const { field, order } = sorters;
+  const { field, operator, value } = filters;
 
-    // You can handle the request according to your API requirements.
+  // You can handle the request according to your API requirements.
 
-    return {
-        data,
-        total,
-    };
+  return {
+    data,
+    total,
+  };
 };
 ```
 
@@ -322,11 +322,11 @@ The `create` method creates a new record with the `resource` and `variables` par
 
 ```ts
 create: async ({ resource, variables, meta }) => {
-    // You can handle the request according to your API requirements.
+  // You can handle the request according to your API requirements.
 
-    return {
-        data,
-    };
+  return {
+    data,
+  };
 };
 ```
 
@@ -348,11 +348,11 @@ The `update` method updates the record with the `resource`, `id`, and, `variable
 
 ```ts
 update: async ({ resource, id, variables, meta }) => {
-    // You can handle the request according to your API requirements.
+  // You can handle the request according to your API requirements.
 
-    return {
-        data,
-    };
+  return {
+    data,
+  };
 };
 ```
 
@@ -375,11 +375,11 @@ The `deleteOne` method delete the record with the `resource` and `id` parameters
 
 ```ts
 deleteOne: async ({ resource, id, variables, meta }) => {
-    // You can handle the request according to your API requirements.
+  // You can handle the request according to your API requirements.
 
-    return {
-        data,
-    };
+  return {
+    data,
+  };
 };
 ```
 
@@ -402,11 +402,11 @@ The `getOne` method gets the record with the `resource` and `id` parameters.
 
 ```ts
 getOne: async ({ resource, id, meta }) => {
-    // You can handle the request according to your API requirements.
+  // You can handle the request according to your API requirements.
 
-    return {
-        data,
-    };
+  return {
+    data,
+  };
 };
 ```
 
@@ -428,8 +428,8 @@ The `getApiUrl` method returns the `apiUrl` value.
 import { DataProvider } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    getApiUrl: () => apiUrl,
-    // ...
+  getApiUrl: () => apiUrl,
+  // ...
 });
 ```
 
@@ -441,21 +441,12 @@ It's useful if you have non-standard REST API endpoints or want to make a connec
 **refine** will consume this method using the [`useCustom`][use-custom] data hook.
 
 ```ts
-custom: async ({
-    url,
-    method,
-    filters,
-    sorters,
-    payload,
-    query,
-    headers,
-    meta,
-}) => {
-    // You can handle the request according to your API requirements.
+custom: async ({ url, method, filters, sorters, payload, query, headers, meta }) => {
+  // You can handle the request according to your API requirements.
 
-    return {
-        data,
-    };
+  return {
+    data,
+  };
 };
 ```
 
@@ -486,11 +477,11 @@ The `getMany` method gets the records with the `resource` and `ids` parameters. 
 
 ```ts
 getMany: async ({ resource, ids, meta }) => {
-    // You can handle the request according to your API requirements.
+  // You can handle the request according to your API requirements.
 
-    return {
-        data,
-    };
+  return {
+    data,
+  };
 };
 ```
 
@@ -510,11 +501,11 @@ This method allows us to create multiple items in a resource. This method is opt
 
 ```ts
 createMany: async ({ resource, variables, meta }) => {
-    // You can handle the request according to your API requirements.
+  // You can handle the request according to your API requirements.
 
-    return {
-        data,
-    };
+  return {
+    data,
+  };
 };
 ```
 
@@ -536,11 +527,11 @@ This method allows us to delete multiple items in a resource. This method is opt
 
 ```ts
 deleteMany: async ({ resource, ids, variables, meta }) => {
-    // You can handle the request according to your API requirements.
+  // You can handle the request according to your API requirements.
 
-    return {
-        data,
-    };
+  return {
+    data,
+  };
 };
 ```
 
@@ -561,11 +552,11 @@ This method allows us to update multiple items in a resource. This method is opt
 
 ```ts
 updateMany: async ({ resource, ids, variables, meta }) => {
-    // You can handle the request according to your API requirements.
+  // You can handle the request according to your API requirements.
 
-    return {
-        data,
-    };
+  return {
+    data,
+  };
 };
 ```
 
@@ -588,36 +579,34 @@ Here is a basic example of how to implement error handling in your data provider
 import { DataProvider, HttpError } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    getOne: async ({ resource, id }) => {
-        try {
-            const response = await fetch(
-                `https://api.example.com/${resource}/${id}`,
-            );
+  getOne: async ({ resource, id }) => {
+    try {
+      const response = await fetch(`https://api.example.com/${resource}/${id}`);
 
-            // highlight-start
-            if (!response.ok) {
-                const error: HttpError = {
-                    message: response.statusText,
-                    statusCode: response.status,
-                };
-                return Promise.reject(error);
-            }
-            // highlight-end
+      // highlight-start
+      if (!response.ok) {
+        const error: HttpError = {
+          message: response.statusText,
+          statusCode: response.status,
+        };
+        return Promise.reject(error);
+      }
+      // highlight-end
 
-            return {
-                data: response.data,
-            };
-        } catch (error) {
-            // highlight-start
-            const error: HttpError = {
-                message: error?.message || "Something went wrong",
-                statusCode: error?.status || 500,
-            };
-            return Promise.reject(error);
-            // highlight-end
-        }
-    },
-    // ...
+      return {
+        data: response.data,
+      };
+    } catch (error) {
+      // highlight-start
+      const error: HttpError = {
+        message: error?.message || "Something went wrong",
+        statusCode: error?.status || 500,
+      };
+      return Promise.reject(error);
+      // highlight-end
+    }
+  },
+  // ...
 });
 ```
 
@@ -635,23 +624,23 @@ import { stringify } from "query-string";
 const axiosInstance = axios.create();
 
 axiosInstance.interceptors.response.use(
-    (response) => {
-        return response;
-    },
-    (error) => {
-        const customError: HttpError = {
-            ...error,
-            message: error.response?.data?.message,
-            statusCode: error.response?.status,
-        };
+  (response) => {
+    return response;
+  },
+  (error) => {
+    const customError: HttpError = {
+      ...error,
+      message: error.response?.data?.message,
+      statusCode: error.response?.status,
+    };
 
-        return Promise.reject(customError);
-    },
+    return Promise.reject(customError);
+  },
 );
 // highlight-end
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // Methods
+  // Methods
 });
 ```
 
@@ -671,13 +660,13 @@ We first need to send a custom header parameter to the [`getOne`](#getone-) meth
 import { useOne } from "@refinedev/core";
 
 useOne({
-    resource: "post",
-    id: "1",
-    meta: {
-        headers: {
-            "x-custom-header": "hello world",
-        },
+  resource: "post",
+  id: "1",
+  meta: {
+    headers: {
+      "x-custom-header": "hello world",
     },
+  },
 });
 ```
 
@@ -720,17 +709,17 @@ The `meta` parameter can be used in all data, form, and table hooks.
 
 **refine** will consume:
 
--   [`getList`](#getlist-) method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
--   [`create`](#create-) method using the [`useCreate`][use-create] data hook.
--   [`update`](#update-) method using the [`useUpdate`][use-update] data hook.
--   [`deleteOne`](#deleteone-) method using the [`useDeleteOne`][use-delete] data hook.
--   [`getOne`](#getone-) method using the [`useOne`][use-one] data hook.
--   [`getApiUrl`](#getapiurl-) method using the [`useApiUrl`][use-api-url] data hook.
--   [`custom`](#custom) method using the [`useCustom`][use-custom] data hook.
--   [`getMany`](#getmany) method using the [`useMany`][use-many] data hook.
--   [`createMany`](#createmany) method using the [`useCreateMany`][use-create-many] data hook.
--   [`deleteMany`](#deletemany) method using the [`useDeleteMany`][use-delete-many] data hook.
--   [`updateMany`](#updatemany) method using the [`useUpdateMany`][use-update-many] data hook.
+- [`getList`](#getlist-) method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
+- [`create`](#create-) method using the [`useCreate`][use-create] data hook.
+- [`update`](#update-) method using the [`useUpdate`][use-update] data hook.
+- [`deleteOne`](#deleteone-) method using the [`useDeleteOne`][use-delete] data hook.
+- [`getOne`](#getone-) method using the [`useOne`][use-one] data hook.
+- [`getApiUrl`](#getapiurl-) method using the [`useApiUrl`][use-api-url] data hook.
+- [`custom`](#custom) method using the [`useCustom`][use-custom] data hook.
+- [`getMany`](#getmany) method using the [`useMany`][use-many] data hook.
+- [`createMany`](#createmany) method using the [`useCreateMany`][use-create-many] data hook.
+- [`deleteMany`](#deletemany) method using the [`useDeleteMany`][use-delete-many] data hook.
+- [`updateMany`](#updatemany) method using the [`useUpdateMany`][use-update-many] data hook.
 
 ## FAQ
 
@@ -753,16 +742,16 @@ import dataProvider from "@refinedev/simple-rest";
 
 const simpleRestProvider = dataProvider("API_URL");
 const myDataProvider = {
-    ...simpleRestProvider,
-    update: async ({ resource, id, variables }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
+  ...simpleRestProvider,
+  update: async ({ resource, id, variables }) => {
+    const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.put(url, variables);
+    const { data } = await httpClient.put(url, variables);
 
-        return {
-            data,
-        };
-    },
+    return {
+      data,
+    };
+  },
 };
 
 <Refine dataProvider={myDataProvider}>{/* ... */}</Refine>;

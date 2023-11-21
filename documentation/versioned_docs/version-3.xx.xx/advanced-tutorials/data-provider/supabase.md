@@ -1100,11 +1100,11 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 -   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/appwrite/src/index.ts#L252)
 -   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/hasura/src/liveProvider/index.ts#L16)
 -   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/nhost/src/liveProvider/index.ts#L16)
-:::
+    :::
 
 ## Using `metaData` to pass values to data provider
 
-The [`metaData`](/docs/api-reference/general-concepts.md/#metadata) property is used to pass additional information that can be read by data provider methods.
+The [`metaData`](/docs/guides-concepts/general-concepts/#meta-conceptdata) property is used to pass additional information that can be read by data provider methods.
 
 We'll show an example of getting relational data from different tables on Supabase API using `metaData` property.
 

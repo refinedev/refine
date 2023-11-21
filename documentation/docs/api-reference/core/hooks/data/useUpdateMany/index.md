@@ -6,7 +6,7 @@ source: packages/core/src/hooks/data/useUpdateMany.ts
 
 `useUpdateMany` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.
 
--   It uses the `updateMany` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
+- It uses the `updateMany` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
 
 It is useful when you want to update many records at once.
 
@@ -24,12 +24,12 @@ import { useUpdateMany } from "@refinedev/core";
 const { mutate } = useUpdateMany();
 
 mutate({
-    resource: "products",
-    values: {
-        name: "New Product",
-        material: "Wood",
-    },
-    ids: [1, 2, 3],
+  resource: "products",
+  values: {
+    name: "New Product",
+    material: "Wood",
+  },
+  ids: [1, 2, 3],
 });
 ```
 
@@ -57,9 +57,9 @@ When the `useUpdateMany` mutation runs successfully, by default it will invalida
 
 ```tsx
 useUpdateMany({
-    mutationOptions: {
-        retry: 3,
-    },
+  mutationOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -71,22 +71,22 @@ useUpdateMany({
 const { mutate } = useUpdateMany();
 
 mutate(
-    {
-        resource: "products",
-        values: {
-            name: "New Product",
-            material: "Wood",
-        },
-        ids: [1, 2, 3],
+  {
+    resource: "products",
+    values: {
+      name: "New Product",
+      material: "Wood",
     },
-    {
-        onError: (error, variables, context) => {
-            // An error occurred!
-        },
-        onSuccess: (data, variables, context) => {
-            // Let's celebrate!
-        },
+    ids: [1, 2, 3],
+  },
+  {
+    onError: (error, variables, context) => {
+      // An error occurred!
     },
+    onSuccess: (data, variables, context) => {
+      // Let's celebrate!
+    },
+  },
 );
 ```
 
@@ -101,20 +101,20 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useUpdateMany({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
 {
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
 }
 ```
 
@@ -128,7 +128,7 @@ It will be passed to the `updateMany` method from the `dataProvider` as a parame
 const { mutate } = useUpdateMany();
 
 mutate({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -144,7 +144,7 @@ It will be passed to the `updateMany` method from the `dataProvider` as a parame
 const { mutate } = useUpdateMany();
 
 mutate({
-    ids: [1, 2, 3],
+  ids: [1, 2, 3],
 });
 ```
 
@@ -156,10 +156,10 @@ It will be passed to the `updateMany` method from the `dataProvider` as a parame
 const { mutate } = useUpdateMany();
 
 mutate({
-    values: {
-        name: "New Category",
-        description: "New Category Description",
-    },
+  values: {
+    name: "New Category",
+    description: "New Category Description",
+  },
 });
 ```
 
@@ -174,7 +174,7 @@ Each mode corresponds to a different type of user experience.
 const { mutate } = useUpdateMany();
 
 mutate({
-    mutationMode: "undoable",
+  mutationMode: "undoable",
 });
 ```
 
@@ -186,8 +186,8 @@ When `mutationMode` is set to `undoable`, `undoableTimeout` is used to determine
 const { mutate } = useUpdateMany();
 
 mutate({
-    mutationMode: "undoable",
-    undoableTimeout: 10000,
+  mutationMode: "undoable",
+  undoableTimeout: 10000,
 });
 ```
 
@@ -202,29 +202,29 @@ import { useRef } from "react";
 import { useUpdateMany } from "@refinedev/core";
 
 const MyComponent = () => {
-    const { mutate } = useUpdateMany();
-    const cancelRef = useRef<(() => void) | null>(null);
+  const { mutate } = useUpdateMany();
+  const cancelRef = useRef<(() => void) | null>(null);
 
-    const updateItems = () => {
-        mutate({
-            //...
-            mutationMode: "undoable",
-            onCancel: (cancelMutation) => {
-                cancelRef.current = cancelMutation;
-            },
-        });
-    };
+  const updateItems = () => {
+    mutate({
+      //...
+      mutationMode: "undoable",
+      onCancel: (cancelMutation) => {
+        cancelRef.current = cancelMutation;
+      },
+    });
+  };
 
-    const cancelUpdate = () => {
-        cancelRef.current?.();
-    };
+  const cancelUpdate = () => {
+    cancelRef.current?.();
+  };
 
-    return (
-        <>
-            <button onClick={updateItems}>Update</button>
-            <button onClick={cancelUpdate}>Cancel</button>
-        </>
-    );
+  return (
+    <>
+      <button onClick={updateItems}>Update</button>
+      <button onClick={cancelUpdate}>Cancel</button>
+    </>
+  );
 };
 ```
 
@@ -238,13 +238,13 @@ After data is fetched successfully, `useUpdateMany` can call the `open` function
 const { mutate } = useUpdateMany();
 
 mutate({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
@@ -258,13 +258,13 @@ After data fetching is failed, `useUpdateMany` will call the `open` function fro
 const { mutate } = useUpdateMany();
 
 mutate({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -272,10 +272,10 @@ mutate({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
+[Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 In the following example, we pass the `headers` property in the `meta` object to the `updateMany` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -283,42 +283,38 @@ In the following example, we pass the `headers` property in the `meta` object to
 const { mutate } = useUpdateMany();
 
 mutate({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  updateMany: async ({
+    resource,
+    ids,
+    variables,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    updateMany: async ({
-        resource,
-        ids,
-        variables,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-start
-        const { data } = await httpClient.patch(
-            url,
-            { ids, variables },
-            { headers },
-        );
-        // highlight-end
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-start
+    const { data } = await httpClient.patch(url, { ids, variables }, { headers });
+    // highlight-end
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -330,7 +326,7 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 const { mutate } = useUpdateMany();
 
 mutate({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -344,7 +340,7 @@ By default, it invalidates the following queries from the current `resource`: `"
 const { mutate } = useUpdateMany();
 
 mutate({
-    invalidates: ["list", "many", "detail"],
+  invalidates: ["list", "many", "detail"],
 });
 ```
 
@@ -364,13 +360,13 @@ This feature only works when `mutationMode` is set to `optimistic` or `undoable`
 const { mutate } = useUpdateMany();
 
 mutate({
-    //...
-    mutationMode: "optimistic",
-    optimisticUpdateMap: {
-        list: true,
-        many: true,
-        detail: false,
-    },
+  //...
+  mutationMode: "optimistic",
+  optimisticUpdateMap: {
+    list: true,
+    many: true,
+    detail: false,
+  },
 });
 ```
 
@@ -382,86 +378,86 @@ If you wish to customize the cache update, you have the option to provide functi
 const { mutate } = useUpdateMany();
 
 mutate({
-    //...
-    mutationMode: "optimistic",
+  //...
+  mutationMode: "optimistic",
+  optimisticUpdateMap: {
+    // highlight-start
     optimisticUpdateMap: {
-        // highlight-start
-        optimisticUpdateMap: {
-            list: (previous, values, ids) => {
-                if (!previous) {
-                    return null;
-                }
+      list: (previous, values, ids) => {
+        if (!previous) {
+          return null;
+        }
 
-                const data = previous.data.map((record) => {
-                    if (
-                        record.id !== undefined &&
-                        ids
-                            .filter((id) => id !== undefined)
-                            .map(String)
-                            .includes(record.id.toString())
-                    ) {
-                        return {
-                            foo: "bar",
-                            ...record,
-                            ...values,
-                        };
-                    }
+        const data = previous.data.map((record) => {
+          if (
+            record.id !== undefined &&
+            ids
+              .filter((id) => id !== undefined)
+              .map(String)
+              .includes(record.id.toString())
+          ) {
+            return {
+              foo: "bar",
+              ...record,
+              ...values,
+            };
+          }
 
-                    return record;
-                });
+          return record;
+        });
 
-                return {
-                    ...previous,
-                    data,
-                };
-            },
-            many: (previous, values, ids) => {
-                if (!previous) {
-                    return null;
-                }
+        return {
+          ...previous,
+          data,
+        };
+      },
+      many: (previous, values, ids) => {
+        if (!previous) {
+          return null;
+        }
 
-                const data = previous.data.map((record) => {
-                    if (
-                        record.id !== undefined &&
-                        ids
-                            .filter((id) => id !== undefined)
-                            .map(String)
-                            .includes(record.id.toString())
-                    ) {
-                        return {
-                            foo: "bar",
-                            ...record,
-                            ...values,
-                        };
-                    }
-                    return record;
-                });
+        const data = previous.data.map((record) => {
+          if (
+            record.id !== undefined &&
+            ids
+              .filter((id) => id !== undefined)
+              .map(String)
+              .includes(record.id.toString())
+          ) {
+            return {
+              foo: "bar",
+              ...record,
+              ...values,
+            };
+          }
+          return record;
+        });
 
-                return {
-                    ...previous,
-                    data,
-                };
-            },
-            detail: (previous, values, id) => {
-                if (!previous) {
-                    return null;
-                }
+        return {
+          ...previous,
+          data,
+        };
+      },
+      detail: (previous, values, id) => {
+        if (!previous) {
+          return null;
+        }
 
-                const data = {
-                    id,
-                    ...previous.data,
-                    ...values,
-                    foo: `bar`,
-                };
+        const data = {
+          id,
+          ...previous.data,
+          ...values,
+          foo: `bar`,
+        };
 
-                return {
-                    ...previous,
-                    data,
-                };
-            },
-        },
+        return {
+          ...previous,
+          data,
+        };
+      },
     },
-    // highlight-end
+  },
+  // highlight-end
 });
 ```
 
@@ -507,7 +503,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Type Parameters
 
-| Property   | Description                                                                                        | Type                                                         | Default                                                      |
+| Property   | Description                                                                                       | Type                                                         | Default                                                      |
 | ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |

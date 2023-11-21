@@ -6,10 +6,7 @@ source: packages/core/src/hooks/form/useForm.ts
 
 ```tsx live shared
 import { Refine, LayoutProps, useList, useNavigation } from "@refinedev/core";
-import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
-} from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "components";
 
@@ -18,259 +15,236 @@ import { PostCreate, PostEdit, PostList } from "pages/posts";
 type FormValues = Omit<IPost, "id">;
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-    return (
-        <div
-            style={{
-                background: "white",
-                height: "100vh",
-            }}
-        >
-            {children}
-        </div>
-    );
+  return (
+    <div
+      style={{
+        background: "white",
+        height: "100vh",
+      }}
+    >
+      {children}
+    </div>
+  );
 };
 
 const PAGE_SIZE = 10;
 
 const PostList: React.FC = () => {
-    const [page, setPage] = React.useState(1);
+  const [page, setPage] = React.useState(1);
 
-    const { edit, create, clone } = useNavigation();
+  const { edit, create, clone } = useNavigation();
 
-    const { data } = useList<IPost>({
-        resource: "posts",
-        pagination: {
-            current: page,
-            pageSize: PAGE_SIZE,
-        },
-    });
+  const { data } = useList<IPost>({
+    resource: "posts",
+    pagination: {
+      current: page,
+      pageSize: PAGE_SIZE,
+    },
+  });
 
-    const posts = data?.data || [];
-    const toalCount = data?.total || 0;
+  const posts = data?.data || [];
+  const toalCount = data?.total || 0;
 
-    const pageCount = Math.ceil(toalCount / PAGE_SIZE);
-    const hasNext = page * PAGE_SIZE < toalCount;
-    const hasPrev = page > 1;
+  const pageCount = Math.ceil(toalCount / PAGE_SIZE);
+  const hasNext = page * PAGE_SIZE < toalCount;
+  const hasPrev = page > 1;
 
-    return (
-        <div>
-            <div>
-                <button onClick={() => create("posts")}>
-                    <span>Create Post</span>
-                </button>
-            </div>
+  return (
+    <div>
+      <div>
+        <button onClick={() => create("posts")}>
+          <span>Create Post</span>
+        </button>
+      </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>
-                            <div>ID</div>
-                        </th>
-                        <th>
-                            <div>Title</div>
-                        </th>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <div>ID</div>
+            </th>
+            <th>
+              <div>Title</div>
+            </th>
 
-                        <th>
-                            <div>Action</div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {posts.map((post) => (
-                        <tr key={post.id}>
-                            <td>{post.id}</td>
-                            <td>{post.title}</td>
-                            <td>
-                                <div>
-                                    <button
-                                        onClick={() => edit("posts", post.id)}
-                                    >
-                                        Edit
-                                    </button>
-                                    <button
-                                        onClick={() => edit("posts", post.id)}
-                                    >
-                                        Clone
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <div>
+            <th>
+              <div>Action</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {posts.map((post) => (
+            <tr key={post.id}>
+              <td>{post.id}</td>
+              <td>{post.title}</td>
+              <td>
                 <div>
-                    <button onClick={() => setPage(1)} disabled={!hasPrev}>
-                        First
-                    </button>
-                    <button
-                        onClick={() => setPage((prev) => prev - 1)}
-                        disabled={!hasPrev}
-                    >
-                        Previous
-                    </button>
-                    <button
-                        onClick={() => setPage((prev) => prev + 1)}
-                        disabled={!hasNext}
-                    >
-                        Next
-                    </button>
-                    <button
-                        onClick={() => setPage(pageCount)}
-                        disabled={!hasNext}
-                    >
-                        Last
-                    </button>
+                  <button onClick={() => edit("posts", post.id)}>Edit</button>
+                  <button onClick={() => edit("posts", post.id)}>Clone</button>
                 </div>
-                <span>
-                    Page{" "}
-                    <strong>
-                        {page} of {pageCount}
-                    </strong>
-                </span>
-                <span>
-                    Go to page:
-                    <input
-                        type="number"
-                        defaultValue={page + 1}
-                        onChange={(e) => {
-                            const value = e.target.value
-                                ? Number(e.target.value)
-                                : 1;
-                            setPage(value);
-                        }}
-                    />
-                </span>
-            </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div>
+        <div>
+          <button onClick={() => setPage(1)} disabled={!hasPrev}>
+            First
+          </button>
+          <button onClick={() => setPage((prev) => prev - 1)} disabled={!hasPrev}>
+            Previous
+          </button>
+          <button onClick={() => setPage((prev) => prev + 1)} disabled={!hasNext}>
+            Next
+          </button>
+          <button onClick={() => setPage(pageCount)} disabled={!hasNext}>
+            Last
+          </button>
         </div>
-    );
+        <span>
+          Page{" "}
+          <strong>
+            {page} of {pageCount}
+          </strong>
+        </span>
+        <span>
+          Go to page:
+          <input
+            type="number"
+            defaultValue={page + 1}
+            onChange={(e) => {
+              const value = e.target.value ? Number(e.target.value) : 1;
+              setPage(value);
+            }}
+          />
+        </span>
+      </div>
+    </div>
+  );
 };
 
 const PostEdit: React.FC = () => {
-    const { formLoading, onFinish, queryResult } = useForm<FormValues>();
-    const defaultValues = queryResult?.data?.data;
+  const { formLoading, onFinish, queryResult } = useForm<FormValues>();
+  const defaultValues = queryResult?.data?.data;
 
-    const [formValues, seFormValues] = useState<FormValues>({
-        title: defaultValues?.title || "",
-        content: defaultValues?.content || "",
+  const [formValues, seFormValues] = useState<FormValues>({
+    title: defaultValues?.title || "",
+    content: defaultValues?.content || "",
+  });
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    seFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    const handleOnChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-        seFormValues({
-            ...formValues,
-            [e.target.name]: e.target.value,
-        });
-    };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onFinish(formValues);
+  };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        onFinish(formValues);
-    };
+  useEffect(() => {
+    seFormValues({
+      title: defaultValues?.title || "",
+      content: defaultValues?.content || "",
+    });
+  }, [defaultValues]);
 
-    useEffect(() => {
-        seFormValues({
-            title: defaultValues?.title || "",
-            content: defaultValues?.content || "",
-        });
-    }, [defaultValues]);
-
-    return (
+  return (
+    <div>
+      <br />
+      <form onSubmit={handleSubmit}>
         <div>
-            <br />
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Title</label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        placeholder="Title"
-                        value={formValues.title}
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="content">Content</label>
-                    <textarea
-                        id="content"
-                        name="content"
-                        placeholder="Content"
-                        rows={10}
-                        value={formValues.content}
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <button type="submit" disabled={formLoading}>
-                    {formLoading && <div>Loading...</div>}
-                    <span>Save</span>
-                </button>
-            </form>
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Title"
+            value={formValues.title}
+            onChange={handleOnChange}
+          />
         </div>
-    );
+        <div>
+          <label htmlFor="content">Content</label>
+          <textarea
+            id="content"
+            name="content"
+            placeholder="Content"
+            rows={10}
+            value={formValues.content}
+            onChange={handleOnChange}
+          />
+        </div>
+        <button type="submit" disabled={formLoading}>
+          {formLoading && <div>Loading...</div>}
+          <span>Save</span>
+        </button>
+      </form>
+    </div>
+  );
 };
 
 const PostCreate: React.FC = () => {
-    const { formLoading, onFinish } = useForm<IPost, HttpError, FormValues>();
+  const { formLoading, onFinish } = useForm<IPost, HttpError, FormValues>();
 
-    const [formValues, seFormValues] = useState<FormValues>({
-        title: "",
-        content: "",
+  const [formValues, seFormValues] = useState<FormValues>({
+    title: "",
+    content: "",
+  });
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    seFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    const handleOnChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-        seFormValues({
-            ...formValues,
-            [e.target.name]: e.target.value,
-        });
-    };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onFinish(formValues);
+  };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        onFinish(formValues);
-    };
-
-    return (
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
         <div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Title</label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        placeholder="Title"
-                        value={formValues.title}
-                        onChange={handleOnChange}
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor="content">Content</label>
-                    <textarea
-                        id="content"
-                        name="content"
-                        placeholder="Content"
-                        value={formValues.content}
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <button type="submit" disabled={formLoading}>
-                    {formLoading && <div>Loading...</div>}
-                    <span>Save</span>
-                </button>
-            </form>
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Title"
+            value={formValues.title}
+            onChange={handleOnChange}
+          />
         </div>
-    );
+
+        <div>
+          <label htmlFor="content">Content</label>
+          <textarea
+            id="content"
+            name="content"
+            placeholder="Content"
+            value={formValues.content}
+            onChange={handleOnChange}
+          />
+        </div>
+        <button type="submit" disabled={formLoading}>
+          {formLoading && <div>Loading...</div>}
+          <span>Save</span>
+        </button>
+      </form>
+    </div>
+  );
 };
 ```
 
@@ -337,9 +311,9 @@ This is the default behavior of `useForm`. You can customize it by passing your 
 :::info
 `useForm` does not manage any state. If you're looking for a complete form library, `refine` supports three form libraries out-of-the-box.
 
--   [React Hook Form](https://react-hook-form.com/) (for Headless users) - [Documentation](/packages/documentation/react-hook-form/useForm.md) - [Example](/examples/form/react-hook-form/useForm.md)
--   [Ant Design Form](https://ant.design/components/form/#header) (for Ant Design users) - [Documentation](/api-reference/antd/hooks/form/useForm.md) - [Example](/examples/form/antd/useForm.md)
--   [Mantine Form](https://mantine.dev/form/use-form) (for Mantine users) - [Documentation](/api-reference/mantine/hooks/form/useForm.md) - [Example](/examples/form/mantine/useForm.md)
+- [React Hook Form](https://react-hook-form.com/) (for Headless users) - [Documentation](/packages/documentation/react-hook-form/useForm.md) - [Example](/examples/form/react-hook-form/useForm.md)
+- [Ant Design Form](https://ant.design/components/form/#header) (for Ant Design users) - [Documentation](/api-reference/antd/hooks/form/useForm.md) - [Example](/examples/form/antd/useForm.md)
+- [Mantine Form](https://mantine.dev/form/use-form) (for Mantine users) - [Documentation](/api-reference/mantine/hooks/form/useForm.md) - [Example](/examples/form/mantine/useForm.md)
 
 :::
 
@@ -354,27 +328,27 @@ import { useForm } from "@refinedev/core";
 import { useState } from "react";
 
 const PostCreate = () => {
-    const [title, setTitle] = useState();
-    const { onFinish } = useForm({
-        action: "create",
-    });
+  const [title, setTitle] = useState();
+  const { onFinish } = useForm({
+    action: "create",
+  });
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        onFinish({ title });
-    };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    onFinish({ title });
+  };
 
-    return (
-        <form onSubmit={onSubmit}>
-            <input onChange={(e) => setTitle(e.target.value)} />
-            <button type="submit">Submit</button>
-        </form>
-    );
+  return (
+    <form onSubmit={onSubmit}>
+      <input onChange={(e) => setTitle(e.target.value)} />
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 ```
 
--   Returns the `mutationResult` after called the `onFinish` callback.
--   Accepts generic type parameters. It is used to define response type of the mutation and query.
+- Returns the `mutationResult` after called the `onFinish` callback.
+- Accepts generic type parameters. It is used to define response type of the mutation and query.
 
 ## Properties
 
@@ -405,100 +379,93 @@ import { HttpError, useForm } from "@refinedev/core";
 import React, { useState } from "react";
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 type FormValues = Omit<IPost, "id">;
 
 const PostCreatePage: React.FC = () => {
-    const { formLoading, onFinish } = useForm<IPost, HttpError, FormValues>();
+  const { formLoading, onFinish } = useForm<IPost, HttpError, FormValues>();
 
-    const [formValues, seFormValues] = useState<FormValues>({
-        title: "",
-        content: "",
+  const [formValues, seFormValues] = useState<FormValues>({
+    title: "",
+    content: "",
+  });
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    seFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    const handleOnChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-        seFormValues({
-            ...formValues,
-            [e.target.name]: e.target.value,
-        });
-    };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onFinish(formValues);
+  };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        onFinish(formValues);
-    };
-
-    return (
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
         <div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Title</label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        placeholder="Title"
-                        value={formValues.title}
-                        onChange={handleOnChange}
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor="content">Content</label>
-                    <textarea
-                        id="content"
-                        name="content"
-                        placeholder="Content"
-                        value={formValues.content}
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <button type="submit" disabled={formLoading}>
-                    {formLoading && <div>Loading...</div>}
-                    <span>Save</span>
-                </button>
-            </form>
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Title"
+            value={formValues.title}
+            onChange={handleOnChange}
+          />
         </div>
-    );
+
+        <div>
+          <label htmlFor="content">Content</label>
+          <textarea
+            id="content"
+            name="content"
+            placeholder="Content"
+            value={formValues.content}
+            onChange={handleOnChange}
+          />
+        </div>
+        <button type="submit" disabled={formLoading}>
+          {formLoading && <div>Loading...</div>}
+          <span>Save</span>
+        </button>
+      </form>
+    </div>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={RefineSimpleRest.default(
-                    "https://api.fake-rest.refine.dev",
-                )}
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                    },
-                ]}
-            >
-                <Layout>
-                    <Routes>
-                        <Route path="/posts" element={<PostList />} />
-                        <Route
-                            path="/posts/create"
-                            element={<PostCreatePage />}
-                        />
-                        <Route path="/posts/edit/:id" element={<PostEdit />} />
-                    </Routes>
-                </Layout>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={RefineSimpleRest.default("https://api.fake-rest.refine.dev")}
+        routerProvider={routerProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+            create: "/posts/create",
+            edit: "/posts/edit/:id",
+          },
+        ]}
+      >
+        <Layout>
+          <Routes>
+            <Route path="/posts" element={<PostList />} />
+            <Route path="/posts/create" element={<PostCreatePage />} />
+            <Route path="/posts/edit/:id" element={<PostEdit />} />
+          </Routes>
+        </Layout>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -522,113 +489,102 @@ import { HttpError, useForm } from "@refinedev/core";
 import React, { useEffect, useState } from "react";
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 type FormValues = Omit<IPost, "id">;
 
 const PostEditPage: React.FC = () => {
-    const { formLoading, onFinish, queryResult } = useForm<
-        IPost,
-        HttpError,
-        FormValues
-    >();
-    const defaultValues = queryResult?.data?.data;
+  const { formLoading, onFinish, queryResult } = useForm<IPost, HttpError, FormValues>();
+  const defaultValues = queryResult?.data?.data;
 
-    const [formValues, seFormValues] = useState<FormValues>({
-        title: defaultValues?.title || "",
-        content: defaultValues?.content || "",
+  const [formValues, seFormValues] = useState<FormValues>({
+    title: defaultValues?.title || "",
+    content: defaultValues?.content || "",
+  });
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    seFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    const handleOnChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-        seFormValues({
-            ...formValues,
-            [e.target.name]: e.target.value,
-        });
-    };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onFinish(formValues);
+  };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        onFinish(formValues);
-    };
+  useEffect(() => {
+    seFormValues({
+      title: defaultValues?.title || "",
+      content: defaultValues?.content || "",
+    });
+  }, [defaultValues]);
 
-    useEffect(() => {
-        seFormValues({
-            title: defaultValues?.title || "",
-            content: defaultValues?.content || "",
-        });
-    }, [defaultValues]);
-
-    return (
+  return (
+    <div>
+      <br />
+      <form onSubmit={handleSubmit}>
         <div>
-            <br />
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Title</label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        placeholder="Title"
-                        value={formValues.title}
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="content">Content</label>
-                    <textarea
-                        id="content"
-                        name="content"
-                        placeholder="Content"
-                        rows={10}
-                        value={formValues.content}
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <button type="submit" disabled={formLoading}>
-                    {formLoading && <div>Loading...</div>}
-                    <span>Save</span>
-                </button>
-            </form>
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Title"
+            value={formValues.title}
+            onChange={handleOnChange}
+          />
         </div>
-    );
+        <div>
+          <label htmlFor="content">Content</label>
+          <textarea
+            id="content"
+            name="content"
+            placeholder="Content"
+            rows={10}
+            value={formValues.content}
+            onChange={handleOnChange}
+          />
+        </div>
+        <button type="submit" disabled={formLoading}>
+          {formLoading && <div>Loading...</div>}
+          <span>Save</span>
+        </button>
+      </form>
+    </div>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={RefineSimpleRest.default(
-                    "https://api.fake-rest.refine.dev",
-                )}
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                    },
-                ]}
-            >
-                <Layout>
-                    <Routes>
-                        <Route path="/posts" element={<PostList />} />
-                        <Route path="/posts/create" element={<PostCreate />} />
-                        <Route
-                            path="/posts/edit/:id"
-                            element={<PostEditPage />}
-                        />
-                    </Routes>
-                </Layout>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={RefineSimpleRest.default("https://api.fake-rest.refine.dev")}
+        routerProvider={routerProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+            create: "/posts/create",
+            edit: "/posts/edit/:id",
+          },
+        ]}
+      >
+        <Layout>
+          <Routes>
+            <Route path="/posts" element={<PostList />} />
+            <Route path="/posts/create" element={<PostCreate />} />
+            <Route path="/posts/edit/:id" element={<PostEditPage />} />
+          </Routes>
+        </Layout>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -654,120 +610,109 @@ import { HttpError, useForm } from "@refinedev/core";
 import React, { useEffect, useState } from "react";
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 type FormValues = Omit<IPost, "id">;
 
 interface FormValues {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 const PostCreatePage: React.FC = () => {
-    const { formLoading, onFinish, queryResult } = useForm<
-        IPost,
-        HttpError,
-        FormValues
-    >();
-    const defaultValues = queryResult?.data?.data;
+  const { formLoading, onFinish, queryResult } = useForm<IPost, HttpError, FormValues>();
+  const defaultValues = queryResult?.data?.data;
 
-    const [formValues, seFormValues] = useState<FormValues>({
-        title: defaultValues?.title || "",
-        content: defaultValues?.content || "",
+  const [formValues, seFormValues] = useState<FormValues>({
+    title: defaultValues?.title || "",
+    content: defaultValues?.content || "",
+  });
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    seFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    const handleOnChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-        seFormValues({
-            ...formValues,
-            [e.target.name]: e.target.value,
-        });
-    };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onFinish(formValues);
+  };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        onFinish(formValues);
-    };
+  useEffect(() => {
+    seFormValues({
+      title: defaultValues?.title || "",
+      content: defaultValues?.content || "",
+    });
+  }, [defaultValues]);
 
-    useEffect(() => {
-        seFormValues({
-            title: defaultValues?.title || "",
-            content: defaultValues?.content || "",
-        });
-    }, [defaultValues]);
-
-    return (
+  return (
+    <div>
+      <br />
+      <form onSubmit={handleSubmit}>
         <div>
-            <br />
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Title</label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        placeholder="Title"
-                        value={formValues.title}
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="content">Content</label>
-                    <textarea
-                        id="content"
-                        name="content"
-                        placeholder="Content"
-                        rows={10}
-                        value={formValues.content}
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <button type="submit" disabled={formLoading}>
-                    {formLoading && <div>Loading...</div>}
-                    <span>Save</span>
-                </button>
-            </form>
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Title"
+            value={formValues.title}
+            onChange={handleOnChange}
+          />
         </div>
-    );
+        <div>
+          <label htmlFor="content">Content</label>
+          <textarea
+            id="content"
+            name="content"
+            placeholder="Content"
+            rows={10}
+            value={formValues.content}
+            onChange={handleOnChange}
+          />
+        </div>
+        <button type="submit" disabled={formLoading}>
+          {formLoading && <div>Loading...</div>}
+          <span>Save</span>
+        </button>
+      </form>
+    </div>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={RefineSimpleRest.default(
-                    "https://api.fake-rest.refine.dev",
-                )}
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        clone: "/posts/clone/:id",
-                    },
-                ]}
-            >
-                <Layout>
-                    <Routes>
-                        <Route path="/posts" element={<PostList />} />
-                        <Route
-                            path="/posts/clone/:id"
-                            element={<PostCreatePage />}
-                        />
-                        <Route path="/posts/edit/:id" element={<PostEdit />} />
-                    </Routes>
-                </Layout>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={RefineSimpleRest.default("https://api.fake-rest.refine.dev")}
+        routerProvider={routerProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+            create: "/posts/create",
+            edit: "/posts/edit/:id",
+            clone: "/posts/clone/:id",
+          },
+        ]}
+      >
+        <Layout>
+          <Routes>
+            <Route path="/posts" element={<PostList />} />
+            <Route path="/posts/clone/:id" element={<PostCreatePage />} />
+            <Route path="/posts/edit/:id" element={<PostEdit />} />
+          </Routes>
+        </Layout>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -783,13 +728,13 @@ render(<App />);
 
 It will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
 
--   When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
--   When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
--   When `action` is `"clone"`, it will be passed to the [`create`][create] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
+- When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
+- When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
+- When `action` is `"clone"`, it will be passed to the [`create`][create] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
 
 ```tsx
 useForm({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -803,8 +748,8 @@ import { useForm, useParsed } from "@refinedev/core";
 const { id } = useParsed();
 
 useForm({
-    resource: "custom-resource",
-    id,
+  resource: "custom-resource",
+  id,
 });
 ```
 
@@ -814,7 +759,7 @@ Or you can use the `setId` function to set the `id` value.
 import { useForm } from "@refinedev/core";
 
 const { setId } = useForm({
-    resource: "custom-resource",
+  resource: "custom-resource",
 });
 
 setId("123");
@@ -838,9 +783,9 @@ It is useful when you want to `edit` or `clone` a `resource` from a different pa
 
 ```tsx
 useForm({
-    action: "edit", // or clone
-    resource: "categories",
-    id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
+  action: "edit", // or clone
+  resource: "categories",
+  id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
 });
 ```
 
@@ -852,7 +797,7 @@ It can be set to `"show" | "edit" | "list" | "create"` or `false` to prevent the
 
 ```tsx
 useForm({
-    redirect: false,
+  redirect: false,
 });
 ```
 
@@ -862,16 +807,16 @@ It's a callback function that will be called after the mutation is successful.
 
 It receives the following parameters:
 
--   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
--   `variables`: The variables passed to the mutation.
--   `context`: react-query context.
--   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
+- `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
+- `variables`: The variables passed to the mutation.
+- `context`: react-query context.
+- `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
-    onMutationSuccess: (data, variables, context, isAutoSave) => {
-        console.log({ data, variables, context, isAutoSave });
-    },
+  onMutationSuccess: (data, variables, context, isAutoSave) => {
+    console.log({ data, variables, context, isAutoSave });
+  },
 });
 ```
 
@@ -881,16 +826,16 @@ It's a callback function that will be called after the mutation is failed.
 
 It receives the following parameters:
 
--   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
--   `variables`: The variables passed to the mutation.
--   `context`: react-query context.
--   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
+- `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
+- `variables`: The variables passed to the mutation.
+- `context`: react-query context.
+- `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
-    onMutationError: (data, variables, context, isAutoSave) => {
-        console.log({ data, variables, context, isAutoSave });
-    },
+  onMutationError: (data, variables, context, isAutoSave) => {
+    console.log({ data, variables, context, isAutoSave });
+  },
 });
 ```
 
@@ -900,12 +845,12 @@ You can use it to manage the invalidations that will occur at the end of the mut
 
 By default it's invalidates following queries from the current `resource`:
 
--   on `"create"` or `"clone"` mode: `"list"` and `"many"`
--   on `"edit"` mode: `"list"`", `"many"` and `"detail"`
+- on `"create"` or `"clone"` mode: `"list"` and `"many"`
+- on `"edit"` mode: `"list"`", `"many"` and `"detail"`
 
 ```tsx
 useForm({
-    invalidates: ["list", "many", "detail"],
+  invalidates: ["list", "many", "detail"],
 });
 ```
 
@@ -920,7 +865,7 @@ If you want to use a different `dataProvider` on all resource pages, you can use
 
 ```tsx
 useForm({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -933,7 +878,7 @@ Each mode corresponds to a different type of user experience.
 
 ```tsx
 useForm({
-    mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
+  mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
 });
 ```
 
@@ -947,13 +892,13 @@ After form is submitted successfully, `useForm` will call `open` function from [
 
 ```tsx
 useForm({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `Post Successfully created with ${data.title}`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `Post Successfully created with ${data.title}`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
@@ -967,13 +912,13 @@ After form is submit is failed, `useForm` will call `open` function from [`Notif
 
 ```tsx
 useForm({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when deleting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when deleting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -989,40 +934,40 @@ useForm({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
--   Filling the path parameters when generating the redirection path.
--   Providing additional parameters to the redirection path after the form is submitted.
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Filling the path parameters when generating the redirection path.
+- Providing additional parameters to the redirection path after the form is submitted.
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useForm({
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
 });
 
 const myDataProvider = {
-    //...
-    // highlight-start
-    create: async ({ resource, variables, meta }) => {
-        const headers = meta?.headers ?? {};
-        // highlight-end
-        const url = `${apiUrl}/${resource}`;
+  //...
+  // highlight-start
+  create: async ({ resource, variables, meta }) => {
+    const headers = meta?.headers ?? {};
+    // highlight-end
+    const url = `${apiUrl}/${resource}`;
 
-        // highlight-next-line
-        const { data } = await httpClient.post(url, variables, { headers });
+    // highlight-next-line
+    const { data } = await httpClient.post(url, variables, { headers });
 
-        return {
-            data,
-        };
-    },
-    //...
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### `queryMeta`
 
@@ -1030,9 +975,9 @@ In addition to the [`meta`](#meta) property, you can also pass the `queryMeta` p
 
 ```tsx
 useForm({
-    queryMeta: {
-        querySpecificValue: "someValue",
-    },
+  queryMeta: {
+    querySpecificValue: "someValue",
+  },
 });
 ```
 
@@ -1046,9 +991,9 @@ In addition to the [`meta`](#meta) property, you can also pass the `mutationMeta
 
 ```tsx
 useForm({
-    mutationMeta: {
-        mutationSpecificValue: "someValue",
-    },
+  mutationMeta: {
+    mutationSpecificValue: "someValue",
+  },
 });
 ```
 
@@ -1066,9 +1011,9 @@ in `edit` or `clone` mode, **refine** uses [`useOne`](/docs/api-reference/core/h
 
 ```tsx
 useForm({
-    queryOptions: {
-        retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -1082,9 +1027,9 @@ In `create` or `clone` mode, **refine** uses [`useCreate`](/docs/api-reference/c
 
 ```tsx
 useForm({
-    createMutationOptions: {
-        retry: 3,
-    },
+  createMutationOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -1098,9 +1043,9 @@ In `edit` mode, **refine** uses [`useUpdate`](/docs/api-reference/core/hooks/dat
 
 ```tsx
 useForm({
-    updateMutationOptions: {
-        retry: 3,
-    },
+  updateMutationOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -1110,7 +1055,7 @@ Whether to update data automatically ("auto") or not ("manual") if a related liv
 
 ```tsx
 useForm({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
@@ -1122,9 +1067,9 @@ The callback function that is executed when new events from a subscription are a
 
 ```tsx
 useForm({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
@@ -1141,20 +1086,20 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useForm({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
 {
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
 }
 ```
 
@@ -1180,9 +1125,9 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useForm({
-    autoSave: {
-        enabled: true,
-    },
+  autoSave: {
+    enabled: true,
+  },
 });
 ```
 
@@ -1194,11 +1139,11 @@ Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useForm({
-    autoSave: {
-        enabled: true,
-        // highlight-next-line
-        debounce: 2000,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    debounce: 2000,
+  },
 });
 ```
 
@@ -1210,11 +1155,11 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useForm({
-    autoSave: {
-        enabled: true,
-        // highlight-next-line
-        invalidateOnUnmount: true,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    invalidateOnUnmount: true,
+  },
 });
 ```
 
@@ -1230,13 +1175,13 @@ This feature is only work with the `mutationMode` is set to `optimistic` and `un
 
 ```tsx
 const { formProps, saveButtonProps } = useForm({
-    //...
-    mutationMode: "optimistic",
-    optimisticUpdateMap: {
-        list: true,
-        many: true,
-        detail: false,
-    },
+  //...
+  mutationMode: "optimistic",
+  optimisticUpdateMap: {
+    list: true,
+    many: true,
+    detail: false,
+  },
 });
 ```
 
@@ -1246,68 +1191,68 @@ Also for customize the cache update, you can pass the function to the `list`, `m
 
 ```tsx
 const { formProps, saveButtonProps } = useForm({
-    //...
-    mutationMode: "optimistic",
-    // highlight-start
-    optimisticUpdateMap: {
-        list: (previous, values, id) => {
-            if (!previous) {
-                return null;
-            }
+  //...
+  mutationMode: "optimistic",
+  // highlight-start
+  optimisticUpdateMap: {
+    list: (previous, values, id) => {
+      if (!previous) {
+        return null;
+      }
 
-            const data = previous.data.map((record) => {
-                if (record.id === id) {
-                    return {
-                        foo: "bar",
-                        ...record,
-                        ...values,
-                    };
-                }
-                return record;
-            });
+      const data = previous.data.map((record) => {
+        if (record.id === id) {
+          return {
+            foo: "bar",
+            ...record,
+            ...values,
+          };
+        }
+        return record;
+      });
 
-            return {
-                ...previous,
-                data,
-            };
-        },
-        many: (previous, values, id) => {
-            if (!previous) {
-                return null;
-            }
-
-            const data = previous.data.map((record) => {
-                if (record.id === id) {
-                    return {
-                        foo: "bar",
-                        ...record,
-                        ...values,
-                    };
-                }
-                return record;
-            });
-
-            return {
-                ...previous,
-                data,
-            };
-        },
-        detail: (previous, values) => {
-            if (!previous) {
-                return null;
-            }
-
-            return {
-                ...previous,
-                data: {
-                    foo: "bar",
-                    ...previous.data,
-                    ...values,
-                },
-            };
-        },
+      return {
+        ...previous,
+        data,
+      };
     },
-    // highlight-end
+    many: (previous, values, id) => {
+      if (!previous) {
+        return null;
+      }
+
+      const data = previous.data.map((record) => {
+        if (record.id === id) {
+          return {
+            foo: "bar",
+            ...record,
+            ...values,
+          };
+        }
+        return record;
+      });
+
+      return {
+        ...previous,
+        data,
+      };
+    },
+    detail: (previous, values) => {
+      if (!previous) {
+        return null;
+      }
+
+      return {
+        ...previous,
+        data: {
+          foo: "bar",
+          ...previous.data,
+          ...values,
+        },
+      };
+    },
+  },
+  // highlight-end
 });
 ```
 
@@ -1341,13 +1286,13 @@ const { data } = mutationResult;
 const { id, setId } = useForm();
 
 const handleIdChange = (id: string) => {
-    setId(id);
+  setId(id);
 };
 
 return (
-    <div>
-        <input value={id} onChange={(e) => handleIdChange(e.target.value)} />
-    </div>
+  <div>
+    <input value={id} onChange={(e) => handleIdChange(e.target.value)} />
+  </div>
 );
 ```
 
@@ -1363,9 +1308,9 @@ const { onFinish, redirect } = useForm();
 // --
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = await onFinish(formValues);
-    redirect("show", data?.data?.id);
+  e.preventDefault();
+  const data = await onFinish(formValues);
+  redirect("show", data?.data?.id);
 };
 
 // --
@@ -1408,18 +1353,18 @@ It is useful when you want to `invalidate` other resources don't have relation w
 import { useForm, useInvalidate } from "@refinedev/core";
 
 const PostEdit = () => {
-    const invalidate = useInvalidate();
+  const invalidate = useInvalidate();
 
-    useForm({
-        onMutationSuccess: (data, variables, context) => {
-            invalidate({
-                resource: "users",
-                invalidates: ["resourceAll"],
-            });
-        },
-    });
+  useForm({
+    onMutationSuccess: (data, variables, context) => {
+      invalidate({
+        resource: "users",
+        invalidates: ["resourceAll"],
+      });
+    },
+  });
 
-    // ---
+  // ---
 };
 ```
 
@@ -1434,28 +1379,28 @@ import { useForm } from "@refinedev/core";
 import React, { useState } from "react";
 
 export const UserCreate: React.FC = () => {
-    const [name, setName] = useState();
-    const [surname, setSurname] = useState();
+  const [name, setName] = useState();
+  const [surname, setSurname] = useState();
 
-    const { onFinish } = useForm();
+  const { onFinish } = useForm();
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        const fullName = `${name} ${surname}`;
-        onFinish({
-            fullName: fullName,
-            name,
-            surname,
-        });
-    };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const fullName = `${name} ${surname}`;
+    onFinish({
+      fullName: fullName,
+      name,
+      surname,
+    });
+  };
 
-    return (
-        <form onSubmit={onSubmit}>
-            <input onChange={(e) => setName(e.target.value)} />
-            <input onChange={(e) => setSurname(e.target.value)} />
-            <button type="submit">Submit</button>
-        </form>
-    );
+  return (
+    <form onSubmit={onSubmit}>
+      <input onChange={(e) => setName(e.target.value)} />
+      <input onChange={(e) => setSurname(e.target.value)} />
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 ```
 
@@ -1475,7 +1420,7 @@ These props have default values in `RefineContext` and can also be set on **<[Re
 
 ### Type Parameters
 
-| Property       | Description                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                         | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

@@ -26,11 +26,13 @@ const CodeBlockTitle = ({
             className={clsx(
                 "py-3",
                 "px-4",
-                "text-sm",
-                "leading-6",
-                "text-gray-300",
+                "text-[13px]",
+                "leading-5",
+                "text-gray-600",
+                "dark:text-gray-300",
+
                 "border-b",
-                "border-b-gray-900",
+                "dark:border-b-gray-700",
                 "font-mono",
                 "flex items-center",
                 "gap-2",
@@ -44,7 +46,7 @@ const CodeBlockTitle = ({
                         "-mb-1",
                         "w-8 h-8",
                         "rounded",
-                        "bg-gray-800 bg-opacity-50",
+                        // "bg-gray-800 bg-opacity-50",
                         "flex items-center justify-center",
                     )}
                 >
@@ -92,14 +94,19 @@ export const CodeBlockString = ({
             as="div"
             className={clsx(
                 language && `language-${language}`,
-                "rounded-lg",
-                "bg-gray-700",
+                "rounded-md",
+                // "bg-gray-700",
+                "bg-gray-50",
+                "dark:bg-gray-800",
+                "border",
+                "dark:border-gray-700",
                 "mb-6",
+                "relative",
             )}
             style={style}
         >
             {title && <CodeBlockTitle icon={icon}>{title}</CodeBlockTitle>}
-            <div className={clsx("relative", "pt-4", "pb-0", "not-prose")}>
+            <div className={clsx("relative", "pt-3", "pb-0", "not-prose")}>
                 <Highlight
                     {...defaultProps}
                     theme={prismTheme}
@@ -119,8 +126,7 @@ export const CodeBlockString = ({
                                 "px-0",
                                 "pt-0",
                                 "font-mono",
-                                "thin-scrollbar",
-                                "pb-4",
+                                "pb-3",
                             )}
                         >
                             <code
@@ -148,22 +154,22 @@ export const CodeBlockString = ({
                         </pre>
                     )}
                 </Highlight>
-                <div
-                    className={clsx(
-                        "absolute",
-                        "right-3",
-                        "top-3",
-                        "flex items-center gap-2",
-                    )}
-                >
-                    {(wordWrap.isEnabled || wordWrap.isCodeScrollable) && (
-                        <CommonWordWrapButton
-                            onClick={wordWrap.toggle}
-                            isEnabled={wordWrap.isEnabled}
-                        />
-                    )}
-                    <CommonCopyButton className={clsx()} code={code} />
-                </div>
+            </div>
+            <div
+                className={clsx(
+                    "absolute",
+                    "right-3",
+                    title ? "top-1.5" : "top-[9px]",
+                    "flex items-center gap-2",
+                )}
+            >
+                {(wordWrap.isEnabled || wordWrap.isCodeScrollable) && (
+                    <CommonWordWrapButton
+                        onClick={wordWrap.toggle}
+                        isEnabled={wordWrap.isEnabled}
+                    />
+                )}
+                <CommonCopyButton className={clsx()} code={code} />
             </div>
         </CommonCodeBlockContainer>
     );

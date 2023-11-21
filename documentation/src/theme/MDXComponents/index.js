@@ -1,25 +1,27 @@
-import React from "react";
-
 import MDXComponents from "@theme-original/MDXComponents";
 
+import { BannerRandom } from "@site/src/components/banner/banner-random";
 import DiscordBanner from "@site/src/components/blog/discord-banner";
 import GithubBanner from "@site/src/components/blog/github-banner";
-import TwitterBanner from "@site/src/components/blog/twitter-banner";
-import PropsTable from "@site/src/components/props-table";
 import PromotionBanner from "@site/src/components/blog/promotion";
-import UIConditional from "@site/src/components/ui-conditional";
-import PropTag from "@site/src/components/prop-tag";
-import CodeSandboxExample from "@site/src/components/codesandbox-example";
-import ExampleSourcePrompt from "@site/src/components/example-source-prompt";
-import ExampleLocalPrompt from "@site/src/components/example-local-prompt";
+import TwitterBanner from "@site/src/components/blog/twitter-banner";
 import Checklist from "@site/src/components/checklist";
 import ChecklistItem from "@site/src/components/checklist-item";
+import CodeSandboxExample from "@site/src/components/codesandbox-example";
+import ExampleLocalPrompt from "@site/src/components/example-local-prompt";
+import ExampleSourcePrompt from "@site/src/components/example-source-prompt";
 import GeneralConceptsLink from "@site/src/components/general-concepts-link";
-import CommonTabs from "@site/src/refine-theme/common-tabs";
-import CommonTabItem from "@site/src/refine-theme/common-tab-item";
+import { GlobalConfigBadge } from "@site/src/components/global-config-badge";
+import { GuideBadge } from "@site/src/components/guide-badge";
+import PropTag from "@site/src/components/prop-tag";
+import PropsTable from "@site/src/components/props-table";
+import { RouterBadge } from "@site/src/components/router-badge";
+import { Sandpack } from "@site/src/components/sandpack";
+import UIConditional from "@site/src/components/ui-conditional";
 import CommonDetails from "@site/src/refine-theme/common-details";
 import CommonSummary from "@site/src/refine-theme/common-summary";
-import { BannerRandom } from "@site/src/components/banner/banner-random";
+import CommonTabItem from "@site/src/refine-theme/common-tab-item";
+import CommonTabs from "@site/src/refine-theme/common-tabs";
 
 export default {
     ...MDXComponents,
@@ -41,4 +43,8 @@ export default {
     ExampleLocalPrompt,
     ExampleSourcePrompt,
     BannerRandom,
+    Sandpack,
+    GuideBadge,
+    RouterBadge,
+    GlobalConfigBadge,
 };
