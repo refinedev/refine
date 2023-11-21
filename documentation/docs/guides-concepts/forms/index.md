@@ -382,7 +382,7 @@ useForm({
   id: 1,
   // highlight-start
   invalidates: false,
-  onMutationSuccess() {
+  onMutationSuccess: () {
     invalidate({
       resource: "posts",
       invalidates: ["resourceAll"],
