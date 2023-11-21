@@ -2,8 +2,8 @@
 id: prepare-env
 title: 2. Prepare your dev environment
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/index
-    next: tutorial/getting-started/{preferredUI}/create-project
+  prev: tutorial/getting-started/{preferredUI}/index
+  next: tutorial/getting-started/{preferredUI}/create-project
 ---
 
 ## Get the dev tools you need
@@ -20,9 +20,9 @@ To check if you already have a compatible version of Node.js (v.16.0.0 or higher
 
 1. Launch your terminal and type the following command:
 
-    ```bash
-    node -v
-    ```
+   ```bash
+   node -v
+   ```
 
 2. If you do not have a compatible version of Node.js installed, follow these instructions to [install Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) via the terminal.
 
@@ -31,7 +31,9 @@ To check if you already have a compatible version of Node.js (v.16.0.0 or higher
 In addition to a terminal, you will also need a code editor to write and edit your code. A code editor is a software application that allows you to write and edit code for various programming languages.
 
 :::info
+
 This tutorial will use **VS Code**, but you can use any code editor that is compatible with your operating system. Some other popular code editors include **Sublime Text**, **Atom** and **Eclipse**.
+
 :::
 
 <Checklist>

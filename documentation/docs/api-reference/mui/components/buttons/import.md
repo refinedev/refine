@@ -9,7 +9,9 @@ swizzle: true
 > For more information, refer to the [`useImport` documentation &#8594][useimport]
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Usage
@@ -20,51 +22,49 @@ Use it like any other Material UI [`<LoadingButton>`][button]. You can use it wi
 // visible-block-start
 import { useImport } from "@refinedev/core";
 import {
-    useDataGrid,
-    List,
-    // highlight-next-line
-    ImportButton,
+  useDataGrid,
+  List,
+  // highlight-next-line
+  ImportButton,
 } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+  { field: "id", headerName: "ID", type: "number" },
+  { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
 ];
 
 const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+  const { dataGridProps } = useDataGrid<IPost>();
 
-    const { inputProps, isLoading } = useImport<IPost>();
+  const { inputProps, isLoading } = useImport<IPost>();
 
-    return (
-        <List
-            // highlight-start
-            headerButtons={
-                <ImportButton inputProps={inputProps} loading={isLoading} />
-            }
-            // highlight-end
-        >
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtons={<ImportButton inputProps={inputProps} loading={isLoading} />}
+      // highlight-end
+    >
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostsList,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostsList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -81,25 +81,25 @@ const { useRouterContext } = RefineCore;
 import { ImportButton } from "@refinedev/mui";
 
 const MyImportComponent = () => {
-    return (
-        <ImportButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <ImportButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyImportComponent,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyImportComponent,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -110,7 +110,9 @@ render(
 <PropsTable module="@refinedev/mui/ImportButton" />
 
 :::tip External Props
+
 It also accepts all props of Material UI [LoadingButton](https://mui.com/material-ui/api/loading-button/#main-content).
+
 :::
 
 [button]: https://mui.com/material-ui/api/loading-button/#main-content

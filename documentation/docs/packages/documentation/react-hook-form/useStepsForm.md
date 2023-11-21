@@ -6,355 +6,323 @@ sidebar_label: useStepsForm
 
 ```css live shared
 body {
-    background: white;
+  background: white;
 }
 ```
 
 ```tsx live shared
-import {
-    useMany,
-    useNavigation,
-    useSelect as useSelectShared,
-    useTable,
-} from "@refinedev/core";
+import { useMany, useNavigation, useSelect as useSelectShared, useTable } from "@refinedev/core";
 import { useStepsForm as useStepsFormShared } from "@refinedev/react-hook-form";
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: {
-        id: ICategory["id"];
-    };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: {
+    id: ICategory["id"];
+  };
 }
 
 const stepTitlesShared = ["Title", "Status", "Category and content"];
 
 const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>({
-        sorters: {
-            initial: [
-                {
-                    field: "id",
-                    order: "desc",
-                },
-            ],
+  const { tableQueryResult } = useTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "desc",
         },
-    });
-    const { edit, create } = useNavigation();
+      ],
+    },
+  });
+  const { edit, create } = useNavigation();
 
-    const categoryIds =
-        tableQueryResult?.data?.data.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+  const categoryIds = tableQueryResult?.data?.data.map((item) => item.category.id) ?? [];
+  const { data, isLoading } = useMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-    return (
-        <div>
-            <button onClick={() => create("posts")}>Create Post</button>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Category</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableQueryResult.data?.data.map((post) => (
-                        <tr key={post.id}>
-                            <td>{post.id}</td>
-                            <td>{post.title}</td>
-                            <td>
-                                {isLoading
-                                    ? "Loading"
-                                    : data?.data.find(
-                                          (item) => item.id == post.category.id,
-                                      )?.title}
-                            </td>
-                            <td>{post.status}</td>
-                            <td>
-                                <button onClick={() => edit("posts", post.id)}>
-                                    Edit
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+  return (
+    <div>
+      <button onClick={() => create("posts")}>Create Post</button>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tableQueryResult.data?.data.map((post) => (
+            <tr key={post.id}>
+              <td>{post.id}</td>
+              <td>{post.title}</td>
+              <td>{isLoading ? "Loading" : data?.data.find((item) => item.id == post.category.id)?.title}</td>
+              <td>{post.status}</td>
+              <td>
+                <button onClick={() => edit("posts", post.id)}>Edit</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 const PostCreate: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        formState: { errors },
-        steps: { currentStep, gotoStep },
-    } = useStepsFormShared<IPost, HttpError, IPost>();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    formState: { errors },
+    steps: { currentStep, gotoStep },
+  } = useStepsFormShared<IPost, HttpError, IPost>();
 
-    const { options } = useSelectShared({
-        resource: "categories",
-    });
+  const { options } = useSelectShared({
+    resource: "categories",
+  });
 
-    const renderFormByStep = (step: number) => {
-        switch (step) {
-            case 0:
-                return (
-                    <>
-                        <label>Title: </label>
-                        <input
-                            {...register("title", {
-                                required: "This field is required",
-                            })}
-                        />
-                        {errors.title && <span>{errors.title.message}</span>}
-                    </>
-                );
-            case 1:
-                return (
-                    <>
-                        <label>Status: </label>
-                        <select {...register("status")}>
-                            <option value="published">published</option>
-                            <option value="draft">draft</option>
-                            <option value="rejected">rejected</option>
-                        </select>
-                    </>
-                );
-            case 2:
-                return (
-                    <>
-                        <label>Category: </label>
-                        <select
-                            {...register("category.id", {
-                                required: "This field is required",
-                            })}
-                        >
-                            {options?.map((category) => (
-                                <option
-                                    key={category.value}
-                                    value={category.value}
-                                >
-                                    {category.label}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.category && (
-                            <span>{errors.category.message}</span>
-                        )}
-                        <br />
-                        <br />
-                        <label>Content: </label>
-                        <textarea
-                            {...register("content", {
-                                required: "This field is required",
-                            })}
-                            rows={10}
-                            cols={50}
-                        />
-                        {errors.content && (
-                            <span>{errors.content.message}</span>
-                        )}
-                    </>
-                );
-        }
-    };
-
-    if (formLoading) {
-        return <div>Loading...</div>;
+  const renderFormByStep = (step: number) => {
+    switch (step) {
+      case 0:
+        return (
+          <>
+            <label>Title: </label>
+            <input
+              {...register("title", {
+                required: "This field is required",
+              })}
+            />
+            {errors.title && <span>{errors.title.message}</span>}
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <label>Status: </label>
+            <select {...register("status")}>
+              <option value="published">published</option>
+              <option value="draft">draft</option>
+              <option value="rejected">rejected</option>
+            </select>
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <label>Category: </label>
+            <select
+              {...register("category.id", {
+                required: "This field is required",
+              })}
+            >
+              {options?.map((category) => (
+                <option key={category.value} value={category.value}>
+                  {category.label}
+                </option>
+              ))}
+            </select>
+            {errors.category && <span>{errors.category.message}</span>}
+            <br />
+            <br />
+            <label>Content: </label>
+            <textarea
+              {...register("content", {
+                required: "This field is required",
+              })}
+              rows={10}
+              cols={50}
+            />
+            {errors.content && <span>{errors.content.message}</span>}
+          </>
+        );
     }
+  };
 
-    return (
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <div style={{ display: "flex", gap: 36 }}>
-                {stepTitlesShared.map((title, index) => (
-                    <button
-                        key={index}
-                        onClick={() => gotoStep(index)}
-                        style={{
-                            backgroundColor:
-                                currentStep === index ? "lightgray" : "initial",
-                        }}
-                    >
-                        {index + 1} - {title}
-                    </button>
-                ))}
-            </div>
-            <form autoComplete="off">{renderFormByStep(currentStep)}</form>
-            <div style={{ display: "flex", gap: 8 }}>
-                {currentStep > 0 && (
-                    <button
-                        onClick={() => {
-                            gotoStep(currentStep - 1);
-                        }}
-                    >
-                        Previous
-                    </button>
-                )}
-                {currentStep < stepTitlesShared.length - 1 && (
-                    <button
-                        onClick={() => {
-                            gotoStep(currentStep + 1);
-                        }}
-                    >
-                        Next
-                    </button>
-                )}
-                {currentStep === stepTitlesShared.length - 1 && (
-                    <button onClick={handleSubmit(onFinish)}>Save</button>
-                )}
-            </div>
-        </div>
-    );
+  if (formLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "flex", gap: 36 }}>
+        {stepTitlesShared.map((title, index) => (
+          <button
+            key={index}
+            onClick={() => gotoStep(index)}
+            style={{
+              backgroundColor: currentStep === index ? "lightgray" : "initial",
+            }}
+          >
+            {index + 1} - {title}
+          </button>
+        ))}
+      </div>
+      <form autoComplete="off">{renderFormByStep(currentStep)}</form>
+      <div style={{ display: "flex", gap: 8 }}>
+        {currentStep > 0 && (
+          <button
+            onClick={() => {
+              gotoStep(currentStep - 1);
+            }}
+          >
+            Previous
+          </button>
+        )}
+        {currentStep < stepTitlesShared.length - 1 && (
+          <button
+            onClick={() => {
+              gotoStep(currentStep + 1);
+            }}
+          >
+            Next
+          </button>
+        )}
+        {currentStep === stepTitlesShared.length - 1 && <button onClick={handleSubmit(onFinish)}>Save</button>}
+      </div>
+    </div>
+  );
 };
 
 const PostEdit: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading, queryResult },
-        register,
-        handleSubmit,
-        formState: { errors },
-        steps: { currentStep, gotoStep },
-    } = useStepsFormShared<IPost, HttpError, IPost>();
+  const {
+    refineCore: { onFinish, formLoading, queryResult },
+    register,
+    handleSubmit,
+    formState: { errors },
+    steps: { currentStep, gotoStep },
+  } = useStepsFormShared<IPost, HttpError, IPost>();
 
-    const { options } = useSelectShared({
-        resource: "categories",
-        defaultValue: queryResult?.data?.data.category.id,
-    });
+  const { options } = useSelectShared({
+    resource: "categories",
+    defaultValue: queryResult?.data?.data.category.id,
+  });
 
-    const renderFormByStep = (step: number) => {
-        switch (step) {
-            case 0:
-                return (
-                    <>
-                        <label>Title: </label>
-                        <input
-                            {...register("title", {
-                                required: "This field is required",
-                            })}
-                        />
-                        {errors.title && <span>{errors.title.message}</span>}
-                    </>
-                );
-            case 1:
-                return (
-                    <>
-                        <label>Status: </label>
-                        <select {...register("status")}>
-                            <option value="published">published</option>
-                            <option value="draft">draft</option>
-                            <option value="rejected">rejected</option>
-                        </select>
-                    </>
-                );
-            case 2:
-                return (
-                    <>
-                        <label>Category: </label>
-                        <select
-                            {...register("category.id", {
-                                required: "This field is required",
-                            })}
-                            defaultValue={queryResult?.data?.data.category.id}
-                        >
-                            {options?.map((category) => (
-                                <option
-                                    key={category.value}
-                                    value={category.value}
-                                >
-                                    {category.label}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.category && (
-                            <span>{errors.category.message}</span>
-                        )}
-                        <br />
-                        <br />
-                        <label>Content: </label>
-                        <textarea
-                            {...register("content", {
-                                required: "This field is required",
-                            })}
-                            rows={10}
-                            cols={50}
-                        />
-                        {errors.content && (
-                            <span>{errors.content.message}</span>
-                        )}
-                    </>
-                );
-        }
-    };
-
-    if (formLoading) {
-        return <div>Loading...</div>;
+  const renderFormByStep = (step: number) => {
+    switch (step) {
+      case 0:
+        return (
+          <>
+            <label>Title: </label>
+            <input
+              {...register("title", {
+                required: "This field is required",
+              })}
+            />
+            {errors.title && <span>{errors.title.message}</span>}
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <label>Status: </label>
+            <select {...register("status")}>
+              <option value="published">published</option>
+              <option value="draft">draft</option>
+              <option value="rejected">rejected</option>
+            </select>
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <label>Category: </label>
+            <select
+              {...register("category.id", {
+                required: "This field is required",
+              })}
+              defaultValue={queryResult?.data?.data.category.id}
+            >
+              {options?.map((category) => (
+                <option key={category.value} value={category.value}>
+                  {category.label}
+                </option>
+              ))}
+            </select>
+            {errors.category && <span>{errors.category.message}</span>}
+            <br />
+            <br />
+            <label>Content: </label>
+            <textarea
+              {...register("content", {
+                required: "This field is required",
+              })}
+              rows={10}
+              cols={50}
+            />
+            {errors.content && <span>{errors.content.message}</span>}
+          </>
+        );
     }
+  };
 
-    return (
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <div style={{ display: "flex", gap: 36 }}>
-                {stepTitlesShared.map((title, index) => (
-                    <button
-                        key={index}
-                        onClick={() => gotoStep(index)}
-                        style={{
-                            backgroundColor:
-                                currentStep === index ? "lightgray" : "initial",
-                        }}
-                    >
-                        {index + 1} - {title}
-                    </button>
-                ))}
-            </div>
-            <form autoComplete="off">{renderFormByStep(currentStep)}</form>
-            <div style={{ display: "flex", gap: 8 }}>
-                {currentStep > 0 && (
-                    <button
-                        onClick={() => {
-                            gotoStep(currentStep - 1);
-                        }}
-                    >
-                        Previous
-                    </button>
-                )}
-                {currentStep < stepTitlesShared.length - 1 && (
-                    <button
-                        onClick={() => {
-                            gotoStep(currentStep + 1);
-                        }}
-                    >
-                        Next
-                    </button>
-                )}
-                {currentStep === stepTitlesShared.length - 1 && (
-                    <button onClick={handleSubmit(onFinish)}>Save</button>
-                )}
-            </div>
-        </div>
-    );
+  if (formLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "flex", gap: 36 }}>
+        {stepTitlesShared.map((title, index) => (
+          <button
+            key={index}
+            onClick={() => gotoStep(index)}
+            style={{
+              backgroundColor: currentStep === index ? "lightgray" : "initial",
+            }}
+          >
+            {index + 1} - {title}
+          </button>
+        ))}
+      </div>
+      <form autoComplete="off">{renderFormByStep(currentStep)}</form>
+      <div style={{ display: "flex", gap: 8 }}>
+        {currentStep > 0 && (
+          <button
+            onClick={() => {
+              gotoStep(currentStep - 1);
+            }}
+          >
+            Previous
+          </button>
+        )}
+        {currentStep < stepTitlesShared.length - 1 && (
+          <button
+            onClick={() => {
+              gotoStep(currentStep + 1);
+            }}
+          >
+            Next
+          </button>
+        )}
+        {currentStep === stepTitlesShared.length - 1 && <button onClick={handleSubmit(onFinish)}>Save</button>}
+      </div>
+    </div>
+  );
 };
 ```
 
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
 :::info
+
 `useStepsForm` hook is extended from [`useForm`][refine-react-hook-form-use-form] from the [`@refinedev/react-hook-form`][@refinedev/react-hook-form] package. This means you can use all the features of [`useForm`][refine-react-hook-form-use-form].
+
 :::
 
 ## Basic Usage
@@ -382,155 +350,145 @@ import { useStepsForm } from "@refinedev/react-hook-form";
 const stepTitles = ["Title", "Status", "Category and content"];
 
 const PostCreatePage: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        formState: { errors },
-        steps: { currentStep, gotoStep },
-    } = useStepsForm<IPost, HttpError, IPost>();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    formState: { errors },
+    steps: { currentStep, gotoStep },
+  } = useStepsForm<IPost, HttpError, IPost>();
 
-    const { options } = useSelect<ICategory, HttpError>({
-        resource: "categories",
-    });
+  const { options } = useSelect<ICategory, HttpError>({
+    resource: "categories",
+  });
 
-    const renderFormByStep = (step: number) => {
-        switch (step) {
-            case 0:
-                return (
-                    <>
-                        <label>Title: </label>
-                        <input
-                            {...register("title", {
-                                required: "This field is required",
-                            })}
-                        />
-                        {errors.title && <span>{errors.title.message}</span>}
-                    </>
-                );
-            case 1:
-                return (
-                    <>
-                        <label>Status: </label>
-                        <select {...register("status")}>
-                            <option value="published">published</option>
-                            <option value="draft">draft</option>
-                            <option value="rejected">rejected</option>
-                        </select>
-                    </>
-                );
-            case 2:
-                return (
-                    <>
-                        <label>Category: </label>
-                        <select
-                            {...register("category.id", {
-                                required: "This field is required",
-                            })}
-                        >
-                            {options?.map((category) => (
-                                <option
-                                    key={category.value}
-                                    value={category.value}
-                                >
-                                    {category.label}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.category && (
-                            <span>{errors.category.message}</span>
-                        )}
-                        <br />
-                        <br />
-                        <label>Content: </label>
-                        <textarea
-                            {...register("content", {
-                                required: "This field is required",
-                            })}
-                            rows={10}
-                            cols={50}
-                        />
-                        {errors.content && (
-                            <span>{errors.content.message}</span>
-                        )}
-                    </>
-                );
-        }
-    };
-
-    if (formLoading) {
-        return <div>Loading...</div>;
+  const renderFormByStep = (step: number) => {
+    switch (step) {
+      case 0:
+        return (
+          <>
+            <label>Title: </label>
+            <input
+              {...register("title", {
+                required: "This field is required",
+              })}
+            />
+            {errors.title && <span>{errors.title.message}</span>}
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <label>Status: </label>
+            <select {...register("status")}>
+              <option value="published">published</option>
+              <option value="draft">draft</option>
+              <option value="rejected">rejected</option>
+            </select>
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <label>Category: </label>
+            <select
+              {...register("category.id", {
+                required: "This field is required",
+              })}
+            >
+              {options?.map((category) => (
+                <option key={category.value} value={category.value}>
+                  {category.label}
+                </option>
+              ))}
+            </select>
+            {errors.category && <span>{errors.category.message}</span>}
+            <br />
+            <br />
+            <label>Content: </label>
+            <textarea
+              {...register("content", {
+                required: "This field is required",
+              })}
+              rows={10}
+              cols={50}
+            />
+            {errors.content && <span>{errors.content.message}</span>}
+          </>
+        );
     }
+  };
 
-    return (
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <div style={{ display: "flex", gap: 36 }}>
-                {stepTitles.map((title, index) => (
-                    <button
-                        key={index}
-                        onClick={() => gotoStep(index)}
-                        style={{
-                            backgroundColor:
-                                currentStep === index ? "lightgray" : "initial",
-                        }}
-                    >
-                        {index + 1} - {title}
-                    </button>
-                ))}
-            </div>
-            <form autoComplete="off">{renderFormByStep(currentStep)}</form>
-            <div style={{ display: "flex", gap: 8 }}>
-                {currentStep > 0 && (
-                    <button
-                        onClick={() => {
-                            gotoStep(currentStep - 1);
-                        }}
-                    >
-                        Previous
-                    </button>
-                )}
-                {currentStep < stepTitles.length - 1 && (
-                    <button
-                        onClick={() => {
-                            gotoStep(currentStep + 1);
-                        }}
-                    >
-                        Next
-                    </button>
-                )}
-                {currentStep === stepTitles.length - 1 && (
-                    <button onClick={handleSubmit(onFinish)}>Save</button>
-                )}
-            </div>
-        </div>
-    );
+  if (formLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "flex", gap: 36 }}>
+        {stepTitles.map((title, index) => (
+          <button
+            key={index}
+            onClick={() => gotoStep(index)}
+            style={{
+              backgroundColor: currentStep === index ? "lightgray" : "initial",
+            }}
+          >
+            {index + 1} - {title}
+          </button>
+        ))}
+      </div>
+      <form autoComplete="off">{renderFormByStep(currentStep)}</form>
+      <div style={{ display: "flex", gap: 8 }}>
+        {currentStep > 0 && (
+          <button
+            onClick={() => {
+              gotoStep(currentStep - 1);
+            }}
+          >
+            Previous
+          </button>
+        )}
+        {currentStep < stepTitles.length - 1 && (
+          <button
+            onClick={() => {
+              gotoStep(currentStep + 1);
+            }}
+          >
+            Next
+          </button>
+        )}
+        {currentStep === stepTitles.length - 1 && <button onClick={handleSubmit(onFinish)}>Save</button>}
+      </div>
+    </div>
+  );
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: {
-        id: ICategory["id"];
-    };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: {
+    id: ICategory["id"];
+  };
 }
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreatePage,
-            edit: PostEdit,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreatePage,
+      edit: PostEdit,
+    },
+  ],
 });
 
 render(<RefineHeadlessDemo />);
@@ -552,157 +510,147 @@ import { useStepsForm } from "@refinedev/react-hook-form";
 const stepTitles = ["Title", "Status", "Category and content"];
 
 const PostEditPage: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading, queryResult },
-        register,
-        handleSubmit,
-        formState: { errors },
-        steps: { currentStep, gotoStep },
-    } = useStepsForm<IPost, HttpError, IPost>();
+  const {
+    refineCore: { onFinish, formLoading, queryResult },
+    register,
+    handleSubmit,
+    formState: { errors },
+    steps: { currentStep, gotoStep },
+  } = useStepsForm<IPost, HttpError, IPost>();
 
-    const { options } = useSelect<ICategory, HttpError>({
-        resource: "categories",
-        defaultValue: queryResult?.data?.data.category.id,
-    });
+  const { options } = useSelect<ICategory, HttpError>({
+    resource: "categories",
+    defaultValue: queryResult?.data?.data.category.id,
+  });
 
-    const renderFormByStep = (step: number) => {
-        switch (step) {
-            case 0:
-                return (
-                    <>
-                        <label>Title: </label>
-                        <input
-                            {...register("title", {
-                                required: "This field is required",
-                            })}
-                        />
-                        {errors.title && <span>{errors.title.message}</span>}
-                    </>
-                );
-            case 1:
-                return (
-                    <>
-                        <label>Status: </label>
-                        <select {...register("status")}>
-                            <option value="published">published</option>
-                            <option value="draft">draft</option>
-                            <option value="rejected">rejected</option>
-                        </select>
-                    </>
-                );
-            case 2:
-                return (
-                    <>
-                        <label>Category: </label>
-                        <select
-                            {...register("category.id", {
-                                required: "This field is required",
-                            })}
-                            defaultValue={queryResult?.data?.data.category.id}
-                        >
-                            {options?.map((category) => (
-                                <option
-                                    key={category.value}
-                                    value={category.value}
-                                >
-                                    {category.label}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.category && (
-                            <span>{errors.category.message}</span>
-                        )}
-                        <br />
-                        <br />
-                        <label>Content: </label>
-                        <textarea
-                            {...register("content", {
-                                required: "This field is required",
-                            })}
-                            rows={10}
-                            cols={50}
-                        />
-                        {errors.content && (
-                            <span>{errors.content.message}</span>
-                        )}
-                    </>
-                );
-        }
-    };
-
-    if (formLoading) {
-        return <div>Loading...</div>;
+  const renderFormByStep = (step: number) => {
+    switch (step) {
+      case 0:
+        return (
+          <>
+            <label>Title: </label>
+            <input
+              {...register("title", {
+                required: "This field is required",
+              })}
+            />
+            {errors.title && <span>{errors.title.message}</span>}
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <label>Status: </label>
+            <select {...register("status")}>
+              <option value="published">published</option>
+              <option value="draft">draft</option>
+              <option value="rejected">rejected</option>
+            </select>
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <label>Category: </label>
+            <select
+              {...register("category.id", {
+                required: "This field is required",
+              })}
+              defaultValue={queryResult?.data?.data.category.id}
+            >
+              {options?.map((category) => (
+                <option key={category.value} value={category.value}>
+                  {category.label}
+                </option>
+              ))}
+            </select>
+            {errors.category && <span>{errors.category.message}</span>}
+            <br />
+            <br />
+            <label>Content: </label>
+            <textarea
+              {...register("content", {
+                required: "This field is required",
+              })}
+              rows={10}
+              cols={50}
+            />
+            {errors.content && <span>{errors.content.message}</span>}
+          </>
+        );
     }
+  };
 
-    return (
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <div style={{ display: "flex", gap: 36 }}>
-                {stepTitles.map((title, index) => (
-                    <button
-                        key={index}
-                        onClick={() => gotoStep(index)}
-                        style={{
-                            backgroundColor:
-                                currentStep === index ? "lightgray" : "initial",
-                        }}
-                    >
-                        {index + 1} - {title}
-                    </button>
-                ))}
-            </div>
-            <form autoComplete="off">{renderFormByStep(currentStep)}</form>
-            <div style={{ display: "flex", gap: 8 }}>
-                {currentStep > 0 && (
-                    <button
-                        onClick={() => {
-                            gotoStep(currentStep - 1);
-                        }}
-                    >
-                        Previous
-                    </button>
-                )}
-                {currentStep < stepTitles.length - 1 && (
-                    <button
-                        onClick={() => {
-                            gotoStep(currentStep + 1);
-                        }}
-                    >
-                        Next
-                    </button>
-                )}
-                {currentStep === stepTitles.length - 1 && (
-                    <button onClick={handleSubmit(onFinish)}>Save</button>
-                )}
-            </div>
-        </div>
-    );
+  if (formLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "flex", gap: 36 }}>
+        {stepTitles.map((title, index) => (
+          <button
+            key={index}
+            onClick={() => gotoStep(index)}
+            style={{
+              backgroundColor: currentStep === index ? "lightgray" : "initial",
+            }}
+          >
+            {index + 1} - {title}
+          </button>
+        ))}
+      </div>
+      <form autoComplete="off">{renderFormByStep(currentStep)}</form>
+      <div style={{ display: "flex", gap: 8 }}>
+        {currentStep > 0 && (
+          <button
+            onClick={() => {
+              gotoStep(currentStep - 1);
+            }}
+          >
+            Previous
+          </button>
+        )}
+        {currentStep < stepTitles.length - 1 && (
+          <button
+            onClick={() => {
+              gotoStep(currentStep + 1);
+            }}
+          >
+            Next
+          </button>
+        )}
+        {currentStep === stepTitles.length - 1 && <button onClick={handleSubmit(onFinish)}>Save</button>}
+      </div>
+    </div>
+  );
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: {
-        id: ICategory["id"];
-    };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: {
+    id: ICategory["id"];
+  };
 }
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreate,
-            edit: PostEditPage,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreate,
+      edit: PostEditPage,
+    },
+  ],
 });
 
 render(<RefineHeadlessDemo />);
@@ -721,30 +669,30 @@ import { HttpError } from "@refinedev/core";
 import { useStepsForm } from "@refinedev/react-hook-form";
 
 const PostCreate = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        formState: { errors },
-        steps: { currentStep, gotoStep },
-    } = useStepsForm<IPost, HttpError, IPost>();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    formState: { errors },
+    steps: { currentStep, gotoStep },
+  } = useStepsForm<IPost, HttpError, IPost>();
 
-    return <div>...</div>;
+  return <div>...</div>;
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: {
-        id: ICategory["id"];
-    };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: {
+    id: ICategory["id"];
+  };
 }
 ```
 
@@ -759,104 +707,98 @@ import { HttpError, useSelect } from "@refinedev/core";
 import { useStepsForm } from "@refinedev/react-hook-form";
 
 const PostCreate = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        formState: { errors },
-        steps: { currentStep, gotoStep },
-    } = useStepsForm<IPost, HttpError, IPost>();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    formState: { errors },
+    steps: { currentStep, gotoStep },
+  } = useStepsForm<IPost, HttpError, IPost>();
 
-    const { options } = useSelect<ICategory, HttpError>({
-        resource: "categories",
-    });
+  const { options } = useSelect<ICategory, HttpError>({
+    resource: "categories",
+  });
 
-    // highlight-start
-    const renderFormByStep = (step: number) => {
-        switch (step) {
-            case 0:
-                return (
-                    <>
-                        <label>Title: </label>
-                        <input
-                            {...register("title", {
-                                required: "This field is required",
-                            })}
-                        />
-                        {errors.title && <span>{errors.title.message}</span>}
-                    </>
-                );
-            case 1:
-                return (
-                    <>
-                        <label>Status: </label>
-                        <select {...register("status")}>
-                            <option value="published">published</option>
-                            <option value="draft">draft</option>
-                            <option value="rejected">rejected</option>
-                        </select>
-                    </>
-                );
-            case 2:
-                return (
-                    <>
-                        <label>Category: </label>
-                        <select
-                            {...register("category.id", {
-                                required: "This field is required",
-                            })}
-                        >
-                            {options?.map((category) => (
-                                <option
-                                    key={category.value}
-                                    value={category.value}
-                                >
-                                    {category.label}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.category && (
-                            <span>{errors.category.message}</span>
-                        )}
-                        <br />
-                        <br />
-                        <label>Content: </label>
-                        <textarea
-                            {...register("content", {
-                                required: "This field is required",
-                            })}
-                            rows={10}
-                            cols={50}
-                        />
-                        {errors.content && (
-                            <span>{errors.content.message}</span>
-                        )}
-                    </>
-                );
-        }
-    };
-    // highlight-end
+  // highlight-start
+  const renderFormByStep = (step: number) => {
+    switch (step) {
+      case 0:
+        return (
+          <>
+            <label>Title: </label>
+            <input
+              {...register("title", {
+                required: "This field is required",
+              })}
+            />
+            {errors.title && <span>{errors.title.message}</span>}
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <label>Status: </label>
+            <select {...register("status")}>
+              <option value="published">published</option>
+              <option value="draft">draft</option>
+              <option value="rejected">rejected</option>
+            </select>
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <label>Category: </label>
+            <select
+              {...register("category.id", {
+                required: "This field is required",
+              })}
+            >
+              {options?.map((category) => (
+                <option key={category.value} value={category.value}>
+                  {category.label}
+                </option>
+              ))}
+            </select>
+            {errors.category && <span>{errors.category.message}</span>}
+            <br />
+            <br />
+            <label>Content: </label>
+            <textarea
+              {...register("content", {
+                required: "This field is required",
+              })}
+              rows={10}
+              cols={50}
+            />
+            {errors.content && <span>{errors.content.message}</span>}
+          </>
+        );
+    }
+  };
+  // highlight-end
 
-    return <div>...</div>;
+  return <div>...</div>;
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: {
-        id: ICategory["id"];
-    };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: {
+    id: ICategory["id"];
+  };
 }
 ```
 
 :::tip
+
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
 [Refer to `useSelect` documentation for detailed usage. &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
@@ -870,145 +812,135 @@ import { HttpError, useSelect } from "@refinedev/core";
 import { useStepsForm } from "@refinedev/react-hook-form";
 
 const PostCreate = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        formState: { errors },
-        steps: { currentStep, gotoStep },
-    } = useStepsForm<IPost, HttpError, IPost>();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    formState: { errors },
+    steps: { currentStep, gotoStep },
+  } = useStepsForm<IPost, HttpError, IPost>();
 
-    const { options } = useSelect<ICategory, HttpError>({
-        resource: "categories",
-    });
+  const { options } = useSelect<ICategory, HttpError>({
+    resource: "categories",
+  });
 
-    const renderFormByStep = (step: number) => {
-        switch (step) {
-            case 0:
-                return (
-                    <>
-                        <label>Title: </label>
-                        <input
-                            {...register("title", {
-                                required: "This field is required",
-                            })}
-                        />
-                        {errors.title && <span>{errors.title.message}</span>}
-                    </>
-                );
-            case 1:
-                return (
-                    <>
-                        <label>Status: </label>
-                        <select {...register("status")}>
-                            <option value="published">published</option>
-                            <option value="draft">draft</option>
-                            <option value="rejected">rejected</option>
-                        </select>
-                    </>
-                );
-            case 2:
-                return (
-                    <>
-                        <label>Category: </label>
-                        <select
-                            {...register("category.id", {
-                                required: "This field is required",
-                            })}
-                        >
-                            {options?.map((category) => (
-                                <option
-                                    key={category.value}
-                                    value={category.value}
-                                >
-                                    {category.label}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.category && (
-                            <span>{errors.category.message}</span>
-                        )}
-                        <br />
-                        <br />
-                        <label>Content: </label>
-                        <textarea
-                            {...register("content", {
-                                required: "This field is required",
-                            })}
-                            rows={10}
-                            cols={50}
-                        />
-                        {errors.content && (
-                            <span>{errors.content.message}</span>
-                        )}
-                    </>
-                );
-        }
-    };
-
-    // highlight-start
-    if (formLoading) {
-        return <div>Loading...</div>;
+  const renderFormByStep = (step: number) => {
+    switch (step) {
+      case 0:
+        return (
+          <>
+            <label>Title: </label>
+            <input
+              {...register("title", {
+                required: "This field is required",
+              })}
+            />
+            {errors.title && <span>{errors.title.message}</span>}
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <label>Status: </label>
+            <select {...register("status")}>
+              <option value="published">published</option>
+              <option value="draft">draft</option>
+              <option value="rejected">rejected</option>
+            </select>
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <label>Category: </label>
+            <select
+              {...register("category.id", {
+                required: "This field is required",
+              })}
+            >
+              {options?.map((category) => (
+                <option key={category.value} value={category.value}>
+                  {category.label}
+                </option>
+              ))}
+            </select>
+            {errors.category && <span>{errors.category.message}</span>}
+            <br />
+            <br />
+            <label>Content: </label>
+            <textarea
+              {...register("content", {
+                required: "This field is required",
+              })}
+              rows={10}
+              cols={50}
+            />
+            {errors.content && <span>{errors.content.message}</span>}
+          </>
+        );
     }
+  };
 
-    return (
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <div style={{ display: "flex", gap: 36 }}>
-                {stepTitles.map((title, index) => (
-                    <button
-                        key={index}
-                        onClick={() => gotoStep(index)}
-                        style={{
-                            backgroundColor:
-                                currentStep === index ? "lightgray" : "initial",
-                        }}
-                    >
-                        {index + 1} - {title}
-                    </button>
-                ))}
-            </div>
-            <form autoComplete="off">{renderFormByStep(currentStep)}</form>
-            <div style={{ display: "flex", gap: 8 }}>
-                {currentStep > 0 && (
-                    <button
-                        onClick={() => {
-                            gotoStep(currentStep - 1);
-                        }}
-                    >
-                        Previous
-                    </button>
-                )}
-                {currentStep < stepTitles.length - 1 && (
-                    <button
-                        onClick={() => {
-                            gotoStep(currentStep + 1);
-                        }}
-                    >
-                        Next
-                    </button>
-                )}
-                {currentStep === stepTitles.length - 1 && (
-                    <button onClick={handleSubmit(onFinish)}>Save</button>
-                )}
-            </div>
-        </div>
-    );
-    // highlight-end
+  // highlight-start
+  if (formLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "flex", gap: 36 }}>
+        {stepTitles.map((title, index) => (
+          <button
+            key={index}
+            onClick={() => gotoStep(index)}
+            style={{
+              backgroundColor: currentStep === index ? "lightgray" : "initial",
+            }}
+          >
+            {index + 1} - {title}
+          </button>
+        ))}
+      </div>
+      <form autoComplete="off">{renderFormByStep(currentStep)}</form>
+      <div style={{ display: "flex", gap: 8 }}>
+        {currentStep > 0 && (
+          <button
+            onClick={() => {
+              gotoStep(currentStep - 1);
+            }}
+          >
+            Previous
+          </button>
+        )}
+        {currentStep < stepTitles.length - 1 && (
+          <button
+            onClick={() => {
+              gotoStep(currentStep + 1);
+            }}
+          >
+            Next
+          </button>
+        )}
+        {currentStep === stepTitles.length - 1 && <button onClick={handleSubmit(onFinish)}>Save</button>}
+      </div>
+    </div>
+  );
+  // highlight-end
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: {
-        id: ICategory["id"];
-    };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: {
+    id: ICategory["id"];
+  };
 }
 ```
 
@@ -1020,11 +952,11 @@ All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties also ava
 
 ```tsx
 const stepsForm = useStepsForm({
-    refineCoreProps: {
-        action: "edit",
-        resource: "posts",
-        id: "1",
-    },
+  refineCoreProps: {
+    action: "edit",
+    resource: "posts",
+    id: "1",
+  },
 });
 ```
 
@@ -1040,9 +972,9 @@ Sets the default starting step number. Counting starts from `0`.
 
 ```tsx
 const stepsForm = useStepsForm({
-    stepsProps: {
-        defaultStep: 0,
-    },
+  stepsProps: {
+    defaultStep: 0,
+  },
 });
 ```
 
@@ -1054,9 +986,9 @@ When is `true`, validates a form fields when the user navigates to a previous st
 
 ```tsx
 const stepsForm = useStepsForm({
-    stepsProps: {
-        isBackValidate: true,
-    },
+  stepsProps: {
+    isBackValidate: true,
+  },
 });
 ```
 
@@ -1069,7 +1001,9 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
+
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -1082,11 +1016,11 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useStepsForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
     },
+  },
 });
 ```
 
@@ -1098,13 +1032,13 @@ Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useStepsForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            debounce: 2000,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      debounce: 2000,
     },
+  },
 });
 ```
 
@@ -1114,19 +1048,19 @@ If you want to modify the data before sending it to the server, you can use `onF
 
 ```tsx
 useStepsForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-start
-            onFinish: (values) => {
-                return {
-                    foo: "bar",
-                    ...values,
-                };
-            },
-            // highlight-end
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-start
+      onFinish: (values) => {
+        return {
+          foo: "bar",
+          ...values,
+        };
+      },
+      // highlight-end
     },
+  },
 });
 ```
 
@@ -1138,27 +1072,29 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useStepsForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            invalidateOnUnmount: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      invalidateOnUnmount: true,
     },
+  },
 });
 ```
 
 ## Return Values
 
 :::tip
+
 All [`useForm`](/docs/packages/documentation/react-hook-form/useForm/) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/packages/documentation/react-hook-form/useForm/#return-values) docs.
+
 :::
 
 ### `steps`
 
 The return values needed by the manage state steps.
 
-#### `currenStep`
+#### `currentStep`
 
 Current step, counting from `0`.
 
@@ -1176,12 +1112,14 @@ It takes in one argument, step, which is a number representing the index of the 
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
 :::tip External Props
+
 It also accepts all props of [useForm](https://react-hook-form.com/api/useform) hook available in the [React Hook Form](https://react-hook-form.com/).
+
 :::
 
 ### Type Parameters
 
-| Property       | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                         | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

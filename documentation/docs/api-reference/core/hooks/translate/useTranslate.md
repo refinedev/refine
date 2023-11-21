@@ -13,12 +13,14 @@ You can use the features of your own i18n library for translation in your own co
 import { useTranslate } from "@refinedev/core";
 
 export const MyComponent = () => {
-    const translate = useTranslate();
+  const translate = useTranslate();
 
-    return <button>{translate("my.translate.text")}</button>;
+  return <button>{translate("my.translate.text")}</button>;
 };
 ```
 
 :::caution
+
 This hook can only be used if `i18nProvider` is provided.
+
 :::

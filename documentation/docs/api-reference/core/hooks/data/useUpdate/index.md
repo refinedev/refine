@@ -18,19 +18,21 @@ import { useUpdate } from "@refinedev/core";
 const { mutate } = useUpdate();
 
 mutate({
-    resource: "products",
-    values: {
-        name: "New Product",
-        material: "Wood",
-    },
-    id: 1,
+  resource: "products",
+  values: {
+    name: "New Product",
+    material: "Wood",
+  },
+  id: 1,
 });
 ```
 
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useUpdate` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
@@ -46,7 +48,9 @@ When the `useUpdate` mutation runs successfully, it will invalidate the followin
 ## Audit Logs
 
 :::caution
+
 This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
+
 :::
 
 When the `useUpdate` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data`, `previousData` etc. It is useful when you want to log the changes to the database.
@@ -61,9 +65,9 @@ When the `useUpdate` mutation runs successfully, it will call the `log` method f
 
 ```tsx
 useUpdate({
-    mutationOptions: {
-        retry: 3,
-    },
+  mutationOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -75,26 +79,27 @@ useUpdate({
 const { mutate } = useUpdate();
 
 mutate(
-    {
-        resource: "products",
-        values: {
-            name: "New Product",
-            material: "Wood",
-        },
-        id: 1,
+  {
+    resource: "products",
+    values: {
+      name: "New Product",
+      material: "Wood",
     },
-    {
-        onError: (error, variables, context) => {
-            // An error occurred!
-        },
-        onSuccess: (data, variables, context) => {
-            // Let's celebrate!
-        },
+    id: 1,
+  },
+  {
+    onError: (error, variables, context) => {
+      // An error occurred!
     },
+    onSuccess: (data, variables, context) => {
+      // Let's celebrate!
+    },
+  },
 );
 ```
 
 :::
+
 [Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
 ## Mutation Parameters
@@ -107,7 +112,7 @@ This parameter will be passed to the `update` method from the `dataProvider` as 
 const { mutate } = useUpdate();
 
 mutate({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -125,7 +130,7 @@ This prop will be passed to the `update` method from the `dataProvider` as a par
 const { mutate } = useUpdate();
 
 mutate({
-    id: 123,
+  id: 123,
 });
 ```
 
@@ -137,10 +142,10 @@ This prop will be passed to the `update` method from the `dataProvider` as a par
 const { mutate } = useUpdate();
 
 mutate({
-    values: {
-        name: "New Category",
-        description: "New Category Description",
-    },
+  values: {
+    name: "New Category",
+    description: "New Category Description",
+  },
 });
 ```
 
@@ -153,7 +158,7 @@ Each mode corresponds to a different type of user experience.
 const { mutate } = useUpdate();
 
 mutate({
-    mutationMode: "undoable",
+  mutationMode: "undoable",
 });
 ```
 
@@ -167,8 +172,8 @@ When `mutationMode` is set to `undoable`, `undoableTimeout` is used to determine
 const { mutate } = useUpdate();
 
 mutate({
-    mutationMode: "undoable",
-    undoableTimeout: 10000,
+  mutationMode: "undoable",
+  undoableTimeout: 10000,
 });
 ```
 
@@ -183,36 +188,38 @@ import { useRef } from "react";
 import { useUpdate } from "@refinedev/core";
 
 const MyComponent = () => {
-    const { mutate } = useUpdate();
-    const cancelRef = useRef<(() => void) | null>(null);
+  const { mutate } = useUpdate();
+  const cancelRef = useRef<(() => void) | null>(null);
 
-    const updateItem = () => {
-        mutate({
-            //...
-            mutationMode: "undoable",
-            onCancel: (cancelMutation) => {
-                cancelRef.current = cancelMutation;
-            },
-        });
-    };
+  const updateItem = () => {
+    mutate({
+      //...
+      mutationMode: "undoable",
+      onCancel: (cancelMutation) => {
+        cancelRef.current = cancelMutation;
+      },
+    });
+  };
 
-    const cancelUpdate = () => {
-        cancelRef.current?.();
-    };
+  const cancelUpdate = () => {
+    cancelRef.current?.();
+  };
 
-    return (
-        <>
-            <button onClick={updateItem}>Update</button>
-            <button onClick={cancelUpdate}>Cancel</button>
-        </>
-    );
+  return (
+    <>
+      <button onClick={updateItem}>Update</button>
+      <button onClick={cancelUpdate}>Cancel</button>
+    </>
+  );
 };
 ```
 
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useUpdate` can calls `open` function from `NotificationProvider`:
@@ -221,20 +228,22 @@ This prop allows you to customize the success notification that shows up when th
 const { mutate } = useUpdate();
 
 mutate({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useUpdate` calls the `open` function from `NotificationProvider`:
@@ -243,13 +252,13 @@ This prop allows you to customize the error notification that shows up when the 
 const { mutate } = useUpdate();
 
 mutate({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -257,8 +266,8 @@ mutate({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
 In the following example, we pass the `headers` property in the `meta` object to the `update` method. You can pass any properties to specifically handle the data provider methods with similar logic.
 
@@ -266,37 +275,37 @@ In the following example, we pass the `headers` property in the `meta` object to
 const { mutate } = useUpdate();
 
 mutate({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  update: async ({
+    resource,
+    id,
+    variables,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}/${id}`;
+
     //...
-    update: async ({
-        resource,
-        id,
-        variables,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}/${id}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data } = await httpClient.patch(url, variables, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data } = await httpClient.patch(url, variables, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -310,7 +319,7 @@ This prop allows you to specify which `dataProvider` if you have more than one. 
 const { mutate } = useUpdate();
 
 mutate({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -324,7 +333,7 @@ By default, it invalidates the following queries from the current `resource`: `"
 const { mutate } = useUpdate();
 
 mutate({
-    invalidates: ["list", "many", "detail"],
+  invalidates: ["list", "many", "detail"],
 });
 ```
 
@@ -337,20 +346,20 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useUpdate({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
 {
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
 }
 ```
 
@@ -361,7 +370,9 @@ If the mutation mode is defined as `optimistic` or `undoable` the `useUpdate` ho
 When the mutation mode is set to `optimistic` or `undoable`, the `useUpdate` hook will automatically update the cache without waiting for a server response. If you need to customize update logic, you can achieve it by using the `optimisticUpdateMap` prop.
 
 :::caution
+
 This feature only works when `mutationMode` is set to `optimistic` or `undoable`.
+
 :::
 
 `list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. To automatically update the cache, you should pass `true`. If you don't want to update the cache, you should pass `false`.
@@ -370,13 +381,13 @@ This feature only works when `mutationMode` is set to `optimistic` or `undoable`
 const { mutate } = useUpdate();
 
 mutate({
-    //...
-    mutationMode: "optimistic",
-    optimisticUpdateMap: {
-        list: true,
-        many: true,
-        detail: false,
-    },
+  //...
+  mutationMode: "optimistic",
+  optimisticUpdateMap: {
+    list: true,
+    many: true,
+    detail: false,
+  },
 });
 ```
 
@@ -388,68 +399,68 @@ If you wish to customize the cache update, you have the option to provide functi
 const { mutate } = useUpdate();
 
 mutate({
-    //...
-    mutationMode: "optimistic",
-    // highlight-start
-    optimisticUpdateMap: {
-        list: (previous, values, id) => {
-            if (!previous) {
-                return null;
-            }
+  //...
+  mutationMode: "optimistic",
+  // highlight-start
+  optimisticUpdateMap: {
+    list: (previous, values, id) => {
+      if (!previous) {
+        return null;
+      }
 
-            const data = previous.data.map((record) => {
-                if (record.id === id) {
-                    return {
-                        foo: "bar",
-                        ...record,
-                        ...values,
-                    };
-                }
-                return record;
-            });
+      const data = previous.data.map((record) => {
+        if (record.id === id) {
+          return {
+            foo: "bar",
+            ...record,
+            ...values,
+          };
+        }
+        return record;
+      });
 
-            return {
-                ...previous,
-                data,
-            };
-        },
-        many: (previous, values, id) => {
-            if (!previous) {
-                return null;
-            }
-
-            const data = previous.data.map((record) => {
-                if (record.id === id) {
-                    return {
-                        foo: "bar",
-                        ...record,
-                        ...values,
-                    };
-                }
-                return record;
-            });
-
-            return {
-                ...previous,
-                data,
-            };
-        },
-        detail: (previous, values) => {
-            if (!previous) {
-                return null;
-            }
-
-            return {
-                ...previous,
-                data: {
-                    foo: "bar",
-                    ...previous.data,
-                    ...values,
-                },
-            };
-        },
+      return {
+        ...previous,
+        data,
+      };
     },
-    // highlight-end
+    many: (previous, values, id) => {
+      if (!previous) {
+        return null;
+      }
+
+      const data = previous.data.map((record) => {
+        if (record.id === id) {
+          return {
+            foo: "bar",
+            ...record,
+            ...values,
+          };
+        }
+        return record;
+      });
+
+      return {
+        ...previous,
+        data,
+      };
+    },
+    detail: (previous, values) => {
+      if (!previous) {
+        return null;
+      }
+
+      return {
+        ...previous,
+        data: {
+          foo: "bar",
+          ...previous.data,
+          ...values,
+        },
+      };
+    },
+  },
+  // highlight-end
 });
 ```
 
@@ -490,14 +501,16 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 | invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                  | `["list", "many", "detail"]`                                 |
 
 :::note
+
 These props have default values in `RefineContext` and can also be set on [`<Refine>`](/api-reference/core/components/refine-config.md) component. `useUpdate` will use what's passed to `<Refine>` as default, but a local value will override it.
+
 :::
 
 <br/>
 
 ### Type Parameters
 
-| Property   | Desription                                                                                        | Type                                                         | Default                                                      |
+| Property   | Description                                                                                       | Type                                                         | Default                                                      |
 | ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |

@@ -6,10 +6,12 @@ source: packages/antd/src/hooks/table/useTable
 
 import LivePreview from "./\_partial-use-editable-table-live-preview.md";
 
-`useEditeableTable` allows you to implement the edit feature on the [`<Table>`][table] with ease and returns properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
+`useEditeableTable` allows you to implement the edit feature on the [`<Table>`][table] with ease and returns properties that can be used on Ant Design's [`<Table>`][table] and [`<Form>`][form] components.
 
 :::info
+
 `useEditeableTable` hook is extended from the [`useTable`][usetable] hook from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package. This means that you can use all the features of [`useTable`][usetable] hook.
+
 :::
 
 ## Basic Usage
@@ -29,26 +31,26 @@ import { List, useEditableTable, TextField } from "@refinedev/antd";
 import { Table, Form } from "antd";
 
 export const PostList: React.FC = () => {
-    // highlight-next-line
-    const { tableProps, formProps } = useEditableTable<IPost>();
+  // highlight-next-line
+  const { tableProps, formProps } = useEditableTable<IPost>();
 
-    return (
-        <List>
-            // highlight-start
-            <Form {...formProps}>
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column dataIndex="title" title="Title" />
-                </Table>
-            </Form>
-            // highlight-end
-        </List>
-    );
+  return (
+    <List>
+      // highlight-start
+      <Form {...formProps}>
+        <Table {...tableProps} rowKey="id">
+          <Table.Column dataIndex="id" title="ID" />
+          <Table.Column dataIndex="title" title="Title" />
+        </Table>
+      </Form>
+      // highlight-end
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 ```
 
@@ -56,184 +58,161 @@ Now lets add a column for edit buttons:
 
 ```tsx title="/pages/posts/list.tsx"
 import {
-    List,
-    // highlight-start
-    SaveButton,
-    EditButton,
-    // highlight-end
-    useEditableTable,
+  List,
+  // highlight-start
+  SaveButton,
+  EditButton,
+  // highlight-end
+  useEditableTable,
 } from "@refinedev/antd";
 import {
-    Table,
-    Form,
-    // highlight-start
-    Space,
-    Button,
-    // highlight-end
+  Table,
+  Form,
+  // highlight-start
+  Space,
+  Button,
+  // highlight-end
 } from "antd";
 
 export const PostList: React.FC = () => {
-    const {
-        tableProps,
-        formProps,
-        isEditing,
-        // highlight-start
-        saveButtonProps,
-        cancelButtonProps,
-        editButtonProps,
-        // highlight-end
-    } = useEditableTable<IPost>();
+  const {
+    tableProps,
+    formProps,
+    isEditing,
+    // highlight-start
+    saveButtonProps,
+    cancelButtonProps,
+    editButtonProps,
+    // highlight-end
+  } = useEditableTable<IPost>();
 
-    return (
-        <List>
-            <Form {...formProps}>
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column key="id" dataIndex="id" title="ID" />
-                    <Table.Column key="title" dataIndex="title" title="Title" />
-                    <Table.Column<IPost>
-                        title="Actions"
-                        dataIndex="actions"
-                        key="actions"
-                        // highlight-start
-                        render={(_text, record) => {
-                            if (isEditing(record.id)) {
-                                return (
-                                    <Space>
-                                        <SaveButton
-                                            {...saveButtonProps}
-                                            size="small"
-                                        />
-                                        <Button
-                                            {...cancelButtonProps}
-                                            size="small"
-                                        >
-                                            Cancel
-                                        </Button>
-                                    </Space>
-                                );
-                            }
-                            return (
-                                <Space>
-                                    <EditButton
-                                        {...editButtonProps(record.id)}
-                                        size="small"
-                                    />
-                                </Space>
-                            );
-                        }}
-                        // highlight-end
-                    />
-                </Table>
-            </Form>
-        </List>
-    );
+  return (
+    <List>
+      <Form {...formProps}>
+        <Table {...tableProps} rowKey="id">
+          <Table.Column key="id" dataIndex="id" title="ID" />
+          <Table.Column key="title" dataIndex="title" title="Title" />
+          <Table.Column<IPost>
+            title="Actions"
+            dataIndex="actions"
+            key="actions"
+            // highlight-start
+            render={(_text, record) => {
+              if (isEditing(record.id)) {
+                return (
+                  <Space>
+                    <SaveButton {...saveButtonProps} size="small" />
+                    <Button {...cancelButtonProps} size="small">
+                      Cancel
+                    </Button>
+                  </Space>
+                );
+              }
+              return (
+                <Space>
+                  <EditButton {...editButtonProps(record.id)} size="small" />
+                </Space>
+              );
+            }}
+            // highlight-end
+          />
+        </Table>
+      </Form>
+    </List>
+  );
 };
 ```
 
 :::tip
+
 `isEditing` function that returns from `useEditableTable` lets us check whether a line is currently in edit mode or not.
+
 :::
 
 For now, our post is not editable yet. If a post is being edited, we must show editable columns inside a `<Form.Item>` using conditional rendering:
 
 ```tsx title="/pages/posts/list.tsx"
 import {
-    List,
-    SaveButton,
-    EditButton,
-    // highlight-start
-    TextField,
-    // highlight-end
-    useEditableTable,
+  List,
+  SaveButton,
+  EditButton,
+  // highlight-start
+  TextField,
+  // highlight-end
+  useEditableTable,
 } from "@refinedev/antd";
 import {
-    Table,
-    Form,
-    Space,
-    Button,
-    // highlight-next-line
-    Input,
+  Table,
+  Form,
+  Space,
+  Button,
+  // highlight-next-line
+  Input,
 } from "antd";
 
 export const PostList: React.FC = () => {
-    const {
-        tableProps,
-        formProps,
-        isEditing,
-        saveButtonProps,
-        cancelButtonProps,
-        editButtonProps,
-    } = useEditableTable<IPost>();
+  const { tableProps, formProps, isEditing, saveButtonProps, cancelButtonProps, editButtonProps } =
+    useEditableTable<IPost>();
 
-    return (
-        <List>
-            <Form {...formProps}>
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column key="id" dataIndex="id" title="ID" />
-                    <Table.Column<IPost>
-                        key="title"
-                        dataIndex="title"
-                        title="Title"
-                        // highlight-start
-                        render={(value, record) => {
-                            if (isEditing(record.id)) {
-                                return (
-                                    <Form.Item
-                                        name="title"
-                                        style={{ margin: 0 }}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                );
-                            }
-                            return <TextField value={value} />;
-                        }}
-                        // highlight-end
-                    />
-                    <Table.Column<IPost>
-                        title="Actions"
-                        dataIndex="actions"
-                        key="actions"
-                        render={(_text, record) => {
-                            if (isEditing(record.id)) {
-                                return (
-                                    <Space>
-                                        <SaveButton
-                                            {...saveButtonProps}
-                                            size="small"
-                                        />
-                                        <Button
-                                            {...cancelButtonProps}
-                                            size="small"
-                                        >
-                                            Cancel
-                                        </Button>
-                                    </Space>
-                                );
-                            }
-                            return (
-                                <Space>
-                                    <EditButton
-                                        {...editButtonProps(record.id)}
-                                        size="small"
-                                    />
-                                </Space>
-                            );
-                        }}
-                    />
-                </Table>
-            </Form>
-        </List>
-    );
+  return (
+    <List>
+      <Form {...formProps}>
+        <Table {...tableProps} rowKey="id">
+          <Table.Column key="id" dataIndex="id" title="ID" />
+          <Table.Column<IPost>
+            key="title"
+            dataIndex="title"
+            title="Title"
+            // highlight-start
+            render={(value, record) => {
+              if (isEditing(record.id)) {
+                return (
+                  <Form.Item name="title" style={{ margin: 0 }}>
+                    <Input />
+                  </Form.Item>
+                );
+              }
+              return <TextField value={value} />;
+            }}
+            // highlight-end
+          />
+          <Table.Column<IPost>
+            title="Actions"
+            dataIndex="actions"
+            key="actions"
+            render={(_text, record) => {
+              if (isEditing(record.id)) {
+                return (
+                  <Space>
+                    <SaveButton {...saveButtonProps} size="small" />
+                    <Button {...cancelButtonProps} size="small">
+                      Cancel
+                    </Button>
+                  </Space>
+                );
+              }
+              return (
+                <Space>
+                  <EditButton {...editButtonProps(record.id)} size="small" />
+                </Space>
+              );
+            }}
+          />
+        </Table>
+      </Form>
+    </List>
+  );
 };
 ```
 
 With this, when a user clicks on the edit button, `isEditing(lineId)` will turn `true` for the relevant line. This will also cause `<TextInput>` to show up on the line that's being edited. When the editing is finished, a new value can be saved by clicking `<SaveButton>`.
 
 :::tip
+
 By giving the `<Table.Column>` component a unique `render` property, you can render the value in that column however you want.
 
 For more information, refer to the [`<Table.Column>` documentation &#8594][table.column]
+
 :::
 
 ### Editing by clicking to row
@@ -249,68 +228,66 @@ import { List, TextField, useEditableTable } from "@refinedev/antd";
 import { Table, Form, Input } from "antd";
 
 export const PostList: React.FC = () => {
-    // highlight-start
-    const { tableProps, formProps, isEditing, setId } =
-        useEditableTable<IPost>();
-    // highlight-end
+  // highlight-start
+  const { tableProps, formProps, isEditing, setId } = useEditableTable<IPost>();
+  // highlight-end
 
-    return (
-        <List>
-            <Form {...formProps}>
-                <Table
-                    {...tableProps}
-                    key="id"
-                    // highlight-start
-                    onRow={(record) => ({
-                        onClick: (event: any) => {
-                            if (event.target.nodeName === "TD") {
-                                setId && setId(record.id);
-                            }
-                        },
-                    })}
-                    // highlight-end
-                >
-                    <Table.Column key="id" dataIndex="id" title="ID" />
-                    <Table.Column<IPost>
-                        key="title"
-                        dataIndex="title"
-                        title="Title"
-                        render={(value, data: any) => {
-                            if (isEditing(data.id)) {
-                                return (
-                                    <Form.Item
-                                        name="title"
-                                        style={{ margin: 0 }}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                );
-                            }
-                            return <TextField value={value} />;
-                        }}
-                    />
-                </Table>
-            </Form>
-        </List>
-    );
+  return (
+    <List>
+      <Form {...formProps}>
+        <Table
+          {...tableProps}
+          key="id"
+          // highlight-start
+          onRow={(record) => ({
+            onClick: (event: any) => {
+              if (event.target.nodeName === "TD") {
+                setId && setId(record.id);
+              }
+            },
+          })}
+          // highlight-end
+        >
+          <Table.Column key="id" dataIndex="id" title="ID" />
+          <Table.Column<IPost>
+            key="title"
+            dataIndex="title"
+            title="Title"
+            render={(value, data: any) => {
+              if (isEditing(data.id)) {
+                return (
+                  <Form.Item name="title" style={{ margin: 0 }}>
+                    <Input />
+                  </Form.Item>
+                );
+              }
+              return <TextField value={value} />;
+            }}
+          />
+        </Table>
+      </Form>
+    </List>
+  );
 };
 ```
 
 ## Properties
 
 :::tip
+
 All `useForm` and [`useTable`][usetable] properties are available in `useEditableTable`. You can read the documentation of [`useForm`][useform] and [`useTable`][usetable] for more information.
+
 :::
 
 ### `autoSubmitClose`
 
-`autoSubmitClose` makes the table's row close after a succecful submit. It is `true` by default.
+`autoSubmitClose` makes the table's row close after a successful submit. It is `true` by default.
 
 For this effect, `useEditableTable` automatically calls the `setId` function with `undefined` after successful submit.
 
 ```tsx
 const editableTable = useEditableTable({
-    autoSubmitClose: false,
+  autoSubmitClose: false,
 });
 ```
 
@@ -360,7 +337,7 @@ Takes a `id` as a parameter and returns `true` if the given `BaseKey` is equal t
 
 ### Type Parameters
 
-| Property         | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property         | Description                                                                                                                                                         | Type                       | Default                    |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData     | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError           | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

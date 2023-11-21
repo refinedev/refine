@@ -44,9 +44,11 @@ Commands:
 ```
 
 :::tip Installation
+
 CLI is automatically installed in projects created with the `create fine-app` command. You can use the [commands](#commands) immediately 🎉
 
 If you want to add it to your existing project, checkout [how to add to an existing project?](#how-to-add-to-an-existing-project) section.
+
 :::
 
 ## Commands

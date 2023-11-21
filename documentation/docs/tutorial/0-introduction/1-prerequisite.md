@@ -1,5 +1,5 @@
 ---
-id: prequisite
+id: prerequisite
 title: 2. Prerequisite
 tutorial:
     order: 1
@@ -38,10 +38,10 @@ The mini-quiz at the bottom of each page is a quick way to test your understandi
 
 <Checklist>
 
-<ChecklistItem id="prequisite-looks-great">
+<ChecklistItem id="prerequisite-looks-great">
 I understood how to use the checklists.
 </ChecklistItem>
-<ChecklistItem id="prequisite-looks-great-2">
+<ChecklistItem id="prerequisite-looks-great-2">
 I now know how to get help and where to leave feedback.
 </ChecklistItem>
 

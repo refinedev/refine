@@ -100,9 +100,9 @@ The **refine** team will be taking part in the Hackathon and you'll find us live
 - The winning repository for "Best Overall Project" category will receive a $1500 prize in the form of a GitHub sponsorship, which will consist of $500 per month for a period of 3 months. The aim of this prize is to provide funding to sustain the project and encourage its continued maintenance.
 - The "Most Visually Pleasing" and "Most Technically Impressive" prizes will be given at one time.
 
-### What are the judging criterias?
+### What are the judging criteria?
 -  The Judges will be senior staff from the refine DevRel, Marketing and Engineering Teams.
--  Judging criterias:
+-  Judging criteria:
     -  Quality: It is evaluated based on its creativity and originality.
     -  Design: The design of the idea is judged based on its user experience and visual appeal.
     -  The technical implementation: It is assessed on how well the idea was executed by the developer and how effectively refine was used in the submission.

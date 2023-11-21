@@ -56,10 +56,10 @@ If you want to create your multi-level menu without any UI framework integration
 import { useMenu } from "@refinedev/core";
 
 export const Sider: React.FC = () => {
-    //highlight-next-line
-    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
+  //highlight-next-line
+  const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
 
-    // Here create your Sider to your UI choice
+  // Here create your Sider to your UI choice
 };
 ```
 

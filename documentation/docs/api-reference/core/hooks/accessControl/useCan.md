@@ -122,7 +122,7 @@ console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
 
 ### Type Parameters
 
-| Property                                                         | Desription                                                                          |
+| Property                                                         | Description                                                                          |
 | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | [CanReturnType](/api-reference/core/interfaces.md#canreturntype) | Result data of the query [`HttpError`](/api-reference/core/interfaces.md#httperror) |
 

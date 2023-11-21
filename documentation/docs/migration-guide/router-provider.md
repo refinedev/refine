@@ -59,7 +59,9 @@ const CustomSider = () => {
 ```
 
 :::note
+
 If you have customized the use of `useMenu` hook, you might need to check the usage of it to make sure it's working as expected. Even though the `useMenu` hook has not been changed in its return values, the way it generates the menu item keys has changed.
+
 :::
 
 ### Behavioral Changes in Routing
@@ -68,8 +70,8 @@ Since **refine** doesn't create routes internally anymore, you are free to creat
 
 This means that tasks such as `authentication` and `access control` are decoupled from **refine** and should be handled in accordance with your framework. However, we do provide a set of helpers for you to use in your components to make these tasks easier to handle:
 
--   The [`Authenticated`](/docs/api-reference/core/components/auth/authenticated) component as a wrapper or the `useIsAuthenticated` hook for authentication
--   The [`CanAccess`](/docs/api-reference/core/components/accessControl/can-access) component as a wrapper or the `useCan` hook for access control
+- The [`Authenticated`](/docs/api-reference/core/components/auth/authenticated) component as a wrapper or the `useIsAuthenticated` hook for authentication
+- The [`CanAccess`](/docs/api-reference/core/components/accessControl/can-access) component as a wrapper or the `useCan` hook for access control
 
 ## Using the New Router Providers
 
@@ -118,5 +120,5 @@ If you are using Remix or Next.js, you will first need to create your routes usi
 
 Check out their respective documentations:
 
--   > [`@refinedev/remix-router`](/docs/packages/documentation/routers/remix) and [`Remix`](https://remix.run/docs/en/main) documentations for Remix
--   > [`@refinedev/nextjs-router`](/docs/packages/documentation/routers/nextjs) and [`Next.js`](https://nextjs.org/docs/getting-started) documentations for Next.js.
+- > [`@refinedev/remix-router`](/docs/packages/documentation/routers/remix) and [`Remix`](https://remix.run/docs/en/main) documentations for Remix
+- > [`@refinedev/nextjs-router`](/docs/packages/documentation/routers/nextjs) and [`Next.js`](https://nextjs.org/docs/getting-started) documentations for Next.js.

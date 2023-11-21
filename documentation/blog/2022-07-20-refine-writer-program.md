@@ -14,7 +14,7 @@ hide_table_of_contents: false
 
 Refine technical writer program's aim is to support the open source community by providing high-quality technical articles about React and JS technologies.
 
-As a technical article writer, your work will be instrumental in helping developers keep abreast of the latest industry trends. Your articles will allow developers from all around the world to discover new industry standard best practices, technics, solutions and tutorials about the JS ecosystem.
+As a technical article writer, your work will be instrumental in helping developers keep abreast of the latest industry trends. Your articles will allow developers from all around the world to discover new industry standard best practices, techniques, solutions and tutorials about the JS ecosystem.
 
 <!--truncate-->
 

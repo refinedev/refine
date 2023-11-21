@@ -6,7 +6,7 @@
 <br/>
 <div align="center">refine is an open-source, headless React framework for developers building enterprise web applications.
 
-It eliminates repetitive tasks in CRUD operations and provides industry-standard solutions for critical project components like **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**. 
+It eliminates repetitive tasks in CRUD operations and provides industry-standard solutions for critical project components like **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
 
 </div>
 <br/>

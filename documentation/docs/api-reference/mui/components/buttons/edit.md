@@ -7,7 +7,9 @@ swizzle: true
 `<EditButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the edit page route of resource.
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Usage
@@ -15,57 +17,55 @@ You can swizzle this component with the [**refine CLI**](/docs/packages/document
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
 import {
-    useDataGrid,
-    List,
-    // highlight-next-line
-    EditButton,
+  useDataGrid,
+  List,
+  // highlight-next-line
+  EditButton,
 } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
-    {
-        field: "actions",
-        headerName: "Actions",
-        renderCell: function render({ row }) {
-            // highlight-next-line
-            return <EditButton size="small" recordItemId={row.id} />;
-        },
-        align: "center",
-        headerAlign: "center",
-        minWidth: 80,
+  { field: "id", headerName: "ID", type: "number" },
+  { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+  {
+    field: "actions",
+    headerName: "Actions",
+    renderCell: function render({ row }) {
+      // highlight-next-line
+      return <EditButton size="small" recordItemId={row.id} />;
     },
+    align: "center",
+    headerAlign: "center",
+    minWidth: 80,
+  },
 ];
 
 const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+  const { dataGridProps } = useDataGrid<IPost>();
 
-    return (
-        <List>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    <List>
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostsList,
-                edit: () => (
-                    <RefineMui.Edit>Rest of the page here...</RefineMui.Edit>
-                ),
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostsList,
+        edit: () => <RefineMui.Edit>Rest of the page here...</RefineMui.Edit>,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -81,40 +81,42 @@ const { useRouterContext } = RefineCore;
 import { EditButton } from "@refinedev/mui";
 
 const MyEditComponent = () => {
-    return (
-        <EditButton
-            resource="posts"
-            // highlight-next-line
-            recordItemId="1"
-        />
-    );
+  return (
+    <EditButton
+      resource="posts"
+      // highlight-next-line
+      recordItemId="1"
+    />
+  );
 };
 
 // visible-block-end
 
 const EditPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                edit: EditPage,
-            },
-        ]}
-        DashboardPage={MyEditComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        edit: EditPage,
+      },
+    ]}
+    DashboardPage={MyEditComponent}
+  />,
 );
 ```
 
 Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `edit` action path of the resource, filling the necessary parameters in the route.
 
 :::note
+
 **`<EditButton>`** component reads the id information from the route by default.
+
 :::
 
 ### `resource`
@@ -128,36 +130,36 @@ const { useRouterContext } = RefineCore;
 import { EditButton } from "@refinedev/mui";
 
 const MyEditComponent = () => {
-    return (
-        <EditButton
-            // highlight-next-line
-            resource="categories"
-            recordItemId="2"
-        />
-    );
+  return (
+    <EditButton
+      // highlight-next-line
+      resource="categories"
+      recordItemId="2"
+    />
+  );
 };
 
 // visible-block-end
 
 const EditPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                edit: EditPage,
-            },
-        ]}
-        DashboardPage={MyEditComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        edit: EditPage,
+      },
+    ]}
+    DashboardPage={MyEditComponent}
+  />,
 );
 ```
 
@@ -175,9 +177,7 @@ If the `edit` action route is defined by the pattern: `/posts/:authorId/edit/:id
 
 ```tsx
 const MyComponent = () => {
-    return (
-        <EditButton meta={{ authorId: "10" }} />
-    );
+  return <EditButton meta={{ authorId: "10" }} />;
 };
 ```
 
@@ -192,32 +192,32 @@ const { useRouterContext } = RefineCore;
 import { EditButton } from "@refinedev/mui";
 
 const MyEditComponent = () => {
-    return (
-        <EditButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <EditButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 const EditPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyEditComponent,
-                edit: EditPage,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyEditComponent,
+        edit: EditPage,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -229,11 +229,7 @@ This prop can be used to skip access control check with its `enabled` property o
 import { EditButton } from "@refinedev/mui";
 
 export const MyListComponent = () => {
-    return (
-        <EditButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return <EditButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -250,36 +246,36 @@ const { useRouterContext } = RefineCore;
 import { EditButton } from "@refinedev/mui";
 
 const MyEditComponent = () => {
-    return (
-        <EditButton
-            // highlight-next-line
-            resourceNameOrRouteName="categories"
-            recordItemId="2"
-        />
-    );
+  return (
+    <EditButton
+      // highlight-next-line
+      resourceNameOrRouteName="categories"
+      recordItemId="2"
+    />
+  );
 };
 
 // visible-block-end
 
 const EditPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                edit: EditPage,
-            },
-        ]}
-        DashboardPage={MyEditComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        edit: EditPage,
+      },
+    ]}
+    DashboardPage={MyEditComponent}
+  />,
 );
 ```
 
@@ -292,5 +288,7 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/api-ref
 <PropsTable module="@refinedev/mui/EditButton" />
 
 :::tip External Props
+
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button/).
+
 :::

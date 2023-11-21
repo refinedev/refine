@@ -157,7 +157,9 @@ import { NextJSResourceAndRoutesUsage } from "./nextjs/resource-and-routes-usage
 <NextJSResourceAndRoutesUsage />
 
 :::info Usage with App Router
+
 You can see the example here: https://github.com/refinedev/refine/tree/master/examples/with-nextjs-appdir
+
 :::
 
 #### Remix
@@ -346,7 +348,9 @@ console.log(listResponse.total); // 32 - total number of unpaginated records
 ```
 
 :::caution
+
 `config.pagination`, `config.filters`, `config.sorters` will not be automatically detected from the current route.
+
 :::
 
 ## The `routerProvider` Interface

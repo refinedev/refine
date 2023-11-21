@@ -12,7 +12,7 @@ hide_table_of_contents: false
 Material UI is a popular front-end library for React that provides a comprehensive set of tools for creating user interfaces. One of the most valuable components of Material UI is the Modal, which allows developers to create a popup window that can display important information or facilitate user input. This tutorial will explain how to use the Material UI Modal and customize it to your needs. 
 
 ## What is Material UI?
-Material UI is an open-source library of UI components created and maintained by Google. It employs Google's Material Design system, a visual language developed to unify the user experience across its products and platforms. Material UI components provide users with a natural and intuitive interface, making it easier to create products that look and feel the same across all devices. Material UI components are also highly customisable and can be tailored to the specific requirements of any project.
+Material UI is an open-source library of UI components created and maintained by Google. It employs Google's Material Design system, a visual language developed to unify the user experience across its products and platforms. Material UI components provide users with a natural and intuitive interface, making it easier to create products that look and feel the same across all devices. Material UI components are also highly customizable and can be tailored to the specific requirements of any project.
 
 Material UI comprises several components and utilities that aid web design. The Material UI Modal is one of those utilities that aid visualization in a web app.  
 

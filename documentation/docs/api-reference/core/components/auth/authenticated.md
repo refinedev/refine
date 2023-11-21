@@ -10,9 +10,9 @@ It internally uses `useIsAuthenticated`'s return values (`data.authenticated`, `
 
 When:
 
--   `data.authenticated` is `true`, it renders its children.
--   `data.authenticated` is `false`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it redirects to `data.redirectTo` page.
--   `isLoading` is `true`, it renders the [`loading`](#loading) prop.
+- `data.authenticated` is `true`, it renders its children.
+- `data.authenticated` is `false`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it redirects to `data.redirectTo` page.
+- `isLoading` is `true`, it renders the [`loading`](#loading) prop.
 
 You may want to use this component when rendering a page that requires authentication. You will be able to render a fallback or redirect to an authentication page depending on your case. `Authenticated` can also be used to render a conditional content based on the user's authentication status.
 
@@ -22,9 +22,9 @@ You may want to use this component when rendering a page that requires authentic
 import { Authenticated } from "@refinedev/core";
 
 const MyPage = () => (
-    <Authenticated>
-        <YourComponent />
-    </Authenticated>
+  <Authenticated>
+    <YourComponent />
+  </Authenticated>
 );
 ```
 
@@ -50,7 +50,7 @@ Component to render if the user is not logged in. If `undefined`, the page will 
 
 ```tsx
 <Authenticated fallback={<div>You cannot access this section</div>}>
-    <YourComponent />
+  <YourComponent />
 </Authenticated>
 ```
 
@@ -60,7 +60,7 @@ Component to render while checking whether the user is logged in.
 
 ```tsx
 <Authenticated loading={<div>loading...</div>}>
-    <YourComponent />
+  <YourComponent />
 </Authenticated>
 ```
 

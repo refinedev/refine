@@ -106,7 +106,7 @@ But now our `curry()` function is much more powerful. We can pass any number of 
 We can re-write the `curry()` function with `Function.prototype.apply`, and with `Function.prototype.bind`:
 
 ```javascript
-// with Function.protoype.apply
+// with Function.prototype.apply
 function curry(f) {
   return function curried(...args) {
     if (args.length >= f.length) return f(...args);

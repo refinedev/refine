@@ -11,10 +11,10 @@ Some components were removed or renamed, and some APIs are changed.
 
 Some of the changes are:
 
--   `<PageHeader>` component moved into `@ant-design/pro-components`. **refine** is using `<PageHeader>` in `<List>`, `<Create>`, `<Edit>`, `<Show>` components and added as a dependency. You don't need to install `@ant-design/pro-components` package manually.
--   `<Comment>` component moved into `@ant-design/compatible`.
--   `moment.js` is replaced with `day.js`.
--   `less` is removed from `antd` package.
+- `<PageHeader>` component moved into `@ant-design/pro-components`. **refine** is using `<PageHeader>` in `<List>`, `<Create>`, `<Edit>`, `<Show>` components and added as a dependency. You don't need to install `@ant-design/pro-components` package manually.
+- `<Comment>` component moved into `@ant-design/compatible`.
+- `moment.js` is replaced with `day.js`.
+- `less` is removed from `antd` package.
 
 > For more information, please refer to [Ant Design's own migration guide](https://ant.design/docs/react/migration-v5).
 
@@ -78,7 +78,7 @@ And it's done. Now your project uses `@refinedev/antd@4.x.x`.
 
 ### Updating Imports
 
--   CSS files are no longer included in package. Since CSS-in-JS supports importing on demand, the original `styles/antd.less` has also been abandoned. If you need to reset some basic styles, please import `@refinedev/antd/dist/reset.css`
+- CSS files are no longer included in package. Since CSS-in-JS supports importing on demand, the original `styles/antd.less` has also been abandoned. If you need to reset some basic styles, please import `@refinedev/antd/dist/reset.css`
 
 ```diff title="App.tsx"
 - import "@refinedev/antd/dist/styles.min.css";
@@ -87,7 +87,7 @@ And it's done. Now your project uses `@refinedev/antd@4.x.x`.
 
 ### Updating Props
 
-`actionButtons` and `pageHeaderProps` props was deprecated on `@refinedev/antd@3.x.x` and has been removed on `@refinedev/antd@4.x.x` from `<List>`, `<Create>`, `<Edit>`, `<Show>` component due to incosistency with all UI packages. Use the `headerButtons` and `headerProps` props instead.
+`actionButtons` and `pageHeaderProps` props was deprecated on `@refinedev/antd@3.x.x` and has been removed on `@refinedev/antd@4.x.x` from `<List>`, `<Create>`, `<Edit>`, `<Show>` component due to inconsistency with all UI packages. Use the `headerButtons` and `headerProps` props instead.
 
 ```diff title="List.tsx"
 - <List actionButtons={actionButtons} pageHeaderProps={pageHeaderProps}>
@@ -141,7 +141,9 @@ You can give theme dark to the `<Menu>` component in the `<Sider>` component.
 ### Customized `<Header>`
 
 :::caution
+
 If you have customized or `swizzled` the `<Header>` component, there may be a color mismatch issue.
+
 :::
 
 You can remove constant background color in `<Header>` component:

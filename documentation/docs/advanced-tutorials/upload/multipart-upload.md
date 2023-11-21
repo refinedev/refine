@@ -251,90 +251,84 @@ Let's add the image field to the post `creation form`.
 
 ```tsx title="pages/posts/create.tsx"
 import {
-    // highlight-start
-    useApiUrl,
-    // highlight-end
+  // highlight-start
+  useApiUrl,
+  // highlight-end
 } from "@refinedev/core";
 import {
-    // highlight-start
-    getValueFromEvent,
-    // highlight-end
-    Create,
-    useForm,
+  // highlight-start
+  getValueFromEvent,
+  // highlight-end
+  Create,
+  useForm,
 } from "@refinedev/antd";
 import {
-    // highlight-next-line
-    Upload,
-    Form,
-    Input,
+  // highlight-next-line
+  Upload,
+  Form,
+  Input,
 } from "antd";
 
 export const PostCreate: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    // highlight-next-line
-    const apiUrl = useApiUrl();
+  // highlight-next-line
+  const apiUrl = useApiUrl();
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Image">
-                    <Form.Item
-                        name="image"
-                        valuePropName="fileList"
-                        // highlight-next-line
-                        getValueFromEvent={getValueFromEvent}
-                        noStyle
-                    >
-                        // highlight-start
-                        <Upload.Dragger
-                            name="file"
-                            action={`${apiUrl}/media/upload`}
-                            listType="picture"
-                            maxCount={5}
-                            multiple
-                        >
-                            <p className="ant-upload-text">
-                                Drag & drop a file in this area
-                            </p>
-                        </Upload.Dragger>
-                        // highlight-end
-                    </Form.Item>
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item label="Image">
+          <Form.Item
+            name="image"
+            valuePropName="fileList"
+            // highlight-next-line
+            getValueFromEvent={getValueFromEvent}
+            noStyle
+          >
+            // highlight-start
+            <Upload.Dragger name="file" action={`${apiUrl}/media/upload`} listType="picture" maxCount={5} multiple>
+              <p className="ant-upload-text">Drag & drop a file in this area</p>
+            </Upload.Dragger>
+            // highlight-end
+          </Form.Item>
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
-    image: [
-        {
-            uid: string;
-            name: string;
-            url: string;
-            status: "error" | "success" | "done" | "uploading" | "removed";
-        },
-    ];
+  id: number;
+  title: string;
+  image: [
+    {
+      uid: string;
+      name: string;
+      url: string;
+      status: "error" | "success" | "done" | "uploading" | "removed";
+    },
+  ];
 }
 ```
 
 <br />
 
 :::tip
+
 We can reach the API URL by using the [`useApiUrl`](/docs/api-reference/core/hooks/data/useApiUrl/) hook.
+
 :::
 
 It will look like this.
@@ -343,47 +337,47 @@ It will look like this.
 setInitialRoutes(["/posts/create"]);
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            create: "/posts/create",
-                            show: "/posts/show/:id",
-                            edit: "/posts/edit/:id",
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route index element={<NavigateToResource />} />
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+              create: "/posts/create",
+              show: "/posts/show/:id",
+              edit: "/posts/edit/:id",
+            },
+          ]}
+          notificationProvider={notificationProvider}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route index element={<NavigateToResource />} />
 
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
+              <Route path="/posts">
+                <Route index element={<PostList />} />
+                <Route path="create" element={<PostCreate />} />
+                <Route path="edit/:id" element={<PostEdit />} />
+                <Route path="show/:id" element={<PostShow />} />
+              </Route>
 
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -393,47 +387,53 @@ We currently require an upload endpoint that accepts multipart uploads. This add
 
 ```json title="[POST] https://api.fake-rest.refine.dev/media/upload"
 {
-    "file": "binary"
+  "file": "binary"
 }
 ```
 
 :::caution
+
 This end-point should be `Content-type: multipart/form-data` and `Form Data: file: binary`.
+
 :::
 
 This end-point should respond similarly.
 
 ```json title="[POST] https://api.fake-rest.refine.dev/media/upload"
 {
-    "url": "https://example.com/uploaded-file.jpeg"
+  "url": "https://example.com/uploaded-file.jpeg"
 }
 ```
 
 :::caution
+
 We have to use the `getValueFromEvent` method to convert the uploaded files to [Antd UploadFile](https://ant.design/components/upload/#UploadFile) object.
+
 :::
 
 This data is sent to the API when the form is submitted.
 
 ```json title="[POST] https://api.fake-rest.refine.dev/posts"
 {
-    "title": "Test",
-    "image": [
-        {
-            "uid": "rc-upload-1620630541327-7",
-            "name": "greg-bulla-6RD0mcpY8f8-unsplash.jpg",
-            "url": "https://refine.ams3.digitaloceanspaces.com/78c82c0b2203e670d77372f4c20fc0e2",
-            "type": "image/jpeg",
-            "size": 70922,
-            "percent": 100,
-            "status": "done"
-        }
-    ]
+  "title": "Test",
+  "image": [
+    {
+      "uid": "rc-upload-1620630541327-7",
+      "name": "greg-bulla-6RD0mcpY8f8-unsplash.jpg",
+      "url": "https://refine.ams3.digitaloceanspaces.com/78c82c0b2203e670d77372f4c20fc0e2",
+      "type": "image/jpeg",
+      "size": 70922,
+      "percent": 100,
+      "status": "done"
+    }
+  ]
 }
 ```
 
 :::caution
-The following datas are required for the [Antd Upload](https://ant.design/components/upload) component and all should be saved.
+
+The following data are required for the [Antd Upload](https://ant.design/components/upload) component and all should be saved.
+
 :::
 
 | Property | Description                              |
@@ -449,70 +449,62 @@ Let's add the image field to the post editing form.
 
 ```tsx title="pages/posts/edit.tsx"
 import {
-    // highlight-start
-    useApiUrl,
-    // highlight-end
+  // highlight-start
+  useApiUrl,
+  // highlight-end
 } from "@refinedev/core";
 import {
-    // highlight-start
-    getValueFromEvent,
-    // highlight-end
-    Edit,
-    useForm,
+  // highlight-start
+  getValueFromEvent,
+  // highlight-end
+  Edit,
+  useForm,
 } from "@refinedev/antd";
 import {
-    // highlight-next-line
-    Upload,
-    Form,
-    Input,
+  // highlight-next-line
+  Upload,
+  Form,
+  Input,
 } from "antd";
 
 export const PostEdit: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    // highlight-next-line
-    const apiUrl = useApiUrl();
+  // highlight-next-line
+  const apiUrl = useApiUrl();
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Image">
-                    <Form.Item
-                        name="image"
-                        valuePropName="fileList"
-                        // highlight-next-line
-                        getValueFromEvent={getValueFromEvent}
-                        noStyle
-                    >
-                        // highlight-start
-                        <Upload.Dragger
-                            name="file"
-                            action={`${apiUrl}/media/upload`}
-                            listType="picture"
-                            maxCount={5}
-                            multiple
-                        >
-                            <p className="ant-upload-text">
-                                Drag & drop a file in this area
-                            </p>
-                        </Upload.Dragger>
-                        // highlight-end
-                    </Form.Item>
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item label="Image">
+          <Form.Item
+            name="image"
+            valuePropName="fileList"
+            // highlight-next-line
+            getValueFromEvent={getValueFromEvent}
+            noStyle
+          >
+            // highlight-start
+            <Upload.Dragger name="file" action={`${apiUrl}/media/upload`} listType="picture" maxCount={5} multiple>
+              <p className="ant-upload-text">Drag & drop a file in this area</p>
+            </Upload.Dragger>
+            // highlight-end
+          </Form.Item>
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 ```
 
@@ -520,47 +512,47 @@ export const PostEdit: React.FC = () => {
 setInitialRoutes(["/posts/edit/111"]);
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            create: "/posts/create",
-                            show: "/posts/show/:id",
-                            edit: "/posts/edit/:id",
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route index element={<NavigateToResource />} />
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+              create: "/posts/create",
+              show: "/posts/show/:id",
+              edit: "/posts/edit/:id",
+            },
+          ]}
+          notificationProvider={notificationProvider}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route index element={<NavigateToResource />} />
 
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
+              <Route path="/posts">
+                <Route index element={<PostList />} />
+                <Route path="create" element={<PostCreate />} />
+                <Route path="edit/:id" element={<PostEdit />} />
+                <Route path="show/:id" element={<PostShow />} />
+              </Route>
 
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -570,19 +562,19 @@ The request, like the one below, is sent for the edit form.
 
 ```json title="[GET] https://api.fake-rest.refine.dev/posts/1"
 {
-    "id": 1,
-    "title": "Test",
-    "image": [
-        {
-            "uid": "rc-upload-1620630541327-7",
-            "name": "greg-bulla-6RD0mcpY8f8-unsplash.jpg",
-            "url": "https://refine.ams3.digitaloceanspaces.com/78c82c0b2203e670d77372f4c20fc0e2",
-            "type": "image/jpeg",
-            "size": 70922,
-            "percent": 100,
-            "status": "done"
-        }
-    ]
+  "id": 1,
+  "title": "Test",
+  "image": [
+    {
+      "uid": "rc-upload-1620630541327-7",
+      "name": "greg-bulla-6RD0mcpY8f8-unsplash.jpg",
+      "url": "https://refine.ams3.digitaloceanspaces.com/78c82c0b2203e670d77372f4c20fc0e2",
+      "type": "image/jpeg",
+      "size": 70922,
+      "percent": 100,
+      "status": "done"
+    }
+  ]
 }
 ```
 
@@ -590,18 +582,18 @@ This data is sent to the API when form is submitted.
 
 ```json title="[PUT] https://api.fake-rest.refine.dev/posts/1"
 {
-    "title": "Test",
-    "image": [
-        {
-            "uid": "rc-upload-1620630541327-7",
-            "name": "greg-bulla-6RD0mcpY8f8-unsplash.jpg",
-            "url": "https://refine.ams3.digitaloceanspaces.com/78c82c0b2203e670d77372f4c20fc0e2",
-            "type": "image/jpeg",
-            "size": 70922,
-            "percent": 100,
-            "status": "done"
-        }
-    ]
+  "title": "Test",
+  "image": [
+    {
+      "uid": "rc-upload-1620630541327-7",
+      "name": "greg-bulla-6RD0mcpY8f8-unsplash.jpg",
+      "url": "https://refine.ams3.digitaloceanspaces.com/78c82c0b2203e670d77372f4c20fc0e2",
+      "type": "image/jpeg",
+      "size": 70922,
+      "percent": 100,
+      "status": "done"
+    }
+  ]
 }
 ```
 
@@ -612,68 +604,61 @@ You may want to disable the "Save" button in the form while the upload is going 
 ```tsx title="pages/posts/create.tsx"
 import { useApiUrl } from "@refinedev/core";
 import {
-    getValueFromEvent,
-    // highlight-next-line
-    useFileUploadState,
-    Create,
-    useForm,
+  getValueFromEvent,
+  // highlight-next-line
+  useFileUploadState,
+  Create,
+  useForm,
 } from "@refinedev/antd";
 import { Upload, Form, Input } from "antd";
 
 export const PostCreate: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    // highlight-next-line
-    const { isLoading, onChange } = useFileUploadState();
+  // highlight-next-line
+  const { isLoading, onChange } = useFileUploadState();
 
-    const apiUrl = useApiUrl();
+  const apiUrl = useApiUrl();
 
-    return (
-        <Create
-            // highlight-start
-            saveButtonProps={{
-                ...saveButtonProps,
-                disabled: isLoading,
-            }}
-            // highlight-end
+  return (
+    <Create
+      // highlight-start
+      saveButtonProps={{
+        ...saveButtonProps,
+        disabled: isLoading,
+      }}
+      // highlight-end
+    >
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
         >
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Image">
-                    <Form.Item
-                        name="image"
-                        valuePropName="fileList"
-                        getValueFromEvent={getValueFromEvent}
-                        noStyle
-                    >
-                        <Upload.Dragger
-                            name="file"
-                            action={`${apiUrl}/media/upload`}
-                            listType="picture"
-                            maxCount={5}
-                            multiple
-                            // highlight-next-line
-                            onChange={onChange}
-                        >
-                            <p className="ant-upload-text">
-                                Drag & drop a file in this area
-                            </p>
-                        </Upload.Dragger>
-                    </Form.Item>
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+          <Input />
+        </Form.Item>
+        <Form.Item label="Image">
+          <Form.Item name="image" valuePropName="fileList" getValueFromEvent={getValueFromEvent} noStyle>
+            <Upload.Dragger
+              name="file"
+              action={`${apiUrl}/media/upload`}
+              listType="picture"
+              maxCount={5}
+              multiple
+              // highlight-next-line
+              onChange={onChange}
+            >
+              <p className="ant-upload-text">Drag & drop a file in this area</p>
+            </Upload.Dragger>
+          </Form.Item>
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 ```
 

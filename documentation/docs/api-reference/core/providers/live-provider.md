@@ -19,19 +19,22 @@ const liveProvider = {
 ```
 
 :::note
+
 **refine** uses these methods in [`useSubscription`](/api-reference/core/hooks/live/useSubscription.md) and [`usePublish`](/api-reference/core/hooks/live/usePublish.md).
+
 :::
 
 ---
 
 :::tip
+
 **refine** includes some out-of-the-box live providers to use in your projects such as:
 
--   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
--   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
--   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
--   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
--   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
+- **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
+- **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
+- **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
+- **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
+- **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
 
 :::
 
@@ -49,40 +52,36 @@ import Ably from "ably/promises";
 import { Types } from "ably";
 
 interface MessageType extends Types.Message {
-    data: LiveEvent;
+  data: LiveEvent;
 }
 
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
-    return {
-        // highlight-start
-        subscribe: ({ channel, types, params, callback, meta }) => {
-            const channelInstance = client.channels.get(channel);
+  return {
+    // highlight-start
+    subscribe: ({ channel, types, params, callback, meta }) => {
+      const channelInstance = client.channels.get(channel);
 
-            const listener = function (message: MessageType) {
-                if (types.includes("*") || types.includes(message.data.type)) {
-                    if (
-                        message.data.type !== "created" &&
-                        params?.ids !== undefined &&
-                        message.data?.payload?.ids !== undefined
-                    ) {
-                        if (
-                            params.ids.filter((value) =>
-                                message.data.payload.ids!.includes(value),
-                            ).length > 0
-                        ) {
-                            callback(message.data as LiveEvent);
-                        }
-                    } else {
-                        callback(message.data);
-                    }
-                }
-            };
-            channelInstance.subscribe(listener);
+      const listener = function (message: MessageType) {
+        if (types.includes("*") || types.includes(message.data.type)) {
+          if (
+            message.data.type !== "created" &&
+            params?.ids !== undefined &&
+            message.data?.payload?.ids !== undefined
+          ) {
+            if (params.ids.filter((value) => message.data.payload.ids!.includes(value)).length > 0) {
+              callback(message.data as LiveEvent);
+            }
+          } else {
+            callback(message.data);
+          }
+        }
+      };
+      channelInstance.subscribe(listener);
 
-            return { channelInstance, listener };
-        },
-        // highlight-end
-    };
+      return { channelInstance, listener };
+    },
+    // highlight-end
+  };
 };
 ```
 
@@ -114,13 +113,15 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
 import { useSubscription } from "@refinedev/core";
 
 useSubscription({
-    channel: "channel-name",
-    onLiveEvent: (event) => {},
+  channel: "channel-name",
+  onLiveEvent: (event) => {},
 });
 ```
 
 :::caution
+
 The values returned from the `subscribe` method are passed to the `unsubscribe` method. Thus values needed for unsubscription must be returned from `subscribe` method.
+
 :::
 
 > For more information, refer to the [useSubscription documentation&#8594](/api-reference/core/hooks/live/useSubscription.md)
@@ -131,22 +132,21 @@ This method is used to unsubscribe from a channel. The values returned from the 
 
 ```ts title="liveProvider.ts"
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
-    return {
-        // highlight-start
-        unsubscribe: (payload: {
-            channelInstance: Types.RealtimeChannelPromise;
-            listener: () => void;
-        }) => {
-            const { channelInstance, listener } = payload;
-            channelInstance.unsubscribe(listener);
-        },
-        // highlight-end
-    };
+  return {
+    // highlight-start
+    unsubscribe: (payload: { channelInstance: Types.RealtimeChannelPromise; listener: () => void }) => {
+      const { channelInstance, listener } = payload;
+      channelInstance.unsubscribe(listener);
+    },
+    // highlight-end
+  };
 };
 ```
 
 :::caution
+
 If you don't handle unsubscription, it could lead to memory leaks.
+
 :::
 
 #### Parameter Types
@@ -171,20 +171,22 @@ This `publish` is used in [realated hooks](#publish-events-from-hooks). When `pu
 
 ```ts title="liveProvider.ts"
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
-    return {
-        // highlight-start
-        publish: ({ channel, type, payload, date, meta }: LiveEvent) => {
-            const channelInstance = client.channels.get(channel);
+  return {
+    // highlight-start
+    publish: ({ channel, type, payload, date, meta }: LiveEvent) => {
+      const channelInstance = client.channels.get(channel);
 
-            channelInstance.publish(type, event);
-        },
-        // highlight-end
-    };
+      channelInstance.publish(type, event);
+    },
+    // highlight-end
+  };
 };
 ```
 
 :::caution
+
 If `publish` is used on client side you must handle the security of it by yourself.
+
 :::
 
 #### Parameter Types
@@ -271,80 +273,62 @@ Thus, we will be able to create subscription queries using the parameters of the
 import { LiveProvider } from "@refinedev/core";
 import { Client } from "graphql-ws";
 
-import {
-    genareteUseListSubscription,
-    genareteUseManySubscription,
-    genareteUseOneSubscription,
-} from "../utils";
+import { genareteUseListSubscription, genareteUseManySubscription, genareteUseOneSubscription } from "../utils";
 
 const subscriptions = {
-    useList: genareteUseListSubscription,
-    useOne: genareteUseOneSubscription,
-    useMany: genareteUseManySubscription,
+  useList: genareteUseListSubscription,
+  useOne: genareteUseOneSubscription,
+  useMany: genareteUseManySubscription,
 };
 
 export const liveProvider = (client: Client): LiveProvider => {
-    return {
-        subscribe: ({ callback, params, meta }) => {
-            const {
-                resource,
-                pagination,
-                sorters,
-                filters,
-                subscriptionType,
-                id,
-                ids,
-            } = params ?? {};
+  return {
+    subscribe: ({ callback, params, meta }) => {
+      const { resource, pagination, sorters, filters, subscriptionType, id, ids } = params ?? {};
 
-            if (!meta) {
-                throw new Error(
-                    "[useSubscription]: `meta` is required in `params` for graphql subscriptions",
-                );
-            }
+      if (!meta) {
+        throw new Error("[useSubscription]: `meta` is required in `params` for graphql subscriptions");
+      }
 
-            if (!subscriptionType) {
-                throw new Error(
-                    "[useSubscription]: `subscriptionType` is required in `params` for graphql subscriptions",
-                );
-            }
+      if (!subscriptionType) {
+        throw new Error("[useSubscription]: `subscriptionType` is required in `params` for graphql subscriptions");
+      }
 
-            if (!resource) {
-                throw new Error(
-                    "[useSubscription]: `resource` is required in `params` for graphql subscriptions",
-                );
-            }
+      if (!resource) {
+        throw new Error("[useSubscription]: `resource` is required in `params` for graphql subscriptions");
+      }
 
-            const genareteSubscription = subscriptions[subscriptionType];
+      const genareteSubscription = subscriptions[subscriptionType];
 
-            const { query, variables, operation } = genareteSubscription({
-                ids,
-                id,
-                resource,
-                filters,
-                meta,
-                pagination,
-                sorters,
-            });
+      const { query, variables, operation } = genareteSubscription({
+        ids,
+        id,
+        resource,
+        filters,
+        meta,
+        pagination,
+        sorters,
+      });
 
-            const onNext = (payload: { data: any }) => {
-                callback(payload.data[operation]);
-            };
+      const onNext = (payload: { data: any }) => {
+        callback(payload.data[operation]);
+      };
 
-            const unsubscribe = client.subscribe(
-                {
-                    query,
-                    variables,
-                },
-                {
-                    next: onNext,
-                    error: () => null,
-                    complete: () => null,
-                },
-            );
-
-            return unsubscribe;
+      const unsubscribe = client.subscribe(
+        {
+          query,
+          variables,
         },
-    };
+        {
+          next: onNext,
+          error: () => null,
+          complete: () => null,
+        },
+      );
+
+      return unsubscribe;
+    },
+  };
 };
 ```
 
@@ -362,37 +346,39 @@ It will create a subscription query using the parameters of the `useSubscription
 import { useSubscription } from "@refinedev/core";
 
 useSubscription({
-    channel: "posts",
-    enabled: true,
-    onLiveEvent: (event) => {
-        // called when a live event is received
-        console.log(event);
+  channel: "posts",
+  enabled: true,
+  onLiveEvent: (event) => {
+    // called when a live event is received
+    console.log(event);
+  },
+  params: {
+    resource: "posts",
+    pagination: {
+      current: 1,
+      pageSize: 10,
     },
-    params: {
-        resource: "posts",
-        pagination: {
-            current: 1,
-            pageSize: 10,
-        },
-        subscriptionType: "useList",
-    },
-    meta: {
-        fields: [
-            "id",
-            "title",
-            {
-                category: ["title"],
-            },
-            "content",
-            "category_id",
-            "created_at",
-        ],
-    },
+    subscriptionType: "useList",
+  },
+  meta: {
+    fields: [
+      "id",
+      "title",
+      {
+        category: ["title"],
+      },
+      "content",
+      "category_id",
+      "created_at",
+    ],
+  },
 });
 ```
 
 :::caution
+
 The values returned from the `subscribe` method are passed to the `unsubscribe` method. Thus values needed for unsubscription must be returned from `subscribe` method.
+
 :::
 
 > For more information, refer to the [useSubscription documentation&#8594](/api-reference/core/hooks/live/useSubscription.md)
@@ -446,9 +432,7 @@ const App: React.FC = () => {
 // ...
 
 const App: React.FC = () => {
-    return (
-        <Refine liveProvider={liveProvider} options={{ liveMode: "auto" }} />
-    );
+  return <Refine liveProvider={liveProvider} options={{ liveMode: "auto" }} />;
 };
 ```
 
@@ -485,15 +469,15 @@ Callback that is run when new events from subscription arrive. It can be passed 
 // ...
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            liveProvider={liveProvider}
-            options={{ liveMode: "auto" }}
-            onLiveEvent={(event) => {
-                // Put your own logic based on event
-            }}
-        />
-    );
+  return (
+    <Refine
+      liveProvider={liveProvider}
+      options={{ liveMode: "auto" }}
+      onLiveEvent={(event) => {
+        // Put your own logic based on event
+      }}
+    />
+  );
 };
 ```
 
@@ -503,10 +487,10 @@ const App: React.FC = () => {
 
 ```tsx
 const { data } = useList({
-    liveMode: "manual",
-    onLiveEvent: (event) => {
-        // Put your own logic based on event
-    },
+  liveMode: "manual",
+  onLiveEvent: (event) => {
+    // Put your own logic based on event
+  },
 });
 ```
 
@@ -540,14 +524,15 @@ useList({ resource: "posts" });
 ```
 
 :::tip
+
 Following hooks uses `useList` under the hood and subscribe to same event.
 
--   [`useTable`](/docs/api-reference/core/hooks/useTable)
--   [`useEditableTable`](/api-reference/antd/hooks/table/useEditableTable.md)
--   [`useSimpleList`](/api-reference/antd/hooks/list/useSimpleList.md)
--   [`useCheckboxGroup`](/api-reference/antd/hooks/field/useCheckboxGroup.md)
--   [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
--   [`useRadioGroup`](/api-reference/antd/hooks/field/useRadioGroup.md)
+- [`useTable`](/docs/api-reference/core/hooks/useTable)
+- [`useEditableTable`](/api-reference/antd/hooks/table/useEditableTable.md)
+- [`useSimpleList`](/api-reference/antd/hooks/list/useSimpleList.md)
+- [`useCheckboxGroup`](/api-reference/antd/hooks/field/useCheckboxGroup.md)
+- [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
+- [`useRadioGroup`](/api-reference/antd/hooks/field/useRadioGroup.md)
 
 :::
 
@@ -566,13 +551,14 @@ useOne({ resource: "posts", id: "1" });
 ```
 
 :::tip
+
 Following hooks uses `useOne` under the hood and subscribe to same event.
 
--   [`useForm`](/api-reference/core/hooks/useForm.md)
--   [`useModalForm`](/api-reference/antd/hooks/form/useModalForm.md)
--   [`useDrawerForm`](/api-reference/antd/hooks/form/useDrawerForm.md)
--   [`useStepsForm`](/api-reference/antd/hooks/form/useStepsForm.md)
--   [`useShow`](/api-reference/core/hooks/show/useShow.md)
+- [`useForm`](/api-reference/core/hooks/useForm.md)
+- [`useModalForm`](/api-reference/antd/hooks/form/useModalForm.md)
+- [`useDrawerForm`](/api-reference/antd/hooks/form/useDrawerForm.md)
+- [`useStepsForm`](/api-reference/antd/hooks/form/useStepsForm.md)
+- [`useShow`](/api-reference/core/hooks/show/useShow.md)
 
 :::
 
@@ -591,9 +577,10 @@ useMany({ resource: "posts", ids: ["1", "2"] });
 ```
 
 :::tip
+
 Following hooks uses `useMany` under the hood and subscribe to same event.
 
--   [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
+- [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
 
 :::
 
@@ -607,10 +594,10 @@ Following hooks uses `useMany` under the hood and subscribe to same event.
 const { mutate } = useCreate();
 
 mutate({
-    resource: "posts",
-    values: {
-        title: "New Post",
-    },
+  resource: "posts",
+  values: {
+    title: "New Post",
+  },
 });
 ```
 
@@ -631,15 +618,15 @@ mutate({
 const { mutate } = useCreateMany();
 
 mutate({
-    resource: "posts",
-    values: [
-        {
-            title: "New Post",
-        },
-        {
-            title: "Another New Post",
-        },
-    ],
+  resource: "posts",
+  values: [
+    {
+      title: "New Post",
+    },
+    {
+      title: "Another New Post",
+    },
+  ],
 });
 ```
 
@@ -660,8 +647,8 @@ mutate({
 const { mutate } = useDelete();
 
 mutate({
-    resource: "posts",
-    id: "1",
+  resource: "posts",
+  id: "1",
 });
 ```
 
@@ -682,8 +669,8 @@ mutate({
 const { mutate } = useDeleteMany();
 
 mutate({
-    resource: "posts",
-    ids: ["1", "2"],
+  resource: "posts",
+  ids: ["1", "2"],
 });
 ```
 
@@ -704,9 +691,9 @@ mutate({
 const { mutate } = useUpdate();
 
 mutate({
-    resource: "posts",
-    id: "2",
-    values: { title: "New Post Title" },
+  resource: "posts",
+  id: "2",
+  values: { title: "New Post Title" },
 });
 ```
 
@@ -727,9 +714,9 @@ mutate({
 const { mutate } = useUpdateMany();
 
 mutate({
-    resource: "posts",
-    ids: ["1", "2"],
-    values: { title: "New Post Title" },
+  resource: "posts",
+  ids: ["1", "2"],
+  values: { title: "New Post Title" },
 });
 ```
 
@@ -748,7 +735,7 @@ mutate({
 
 Publishing in client side must be avoided generally. It's recommended to handle it in server side. Events published from the server must be in the following ways:
 
--   When creating a record:
+- When creating a record:
 
 ```ts
 {
@@ -761,7 +748,7 @@ Publishing in client side must be avoided generally. It's recommended to handle 
 }
 ```
 
--   When deleting a record:
+- When deleting a record:
 
 ```ts
 {
@@ -774,7 +761,7 @@ Publishing in client side must be avoided generally. It's recommended to handle 
 }
 ```
 
--   When updating a record:
+- When updating a record:
 
 ```ts
 {

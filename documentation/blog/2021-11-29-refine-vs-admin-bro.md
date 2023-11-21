@@ -26,7 +26,9 @@ Looking for open source **admin panel framework**? Here we are going to review t
 These frameworks that we will talk about have emerged to offer solutions to the same business demands in general. Although the purpose of these two frameworks is the same, the solutions are different from each other. Our goal in this article is to show you these differences and help you find the appropriate framework for your project.
 
 :::note
+
 This comparison table strives to be as accurate and as unbiased as possible. If you use any of these libraries and feel the information could be improved, feel free to suggest changes (with notes or evidence of claims) contact info@refine.dev or you can open a issue on [Github](https://github.com/refinedev/refine).
+
 :::
 
 ## Refine
@@ -43,7 +45,7 @@ Although **refine** is a newer framework, it is successful in identifying defici
 
 ### Installation
 
--   Installation is very simple and customizable options can be added.
+- Installation is very simple and customizable options can be added.
 
 ```bash
 npm create refine-app@latest demo-refine-project -- -b v3
@@ -53,15 +55,15 @@ npm create refine-app@latest demo-refine-project -- -b v3
 
 ### Features
 
--   Configuration: One-line setup with superplate. Project setup is very simple. Using superplate you can choose the content of your project and the features you want to add.
+- Configuration: One-line setup with superplate. Project setup is very simple. Using superplate you can choose the content of your project and the features you want to add.
 
--   UI: You have full control over the UI elements. Fully customizable, open to use. Works seamlessly with Ant Design.
+- UI: You have full control over the UI elements. Fully customizable, open to use. Works seamlessly with Ant Design.
 
--   Out-of-the-box: Routing, networking, authentication, state managment, i18n and UI.
+- Out-of-the-box: Routing, networking, authentication, state management, i18n and UI.
 
--   SSR: **refine** can be used with Next.js and Remix to SSR your pages.
+- SSR: **refine** can be used with Next.js and Remix to SSR your pages.
 
--   React Location: React Location router provider support
+- React Location: React Location router provider support
 
 ### SSR - Next.js Support
 
@@ -89,14 +91,11 @@ import routerProvider from "@refinedev/nextjs-router";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-        >
-            <Component {...pageProps} />
-        </Refine>
-    );
+  return (
+    <Refine routerProvider={routerProvider} dataProvider={dataProvider(API_URL)}>
+      <Component {...pageProps} />
+    </Refine>
+  );
 }
 
 export default MyApp;
@@ -129,11 +128,13 @@ const routerProvider = {
 ```
 
 :::info
+
 refine includes many router providers to use in your projects like:
 
--   React Router
--   React Location
--   Next.js Router
+- React Router
+- React Location
+- Next.js Router
+
 :::
 
 [To take a look at how other router providers are defined and working](https://refine.dev/docs/packages/documentation/routers/)
@@ -154,7 +155,7 @@ import { Refine } from "@pankod/refine";
 import routerProvider from "@refinedev/react-router-v6";
 
 const App: React.FC = () => {
-    return <Refine routerProvider={routerProvider} />;
+  return <Refine routerProvider={routerProvider} />;
 };
 ```
 
@@ -166,7 +167,7 @@ import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-location";
 
 const App: React.FC = () => {
-    return <Refine routerProvider={routerProvider} />;
+  return <Refine routerProvider={routerProvider} />;
 };
 ```
 
@@ -178,7 +179,7 @@ import { Refine } from "@pankod/refine";
 import routerProvider from "@refinedev/nextjs-router";
 
 const App: React.FC = () => {
-    return <Refine routerProvider={routerProvider} />;
+  return <Refine routerProvider={routerProvider} />;
 };
 ```
 
@@ -197,31 +198,24 @@ A data provider must include following methods:
 
 ```ts
 const dataProvider = {
-    create: ({ resource, variables, meta }) => Promise,
-    createMany: ({ resource, variables, meta }) => Promise,
-    deleteOne: ({ resource, id, meta }) => Promise,
-    deleteMany: ({ resource, ids, meta }) => Promise,
-    getList: ({ resource, pagination, sorters, filters, meta }) => Promise,
-    getMany: ({ resource, ids, meta }) => Promise,
-    getOne: ({ resource, id, meta }) => Promise,
-    update: ({ resource, id, variables, meta }) => Promise,
-    updateMany: ({ resource, ids, variables, meta }) => Promise,
-    custom: ({
-        url,
-        method,
-        sorters,
-        filters,
-        payload,
-        query,
-        headers,
-        meta,
-    }) => Promise,
-    getApiUrl: () => "",
+  create: ({ resource, variables, meta }) => Promise,
+  createMany: ({ resource, variables, meta }) => Promise,
+  deleteOne: ({ resource, id, meta }) => Promise,
+  deleteMany: ({ resource, ids, meta }) => Promise,
+  getList: ({ resource, pagination, sorters, filters, meta }) => Promise,
+  getMany: ({ resource, ids, meta }) => Promise,
+  getOne: ({ resource, id, meta }) => Promise,
+  update: ({ resource, id, variables, meta }) => Promise,
+  updateMany: ({ resource, ids, variables, meta }) => Promise,
+  custom: ({ url, method, sorters, filters, payload, query, headers, meta }) => Promise,
+  getApiUrl: () => "",
 };
 ```
 
 :::note
+
 Data hooks uses React Query to manage data fetching. React Query handles important concerns like caching, invalidation, loading states etc..
+
 :::
 
 #### GraphQL Data Provider
@@ -244,12 +238,7 @@ import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
 const client = new GraphQLClient("API_URL");
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(client)}
-        />
-    );
+  return <Refine routerProvider={routerProvider} dataProvider={dataProvider(client)} />;
 };
 ```
 
@@ -266,93 +255,71 @@ values={[
 
 ```tsx
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        sorters: {
-            initial: [
-                {
-                    field: "id",
-                    order: "asc",
-                },
-            ],
+  const { tableProps, sorter } = useTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "asc",
         },
-        // highlight-start
-        meta: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["title"],
-                },
-            ],
+      ],
+    },
+    // highlight-start
+    meta: {
+      fields: [
+        "id",
+        "title",
+        {
+          category: ["title"],
         },
-        // highlight-end
-    });
+      ],
+    },
+    // highlight-end
+  });
 
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-        // highlight-start
-        meta: {
-            fields: ["id", "title"],
-        },
-        // highlight-end
-    });
+  const { selectProps } = useSelect<ICategory>({
+    resource: "categories",
+    // highlight-start
+    meta: {
+      fields: ["id", "title"],
+    },
+    // highlight-end
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    sorter={{ multiple: 2 }}
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                />
-                <Table.Column
-                    key="title"
-                    dataIndex="title"
-                    title="Title"
-                    sorter={{ multiple: 1 }}
-                />
-                <Table.Column<IPost>
-                    dataIndex="category"
-                    title="Category"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                    render={(_, record) => record.category.title}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          sorter={{ multiple: 2 }}
+          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+        />
+        <Table.Column key="title" dataIndex="title" title="Title" sorter={{ multiple: 1 }} />
+        <Table.Column<IPost>
+          dataIndex="category"
+          title="Category"
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Category" {...selectProps} />
+            </FilterDropdown>
+          )}
+          render={(_, record) => record.category.title}
+        />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+              <DeleteButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -379,42 +346,42 @@ Here we only make requests for queries that are necessary. As you can see, all y
 
 [Refer to the GraphQL for detailed usage. → ](https://refine.dev/docs/packages/documentation/data-providers/graphql/)
 
-### Refine Avaible Providers
+### Refine Available Providers
 
 Connects to any REST or GraphQL custom backend.
 
--   NestJs CRUD: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud](https://github.com/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud)
--   Airtable: [https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable](https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable)
--   Strapi: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi)
--   Strapi v4: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
--   Strapi GraphQL: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
--   Supabase: [https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
--   Hasura: [https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura](https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura)
--   Nhost: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost](https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost)
--   Appwrite: [https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite](https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite)
--   Medusa: [https://github.com/refinedev/refine/tree/master/packages/medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
+- NestJs CRUD: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud](https://github.com/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud)
+- Airtable: [https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable](https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable)
+- Strapi: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi)
+- Strapi v4: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
+- Strapi GraphQL: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
+- Supabase: [https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
+- Hasura: [https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura](https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura)
+- Nhost: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost](https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost)
+- Appwrite: [https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite](https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite)
+- Medusa: [https://github.com/refinedev/refine/tree/master/packages/medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
 
 ### Customization
 
--   **refine's** motivation and main purpose are as follows: "Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility."
--   While the admin panel allows you to make dashboard, B2B and B2C applications quickly, we offer you flexibility in your UI or business model.
+- **refine's** motivation and main purpose are as follows: "Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility."
+- While the admin panel allows you to make dashboard, B2B and B2C applications quickly, we offer you flexibility in your UI or business model.
 
 #### UI/UX Customization:
 
--   **refine**, comes ready-made decoupled from the UI, and is used. **refine** mostly touches UI components via hooks. The main advantage of this for you is that you can successfully perform any Business request or different case.
+- **refine**, comes ready-made decoupled from the UI, and is used. **refine** mostly touches UI components via hooks. The main advantage of this for you is that you can successfully perform any Business request or different case.
 
 #### Logic Customization:
 
--   **refine**, works flawless with react-query. You don't have to worry about state management in your business model or when you encounter a different situation.
+- **refine**, works flawless with react-query. You don't have to worry about state management in your business model or when you encounter a different situation.
 
 ### Pricing
 
 All features of **refine** are available as **open source**.
 
--   Access Control Provider (RBAC, ABAC, ACL, IP, LDAP, etc...)
--   Realtime
--   Search
--   Navigation and more features are available
+- Access Control Provider (RBAC, ABAC, ACL, IP, LDAP, etc...)
+- Realtime
+- Search
+- Navigation and more features are available
 
 If you want to get information about the Enterprise, refine ready to help you for Support and Training.
 [For more info about Enterprise->](https://refine.dev/enterprise/)
@@ -436,14 +403,16 @@ It provides you with solutions and provides convenience when making admin panel 
 We can say that it is difficult to install, but it is clearly explained step by step in the documentation.
 
 :::note
+
 Since AdminBro uses your existing framework to render its routes - you have to use one of our plugins.
 
 There are plugins for:
 
--   Express
--   Hapi
--   Koa.js
--   Nest.js
+- Express
+- Hapi
+- Koa.js
+- Nest.js
+
 :::note
 
 Install the AdminBro along with the express plugin
@@ -462,12 +431,12 @@ npm install express express-formidable
 
 ### Features
 
--   You can use any data from any source and make changes to the data(create, read, update, delete)
--   Custom actions
--   Custom resource decorators
--   Form validation
--   A full-featured control panel can be created.
--   Internationalization(i18n)
+- You can use any data from any source and make changes to the data(create, read, update, delete)
+- Custom actions
+- Custom resource decorators
+- Form validation
+- A full-featured control panel can be created.
+- Internationalization(i18n)
 
 ### SSR - Next.js Support​
 
@@ -485,8 +454,8 @@ const express = require("express");
 const app = express();
 
 const adminBro = new AdminBro({
-    databases: [],
-    rootPath: "/admin",
+  databases: [],
+  rootPath: "/admin",
 });
 
 const router = AdminBroExpress.buildRouter(adminBro);
@@ -500,11 +469,11 @@ It does not have a data provider exactly like other frameworks. It has a differe
 
 AdminBro can be connected to many different types of resources. Right now, they support the following options:
 
--   Mongoose
--   Sequelize
--   TypeORM
+- Mongoose
+- Sequelize
+- TypeORM
 
-To add resources , you first have to intall an adapter for the resource you want to use.
+To add resources , you first have to install an adapter for the resource you want to use.
 
 #### Install the Database Adapter and add resources
 
@@ -527,28 +496,28 @@ const mongoose = require("mongoose");
 AdminBro.registerAdapter(AdminBroMongoose);
 
 const run = async () => {
-    const connection = await mongoose.connect(
-        "mongodb://localhost:27017/users",
-        { useNewUrlParser: true, useUnifiedTopology: true },
-    );
+  const connection = await mongoose.connect("mongodb://localhost:27017/users", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
-    const User = mongoose.model("User", {
-        name: String,
-        email: String,
-        surname: String,
-    });
+  const User = mongoose.model("User", {
+    name: String,
+    email: String,
+    surname: String,
+  });
 
-    const adminBro = new AdminBro({
-        Databases: [connection],
-        rootPath: "/admin",
-        resources: [User],
-    });
-    const router = AdminBroExpress.buildRouter(adminBro);
-    app.use(adminBro.options.rootPath, router);
+  const adminBro = new AdminBro({
+    Databases: [connection],
+    rootPath: "/admin",
+    resources: [User],
+  });
+  const router = AdminBroExpress.buildRouter(adminBro);
+  app.use(adminBro.options.rootPath, router);
 
-    app.listen(3000, () => {
-        console.log("Application is up and running under localhost:3000/admin");
-    });
+  app.listen(3000, () => {
+    console.log("Application is up and running under localhost:3000/admin");
+  });
 };
 run();
 ```
@@ -570,10 +539,10 @@ AdminBro is good at customizing. You can connect your own adapters and customize
 
 Some customizable features are as follows:
 
--   [Customize Resources](https://adminbro.com/tutorial-customizing-resources.html)
--   [Customize Actions](https://adminbro.com/tutorial-actions.html)
--   [Custom Validations](https://adminbro.com/tutorial-actions-validations.html)
--   [Customize dashboard](https://adminbro.com/tutorial-custom-dashboard.html)
+- [Customize Resources](https://adminbro.com/tutorial-customizing-resources.html)
+- [Customize Actions](https://adminbro.com/tutorial-actions.html)
+- [Custom Validations](https://adminbro.com/tutorial-actions-validations.html)
+- [Customize dashboard](https://adminbro.com/tutorial-custom-dashboard.html)
 
 #### UI/UX Customization:​
 
@@ -585,8 +554,8 @@ It automatically offers you an interface option that you can use. You can also d
 
 All features of Adminbro are open source and accessible.
 
--   Role-Based Access Control
--   Content Management System
+- Role-Based Access Control
+- Content Management System
 
 AdminBro Docs & Demo: [Documentation](https://adminbro.com/tutorial-installation-instructions.html) - [Live Demo](https://admin-bro-example-app-staging.herokuapp.com/admin/login)
 
@@ -598,15 +567,15 @@ We suggest asking some questions to find out which one is more suitable for your
 
 At this point, the questions you should ask when choosing these of framework may be as follows:
 
--   How flexible are they in offering solutions to the different business demands we may encounter?
+- How flexible are they in offering solutions to the different business demands we may encounter?
 
--   How difficult will it be to implement the providers and features we will be using?
+- How difficult will it be to implement the providers and features we will be using?
 
--   If any problem arises, can I easily find a solution from the documentation?
+- If any problem arises, can I easily find a solution from the documentation?
 
--   How dependent am I on this framework when using it in my project and does it offer customization possibilities?
+- How dependent am I on this framework when using it in my project and does it offer customization possibilities?
 
--   What does it offer me as an extra feature?
+- What does it offer me as an extra feature?
 
 Here **refine** directly answers some of your questions. **refine**'s customized structures (API, Router, i18n, GraphQL provider, etc...) provide you convenience from many points, unlike admin bro. This convenience and perspective provided by **refine** can be preferred for many projects. In addition, you can be limited to internal tool/B2B applications with AdminBro. You can develop many different projects with **refine**'s rich UI library and SSR support.
 

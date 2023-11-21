@@ -14,31 +14,27 @@ For example, `<LanguageSwitcher>` component needs to know the current locale in 
 import { useTranslate, useGetLocale, useSetLocale } from "@refinedev/core";
 
 export const LanguageSwitcher = () => {
-    const changeLanguage = useSetLocale();
+  const changeLanguage = useSetLocale();
 
-    const locale = useGetLocale();
-    const currentLocale = locale();
+  const locale = useGetLocale();
+  const currentLocale = locale();
 
-    return (
-        <div>
-            <span>Languages</span>
-            <button
-                disabled={currentLocale === "en"}
-                onClick={() => changeLanguage("en")}
-            >
-                English
-            </button>
-            <button
-                disabled={currentLocale === "es"}
-                onClick={() => changeLanguage("es")}
-            >
-                Spanish
-            </button>
-        </div>
-    );
+  return (
+    <div>
+      <span>Languages</span>
+      <button disabled={currentLocale === "en"} onClick={() => changeLanguage("en")}>
+        English
+      </button>
+      <button disabled={currentLocale === "es"} onClick={() => changeLanguage("es")}>
+        Spanish
+      </button>
+    </div>
+  );
 };
 ```
 
 :::caution
+
 This hook can only be used if `i18nProvider` is provided.
+
 :::

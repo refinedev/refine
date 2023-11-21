@@ -7,7 +7,9 @@ source: /packages/core/src/hooks/auth/useRegister/index.ts
 ---
 
 :::caution
+
 This hook can only be used if `authProvider` is provided.
+
 :::
 
 `useRegister` calls `register` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
@@ -18,18 +20,18 @@ Data that is resolved from `register` will be returned as the `data` in the quer
 
 ```ts
 type AuthActionResponse = {
-    success: boolean;
-    redirectTo?: string;
-    error?: Error;
-    [key: string]: unknown;
+  success: boolean;
+  redirectTo?: string;
+  error?: Error;
+  [key: string]: unknown;
 };
 ```
 
--   `success`: A boolean indicating whether the operation was successful. If `success` is false, a notification will be shown.
-    -   When an `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values: `{ name: "Register Error", message: "Error while registering" }`.
--   `redirectTo`: If has a value, the app will be redirected to the given URL.
--   `error`: If has a value, a notification will be shown with the error message and name.
--   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
+- `success`: A boolean indicating whether the operation was successful. If `success` is false, a notification will be shown.
+  - When an `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values: `{ name: "Register Error", message: "Error while registering" }`.
+- `redirectTo`: If has a value, the app will be redirected to the given URL.
+- `error`: If has a value, a notification will be shown with the error message and name.
+- `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 ## Usage
 
@@ -40,37 +42,38 @@ If you want to use a custom registration page however, you can use the `useRegis
 import { useRegister } from "@refinedev/core";
 
 type RegisterVariables = {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 };
 
 export const RegisterPage = () => {
-    const { mutate: register } = useRegister<RegisterVariables>();
+  const { mutate: register } = useRegister<RegisterVariables>();
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        const values = {
-            email: e.currentTarget.email.value,
-            password: e.currentTarget.password.value,
-        };
-
-        register(values);
+    const values = {
+      email: e.currentTarget.email.value,
+      password: e.currentTarget.password.value,
     };
 
-    return (
-        <form onSubmit={onSubmit}>
-            <label>Email</label>
-            <input name="email" value="test@refine.com" />
-            <label>Password</label>
-            <input name="password" value="refine" />
-            <button type="submit">Submit</button>
-        </form>
-    );
+    register(values);
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <label>Email</label>
+      <input name="email" value="test@refine.com" />
+      <label>Password</label>
+      <input name="password" value="refine" />
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 ```
 
 :::tip
+
 `mutate` acquired from the `useRegister` hook can accept any kind of object for values since the `register` method from `authProvider` doesn't have a restriction on its parameters.
 A type parameter for the values can be provided to `useRegister`.
 
@@ -88,40 +91,40 @@ If you want to log in to the user after successful registration, you can use `us
 import { useRegister, useLogin } from "@refinedev/core";
 
 type FormVariables = {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 };
 
 export const RegisterPage = () => {
-    const { mutate: register } = useRegister<FormVariables>();
-    const { mutate: login } = useLogin<FormVariables>();
+  const { mutate: register } = useRegister<FormVariables>();
+  const { mutate: login } = useLogin<FormVariables>();
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        const values = {
-            email: e.currentTarget.email.value,
-            password: e.currentTarget.password.value,
-        };
-
-        register(values, {
-            //highlight-start
-            onSuccess: () => {
-                login(values);
-            },
-            //highlight-end
-        });
+    const values = {
+      email: e.currentTarget.email.value,
+      password: e.currentTarget.password.value,
     };
 
-    return (
-        <form onSubmit={onSubmit}>
-            <label>Email</label>
-            <input name="email" value="test@refine.com" />
-            <label>Password</label>
-            <input name="password" value="refine" />
-            <button type="submit">Submit</button>
-        </form>
-    );
+    register(values, {
+      //highlight-start
+      onSuccess: () => {
+        login(values);
+      },
+      //highlight-end
+    });
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <label>Email</label>
+      <input name="email" value="test@refine.com" />
+      <label>Password</label>
+      <input name="password" value="refine" />
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 ```
 
@@ -141,14 +144,14 @@ Then, you can handle this URL in your `register` method of the `authProvider`:
 
 ```tsx
 const authProvider: AuthBindings = {
+  // ---
+  register: ({ redirectPath }) => {
     // ---
-    register: ({ redirectPath }) => {
-        // ---
-        return {
-            success: true,
-            redirectTo: redirectPath,
-        };
-    },
+    return {
+      success: true,
+      redirectTo: redirectPath,
+    };
+  },
 };
 ```
 
@@ -162,19 +165,19 @@ import { useRegister } from "@refinedev/core";
 const { mutate: register } = useRegister();
 
 register(
-    {
-        email: "refine@example.com",
-        password: "refine",
-    },
-    {
-        onSuccess: (data) => {
-            if (!data.success) {
-                // handle error
-            }
+  {
+    email: "refine@example.com",
+    password: "refine",
+  },
+  {
+    onSuccess: (data) => {
+      if (!data.success) {
+        // handle error
+      }
 
-            // handle success
-        },
+      // handle success
     },
+  },
 );
 ```
 

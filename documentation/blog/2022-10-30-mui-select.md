@@ -20,7 +20,7 @@ hide_table_of_contents: false
  
 
 ## Introduction
-Material UI provides a plethora of available styled components that assist developers in creating responsive and aesthetically pleasing web designs. One of these components is Material UI's Select, which is an input field that showcases a list of customisable options. In this tutorial, we will deeply dive into **Material UI Select**, look at its prop possibilities, and highlight its features. We will also investigate a potential use case in a real-world application.
+Material UI provides a plethora of available styled components that assist developers in creating responsive and aesthetically pleasing web designs. One of these components is Material UI's Select, which is an input field that showcases a list of customizable options. In this tutorial, we will deeply dive into **Material UI Select**, look at its prop possibilities, and highlight its features. We will also investigate a potential use case in a real-world application.
 
 Steps we'll cover:
 - [What is Material UI](#what-is-material-ui)
@@ -183,7 +183,7 @@ import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 export default function SelectIndicator() {
   return (
     <Select
-      placeholder="what's your favourite car?"
+      placeholder="what's your favorite car?"
       indicator={<KeyboardArrowDown />}
       sx={{
         width: 240,
@@ -280,7 +280,7 @@ export default function Demo() {
   const group = {
     Land: ['Car', 'Truck', 'Train', 'Motorcycle', 'Bus'],
     Water: ['Ship', 'Boat', 'Sub Marine'],
-    Air: ['Aeroplane', 'Jet', 'Helicopter'],
+    Air: ['Airplane', 'Jet', 'Helicopter'],
   };
   const colors = {
     Land: 'neutral',
@@ -351,7 +351,7 @@ export default function Demo() {
 }
 ```
 
-The preceding code shows a `Select` field with organised input values. As shown below, these values are represented by three modes of transportation (land, air, and water), each with its own set of values. These values are placed in an array that is mapped through to generate the output on the DOM.
+The preceding code shows a `Select` field with organized input values. As shown below, these values are represented by three modes of transportation (land, air, and water), each with its own set of values. These values are placed in an array that is mapped through to generate the output on the DOM.
 
 
 

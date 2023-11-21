@@ -513,7 +513,7 @@ export const EditMission: React.FC<EditMissionProps> = ({
 };
 ```
 
-It's render is trigerred by a click on the `<EditButton />` placed inside a `<Table.Column />` element in the `<MissionList />` component.
+It's render is triggered by a click on the `<EditButton />` placed inside a `<Table.Column />` element in the `<MissionList />` component.
 
 Ok. With these views completed, we should be able to create, list and show `missions` records from our app.
 

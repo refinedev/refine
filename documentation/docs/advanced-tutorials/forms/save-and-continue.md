@@ -20,34 +20,32 @@ import { useTable, useNavigation } from "@refinedev/core";
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>();
-    const { edit, create } = useNavigation();
+  const { tableQueryResult } = useTable<IPost>();
+  const { edit, create } = useNavigation();
 
-    return (
-        <div>
-            <button onClick={() => create("posts")}>Create Post</button>
-            <table>
-                <thead>
-                    <td>ID</td>
-                    <td>Title</td>
-                    <td>Actions</td>
-                </thead>
-                <tbody>
-                    {tableQueryResult.data?.data.map((post) => (
-                        <tr key={post.id}>
-                            <td>{post.id}</td>
-                            <td>{post.title}</td>
-                            <td>
-                                <button onClick={() => edit("posts", post.id)}>
-                                    Edit
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+  return (
+    <div>
+      <button onClick={() => create("posts")}>Create Post</button>
+      <table>
+        <thead>
+          <td>ID</td>
+          <td>Title</td>
+          <td>Actions</td>
+        </thead>
+        <tbody>
+          {tableQueryResult.data?.data.map((post) => (
+            <tr key={post.id}>
+              <td>{post.id}</td>
+              <td>{post.title}</td>
+              <td>
+                <button onClick={() => edit("posts", post.id)}>Edit</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 ```
 
@@ -65,10 +63,10 @@ import { useForm } from "@refinedev/core";
 import { IPost } from "interfaces";
 
 export const PostCreate: React.FC = () => {
-    const { formLoading, onFinish, redirect } = useForm<IPost>({
-        // highlight-next-line
-        redirect: false,
-    });
+  const { formLoading, onFinish, redirect } = useForm<IPost>({
+    // highlight-next-line
+    redirect: false,
+  });
 };
 ```
 
@@ -83,111 +81,111 @@ import { useSelect, useForm, useBack } from "@refinedev/core";
 import { IPost } from "interfaces";
 
 export const PostCreate: React.FC = () => {
-    const [formValues, setFormValues] = useState({
-        title: "",
-        content: "",
-        status: "draft",
-        category: {
-            id: "",
-        },
-    });
-    const { formLoading, onFinish, redirect } = useForm<IPost>({
-        redirect: false,
-    });
+  const [formValues, setFormValues] = useState({
+    title: "",
+    content: "",
+    status: "draft",
+    category: {
+      id: "",
+    },
+  });
+  const { formLoading, onFinish, redirect } = useForm<IPost>({
+    redirect: false,
+  });
 
-    const goBack = useBack();
+  const goBack = useBack();
 
-    const { options } = useSelect({
-        resource: "categories",
-    });
+  const { options } = useSelect({
+    resource: "categories",
+  });
 
-    return (
-        <div>
-            <button className="back" onClick={() => goBack()}>
-                Go Back
-            </button>
-            <form className="form-wrapper">
-                <div className="form-group">
-                    <label>Title: </label>
-                    <input
-                        required
-                        onChange={(e) =>
-                            setFormValues({
-                                ...formValues,
-                                title: e.target.value,
-                            })
-                        }
-                        value={formValues.title}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Status: </label>
-                    <select
-                        required
-                        onChange={(e) =>
-                            setFormValues({
-                                ...formValues,
-                                status: e.target.value as IPost["status"],
-                            })
-                        }
-                        value={formValues.status}
-                    >
-                        <option value="published">published</option>
-                        <option value="draft">draft</option>
-                        <option value="rejected">rejected</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label>Category: </label>
-                    <select
-                        required
-                        onChange={(e) =>
-                            setFormValues({
-                                ...formValues,
-                                category: {
-                                    id: e.target.value,
-                                },
-                            })
-                        }
-                        value={formValues.category.id}
-                    >
-                        <option value={""} disabled>
-                            Please select
-                        </option>
-                        {options?.map((category) => (
-                            <option key={category.value} value={category.value}>
-                                {category.label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label>Content: </label>
-
-                    <textarea
-                        required
-                        onChange={(e) =>
-                            setFormValues({
-                                ...formValues,
-                                content: e.target.value,
-                            })
-                        }
-                        rows={10}
-                        cols={50}
-                        value={formValues.content}
-                    />
-                </div>
-                <div className="saveActions">
-                    // highlight-start
-                    <button type="button">Save</button>
-                    <button stype="button">Save and continue editing</button>
-                    <button type="button">Save and add another</button>
-                    // highlight-end
-                </div>
-                {formLoading && <p>Loading</p>}
-            </form>
+  return (
+    <div>
+      <button className="back" onClick={() => goBack()}>
+        Go Back
+      </button>
+      <form className="form-wrapper">
+        <div className="form-group">
+          <label>Title: </label>
+          <input
+            required
+            onChange={(e) =>
+              setFormValues({
+                ...formValues,
+                title: e.target.value,
+              })
+            }
+            value={formValues.title}
+          />
         </div>
-    );
+        <div className="form-group">
+          <label>Status: </label>
+          <select
+            required
+            onChange={(e) =>
+              setFormValues({
+                ...formValues,
+                status: e.target.value as IPost["status"],
+              })
+            }
+            value={formValues.status}
+          >
+            <option value="published">published</option>
+            <option value="draft">draft</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label>Category: </label>
+          <select
+            required
+            onChange={(e) =>
+              setFormValues({
+                ...formValues,
+                category: {
+                  id: e.target.value,
+                },
+              })
+            }
+            value={formValues.category.id}
+          >
+            <option value={""} disabled>
+              Please select
+            </option>
+            {options?.map((category) => (
+              <option key={category.value} value={category.value}>
+                {category.label}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="form-group">
+          <label>Content: </label>
+
+          <textarea
+            required
+            onChange={(e) =>
+              setFormValues({
+                ...formValues,
+                content: e.target.value,
+              })
+            }
+            rows={10}
+            cols={50}
+            value={formValues.content}
+          />
+        </div>
+        <div className="saveActions">
+          // highlight-start
+          <button type="button">Save</button>
+          <button stype="button">Save and continue editing</button>
+          <button type="button">Save and add another</button>
+          // highlight-end
+        </div>
+        {formLoading && <p>Loading</p>}
+      </form>
+    </div>
+  );
 };
 ```
 
@@ -199,9 +197,11 @@ export const PostCreate: React.FC = () => {
 We will use `handleSubmit` function to manage to submit event when clicking the buttons we created.
 
 :::info
+
 `onFinish` function resolves to respect the `mutationMode` property. In `pessimistic` mode, it will resolve after the response is returned from the request, in `optimistic` and `undoable` modes it will resolve immediately. Only real await will happen in pessimistic mode and this will resolve with the response data, others will resolve immediately with undefined data.
 
 [Refer to the `mutationMode` documentation for more details. &#8594](/advanced-tutorials/mutation-mode.md)
+
 :::
 
 ```tsx title="src/pages/create.tsx"
@@ -211,142 +211,141 @@ import { useSelect, useForm, useNavigation } from "@refinedev/core";
 import { IPost } from "interfaces";
 
 export const PostCreate: React.FC = () => {
-    const [formValues, setFormValues] = useState({
-        title: "",
-        content: "",
-        status: "draft",
-        category: {
-            id: "",
-        },
+  const [formValues, setFormValues] = useState({
+    title: "",
+    content: "",
+    status: "draft",
+    category: {
+      id: "",
+    },
+  });
+  const { formLoading, onFinish, redirect } = useForm<IPost>({
+    redirect: false,
+  });
+
+  const { goBack } = useNavigation();
+
+  const { options } = useSelect({
+    resource: "categories",
+  });
+
+  // highlight-start
+  const handleSubmit = async (redirectTo: "list" | "edit" | "create") => {
+    const response = await onFinish(formValues);
+
+    setFormValues({
+      title: "",
+      content: "",
+      status: "draft",
+      category: {
+        id: "",
+      },
     });
-    const { formLoading, onFinish, redirect } = useForm<IPost>({
-        redirect: false,
-    });
 
-    const { goBack } = useNavigation();
+    redirect(redirectTo, response?.data?.id);
+  };
+  // highlight-end
 
-    const { options } = useSelect({
-        resource: "categories",
-    });
-
-    // highlight-start
-    const handleSubmit = async (redirectTo: "list" | "edit" | "create") => {
-        const response = await onFinish(formValues);
-
-        setFormValues({
-            title: "",
-            content: "",
-            status: "draft",
-            category: {
-                id: "",
-            },
-        });
-
-        redirect(redirectTo, response?.data?.id);
-    };
-    // highlight-end
-
-    return (
-        <div>
-            <button className="back" onClick={() => goBack()}>
-                Go Back
-            </button>
-            <form className="form-wrapper">
-                <div className="form-group">
-                    <label>Title: </label>
-                    <input
-                        required
-                        onChange={(e) =>
-                            setFormValues({
-                                ...formValues,
-                                title: e.target.value,
-                            })
-                        }
-                        value={formValues.title}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Status: </label>
-                    <select
-                        required
-                        onChange={(e) =>
-                            setFormValues({
-                                ...formValues,
-                                status: e.target.value as IPost["status"],
-                            })
-                        }
-                        value={formValues.status}
-                    >
-                        <option value="published">published</option>
-                        <option value="draft">draft</option>
-                        <option value="rejected">rejected</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label>Category: </label>
-                    <select
-                        required
-                        onChange={(e) =>
-                            setFormValues({
-                                ...formValues,
-                                category: {
-                                    id: e.target.value,
-                                },
-                            })
-                        }
-                        value={formValues.category.id}
-                    >
-                        <option value={""} disabled>
-                            Please select
-                        </option>
-                        {options?.map((category) => (
-                            <option key={category.value} value={category.value}>
-                                {category.label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label>Content: </label>
-
-                    <textarea
-                        required
-                        onChange={(e) =>
-                            setFormValues({
-                                ...formValues,
-                                content: e.target.value,
-                            })
-                        }
-                        rows={10}
-                        cols={50}
-                        value={formValues.content}
-                    />
-                </div>
-                <div className="saveActions">
-                    // highlight-start
-                    <button onClick={() => handleSubmit("list")} type="button">
-                        Save
-                    </button>
-                    <button onClick={() => handleSubmit("edit")} type="button">
-                        Save and continue editing
-                    </button>
-                    <button
-                        onClick={() => handleSubmit("create")}
-                        type="button"
-                    >
-                        Save and add another
-                    </button>
-                    // highlight-end
-                </div>
-                {formLoading && <p>Loading</p>}
-            </form>
+  return (
+    <div>
+      <button className="back" onClick={() => goBack()}>
+        Go Back
+      </button>
+      <form className="form-wrapper">
+        <div className="form-group">
+          <label>Title: </label>
+          <input
+            required
+            onChange={(e) =>
+              setFormValues({
+                ...formValues,
+                title: e.target.value,
+              })
+            }
+            value={formValues.title}
+          />
         </div>
-    );
+        <div className="form-group">
+          <label>Status: </label>
+          <select
+            required
+            onChange={(e) =>
+              setFormValues({
+                ...formValues,
+                status: e.target.value as IPost["status"],
+              })
+            }
+            value={formValues.status}
+          >
+            <option value="published">published</option>
+            <option value="draft">draft</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label>Category: </label>
+          <select
+            required
+            onChange={(e) =>
+              setFormValues({
+                ...formValues,
+                category: {
+                  id: e.target.value,
+                },
+              })
+            }
+            value={formValues.category.id}
+          >
+            <option value={""} disabled>
+              Please select
+            </option>
+            {options?.map((category) => (
+              <option key={category.value} value={category.value}>
+                {category.label}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="form-group">
+          <label>Content: </label>
+
+          <textarea
+            required
+            onChange={(e) =>
+              setFormValues({
+                ...formValues,
+                content: e.target.value,
+              })
+            }
+            rows={10}
+            cols={50}
+            value={formValues.content}
+          />
+        </div>
+        <div className="saveActions">
+          // highlight-start
+          <button onClick={() => handleSubmit("list")} type="button">
+            Save
+          </button>
+          <button onClick={() => handleSubmit("edit")} type="button">
+            Save and continue editing
+          </button>
+          <button onClick={() => handleSubmit("create")} type="button">
+            Save and add another
+          </button>
+          // highlight-end
+        </div>
+        {formLoading && <p>Loading</p>}
+      </form>
+    </div>
+  );
 };
 ```
 
 :::tip
+
 We used the `redirect` method to perform the redirection, which returns from [`useForm`](/docs/api-reference/core/hooks/useForm) instead of [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation) Thus, we can do our routing without dealing with managing resources.
+
 :::
 
 ## Example

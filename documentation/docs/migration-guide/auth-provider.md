@@ -18,37 +18,37 @@ Furthermore, the auth hooks no longer have default redirection paths, which had 
 
 ## Naming changes
 
--   The `AuthPovider` interface was changed to `AuthBindings`.
+- The `AuthPovider` interface was changed to `AuthBindings`.
 
-    ```diff
-    - import { AuthProvider } from "@refinedev/core";
-    + import { AuthBindings } from "@refinedev/core";
+  ```diff
+  - import { AuthProvider } from "@refinedev/core";
+  + import { AuthBindings } from "@refinedev/core";
 
-    - const authProvider: AuthProvider = {/* ... */}
-    + const authProvider: AuthBindings = {/* ... */}
-    ```
+  - const authProvider: AuthProvider = {/* ... */}
+  + const authProvider: AuthBindings = {/* ... */}
+  ```
 
--   The `getUserIdentity` method of the `authProvider` was changed to `getIdentity`.
--   The `checkError` method of the `authProvider`was changed to `onError`.
--   The `checkAuth` method of the `authProvider` was changed to `check`.
+- The `getUserIdentity` method of the `authProvider` was changed to `getIdentity`.
+- The `checkError` method of the `authProvider`was changed to `onError`.
+- The `checkAuth` method of the `authProvider` was changed to `check`.
 
-    ```diff
-    const authProvider = {
-    -     getUserIdentity,
-    +     getIdentity,
-    -     useCheckError,
-    +     useOnError,
-    -     checkAuth,
-    +     check,
-    }
-    ```
+  ```diff
+  const authProvider = {
+  -     getUserIdentity,
+  +     getIdentity,
+  -     useCheckError,
+  +     useOnError,
+  -     checkAuth,
+  +     check,
+  }
+  ```
 
--   The `useAuthenticated` hook was changed to `useIsAuthenticated`.
+- The `useAuthenticated` hook was changed to `useIsAuthenticated`.
 
-    ```diff
-    - import { useAuthenticated } from "@refinedev/core";
-    + import { useIsAuthenticated } from "@refinedev/core";
-    ```
+  ```diff
+  - import { useAuthenticated } from "@refinedev/core";
+  + import { useIsAuthenticated } from "@refinedev/core";
+  ```
 
 ## Methods
 
@@ -86,10 +86,10 @@ const authProvider = {
 
 ```ts
 type AuthActionResponse = {
-    success: boolean;
-    redirectTo?: string;
-    error?: Error;
-    [key: string]: unknown;
+  success: boolean;
+  redirectTo?: string;
+  error?: Error;
+  [key: string]: unknown;
 };
 ```
 
@@ -114,10 +114,10 @@ const authProvider = {
 
 ```ts
 type AuthActionResponse = {
-    success: boolean;
-    redirectTo?: string;
-    error?: Error;
-    [key: string]: unknown;
+  success: boolean;
+  redirectTo?: string;
+  error?: Error;
+  [key: string]: unknown;
 };
 ```
 
@@ -187,10 +187,10 @@ const authProvider = {
 
 ```ts
 type AuthActionResponse = {
-    success: boolean;
-    redirectTo?: string;
-    error?: Error;
-    [key: string]: unknown;
+  success: boolean;
+  redirectTo?: string;
+  error?: Error;
+  [key: string]: unknown;
 };
 ```
 
@@ -227,10 +227,10 @@ const authProvider = {
 
 ```ts
 type AuthActionResponse = {
-    success: boolean;
-    redirectTo?: string;
-    error?: Error;
-    [key: string]: unknown;
+  success: boolean;
+  redirectTo?: string;
+  error?: Error;
+  [key: string]: unknown;
 };
 ```
 
@@ -269,10 +269,10 @@ const authProvider = {
 
 ```ts
 type CheckResponse = {
-    authenticated: boolean;
-    redirectTo?: string;
-    logout?: boolean;
-    error?: Error;
+  authenticated: boolean;
+  redirectTo?: string;
+  logout?: boolean;
+  error?: Error;
 };
 ```
 
@@ -303,9 +303,9 @@ const authProvider = {
 
 ```ts
 type OnErrorResponse = {
-    redirectTo?: string;
-    logout?: boolean;
-    error?: Error;
+  redirectTo?: string;
+  logout?: boolean;
+  error?: Error;
 };
 ```
 
@@ -384,21 +384,21 @@ Auth Provider v3:
 import { useAuthenticated } from "@pankod/refine-core";
 
 export const Authenticated: React.FC = ({ children }) => {
-    const { isSuccess, isLoading, isError } = useAuthenticated();
+  const { isSuccess, isLoading, isError } = useAuthenticated();
 
-    if (isLoading) {
-        return <div>loading...</div>;
-    }
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
 
-    if (isError) {
-        return null;
-    }
-
-    if (isSuccess) {
-        return <>{children}</>;
-    }
-
+  if (isError) {
     return null;
+  }
+
+  if (isSuccess) {
+    return <>{children}</>;
+  }
+
+  return null;
 };
 ```
 
@@ -408,21 +408,21 @@ Auth Provider v4:
 import { useIsAuthenticated } from "@refinedev/core";
 
 export const Authenticated: React.FC = ({ children }) => {
-    const { isLoading, data } = useIsAuthenticated();
+  const { isLoading, data } = useIsAuthenticated();
 
-    if (isLoading) {
-        return <div>loading...</div>;
-    }
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
 
-    if (data.error) {
-        return null;
-    }
-
-    if (data.authenticated) {
-        return <>{children}</>;
-    }
-
+  if (data.error) {
     return null;
+  }
+
+  if (data.authenticated) {
+    return <>{children}</>;
+  }
+
+  return null;
 };
 ```
 
@@ -460,7 +460,7 @@ Additionally, you need to add `v3LegacyAuthProviderCompatible: true` to your aut
 import { useLogin } from "@refinedev/core";
 
 const login = useLogin({
-    // highlight-next-line
-    v3LegacyAuthProviderCompatible: true,
+  // highlight-next-line
+  v3LegacyAuthProviderCompatible: true,
 });
 ```

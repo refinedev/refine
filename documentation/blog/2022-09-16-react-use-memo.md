@@ -8,26 +8,20 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-
 hide_table_of_contents: false
 ---
 
-
-
-
-
-
-
 ## Introduction
+
 This post is about how to use the `useMemo()` hook in React.
 
 `useMemo()` is a function that returns a memoized value of a passed in resource-intensive function. It is very useful in optimizing the performance of a React component by eliminating repeating heavy computations.
 
-
 In this post, we dive into the details of the **useMemo** hook with an extension of the example demonstrated in the previous post titled [Memoization using React memo](https://refine.dev/blog/react-memo-guide/).
 
 Steps we'll cover:
+
 - [Resource Intensive Functions](#resource-intensive-functions)
 - [Enter `useMemo()`](#enter-usememo)
 - [useMemo Dependencies](#usememo-dependencies)
 - [Conclusion](#conclusion)
-
 
 ### Project Content Overview
 
@@ -38,15 +32,16 @@ The example app is based on the idea of a list of posts on a blog. There are sev
 The discussion of this article is focused on optimizing performance by memoizing the value of resource-intensive functions, such as a sorting function. In React, we do this with the `useMemo()` hook.
 
 ## Resource Intensive Functions
+
 We're going to jump back to the `<Blog />` component for this example:
 
 ```tsx title="src/components/Blog.jsx"
-import React, { useEffect, useState } from 'react';
-import fetchUpdatedPosts from '../fetch/fetchUpdatedPosts';
-import allPosts from './../data/allPosts.json';
-import sortPosts from '../utils/sortPosts';
-import LatestPost from './LatestPost';
-import UserPostsIndex from './UserPostsIndex';
+import React, { useEffect, useState } from "react";
+import fetchUpdatedPosts from "../fetch/fetchUpdatedPosts";
+import allPosts from "./../data/allPosts.json";
+import sortPosts from "../utils/sortPosts";
+import LatestPost from "./LatestPost";
+import UserPostsIndex from "./UserPostsIndex";
 
 const Blog = ({ signedIn }) => {
   const [updatedPosts, setUpdatedPosts] = useState(allPosts);
@@ -57,30 +52,24 @@ const Blog = ({ signedIn }) => {
     setUpdatedPosts(posts);
   };
 
- const sortedPosts = sortPosts(updatedPosts);
+  const sortedPosts = sortPosts(updatedPosts);
 
-  useEffect(
-    () => {
-      const id = setInterval(
-        () => setLocalTime(new Date().toLocaleTimeString()),
-        1000
-      );
-      return () => clearInterval(id);
-    },
-    []
-  );
+  useEffect(() => {
+    const id = setInterval(() => setLocalTime(new Date().toLocaleTimeString()), 1000);
+    return () => clearInterval(id);
+  }, []);
 
-  console.log('Rendering Blog component');
+  console.log("Rendering Blog component");
 
   return (
     <div className="container">
       <h1>Memoization in React</h1>
       <div>
         <div>
-          { /* More JSX code here... */ }
+          {/* More JSX code here... */}
           <LatestPost signedIn={signedIn} post={sortedPosts[0]} />
         </div>
-        <UserPostsIndex signedIn={signedIn}/>
+        <UserPostsIndex signedIn={signedIn} />
       </div>
     </div>
   );
@@ -89,8 +78,7 @@ const Blog = ({ signedIn }) => {
 export default React.memo(Blog);
 ```
 
-
-We'd like to focus particularly on the `sortPosts()` utility function which can get expensive if passed a long array of posts. 
+We'd like to focus particularly on the `sortPosts()` utility function which can get expensive if passed a long array of posts.
 
 At the moment, we are only sorting 101 items returned from `fetchUpdatedPosts()`, but in an actual application, the number can be much higher and consume resources at scale. Thus it is an expensive function.
 
@@ -99,14 +87,13 @@ If we look inside the `useEffect()` hook, we are updating the locale time string
 Our `sortPosts()` logs `Sorting posts...` to the console and returns a sorted array from the passed in an array:
 
 ```tsx title="src/utils/sortPosts"
-const sortPosts = posts => {
-  console.log('Sorting posts...');
+const sortPosts = (posts) => {
+  console.log("Sorting posts...");
   return posts.sort((a, b) => b.id - a.id);
 };
 
 export default sortPosts;
 ```
-
 
 If we look at the console, we see that `Sorting posts...` is being logged at 1000ms intervals, i.e. with the tick of our clock:
 
@@ -118,10 +105,8 @@ If we look at the console, we see that `Sorting posts...` is being logged at 100
 
 This shows `sortPosts()` is called at every re-render of `<Blog />`. An expensive function, invoked every second for no obvious reason, is too much of an ask from the app. We don't want `sortPosts()` to be called if `updatedPosts` is not changed.
 
-
-
-
 ## Enter `useMemo()`
+
 `useMemo()` helps us memoize the value of `sortPosts()` when `updatedPosts` doesn't change. Let's use the memoized function:
 
 ```diff title="src/components/Blog.jsx"
@@ -131,7 +116,6 @@ This shows `sortPosts()` is called at every re-render of `<Blog />`. An expensiv
 ```
 
 Checking our console, we can see that `Sorting posts...` has been logged only once, indicating only one invocation of `sortPosts()`:
-
 
 <div  class="img-container" align-items="center" >
      <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-memo/usememo2.png"  alt="usememo2" />
@@ -148,11 +132,11 @@ This gives us a huge performance gain.
 </a>
 </div>
 
-
 ## useMemo Dependencies
+
 Notice the dependency of `useMemo()` as the second argument, `updatedPosts`. We are asking the hook to renew the memo when `updatedPosts` changes. Let's try to change the value of `updatedPosts`:
 
-In the `<Blog/>` component, we have a `Get Latest Post` button, which is used to fetch latest posts on demand. Every time `Get Latest Post` button is clicked, `updatedPosts` is updated with the invocation of `getLatestPosts()`. 
+In the `<Blog/>` component, we have a `Get Latest Post` button, which is used to fetch latest posts on demand. Every time `Get Latest Post` button is clicked, `updatedPosts` is updated with the invocation of `getLatestPosts()`.
 
 If the state of `updatedPosts` is changed, a re-render of `<Blog />` is triggered, which leads to a call to `sortPosts()` with the new value of `updatedPosts` passed in.
 
@@ -166,13 +150,12 @@ If we check our console while clicking the button, we can clearly see `Sorting p
 
 <br/>
 
+:::info
 
-:::info 
 It is important to notice that, if we remove the dependency from `useMemo()`, `sortPosts()` will not be invoked when `updatedPosts` change:
 
-
 ```tsx
-  const sortedPosts = useMemo(() => sortPosts(updatedPosts), []);
+const sortedPosts = useMemo(() => sortPosts(updatedPosts), []);
 ```
 
 There is no sorting going on when we need it:
@@ -182,6 +165,7 @@ There is no sorting going on when we need it:
 </div>
 
 <br/>
+
 :::
 
 <br/>
@@ -190,7 +174,7 @@ It is also important to know that **useMemo** returns a value, as opposed to a f
 
 ## Conclusion
 
-In this article, we looked into the use of `useMemo()` hook and found out it plays a crucial role in optimizing the performance of our app by memoizing an expensive utility function. We saw that it is important to specify the dependency of **useMemo**  so that the memo is renewed when the state of dependency changes.
+In this article, we looked into the use of `useMemo()` hook and found out it plays a crucial role in optimizing the performance of our app by memoizing an expensive utility function. We saw that it is important to specify the dependency of **useMemo** so that the memo is renewed when the state of dependency changes.
 
 In the next post, we will demonstrate the use of `useCallback()` hook.
 
@@ -201,8 +185,6 @@ In the next post, we will demonstrate the use of `useCallback()` hook.
 </a>
 </div>
 
-
 ## Example
 
 <CodeSandboxExample path="blog-react-memoization-memo" />
-

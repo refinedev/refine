@@ -258,7 +258,7 @@ We'll show usages of modes with editing a record examples.
 
 ### `pessimistic`
 
-The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly.  
+The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfully.  
 
 You can experience an example of this below using the edit page.
 
@@ -317,7 +317,7 @@ render(<App />);
 
 ### `optimistic`
 
-The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. If mutation returns with error, UI updates to show data prior to the mutation.
+The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is successful. If mutation returns with error, UI updates to show data prior to the mutation.
 
 ```tsx live previewOnly url=http://localhost:5173/posts previewHeight=600px
 setInitialRoutes(["/posts"]);
@@ -375,7 +375,7 @@ render(<App />);
 
 ### `undoable`
 
-The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. Waits for a customizable amount of timeout period before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
+The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is successful. Waits for a customizable amount of timeout period before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
 
 ```tsx live previewOnly url=http://localhost:5173/posts previewHeight=600px
 setInitialRoutes(["/posts"]);
@@ -460,7 +460,7 @@ mutate({
 });
 ```
 
-> Mutation mode passed to `<Refine>` will be overriden by the mutation mode passed to data or form hooks and components.
+> Mutation mode passed to `<Refine>` will be overridden by the mutation mode passed to data or form hooks and components.
 
 ### Supported data hooks
 

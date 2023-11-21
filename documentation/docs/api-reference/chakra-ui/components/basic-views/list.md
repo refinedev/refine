@@ -7,30 +7,26 @@ swizzle: true
 ```tsx live shared
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    Layout: RefineChakra.Layout,
-    Sider: () => null,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  Layout: RefineChakra.Layout,
+  Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
-            {children}
-        </ChakraUI.ChakraProvider>
-    );
+  return <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>{children}</ChakraUI.ChakraProvider>;
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
@@ -45,128 +41,108 @@ import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { List, DateField } from "@refinedev/chakra-ui";
-import {
-    TableContainer,
-    Table,
-    Thead,
-    Tr,
-    Th,
-    Tbody,
-    Td,
-} from "@chakra-ui/react";
+import { TableContainer, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-            },
-            {
-                id: "status",
-                header: "Status",
-                accessorKey: "status",
-            },
-            {
-                id: "createdAt",
-                header: "Created At",
-                accessorKey: "createdAt",
-                cell: function render({ getValue }) {
-                    return (
-                        <DateField value={getValue() as string} format="LLL" />
-                    );
-                },
-            },
-        ],
-        [],
-    );
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
+      },
+      {
+        id: "status",
+        header: "Status",
+        accessorKey: "status",
+      },
+      {
+        id: "createdAt",
+        header: "Created At",
+        accessorKey: "createdAt",
+        cell: function render({ getValue }) {
+          return <DateField value={getValue() as string} format="LLL" />;
+        },
+      },
+    ],
+    [],
+  );
 
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { setCurrent, pageCount, current },
-    } = useTable({
-        columns,
-    });
+  const {
+    getHeaderGroups,
+    getRowModel,
+    refineCore: { setCurrent, pageCount, current },
+  } = useTable({
+    columns,
+  });
 
-    return (
-        <List>
-            <TableContainer>
-                <Table variant="simple" whiteSpace="pre-line">
-                    <Thead>
-                        {getHeaderGroups().map((headerGroup) => (
-                            <Tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => {
-                                    return (
-                                        <Th key={header.id}>
-                                            {!header.isPlaceholder &&
-                                                flexRender(
-                                                    header.column.columnDef
-                                                        .header,
-                                                    header.getContext(),
-                                                )}
-                                        </Th>
-                                    );
-                                })}
-                            </Tr>
-                        ))}
-                    </Thead>
-                    <Tbody>
-                        {getRowModel().rows.map((row) => {
-                            return (
-                                <Tr key={row.id}>
-                                    {row.getVisibleCells().map((cell) => {
-                                        return (
-                                            <Td key={cell.id}>
-                                                {flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext(),
-                                                )}
-                                            </Td>
-                                        );
-                                    })}
-                                </Tr>
-                            );
-                        })}
-                    </Tbody>
-                </Table>
-            </TableContainer>
-        </List>
-    );
+  return (
+    <List>
+      <TableContainer>
+        <Table variant="simple" whiteSpace="pre-line">
+          <Thead>
+            {getHeaderGroups().map((headerGroup) => (
+              <Tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <Th key={header.id}>
+                      {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+                    </Th>
+                  );
+                })}
+              </Tr>
+            ))}
+          </Thead>
+          <Tbody>
+            {getRowModel().rows.map((row) => {
+              return (
+                <Tr key={row.id}>
+                  {row.getVisibleCells().map((cell) => {
+                    return <Td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</Td>;
+                  })}
+                </Tr>
+              );
+            })}
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={RefineChakra.notificationProvider()}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      notificationProvider={RefineChakra.notificationProvider()}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 :::info-tip Swizzle
+
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+
 :::
 
 ## Properties
@@ -185,32 +161,32 @@ import { List } from "@refinedev/chakra-ui";
 import { Heading } from "@chakra-ui/react";
 
 const PostList: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <List title={<Heading size="lg">Custom Title</Heading>}>
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    /* highlight-next-line */
+    <List title={<Heading size="lg">Custom Title</Heading>}>
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -229,39 +205,39 @@ import dataProvider from "@refinedev/simple-rest";
 import { List } from "@refinedev/chakra-ui";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <List resource="categories">
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    /* highlight-next-line */
+    <List resource="categories">
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom",
-                    },
-                ],
-                // highlight-end
-            }}
-            Layout={Layout}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom",
+          },
+        ],
+        // highlight-end
+      }}
+      Layout={Layout}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -285,90 +261,88 @@ import { List } from "@refinedev/chakra-ui";
 import { usePermissions } from "@refinedev/core";
 
 const PostList: React.FC = () => {
-    const { data: permissionsData } = usePermissions();
-    return (
-        <List
-            /* highlight-start */
-            canCreate={permissionsData?.includes("admin")}
-            createButtonProps={{ colorScheme: "red", variant: "solid" }}
-            /* highlight-end */
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  const { data: permissionsData } = usePermissions();
+  return (
+    <List
+      /* highlight-start */
+      canCreate={permissionsData?.includes("admin")}
+      createButtonProps={{ colorScheme: "red", variant: "solid" }}
+      /* highlight-end */
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    const simpleRestDataProvider = dataProvider(
-        "https://api.fake-rest.refine.dev",
-    );
+  const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
-    const customDataProvider = {
-        ...simpleRestDataProvider,
-        deleteOne: async ({ resource, id, variables }) => {
-            return {
-                data: {},
-            };
-        },
-    };
+  const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+      return {
+        data: {},
+      };
+    },
+  };
 
-    const authProvider = {
-        login: async () => {
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        },
-        register: async () => {
-            return {
-                success: true,
-            };
-        },
-        forgotPassword: async () => {
-            return {
-                success: true,
-            };
-        },
-        updatePassword: async () => {
-            return {
-                success: true,
-            };
-        },
-        logout: async () => {
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        },
-        check: async () => ({
-            authenticated: true,
-        }),
-        onError: async (error) => {
-            console.error(error);
-            return { error };
-        },
-        getPermissions: async () => ["admin"],
-        getIdentity: async () => null,
-    };
+  const authProvider = {
+    login: async () => {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    },
+    register: async () => {
+      return {
+        success: true,
+      };
+    },
+    forgotPassword: async () => {
+      return {
+        success: true,
+      };
+    },
+    updatePassword: async () => {
+      return {
+        success: true,
+      };
+    },
+    logout: async () => {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    },
+    check: async () => ({
+      authenticated: true,
+    }),
+    onError: async (error) => {
+      console.error(error);
+      return { error };
+    },
+    getPermissions: async () => ["admin"],
+    getIdentity: async () => null,
+  };
 
-    return (
-        <RefineHeadlessDemo
-            dataProvider={customDataProvider}
-            authProvider={authProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      dataProvider={customDataProvider}
+      authProvider={authProvider}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -377,7 +351,9 @@ render(
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/chakra-ui` package.
 
 :::tip
+
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+
 :::
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
@@ -390,43 +366,43 @@ import { List } from "@refinedev/chakra-ui";
 import { Box } from "@chakra-ui/react";
 
 const CustomBreadcrumb: React.FC = () => {
-    return (
-        <Box borderColor="blue" borderStyle="dashed" borderWidth="2px" p="2">
-            My Custom Breadcrumb
-        </Box>
-    );
+  return (
+    <Box borderColor="blue" borderStyle="dashed" borderWidth="2px" p="2">
+      My Custom Breadcrumb
+    </Box>
+  );
 };
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            breadcrumb={<CustomBreadcrumb />}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      breadcrumb={<CustomBreadcrumb />}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -445,40 +421,40 @@ import dataProvider from "@refinedev/simple-rest";
 import { List } from "@refinedev/chakra-ui";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            wrapperProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-                p: "2",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      wrapperProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+        p: "2",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -497,40 +473,40 @@ import dataProvider from "@refinedev/simple-rest";
 import { List } from "@refinedev/chakra-ui";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            headerProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-                p: "2",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+        p: "2",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -549,40 +525,40 @@ import dataProvider from "@refinedev/simple-rest";
 import { List } from "@refinedev/chakra-ui";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            contentProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-                padding: 2,
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      contentProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+        padding: 2,
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -610,42 +586,42 @@ import { List } from "@refinedev/chakra-ui";
 import { Button } from "@chakra-ui/react";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button colorScheme="red" variant="solid">
-                        Custom Button
-                    </Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button colorScheme="red" variant="solid">
+            Custom Button
+          </Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -661,47 +637,42 @@ import { List } from "@refinedev/chakra-ui";
 import { Button, CreateButton } from "@chakra-ui/react";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            headerButtons={({ createButtonProps }) => (
-                <>
-                    {createButtonProps && (
-                        <CreateButton
-                            {...createButtonProps}
-                            meta={{ foo: "bar" }}
-                        />
-                    )}
-                    <Button colorScheme="red" variant="solid">
-                        Custom Button
-                    </Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtons={({ createButtonProps }) => (
+        <>
+          {createButtonProps && <CreateButton {...createButtonProps} meta={{ foo: "bar" }} />}
+          <Button colorScheme="red" variant="solid">
+            Custom Button
+          </Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -719,45 +690,45 @@ import { List } from "@refinedev/chakra-ui";
 import { Button } from "@chakra-ui/react";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            headerButtonProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-                p: "2",
-            }}
-            // highlight-end
-            headerButtons={
-                <Button colorScheme="red" variant="solid">
-                    Custom Button
-                </Button>
-            }
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtonProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+        p: "2",
+      }}
+      // highlight-end
+      headerButtons={
+        <Button colorScheme="red" variant="solid">
+          Custom Button
+        </Button>
+      }
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 

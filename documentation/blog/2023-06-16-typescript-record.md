@@ -10,7 +10,7 @@ hide_table_of_contents: false
 
 
 
-The `Record<>` utility type in TypeScript is typically associated with a record or a collection of records returned from an API enpoint. It helps define a type with property names such as `id` and map the values to the type of the data.
+The `Record<>` utility type in TypeScript is typically associated with a record or a collection of records returned from an API endpoint. It helps define a type with property names such as `id` and map the values to the type of the data.
 
 
 ## Introduction
@@ -147,7 +147,7 @@ const activeUsers: Record<ActiveUserIds, TUser> = {
 console.log(activeUsers[ "3xamp1eUSERIdSTOR3DinAdb"].email); // example@example.com
 console.log(activeUsers["amongOther3xamp1eUSERIdsSTOR3DinAdb"].email);
 /*
-Property 'amonganother3xamp1eUSERIdSTOR3DinAdb' does not exist on type 'Record<activeUserIds, TUSer>'. Did you mean 'another3xamp1eUSERIdSTOR3DinAdb'?(2551)
+Property 'amonganother3xamp1eUSERIdSTOR3DinAdb' does not exist on type 'Record<activeUserIds, TUser>'. Did you mean 'another3xamp1eUSERIdSTOR3DinAdb'?(2551)
 */
 ```
 
@@ -175,11 +175,11 @@ const activeUsers: Record<ActiveUserIds, TUser> = {
 };
 
 /*
-Property 'another3xamp1eUSERIdSTOR3DinAdb' is missing in type '{ "3xamp1eUSERIdSTOR3DinAdb": { email: string; password: string; }; yetAnother3xamp1eUSERIdSTOR3DinAdb: { email: string; password: string; }; }' but required in type 'Record<activeUserIds, TUSer>'.(2741)
+Property 'another3xamp1eUSERIdSTOR3DinAdb' is missing in type '{ "3xamp1eUSERIdSTOR3DinAdb": { email: string; password: string; }; yetAnother3xamp1eUSERIdSTOR3DinAdb: { email: string; password: string; }; }' but required in type 'Record<activeUserIds, TUser>'.(2741)
 */
 ```
 
-This is not the case with the values though. For example, in the below code, the values include `TProjectManager` type and there is no such member in the map, and TypeScript acts as usual and does not comlain:
+This is not the case with the values though. For example, in the below code, the values include `TProjectManager` type and there is no such member in the map, and TypeScript acts as usual and does not complain:
 
 ```ts
 // No error with missing a type in values.

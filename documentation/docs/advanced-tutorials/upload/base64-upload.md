@@ -11,114 +11,113 @@ Now let's make a small example to see how its done. In this example, the file we
 
 ```tsx title="pages/users/create.tsx"
 import {
-    //highlight-start
-    file2Base64,
-    //highlight-end
+  //highlight-start
+  file2Base64,
+  //highlight-end
 } from "@refinedev/core";
 
 import {
-    Create,
-    useForm,
-    // highlight-next-line
-    getValueFromEvent,
+  Create,
+  useForm,
+  // highlight-next-line
+  getValueFromEvent,
 } from "@refinedev/antd";
 import { Form, Upload, Input } from "antd";
 
 export const UserCreate: React.FC = () => {
-    const { form, formProps, saveButtonProps } = useForm<IUser>();
+  const { form, formProps, saveButtonProps } = useForm<IUser>();
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form
-                {...formProps}
-                layout="vertical"
-                // highlight-start
-                onFinish={async (values) => {
-                    const base64Files = [];
-                    // @ts-ignore
-                    const { avatar } = values;
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form
+        {...formProps}
+        layout="vertical"
+        // highlight-start
+        onFinish={async (values) => {
+          const base64Files = [];
+          // @ts-ignore
+          const { avatar } = values;
 
-                    for (const file of avatar) {
-                        if (file.originFileObj) {
-                            const base64String = await file2Base64(file);
+          for (const file of avatar) {
+            if (file.originFileObj) {
+              const base64String = await file2Base64(file);
 
-                            base64Files.push({
-                                ...file,
-                                base64String,
-                            });
-                        } else {
-                            base64Files.push(file);
-                        }
-                    }
+              base64Files.push({
+                ...file,
+                base64String,
+              });
+            } else {
+              base64Files.push(file);
+            }
+          }
 
-                    return (
-                        formProps.onFinish &&
-                        formProps.onFinish({
-                            ...values,
-                            avatar: base64Files,
-                        })
-                    );
-                }}
-                // highlight-end
+          return (
+            formProps.onFinish &&
+            formProps.onFinish({
+              ...values,
+              avatar: base64Files,
+            })
+          );
+        }}
+        // highlight-end
+      >
+        <Form.Item
+          label="First Name"
+          name="firstName"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item label="Avatar">
+          <Form.Item
+            name="avatar"
+            valuePropName="fileList"
+            // highlight-start
+            getValueFromEvent={getValueFromEvent}
+            noStyle
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Upload.Dragger
+              listType="picture"
+              multiple
+              // highlight-start
+              beforeUpload={() => false}
             >
-                <Form.Item
-                    label="First Name"
-                    name="firstName"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Avatar">
-                    <Form.Item
-                        name="avatar"
-                        valuePropName="fileList"
-                        // highlight-start
-                        getValueFromEvent={getValueFromEvent}
-                        noStyle
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Upload.Dragger
-                            listType="picture"
-                            multiple
-                            // highlight-start
-                            beforeUpload={() => false}
-                        >
-                            <p className="ant-upload-text">
-                                Drag & drop a file in this area
-                            </p>
-                        </Upload.Dragger>
-                    </Form.Item>
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+              <p className="ant-upload-text">Drag & drop a file in this area</p>
+            </Upload.Dragger>
+          </Form.Item>
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 
 interface IUser {
-    id: number;
-    firstName: string;
-    avatar: [
-        {
-            uid: string;
-            name: string;
-            url: string;
-            status: "error" | "success" | "done" | "uploading" | "removed";
-        },
-    ];
+  id: number;
+  firstName: string;
+  avatar: [
+    {
+      uid: string;
+      name: string;
+      url: string;
+      status: "error" | "success" | "done" | "uploading" | "removed";
+    },
+  ];
 }
 ```
 
 You can change files to Base64 by using the `file2Base64` function.
 
 :::tip
+
 An edit form can be made by using the `<Edit>` component instead of `<Create>` without changing the rest of the code.
 
 :::

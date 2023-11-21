@@ -28,7 +28,7 @@ Steps we'll cover:
 - [Using Logical AND (\&\&) and OR (||) operators (Short Circuit Evaluation)](#using-logical-and--and-or--operators-short-circuit-evaluation)
 - [Using IIFEs (Immediately Invoked Function Expressions)](#using-iifes-immediately-invoked-function-expressions)
 - [Use cases of conditional rendering](#use-cases-of-conditional-rendering)
-  
+
 ## What is Conditional Rendering in React?
 
 When developing applications, you must consider the experience of your application's users. You may want to show or deliver certain functionalities to your users based on their interaction with your application. In other words, depending on the state of your application, you may want your users to have access to specific content or functionalities built into your app. All of these are made possible by conditional rendering.
@@ -52,7 +52,7 @@ To begin, create a new React application on your [codesandbox](https://codesandb
 Conditional rendering in React works similarly to the if-else statement in JavaScript, and each functional component returns a JSX value (which stands for JavaScript XML) that is rendered.
 The following example shows how to render JSX conditionally using the `if-else` syntax. You can accomplish this by using a variable or encapsulating the changing JSX in a wrapping function that is added to the return statement.
 
-*The code example is available on* [*codesandbox*](https://codesandbox.io/s/using-if-else-for-conditional-rendering-6506hl)*.* 
+*The code example is available on* [*codesandbox*](https://codesandbox.io/s/using-if-else-for-conditional-rendering-6506hl)*.*
 
 First, you'll create two components: a **HeaderComponent.js** file that contains the JSX that will be rendered when the user logs in, as shown below:
 
@@ -251,10 +251,10 @@ Consider the following example, which renders different content based on the cli
 import "./styles.css";
 
 export default function App() {
-  const isExistingCLient = false;
+  const isExistingClient = false;
   return (
     <div className="App">
-      {isExistingCLient ? (
+      {isExistingClient ? (
         <>
           <h1>Hello CodeSandbox</h1>
           <h2>Start editing to see some magic happen!</h2>
@@ -272,7 +272,7 @@ export default function App() {
 
 ## Using Logical AND (&&) and OR (||) operators (Short Circuit Evaluation)
 
-Short-circuiting is how JavaScript handles logical expression evaluation, but the logical && and || operators work slightly differently in React. When the left-hand expression returns **false**, the right-hand expression is evaluated and returns **true**. If the left-hand expression is false, the evaluation of the second expression will be returned. 
+Short-circuiting is how JavaScript handles logical expression evaluation, but the logical && and || operators work slightly differently in React. When the left-hand expression returns **false**, the right-hand expression is evaluated and returns **true**. If the left-hand expression is false, the evaluation of the second expression will be returned.
 
 For example, suppose you have a store application; when the store is open, it should return true and render a specific message to users; when the store is closed, it should return false and render nothing. Also, when the AND (&&) operator is true or open, the right-hand-side expression is evaluated or rendered; if it is not true, it is rendered null.
 

@@ -29,7 +29,7 @@ We then initialize a **refine** app, and integrate and configure **daisyUI**. Af
 
 We first build the dashboard page where we present stats for relevant KPIs in cards, charts and a table. We use the React-based [**Recharts**](https://recharts.org) library for plotting our data.
 
-In the later half of the post, we add CRUD pages for `products` and `categories` resources. We define the `resources` prop on `<Refine />` component, resource action paths, and their route defintions. CRUD actions covered for both resources are `list`, `create`, `show`, `update` and `delete`. We then make use of **refine** hooks such as `useTable()` and `useForm()` for entering, fetching and presenting data from the API. We build the UI with predefined daisyUI templates for buttons, menus, tabs, stats, etc.
+In the later half of the post, we add CRUD pages for `products` and `categories` resources. We define the `resources` prop on `<Refine />` component, resource action paths, and their route definitions. CRUD actions covered for both resources are `list`, `create`, `show`, `update` and `delete`. We then make use of **refine** hooks such as `useTable()` and `useForm()` for entering, fetching and presenting data from the API. We build the UI with predefined daisyUI templates for buttons, menus, tabs, stats, etc.
 
 Towards the end, we see how to customize the layout of a **refine** app. We replace the default leftside navigation to adopt a top navbar by leveraging `useMenu()`, `useNavigation()` and `useBreadcrumb()` hooks.
 
@@ -79,7 +79,7 @@ Feel free to check out the [daisyUI documentation](https://daisyui.com/docs/inst
 
 For this app, we are going to start with **refine**'s headless core, using `create refine-app` to scaffold our pages and generate the initial page code. We will then make necessary logic and UI adjustments and then apply daisyUI classes to our components.
 
-So, let's get started with initialzing the **refine** app first.
+So, let's get started with initializing the **refine** app first.
 
 We'll create a local repository by using the [`create refine-app`](https://refine.dev/docs/packages/documentation/cli/) CLI-based app scaffolder. Run the following `npm` command from the directory of your choice to interactively initialize the project.
 
@@ -175,7 +175,7 @@ With these changes, we'll start fresh towards building the dashboard page first 
 
 Notice, we are now using the **Fine Foods** REST API in the `dataProvider` prop of `<Refine />`.
 
-The **Fine Foods** API is an example of the REST API hosted by **refine** with a collection of end points. In this app, we will be querying the `/dailyRevenue`, `/dailyOrders`, `/newCustomers` and `/orders` endpoints for fetching data for our dashboard page. Later on, we'll also be accessing its `/products` and `/catgories` endpoints for our resource pages.
+The **Fine Foods** API is an example of the REST API hosted by **refine** with a collection of end points. In this app, we will be querying the `/dailyRevenue`, `/dailyOrders`, `/newCustomers` and `/orders` endpoints for fetching data for our dashboard page. Later on, we'll also be accessing its `/products` and `/categories` endpoints for our resource pages.
 
 ### daisyUI Installation
 
@@ -363,7 +363,7 @@ export interface IOrder {
     user: IUser;
     createdAt: string;
     status: IOrderStatus;
-    adress: IAddress;
+    address: IAddress;
     amount: number;
 }
 
@@ -882,7 +882,7 @@ With the tab components ready, we need to create three charts to be displayed in
 
 For plotting the data, `<ResponsiveAreaChart />` will use the `<AreaChart />` APIs of the **Recharts** library and `<ResponsiveBarChart />` will use the `<BarChart />` APIs. They both will use `<ResponsiveContainer />` for responsiveness.
 
-You can find all the detials in the **Rechats** [`<AreaChart />`](https://recharts.org/en-US/api/AreaChart), [`<BarChart />`](https://recharts.org/en-US/api/BarChart) and [`<ResponsiveContainer />`](https://recharts.org/en-US/api/ResponsiveContainer) documentations if you need to.
+You can find all the details in the **Rechats** [`<AreaChart />`](https://recharts.org/en-US/api/AreaChart), [`<BarChart />`](https://recharts.org/en-US/api/BarChart) and [`<ResponsiveContainer />`](https://recharts.org/en-US/api/ResponsiveContainer) documentations if you need to.
 
 We'll build the charts inside the `src/components/dashboard` directory.
 
@@ -1341,7 +1341,7 @@ export const RecentSales = () => {
             },
             {
                 id: "deliveryAddress",
-                accessorKey: "adress.text",
+                accessorKey: "address.text",
                 header: "Delivery Address",
             },
             {

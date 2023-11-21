@@ -56,11 +56,11 @@ If you set `display: flex`, it creates a flex layout. You'll notice that you don
   </div>
   <div class="child">
     <h3>Lorem ipsum</h3>
-    <p>Aestiae voluptatum expedita minima doloribus nemo ipsa vel. Ducimus nam, vel rerum quisquam illum maxime cumque.</p>
+    <p>Aestiae voluptatum expedita minima doloribus nemo ipsa vel. Ducimus name, vel rerum quisquam illum maxime cumque.</p>
   </div>
   <div class="child">
     <h3>Lorem ipsum</h3>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae molestiae voluptatum expedita minima doloribus nemo ipsa vel. Ducimus nam, </p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae molestiae voluptatum expedita minima doloribus nemo ipsa vel. Ducimus name, </p>
   </div>
 </div>
 ```
@@ -280,7 +280,7 @@ Use grid:
 ## Conclusion
 Grids can be your best friend when you need to create the outer layout of a webpage. With these, complex designs are not out-of reach and responsive too!
 
-To summarise, when you should use flexbox and when you should use the grid. Although you can design any layout with both flexbox and grid, you need to follow a path of least resistance.   
+To summarize, when you should use flexbox and when you should use the grid. Although you can design any layout with both flexbox and grid, you need to follow a path of least resistance.   
 
 <br/>
 <div>

@@ -16,25 +16,18 @@ import { Layout, AutoComplete, Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 export const Header: React.FC = () => {
-    return (
-        <Layout.Header
-            style={{
-                padding: "0px 24px",
-                backgroundColor: "#FFF",
-            }}
-        >
-            <AutoComplete
-                style={{ width: "100%", maxWidth: "550px" }}
-                filterOption={false}
-            >
-                <Input
-                    size="large"
-                    placeholder="Search posts or categories"
-                    suffix={<SearchOutlined />}
-                />
-            </AutoComplete>
-        </Layout.Header>
-    );
+  return (
+    <Layout.Header
+      style={{
+        padding: "0px 24px",
+        backgroundColor: "#FFF",
+      }}
+    >
+      <AutoComplete style={{ width: "100%", maxWidth: "550px" }} filterOption={false}>
+        <Input size="large" placeholder="Search posts or categories" suffix={<SearchOutlined />} />
+      </AutoComplete>
+    </Layout.Header>
+  );
 };
 ```
 
@@ -43,6 +36,7 @@ We created the `<Header>` component as we want it to appear. We have not done an
 <br />
 
 :::note
+
 Let's not forget to pass the `<Header>` component to the `<Layout>` component in `App.tsx` as below.
 
 ```tsx title="src/App.tsx"
@@ -58,16 +52,14 @@ import { Header } from "components";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            /* ... */
-        >
-            <Layout Header={Header}>
-                {/* ... */}
-            </Layout>
-        </Refine>
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(API_URL)}
+      /* ... */
+    >
+      <Layout Header={Header}>{/* ... */}</Layout>
+    </Refine>
+  );
 };
 
 export default App;
@@ -83,23 +75,23 @@ Before we start, let's create the interfaces of our [`<AutoComplete>`](https://a
 
 ```ts title="src/interfaces/index.d.ts"
 export interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 export interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 export interface IOptionGroup {
-    value: string;
-    label: string | React.ReactNode;
+  value: string;
+  label: string | React.ReactNode;
 }
 
 export interface IOptions {
-    label: string | React.ReactNode;
-    options: IOptionGroup[];
+  label: string | React.ReactNode;
+  options: IOptionGroup[];
 }
 ```
 
@@ -117,76 +109,70 @@ import { IOptions, IPost } from "interfaces";
 
 // To be able to customize the option title
 const renderTitle = (title: string) => {
-    return (
-        <Text strong style={{ fontSize: "16px" }}>
-            {title}
-        </Text>
-    );
+  return (
+    <Text strong style={{ fontSize: "16px" }}>
+      {title}
+    </Text>
+  );
 };
 
 // To be able to customize the option item
 const renderItem = (title: string, resource: string, id: number) => {
-    return {
-        value: title,
-        label: (
-            <Link to={`/${resource}/show/${id}`}>
-                <Text>{title}</Text>
-            </Link>
-        ),
-    };
+  return {
+    value: title,
+    label: (
+      <Link to={`/${resource}/show/${id}`}>
+        <Text>{title}</Text>
+      </Link>
+    ),
+  };
 };
 
 export const Header: React.FC = () => {
-    const [value, setValue] = useState<string>("");
-    const [options, setOptions] = useState<IOptions[]>([]);
+  const [value, setValue] = useState<string>("");
+  const [options, setOptions] = useState<IOptions[]>([]);
 
-    const { refetch: refetchPosts } = useList<IPost>({
-        resource: "posts",
-        filters: [{ field: "title", operator: "contains", value }],
-        queryOptions: {
-            enabled: false,
-            onSuccess: (data) => {
-                const postOptionGroup = data.data.map((item) =>
-                    renderItem(item.title, "posts", item.id),
-                );
-                if (postOptionGroup.length > 0) {
-                    setOptions([
-                        {
-                            label: renderTitle("Posts"),
-                            options: postOptionGroup,
-                        },
-                    ]);
-                }
+  const { refetch: refetchPosts } = useList<IPost>({
+    resource: "posts",
+    filters: [{ field: "title", operator: "contains", value }],
+    queryOptions: {
+      enabled: false,
+      onSuccess: (data) => {
+        const postOptionGroup = data.data.map((item) => renderItem(item.title, "posts", item.id));
+        if (postOptionGroup.length > 0) {
+          setOptions([
+            {
+              label: renderTitle("Posts"),
+              options: postOptionGroup,
             },
-        },
-    });
+          ]);
+        }
+      },
+    },
+  });
 
-    useEffect(() => {
-        setOptions([]);
-        refetchPosts();
-    }, [value]);
+  useEffect(() => {
+    setOptions([]);
+    refetchPosts();
+  }, [value]);
 
-    return (
-        <Layout.Header
-            style={{
-                padding: "0px 24px",
-                backgroundColor: "#FFF",
-            }}
-        >
-            <AutoComplete
-                style={{ width: "100%", maxWidth: "550px" }}
-                filterOption={false}
-                options={options}
-                onSearch={(value: string) => setValue(value)}
-            >
-                <Input
-                    size="large"
-                    placeholder="Search posts or categories"
-                    suffix={<SearchOutlined />}
-                />
-            </AutoComplete>
-        </Layout.Header>
-    );
+  return (
+    <Layout.Header
+      style={{
+        padding: "0px 24px",
+        backgroundColor: "#FFF",
+      }}
+    >
+      <AutoComplete
+        style={{ width: "100%", maxWidth: "550px" }}
+        filterOption={false}
+        options={options}
+        onSearch={(value: string) => setValue(value)}
+      >
+        <Input size="large" placeholder="Search posts or categories" suffix={<SearchOutlined />} />
+      </AutoComplete>
+    </Layout.Header>
+  );
 };
 ```
 
@@ -266,7 +252,9 @@ export const Header: React.FC = () => {
 ```
 
 :::tip
+
 By doing the same implementation on your other resources, you can search for more than one resource with a value.
+
 :::
 
 ## Example

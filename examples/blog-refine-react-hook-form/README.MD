@@ -6,7 +6,6 @@
     </a>
 </div>
 
-
 <br/>
 
 This [refine](https://github.com/refinedev/refine) project was generated with [superplate](https://github.com/refinedev/refine).
@@ -44,7 +43,6 @@ To learn more about **refine**, please check out the [Documentation](https://ref
 - **Material UI** [Docs](https://refine.dev/docs/tutorial/introduction/index/)
 - **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
 - **REST Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
-
 
 ## License
 

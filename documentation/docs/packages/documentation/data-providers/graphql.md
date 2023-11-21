@@ -48,11 +48,15 @@ npm i @refinedev/core @refinedev/antd @refinedev/strapi-graphql
 ```
 
 :::caution
+
 To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+
 :::
 
 :::info
+
 We used [strapi-graphql](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql) server for this guide. You can customize your data provider for your own GraphQL server.
+
 :::
 
 ## Usage
@@ -61,12 +65,7 @@ To activate the data provider in `@refinedev/strapi-graphql`, we have to pass th
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 // highlight-next-line
 import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
@@ -76,23 +75,25 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 const client = new GraphQLClient("API_URL");
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                // highlight-next-line
-                dataProvider={dataProvider(client)}
-                notificationProvider={notificationProvider}
-            >
-                {/* ... */}
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        // highlight-next-line
+        dataProvider={dataProvider(client)}
+        notificationProvider={notificationProvider}
+      >
+        {/* ... */}
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
 :::note
+
 With `GraphQLClient` you can do things like add headers for authentication. On the other hand, you can send a request with your query.
+
 :::
 
 ## Create Collections
@@ -103,13 +104,13 @@ You can see the fields of the collections we created as below.
 
 ```json title="post"
 {
-    "id": 1,
-    "title": "Eius ea autem.",
-    "content": "Explicabo nihil delectus. Nam aliquid sunt numquam...",
-    "category": {
-        "id": 24,
-        "title": "Placeat fuga"
-    }
+  "id": 1,
+  "title": "Eius ea autem.",
+  "content": "Explicabo nihil delectus. Name aliquid sunt numquam...",
+  "category": {
+    "id": 24,
+    "title": "Placeat fuga"
+  }
 }
 ```
 
@@ -137,145 +138,123 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 // src/pages/posts/list.tsx
 
 import {
-    List,
-    EditButton,
-    ShowButton,
-    DeleteButton,
-    useTable,
-    useSelect,
-    getDefaultSortOrder,
-    FilterDropdown,
+  List,
+  EditButton,
+  ShowButton,
+  DeleteButton,
+  useTable,
+  useSelect,
+  getDefaultSortOrder,
+  FilterDropdown,
 } from "@refinedev/antd";
 import { Table, Space, Select } from "antd";
 
 const PostList = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        sorters: {
-            initial: [
-                {
-                    field: "id",
-                    order: "asc",
-                },
-            ],
+  const { tableProps, sorter } = useTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "asc",
         },
-        // highlight-start
-        meta: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["title"],
-                },
-            ],
+      ],
+    },
+    // highlight-start
+    meta: {
+      fields: [
+        "id",
+        "title",
+        {
+          category: ["title"],
         },
-        // highlight-end
-    });
+      ],
+    },
+    // highlight-end
+  });
 
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-        // highlight-start
-        meta: {
-            fields: ["id", "title"],
-        },
-        // highlight-end
-    });
+  const { selectProps } = useSelect<ICategory>({
+    resource: "categories",
+    // highlight-start
+    meta: {
+      fields: ["id", "title"],
+    },
+    // highlight-end
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    sorter={{ multiple: 2 }}
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                />
-                <Table.Column
-                    key="title"
-                    dataIndex="title"
-                    title="Title"
-                    sorter={{ multiple: 1 }}
-                />
-                <Table.Column<IPost>
-                    dataIndex="category"
-                    title="Category"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                    render={(_, record) => {
-                        if (record.category) {
-                            return record.category.title;
-                        }
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          sorter={{ multiple: 2 }}
+          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+        />
+        <Table.Column key="title" dataIndex="title" title="Title" sorter={{ multiple: 1 }} />
+        <Table.Column<IPost>
+          dataIndex="category"
+          title="Category"
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Category" {...selectProps} />
+            </FilterDropdown>
+          )}
+          render={(_, record) => {
+            if (record.category) {
+              return record.category.title;
+            }
 
-                        return "-";
-                    }}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+            return "-";
+          }}
+        />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+              <DeleteButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={gqlDataProvider}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="posts">
-                                <Route index element={<PostList />} />
-                            </Route>
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={gqlDataProvider}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="posts">
+                <Route index element={<PostList />} />
+              </Route>
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -330,139 +309,137 @@ import { Select, Form, Input } from "antd";
 import { HttpError } from "@refinedev/core";
 
 interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    category: ICategory;
+  id: string;
+  title: string;
+  content: string;
+  category: ICategory;
 }
 
 interface ICategory {
-    id: string;
-    title: string;
+  id: string;
+  title: string;
 }
 
 const PostEdit: React.FC = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<
-        IPost,
-        HttpError,
-        IPost
-    >({
-        // highlight-start
-        meta: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["id", "title"],
-                },
-                "content",
-            ],
+  const { formProps, saveButtonProps, queryResult } = useForm<IPost, HttpError, IPost>({
+    // highlight-start
+    meta: {
+      fields: [
+        "id",
+        "title",
+        {
+          category: ["id", "title"],
         },
-        // highlight-end
-    });
+        "content",
+      ],
+    },
+    // highlight-end
+  });
 
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.category.id,
-        // highlight-start
-        meta: {
-            fields: ["id", "title"],
-        },
-        // highlight-end
-    });
+  const postData = queryResult?.data?.data;
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+    defaultValue: postData?.category.id,
+    // highlight-start
+    meta: {
+      fields: ["id", "title"],
+    },
+    // highlight-end
+  });
 
-    const { TextArea } = Input;
+  const { TextArea } = Input;
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form
-                {...formProps}
-                layout="vertical"
-                onFinish={(values) =>
-                    formProps.onFinish?.({
-                        ...values,
-                        category: values.category.id,
-                    } as any)
-                }
-            >
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <TextArea />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form
+        {...formProps}
+        layout="vertical"
+        onFinish={(values) =>
+          formProps.onFinish?.({
+            ...values,
+            category: values.category.id,
+          } as any)
+        }
+      >
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name={["category", "id"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <TextArea />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={gqlDataProvider}
-                    resources={[
-                        {
-                            name: "posts",
-                            edit: "/posts/edit/:id",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="posts">
-                                <Route path="edit/:id" element={<PostEdit />} />
-                            </Route>
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={gqlDataProvider}
+          resources={[
+            {
+              name: "posts",
+              edit: "/posts/edit/:id",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="posts">
+                <Route path="edit/:id" element={<PostEdit />} />
+              </Route>
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
 ```
 
 :::info
+
 The create page is largely the same as the edit page, there is no need to pass `meta` to [`useForm`](/docs/api-reference/core/hooks/useForm) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `meta`.
+
 :::
 
 </TabItem>
@@ -511,81 +488,81 @@ import { Select, Form, Input, Typography } from "antd";
 import { useShow } from "@refinedev/core";
 
 const PostShow: React.FC = () => {
-    const { Title, Text } = Typography;
+  const { Title, Text } = Typography;
 
-    const { queryResult } = useShow<IPost>({
-        resource: "posts",
-        // highlight-start
-        meta: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["title"],
-                },
-                "content",
-            ],
+  const { queryResult } = useShow<IPost>({
+    resource: "posts",
+    // highlight-start
+    meta: {
+      fields: [
+        "id",
+        "title",
+        {
+          category: ["title"],
         },
-        // highlight-end
-    });
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+        "content",
+      ],
+    },
+    // highlight-end
+  });
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        <Show
-            isLoading={isLoading}
-            // highlight-next-line
-            headerProps={{
-                extra: <RefreshButton onClick={() => queryResult.refetch()} />,
-            }}
-        >
-            <Title level={5}>Id</Title>
-            <Text>{record?.id}</Text>
+  return (
+    <Show
+      isLoading={isLoading}
+      // highlight-next-line
+      headerProps={{
+        extra: <RefreshButton onClick={() => queryResult.refetch()} />,
+      }}
+    >
+      <Title level={5}>Id</Title>
+      <Text>{record?.id}</Text>
 
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
+      <Title level={5}>Title</Title>
+      <Text>{record?.title}</Text>
 
-            <Title level={5}>Category</Title>
-            <Text>{record?.category.title}</Text>
+      <Title level={5}>Category</Title>
+      <Text>{record?.category.title}</Text>
 
-            <Title level={5}>Content</Title>
-            <Text value={record?.content} />
-        </Show>
-    );
+      <Title level={5}>Content</Title>
+      <Text value={record?.content} />
+    </Show>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={gqlDataProvider}
-                    resources={[
-                        {
-                            name: "posts",
-                            show: "/posts/show/:id",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="posts">
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={gqlDataProvider}
+          resources={[
+            {
+              name: "posts",
+              show: "/posts/show/:id",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="posts">
+                <Route path="show/:id" element={<PostShow />} />
+              </Route>
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);

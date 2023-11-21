@@ -47,10 +47,10 @@ const routerProvider: {
 
 **refine** includes many out-of-the-box router providers to use in your projects like
 
--   [React Router V6][react-router-v6]
--   [Next.js Router][nextjs-router]
--   [Remix Router][remix-router]
--   [React Router V5][react-router-v5] (Only available for `legacyRouterProvider`, see below.)
+- [React Router V6][react-router-v6]
+- [Next.js Router][nextjs-router]
+- [Remix Router][remix-router]
+- [React Router V5][react-router-v5] (Only available for `legacyRouterProvider`, see below.)
 
 :::
 
@@ -82,17 +82,17 @@ import routerProvider from "@refinedev/react-router-v6";
 import { BrowserRouter } from "react-router-dom";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                // highlight-next-line
-                routerProvider={routerProvider}
-                /* ... */
-            >
-                {/* ... */}
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        // highlight-next-line
+        routerProvider={routerProvider}
+        /* ... */
+      >
+        {/* ... */}
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -104,7 +104,7 @@ import { Refine } from "@refinedev/core";
 import routerProvider from "@pankod/refine-react-router";
 
 const App: React.FC = () => {
-    return <Refine legacyRouterProvider={routerProvider} />;
+  return <Refine legacyRouterProvider={routerProvider} />;
 };
 ```
 
@@ -116,7 +116,7 @@ import { Refine } from "@refinedev/core";
 import routerProvider from "@pankod/refine-react-location";
 
 const App: React.FC = () => {
-    return <Refine legacyRouterProvider={routerProvider} />;
+  return <Refine legacyRouterProvider={routerProvider} />;
 };
 ```
 
@@ -129,11 +129,11 @@ import routerProvider from "@refinedev/nextjs-router";
 import { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    return (
-        <Refine routerProvider={routerProvider}>
-            <Component {...pageProps} />
-        </Refine>
-    );
+  return (
+    <Refine routerProvider={routerProvider}>
+      <Component {...pageProps} />
+    </Refine>
+  );
 }
 ```
 
@@ -142,40 +142,33 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 
 ```tsx title="app/root.tsx"
 import type { MetaFunction } from "@remix-run/node";
-import {
-    Links,
-    LiveReload,
-    Meta,
-    Outlet,
-    Scripts,
-    ScrollRestoration,
-} from "@remix-run/react";
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/remix-router";
 
 export const meta: MetaFunction = () => ({
-    charset: "utf-8",
-    title: "New Remix + Refine App",
-    viewport: "width=device-width,initial-scale=1",
+  charset: "utf-8",
+  title: "New Remix + Refine App",
+  viewport: "width=device-width,initial-scale=1",
 });
 
 export default function App() {
-    return (
-        <html lang="en">
-            <head>
-                <Meta />
-                <Links />
-            </head>
-            <body>
-                <Refine routerProvider={routerProvider}>
-                    <Outlet />
-                </Refine>
-                <ScrollRestoration />
-                <Scripts />
-                <LiveReload />
-            </body>
-        </html>
-    );
+  return (
+    <html lang="en">
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <Refine routerProvider={routerProvider}>
+          <Outlet />
+        </Refine>
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+      </body>
+    </html>
+  );
 }
 ```
 
@@ -220,9 +213,9 @@ The `Link` component is used to create links to other pages. It accepts a `to` p
 
 ### Source Code for the Existing Router Providers
 
--   [React Router V6](https://github.com/refinedev/refine/blob/master/packages/react-router-v6/src/bindings.tsx)
--   [Next.js Router](https://github.com/refinedev/refine/blob/master/packages/nextjs-router/src/pages/bindings.tsx)
--   [Remix Router](https://github.com/refinedev/refine/blob/master/packages/remix/src/bindings.tsx)
+- [React Router V6](https://github.com/refinedev/refine/blob/master/packages/react-router-v6/src/bindings.tsx)
+- [Next.js Router](https://github.com/refinedev/refine/blob/master/packages/nextjs-router/src/pages/bindings.tsx)
+- [Remix Router](https://github.com/refinedev/refine/blob/master/packages/remix/src/bindings.tsx)
 
 ## Legacy Router Provider
 

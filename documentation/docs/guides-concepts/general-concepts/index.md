@@ -747,9 +747,11 @@ refine CLI allows you to interact with your **refine** project and perform certa
 `@refinedev/inferencer` is a package that **scaffolds** code **on the fly** for your application based on your **API responses**.
 
 :::caution
+
 Inferencer **scaffolds** some basic boilerplate code to be used as a **starting point** to save some time.
 
 It's not **guaranteed** to work in all cases, and it's not meant to be used on **production**.
+
 :::
 
 > See the [Inferencer](/docs/packages/documentation/inferencer/) page for more information.

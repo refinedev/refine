@@ -4,7 +4,7 @@ title: 1. Build your first refine app
 tutorial:
     order: 0
     prev: false
-    next: tutorial/introduction/prequisite
+    next: tutorial/introduction/prerequisite
 ---
 
 ## About this Tutorial

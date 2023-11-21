@@ -14,11 +14,12 @@ import PropResource from "@site/src/partials/prop-resource";
 `useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
 
 :::info
+
 If you're looking for a complete table library, Refine supports two table libraries out of the box.
 
--   [React Table](https://react-table.tanstack.com/) (for TanStack Table users) - [Documentation](/docs/packages/documentation/react-table) - [Example](/examples/table/react-table/basic.md)
--   [Ant Design Table](https://ant.design/components/table/#header) (for Ant Design users) - [Documentation](/docs/api-reference/antd/hooks/table/useTable) - [Example](/examples/table/antd/useTable.md)
--   [Material UI Table](https://mui.com/x/react-data-grid/) (for Material UI users) - [Documentation](/docs/api-reference/mui/hooks/useDataGrid) - [Example](/examples/table/mui/useDataGrid.md)
+- [React Table](https://react-table.tanstack.com/) (for TanStack Table users) - [Documentation](/docs/packages/documentation/react-table) - [Example](/examples/table/react-table/basic.md)
+- [Ant Design Table](https://ant.design/components/table/#header) (for Ant Design users) - [Documentation](/docs/api-reference/antd/hooks/table/useTable) - [Example](/examples/table/antd/useTable.md)
+- [Material UI Table](https://mui.com/x/react-data-grid/) (for Material UI users) - [Documentation](/docs/api-reference/mui/hooks/useDataGrid) - [Example](/examples/table/mui/useDataGrid.md)
 
 :::
 
@@ -63,7 +64,9 @@ It also syncs the filtering state with the URL if you enable the [`syncWithLocat
 `setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the second parameter. You can change the default behavior with the [`filters.defaultBehavior`](#filtersdefaultbehavior) prop.
 
 :::info
+
 If you are using `merge` behavior and want to remove one of the filters, you should set the `value` to `undefined` or `null`. For `or` filters, you should set the `value` to an empty array `[]` to remove the filter.
+
 :::
 
 <FilteringLivePreview/>
@@ -71,7 +74,9 @@ If you are using `merge` behavior and want to remove one of the filters, you sho
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
@@ -96,7 +101,7 @@ method={{
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -111,7 +116,7 @@ If there is more than one `dataProvider`, you should use the `dataProviderName` 
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -124,9 +129,9 @@ Sets the initial value of the page index.
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    pagination: {
-        current: 2,
-    },
+  pagination: {
+    current: 2,
+  },
 });
 ```
 
@@ -139,9 +144,9 @@ Sets the initial value of the page size.
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    pagination: {
-        pageSize: 20,
-    },
+  pagination: {
+    pageSize: 20,
+  },
 });
 ```
 
@@ -151,16 +156,16 @@ useTable({
 
 It can be `"off"`, `"server"` or `"client"`.
 
--   **"off":** Pagination is disabled. All records will be fetched.
--   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
--   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+- **"off":** Pagination is disabled. All records will be fetched.
+- **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
+- **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
 
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    pagination: {
-        mode: "client",
-    },
+  pagination: {
+    mode: "client",
+  },
 });
 ```
 
@@ -170,15 +175,15 @@ useTable({
 
 It can be `"off"`, or `"server"`.
 
--   **"off":** `sorters` do not get sent to the server. You can use the `sorters` value to sort the records on the client side.
--   **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
+- **"off":** `sorters` do not get sent to the server. You can use the `sorters` value to sort the records on the client side.
+- **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
 
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    sorters: {
-        mode: "server",
-    },
+  sorters: {
+    mode: "server",
+  },
 });
 ```
 
@@ -189,14 +194,14 @@ Sets the initial value of the sorter. The `initial` is not permanent. It will be
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    sorters: {
-        initial: [
-            {
-                field: "name",
-                order: "asc",
-            },
-        ],
-    },
+  sorters: {
+    initial: [
+      {
+        field: "name",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
@@ -209,14 +214,14 @@ Sets the permanent value of the sorter. The `permanent` is permanent and unchang
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    sorters: {
-        permanent: [
-            {
-                field: "name",
-                order: "asc",
-            },
-        ],
-    },
+  sorters: {
+    permanent: [
+      {
+        field: "name",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
@@ -228,15 +233,15 @@ useTable({
 
 It can be `"off"` or `"server"`.
 
--   **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
--   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+- **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+- **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
 
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    filters: {
-        mode: "off",
-    },
+  filters: {
+    mode: "off",
+  },
 });
 ```
 
@@ -247,15 +252,15 @@ Sets the initial value of the filter. The `initial` is not permanent. It will be
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    filters: {
-        initial: [
-            {
-                field: "name",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  filters: {
+    initial: [
+      {
+        field: "name",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
@@ -268,15 +273,15 @@ Sets the permanent value of the filter. The `permanent` is permanent and unchang
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    filters: {
-        permanent: [
-            {
-                field: "name",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  filters: {
+    permanent: [
+      {
+        field: "name",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
@@ -288,18 +293,18 @@ useTable({
 
 The filtering behavior can be set to either `"merge"` or `"replace"`.
 
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed, and only the new filter will be applied to the table.
+- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed, and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    filters: {
-        defaultBehavior: "replace",
-    },
+  filters: {
+    defaultBehavior: "replace",
+  },
 });
 ```
 
@@ -314,7 +319,7 @@ Also, you can set this value globally on [`<Refine>`][refine swl] component.
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    syncWithLocation: true,
+  syncWithLocation: true,
 });
 ```
 
@@ -325,9 +330,9 @@ useTable({
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    queryOptions: {
-        retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -335,46 +340,46 @@ useTable({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  getList: async ({
+    resource,
+    pagination,
+    sorters,
+    filters,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    getList: async ({
-        resource,
-        pagination,
-        sorters,
-        filters,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data, headers } = await httpClient.get(`${url}`, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data, headers } = await httpClient.get(`${url}`, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -383,7 +388,9 @@ const myDataProvider = {
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
@@ -391,20 +398,22 @@ After data is fetched successfully, `useTable` can call `open` function from [`N
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
@@ -412,20 +421,22 @@ After data fetching is failed, `useTable` will call `open` function from [`Notif
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
 ### `liveMode`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
@@ -433,7 +444,7 @@ Determines whether to update data automatically ("auto") or not ("manual") if a 
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
@@ -442,7 +453,9 @@ useTable({
 ### `onLiveEvent`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 The callback function is executed when new events from a subscription have arrived.
@@ -450,16 +463,18 @@ The callback function is executed when new events from a subscription have arriv
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
 ### `liveParams`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
@@ -474,27 +489,29 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 ```tsx
 import { useTable } from "@refinedev/core";
 const { overtime } = useTable({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
 {
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
 }
 ```
 
 ### ~~`initialCurrent`~~
 
 :::caution Deprecated
+
 Use `pagination.current` instead.
+
 :::
 
 > Default: `1`
@@ -504,14 +521,16 @@ Sets the initial value of the page index.
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
+  initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
 });
 ```
 
 ### ~~`initialPageSize`~~
 
 :::caution Deprecated
+
 Use `pagination.pageSize` instead.
+
 :::
 
 > Default: `10`
@@ -521,14 +540,16 @@ Sets the initial value of the page size.
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
+  initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
 });
 ```
 
 ### ~~`hasPagination`~~
 
 :::caution Deprecated
+
 Use `pagination.mode` instead.
+
 :::
 
 > Default: `true`
@@ -538,14 +559,16 @@ Determines whether to use server-side pagination or not.
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    hasPagination: false,
+  hasPagination: false,
 });
 ```
 
 ### ~~`initialSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.initial` instead.
+
 :::
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
@@ -555,19 +578,21 @@ Sets the initial value of the sorter. The `initialSorter` is not permanent. It w
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    initialSorter: [
-        {
-            field: "name",
-            order: "asc",
-        },
-    ],
+  initialSorter: [
+    {
+      field: "name",
+      order: "asc",
+    },
+  ],
 });
 ```
 
 ### ~~`permanentSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.permanent` instead.
+
 :::
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
@@ -575,12 +600,12 @@ Sets the permanent value of the sorter. The `permanentSorter` is permanent and u
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    permanentSorter: [
-        {
-            field: "name",
-            order: "asc",
-        },
-    ],
+  permanentSorter: [
+    {
+      field: "name",
+      order: "asc",
+    },
+  ],
 });
 ```
 
@@ -589,7 +614,9 @@ useTable({
 ### ~~`initialFilter`~~
 
 :::caution Deprecated
+
 Use `filters.initial` instead.
+
 :::
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
@@ -597,13 +624,13 @@ Sets the initial value of the filter. The `initialFilter` is not permanent. It w
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    initialFilter: [
-        {
-            field: "name",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+  initialFilter: [
+    {
+      field: "name",
+      operator: "contains",
+      value: "Foo",
+    },
+  ],
 });
 ```
 
@@ -612,7 +639,9 @@ useTable({
 ### ~~`permanentFilter`~~
 
 :::caution Deprecated
+
 Use `filters.permanent` instead.
+
 :::
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
@@ -620,13 +649,13 @@ Sets the permanent value of the filter. The `permanentFilter` is permanent and u
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    permanentFilter: [
-        {
-            field: "name",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+  permanentFilter: [
+    {
+      field: "name",
+      operator: "contains",
+      value: "Foo",
+    },
+  ],
 });
 ```
 
@@ -635,23 +664,25 @@ useTable({
 ### ~~`defaultSetFilterBehavior`~~
 
 :::caution Deprecated
+
 Use `filters.defaultBehavior` instead.
+
 :::
 
 > Default: `merge`
 
 The filtering behavior can be set to either `"merge"` or `"replace"`.
 
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed, and only the new filter will be applied to the table.
+- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed, and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 import { useTable } from "@refinedev/core";
 useTable({
-    defaultSetFilterBehavior: "replace",
+  defaultSetFilterBehavior: "replace",
 });
 ```
 
@@ -735,7 +766,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ### ~~`sorter`~~
 
 :::caution Deprecated
+
 Use `sorters` instead.
+
 :::
 
 Current [sorters state][crudsorting].
@@ -743,7 +776,9 @@ Current [sorters state][crudsorting].
 ### ~~`setSorter`~~
 
 :::caution Deprecated
+
 Use `setSorters` instead.
+
 :::
 
 A function to set current [sorters state][crudsorting].
@@ -767,9 +802,9 @@ First, you need to set `filters.mode: "off"`
 ```tsx
 import { useTable } from "@refinedev/core";
 const { tableQueryResult, filters, setFilters } = useTable({
-    filters: {
-        mode: "off",
-    },
+  filters: {
+    mode: "off",
+  },
 });
 ```
 
@@ -779,42 +814,40 @@ Then, you can use the `filters` state to filter your data.
 // ...
 
 const List = () => {
-    const { tableQueryResult, filters } = useTable();
+  const { tableQueryResult, filters } = useTable();
 
-    // ...
+  // ...
 
-    const filteredData = useMemo(() => {
-        if (filters.length === 0) {
-            return tableQueryResult.data;
+  const filteredData = useMemo(() => {
+    if (filters.length === 0) {
+      return tableQueryResult.data;
+    }
+
+    // Filters can be a LogicalFilter or a ConditionalFilter. ConditionalFilter not have field property. So we need to filter them.
+    // We use flatMap for better type support.
+    const logicalFilters = filters.flatMap((item) => ("field" in item ? item : []));
+
+    return tableProps.dataSource.filter((item) => {
+      return logicalFilters.some((filter) => {
+        if (filter.operator === "eq") {
+          return item[filter.field] === filter.value;
         }
-
-        // Filters can be a LogicalFilter or a ConditionalFilter. ConditionalFilter not have field property. So we need to filter them.
-        // We use flatMap for better type support.
-        const logicalFilters = filters.flatMap((item) =>
-            "field" in item ? item : [],
-        );
-
-        return tableProps.dataSource.filter((item) => {
-            return logicalFilters.some((filter) => {
-                if (filter.operator === "eq") {
-                    return item[filter.field] === filter.value;
-                }
-            });
-        });
-    }, [tableQueryResult.data, filters]);
+      });
+    });
+  }, [tableQueryResult.data, filters]);
 };
 
 return (
-    <div>
-        {/* ...  */}
-        <table>
-            <tbody>
-                {filteredData.map((item) => (
-                    <tr key={item.id}>{/* ...  */}</tr>
-                ))}
-            </tbody>
-        </table>
-    </div>
+  <div>
+    {/* ...  */}
+    <table>
+      <tbody>
+        {filteredData.map((item) => (
+          <tr key={item.id}>{/* ...  */}</tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
 );
 ```
 
@@ -825,9 +858,9 @@ First, you need to set `sorters.mode: "off"`
 ```tsx
 import { useTable } from "@refinedev/core";
 const { tableQueryResult, sorters, setSorters } = useTable({
-    sorters: {
-        mode: "off",
-    },
+  sorters: {
+    mode: "off",
+  },
 });
 ```
 
@@ -837,38 +870,38 @@ Then, you can use the `sorters` state to sort your data.
 // ...
 import { useTable } from "@refinedev/core";
 const List = () => {
-    const { tableQueryResult, sorters } = useTable();
+  const { tableQueryResult, sorters } = useTable();
 
-    // ...
+  // ...
 
-    const sortedData = useMemo(() => {
-        if (sorters.length === 0) {
-            return tableQueryResult.data;
-        }
+  const sortedData = useMemo(() => {
+    if (sorters.length === 0) {
+      return tableQueryResult.data;
+    }
 
-        return tableQueryResult.data.sort((a, b) => {
-            const sorter = sorters[0];
+    return tableQueryResult.data.sort((a, b) => {
+      const sorter = sorters[0];
 
-            if (sorter.order === "asc") {
-                return a[sorter.field] > b[sorter.field] ? 1 : -1;
-            } else {
-                return a[sorter.field] < b[sorter.field] ? 1 : -1;
-            }
-        });
-    }, [tableQueryResult.data, sorters]);
+      if (sorter.order === "asc") {
+        return a[sorter.field] > b[sorter.field] ? 1 : -1;
+      } else {
+        return a[sorter.field] < b[sorter.field] ? 1 : -1;
+      }
+    });
+  }, [tableQueryResult.data, sorters]);
 
-    return (
-        <div>
-            {/* ...  */}
-            <table>
-                <tbody>
-                    {sortedData.map((item) => (
-                        <tr key={item.id}>{/* ...  */}</tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+  return (
+    <div>
+      {/* ...  */}
+      <table>
+        <tbody>
+          {sortedData.map((item) => (
+            <tr key={item.id}>{/* ...  */}</tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 ```
 
@@ -882,7 +915,7 @@ errorNotification-default='"There was an error creating resource (status code: `
 
 ### Type Parameters
 
-| Property         | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property         | Description                                                                                                                                                         | Type                       | Default                    |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData     | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError           | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

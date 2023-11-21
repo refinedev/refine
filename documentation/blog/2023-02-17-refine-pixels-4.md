@@ -401,7 +401,7 @@ With `liveProvider` activated, under the hood, `useList()` banks on **refine**'s
 
 The actual subscription is done by the `liveProvider.subscribe()` method.
 
-The `subscribe()` method is called from inside the `useResourceSubscription()` hook in order to subsribe to the `pixels` channel.
+The `subscribe()` method is called from inside the `useResourceSubscription()` hook in order to subscribe to the `pixels` channel.
 
 If you want to dive into the details, please feel free to do so in the [`liveProvider` docs here](https://refine.dev/docs/api-reference/core/providers/live-provider/).
 

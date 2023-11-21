@@ -52,7 +52,7 @@ Bash and Zsh are similar tools with a wide range of similar features and capabil
  2. Tab completion: If you press the tab key while writing a command, bash automatically uses command line completion to match built-in command options, program names, filenames, and variable names.
  3. Portability: If you're running a bash script or command that you want to conform very closely to the POSIX 1003.2 standard, you can invoke bash with the `--posix` option or stating `set -o posix`.
  4. Command history: Using the `history` command in bash will allow you to view, edit, and rerun up to 500+ commands that you've run previously in the shell.
- 5. Batch and concurrent execution of commands: In bash, you can run multiple commands one after the other using the following syntax `command1; command2`. You can also run two commands concurrently using the `&` character. The syntax is as follows: `commmand1 & command2`.
+ 5. Batch and concurrent execution of commands: In bash, you can run multiple commands one after the other using the following syntax `command1; command2`. You can also run two commands concurrently using the `&` character. The syntax is as follows: `command1 & command2`.
  
  ### Features of Zsh
  

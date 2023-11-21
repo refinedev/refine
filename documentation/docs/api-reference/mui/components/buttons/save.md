@@ -7,7 +7,9 @@ swizzle: true
 `<SaveButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Usage
@@ -21,53 +23,53 @@ import { Edit } from "@refinedev/mui";
 import { Box, TextField } from "@mui/material";
 
 const PostEdit: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<ICategory>();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ICategory>();
 
-    return (
-        <Edit
-            isLoading={formLoading}
-            // highlight-next-line
-            saveButtonProps={{ onClick: handleSubmit(onFinish) }}
-        >
-            <Box component="form">
-                <TextField
-                    {...register("title", { required: true })}
-                    error={!!errors?.title}
-                    helperText={errors?.title?.message}
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="title"
-                    label="Title"
-                    name="title"
-                    defaultValue={" "}
-                />
-            </Box>
-        </Edit>
-    );
+  return (
+    <Edit
+      isLoading={formLoading}
+      // highlight-next-line
+      saveButtonProps={{ onClick: handleSubmit(onFinish) }}
+    >
+      <Box component="form">
+        <TextField
+          {...register("title", { required: true })}
+          error={!!errors?.title}
+          helperText={errors?.title?.message}
+          margin="normal"
+          required
+          fullWidth
+          id="title"
+          label="Title"
+          name="title"
+          defaultValue={" "}
+        />
+      </Box>
+    </Edit>
+  );
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -86,26 +88,26 @@ const { useRouterContext } = RefineCore;
 import { SaveButton } from "@refinedev/mui";
 
 const MySaveComponent = () => {
-    return (
-        <SaveButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <SaveButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MySaveComponent,
-            },
-        ]}
-        DashboardPage={MySaveComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MySaveComponent,
+      },
+    ]}
+    DashboardPage={MySaveComponent}
+  />,
 );
 ```
 
@@ -116,5 +118,7 @@ render(
 <PropsTable module="@refinedev/mui/SaveButton" />
 
 :::tip External Props
+
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
+
 :::

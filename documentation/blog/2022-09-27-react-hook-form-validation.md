@@ -18,16 +18,16 @@ In this guide, we’ll introduce [React Hook Form](https://www.react-hook-form.c
 
 Steps we'll cover:
 
--   [What is React Hook Form?](#what-is-react-hook-form)
--   [What is refine?](#what-is-refine)
--   [Project setup](#project-setup)
-    -   [Integrating React Hook Forms](#integrating-react-hook-forms)
--   [Validating forms with React Hook Forms](#validating-forms-with-react-hook-forms)
--   [Schema Validation](#schema-validation)
--   [Handling errors](#handling-errors)
--   [How to conditionally render input fields](#how-to-conditionally-render-input-fields)
--   [Form submission](#form-submission)
--   [Conclusion](#conclusion)
+- [What is React Hook Form?](#what-is-react-hook-form)
+- [What is refine?](#what-is-refine)
+- [Project setup](#project-setup)
+  - [Integrating React Hook Forms](#integrating-react-hook-forms)
+- [Validating forms with React Hook Forms](#validating-forms-with-react-hook-forms)
+- [Schema Validation](#schema-validation)
+- [Handling errors](#handling-errors)
+- [How to conditionally render input fields](#how-to-conditionally-render-input-fields)
+- [Form submission](#form-submission)
+- [Conclusion](#conclusion)
 
 ## Prerequisite
 
@@ -35,9 +35,9 @@ We'll be using refine to set up an example project for this article, and since r
 
 You'll also need the following:
 
--   The LTS version of [Node.js](https://nodejs.org/en) installed on your machine
--   Fundamental knowledge of [React](https://react.dev/) and [**refine**](https://refine.dev/)
--   Basic understanding of [Material UI](https://mui.com/)
+- The LTS version of [Node.js](https://nodejs.org/en) installed on your machine
+- Fundamental knowledge of [React](https://react.dev/) and [**refine**](https://refine.dev/)
+- Basic understanding of [Material UI](https://mui.com/)
 
 ## What is React Hook Form?
 
@@ -61,11 +61,11 @@ The package is super light, it has a minified size of 24.6kb and a minified + gz
 
 There are a lot of benefits to using **refine** in your applications, to name a few:
 
--   It is headless, meaning you can either use it as is or pair it up with third-party UI libraries.
--   Easy learning curve
--   Customization
--   Backend agnostic, you can connect with any backend technologies
--   Authentication, state management, data fetching routing, and more are prioritized.
+- It is headless, meaning you can either use it as is or pair it up with third-party UI libraries.
+- Easy learning curve
+- Customization
+- Backend agnostic, you can connect with any backend technologies
+- Authentication, state management, data fetching routing, and more are prioritized.
 
 Visit [**refine**'s documentation](https://refine.dev/docs/) to learn more about the framework.
 
@@ -133,74 +133,37 @@ import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
 
 const Create: React.FC = () => {
-    return (
-        <form style={{ display: "flex", flexDirection: "column" }}>
-            <TextField
-                fullWidth
-                sx={{ maxWidth: 600 }}
-                label="First Name"
-                margin="dense"
-            />
-            <TextField
-                fullWidth
-                sx={{ maxWidth: 600 }}
-                label="Last Name"
-                margin="dense"
-            />
-            <TextField
-                fullWidth
-                sx={{ maxWidth: 600 }}
-                label="Address"
-                margin="dense"
-            />
-            <TextField
-                fullWidth
-                sx={{ maxWidth: 600 }}
-                label="Number"
-                margin="dense"
-                type="number"
-            />
-            <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }}>
-                <InputLabel id="type-label">Work</InputLabel>
-                <Select
-                    sx={{ maxWidth: 600 }}
-                    margin="dense"
-                    type="select"
-                    labelId="type-label"
-                    label="Work"
-                >
-                    <MenuItem value="employed">Employed</MenuItem>
-                    <MenuItem value="unemployed">Unemployed</MenuItem>
-                </Select>
-            </FormControl>
-            <TextField
-                fullWidth
-                sx={{ maxWidth: 600 }}
-                label="Company"
-                margin="dense"
-            />
-            <TextField
-                fullWidth
-                sx={{ maxWidth: 600 }}
-                label="Role"
-                margin="dense"
-            />
-            <Button
-                type="submit"
-                variant="contained"
-                fullWidth
-                sx={{
-                    maxWidth: "600px",
-                    padding: "10px",
-                    backgroundColor: "#67BE23",
-                    color: "white",
-                    marginTop: "5px",
-                }}
-            >
-                Submit
-            </Button>
-        </form>
-    );
+  return (
+    <form style={{ display: "flex", flexDirection: "column" }}>
+      <TextField fullWidth sx={{ maxWidth: 600 }} label="First Name" margin="dense" />
+      <TextField fullWidth sx={{ maxWidth: 600 }} label="Last Name" margin="dense" />
+      <TextField fullWidth sx={{ maxWidth: 600 }} label="Address" margin="dense" />
+      <TextField fullWidth sx={{ maxWidth: 600 }} label="Number" margin="dense" type="number" />
+      <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }}>
+        <InputLabel id="type-label">Work</InputLabel>
+        <Select sx={{ maxWidth: 600 }} margin="dense" type="select" labelId="type-label" label="Work">
+          <MenuItem value="employed">Employed</MenuItem>
+          <MenuItem value="unemployed">Unemployed</MenuItem>
+        </Select>
+      </FormControl>
+      <TextField fullWidth sx={{ maxWidth: 600 }} label="Company" margin="dense" />
+      <TextField fullWidth sx={{ maxWidth: 600 }} label="Role" margin="dense" />
+      <Button
+        type="submit"
+        variant="contained"
+        fullWidth
+        sx={{
+          maxWidth: "600px",
+          padding: "10px",
+          backgroundColor: "#67BE23",
+          color: "white",
+          marginTop: "5px",
+        }}
+      >
+        Submit
+      </Button>
+    </form>
+  );
 };
 
 export default Create;
@@ -221,18 +184,18 @@ To do so, open the `App.tsx` file and import the `create.tsx` file, then add it 
 <p>
 
 ```tsx title="App.tsx"
-import { Refine } from '@refinedev/core'
-import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
+import { Refine } from "@refinedev/core";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { notificationProvider, RefineSnackbarProvider, ThemedLayoutV2 } from '@refinedev/mui'
+import { notificationProvider, RefineSnackbarProvider, ThemedLayoutV2 } from "@refinedev/mui";
 
-import CssBaseline from '@mui/material/CssBaseline'
-import GlobalStyles from '@mui/material/GlobalStyles'
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from '@refinedev/react-router-v6'
-import dataProvider from '@refinedev/simple-rest'
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
-import { ColorModeContextProvider } from './contexts/color-mode'
-import Create from './pages/create'
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
+import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { ColorModeContextProvider } from "./contexts/color-mode";
+import Create from "./pages/create";
 
 function App() {
   return (
@@ -240,16 +203,16 @@ function App() {
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <CssBaseline />
-          <GlobalStyles styles={{ html: { WebkitFontSmoothing: 'auto' } }} />
+          <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
           <RefineSnackbarProvider>
             <Refine
-              dataProvider={dataProvider('https://api.fake-rest.refine.dev')}
+              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
               notificationProvider={notificationProvider}
               // highlight-start
               resources={[
                 {
-                  name: 'posts',
-                  list: '/',
+                  name: "posts",
+                  list: "/",
                 },
               ]}
               // highlight-end
@@ -257,7 +220,8 @@ function App() {
               options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
-              }}>
+              }}
+            >
               <Routes>
                 {/* highlight-start */}
                 <Route
@@ -265,7 +229,8 @@ function App() {
                     <ThemedLayoutV2>
                       <Outlet />
                     </ThemedLayoutV2>
-                  }>
+                  }
+                >
                   <Route index element={<Create />} />
                 </Route>
                 {/* highlight-end */}
@@ -278,10 +243,10 @@ function App() {
         </ColorModeContextProvider>
       </RefineKbarProvider>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
 ```
 
 </p>
@@ -305,25 +270,25 @@ The library provides a set of useful components and hooks, such as the controlle
 
 The library performs most of these functionalities using the methods exposed by the [`useForm`](/docs/packages/documentation/react-hook-form/useForm/) hook. Here are some of the available methods:
 
--   `register`: This method allows you to register an input for validation
+- `register`: This method allows you to register an input for validation
 
--   `handleSubmit`: This function receives form data if validation is successful.
+- `handleSubmit`: This function receives form data if validation is successful.
 
--   `formState`: This object contains information about the form's state.
+- `formState`: This object contains information about the form's state.
 
--   `control`: This object contains methods for registering components into React Hook Form
+- `control`: This object contains methods for registering components into React Hook Form
 
 Here's a basic usage of the useForm hook:
 
 ```tsx
 const {
-    control,
-    handleSubmit,
-    watch,
-    formState: { errors },
+  control,
+  handleSubmit,
+  watch,
+  formState: { errors },
 } = useForm({
-    mode: "onChange",
-    defaultValues,
+  mode: "onChange",
+  defaultValues,
 });
 ```
 
@@ -333,29 +298,29 @@ The component takes care of the registration process of components that don't ex
 
 The component accepts three major properties:
 
--   `name`: This prop accepts a unique string value of the input's name.
+- `name`: This prop accepts a unique string value of the input's name.
 
--   `control`: This prop accepts the control object from the `useForm` hook.
+- `control`: This prop accepts the control object from the `useForm` hook.
 
--   `render`: This prop accepts a function that renders a component that will be controlled by React Hook Form.
+- `render`: This prop accepts a function that renders a component that will be controlled by React Hook Form.
 
 Here's a basic usage of the controller component:
 
 ```tsx
 <Controller
-    control={control}
-    name="firstname"
-    render={({ field }) => (
-        <TextField
-            {...field}
-            fullWidth
-            sx={{ maxWidth: 600 }}
-            label="First Name"
-            margin="dense"
-            error={!!errors.firstname}
-            helperText={errors.firstname && `${errors.firstname.message}`}
-        />
-    )}
+  control={control}
+  name="firstname"
+  render={({ field }) => (
+    <TextField
+      {...field}
+      fullWidth
+      sx={{ maxWidth: 600 }}
+      label="First Name"
+      margin="dense"
+      error={!!errors.firstname}
+      helperText={errors.firstname && `${errors.firstname.message}`}
+    />
+  )}
 />
 ```
 
@@ -386,123 +351,73 @@ import Button from "@mui/material/Button";
 import { Controller } from "react-hook-form";
 
 const Create: React.FC = () => {
-    return (
-        <form style={{ display: "flex", flexDirection: "column" }}>
-            <Controller
-                control={control}
-                name="firstname"
-                render={({ field }) => (
-                    <TextField
-                        {...field}
-                        fullWidth
-                        sx={{ maxWidth: 600 }}
-                        label="First Name"
-                        margin="dense"
-                    />
-                )}
-            />
-            <Controller
-                control={control}
-                name="lastname"
-                render={({ field }) => (
-                    <TextField
-                        {...field}
-                        fullWidth
-                        sx={{ maxWidth: 600 }}
-                        label="Last Name"
-                        margin="dense"
-                    />
-                )}
-            />
-            <Controller
-                control={control}
-                name="address"
-                render={({ field }) => (
-                    <TextField
-                        {...field}
-                        fullWidth
-                        sx={{ maxWidth: 600 }}
-                        label="Address"
-                        margin="dense"
-                    />
-                )}
-            />
-            <Controller
-                control={control}
-                name="number"
-                render={({ field }) => (
-                    <TextField
-                        {...field}
-                        fullWidth
-                        sx={{ maxWidth: 600 }}
-                        label="Number"
-                        margin="dense"
-                        type="number"
-                    />
-                )}
-            />
-            <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }}>
-                <InputLabel id="type-label">Work</InputLabel>
-                <Controller
-                    control={control}
-                    name="work"
-                    render={({ field }) => (
-                        <Select
-                            sx={{ maxWidth: 600 }}
-                            margin="dense"
-                            {...field}
-                            type="select"
-                            labelId="type-label"
-                            label="Work"
-                        >
-                            <MenuItem value="employed">Employed</MenuItem>
-                            <MenuItem value="unemployed">Unemployed</MenuItem>
-                        </Select>
-                    )}
-                />
-            </FormControl>
-            <Controller
-                control={control}
-                name="company"
-                render={({ field }) => (
-                    <TextField
-                        {...field}
-                        fullWidth
-                        sx={{ maxWidth: 600 }}
-                        label="Company"
-                        margin="dense"
-                    />
-                )}
-            />
-            <Controller
-                control={control}
-                name="role"
-                render={({ field }) => (
-                    <TextField
-                        {...field}
-                        fullWidth
-                        sx={{ maxWidth: 600 }}
-                        label="Role"
-                        margin="dense"
-                    />
-                )}
-            />
-            <Button
-                type="submit"
-                variant="contained"
-                fullWidth
-                sx={{
-                    maxWidth: "600px",
-                    padding: "10px",
-                    backgroundColor: "#67BE23",
-                    color: "white",
-                    marginTop: "5px",
-                }}
-            >
-                Submit
-            </Button>
-        </form>
-    );
+  return (
+    <form style={{ display: "flex", flexDirection: "column" }}>
+      <Controller
+        control={control}
+        name="firstname"
+        render={({ field }) => (
+          <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="First Name" margin="dense" />
+        )}
+      />
+      <Controller
+        control={control}
+        name="lastname"
+        render={({ field }) => (
+          <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Last Name" margin="dense" />
+        )}
+      />
+      <Controller
+        control={control}
+        name="address"
+        render={({ field }) => <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Address" margin="dense" />}
+      />
+      <Controller
+        control={control}
+        name="number"
+        render={({ field }) => (
+          <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Number" margin="dense" type="number" />
+        )}
+      />
+      <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }}>
+        <InputLabel id="type-label">Work</InputLabel>
+        <Controller
+          control={control}
+          name="work"
+          render={({ field }) => (
+            <Select sx={{ maxWidth: 600 }} margin="dense" {...field} type="select" labelId="type-label" label="Work">
+              <MenuItem value="employed">Employed</MenuItem>
+              <MenuItem value="unemployed">Unemployed</MenuItem>
+            </Select>
+          )}
+        />
+      </FormControl>
+      <Controller
+        control={control}
+        name="company"
+        render={({ field }) => <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Company" margin="dense" />}
+      />
+      <Controller
+        control={control}
+        name="role"
+        render={({ field }) => <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Role" margin="dense" />}
+      />
+      <Button
+        type="submit"
+        variant="contained"
+        fullWidth
+        sx={{
+          maxWidth: "600px",
+          padding: "10px",
+          backgroundColor: "#67BE23",
+          color: "white",
+          marginTop: "5px",
+        }}
+      >
+        Submit
+      </Button>
+    </form>
+  );
 };
 
 export default Create;
@@ -524,46 +439,46 @@ import { useForm } from "@refinedev/react-hook-form";
 import { HttpError } from "@refinedev/core";
 
 interface IFormValue {
-    firstname: string;
-    lastname: string;
-    address: string;
-    number: number;
-    work: string;
-    company: string;
-    role: string;
+  firstname: string;
+  lastname: string;
+  address: string;
+  number: number;
+  work: string;
+  company: string;
+  role: string;
 }
 const defaultValues = {
-    firstname: "",
-    lastname: "",
-    address: "",
-    number: 0,
-    work: "unemployed",
-    company: "",
-    role: "",
+  firstname: "",
+  lastname: "",
+  address: "",
+  number: 0,
+  work: "unemployed",
+  company: "",
+  role: "",
 };
 
 const Create: React.FC = (props) => {
-    const {
-        control,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm<IFormValue, HttpError, IFormValue>({
-        mode: "onChange",
-        defaultValues,
-    });
+  const {
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<IFormValue, HttpError, IFormValue>({
+    mode: "onChange",
+    defaultValues,
+  });
 
-    const handleSubmission = (data: IFormValue) => console.log(data);
+  const handleSubmission = (data: IFormValue) => console.log(data);
 
-    return (
-        <form
-            style={{ display: "flex", flexDirection: "column" }}
-            // highlight-next-line
-            onSubmit={handleSubmit(handleSubmission)}
-        >
-            {/* ... */}
-        </form>
-    );
+  return (
+    <form
+      style={{ display: "flex", flexDirection: "column" }}
+      // highlight-next-line
+      onSubmit={handleSubmit(handleSubmission)}
+    >
+      {/* ... */}
+    </form>
+  );
 };
 
 export default Create;
@@ -573,8 +488,6 @@ The `defaultValue` object properties will serve as the default value for our for
 
 That’s it, our form has been successfully integrated with React Hook Form. Next, we’ll look at how we can validate the form.
 
-
-
 ## Validating forms with React Hook Forms
 
 Now that we’ve integrated our form with React Hook Form, we can easily validate inputs by adding specific restrictions to our TextFields, like the minimum and maximum characters allowed for each TextFields.
@@ -583,19 +496,11 @@ We can do this by adding a `minLength` property to the `<Controller />` componen
 
 ```tsx
 <Controller
-    control={control}
-    name="firstname"
-    // highlight-next-line
-    rules={{ required: true, minLength: 5 }}
-    render={({ field }) => (
-        <TextField
-            {...field}
-            fullWidth
-            sx={{ maxWidth: 600 }}
-            label="First Name"
-            margin="dense"
-        />
-    )}
+  control={control}
+  name="firstname"
+  // highlight-next-line
+  rules={{ required: true, minLength: 5 }}
+  render={({ field }) => <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="First Name" margin="dense" />}
 />
 ```
 
@@ -605,27 +510,15 @@ To display the error, we’d have to render a message based on the state of the 
 
 ```tsx
 <Controller
-    control={control}
-    name="firstname"
-    // highlight-next-line
-    rules={{ required: true, minLength: 5 }}
-    render={({ field }) => (
-        <TextField
-            {...field}
-            fullWidth
-            sx={{ maxWidth: 600 }}
-            label="First Name"
-            margin="dense"
-        />
-    )}
+  control={control}
+  name="firstname"
+  // highlight-next-line
+  rules={{ required: true, minLength: 5 }}
+  render={({ field }) => <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="First Name" margin="dense" />}
 />;
 // highlight-start
 {
-    errors.firstname && (
-        <span style={{ color: "red" }}>
-            You need to enter at least 5 characters!
-        </span>
-    );
+  errors.firstname && <span style={{ color: "red" }}>You need to enter at least 5 characters!</span>;
 }
 // highlight-end
 ```
@@ -662,35 +555,30 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = Yup.object().shape({
-    firstname: Yup.string()
-        .label("First Name")
-        .trim()
-        .required()
-        .min(3)
-        .max(64),
-    lastname: Yup.string().label("Last Name").trim().required().min(3).max(64),
-    address: Yup.string().label("Address").trim().required().min(3),
-    number: Yup.number().label("Number").required(),
-    work: Yup.string().label("Work").oneOf(["unemployed", "employed"]),
-    company: Yup.string().when("work", ([work], schema) => {
-        if (work === "employed") {
-            return schema.required().min(3).max(64);
-        }
-        return schema.notRequired();
-    }),
-    role: Yup.string().when("work", ([work], schema) => {
-        if (work === "employed") {
-            return schema.required().min(3).max(64);
-        }
-        return schema.notRequired();
-    }),
+  firstname: Yup.string().label("First Name").trim().required().min(3).max(64),
+  lastname: Yup.string().label("Last Name").trim().required().min(3).max(64),
+  address: Yup.string().label("Address").trim().required().min(3),
+  number: Yup.number().label("Number").required(),
+  work: Yup.string().label("Work").oneOf(["unemployed", "employed"]),
+  company: Yup.string().when("work", ([work], schema) => {
+    if (work === "employed") {
+      return schema.required().min(3).max(64);
+    }
+    return schema.notRequired();
+  }),
+  role: Yup.string().when("work", ([work], schema) => {
+    if (work === "employed") {
+      return schema.required().min(3).max(64);
+    }
+    return schema.notRequired();
+  }),
 });
 //highlight-end
 
 const Create: React.FC = (props) => {
-    return {
-        /* ... */
-    };
+  return {
+    /* ... */
+  };
 };
 ```
 
@@ -699,7 +587,9 @@ You'll notice that the schema for the select (work) component is different from 
 The method checks if the selected value is Employed, while the then method handles the validation. We'll take this up a notch in the coming section by rendering both fields based on the value selected.
 
 :::note
+
 The `oneOff` method is for telling yup that one of the string values in the provided array will be selected.
+
 :::
 
 Finally, add a resolver key to the useForm object and pass the yupResolver function and schema to it as a value:
@@ -713,10 +603,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 // ...
 
 const { control } = useForm<IFormValue, HttpError, IFormValue>({
-    mode: "onChange",
-    defaultValues,
-    // highlight-next-line
-    resolver: yupResolver(schema),
+  mode: "onChange",
+  defaultValues,
+  // highlight-next-line
+  resolver: yupResolver(schema),
 });
 ```
 
@@ -735,13 +625,13 @@ Handling errors with Material UI's TextField component is fairly straightforward
 
 ```tsx
 const {
-    control,
-    formState: { errors },
+  control,
+  formState: { errors },
 } = useForm<IFormValue>({
-    mode: "onChange",
-    defaultValues,
-    //highlight-next-line
-    resolver: yupResolver(schema),
+  mode: "onChange",
+  defaultValues,
+  //highlight-next-line
+  resolver: yupResolver(schema),
 });
 ```
 
@@ -749,19 +639,19 @@ Then, pass the error object and message to the `error` and `helperText` props li
 
 ```tsx
 <Controller
-    control={control}
-    name="firstname"
-    render={({ field }) => (
-        <TextField
-            fullWidth
-            {...field}
-            sx={{ maxWidth: 600 }}
-            label="First Name"
-            margin="dense"
-            error={!!errors.firstname}
-            helperText={errors.firstname && `${errors.firstname.message}`}
-        />
-    )}
+  control={control}
+  name="firstname"
+  render={({ field }) => (
+    <TextField
+      fullWidth
+      {...field}
+      sx={{ maxWidth: 600 }}
+      label="First Name"
+      margin="dense"
+      error={!!errors.firstname}
+      helperText={errors.firstname && `${errors.firstname.message}`}
+    />
+  )}
 />
 ```
 
@@ -804,47 +694,47 @@ Next, wrap the Company and Role fields with the following code:
 
 ```tsx
 {
-    work === "employed" && (
-        <>
-            <Controller
-                control={control}
-                name="company"
-                render={({ field }) => (
-                    <TextField
-                        {...field}
-                        fullWidth
-                        sx={{ maxWidth: 600 }}
-                        label="Company"
-                        margin="dense"
-                        error={!!errors.company}
-                        helperText={
-                            errors.company && `${errors.company.message}`
-                        }
-                    />
-                )}
-            />
-            <Controller
-                control={control}
-                name="role"
-                render={({ field }) => (
-                    <TextField
-                        {...field}
-                        fullWidth
-                        sx={{ maxWidth: 600 }}
-                        label="Role"
-                        margin="dense"
-                        error={!!errors.role}
-                        helperText={errors.role && `${errors.role.message}`}
-                    />
-                )}
-            />
-        </>
-    );
+  work === "employed" && (
+    <>
+      <Controller
+        control={control}
+        name="company"
+        render={({ field }) => (
+          <TextField
+            {...field}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            label="Company"
+            margin="dense"
+            error={!!errors.company}
+            helperText={errors.company && `${errors.company.message}`}
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name="role"
+        render={({ field }) => (
+          <TextField
+            {...field}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            label="Role"
+            margin="dense"
+            error={!!errors.role}
+            helperText={errors.role && `${errors.role.message}`}
+          />
+        )}
+      />
+    </>
+  );
 }
 ```
 
 :::note
+
 Make sure to add a fragment tag, or else TypeScript will throw an error.
+
 :::
 
 You can find latest version of the code below:
@@ -868,212 +758,160 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { HttpError } from "@refinedev/core";
 
 interface IFormValue {
-    firstname: string;
-    lastname: string;
-    address: string;
-    number: number;
-    work: string;
-    company: string | undefined;
-    role: string | undefined;
+  firstname: string;
+  lastname: string;
+  address: string;
+  number: number;
+  work: string;
+  company: string | undefined;
+  role: string | undefined;
 }
 const defaultValues = {
-    firstname: "",
-    lastname: "",
-    address: "",
-    number: 0,
-    work: "unemployed",
-    company: "",
-    role: "",
+  firstname: "",
+  lastname: "",
+  address: "",
+  number: 0,
+  work: "unemployed",
+  company: "",
+  role: "",
 };
 
 const schema = Yup.object().shape({
-    firstname: Yup.string()
-        .label("First Name")
-        .trim()
-        .required()
-        .min(3)
-        .max(64),
-    lastname: Yup.string().label("Last Name").trim().required().min(3).max(64),
-    address: Yup.string().label("Address").trim().required().min(3),
-    number: Yup.number().label("Number").required(),
-    work: Yup.string()
-        .label("Work")
-        .required()
-        .oneOf(["unemployed", "employed"]),
-    company: Yup.string().when(
-        "work",
-        ([work]: string | string[], schema: Yup.AnySchema) => {
-            if (work === "employed") {
-                return schema.required().min(3).max(64);
-            }
-            return schema.notRequired();
-        },
-    ),
-    role: Yup.string().when(
-        "work",
-        ([work]: string | string[], schema: Yup.AnySchema) => {
-            if (work === "employed") {
-                return schema.required().min(3).max(64);
-            }
-            return schema.notRequired();
-        },
-    ),
+  firstname: Yup.string().label("First Name").trim().required().min(3).max(64),
+  lastname: Yup.string().label("Last Name").trim().required().min(3).max(64),
+  address: Yup.string().label("Address").trim().required().min(3),
+  number: Yup.number().label("Number").required(),
+  work: Yup.string().label("Work").required().oneOf(["unemployed", "employed"]),
+  company: Yup.string().when("work", ([work]: string | string[], schema: Yup.AnySchema) => {
+    if (work === "employed") {
+      return schema.required().min(3).max(64);
+    }
+    return schema.notRequired();
+  }),
+  role: Yup.string().when("work", ([work]: string | string[], schema: Yup.AnySchema) => {
+    if (work === "employed") {
+      return schema.required().min(3).max(64);
+    }
+    return schema.notRequired();
+  }),
 });
 
 const Create: React.FC = () => {
-    const {
-        control,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm<IFormValue, HttpError, IFormValue>({
-        mode: "onChange",
-        defaultValues,
-        resolver: yupResolver(schema),
-    });
+  const {
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<IFormValue, HttpError, IFormValue>({
+    mode: "onChange",
+    defaultValues,
+    resolver: yupResolver(schema),
+  });
 
-    const handleSubmission = (data: any) => console.log(data);
+  const handleSubmission = (data: any) => console.log(data);
 
-    const work = watch("work");
+  const work = watch("work");
 
-    return (
-        <form
-            style={{ display: "flex", flexDirection: "column" }}
-            onSubmit={handleSubmit(handleSubmission)}
-        >
-            <Controller
-                control={control}
-                name="firstname"
-                rules={{ required: true, minLength: 5 }}
-                render={({ field }) => (
-                    <TextField
-                        {...field}
-                        fullWidth
-                        sx={{ maxWidth: 600 }}
-                        label="First Name"
-                        margin="dense"
-                        error={!!errors.firstname}
-                        helperText={
-                            errors.firstname && `${errors.firstname.message}`
-                        }
-                    />
-                )}
-            />
-            <Controller
-                control={control}
-                name="lastname"
-                render={({ field }) => (
-                    <TextField
-                        {...field}
-                        fullWidth
-                        sx={{ maxWidth: 600 }}
-                        label="Last Name"
-                        margin="dense"
-                    />
-                )}
-            />
-            <Controller
-                control={control}
-                name="address"
-                render={({ field }) => (
-                    <TextField
-                        {...field}
-                        fullWidth
-                        sx={{ maxWidth: 600 }}
-                        label="Address"
-                        margin="dense"
-                    />
-                )}
-            />
-            <Controller
-                control={control}
-                name="number"
-                render={({ field }) => (
-                    <TextField
-                        {...field}
-                        fullWidth
-                        sx={{ maxWidth: 600 }}
-                        label="Number"
-                        margin="dense"
-                        type="number"
-                    />
-                )}
-            />
-            <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }}>
-                <InputLabel id="type-label">Work</InputLabel>
-                <Controller
-                    control={control}
-                    name="work"
-                    render={({ field }) => (
-                        <Select
-                            sx={{ maxWidth: 600 }}
-                            margin="dense"
-                            {...field}
-                            type="select"
-                            labelId="type-label"
-                            label="Work"
-                        >
-                            <MenuItem value="employed">Employed</MenuItem>
-                            <MenuItem value="unemployed">Unemployed</MenuItem>
-                        </Select>
-                    )}
-                />
-            </FormControl>
-            {work === "employed" && (
-                <>
-                    <Controller
-                        control={control}
-                        name="company"
-                        render={({ field }) => (
-                            <TextField
-                                {...field}
-                                fullWidth
-                                sx={{ maxWidth: 600 }}
-                                label="Company"
-                                margin="dense"
-                                error={!!errors.company}
-                                helperText={
-                                    errors.company &&
-                                    `${errors.company.message}`
-                                }
-                            />
-                        )}
-                    />
-                    <Controller
-                        control={control}
-                        name="role"
-                        render={({ field }) => (
-                            <TextField
-                                {...field}
-                                fullWidth
-                                sx={{ maxWidth: 600 }}
-                                label="Role"
-                                margin="dense"
-                                error={!!errors.role}
-                                helperText={
-                                    errors.role && `${errors.role.message}`
-                                }
-                            />
-                        )}
-                    />
-                </>
-            )}
-            <Button
-                type="submit"
-                variant="contained"
+  return (
+    <form style={{ display: "flex", flexDirection: "column" }} onSubmit={handleSubmit(handleSubmission)}>
+      <Controller
+        control={control}
+        name="firstname"
+        rules={{ required: true, minLength: 5 }}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            label="First Name"
+            margin="dense"
+            error={!!errors.firstname}
+            helperText={errors.firstname && `${errors.firstname.message}`}
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name="lastname"
+        render={({ field }) => (
+          <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Last Name" margin="dense" />
+        )}
+      />
+      <Controller
+        control={control}
+        name="address"
+        render={({ field }) => <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Address" margin="dense" />}
+      />
+      <Controller
+        control={control}
+        name="number"
+        render={({ field }) => (
+          <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Number" margin="dense" type="number" />
+        )}
+      />
+      <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }}>
+        <InputLabel id="type-label">Work</InputLabel>
+        <Controller
+          control={control}
+          name="work"
+          render={({ field }) => (
+            <Select sx={{ maxWidth: 600 }} margin="dense" {...field} type="select" labelId="type-label" label="Work">
+              <MenuItem value="employed">Employed</MenuItem>
+              <MenuItem value="unemployed">Unemployed</MenuItem>
+            </Select>
+          )}
+        />
+      </FormControl>
+      {work === "employed" && (
+        <>
+          <Controller
+            control={control}
+            name="company"
+            render={({ field }) => (
+              <TextField
+                {...field}
                 fullWidth
-                sx={{
-                    maxWidth: "600px",
-                    padding: "10px",
-                    backgroundColor: "#67BE23",
-                    color: "white",
-                    marginTop: "5px",
-                }}
-            >
-                Submit
-            </Button>
-        </form>
-    );
+                sx={{ maxWidth: 600 }}
+                label="Company"
+                margin="dense"
+                error={!!errors.company}
+                helperText={errors.company && `${errors.company.message}`}
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="role"
+            render={({ field }) => (
+              <TextField
+                {...field}
+                fullWidth
+                sx={{ maxWidth: 600 }}
+                label="Role"
+                margin="dense"
+                error={!!errors.role}
+                helperText={errors.role && `${errors.role.message}`}
+              />
+            )}
+          />
+        </>
+      )}
+      <Button
+        type="submit"
+        variant="contained"
+        fullWidth
+        sx={{
+          maxWidth: "600px",
+          padding: "10px",
+          backgroundColor: "#67BE23",
+          color: "white",
+          marginTop: "5px",
+        }}
+      >
+        Submit
+      </Button>
+    </form>
+  );
 };
 
 export default Create;
@@ -1115,11 +953,8 @@ const handleSubmission = (data: IFormValue) => console.log(data);
 Lastly, add an `onSubmit` event handler to the form and pass the `handleSubmit` method and `formSubmission` function to it:
 
 ```tsx
-<form
-    onSubmit={handleSubmit(formSubmission)}
-    style={{ display: "flex", flexDirection: "column" }}
->
-    ...
+<form onSubmit={handleSubmit(formSubmission)} style={{ display: "flex", flexDirection: "column" }}>
+  ...
 </form>
 ```
 

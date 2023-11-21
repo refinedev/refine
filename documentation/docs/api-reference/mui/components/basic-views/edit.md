@@ -17,114 +17,105 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 
 const SampleEdit = () => {
-    const {
-        saveButtonProps,
-        refineCore: { queryResult },
-        register,
-        control,
-        formState: { errors },
-    } = useForm();
+  const {
+    saveButtonProps,
+    refineCore: { queryResult },
+    register,
+    control,
+    formState: { errors },
+  } = useForm();
 
-    const samplesData = queryResult?.data?.data;
+  const samplesData = queryResult?.data?.data;
 
-    const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
-        resource: "categories",
-        defaultValue: samplesData?.category?.id,
-    });
+  const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
+    resource: "categories",
+    defaultValue: samplesData?.category?.id,
+  });
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Box
-                component="form"
-                sx={{ display: "flex", flexDirection: "column" }}
-                autoComplete="off"
-            >
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+        <TextField
+          {...register("id", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.id}
+          helperText={(errors as any)?.id?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="number"
+          label="Id"
+          name="id"
+          disabled
+        />
+        <TextField
+          {...register("title", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.title}
+          helperText={(errors as any)?.title?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="text"
+          label="Title"
+          name="title"
+        />
+        <Controller
+          control={control}
+          name="category"
+          rules={{ required: "This field is required" }}
+          // eslint-disable-next-line
+          defaultValue={null as any}
+          render={({ field }) => (
+            <Autocomplete
+              {...categoryAutocompleteProps}
+              {...field}
+              onChange={(_, value) => {
+                field.onChange(value);
+              }}
+              getOptionLabel={(item) => {
+                return (
+                  categoryAutocompleteProps?.options?.find((p) => p?.id?.toString() === item?.id?.toString())?.title ??
+                  ""
+                );
+              }}
+              isOptionEqualToValue={(option, value) =>
+                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+              }
+              renderInput={(params) => (
                 <TextField
-                    {...register("id", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.id}
-                    helperText={(errors as any)?.id?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="number"
-                    label="Id"
-                    name="id"
-                    disabled
+                  {...params}
+                  label="Category"
+                  margin="normal"
+                  variant="outlined"
+                  error={!!(errors as any)?.category?.id}
+                  helperText={(errors as any)?.category?.id?.message}
+                  required
                 />
-                <TextField
-                    {...register("title", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.title}
-                    helperText={(errors as any)?.title?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="text"
-                    label="Title"
-                    name="title"
-                />
-                <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "This field is required" }}
-                    // eslint-disable-next-line
-                    defaultValue={null as any}
-                    render={({ field }) => (
-                        <Autocomplete
-                            {...categoryAutocompleteProps}
-                            {...field}
-                            onChange={(_, value) => {
-                                field.onChange(value);
-                            }}
-                            getOptionLabel={(item) => {
-                                return (
-                                    categoryAutocompleteProps?.options?.find(
-                                        (p) =>
-                                            p?.id?.toString() ===
-                                            item?.id?.toString(),
-                                    )?.title ?? ""
-                                );
-                            }}
-                            isOptionEqualToValue={(option, value) =>
-                                value === undefined ||
-                                option?.id?.toString() ===
-                                    (value?.id ?? value)?.toString()
-                            }
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Category"
-                                    margin="normal"
-                                    variant="outlined"
-                                    error={!!(errors as any)?.category?.id}
-                                    helperText={
-                                        (errors as any)?.category?.id?.message
-                                    }
-                                    required
-                                />
-                            )}
-                        />
-                    )}
-                />
-            </Box>
-        </Edit>
-    );
+              )}
+            />
+          )}
+        />
+      </Box>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/samples/edit/123"]}
-        resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/samples/edit/123"]}
+    resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
+  />,
 );
 ```
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Properties
@@ -139,33 +130,33 @@ import { Edit } from "@refinedev/mui";
 import { Typography } from "@mui/material";
 
 const EditPage: React.FC = () => {
-    return (
-        <Edit
-            // highlight-next-line
-            title={<Typography variant="h5">Custom Title</Typography>}
-        >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-next-line
+      title={<Typography variant="h5">Custom Title</Typography>}
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId="123" />
-                    </div>
-                ),
-                edit: EditPage,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId="123" />
+          </div>
+        ),
+        edit: EditPage,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -185,41 +176,41 @@ import dataProvider from "@refinedev/simple-rest";
 import { Edit } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Edit resource="posts" recordItemId={123}>
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    /* highlight-next-line */
+    <Edit resource="posts" recordItemId={123}>
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            legacyRouterProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom",
-                    },
-                ],
-                // highlight-end
-            }}
-            Layout={Layout}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom",
+          },
+        ],
+        // highlight-end
+      }}
+      Layout={Layout}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -236,31 +227,31 @@ The `<Edit>` component has a save button that submits the form by default. If yo
 import { Edit } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Edit saveButtonProps={{ size: "small" }}>
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    /* highlight-next-line */
+    <Edit saveButtonProps={{ size: "small" }}>
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId={123} />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId={123} />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -278,51 +269,51 @@ const { default: simpleRest } = RefineSimpleRest;
 const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
-    ...dataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-        return {
-            data: {},
-        };
-    },
+  ...dataProvider,
+  deleteOne: async ({ resource, id, variables }) => {
+    return {
+      data: {},
+    };
+  },
 };
 
 const authProvider = {
-    login: async () => {
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    register: async () => {
-        return {
-            success: true,
-        };
-    },
-    forgotPassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    updatePassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    logout: async () => {
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    check: async () => ({
-        authenticated: true,
-    }),
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    getPermissions: async () => ["admin"],
-    getIdentity: async () => null,
+  login: async () => {
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  register: async () => {
+    return {
+      success: true,
+    };
+  },
+  forgotPassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  updatePassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  logout: async () => {
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  check: async () => ({
+    authenticated: true,
+  }),
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  getPermissions: async () => ["admin"],
+  getIdentity: async () => null,
 };
 
 // visible-block-start
@@ -330,42 +321,40 @@ import { Edit } from "@refinedev/mui";
 import { usePermissions } from "@refinedev/core";
 
 const PostEdit: React.FC = () => {
-    const { data: permissionsData } = usePermissions();
-    return (
-        <Edit
-            /* highlight-start */
-            canDelete={permissionsData?.includes("admin")}
-            deleteButtonProps={{ size: "small" }}
-            /* highlight-end */
-            saveButtonProps={{ size: "small" }}
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  const { data: permissionsData } = usePermissions();
+  return (
+    <Edit
+      /* highlight-start */
+      canDelete={permissionsData?.includes("admin")}
+      deleteButtonProps={{ size: "small" }}
+      /* highlight-end */
+      saveButtonProps={{ size: "small" }}
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        authProvider={authProvider}
-        dataProvider={customDataProvider}
-        initialRoutes={["/posts/edit/123"]}
-        Layout={RefineMui.Layout}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId="123">
-                            Edit Item 123
-                        </RefineMui.EditButton>
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    authProvider={authProvider}
+    dataProvider={customDataProvider}
+    initialRoutes={["/posts/edit/123"]}
+    Layout={RefineMui.Layout}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId="123">Edit Item 123</RefineMui.EditButton>
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -387,42 +376,44 @@ import { Layout } from "@refinedev/mui";
 import { Edit } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Edit resource="posts" recordItemId={123}>
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    /* highlight-next-line */
+    <Edit resource="posts" recordItemId={123}>
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 const App: React.FC = () => {
-    return (
-        <Refine
-            legacyRouterProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom",
-                    },
-                ],
-            }}
-            Layout={Layout}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={{
+        ...routerProvider,
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom",
+          },
+        ],
+      }}
+      Layout={Layout}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 :::note
+
 The `<Edit>` component needs the `id` information for the [`<RefreshButton>`](/api-reference/mui/components/buttons/refresh.md) to work properly.
+
 :::
 
 ### `mutationMode`
@@ -439,114 +430,103 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 
 const SampleEdit = () => {
-    const {
-        saveButtonProps,
-        refineCore: { queryResult },
-        register,
-        control,
-        formState: { errors },
-    } = useForm();
+  const {
+    saveButtonProps,
+    refineCore: { queryResult },
+    register,
+    control,
+    formState: { errors },
+  } = useForm();
 
-    const samplesData = queryResult?.data?.data;
+  const samplesData = queryResult?.data?.data;
 
-    const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
-        resource: "categories",
-        defaultValue: samplesData?.category?.id,
-    });
+  const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
+    resource: "categories",
+    defaultValue: samplesData?.category?.id,
+  });
 
-    return (
-        <Edit
-            saveButtonProps={saveButtonProps}
-            canDelete
-            // highlight-next-line
-            mutationMode="undoable"
-        >
-            <Box
-                component="form"
-                sx={{ display: "flex", flexDirection: "column" }}
-                autoComplete="off"
-            >
+  return (
+    <Edit
+      saveButtonProps={saveButtonProps}
+      canDelete
+      // highlight-next-line
+      mutationMode="undoable"
+    >
+      <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+        <TextField
+          {...register("id", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.id}
+          helperText={(errors as any)?.id?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="number"
+          label="Id"
+          name="id"
+          disabled
+        />
+        <TextField
+          {...register("title", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.title}
+          helperText={(errors as any)?.title?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="text"
+          label="Title"
+          name="title"
+        />
+        <Controller
+          control={control}
+          name="category"
+          rules={{ required: "This field is required" }}
+          // eslint-disable-next-line
+          defaultValue={null as any}
+          render={({ field }) => (
+            <Autocomplete
+              {...categoryAutocompleteProps}
+              {...field}
+              onChange={(_, value) => {
+                field.onChange(value);
+              }}
+              getOptionLabel={(item) => {
+                return (
+                  categoryAutocompleteProps?.options?.find((p) => p?.id?.toString() === item?.id?.toString())?.title ??
+                  ""
+                );
+              }}
+              isOptionEqualToValue={(option, value) =>
+                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+              }
+              renderInput={(params) => (
                 <TextField
-                    {...register("id", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.id}
-                    helperText={(errors as any)?.id?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="number"
-                    label="Id"
-                    name="id"
-                    disabled
+                  {...params}
+                  label="Category"
+                  margin="normal"
+                  variant="outlined"
+                  error={!!(errors as any)?.category?.id}
+                  helperText={(errors as any)?.category?.id?.message}
+                  required
                 />
-                <TextField
-                    {...register("title", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.title}
-                    helperText={(errors as any)?.title?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="text"
-                    label="Title"
-                    name="title"
-                />
-                <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "This field is required" }}
-                    // eslint-disable-next-line
-                    defaultValue={null as any}
-                    render={({ field }) => (
-                        <Autocomplete
-                            {...categoryAutocompleteProps}
-                            {...field}
-                            onChange={(_, value) => {
-                                field.onChange(value);
-                            }}
-                            getOptionLabel={(item) => {
-                                return (
-                                    categoryAutocompleteProps?.options?.find(
-                                        (p) =>
-                                            p?.id?.toString() ===
-                                            item?.id?.toString(),
-                                    )?.title ?? ""
-                                );
-                            }}
-                            isOptionEqualToValue={(option, value) =>
-                                value === undefined ||
-                                option?.id?.toString() ===
-                                    (value?.id ?? value)?.toString()
-                            }
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Category"
-                                    margin="normal"
-                                    variant="outlined"
-                                    error={!!(errors as any)?.category?.id}
-                                    helperText={
-                                        (errors as any)?.category?.id?.message
-                                    }
-                                    required
-                                />
-                            )}
-                        />
-                    )}
-                />
-            </Box>
-        </Edit>
-    );
+              )}
+            />
+          )}
+        />
+      </Box>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/samples/edit/123"]}
-        resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/samples/edit/123"]}
+    resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
+  />,
 );
 ```
 
@@ -564,23 +544,23 @@ import { Edit } from "@refinedev/mui";
 
 // highlight-start
 const PostEdit = () => {
-    return <Edit dataProviderName="other">...</Edit>;
+  return <Edit dataProviderName="other">...</Edit>;
 };
 // highlight-end
 
 export const App: React.FC = () => {
-    return (
-        <Refine
-            // highlight-start
-            dataProvider={{
-                default: dataProvider("https://api.fake-rest.refine.dev/"),
-                other: dataProvider("https://other-api.fake-rest.refine.dev/"),
-            }}
-            // highlight-end
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      // highlight-start
+      dataProvider={{
+        default: dataProvider("https://api.fake-rest.refine.dev/"),
+        other: dataProvider("https://other-api.fake-rest.refine.dev/"),
+      }}
+      // highlight-end
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
@@ -592,20 +572,20 @@ To customize the back button or to disable it, you can use the `goBack` property
 import { useNavigation } from "@refinedev/core";
 
 const RealBackButton = () => {
-    const { goBack } = useNavigation();
+  const { goBack } = useNavigation();
 
-    return <Button onClick={goBack}>BACK!</Button>;
+  return <Button onClick={goBack}>BACK!</Button>;
 };
 
 const RealPostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-next-line
-            goBack={<RealBackButton />}
-        >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-next-line
+      goBack={<RealBackButton />}
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 
 // visible-block-start
@@ -614,39 +594,39 @@ import { Button } from "@mui/material";
 import { useBack } from "@refinedev/core";
 
 const BackButton = () => {
-    const goBack = useBack();
+  const goBack = useBack();
 
-    return <Button onClick={goBack}>BACK!</Button>;
+  return <Button onClick={goBack}>BACK!</Button>;
 };
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-next-line
-            goBack={<BackButton />}
-        >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-next-line
+      goBack={<BackButton />}
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId={123} />
-                    </div>
-                ),
-                edit: RealPostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId={123} />
+          </div>
+        ),
+        edit: RealPostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -659,35 +639,35 @@ To toggle the loading state of the `<Edit/>` component, you can use the `isLoadi
 import { Edit } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Edit
-            // highlight-next-line
-            isLoading={loading}
-        >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-next-line
+      isLoading={loading}
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId={123} />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId={123} />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -696,7 +676,9 @@ render(
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
 
 :::tip
+
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+
 :::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
@@ -704,43 +686,43 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 import { Edit, Breadcrumb } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            breadcrumb={
-                <div
-                    style={{
-                        padding: "3px 6px",
-                        border: "2px dashed cornflowerblue",
-                    }}
-                >
-                    <Breadcrumb />
-                </div>
-            }
-            // highlight-end
+  return (
+    <Edit
+      // highlight-start
+      breadcrumb={
+        <div
+          style={{
+            padding: "3px 6px",
+            border: "2px dashed cornflowerblue",
+          }}
         >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+          <Breadcrumb />
+        </div>
+      }
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId={123} />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId={123} />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -755,40 +737,40 @@ If you want to customize the wrapper of the `<Edit/>` component, you can use the
 import { Edit } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Edit
-            // highlight-start
-            wrapperProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      wrapperProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId={123} />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId={123} />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -803,40 +785,40 @@ If you want to customize the header of the `<Edit/>` component, you can use the 
 import { Edit } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Edit
-            // highlight-start
-            headerProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      headerProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId={123} />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId={123} />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -851,40 +833,40 @@ If you want to customize the content of the `<Edit/>` component, you can use the
 import { Edit } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Edit
-            // highlight-start
-            contentProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      contentProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId={123} />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId={123} />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -908,41 +890,41 @@ import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Edit
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId={123} />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId={123} />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -954,50 +936,42 @@ import { Edit, ListButton, RefreshButton } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Edit
-            // highlight-start
-            headerButtons={({ refreshButtonProps, listButtonProps }) => (
-                <>
-                    <RefreshButton
-                        {...refreshButtonProps}
-                        meta={{ foo: "bar" }}
-                    />
-                    {listButtonProps && (
-                        <ListButton
-                            {...listButtonProps}
-                            meta={{ foo: "bar" }}
-                        />
-                    )}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      headerButtons={({ refreshButtonProps, listButtonProps }) => (
+        <>
+          <RefreshButton {...refreshButtonProps} meta={{ foo: "bar" }} />
+          {listButtonProps && <ListButton {...listButtonProps} meta={{ foo: "bar" }} />}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId={123} />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId={123} />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -1011,46 +985,46 @@ import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Edit
-            // highlight-start
-            headerButtonProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-        >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      headerButtonProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId={123} />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId={123} />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -1074,41 +1048,41 @@ import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Edit
-            // highlight-start
-            footerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      footerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId={123} />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId={123} />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -1120,44 +1094,42 @@ import { Edit, SaveButton, DeleteButton } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Edit
-            // highlight-start
-            footerButtons={({ saveButtonProps, deleteButtonProps }) => (
-                <>
-                    <Button type="primary">Custom Button</Button>
-                    <SaveButton {...saveButtonProps} hideText />
-                    {deleteButtonProps && (
-                        <DeleteButton {...deleteButtonProps} hideText />
-                    )}
-                </>
-            )}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      footerButtons={({ saveButtonProps, deleteButtonProps }) => (
+        <>
+          <Button type="primary">Custom Button</Button>
+          <SaveButton {...saveButtonProps} hideText />
+          {deleteButtonProps && <DeleteButton {...deleteButtonProps} hideText />}
+        </>
+      )}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId={123} />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId={123} />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -1171,46 +1143,46 @@ import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Edit
-            // highlight-start
-            footerButtonProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-            footerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-        >
-            <span>Rest of your page here</span>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      footerButtonProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+      footerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+    >
+      <span>Rest of your page here</span>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId={123} />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.EditButton recordItemId={123} />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -1229,125 +1201,114 @@ import { Controller } from "react-hook-form";
 
 // visible-block-start
 const SampleEdit = () => {
-    const {
-        saveButtonProps,
-        refineCore: { 
-            queryResult,
-            // highlight-next-line
-            autoSaveProps
-        },
-        register,
-        control,
-        formState: { errors },
-    } = useForm({
-        // highlight-start
-        refineCoreProps: {
-            autoSave: {
-                enabled: true,
-            },
-        },
-        // highlight-end
-    });
+  const {
+    saveButtonProps,
+    refineCore: {
+      queryResult,
+      // highlight-next-line
+      autoSaveProps,
+    },
+    register,
+    control,
+    formState: { errors },
+  } = useForm({
+    // highlight-start
+    refineCoreProps: {
+      autoSave: {
+        enabled: true,
+      },
+    },
+    // highlight-end
+  });
 
-    const samplesData = queryResult?.data?.data;
+  const samplesData = queryResult?.data?.data;
 
-    const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
-        resource: "categories",
-        defaultValue: samplesData?.category?.id,
-    });
+  const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
+    resource: "categories",
+    defaultValue: samplesData?.category?.id,
+  });
 
-    return (
-        <Edit
-            saveButtonProps={saveButtonProps}
-            // highlight-next-line
-            autoSaveProps={autoSaveProps}
-        >
-            <Box
-                component="form"
-                sx={{ display: "flex", flexDirection: "column" }}
-                autoComplete="off"
-            >
+  return (
+    <Edit
+      saveButtonProps={saveButtonProps}
+      // highlight-next-line
+      autoSaveProps={autoSaveProps}
+    >
+      <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+        <TextField
+          {...register("id", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.id}
+          helperText={(errors as any)?.id?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="number"
+          label="Id"
+          name="id"
+          disabled
+        />
+        <TextField
+          {...register("title", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.title}
+          helperText={(errors as any)?.title?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="text"
+          label="Title"
+          name="title"
+        />
+        <Controller
+          control={control}
+          name="category"
+          rules={{ required: "This field is required" }}
+          // eslint-disable-next-line
+          defaultValue={null as any}
+          render={({ field }) => (
+            <Autocomplete
+              {...categoryAutocompleteProps}
+              {...field}
+              onChange={(_, value) => {
+                field.onChange(value);
+              }}
+              getOptionLabel={(item) => {
+                return (
+                  categoryAutocompleteProps?.options?.find((p) => p?.id?.toString() === item?.id?.toString())?.title ??
+                  ""
+                );
+              }}
+              isOptionEqualToValue={(option, value) =>
+                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+              }
+              renderInput={(params) => (
                 <TextField
-                    {...register("id", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.id}
-                    helperText={(errors as any)?.id?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="number"
-                    label="Id"
-                    name="id"
-                    disabled
+                  {...params}
+                  label="Category"
+                  margin="normal"
+                  variant="outlined"
+                  error={!!(errors as any)?.category?.id}
+                  helperText={(errors as any)?.category?.id?.message}
+                  required
                 />
-                <TextField
-                    {...register("title", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.title}
-                    helperText={(errors as any)?.title?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="text"
-                    label="Title"
-                    name="title"
-                />
-                <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "This field is required" }}
-                    // eslint-disable-next-line
-                    defaultValue={null as any}
-                    render={({ field }) => (
-                        <Autocomplete
-                            {...categoryAutocompleteProps}
-                            {...field}
-                            onChange={(_, value) => {
-                                field.onChange(value);
-                            }}
-                            getOptionLabel={(item) => {
-                                return (
-                                    categoryAutocompleteProps?.options?.find(
-                                        (p) =>
-                                            p?.id?.toString() ===
-                                            item?.id?.toString(),
-                                    )?.title ?? ""
-                                );
-                            }}
-                            isOptionEqualToValue={(option, value) =>
-                                value === undefined ||
-                                option?.id?.toString() ===
-                                    (value?.id ?? value)?.toString()
-                            }
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Category"
-                                    margin="normal"
-                                    variant="outlined"
-                                    error={!!(errors as any)?.category?.id}
-                                    helperText={
-                                        (errors as any)?.category?.id?.message
-                                    }
-                                    required
-                                />
-                            )}
-                        />
-                    )}
-                />
-            </Box>
-        </Edit>
-    );
+              )}
+            />
+          )}
+        />
+      </Box>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/samples/edit/123"]}
-        resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/samples/edit/123"]}
+    resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
+  />,
 );
 ```
 
@@ -1372,100 +1333,83 @@ goBack-type="`ReactNode`"
 
 ```tsx live shared
 const SampleList = () => {
-    const { dataGridProps } = RefineMui.useDataGrid();
+  const { dataGridProps } = RefineMui.useDataGrid();
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        RefineCore.useMany({
-            resource: "categories",
-            ids:
-                dataGridProps?.rows?.map((item: any) => item?.category?.id) ??
-                [],
-            queryOptions: {
-                enabled: !!dataGridProps?.rows,
-            },
-        });
+  const { data: categoryData, isLoading: categoryIsLoading } = RefineCore.useMany({
+    resource: "categories",
+    ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
+    queryOptions: {
+      enabled: !!dataGridProps?.rows,
+    },
+  });
 
-    const columns = React.useMemo<GridColDef<any>[]>(
-        () => [
-            {
-                field: "id",
-                headerName: "Id",
-                type: "number",
-                minWidth: 50,
-            },
-            {
-                field: "title",
-                headerName: "Title",
-                minWidth: 200,
-            },
-            {
-                field: "category",
-                headerName: "Category",
-                valueGetter: ({ row }) => {
-                    const value = row?.category?.id;
+  const columns = React.useMemo<GridColDef<any>[]>(
+    () => [
+      {
+        field: "id",
+        headerName: "Id",
+        type: "number",
+        minWidth: 50,
+      },
+      {
+        field: "title",
+        headerName: "Title",
+        minWidth: 200,
+      },
+      {
+        field: "category",
+        headerName: "Category",
+        valueGetter: ({ row }) => {
+          const value = row?.category?.id;
 
-                    return value;
-                },
-                minWidth: 300,
-                renderCell: function render({ value }) {
-                    return categoryIsLoading ? (
-                        <>Loading...</>
-                    ) : (
-                        categoryData?.data?.find((item) => item.id === value)
-                            ?.title
-                    );
-                },
-            },
-            {
-                field: "createdAt",
-                headerName: "Created At",
-                minWidth: 250,
-                renderCell: function render({ value }) {
-                    return <RefineMui.DateField value={value} />;
-                },
-            },
-            {
-                field: "actions",
-                headerName: "Actions",
-                renderCell: function render({ row }) {
-                    return (
-                        <>
-                            <RefineMui.EditButton
-                                hideText
-                                recordItemId={row.id}
-                            />
-                        </>
-                    );
-                },
-                align: "center",
-                headerAlign: "center",
-                minWidth: 80,
-            },
-        ],
-        [categoryData?.data],
-    );
+          return value;
+        },
+        minWidth: 300,
+        renderCell: function render({ value }) {
+          return categoryIsLoading ? <>Loading...</> : categoryData?.data?.find((item) => item.id === value)?.title;
+        },
+      },
+      {
+        field: "createdAt",
+        headerName: "Created At",
+        minWidth: 250,
+        renderCell: function render({ value }) {
+          return <RefineMui.DateField value={value} />;
+        },
+      },
+      {
+        field: "actions",
+        headerName: "Actions",
+        renderCell: function render({ row }) {
+          return (
+            <>
+              <RefineMui.EditButton hideText recordItemId={row.id} />
+            </>
+          );
+        },
+        align: "center",
+        headerAlign: "center",
+        minWidth: 80,
+      },
+    ],
+    [categoryData?.data],
+  );
 
-    return (
-        <RefineMui.List>
-            <MuiXDataGrid.DataGrid
-                {...dataGridProps}
-                columns={columns}
-                autoHeight
-            />
-        </RefineMui.List>
-    );
+  return (
+    <RefineMui.List>
+      <MuiXDataGrid.DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </RefineMui.List>
+  );
 };
 
 const Wrapper = ({ children }) => {
-    return (
-        <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
-            <MuiMaterial.CssBaseline />
-            <MuiMaterial.GlobalStyles
-                styles={{ html: { WebkitFontSmoothing: "auto" } }}
-            />
-            {children}
-        </MuiMaterial.ThemeProvider>
-    );
+  return (
+    <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
+      <MuiMaterial.CssBaseline />
+      <MuiMaterial.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      {children}
+    </MuiMaterial.ThemeProvider>
+  );
 };
 ```
 

@@ -192,9 +192,9 @@ There are multiple ways to backup the docker volume, but the most common way is 
 
 ## Steps to restore a Docker volume
 
-A docker volume can be restored from a backup file using a method similar to the backup method. You have to first mount the volume and the backup file in another temporary container before extracting the content of the backup file into the volume. As an example, let's restore the 'sample-backup' into the newly created volume (known as the 'restored-volumn').
+A docker volume can be restored from a backup file using a method similar to the backup method. You have to first mount the volume and the backup file in another temporary container before extracting the content of the backup file into the volume. As an example, let's restore the 'sample-backup' into the newly created volume (known as the 'restored-volume').
 
-**Step 1:** We have created a temporary container to mount the volume and backup file(i.e., 'sample-backup') and then extract the backup content into the volume(i.e., 'restored-volumn'.
+**Step 1:** We have created a temporary container to mount the volume and backup file(i.e., 'sample-backup') and then extract the backup content into the volume(i.e., 'restored-volume'.
 
 **Command in Example:** `docker run --rm -v sample-volume:/data -v C:\Users\\username\]\Documents:/backup-dir ubuntu tar xvzf /backup-dir/sample-backup.tar.gz -C /data`
 

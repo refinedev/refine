@@ -365,7 +365,7 @@ export default Home;
 
 If you click the favorite icon for each product, you should see it listed under the list of my favorite products.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-23-react-context/favorite-product-list.png"  alt="React context API favouriteProduct" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-23-react-context/favorite-product-list.png"  alt="React context API favoriteProduct" />
 
 <br />
 

@@ -55,7 +55,7 @@ const { dataGridProps } = useDataGrid();
 
 ### `GridColumns` to `GridColDef[]`
 
-While updating our Material UI examples, we've encountered this issue and thought it deserves a mention here. When defining the `columns` for the `<DataGrid>`, we've used `GridColums` type, with the changes in `@mui/x-data-grid`'s last version, this type is removed and should be replaced with `GridColDef` array.
+While updating our Material UI examples, we've encountered this issue and thought it deserves a mention here. When defining the `columns` for the `<DataGrid>`, we've used `GridColumns` type, with the changes in `@mui/x-data-grid`'s last version, this type is removed and should be replaced with `GridColDef` array.
 
 ```diff title="posts/list.tsx"
 import React from "react";

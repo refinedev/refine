@@ -17,7 +17,9 @@ import PropResource from "@site/src/partials/prop-resource";
 All of [TanStack Table's][tanstack-table] features are supported and you can use all of the [TanStack Table's][tanstack-table] examples with no changes just copy and paste them into your project.
 
 :::info
+
 `useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
+
 :::
 
 ## Installation
@@ -71,7 +73,9 @@ In basic usage, `useTable` returns the data as it comes from the endpoint. By de
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 :::info
+
 By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the pagination.mode property and set it to "client". Also, you can disable the pagination by setting the "off".
+
 :::
 
 <PaginationLivePreview/>
@@ -105,7 +109,9 @@ When the `useTable` hook is mounted, it will call the `subscribe` method from th
 ## Properties
 
 :::tip
+
 It also accepts all props of [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#options).
+
 :::
 
 ### `resource`
@@ -123,9 +129,9 @@ method={{
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        resource: "categories",
-    },
+  refineCoreProps: {
+    resource: "categories",
+  },
 });
 ```
 
@@ -139,9 +145,9 @@ If there is more than one `dataProvider`, you should use the `dataProviderName` 
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        dataProviderName: "second-data-provider",
-    },
+  refineCoreProps: {
+    dataProviderName: "second-data-provider",
+  },
 });
 ```
 
@@ -153,11 +159,11 @@ Sets the initial value of the page index.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        pagination: {
-            current: 2,
-        },
+  refineCoreProps: {
+    pagination: {
+      current: 2,
     },
+  },
 });
 ```
 
@@ -169,11 +175,11 @@ Sets the initial value of the page size.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        pagination: {
-            pageSize: 10,
-        },
+  refineCoreProps: {
+    pagination: {
+      pageSize: 10,
     },
+  },
 });
 ```
 
@@ -183,17 +189,17 @@ useTable({
 
 It can be `"off"`, `"server"` or `"client"`.
 
--   **"off":** Pagination is disabled. All records will be fetched.
--   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
--   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+- **"off":** Pagination is disabled. All records will be fetched.
+- **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
+- **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        pagination: {
-            mode: "client",
-        },
+  refineCoreProps: {
+    pagination: {
+      mode: "client",
     },
+  },
 });
 ```
 
@@ -205,16 +211,16 @@ Sets the initial value of the sorter. The `initial` is not permanent. It will be
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        sorters: {
-            initial: [
-                {
-                    field: "name",
-                    order: "asc",
-                },
-            ],
+  refineCoreProps: {
+    sorters: {
+      initial: [
+        {
+          field: "name",
+          order: "asc",
         },
+      ],
     },
+  },
 });
 ```
 
@@ -226,16 +232,16 @@ Sets the permanent value of the sorter. The `permanent` is permanent and unchang
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        sorters: {
-            permanent: [
-                {
-                    field: "name",
-                    order: "asc",
-                },
-            ],
+  refineCoreProps: {
+    sorters: {
+      permanent: [
+        {
+          field: "name",
+          order: "asc",
         },
+      ],
     },
+  },
 });
 ```
 
@@ -245,16 +251,16 @@ useTable({
 
 It can be `"off"` or `"server"`.
 
--   **"off":** Sorting are disabled. All records will be fetched.
--   **"server":**: Sorting are done on the server side. Records will be fetched by using the `sorters` value.
+- **"off":** Sorting are disabled. All records will be fetched.
+- **"server":**: Sorting are done on the server side. Records will be fetched by using the `sorters` value.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        sorters: {
-            mode: "off",
-        },
+  refineCoreProps: {
+    sorters: {
+      mode: "off",
     },
+  },
 });
 ```
 
@@ -266,17 +272,17 @@ Sets the initial value of the filter. The `initial` is not permanent. It will be
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        filters: {
-            initial: [
-                {
-                    field: "name",
-                    operator: "contains",
-                    value: "Foo",
-                },
-            ],
+  refineCoreProps: {
+    filters: {
+      initial: [
+        {
+          field: "name",
+          operator: "contains",
+          value: "Foo",
         },
+      ],
     },
+  },
 });
 ```
 
@@ -288,17 +294,17 @@ Sets the permanent value of the filter. The `permanent` is permanent and unchang
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        filters: {
-            permanent: [
-                {
-                    field: "name",
-                    operator: "contains",
-                    value: "Foo",
-                },
-            ],
+  refineCoreProps: {
+    filters: {
+      permanent: [
+        {
+          field: "name",
+          operator: "contains",
+          value: "Foo",
         },
+      ],
     },
+  },
 });
 ```
 
@@ -308,19 +314,19 @@ useTable({
 
 The filtering behavior can be set to either `"merge"` or `"replace"`.
 
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        filters: {
-            defaultBehavior: "merge",
-        },
+  refineCoreProps: {
+    filters: {
+      defaultBehavior: "merge",
     },
+  },
 });
 ```
 
@@ -330,16 +336,16 @@ useTable({
 
 It can be `"off"` or `"server"`.
 
--   **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
--   **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
+- **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
+- **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        filters: {
-            mode: "off",
-        },
+  refineCoreProps: {
+    filters: {
+      mode: "off",
     },
+  },
 });
 ```
 
@@ -353,9 +359,9 @@ Also you can set this value globally on [`<Refine>`][refine swl] component.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        syncWithLocation: true,
-    },
+  refineCoreProps: {
+    syncWithLocation: true,
+  },
 });
 ```
 
@@ -365,11 +371,11 @@ useTable({
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        queryOptions: {
-            retry: 3,
-        },
+  refineCoreProps: {
+    queryOptions: {
+      retry: 3,
     },
+  },
 });
 ```
 
@@ -377,8 +383,8 @@ useTable({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
 [Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
@@ -386,38 +392,38 @@ In the following example, we pass the `headers` property in the `meta` object to
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        metaData: {
-            headers: { "x-meta-data": "true" },
-        },
+  refineCoreProps: {
+    metaData: {
+      headers: { "x-meta-data": "true" },
     },
+  },
 });
 
 const myDataProvider = {
+  //...
+  getList: async ({
+    resource,
+    pagination,
+    sorters,
+    filters,
+    // highlight-next-line
+    metaData,
+  }) => {
+    // highlight-next-line
+    const headers = metaData?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    getList: async ({
-        resource,
-        pagination,
-        sorters,
-        filters,
-        // highlight-next-line
-        metaData,
-    }) => {
-        // highlight-next-line
-        const headers = metaData?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data, headers } = await httpClient.get(`${url}`, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data, headers } = await httpClient.get(`${url}`, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -429,15 +435,15 @@ After data is fetched successfully, `useTable` can call `open` function from [`N
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        successNotification: (data, values, resource) => {
-            return {
-                message: `${data.title} Successfully fetched.`,
-                description: "Success with no errors",
-                type: "success",
-            };
-        },
+  refineCoreProps: {
+    successNotification: (data, values, resource) => {
+      return {
+        message: `${data.title} Successfully fetched.`,
+        description: "Success with no errors",
+        type: "success",
+      };
     },
+  },
 });
 ```
 
@@ -449,15 +455,15 @@ After data fetching is failed, `useTable` will call `open` function from [`Notif
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        errorNotification: (data, values, resource) => {
-            return {
-                message: `Something went wrong when getting ${data.id}`,
-                description: "Error",
-                type: "error",
-            };
-        },
+  refineCoreProps: {
+    errorNotification: (data, values, resource) => {
+      return {
+        message: `Something went wrong when getting ${data.id}`,
+        description: "Error",
+        type: "error",
+      };
     },
+  },
 });
 ```
 
@@ -470,9 +476,9 @@ For more information about live mode, please check [Live / Realtime](/docs/api-r
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        liveMode: "auto",
-    },
+  refineCoreProps: {
+    liveMode: "auto",
+  },
 });
 ```
 
@@ -484,11 +490,11 @@ The callback function is executed when new events from a subscription have arriv
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        onLiveEvent: (event) => {
-            console.log(event);
-        },
+  refineCoreProps: {
+    onLiveEvent: (event) => {
+      console.log(event);
     },
+  },
 });
 ```
 
@@ -501,7 +507,9 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 ### ~~`initialCurrent`~~
 
 :::caution Deprecated
+
 Use `pagination.current` instead.
+
 :::
 
 > Default: `1`
@@ -510,16 +518,18 @@ Sets the initial value of the page index.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        initialCurrent: 2,
-    },
+  refineCoreProps: {
+    initialCurrent: 2,
+  },
 });
 ```
 
 ### ~~`initialPageSize`~~
 
 :::caution Deprecated
+
 Use `pagination.pageSize` instead.
+
 :::
 
 > Default: `10`
@@ -528,16 +538,18 @@ Sets the initial value of the page size.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        initialPageSize: 20,
-    },
+  refineCoreProps: {
+    initialPageSize: 20,
+  },
 });
 ```
 
 ### ~~`hasPagination`~~
 
 :::caution Deprecated
+
 Use `pagination.mode` instead.
+
 :::
 
 > Default: `true`
@@ -546,16 +558,18 @@ Determines whether to use server-side pagination or not.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        hasPagination: false,
-    },
+  refineCoreProps: {
+    hasPagination: false,
+  },
 });
 ```
 
 ### ~~`initialSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.initial` instead.
+
 :::
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
@@ -564,21 +578,23 @@ Sets the initial value of the sorter. The `initialSorter` is not permanent. It w
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        initialSorter: [
-            {
-                field: "name",
-                order: "asc",
-            },
-        ],
-    },
+  refineCoreProps: {
+    initialSorter: [
+      {
+        field: "name",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
 ### ~~`permanentSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.permanent` instead.
+
 :::
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
@@ -587,21 +603,23 @@ Sets the permanent value of the sorter. The `permanentSorter` is permanent and u
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        permanentSorter: [
-            {
-                field: "name",
-                order: "asc",
-            },
-        ],
-    },
+  refineCoreProps: {
+    permanentSorter: [
+      {
+        field: "name",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
 ### ~~`initialFilter`~~
 
 :::caution Deprecated
+
 Use `filters.initial` instead.
+
 :::
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
@@ -610,22 +628,24 @@ Sets the initial value of the filter. The `initialFilter` is not permanent. It w
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        initialFilter: [
-            {
-                field: "name",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  refineCoreProps: {
+    initialFilter: [
+      {
+        field: "name",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
 ### ~~`permanentFilter`~~
 
 :::caution Deprecated
+
 Use `filters.permanent` instead.
+
 :::
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
@@ -634,46 +654,50 @@ Sets the permanent value of the filter. The `permanentFilter` is permanent and u
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        permanentFilter: [
-            {
-                field: "name",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  refineCoreProps: {
+    permanentFilter: [
+      {
+        field: "name",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
 ### ~~`defaultSetFilterBehavior`~~
 
 :::caution Deprecated
+
 Use `filters.defaultBehavior` instead.
+
 :::
 
 > Default: `replace`
 
 The filtering behavior can be set to either `"merge"` or `"replace"`.
 
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        defaultSetFilterBehavior: "merge",
-    },
+  refineCoreProps: {
+    defaultSetFilterBehavior: "merge",
+  },
 });
 ```
 
 ## Return Values
 
 :::tip
+
 It also have all return values of [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#options).
+
 :::
 
 ### `refineCore`
@@ -747,7 +771,9 @@ A function creates accessible links for `syncWithLocation`. It takes [SyncWithLo
 ### ~~`sorter`~~
 
 :::caution Deprecated
+
 Use `sorters` instead.
+
 :::
 
 Current [sorters state][crudsorting].
@@ -755,7 +781,9 @@ Current [sorters state][crudsorting].
 ### ~~`setSorter`~~
 
 :::caution Deprecated
+
 Use `setSorters` instead.
+
 :::
 
 A function to set current [sorters state][crudsorting].
@@ -778,11 +806,11 @@ You can set the [`filters.mode: "off"`](#filtersmode) in order to disable server
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        filters: {
-            mode: "off",
-        },
+  refineCoreProps: {
+    filters: {
+      mode: "off",
     },
+  },
 });
 ```
 
@@ -792,11 +820,11 @@ You can set the [`sorters.mode: "off"`](#sortersmode) in order to disable server
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        sorters: {
-            mode: "off",
-        },
+  refineCoreProps: {
+    sorters: {
+      mode: "off",
     },
+  },
 });
 ```
 
@@ -808,7 +836,7 @@ useTable({
 
 ### Type Parameters
 
-| Property     | Desription                                                                                                                                                 | Type                       | Default                    |
+| Property     | Description                                                                                                                                                | Type                       | Default                    |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData | Result data of the query. Extends [`BaseRecord`][baserecord]                                                                                               | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                  | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

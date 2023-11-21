@@ -9,465 +9,355 @@ import { Column, ColumnDef, flexRender } from "@tanstack/react-table";
 import React from "react";
 
 import {
-    Box as MantineBox,
-    Code as MantineCode,
-    Group as MantineGroup,
-    Pagination as MantinePagination,
-    ScrollArea as MantineScrollArea,
-    Select as MantineSelect,
-    Space as MantineSpace,
-    Stepper as MantineStepper,
-    Table as MantineTable,
-    Textarea as MantineTextarea,
-    TextInput as MantineTextInput,
+  Box as MantineBox,
+  Code as MantineCode,
+  Group as MantineGroup,
+  Pagination as MantinePagination,
+  ScrollArea as MantineScrollArea,
+  Select as MantineSelect,
+  Space as MantineSpace,
+  Stepper as MantineStepper,
+  Table as MantineTable,
+  Textarea as MantineTextarea,
+  TextInput as MantineTextInput,
 } from "@mantine/core";
 import { GetManyResponse, useMany } from "@refinedev/core";
 import {
-    Button as MantineButton,
-    Create as MantineCreate,
-    DeleteButton as MantineDeleteButton,
-    Edit as MantineEdit,
-    EditButton as MantineEditButton,
-    List as MantineList,
-    useStepsForm as MantineUseStepsForm,
+  Button as MantineButton,
+  Create as MantineCreate,
+  DeleteButton as MantineDeleteButton,
+  Edit as MantineEdit,
+  EditButton as MantineEditButton,
+  List as MantineList,
+  useStepsForm as MantineUseStepsForm,
 } from "@refinedev/mantine";
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 
 interface ColumnButtonProps {
-    column: Column<any, any>; // eslint-disable-line
+  column: Column<any, any>; // eslint-disable-line
 }
 
 interface FilterElementProps {
-    value: any; // eslint-disable-line
-    onChange: (value: any) => void; // eslint-disable-line
+  value: any; // eslint-disable-line
+  onChange: (value: any) => void; // eslint-disable-line
 }
 
 const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-                meta: {
-                    filterOperator: "contains",
-                },
-            },
-            {
-                id: "status",
-                header: "Status",
-                accessorKey: "status",
-                meta: {
-                    filterElement: function render(props: FilterElementProps) {
-                        return (
-                            <Select
-                                defaultValue="published"
-                                data={[
-                                    { label: "Published", value: "published" },
-                                    { label: "Draft", value: "draft" },
-                                    { label: "Rejected", value: "rejected" },
-                                ]}
-                                {...props}
-                            />
-                        );
-                    },
-                    filterOperator: "eq",
-                },
-            },
-            {
-                id: "category.id",
-                header: "Category",
-                enableColumnFilter: false,
-                accessorKey: "category.id",
-                cell: function render({ getValue, table }) {
-                    const meta = table.options.meta as {
-                        categoriesData: GetManyResponse<ICategory>;
-                    };
-                    const category = meta.categoriesData?.data.find(
-                        (item) => item.id === getValue(),
-                    );
-                    return category?.title ?? "Loading...";
-                },
-            },
-            {
-                id: "actions",
-                header: "Actions",
-                accessorKey: "id",
-                enableColumnFilter: false,
-                enableSorting: false,
-                cell: function render({ getValue }) {
-                    return (
-                        <MantineGroup spacing="xs" noWrap>
-                            <MantineEditButton
-                                hideText
-                                recordItemId={getValue() as number}
-                            />
-                            <MantineDeleteButton
-                                hideText
-                                recordItemId={getValue() as number}
-                            />
-                        </MantineGroup>
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
-        refineCore: {
-            setCurrent,
-            pageCount,
-            current,
-            tableQueryResult: { data: tableData },
-        },
-    } = useTable({
-        columns,
-    });
-
-    const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
-    const { data: categoriesData } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
-
-    setOptions((prev) => ({
-        ...prev,
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
         meta: {
-            ...prev.meta,
-            categoriesData,
+          filterOperator: "contains",
         },
-    }));
+      },
+      {
+        id: "status",
+        header: "Status",
+        accessorKey: "status",
+        meta: {
+          filterElement: function render(props: FilterElementProps) {
+            return (
+              <Select
+                defaultValue="published"
+                data={[
+                  { label: "Published", value: "published" },
+                  { label: "Draft", value: "draft" },
+                  { label: "Rejected", value: "rejected" },
+                ]}
+                {...props}
+              />
+            );
+          },
+          filterOperator: "eq",
+        },
+      },
+      {
+        id: "category.id",
+        header: "Category",
+        enableColumnFilter: false,
+        accessorKey: "category.id",
+        cell: function render({ getValue, table }) {
+          const meta = table.options.meta as {
+            categoriesData: GetManyResponse<ICategory>;
+          };
+          const category = meta.categoriesData?.data.find((item) => item.id === getValue());
+          return category?.title ?? "Loading...";
+        },
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        accessorKey: "id",
+        enableColumnFilter: false,
+        enableSorting: false,
+        cell: function render({ getValue }) {
+          return (
+            <MantineGroup spacing="xs" noWrap>
+              <MantineEditButton hideText recordItemId={getValue() as number} />
+              <MantineDeleteButton hideText recordItemId={getValue() as number} />
+            </MantineGroup>
+          );
+        },
+      },
+    ],
+    [],
+  );
 
-    return (
-        <MantineScrollArea>
-            <MantineList>
-                <MantineTable highlightOnHover>
-                    <thead>
-                        {getHeaderGroups().map((headerGroup) => (
-                            <tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => {
-                                    return (
-                                        <th key={header.id}>
-                                            {!header.isPlaceholder && (
-                                                <MantineGroup
-                                                    spacing="xs"
-                                                    noWrap
-                                                >
-                                                    <MantineBox>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </MantineBox>
-                                                </MantineGroup>
-                                            )}
-                                        </th>
-                                    );
-                                })}
-                            </tr>
-                        ))}
-                    </thead>
-                    <tbody>
-                        {getRowModel().rows.map((row) => {
-                            return (
-                                <tr key={row.id}>
-                                    {row.getVisibleCells().map((cell) => {
-                                        return (
-                                            <td key={cell.id}>
-                                                {flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext(),
-                                                )}
-                                            </td>
-                                        );
-                                    })}
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </MantineTable>
-                <br />
-                <MantinePagination
-                    position="right"
-                    total={pageCount}
-                    page={current}
-                    onChange={setCurrent}
-                />
-            </MantineList>
-        </MantineScrollArea>
-    );
+  const {
+    getHeaderGroups,
+    getRowModel,
+    setOptions,
+    refineCore: {
+      setCurrent,
+      pageCount,
+      current,
+      tableQueryResult: { data: tableData },
+    },
+  } = useTable({
+    columns,
+  });
+
+  const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
+  const { data: categoriesData } = useMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
+
+  setOptions((prev) => ({
+    ...prev,
+    meta: {
+      ...prev.meta,
+      categoriesData,
+    },
+  }));
+
+  return (
+    <MantineScrollArea>
+      <MantineList>
+        <MantineTable highlightOnHover>
+          <thead>
+            {getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <th key={header.id}>
+                      {!header.isPlaceholder && (
+                        <MantineGroup spacing="xs" noWrap>
+                          <MantineBox>{flexRender(header.column.columnDef.header, header.getContext())}</MantineBox>
+                        </MantineGroup>
+                      )}
+                    </th>
+                  );
+                })}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {getRowModel().rows.map((row) => {
+              return (
+                <tr key={row.id}>
+                  {row.getVisibleCells().map((cell) => {
+                    return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </MantineTable>
+        <br />
+        <MantinePagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+      </MantineList>
+    </MantineScrollArea>
+  );
 };
 
 const PostCreate: React.FC = () => {
-    const {
-        saveButtonProps,
-        getInputProps,
-        values,
-        steps: { currentStep, gotoStep },
-    } = MantineUseStepsForm({
-        initialValues: {
-            title: "",
-            status: "",
-            slug: "",
-            content: "",
-        },
-        validate: (values) => {
-            if (currentStep === 0) {
-                return {
-                    title: values.title ? null : "Title is required",
-                    slug: values.slug ? null : "Slug is required",
-                };
-            }
+  const {
+    saveButtonProps,
+    getInputProps,
+    values,
+    steps: { currentStep, gotoStep },
+  } = MantineUseStepsForm({
+    initialValues: {
+      title: "",
+      status: "",
+      slug: "",
+      content: "",
+    },
+    validate: (values) => {
+      if (currentStep === 0) {
+        return {
+          title: values.title ? null : "Title is required",
+          slug: values.slug ? null : "Slug is required",
+        };
+      }
 
-            if (currentStep === 1) {
-                return {
-                    status: values.status ? null : "Status is required",
-                };
-            }
+      if (currentStep === 1) {
+        return {
+          status: values.status ? null : "Status is required",
+        };
+      }
 
-            return {};
-        },
-    });
+      return {};
+    },
+  });
 
-    return (
-        <MantineCreate
-            footerButtons={
-                <MantineGroup position="right" mt="xl">
-                    {currentStep !== 0 && (
-                        <MantineButton
-                            variant="default"
-                            onClick={() => gotoStep(currentStep - 1)}
-                        >
-                            Back
-                        </MantineButton>
-                    )}
-                    {currentStep !== 3 && (
-                        <MantineButton
-                            onClick={() => gotoStep(currentStep + 1)}
-                        >
-                            Next step
-                        </MantineButton>
-                    )}
-                    {currentStep === 2 && <SaveButton {...saveButtonProps} />}
-                </MantineGroup>
-            }
-        >
-            <MantineStepper
-                active={currentStep}
-                onStepClick={gotoStep}
-                breakpoint="xs"
-            >
-                <MantineStepper.Step
-                    label="First Step"
-                    description="Title and Slug"
-                    allowStepSelect={currentStep > 0}
-                >
-                    <MantineTextInput
-                        mt="md"
-                        label="Title"
-                        placeholder="Title"
-                        {...getInputProps("title")}
-                    />
-                    <MantineTextInput
-                        mt="md"
-                        label="Slug"
-                        placeholder="Slug"
-                        {...getInputProps("slug")}
-                    />
-                </MantineStepper.Step>
+  return (
+    <MantineCreate
+      footerButtons={
+        <MantineGroup position="right" mt="xl">
+          {currentStep !== 0 && (
+            <MantineButton variant="default" onClick={() => gotoStep(currentStep - 1)}>
+              Back
+            </MantineButton>
+          )}
+          {currentStep !== 3 && <MantineButton onClick={() => gotoStep(currentStep + 1)}>Next step</MantineButton>}
+          {currentStep === 2 && <SaveButton {...saveButtonProps} />}
+        </MantineGroup>
+      }
+    >
+      <MantineStepper active={currentStep} onStepClick={gotoStep} breakpoint="xs">
+        <MantineStepper.Step label="First Step" description="Title and Slug" allowStepSelect={currentStep > 0}>
+          <MantineTextInput mt="md" label="Title" placeholder="Title" {...getInputProps("title")} />
+          <MantineTextInput mt="md" label="Slug" placeholder="Slug" {...getInputProps("slug")} />
+        </MantineStepper.Step>
 
-                <MantineStepper.Step
-                    label="Second Step"
-                    description="Status"
-                    allowStepSelect={currentStep > 1}
-                >
-                    <MantineSelect
-                        mt="md"
-                        label="Status"
-                        placeholder="Pick one"
-                        {...getInputProps("status")}
-                        data={[
-                            { label: "Published", value: "published" },
-                            { label: "Draft", value: "draft" },
-                            { label: "Rejected", value: "rejected" },
-                        ]}
-                    />
-                </MantineStepper.Step>
+        <MantineStepper.Step label="Second Step" description="Status" allowStepSelect={currentStep > 1}>
+          <MantineSelect
+            mt="md"
+            label="Status"
+            placeholder="Pick one"
+            {...getInputProps("status")}
+            data={[
+              { label: "Published", value: "published" },
+              { label: "Draft", value: "draft" },
+              { label: "Rejected", value: "rejected" },
+            ]}
+          />
+        </MantineStepper.Step>
 
-                <MantineStepper.Step
-                    label="Final Step"
-                    description="Content"
-                    allowStepSelect={currentStep > 2}
-                >
-                    <MantineTextarea
-                        label="Content"
-                        placeholder="Content"
-                        {...getInputProps("content")}
-                    />
-                </MantineStepper.Step>
+        <MantineStepper.Step label="Final Step" description="Content" allowStepSelect={currentStep > 2}>
+          <MantineTextarea label="Content" placeholder="Content" {...getInputProps("content")} />
+        </MantineStepper.Step>
 
-                <MantineStepper.Completed>
-                    Completed! Form values:
-                    <MantineSpace />
-                    <MantineCode mt="xl">
-                        {JSON.stringify(values, null, 2)}
-                    </MantineCode>
-                </MantineStepper.Completed>
-            </MantineStepper>
-        </MantineCreate>
-    );
+        <MantineStepper.Completed>
+          Completed! Form values:
+          <MantineSpace />
+          <MantineCode mt="xl">{JSON.stringify(values, null, 2)}</MantineCode>
+        </MantineStepper.Completed>
+      </MantineStepper>
+    </MantineCreate>
+  );
 };
 
 const PostEdit: React.FC = () => {
-    const {
-        saveButtonProps,
-        getInputProps,
-        values,
-        steps: { currentStep, gotoStep },
-    } = MantineUseStepsForm({
-        initialValues: {
-            title: "",
-            status: "",
-            slug: "",
-            content: "",
-        },
-        validate: (values) => {
-            if (currentStep === 0) {
-                return {
-                    title: values.title ? null : "Title is required",
-                    status: values.status ? null : "Status is required",
-                };
-            }
+  const {
+    saveButtonProps,
+    getInputProps,
+    values,
+    steps: { currentStep, gotoStep },
+  } = MantineUseStepsForm({
+    initialValues: {
+      title: "",
+      status: "",
+      slug: "",
+      content: "",
+    },
+    validate: (values) => {
+      if (currentStep === 0) {
+        return {
+          title: values.title ? null : "Title is required",
+          status: values.status ? null : "Status is required",
+        };
+      }
 
-            if (currentStep === 1) {
-                return {
-                    slug: values.slug ? null : "Slug is required",
-                };
-            }
+      if (currentStep === 1) {
+        return {
+          slug: values.slug ? null : "Slug is required",
+        };
+      }
 
-            return {};
-        },
-    });
+      return {};
+    },
+  });
 
-    return (
-        <MantineEdit
-            footerButtons={
-                <MantineGroup position="right" mt="xl">
-                    {currentStep !== 0 && (
-                        <MantineButton
-                            variant="default"
-                            onClick={() => gotoStep(currentStep - 1)}
-                        >
-                            Back
-                        </MantineButton>
-                    )}
-                    {currentStep !== 3 && (
-                        <MantineButton
-                            onClick={() => gotoStep(currentStep + 1)}
-                        >
-                            Next step
-                        </MantineButton>
-                    )}
-                    {currentStep === 2 && <SaveButton {...saveButtonProps} />}
-                </MantineGroup>
-            }
-        >
-            <MantineStepper
-                active={currentStep}
-                onStepClick={gotoStep}
-                breakpoint="xs"
-            >
-                <MantineStepper.Step
-                    label="First Step"
-                    description="Title and Slug"
-                    allowStepSelect={currentStep > 0}
-                >
-                    <MantineTextInput
-                        mt="md"
-                        label="Title"
-                        placeholder="Title"
-                        {...getInputProps("title")}
-                    />
-                    <MantineTextInput
-                        mt="md"
-                        label="Slug"
-                        placeholder="Slug"
-                        {...getInputProps("slug")}
-                    />
-                </MantineStepper.Step>
+  return (
+    <MantineEdit
+      footerButtons={
+        <MantineGroup position="right" mt="xl">
+          {currentStep !== 0 && (
+            <MantineButton variant="default" onClick={() => gotoStep(currentStep - 1)}>
+              Back
+            </MantineButton>
+          )}
+          {currentStep !== 3 && <MantineButton onClick={() => gotoStep(currentStep + 1)}>Next step</MantineButton>}
+          {currentStep === 2 && <SaveButton {...saveButtonProps} />}
+        </MantineGroup>
+      }
+    >
+      <MantineStepper active={currentStep} onStepClick={gotoStep} breakpoint="xs">
+        <MantineStepper.Step label="First Step" description="Title and Slug" allowStepSelect={currentStep > 0}>
+          <MantineTextInput mt="md" label="Title" placeholder="Title" {...getInputProps("title")} />
+          <MantineTextInput mt="md" label="Slug" placeholder="Slug" {...getInputProps("slug")} />
+        </MantineStepper.Step>
 
-                <MantineStepper.Step
-                    label="Second Step"
-                    description="Status"
-                    allowStepSelect={currentStep > 1}
-                >
-                    <MantineSelect
-                        mt="md"
-                        label="Status"
-                        placeholder="Pick one"
-                        {...getInputProps("status")}
-                        data={[
-                            { label: "Published", value: "published" },
-                            { label: "Draft", value: "draft" },
-                            { label: "Rejected", value: "rejected" },
-                        ]}
-                    />
-                </MantineStepper.Step>
+        <MantineStepper.Step label="Second Step" description="Status" allowStepSelect={currentStep > 1}>
+          <MantineSelect
+            mt="md"
+            label="Status"
+            placeholder="Pick one"
+            {...getInputProps("status")}
+            data={[
+              { label: "Published", value: "published" },
+              { label: "Draft", value: "draft" },
+              { label: "Rejected", value: "rejected" },
+            ]}
+          />
+        </MantineStepper.Step>
 
-                <MantineStepper.Step
-                    label="Final Step"
-                    description="Content"
-                    allowStepSelect={currentStep > 2}
-                >
-                    <MantineTextarea
-                        label="Content"
-                        placeholder="Content"
-                        {...getInputProps("content")}
-                    />
-                </MantineStepper.Step>
-                <MantineStepper.Completed>
-                    Completed! Form values:
-                    <MantineSpace />
-                    <MantineCode mt="xl">
-                        {JSON.stringify(values, null, 2)}
-                    </MantineCode>
-                </MantineStepper.Completed>
-            </MantineStepper>
-        </MantineEdit>
-    );
+        <MantineStepper.Step label="Final Step" description="Content" allowStepSelect={currentStep > 2}>
+          <MantineTextarea label="Content" placeholder="Content" {...getInputProps("content")} />
+        </MantineStepper.Step>
+        <MantineStepper.Completed>
+          Completed! Form values:
+          <MantineSpace />
+          <MantineCode mt="xl">{JSON.stringify(values, null, 2)}</MantineCode>
+        </MantineStepper.Completed>
+      </MantineStepper>
+    </MantineEdit>
+  );
 };
 ```
 
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
 :::info
+
 The `useStepsForm` hook is extended from [`useForm`][use-form-refine-mantine] from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/master/packages/mantine) package. This means that you can use all the functionalities of [`useForm`][use-form-refine-mantine] in your `useStepsForm`.
+
 :::
 
 ## Basic Usage
@@ -489,16 +379,7 @@ Here is the final result of the form: We will explain the code in following sect
 setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
-import {
-    Button,
-    Code,
-    Group,
-    Select,
-    Space,
-    Stepper,
-    Textarea,
-    TextInput,
-} from "@mantine/core";
+import { Button, Code, Group, Select, Space, Stepper, Textarea, TextInput } from "@mantine/core";
 import { HttpError } from "@refinedev/core";
 import { Create, SaveButton, useStepsForm } from "@refinedev/mantine";
 import React from "react";
@@ -506,131 +387,94 @@ import React from "react";
 type FormValues = Omit<IPost, "id">;
 
 const PostCreatePage: React.FC = () => {
-    const {
-        saveButtonProps,
-        getInputProps,
-        values,
-        steps: { currentStep, gotoStep },
-    } = useStepsForm<IPost, HttpError, FormValues>({
-        initialValues: {
-            title: "",
-            status: "",
-            slug: "",
-            content: "",
-        },
-        validate: (values) => {
-            if (currentStep === 0) {
-                return {
-                    title: values.title ? null : "Title is required",
-                    slug: values.slug ? null : "Slug is required",
-                };
-            }
+  const {
+    saveButtonProps,
+    getInputProps,
+    values,
+    steps: { currentStep, gotoStep },
+  } = useStepsForm<IPost, HttpError, FormValues>({
+    initialValues: {
+      title: "",
+      status: "",
+      slug: "",
+      content: "",
+    },
+    validate: (values) => {
+      if (currentStep === 0) {
+        return {
+          title: values.title ? null : "Title is required",
+          slug: values.slug ? null : "Slug is required",
+        };
+      }
 
-            if (currentStep === 1) {
-                return {
-                    status: values.status ? null : "Status is required",
-                };
-            }
+      if (currentStep === 1) {
+        return {
+          status: values.status ? null : "Status is required",
+        };
+      }
 
-            return {};
-        },
-    });
+      return {};
+    },
+  });
 
-    return (
-        <Create
-            footerButtons={
-                <Group position="right" mt="xl">
-                    {currentStep !== 0 && (
-                        <Button
-                            variant="default"
-                            onClick={() => gotoStep(currentStep - 1)}
-                        >
-                            Back
-                        </Button>
-                    )}
-                    {currentStep !== 3 && (
-                        <Button onClick={() => gotoStep(currentStep + 1)}>
-                            Next step
-                        </Button>
-                    )}
-                    {currentStep === 2 && <SaveButton {...saveButtonProps} />}
-                </Group>
-            }
-        >
-            <Stepper
-                active={currentStep}
-                onStepClick={gotoStep}
-                breakpoint="xs"
-            >
-                <Stepper.Step
-                    label="First Step"
-                    description="Title and Slug"
-                    allowStepSelect={currentStep > 0}
-                >
-                    <TextInput
-                        mt="md"
-                        label="Title"
-                        placeholder="Title"
-                        {...getInputProps("title")}
-                    />
-                    <TextInput
-                        mt="md"
-                        label="Slug"
-                        placeholder="Slug"
-                        {...getInputProps("slug")}
-                    />
-                </Stepper.Step>
+  return (
+    <Create
+      footerButtons={
+        <Group position="right" mt="xl">
+          {currentStep !== 0 && (
+            <Button variant="default" onClick={() => gotoStep(currentStep - 1)}>
+              Back
+            </Button>
+          )}
+          {currentStep !== 3 && <Button onClick={() => gotoStep(currentStep + 1)}>Next step</Button>}
+          {currentStep === 2 && <SaveButton {...saveButtonProps} />}
+        </Group>
+      }
+    >
+      <Stepper active={currentStep} onStepClick={gotoStep} breakpoint="xs">
+        <Stepper.Step label="First Step" description="Title and Slug" allowStepSelect={currentStep > 0}>
+          <TextInput mt="md" label="Title" placeholder="Title" {...getInputProps("title")} />
+          <TextInput mt="md" label="Slug" placeholder="Slug" {...getInputProps("slug")} />
+        </Stepper.Step>
 
-                <Stepper.Step
-                    label="Second Step"
-                    description="Status"
-                    allowStepSelect={currentStep > 1}
-                >
-                    <Select
-                        mt="md"
-                        label="Status"
-                        placeholder="Pick one"
-                        {...getInputProps("status")}
-                        data={[
-                            { label: "Published", value: "published" },
-                            { label: "Draft", value: "draft" },
-                            { label: "Rejected", value: "rejected" },
-                        ]}
-                    />
-                </Stepper.Step>
+        <Stepper.Step label="Second Step" description="Status" allowStepSelect={currentStep > 1}>
+          <Select
+            mt="md"
+            label="Status"
+            placeholder="Pick one"
+            {...getInputProps("status")}
+            data={[
+              { label: "Published", value: "published" },
+              { label: "Draft", value: "draft" },
+              { label: "Rejected", value: "rejected" },
+            ]}
+          />
+        </Stepper.Step>
 
-                <Stepper.Step
-                    label="Final Step"
-                    description="Content"
-                    allowStepSelect={currentStep > 2}
-                >
-                    <Textarea
-                        label="Content"
-                        placeholder="Content"
-                        {...getInputProps("content")}
-                    />
-                </Stepper.Step>
+        <Stepper.Step label="Final Step" description="Content" allowStepSelect={currentStep > 2}>
+          <Textarea label="Content" placeholder="Content" {...getInputProps("content")} />
+        </Stepper.Step>
 
-                <Stepper.Completed>
-                    Completed! Form values:
-                    <Space />
-                    <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
-                </Stepper.Completed>
-            </Stepper>
-        </Create>
-    );
+        <Stepper.Completed>
+          Completed! Form values:
+          <Space />
+          <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
+        </Stepper.Completed>
+      </Stepper>
+    </Create>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreatePage,
-            edit: PostEdit,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreatePage,
+      edit: PostEdit,
+    },
+  ],
 });
 
 render(<RefineMantineDemo />);
@@ -646,16 +490,7 @@ Here is the final result of the form: We will explain the code in following sect
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
-import {
-    Button,
-    Code,
-    Group,
-    Select,
-    Space,
-    Stepper,
-    Textarea,
-    TextInput,
-} from "@mantine/core";
+import { Button, Code, Group, Select, Space, Stepper, Textarea, TextInput } from "@mantine/core";
 import { HttpError } from "@refinedev/core";
 import { Edit, SaveButton, useStepsForm } from "@refinedev/mantine";
 import React from "react";
@@ -663,131 +498,94 @@ import React from "react";
 type FormValues = Omit<IPost, "id">;
 
 const PostEditPage: React.FC = () => {
-    const {
-        saveButtonProps,
-        getInputProps,
-        values,
-        steps: { currentStep, gotoStep },
-    } = useStepsForm<IPost, HttpError, FormValues>({
-        initialValues: {
-            title: "",
-            status: "",
-            slug: "",
-            content: "",
-        },
-        validate: (values) => {
-            if (currentStep === 0) {
-                return {
-                    title: values.title ? null : "Title is required",
-                    slug: values.slug ? null : "Slug is required",
-                };
-            }
+  const {
+    saveButtonProps,
+    getInputProps,
+    values,
+    steps: { currentStep, gotoStep },
+  } = useStepsForm<IPost, HttpError, FormValues>({
+    initialValues: {
+      title: "",
+      status: "",
+      slug: "",
+      content: "",
+    },
+    validate: (values) => {
+      if (currentStep === 0) {
+        return {
+          title: values.title ? null : "Title is required",
+          slug: values.slug ? null : "Slug is required",
+        };
+      }
 
-            if (currentStep === 1) {
-                return {
-                    status: values.status ? null : "Status is required",
-                };
-            }
+      if (currentStep === 1) {
+        return {
+          status: values.status ? null : "Status is required",
+        };
+      }
 
-            return {};
-        },
-    });
+      return {};
+    },
+  });
 
-    return (
-        <Edit
-            footerButtons={
-                <Group position="right" mt="xl">
-                    {currentStep !== 0 && (
-                        <Button
-                            variant="default"
-                            onClick={() => gotoStep(currentStep - 1)}
-                        >
-                            Back
-                        </Button>
-                    )}
-                    {currentStep !== 3 && (
-                        <Button onClick={() => gotoStep(currentStep + 1)}>
-                            Next step
-                        </Button>
-                    )}
-                    {currentStep === 2 && <SaveButton {...saveButtonProps} />}
-                </Group>
-            }
-        >
-            <Stepper
-                active={currentStep}
-                onStepClick={gotoStep}
-                breakpoint="xs"
-            >
-                <Stepper.Step
-                    label="First Step"
-                    description="Title and Slug"
-                    allowStepSelect={currentStep > 0}
-                >
-                    <TextInput
-                        mt="md"
-                        label="Title"
-                        placeholder="Title"
-                        {...getInputProps("title")}
-                    />
-                    <TextInput
-                        mt="md"
-                        label="Slug"
-                        placeholder="Slug"
-                        {...getInputProps("slug")}
-                    />
-                </Stepper.Step>
+  return (
+    <Edit
+      footerButtons={
+        <Group position="right" mt="xl">
+          {currentStep !== 0 && (
+            <Button variant="default" onClick={() => gotoStep(currentStep - 1)}>
+              Back
+            </Button>
+          )}
+          {currentStep !== 3 && <Button onClick={() => gotoStep(currentStep + 1)}>Next step</Button>}
+          {currentStep === 2 && <SaveButton {...saveButtonProps} />}
+        </Group>
+      }
+    >
+      <Stepper active={currentStep} onStepClick={gotoStep} breakpoint="xs">
+        <Stepper.Step label="First Step" description="Title and Slug" allowStepSelect={currentStep > 0}>
+          <TextInput mt="md" label="Title" placeholder="Title" {...getInputProps("title")} />
+          <TextInput mt="md" label="Slug" placeholder="Slug" {...getInputProps("slug")} />
+        </Stepper.Step>
 
-                <Stepper.Step
-                    label="Second Step"
-                    description="Status"
-                    allowStepSelect={currentStep > 1}
-                >
-                    <Select
-                        mt="md"
-                        label="Status"
-                        placeholder="Pick one"
-                        {...getInputProps("status")}
-                        data={[
-                            { label: "Published", value: "published" },
-                            { label: "Draft", value: "draft" },
-                            { label: "Rejected", value: "rejected" },
-                        ]}
-                    />
-                </Stepper.Step>
+        <Stepper.Step label="Second Step" description="Status" allowStepSelect={currentStep > 1}>
+          <Select
+            mt="md"
+            label="Status"
+            placeholder="Pick one"
+            {...getInputProps("status")}
+            data={[
+              { label: "Published", value: "published" },
+              { label: "Draft", value: "draft" },
+              { label: "Rejected", value: "rejected" },
+            ]}
+          />
+        </Stepper.Step>
 
-                <Stepper.Step
-                    label="Final Step"
-                    description="Content"
-                    allowStepSelect={currentStep > 2}
-                >
-                    <Textarea
-                        label="Content"
-                        placeholder="Content"
-                        {...getInputProps("content")}
-                    />
-                </Stepper.Step>
+        <Stepper.Step label="Final Step" description="Content" allowStepSelect={currentStep > 2}>
+          <Textarea label="Content" placeholder="Content" {...getInputProps("content")} />
+        </Stepper.Step>
 
-                <Stepper.Completed>
-                    Completed! Form values:
-                    <Space />
-                    <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
-                </Stepper.Completed>
-            </Stepper>
-        </Edit>
-    );
+        <Stepper.Completed>
+          Completed! Form values:
+          <Space />
+          <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
+        </Stepper.Completed>
+      </Stepper>
+    </Edit>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreate,
-            edit: PostEditPage,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreate,
+      edit: PostEditPage,
+    },
+  ],
 });
 
 render(<RefineMantineDemo />);
@@ -809,37 +607,37 @@ import React from "react";
 type FormValues = Omit<IPost, "id">;
 
 const PostCreatePage: React.FC = () => {
-    const {
-        saveButtonProps,
-        getInputProps,
-        values,
-        steps: { currentStep, gotoStep },
-    } = useStepsForm<IPost, HttpError, FormValues>({
-        initialValues: {
-            title: "",
-            status: "",
-            slug: "",
-            content: "",
-        },
-        validate: (values) => {
-            if (currentStep === 0) {
-                return {
-                    title: values.title ? null : "Title is required",
-                    slug: values.slug ? null : "Slug is required",
-                };
-            }
+  const {
+    saveButtonProps,
+    getInputProps,
+    values,
+    steps: { currentStep, gotoStep },
+  } = useStepsForm<IPost, HttpError, FormValues>({
+    initialValues: {
+      title: "",
+      status: "",
+      slug: "",
+      content: "",
+    },
+    validate: (values) => {
+      if (currentStep === 0) {
+        return {
+          title: values.title ? null : "Title is required",
+          slug: values.slug ? null : "Slug is required",
+        };
+      }
 
-            if (currentStep === 1) {
-                return {
-                    status: values.status ? null : "Status is required",
-                };
-            }
+      if (currentStep === 1) {
+        return {
+          status: values.status ? null : "Status is required",
+        };
+      }
 
-            return {};
-        },
-    });
+      return {};
+    },
+  });
 
-    return <Create>create page</Create>;
+  return <Create>create page</Create>;
 };
 ```
 
@@ -857,123 +655,86 @@ import React from "react";
 type FormValues = Omit<IPost, "id">;
 
 const PostCreatePage: React.FC = () => {
-    const {
-        saveButtonProps,
-        getInputProps,
-        values,
-        steps: { currentStep, gotoStep },
-    } = useStepsForm<IPost, HttpError, FormValues>({
-        initialValues: {
-            title: "",
-            status: "",
-            slug: "",
-            content: "",
-        },
-        validate: (values) => {
-            if (currentStep === 0) {
-                return {
-                    title: values.title ? null : "Title is required",
-                    slug: values.slug ? null : "Slug is required",
-                };
-            }
+  const {
+    saveButtonProps,
+    getInputProps,
+    values,
+    steps: { currentStep, gotoStep },
+  } = useStepsForm<IPost, HttpError, FormValues>({
+    initialValues: {
+      title: "",
+      status: "",
+      slug: "",
+      content: "",
+    },
+    validate: (values) => {
+      if (currentStep === 0) {
+        return {
+          title: values.title ? null : "Title is required",
+          slug: values.slug ? null : "Slug is required",
+        };
+      }
 
-            if (currentStep === 1) {
-                return {
-                    status: values.status ? null : "Status is required",
-                };
-            }
+      if (currentStep === 1) {
+        return {
+          status: values.status ? null : "Status is required",
+        };
+      }
 
-            return {};
-        },
-    });
+      return {};
+    },
+  });
 
-    return (
-        <Create
-            //highlight-start
-            footerButtons={
-                <Group position="right" mt="xl">
-                    {currentStep !== 0 && (
-                        <Button
-                            variant="default"
-                            onClick={() => gotoStep(currentStep - 1)}
-                        >
-                            Back
-                        </Button>
-                    )}
-                    {currentStep !== 3 && (
-                        <Button onClick={() => gotoStep(currentStep + 1)}>
-                            Next step
-                        </Button>
-                    )}
-                    {currentStep === 2 && <SaveButton {...saveButtonProps} />}
-                </Group>
-            }
-            // highlight-end
-        >
-            {/* highlight-start */}
-            <Stepper
-                active={currentStep}
-                onStepClick={gotoStep}
-                breakpoint="xs"
-            >
-                <Stepper.Step
-                    label="First Step"
-                    description="Title and Slug"
-                    allowStepSelect={currentStep > 0}
-                >
-                    <TextInput
-                        mt="md"
-                        label="Title"
-                        placeholder="Title"
-                        {...getInputProps("title")}
-                    />
-                    <TextInput
-                        mt="md"
-                        label="Slug"
-                        placeholder="Slug"
-                        {...getInputProps("slug")}
-                    />
-                </Stepper.Step>
+  return (
+    <Create
+      //highlight-start
+      footerButtons={
+        <Group position="right" mt="xl">
+          {currentStep !== 0 && (
+            <Button variant="default" onClick={() => gotoStep(currentStep - 1)}>
+              Back
+            </Button>
+          )}
+          {currentStep !== 3 && <Button onClick={() => gotoStep(currentStep + 1)}>Next step</Button>}
+          {currentStep === 2 && <SaveButton {...saveButtonProps} />}
+        </Group>
+      }
+      // highlight-end
+    >
+      {/* highlight-start */}
+      <Stepper active={currentStep} onStepClick={gotoStep} breakpoint="xs">
+        <Stepper.Step label="First Step" description="Title and Slug" allowStepSelect={currentStep > 0}>
+          <TextInput mt="md" label="Title" placeholder="Title" {...getInputProps("title")} />
+          <TextInput mt="md" label="Slug" placeholder="Slug" {...getInputProps("slug")} />
+        </Stepper.Step>
 
-                <Stepper.Step
-                    label="Second Step"
-                    description="Status"
-                    allowStepSelect={currentStep > 1}
-                >
-                    <Select
-                        mt="md"
-                        label="Status"
-                        placeholder="Pick one"
-                        {...getInputProps("status")}
-                        data={[
-                            { label: "Published", value: "published" },
-                            { label: "Draft", value: "draft" },
-                            { label: "Rejected", value: "rejected" },
-                        ]}
-                    />
-                </Stepper.Step>
+        <Stepper.Step label="Second Step" description="Status" allowStepSelect={currentStep > 1}>
+          <Select
+            mt="md"
+            label="Status"
+            placeholder="Pick one"
+            {...getInputProps("status")}
+            data={[
+              { label: "Published", value: "published" },
+              { label: "Draft", value: "draft" },
+              { label: "Rejected", value: "rejected" },
+            ]}
+          />
+        </Stepper.Step>
 
-                <Stepper.Step
-                    label="Final Step"
-                    description="Content"
-                    allowStepSelect={currentStep > 2}
-                >
-                    <Textarea
-                        label="Content"
-                        placeholder="Content"
-                        {...getInputProps("content")}
-                    />
-                </Stepper.Step>
+        <Stepper.Step label="Final Step" description="Content" allowStepSelect={currentStep > 2}>
+          <Textarea label="Content" placeholder="Content" {...getInputProps("content")} />
+        </Stepper.Step>
 
-                <Stepper.Completed>
-                    Completed! Form values:
-                    <Space />
-                    <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
-                </Stepper.Completed>
-            </Stepper>
-            {/* highlight-end */}
-        </Create>
-    );
+        <Stepper.Completed>
+          Completed! Form values:
+          <Space />
+          <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
+        </Stepper.Completed>
+      </Stepper>
+      {/* highlight-end */}
+    </Create>
+  );
 };
 ```
 
@@ -985,11 +746,11 @@ All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties also ava
 
 ```tsx
 const stepsForm = useStepsForm({
-    refineCoreProps: {
-        action: "edit",
-        resource: "posts",
-        id: "1",
-    },
+  refineCoreProps: {
+    action: "edit",
+    resource: "posts",
+    id: "1",
+  },
 });
 ```
 
@@ -1001,9 +762,9 @@ Sets the default starting step number. Counting starts from `0`.
 
 ```tsx
 const stepsForm = useStepsForm({
-    stepsProps: {
-        defaultStep: 0,
-    },
+  stepsProps: {
+    defaultStep: 0,
+  },
 });
 ```
 
@@ -1013,9 +774,9 @@ When is `true`, validates a form fields when the user navigates to a previous st
 
 ```tsx
 const stepsForm = useStepsForm({
-    stepsProps: {
-        isBackValidate: true,
-    },
+  stepsProps: {
+    isBackValidate: true,
+  },
 });
 ```
 
@@ -1029,20 +790,20 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useStepsForm({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
 {
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
 }
 ```
 
@@ -1055,7 +816,9 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
+
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -1068,11 +831,11 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useStepsForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
     },
+  },
 });
 ```
 
@@ -1084,13 +847,13 @@ useStepsForm({
 
 ```tsx
 useStepsForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            debounce: 2000,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      debounce: 2000,
     },
+  },
 });
 ```
 
@@ -1102,27 +865,29 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useStepsForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            invalidateOnUnmount: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      invalidateOnUnmount: true,
     },
+  },
 });
 ```
 
 ## Return Values
 
 :::tip
+
 All [`useForm`](/docs/api-reference/mantine/hooks/form/useForm) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/mantine/hooks/form/useForm#return-values) docs.
+
 :::
 
 ### `steps`
 
 The props needed by the `<Stepper>` component.
 
-#### `currenStep`
+#### `currentStep`
 
 Current step, counting from `0`.
 
@@ -1158,25 +923,25 @@ import { useStepsForm } from "@refinedev/mantine";
 import React from "react";
 
 const UserCreate: React.FC = () => {
-    const {
-        saveButtonProps,
-        getInputProps,
-        values,
-        steps: { currentStep, gotoStep },
-    } = useStepsForm({
-        refineCoreProps: { action: "create" },
-        initialValues: {
-            name: "",
-            surname: "",
-        },
-        // highlight-start
-        transformValues: (values) => ({
-            fullName: `${values.name} ${values.surname}`,
-        }),
-        // highlight-end
-    });
+  const {
+    saveButtonProps,
+    getInputProps,
+    values,
+    steps: { currentStep, gotoStep },
+  } = useStepsForm({
+    refineCoreProps: { action: "create" },
+    initialValues: {
+      name: "",
+      surname: "",
+    },
+    // highlight-start
+    transformValues: (values) => ({
+      fullName: `${values.name} ${values.surname}`,
+    }),
+    // highlight-end
+  });
 
-    // ...
+  // ...
 };
 ```
 
@@ -1193,7 +958,7 @@ stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
 
 ### Type Parameters
 
-| Property       | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                         | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

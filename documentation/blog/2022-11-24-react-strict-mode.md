@@ -113,7 +113,7 @@ x = 500;
 ## What’s new in React v18.0?
 Strict Mode plays a significant role in the incremental adoption of Concurrent rendering, a new implementation detail that, in simple terms, allows rendering UI to be interruptible. While in development, Strict Mode can be used to help expose concurrency-related bugs.
 
-The new React Strict Mode behaviours are as follows:
+The new React Strict Mode behaviors are as follows:
 - React Strict Mode can now be used to detect bugs that occur as code runs concurrently (two or more tasks being carried out simultaneously).
 - Strict Mode only runs in development, which does not impede the production build.
 - It logs extra warnings or errors and invokes functions twice to ensure that the expected results always occur.
@@ -159,7 +159,7 @@ FindDOMNode was a React feature designed to search the DOM node tree for a speci
 
 
 ### Detecting Unexpected Side Effects
-Due to the Strict Mode practice of double invoking function routines, functions can scrutinise their results to ensure they are pure and produce the desired results whenever the functions run. As a result, if a side effect occurs erroneously during the function render process, it can easily be detected and traced in Development Mode due to visible inconsistencies in the program’s output. 
+Due to the Strict Mode practice of double invoking function routines, functions can scrutinize their results to ensure they are pure and produce the desired results whenever the functions run. As a result, if a side effect occurs erroneously during the function render process, it can easily be detected and traced in Development Mode due to visible inconsistencies in the program’s output. 
 
 ### Detecting Legacy Context API
 StrictMode now highlights the use of the old Context API, prompting the user to upgrade to a higher version, as the Legacy Context API will be discontinued in future React releases. 

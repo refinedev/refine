@@ -11,20 +11,20 @@ We will demonstrate how to get data at the `/tags` endpoint from the `https://ap
 
 ```ts title="https://api.fake-rest.refine.dev/tags"
 {
-    [
-        {
-            id: 1,
-            title: "Driver Deposit",
-        },
-        {
-            id: 2,
-            title: "Index Compatible Synergistic",
-        },
-        {
-            id: 3,
-            title: "Plum",
-        },
-    ];
+  [
+    {
+      id: 1,
+      title: "Driver Deposit",
+    },
+    {
+      id: 2,
+      title: "Index Compatible Synergistic",
+    },
+    {
+      id: 3,
+      title: "Plum",
+    },
+  ];
 }
 ```
 
@@ -33,25 +33,25 @@ import { useCheckboxGroup } from "@refinedev/antd";
 import { Form, Checkbox } from "antd";
 
 export const PostCreate: React.FC = () => {
-    // highlight-start
-    const { checkboxGroupProps } = useCheckboxGroup<ITag>({
-        resource: "tags",
-    });
-    // highlight-end
+  // highlight-start
+  const { checkboxGroupProps } = useCheckboxGroup<ITag>({
+    resource: "tags",
+  });
+  // highlight-end
 
-    return (
-        <Form>
-            <Form.Item label="Tags" name="tags">
-                // highlight-next-line
-                <Checkbox.Group {...checkboxGroupProps} />
-            </Form.Item>
-        </Form>
-    );
+  return (
+    <Form>
+      <Form.Item label="Tags" name="tags">
+        // highlight-next-line
+        <Checkbox.Group {...checkboxGroupProps} />
+      </Form.Item>
+    </Form>
+  );
 };
 
 interface ITag {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 ```
 
@@ -70,7 +70,7 @@ All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.
 
 ```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
-    resource: "tags",
+  resource: "tags",
 });
 ```
 
@@ -86,9 +86,9 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ```tsx
 const { selectProps } = useCheckboxGroup({
-    resource: "languages",
-    // highlight-next-line
-    defaultValue: [1, 2],
+  resource: "languages",
+  // highlight-next-line
+  defaultValue: [1, 2],
 });
 ```
 
@@ -98,11 +98,11 @@ The easiest way to select default values for checkbox fields is by passing in `d
 
 ```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
-    resource: "tags",
-    // highlight-start
-    optionLabel: "title",
-    optionValue: "id",
-    // highlight-end
+  resource: "tags",
+  // highlight-start
+  optionLabel: "title",
+  optionValue: "id",
+  // highlight-end
 });
 ```
 
@@ -114,11 +114,11 @@ Supports use with `optionLabel` and `optionValue` [Object path](https://lodash.c
 
 ```tsx
 const { options } = useSelect({
-    resource: "categories",
-    // highlight-start
-    optionLabel: "nested.title",
-    optionValue: "nested.id",
-    // highlight-end
+  resource: "categories",
+  // highlight-start
+  optionLabel: "nested.title",
+  optionValue: "nested.id",
+  // highlight-end
 });
 ```
 
@@ -130,16 +130,16 @@ const { options } = useSelect({
 
 ```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
-    resource: "tags",
-    // highlight-start
-    filters: [
-        {
-            field: "title",
-            operator: "eq",
-            value: "Driver Deposit",
-        },
-    ],
-    // highlight-end
+  resource: "tags",
+  // highlight-start
+  filters: [
+    {
+      field: "title",
+      operator: "eq",
+      value: "Driver Deposit",
+    },
+  ],
+  // highlight-end
 });
 ```
 
@@ -149,15 +149,15 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 ```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
-    resource: "tags",
-    // highlight-start
-    sorters: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
-    // highlight-end
+  resource: "tags",
+  // highlight-start
+  sorters: [
+    {
+      field: "title",
+      order: "asc",
+    },
+  ],
+  // highlight-end
 });
 ```
 
@@ -167,9 +167,9 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 ```tsx
 const { selectProps } = useCheckboxGroup({
-    resource: "languages",
-    // highlight-next-line
-    fetchSize: 20,
+  resource: "languages",
+  // highlight-next-line
+  fetchSize: 20,
 });
 ```
 
@@ -179,14 +179,14 @@ Passing the `queryOptions` property allows us to set the [useQuery](https://reac
 
 ```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
-    resource: "tags",
-    // highlight-start
-    queryOptions: {
-        onError: () => {
-            console.log("triggers when on query return Error");
-        },
+  resource: "tags",
+  // highlight-start
+  queryOptions: {
+    onError: () => {
+      console.log("triggers when on query return Error");
     },
-    // highlight-end
+  },
+  // highlight-end
 });
 ```
 
@@ -198,9 +198,9 @@ For example, lets say that we have 1000 post records:
 
 ```ts
 const { selectProps } = useSelect({
-    resource: "categories",
-    // highlight-next-line
-    pagination: { current: 3, pageSize: 8 },
+  resource: "categories",
+  // highlight-next-line
+  pagination: { current: 3, pageSize: 8 },
 });
 ```
 
@@ -209,7 +209,9 @@ The listing will start from page 3, showing 8 records per page.
 ### ~~`sort`~~
 
 :::caution Deprecated
+
 Use `sorters` instead.
+
 :::
 
 ## API Reference
@@ -220,7 +222,7 @@ Use `sorters` instead.
 
 ### Type Parameters
 
-| Property     | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property     | Description                                                                                                                                                         | Type                       | Default                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

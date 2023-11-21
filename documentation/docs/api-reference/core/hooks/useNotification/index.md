@@ -19,9 +19,9 @@ const { open, close } = useNotification();
 
 // open notification
 open?.({
-    type: "success",
-    message: "Success",
-    description: "This is a success message",
+  type: "success",
+  message: "Success",
+  description: "This is a success message",
 });
 
 // close notification
@@ -38,9 +38,9 @@ You can call this method to open a new notification box.
 const { open } = useNotification();
 
 open?.({
-    type: "success",
-    message: "Success",
-    description: "This is a success message",
+  type: "success",
+  message: "Success",
+  description: "This is a success message",
 });
 ```
 
@@ -59,7 +59,9 @@ close?.("notification-key");
 > For more information, refer to the [`Close Notification Params` interface→](/docs/api-reference/core/interfaceReferences/#close-notification-params)
 
 :::info
+
 You must pass a `key` to the `open` method. This key is used to close the notification.
+
 :::
 
 ## FAQ
@@ -72,13 +74,13 @@ It should be `type=progress` to show undoable notifications. A function can then
 const { open } = useNotification();
 
 open?.({
-    type: "progress",
-    message: "Progress",
-    undoableTimeout: 5,
-    cancelMutation: () => {
+  type: "progress",
+  message: "Progress",
+  undoableTimeout: 5,
+  cancelMutation: () => {
     // when undo button is clicked, run this callback
-    }
-})
+  },
+});
 ```
 
 ## API Reference

@@ -16,11 +16,6 @@ You should know that **refine** version 4.x.x is backward compatible with versio
 
 :::
 
-
-
-
-
-
 [**refine**](https://refine.dev/) is a **headless** [React](https://en.reactjs.org/) **internal tool** framework. It helps you develop quickly while developing both B2B and B2C applications. While speeding you up, it is never restricted and has a fully customizable structure.
 
 <!--truncate-->
@@ -106,17 +101,18 @@ import { initReactI18next } from "react-i18next";
 import Backend from "i18next-xhr-backend";
 import detector from "i18next-browser-languagedetector";
 
-i18n.use(Backend)
-    .use(detector)
-    .use(initReactI18next)
-    .init({
-        supportedLngs: ["en", "de"],
-        backend: {
-            loadPath: "/locales/{{lng}}/{{ns}}.json",
-        },
-        defaultNS: "common",
-        fallbackLng: ["en", "de"],
-    });
+i18n
+  .use(Backend)
+  .use(detector)
+  .use(initReactI18next)
+  .init({
+    supportedLngs: ["en", "de"],
+    backend: {
+      loadPath: "/locales/{{lng}}/{{ns}}.json",
+    },
+    defaultNS: "common",
+    fallbackLng: ["en", "de"],
+  });
 
 export default i18n;
 ```
@@ -133,11 +129,11 @@ import "./i18n";
 const container = document.getElementById("root");
 const root = createRoot(container!);
 root.render(
-    <React.StrictMode>
-        <React.Suspense fallback="loading">
-            <App />
-        </React.Suspense>
-    </React.StrictMode>,
+  <React.StrictMode>
+    <React.Suspense fallback="loading">
+      <App />
+    </React.Suspense>
+  </React.StrictMode>,
 );
 ```
 
@@ -156,35 +152,35 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { useTranslation } from "react-i18next";
 
 function App() {
-    //highlight-start
-    const { t, i18n } = useTranslation();
+  //highlight-start
+  const { t, i18n } = useTranslation();
 
-    const i18nProvider = {
-        translate: (key: string, params: object) => t(key, params),
-        changeLocale: (lang: string) => i18n.changeLanguage(lang),
-        getLocale: () => i18n.language,
-    };
-    //highlight-end
+  const i18nProvider = {
+    translate: (key: string, params: object) => t(key, params),
+    changeLocale: (lang: string) => i18n.changeLanguage(lang),
+    getLocale: () => i18n.language,
+  };
+  //highlight-end
 
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-            //highlight-next-line
-            i18nProvider={i18nProvider}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      notificationProvider={notificationProvider}
+      Layout={Layout}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: PostCreate,
+          edit: PostEdit,
+          show: PostShow,
+        },
+      ]}
+      //highlight-next-line
+      i18nProvider={i18nProvider}
+    />
+  );
 }
 
 export default App;
@@ -194,61 +190,61 @@ Now let's add our own translation. Let's create two separate json files in Engli
 
 ```json title="/public/locales/en/common.json"
 {
-    "posts": {
-        "posts": "Posts",
-        "fields": {
-            "id": "Id",
-            "title": "Title",
-            "category": "Category",
-            "status": {
-                "title": "Status",
-                "published": "Published",
-                "draft": "Draft",
-                "rejected": "Rejected"
-            },
-            "content": "Content",
-            "createdAt": "Created At"
-        },
-        "titles": {
-            "create": "Create Post",
-            "edit": "Edit Post",
-            "list": "Posts",
-            "show": "Show Post"
-        }
+  "posts": {
+    "posts": "Posts",
+    "fields": {
+      "id": "Id",
+      "title": "Title",
+      "category": "Category",
+      "status": {
+        "title": "Status",
+        "published": "Published",
+        "draft": "Draft",
+        "rejected": "Rejected"
+      },
+      "content": "Content",
+      "createdAt": "Created At"
     },
-    "table": {
-        "actions": "Actions"
+    "titles": {
+      "create": "Create Post",
+      "edit": "Edit Post",
+      "list": "Posts",
+      "show": "Show Post"
     }
+  },
+  "table": {
+    "actions": "Actions"
+  }
 }
 ```
 
 ```json title="/public/locales/de/common.json"
 {
-    "posts": {
-        "posts": "Einträge",
-        "fields": {
-            "id": "Id",
-            "title": "Titel",
-            "category": "Kategorie",
-            "status": {
-                "title": "Status",
-                "published": "Veröffentlicht",
-                "draft": "Draft",
-                "rejected": "Abgelehnt"
-            },
-            "content": "Inhalh",
-            "createdAt": "Erstellt am"
-        },
-        "titles": {
-            "create": "Erstellen",
-            "edit": "Bearbeiten",
-            "list": "Einträge",
-            "show": "Eintrag zeigen"
-        }
+  "posts": {
+    "posts": "Einträge",
+    "fields": {
+      "id": "Id",
+      "title": "Title",
+      "category": "Kategorie",
+      "status": {
+        "title": "Status",
+        "published": "Veröffentlicht",
+        "draft": "Draft",
+        "rejected": "Abgelehnt"
+      },
+      "content": "Inhalh",
+      "createdAt": "Erstellt am"
     },
-    "table": {
-        "actions": "Aktionen"
+    "titles": {
+      "create": "Erstellen",
+      "edit": "Bearbeiten",
+      "list": "Einträge",
+      "show": "Eintrag zeigen"
     }
+  },
+  "table": {
+    "actions": "Aktionen"
+  }
 }
 ```
 
@@ -258,59 +254,52 @@ Now, let's create a select component in the header and examine our posts accordi
 
 ```tsx title="src/components/header.tsx"
 import { useGetLocale, useSetLocale } from "@refinedev/core";
-import {
-    AntdLayout,
-    Space,
-    Menu,
-    Button,
-    Icons,
-    Dropdown,
-} from "@refinedev/antd";
+import { AntdLayout, Space, Menu, Button, Icons, Dropdown } from "@refinedev/antd";
 //highlight-next-line
 import { useTranslation } from "react-i18next";
 
 const { DownOutlined } = Icons;
 
 export const Header: React.FC = () => {
-    //highlight-start
-    const { i18n } = useTranslation();
-    const locale = useGetLocale();
-    const changeLanguage = useSetLocale();
+  //highlight-start
+  const { i18n } = useTranslation();
+  const locale = useGetLocale();
+  const changeLanguage = useSetLocale();
 
-    const currentLocale = locale();
+  const currentLocale = locale();
 
-    const menu = (
-        <Menu selectedKeys={[currentLocale]}>
-            {[...(i18n.languages || [])].sort().map((lang: string) => (
-                <Menu.Item key={lang} onClick={() => changeLanguage(lang)}>
-                    {lang === "en" ? "English" : "German"}
-                </Menu.Item>
-            ))}
-        </Menu>
-    );
-    //highlight-end
+  const menu = (
+    <Menu selectedKeys={[currentLocale]}>
+      {[...(i18n.languages || [])].sort().map((lang: string) => (
+        <Menu.Item key={lang} onClick={() => changeLanguage(lang)}>
+          {lang === "en" ? "English" : "German"}
+        </Menu.Item>
+      ))}
+    </Menu>
+  );
+  //highlight-end
 
-    return (
-        <AntdLayout.Header
-            style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
-                padding: "0px 24px",
-                height: "48px",
-                backgroundColor: "#FFF",
-            }}
-        >
-            <Dropdown overlay={menu}>
-                <Button type="link">
-                    <Space>
-                        {currentLocale === "en" ? "English" : "German"}
-                        <DownOutlined />
-                    </Space>
-                </Button>
-            </Dropdown>
-        </AntdLayout.Header>
-    );
+  return (
+    <AntdLayout.Header
+      style={{
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        padding: "0px 24px",
+        height: "48px",
+        backgroundColor: "#FFF",
+      }}
+    >
+      <Dropdown overlay={menu}>
+        <Button type="link">
+          <Space>
+            {currentLocale === "en" ? "English" : "German"}
+            <DownOutlined />
+          </Space>
+        </Button>
+      </Dropdown>
+    </AntdLayout.Header>
+  );
 };
 ```
 
@@ -318,24 +307,24 @@ Let's define the header we created within the refine.
 
 ```tsx
 return (
-    <Refine
-        routerProvider={routerProvider}
-        notificationProvider={notificationProvider}
-        Layout={Layout}
-        i18nProvider={i18nProvider}
-        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        //highlight-next-line
-        Header={Header}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-                create: PostCreate,
-                edit: PostEdit,
-                show: PostShow,
-            },
-        ]}
-    />
+  <Refine
+    routerProvider={routerProvider}
+    notificationProvider={notificationProvider}
+    Layout={Layout}
+    i18nProvider={i18nProvider}
+    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+    //highlight-next-line
+    Header={Header}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+        create: PostCreate,
+        edit: PostEdit,
+        show: PostShow,
+      },
+    ]}
+  />
 );
 ```
 
@@ -348,80 +337,64 @@ Now our i18n Provider is ready to use, let's test it together.
 
 ```tsx
 import {
-    //highlight-next-line
-    useTranslate,
-    useMany,
+  //highlight-next-line
+  useTranslate,
+  useMany,
 } from "@refinedev/core";
-import {
-    List,
-    Table,
-    TextField,
-    useTable,
-    Space,
-    EditButton,
-    ShowButton,
-} from "@refinedev/antd";
+import { List, Table, TextField, useTable, Space, EditButton, ShowButton } from "@refinedev/antd";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-    //highlight-next-line
-    const translate = useTranslate();
-    const { tableProps } = useTable<IPost>();
+  //highlight-next-line
+  const translate = useTranslate();
+  const { tableProps } = useTable<IPost>();
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const { data, isLoading } = useMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column
-                    dataIndex="title"
-                    //highlight-next-line
-                    title={translate("posts.fields.title")}
-                />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    //highlight-next-line
-                    title={translate("posts.fields.category")}
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column
+          dataIndex="title"
+          //highlight-next-line
+          title={translate("posts.fields.title")}
+        />
+        <Table.Column
+          dataIndex={["category", "id"]}
+          //highlight-next-line
+          title={translate("posts.fields.category")}
+          render={(value) => {
+            if (isLoading) {
+              return <TextField value="Loading..." />;
+            }
 
-                        return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
-                    }}
-                />
-                <Table.Column<IPost>
-                    //highlight-next-line
-                    title={translate("table.actions")}
-                    dataIndex="actions"
-                    key="actions"
-                    render={(_value, record) => (
-                        <Space>
-                            <EditButton size="small" recordItemId={record.id} />
-                            <ShowButton size="small" recordItemId={record.id} />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+          }}
+        />
+        <Table.Column<IPost>
+          //highlight-next-line
+          title={translate("table.actions")}
+          dataIndex="actions"
+          key="actions"
+          render={(_value, record) => (
+            <Space>
+              <EditButton size="small" recordItemId={record.id} />
+              <ShowButton size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -475,37 +448,37 @@ import { Header } from "./components/header";
 import { useTranslation } from "react-i18next";
 
 function App() {
-    const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-    const i18nProvider = {
-        translate: (key: string, params: object) => t(key, params),
-        changeLocale: (lang: string) => i18n.changeLanguage(lang),
-        getLocale: () => i18n.language,
-    };
+  const i18nProvider = {
+    translate: (key: string, params: object) => t(key, params),
+    changeLocale: (lang: string) => i18n.changeLanguage(lang),
+    getLocale: () => i18n.language,
+  };
 
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            i18nProvider={i18nProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Header={Header}
-            //highlight-start
-            liveProvider={liveProvider(ablyClient)}
-            options={{ liveMode: "auto" }}
-            //highlight-end
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      notificationProvider={notificationProvider}
+      Layout={Layout}
+      i18nProvider={i18nProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      Header={Header}
+      //highlight-start
+      liveProvider={liveProvider(ablyClient)}
+      options={{ liveMode: "auto" }}
+      //highlight-end
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: PostCreate,
+          edit: PostEdit,
+          show: PostShow,
+        },
+      ]}
+    />
+  );
 }
 
 export default App;
@@ -536,75 +509,67 @@ Let's start by creating two buttons for the `Admin` and `Editor` roles in our cr
 
 ```tsx title="/src/componets/header.tsx"
 import { useGetLocale, useSetLocale } from "@refinedev/core";
-import {
-    AntdLayout,
-    Space,
-    Menu,
-    Button,
-    Icons,
-    Dropdown,
-    Radio,
-} from "@refinedev/antd";
+import { AntdLayout, Space, Menu, Button, Icons, Dropdown, Radio } from "@refinedev/antd";
 import { useTranslation } from "react-i18next";
 
 const { DownOutlined } = Icons;
 
 //highlight-start
 interface HeaderProps {
-    role: string;
+  role: string;
 }
 //highlight-end
 
 export const Header: React.FC<HeaderProps> = ({ role }) => {
-    const { i18n } = useTranslation();
-    const locale = useGetLocale();
-    const changeLanguage = useSetLocale();
+  const { i18n } = useTranslation();
+  const locale = useGetLocale();
+  const changeLanguage = useSetLocale();
 
-    const currentLocale = locale();
+  const currentLocale = locale();
 
-    const menu = (
-        <Menu selectedKeys={[currentLocale]}>
-            {[...(i18n.languages || [])].sort().map((lang: string) => (
-                <Menu.Item key={lang} onClick={() => changeLanguage(lang)}>
-                    {lang === "en" ? "English" : "German"}
-                </Menu.Item>
-            ))}
-        </Menu>
-    );
+  const menu = (
+    <Menu selectedKeys={[currentLocale]}>
+      {[...(i18n.languages || [])].sort().map((lang: string) => (
+        <Menu.Item key={lang} onClick={() => changeLanguage(lang)}>
+          {lang === "en" ? "English" : "German"}
+        </Menu.Item>
+      ))}
+    </Menu>
+  );
 
-    return (
-        <AntdLayout.Header
-            style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "0px 24px",
-                height: "48px",
-                backgroundColor: "#FFF",
-            }}
-        >
-            //highlight-start
-            <Radio.Group
-                value={role}
-                onChange={(event) => {
-                    localStorage.setItem("role", event.target.value);
-                    location.reload();
-                }}
-            >
-                <Radio.Button value="admin">Admin</Radio.Button>
-                <Radio.Button value="editor">Editor</Radio.Button>
-            </Radio.Group>
-            //highlight-end
-            <Dropdown overlay={menu}>
-                <Button type="link">
-                    <Space>
-                        {currentLocale === "en" ? "English" : "German"}
-                        <DownOutlined />
-                    </Space>
-                </Button>
-            </Dropdown>
-        </AntdLayout.Header>
-    );
+  return (
+    <AntdLayout.Header
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "0px 24px",
+        height: "48px",
+        backgroundColor: "#FFF",
+      }}
+    >
+      //highlight-start
+      <Radio.Group
+        value={role}
+        onChange={(event) => {
+          localStorage.setItem("role", event.target.value);
+          location.reload();
+        }}
+      >
+        <Radio.Button value="admin">Admin</Radio.Button>
+        <Radio.Button value="editor">Editor</Radio.Button>
+      </Radio.Group>
+      //highlight-end
+      <Dropdown overlay={menu}>
+        <Button type="link">
+          <Space>
+            {currentLocale === "en" ? "English" : "German"}
+            <DownOutlined />
+          </Space>
+        </Button>
+      </Dropdown>
+    </AntdLayout.Header>
+  );
 };
 ```
 
@@ -623,57 +588,57 @@ After the installation is complete, let's create a Cerbos object in the App.tsx 
 import { Cerbos } from "cerbos";
 
 const cerbos = new Cerbos({
-    hostname: "https://demo-pdp.cerbos.cloud", // The Cerbos PDP instance
-    playgroundInstance: "WS961950bd85QNYlAvTmJYubP0bqF7e3", // The playground instance ID to test
+  hostname: "https://demo-pdp.cerbos.cloud", // The Cerbos PDP instance
+  playgroundInstance: "WS961950bd85QNYlAvTmJYubP0bqF7e3", // The playground instance ID to test
 });
 ```
 
 ```tsx
 <Refine
-    routerProvider={routerProvider}
-    notificationProvider={notificationProvider}
-    Layout={Layout}
-    i18nProvider={i18nProvider}
-    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-    Header={() => <Header role={role} />}
-    liveProvider={liveProvider(ablyClient)}
-    options={{ liveMode: "auto" }}
-    //highlight-start
-    accessControlProvider={{
-        can: async ({ action, params, resource }) => {
-            const cerbosPayload = {
-                principal: {
-                    id: "demoUser", // Fake a user ID
-                    roles: [role],
-                    attr: {},
-                },
-                resource: {
-                    kind: resource,
-                    instances: {
-                        [params?.id || "new"]: {
-                            attr: params,
-                        },
-                    },
-                },
-                actions: [action],
-            };
-            const result = await cerbos.check(cerbosPayload);
-            return Promise.resolve({
-                can: result.isAuthorized(params?.id || "new", action),
-            });
+  routerProvider={routerProvider}
+  notificationProvider={notificationProvider}
+  Layout={Layout}
+  i18nProvider={i18nProvider}
+  dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+  Header={() => <Header role={role} />}
+  liveProvider={liveProvider(ablyClient)}
+  options={{ liveMode: "auto" }}
+  //highlight-start
+  accessControlProvider={{
+    can: async ({ action, params, resource }) => {
+      const cerbosPayload = {
+        principal: {
+          id: "demoUser", // Fake a user ID
+          roles: [role],
+          attr: {},
         },
-    }}
-    //highlight-end
-    resources={[
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreate,
-            edit: PostEdit,
-            show: PostShow,
-            canDelete: true,
+        resource: {
+          kind: resource,
+          instances: {
+            [params?.id || "new"]: {
+              attr: params,
+            },
+          },
         },
-    ]}
+        actions: [action],
+      };
+      const result = await cerbos.check(cerbosPayload);
+      return Promise.resolve({
+        can: result.isAuthorized(params?.id || "new", action),
+      });
+    },
+  }}
+  //highlight-end
+  resources={[
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreate,
+      edit: PostEdit,
+      show: PostShow,
+      canDelete: true,
+    },
+  ]}
 />
 ```
 
@@ -683,146 +648,127 @@ Now using the **refine** [`useCan`](https://refine.dev/docs/core/hooks/accessCon
 
 ```tsx title="src/pages/PostList.tsx"
 import {
-    IResourceComponentsProps,
-    useMany,
-    useTranslate,
-    //highligt-next-line
-    useCan,
+  IResourceComponentsProps,
+  useMany,
+  useTranslate,
+  //highlight-next-line
+  useCan,
 } from "@refinedev/core";
 
 import {
-    List,
-    Table,
-    TextField,
-    useTable,
-    Space,
-    EditButton,
-    ShowButton,
-    FilterDropdown,
-    useSelect,
-    Select,
-    Radio,
-    TagField,
-    NumberField,
+  List,
+  Table,
+  TextField,
+  useTable,
+  Space,
+  EditButton,
+  ShowButton,
+  FilterDropdown,
+  useSelect,
+  Select,
+  Radio,
+  TagField,
+  NumberField,
 } from "@refinedev/antd";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const translate = useTranslate();
-    const { tableProps } = useTable<IPost>();
+  const translate = useTranslate();
+  const { tableProps } = useTable<IPost>();
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const { data, isLoading } = useMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        optionLabel: "title",
-        optionValue: "id",
-    });
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+    optionLabel: "title",
+    optionValue: "id",
+  });
 
-    //highlight-start
-    const { data: canAccess } = useCan({
-        resource: "posts",
-        action: "field",
-        params: { field: "hit" },
-    });
-    //highlight-end
+  //highlight-start
+  const { data: canAccess } = useCan({
+    resource: "posts",
+    action: "field",
+    params: { field: "hit" },
+  });
+  //highlight-end
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column
-                    dataIndex="title"
-                    title={translate("posts.fields.title")}
-                />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title={translate("posts.fields.category")}
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title={translate("posts.fields.title")} />
+        <Table.Column
+          dataIndex={["category", "id"]}
+          title={translate("posts.fields.category")}
+          render={(value) => {
+            if (isLoading) {
+              return <TextField value="Loading..." />;
+            }
 
-                        return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
-                    }}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...categorySelectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
-                //highlight-start
-                {canAccess?.can && (
-                    <Table.Column
-                        dataIndex="hit"
-                        title="Hit"
-                        render={(value: number) => (
-                            <NumberField
-                                value={value}
-                                options={{
-                                    notation: "compact",
-                                }}
-                            />
-                        )}
-                    />
-                )}
-                //highlight-end
-                <Table.Column
-                    dataIndex="status"
-                    title="Status"
-                    render={(value: string) => <TagField value={value} />}
-                    filterDropdown={(props: any) => (
-                        <FilterDropdown {...props}>
-                            <Radio.Group>
-                                <Radio value="published">Published</Radio>
-                                <Radio value="draft">Draft</Radio>
-                                <Radio value="rejected">Rejected</Radio>
-                            </Radio.Group>
-                        </FilterDropdown>
-                    )}
-                />
-                <Table.Column<IPost>
-                    title={translate("table.actions")}
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+          }}
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select
+                style={{ minWidth: 200 }}
+                mode="multiple"
+                placeholder="Select Category"
+                {...categorySelectProps}
+              />
+            </FilterDropdown>
+          )}
+        />
+        //highlight-start
+        {canAccess?.can && (
+          <Table.Column
+            dataIndex="hit"
+            title="Hit"
+            render={(value: number) => (
+              <NumberField
+                value={value}
+                options={{
+                  notation: "compact",
+                }}
+              />
+            )}
+          />
+        )}
+        //highlight-end
+        <Table.Column
+          dataIndex="status"
+          title="Status"
+          render={(value: string) => <TagField value={value} />}
+          filterDropdown={(props: any) => (
+            <FilterDropdown {...props}>
+              <Radio.Group>
+                <Radio value="published">Published</Radio>
+                <Radio value="draft">Draft</Radio>
+                <Radio value="rejected">Rejected</Radio>
+              </Radio.Group>
+            </FilterDropdown>
+          )}
+        />
+        <Table.Column<IPost>
+          title={translate("table.actions")}
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 

@@ -88,7 +88,7 @@ class User {
   }
 }
 
-const p = new User("exmapleUser", "example@exmaple.com");
+const p = new User("exampleUser", "example@exmaple.com");
 p.addressLine1 = "1, New Avenue";
 p.addressLine2 = "Bahcelievler, Istanbul";
 ```
@@ -282,7 +282,7 @@ With the `@deprecated` decorator applied to `address()`, the following warning i
 // Warning: address() is deprecated. Use other methods instead.
 ```
 
-These are pretty much the major examples of decorators in TypeScript which can help us decorate a class and its members. Using parameter decorators give us more insight into how arguments act out in runtime. It is very useful to leverage the `reflect-metadata` library with parameter decorators. For a few exmaples, please check out [this section of the TypeScript decorators documentation](https://www.typescriptlang.org/docs/handbook/decorators.html#parameter-decorators).
+These are pretty much the major examples of decorators in TypeScript which can help us decorate a class and its members. Using parameter decorators give us more insight into how arguments act out in runtime. It is very useful to leverage the `reflect-metadata` library with parameter decorators. For a few examples, please check out [this section of the TypeScript decorators documentation](https://www.typescriptlang.org/docs/handbook/decorators.html#parameter-decorators).
 
 ## Summary
 

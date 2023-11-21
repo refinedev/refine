@@ -7,7 +7,9 @@ swizzle: true
 `<ListButton>` is using Material UI's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Usage
@@ -20,55 +22,57 @@ import { ListButton, Show } from "@refinedev/mui";
 import { Typography, Stack } from "@mui/material";
 
 const PostShow: React.FC = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        <Show
-            isLoading={isLoading}
-            headerButtons={
-                // highlight-start
-                <ListButton />
-                // highlight-end
-            }
-        >
-            <Stack gap="10px">
-                <Typography fontWeight="bold">Id</Typography>
-                <Typography>{record?.id}</Typography>
-                <Typography fontWeight="bold">Title</Typography>
-                <Typography>{record?.title}</Typography>
-            </Stack>
-        </Show>
-    );
+  return (
+    <Show
+      isLoading={isLoading}
+      headerButtons={
+        // highlight-start
+        <ListButton />
+        // highlight-end
+      }
+    >
+      <Stack gap="10px">
+        <Typography fontWeight="bold">Id</Typography>
+        <Typography>{record?.id}</Typography>
+        <Typography fontWeight="bold">Title</Typography>
+        <Typography>{record?.title}</Typography>
+      </Stack>
+    </Show>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts/show/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <RefineMui.List>
-                        <p>Rest of the page here...</p>
-                    </RefineMui.List>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts/show/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <RefineMui.List>
+            <p>Rest of the page here...</p>
+          </RefineMui.List>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
 :::note
-The button text is defined automatically by **refine** based on the *resource* object name property.
+
+The button text is defined automatically by **refine** based on the _resource_ object name property.
+
 :::
 
 ## Properties
@@ -84,28 +88,28 @@ const { useRouterContext } = RefineCore;
 import { ListButton } from "@refinedev/mui";
 
 const MyListComponent = () => {
-    return <ListButton resource="categories" recordItemId="2" />;
+  return <ListButton resource="categories" recordItemId="2" />;
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                list: () => (
-                    <RefineMui.List>
-                        <p>Rest of the page here...</p>
-                    </RefineMui.List>
-                ),
-            },
-        ]}
-        DashboardPage={MyListComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        list: () => (
+          <RefineMui.List>
+            <p>Rest of the page here...</p>
+          </RefineMui.List>
+        ),
+      },
+    ]}
+    DashboardPage={MyListComponent}
+  />,
 );
 ```
 
@@ -123,9 +127,7 @@ If the `list` action route is defined by the pattern: `/:authorId/posts`, the `m
 
 ```tsx
 const MyComponent = () => {
-    return (
-        <ListButton meta={{ authorId: "10" }} />
-    );
+  return <ListButton meta={{ authorId: "10" }} />;
 };
 ```
 
@@ -140,32 +142,32 @@ const { useRouterContext } = RefineCore;
 import { ListButton } from "@refinedev/mui";
 
 const MyListComponent = () => {
-    return (
-        <ListButton
-            resourceNameOrRouteName="posts"
-            // highlight-next-line
-            hideText
-        />
-    );
+  return (
+    <ListButton
+      resourceNameOrRouteName="posts"
+      // highlight-next-line
+      hideText
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <RefineMui.List>
-                        <p>Rest of the page here...</p>
-                    </RefineMui.List>
-                ),
-            },
-        ]}
-        DashboardPage={MyListComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <RefineMui.List>
+            <p>Rest of the page here...</p>
+          </RefineMui.List>
+        ),
+      },
+    ]}
+    DashboardPage={MyListComponent}
+  />,
 );
 ```
 
@@ -177,11 +179,7 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ListButton } from "@refinedev/mui";
 
 export const MyListComponent = () => {
-    return (
-        <ListButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -198,28 +196,28 @@ const { useRouterContext } = RefineCore;
 import { ListButton } from "@refinedev/mui";
 
 const MyListComponent = () => {
-    return <ListButton resourceNameOrRouteName="categories" recordItemId="2" />;
+  return <ListButton resourceNameOrRouteName="categories" recordItemId="2" />;
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                list: () => (
-                    <RefineMui.List>
-                        <p>Rest of the page here...</p>
-                    </RefineMui.List>
-                ),
-            },
-        ]}
-        DashboardPage={MyListComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        list: () => (
+          <RefineMui.List>
+            <p>Rest of the page here...</p>
+          </RefineMui.List>
+        ),
+      },
+    ]}
+    DashboardPage={MyListComponent}
+  />,
 );
 ```
 
@@ -232,5 +230,7 @@ Clicking the button will trigger the `list` method of [`useNavigation`](/api-ref
 <PropsTable module="@refinedev/mui/ListButton" />
 
 :::tip External Props
+
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
+
 :::

@@ -7,37 +7,33 @@ swizzle: true
 ```tsx live shared
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    Layout: RefineChakra.Layout,
-    Sider: () => null,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  Layout: RefineChakra.Layout,
+  Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
-            {children}
-        </ChakraUI.ChakraProvider>
-    );
+  return <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>{children}</ChakraUI.ChakraProvider>;
 };
 
 const DummyListPage = () => (
-    <ChakraUI.VStack alignItems="flex-start">
-        <ChakraUI.Text>This page is empty.</ChakraUI.Text>
-        <CreateButton colorScheme="black" />
-    </ChakraUI.VStack>
+  <ChakraUI.VStack alignItems="flex-start">
+    <ChakraUI.Text>This page is empty.</ChakraUI.Text>
+    <CreateButton colorScheme="black" />
+  </ChakraUI.VStack>
 );
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
@@ -52,104 +48,90 @@ import { CreateButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
 import { Create } from "@refinedev/chakra-ui";
-import {
-    FormControl,
-    FormErrorMessage,
-    FormLabel,
-    Input,
-    Select,
-} from "@chakra-ui/react";
+import { FormControl, FormErrorMessage, FormLabel, Input, Select } from "@chakra-ui/react";
 import { useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
 const PostCreate: React.FC = () => {
-    const {
-        refineCore: { formLoading },
-        saveButtonProps,
-        register,
-        formState: { errors },
-    } = useForm<IPost>();
+  const {
+    refineCore: { formLoading },
+    saveButtonProps,
+    register,
+    formState: { errors },
+  } = useForm<IPost>();
 
-    const { options } = useSelect({
-        resource: "categories",
-    });
+  const { options } = useSelect({
+    resource: "categories",
+  });
 
-    return (
-        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <FormControl mb="3" isInvalid={!!errors?.title}>
-                <FormLabel>Title</FormLabel>
-                <Input
-                    id="title"
-                    type="text"
-                    {...register("title", { required: "Title is required" })}
-                />
-                <FormErrorMessage>
-                    {`${errors.title?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.status}>
-                <FormLabel>Status</FormLabel>
-                <Select
-                    id="content"
-                    placeholder="Select Post Status"
-                    {...register("status", {
-                        required: "Status is required",
-                    })}
-                >
-                    <option>published</option>
-                    <option>draft</option>
-                    <option>rejected</option>
-                </Select>
-                <FormErrorMessage>
-                    {`${errors.status?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.categoryId}>
-                <FormLabel>Category</FormLabel>
-                <Select
-                    id="categoryId"
-                    placeholder="Select Category"
-                    {...register("categoryId", {
-                        required: "Category is required",
-                    })}
-                >
-                    {options?.map((option) => (
-                        <option value={option.value} key={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </Select>
-                <FormErrorMessage>
-                    {`${errors.categoryId?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-        </Create>
-    );
+  return (
+    <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+      <FormControl mb="3" isInvalid={!!errors?.title}>
+        <FormLabel>Title</FormLabel>
+        <Input id="title" type="text" {...register("title", { required: "Title is required" })} />
+        <FormErrorMessage>{`${errors.title?.message}`}</FormErrorMessage>
+      </FormControl>
+      <FormControl mb="3" isInvalid={!!errors?.status}>
+        <FormLabel>Status</FormLabel>
+        <Select
+          id="content"
+          placeholder="Select Post Status"
+          {...register("status", {
+            required: "Status is required",
+          })}
+        >
+          <option>published</option>
+          <option>draft</option>
+          <option>rejected</option>
+        </Select>
+        <FormErrorMessage>{`${errors.status?.message}`}</FormErrorMessage>
+      </FormControl>
+      <FormControl mb="3" isInvalid={!!errors?.categoryId}>
+        <FormLabel>Category</FormLabel>
+        <Select
+          id="categoryId"
+          placeholder="Select Category"
+          {...register("categoryId", {
+            required: "Category is required",
+          })}
+        >
+          {options?.map((option) => (
+            <option value={option.value} key={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </Select>
+        <FormErrorMessage>{`${errors.categoryId?.message}`}</FormErrorMessage>
+      </FormControl>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Properties
@@ -168,32 +150,32 @@ import { Create } from "@refinedev/chakra-ui";
 import { Heading } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create title={<Heading size="lg">Custom Title</Heading>}>
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create title={<Heading size="lg">Custom Title</Heading>}>
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -210,32 +192,32 @@ import { CreateButton } from "@refinedev/chakra-ui";
 import { Create } from "@refinedev/chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create saveButtonProps={{ colorScheme: "red" }}>
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create saveButtonProps={{ colorScheme: "red" }}>
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -256,40 +238,40 @@ import { Layout } from "@refinedev/chakra-ui";
 import { Create } from "@refinedev/chakra-ui";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create resource="categories">
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create resource="categories">
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            legacyRouterProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom",
-                    },
-                ],
-                // highlight-end
-            }}
-            Layout={Layout}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom",
+          },
+        ],
+        // highlight-end
+      }}
+      Layout={Layout}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -312,32 +294,32 @@ import { Create } from "@refinedev/chakra-ui";
 import { IconMoodSmile } from "@tabler/icons";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create goBack={<IconMoodSmile />}>
-            <p>Rest of your page here 2</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create goBack={<IconMoodSmile />}>
+      <p>Rest of your page here 2</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -354,32 +336,32 @@ import { CreateButton } from "@refinedev/chakra-ui";
 import { Create } from "@refinedev/chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create isLoading={true}>
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create isLoading={true}>
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -388,7 +370,9 @@ render(
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/chakra-ui` package.
 
 :::tip
+
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+
 :::
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
@@ -401,39 +385,39 @@ import { Create, Breadcrumb } from "@refinedev/chakra-ui";
 import { Box } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            breadcrumb={
-                <Box borderColor="blue" borderStyle="dashed" borderWidth="2px">
-                    <Breadcrumb />
-                </Box>
-            }
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      breadcrumb={
+        <Box borderColor="blue" borderStyle="dashed" borderWidth="2px">
+          <Breadcrumb />
+        </Box>
+      }
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -442,7 +426,6 @@ render(
 ### `wrapperProps`
 
 If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@refinedev/chakra-ui` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Box>` can get.
-
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
@@ -453,39 +436,39 @@ import { CreateButton } from "@refinedev/chakra-ui";
 import { Create } from "@refinedev/chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            wrapperProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      wrapperProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -504,39 +487,39 @@ import { CreateButton } from "@refinedev/chakra-ui";
 import { Create } from "@refinedev/chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            headerProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -555,39 +538,39 @@ import { CreateButton } from "@refinedev/chakra-ui";
 import { Create } from "@refinedev/chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            contentProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      contentProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -607,47 +590,42 @@ import { Create } from "@refinedev/chakra-ui";
 import { Button, Box } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <Box
-                    borderColor="blue"
-                    borderStyle="dashed"
-                    borderWidth="2px"
-                    p="2"
-                >
-                    {defaultButtons}
-                    <Button colorScheme="red" variant="solid">
-                        Custom Button
-                    </Button>
-                </Box>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <Box borderColor="blue" borderStyle="dashed" borderWidth="2px" p="2">
+          {defaultButtons}
+          <Button colorScheme="red" variant="solid">
+            Custom Button
+          </Button>
+        </Box>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -665,40 +643,40 @@ import { Create } from "@refinedev/chakra-ui";
 import { Button } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            headerButtonProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-            }}
-            // highlight-end
-            headerButtons={<Button type="primary">Custom Button</Button>}
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerButtonProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+      }}
+      // highlight-end
+      headerButtons={<Button type="primary">Custom Button</Button>}
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -720,47 +698,42 @@ import { Create } from "@refinedev/chakra-ui";
 import { Button, HStack } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            footerButtons={({ defaultButtons }) => (
-                <HStack
-                    borderColor="blue"
-                    borderStyle="dashed"
-                    borderWidth="2px"
-                    p="2"
-                >
-                    {defaultButtons}
-                    <Button colorScheme="red" variant="solid">
-                        Custom Button
-                    </Button>
-                </HStack>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtons={({ defaultButtons }) => (
+        <HStack borderColor="blue" borderStyle="dashed" borderWidth="2px" p="2">
+          {defaultButtons}
+          <Button colorScheme="red" variant="solid">
+            Custom Button
+          </Button>
+        </HStack>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -776,47 +749,42 @@ import { Create } from "@refinedev/chakra-ui";
 import { Button, HStack } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            footerButtons={({ saveButtonProps }) => (
-                <HStack
-                    borderColor="blue"
-                    borderStyle="dashed"
-                    borderWidth="2px"
-                    p="2"
-                >
-                    <SaveButton {...saveButtonProps} hideText />
-                    <Button colorScheme="red" variant="solid">
-                        Custom Button
-                    </Button>
-                </HStack>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtons={({ saveButtonProps }) => (
+        <HStack borderColor="blue" borderStyle="dashed" borderWidth="2px" p="2">
+          <SaveButton {...saveButtonProps} hideText />
+          <Button colorScheme="red" variant="solid">
+            Custom Button
+          </Button>
+        </HStack>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -833,41 +801,41 @@ import { CreateButton } from "@refinedev/chakra-ui";
 import { Create } from "@refinedev/chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            footerButtonProps={{
-                float: "right",
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-                p: "2",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtonProps={{
+        float: "right",
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+        p: "2",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <RefineHeadlessDemo
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <RefineHeadlessDemo
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 

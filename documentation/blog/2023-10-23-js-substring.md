@@ -176,7 +176,7 @@ In this section, we briefly discuss how JavaScript `substring()` method differs 
 
 ### JavaScript `substring()` vs `slice()`
 
-`String.prototype.substring()` and `String.prototype.slice()` both implement string extraction almost indentically. However, there are some subtle differences in their implementations.
+`String.prototype.substring()` and `String.prototype.slice()` both implement string extraction almost identically. However, there are some subtle differences in their implementations.
 
 For example, swapping of arguments -- which we saw above in `substring()` -- doesn't take place in `slice()` when `startIndex > endIndex`:
 

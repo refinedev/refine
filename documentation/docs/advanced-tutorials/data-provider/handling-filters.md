@@ -12,42 +12,42 @@ title: Handling Filters
 ```ts
 // Supported operators:
 type CrudOperators =
-    | "eq"
-    | "ne"
-    | "lt"
-    | "gt"
-    | "lte"
-    | "gte"
-    | "in"
-    | "nin"
-    | "contains"
-    | "ncontains"
-    | "containss"
-    | "ncontainss"
-    | "between"
-    | "nbetween"
-    | "null"
-    | "nnull"
-    | "or"
-    | "startswith"
-    | "nstartswith"
-    | "startswiths"
-    | "nstartswiths"
-    | "endswith"
-    | "nendswith"
-    | "endswiths"
-    | "nendswiths"
+  | "eq"
+  | "ne"
+  | "lt"
+  | "gt"
+  | "lte"
+  | "gte"
+  | "in"
+  | "nin"
+  | "contains"
+  | "ncontains"
+  | "containss"
+  | "ncontainss"
+  | "between"
+  | "nbetween"
+  | "null"
+  | "nnull"
+  | "or"
+  | "startswith"
+  | "nstartswith"
+  | "startswiths"
+  | "nstartswiths"
+  | "endswith"
+  | "nendswith"
+  | "endswiths"
+  | "nendswiths";
 
 // Supported filter types:
 type LogicalFilter = {
-    field: string;
-    operator: Exclude<CrudOperators, "or">;
-    value: any;
+  field: string;
+  operator: Exclude<CrudOperators, "or">;
+  value: any;
 };
 
 type ConditionalFilter = {
-    operator: "or";
-    value: LogicalFilter[];
+  operator: "or";
+  value: LogicalFilter[];
 };
 
 type CrudFilter = LogicalFilter | ConditionalFilter;
@@ -61,16 +61,16 @@ type CrudFilters = CrudFilter[];
 
 ```ts
 const filter = [
-    {
-        field: "name",
-        operator: "eq",
-        value: "John",
-    },
-    {
-        field: "age",
-        operator: "lt",
-        value: 30,
-    },
+  {
+    field: "name",
+    operator: "eq",
+    value: "John",
+  },
+  {
+    field: "age",
+    operator: "lt",
+    value: 30,
+  },
 ];
 ```
 
@@ -82,41 +82,41 @@ Here the query will look like: `"name" = "John" AND "age" < 30`
 
 ```ts
 const filter = [
-    {
-        operator: "or",
+  {
+    operator: "or",
+    value: [
+      {
+        operator: "and",
         value: [
-            {
-                operator: "and",
-                value: [
-                    {
-                        field: "name",
-                        operator: "eq",
-                        value: "John Doe",
-                    },
-                    {
-                        field: "age",
-                        operator: "eq",
-                        value: 30,
-                    },
-                ],
-            },
-            {
-                operator: "and",
-                value: [
-                    {
-                        field: "name",
-                        operator: "eq",
-                        value: "JR.Doe",
-                    },
-                    {
-                        field: "age",
-                        operator: "eq",
-                        value: 1,
-                    },
-                ],
-            },
+          {
+            field: "name",
+            operator: "eq",
+            value: "John Doe",
+          },
+          {
+            field: "age",
+            operator: "eq",
+            value: 30,
+          },
         ],
-    },
+      },
+      {
+        operator: "and",
+        value: [
+          {
+            field: "name",
+            operator: "eq",
+            value: "JR.Doe",
+          },
+          {
+            field: "age",
+            operator: "eq",
+            value: 1,
+          },
+        ],
+      },
+    ],
+  },
 ];
 ```
 
@@ -128,81 +128,80 @@ If you create multiple Conditional Filters at the top level, you must add a key 
 
 ```ts
 const filter = [
-    {
-        key: "parent",
-        operator: "or",
+  {
+    key: "parent",
+    operator: "or",
+    value: [
+      {
+        operator: "and",
         value: [
-            {
-                operator: "and",
-                value: [
-                    {
-                        field: "name",
-                        operator: "eq",
-                        value: "John Doe",
-                    },
-                    {
-                        field: "age",
-                        operator: "eq",
-                        value: 30,
-                    },
-                ],
-            },
-            {
-                operator: "and",
-                value: [
-                    {
-                        field: "name",
-                        operator: "eq",
-                        value: "Jane Doe",
-                    },
-                    {
-                        field: "age",
-                        operator: "eq",
-                        value: 28,
-                    },
-                ],
-            },
+          {
+            field: "name",
+            operator: "eq",
+            value: "John Doe",
+          },
+          {
+            field: "age",
+            operator: "eq",
+            value: 30,
+          },
         ],
-    },
-    {
-        key: "children",
-        operator: "or",
+      },
+      {
+        operator: "and",
         value: [
-            {
-                operator: "and",
-                value: [
-                    {
-                        field: "name",
-                        operator: "eq",
-                        value: "JR John",
-                    },
-                    {
-                        field: "age",
-                        operator: "eq",
-                        value: 1,
-                    },
-                ],
-            },
-            {
-                operator: "and",
-                value: [
-                    {
-                        field: "name",
-                        operator: "eq",
-                        value: "JR Jane",
-                    },
-                    {
-                        field: "age",
-                        operator: "eq",
-                        value: 2,
-                    },
-                ],
-            },
+          {
+            field: "name",
+            operator: "eq",
+            value: "Jane Doe",
+          },
+          {
+            field: "age",
+            operator: "eq",
+            value: 28,
+          },
         ],
-    },
+      },
+    ],
+  },
+  {
+    key: "children",
+    operator: "or",
+    value: [
+      {
+        operator: "and",
+        value: [
+          {
+            field: "name",
+            operator: "eq",
+            value: "JR John",
+          },
+          {
+            field: "age",
+            operator: "eq",
+            value: 1,
+          },
+        ],
+      },
+      {
+        operator: "and",
+        value: [
+          {
+            field: "name",
+            operator: "eq",
+            value: "JR Jane",
+          },
+          {
+            field: "age",
+            operator: "eq",
+            value: 2,
+          },
+        ],
+      },
+    ],
+  },
 ];
 ```
-
 
 ## Combining Filters
 
@@ -212,26 +211,26 @@ Example query: Find posts with 2 possible dates & a specific status
 
 ```ts
 filter = [
-    {
-        operator: "or",
-        value: [
-            {
-                field: "createdAt",
-                operator: "eq",
-                value: "2022-01-01",
-            },
-            {
-                field: "createdAt",
-                operator: "eq",
-                value: "2022-01-02",
-            },
-        ],
-    },
-    {
+  {
+    operator: "or",
+    value: [
+      {
+        field: "createdAt",
         operator: "eq",
-        field: "status",
-        value: "published",
-    },
+        value: "2022-01-01",
+      },
+      {
+        field: "createdAt",
+        operator: "eq",
+        value: "2022-01-02",
+      },
+    ],
+  },
+  {
+    operator: "eq",
+    field: "status",
+    value: "published",
+  },
 ];
 ```
 
@@ -244,30 +243,31 @@ Here the query will look like:
 import { DataProvider } from "@refinedev/core";
 
 const dataProvider = (): DataProvider => ({
-    getList: async ({ resource, pagination, filters, sorters }) => {
-        if (filters) {
-            filters.map((filter) => {
-                if (filter.operator !== "or" && filter.operator !== "and" && "field" in filter) {
-                    // Handle your logical filters here
-                    // console.log(typeof filter); // LogicalFilter
-                } else {
-                    // Handle your conditional filters here
-                    // console.log(typeof filter); // ConditionalFilter
-                }
-            });
+  getList: async ({ resource, pagination, filters, sorters }) => {
+    if (filters) {
+      filters.map((filter) => {
+        if (filter.operator !== "or" && filter.operator !== "and" && "field" in filter) {
+          // Handle your logical filters here
+          // console.log(typeof filter); // LogicalFilter
+        } else {
+          // Handle your conditional filters here
+          // console.log(typeof filter); // ConditionalFilter
         }
-    },
+      });
+    }
+  },
 });
 ```
 
 :::tip
+
 Data providers that support `or` and `and` filtering logic are as follows:
 
--   [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
--   [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
--   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
--   [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
--   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
--   [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
+- [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
+- [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
+- [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
+- [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
+- [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
+- [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
 
 :::

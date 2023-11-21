@@ -50,9 +50,9 @@ Where do Svelte over-performance over Reactjs comes from?
 
 Svelte cuts lots of corners in its compilation. It interprets its application code during build time. This means that its complies the application code during the compilation of the code and does use virtual stuff during in runtime.
 
-In contrast to Svelte, Reactjs interpretes its code during the runtime of the code. During runtime, Reactjs keeps a snapshot/representation of the real DOM in what is called the virtual DOM (vDOM), this vDOM is what Reactjs uses to mirror what will eb appended to the real DOM.
+In contrast to Svelte, Reactjs interprets its code during the runtime of the code. During runtime, Reactjs keeps a snapshot/representation of the real DOM in what is called the virtual DOM (vDOM), this vDOM is what Reactjs uses to mirror what will eb appended to the real DOM.
 
-Virtual DOM is just a tree structure of JavaScript objects, just like a temporary for changes that are made to the UI. So we see that Reactjs makes a double calls when rebdering the components. It creates a snapshot in the vDOM and then updates the real DOM, this is what makes it to be actully slower than the Svelte.
+Virtual DOM is just a tree structure of JavaScript objects, just like a temporary for changes that are made to the UI. So we see that Reactjs makes a double calls when rebdering the components. It creates a snapshot in the vDOM and then updates the real DOM, this is what makes it to be actually slower than the Svelte.
 
 ## Bundle Size
 Svelte produces smaller bundles than Reactjs. Svelte's bundle size is 1.6KB gzipped version while Reactjs bundled size is 42.2KB, this is due to its compile-time approach. Also, Reactjs tends to generate more code than Svelte as it needs to maintain the virtual DOM.
@@ -82,7 +82,7 @@ Without a doubt, Reactjs has a larger community and more resources for developer
 
 On the other hand, Svelte has fewer resources and is relatively new. So, it has fewer people in its community yet, it is so because it is very new and people are adopting slowly.
 
-## Maintainence
+## Maintenance
 Reactjs beats Svelte in maintenance because Facebook is at its helm, and they also have a dedicated team that works round the clock to maintain the framework.
 Reactjs has seen a lot of new and huge releases, making React the ideal framework for everybody to adopt. We have seen the releases of functional components, React Context, Hooks, etc.
 

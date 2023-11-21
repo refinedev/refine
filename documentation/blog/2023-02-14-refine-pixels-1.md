@@ -280,7 +280,7 @@ We start with setting up the **Pixels** client app using `create refine-app`. We
 
 On Day Three, we start adding features to our app. We activate the `resources` prop for `<Refine />` and using the `dataProvider` prop, we implement how to create a canvas, show a canvas and draw pixels on a canvas. We add a public gallery to show all canvases in a page and featured canvases in another. We also implement user authentication so that only signed in users can create and draw on a canvas - and while doing so we delve into the `authProvider` object.
 
-Here is a quick sum up of spcifications we cover on Day Three:
+Here is a quick sum up of specifications we cover on Day Three:
 
 1. The **Pixels** app has a public gallery.
 2. The public gallery has a home page of featured canvases.
@@ -331,7 +331,7 @@ We will display these logs inside a modal for each canvas both in the client **P
 
 In this post, we introduced the **refine** framework and the [refineWeek](https://refine.dev/week-of-refine/) series itself. We talked about **refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
 
-We layed out the plans for building a **Pixels** client app and an admin dashboard app in considerable depth.
+We laid out the plans for building a **Pixels** client app and an admin dashboard app in considerable depth.
 
 Tomorrow, on [Day Two](https://refine.dev/blog/refine-pixels-2/), we are ready to start "Setting Up the Client App". See you soon!
 

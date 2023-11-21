@@ -7,7 +7,9 @@ source: /packages/core/src/hooks/auth/usePermissions/index.ts
 ---
 
 :::caution
+
 This hook can only be used if the `authProvider` is provided.
+
 :::
 
 `usePermissions` calls the `getPermissions` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
@@ -44,10 +46,10 @@ import { usePermissions } from "@refinedev/core";
 import { List } from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
-    // highlight-next-line
-    const { data: permissionsData } = usePermissions();
+  // highlight-next-line
+  const { data: permissionsData } = usePermissions();
 
-    return <List canCreate={permissionsData?.includes("admin")}>...</List>;
+  return <List canCreate={permissionsData?.includes("admin")}>...</List>;
 };
 ```
 

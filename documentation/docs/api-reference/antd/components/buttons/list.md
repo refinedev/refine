@@ -9,7 +9,9 @@ swizzle: true
 It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
+
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+
 :::
 
 ## Usage
@@ -18,59 +20,61 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 // visible-block-start
 import { useShow } from "@refinedev/core";
 import {
-    Show,
-    // highlight-next-line
-    ListButton,
+  Show,
+  // highlight-next-line
+  ListButton,
 } from "@refinedev/antd";
 import { Typography } from "antd";
 
 const { Title, Text } = Typography;
 
 const PostShow: React.FC = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        // highlight-next-line
-        <Show headerButtons={<ListButton />} isLoading={isLoading}>
-            <Title level={5}>Id</Title>
-            <Text>{record?.id}</Text>
+  return (
+    // highlight-next-line
+    <Show headerButtons={<ListButton />} isLoading={isLoading}>
+      <Title level={5}>Id</Title>
+      <Text>{record?.id}</Text>
 
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
-        </Show>
-    );
+      <Title level={5}>Title</Title>
+      <Text>{record?.title}</Text>
+    </Show>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show/123"]}
-        resources={[
-            {
-                name: "posts",
-                show: PostShow,
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            <p>Your list page here</p>
-                        </RefineAntd.List>
-                    );
-                },
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show/123"]}
+    resources={[
+      {
+        name: "posts",
+        show: PostShow,
+        list: () => {
+          return (
+            <RefineAntd.List>
+              <p>Your list page here</p>
+            </RefineAntd.List>
+          );
+        },
+      },
+    ]}
+  />,
 );
 ```
 
 :::note
+
 The button text is defined automatically by **refine** based on the _resource_ object name property.
+
 :::
 
 ## Properties
@@ -86,31 +90,31 @@ const { useRouterContext } = RefineCore;
 import { ListButton } from "@refinedev/antd";
 
 const MyListComponent = () => {
-    return <ListButton resource="categories" />;
+  return <ListButton resource="categories" />;
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            <p>Your list page here</p>
-                        </RefineAntd.List>
-                    );
-                },
-            },
-        ]}
-        DashboardPage={MyListComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        list: () => {
+          return (
+            <RefineAntd.List>
+              <p>Your list page here</p>
+            </RefineAntd.List>
+          );
+        },
+      },
+    ]}
+    DashboardPage={MyListComponent}
+  />,
 );
 ```
 
@@ -128,9 +132,7 @@ If the `list` action route is defined by the pattern: `/:authorId/posts`, the `m
 
 ```tsx
 const MyComponent = () => {
-    return (
-        <ListButton meta={{ authorId: "10" }} />
-    );
+  return <ListButton meta={{ authorId: "10" }} />;
 };
 ```
 
@@ -143,33 +145,33 @@ const MyComponent = () => {
 import { ListButton } from "@refinedev/antd";
 
 const MyListComponent = () => {
-    return (
-        <ListButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <ListButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            <p>Your list page here</p>
-                        </RefineAntd.List>
-                    );
-                },
-            },
-        ]}
-        DashboardPage={MyListComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => {
+          return (
+            <RefineAntd.List>
+              <p>Your list page here</p>
+            </RefineAntd.List>
+          );
+        },
+      },
+    ]}
+    DashboardPage={MyListComponent}
+  />,
 );
 ```
 
@@ -181,11 +183,7 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ListButton } from "@refinedev/antd";
 
 export const MyListComponent = () => {
-    return (
-        <ListButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -202,31 +200,31 @@ const { useRouterContext } = RefineCore;
 import { ListButton } from "@refinedev/antd";
 
 const MyListComponent = () => {
-    return <ListButton resourceNameOrRouteName="categories" />;
+  return <ListButton resourceNameOrRouteName="categories" />;
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            <p>Your list page here</p>
-                        </RefineAntd.List>
-                    );
-                },
-            },
-        ]}
-        DashboardPage={MyListComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        list: () => {
+          return (
+            <RefineAntd.List>
+              <p>Your list page here</p>
+            </RefineAntd.List>
+          );
+        },
+      },
+    ]}
+    DashboardPage={MyListComponent}
+  />,
 );
 ```
 
@@ -239,5 +237,7 @@ Clicking the button will trigger the `list` method of [`useNavigation`](/api-ref
 <PropsTable module="@refinedev/antd/ListButton" />
 
 :::tip External Props
+
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
+
 :::

@@ -11,188 +11,164 @@ import { useForm as ReactHookFormUseForm } from "@refinedev/react-hook-form";
 import React from "react";
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
 }
 
 const Layout: React.FC = ({ children }) => {
-    return (
-        <div
-            style={{
-                height: "100vh",
-                background: "white",
-            }}
-        >
-            {children}
-        </div>
-    );
+  return (
+    <div
+      style={{
+        height: "100vh",
+        background: "white",
+      }}
+    >
+      {children}
+    </div>
+  );
 };
 
 const PostList: React.FC = () => {
-    const { tableQueryResult, current, setCurrent, pageSize, pageCount } =
-        useTable<IPost>({
-            sorters: {
-                initial: [
-                    {
-                        field: "id",
-                        order: "desc",
-                    },
-                ],
-            },
-        });
-    const { edit, create, clone } = useNavigation();
+  const { tableQueryResult, current, setCurrent, pageSize, pageCount } = useTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "desc",
+        },
+      ],
+    },
+  });
+  const { edit, create, clone } = useNavigation();
 
-    const hasNext = current < pageCount;
-    const hasPrev = current > 1;
+  const hasNext = current < pageCount;
+  const hasPrev = current > 1;
 
-    return (
+  return (
+    <div>
+      <button onClick={() => create("posts")}>Create Post</button>
+      <table>
+        <thead>
+          <td>ID</td>
+          <td>Title</td>
+          <td>Actions</td>
+        </thead>
+        <tbody>
+          {tableQueryResult.data?.data.map((post) => (
+            <tr key={post.id}>
+              <td>{post.id}</td>
+              <td>{post.title}</td>
+              <td>
+                <button onClick={() => edit("posts", post.id)}>Edit</button>
+                <button onClick={() => clone("posts", post.id)}>Clone</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div>
         <div>
-            <button onClick={() => create("posts")}>Create Post</button>
-            <table>
-                <thead>
-                    <td>ID</td>
-                    <td>Title</td>
-                    <td>Actions</td>
-                </thead>
-                <tbody>
-                    {tableQueryResult.data?.data.map((post) => (
-                        <tr key={post.id}>
-                            <td>{post.id}</td>
-                            <td>{post.title}</td>
-                            <td>
-                                <button onClick={() => edit("posts", post.id)}>
-                                    Edit
-                                </button>
-                                <button onClick={() => clone("posts", post.id)}>
-                                    Clone
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <div>
-                <div>
-                    <button onClick={() => setCurrent(1)} disabled={!hasPrev}>
-                        First
-                    </button>
-                    <button
-                        onClick={() => setCurrent((prev) => prev - 1)}
-                        disabled={!hasPrev}
-                    >
-                        Previous
-                    </button>
-                    <button
-                        onClick={() => setCurrent((prev) => prev + 1)}
-                        disabled={!hasNext}
-                    >
-                        Next
-                    </button>
-                    <button
-                        onClick={() => setCurrent(pageCount)}
-                        disabled={!hasNext}
-                    >
-                        Last
-                    </button>
-                </div>
-                <span>
-                    Page{" "}
-                    <strong>
-                        {current} of {pageCount}
-                    </strong>
-                </span>
-                <span>
-                    Go to page:
-                    <input
-                        type="number"
-                        defaultValue={current}
-                        onChange={(e) => {
-                            const value = e.target.value
-                                ? Number(e.target.value)
-                                : 1;
-                            setCurrent(value);
-                        }}
-                    />
-                </span>
-            </div>
+          <button onClick={() => setCurrent(1)} disabled={!hasPrev}>
+            First
+          </button>
+          <button onClick={() => setCurrent((prev) => prev - 1)} disabled={!hasPrev}>
+            Previous
+          </button>
+          <button onClick={() => setCurrent((prev) => prev + 1)} disabled={!hasNext}>
+            Next
+          </button>
+          <button onClick={() => setCurrent(pageCount)} disabled={!hasNext}>
+            Last
+          </button>
         </div>
-    );
+        <span>
+          Page{" "}
+          <strong>
+            {current} of {pageCount}
+          </strong>
+        </span>
+        <span>
+          Go to page:
+          <input
+            type="number"
+            defaultValue={current}
+            onChange={(e) => {
+              const value = e.target.value ? Number(e.target.value) : 1;
+              setCurrent(value);
+            }}
+          />
+        </span>
+      </div>
+    </div>
+  );
 };
 
 const PostEdit: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = ReactHookFormUseForm();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = ReactHookFormUseForm();
 
-    return (
-        <form onSubmit={handleSubmit(onFinish)}>
-            <label>Title: </label>
-            <input {...register("title", { required: true })} />
-            {errors.title && <span>This field is required</span>}
-            <br />
-            <label>Status: </label>
-            <select {...register("status")}>
-                <option value="published">published</option>
-                <option value="draft">draft</option>
-                <option value="rejected">rejected</option>
-            </select>
-            <br />
-            <label>Content: </label>
-            <br />
-            <textarea
-                {...register("content", { required: true })}
-                rows={10}
-                cols={50}
-            />
-            {errors.content && <span>This field is required</span>}
-            <br />
-            <br />
-            <input type="submit" disabled={formLoading} value="Submit" />
-            {formLoading && <p>Loading</p>}
-        </form>
-    );
+  return (
+    <form onSubmit={handleSubmit(onFinish)}>
+      <label>Title: </label>
+      <input {...register("title", { required: true })} />
+      {errors.title && <span>This field is required</span>}
+      <br />
+      <label>Status: </label>
+      <select {...register("status")}>
+        <option value="published">published</option>
+        <option value="draft">draft</option>
+        <option value="rejected">rejected</option>
+      </select>
+      <br />
+      <label>Content: </label>
+      <br />
+      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      {errors.content && <span>This field is required</span>}
+      <br />
+      <br />
+      <input type="submit" disabled={formLoading} value="Submit" />
+      {formLoading && <p>Loading</p>}
+    </form>
+  );
 };
 
 const PostCreate: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = ReactHookFormUseForm();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = ReactHookFormUseForm();
 
-    return (
-        <form onSubmit={handleSubmit(onFinish)}>
-            <label>Title: </label>
-            <input {...register("title", { required: true })} />
-            {errors.title && <span>This field is required</span>}
-            <br />
-            <label>Status: </label>
-            <select {...register("status")}>
-                <option value="published">published</option>
-                <option value="draft">draft</option>
-                <option value="rejected">rejected</option>
-            </select>
-            <br />
-            <label>Content: </label>
-            <br />
-            <textarea
-                {...register("content", { required: true })}
-                rows={10}
-                cols={50}
-            />
-            {errors.content && <span>This field is required</span>}
-            <br />
-            <br />
-            <input type="submit" disabled={formLoading} value="Submit" />
-            {formLoading && <p>Loading</p>}
-        </form>
-    );
+  return (
+    <form onSubmit={handleSubmit(onFinish)}>
+      <label>Title: </label>
+      <input {...register("title", { required: true })} />
+      {errors.title && <span>This field is required</span>}
+      <br />
+      <label>Status: </label>
+      <select {...register("status")}>
+        <option value="published">published</option>
+        <option value="draft">draft</option>
+        <option value="rejected">rejected</option>
+      </select>
+      <br />
+      <label>Content: </label>
+      <br />
+      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      {errors.content && <span>This field is required</span>}
+      <br />
+      <br />
+      <input type="submit" disabled={formLoading} value="Submit" />
+      {formLoading && <p>Loading</p>}
+    </form>
+  );
 };
 ```
 
@@ -219,86 +195,80 @@ import { useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
 export const PostEdit: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading, queryResult },
-        register,
-        handleSubmit,
-        resetField,
-        formState: { errors },
-    } = useForm();
+  const {
+    refineCore: { onFinish, formLoading, queryResult },
+    register,
+    handleSubmit,
+    resetField,
+    formState: { errors },
+  } = useForm();
 
-    const { options } = useSelect({
-        resource: "categories",
-        defaultValue: queryResult?.data?.data.category.id,
-    });
+  const { options } = useSelect({
+    resource: "categories",
+    defaultValue: queryResult?.data?.data.category.id,
+  });
 
-    useEffect(() => {
-        resetField("category.id");
-    }, [options]);
+  useEffect(() => {
+    resetField("category.id");
+  }, [options]);
 
-    return (
-        <form onSubmit={handleSubmit(onFinish)}>
-            <label>Title: </label>
-            <input {...register("title", { required: true })} />
-            {errors.title && <span>This field is required</span>}
-            <br />
-            <label>Status: </label>
-            <select {...register("status")}>
-                <option value="published">published</option>
-                <option value="draft">draft</option>
-                <option value="rejected">rejected</option>
-            </select>
-            <br />
-            <label>Category: </label>
-            <select
-                {...register("category.id", {
-                    required: true,
-                })}
-                defaultValue={queryResult?.data?.data.category.id}
-            >
-                {options?.map((category) => (
-                    <option key={category.value} value={category.value}>
-                        {category.label}
-                    </option>
-                ))}
-            </select>
-            {errors.category && <span>This field is required</span>}
-            <br />
-            <label>Content: </label>
-            <br />
-            <textarea
-                {...register("content", { required: true })}
-                rows={10}
-                cols={50}
-            />
-            {errors.content && <span>This field is required</span>}
-            <br />
+  return (
+    <form onSubmit={handleSubmit(onFinish)}>
+      <label>Title: </label>
+      <input {...register("title", { required: true })} />
+      {errors.title && <span>This field is required</span>}
+      <br />
+      <label>Status: </label>
+      <select {...register("status")}>
+        <option value="published">published</option>
+        <option value="draft">draft</option>
+        <option value="rejected">rejected</option>
+      </select>
+      <br />
+      <label>Category: </label>
+      <select
+        {...register("category.id", {
+          required: true,
+        })}
+        defaultValue={queryResult?.data?.data.category.id}
+      >
+        {options?.map((category) => (
+          <option key={category.value} value={category.value}>
+            {category.label}
+          </option>
+        ))}
+      </select>
+      {errors.category && <span>This field is required</span>}
+      <br />
+      <label>Content: </label>
+      <br />
+      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      {errors.content && <span>This field is required</span>}
+      <br />
 
-            {queryResult?.data?.data?.thumbnail && (
-                <>
-                    <br />
-                    <label>Image: </label>
-                    <br />
+      {queryResult?.data?.data?.thumbnail && (
+        <>
+          <br />
+          <label>Image: </label>
+          <br />
 
-                    <img
-                        src={queryResult?.data?.data?.thumbnail}
-                        width={200}
-                        height={200}
-                    />
-                    <br />
-                    <br />
-                </>
-            )}
+          <img src={queryResult?.data?.data?.thumbnail} width={200} height={200} />
+          <br />
+          <br />
+        </>
+      )}
 
-            <input type="submit" value="Submit" />
-            {formLoading && <p>Loading</p>}
-        </form>
-    );
+      <input type="submit" value="Submit" />
+      {formLoading && <p>Loading</p>}
+    </form>
+  );
 };
 ```
 
 :::tip
+
 If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/docs/packages/documentation/react-hook-form/useModalForm).
+
 :::
 
 ## Properties
@@ -308,9 +278,11 @@ If you want to show a form in a modal or drawer where necessary route params mig
 `useForm` can handle `edit`, `create` and `clone` actions.
 
 :::tip
+
 By default, it determines the `action` from route. The action is inferred by matching the resource's action path with the current route.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
+
 :::
 
 <Tabs
@@ -335,53 +307,49 @@ setInitialRoutes(["/posts/create"]);
 import { useForm } from "@refinedev/react-hook-form";
 
 const PostCreatePage: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    return (
-        <form onSubmit={handleSubmit(onFinish)}>
-            <label>Title: </label>
-            <input {...register("title", { required: true })} />
-            {errors.title && <span>This field is required</span>}
-            <br />
-            <label>Status: </label>
-            <select {...register("status")}>
-                <option value="published">published</option>
-                <option value="draft">draft</option>
-                <option value="rejected">rejected</option>
-            </select>
-            <br />
-            <label>Content: </label>
-            <br />
-            <textarea
-                {...register("content", { required: true })}
-                rows={10}
-                cols={50}
-            />
-            {errors.content && <span>This field is required</span>}
-            <br />
-            <br />
-            <input type="submit" disabled={formLoading} value="Submit" />
-            {formLoading && <p>Loading</p>}
-        </form>
-    );
+  return (
+    <form onSubmit={handleSubmit(onFinish)}>
+      <label>Title: </label>
+      <input {...register("title", { required: true })} />
+      {errors.title && <span>This field is required</span>}
+      <br />
+      <label>Status: </label>
+      <select {...register("status")}>
+        <option value="published">published</option>
+        <option value="draft">draft</option>
+        <option value="rejected">rejected</option>
+      </select>
+      <br />
+      <label>Content: </label>
+      <br />
+      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      {errors.content && <span>This field is required</span>}
+      <br />
+      <br />
+      <input type="submit" disabled={formLoading} value="Submit" />
+      {formLoading && <p>Loading</p>}
+    </form>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    Layout: (props) => <Layout {...props} />,
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreatePage,
-            edit: PostEdit,
-        },
-    ],
+  Layout: (props) => <Layout {...props} />,
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreatePage,
+      edit: PostEdit,
+    },
+  ],
 });
 
 render(<RefineHeadlessDemo />);
@@ -404,52 +372,48 @@ setInitialRoutes(["/posts/edit/123"]);
 import { useForm } from "@refinedev/react-hook-form";
 
 const PostEditPage: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    return (
-        <form onSubmit={handleSubmit(onFinish)}>
-            <label>Title: </label>
-            <input {...register("title", { required: true })} />
-            {errors.title && <span>This field is required</span>}
-            <br />
-            <label>Content: </label>
-            <br />
-            <label>Status: </label>
-            <select {...register("status")}>
-                <option value="published">published</option>
-                <option value="draft">draft</option>
-                <option value="rejected">rejected</option>
-            </select>
-            <br />
-            <textarea
-                {...register("content", { required: true })}
-                rows={10}
-                cols={50}
-            />
-            {errors.content && <span>This field is required</span>}
-            <br />
-            <input type="submit" value="Submit" />
-            {formLoading && <p>Loading</p>}
-        </form>
-    );
+  return (
+    <form onSubmit={handleSubmit(onFinish)}>
+      <label>Title: </label>
+      <input {...register("title", { required: true })} />
+      {errors.title && <span>This field is required</span>}
+      <br />
+      <label>Content: </label>
+      <br />
+      <label>Status: </label>
+      <select {...register("status")}>
+        <option value="published">published</option>
+        <option value="draft">draft</option>
+        <option value="rejected">rejected</option>
+      </select>
+      <br />
+      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      {errors.content && <span>This field is required</span>}
+      <br />
+      <input type="submit" value="Submit" />
+      {formLoading && <p>Loading</p>}
+    </form>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    Layout: (props) => <Layout {...props} />,
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreate,
-            edit: PostEditPage,
-        },
-    ],
+  Layout: (props) => <Layout {...props} />,
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreate,
+      edit: PostEditPage,
+    },
+  ],
 });
 
 render(<RefineHeadlessDemo />);
@@ -474,53 +438,49 @@ setInitialRoutes(["/posts/clone/123"]);
 import { useForm } from "@refinedev/react-hook-form";
 
 const PostCreatePage: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    return (
-        <form onSubmit={handleSubmit(onFinish)}>
-            <label>Title: </label>
-            <input {...register("title", { required: true })} />
-            {errors.title && <span>This field is required</span>}
-            <br />
-            <label>Status: </label>
-            <select {...register("status")}>
-                <option value="published">published</option>
-                <option value="draft">draft</option>
-                <option value="rejected">rejected</option>
-            </select>
-            <br />
-            <label>Content: </label>
-            <br />
-            <textarea
-                {...register("content", { required: true })}
-                rows={10}
-                cols={50}
-            />
-            {errors.content && <span>This field is required</span>}
-            <br />
-            <br />
-            <input type="submit" disabled={formLoading} value="Submit" />
-            {formLoading && <p>Loading</p>}
-        </form>
-    );
+  return (
+    <form onSubmit={handleSubmit(onFinish)}>
+      <label>Title: </label>
+      <input {...register("title", { required: true })} />
+      {errors.title && <span>This field is required</span>}
+      <br />
+      <label>Status: </label>
+      <select {...register("status")}>
+        <option value="published">published</option>
+        <option value="draft">draft</option>
+        <option value="rejected">rejected</option>
+      </select>
+      <br />
+      <label>Content: </label>
+      <br />
+      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      {errors.content && <span>This field is required</span>}
+      <br />
+      <br />
+      <input type="submit" disabled={formLoading} value="Submit" />
+      {formLoading && <p>Loading</p>}
+    </form>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    Layout: (props) => <Layout {...props} />,
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreatePage,
-            edit: PostEdit,
-        },
-    ],
+  Layout: (props) => <Layout {...props} />,
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreatePage,
+      edit: PostEdit,
+    },
+  ],
 });
 
 render(<RefineHeadlessDemo />);
@@ -536,15 +496,15 @@ render(<RefineHeadlessDemo />);
 
 It will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
 
--   When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
--   When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
--   When `action` is `"clone"`, it will be passed to the [`create`][create] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
+- When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
+- When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
+- When `action` is `"clone"`, it will be passed to the [`create`][create] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        resource: "categories",
-    },
+  refineCoreProps: {
+    resource: "categories",
+  },
 });
 ```
 
@@ -559,10 +519,10 @@ import { useForm } from "@refinedev/react-hook-form";
 const { id } = useParsed();
 
 useForm({
-    refineCoreProps: {
-        resource: "custom-resource",
-        id,
-    },
+  refineCoreProps: {
+    resource: "custom-resource",
+    id,
+  },
 });
 ```
 
@@ -572,11 +532,11 @@ Or you can use the `setId` function to set the `id` value.
 import { useForm } from "@refinedev/react-hook-form";
 
 const {
-    refineCore: { setId },
+  refineCore: { setId },
 } = useForm({
-    refineCoreProps: {
-        resource: "custom-resource",
-    },
+  refineCoreProps: {
+    resource: "custom-resource",
+  },
 });
 
 setId("123");
@@ -592,17 +552,17 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 `id` is used for determining the record to `edit` or `clone`. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
-It is usefull when you want to `edit` or `clone` a `resource` from a different page.
+It is useful when you want to `edit` or `clone` a `resource` from a different page.
 
 > Note: `id` is required when `action: "edit"` or `action: "clone"`.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        action: "edit", // or clone
-        resource: "categories",
-        id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
-    },
+  refineCoreProps: {
+    action: "edit", // or clone
+    resource: "categories",
+    id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
+  },
 });
 ```
 
@@ -614,9 +574,9 @@ It can be set to `"show" | "edit" | "list" | "create"` or `false` to prevent the
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        redirect: false,
-    },
+  refineCoreProps: {
+    redirect: false,
+  },
 });
 ```
 
@@ -626,18 +586,18 @@ It's a callback function that will be called after the mutation is successful.
 
 It receives the following parameters:
 
--   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
--   `variables`: The variables passed to the mutation.
--   `context`: react-query context.
--   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
+- `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
+- `variables`: The variables passed to the mutation.
+- `context`: react-query context.
+- `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        onMutationSuccess: (data, variables, context, isAutoSave) => {
-            console.log({ data, variables, context, isAutoSave });
-        },
+  refineCoreProps: {
+    onMutationSuccess: (data, variables, context, isAutoSave) => {
+      console.log({ data, variables, context, isAutoSave });
     },
+  },
 });
 ```
 
@@ -647,18 +607,18 @@ It's a callback function that will be called after the mutation is failed.
 
 It receives the following parameters:
 
--   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
--   `variables`: The variables passed to the mutation.
--   `context`: react-query context.
--   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
+- `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
+- `variables`: The variables passed to the mutation.
+- `context`: react-query context.
+- `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        onMutationError: (data, variables, context, isAutoSave) => {
-            console.log({ data, variables, context, isAutoSave });
-        },
+  refineCoreProps: {
+    onMutationError: (data, variables, context, isAutoSave) => {
+      console.log({ data, variables, context, isAutoSave });
     },
+  },
 });
 ```
 
@@ -668,14 +628,14 @@ You can use it to manage the invalidations that will occur at the end of the mut
 
 By default it's invalidates following queries from the current `resource`:
 
--   on `create` or `clone` mode: `"list"` and `"many"`
--   on `edit` mode: `"list`", `"many"` and `"detail"`
+- on `create` or `clone` mode: `"list"` and `"many"`
+- on `edit` mode: `"list`", `"many"` and `"detail"`
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        invalidates: ["list", "many", "detail"],
-    },
+  refineCoreProps: {
+    invalidates: ["list", "many", "detail"],
+  },
 });
 ```
 
@@ -685,14 +645,16 @@ If there is more than one `dataProvider`, you should use the `dataProviderName` 
 It is useful when you want to use a different `dataProvider` for a specific resource.
 
 :::tip
+
 If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop ](/docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
+
 :::
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        dataProviderName: "second-data-provider",
-    },
+  refineCoreProps: {
+    dataProviderName: "second-data-provider",
+  },
 });
 ```
 
@@ -705,9 +667,9 @@ Each mode corresponds to a different type of user experience.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
-    },
+  refineCoreProps: {
+    mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
+  },
 });
 ```
 
@@ -719,15 +681,15 @@ After form is submitted successfully, `useForm` will call `open` function from [
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        successNotification: (data, values, resource) => {
-            return {
-                message: `Post Successfully created with ${data.title}`,
-                description: "Success with no errors",
-                type: "success",
-            };
-        },
+  refineCoreProps: {
+    successNotification: (data, values, resource) => {
+      return {
+        message: `Post Successfully created with ${data.title}`,
+        description: "Success with no errors",
+        type: "success",
+      };
     },
+  },
 });
 ```
 
@@ -739,17 +701,17 @@ After form is submit is failed, `refine` will show a error notification. With th
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        action: "create",
-        resource: "post",
-        errorNotification: (data, values, resource) => {
-            return {
-                message: `Something went wrong when deleting ${data.id}`,
-                description: "Error",
-                type: "error",
-            };
-        },
+  refineCoreProps: {
+    action: "create",
+    resource: "post",
+    errorNotification: (data, values, resource) => {
+      return {
+        message: `Something went wrong when deleting ${data.id}`,
+        description: "Error",
+        type: "error",
+      };
     },
+  },
 });
 ```
 
@@ -765,9 +727,9 @@ useForm({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
--   Providing additional parameters to the redirection path after the form is submitted.
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Providing additional parameters to the redirection path after the form is submitted.
 
 [Refer to the `meta` section of the General Concepts documentation for more information &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
@@ -775,29 +737,29 @@ In the following example, we pass the `headers` property in the `meta` object to
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        meta: {
-            headers: { "x-meta-data": "true" },
-        },
+  refineCoreProps: {
+    meta: {
+      headers: { "x-meta-data": "true" },
     },
+  },
 });
 
 const myDataProvider = {
-    //...
-    // highlight-start
-    create: async ({ resource, variables, meta }) => {
-        const headers = meta?.headers ?? {};
-        // highlight-end
-        const url = `${apiUrl}/${resource}`;
+  //...
+  // highlight-start
+  create: async ({ resource, variables, meta }) => {
+    const headers = meta?.headers ?? {};
+    // highlight-end
+    const url = `${apiUrl}/${resource}`;
 
-        // highlight-next-line
-        const { data } = await httpClient.post(url, variables, { headers });
+    // highlight-next-line
+    const { data } = await httpClient.post(url, variables, { headers });
 
-        return {
-            data,
-        };
-    },
-    //...
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -807,14 +769,16 @@ In addition to the [`meta`](#meta) property, you can also pass the `queryMeta` p
 
 ```tsx
 useForm({
-    queryMeta: {
-        querySpecificValue: "someValue",
-    },
+  queryMeta: {
+    querySpecificValue: "someValue",
+  },
 });
 ```
 
 :::tip
+
 If you have overlapping properties in both `meta` and `queryMeta`, the `queryMeta` property will be used.
+
 :::
 
 ### `mutationMeta`
@@ -823,14 +787,16 @@ In addition to the [`meta`](#meta) property, you can also pass the `mutationMeta
 
 ```tsx
 useForm({
-    mutationMeta: {
-        mutationSpecificValue: "someValue",
-    },
+  mutationMeta: {
+    mutationSpecificValue: "someValue",
+  },
 });
 ```
 
 :::tip
+
 If you have overlapping properties in both `meta` and `mutationMeta`, the `mutationMeta` property will be used.
+
 :::
 
 ### `queryOptions`
@@ -841,11 +807,11 @@ in `edit` or `clone` mode, **refine** uses [`useOne`](/docs/api-reference/core/h
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        queryOptions: {
-            retry: 3,
-        },
+  refineCoreProps: {
+    queryOptions: {
+      retry: 3,
     },
+  },
 });
 ```
 
@@ -857,11 +823,11 @@ In `create` or `clone` mode, **refine** uses [`useCreate`](/docs/api-reference/c
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        queryOptions: {
-            retry: 3,
-        },
+  refineCoreProps: {
+    queryOptions: {
+      retry: 3,
     },
+  },
 });
 ```
 
@@ -873,11 +839,11 @@ In `edit` mode, **refine** uses [`useUpdate`](/docs/api-reference/core/hooks/dat
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        queryOptions: {
-            retry: 3,
-        },
+  refineCoreProps: {
+    queryOptions: {
+      retry: 3,
     },
+  },
 });
 ```
 
@@ -891,9 +857,9 @@ It can be set globally in [`refine config`](/docs/api-reference/core/components/
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        warnWhenUnsavedChanges: true,
-    },
+  refineCoreProps: {
+    warnWhenUnsavedChanges: true,
+  },
 });
 ```
 
@@ -904,9 +870,9 @@ For more information about live mode, please check [Live / Realtime](/docs/api-r
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        liveMode: "auto",
-    },
+  refineCoreProps: {
+    liveMode: "auto",
+  },
 });
 ```
 
@@ -916,11 +882,11 @@ The callback function that is executed when new events from a subscription are a
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        onLiveEvent: (event) => {
-            console.log(event);
-        },
+  refineCoreProps: {
+    onLiveEvent: (event) => {
+      console.log(event);
     },
+  },
 });
 ```
 
@@ -937,7 +903,9 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
+
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -950,11 +918,11 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
     },
+  },
 });
 ```
 
@@ -966,13 +934,13 @@ Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            debounce: 2000,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      debounce: 2000,
     },
+  },
 });
 ```
 
@@ -982,19 +950,19 @@ If you want to modify the data before sending it to the server, you can use `onF
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-start
-            onFinish: (values) => {
-                return {
-                    foo: "bar",
-                    ...values,
-                };
-            },
-            // highlight-end
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-start
+      onFinish: (values) => {
+        return {
+          foo: "bar",
+          ...values,
+        };
+      },
+      // highlight-end
     },
+  },
 });
 ```
 
@@ -1006,13 +974,13 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            invalidateOnUnmount: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      invalidateOnUnmount: true,
     },
+  },
 });
 ```
 
@@ -1024,7 +992,7 @@ If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` 
 
 ```tsx
 const {
-    refineCore: { queryResult },
+  refineCore: { queryResult },
 } = useForm();
 
 const { data } = queryResult;
@@ -1036,7 +1004,7 @@ When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/ap
 
 ```tsx
 const {
-    refineCore: { mutationResult },
+  refineCore: { mutationResult },
 } = useForm();
 
 const { data } = mutationResult;
@@ -1048,17 +1016,17 @@ const { data } = mutationResult;
 
 ```tsx
 const {
-    refineCore: { id, setId },
+  refineCore: { id, setId },
 } = useForm();
 
 const handleIdChange = (id: string) => {
-    setId(id);
+  setId(id);
 };
 
 return (
-    <div>
-        <input value={id} onChange={(e) => handleIdChange(e.target.value)} />
-    </div>
+  <div>
+    <input value={id} onChange={(e) => handleIdChange(e.target.value)} />
+  </div>
 );
 ```
 
@@ -1070,15 +1038,15 @@ In the following example we will redirect to the `"show"` page after a successfu
 
 ```tsx
 const {
-    refineCore: { onFinish, redirect },
+  refineCore: { onFinish, redirect },
 } = useForm();
 
 // --
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = await onFinish(formValues);
-    redirect("show", data?.data?.id);
+  e.preventDefault();
+  const data = await onFinish(formValues);
+  redirect("show", data?.data?.id);
 };
 
 // --
@@ -1116,20 +1084,20 @@ import { useInvalidate } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
 const PostEdit = () => {
-    const invalidate = useInvalidate();
+  const invalidate = useInvalidate();
 
-    useForm({
-        refineCoreProps: {
-            onMutationSuccess: (data, variables, context) => {
-                invalidate({
-                    resource: "users",
-                    invalidates: ["resourceAll"],
-                });
-            },
-        },
-    });
+  useForm({
+    refineCoreProps: {
+      onMutationSuccess: (data, variables, context) => {
+        invalidate({
+          resource: "users",
+          invalidates: ["resourceAll"],
+        });
+      },
+    },
+  });
 
-    // ---
+  // ---
 };
 ```
 
@@ -1145,31 +1113,31 @@ import React from "react";
 import { FieldValues } from "react-hook-form";
 
 export const UserCreate: React.FC = () => {
-    const {
-        refineCore: { onFinish },
-        register,
-        handleSubmit,
-    } = useForm();
+  const {
+    refineCore: { onFinish },
+    register,
+    handleSubmit,
+  } = useForm();
 
-    const onFinishHandler = (data: FieldValues) => {
-        onFinish({
-            fullName: `${data.name} ${data.surname}`,
-        });
-    };
+  const onFinishHandler = (data: FieldValues) => {
+    onFinish({
+      fullName: `${data.name} ${data.surname}`,
+    });
+  };
 
-    return (
-        <form onSubmit={handleSubmit(onFinishHandler)}>
-            <label>Name: </label>
-            <input {...register("name")} />
-            <br />
+  return (
+    <form onSubmit={handleSubmit(onFinishHandler)}>
+      <label>Name: </label>
+      <input {...register("name")} />
+      <br />
 
-            <label>Surname: </label>
-            <input {...register("surname")} />
-            <br />
+      <label>Surname: </label>
+      <input {...register("surname")} />
+      <br />
 
-            <button type="submit">Submit</button>
-        </form>
-    );
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 ```
 
@@ -1186,7 +1154,9 @@ You can use `meta` property to pass common values to the mutation and the query.
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
 :::tip External Props
+
 It also accepts all props of [useForm](https://react-hook-form.com/api/useform) hook available in the [React Hook Form](https://react-hook-form.com/).
+
 :::
 
 <br/>
@@ -1229,7 +1199,7 @@ const {
 
 ### Type Parameters
 
-| Property       | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                         | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

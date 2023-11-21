@@ -75,7 +75,7 @@ Here’s what they look like:
  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/button1.png" alt="button1" />
 
 ### Material UI Button Colors
-You can use the `color` prop to apply a colour to Material UI buttons from the theme palette.
+You can use the `color` prop to apply a color to Material UI buttons from the theme palette.
 
 ```tsx
 <Button color="secondary">Secondary color theme</Button>
@@ -89,7 +89,7 @@ You can use the `color` prop to apply a colour to Material UI buttons from the t
 
 
 ### Material UI Button Sizes
-You can customise the size of Material UI buttons with the `size` prop:
+You can customize the size of Material UI buttons with the `size` prop:
 
 ```tsx
 import * as React from 'react';

@@ -37,14 +37,14 @@ We'll use the `routerProvider` from `@refinedev/nextjs-router` to set up the rou
 
 We'll create four pages for our resources:
 
--   `pages/posts/index.tsx` - List page for posts
--   `pages/posts/show/[id].tsx` - Detail page for posts
--   `pages/categories/index.tsx` - List page for categories
--   `pages/categories/show/[id].tsx` - Detail page for categories
+- `pages/posts/index.tsx` - List page for posts
+- `pages/posts/show/[id].tsx` - Detail page for posts
+- `pages/categories/index.tsx` - List page for categories
+- `pages/categories/show/[id].tsx` - Detail page for categories
 
 And we'll create one page for the index route and use it to redirect to the `posts` resource:
 
--   `pages/index.tsx` - Index page
+- `pages/index.tsx` - Index page
 
 Let's start with the initialization of the **refine** app in the `_app.tsx` file:
 
@@ -56,29 +56,29 @@ import routerProvider from "@refinedev/nextjs-router";
 import { Layout } from "components/Layout";
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
-    return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            // highlight-next-line
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                    show: "/posts/show/:id",
-                },
-                {
-                    name: "categories",
-                    list: "/categories",
-                    show: "/categories/show/:id",
-                },
-            ]}
-        >
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
-        </Refine>
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      // highlight-next-line
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/show/:id",
+        },
+        {
+          name: "categories",
+          list: "/categories",
+          show: "/categories/show/:id",
+        },
+      ]}
+    >
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Refine>
+  );
 }
 ```
 
@@ -103,36 +103,34 @@ import { useTable } from "@refinedev/core";
 import Link from "next/link";
 
 type IPost = {
-    id: string;
-    title: string;
-    description: string;
+  id: string;
+  title: string;
+  description: string;
 };
 
 export default function PostList() {
-    // `posts` resource will be inferred from the route.
-    // Because we've defined `/posts` as the `list` action of the `posts` resource.
-    const {
-        tableQueryResult: { data, isLoading },
-    } = useTable<IPost>();
+  // `posts` resource will be inferred from the route.
+  // Because we've defined `/posts` as the `list` action of the `posts` resource.
+  const {
+    tableQueryResult: { data, isLoading },
+  } = useTable<IPost>();
 
-    const tableData = data?.data;
+  const tableData = data?.data;
 
-    return (
-        <div>
-            {isLoading && <p>Loading...</p>}
-            {!isLoading && (
-                <ul>
-                    {tableData?.map((post) => (
-                        <li key={post.id}>
-                            <Link href={`/posts/show/${post.id}`}>
-                                {post.title}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
+  return (
+    <div>
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && (
+        <ul>
+          {tableData?.map((post) => (
+            <li key={post.id}>
+              <Link href={`/posts/show/${post.id}`}>{post.title}</Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
 ```
 
@@ -169,35 +167,33 @@ import { useTable } from "@refinedev/core";
 import Link from "next/link";
 
 type ICategory = {
-    id: string;
-    label: string;
+  id: string;
+  label: string;
 };
 
 export default function CategoryList() {
-    // `categories` resource will be inferred from the route.
-    // Because we've defined `/categories` as the `list` action of the `categories` resource.
-    const {
-        tableQueryResult: { data, isLoading },
-    } = useTable<ICategory>();
+  // `categories` resource will be inferred from the route.
+  // Because we've defined `/categories` as the `list` action of the `categories` resource.
+  const {
+    tableQueryResult: { data, isLoading },
+  } = useTable<ICategory>();
 
-    const tableData = data?.data;
+  const tableData = data?.data;
 
-    return (
-        <div>
-            {isLoading && <p>Loading...</p>}
-            {!isLoading && (
-                <ul>
-                    {tableData?.map((category) => (
-                        <li key={category.id}>
-                            <Link href={`/categories/show/${category.id}`}>
-                                {category.label}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
+  return (
+    <div>
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && (
+        <ul>
+          {tableData?.map((category) => (
+            <li key={category.id}>
+              <Link href={`/categories/show/${category.id}`}>{category.label}</Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
 ```
 
@@ -205,24 +201,24 @@ export default function CategoryList() {
 import { useShow } from "@refinedev/core";
 
 type ICategory = {
-    id: string;
-    label: string;
+  id: string;
+  label: string;
 };
 
 export default function CategoryShow() {
-    // `categories` resource and the `id` will be inferred from the route.
-    // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
-    const {
-        queryResult: { data, isLoading },
-    } = useShow<ICategory>();
+  // `categories` resource and the `id` will be inferred from the route.
+  // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
+  const {
+    queryResult: { data, isLoading },
+  } = useShow<ICategory>();
 
-    const categoryData = data?.data;
+  const categoryData = data?.data;
 
-    return (
-        <div>
-            <h1>{categoryData?.label}</h1>
-        </div>
-    );
+  return (
+    <div>
+      <h1>{categoryData?.label}</h1>
+    </div>
+  );
 }
 ```
 
@@ -238,7 +234,7 @@ Even though we're using the `NavigateToResource` component, when using Next.js i
 import { NavigateToResource } from "@refinedev/nextjs-router";
 
 export default function Home() {
-    return <NavigateToResource />;
+  return <NavigateToResource />;
 }
 ```
 
@@ -248,14 +244,14 @@ We'll use the `routerProvider` from `@refinedev/nextjs-router/app` to set up the
 
 We'll create four routes for our resources:
 
--   `app/posts/page.tsx` - List page for posts
--   `app/posts/show/[id]/page.tsx` - Detail page for posts
--   `app/categories/page.tsx` - List page for categories
--   `app/categories/show/[id]/page.tsx` - Detail page for categories
+- `app/posts/page.tsx` - List page for posts
+- `app/posts/show/[id]/page.tsx` - Detail page for posts
+- `app/categories/page.tsx` - List page for categories
+- `app/categories/show/[id]/page.tsx` - Detail page for categories
 
 And we'll create one route for the index and use it to redirect to the `posts` resource:
 
--   `app/page.tsx` - Index page
+- `app/page.tsx` - Index page
 
 Let's start with the initialization of the **refine** app in the `app/layout.tsx` file:
 
@@ -268,40 +264,34 @@ import routerProvider from "@refinedev/nextjs-router/app";
 
 import { Layout } from "components/Layout";
 
-export default function RootLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
-    return (
-        <html lang="en">
-            <body>
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    // highlight-next-line
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                        },
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            show: "/categories/show/:id",
-                        },
-                    ]}
-                >
-                    {/* We're defining `Layout` here but you might want to have different layouts per your page. */}
-                    {/* This is totally fine for refine, you can place your Layout wherever you like. */}
-                    <Layout>{children}</Layout>
-                </Refine>
-            </body>
-        </html>
-    );
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <Refine
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          // highlight-next-line
+          routerProvider={routerProvider}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+              show: "/posts/show/:id",
+            },
+            {
+              name: "categories",
+              list: "/categories",
+              show: "/categories/show/:id",
+            },
+          ]}
+        >
+          {/* We're defining `Layout` here but you might want to have different layouts per your page. */}
+          {/* This is totally fine for refine, you can place your Layout wherever you like. */}
+          <Layout>{children}</Layout>
+        </Refine>
+      </body>
+    </html>
+  );
 }
 ```
 
@@ -328,36 +318,34 @@ import { useTable } from "@refinedev/core";
 import Link from "next/link";
 
 type IPost = {
-    id: string;
-    title: string;
-    description: string;
+  id: string;
+  title: string;
+  description: string;
 };
 
 export default function PostList() {
-    // `posts` resource will be inferred from the route.
-    // Because we've defined `/posts` as the `list` action of the `posts` resource.
-    const {
-        tableQueryResult: { data, isLoading },
-    } = useTable<IPost>();
+  // `posts` resource will be inferred from the route.
+  // Because we've defined `/posts` as the `list` action of the `posts` resource.
+  const {
+    tableQueryResult: { data, isLoading },
+  } = useTable<IPost>();
 
-    const tableData = data?.data;
+  const tableData = data?.data;
 
-    return (
-        <div>
-            {isLoading && <p>Loading...</p>}
-            {!isLoading && (
-                <ul>
-                    {tableData?.map((post) => (
-                        <li key={post.id}>
-                            <Link href={`/posts/show/${post.id}`}>
-                                {post.title}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
+  return (
+    <div>
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && (
+        <ul>
+          {tableData?.map((post) => (
+            <li key={post.id}>
+              <Link href={`/posts/show/${post.id}`}>{post.title}</Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
 ```
 
@@ -398,35 +386,33 @@ import { useTable } from "@refinedev/core";
 import Link from "next/link";
 
 type ICategory = {
-    id: string;
-    label: string;
+  id: string;
+  label: string;
 };
 
 export default function CategoryList() {
-    // `categories` resource will be inferred from the route.
-    // Because we've defined `/categories` as the `list` action of the `categories` resource.
-    const {
-        tableQueryResult: { data, isLoading },
-    } = useTable<ICategory>();
+  // `categories` resource will be inferred from the route.
+  // Because we've defined `/categories` as the `list` action of the `categories` resource.
+  const {
+    tableQueryResult: { data, isLoading },
+  } = useTable<ICategory>();
 
-    const tableData = data?.data;
+  const tableData = data?.data;
 
-    return (
-        <div>
-            {isLoading && <p>Loading...</p>}
-            {!isLoading && (
-                <ul>
-                    {tableData?.map((category) => (
-                        <li key={category.id}>
-                            <Link href={`/categories/show/${category.id}`}>
-                                {category.label}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
+  return (
+    <div>
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && (
+        <ul>
+          {tableData?.map((category) => (
+            <li key={category.id}>
+              <Link href={`/categories/show/${category.id}`}>{category.label}</Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
 ```
 
@@ -436,24 +422,24 @@ export default function CategoryList() {
 import { useShow } from "@refinedev/core";
 
 type ICategory = {
-    id: string;
-    label: string;
+  id: string;
+  label: string;
 };
 
 export default function CategoryShow() {
-    // `categories` resource and the `id` will be inferred from the route.
-    // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
-    const {
-        queryResult: { data, isLoading },
-    } = useShow<ICategory>();
+  // `categories` resource and the `id` will be inferred from the route.
+  // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
+  const {
+    queryResult: { data, isLoading },
+  } = useShow<ICategory>();
 
-    const categoryData = data?.data;
+  const categoryData = data?.data;
 
-    return (
-        <div>
-            <h1>{categoryData?.label}</h1>
-        </div>
-    );
+  return (
+    <div>
+      <h1>{categoryData?.label}</h1>
+    </div>
+  );
 }
 ```
 
@@ -469,7 +455,7 @@ Even though we're using the `NavigateToResource` component, when using Next.js i
 import { NavigateToResource } from "@refinedev/nextjs-router/app";
 
 export default function IndexPage() {
-    return <NavigateToResource />;
+  return <NavigateToResource />;
 }
 ```
 
@@ -487,7 +473,7 @@ A basic component to navigate to a resource page. It is useful when you want to 
 import { NavigateToResource } from "@refinedev/nextjs-router";
 
 export default function IndexPage() {
-    return <NavigateToResource />;
+  return <NavigateToResource />;
 }
 ```
 
@@ -499,7 +485,7 @@ export default function IndexPage() {
 import { NavigateToResource } from "@refinedev/nextjs-router/app";
 
 export default function IndexPage() {
-    return <NavigateToResource />;
+  return <NavigateToResource />;
 }
 ```
 
@@ -520,20 +506,22 @@ import { Refine } from "@refinedev/core";
 import { UnsavedChangesNotifier } from "@refinedev/nextjs-router";
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
-    return (
-        <Refine
-        /* ... */
-        >
-            <Component {...pageProps} />
-            {/* highlight-next-line */}
-            <UnsavedChangesNotifier />
-        </Refine>
-    );
+  return (
+    <Refine
+    /* ... */
+    >
+      <Component {...pageProps} />
+      {/* highlight-next-line */}
+      <UnsavedChangesNotifier />
+    </Refine>
+  );
 }
 ```
 
 :::info
+
 This feature is not working in experimental `appDir` mode in Next.js due to limitations of the `next/navigation` and missing events.
+
 :::
 
 #### Properties
@@ -547,6 +535,7 @@ This feature is not working in experimental `appDir` mode in Next.js due to limi
 This function can be used to parse the query parameters of a table page. It can be useful when you want to use the query parameters in your server side functions (`loader`) to fetch the data such as [persisting the table state](#how-to-persist-syncwithlocation-in-ssr)
 
 ### `DocumentTitleHandler`
+
 :::note
 
 Note that this component currently only works in the `pages` directory.
@@ -556,33 +545,33 @@ Note that this component currently only works in the `pages` directory.
 This component will generate the document title for the current page.By default, it follows a set of predefined rules to generate titles based on the provided props. However, it also offers the flexibility to customize the title generation process by providing a custom `handler` function.
 The default title generation rules are as follows:
 
--   list    : `Posts | refine`
--   edit    : `#{id} Edit Post | refine`
--   show    : `#{id} Show Post | refine`
--   create  : `Create new Post | refine`
--   clone   : `#{id} Clone Post | refine`
--   default : `refine`
-
+- list : `Posts | refine`
+- edit : `#{id} Edit Post | refine`
+- show : `#{id} Show Post | refine`
+- create : `Create new Post | refine`
+- clone : `#{id} Clone Post | refine`
+- default : `refine`
 
 ```tsx
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                /* ... */
-            >
-                {/* ... */}
-                {/* highlight-next-line */}
-                <DocumentTitleHandler />
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+      /* ... */
+      >
+        {/* ... */}
+        {/* highlight-next-line */}
+        <DocumentTitleHandler />
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
 #### Properties
 
 `handler` (optional) - The function that will get invoked in every location change. It will receive an object with the following properties:
+
 - `pathname`: The current URL pathname.
 - `resource`: The resource being displayed (e.g., "posts").
 - `action`: The action being performed (e.g., "edit", "show", "create").
@@ -593,22 +582,23 @@ Inside the handler function, you can dynamically generate the document title bas
 
 ```tsx
 const customTitleHandler = ({ resource, action, params }) => {
-    let title = "Custom default"; // Default title
+  let title = "Custom default"; // Default title
 
-    if(resource && action) {
-        title = `${resource} ${action} ${params.id}`;
-    }
+  if (resource && action) {
+    title = `${resource} ${action} ${params.id}`;
+  }
 
-    return title;
+  return title;
 };
 
 // Usage
-<DocumentTitleHandler handler={customTitleHandler} />
-
+<DocumentTitleHandler handler={customTitleHandler} />;
 ```
+
 ## Hooks
 
 ### `useDocumentTitle`
+
 :::note
 
 Note that this hook doesn't support SSR. It will only set the document title in the client side.
@@ -621,30 +611,23 @@ This hook allows you to set the document title for the current page. It can be u
 import { useDocumentTitle } from "@refinedev/nextjs-router";
 
 const PostList = () => {
-    // highlight-next-line
-    useDocumentTitle("Posts | refine");
+  // highlight-next-line
+  useDocumentTitle("Posts | refine");
 
-    return (
-        <List>
-            {/* ... */}
-        </List>
-    );
+  return <List>{/* ... */}</List>;
 };
 ```
+
 This hook can take an object as an argument with `i18nKey`. This key will be used to translate the title using the i18n provider.
 
 ```tsx
 import { useDocumentTitle } from "@refinedev/nextjs-router";
 
 const PostList = () => {
-    // highlight-next-line
-    useDocumentTitle({ i18nKey: "documentTitle.posts.list" });
+  // highlight-next-line
+  useDocumentTitle({ i18nKey: "documentTitle.posts.list" });
 
-    return (
-        <List>
-            {/* ... */}
-        </List>
-    );
+  return <List>{/* ... */}</List>;
 };
 ```
 
@@ -654,17 +637,13 @@ This hook also returns a function that can be used to set the document title dyn
 import { useDocumentTitle } from "@refinedev/nextjs-router";
 
 const PostList = () => {
-    const setTitle = useDocumentTitle();
+  const setTitle = useDocumentTitle();
 
-    useEffect(() => {
-        setTitle("Posts | refine");
-    }, []);
+  useEffect(() => {
+    setTitle("Posts | refine");
+  }, []);
 
-    return (
-        <List>
-            {/* ... */}
-        </List>
-    );
+  return <List>{/* ... */}</List>;
 };
 ```
 
@@ -677,7 +656,9 @@ On the client-side, you can wrap your pages with [`Authenticated`](/docs/api-ref
 On the server-side, you can use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthenticated users to other pages like login...
 
 :::info
+
 For page level authentication, server-side approach is recommended.
+
 :::
 
 ### Server Side
@@ -697,96 +678,96 @@ import nookies from "nookies";
 // highlight-end
 
 const mockUsers = [
-    {
-        username: "admin",
-        roles: ["admin"],
-    },
-    {
-        username: "editor",
-        roles: ["editor"],
-    },
+  {
+    username: "admin",
+    roles: ["admin"],
+  },
+  {
+    username: "editor",
+    roles: ["editor"],
+  },
 ];
 
 // highlight-next-line
 const COOKIE_NAME = "user";
 
 export const authProvider: AuthBindings = {
-    login: ({ username, password, remember }) => {
-        // Suppose we actually send a request to the back end here.
-        const user = mockUsers.find((item) => item.username === username);
+  login: ({ username, password, remember }) => {
+    // Suppose we actually send a request to the back end here.
+    const user = mockUsers.find((item) => item.username === username);
 
-        if (user) {
-            // highlight-start
-            nookies.set(null, COOKIE_NAME, JSON.stringify(user), {
-                maxAge: remember ? 30 * 24 * 60 * 60 : undefined,
-            });
-            // highlight-end
+    if (user) {
+      // highlight-start
+      nookies.set(null, COOKIE_NAME, JSON.stringify(user), {
+        maxAge: remember ? 30 * 24 * 60 * 60 : undefined,
+      });
+      // highlight-end
 
-            return {
-                success: true,
-            };
-        }
+      return {
+        success: true,
+      };
+    }
 
-        return {
-            success: false,
-        };
-    },
-    logout: () => {
-        // highlight-next-line
-        nookies.destroy(null, COOKIE_NAME);
+    return {
+      success: false,
+    };
+  },
+  logout: () => {
+    // highlight-next-line
+    nookies.destroy(null, COOKIE_NAME);
 
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
-    onError: (error) => {
-        if (error && error.statusCode === 401) {
-            return {
-                error: new Error("Unauthorized"),
-                logout: true,
-                redirectTo: "/login",
-            };
-        }
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
+  onError: (error) => {
+    if (error && error.statusCode === 401) {
+      return {
+        error: new Error("Unauthorized"),
+        logout: true,
+        redirectTo: "/login",
+      };
+    }
 
-        return {};
-    },
-    check: async (context) => {
-        // highlight-start
-        let user = undefined;
-        if (context) {
-            // for SSR
-            const cookies = nookies.get(context);
-            user = cookies[COOKIE_NAME];
-        } else {
-            // for CSR
-            const cookies = nookies.get(null);
-            user = cookies[COOKIE_NAME];
-        }
-        // highlight-end
+    return {};
+  },
+  check: async (context) => {
+    // highlight-start
+    let user = undefined;
+    if (context) {
+      // for SSR
+      const cookies = nookies.get(context);
+      user = cookies[COOKIE_NAME];
+    } else {
+      // for CSR
+      const cookies = nookies.get(null);
+      user = cookies[COOKIE_NAME];
+    }
+    // highlight-end
 
-        if (!user) {
-            return {
-                authenticated: false,
-                error: {
-                    message: "Check failed",
-                    name: "Unauthorized",
-                },
-                logout: true,
-                redirectTo: "/login",
-            };
-        }
+    if (!user) {
+      return {
+        authenticated: false,
+        error: {
+          message: "Check failed",
+          name: "Unauthorized",
+        },
+        logout: true,
+        redirectTo: "/login",
+      };
+    }
 
-        return {
-            authenticated: true,
-        };
-    },
-    getPermissions: async () => {
-        return null;
-    },
-    getIdentity: async () => {
-        return null;
-    },
+    return {
+      authenticated: true,
+    };
+  },
+  getPermissions: async () => {
+    return null;
+  },
+  getIdentity: async () => {
+    return null;
+  },
 };
 ```
 
@@ -798,28 +779,28 @@ Now, we can check the authentication in loaders of our routes.
 import { authProvider } from "src/authProvider";
 
 export const getServerSideProps = async (context) => {
-    // We've handled the SSR case in our `check` function by sending the `context` as parameter.
-    const { authenticated, redirectTo } = await authProvider.check(context);
+  // We've handled the SSR case in our `check` function by sending the `context` as parameter.
+  const { authenticated, redirectTo } = await authProvider.check(context);
 
-    if (!authenticated) {
-        context.res.statusCode = 401;
-        context.res.end();
-    }
+  if (!authenticated) {
+    context.res.statusCode = 401;
+    context.res.end();
+  }
 
-    if (!authenticated && redirectTo) {
-        return {
-            redirect: {
-                destination: redirectTo,
-                permanent: false,
-            },
-        };
-    }
-
+  if (!authenticated && redirectTo) {
     return {
-        props: {
-            authenticated,
-        },
+      redirect: {
+        destination: redirectTo,
+        permanent: false,
+      },
     };
+  }
+
+  return {
+    props: {
+      authenticated,
+    },
+  };
 };
 ```
 
@@ -847,16 +828,16 @@ First, let's build our [AccessControlProvider](/docs/api-reference/core/provider
 
 ```tsx title="app/acccessControlProvider.ts"
 export const accessControlProvider = {
-    can: async ({ resource, action, params }) => {
-        if (resource === "posts" && action === "edit") {
-            return {
-                can: false,
-                reason: "Unauthorized",
-            };
-        }
+  can: async ({ resource, action, params }) => {
+    if (resource === "posts" && action === "edit") {
+      return {
+        can: false,
+        reason: "Unauthorized",
+      };
+    }
 
-        return { can: true };
-    },
+    return { can: true };
+  },
 };
 ```
 
@@ -868,21 +849,17 @@ You can also access resource object directly.
 
 ```tsx
 export const accessControlProvider = {
-    can: async ({ resource, action, params }) => {
-        const resourceName = params?.resource?.name;
-        const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
+  can: async ({ resource, action, params }) => {
+    const resourceName = params?.resource?.name;
+    const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
 
-        if (
-            resourceName === "posts" &&
-            anyUsefulMeta === true &&
-            action === "edit"
-        ) {
-            return {
-                can: false,
-                reason: "Unauthorized",
-            };
-        }
-    },
+    if (resourceName === "posts" && anyUsefulMeta === true && action === "edit") {
+      return {
+        can: false,
+        reason: "Unauthorized",
+      };
+    }
+  },
 };
 ```
 
@@ -892,25 +869,25 @@ Then, let's create our posts page.
 import { accessControlProvider } from "src/accessControlProvider";
 
 export const getServerSideProps = async (context) => {
-    const { can } = await accessControlProvider.can({
-        resource: "posts",
-        action: "list",
-    });
+  const { can } = await accessControlProvider.can({
+    resource: "posts",
+    action: "list",
+  });
 
-    if (!can) {
-        context.res.statusCode = 403;
-        context.res.end();
-    }
+  if (!can) {
+    context.res.statusCode = 403;
+    context.res.end();
+  }
 
-    return {
-        props: {
-            can,
-        },
-    };
+  return {
+    props: {
+      can,
+    },
+  };
 };
 
 export default function PostList() {
-    /* ... */
+  /* ... */
 }
 ```
 
@@ -922,9 +899,9 @@ For client-side, you can wrap your pages with [`CanAccess`](/docs/api-reference/
 import { CanAccess } from "@refinedev/core";
 
 export const MyPage = () => (
-    <CanAccess>
-        <div>{/* ... */}</div>
-    </CanAccess>
+  <CanAccess>
+    <div>{/* ... */}</div>
+  </CanAccess>
 );
 ```
 
@@ -948,36 +925,36 @@ import { useList } from "@refinedev/core";
 import { dataProvider } from "src/providers";
 
 type IPost = {
-    id: number;
-    title: string;
-    description: string;
+  id: number;
+  title: string;
+  description: string;
 };
 
 export const getServerSideProps = async () => {
-    const { data } = await dataProvider.getList<IPost>("posts", {
-        pagination: {
-            page: 1,
-            perPage: 10,
-        },
-    });
+  const { data } = await dataProvider.getList<IPost>("posts", {
+    pagination: {
+      page: 1,
+      perPage: 10,
+    },
+  });
 
-    return {
-        props: {
-            posts: data,
-        },
-    };
+  return {
+    props: {
+      posts: data,
+    },
+  };
 };
 
 export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
-    const {
-        tableQueryResult: { data },
-    } = useTable<IPost>({
-        queryOptions: {
-            initialData: posts,
-        },
-    });
+  const {
+    tableQueryResult: { data },
+  } = useTable<IPost>({
+    queryOptions: {
+      initialData: posts,
+    },
+  });
 
-    return <>{/* ... */}</>;
+  return <>{/* ... */}</>;
 }
 ```
 
@@ -986,37 +963,37 @@ export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
 If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
 
 ```tsx
-// highligt-next-line
+// highlight-next-line
 import { parseTableParams } from "@refinedev/nextjs-router";
 import dataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 export const getServerSideProps = ({ params, resolvedUrl }) => {
-    const { resource } = params;
+  const { resource } = params;
 
-    // highligt-next-line
-    const tableParams = parseTableParams(resolvedUrl?.split("?")[1] ?? "");
+  // highlight-next-line
+  const tableParams = parseTableParams(resolvedUrl?.split("?")[1] ?? "");
 
-    try {
-        const data = await dataProvider(API_URL).getList({
-            resource: resource as string,
-            ...tableParams, // this includes `filters`, `sorters` and `pagination`
-        });
+  try {
+    const data = await dataProvider(API_URL).getList({
+      resource: resource as string,
+      ...tableParams, // this includes `filters`, `sorters` and `pagination`
+    });
 
-        return {
-            props: {
-                initialData: data,
-            },
-        };
-    } catch (error) {
-        return {
-            props: {},
-        };
-    }
+    return {
+      props: {
+        initialData: data,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {},
+    };
+  }
 };
 export default function MyListPage({ initialData }) {
-    return <>{/* ... */}</>;
+  return <>{/* ... */}</>;
 }
 ```
 
@@ -1030,11 +1007,11 @@ Here's an example of how you can use additional properties to render different l
 
 ```tsx title="pages/login.tsx"
 export default function Login() {
-    return (
-        <div>
-            <h1>Login</h1>
-        </div>
-    );
+  return (
+    <div>
+      <h1>Login</h1>
+    </div>
+  );
 }
 
 Login.layout = "auth";
@@ -1042,7 +1019,7 @@ Login.layout = "auth";
 
 ```tsx title="pages/posts/index.tsx"
 export default function Posts() {
-    return <div>{/* ... */}</div>;
+  return <div>{/* ... */}</div>;
 }
 
 Posts.layout = "default";
@@ -1086,16 +1063,16 @@ import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 
 export type PageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-    layout?: keyof typeof Layouts;
+  layout?: keyof typeof Layouts;
 };
 
 type AppPropsWithLayout = AppProps & {
-    Component: PageWithLayout;
+  Component: PageWithLayout;
 };
 
 // Then we'll change the type of `MyApp` components props to `AppPropsWithLayout`.
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-    /* ... */
+  /* ... */
 }
 ```
 
@@ -1105,11 +1082,11 @@ Then in our pages, we can use the `PageWithLayout` type when defining our page c
 import type { PageWithLayout } from "pages/_app";
 
 const Login: PageWithLayout = () => {
-    return (
-        <div>
-            <h1>Login</h1>
-        </div>
-    );
+  return (
+    <div>
+      <h1>Login</h1>
+    </div>
+  );
 };
 
 Login.layout = "auth";
@@ -1135,12 +1112,12 @@ You can use **refine**'s authentication hooks and the `authProvider` to check if
 import { Authenticated } from "@refinedev/core";
 
 export default function CatchAll() {
-    return (
-        // This will redirect the user if they're not authenticated depending on the response of `authProvider.check`.
-        <Authenticated>
-            <div>This page is not found.</div>
-        </Authenticated>
-    );
+  return (
+    // This will redirect the user if they're not authenticated depending on the response of `authProvider.check`.
+    <Authenticated>
+      <div>This page is not found.</div>
+    </Authenticated>
+  );
 }
 ```
 
@@ -1150,25 +1127,25 @@ export default function CatchAll() {
 import { authProvider } from "src/authProvider";
 
 export const getServerSideProps = async (context) => {
-    const { authenticated, redirectTo } = await authProvider.check(context);
+  const { authenticated, redirectTo } = await authProvider.check(context);
 
-    if (!authenticated && redirectTo) {
-        return {
-            redirect: {
-                destination: redirectTo,
-                permanent: false,
-            },
-            props: {},
-        };
-    }
-
+  if (!authenticated && redirectTo) {
     return {
-        props: {},
+      redirect: {
+        destination: redirectTo,
+        permanent: false,
+      },
+      props: {},
     };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default function CatchAll() {
-    return <div>This page is not found.</div>;
+  return <div>This page is not found.</div>;
 }
 ```
 
@@ -1188,21 +1165,21 @@ We'll define our resources in the `<Refine>` component:
 
 ```tsx
 return (
-    <Refine
-        resources={[
-            {
-                name: "posts",
-                list: "/posts",
-                show: "/posts/show/:id",
-            },
-            {
-                name: "categories",
-                list: "/categories",
-            },
-        ]}
-    >
-        {/* ... */}
-    </Refine>
+  <Refine
+    resources={[
+      {
+        name: "posts",
+        list: "/posts",
+        show: "/posts/show/:id",
+      },
+      {
+        name: "categories",
+        list: "/categories",
+      },
+    ]}
+  >
+    {/* ... */}
+  </Refine>
 );
 ```
 
@@ -1216,17 +1193,17 @@ import { RefineRoutes } from "@refinedev/nextjs-router";
 import { ErrorPage } from "components/error";
 
 export default function CatchAll() {
-    return (
-        <RefineRoutes>
-            {(matchingRoute) => {
-                if (matchingRoute) {
-                    return { matchingRoute };
-                }
+  return (
+    <RefineRoutes>
+      {(matchingRoute) => {
+        if (matchingRoute) {
+          return { matchingRoute };
+        }
 
-                return <ErrorPage />;
-            }}
-        </RefineRoutes>
-    );
+        return <ErrorPage />;
+      }}
+    </RefineRoutes>
+  );
 }
 ```
 
@@ -1240,29 +1217,31 @@ If you're using experimental `appDir` in your Next.js project, you can create a 
 import { RefineRoutes } from "@refinedev/nextjs-router/app";
 
 export default function CatchAll() {
-    return (
-        <RefineRoutes>
-            {(matchingRoute) => {
-                if (matchingRoute) {
-                    return { matchingRoute };
-                }
+  return (
+    <RefineRoutes>
+      {(matchingRoute) => {
+        if (matchingRoute) {
+          return { matchingRoute };
+        }
 
-                return <ErrorPage />;
-            }}
-        </RefineRoutes>
-    );
+        return <ErrorPage />;
+      }}
+    </RefineRoutes>
+  );
 }
 ```
 
 :::info
+
 When components are used to define the resource actions, default paths will be used. You can override the default paths by assigning an object with `component` and `path` properties to the action properties.
 
 Default paths are:
 
--   `list`: `/resources`
--   `create`: `/resources/create`
--   `edit`: `/resources/edit/:id`
--   `show`: `/resources/show/:id`
+- `list`: `/resources`
+- `create`: `/resources/create`
+- `edit`: `/resources/edit/:id`
+- `show`: `/resources/show/:id`
+
 :::
 
 ## Example (`/pages`)

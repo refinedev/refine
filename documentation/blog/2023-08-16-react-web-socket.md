@@ -313,7 +313,7 @@ function Document() {
 }
 ```
 
-The below screenshot shows that when the client connection is established then users can collaborate and edit text in real-time, each action will be transmited to every connection client.
+The below screenshot shows that when the client connection is established then users can collaborate and edit text in real-time, each action will be transmitted to every connection client.
 
 
 

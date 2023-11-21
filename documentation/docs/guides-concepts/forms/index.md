@@ -397,7 +397,9 @@ useForm({
 In many cases, you may want to update the query cache optimistically after a mutation before the mutation is completed. This is especially comes in handy when managing the waiting experience of the user. For example, if you are updating a record, you may want to update the query cache with the new values to show the user that the record is updated immediately and then revert the changes if the mutation fails.
 
 :::note
+
 Optimistic updates are only available in `optimistic` and `undoable` mutation modes.
+
 :::
 
 ### Default Behavior

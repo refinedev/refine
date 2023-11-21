@@ -2,8 +2,8 @@
 id: create-authprovider
 title: 2. Create Auth Provider From Scratch
 tutorial:
-    prev: tutorial/understanding-authprovider/index
-    next: tutorial/understanding-authprovider/{preferredUI}/auth-pages
+  prev: tutorial/understanding-authprovider/index
+  next: tutorial/understanding-authprovider/{preferredUI}/auth-pages
 ---
 
 We will show you how to create an auth provider from scratch in this section. After you understand the logic of the auth provider, you can easily integrate third-party authentication services or custom auth providers. We will be using mock data to better focus on the auth provider.
@@ -16,10 +16,10 @@ First, create a new file named `authProvider.ts` in the `src` folder and add the
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-    login: async (params: any) => ({}),
-    check: async (params: any) => ({}),
-    logout: async (params: any) => ({}),
-    onError: async (params: any) => ({}),
+  login: async (params: any) => ({}),
+  check: async (params: any) => ({}),
+  logout: async (params: any) => ({}),
+  onError: async (params: any) => ({}),
 };
 
 export default authProvider;
@@ -32,13 +32,15 @@ Now, to pass the `authProvider` to the `<Refine/>` component, open `App.tsx` fil
 import authProvider from "./authProvider";
 
 <Refine
-    // ---
-    authProvider={authProvider}
+  // ---
+  authProvider={authProvider}
 />;
 ```
 
 :::note
+
 `authProvider` isn't required for the `<Refine/>` to work but your app won't have any authentication and incidentally, you won't be able to use the auth hooks.
+
 :::
 
 Our mock auth provider is now up and running with all the required methods, but they don't do anything yet. We will now add logic to these methods.
@@ -51,17 +53,17 @@ Our mock auth provider is now up and running with all the required methods, but 
 
 ```ts
 type AuthActionResponse = {
-    success: boolean;
-    redirectTo?: string;
-    error?: Error;
-    [key: string]: unknown;
+  success: boolean;
+  redirectTo?: string;
+  error?: Error;
+  [key: string]: unknown;
 };
 ```
 
--   `success`: Determines whether the operation is successful or not.
--   `redirectTo`: The path of the page that the user will be redirected to after the operation is completed.
--   `error`: An object containing details about any errors encountered during the operation.
--   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
+- `success`: Determines whether the operation is successful or not.
+- `redirectTo`: The path of the page that the user will be redirected to after the operation is completed.
+- `error`: An object containing details about any errors encountered during the operation.
+- `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 We will use a mock user list and check if the user exists in the list. If they do, we will save the user data to the local storage and resolve the promise with `success: true`. Otherwise, we will resolve the promise with `success: false`:
 
@@ -71,27 +73,27 @@ import { AuthBindings } from "@refinedev/core";
 const mockUsers = [{ email: "john@mail.com" }, { email: "jane@mail.com" }];
 
 const authProvider: AuthBindings = {
-    login: async ({ email, password }) => {
-        // Suppose we actually send a request to the back end here.
-        const user = mockUsers.find((item) => item.email === email);
+  login: async ({ email, password }) => {
+    // Suppose we actually send a request to the back end here.
+    const user = mockUsers.find((item) => item.email === email);
 
-        if (user) {
-            localStorage.setItem("auth", JSON.stringify(user));
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        }
+    if (user) {
+      localStorage.setItem("auth", JSON.stringify(user));
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    }
 
-        return {
-            success: false,
-            error: {
-                message: "Login Error",
-                name: "Invalid email or password",
-            },
-        };
-    },
-    // ---
+    return {
+      success: false,
+      error: {
+        message: "Login Error",
+        name: "Invalid email or password",
+      },
+    };
+  },
+  // ---
 };
 ```
 
@@ -122,10 +124,10 @@ Yes, you can pass any parameters to the `login` method. `useLogin` hook's mutati
 
 ```ts
 const { mutate } = useLogin<{
-    username: string;
-    password: string;
-    foo: string;
-    remember: boolean;
+  username: string;
+  password: string;
+  foo: string;
+  remember: boolean;
 }>();
 ```
 
@@ -138,21 +140,21 @@ If you want to redirect the user to a specific page, you can resolve the promise
 
 ```ts
 const authProvider: AuthBindings = {
+  // ---
+  login: async () => {
     // ---
-    login: async () => {
-        // ---
-        if (user) {
-            return {
-                success: true,
-                redirectTo: "/custom-page",
-            };
-        } else {
-            return {
-                success: false,
-                redirectTo: "/register",
-            };
-        }
-    },
+    if (user) {
+      return {
+        success: true,
+        redirectTo: "/custom-page",
+      };
+    } else {
+      return {
+        success: false,
+        redirectTo: "/register",
+      };
+    }
+  },
 };
 ```
 
@@ -168,14 +170,14 @@ Then use the `redirectPath` parameter in the `login` method to redirect the user
 
 ```ts
 const authProvider: AuthBindings = {
-    // ---
-    login: async ({ redirectPath }) => {
-        //---
-        return {
-            success: false,
-            redirectTo: redirectPath,
-        };
-    },
+  // ---
+  login: async ({ redirectPath }) => {
+    //---
+    return {
+      success: false,
+      redirectTo: redirectPath,
+    };
+  },
 };
 ```
 
@@ -183,14 +185,14 @@ If you don't want to redirect the user anywhere, you can resolve the `login` met
 
 ```ts
 const authProvider: AuthBindings = {
+  // ---
+  login: async () => {
     // ---
-    login: async () => {
-        // ---
-        return {
-            success: false,
-            redirectTo: undefined,
-        };
-    },
+    return {
+      success: false,
+      redirectTo: undefined,
+    };
+  },
 };
 ```
 
@@ -205,18 +207,17 @@ const authProvider: AuthBindings = {
 import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-    login: async ({ email, password }) => {
-        // ---
-        return {
-            success: false,
-            error: {
-                name: "Login Failed!",
-                message:
-                    "The email or password that you've entered doesn't match any account.",
-            },
-        };
-    },
+  login: async ({ email, password }) => {
     // ---
+    return {
+      success: false,
+      error: {
+        name: "Login Failed!",
+        message: "The email or password that you've entered doesn't match any account.",
+      },
+    };
+  },
+  // ---
 };
 ```
 
@@ -230,17 +231,17 @@ The `check` method is used to check if the user is authenticated. It is internal
 
 ```ts
 type CheckResponse = {
-    authenticated: boolean;
-    redirectTo?: string;
-    logout?: boolean;
-    error?: Error;
+  authenticated: boolean;
+  redirectTo?: string;
+  logout?: boolean;
+  error?: Error;
 };
 ```
 
--   `authenticated`: A boolean value indicating whether the user is authenticated or not.
--   `redirectTo`: A string value indicating the URL to redirect to if authentication is required.
--   `logout`: A boolean value indicating whether the user should be logged out.
--   `error`: An Error object representing any errors that may have occurred during the check.
+- `authenticated`: A boolean value indicating whether the user is authenticated or not.
+- `redirectTo`: A string value indicating the URL to redirect to if authentication is required.
+- `logout`: A boolean value indicating whether the user should be logged out.
+- `error`: An Error object representing any errors that may have occurred during the check.
 
 Since we saved the user data to the local storage, we will check that to determine if the user is authenticated:
 
@@ -248,27 +249,27 @@ Since we saved the user data to the local storage, we will check that to determi
 import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-    // ---
-    check: async () => {
-        const user = localStorage.getItem("auth");
+  // ---
+  check: async () => {
+    const user = localStorage.getItem("auth");
 
-        if (user) {
-            return {
-                authenticated: true,
-            };
-        }
+    if (user) {
+      return {
+        authenticated: true,
+      };
+    }
 
-        return {
-            authenticated: false,
-            logout: true,
-            redirectTo: "/login",
-            error: {
-                message: "Check failed",
-                name: "Unauthorized",
-            },
-        };
-    },
-    // ---
+    return {
+      authenticated: false,
+      logout: true,
+      redirectTo: "/login",
+      error: {
+        message: "Check failed",
+        name: "Unauthorized",
+      },
+    };
+  },
+  // ---
 };
 ```
 
@@ -299,14 +300,14 @@ If you want to redirect the user to a specific page, you can resolve the Promise
 
 ```ts
 const authProvider: AuthBindings = {
+  // ---
+  check: async () => {
     // ---
-    check: async () => {
-        // ---
-        return {
-            authenticated: false,
-            redirectTo: "/custom-page",
-        };
-    },
+    return {
+      authenticated: false,
+      redirectTo: "/custom-page",
+    };
+  },
 };
 ```
 
@@ -320,17 +321,17 @@ The `logout` method is used to log out users. It expects to return a resolved pr
 
 ```ts
 type AuthActionResponse = {
-    success: boolean;
-    redirectTo?: string;
-    error?: Error;
-    [key: string]: unknown;
+  success: boolean;
+  redirectTo?: string;
+  error?: Error;
+  [key: string]: unknown;
 };
 ```
 
--   `success`: Determines whether the operation is successful or not.
--   `redirectTo`: The path of the page that the user will be redirected to after the operation is completed.
--   `error`: An object containing details about any errors encountered during the operation.
--   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
+- `success`: Determines whether the operation is successful or not.
+- `redirectTo`: The path of the page that the user will be redirected to after the operation is completed.
+- `error`: An object containing details about any errors encountered during the operation.
+- `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 Opposite to what we did in the `login` method, we now need to remove the user data from the local storage upon log out:
 
@@ -338,15 +339,15 @@ Opposite to what we did in the `login` method, we now need to remove the user da
 import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-    // ---
-    logout: async () => {
-        localStorage.removeItem("auth");
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
-    // ---
+  // ---
+  logout: async () => {
+    localStorage.removeItem("auth");
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
+  // ---
 };
 ```
 
@@ -375,8 +376,8 @@ Yes, you can pass any parameters to the `logout` method. The `useLogout` hook's 
 
 ```ts
 const { mutate } = useLogout<{
-    id: string;
-    name: string;
+  id: string;
+  name: string;
 }>();
 ```
 
@@ -389,14 +390,14 @@ If you want to redirect the user to a specific page, you can resolve the promise
 
 ```ts
 const authProvider: AuthBindings = {
+  // ---
+  logout: async () => {
     // ---
-    logout: async () => {
-        // ---
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
 };
 ```
 
@@ -412,14 +413,14 @@ Then use the `redirectPath` parameter in the `logout` method to redirect the use
 
 ```ts
 const authProvider: AuthBindings = {
+  // ---
+  logout: ({ redirectPath }) => {
     // ---
-    logout: ({ redirectPath }) => {
-        // ---
-        return {
-            success: true,
-            redirectTo: redirectPath,
-        };
-    },
+    return {
+      success: true,
+      redirectTo: redirectPath,
+    };
+  },
 };
 ```
 
@@ -427,14 +428,14 @@ If you don't want to redirect the user to anywhere, you can resolve the `logout`
 
 ```ts
 const authProvider: AuthBindings = {
+  // ---
+  logout: async () => {
     // ---
-    logout: async () => {
-        // ---
-        return {
-            success: true,
-            redirectTo: undefined,
-        };
-    },
+    return {
+      success: true,
+      redirectTo: undefined,
+    };
+  },
 };
 ```
 
@@ -449,17 +450,17 @@ const authProvider: AuthBindings = {
 import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-    logout: async () => {
-        // ---
-        return {
-            success: false,
-            error: {
-                name: "Logout Failed!",
-                message: "Something went wrong.",
-            },
-        };
-    },
+  logout: async () => {
     // ---
+    return {
+      success: false,
+      error: {
+        name: "Logout Failed!",
+        message: "Something went wrong.",
+      },
+    };
+  },
+  // ---
 };
 ```
 
@@ -475,15 +476,15 @@ const authProvider: AuthBindings = {
 
 ```ts
 type OnErrorResponse = {
-    redirectTo?: string;
-    logout?: boolean;
-    error?: Error;
+  redirectTo?: string;
+  logout?: boolean;
+  error?: Error;
 };
 ```
 
--   `redirectTo`: If has a value, the app will be redirected to the given URL.
--   `logout`: If is `true`, useOnError calls the `logout` method.
--   `error`: An Error object representing any errors that may have occurred during the operation.
+- `redirectTo`: If has a value, the app will be redirected to the given URL.
+- `logout`: If is `true`, useOnError calls the `logout` method.
+- `error`: An Error object representing any errors that may have occurred during the operation.
 
 We'll use the `onError` method to log out the user if the API returns a `401` or `403` error. If `redirectTo` is set, `logout` method will be called with the `redirectTo` value.
 
@@ -491,19 +492,19 @@ We'll use the `onError` method to log out the user if the API returns a `401` or
 import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-    // ---
-    onError: async (error) => {
-        if (error.status === 401 || error.status === 403) {
-            return {
-                logout: true,
-                redirectTo: "/login",
-                error,
-            };
-        }
+  // ---
+  onError: async (error) => {
+    if (error.status === 401 || error.status === 403) {
+      return {
+        logout: true,
+        redirectTo: "/login",
+        error,
+      };
+    }
 
-        return {};
-    },
-    // ---
+    return {};
+  },
+  // ---
 };
 ```
 
@@ -519,8 +520,8 @@ import { useOnError } from "@refinedev/core";
 const { mutate } = useOnError();
 
 fetch("http://example.com/payment")
-    .then(() => console.log("Success"))
-    .catch((error) => mutate(error));
+  .then(() => console.log("Success"))
+  .catch((error) => mutate(error));
 ```
 
 <br />
@@ -532,17 +533,17 @@ If you want to redirect the user to a specific page, you can resolve the promise
 
 ```ts
 const authProvider: AuthBindings = {
-    // ---
-    onError: async (error) => {
-        if (error.status === 401 || error.status === 403) {
-            return {
-                redirectTo: "/custom-page",
-            };
-        }
+  // ---
+  onError: async (error) => {
+    if (error.status === 401 || error.status === 403) {
+      return {
+        redirectTo: "/custom-page",
+      };
+    }
 
-        return {};
-    },
-    // ---
+    return {};
+  },
+  // ---
 };
 ```
 
@@ -562,24 +563,24 @@ We will use the `getPermissions` method to get the user's permissions from the `
 import { AuthBindings } from "@refinedev/core";
 
 const mockUsers = [
-    { email: "john@mail.com", roles: ["admin"] },
-    { email: "jane@mail.com", roles: ["editor"] },
+  { email: "john@mail.com", roles: ["admin"] },
+  { email: "jane@mail.com", roles: ["editor"] },
 ];
 
 const authProvider: AuthBindings = {
-    // ---
-    getPermissions: () => {
-        const user = localStorage.getItem("auth");
+  // ---
+  getPermissions: () => {
+    const user = localStorage.getItem("auth");
 
-        if (user) {
-            const { roles } = JSON.parse(user);
+    if (user) {
+      const { roles } = JSON.parse(user);
 
-            return roles;
-        }
+      return roles;
+    }
 
-        return null;
-    },
-    // ---
+    return null;
+  },
+  // ---
 };
 ```
 
@@ -595,16 +596,18 @@ import { usePermissions } from "@refinedev/core";
 const { data } = usePermissions();
 
 if (data?.includes("admin")) {
-    console.log("User has admin permissions");
+  console.log("User has admin permissions");
 }
 ```
 
 <br />
 
 :::info
+
 Though `usePermissions` hook can be used for simple authorization purposes, if you need more complex authorization logic, we recommend using the access control provider.
 
 For more information, refer to the [`accessControlProvider` documentation&#8594](/docs/api-reference/core/providers/accessControl-provider/)
+
 :::
 
 > For more information, refer to the [`usePermissions` documentation &#8594](/docs/api-reference/core/hooks/authentication/usePermissions/)
@@ -619,24 +622,24 @@ To get the user's identity from the local storage and resolve the promise:
 import { AuthBindings } from "@refinedev/core";
 
 const mockUsers = [
-    { email: "john@mail.com", roles: ["admin"] },
-    { email: "jane@mail.com", roles: ["editor"] },
+  { email: "john@mail.com", roles: ["admin"] },
+  { email: "jane@mail.com", roles: ["editor"] },
 ];
 
 const authProvider: AuthBindings = {
-    // ---
-    getIdentity: async () => {
-        const user = localStorage.getItem("auth");
+  // ---
+  getIdentity: async () => {
+    const user = localStorage.getItem("auth");
 
-        if (user) {
-            const { email, roles } = JSON.parse(user);
+    if (user) {
+      const { email, roles } = JSON.parse(user);
 
-            return { email, roles };
-        }
+      return { email, roles };
+    }
 
-        return null;
-    },
-    // ---
+    return null;
+  },
+  // ---
 };
 ```
 
@@ -652,7 +655,7 @@ import { useGetIdentity } from "@refinedev/core";
 const { data } = useGetIdentity();
 
 if (data) {
-    console.log(data.email);
+  console.log(data.email);
 }
 ```
 
@@ -662,26 +665,26 @@ Depending on the UI framework you use, resolving `name` and `avatar` properties 
 
 ```ts
 const authProvider: AuthBindings = {
-    // ---
-    getIdentity: async () => {
-        const user = localStorage.getItem("auth");
+  // ---
+  getIdentity: async () => {
+    const user = localStorage.getItem("auth");
 
-        if (user) {
-            const { email, roles } = JSON.parse(user);
+    if (user) {
+      const { email, roles } = JSON.parse(user);
 
-            return {
-                email,
-                roles,
-                // highlight-start
-                name: "John Doe",
-                avatar: "https://i.pravatar.cc/300",
-                // highlight-end
-            };
-        }
+      return {
+        email,
+        roles,
+        // highlight-start
+        name: "John Doe",
+        avatar: "https://i.pravatar.cc/300",
+        // highlight-end
+      };
+    }
 
-        return null;
-    },
-    // ---
+    return null;
+  },
+  // ---
 };
 ```
 
@@ -695,17 +698,17 @@ const authProvider: AuthBindings = {
 
 ```ts
 type AuthActionResponse = {
-    success: boolean;
-    redirectTo?: string;
-    error?: Error;
-    [key: string]: unknown;
+  success: boolean;
+  redirectTo?: string;
+  error?: Error;
+  [key: string]: unknown;
 };
 ```
 
--   `success`: Determines whether the operation is successful or not.
--   `redirectTo`: The path of the page that the user will be redirected to after the operation is completed.
--   `error`: An object containing details about any errors encountered during the operation.
--   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
+- `success`: Determines whether the operation is successful or not.
+- `redirectTo`: The path of the page that the user will be redirected to after the operation is completed.
+- `error`: An object containing details about any errors encountered during the operation.
+- `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 We'll register a new user and resolve the promise.
 
@@ -715,28 +718,28 @@ import { AuthBindings } from "@refinedev/core";
 const mockUsers = [{ email: "john@mail.com" }, { email: "jane@mail.com" }];
 
 const authProvider: AuthBindings = {
-    // ---
-    register: async ({ email }) => {
-        const user = mockUsers.find((user) => user.email === email);
+  // ---
+  register: async ({ email }) => {
+    const user = mockUsers.find((user) => user.email === email);
 
-        if (user) {
-            return {
-                success: false,
-                error: {
-                    name: "Register Error",
-                    message: "User already exists",
-                },
-            };
-        }
+    if (user) {
+      return {
+        success: false,
+        error: {
+          name: "Register Error",
+          message: "User already exists",
+        },
+      };
+    }
 
-        mockUsers.push({ email });
+    mockUsers.push({ email });
 
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
-    // ---
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
+  // ---
 };
 ```
 
@@ -752,7 +755,7 @@ import { useRegister } from "@refinedev/core";
 const { mutate } = useRegister();
 
 const handleRegister = (values) => {
-    mutate(values);
+  mutate(values);
 };
 ```
 
@@ -767,11 +770,11 @@ Yes, you can pass any parameters to the `register` method. `useRegister` hook's 
 
 ```ts
 const { mutate } = useRegister<{
-    username: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-    remember: boolean;
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  remember: boolean;
 }>();
 ```
 
@@ -784,14 +787,14 @@ If you want to redirect the user to a specific page, you can resolve the Promise
 
 ```ts
 const authProvider: AuthBindings = {
+  // ---
+  register: async () => {
     // ---
-    register: async () => {
-        // ---
-        return {
-            success: true, // or false
-            redirectTo: "/custom-page",
-        };
-    },
+    return {
+      success: true, // or false
+      redirectTo: "/custom-page",
+    };
+  },
 };
 ```
 
@@ -807,14 +810,14 @@ Then use the `redirectPath` parameter in the `register` method to redirect the u
 
 ```ts
 const authProvider: AuthBindings = {
+  // ---
+  register: async ({ redirectPath }) => {
     // ---
-    register: async ({ redirectPath }) => {
-        // ---
-        return {
-            success: true, // or false
-            redirectTo: redirectPath,
-        };
-    },
+    return {
+      success: true, // or false
+      redirectTo: redirectPath,
+    };
+  },
 };
 ```
 
@@ -822,14 +825,14 @@ If you don't want to redirect the user to anywhere, you can resolve the `registe
 
 ```ts
 const authProvider: AuthBindings = {
+  // ---
+  register: async () => {
     // ---
-    register: async () => {
-        // ---
-        return {
-            success: true, // or false
-            redirectTo: undefined,
-        };
-    },
+    return {
+      success: true, // or false
+      redirectTo: undefined,
+    };
+  },
 };
 ```
 
@@ -842,17 +845,17 @@ const authProvider: AuthBindings = {
 
 ```tsx title="src/authProvider.ts"
 const authProvider: AuthBindings = {
+  // ---
+  register: async () => {
     // ---
-    register: async () => {
-        // ---
-        return {
-            success: false,
-            error: {
-                name: "Error",
-                message: "Something went wrong!",
-            },
-        };
-    },
+    return {
+      success: false,
+      error: {
+        name: "Error",
+        message: "Something went wrong!",
+      },
+    };
+  },
 };
 ```
 
@@ -866,17 +869,17 @@ const authProvider: AuthBindings = {
 
 ```ts
 type AuthActionResponse = {
-    success: boolean;
-    redirectTo?: string;
-    error?: Error;
-    [key: string]: unknown;
+  success: boolean;
+  redirectTo?: string;
+  error?: Error;
+  [key: string]: unknown;
 };
 ```
 
--   `success`: Determines whether the operation is successful or not.
--   `redirectTo`: The path of the page that the user will be redirected to after the operation is completed.
--   `error`: An object containing details about any errors encountered during the operation.
--   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
+- `success`: Determines whether the operation is successful or not.
+- `redirectTo`: The path of the page that the user will be redirected to after the operation is completed.
+- `error`: An object containing details about any errors encountered during the operation.
+- `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 To send a password reset link to the user's email address and resolve the promise:
 
@@ -884,26 +887,26 @@ To send a password reset link to the user's email address and resolve the promis
 import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-    // ---
-    forgotPassword: async ({ email }) => {
-        // send password reset link to the user's email address here
+  // ---
+  forgotPassword: async ({ email }) => {
+    // send password reset link to the user's email address here
 
-        // if request is successful
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
+    // if request is successful
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
 
-        // if request is not successful
-        return {
-            success: false,
-            error: {
-                name: "Forgot Password Error",
-                message: "Email address does not exist",
-            },
-        };
-    },
-    // ---
+    // if request is not successful
+    return {
+      success: false,
+      error: {
+        name: "Forgot Password Error",
+        message: "Email address does not exist",
+      },
+    };
+  },
+  // ---
 };
 ```
 
@@ -919,7 +922,7 @@ import { useForgotPassword } from "@refinedev/core";
 const { mutate } = useForgotPassword();
 
 const handleForgotPassword = (values) => {
-    mutate(values);
+  mutate(values);
 };
 ```
 
@@ -934,7 +937,7 @@ Yes, you can pass any parameters to the `forgotPassword` method. `useForgotPassw
 
 ```ts
 const { mutate } = useForgotPassword<{
-    email: string;
+  email: string;
 }>();
 ```
 
@@ -947,14 +950,14 @@ If you want to redirect the user to a specific page, you can resolve the `forgot
 
 ```ts
 const authProvider: AuthBindings = {
+  // ---
+  forgotPassword: async () => {
     // ---
-    forgotPassword: async () => {
-        // ---
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
 };
 ```
 
@@ -970,14 +973,14 @@ Then, you can use the `redirectPath` parameter in the `forgotPassword` method to
 
 ```ts
 const authProvider: AuthBindings = {
+  // ---
+  forgotPassword: async ({ redirectPath }) => {
     // ---
-    forgotPassword: async ({ redirectPath }) => {
-        // ---
-        return {
-            success: true,
-            redirectTo: redirectPath,
-        };
-    },
+    return {
+      success: true,
+      redirectTo: redirectPath,
+    };
+  },
 };
 ```
 
@@ -990,17 +993,17 @@ const authProvider: AuthBindings = {
 
 ```tsx title="src/authProvider.ts"
 const authProvider: AuthBindings = {
+  // ---
+  forgotPassword: async () => {
     // ---
-    forgotPassword: async () => {
-        // ---
-        return {
-            success: false,
-            error: {
-                name: "Error",
-                message: "Something went wrong!",
-            },
-        };
-    },
+    return {
+      success: false,
+      error: {
+        name: "Error",
+        message: "Something went wrong!",
+      },
+    };
+  },
 };
 ```
 
@@ -1014,17 +1017,17 @@ const authProvider: AuthBindings = {
 
 ```ts
 type AuthActionResponse = {
-    success: boolean;
-    redirectTo?: string;
-    error?: Error;
-    [key: string]: unknown;
+  success: boolean;
+  redirectTo?: string;
+  error?: Error;
+  [key: string]: unknown;
 };
 ```
 
--   `success`: Determines whether the operation is successful or not.
--   `redirectTo`: The path of the page that the user will be redirected to after the operation is completed.
--   `error`: An object containing details about any errors encountered during the operation.
--   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
+- `success`: Determines whether the operation is successful or not.
+- `redirectTo`: The path of the page that the user will be redirected to after the operation is completed.
+- `error`: An object containing details about any errors encountered during the operation.
+- `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 To update the user's password and resolve the promise:
 
@@ -1032,26 +1035,26 @@ To update the user's password and resolve the promise:
 import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-    // ---
-    updatePassword: async ({ password }) => {
-        // update the user's password here
+  // ---
+  updatePassword: async ({ password }) => {
+    // update the user's password here
 
-        // if request is successful
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
+    // if request is successful
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
 
-        // if request is not successful
-        return {
-            success: false,
-            error: {
-                name: "Forgot Password Error",
-                message: "Email address does not exist",
-            },
-        };
-    },
-    // ---
+    // if request is not successful
+    return {
+      success: false,
+      error: {
+        name: "Forgot Password Error",
+        message: "Email address does not exist",
+      },
+    };
+  },
+  // ---
 };
 ```
 
@@ -1075,16 +1078,16 @@ If we assume that the URL is `http://localhost:3000/reset-password?token=123`, t
 
 ```ts
 const authProvider: AuthBindings = {
-    // ---
-    updatePassword: async ({ password, confirmPassword, token }) => {
-        console.log(token); // 123
+  // ---
+  updatePassword: async ({ password, confirmPassword, token }) => {
+    console.log(token); // 123
 
-        // if request is successful
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
+    // if request is successful
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
 };
 ```
 
@@ -1097,8 +1100,8 @@ Yes, you can pass any parameters to the `updatePassword` method. `useUpdatePassw
 
 ```ts
 const { mutate } = useUpdatePassword<{
-    password: string;
-    newPassword: string;
+  password: string;
+  newPassword: string;
 }>();
 ```
 
@@ -1111,14 +1114,14 @@ If you want to redirect the user to a specific page, you can resolve the Promise
 
 ```ts
 const authProvider: AuthBindings = {
+  // ---
+  updatePassword: async () => {
     // ---
-    updatePassword: async () => {
-        // ---
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
 };
 ```
 
@@ -1134,14 +1137,14 @@ Then use the `redirectPath` parameter in the `updatePassword` method to redirect
 
 ```ts
 const authProvider: AuthBindings = {
+  // ---
+  updatePassword: async ({ redirectPath }) => {
     // ---
-    updatePassword: async ({ redirectPath }) => {
-        // ---
-        return {
-            success: true,
-            redirectTo: redirectPath,
-        };
-    },
+    return {
+      success: true,
+      redirectTo: redirectPath,
+    };
+  },
 };
 ```
 
@@ -1154,17 +1157,17 @@ const authProvider: AuthBindings = {
 
 ```tsx title="src/authProvider.ts"
 const authProvider: AuthBindings = {
+  // ---
+  updatePassword: async () => {
     // ---
-    updatePassword: async () => {
-        // ---
-        return {
-            success: false,
-            error: {
-                name: "Error",
-                message: "Something went wrong!",
-            },
-        };
-    },
+    return {
+      success: false,
+      error: {
+        name: "Error",
+        message: "Something went wrong!",
+      },
+    };
+  },
 };
 ```
 
@@ -1188,55 +1191,57 @@ import axios from "axios";
 const axiosInstance = axios.create();
 
 const mockUsers = [
-    { username: "admin", token: "123" },
-    { username: "editor", token: "321" },
+  { username: "admin", token: "123" },
+  { username: "editor", token: "321" },
 ];
 
 const App = () => {
-    const authProvider: AuthBindings = {
-        login: async ({ username, password }) => {
-            // Suppose we actually send a request to the back end here.
-            const user = mockUsers.find((item) => item.username === username);
+  const authProvider: AuthBindings = {
+    login: async ({ username, password }) => {
+      // Suppose we actually send a request to the back end here.
+      const user = mockUsers.find((item) => item.username === username);
 
-            if (user) {
-                localStorage.setItem("auth", JSON.stringify(user));
-                // This sets the authorization headers on Axios instance
-                // highlight-start
-                axiosInstance.defaults.headers.common = {
-                    Authorization: `Bearer ${user.token}`,
-                };
-                // highlight-end
+      if (user) {
+        localStorage.setItem("auth", JSON.stringify(user));
+        // This sets the authorization headers on Axios instance
+        // highlight-start
+        axiosInstance.defaults.headers.common = {
+          Authorization: `Bearer ${user.token}`,
+        };
+        // highlight-end
 
-                return {
-                    redirectTo: "/",
-                    success: true,
-                };
-            }
-            return {
-                success: false,
-                error: {
-                    name: "Login Error",
-                    message: "Username or password is incorrect",
-                },
-            };
+        return {
+          redirectTo: "/",
+          success: true,
+        };
+      }
+      return {
+        success: false,
+        error: {
+          name: "Login Error",
+          message: "Username or password is incorrect",
         },
-        // ---
-    };
+      };
+    },
+    // ---
+  };
 
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={routerProvider}
-            // In order to use the axios instance, we need to pass it to the dataProvider
-            // highlight-next-line
-            dataProvider={dataProvider(API_URL, axiosInstance)}
-        />
-    );
+  return (
+    <Refine
+      authProvider={authProvider}
+      routerProvider={routerProvider}
+      // In order to use the axios instance, we need to pass it to the dataProvider
+      // highlight-next-line
+      dataProvider={dataProvider(API_URL, axiosInstance)}
+    />
+  );
 };
 ```
 
 :::note
+
 We recommend using **axios** as the **HTTP** client with the **@refinedev/simple-rest** [`dataProvider`](/api-reference/core/providers/data-provider.md) but other **HTTP** clients can also be preferred.
+
 :::
 
 <br />
@@ -1254,68 +1259,68 @@ const axiosInstance = axios.create();
 
 // highlight-start
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
-    // Retrieve the token from local storage
-    const token = JSON.parse(localStorage.getItem("auth"));
-    // Check if the header property exists
-    if (request.headers) {
-        // Set the Authorization header if it exists
-        request.headers["Authorization"] = `Bearer ${token}`;
-    } else {
-        // Create the headers property if it does not exist
-        request.headers = {
-            Authorization: `Bearer ${token}`,
-        };
-    }
+  // Retrieve the token from local storage
+  const token = JSON.parse(localStorage.getItem("auth"));
+  // Check if the header property exists
+  if (request.headers) {
+    // Set the Authorization header if it exists
+    request.headers["Authorization"] = `Bearer ${token}`;
+  } else {
+    // Create the headers property if it does not exist
+    request.headers = {
+      Authorization: `Bearer ${token}`,
+    };
+  }
 
-    return request;
+  return request;
 });
 // highlight-end
 
 const mockUsers = [
-    { username: "admin", token: "123" },
-    { username: "editor", token: "321" },
+  { username: "admin", token: "123" },
+  { username: "editor", token: "321" },
 ];
 
 const App = () => {
-    const authProvider: AuthBindings = {
-        //highlight-start
-        login: async ({ username, password }) => {
-            // Suppose we actually send a request to the back end here.
-            const user = mockUsers.find((item) => item.username === username);
+  const authProvider: AuthBindings = {
+    //highlight-start
+    login: async ({ username, password }) => {
+      // Suppose we actually send a request to the back end here.
+      const user = mockUsers.find((item) => item.username === username);
 
-            if (user) {
-                localStorage.setItem("auth", JSON.stringify(user));
-                return {
-                    redirectTo: "/",
-                    success: true,
-                };
-            }
-            return {
-                success: false,
-                error: {
-                    name: "Login Error",
-                    message: "Username or password is incorrect",
-                },
-            };
+      if (user) {
+        localStorage.setItem("auth", JSON.stringify(user));
+        return {
+          redirectTo: "/",
+          success: true,
+        };
+      }
+      return {
+        success: false,
+        error: {
+          name: "Login Error",
+          message: "Username or password is incorrect",
         },
-        //highlight-end
-        // ---
-    };
+      };
+    },
+    //highlight-end
+    // ---
+  };
 
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={routerProvider}
-            //highlight-next-line
-            dataProvider={dataProvider(API_URL, axiosInstance)}
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      authProvider={authProvider}
+      routerProvider={routerProvider}
+      //highlight-next-line
+      dataProvider={dataProvider(API_URL, axiosInstance)}
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
-> For mor information, refer to the [interceptors section of the `axios` documentation &#8594](https://axios-http.com/docs/interceptors)
+> For more information, refer to the [interceptors section of the `axios` documentation &#8594](https://axios-http.com/docs/interceptors)
 
 ## Implementing Refresh Token Mechanism
 
@@ -1334,16 +1339,13 @@ const axiosInstance = axios.create();
 // Function that will be called to refresh authorization
 //highlight-start
 const refreshAuthLogic = (failedRequest) =>
-    axiosInstance
-        .post(`${API_URL}/auth/token/refresh`)
-        .then((tokenRefreshResponse) => {
-            localStorage.setItem("token", tokenRefreshResponse.data.token);
+  axiosInstance.post(`${API_URL}/auth/token/refresh`).then((tokenRefreshResponse) => {
+    localStorage.setItem("token", tokenRefreshResponse.data.token);
 
-            failedRequest.response.config.headers["Authorization"] =
-                "Bearer " + tokenRefreshResponse.data.token;
+    failedRequest.response.config.headers["Authorization"] = "Bearer " + tokenRefreshResponse.data.token;
 
-            return Promise.resolve();
-        });
+    return Promise.resolve();
+  });
 //highlight-end
 
 // Instantiate the interceptor
@@ -1351,24 +1353,26 @@ const refreshAuthLogic = (failedRequest) =>
 createAuthRefreshInterceptor(axiosInstance, refreshAuthLogic);
 
 const App = () => {
-    const authProvider: AuthBindings = {
-        /* ... */
-    };
+  const authProvider: AuthBindings = {
+    /* ... */
+  };
 
-    return (
-        <Refine
-            authProvider={authProvider}
-            //highlight-next-line
-            dataProvider={dataProvider(API_URL, axiosInstance)}
-        >
-            /* ... */
-        </Refine>
-    );
+  return (
+    <Refine
+      authProvider={authProvider}
+      //highlight-next-line
+      dataProvider={dataProvider(API_URL, axiosInstance)}
+    >
+      /* ... */
+    </Refine>
+  );
 };
 ```
 
 :::note
+
 Though we used the `axios-auth-refresh` package, you can use another package or create a method of your own for this purpose
+
 :::
 
 > For more information, refer to the [`axios-auth-refresh` repository&#8594](https://github.com/Flyrell/axios-auth-refresh)

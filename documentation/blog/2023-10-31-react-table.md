@@ -77,26 +77,26 @@ const columnHelper = createColumnHelper();
 const data = [
   {
     firstName: "Jane",
-    surName: "Doe",
+    surname: "Doe",
     age: 13,
     gender: "Female",
   },
   {
     firstName: "John",
-    surName: "Doe",
+    surname: "Doe",
     age: 43,
     gender: "Male",
   },
   {
     firstName: "Tom",
-    surName: "Doe",
+    surname: "Doe",
     age: 89,
     gender: "Male",
   },
 ];
 
 const columns = [
-  columnHelper.accessor((row) => `${row.firstName} ${row.surName}`, {
+  columnHelper.accessor((row) => `${row.firstName} ${row.surname}`, {
     id: "fullName",
     header: "Full Name",
   }),
@@ -317,7 +317,7 @@ export const CategoryList = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table.png" alt="react slick" /> 
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table.png" alt="react slick" />
 </div>
 
 
@@ -443,7 +443,7 @@ export const CategoryList = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-pagination.png" alt="react slick" /> 
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-pagination.png" alt="react slick" />
 </div>
 
 
@@ -559,7 +559,7 @@ export const CategoryList = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-sorting.png" alt="react slick" /> 
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-sorting.png" alt="react slick" />
 </div>
 
 
@@ -726,7 +726,7 @@ export const CategoryList = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-filtering.png" alt="react slick" /> 
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-filtering.png" alt="react slick" />
 </div>
 
 
@@ -741,7 +741,7 @@ You will now see a search field that you can use to search for an entry in the t
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-refine.gif" alt="react slick" /> 
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-refine.gif" alt="react slick" />
 </div>
 
 There are several features of React Table that we haven't explored in this section. Check out the documentation.

@@ -8,7 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeho
 hide_table_of_contents: false
 ---
 
-
 :::caution
 
 This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
@@ -17,7 +16,6 @@ You should know that **refine** version 4.x.x is backward compatible with versio
 
 :::
 
-
 In this article, we will provide an example on how to implement darkmode with **refine**. In order to switch between light and dark mode, we need 2 different styles and the possibility to switch between one and the other without restarting the application. Since the Less stylesheets with React doesn't allow variables to be modified without compilation and therefore a restart of the application. To solve this, we are going to use **gulp** that will compile the Less files into swappable CSS, directly accessible to the running application.
 
 <!--truncate-->
@@ -25,11 +23,15 @@ In this article, we will provide an example on how to implement darkmode with **
 The solution was presented in this [blog](https://jfelix.info/blog/dynamic-themes-in-ant-design-how-to-change-between-light-and-dark-theme) and lightly adapted to **Refine**.
 
 ## Initial setup
+
 For this article, we started from a basic Refine app with Ant Design:
+
 ```tsx
 npm create refine-app@latest tutorial -- -p refine-react -b v3
 ```
+
 Select the following options to complete the CLI wizard:
+
 ```tsx
 Cloned remote source successfully.
 ✔ What will be the name of your app · tutorial
@@ -43,7 +45,9 @@ Cloned remote source successfully.
 ✔ Do you want a customized layout? · Yes
 ✔ i18n - Internationalization: · No
 ```
+
 From there, install the following packages:
+
 ```tsx
 npm install -s gulp gulp-less gulp-postcss gulp-debug gulp-csso autoprefixer less-plugin-npm-import
 npm install -s react-redux react-css-theme-switcher
@@ -52,14 +56,18 @@ npm install -s react-redux react-css-theme-switcher
 ## Create the Less and then CSS files
 
 ### Copy the `antd.less` file
+
 Make a copy of the `src/styles/antd.less` file into `antd.light-theme.less` and add the following lines inside (because this setting will be removed from the Header/index.tsx file later on):
+
 ```tsx
 // Header
 @layout-header-background:#fff;
 ```
 
 ### Create a Less file for the dark mode
+
 Create the following file `src/styles/antd.dark-theme.less` with this content:
+
 ```tsx title="src/styles/antd.dark-theme.less"
 // Run 'npx gulp less' after modifying this file
 
@@ -86,25 +94,26 @@ Create the following file `src/styles/antd.dark-theme.less` with this content:
 ### Compile the CSS files with `gulp`
 
 Create the following `gulpfile.js` in the root of the repo:
-```tsx title="gulpfile.js"
-const gulp = require('gulp')
-const gulpless = require('gulp-less')
-const postcss = require('gulp-postcss')
-const debug = require('gulp-debug')
-var csso = require('gulp-csso')
-const autoprefixer = require('autoprefixer')
-const NpmImportPlugin = require('less-plugin-npm-import')
 
-gulp.task('less', function () {
-  const plugins = [autoprefixer()]
+```tsx title="gulpfile.js"
+const gulp = require("gulp");
+const gulpless = require("gulp-less");
+const postcss = require("gulp-postcss");
+const debug = require("gulp-debug");
+var csso = require("gulp-csso");
+const autoprefixer = require("autoprefixer");
+const NpmImportPlugin = require("less-plugin-npm-import");
+
+gulp.task("less", function () {
+  const plugins = [autoprefixer()];
 
   return gulp
-    .src('src/styles/*-theme.less')
-    .pipe(debug({title: 'Less files:'}))
+    .src("src/styles/*-theme.less")
+    .pipe(debug({ title: "Less files:" }))
     .pipe(
       gulpless({
         javascriptEnabled: true,
-        plugins: [new NpmImportPlugin({prefix: '~'})],
+        plugins: [new NpmImportPlugin({ prefix: "~" })],
       }),
     )
     .pipe(postcss(plugins))
@@ -113,14 +122,16 @@ gulp.task('less', function () {
         debug: true,
       }),
     )
-    .pipe(gulp.dest('./public'))
-})
+    .pipe(gulp.dest("./public"));
+});
 
-exports.sync = gulp.series('less');
+exports.sync = gulp.series("less");
 ```
+
 And run `npx gulp less`
+
 ```tsx
-▶npx gulp less                       
+▶npx gulp less
 [22:36:28] Using gulpfile ./gulpfile.js
 [22:36:28] Starting 'less'...
 [22:36:28] Less files: src/styles/antd.dark-theme.less
@@ -164,8 +175,11 @@ Compress block #1
 
 [22:36:33] Finished 'less' after 5 s
 ```
+
 :::info
+
 this command must be repeated each time the Less files are modified and the application restarted to see the changes)
+
 :::
 
 You should now have 2 CSS files inside the public folder: `antd.dark-theme.css`and `antd.light-theme.css`
@@ -174,55 +188,60 @@ You should now have 2 CSS files inside the public folder: `antd.dark-theme.css`a
 ## Adapt the Refine application to be able to switch between the 2 styles
 
 ### App.tsx file
+
 // highlight-start
 // highlight-end
 In App.tsx, adapt the file so it looks like this :
+
 ```tsx
-import { Refine, } from '@refinedev/core';
-import { notificationProvider } from '@refinedev/antd';
+import { Refine } from "@refinedev/core";
+import { notificationProvider } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import "styles/antd.less";
 import dataProvider from "@refinedev/simple-rest";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { Title, Header, Sider, Footer, Layout, OffLayoutArea } from "components/layout"
+import { Title, Header, Sider, Footer, Layout, OffLayoutArea } from "components/layout";
 // highlight-start
 import { ThemeSwitcherProvider } from "react-css-theme-switcher";
 // highlight-end
 
 function App() {
-// highlight-start
-    const currThemes = {
-        dark: `${process.env.PUBLIC_URL}/antd.dark-theme.css`,
-        light: `${process.env.PUBLIC_URL}/antd.light-theme.css`,
-    };
-// highlight-end
+  // highlight-start
+  const currThemes = {
+    dark: `${process.env.PUBLIC_URL}/antd.dark-theme.css`,
+    light: `${process.env.PUBLIC_URL}/antd.light-theme.css`,
+  };
+  // highlight-end
 
-    return (
-// highlight-start
-        <ThemeSwitcherProvider themeMap={currThemes} defaultTheme="light">
-// highlight-end
-            <Refine routerProvider={routerProvider} notificationProvider={notificationProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
-                    },
-                ]}
-                Title={Title}
-                Header={Header}
-                Sider={Sider}
-                Footer={Footer}
-                Layout={Layout}
-                OffLayoutArea={OffLayoutArea} />
-// highlight-start
-        </ThemeSwitcherProvider>
-// highlight-end
-    );
-};
+  return (
+    // highlight-start
+    <ThemeSwitcherProvider themeMap={currThemes} defaultTheme="light">
+      // highlight-end
+      <Refine
+        routerProvider={routerProvider}
+        notificationProvider={notificationProvider}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "posts",
+            list: PostList,
+            create: PostCreate,
+            edit: PostEdit,
+            show: PostShow,
+          },
+        ]}
+        Title={Title}
+        Header={Header}
+        Sider={Sider}
+        Footer={Footer}
+        Layout={Layout}
+        OffLayoutArea={OffLayoutArea}
+      />
+      // highlight-start
+    </ThemeSwitcherProvider>
+    // highlight-end
+  );
+}
 
 export default App;
 ```
@@ -237,51 +256,49 @@ import { useState } from "react";
 import { useThemeSwitcher } from "react-css-theme-switcher";
 // highlight-end
 import {
-    AntdLayout,
-// highlight-start
-    Switch,
-// highlight-end
+  AntdLayout,
+  // highlight-start
+  Switch,
+  // highlight-end
 } from "@refinedev/antd";
 
 export const Header: React.FC = () => {
-// highlight-start
-    const [isDarkMode, setIsDarkMode] = useState<boolean>();
-    const { switcher, themes } = useThemeSwitcher();
+  // highlight-start
+  const [isDarkMode, setIsDarkMode] = useState<boolean>();
+  const { switcher, themes } = useThemeSwitcher();
 
-    function toggleTheme(isChecked: boolean) { // added
-        setIsDarkMode(isChecked);
-        switcher({ theme: isChecked ? themes.dark : themes.light });
-    };
-// highlight-end
+  function toggleTheme(isChecked: boolean) {
+    // added
+    setIsDarkMode(isChecked);
+    switcher({ theme: isChecked ? themes.dark : themes.light });
+  }
+  // highlight-end
 
-    return (
-        <AntdLayout.Header
-            style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
-                padding: "0px 24px",
-                height: "64px",
-// highlight-start
-                //backgroundColor: "#FFF", // commented out, otherwise the header remains white in dark mode
-// highlight-end
-            }}
-
-        >
-// highlight-start
-            <div className="main fade-in"> // added
-                <Switch
-                    checkedChildren="🌜"
-                    unCheckedChildren="🌞"
-                    checked={isDarkMode}
-                    onChange={toggleTheme}
-                />
-            </div>
-// highlight-end
-        </AntdLayout.Header>
-    );
+  return (
+    <AntdLayout.Header
+      style={{
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        padding: "0px 24px",
+        height: "64px",
+        // highlight-start
+        //backgroundColor: "#FFF", // commented out, otherwise the header remains white in dark mode
+        // highlight-end
+      }}
+    >
+      // highlight-start
+      <div className="main fade-in">
+        {" "}
+        // added
+        <Switch checkedChildren="🌜" unCheckedChildren="🌞" checked={isDarkMode} onChange={toggleTheme} />
+      </div>
+      // highlight-end
+    </AntdLayout.Header>
+  );
 };
 ```
+
 You should now have a light/dark mode switcher in the header:
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-12-implement-darkmode/light.png" alt="signin" />
 <br />

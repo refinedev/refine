@@ -14,18 +14,9 @@ This post was created using version 3.x.x of **refine**. Although we plan to upd
 
 You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
-
 :::
 
-
-
-
-
-
-
-
-
-In this article, we will create a panel where we can manage the feedback we receive from our web application. 
+In this article, we will create a panel where we can manage the feedback we receive from our web application.
 
 <!--truncate-->
 
@@ -149,7 +140,7 @@ function App() {
     />
   );
 }
- 
+
 
 export default App;
 ```
@@ -179,11 +170,7 @@ import { Layout as AntLayout } from "antd";
 
 import { LayoutProps } from "@pankod/refine";
 
-export const Layout: React.FC<LayoutProps> = ({
-  children,
-  Header,
-  OffLayoutArea,
-}) => {
+export const Layout: React.FC<LayoutProps> = ({ children, Header, OffLayoutArea }) => {
   return (
     <AntLayout style={{ minHeight: "100vh", flexDirection: "row" }}>
       <AntLayout>
@@ -234,7 +221,6 @@ Now we come to the part where we can list our feedback and make changes to it. B
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/feedbacks.png" alt="feedbacks" />
 <br />
 
-
 Create a `FeedbackList.tsx` file under the `pages` folder. Then, let's create our component as follows with the components and hooks that come with refine.
 
 ### Create FeedbackList
@@ -276,11 +262,7 @@ const addTagColor = (type: FeedBackType) => {
 };
 
 export const FeedbackList: React.FC = () => {
-  const { listProps, searchFormProps } = useSimpleList<
-    IFeedback,
-    HttpError,
-    IFeedbackFilterVariables
-  >({
+  const { listProps, searchFormProps } = useSimpleList<IFeedback, HttpError, IFeedbackFilterVariables>({
     sorters: {
       initial: [{ field: "created_at", order: "desc" }],
     },
@@ -308,10 +290,7 @@ export const FeedbackList: React.FC = () => {
           <AntdList.Item.Meta
             description={
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <Tag
-                  color={addTagColor(type)}
-                  style={{ textTransform: "capitalize" }}
-                >
+                <Tag color={addTagColor(type)} style={{ textTransform: "capitalize" }}>
                   {type}
                 </Tag>
                 <DateField format="LLL" value={created_at} />
@@ -370,12 +349,7 @@ export const FeedbackList: React.FC = () => {
           </Form>
         </Col>
         <Col xs={24} sm={24} md={14} lg={14} xl={14}>
-          <AntdList
-            {...listProps}
-            split={false}
-            renderItem={renderItem}
-            itemLayout="vertical"
-          />
+          <AntdList {...listProps} split={false} renderItem={renderItem} itemLayout="vertical" />
         </Col>
       </Row>
     </List>
@@ -412,8 +386,6 @@ See detailed usage of useSimpleList for adding new filters, adding search entrie
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/feedback_overview.gif" alt="feedback_overview" />
 <br />
-
- 
 
 Let's develop feedback widget where we can get feedback to expand the application a little more. For this application, I will develop this component with refine, but you can create this component with Strapi APIs in any way you want.
 

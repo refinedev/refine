@@ -17,60 +17,59 @@ import { useShow, useOne } from "@refinedev/core";
 const { Title, Text } = Typography;
 
 const PostShow: React.FC = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>({
-            resource: "categories",
-            id: record?.category.id || "",
-            queryOptions: {
-                enabled: !!record,
-            },
-        });
+  const { data: categoryData, isLoading: categoryIsLoading } = useOne<ICategory>({
+    resource: "categories",
+    id: record?.category.id || "",
+    queryOptions: {
+      enabled: !!record,
+    },
+  });
 
-    return (
-        <Show isLoading={isLoading}>
-            <Title level={5}>Id</Title>
-            <Text>{record?.id}</Text>
+  return (
+    <Show isLoading={isLoading}>
+      <Title level={5}>Id</Title>
+      <Text>{record?.id}</Text>
 
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
+      <Title level={5}>Title</Title>
+      <Text>{record?.title}</Text>
 
-            <Title level={5}>Category</Title>
-            <Text>
-                {categoryIsLoading ? "Loading..." : categoryData?.data.title}
-            </Text>
+      <Title level={5}>Category</Title>
+      <Text>{categoryIsLoading ? "Loading..." : categoryData?.data.title}</Text>
 
-            <Title level={5}>Content</Title>
-            <MarkdownField value={record?.content} />
-        </Show>
-    );
+      <Title level={5}>Content</Title>
+      <MarkdownField value={record?.content} />
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton recordItemId="2">Edit Item 2</ShowButton>
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton recordItemId="2">Edit Item 2</ShowButton>
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
 :::info-tip Swizzle
+
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+
 :::
 
 ## Properties
@@ -86,43 +85,43 @@ const { default: simpleRest } = RefineSimpleRest;
 const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
-    ...dataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-        return {
-            data: {},
-        };
-    },
+  ...dataProvider,
+  deleteOne: async ({ resource, id, variables }) => {
+    return {
+      data: {},
+    };
+  },
 };
 
 // visible-block-start
 import { Show } from "@refinedev/antd";
 
 const PostShow: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Show title="Custom Title">
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    /* highlight-next-line */
+    <Show title="Custom Title">
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton recordItemId="2">Show Item 2</ShowButton>
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton recordItemId="2">Show Item 2</ShowButton>
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -140,32 +139,32 @@ import dataProvider from "@refinedev/simple-rest";
 import { Show } from "@refinedev/antd";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Show resource="posts">
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    /* highlight-next-line */
+    <Show resource="posts">
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 const App: React.FC = () => {
-    return (
-        <RefineAntdDemo
-            legacyRouterProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom/:id",
-                    },
-                ],
-                // highlight-end
-            }}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <RefineAntdDemo
+      legacyRouterProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom/:id",
+          },
+        ],
+        // highlight-end
+      }}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 
 render(<App />);
@@ -189,51 +188,51 @@ const { default: simpleRest } = RefineSimpleRest;
 const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
-    ...dataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-        return {
-            data: {},
-        };
-    },
+  ...dataProvider,
+  deleteOne: async ({ resource, id, variables }) => {
+    return {
+      data: {},
+    };
+  },
 };
 
 const authProvider = {
-    login: async () => {
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    register: async () => {
-        return {
-            success: true,
-        };
-    },
-    forgotPassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    updatePassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    logout: async () => {
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    check: () => ({
-        authenticated: true,
-    }),
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    getPermissions: async () => ["admin"],
-    getIdentity: async () => null,
+  login: async () => {
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  register: async () => {
+    return {
+      success: true,
+    };
+  },
+  forgotPassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  updatePassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  logout: async () => {
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  check: () => ({
+    authenticated: true,
+  }),
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  getPermissions: async () => ["admin"],
+  getIdentity: async () => null,
 };
 
 // visible-block-start
@@ -241,41 +240,41 @@ import { Show } from "@refinedev/antd";
 import { usePermissions } from "@refinedev/core";
 
 const PostShow: React.FC = () => {
-    const { data: permissionsData } = usePermissions();
-    return (
-        <Show
-            /* highlight-start */
-            canDelete={permissionsData?.includes("admin")}
-            canEdit={permissionsData?.includes("admin")}
-            /* highlight-end */
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  const { data: permissionsData } = usePermissions();
+  return (
+    <Show
+      /* highlight-start */
+      canDelete={permissionsData?.includes("admin")}
+      canEdit={permissionsData?.includes("admin")}
+      /* highlight-end */
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        authProvider={authProvider}
-        dataProvider={customDataProvider}
-        initialRoutes={["/posts/show/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton>Show Item 2</ShowButton>
-                    </div>
-                ),
-                show: PostShow,
-                edit: () => {
-                    return <Edit>Edit Page</Edit>;
-                },
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    authProvider={authProvider}
+    dataProvider={customDataProvider}
+    initialRoutes={["/posts/show/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton>Show Item 2</ShowButton>
+          </div>
+        ),
+        show: PostShow,
+        edit: () => {
+          return <Edit>Edit Page</Edit>;
+        },
+      },
+    ]}
+  />,
 );
 ```
 
@@ -295,45 +294,47 @@ import { Show, useModalForm } from "@refinedev/antd";
 import { Modal, Button } from "antd";
 
 const PostShow: React.FC = () => {
-    const { modalProps, id, show } = useModalForm({
-        action: "show",
-    });
+  const { modalProps, id, show } = useModalForm({
+    action: "show",
+  });
 
-    return (
-        <div>
-            <Button onClick={() => show()}>Show Button</Button>
-            <Modal {...modalProps}>
-                {/* highlight-next-line */}
-                <Show recordItemId={id}>
-                    <p>Rest of your page here</p>
-                </Show>
-            </Modal>
-        </div>
-    );
+  return (
+    <div>
+      <Button onClick={() => show()}>Show Button</Button>
+      <Modal {...modalProps}>
+        {/* highlight-next-line */}
+        <Show recordItemId={id}>
+          <p>Rest of your page here</p>
+        </Show>
+      </Modal>
+    </div>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton recordItemId="2">Show Item 2</ShowButton>
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton recordItemId="2">Show Item 2</ShowButton>
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
 :::note
+
 The `<Show>` component needs the `id` information for `<RefreshButton>` to work properly.
+
 :::
 
 ### `dataProviderName`
@@ -348,23 +349,23 @@ import { Show } from "@refinedev/antd";
 
 // highlight-start
 const PostShow = () => {
-    return <Show dataProviderName="other">...</Show>;
+  return <Show dataProviderName="other">...</Show>;
 };
 // highlight-end
 
 export const App: React.FC = () => {
-    return (
-        <Refine
-            // highlight-start
-            dataProvider={{
-                default: dataProvider("https://api.fake-rest.refine.dev/"),
-                other: dataProvider("https://other-api.fake-rest.refine.dev/"),
-            }}
-            // highlight-end
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      // highlight-start
+      dataProvider={{
+        default: dataProvider("https://api.fake-rest.refine.dev/"),
+        other: dataProvider("https://other-api.fake-rest.refine.dev/"),
+      }}
+      // highlight-end
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
@@ -380,32 +381,32 @@ import { Show } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostShow: React.FC = () => {
-    const BackButton = () => <Button>←</Button>;
-    return (
-        /* highlight-next-line */
-        <Show goBack={<div>back</div>}>
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  const BackButton = () => <Button>←</Button>;
+  return (
+    /* highlight-next-line */
+    <Show goBack={<div>back</div>}>
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts", "/posts/show/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton>Show Item 2</ShowButton>
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts", "/posts/show/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton>Show Item 2</ShowButton>
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -420,16 +421,16 @@ import { Show } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostShow: React.FC = () => {
-    /* highlight-next-line */
-    const back = useBack();
-    const BackButton = () => <Button>←</Button>;
+  /* highlight-next-line */
+  const back = useBack();
+  const BackButton = () => <Button>←</Button>;
 
-    return (
-        /* highlight-next-line */
-        <Show goBack={<BackButton />} headerProps={{ onBack: back }}>
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    /* highlight-next-line */
+    <Show goBack={<BackButton />} headerProps={{ onBack: back }}>
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 ```
 
@@ -446,31 +447,31 @@ const { ShowButton } = RefineAntd;
 import { Show } from "@refinedev/antd";
 
 const PostShow: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Show isLoading={true}>
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    /* highlight-next-line */
+    <Show isLoading={true}>
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton />
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton />
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -485,52 +486,53 @@ const { ShowButton } = RefineAntd;
 import { Show, Breadcrumb } from "@refinedev/antd";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            breadcrumb={
-                <div
-                    style={{
-                        padding: "3px 6px",
-                        border: "2px dashed cornflowerblue",
-                    }}
-                >
-                    <Breadcrumb />
-                </div>
-            }
-            // highlight-end
+  return (
+    <Show
+      // highlight-start
+      breadcrumb={
+        <div
+          style={{
+            padding: "3px 6px",
+            border: "2px dashed cornflowerblue",
+          }}
         >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+          <Breadcrumb />
+        </div>
+      }
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton />
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton />
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
 :::tip
+
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+
 :::
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/antd/components/breadcrumb.md)
-> :::
 
 ### `wrapperProps`
 
@@ -543,39 +545,39 @@ const { ShowButton } = RefineAntd;
 import { Show } from "@refinedev/antd";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            wrapperProps={{
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      wrapperProps={{
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton />
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton />
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -590,40 +592,40 @@ const { ShowButton } = RefineAntd;
 import { Show } from "@refinedev/antd";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            headerProps={{
-                subTitle: "This is a subtitle",
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      headerProps={{
+        subTitle: "This is a subtitle",
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton />
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton />
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -640,39 +642,39 @@ const { ShowButton } = RefineAntd;
 import { Show } from "@refinedev/antd";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            contentProps={{
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      contentProps={{
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton />
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton />
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -702,39 +704,39 @@ import { Show } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton />
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton />
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -744,81 +746,52 @@ Or, instead of using the `defaultButtons`, you can create your own buttons. If y
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import {
-    Show,
-    ListButton,
-    EditButton,
-    DeleteButton,
-    RefreshButton,
-} from "@refinedev/antd";
+import { Show, ListButton, EditButton, DeleteButton, RefreshButton } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            headerButtons={({
-                deleteButtonProps,
-                editButtonProps,
-                listButtonProps,
-                refreshButtonProps,
-            }) => (
-                <>
-                    <Button type="primary">Custom Button</Button>
-                    {listButtonProps && (
-                        <ListButton
-                            {...listButtonProps}
-                            meta={{ foo: "bar" }}
-                        />
-                    )}
-                    {editButtonProps && (
-                        <EditButton
-                            {...editButtonProps}
-                            meta={{ foo: "bar" }}
-                        />
-                    )}
-                    {deleteButtonProps && (
-                        <DeleteButton
-                            {...deleteButtonProps}
-                            meta={{ foo: "bar" }}
-                        />
-                    )}
-                    <RefreshButton
-                        {...refreshButtonProps}
-                        meta={{ foo: "bar" }}
-                    />
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      headerButtons={({ deleteButtonProps, editButtonProps, listButtonProps, refreshButtonProps }) => (
+        <>
+          <Button type="primary">Custom Button</Button>
+          {listButtonProps && <ListButton {...listButtonProps} meta={{ foo: "bar" }} />}
+          {editButtonProps && <EditButton {...editButtonProps} meta={{ foo: "bar" }} />}
+          {deleteButtonProps && <DeleteButton {...deleteButtonProps} meta={{ foo: "bar" }} />}
+          <RefreshButton {...refreshButtonProps} meta={{ foo: "bar" }} />
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton />
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton />
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
 ### `headerButtonProps`
 
-You can use the `headerButtonProps` proeprty to customize the wrapper element of the buttons at the header:
+You can use the `headerButtonProps` property to customize the wrapper element of the buttons at the header:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { ShowButton } = RefineAntd;
@@ -828,40 +801,40 @@ import { Show } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            headerButtonProps={{
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-            headerButtons={<Button type="primary">Custom Button</Button>}
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      headerButtonProps={{
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+      headerButtons={<Button type="primary">Custom Button</Button>}
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton />
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton />
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -879,39 +852,39 @@ import { Show } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            footerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      footerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton />
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton />
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -927,49 +900,49 @@ import { Show } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            footerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-start
-            footerButtonProps={{
-                style: {
-                    // hide-start
-                    float: "right",
-                    marginRight: 24,
-                    // hide-end
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      footerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-start
+      footerButtonProps={{
+        style: {
+          // hide-start
+          float: "right",
+          marginRight: 24,
+          // hide-end
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <ShowButton />
-                    </div>
-                ),
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <ShowButton />
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 

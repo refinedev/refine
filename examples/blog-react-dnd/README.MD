@@ -45,7 +45,6 @@ To learn more about **refine**, please check out the [Documentation](https://ref
 - **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
 - **Example Pages** [Docs](https://refine.dev/docs/guides-and-concepts/custom-pages/)
 
-
 ## License
 
 MIT

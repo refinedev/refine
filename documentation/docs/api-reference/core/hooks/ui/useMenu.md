@@ -7,8 +7,8 @@ source: packages/core/src/hooks/menu/useMenu.tsx
 
 ```css live shared
 body {
-    padding: 4px;
-    background: white;
+  padding: 4px;
+  background: white;
 }
 ```
 
@@ -20,15 +20,16 @@ This hook can also be used to build custom menus, including multi-level support.
 const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 ```
 
--   `menuItems` is a list of style agnostic menu items. Each of them has a key.
--   `selectedKey` is the key of the resource user is viewing at the moment. Its inferred from the route.
--   `defaultOpenKeys` is the array with the keys of default opened menus.
+- `menuItems` is a list of style agnostic menu items. Each of them has a key.
+- `selectedKey` is the key of the resource user is viewing at the moment. Its inferred from the route.
+- `defaultOpenKeys` is the array with the keys of default opened menus.
 
 <br />
 
 :::caution
 
 `useMenu` hooks exported from `@refinedev/antd` and `@refinedev/mui` packages are now **deprecated** and will be removed. Please use `useMenu` from `@refinedev/core`.
+
 :::
 
 ## Usage
@@ -53,51 +54,48 @@ import { useMenu, LayoutProps, ITreeMenu } from "@refinedev/core";
 import { Link } from "react-router-dom";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-    // highlight-start
-    const { menuItems, selectedKey } = useMenu();
-    // highlight-end
+  // highlight-start
+  const { menuItems, selectedKey } = useMenu();
+  // highlight-end
 
-    // highlight-start
-    const renderMenuItems = (items: ITreeMenu[]) => {
-        return (
-            <>
-                {menuItems.map(({ key, name, label, icon, route }) => {
-                    const isSelected = key === selectedKey;
-                    return (
-                        <li key={name}>
-                            <Link
-                                to={route}
-                                style={{
-                                    fontWeight: isSelected ? "bold" : "normal",
-                                }}
-                            >
-                                {icon}
-                                <span>{label ?? name}</span>
-                            </Link>
-                        </li>
-                    );
-                })}
-            </>
-        );
-    };
-    // highlight-end
-
+  // highlight-start
+  const renderMenuItems = (items: ITreeMenu[]) => {
     return (
-        <div>
-            <div>
-                <Link to="/">
-                    <img
-                        src="https://refine.dev/img/refine_logo.png"
-                        alt="Logo"
-                    />
-                </Link>
-                {/* highlight-start */}
-                <ul>{renderMenuItems(menuItems)}</ul>
-                {/* highlight-end */}
-            </div>
-            <div>{children}</div>
-        </div>
+      <>
+        {menuItems.map(({ key, name, label, icon, route }) => {
+          const isSelected = key === selectedKey;
+          return (
+            <li key={name}>
+              <Link
+                to={route}
+                style={{
+                  fontWeight: isSelected ? "bold" : "normal",
+                }}
+              >
+                {icon}
+                <span>{label ?? name}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </>
     );
+  };
+  // highlight-end
+
+  return (
+    <div>
+      <div>
+        <Link to="/">
+          <img src="https://refine.dev/img/refine_logo.png" alt="Logo" />
+        </Link>
+        {/* highlight-start */}
+        <ul>{renderMenuItems(menuItems)}</ul>
+        {/* highlight-end */}
+      </div>
+      <div>{children}</div>
+    </div>
+  );
 };
 
 import { Refine } from "@refinedev/core";
@@ -111,44 +109,38 @@ import { Layout } from "components";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider(API_URL)}
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                    },
-                    {
-                        name: "categories",
-                        list: "/categories",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route index element={<NavigateToResource />} />
-                        <Route
-                            path="/posts"
-                            element={<div>dummy posts page</div>}
-                        />
-                        <Route
-                            path="/categories"
-                            element={<div>dummy categories page</div>}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider(API_URL)}
+        routerProvider={routerProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+          {
+            name: "categories",
+            list: "/categories",
+          },
+        ]}
+      >
+        <Routes>
+          <Route
+            element={
+              <Layout>
+                <Outlet />
+              </Layout>
+            }
+          >
+            <Route index element={<NavigateToResource />} />
+            <Route path="/posts" element={<div>dummy posts page</div>} />
+            <Route path="/categories" element={<div>dummy categories page</div>} />
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 // visible-block-end
 
@@ -181,51 +173,45 @@ import { Layout } from "components/layout";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                // highlight-start
-                resources={[
-                    {
-                        name: "CMS",
-                    },
-                    {
-                        name: "posts",
-                        list: "/CMS/posts",
-                        meta: { parent: "CMS" },
-                    },
-                    {
-                        name: "categories",
-                        list: "/CMS/categories",
-                        meta: { parent: "CMS" },
-                    },
-                ]}
-                // highlight-end
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route index element={<NavigateToResource />} />
-                        <Route
-                            path="/posts"
-                            element={<div>dummy posts page</div>}
-                        />
-                        <Route
-                            path="/categories"
-                            element={<div>dummy categories page</div>}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        // highlight-start
+        resources={[
+          {
+            name: "CMS",
+          },
+          {
+            name: "posts",
+            list: "/CMS/posts",
+            meta: { parent: "CMS" },
+          },
+          {
+            name: "categories",
+            list: "/CMS/categories",
+            meta: { parent: "CMS" },
+          },
+        ]}
+        // highlight-end
+      >
+        <Routes>
+          <Route
+            element={
+              <Layout>
+                <Outlet />
+              </Layout>
+            }
+          >
+            <Route index element={<NavigateToResource />} />
+            <Route path="/posts" element={<div>dummy posts page</div>} />
+            <Route path="/categories" element={<div>dummy categories page</div>} />
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 export default App;
@@ -240,63 +226,54 @@ import { useMenu, LayoutProps, ITreeMenu } from "@refinedev/core";
 import { Link } from "react-router-dom";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
-    const { menuItems, selectedKey } = useMenu();
+  const { menuItems, selectedKey } = useMenu();
 
-    // highlight-start
-    const renderMenuItems = (items: ITreeMenu[]) => {
-        return (
-            <>
-                {items.map(
-                    ({ key, name, label, icon, route, children, list }) => {
-                        if (!list) {
-                            return (
-                                <li key={label}>
-                                    <span>{label ?? name}</span>
-                                    {children
-                                        ? renderMenuItems(children)
-                                        : null}
-                                </li>
-                            );
-                        }
-
-                        const isSelected = key === selectedKey;
-
-                        return (
-                            <li key={label}>
-                                <Link
-                                    to={route}
-                                    style={{
-                                        fontWeight: isSelected
-                                            ? "bold"
-                                            : "normal",
-                                    }}
-                                >
-                                    {icon}
-                                    <span>{label ?? name}</span>
-                                </Link>
-                            </li>
-                        );
-                    },
-                )}
-            </>
-        );
-    };
-    // highlight-end
-
+  // highlight-start
+  const renderMenuItems = (items: ITreeMenu[]) => {
     return (
-        <div>
-            <div>
-                <Link to="/">
-                    <img
-                        src="https://refine.dev/img/refine_logo.png"
-                        alt="Logo"
-                    />
-                </Link>
-                <ul>{renderMenuItems(menuItems)}</ul>
-            </div>
-            <div>{children}</div>
-        </div>
+      <>
+        {items.map(({ key, name, label, icon, route, children, list }) => {
+          if (!list) {
+            return (
+              <li key={label}>
+                <span>{label ?? name}</span>
+                {children ? renderMenuItems(children) : null}
+              </li>
+            );
+          }
+
+          const isSelected = key === selectedKey;
+
+          return (
+            <li key={label}>
+              <Link
+                to={route}
+                style={{
+                  fontWeight: isSelected ? "bold" : "normal",
+                }}
+              >
+                {icon}
+                <span>{label ?? name}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </>
     );
+  };
+  // highlight-end
+
+  return (
+    <div>
+      <div>
+        <Link to="/">
+          <img src="https://refine.dev/img/refine_logo.png" alt="Logo" />
+        </Link>
+        <ul>{renderMenuItems(menuItems)}</ul>
+      </div>
+      <div>{children}</div>
+    </div>
+  );
 };
 ```
 
@@ -358,11 +335,11 @@ Array with the keys of default opened menus.
 ```ts
 // highlight-start
 export type TreeMenuItem = IResourceItem & {
-    key: string;
-    route?: string;
-    icon?: React.ReactNode;
-    label?: string;
-    children: TreeMenuItem[];
+  key: string;
+  route?: string;
+  icon?: React.ReactNode;
+  label?: string;
+  children: TreeMenuItem[];
 };
 // highlight-end
 ```

@@ -549,7 +549,7 @@ The code snippets above are enough to give us a peek inside what is going, but f
 
 ## Summary
 
-In this episode, we activated **refine**'s built-in audit logging feature by defining and passing the `auditLogProvider`prop to `<Refine />`. We we learned that **refine** implements audit logging from its resource mutation hooks by sending a log `params` object to the `auditProvider.create()` method, and when audit loggin is activated, every successful mutation creates an entry in the `logs` table.
+In this episode, we activated **refine**'s built-in audit logging feature by defining and passing the `auditLogProvider`prop to `<Refine />`. We we learned that **refine** implements audit logging from its resource mutation hooks by sending a log `params` object to the `auditProvider.create()` method, and when audit logging is activated, every successful mutation creates an entry in the `logs` table.
 
 We implemented audit logging for `create` actions of the `pixels` resource in our **Pixels** app and saved the entries in a `logs` table in our **Supabase** database. We then fetched the pixel creation logs for each canvas using the `useLoglist()` hook and displayed the in a modal. We leverage the `meta` property of the log `params` object in order to filter our `auditProvider.get()` request.
 
@@ -562,7 +562,7 @@ In this **refineWeek** series, built the following two apps with **refine**:
 
 While building these twp apps, we have covered core **refine** concepts like the providers and hooks in significant depth. We had the opportunity to use majority of the providers with the features we added to these apps. Below is the brief outline of the providers we learned about:
 
--   [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/): used to handling authentication. We used it to implement email / password based authentiction as well as social logins with Google and GitHub.
+-   [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/): used to handling authentication. We used it to implement email / password based authentication as well as social logins with Google and GitHub.
 -   [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/): used to fetch data to and from a backend API by sending HTTP requests. We used the supplementary **Supabase** package to build a gallery of canvases, a public dashboard and a private dashboard for role based managers.
 -   [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/): used for routing. We briefly touched over how it handles routing and resources following RESTful conventions.
 -   [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/): used to implement real time Publish Subscribe features. We used it for allowing users to draw pixels collaboratively on a canvas.

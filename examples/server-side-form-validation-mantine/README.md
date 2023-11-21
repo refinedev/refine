@@ -6,7 +6,6 @@
 </br>
 </br>
 
-
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
     <a href="https://discord.gg/refine">Discord</a> |

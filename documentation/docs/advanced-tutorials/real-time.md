@@ -19,7 +19,9 @@ npm install @refinedev/ably
 ```
 
 :::caution
+
 To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+
 :::
 
 ## Setup
@@ -44,11 +46,7 @@ Then pass `liveProvider` from [`@refinedev/ably`](https://github.com/refinedev/r
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import {
-    ThemedLayoutV2,
-    notificationProvider,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { ThemedLayoutV2, notificationProvider, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 
@@ -66,61 +64,50 @@ import { ablyClient } from "utility/ablyClient";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    //highlight-start
-                    liveProvider={liveProvider(ablyClient)}
-                    options={{ liveMode: "auto" }}
-                    //highlight-end
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            meta: {
-                                canDelete: true,
-                            },
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route index element={<NavigateToResource />} />
-                            <Route path="/posts" element={<PostList />} />
-                            <Route
-                                path="/posts/create"
-                                element={<PostCreate />}
-                            />
-                            <Route
-                                path="/posts/show/:id"
-                                element={<PostShow />}
-                            />
-                            <Route
-                                path="/posts/edit/:id"
-                                element={<PostEdit />}
-                            />
-                        </Route>
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          //highlight-start
+          liveProvider={liveProvider(ablyClient)}
+          options={{ liveMode: "auto" }}
+          //highlight-end
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+              show: "/posts/show/:id",
+              create: "/posts/create",
+              edit: "/posts/edit/:id",
+              meta: {
+                canDelete: true,
+              },
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route index element={<NavigateToResource />} />
+              <Route path="/posts" element={<PostList />} />
+              <Route path="/posts/create" element={<PostCreate />} />
+              <Route path="/posts/show/:id" element={<PostShow />} />
+              <Route path="/posts/edit/:id" element={<PostEdit />} />
+            </Route>
+            <Route path="*" element={<ErrorComponent />} />
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 export default App;
@@ -131,6 +118,7 @@ export default App;
 For live features to work automatically we added `liveMode: "auto"` in the `options` prop.
 
 [Refer to the Live Provider documentation for detailed information. &#8594](/api-reference/core/providers/live-provider.md#livemode)
+
 :::
 
 <br/>
@@ -148,59 +136,55 @@ We will be alerted about changes in an alert box on top of the form instead of c
 // ...
 
 export const PostEdit: React.FC = () => {
+  //highlight-start
+  const [deprecated, setDeprecated] = useState<"deleted" | "updated" | undefined>();
+  //highlight-end
+
+  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
     //highlight-start
-    const [deprecated, setDeprecated] = useState<
-        "deleted" | "updated" | undefined
-    >();
+    liveMode: "manual",
+    onLiveEvent: (event) => {
+      if (event.type === "deleted" || event.type === "updated") {
+        setDeprecated(event.type);
+      }
+    },
     //highlight-end
+  });
 
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        //highlight-start
-        liveMode: "manual",
-        onLiveEvent: (event) => {
-            if (event.type === "deleted" || event.type === "updated") {
-                setDeprecated(event.type);
-            }
-        },
-        //highlight-end
-    });
+  //highlight-start
+  const handleRefresh = () => {
+    queryResult?.refetch();
+    setDeprecated(undefined);
+  };
+  //highlight-end
 
-    //highlight-start
-    const handleRefresh = () => {
-        queryResult?.refetch();
-        setDeprecated(undefined);
-    };
-    //highlight-end
+  // ...
 
-    // ...
-
-    return (
-        <Edit /* ... */>
-            //highlight-start
-            {deprecated === "deleted" && (
-                <Alert
-                    message="This post is deleted."
-                    type="warning"
-                    style={{ marginBottom: 20 }}
-                    action={<ListButton size="small" />}
-                />
-            )}
-            {deprecated === "updated" && (
-                <Alert
-                    message="This post is updated. Refresh to see changes."
-                    type="warning"
-                    style={{ marginBottom: 20 }}
-                    action={
-                        <RefreshButton size="small" onClick={handleRefresh} />
-                    }
-                />
-            )}
-            //highlight-end
-            <Form {...formProps} layout="vertical">
-                // ....
-            </Form>
-        </Edit>
-    );
+  return (
+    <Edit /* ... */>
+      //highlight-start
+      {deprecated === "deleted" && (
+        <Alert
+          message="This post is deleted."
+          type="warning"
+          style={{ marginBottom: 20 }}
+          action={<ListButton size="small" />}
+        />
+      )}
+      {deprecated === "updated" && (
+        <Alert
+          message="This post is updated. Refresh to see changes."
+          type="warning"
+          style={{ marginBottom: 20 }}
+          action={<RefreshButton size="small" onClick={handleRefresh} />}
+        />
+      )}
+      //highlight-end
+      <Form {...formProps} layout="vertical">
+        // ....
+      </Form>
+    </Edit>
+  );
 };
 ```
 
@@ -209,6 +193,7 @@ export const PostEdit: React.FC = () => {
 We can also implement a similar thing on the show page.
 
 [Refer to the CodeSandbox example for detailed information. &#8594](#example)
+
 :::
 
 <br/>
@@ -230,214 +215,185 @@ Firstly, let's implement a custom sider like in [this example](/examples/customi
 ```tsx title="src/components/sider.tsx"
 import React, { useState } from "react";
 import {
-    ITreeMenu,
-    CanAccess,
-    useIsExistAuthentication,
-    useTranslate,
-    useLogout,
-    useMenu,
-    useWarnAboutChange,
+  ITreeMenu,
+  CanAccess,
+  useIsExistAuthentication,
+  useTranslate,
+  useLogout,
+  useMenu,
+  useWarnAboutChange,
 } from "@refinedev/core";
 import { Link } from "react-router-dom";
 import { Sider, ThemedTitleV2 } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button } from "antd";
-import {
-    LogoutOutlined,
-    UnorderedListOutlined,
-    RightOutlined,
-    LeftOutlined,
-} from "@ant-design/icons";
+import { LogoutOutlined, UnorderedListOutlined, RightOutlined, LeftOutlined } from "@ant-design/icons";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 const { useToken } = theme;
 
 export const CustomSider: typeof Sider = ({ render }) => {
-    const { token } = useToken();
-    const [collapsed, setCollapsed] = useState<boolean>(false);
-    const isExistAuthentication = useIsExistAuthentication();
-    const { warnWhen, setWarnWhen } = useWarnAboutChange();
-    const { mutate: mutateLogout } = useLogout();
-    const translate = useTranslate();
-    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
-    const { SubMenu } = Menu;
+  const { token } = useToken();
+  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const isExistAuthentication = useIsExistAuthentication();
+  const { warnWhen, setWarnWhen } = useWarnAboutChange();
+  const { mutate: mutateLogout } = useLogout();
+  const translate = useTranslate();
+  const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
+  const { SubMenu } = Menu;
 
-    const breakpoint = Grid.useBreakpoint();
+  const breakpoint = Grid.useBreakpoint();
 
-    const isMobile =
-        typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
+  const isMobile = typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
-        return tree.map((item: ITreeMenu) => {
-            const { name, children, meta, key, list } = item;
+  const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+    return tree.map((item: ITreeMenu) => {
+      const { name, children, meta, key, list } = item;
 
-            const icon = meta?.icon;
-            const label = meta?.label ?? name;
-            const parent = meta?.parent;
-            const route =
-                typeof list === "string"
-                    ? list
-                    : typeof list !== "function"
-                    ? list?.path
-                    : key;
+      const icon = meta?.icon;
+      const label = meta?.label ?? name;
+      const parent = meta?.parent;
+      const route = typeof list === "string" ? list : typeof list !== "function" ? list?.path : key;
 
-            if (children.length > 0) {
-                return (
-                    <SubMenu
-                        key={route}
-                        icon={icon ?? <UnorderedListOutlined />}
-                        title={label}
-                    >
-                        {renderTreeView(children, selectedKey)}
-                    </SubMenu>
-                );
-            }
-            const isSelected = route === selectedKey;
-            const isRoute = !(parent !== undefined && children.length === 0);
-            return (
-                <CanAccess
-                    key={route}
-                    resource={name.toLowerCase()}
-                    action="list"
-                    params={{ resource: item }}
-                >
-                    <Menu.Item
-                        key={route}
-                        style={{
-                            textTransform: "capitalize",
-                        }}
-                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
-                    >
-                        {route ? <Link to={route || "/"}>{label}</Link> : label}
-                        {!collapsed && isSelected && (
-                            <div className="ant-menu-tree-arrow" />
-                        )}
-                    </Menu.Item>
-                </CanAccess>
-            );
-        });
-    };
-
-    const handleLogout = () => {
-        if (warnWhen) {
-            const confirm = window.confirm(
-                translate(
-                    "warnWhenUnsavedChanges",
-                    "Are you sure you want to leave? You have unsaved changes.",
-                ),
-            );
-
-            if (confirm) {
-                setWarnWhen(false);
-                mutateLogout();
-            }
-        } else {
-            mutateLogout();
-        }
-    };
-
-    const logout = isExistAuthentication && (
-        <Menu.Item
-            key="logout"
-            onClick={handleLogout}
-            icon={<LogoutOutlined />}
-        >
-            {translate("buttons.logout", "Logout")}
-        </Menu.Item>
-    );
-
-    const items = renderTreeView(menuItems, selectedKey);
-
-    const renderSider = () => {
-        if (render) {
-            return render({
-                dashboard: null,
-                items,
-                logout,
-                collapsed,
-            });
-        }
+      if (children.length > 0) {
         return (
-            <>
-                {items}
-                {logout}
-            </>
+          <SubMenu key={route} icon={icon ?? <UnorderedListOutlined />} title={label}>
+            {renderTreeView(children, selectedKey)}
+          </SubMenu>
         );
-    };
-
-    const siderStyle = isMobile ? antLayoutSiderMobile : antLayoutSider;
-
-    return (
-        <AntdLayout.Sider
-            collapsible
-            collapsedWidth={isMobile ? 0 : 80}
-            collapsed={collapsed}
-            breakpoint="lg"
-            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+      }
+      const isSelected = route === selectedKey;
+      const isRoute = !(parent !== undefined && children.length === 0);
+      return (
+        <CanAccess key={route} resource={name.toLowerCase()} action="list" params={{ resource: item }}>
+          <Menu.Item
+            key={route}
             style={{
-                ...siderStyle,
-                backgroundColor: token.colorBgContainer,
-                borderRight: `1px solid ${token.colorBgElevated}`,
+              textTransform: "capitalize",
             }}
-            trigger={
-                !isMobile && (
-                    <Button
-                        type="text"
-                        style={{
-                            borderRadius: 0,
-                            height: "100%",
-                            width: "100%",
-                            backgroundColor: token.colorBgElevated,
-                        }}
-                    >
-                        {collapsed ? (
-                            <RightOutlined
-                                style={{
-                                    color: token.colorPrimary,
-                                }}
-                            />
-                        ) : (
-                            <LeftOutlined
-                                style={{
-                                    color: token.colorPrimary,
-                                }}
-                            />
-                        )}
-                    </Button>
-                )
-            }
-        >
-            <div
-                style={{
-                    width: collapsed ? "80px" : "200px",
-                    padding: collapsed ? "0" : "0 16px",
-                    display: "flex",
-                    justifyContent: collapsed ? "center" : "flex-start",
-                    alignItems: "center",
-                    height: "64px",
-                    backgroundColor: token.colorBgElevated,
-                    fontSize: "14px",
-                }}
-            >
-                <ThemedTitleV2 collapsed={collapsed} />
-            </div>
-            <Menu
-                defaultOpenKeys={defaultOpenKeys}
-                selectedKeys={[selectedKey]}
-                mode="inline"
-                style={{
-                    marginTop: "8px",
-                    border: "none",
-                }}
-                onClick={() => {
-                    if (!breakpoint.lg) {
-                        setCollapsed(true);
-                    }
-                }}
-            >
-                {renderSider()}
-            </Menu>
-        </AntdLayout.Sider>
+            icon={icon ?? (isRoute && <UnorderedListOutlined />)}
+          >
+            {route ? <Link to={route || "/"}>{label}</Link> : label}
+            {!collapsed && isSelected && <div className="ant-menu-tree-arrow" />}
+          </Menu.Item>
+        </CanAccess>
+      );
+    });
+  };
+
+  const handleLogout = () => {
+    if (warnWhen) {
+      const confirm = window.confirm(
+        translate("warnWhenUnsavedChanges", "Are you sure you want to leave? You have unsaved changes."),
+      );
+
+      if (confirm) {
+        setWarnWhen(false);
+        mutateLogout();
+      }
+    } else {
+      mutateLogout();
+    }
+  };
+
+  const logout = isExistAuthentication && (
+    <Menu.Item key="logout" onClick={handleLogout} icon={<LogoutOutlined />}>
+      {translate("buttons.logout", "Logout")}
+    </Menu.Item>
+  );
+
+  const items = renderTreeView(menuItems, selectedKey);
+
+  const renderSider = () => {
+    if (render) {
+      return render({
+        dashboard: null,
+        items,
+        logout,
+        collapsed,
+      });
+    }
+    return (
+      <>
+        {items}
+        {logout}
+      </>
     );
+  };
+
+  const siderStyle = isMobile ? antLayoutSiderMobile : antLayoutSider;
+
+  return (
+    <AntdLayout.Sider
+      collapsible
+      collapsedWidth={isMobile ? 0 : 80}
+      collapsed={collapsed}
+      breakpoint="lg"
+      onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+      style={{
+        ...siderStyle,
+        backgroundColor: token.colorBgContainer,
+        borderRight: `1px solid ${token.colorBgElevated}`,
+      }}
+      trigger={
+        !isMobile && (
+          <Button
+            type="text"
+            style={{
+              borderRadius: 0,
+              height: "100%",
+              width: "100%",
+              backgroundColor: token.colorBgElevated,
+            }}
+          >
+            {collapsed ? (
+              <RightOutlined
+                style={{
+                  color: token.colorPrimary,
+                }}
+              />
+            ) : (
+              <LeftOutlined
+                style={{
+                  color: token.colorPrimary,
+                }}
+              />
+            )}
+          </Button>
+        )
+      }
+    >
+      <div
+        style={{
+          width: collapsed ? "80px" : "200px",
+          padding: collapsed ? "0" : "0 16px",
+          display: "flex",
+          justifyContent: collapsed ? "center" : "flex-start",
+          alignItems: "center",
+          height: "64px",
+          backgroundColor: token.colorBgElevated,
+          fontSize: "14px",
+        }}
+      >
+        <ThemedTitleV2 collapsed={collapsed} />
+      </div>
+      <Menu
+        defaultOpenKeys={defaultOpenKeys}
+        selectedKeys={[selectedKey]}
+        mode="inline"
+        style={{
+          marginTop: "8px",
+          border: "none",
+        }}
+        onClick={() => {
+          if (!breakpoint.lg) {
+            setCollapsed(true);
+          }
+        }}
+      >
+        {renderSider()}
+      </Menu>
+    </AntdLayout.Sider>
+  );
 };
 ```
 
@@ -454,238 +410,203 @@ Now, let's add a badge for the number of create and update events for **_posts_*
 ```tsx
 import React, { useState } from "react";
 import {
-    ITreeMenu,
-    CanAccess,
-    useIsExistAuthentication,
-    useTranslate,
-    useLogout,
-    useMenu,
-    useWarnAboutChange,
-    useSubscription,
+  ITreeMenu,
+  CanAccess,
+  useIsExistAuthentication,
+  useTranslate,
+  useLogout,
+  useMenu,
+  useWarnAboutChange,
+  useSubscription,
 } from "@refinedev/core";
 import { Link } from "react-router-dom";
 import { Sider, ThemedTitleV2 } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button, Badge } from "antd";
-import {
-    LogoutOutlined,
-    UnorderedListOutlined,
-    RightOutlined,
-    LeftOutlined,
-} from "@ant-design/icons";
+import { LogoutOutlined, UnorderedListOutlined, RightOutlined, LeftOutlined } from "@ant-design/icons";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 const { useToken } = theme;
 
 export const CustomSider: typeof Sider = ({ render }) => {
-    const { token } = useToken();
-    const [collapsed, setCollapsed] = useState<boolean>(false);
-    const isExistAuthentication = useIsExistAuthentication();
-    const { warnWhen, setWarnWhen } = useWarnAboutChange();
-    const { mutate: mutateLogout } = useLogout();
-    const translate = useTranslate();
-    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
-    const { SubMenu } = Menu;
-    const [subscriptionCount, setSubscriptionCount] = useState(0);
+  const { token } = useToken();
+  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const isExistAuthentication = useIsExistAuthentication();
+  const { warnWhen, setWarnWhen } = useWarnAboutChange();
+  const { mutate: mutateLogout } = useLogout();
+  const translate = useTranslate();
+  const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
+  const { SubMenu } = Menu;
+  const [subscriptionCount, setSubscriptionCount] = useState(0);
 
-    const breakpoint = Grid.useBreakpoint();
+  const breakpoint = Grid.useBreakpoint();
 
-    const isMobile =
-        typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
+  const isMobile = typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
-    useSubscription({
-        channel: "resources/posts",
-        types: ["created", "updated"],
-        onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
-    });
+  useSubscription({
+    channel: "resources/posts",
+    types: ["created", "updated"],
+    onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
+  });
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
-        return tree.map((item: ITreeMenu) => {
-            const { name, children, meta, key, list } = item;
+  const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
+    return tree.map((item: ITreeMenu) => {
+      const { name, children, meta, key, list } = item;
 
-            const icon = meta?.icon;
-            const label = meta?.label ?? name;
-            const parent = meta?.parent;
-            const route =
-                typeof list === "string"
-                    ? list
-                    : typeof list !== "function"
-                    ? list?.path
-                    : key;
+      const icon = meta?.icon;
+      const label = meta?.label ?? name;
+      const parent = meta?.parent;
+      const route = typeof list === "string" ? list : typeof list !== "function" ? list?.path : key;
 
-            if (children.length > 0) {
-                return (
-                    <SubMenu
-                        key={key}
-                        icon={icon ?? <UnorderedListOutlined />}
-                        title={label}
-                    >
-                        {renderTreeView(children, selectedKey)}
-                    </SubMenu>
-                );
-            }
-            const isSelected = route === selectedKey;
-            const isRoute = !(parent !== undefined && children.length === 0);
-            return (
-                <CanAccess
-                    key={key}
-                    resource={name.toLowerCase()}
-                    action="list"
-                    params={{ resource: item }}
-                >
-                    <Menu.Item
-                        key={route}
-                        style={{
-                            textTransform: "capitalize",
-                        }}
-                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
-                    >
-                        {route ? <Link to={route || "/"}>{label}</Link> : label}
-                        {route && (
-                            <>
-                                {label.toLowerCase() === "posts" && (
-                                    <Badge
-                                        size="small"
-                                        count={subscriptionCount}
-                                        offset={[2, -15]}
-                                    />
-                                )}
-                            </>
-                        )}
-                        {!collapsed && isSelected && (
-                            <div className="ant-menu-tree-arrow" />
-                        )}
-                    </Menu.Item>
-                </CanAccess>
-            );
-        });
-    };
-
-    const handleLogout = () => {
-        if (warnWhen) {
-            const confirm = window.confirm(
-                translate(
-                    "warnWhenUnsavedChanges",
-                    "Are you sure you want to leave? You have unsaved changes.",
-                ),
-            );
-
-            if (confirm) {
-                setWarnWhen(false);
-                mutateLogout();
-            }
-        } else {
-            mutateLogout();
-        }
-    };
-
-    const logout = isExistAuthentication && (
-        <Menu.Item
-            key="logout"
-            onClick={handleLogout}
-            icon={<LogoutOutlined />}
-        >
-            {translate("buttons.logout", "Logout")}
-        </Menu.Item>
-    );
-
-    const items = renderTreeView(menuItems, selectedKey);
-
-    const renderSider = () => {
-        if (render) {
-            return render({
-                dashboard: null,
-                items,
-                logout,
-                collapsed,
-            });
-        }
+      if (children.length > 0) {
         return (
-            <>
-                {items}
-                {logout}
-            </>
+          <SubMenu key={key} icon={icon ?? <UnorderedListOutlined />} title={label}>
+            {renderTreeView(children, selectedKey)}
+          </SubMenu>
         );
-    };
-
-    const siderStyle = isMobile ? antLayoutSiderMobile : antLayoutSider;
-
-    return (
-        <AntdLayout.Sider
-            collapsible
-            collapsedWidth={isMobile ? 0 : 80}
-            collapsed={collapsed}
-            breakpoint="lg"
-            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+      }
+      const isSelected = route === selectedKey;
+      const isRoute = !(parent !== undefined && children.length === 0);
+      return (
+        <CanAccess key={key} resource={name.toLowerCase()} action="list" params={{ resource: item }}>
+          <Menu.Item
+            key={route}
             style={{
-                ...siderStyle,
-                backgroundColor: token.colorBgContainer,
-                borderRight: `1px solid ${token.colorBgElevated}`,
+              textTransform: "capitalize",
             }}
-            trigger={
-                !isMobile && (
-                    <Button
-                        type="text"
-                        style={{
-                            borderRadius: 0,
-                            height: "100%",
-                            width: "100%",
-                            backgroundColor: token.colorBgElevated,
-                        }}
-                    >
-                        {collapsed ? (
-                            <RightOutlined
-                                style={{
-                                    color: token.colorPrimary,
-                                }}
-                            />
-                        ) : (
-                            <LeftOutlined
-                                style={{
-                                    color: token.colorPrimary,
-                                }}
-                            />
-                        )}
-                    </Button>
-                )
-            }
-        >
-            <div
-                style={{
-                    width: collapsed ? "80px" : "200px",
-                    padding: collapsed ? "0" : "0 16px",
-                    display: "flex",
-                    justifyContent: collapsed ? "center" : "flex-start",
-                    alignItems: "center",
-                    height: "64px",
-                    backgroundColor: token.colorBgElevated,
-                    fontSize: "14px",
-                }}
-            >
-                <ThemedTitleV2 collapsed={collapsed} />
-            </div>
-            <Menu
-                defaultOpenKeys={defaultOpenKeys}
-                selectedKeys={[selectedKey]}
-                mode="inline"
-                style={{
-                    marginTop: "8px",
-                    border: "none",
-                }}
-                onClick={({ key }) => {
-                    if (!breakpoint.lg) {
-                        setCollapsed(true);
-                    }
+            icon={icon ?? (isRoute && <UnorderedListOutlined />)}
+          >
+            {route ? <Link to={route || "/"}>{label}</Link> : label}
+            {route && (
+              <>
+                {label.toLowerCase() === "posts" && <Badge size="small" count={subscriptionCount} offset={[2, -15]} />}
+              </>
+            )}
+            {!collapsed && isSelected && <div className="ant-menu-tree-arrow" />}
+          </Menu.Item>
+        </CanAccess>
+      );
+    });
+  };
 
-                    if (key === "/posts") {
-                        setSubscriptionCount(0);
-                    }
-                }}
-            >
-                {renderSider()}
-            </Menu>
-        </AntdLayout.Sider>
+  const handleLogout = () => {
+    if (warnWhen) {
+      const confirm = window.confirm(
+        translate("warnWhenUnsavedChanges", "Are you sure you want to leave? You have unsaved changes."),
+      );
+
+      if (confirm) {
+        setWarnWhen(false);
+        mutateLogout();
+      }
+    } else {
+      mutateLogout();
+    }
+  };
+
+  const logout = isExistAuthentication && (
+    <Menu.Item key="logout" onClick={handleLogout} icon={<LogoutOutlined />}>
+      {translate("buttons.logout", "Logout")}
+    </Menu.Item>
+  );
+
+  const items = renderTreeView(menuItems, selectedKey);
+
+  const renderSider = () => {
+    if (render) {
+      return render({
+        dashboard: null,
+        items,
+        logout,
+        collapsed,
+      });
+    }
+    return (
+      <>
+        {items}
+        {logout}
+      </>
     );
+  };
+
+  const siderStyle = isMobile ? antLayoutSiderMobile : antLayoutSider;
+
+  return (
+    <AntdLayout.Sider
+      collapsible
+      collapsedWidth={isMobile ? 0 : 80}
+      collapsed={collapsed}
+      breakpoint="lg"
+      onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+      style={{
+        ...siderStyle,
+        backgroundColor: token.colorBgContainer,
+        borderRight: `1px solid ${token.colorBgElevated}`,
+      }}
+      trigger={
+        !isMobile && (
+          <Button
+            type="text"
+            style={{
+              borderRadius: 0,
+              height: "100%",
+              width: "100%",
+              backgroundColor: token.colorBgElevated,
+            }}
+          >
+            {collapsed ? (
+              <RightOutlined
+                style={{
+                  color: token.colorPrimary,
+                }}
+              />
+            ) : (
+              <LeftOutlined
+                style={{
+                  color: token.colorPrimary,
+                }}
+              />
+            )}
+          </Button>
+        )
+      }
+    >
+      <div
+        style={{
+          width: collapsed ? "80px" : "200px",
+          padding: collapsed ? "0" : "0 16px",
+          display: "flex",
+          justifyContent: collapsed ? "center" : "flex-start",
+          alignItems: "center",
+          height: "64px",
+          backgroundColor: token.colorBgElevated,
+          fontSize: "14px",
+        }}
+      >
+        <ThemedTitleV2 collapsed={collapsed} />
+      </div>
+      <Menu
+        defaultOpenKeys={defaultOpenKeys}
+        selectedKeys={[selectedKey]}
+        mode="inline"
+        style={{
+          marginTop: "8px",
+          border: "none",
+        }}
+        onClick={({ key }) => {
+          if (!breakpoint.lg) {
+            setCollapsed(true);
+          }
+
+          if (key === "/posts") {
+            setSubscriptionCount(0);
+          }
+        }}
+      >
+        {renderSider()}
+      </Menu>
+    </AntdLayout.Sider>
+  );
 };
 ```
 
@@ -698,14 +619,14 @@ You can subscribe to specific `ids` with `params`. For example, you can subscrib
 
 ```tsx
 useSubscription({
-    channel: "resources/posts",
-    type: ["deleted", "updated"],
-    //highlight-start
-    params: {
-        ids: ["1", "2"],
-    },
-    //highlight-end
-    onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
+  channel: "resources/posts",
+  type: ["deleted", "updated"],
+  //highlight-start
+  params: {
+    ids: ["1", "2"],
+  },
+  //highlight-end
+  onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
 });
 ```
 

@@ -18,7 +18,6 @@
 <br/>
 <br/>
 
-
 <div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open-source, headless web application framework developed with flexibility in mind.
 
 <br />
@@ -35,7 +34,6 @@
 
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
 [![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
-
 
 <a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
@@ -71,7 +69,7 @@ This means you can use Refine seamlessly on different platforms like React Nativ
 
 ## ⚡ Try Refine
 
-Refine's [browser-based app scaffolder](https://refine.dev/#playground) enables you to build a Refine app through an interactive, step-by-step process in your browser. 
+Refine's [browser-based app scaffolder](https://refine.dev/#playground) enables you to build a Refine app through an interactive, step-by-step process in your browser.
 
 You have the freedom to select your preferred libraries and frameworks, and the tool generates a ready-to-download boilerplate code. This feature not only lets you preview and tweak your project on the fly but also accelerates the overall development workflow.
 
@@ -89,12 +87,12 @@ You have the freedom to select your preferred libraries and frameworks, and the 
 
 You can take a look at some live examples that can be built using **refine** from scratch:
 
--   [Fully-functional CRM Application](https://example.crm.refine.dev/)
--   [Fully-functional Admin Panel](https://s.refine.dev/readme-admin-panel)
--   [Win95 Style Admin panel 🪟](https://win95.refine.dev/)
--   [Medium Clone - Real World Example](https://s.refine.dev/readme-medium-clone)
--   [Multitenancy Example](https://multi-tenancy-strapi.refine.dev/)
--   [Storefront](https://s.refine.dev/readme-ssr-storefront)
+- [Fully-functional CRM Application](https://example.crm.refine.dev/)
+- [Fully-functional Admin Panel](https://s.refine.dev/readme-admin-panel)
+- [Win95 Style Admin panel 🪟](https://win95.refine.dev/)
+- [Medium Clone - Real World Example](https://s.refine.dev/readme-medium-clone)
+- [Multitenancy Example](https://multi-tenancy-strapi.refine.dev/)
+- [Storefront](https://s.refine.dev/readme-ssr-storefront)
 
 [👉 Refer to most popular real use case examples](https://refine.dev/docs/examples/)
 
@@ -134,7 +132,7 @@ You can take a look at some live examples that can be built using **refine** fro
 
 There are two ways to create a Refine app: either by using the `create refine-app` CLI tool or the [browser-based app scaffolder](https://refine.dev/#playground).
 
-To quickly start a Refine project with [Ant Design](https://ant.design/) as the default UI framework, run the following command. 
+To quickly start a Refine project with [Ant Design](https://ant.design/) as the default UI framework, run the following command.
 
 ```
 npm create refine-app@latest -- -o refine-antd
@@ -146,7 +144,6 @@ Once the setup is complete, navigate to the project folder and start your projec
 npm run dev
 ```
 
-
 <br/>
 
 Your **Refine** application will be accessible at [http://localhost:5173](http://localhost:5173):
@@ -155,21 +152,20 @@ Your **Refine** application will be accessible at [http://localhost:5173](http:/
 
 <br/>
 
-
 > Note: The command above uses pre-set options for ease. For a different tech stack, simply run:
 >
->```
->npm create refine-app@latest
->```
+> ```
+> npm create refine-app@latest
+> ```
 
 Let's consume a public `fake REST API` and add two resources (_blog_posts_ and _categories_) to our project. Replace the contents of `src/App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import {
-    notificationProvider,
-    ErrorComponent,
-    ThemedLayout,
+  notificationProvider,
+  ErrorComponent,
+  ThemedLayout,
 } from "@refinedev/antd";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -181,69 +177,59 @@ import { AntdInferencer } from "@refinedev/inferencer/antd";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                        meta: { canDelete: true },
-                    },
-                    {
-                        name: "categories",
-                        list: "/categories",
-                        show: "/categories/show/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <ThemedLayout>
-                                <Outlet />
-                            </ThemedLayout>
-                        }
-                    >
-                        <Route index element={<NavigateToResource />} />
-                        <Route path="blog-posts">
-                            <Route index element={<AntdInferencer />} />
-                            <Route
-                                path="show/:id"
-                                element={<AntdInferencer />}
-                            />
-                            <Route path="create" element={<AntdInferencer />} />
-                            <Route
-                                path="edit/:id"
-                                element={<AntdInferencer />}
-                            />
-                        </Route>
-                        <Route path="categories">
-                            <Route index element={<AntdInferencer />} />
-                            <Route
-                                path="show/:id"
-                                element={<AntdInferencer />}
-                            />
-                        </Route>
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        notificationProvider={notificationProvider}
+        resources={[
+          {
+            name: "blog_posts",
+            list: "/blog-posts",
+            show: "/blog-posts/show/:id",
+            create: "/blog-posts/create",
+            edit: "/blog-posts/edit/:id",
+            meta: { canDelete: true },
+          },
+          {
+            name: "categories",
+            list: "/categories",
+            show: "/categories/show/:id",
+          },
+        ]}
+      >
+        <Routes>
+          <Route
+            element={
+              <ThemedLayout>
+                <Outlet />
+              </ThemedLayout>
+            }
+          >
+            <Route index element={<NavigateToResource />} />
+            <Route path="blog-posts">
+              <Route index element={<AntdInferencer />} />
+              <Route path="show/:id" element={<AntdInferencer />} />
+              <Route path="create" element={<AntdInferencer />} />
+              <Route path="edit/:id" element={<AntdInferencer />} />
+            </Route>
+            <Route path="categories">
+              <Route index element={<AntdInferencer />} />
+              <Route path="show/:id" element={<AntdInferencer />} />
+            </Route>
+            <Route path="*" element={<ErrorComponent />} />
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 export default App;
 ```
 
 <br/>
-
 
 🚀 The [**Refine Inferencer package**](https://refine.dev/docs/packages/documentation/inferencer/) automatically generates `list`, `show`, `create`, and `edit` pages by guessing configurations from API data. We've used it here for a quick, clear start, but you can also choose to code your pages from scratch instead of using the Inferencer feature.
 
@@ -267,8 +253,6 @@ You can get the auto-generated page codes by clicking the `Show Code` button on 
 👉 See the real-life [CRM Application](https://example.crm.refine.dev/) project built using Refine.
 
 👉 Play with interactive [examples](https://refine.dev/docs/examples/).
-
-
 
 ## Contribution
 

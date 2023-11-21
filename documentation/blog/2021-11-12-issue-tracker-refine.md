@@ -22,77 +22,77 @@ In this article, we will make a customizable internal issue tracker web applicat
 
 <!--truncate-->
 
-This web application will  us to create issue and tasks for your team members. You will also be able to choose the priority of these tasks, their tags, and which person to assign them to.
-
+This web application will us to create issue and tasks for your team members. You will also be able to choose the priority of these tasks, their tags, and which person to assign them to.
 
 We will use [Supabase](https://supabase.io/) in backend. Let's start by creating our Supabase account and tables.
-
 
 ## Create Supabase Database
 
 We have to go to [Supabase](https://supabase.io/) and create an organization and database. Then we can start creating our tables.
 
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/start.png" alt="overview" />
 <br />
- 
+
 The tables we need to create for our project are as follows:
 
 > label
-* `id`: bigint
-* `title`: varchar
-* `color`: varchar
+
+- `id`: bigint
+- `title`: varchar
+- `color`: varchar
 
 <br />
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/label_table.png" alt="overview" />
 <br />
 
-> priority 
-* `id` bigint
-* `title` varchar
+> priority
+
+- `id` bigint
+- `title` varchar
 
 <br />
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/common_table.png" alt="overview" />
 <br />
- 
 
 > status
-* `id` bigint
-* `title` varchar
+
+- `id` bigint
+- `title` varchar
 
 <br />
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/common_table.png" alt="overview" />
 <br />
 
 > users
-* `email` varchar
-* `id` uuid
+
+- `email` varchar
+- `id` uuid
 
 <br />
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/user_table.png" alt="overview" />
 <br />
 
- 
 > tasks
-* `id` bigint
-* `title` varchar
-* `description` varchar
-* `start_time` date
-* `end_time` date
-* `label` bigint
-* `priority` bigint
-* `statuts` bigint
-* `users` uuid
+
+- `id` bigint
+- `title` varchar
+- `description` varchar
+- `start_time` date
+- `end_time` date
+- `label` bigint
+- `priority` bigint
+- `statutes` bigint
+- `users` uuid
 
 <br />
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_table.png" alt="overview" />
 <br />
- 
 
 We created our database tables. The important part here is that as you can see, in our tasks table, label, priority, status and users values ​​are defined as bigint. To summarize the reason for this, we relation the label, priority, status and users tables that we created above with the corresponding values ​​in our tasks table.
 
 :::tip
-  Add Foreign key relationships steps:
+
+Add Foreign key relationships steps:
 
 1. Got to a table, right click the column you wish to add a foreign key for
 
@@ -103,10 +103,10 @@ We created our database tables. The important part here is that as you can see, 
 4. Select the table and column to make a foreign key for
 
 5. Click save
+
 :::
 
-
-So we can take  reference their id and use their value in our tasks table.
+So we can take reference their id and use their value in our tasks table.
 
 Now let's go to the Supabase Table editor and create our constant values.
 
@@ -120,13 +120,12 @@ Now let's go to the Supabase Table editor and create our constant values.
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/priority_value.png" alt="overview" />
 <br />
 
- 
 `Status Table`
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/status_value.png" alt="overview" />
 <br />
- 
-Let's create a test task to better understand key relation. 
+
+Let's create a test task to better understand key relation.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_test.gif" alt="overview" />
 <br />
@@ -159,7 +158,6 @@ After the project setup is loaded, let's start by entering our project and makin
 
 Let's add our supabase url and key to our refine project.
 
-
 ```ts title="src/utility/supabaseClient.ts"
 import { createClient } from "@refinedev/supabase";
 
@@ -174,122 +172,99 @@ Now we can access and list the tables we created via the supabase.
 - Add custom login and signup page in App.tsx
 
 Our purpose here is to log in if there is a registered user in the supabase. If you do not have a registered user, saving a user to the supabase with refine.
- 
+
 ## Custom Login Page
 
 ```tsx title="src/pages/login/index.tsx"
 import React from "react";
 import { useLogin, useNavigation } from "@refinedev/core";
 
-import {
-    Row,
-    Col,
-    AntdLayout,
-    Card,
-    Typography,
-    Form,
-    Input,
-    Button,
-} from "@refinedev/antd";
+import { Row, Col, AntdLayout, Card, Typography, Form, Input, Button } from "@refinedev/antd";
 
 import "./styles.css";
 
 const { Text, Title } = Typography;
 
 export interface ILoginForm {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
 
 export const Login: React.FC = () => {
-    const [form] = Form.useForm<ILoginForm>();
+  const [form] = Form.useForm<ILoginForm>();
 
-    const { mutate: login } = useLogin<ILoginForm>();
-    const { push } = useNavigation();
+  const { mutate: login } = useLogin<ILoginForm>();
+  const { push } = useNavigation();
 
-    const CardTitle = (
-        <Title level={3} className="title">
-            Sign in your account
-        </Title>
-    );
+  const CardTitle = (
+    <Title level={3} className="title">
+      Sign in your account
+    </Title>
+  );
 
-    return (
-        <AntdLayout className="layout">
-            <Row
-                justify="center"
-                align="middle"
-                style={{
-                    height: "100vh",
+  return (
+    <AntdLayout className="layout">
+      <Row
+        justify="center"
+        align="middle"
+        style={{
+          height: "100vh",
+        }}
+      >
+        <Col xs={22}>
+          <div className="container">
+            <div className="imageContainer">
+              <img src="./refine.svg" alt="Refine Logo" />
+            </div>
+            <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
+              <Form<ILoginForm>
+                layout="vertical"
+                form={form}
+                onFinish={(values) => {
+                  login(values);
                 }}
-            >
-                <Col xs={22}>
-                    <div className="container">
-                        <div className="imageContainer">
-                            <img src="./refine.svg" alt="Refine Logo" />
-                        </div>
-                        <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
-                            <Form<ILoginForm>
-                                layout="vertical"
-                                form={form}
-                                onFinish={(values) => {
-                                    login(values);
-                                }}
-                                initialValues={{
-                                    email: "info@refine.dev",
-                                    password: "refine-supabase",
-                                }}
-                            >
-                                <Form.Item
-                                    name="email"
-                                    label="Email"
-                                    rules={[{ required: true, type: "email" }]}
-                                >
-                                    <Input size="large" placeholder="Email" />
-                                </Form.Item>
-                                <Form.Item
-                                    name="password"
-                                    label="Password"
-                                    rules={[{ required: true }]}
-                                    style={{ marginBottom: "12px" }}
-                                >
-                                    <Input
-                                        type="password"
-                                        placeholder="●●●●●●●●"
-                                        size="large"
-                                    />
-                                </Form.Item>
-                                <Button
-                                    type="primary"
-                                    size="large"
-                                    htmlType="submit"
-                                    block
-                                >
-                                    Sign in
-                                </Button>
-                            </Form>
-                            <div style={{ marginTop: 8 }}>
-                                <Text style={{ fontSize: 12 }}>
-                                    Don’t have an account?
-                                    <a
-                                        href="#"
-                                        style={{
-                                            fontWeight: "bold",
-                                            marginLeft: 12,
-                                        }}
-                                        onClick={() => push("signup")}
-                                    >
-                                        Sign up
-                                    </a>
-                                </Text>
-                            </div>
-                        </Card>
-                    </div>
-                </Col>
-            </Row>
-        </AntdLayout>
-    );
+                initialValues={{
+                  email: "info@refine.dev",
+                  password: "refine-supabase",
+                }}
+              >
+                <Form.Item name="email" label="Email" rules={[{ required: true, type: "email" }]}>
+                  <Input size="large" placeholder="Email" />
+                </Form.Item>
+                <Form.Item
+                  name="password"
+                  label="Password"
+                  rules={[{ required: true }]}
+                  style={{ marginBottom: "12px" }}
+                >
+                  <Input type="password" placeholder="●●●●●●●●" size="large" />
+                </Form.Item>
+                <Button type="primary" size="large" htmlType="submit" block>
+                  Sign in
+                </Button>
+              </Form>
+              <div style={{ marginTop: 8 }}>
+                <Text style={{ fontSize: 12 }}>
+                  Don’t have an account?
+                  <a
+                    href="#"
+                    style={{
+                      fontWeight: "bold",
+                      marginLeft: 12,
+                    }}
+                    onClick={() => push("signup")}
+                  >
+                    Sign up
+                  </a>
+                </Text>
+              </div>
+            </Card>
+          </div>
+        </Col>
+      </Row>
+    </AntdLayout>
+  );
 };
-
 ```
 
 ```css title="src/pages/login/styles.css"
@@ -316,127 +291,104 @@ export const Login: React.FC = () => {
   justify-content: center;
   margin-bottom: 16px;
 }
-  
 ```
+
 ## Custom Signup Page
 
 ```tsx title="src/pages/signup.tsx"
 import React from "react";
 import { useNavigation } from "@refinedev/core";
-import {
-    Row,
-    Col,
-    AntdLayout,
-    Card,
-    Typography,
-    Form,
-    Input,
-    Button,
-} from "@refinedev/antd";
+import { Row, Col, AntdLayout, Card, Typography, Form, Input, Button } from "@refinedev/antd";
 import "./styles.css";
 import { supabaseClient } from "utility";
 
 const { Text, Title } = Typography;
 
 export interface ISignup {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
 
 export const Signup: React.FC = () => {
-    const [form] = Form.useForm<ISignup>();
-    const { push } = useNavigation();
+  const [form] = Form.useForm<ISignup>();
+  const { push } = useNavigation();
 
-    const CardTitle = (
-        <Title level={3} className="title">
-            Sign Up
-        </Title>
-    );
+  const CardTitle = (
+    <Title level={3} className="title">
+      Sign Up
+    </Title>
+  );
 
-    const signup = async (email: string, password: string) => {
-        const { error } = await supabaseClient.auth.signUp({
-            email,
-            password,
-        });
+  const signup = async (email: string, password: string) => {
+    const { error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+    });
 
-        if (error) {
-            return Promise.reject(error);
-        }
-    };
+    if (error) {
+      return Promise.reject(error);
+    }
+  };
 
-    return (
-        <AntdLayout className="layout">
-            <Row
-                justify="center"
-                align="middle"
-                style={{
-                    height: "100vh",
+  return (
+    <AntdLayout className="layout">
+      <Row
+        justify="center"
+        align="middle"
+        style={{
+          height: "100vh",
+        }}
+      >
+        <Col xs={22}>
+          <div className="container">
+            <div className="imageContainer">
+              <img src="./refine.svg" alt="Refine Logo" />
+            </div>
+            <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
+              <Form<ISignup>
+                layout="vertical"
+                form={form}
+                onFinish={(values) => {
+                  signup(values.email, values.password);
+                  push("login");
                 }}
-            >
-                <Col xs={22}>
-                    <div className="container">
-                        <div className="imageContainer">
-                            <img src="./refine.svg" alt="Refine Logo" />
-                        </div>
-                        <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
-                            <Form<ISignup>
-                                layout="vertical"
-                                form={form}
-                                onFinish={(values) => {
-                                    signup(values.email, values.password);
-                                    push("login");
-                                }}
-                            >
-                                <Form.Item
-                                    name="email"
-                                    label="Email"
-                                    rules={[{ required: true, type: "email" }]}
-                                >
-                                    <Input size="large" placeholder="Email" />
-                                </Form.Item>
-                                <Form.Item
-                                    name="password"
-                                    label="Password"
-                                    rules={[{ required: true }]}
-                                    style={{ marginBottom: "12px" }}
-                                >
-                                    <Input
-                                        type="password"
-                                        placeholder="●●●●●●●●"
-                                        size="large"
-                                    />
-                                </Form.Item>
-                                <Button
-                                    type="primary"
-                                    size="large"
-                                    htmlType="submit"
-                                    block
-                                    style={{ marginTop: 24 }}
-                                >
-                                    Create Account
-                                </Button>
-                            </Form>
-                            <div style={{ marginTop: 16 }}>
-                                <Text style={{ fontSize: 12 }}>
-                                    Don’t have an account?
-                                    <a
-                                        href="#"
-                                        style={{
-                                            fontWeight: "bold",
-                                            marginLeft: 12,
-                                        }}
-                                        onClick={() => push("login")}
-                                    >
-                                        Sign in
-                                    </a>
-                                </Text>
-                            </div>
-                        </Card>
-                    </div>
-                </Col>
-            </Row>
-        </AntdLayout>
-    );
+              >
+                <Form.Item name="email" label="Email" rules={[{ required: true, type: "email" }]}>
+                  <Input size="large" placeholder="Email" />
+                </Form.Item>
+                <Form.Item
+                  name="password"
+                  label="Password"
+                  rules={[{ required: true }]}
+                  style={{ marginBottom: "12px" }}
+                >
+                  <Input type="password" placeholder="●●●●●●●●" size="large" />
+                </Form.Item>
+                <Button type="primary" size="large" htmlType="submit" block style={{ marginTop: 24 }}>
+                  Create Account
+                </Button>
+              </Form>
+              <div style={{ marginTop: 16 }}>
+                <Text style={{ fontSize: 12 }}>
+                  Don’t have an account?
+                  <a
+                    href="#"
+                    style={{
+                      fontWeight: "bold",
+                      marginLeft: 12,
+                    }}
+                    onClick={() => push("login")}
+                  >
+                    Sign in
+                  </a>
+                </Text>
+              </div>
+            </Card>
+          </div>
+        </Col>
+      </Row>
+    </AntdLayout>
+  );
 };
 ```
 
@@ -464,17 +416,11 @@ export const Signup: React.FC = () => {
   justify-content: center;
   margin-bottom: 16px;
 }
-
-  
 ```
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
@@ -486,49 +432,44 @@ import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 
 function App() {
-    return (
-        <Refine
-            dataProvider={dataProvider(supabaseClient)}
-            authProvider={authProvider}
-            LoginPage={Login}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        element: <Signup />,
-                        path: "/signup",
-                    },
-                ] as typeof routerProvider.routes,
-            }}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(supabaseClient)}
+      authProvider={authProvider}
+      LoginPage={Login}
+      routerProvider={{
+        ...routerProvider,
+        routes: [
+          {
+            element: <Signup />,
+            path: "/signup",
+          },
+        ] as typeof routerProvider.routes,
+      }}
+      notificationProvider={notificationProvider}
+      Layout={Layout}
+      catchAll={<ErrorComponent />}
+    />
+  );
 }
 
 export default App;
-
 ```
 
 Here we define our login and signup pages. We then use the refine's [router-provider](https://refine.dev/docs/packages/documentation/routers/) and [useNavigaton](https://refine.dev/docs/core/hooks/navigation/useNavigation/) hooks to switch between login and signup.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/login.gif" alt="overview" />
 <br />
- 
 
 We can now create supabase users and log in from our refine interface.
- 
+
 ## Add Resource
+
 **Adding resources according to the table name we created in Supabase**
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
@@ -540,395 +481,293 @@ import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 
 function App() {
-    return (
-        <Refine
-            dataProvider={dataProvider(supabaseClient)}
-            authProvider={authProvider}
-            DashboardPage={Dashboard}
-            LoginPage={Login}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        element: <Signup />,
-                        path: "/signup",
-                    },
-                ] as typeof routerProvider.routes,
-            }}
-            resources={[
-                {
-                    name: "users",
-                },
-                {
-                    name: "tasks",
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(supabaseClient)}
+      authProvider={authProvider}
+      DashboardPage={Dashboard}
+      LoginPage={Login}
+      routerProvider={{
+        ...routerProvider,
+        routes: [
+          {
+            element: <Signup />,
+            path: "/signup",
+          },
+        ] as typeof routerProvider.routes,
+      }}
+      resources={[
+        {
+          name: "users",
+        },
+        {
+          name: "tasks",
+        },
+      ]}
+      notificationProvider={notificationProvider}
+      Layout={Layout}
+      catchAll={<ErrorComponent />}
+    />
+  );
 }
 
 export default App;
-
 ```
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/list.png" alt="overview" />
 <br />
- 
+
 We can now create lists of tasks and make changes to them.
 
-## Add List and Filter 
+## Add List and Filter
 
 ```tsx title="src/pages/task/list.tsx"
 import React from "react";
-import {
-    useMany,
-    IResourceComponentsProps,
-    HttpError,
-    CrudFilters,
-} from "@refinedev/core";
+import { useMany, IResourceComponentsProps, HttpError, CrudFilters } from "@refinedev/core";
 
 import {
-    useTable,
-    List,
-    Table,
-    TextField,
-    TagField,
-    DateField,
-    Space,
-    ShowButton,
-    EditButton,
-    DeleteButton,
-    Row,
-    Col,
-    Card,
+  useTable,
+  List,
+  Table,
+  TextField,
+  TagField,
+  DateField,
+  Space,
+  ShowButton,
+  EditButton,
+  DeleteButton,
+  Row,
+  Col,
+  Card,
 } from "@refinedev/antd";
 
-import {
-    ILabel,
-    IPriority,
-    ITask,
-    ITaskFilterVariables,
-    IStatus,
-    IAuthUser,
-} from "interfaces";
+import { ILabel, IPriority, ITask, ITaskFilterVariables, IStatus, IAuthUser } from "interfaces";
 
 import { Filter } from "../task";
 
 export const TaskList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, searchFormProps } = useTable<
-        ITask,
-        HttpError,
-        ITaskFilterVariables
-    >({
-        onSearch: (params) => {
-            const filters: CrudFilters = [];
-            const {
-                title,
-                label,
-                priority,
-                users,
-                status,
-                start_time,
-                end_time,
-            } = params;
+  const { tableProps, searchFormProps } = useTable<ITask, HttpError, ITaskFilterVariables>({
+    onSearch: (params) => {
+      const filters: CrudFilters = [];
+      const { title, label, priority, users, status, start_time, end_time } = params;
 
-            filters.push(
-                {
-                    field: "title",
-                    operator: "eq",
-                    value: title,
-                },
-
-                {
-                    field: "label",
-                    operator: "eq",
-                    value: label,
-                },
-
-                {
-                    field: "priority",
-                    operator: "eq",
-                    value: priority,
-                },
-
-                {
-                    field: "users",
-                    operator: "eq",
-                    value: users,
-                },
-
-                {
-                    field: "status",
-                    operator: "eq",
-                    value: status,
-                },
-
-                {
-                    field: "start_time",
-                    operator: "gte",
-                    value: start_time ? start_time[0].toISOString() : undefined,
-                },
-
-                {
-                    field: "start_time",
-                    operator: "lte",
-                    value: start_time ? start_time[1].toISOString() : undefined,
-                },
-
-                {
-                    field: "end_time",
-                    operator: "gte",
-                    value: end_time ? end_time[0].toISOString() : undefined,
-                },
-
-                {
-                    field: "end_time",
-                    operator: "lte",
-                    value: end_time ? end_time[1].toISOString() : undefined,
-                },
-            );
-            return filters;
+      filters.push(
+        {
+          field: "title",
+          operator: "eq",
+          value: title,
         },
-    });
 
-    const labelIds = tableProps?.dataSource?.map((item) => item.label) ?? [];
-    const priorityIds =
-        tableProps?.dataSource?.map((item) => item.priority) ?? [];
-    const assignedIds = tableProps?.dataSource?.map((item) => item.users) ?? [];
-    const statusIds = tableProps?.dataSource?.map((item) => item.status) ?? [];
+        {
+          field: "label",
+          operator: "eq",
+          value: label,
+        },
 
-    const { data: labels } = useMany<ILabel>({
-        resource: "label",
-        ids: labelIds,
-    });
+        {
+          field: "priority",
+          operator: "eq",
+          value: priority,
+        },
 
-    const { data: priority } = useMany<IPriority>({
-        resource: "priority",
-        ids: priorityIds,
-    });
+        {
+          field: "users",
+          operator: "eq",
+          value: users,
+        },
 
-    const { data: assigned } = useMany<IAuthUser>({
-        resource: "users",
-        ids: assignedIds,
-    });
+        {
+          field: "status",
+          operator: "eq",
+          value: status,
+        },
 
-    const { data: status } = useMany<IStatus>({
-        resource: "status",
-        ids: statusIds,
-    });
+        {
+          field: "start_time",
+          operator: "gte",
+          value: start_time ? start_time[0].toISOString() : undefined,
+        },
 
-    return (
-        <Row gutter={[16, 16]}>
-            <Col lg={6} xs={24}>
-                <Card title="Task Filter">
-                    <Filter formProps={searchFormProps} />
-                </Card>
-            </Col>
-            <Col lg={18} xs={24}>
-                <List>
-                    <Table {...tableProps} rowKey="id">
-                        <Table.Column dataIndex="title" title="Title" />
-                        <Table.Column
-                            dataIndex="label"
-                            title="Label"
-                            render={(value) => {
-                                return (
-                                    <TagField
-                                        color={
-                                            labels?.data.find(
-                                                (item) => item.id === value,
-                                            )?.color
-                                        }
-                                        value={
-                                            labels?.data.find(
-                                                (item) => item.id === value,
-                                            )?.title
-                                        }
-                                    />
-                                );
-                            }}
-                        />
-                        <Table.Column
-                            dataIndex="priority"
-                            title="Priority"
-                            render={(value) => {
-                                return (
-                                    <TextField
-                                        value={
-                                            priority?.data.find(
-                                                (item) => item.id === value,
-                                            )?.title
-                                        }
-                                    />
-                                );
-                            }}
-                        />
-                        <Table.Column
-                            dataIndex="users"
-                            title="Assigned"
-                            render={(value) => {
-                                return (
-                                    <TagField
-                                        value={
-                                            assigned?.data.find(
-                                                (item) => item.id === value,
-                                            )?.email
-                                        }
-                                    />
-                                );
-                            }}
-                        />
-                        <Table.Column
-                            dataIndex="status"
-                            title="Status"
-                            render={(value) => {
-                                return (
-                                    <TextField
-                                        value={
-                                            status?.data.find(
-                                                (item) => item.id === value,
-                                            )?.title
-                                        }
-                                    />
-                                );
-                            }}
-                        />
-                        <Table.Column
-                            dataIndex="start_time"
-                            title="Start Date"
-                            render={(value) => (
-                                <DateField format="DD/MM/YYYY" value={value} />
-                            )}
-                        />
-                        <Table.Column
-                            dataIndex="end_time"
-                            title="Due Date"
-                            render={(value) => (
-                                <DateField format="DD/MM/YYYY" value={value} />
-                            )}
-                        />
-                        <Table.Column<ITask>
-                            title="Actions"
-                            dataIndex="actions"
-                            render={(_, record): React.ReactNode => {
-                                return (
-                                    <Space>
-                                        <ShowButton
-                                            size="small"
-                                            recordItemId={record.id}
-                                            hideText
-                                        />
-                                        <EditButton
-                                            size="small"
-                                            recordItemId={record.id}
-                                            hideText
-                                        />
-                                        <DeleteButton
-                                            size="small"
-                                            recordItemId={record.id}
-                                            hideText
-                                        />
-                                    </Space>
-                                );
-                            }}
-                        />
-                    </Table>
-                </List>
-            </Col>
-        </Row>
-    );
+        {
+          field: "start_time",
+          operator: "lte",
+          value: start_time ? start_time[1].toISOString() : undefined,
+        },
+
+        {
+          field: "end_time",
+          operator: "gte",
+          value: end_time ? end_time[0].toISOString() : undefined,
+        },
+
+        {
+          field: "end_time",
+          operator: "lte",
+          value: end_time ? end_time[1].toISOString() : undefined,
+        },
+      );
+      return filters;
+    },
+  });
+
+  const labelIds = tableProps?.dataSource?.map((item) => item.label) ?? [];
+  const priorityIds = tableProps?.dataSource?.map((item) => item.priority) ?? [];
+  const assignedIds = tableProps?.dataSource?.map((item) => item.users) ?? [];
+  const statusIds = tableProps?.dataSource?.map((item) => item.status) ?? [];
+
+  const { data: labels } = useMany<ILabel>({
+    resource: "label",
+    ids: labelIds,
+  });
+
+  const { data: priority } = useMany<IPriority>({
+    resource: "priority",
+    ids: priorityIds,
+  });
+
+  const { data: assigned } = useMany<IAuthUser>({
+    resource: "users",
+    ids: assignedIds,
+  });
+
+  const { data: status } = useMany<IStatus>({
+    resource: "status",
+    ids: statusIds,
+  });
+
+  return (
+    <Row gutter={[16, 16]}>
+      <Col lg={6} xs={24}>
+        <Card title="Task Filter">
+          <Filter formProps={searchFormProps} />
+        </Card>
+      </Col>
+      <Col lg={18} xs={24}>
+        <List>
+          <Table {...tableProps} rowKey="id">
+            <Table.Column dataIndex="title" title="Title" />
+            <Table.Column
+              dataIndex="label"
+              title="Label"
+              render={(value) => {
+                return (
+                  <TagField
+                    color={labels?.data.find((item) => item.id === value)?.color}
+                    value={labels?.data.find((item) => item.id === value)?.title}
+                  />
+                );
+              }}
+            />
+            <Table.Column
+              dataIndex="priority"
+              title="Priority"
+              render={(value) => {
+                return <TextField value={priority?.data.find((item) => item.id === value)?.title} />;
+              }}
+            />
+            <Table.Column
+              dataIndex="users"
+              title="Assigned"
+              render={(value) => {
+                return <TagField value={assigned?.data.find((item) => item.id === value)?.email} />;
+              }}
+            />
+            <Table.Column
+              dataIndex="status"
+              title="Status"
+              render={(value) => {
+                return <TextField value={status?.data.find((item) => item.id === value)?.title} />;
+              }}
+            />
+            <Table.Column
+              dataIndex="start_time"
+              title="Start Date"
+              render={(value) => <DateField format="DD/MM/YYYY" value={value} />}
+            />
+            <Table.Column
+              dataIndex="end_time"
+              title="Due Date"
+              render={(value) => <DateField format="DD/MM/YYYY" value={value} />}
+            />
+            <Table.Column<ITask>
+              title="Actions"
+              dataIndex="actions"
+              render={(_, record): React.ReactNode => {
+                return (
+                  <Space>
+                    <ShowButton size="small" recordItemId={record.id} hideText />
+                    <EditButton size="small" recordItemId={record.id} hideText />
+                    <DeleteButton size="small" recordItemId={record.id} hideText />
+                  </Space>
+                );
+              }}
+            />
+          </Table>
+        </List>
+      </Col>
+    </Row>
+  );
 };
-
 ```
-
 
 ```tsx title="src/pages/task/filter.tsx"
 import React from "react";
-import {
-    Form,
-    FormProps,
-    Input,
-    useSelect,
-    Select,
-    DatePicker,
-    Icons,
-    Button,
-} from "@refinedev/antd";
+import { Form, FormProps, Input, useSelect, Select, DatePicker, Icons, Button } from "@refinedev/antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
 const { RangePicker } = DatePicker;
 
 export const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
-    const { selectProps: labelSelectProps } = useSelect<ITask>({
-        resource: "label",
-    });
+  const { selectProps: labelSelectProps } = useSelect<ITask>({
+    resource: "label",
+  });
 
-    const { selectProps: priorityProps } = useSelect<IPriority>({
-        resource: "priority",
-    });
+  const { selectProps: priorityProps } = useSelect<IPriority>({
+    resource: "priority",
+  });
 
-    const { selectProps: statusProps } = useSelect<IStatus>({
-        resource: "status",
-    });
+  const { selectProps: statusProps } = useSelect<IStatus>({
+    resource: "status",
+  });
 
-    const { selectProps: assigneProps } = useSelect<IAuthUser>({
-        resource: "users",
-        optionValue: "id",
-        optionLabel: "email",
-    });
+  const { selectProps: assigneeProps } = useSelect<IAuthUser>({
+    resource: "users",
+    optionValue: "id",
+    optionLabel: "email",
+  });
 
-    return (
-        <Form layout="vertical" {...formProps}>
-            <Form.Item label="Search" name="title">
-                <Input placeholder="Title" prefix={<Icons.SearchOutlined />} />
-            </Form.Item>
-            <Form.Item label="Label" name="label">
-                <Select
-                    {...labelSelectProps}
-                    allowClear
-                    placeholder="Seach Label"
-                />
-            </Form.Item>
-            <Form.Item label="Priority" name="priority">
-                <Select
-                    {...priorityProps}
-                    allowClear
-                    placeholder="Seach Priority"
-                />
-            </Form.Item>
-            <Form.Item label="Status" name="status">
-                <Select
-                    {...statusProps}
-                    allowClear
-                    placeholder="Search Status"
-                />
-            </Form.Item>
-            <Form.Item label="Assigned" name="users">
-                <Select
-                    {...assigneProps}
-                    allowClear
-                    placeholder="Search Assignee"
-                />
-            </Form.Item>
-            <Form.Item label="Start Date" name="start_time">
-                <RangePicker />
-            </Form.Item>
-            <Form.Item label="Due Date" name="end_time">
-                <RangePicker />
-            </Form.Item>
-            <Form.Item>
-                <Button htmlType="submit" type="primary">
-                    Filter
-                </Button>
-            </Form.Item>
-        </Form>
-    );
+  return (
+    <Form layout="vertical" {...formProps}>
+      <Form.Item label="Search" name="title">
+        <Input placeholder="Title" prefix={<Icons.SearchOutlined />} />
+      </Form.Item>
+      <Form.Item label="Label" name="label">
+        <Select {...labelSelectProps} allowClear placeholder="Search Label" />
+      </Form.Item>
+      <Form.Item label="Priority" name="priority">
+        <Select {...priorityProps} allowClear placeholder="Search Priority" />
+      </Form.Item>
+      <Form.Item label="Status" name="status">
+        <Select {...statusProps} allowClear placeholder="Search Status" />
+      </Form.Item>
+      <Form.Item label="Assigned" name="users">
+        <Select {...assigneeProps} allowClear placeholder="Search Assignee" />
+      </Form.Item>
+      <Form.Item label="Start Date" name="start_time">
+        <RangePicker />
+      </Form.Item>
+      <Form.Item label="Due Date" name="end_time">
+        <RangePicker />
+      </Form.Item>
+      <Form.Item>
+        <Button htmlType="submit" type="primary">
+          Filter
+        </Button>
+      </Form.Item>
+    </Form>
+  );
 };
-
 ```
 
 ```ts title="src/interfaces"
@@ -950,7 +789,7 @@ export interface IPriority {
 
 export interface IStatus {
   id: string;
-  title: string
+  title: string;
 }
 
 export interface ITask {
@@ -962,7 +801,7 @@ export interface ITask {
   label: string;
   priority: string;
   status: string;
-  users: string
+  users: string;
 }
 
 export interface ITaskFilterVariables {
@@ -979,7 +818,7 @@ export interface ITaskFilterVariables {
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_list.png" alt="overview" />
 <br />
 
- Using refine's [tableSearch](https://refine.dev/docs/guides-and-concepts/search/table-search) and list, we can create our list and perform filtering. 
+Using refine's [tableSearch](https://refine.dev/docs/guides-and-concepts/search/table-search) and list, we can create our list and perform filtering.
 
 As seen in the example, we listed and showed the task table we created in supabase with refine. Now you can make changes as you want with refine.
 
@@ -990,148 +829,130 @@ Now how do we create task? Let's examine how we can edit them and see their deta
 ```tsx title="src/pages/task/create.tsx"
 import { IResourceComponentsProps } from "@refinedev/core";
 
-import {
-    useForm,
-    Create,
-    Form,
-    Input,
-    Select,
-    useSelect,
-    DatePicker,
-} from "@refinedev/antd";
+import { useForm, Create, Form, Input, Select, useSelect, DatePicker } from "@refinedev/antd";
 
 import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 
 export const TaskCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<ITask>();
+  const { formProps, saveButtonProps } = useForm<ITask>();
 
-    const { selectProps: labelSelectProps } = useSelect<ILabel>({
-        resource: "label",
-    });
+  const { selectProps: labelSelectProps } = useSelect<ILabel>({
+    resource: "label",
+  });
 
-    const { selectProps: prioritySelectPorps } = useSelect<IPriority>({
-        resource: "priority",
-    });
+  const { selectProps: prioritySelectPorps } = useSelect<IPriority>({
+    resource: "priority",
+  });
 
-    const { selectProps: assigneSelectProps } = useSelect<IAuthUser>({
-        resource: "users",
-        optionValue: "id",
-        optionLabel: "email",
-    });
+  const { selectProps: assigneeSelectProps } = useSelect<IAuthUser>({
+    resource: "users",
+    optionValue: "id",
+    optionLabel: "email",
+  });
 
-    const { selectProps: statusSelectProps } = useSelect<IStatus>({
-        resource: "status",
-    });
+  const { selectProps: statusSelectProps } = useSelect<IStatus>({
+    resource: "status",
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} wrapperCol={{ span: 12 }} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Description" name="description">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Label" name="label">
-                    <Select {...labelSelectProps} />
-                </Form.Item>
-                <Form.Item label="Priority" name="priority">
-                    <Select {...prioritySelectPorps} />
-                </Form.Item>
-                <Form.Item label="Assigne To" name="users">
-                    <Select {...assigneSelectProps} />
-                </Form.Item>
-                <Form.Item label="Select Status" name="status">
-                    <Select {...statusSelectProps} />
-                </Form.Item>
-                <Form.Item label="Start Date" name="start_time">
-                    <DatePicker style={{ width: "50%" }} />
-                </Form.Item>
-                <Form.Item label="Due Date" name="end_time">
-                    <DatePicker style={{ width: "50%" }} />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} wrapperCol={{ span: 12 }} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item label="Description" name="description">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Label" name="label">
+          <Select {...labelSelectProps} />
+        </Form.Item>
+        <Form.Item label="Priority" name="priority">
+          <Select {...prioritySelectPorps} />
+        </Form.Item>
+        <Form.Item label="Assign To" name="users">
+          <Select {...assigneeSelectProps} />
+        </Form.Item>
+        <Form.Item label="Select Status" name="status">
+          <Select {...statusSelectProps} />
+        </Form.Item>
+        <Form.Item label="Start Date" name="start_time">
+          <DatePicker style={{ width: "50%" }} />
+        </Form.Item>
+        <Form.Item label="Due Date" name="end_time">
+          <DatePicker style={{ width: "50%" }} />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
-
 ```
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/create_test.gif" alt="overview" />
 <br />
-
 
 ## Edit Task
 
 ```tsx title="src/pages/task/edit.tsx"
 import { IResourceComponentsProps } from "@refinedev/core";
 
-import {
-    useForm,
-    Form,
-    Input,
-    Select,
-    Edit,
-    useSelect,
-} from "@refinedev/antd";
+import { useForm, Form, Input, Select, Edit, useSelect } from "@refinedev/antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
 export const EditTask: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<ITask>();
+  const { formProps, saveButtonProps } = useForm<ITask>();
 
-    const { selectProps: labelSelectProps } = useSelect<ITask>({
-        resource: "label",
-    });
+  const { selectProps: labelSelectProps } = useSelect<ITask>({
+    resource: "label",
+  });
 
-    const { selectProps: priorityProps } = useSelect<IPriority>({
-        resource: "priority",
-    });
+  const { selectProps: priorityProps } = useSelect<IPriority>({
+    resource: "priority",
+  });
 
-    const { selectProps: assigneProps } = useSelect<IAuthUser>({
-        resource: "users",
-        optionValue: "id",
-        optionLabel: "email",
-    });
+  const { selectProps: assigneeProps } = useSelect<IAuthUser>({
+    resource: "users",
+    optionValue: "id",
+    optionLabel: "email",
+  });
 
-    const { selectProps: statusProps } = useSelect<IStatus>({
-        resource: "status",
-    });
+  const { selectProps: statusProps } = useSelect<IStatus>({
+    resource: "status",
+  });
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} wrapperCol={{ span: 12 }} layout="vertical">
-                <Form.Item label="Title" name="title">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Description" name="description">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Label" name="label">
-                    <Select {...labelSelectProps} />
-                </Form.Item>
-                <Form.Item label="Priority" name="priority">
-                    <Select {...priorityProps} />
-                </Form.Item>
-                <Form.Item label="Status" name="status">
-                    <Select {...statusProps} />
-                </Form.Item>
-                <Form.Item label="Assigne" name="users">
-                    <Select {...assigneProps} />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form {...formProps} wrapperCol={{ span: 12 }} layout="vertical">
+        <Form.Item label="Title" name="title">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Description" name="description">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Label" name="label">
+          <Select {...labelSelectProps} />
+        </Form.Item>
+        <Form.Item label="Priority" name="priority">
+          <Select {...priorityProps} />
+        </Form.Item>
+        <Form.Item label="Status" name="status">
+          <Select {...statusProps} />
+        </Form.Item>
+        <Form.Item label="Assignee" name="users">
+          <Select {...assigneeProps} />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
-
 ```
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/edit_test.gif" alt="overview" />
@@ -1147,76 +968,74 @@ import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 const { Title, Text } = Typography;
 
 export const TaskShow: React.FC = () => {
-    const { queryResult } = useShow<ITask>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<ITask>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    const { data: assigned } = useOne<IAuthUser>({
-        resource: "users",
-        id: record?.users || "",
-    });
+  const { data: assigned } = useOne<IAuthUser>({
+    resource: "users",
+    id: record?.users || "",
+  });
 
-    const { data: label } = useOne<ILabel>({
-        resource: "label",
-        id: record?.label || "",
-    });
+  const { data: label } = useOne<ILabel>({
+    resource: "label",
+    id: record?.label || "",
+  });
 
-    const { data: priority } = useOne<IPriority>({
-        resource: "priority",
-        id: record?.priority || "",
-    });
+  const { data: priority } = useOne<IPriority>({
+    resource: "priority",
+    id: record?.priority || "",
+  });
 
-    const { data: status } = useOne<IStatus>({
-        resource: "status",
-        id: record?.status || "",
-    });
+  const { data: status } = useOne<IStatus>({
+    resource: "status",
+    id: record?.status || "",
+  });
 
-    console.log(status?.data);
+  console.log(status?.data);
 
-    return (
-        <Show isLoading={isLoading}>
-            <Title level={5}>Task:</Title>
-            <Text>{record?.title || "-"}</Text>
+  return (
+    <Show isLoading={isLoading}>
+      <Title level={5}>Task:</Title>
+      <Text>{record?.title || "-"}</Text>
 
-            <Title level={5}>Task Desciption:</Title>
-            <Text>{record?.description}</Text>
+      <Title level={5}>Task Description:</Title>
+      <Text>{record?.description}</Text>
 
-            <Title level={5}>Assigned To:</Title>
-            <Text>
-                <Tag>{assigned?.data?.email ?? "-"}</Tag>
-            </Text>
+      <Title level={5}>Assigned To:</Title>
+      <Text>
+        <Tag>{assigned?.data?.email ?? "-"}</Tag>
+      </Text>
 
-            <Title level={5}>Label:</Title>
-            <Text>
-                <Tag>{label?.data?.title ?? "-"}</Tag>
-            </Text>
+      <Title level={5}>Label:</Title>
+      <Text>
+        <Tag>{label?.data?.title ?? "-"}</Tag>
+      </Text>
 
-            <Title level={5}>Priority:</Title>
-            <Text>{priority?.data?.title ?? "-"}</Text>
+      <Title level={5}>Priority:</Title>
+      <Text>{priority?.data?.title ?? "-"}</Text>
 
-            <Title level={5}>Status:</Title>
-            <Text>{status?.data?.title ?? "-"}</Text>
+      <Title level={5}>Status:</Title>
+      <Text>{status?.data?.title ?? "-"}</Text>
 
-            <Title level={5}>Start Date:</Title>
-            <DateField format="DD/MM/YYYY" value={record?.start_time ?? "-"} />
+      <Title level={5}>Start Date:</Title>
+      <DateField format="DD/MM/YYYY" value={record?.start_time ?? "-"} />
 
-            <Title level={5}>Due Date:</Title>
-            <DateField format="DD/MM/YYYY" value={record?.end_time ?? "-"} />
-        </Show>
-    );
+      <Title level={5}>Due Date:</Title>
+      <DateField format="DD/MM/YYYY" value={record?.end_time ?? "-"} />
+    </Show>
+  );
 };
-
 ```
+
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/show.png" alt="overview" />
 <br />
- 
 
 By using Refine's basic views such as [create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create), [edit](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/edit/) and [show](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/show/), we can now create tasks, edit these tasks and view their details.
 
-
 Let's see how to add a dashboard page to our project together.
 
-## Add Custom Chart 
+## Add Custom Chart
 
 ```tsx title="src/components/task/pie.tsx"
 import React from "react";
@@ -1262,113 +1081,106 @@ import { TaskChart } from "components/task/pie";
 import { groupBy } from "helper";
 
 export const Dashboard = () => {
-    const taskList = useList<ITask>({
-        resource: "tasks",
-    });
+  const taskList = useList<ITask>({
+    resource: "tasks",
+  });
 
-    const labelIds = taskList.data?.data.map((item) => item.label) ?? [];
-    const priorityIds = taskList.data?.data.map((item) => item.priority) ?? [];
-    const assignedIds = taskList.data?.data.map((item) => item.users) ?? [];
-    const statusIds = taskList.data?.data.map((item) => item.status) ?? [];
+  const labelIds = taskList.data?.data.map((item) => item.label) ?? [];
+  const priorityIds = taskList.data?.data.map((item) => item.priority) ?? [];
+  const assignedIds = taskList.data?.data.map((item) => item.users) ?? [];
+  const statusIds = taskList.data?.data.map((item) => item.status) ?? [];
 
-    const { data: labels } = useMany<ILabel>({
-        resource: "label",
-        ids: labelIds || [],
-    });
+  const { data: labels } = useMany<ILabel>({
+    resource: "label",
+    ids: labelIds || [],
+  });
 
-    const { data: priority } = useMany<IPriority>({
-        resource: "priority",
-        ids: priorityIds || [],
-    });
+  const { data: priority } = useMany<IPriority>({
+    resource: "priority",
+    ids: priorityIds || [],
+  });
 
-    const { data: assigned } = useMany<IAuthUser>({
-        resource: "users",
-        ids: assignedIds || [],
-    });
+  const { data: assigned } = useMany<IAuthUser>({
+    resource: "users",
+    ids: assignedIds || [],
+  });
 
-    const { data: status } = useMany<IStatus>({
-        resource: "status",
-        ids: statusIds || [],
-    });
+  const { data: status } = useMany<IStatus>({
+    resource: "status",
+    ids: statusIds || [],
+  });
 
-    return (
-        <Row gutter={[16, 16]}>
-            <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-                <Card>
-                    <TaskChart
-                        data={
-                            labels?.data.map((i) => {
-                                return {
-                                    type: i.title,
-                                    value: groupBy(labelIds)[i.id],
-                                };
-                            }) ?? []
-                        }
-                    />
-                </Card>
-            </Col>
-            <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-                <Card>
-                    <TaskChart
-                        data={
-                            priority?.data.map((i) => {
-                                return {
-                                    type: i.title,
-                                    value: groupBy(priorityIds)[i.id],
-                                };
-                            }) ?? []
-                        }
-                    />
-                </Card>
-            </Col>
-            <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-                <Card>
-                    <TaskChart
-                        data={
-                            status?.data.map((i) => {
-                                return {
-                                    type: i.title,
-                                    value: groupBy(statusIds)[i.id],
-                                };
-                            }) ?? []
-                        }
-                    />
-                </Card>
-            </Col>
-            <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-                <Card>
-                    <TaskChart
-                        data={
-                            assigned?.data.map((i) => {
-                                return {
-                                    type: i.email,
-                                    value: groupBy(assignedIds)[i.id],
-                                };
-                            }) ?? []
-                        }
-                    />
-                </Card>
-            </Col>
-        </Row>
-    );
+  return (
+    <Row gutter={[16, 16]}>
+      <Col xl={7} lg={12} md={24} sm={24} xs={24}>
+        <Card>
+          <TaskChart
+            data={
+              labels?.data.map((i) => {
+                return {
+                  type: i.title,
+                  value: groupBy(labelIds)[i.id],
+                };
+              }) ?? []
+            }
+          />
+        </Card>
+      </Col>
+      <Col xl={7} lg={12} md={24} sm={24} xs={24}>
+        <Card>
+          <TaskChart
+            data={
+              priority?.data.map((i) => {
+                return {
+                  type: i.title,
+                  value: groupBy(priorityIds)[i.id],
+                };
+              }) ?? []
+            }
+          />
+        </Card>
+      </Col>
+      <Col xl={7} lg={12} md={24} sm={24} xs={24}>
+        <Card>
+          <TaskChart
+            data={
+              status?.data.map((i) => {
+                return {
+                  type: i.title,
+                  value: groupBy(statusIds)[i.id],
+                };
+              }) ?? []
+            }
+          />
+        </Card>
+      </Col>
+      <Col xl={7} lg={12} md={24} sm={24} xs={24}>
+        <Card>
+          <TaskChart
+            data={
+              assigned?.data.map((i) => {
+                return {
+                  type: i.email,
+                  value: groupBy(assignedIds)[i.id],
+                };
+              }) ?? []
+            }
+          />
+        </Card>
+      </Col>
+    </Row>
+  );
 };
-
 ```
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dash_overview.png" alt="overview" />
 <br/>
 
-
- 
 Final version of our `<App.tsx/>`.
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
@@ -1383,43 +1195,42 @@ import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 
 function App() {
-    return (
-        <Refine
-            dataProvider={dataProvider(supabaseClient)}
-            authProvider={authProvider}
-            DashboardPage={Dashboard}
-            LoginPage={Login}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        element: <Signup />,
-                        path: "/signup",
-                    },
-                ] as typeof routerProvider.routes,
-            }}
-            resources={[
-                {
-                    name: "users",
-                    list: UserList,
-                },
-                {
-                    name: "tasks",
-                    list: TaskList,
-                    edit: EditTask,
-                    create: TaskCreate,
-                    show: TaskShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(supabaseClient)}
+      authProvider={authProvider}
+      DashboardPage={Dashboard}
+      LoginPage={Login}
+      routerProvider={{
+        ...routerProvider,
+        routes: [
+          {
+            element: <Signup />,
+            path: "/signup",
+          },
+        ] as typeof routerProvider.routes,
+      }}
+      resources={[
+        {
+          name: "users",
+          list: UserList,
+        },
+        {
+          name: "tasks",
+          list: TaskList,
+          edit: EditTask,
+          create: TaskCreate,
+          show: TaskShow,
+        },
+      ]}
+      notificationProvider={notificationProvider}
+      Layout={Layout}
+      catchAll={<ErrorComponent />}
+    />
+  );
 }
 
 export default App;
-
 ```
 
 Our project is done. Lets see how its look like.
@@ -1441,16 +1252,14 @@ Our project is done. Lets see how its look like.
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dashboard.gif" alt="overview" />
 <br />
 
-As you can see, we made a simple and short task manager application using refine on our front end and using its data-provider. 
+As you can see, we made a simple and short task manager application using refine on our front end and using its data-provider.
 
-[Here is repo](https://github.com/refinedev/refine/tree/master/examples/blog-issue-tracker) 
+[Here is repo](https://github.com/refinedev/refine/tree/master/examples/blog-issue-tracker)
 
 For more information about Refine: [Refine Github Page](https://github.com/refinedev/refine)
 
-For other examples and articles that will interest you with refine:  [https://refine.dev/blog/](https://refine.dev/blog/)
+For other examples and articles that will interest you with refine: [https://refine.dev/blog/](https://refine.dev/blog/)
 
 ## Example
 
 <CodeSandboxExample path="blog-issue-tracker" />
- 
-

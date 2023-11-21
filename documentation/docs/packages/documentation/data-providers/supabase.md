@@ -8,57 +8,56 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ```tsx live  shared
-const { useNavigation: useNavigationShared, useLogout: useLogoutShared } =
-    RefineCore;
+const { useNavigation: useNavigationShared, useLogout: useLogoutShared } = RefineCore;
 const {
-    Typography: { Title: SharedTitle },
-    Button,
+  Typography: { Title: SharedTitle },
+  Button,
 } = AntdCore;
 
 window.__refineAuthStatus = false;
 
 const authProvider = {
-    login: () => {
-        window.__refineAuthStatus = true;
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
-    register: async () => {
-        return {
-            success: true,
-        };
-    },
-    forgotPassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    updatePassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    logout: async () => {
-        window.__refineAuthStatus = false;
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    check: async () => {
-        return {
-            authenticated: window.__refineAuthStatus ? true : false,
-            redirectTo: window.__refineAuthStatus ? undefined : "/login",
-        };
-    },
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    getPermissions: async () => null,
-    getIdentity: async () => null,
+  login: () => {
+    window.__refineAuthStatus = true;
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
+  register: async () => {
+    return {
+      success: true,
+    };
+  },
+  forgotPassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  updatePassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  logout: async () => {
+    window.__refineAuthStatus = false;
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  check: async () => {
+    return {
+      authenticated: window.__refineAuthStatus ? true : false,
+      redirectTo: window.__refineAuthStatus ? undefined : "/login",
+    };
+  },
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  getPermissions: async () => null,
+  getIdentity: async () => null,
 };
 ```
 
@@ -98,7 +97,7 @@ Also, we need to install npm packages to use markdown editor:
 npm i @uiw/react-md-editor
 ```
 
-This will create a new refine app with Supabase data provider and Ant Desing as a UI framework. We'll be using this project as a base to implement our example.
+This will create a new refine app with Supabase data provider and Ant Design as a UI framework. We'll be using this project as a base to implement our example.
 
   </TabItem>
     <TabItem value="nopreset">
@@ -121,6 +120,7 @@ Then choose the following options:
 ```
 
 :::tip
+
 If you want to add Supabase data provider to existed **refine** app, you add it by running:
 
 ```
@@ -143,15 +143,15 @@ import { createClient } from "@refinedev/supabase";
 
 const SUPABASE_URL = "https://iwdfzvfqbtokqetmbmbp.supabase.co";
 const SUPABASE_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU2NzAxMCwiZXhwIjoxOTQ2MTQzMDEwfQ._gr6kXGkQBi9BM9dx5vKaNKYj_DJN1xlkarprGpM_fU";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU2NzAxMCwiZXhwIjoxOTQ2MTQzMDEwfQ._gr6kXGkQBi9BM9dx5vKaNKYj_DJN1xlkarprGpM_fU";
 
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
-    db: {
-        schema: "public",
-    },
-    auth: {
-        persistSession: true,
-    },
+  db: {
+    schema: "public",
+  },
+  auth: {
+    persistSession: true,
+  },
 });
 ```
 
@@ -160,7 +160,9 @@ We'll use this example API credentials and `createClient` method that exposes fr
 [You can find your Supabase URL and key from your Supabase dashboard &#8594 ](https://supabase.com/docs/guides/with-react#get-the-api-keys)
 
 :::tip
+
 You can also use environment variables to store your Supabase URL and key. This is a good practice to keep your sensitive information safe.
+
 :::
 
 ### Register Supabase data provider
@@ -175,15 +177,15 @@ import { supabaseClient } from "utility";
 // highlight-end
 
 function App() {
-    return (
-        <Refine
-            // highlight-next-line
-            dataProvider={dataProvider(supabaseClient)}
-            //...
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      // highlight-next-line
+      dataProvider={dataProvider(supabaseClient)}
+      //...
+    >
+      {/* ... */}
+    </Refine>
+  );
 }
 
 export default App;
@@ -216,242 +218,239 @@ import { AuthBindings } from "@refinedev/core";
 import { supabaseClient } from "utility";
 
 const authProvider: AuthBindings = {
-    login: async ({ email, password, providerName }) => {
-        // sign in with oauth
-        try {
-            if (providerName) {
-                const { data, error } =
-                    await supabaseClient.auth.signInWithOAuth({
-                        provider: providerName,
-                    });
-
-                if (error) {
-                    return {
-                        success: false,
-                        error,
-                    };
-                }
-
-                if (data?.url) {
-                    return {
-                        success: true,
-                    };
-                }
-            }
-
-            // sign in with email and password
-            const { data, error } =
-                await supabaseClient.auth.signInWithPassword({
-                    email,
-                    password,
-                });
-
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data?.user) {
-                return {
-                    success: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
-
-        return {
-            success: false,
-            error: {
-                message: "Login failed",
-                name: "Invalid email or password",
-            },
-        };
-    },
-    register: async ({ email, password }) => {
-        try {
-            const { data, error } = await supabaseClient.auth.signUp({
-                email,
-                password,
-            });
-
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data) {
-                return {
-                    success: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
-
-        return {
-            success: false,
-            error: {
-                message: "Register failed",
-                name: "Invalid email or password",
-            },
-        };
-    },
-    forgotPassword: async ({ email }) => {
-        try {
-            const { data, error } =
-                await supabaseClient.auth.resetPasswordForEmail(email, {
-                    redirectTo: `${window.location.origin}/update-password`,
-                });
-
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data) {
-                notification.open({
-                    type: "success",
-                    message: "Success",
-                    description:
-                        "Please check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.",
-                });
-                return {
-                    success: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
-
-        return {
-            success: false,
-            error: {
-                message: "Forgot password failed",
-                name: "Invalid email",
-            },
-        };
-    },
-    updatePassword: async ({ password }) => {
-        try {
-            const { data, error } = await supabaseClient.auth.updateUser({
-                password,
-            });
-
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data) {
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
-        return {
-            success: false,
-            error: {
-                message: "Update password failed",
-                name: "Invalid password",
-            },
-        };
-    },
-    logout: async () => {
-        const { error } = await supabaseClient.auth.signOut();
+  login: async ({ email, password, providerName }) => {
+    // sign in with oauth
+    try {
+      if (providerName) {
+        const { data, error } = await supabaseClient.auth.signInWithOAuth({
+          provider: providerName,
+        });
 
         if (error) {
-            return {
-                success: false,
-                error,
-            };
+          return {
+            success: false,
+            error,
+          };
         }
 
-        return {
+        if (data?.url) {
+          return {
             success: true,
-            redirectTo: "/",
-        };
-    },
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    check: async () => {
-        try {
-            const { data } = await supabaseClient.auth.getSession();
-            const { session } = data;
-
-            if (!session) {
-                return {
-                    authenticated: false,
-                    error: {
-                        message: "Check failed",
-                        name: "Session not found",
-                    },
-                    logout: true,
-                    redirectTo: "/login",
-                };
-            }
-        } catch (error: any) {
-            return {
-                authenticated: false,
-                error: error || {
-                    message: "Check failed",
-                    name: "Session not found",
-                },
-                logout: true,
-                redirectTo: "/login",
-            };
+          };
         }
+      }
 
+      // sign in with email and password
+      const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
         return {
-            authenticated: true,
+          success: false,
+          error,
         };
-    },
-    getPermissions: async () => {
-        const user = await supabaseClient.auth.getUser();
+      }
 
-        if (user) {
-            return user.data.user?.role;
-        }
+      if (data?.user) {
+        return {
+          success: true,
+        };
+      }
+    } catch (error: any) {
+      return {
+        success: false,
+        error,
+      };
+    }
 
-        return null;
-    },
-    getUserIdentity: async () => {
-        const { data } = await supabaseClient.auth.getUser();
+    return {
+      success: false,
+      error: {
+        message: "Login failed",
+        name: "Invalid email or password",
+      },
+    };
+  },
+  register: async ({ email, password }) => {
+    try {
+      const { data, error } = await supabaseClient.auth.signUp({
+        email,
+        password,
+      });
 
-        if (data?.user) {
-            return {
-                ...data.user,
-                name: data.user.email,
-            };
-        }
+      if (error) {
+        return {
+          success: false,
+          error,
+        };
+      }
 
-        return null;
-    },
+      if (data) {
+        return {
+          success: true,
+        };
+      }
+    } catch (error: any) {
+      return {
+        success: false,
+        error,
+      };
+    }
+
+    return {
+      success: false,
+      error: {
+        message: "Register failed",
+        name: "Invalid email or password",
+      },
+    };
+  },
+  forgotPassword: async ({ email }) => {
+    try {
+      const { data, error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/update-password`,
+      });
+
+      if (error) {
+        return {
+          success: false,
+          error,
+        };
+      }
+
+      if (data) {
+        notification.open({
+          type: "success",
+          message: "Success",
+          description:
+            "Please check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.",
+        });
+        return {
+          success: true,
+        };
+      }
+    } catch (error: any) {
+      return {
+        success: false,
+        error,
+      };
+    }
+
+    return {
+      success: false,
+      error: {
+        message: "Forgot password failed",
+        name: "Invalid email",
+      },
+    };
+  },
+  updatePassword: async ({ password }) => {
+    try {
+      const { data, error } = await supabaseClient.auth.updateUser({
+        password,
+      });
+
+      if (error) {
+        return {
+          success: false,
+          error,
+        };
+      }
+
+      if (data) {
+        return {
+          success: true,
+          redirectTo: "/",
+        };
+      }
+    } catch (error: any) {
+      return {
+        success: false,
+        error,
+      };
+    }
+    return {
+      success: false,
+      error: {
+        message: "Update password failed",
+        name: "Invalid password",
+      },
+    };
+  },
+  logout: async () => {
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+      return {
+        success: false,
+        error,
+      };
+    }
+
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  check: async () => {
+    try {
+      const { data } = await supabaseClient.auth.getSession();
+      const { session } = data;
+
+      if (!session) {
+        return {
+          authenticated: false,
+          error: {
+            message: "Check failed",
+            name: "Session not found",
+          },
+          logout: true,
+          redirectTo: "/login",
+        };
+      }
+    } catch (error: any) {
+      return {
+        authenticated: false,
+        error: error || {
+          message: "Check failed",
+          name: "Session not found",
+        },
+        logout: true,
+        redirectTo: "/login",
+      };
+    }
+
+    return {
+      authenticated: true,
+    };
+  },
+  getPermissions: async () => {
+    const user = await supabaseClient.auth.getUser();
+
+    if (user) {
+      return user.data.user?.role;
+    }
+
+    return null;
+  },
+  getUserIdentity: async () => {
+    const { data } = await supabaseClient.auth.getUser();
+
+    if (data?.user) {
+      return {
+        ...data.user,
+        name: data.user.email,
+      };
+    }
+
+    return null;
+  },
 };
 
 export default authProvider;
@@ -461,7 +460,9 @@ export default authProvider;
 </details>
 
 :::tip
+
 Auth provider functions are also consumed by [refine authorization hooks](/docs/api-reference/core/hooks/authentication/useLogin.md). Since this is out of scope of this tutorial, we'll not cover them for now
+
 :::
 
 Auth provider needed to be registered in `<Refine>` component to activate auth features in our app
@@ -473,13 +474,13 @@ import authProvider from "./authProvider";
 // highlight-end
 
 function App() {
-    return (
-        <Refine
-            // highlight-next-line
-            authProvider={authProvider}
-            //...
-        />
-    );
+  return (
+    <Refine
+      // highlight-next-line
+      authProvider={authProvider}
+      //...
+    />
+  );
 }
 
 export default App;
@@ -503,19 +504,19 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-            >
-                <Routes>
-                    <Route index element={<WelcomePage />} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerBindings}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        notificationProvider={notificationProvider}
+      >
+        <Routes>
+          <Route index element={<WelcomePage />} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -528,7 +529,9 @@ Now it's time to add some resources to our app.
 Before diving into Supabase features, we'll add simple CRUD pages to make the app more interactive.
 
 :::note
+
 Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/docs/tutorial/introduction/index/) to learn more about creating CRUD pages.
+
 :::
 
 ### Adding a List page
@@ -540,93 +543,66 @@ Let's add a listing page to show data retrieved from Supabase API in the table. 
 
 ```tsx title="src/pages/posts/list.tsx"
 import {
-    List,
-    useTable,
-    EditButton,
-    ShowButton,
-    getDefaultSortOrder,
-    FilterDropdown,
-    useSelect,
+  List,
+  useTable,
+  EditButton,
+  ShowButton,
+  getDefaultSortOrder,
+  FilterDropdown,
+  useSelect,
 } from "@refinedev/antd";
 import { Table, Space, Select } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        sorters: {
-            initial: [
-                {
-                    field: "id",
-                    order: "asc",
-                },
-            ],
+  const { tableProps, sorter } = useTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "asc",
         },
-        meta: {
-            select: "*, categories(title)",
-        },
-    });
+      ],
+    },
+    meta: {
+      select: "*, categories(title)",
+    },
+  });
 
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
+  const { selectProps } = useSelect<ICategory>({
+    resource: "categories",
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    key="id"
-                    dataIndex="id"
-                    title="ID"
-                    sorter
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                />
-                <Table.Column
-                    key="title"
-                    dataIndex="title"
-                    title="Title"
-                    sorter
-                />
-                <Table.Column
-                    key="categoryId"
-                    dataIndex={["categories", "title"]}
-                    title="Category"
-                    defaultSortOrder={getDefaultSortOrder(
-                        "categories.title",
-                        sorter,
-                    )}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column key="id" dataIndex="id" title="ID" sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
+        <Table.Column key="title" dataIndex="title" title="Title" sorter />
+        <Table.Column
+          key="categoryId"
+          dataIndex={["categories", "title"]}
+          title="Category"
+          defaultSortOrder={getDefaultSortOrder("categories.title", sorter)}
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Category" {...selectProps} />
+            </FilterDropdown>
+          )}
+        />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -653,101 +629,78 @@ import { IPost, ICategory } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
 
 export const PostCreate: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name="categoryId"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <MDEditor data-color-mode="light" />
-                </Form.Item>
-                <Form.Item label="Images">
-                    <Form.Item
-                        name="images"
-                        valuePropName="fileList"
-                        normalize={normalizeFile}
-                        noStyle
-                    >
-                        <Upload.Dragger
-                            name="file"
-                            listType="picture"
-                            multiple
-                            customRequest={async ({
-                                file,
-                                onError,
-                                onSuccess,
-                            }) => {
-                                try {
-                                    const rcFile = file as RcFile;
-                                    await supabaseClient.storage
-                                        .from("refine")
-                                        .upload(`public/${rcFile.name}`, file, {
-                                            cacheControl: "3600",
-                                            upsert: true,
-                                        });
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name="categoryId"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <MDEditor data-color-mode="light" />
+        </Form.Item>
+        <Form.Item label="Images">
+          <Form.Item name="images" valuePropName="fileList" normalize={normalizeFile} noStyle>
+            <Upload.Dragger
+              name="file"
+              listType="picture"
+              multiple
+              customRequest={async ({ file, onError, onSuccess }) => {
+                try {
+                  const rcFile = file as RcFile;
+                  await supabaseClient.storage.from("refine").upload(`public/${rcFile.name}`, file, {
+                    cacheControl: "3600",
+                    upsert: true,
+                  });
 
-                                    const { data } =
-                                        await supabaseClient.storage
-                                            .from("refine")
-                                            .getPublicUrl(
-                                                `public/${rcFile.name}`,
-                                            );
+                  const { data } = await supabaseClient.storage.from("refine").getPublicUrl(`public/${rcFile.name}`);
 
-                                    const xhr = new XMLHttpRequest();
-                                    onSuccess &&
-                                        onSuccess(
-                                            { url: data?.publicUrl },
-                                            xhr,
-                                        );
-                                } catch (error) {
-                                    onError &&
-                                        onError(new Error("Upload Error"));
-                                }
-                            }}
-                        >
-                            <p className="ant-upload-text">
-                                Drag & drop a file in this area
-                            </p>
-                        </Upload.Dragger>
-                    </Form.Item>
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+                  const xhr = new XMLHttpRequest();
+                  onSuccess && onSuccess({ url: data?.publicUrl }, xhr);
+                } catch (error) {
+                  onError && onError(new Error("Upload Error"));
+                }
+              }}
+            >
+              <p className="ant-upload-text">Drag & drop a file in this area</p>
+            </Upload.Dragger>
+          </Form.Item>
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 ```
 
@@ -764,13 +717,7 @@ We'll need a page for editing a record in Supabase API. Copy and paste following
 ```tsx title="src/pages/posts/edit.tsx"
 import React, { useState } from "react";
 
-import {
-    Edit,
-    ListButton,
-    RefreshButton,
-    useForm,
-    useSelect,
-} from "@refinedev/antd";
+import { Edit, ListButton, RefreshButton, useForm, useSelect } from "@refinedev/antd";
 import { Alert, Button, Form, Input, Select, Upload } from "antd";
 import { RcFile } from "antd/lib/upload/interface";
 
@@ -780,143 +727,120 @@ import { IPost, ICategory } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
 
 export const PostEdit: React.FC = () => {
-    const [isDeprecated, setIsDeprecated] = useState(false);
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        liveMode: "manual",
-        onLiveEvent: () => {
-            setIsDeprecated(true);
-        },
-    });
+  const [isDeprecated, setIsDeprecated] = useState(false);
+  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+    liveMode: "manual",
+    onLiveEvent: () => {
+      setIsDeprecated(true);
+    },
+  });
 
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.categoryId,
-    });
+  const postData = queryResult?.data?.data;
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+    defaultValue: postData?.categoryId,
+  });
 
-    const handleRefresh = () => {
-        queryResult?.refetch();
-        setIsDeprecated(false);
-    };
+  const handleRefresh = () => {
+    queryResult?.refetch();
+    setIsDeprecated(false);
+  };
 
-    return (
-        <Edit
-            saveButtonProps={saveButtonProps}
-            pageHeaderProps={{
-                extra: (
-                    <>
-                        <ListButton />
-                        <RefreshButton onClick={handleRefresh} />
-                    </>
-                ),
-            }}
+  return (
+    <Edit
+      saveButtonProps={saveButtonProps}
+      pageHeaderProps={{
+        extra: (
+          <>
+            <ListButton />
+            <RefreshButton onClick={handleRefresh} />
+          </>
+        ),
+      }}
+    >
+      {isDeprecated && (
+        <Alert
+          message="This post is changed. Reload to see it's latest version."
+          type="warning"
+          style={{
+            marginBottom: 20,
+          }}
+          action={
+            <Button onClick={handleRefresh} size="small" type="ghost">
+              Refresh
+            </Button>
+          }
+        />
+      )}
+
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
         >
-            {isDeprecated && (
-                <Alert
-                    message="This post is changed. Reload to see it's latest version."
-                    type="warning"
-                    style={{
-                        marginBottom: 20,
-                    }}
-                    action={
-                        <Button
-                            onClick={handleRefresh}
-                            size="small"
-                            type="ghost"
-                        >
-                            Refresh
-                        </Button>
-                    }
-                />
-            )}
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name="categoryId"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <MDEditor data-color-mode="light" />
+        </Form.Item>
+        <Form.Item label="Images">
+          <Form.Item name="images" valuePropName="fileList" normalize={normalizeFile} noStyle>
+            <Upload.Dragger
+              name="file"
+              listType="picture"
+              multiple
+              customRequest={async ({ file, onError, onSuccess }) => {
+                const rcFile = file as RcFile;
+                const fileUrl = `public/${rcFile.name}`;
 
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name="categoryId"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <MDEditor data-color-mode="light" />
-                </Form.Item>
-                <Form.Item label="Images">
-                    <Form.Item
-                        name="images"
-                        valuePropName="fileList"
-                        normalize={normalizeFile}
-                        noStyle
-                    >
-                        <Upload.Dragger
-                            name="file"
-                            listType="picture"
-                            multiple
-                            customRequest={async ({
-                                file,
-                                onError,
-                                onSuccess,
-                            }) => {
-                                const rcFile = file as RcFile;
-                                const fileUrl = `public/${rcFile.name}`;
+                const { error } = await supabaseClient.storage.from("refine").upload(fileUrl, file, {
+                  cacheControl: "3600",
+                  upsert: true,
+                });
 
-                                const { error } = await supabaseClient.storage
-                                    .from("refine")
-                                    .upload(fileUrl, file, {
-                                        cacheControl: "3600",
-                                        upsert: true,
-                                    });
+                if (error) {
+                  return onError?.(error);
+                }
+                const { data, error: urlError } = await supabaseClient.storage.from("refine").getPublicUrl(fileUrl);
 
-                                if (error) {
-                                    return onError?.(error);
-                                }
-                                const { data, error: urlError } =
-                                    await supabaseClient.storage
-                                        .from("refine")
-                                        .getPublicUrl(fileUrl);
+                if (urlError) {
+                  return onError?.(urlError);
+                }
 
-                                if (urlError) {
-                                    return onError?.(urlError);
-                                }
-
-                                onSuccess?.(
-                                    { url: data?.publicUrl },
-                                    new XMLHttpRequest(),
-                                );
-                            }}
-                        >
-                            <p className="ant-upload-text">
-                                Drag & drop a file in this area
-                            </p>
-                        </Upload.Dragger>
-                    </Form.Item>
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+                onSuccess?.({ url: data?.publicUrl }, new XMLHttpRequest());
+              }}
+            >
+              <p className="ant-upload-text">Drag & drop a file in this area</p>
+            </Upload.Dragger>
+          </Form.Item>
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 ```
 
@@ -932,26 +856,26 @@ We need to add interfaces for `Post` and `Create` pages to `src/interfaces/index
 
 ```tsx title="src/interfaces/index.d.ts"
 export interface ICategory {
-    id: string;
-    title: string;
+  id: string;
+  title: string;
 }
 
 export interface IFile {
-    name: string;
-    percent: number;
-    size: number;
-    status: "error" | "success" | "done" | "uploading" | "removed";
-    type: string;
-    uid: string;
-    url: string;
+  name: string;
+  percent: number;
+  size: number;
+  status: "error" | "success" | "done" | "uploading" | "removed";
+  type: string;
+  uid: string;
+  url: string;
 }
 
 export interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    categoryId: string;
-    images: IFile[];
+  id: string;
+  title: string;
+  content: string;
+  categoryId: string;
+  images: IFile[];
 }
 ```
 
@@ -967,29 +891,29 @@ Also, the `normalizeFile` function needed to be added to the `src/utility/normal
 import { UploadFile } from "antd/lib/upload/interface";
 
 interface UploadResponse {
-    url: string;
+  url: string;
 }
 interface EventArgs<T = UploadResponse> {
-    file: UploadFile<T>;
-    fileList: Array<UploadFile<T>>;
+  file: UploadFile<T>;
+  fileList: Array<UploadFile<T>>;
 }
 
 export const normalizeFile = (event: EventArgs) => {
-    const { fileList } = event;
+  const { fileList } = event;
 
-    return fileList.map((item) => {
-        const { uid, name, type, size, response, percent, status } = item;
+  return fileList.map((item) => {
+    const { uid, name, type, size, response, percent, status } = item;
 
-        return {
-            uid,
-            name,
-            url: item.url || response?.url,
-            type,
-            size,
-            percent,
-            status,
-        };
-    });
+    return {
+      uid,
+      name,
+      url: item.url || response?.url,
+      type,
+      size,
+      percent,
+      status,
+    };
+  });
 };
 ```
 
@@ -1053,11 +977,11 @@ The resources property activates the connection between CRUD pages and Supabase 
 
 **refine** automatically matches the Supabase API endpoint with CRUD pages for us. In this way, the pages can interact with data from the API.
 
--   The `name` property refers to the name of the table in the Supabase database.
+- The `name` property refers to the name of the table in the Supabase database.
 
--   The `list` property registers `/posts` endpoint to the `PostList` component.
+- The `list` property registers `/posts` endpoint to the `PostList` component.
 
--   The `create` property registers `/posts/create` endpoint to the `PostCreate` component. Thereby, when you head over to `yourdomain.com/posts/create`, you will see the `PostCreate` page you just created.
+- The `create` property registers `/posts/create` endpoint to the `PostCreate` component. Thereby, when you head over to `yourdomain.com/posts/create`, you will see the `PostCreate` page you just created.
 
 [Refer to resources docs for more information &#8594](/docs/api-reference/core/components/refine-config.md/#resources)
 
@@ -1078,23 +1002,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { authProvider } from "./authProvider";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    authProvider={authProvider}
-                >
-                    <Routes>
-                        <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine routerProvider={routerProvider} authProvider={authProvider}>
+          <Routes>
+            <Route path="/login" element={<AuthPage type="login" />} />
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 // visible-block-end
 render(<App />);
@@ -1110,10 +1028,7 @@ Let's check out the `Authentication` property:
 import { Refine, Authenticated } from "@refinedev/core";
 //highlight-start
 import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
-import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
-} from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 //highlight-end
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -1121,60 +1036,46 @@ import { ConfigProvider } from "antd";
 import authProvider from "./authProvider";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    // highlight-next-line
-                    routerProvider={routerProvider}
-                    authProvider={authProvider}
-                    //...
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/posts"
-                                element={<div>dummy list page</div>}
-                            />
-                        </Route>
-                        {/* highlight-start */}
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource />
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="/login" element={<AuthPage />} />
-                            <Route
-                                path="/register"
-                                element={<AuthPage type="register" />}
-                            />
-                            <Route
-                                path="/forgot-password"
-                                element={<AuthPage type="forgotPassword" />}
-                            />
-                            <Route
-                                path="/update-password"
-                                element={<AuthPage type="updatePassword" />}
-                            />
-                        </Route>
-                        {/* highlight-end */}
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          // highlight-next-line
+          routerProvider={routerProvider}
+          authProvider={authProvider}
+          //...
+        >
+          <Routes>
+            <Route
+              element={
+                <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
+            >
+              <Route path="/posts" element={<div>dummy list page</div>} />
+            </Route>
+            {/* highlight-start */}
+            <Route
+              element={
+                <Authenticated fallback={<Outlet />}>
+                  <NavigateToResource />
+                </Authenticated>
+              }
+            >
+              <Route path="/login" element={<AuthPage />} />
+              <Route path="/register" element={<AuthPage type="register" />} />
+              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            </Route>
+            {/* highlight-end */}
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 }
 ```
 
@@ -1192,160 +1093,139 @@ We'll show how to implement third party logins in the next sections.
 
 Sign in the app with followings credentials:
 
--   email: info@refine.dev
--   password: refine-supabase
+- email: info@refine.dev
+- password: refine-supabase
 
 We have successfully logged in to the app. After then `ListPage` and `CreatePage` pages created. When the `Create` button is clicked, the `CreatePage` component will render.
 
 ```tsx live previewOnly url=http://localhost:5173/posts
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 
 import { useMany } from "@refinedev/core";
-import {
-    List,
-    TextField,
-    TagField,
-    useTable,
-    Create,
-    useForm,
-    useSelect,
-    CreateButton,
-} from "@refinedev/antd";
+import { List, TextField, TagField, useTable, Create, useForm, useSelect, CreateButton } from "@refinedev/antd";
 import { Table, Form, Input, Select } from "antd";
 
 const PostCreate: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name={["category", "id"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Status"
+          name="status"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select
+            options={[
+              {
+                label: "Published",
+                value: "published",
+              },
+              {
+                label: "Draft",
+                value: "draft",
+              },
+              {
+                label: "Rejected",
+                value: "rejected",
+              },
+            ]}
+          />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>({
-        syncWithLocation: true,
-    });
+  const { tableProps } = useTable<IPost>({
+    syncWithLocation: true,
+  });
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const { data, isLoading } = useMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="Category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+        <Table.Column
+          dataIndex={["category", "id"]}
+          title="Category"
+          render={(value) => {
+            if (isLoading) {
+              return <TextField value="Loading..." />;
+            }
 
-                        return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
-                    }}
-                />
-                <Table.Column
-                    dataIndex="status"
-                    title="Status"
-                    render={(value: string) => <TagField value={value} />}
-                />
-            </Table>
-        </List>
-    );
+            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+          }}
+        />
+        <Table.Column dataIndex="status" title="Status" render={(value: string) => <TagField value={value} />} />
+      </Table>
+    </List>
+  );
 };
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -1420,11 +1300,11 @@ Here is the result:
 
 So far, we have implemented the followings:
 
--   We have reviewed Supabase Client and data provider concepts. We've seen benefits of using **refine** and how it can handle complex setups for us.
--   We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of **refine**'s built-in authentication support.
--   We have added CRUD pages to make the app interact with Supabase API. We've seen how the `resources` property works and how it connects the pages with the API.
--   We have seen how the [`Authentication`](/docs/packages/documentation/routers/react-router-v6/#usage-with-authentication) component works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
--   We have seen how authorization handling in **refine** app by understanding the logic behind of `authProvider`, and `<AuthPage>` component.
+- We have reviewed Supabase Client and data provider concepts. We've seen benefits of using **refine** and how it can handle complex setups for us.
+- We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of **refine**'s built-in authentication support.
+- We have added CRUD pages to make the app interact with Supabase API. We've seen how the `resources` property works and how it connects the pages with the API.
+- We have seen how the [`Authentication`](/docs/packages/documentation/routers/react-router-v6/#usage-with-authentication) component works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
+- We have seen how authorization handling in **refine** app by understanding the logic behind of `authProvider`, and `<AuthPage>` component.
 
 **refine provides solutions for critical parts of the complete CRUD app requirements. It saves development time and effort by providing ready-to-use components and features.**
 
@@ -1447,28 +1327,32 @@ import { supabaseClient } from "utility";
 /* ... */
 
 function App() {
-    return (
-        <Refine
-            //highlight-start
-            liveProvider={liveProvider(supabaseClient)}
-            options={{ liveMode: "auto" }}
-            //highlight-end
-            /* ... */
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      //highlight-start
+      liveProvider={liveProvider(supabaseClient)}
+      options={{ liveMode: "auto" }}
+      //highlight-end
+      /* ... */
+    >
+      {/* ... */}
+    </Refine>
+  );
 }
 ```
 
 :::note
-For live features to work automatically, we setted `liveMode: "auto"` in the options prop.
+
+For live features to work automatically, we set `liveMode: "auto"` in the options prop.
 
 [Refer to Live Provider docs for more information &#8594](/docs/api-reference/core/providers/live-provider.md/#livemode)
+
 :::
 
 :::caution
+
 With [Supabase JS client v2](#), multiple subscription calls are not supported. Check out the related issue, [supabase/realtime#271](https://github.com/supabase/realtime/issues/271). Multiple subscriptions needs to be made in a single call, which is not supported by the current version of the `@refinedev/supabase` data provider. You can check out the related documentation in [Supabase Realtime Guides](https://supabase.com/docs/guides/realtime/postgres-changes#combination-changes).
+
 :::
 
 ### Let see how real-time feature works in the app
@@ -1476,13 +1360,14 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/real-time-min.gif" className="border border-gray-200 rounded" alt="realTime" />
 
 :::tip
+
 **refine** offers out-of-the-box live provider support:
 
--   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
--   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
--   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
--   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
--   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
+- **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
+- **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
+- **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
+- **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
+- **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
 
 :::
 
@@ -1502,12 +1387,12 @@ For example, if you want to get only the `title` and `content` fields from the `
 
 ```tsx
 useList({
-    resource: "posts",
-    //highlight-start
-    meta: {
-        select: "title, content",
-    },
-    // highlight-end
+  resource: "posts",
+  //highlight-start
+  meta: {
+    select: "title, content",
+  },
+  // highlight-end
 });
 ```
 
@@ -1515,16 +1400,16 @@ Also, since mutation methods do not use the `select` property by default, you ca
 
 ```tsx
 useCreate({
-    resource: "posts",
-    variables: {
-        title: "Hello World",
-        content: "Lorem ipsum dolor sit amet",
-    },
-    //highlight-start
-    meta: {
-        select: "title, content",
-    },
-    // highlight-end
+  resource: "posts",
+  variables: {
+    title: "Hello World",
+    content: "Lorem ipsum dolor sit amet",
+  },
+  //highlight-start
+  meta: {
+    select: "title, content",
+  },
+  // highlight-end
 });
 ```
 
@@ -1538,12 +1423,12 @@ For example, for `posts -> categories` relationship, we can get the `title` data
 
 ```tsx title="src/pages/posts/list.tsx"
 const { tableProps, sorter } = useTable<IPost>({
-    //highlight-start
-    resource: "posts",
-    meta: {
-        select: "*, categories(title)",
-    },
-    // highlight-end
+  //highlight-start
+  resource: "posts",
+  meta: {
+    select: "*, categories(title)",
+  },
+  // highlight-end
 });
 ```
 
@@ -1555,12 +1440,12 @@ For example, for `movies <-> categories_movies <-> categories` many-to-many rela
 
 ```tsx title="src/pages/users/list.tsx"
 const { tableProps, sorter } = useTable<IUser>({
-    //highlight-start
-    resource: "movies",
-    meta: {
-        select: "*, categories!inner(name)",
-    },
-    // highlight-end
+  //highlight-start
+  resource: "movies",
+  meta: {
+    select: "*, categories!inner(name)",
+  },
+  // highlight-end
 });
 ```
 
@@ -1572,8 +1457,8 @@ refine's [useMany](/docs/api-reference/core/hooks/data/useMany/) hook accepts `m
 
 ```tsx
 useMany({
-    resource: "posts",
-    ids: [1, 2],
+  resource: "posts",
+  ids: [1, 2],
 });
 ```
 
@@ -1583,13 +1468,13 @@ With passing `id` parameter to the `meta` property, we can change the column nam
 
 ```tsx
 useMany({
-    resource: "posts",
-    ids: [1, 2],
-    //highlight-start
-    meta: {
-        idColumnName: "post_id",
-    },
-    // highlight-end
+  resource: "posts",
+  ids: [1, 2],
+  //highlight-start
+  meta: {
+    idColumnName: "post_id",
+  },
+  // highlight-end
 });
 ```
 
@@ -1603,22 +1488,22 @@ It gets the posts where the `title` of the `categories` is "Beginning". Also the
 
 ```tsx
 const { tableProps, sorter } = useTable({
-    resource: "posts",
-    //highlight-start
-    filters: {
-        initial: [
-            { field: "categories.title", operator: "eq", value: "Beginning" },
-        ],
-    },
-    meta: {
-        select: "*, categories!inner(title)",
-    },
-    //highlight-end
+  resource: "posts",
+  //highlight-start
+  filters: {
+    initial: [{ field: "categories.title", operator: "eq", value: "Beginning" }],
+  },
+  meta: {
+    select: "*, categories!inner(title)",
+  },
+  //highlight-end
 });
 ```
 
 :::caution
+
 If you filter based on a table from an inner join, you will need to use `.select('*, mytable!inner(*)')` within Supabase.
+
 :::
 
 ### `getList` - performance
@@ -1627,12 +1512,12 @@ By default, the data provider `getList` method returns the exact count of rows. 
 
 ```tsx
 useList({
-    resource: "posts",
-    //highlight-start
-    meta: {
-        count: "estimated",
-    },
-    // highlight-end
+  resource: "posts",
+  //highlight-start
+  meta: {
+    count: "estimated",
+  },
+  // highlight-end
 });
 ```
 

@@ -22,7 +22,7 @@ Steps we'll cover
   - [Compound Components](#compound-components)
   - [Prop combination](#prop-combination)
   - [Controlled inputs](#controlled-inputs)
-  - [Manage custom components with fowardRefs](#manage-custom-components-with-fowardrefs)
+  - [Manage custom components with forwardRefs](#manage-custom-components-with-fowardrefs)
 
 ## Container and presentation patterns
 The Container and presentation pattern is a pattern that aims to separate the presentation logic from the business logic in a react code, thereby making it modular, testable, and one that follows the separations of concern principle.
@@ -85,7 +85,7 @@ interface CharacterListProps {
 const CharacterList: React.FC<CharacterListProps> = ({ loading, error, characters }) => {
     
     if (loading && !error) return <div>Loading...</div>;
-    if (!loading && error) return <div>error occured.unable to load characters</div>;
+    if (!loading && error) return <div>error occurred.unable to load characters</div>;
     if (!characters) return null;
 
     return (
@@ -473,7 +473,7 @@ function ControlledInput() {
 ```
 
 
-## Manage custom components with fowardRefs
+## Manage custom components with forwardRefs
 
 A higher-order component called a ForwardRef takes another component as input and outputs a new component that passes the original component's ref. By doing this, the child component's ref, which can be used to retrieve the underlying DOM node or component instance, is made accessible to the parent component.
 
