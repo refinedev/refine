@@ -18,19 +18,21 @@ This leads us to the next challenge: selecting the appropriate React admin dashb
 
 In this article, we've curated a compilation of the 5 best React admin dashboard libraries that encompass all the essential features needed to create modern and feature-rich dashboards with minimal effort.
 
-## refine
-At the top of the list is [refine](https://github.com/refinedev/refine), a comprehensive, **open-source library** for developing data-driven React admin dashboards with features you wouldn’t typically find in other dashboard libraries.
+## Refine
 
+At the top of the list is [refine](https://github.com/refinedev/refine), a comprehensive, **open-source library** for developing data-driven React admin dashboards with features you wouldn’t typically find in other dashboard libraries.
 
 <div className="centered-image"  >
 <a href="https://github.com/refinedev/refine" >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Frefine.png"  alt="react admin dashboard 1" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/CRM-app/crm-general.gif"  alt="react admin dashboard 1" />
    </a>
 </div>
 
 <br/>
 
-Similar to several React-based admin dashboard libraries, [refine](https://github.com/refinedev/refine)  is built on the React framework. However, refine is not a self-contained meta-framework, allowing it to function in any environment capable of running React, including CRA, Next.js, Remix, Vite, and others.
+You can build production-read enterprise grade internal tools, admin panels, dashboards & B2B apps rapidly with Refine.
+
+Similar to several React-based admin dashboard libraries, [Refine](https://github.com/refinedev/refine) is built on the React framework. However, it is not a self-contained meta-framework, allowing it to function in any environment capable of running React, including CRA, Next.js, Remix, Vite, and others.
 
 This lets refine leverage the wide range of features these frameworks has to offer, including support for SSR as well as various advanced state management, data management, and routing technologies within the React ecosystem - such as React Query, React Router or the Next.js routing system, and React Hook Form. This enables refine to construct perceptive analytic **react admin panels** and **dashboard** applications with intuitive and visually appealing interfaces, equipped with the ability to perform CRUD operations amongst many other functionalities.
 
@@ -39,7 +41,6 @@ One unique feature distinguishing refine from other admin libraries is its headl
 Additionally, refine provides an array of helper hooks, components, and data providers that provide complete control over your application's user interface and can easily adapt to different backend architectures like GraphQL, REST, and SOAP, and for seamless authentication and access control flow.
 
 ### Features
-
 
 - Open-source
 - UI-agnostic
@@ -52,19 +53,22 @@ Additionally, refine provides an array of helper hooks, components, and data pro
 - Internationalization ( I18n )
 - Accessibility
 - CRUD operations
+- Devtools
 
 ### Quick start
 
 ```
-npm create refine-app#latest my-project
+npm create refine-app@latest
 ```
 
 ### Stats
-- GitHub stars: 13+k
+
+- GitHub stars: +16K
 - License: MIT
-- Links: [Demo](https://example.admin.refine.dev/) | [Documentation](https://refine.dev/docs/tutorial/introduction/index/) | [GitHub](https://github.com/refinedev/refine/tree/master/examples/finefoods-antd)
+- Links: [Demo](https://example.crm.refine.dev/) | [Documentation](https://refine.dev/docs/tutorial/introduction/index/) | [GitHub](https://github.com/refinedev/refine/tree/master/examples/app-crm)
 
 ## Ant Design pro
+
 Ant design pro is an open-source UI library for building production-ready enterprise-level web applications and React admin dashboards.
 
 <div className="centered-image"  >
@@ -95,12 +99,13 @@ pro create my-app
 ```
 
 ### Stats
+
 - Github stars: 33.8k
 - License: MIT
 - Links: [Demo](https://v2-preview-ant-design-pro.netlify.app/dashboard/analysis) | [Documentation](https://v2-pro.ant.design/) | [Github](https://github.com/ant-design/ant-design-pro/)
 
-
 ## Tremor
+
 Tremor is an open-source library for quickly building insightful React admin dashboards. It provides modular components that can be combined to build highly customized dashboards or analytic interfaces.
 
 <div className="centered-image"  >
@@ -109,19 +114,16 @@ Tremor is an open-source library for quickly building insightful React admin das
 
 <br/>
 
-
-
 Tremor is an opinionated and low-level UI library that provides a variety of components, including layouts, charts, texts, and cards. These components can be quickly combined and arranged by prototyping and organizing them in the appropriate sequence, with minimal requirement for exact calibration.
 
 As one of the first dashboard libraries to adopt Tailwind as its primary theming system, Tremor's components come with stunning built-in styles. Yet, the library also permits the utilization of native CSS as supplementary add-ons for managing minor layout aspects.
 
-
 ### Features
+
 - Fast workflow
 - Responsiveness
 - Easy learning curve
 - Open source
-
 
 ### Quick start
 
@@ -134,16 +136,14 @@ npx tailwindcss init -p
 ```
 
 ### Stats
+
 Github stars: 7.3K
 License: MIT
 Links: [Demo](https://demo.tremor.so/) | [Documentation](https://www.tremor.so/docs/getting-started/installation) | [GitHub](https://github.com/tremorlabs/tremor)
 
-
-
-
 ## Material Dashboard React
-Material Dashboard React is an open-source admin dashboard template built using React and the material design framework.
 
+Material Dashboard React is an open-source admin dashboard template built using React and the material design framework.
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Fmaterial-dashboard-react.png"  alt="react admin dashboard 4 " />
@@ -155,20 +155,21 @@ The library provides a set of UI components and pre-built pages to help develope
 
 The template includes various UI components, such as tables, charts, forms, and cards, which can easily be used to build complex interfaces. It also offers multiple color schemes and customization options, allowing developers to tailor the dashboard to their project's needs.
 
-
 ### Features
+
 - Responsiveness
 - Authentication
 - Theming
 - Easy learning curve
 
-
 ### Quick start
+
 ```
 npm i material-dashboard-react
 ```
 
 ### Stats
+
 Github stars: 2.4k
 License: MIT
 Links: [Demo](https://demos.creative-tim.com/material-dashboard-react/?_ga=2.121022400.950272333.1678729799-1425995454.1678618534#/dashboard) | [Documentation](https://www.creative-tim.com/learning-lab/react/overview/material-dashboard/) | [GitHub](https://github.com/creativetimofficial/material-dashboard-react)
@@ -187,6 +188,7 @@ It provides a clean and modern UI with over 100 elements, which includes widgets
 Volt’s structural design simplifies the visualization of data acquired from backend technologies. Through an array of objects, the library efficiently transfers data between pre-built components, including form elements and other UI elements. This enables easy integration and customization of data display within the React admin dashboard.
 
 ### Features
+
 - WCAG Accessibility
 - Responsiveness
 - Creative asset rights
@@ -205,11 +207,10 @@ npm run start
 ```
 
 ### Stats
+
 - Github stars: 728
 - License: MIT
 - Links: [Demo](https://demo.themesberg.com/volt-react-dashboard/#/dashboard/overview) | [Documentation](https://demo.themesberg.com/volt-react-dashboard/#/) | [GitHub](https://github.com/themesberg/volt-react-dashboard)
-
-
 
 <br/>
 <div>
@@ -219,5 +220,6 @@ npm run start
 </div>
 
 ## Conclusion
+
 You may have noticed that some of the libraries mentioned in this article are free versions of paid templates. While these open-source libraries can be enhanced by adding required features, they may not meet your needs. Therefore, if you are searching for a library that can assist you in creating advanced React admin dashboards with all necessary features for free, I would recommend considering refine or Tremor.
 However, If you are looking to create something minimal quickly, the rest of the libraries mentioned would suffice. Ultimately, it depends on your specific project requirements and complexity.
