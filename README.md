@@ -43,7 +43,7 @@
 
 <br/>
 
-[![how-refine-works](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.jpg)](https://refine.dev)
+[![how-refine-works](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/new-diagram.jpg)](https://refine.dev)
 
 ## What is Refine?
 
