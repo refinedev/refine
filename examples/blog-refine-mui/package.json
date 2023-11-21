@@ -11,7 +11,7 @@
     "@mui/material": "^5.14.2",
     "@mui/x-data-grid": "^6.6.0",
     "@refinedev/cli": "^2.16.19",
-    "@refinedev/core": "^4.45.0",
+    "@refinedev/core": "^4.45.1",
     "@refinedev/devtools": "^1.1.27",
     "@refinedev/inferencer": "^4.3.2",
     "@refinedev/kbar": "^1.1.2",
