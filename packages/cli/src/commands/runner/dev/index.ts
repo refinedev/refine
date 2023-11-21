@@ -47,11 +47,7 @@ const action = async (
 
     const devtoolsDefault = await isDevtoolsInstalled();
 
-    const devtools = Boolean(
-        params.devtools === "false"
-            ? false
-            : params.devtools ?? devtoolsDefault,
-    );
+    const devtools = params.devtools === "false" ? false : devtoolsDefault;
 
     if (devtools) {
         devtoolsRunner();
