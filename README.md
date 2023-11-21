@@ -87,12 +87,12 @@ You have the freedom to select your preferred libraries and frameworks, and the 
 
 You can take a look at some live examples that can be built using **refine** from scratch:
 
-- [Fully-functional CRM Application](https://example.crm.refine.dev/)
-- [Fully-functional Admin Panel](https://s.refine.dev/readme-admin-panel)
-- [Win95 Style Admin panel 🪟](https://win95.refine.dev/)
-- [Medium Clone - Real World Example](https://s.refine.dev/readme-medium-clone)
-- [Multitenancy Example](https://multi-tenancy-strapi.refine.dev/)
-- [Storefront](https://s.refine.dev/readme-ssr-storefront)
+-   [Fully-functional CRM Application](https://example.crm.refine.dev/)
+-   [Fully-functional Admin Panel](https://s.refine.dev/readme-admin-panel)
+-   [Win95 Style Admin panel 🪟](https://win95.refine.dev/)
+-   [Medium Clone - Real World Example](https://s.refine.dev/readme-medium-clone)
+-   [Multitenancy Example](https://multi-tenancy-strapi.refine.dev/)
+-   [Storefront](https://s.refine.dev/readme-ssr-storefront)
 
 [👉 Refer to most popular real use case examples](https://refine.dev/docs/examples/)
 
@@ -163,9 +163,9 @@ Let's consume a public `fake REST API` and add two resources (_blog_posts_ and _
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import {
-  notificationProvider,
-  ErrorComponent,
-  ThemedLayout,
+    notificationProvider,
+    ErrorComponent,
+    ThemedLayout,
 } from "@refinedev/antd";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -177,53 +177,62 @@ import { AntdInferencer } from "@refinedev/inferencer/antd";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
-  return (
-    <BrowserRouter>
-      <Refine
-        routerProvider={routerProvider}
-        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        notificationProvider={notificationProvider}
-        resources={[
-          {
-            name: "blog_posts",
-            list: "/blog-posts",
-            show: "/blog-posts/show/:id",
-            create: "/blog-posts/create",
-            edit: "/blog-posts/edit/:id",
-            meta: { canDelete: true },
-          },
-          {
-            name: "categories",
-            list: "/categories",
-            show: "/categories/show/:id",
-          },
-        ]}
-      >
-        <Routes>
-          <Route
-            element={
-              <ThemedLayout>
-                <Outlet />
-              </ThemedLayout>
-            }
-          >
-            <Route index element={<NavigateToResource />} />
-            <Route path="blog-posts">
-              <Route index element={<AntdInferencer />} />
-              <Route path="show/:id" element={<AntdInferencer />} />
-              <Route path="create" element={<AntdInferencer />} />
-              <Route path="edit/:id" element={<AntdInferencer />} />
-            </Route>
-            <Route path="categories">
-              <Route index element={<AntdInferencer />} />
-              <Route path="show/:id" element={<AntdInferencer />} />
-            </Route>
-            <Route path="*" element={<ErrorComponent />} />
-          </Route>
-        </Routes>
-      </Refine>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider}
+                resources={[
+                    {
+                        name: "blog_posts",
+                        list: "/blog-posts",
+                        show: "/blog-posts/show/:id",
+                        create: "/blog-posts/create",
+                        edit: "/blog-posts/edit/:id",
+                        meta: { canDelete: true },
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <ThemedLayout>
+                                <Outlet />
+                            </ThemedLayout>
+                        }
+                    >
+                        <Route index element={<NavigateToResource />} />
+                        <Route path="blog-posts">
+                            <Route index element={<AntdInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<AntdInferencer />}
+                            />
+                            <Route path="create" element={<AntdInferencer />} />
+                            <Route
+                                path="edit/:id"
+                                element={<AntdInferencer />}
+                            />
+                        </Route>
+                        <Route path="categories">
+                            <Route index element={<AntdInferencer />} />
+                            <Route
+                                path="show/:id"
+                                element={<AntdInferencer />}
+                            />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
 };
 
 export default App;

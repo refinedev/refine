@@ -54,30 +54,30 @@ import dataProvider, { graphqlWS } from "@refinedev/nhost";
 const nhost = new NhostClient({ backendUrl: "NHOST_API_URL" });
 
 const gqlWsClient = graphqlWS.createClient({
-  url: WS_URL,
-  connectionParams: () => ({
-    headers: {
-      Authorization: `Bearer \${nhost.auth.getJWTToken()}`,
-    },
-  }),
+    url: WS_URL,
+    connectionParams: () => ({
+        headers: {
+            Authorization: `Bearer \${nhost.auth.getJWTToken()}`,
+        },
+    }),
 });
 
 const App = () => {
-  return (
-    <Refine
-      dataProvider={dataProvider(nhost)}
-      liveProvider={liveProvider(gqlWsClient)}
-      /* ... */
-    >
-      {/* ... */}
-    </Refine>
-  );
+    return (
+        <Refine
+            dataProvider={dataProvider(nhost)}
+            liveProvider={liveProvider(gqlWsClient)}
+            /* ... */
+        >
+            {/* ... */}
+        </Refine>
+    );
 };
 ```
 
 ## Documentation
 
-- For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
-- [Refer to refine Nhost example](https://refine.dev/docs/examples/data-provider/nhost/).
-- [Refer to documentation for more info about refine](https://refine.dev/docs/).
-- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+-   For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
+-   [Refer to refine Nhost example](https://refine.dev/docs/examples/data-provider/nhost/).
+-   [Refer to documentation for more info about refine](https://refine.dev/docs/).
+-   [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

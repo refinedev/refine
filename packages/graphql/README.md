@@ -53,20 +53,20 @@ import dataProvider, { GraphQLClient } from "@refinedev/graphql";
 const client = new GraphQLClient("YOUR_API_URL");
 
 const App = () => {
-  return (
-    <Refine
-      dataProvider={dataProvider(client)}
-      /* ... */
-    >
-      {/* ... */}
-    </Refine>
-  );
+    return (
+        <Refine
+            dataProvider={dataProvider(client)}
+            /* ... */
+        >
+            {/* ... */}
+        </Refine>
+    );
 };
 ```
 
 ## Documentation
 
-- For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
-- [Refer to refine GraphQL docs](https://refine.dev/docs/packages/documentation/data-providers/graphql/).
-- [Refer to documentation for more info about refine](https://refine.dev/docs/).
-- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+-   For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
+-   [Refer to refine GraphQL docs](https://refine.dev/docs/packages/documentation/data-providers/graphql/).
+-   [Refer to documentation for more info about refine](https://refine.dev/docs/).
+-   [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

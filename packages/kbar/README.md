@@ -50,20 +50,20 @@ npm install @refinedev/kbar
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 const App = () => {
-  return (
-    <RefineKbarProvider>
-      <Refine
-      /* ... */
-      >
-        <RefineKbar />
-      </Refine>
-    </RefineKbarProvider>
-  );
+    return (
+        <RefineKbarProvider>
+            <Refine
+            /* ... */
+            >
+                <RefineKbar />
+            </Refine>
+        </RefineKbarProvider>
+    );
 };
 ```
 
 ## Documentation
 
-- [Refer refine kbar example](https://refine.dev/docs/examples/command-palette/).
-- [Refer to documentation for more info about refine](https://refine.dev/docs/).
-- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+-   [Refer refine kbar example](https://refine.dev/docs/examples/command-palette/).
+-   [Refer to documentation for more info about refine](https://refine.dev/docs/).
+-   [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

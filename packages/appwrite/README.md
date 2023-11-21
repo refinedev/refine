@@ -49,36 +49,36 @@ npm install @refinedev/appwrite
 
 ```tsx
 import {
-  dataProvider,
-  liveProvider,
-  Account,
-  Appwrite,
-  Storage,
+    dataProvider,
+    liveProvider,
+    Account,
+    Appwrite,
+    Storage,
 } from "@refinedev/appwrite";
 
 const appwriteClient = new Appwrite();
 appwriteClient.setEndpoint("API_URL").setProject("PROJECT_ID");
 
 const App = () => {
-  return (
-    <Refine
-      dataProvider={dataProvider(appwriteClient, {
-        databaseId: "default",
-      })}
-      liveProvider={liveProvider(appwriteClient, {
-        databaseId: "default",
-      })}
-      /* ... */
-    >
-      <ThemedLayout>{/* ... */}</ThemedLayout>
-    </Refine>
-  );
+    return (
+        <Refine
+            dataProvider={dataProvider(appwriteClient, {
+                databaseId: "default",
+            })}
+            liveProvider={liveProvider(appwriteClient, {
+                databaseId: "default",
+            })}
+            /* ... */
+        >
+            <ThemedLayout>{/* ... */}</ThemedLayout>
+        </Refine>
+    );
 };
 ```
 
 ## Documentation
 
-- For more detailed information on data provider usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
-- [Refer to refine Appwrite docs](https://refine.dev/docs/packages/documentation/data-providers/appwrite/).
-- [Refer to documentation for more info about refine](https://refine.dev/docs/).
-- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+-   For more detailed information on data provider usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
+-   [Refer to refine Appwrite docs](https://refine.dev/docs/packages/documentation/data-providers/appwrite/).
+-   [Refer to documentation for more info about refine](https://refine.dev/docs/).
+-   [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

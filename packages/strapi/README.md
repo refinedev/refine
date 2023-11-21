@@ -54,20 +54,20 @@ const axiosInstance = axios.create();
 const strapiAuthHelper = AuthHelper("API_URL");
 
 const App = () => {
-  return (
-    <Refine
-      dataProvider={DataProvider("API_URL", axiosInstance)}
-      /* ... */
-    >
-      {/* ... */}
-    </Refine>
-  );
+    return (
+        <Refine
+            dataProvider={DataProvider("API_URL", axiosInstance)}
+            /* ... */
+        >
+            {/* ... */}
+        </Refine>
+    );
 };
 ```
 
 ## Documentation
 
-- For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
-- [Refer to refine Strapi data provider example](https://refine.dev/docs/examples/data-provider/strapi/).
-- [Refer to documentation for more info about refine](https://refine.dev/docs/).
-- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+-   For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
+-   [Refer to refine Strapi data provider example](https://refine.dev/docs/examples/data-provider/strapi/).
+-   [Refer to documentation for more info about refine](https://refine.dev/docs/).
+-   [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

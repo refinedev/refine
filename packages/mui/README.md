@@ -55,22 +55,22 @@ import GlobalStyles from "@mui/material/GlobalStyles";
 import { ThemeProvider } from "@mui/material/styles";
 
 const App = () => {
-  return (
-    <ThemeProvider>
-      <CssBaseline />
-      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-      <Refine
-      /* ... */
-      >
-        <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
-      </Refine>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <Refine
+            /* ... */
+            >
+                <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+            </Refine>
+        </ThemeProvider>
+    );
 };
 ```
 
 ## Documentation
 
-- For more detailed information and usage, refer to the [refine Material UI documentation](https://refine.dev/docs/api-reference/mui/).
-- [Refer to complete refine tutorial with Material UI](https://refine.dev/docs/tutorial/introduction/select-framework/).
-- [Refer to documentation for more info about refine](https://refine.dev/docs/).
+-   For more detailed information and usage, refer to the [refine Material UI documentation](https://refine.dev/docs/api-reference/mui/).
+-   [Refer to complete refine tutorial with Material UI](https://refine.dev/docs/tutorial/introduction/select-framework/).
+-   [Refer to documentation for more info about refine](https://refine.dev/docs/).

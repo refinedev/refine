@@ -53,19 +53,19 @@ import { ThemedLayoutV2 } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 const App = () => {
-  return (
-    <Refine
-    /* ... */
-    >
-      <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
-    </Refine>
-  );
+    return (
+        <Refine
+        /* ... */
+        >
+            <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+        </Refine>
+    );
 };
 ```
 
 ## Documentation
 
-- For more detailed information and usage, refer to the [refine Ant Design documentation](https://refine.dev/docs/api-reference/antd/).
-- [Refer to complete refine tutorial with Ant Design](https://refine.dev/docs/tutorial/introduction/select-framework/)
-- [Refer to documentation for more info about refine](https://refine.dev/docs/).
-- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+-   For more detailed information and usage, refer to the [refine Ant Design documentation](https://refine.dev/docs/api-reference/antd/).
+-   [Refer to complete refine tutorial with Ant Design](https://refine.dev/docs/tutorial/introduction/select-framework/)
+-   [Refer to documentation for more info about refine](https://refine.dev/docs/).
+-   [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

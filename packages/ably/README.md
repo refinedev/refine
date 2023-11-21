@@ -55,20 +55,20 @@ import { liveProvider, Ably } from "@refinedev/ably";
 export const ablyClient = new Ably.Realtime("YOUR_API_TOKEN");
 
 const App = () => {
-  return (
-    <Refine
-      liveProvider={liveProvider(ablyClient)}
-      /* ... */
-    >
-      {/* ... */}
-    </Refine>
-  );
+    return (
+        <Refine
+            liveProvider={liveProvider(ablyClient)}
+            /* ... */
+        >
+            {/* ... */}
+        </Refine>
+    );
 };
 ```
 
 ## Documentation
 
-- For more detailed information and usage, refer to the [refine live provider documentation](https://refine.dev/docs/api-references/providers/live-provider/).
-- Refer to refine & Ably tutorial on [official Ably docs](https://ably.com/tutorials/react-admin-panel-with-ably-and-refine).
-- [Refer to documentation for more info about refine](https://refine.dev/docs/).
-- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+-   For more detailed information and usage, refer to the [refine live provider documentation](https://refine.dev/docs/api-references/providers/live-provider/).
+-   Refer to refine & Ably tutorial on [official Ably docs](https://ably.com/tutorials/react-admin-panel-with-ably-and-refine).
+-   [Refer to documentation for more info about refine](https://refine.dev/docs/).
+-   [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
