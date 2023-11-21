@@ -13,7 +13,7 @@ export const GitHubBanner = () => {
     const texts = [
         "Be a part of our journey by starring Refine on GitHub.",
         "Join our community and star Refine on GitHub.",
-        "Let's elevate Refine together. Star us on GitHub!",
+        "Let's elevate Refine together - star us on GitHub.",
         "Enhance Refine's reach. Give us a star on GitHub!",
     ];
     const text = texts[Math.floor(Math.random() * texts.length)];
