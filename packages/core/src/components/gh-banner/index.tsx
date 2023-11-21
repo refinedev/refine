@@ -127,7 +127,7 @@ export const GitHubBanner = () => {
                         </div>
                     </div>
                 </div>
-                {text && <Text text={text} />}
+                <Text text={text} />
             </div>
         </div>
     );
