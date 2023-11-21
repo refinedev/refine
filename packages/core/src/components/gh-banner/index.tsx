@@ -2,10 +2,10 @@ import React, { SVGProps, useEffect, useState } from "react";
 import { CSSRules } from "./styles";
 
 const texts = [
-    "Be a part of our journey. Star Refine on GitHub!",
-    "Join our community. Star Refine on GitHub!",
-    "Let's elevate Refine together. Star us on GitHub!",
-    "Enhance Refine's reach. Give us a star on GitHub!",
+    "Be a part of our journey by starring Refine on GitHub.",
+    "Join our community and star Refine on GitHub.",
+    "Let's elevate Refine together - star us on GitHub.",
+    "Enhance Refine's reach by giving us a star on GitHub.",
 ];
 
 export const GitHubBanner = () => {
