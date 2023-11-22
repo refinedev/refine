@@ -2,13 +2,13 @@
 title: Introduction
 ---
 
-# Introduction <GuideBadge id="guides-concepts/forms" /> <RouterBadge />
+# React Hook Form <GuideBadge id="guides-concepts/forms" /> <RouterBadge id="guides-concepts/routing/#useform" />
 
-Refine provides an integration package for [React Hook Form][react-hook-form] library. This package enabling you to manage your forms in a headless manner. This adapter supports all of the features of both [React Hook Form][react-hook-form] and [Refine's useForm][use-form-core] hook. Simply, you can use any of the [React Hook Form][react-hook-form] examples as-is by copying and pasting them into your project.
+Refine provides an integration package for [React Hook Form][react-hook-form] library. This package enables you to manage your forms in a headless manner. This adapter supports all of the features of both [React Hook Form][react-hook-form] and [Refine's useForm][use-form-core] hook. Simply, you can use any of the [React Hook Form][react-hook-form] examples as-is by copying and pasting them into your project.
 
 This package exports following hooks to manage your forms:
 
-- [`useForm`](/docs/packages/documentation/react-hook-form/useForm/)
+- [`useForm`][use-form-react-hook-form]
 - [`useModalForm`](/docs/packages/documentation/react-hook-form/useModalForm/)
 - [`useStepsFrom`](/docs/packages/documentation/react-hook-form/useStepsForm/)
 
@@ -22,13 +22,13 @@ npm i @refinedev/react-hook-form
 
 ## Usage
 
-Let's see how to edit a post with [React Hook Form][react-hook-form] and [Refine's useForm][use-form-core] hook.
+Let's see how to edit a post with [useForm][use-form-react-hook-form] hook.
 
 <Tabs wrapContent={false}>
 
 <TabItem value="Headless">
 
-```tsx
+```tsx title="edit.tsx"
 import { HttpError } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
@@ -41,7 +41,7 @@ export const PostEdit = () => {
   } = useForm<IPost, HttpError>({
     resource: "posts",
     action: "edit",
-    id: "1",
+    id: 1,
   });
 
   return (
@@ -84,7 +84,7 @@ interface IPost {
 
 <TabItem value="Material UI">
 
-```tsx
+```tsx title="edit.tsx"
 import { HttpError } from "@refinedev/core";
 import { Edit } from "@refinedev/mui";
 import Box from "@mui/material/Box";
@@ -102,7 +102,7 @@ export const PostEdit: React.FC = () => {
   } = useForm<IPost, HttpError>({
     resource: "posts",
     action: "edit",
-    id: "1",
+    id: 1,
   });
 
   return (
@@ -182,7 +182,7 @@ export interface IPost {
 
 <TabItem value="Chakra UI">
 
-```tsx
+```tsx title="edit.tsx"
 import { HttpError } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Edit } from "@refinedev/chakra-ui";
@@ -198,7 +198,7 @@ export const PostEdit = () => {
     refineCoreProps: {
       resource: "posts",
       action: "edit",
-      id: "1",
+      id: 1,
     },
   });
 
@@ -254,6 +254,7 @@ interface IPost {
 
 </Tabs>
 
+[use-form-react-hook-form]: /docs/packages/documentation/react-hook-form/useForm/
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [use-form-core]: /api-reference/core/hooks/useForm.md
