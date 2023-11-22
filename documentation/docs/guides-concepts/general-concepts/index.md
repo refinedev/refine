@@ -105,7 +105,7 @@ export const MyPage = () => {
   const { data, isLoading } = useOne({ resource: "products", id: 1 });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <>Loading...</>;
   }
 
   return <>{data.name}</>;
@@ -233,7 +233,7 @@ export const MyPage = () => {
       <>
         My Page
         <CanAccess resource="users" action="block" params={{ id: 1 }} fallback={"You are not authorized."}>
-          // Only authorized users can see this.
+          // Only authorized users can see this button.
           <BlockUserButton />
         </CanAccess>
       </>
@@ -281,7 +281,7 @@ import { DeleteButton } from "@refinedev/antd"; // or @refinedev/mui, @refinedev
 export const MyPage = () => {
   return (
     <>
-      My Page // Only admins can see this.
+      My Page // Only authorized users can see this button.
       <DeleteButton resource="users" recordItemId={1} />
     </>
   );
@@ -480,7 +480,7 @@ export const ShowPage = () => {
   const { data, isLoading } = queryResult;
 
   if (isLoading) {
-    return "Loading...";
+    return <>Loading...</>;
   }
 
   return <>{data?.data.name}</>;
