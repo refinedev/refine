@@ -8,8 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-07-ts-classes
 hide_table_of_contents: false
 ---
 
-
-
 ## Introduction
 
 TypeScript supports all the features of JavaScript Class syntax introduced in ES2015. Basically, type annotations are applied to all members, namely: fields, constructors, methods and accessors -- and where applicable, parameters as well. TypeScript also bakes in a special syntax to class constructors called **parameter properties** which allows us to declare a class **field** from the constructor function's parameters.
@@ -19,6 +17,22 @@ A TypeScript class definition creates a type from itself and it is used to valid
 Besides type annotations, TypeScript adds member visibility across the prototype chain with three access modifiers: `public`, `protected` and `private` -- a feature distinct from how ES2022 implements member privacy with `#`.
 
 JavaScript `this` keyword leads to some unpredictability in different **call site** contexts. TypeScript is geared to mitigate during development some of the call site uncertainties by allocating a possible `this` parameter to a method's first argument.
+
+Steps we'll cover in this post:
+
+- [Typing Class Members in TypeScript](#typing-class-members-in-typescript)
+  - [Typing Fields in TypeScript](#typing-fields-in-typescript)
+  - [TypeScript Classes - Constructor Functions](#typescript-classes---constructor-functions)
+  - [TypeScript Classes - Typing Methods](#typescript-classes---typing-methods)
+  - [TypeScript Classes - Typing Accessors](#typescript-classes---typing-accessors)
+- [`this` Object in TypeScript Classes](#this-object-in-typescript-classes)
+  - [TypeScript Classes - Arrow Functions for Permanently Attaching `this` Object](#typescript-classes---arrow-functions-for-permanently-attaching-this-object)
+  - [TypeScript Classes - Context Binding with `this` Parameter](#typescript-classes---context-binding-with-this-parameter)
+- [TypeScript Generic Classes](#typescript-generic-classes)
+- [TypeScript Classes - Multiple Interfaces with `implements`](#typescript-classes---multiple-interfaces-with-implements)
+- [TypeScript Classes - Relationship Between Class Types](#typescript-classes---relationship-between-class-types)
+  - [TypeScript Classes - Classes with Identical Shapes are Type Compliant](#typescript-classes---classes-with-identical-shapes-are-type-compliant)
+  - [TypeScript Classes - Subtyped Classes are Type Compliant](#typescript-classes---subtyped-classes-are-type-compliant)
 
 ## Overview
 
@@ -37,8 +51,6 @@ We also explore generic classes with passed in type parameters and see examples 
 Towards the end, we briefly discuss the structural type system that TypeScript bases itself on. We observe with an example how instances of different but identically typed and subtype classes conform to a given class (or rather the type from it) and how a supertype cannot not conform to a subtype because of missing properties.
 
 Before we begin with type annotation examples, in the next section, let's first go through how to set up the environment for using TypeScript.
-
-
 
 ## Typing Class Members in TypeScript
 
@@ -196,9 +208,6 @@ As it happens in JavaScript, static fields in TypeScript represent class propert
 ```ts
 'public' modifier must precede 'static' modifier.(1029)
 ```
-
-
-
 
 **TypeScript Classes - `readonly` Fields**
 
@@ -564,11 +573,7 @@ class User<T> implements Identifiable, Greetable, Updatable {
   username = "randomString";
   protected age!: number;
 
-  constructor(
-    userType: T,
-    private firstName: string,
-    private lastName: string
-  ) {
+  constructor(userType: T, private firstName: string, private lastName: string) {
     this.userType = userType;
   }
 
@@ -617,11 +622,7 @@ class User<T> implements Identifiable, Greetable, Updatable, Registerable {
   username = "randomString";
   protected age!: number;
 
-  constructor(
-    userType: T,
-    private firstName: string,
-    private lastName: string
-  ) {
+  constructor(userType: T, private firstName: string, private lastName: string) {
     this.userType = userType;
   }
 

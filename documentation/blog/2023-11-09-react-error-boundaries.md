@@ -8,15 +8,20 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-09-react-erro
 hide_table_of_contents: false
 ---
 
-
-
-
 ## Introduction
 
 React, a popular JavaScript library for building user interfaces offers a powerful tool called Error Boundaries. These Error Boundaries serve as a safety net for React applications, allowing developers to gracefully catch and manage errors, preventing them from propagating up the component tree and causing application crashes.
 
 Developers can utilize Error Boundaries to present users with informative error messages, log error specifics to aid in debugging, and ensure the application remains resilient even in the face of unforeseen challenges. In the forthcoming sections, we will investigate the critical role of error handling and examine how React Error Boundaries can elevate the user experience by serving as a protective shield for your application.
 
+Steps we'll cover:
+
+- [What Are React Error Boundaries?](#what-are-react-error-boundaries)
+- [Basic Usage of Error Boundaries](#basic-usage-of-error-boundaries)
+- [Error Boundary Limitations](#error-boundary-limitations)
+- [Handling errors using `react-error-boundary` library](#handling-errors-using-react-error-boundary-library)
+- [Resetting your app after an Error](#resetting-your-app-after-an-error)
+- [FallbackComponent prop](#fallbackcomponent-prop)
 
 ## What Are React Error Boundaries?
 
@@ -39,19 +44,15 @@ The concept of Error Boundaries in React was introduced in version 16 of the lib
 React Error Boundary is like the `try..catch` of React. It is a React component that catches JavaScript errors anywhere in its child component tree, logs those errors, and displays a fallback UI instead of the component tree that crashed.
 See a component tree below:
 
-
-
  <div className="centered-image">
    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-09-react-error-bounderies/1.jpeg"  alt="mojo framework" />
 </div>
 
 <br/>
 
-
 `root` is the root component of the component tree. It is the parent of `COMP I` and `COMP II`. `COMP I` is the parent of `COMP III` and `COMP IV`. `COMP III` is the parent of `COMP V`. `COMP IV` is the parent component of `COMP VI`. `COMP I`, `COMP II`, `COMP III`, and `COMP IV` are leaf components.
 
 If an error occurs in `COMP V`, it will propagate up the component tree to `COMP III`, then to `COMP I`, and finally to `root`. If there is no error boundary in the component tree, the entire component tree will be corrupted, and the application will crash.
-
 
  <div className="centered-image">
    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-09-react-error-bounderies/2.jpeg"  alt="mojo framework" />
@@ -65,11 +66,7 @@ If an error occurs in `COMP V`, it will propagate up the component tree to `COMP
 
 <br/>
 
-
-
- 
 However, if there is an error boundary in the component tree, it will catch the error and display a fallback UI instead of the component tree that crashed.
-
 
  <div className="centered-image">
    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-09-react-error-bounderies/4.jpeg"  alt="mojo framework" />
@@ -77,29 +74,21 @@ However, if there is an error boundary in the component tree, it will catch the 
 
 <br/>
 
-
-
 Here, the error boundary is `COMP III`. It catches the error that occurred in `COMP V` and displays a fallback UI instead of the component tree that crashed. The error and crash do not propagate up the component tree to `COMP I` and `root`. We see now the benefit of React Error Boundary.
 
 Error Boundaries are React components that implement the `componentDidCatch` lifecycle method. This method is invoked after an error has been thrown by a descendant component. It receives two arguments: `error` and `info`. The `error` argument is the error that was thrown, while the `info` argument is an object that contains a component stack trace.
 
-
-
-
 ## Basic Usage of Error Boundaries
 
 In the last section, we said that Error Boundaries are React components that implement the `componentDidCatch` lifecycle method. A lifecycle method is a special method in a React Component that is invoked at a particular stage in the lifecycle of the component.
-
 
 > The `componentDidCatch` lifecycle method is invoked after an error has been thrown by a descendant component.
 
 There are different stages in the lifecycle of a component in React. The stages are: `initialization`, `mounting`, `updating`, and `unmounting`. The `componentDidCatch` lifecycle method is invoked during the `updating` stage of the component lifecycle.
 This method is invoked after an error has been thrown by a descendant component. It receives two arguments: `error` and `info`.
 
-
 - The `error` argument is the error that was thrown.
 - The `info` argument is an object that contains a component stack trace.
-    
 
 Let's see a simple example of an Error Boundary.
 
@@ -131,8 +120,6 @@ This is a basic usage of an Error Boundary. We will see how to use it in a React
 
 **Handling Different Types of Errors**
 
-
-
 In React, we can create components from a function or a class. We call them functional components and class components respectively. React Error Boundaries are only created from class components because they implement the `componentDidCatch` lifecycle method. There is no way to implement `componentDidCatch` lifecycle method in functional components for now. React can come up with their magic in the future where we can be able to create an Error Boundary in functional components but for now, we can only do that in the class components.
 
 We stated in the last section that a React Error Boundary is created when a class component implements the `componentDidCatch` lifecycle method. A class component can also be an Error Boundary if it defines either (or both) of the lifecycle methods `static getDerivedStateFromError()` or `componentDidCatch()`.
@@ -145,7 +132,6 @@ static getDerivedStateFromError(error) {
     return { hasError: true };
 }
 ```
-   
 
 The `getDerivedStateFromError`is used to render a fallback UI after an error has been thrown by a descendant component. The `componentDidCatch` lifecycle method is used to log the error information.
 
@@ -193,16 +179,14 @@ The `getDerivedStateFromError` method is called during the "render" phase, so si
 ```tsx
 <ErrorBoundary>
   <MyComponent />
-</ErrorBoundary>;
+</ErrorBoundary>
 ```
 
-
-The code above is an example of how to use an Error Boundary in a React application. We wrap the component we want to catch errors from in the Error Boundary component. In this case, we wrap the `MyComponent` component in the `ErrorBoundary` component. If an error occurs in the `MyComponent` component, it will be caught by the `ErrorBoundary` component. 
+The code above is an example of how to use an Error Boundary in a React application. We wrap the component we want to catch errors from in the Error Boundary component. In this case, we wrap the `MyComponent` component in the `ErrorBoundary` component. If an error occurs in the `MyComponent` component, it will be caught by the `ErrorBoundary` component.
 
 This is akin to `try...catch` in JavaScript:
 
-
-```tsx 
+```tsx
 try {
   MyComponent();
 } catch (error) {
@@ -228,8 +212,6 @@ Asynchronous code (e.g. `setTimeout` or `requestAnimationFrame` callbacks) same 
 
 Error boundaries are specific to the client side and won't catch errors that occur on the server or in server-side rendering. Server errors should be handled on the server and communicated to the client.
 
-
-
 **Errors in Error Boundary component**
 
 Errors thrown in the error boundary itself (rather than its children) cannot be handled by the Error boundary, it is a component also, so we should take great care when writing our error boundary component.
@@ -242,10 +224,9 @@ Error handling business in React has been simplified by a great library called [
 
 To use it, we need to install it via npm or yarn:
 
-``` 
+```
 npm install react-error-boundary
 ```
-
 
 Then we import it in our React application:
 
@@ -283,14 +264,12 @@ function fallbackRender({ error, resetErrorBoundary }) {
   <ExampleApplication />
 </ErrorBoundary>;
 ```
-    
 
 See that the render prop is called with an object that destructs to `error` and `resetErrorBoundary`. The `error` is the error message details and the `resetErrorBoundary` is a function that can be called to reset the error boundary and retry the render.
 
 ## Resetting your app after an Error
 
 The `react-error-boundary` provides us with a prop `onReset` which we can use to reset our component when an error is thrown.
-
 
 ```tsx
 function fallbackRender({ error, resetErrorBoundary }) {
@@ -314,7 +293,6 @@ function fallbackRender({ error, resetErrorBoundary }) {
 
 The `onReset` is called when the `resetErrorBoundary` function is called. The `resetErrorBoundary` function is passed to the `fallbackRender` function as a parameter.
 We can now add a button in the JSX returned by the `fallbackRender` function to reset the error boundary.
-
 
 ```tsx
 function fallbackRender({ error, resetErrorBoundary }) {
@@ -352,6 +330,3 @@ function ErrorFallbackComponent({ error, resetErrorBoundary }) {
 ```
 
 The `ErrorFallbackComponent` is a React component that renders a fallback UI when an error occurs. It receives two props: `error` and `resetErrorBoundary`. The `error` is the error message details and the `resetErrorBoundary` is a function that can be called to reset the error boundary and retry the render.
-
-
-
