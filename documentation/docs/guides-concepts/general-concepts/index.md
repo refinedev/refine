@@ -281,8 +281,8 @@ import { DeleteButton } from "@refinedev/antd"; // or @refinedev/mui, @refinedev
 export const MyPage = () => {
   return (
     <>
-      My Page 
-      // Only authorized users can see this button.
+      My Page
+      {/* Only authorized users can see this button. */}
       <DeleteButton resource="users" recordItemId={1} />
     </>
   );
@@ -665,7 +665,7 @@ export const App = () => {
 import { useShow } from "@refinedev/core";
 
 export const ShowPage = () => {
-  const { data, isLoading } = useShow({ // or useOne
+  const { data, isLoading } = useShow({ {/* or useOne */}
     resource: "products",
     id: 1,
     // highlight-start
