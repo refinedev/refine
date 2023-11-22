@@ -77,7 +77,6 @@ interface IPost {
   title: string;
   content: string;
   status: IStatus;
-  category: { id: number };
 }
 ```
 
@@ -248,7 +247,6 @@ interface IPost {
   title: string;
   content: string;
   status: IStatus;
-  category: { id: number };
 }
 ```
 
