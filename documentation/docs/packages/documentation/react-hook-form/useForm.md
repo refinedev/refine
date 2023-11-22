@@ -172,7 +172,7 @@ const PostCreate: React.FC = () => {
 };
 ```
 
-The [`@refinedev/react-hook-form`][refine-react-hook-form] adapter allows you to integrate the [React Hook Form][react-hook-form] library with refine, enabling you to manage your forms in a headless manner. This adapter supports all of the features of both [React Hook Form][react-hook-form] and [refine's useForm][use-form-core] hook, and you can use any of the [React Hook Form][react-hook-form] examples as-is by copying and pasting them into your project."
+`useForm` is used to manage forms. It returns the necessary properties and methods to control the `<form>` element. It has been developed by using [`useForm`][use-form-core] imported from the [@refinedev/core](https://github.com/refinedev/refine/tree/master/packages/core) package.
 
 <GeneralConceptsLink />
 
