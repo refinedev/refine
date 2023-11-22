@@ -1,5 +1,5 @@
 ---
-title:  A Guide for Delete Pods from Kubernetes Nodes - kubectl delete
+title: A Guide for Delete Pods from Kubernetes Nodes - kubectl delete
 description: We'll learn how to delete pods from Kubernetes nodes using the kubectl delete command.
 slug: kubectl-delete-pod
 authors: muhammad_khabbab
@@ -8,17 +8,38 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-19-kubectl-de
 hide_table_of_contents: false
 ---
 
-
-
-
-
 ## What is a pod in Kubernetes
+
 Kubernetes has the smallest execution unit, called a pod. A pod includes one or more applications. Pods are ephemeral by nature, so if a pod fails (or the node on which it is executing fails), Kubernetes has an automatic way of creating new replicas of that pod in order to keep the operation running. Within the Kubernetes system, containers, such as Docker containers, that are in the same pod will share the same compute resources.
 
+Steps we'll cover in this post:
+
+- [What is a pod in Kubernetes](#what-is-a-pod-in-kubernetes)
+- [Why one might need to delete pods](#why-one-might-need-to-delete-pods)
+- [Precautions Before Deleting a Pod](#precautions-before-deleting-a-pod)
+  - [Importance of ensuring application resilience](#importance-of-ensuring-application-resilience)
+  - [Dangers of hurriedly deleting pods without checks](#dangers-of-hurriedly-deleting-pods-without-checks)
+- [Deleting All Pods from a Node](#deleting-all-pods-from-a-node)
+  - [Explanation of `kubectl drain` command](#explanation-of-kubectl-drain-command)
+- [Verifying the node's pods before and after the drain](#verifying-the-nodes-pods-before-and-after-the-drain)
+  - [Handling special cases (NoExecute and DaemonSet pods)](#handling-special-cases-noexecute-and-daemonset-pods)
+  - [The `--force` flag and its implications](#the---force-flag-and-its-implications)
+  - [Removing the node from the cluster](#removing-the-node-from-the-cluster)
+- [Individually Deleting Pods from Nodes](#individually-deleting-pods-from-nodes)
+  - [Why you might want a more controlled approach](#why-you-might-want-a-more-controlled-approach)
+  - [Use of the `kubectl cordon` command](#use-of-the-kubectl-cordon-command)
+  - [Deleting individual pods](#deleting-individual-pods)
+- [Handling Deployment and ReplicaSet pods](#handling-deployment-and-replicaset-pods)
+- [Working with StatefulSet pods](#working-with-statefulset-pods)
+- [Bringing Pods Back onto Nodes](#bringing-pods-back-onto-nodes)
+  - [The `kubectl uncordon` command](#the-kubectl-uncordon-command)
+  - [Verifying pods being scheduled back onto the node](#verifying-pods-being-scheduled-back-onto-the-node)
+
 ## Why one might need to delete pods
+
 You may have to delete pods from one or more worker nodes for a variety of reasons, such as debugging node issues, upgrading and removing nodes from the cluster if you are deploying container applications using Kubernetes. In some cases, it is necessary to delete your pod from the node in order to manually scale down a cluster for testing purposes or sometimes when all pods need to be removed from any specific node due to maintenance.
 
-## Precautions Before Deleting a Pod 
+## Precautions Before Deleting a Pod
 
 ### Importance of ensuring application resilience
 
@@ -26,10 +47,9 @@ The provision of a consistent and reliable service that will satisfy user expect
 
 ### Dangers of hurriedly deleting pods without checks
 
-1.	Deleting pods without first performing checks might cause your service to go down or perform poorly, especially if you delete too many pods at once or delete crucial pods that are not replicated.
-2.	You may lose or otherwise damage your data if you remove the pod without checking it, especially in cases where there is no backup or replication of stored and processed data.
-3.	Deleting pods without performing any checks can lead to issues and failures propagating throughout your system, particularly if the deleted pods are connected to a communication network or a dependency chain.
-
+1. Deleting pods without first performing checks might cause your service to go down or perform poorly, especially if you delete too many pods at once or delete crucial pods that are not replicated.
+2. You may lose or otherwise damage your data if you remove the pod without checking it, especially in cases where there is no backup or replication of stored and processed data.
+3. Deleting pods without performing any checks can lead to issues and failures propagating throughout your system, particularly if the deleted pods are connected to a communication network or a dependency chain.
 
 ## Deleting All Pods from a Node
 
@@ -42,6 +62,7 @@ For Example, if we want to drain minikube node having the pods managed by '**Dae
 `kubectl drain minikube --ignore-daemonsets --force`
 
 **The Above Command will return the following output:**
+
 <div className="centered-image">
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-19-kubectl-delete-pod/KD_1.png" alt="kubectl delete" />
 </div>
@@ -69,7 +90,7 @@ A daemonSet controller manages pods, ensuring that a copy of each pod executes o
 
 ### The `--force` flag and its implications
 
-When you drain a node with pods that are managed by ReplicationController, ReplicaSet, Job, DaemonSet, or StatefulSet, the corresponding controller will regenerate those pods. As a result, if you attempt to drain a node that contains such a pod, you will receive an error message as a warning. However, in order to execute the drain operation in this case, you need to use the `--force` option. 
+When you drain a node with pods that are managed by ReplicationController, ReplicaSet, Job, DaemonSet, or StatefulSet, the corresponding controller will regenerate those pods. As a result, if you attempt to drain a node that contains such a pod, you will receive an error message as a warning. However, in order to execute the drain operation in this case, you need to use the `--force` option.
 
 ### Removing the node from the cluster
 
@@ -82,6 +103,7 @@ For Example, we have a node with the name '**minikube**', and we have drained th
 `kubectl delete node minikube`
 
 **The above command will return the following output:**
+
 <div className="centered-image">
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-19-kubectl-delete-pod/KD_3.png" alt="kubectl delete" />
 </div>
@@ -92,16 +114,17 @@ For Example, we have a node with the name '**minikube**', and we have drained th
 
 ### Why you might want a more controlled approach
 
-A controlled approach for deleting pods is important because it allows better fault tolerance, which ensures that node issues have little impact on service availability and also helps in optimizing resource utilization by releasing resources on a particular node, helping to prevent degradation. 
+A controlled approach for deleting pods is important because it allows better fault tolerance, which ensures that node issues have little impact on service availability and also helps in optimizing resource utilization by releasing resources on a particular node, helping to prevent degradation.
 
 ### Use of the `kubectl cordon` command
 
-A reliable method for removing pods from nodes in a controlled manner is executing the `kubectl cordon` command. This powerful command designates a node as unschedulable, ensuring that no additional pods will be allocated to it. Yet, the current pods still on that node will remain active and successfully handle incoming requests. This practical approach enables you to effectively delete pods from the node without compromising the accessibility of your cluster. 
+A reliable method for removing pods from nodes in a controlled manner is executing the `kubectl cordon` command. This powerful command designates a node as unschedulable, ensuring that no additional pods will be allocated to it. Yet, the current pods still on that node will remain active and successfully handle incoming requests. This practical approach enables you to effectively delete pods from the node without compromising the accessibility of your cluster.
 For Example, we will use the command below to mark our node (i.e., minikube) unschedulable:
 
 `kubectl cordon minikube`
 
 **The Above Command will return the following output:**
+
 <div className="centered-image">
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-19-kubectl-delete-pod/KD_4.png" alt="kubectl delete" />
 </div>
@@ -116,6 +139,7 @@ For Example, First, we list the Pods in our 'minikube' node using the following 
 `kubectl get pods --all-namespaces --field-selector spec.nodeName=minikube`
 
 **The above command will return the output below:**
+
 <div className="centered-image">
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-19-kubectl-delete-pod/KD_5.png" alt="kubectl delete" />
 </div>
@@ -127,6 +151,7 @@ Suppose in the list of pods, we want to delete the pod named '**my-demo-pod**'. 
 `kubectl delete pod my-demo-pod`
 
 **The above command will return the following output:**
+
 <div className="centered-image">
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-19-kubectl-delete-pod/KD_6.png" alt="kubectl delete" />
 </div>
@@ -134,6 +159,7 @@ Suppose in the list of pods, we want to delete the pod named '**my-demo-pod**'. 
 <br/>
 
 ## Handling Deployment and ReplicaSet pods
+
 A deleted pod will be re-created in case it belonged to a Deployment or ReplicaSet and scheduled to another node. In turn, this maintains the required number of replicas. On the other hand, in order to delete all the deployment or ReplicaSet pods from a node, you need to scale up the replica count before deleting the pods and then scale down the replica count. It will ensure that the pods are not scheduled back onto the same node.
 
 For Example, we have a deployment named '**example-deployment**', we will scale up the replica count using the command below:
@@ -141,6 +167,7 @@ For Example, we have a deployment named '**example-deployment**', we will scale 
 `kubectl scale deployment example-deployment --replicas=4`
 
 **The above Command will return the output below:**
+
 <div className="centered-image">
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-19-kubectl-delete-pod/KD_7.png" alt="kubectl delete" />
 </div>
@@ -184,6 +211,7 @@ Now, we will scale down the replica count of 'example-deployment' by using the c
 <br/>
 
 ## Working with StatefulSet pods
+
 However, it is important to note that StatefulSet pods behave differently when deleting them. Deleting the StatefulSet pod does not automatically trigger rescheduling to another node. Instead, it is replicated at the same node with the same name and ordinal index. The reason for this is that StatefulSet pods have a unique and persistent identifier within the cluster. Hence, if you intend to remove pods of StatefulSet from a node, start by decreasing the size of the StatefulSet by scaling it down to reduce the number of replicas and then delete the pods.
 
 Suppose we have a StatefulSet named '**demo-statefulset**' having 3 pods, and we will scale down the replica count to 2 by running the command below:
@@ -198,13 +226,14 @@ Suppose we have a StatefulSet named '**demo-statefulset**' having 3 pods, and we
 
 <br/>
 
-After listing the StatefulSet pod in the minikube node, we can see two pods, '**demo-statefulset-0**' and '**demo-statefulset-1**'. We will delete the '**demo-statefulset-0**' pod by running the command `kubectl delete pod demo-statefulset-0` and verify that '**demo-statefulset-0**' is deleted and not recreated on the minikube node by running the command below: 
+After listing the StatefulSet pod in the minikube node, we can see two pods, '**demo-statefulset-0**' and '**demo-statefulset-1**'. We will delete the '**demo-statefulset-0**' pod by running the command `kubectl delete pod demo-statefulset-0` and verify that '**demo-statefulset-0**' is deleted and not recreated on the minikube node by running the command below:
 
 `kubectl get pods -l app=web-app`
 
 ## Bringing Pods Back onto Nodes
 
 ### The `kubectl uncordon` command
+
 Use the `kubectl uncordon` command to mark a node as schedulable and ready to receive new pods to be scheduled. Pods can return to a node that was previously cordoned or drained as well. For Example, if we have previously cordon the minikube node and its status was '**SchedulingDisabled**', we can execute the command below to mark the minikube node as schedulable:
 
 `kubectl uncordon minikube`
@@ -218,6 +247,7 @@ Use the `kubectl uncordon` command to mark a node as schedulable and ready to re
 <br/>
 
 ### Verifying pods being scheduled back onto the node
+
 After you uncordon a node, you can verify that pods are being scheduled back onto the node using the below command. It will show you the pods that are running on a specific node.
 
 `kubectl get pods`
@@ -230,8 +260,8 @@ After you uncordon a node, you can verify that pods are being scheduled back ont
 
 <br/>
 
-## Conclusion 
+## Conclusion
+
 Understanding the complexities of pod deletions in a Kubernetes environment is critical for ensuring your applications stay resilient and reliable. Although Kubernetes has been designed to handle pod termination cases smoothly, quick or blinded pod removal might cause service downtime, data loss, and potential cascading failures. The manner in which various pods are deleted varies on the type(Deployments, StatefulSets, or DaemonSets) they belong. To avoid scheduling the pods on the same node again, techniques such as reducing the number of replicas before deletion must be adopted.
 
 It is highly recommended that before adopting pod deletion techniques in a production Kubernetes cluster, you practice and experiment in a safe, non-production environment such as a development or staging cluster. This hands-on experience allows you to become familiar with the complexities of pod management and the implications of various deletion actions. You can improve your skills, test your understanding of pod behaviors, and fine-tune your deletion procedures by practicing in a controlled environment. Careful preparation in a secure environment is essential for Kubernetes pod management success.
-
