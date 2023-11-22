@@ -80,8 +80,11 @@ Each data operation in the Data Provider is typically associated with a specific
 import { DataProvider } from "@refinedev/core";
 
 const myDataProvider: DataProvider = {
-  getOne: ({ resource, id }) => {
-    fetch(`https://example.com/api/v1/${resource}/${id}`);
+  getOne: async ({ resource, id }) => {
+    const response = await fetch(`https://example.com/api/v1/${resource}/${id}`);
+    const data = await response.json();
+
+    return { data };
   },
   // other methods...
 };
@@ -98,11 +101,11 @@ You can use `useList`, `useOne`, `useCreate`, `useEdit`, `useShow` hooks to fetc
 ```tsx title=show.tsx
 import { useOne } from "@refinedev/core";
 
-export const ShowPage = () => {
+export const MyPage = () => {
   const { data, isLoading } = useOne({ resource: "products", id: 1 });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <>Loading...</>;
   }
 
   return <>{data.name}</>;
@@ -155,7 +158,8 @@ import { Authenticated } from "@refinedev/core";
 
 const MyPage = () => (
   <Authenticated>
-    <YourComponent />
+    // Only authenticated users can see this.
+    <MyComponent />
   </Authenticated>
 );
 ```
@@ -201,7 +205,7 @@ import { AccessControlProvider, Refine } from "@refinedev/core";
 
 const myAccessControlProvider: AccessControlProvider = {
   can: async ({ resource, action }) => {
-    if (resource === "products" && action === "delete") {
+    if (resource === "users" && action === "block") {
       return { can: false };
     }
 
@@ -220,16 +224,16 @@ export const App = () => {
 
 You can wrap `CanAccess` component to wrap relevant parts of your application to control access.
 
-```tsx title=show-page.tsx
+```tsx title=my-page.tsx
 import { CanAccess } from "@refinedev/core";
 
-export const ShowPage = () => {
+export const MyPage = () => {
   return (
-    <CanAccess resource="users" action="show">
+    <CanAccess resource="users" action="show" params={{ id: 1 }}>
       <>
-        User Page
-        <CanAccess resource="users" action="block">
-          // Only authorized users can see this.
+        My Page
+        <CanAccess resource="users" action="block" params={{ id: 1 }} fallback={"You are not authorized."}>
+          // Only authorized users can see this button.
           <BlockUserButton />
         </CanAccess>
       </>
@@ -242,12 +246,12 @@ export const ShowPage = () => {
 
 You can use `useCan` hook to control access in your components.
 
-```tsx title=show.tsx
+```tsx title=my-page.tsx
 import { ErrorComponent, useCan } from "@refinedev/core";
 
-export const ShowPage = () => {
-  const { data: show } = useCan({ resource: "users", action: "show" });
-  const { data: block } = useCan({ resource: "users", action: "block" });
+export const MyPage = () => {
+  const { data: show } = useCan({ resource: "users", action: "show", params: { id: 1 } });
+  const { data: block } = useCan({ resource: "users", action: "block", params: { id: 1 } });
 
   if (!show?.can) {
     return <ErrorComponent />;
@@ -255,8 +259,9 @@ export const ShowPage = () => {
 
   return (
     <>
-      User Details Page
+      My Page
       {block?.can && <BlockUserButton />}
+      {!block?.can && "You are not authorized."}
     </>
   );
 };
@@ -270,14 +275,15 @@ For example if user isn't authorized to see `orders` resource, it will be hidden
 
 Or if the current user isn't authorized to delete a product, the delete button will be disabled or hidden automatically.
 
-```tsx title=example.tsx
+```tsx title=my-page.tsx
 import { DeleteButton } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
 
-export const ShowPage = () => {
+export const MyPage = () => {
   return (
     <>
-      Product Details Page
-      <DeleteButton /> // Only admins can see this.
+      My Page
+      {/* Only authorized users can see this button. */}
+      <DeleteButton resource="users" recordItemId={1} />
     </>
   );
 };
@@ -301,16 +307,18 @@ Our **data hooks**, **mutation hooks**, and **auth hooks** can automatically sho
 
 It's also possible to modify these notifications per hook.
 
-```tsx title=show.tsx
+```tsx title=my-page.tsx
 import { useDelete } from "@refinedev/core";
 
-export const ShowPage = () => {
-  const { mutate } = useDelete({ resource: "products" });
+export const MyPage = () => {
+  const { mutate } = useDelete();
 
   return (
     <Button
       onClick={() => {
         mutate({
+          resource: "products",
+          id: 1,
           successNotification: () => ({
             message: "Product Deleted",
             description: "Product has been deleted successfully.",
@@ -332,10 +340,10 @@ export const ShowPage = () => {
 
 If you have a use-case that isn't covered, you can use `useNotification` hook to show notifications in your application.
 
-```tsx title=show.tsx
+```tsx title=my-page.tsx
 import { useNotification } from "@refinedev/core";
 
-export const ShowPage = () => {
+export const MyPage = () => {
   const { open, close } = useNotification();
 
   return (
@@ -390,10 +398,10 @@ export const App = () => {
 
 You can use `useTranslate`, `useSetLocale`, `useGetLocale` hooks to handle i18n in your components.
 
-```tsx title=show.tsx
+```tsx title=my-page.tsx
 import { useTranslate, useSetLocale, useGetLocale } from "@refinedev/core";
 
-export const ShowPage = () => {
+export const MyPage = () => {
   const translate = useTranslate();
   const setLocale = useSetLocale();
   const getLocale = useGetLocale();
@@ -404,7 +412,7 @@ export const ShowPage = () => {
       <Button onClick={() => setLocale("en")}>Set Locale to English</Button>
       <Button onClick={() => setLocale("de")}>Set Locale to German</Button>
 
-      <Button>{translate('Hello')</Button>
+      <Button>{translate("Hello")</Button>
     </>
   );
 };
@@ -473,7 +481,7 @@ export const ShowPage = () => {
   const { data, isLoading } = queryResult;
 
   if (isLoading) {
-    return <Loading />;
+    return <>Loading...</>;
   }
 
   return <>{data?.data.name}</>;
@@ -654,10 +662,10 @@ export const App = () => {
 <TabItem value="Meta from hook">
 
 ```tsx title=show.tsx
-import { useOne } from "@refinedev/core";
+import { useShow } from "@refinedev/core";
 
 export const ShowPage = () => {
-  const { data, isLoading } = useOne({
+  const { data, isLoading } = useShow({ {/* or useOne */}
     resource: "products",
     id: 1,
     // highlight-start
@@ -744,15 +752,7 @@ refine CLI allows you to interact with your **refine** project and perform certa
 
 ### Inferencer
 
-`@refinedev/inferencer` is a package that **scaffolds** code **on the fly** for your application based on your **API responses**.
-
-:::caution
-
-Inferencer **scaffolds** some basic boilerplate code to be used as a **starting point** to save some time.
-
-It's not **guaranteed** to work in all cases, and it's not meant to be used on **production**.
-
-:::
+`@refinedev/inferencer` is a package that automatically generates basic boilerplate code for your application based on API responses, serving as a starting point to save time. However, it's not always reliable for all cases and isn't intended for production use.
 
 > See the [Inferencer](/docs/packages/documentation/inferencer/) page for more information.
 
