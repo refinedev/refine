@@ -22,7 +22,7 @@ Tables are essential in data-intensive applications, serving as the primary way 
 
 ## Basic Usage
 
-The usage of the `useTable` hooks may slightly differ between libraries, the core functionality is provided by the @refinedev/core's `useTable` hook and is the same across all implementations. Refine's core has the `useTable` hook which is the foundation of all the other extensions and `useTable` implementations in the other helper libraries.
+The usage of the `useTable` hooks may slightly differ between libraries, the core functionality is provided by the [`@refinedev/core`'s `useTable`][use-table-core] hook and functionality remains consistent in all implementations. Refine's core has the `useTable` hook which is the foundation of all the other `useTable` implementations.
 
 To learn more about the usage and see `useTable` in action, check out the reference pages for each library:
 
@@ -240,9 +240,10 @@ useTable({
 You can change the filters state by using the `setFilters` function. Every change will trigger a new fetch.
 
 ```tsx
+import React from "react";
 import { useTable, HttpError } from "@refinedev/core";
 
-const PostList = () => {
+const PostList: React.FC = () => {
   const { tableQueryResult, setFilters } = useTable<IPost, HttpError, IPostFilters>();
   const posts = tableQueryResult?.data?.data ?? [];
 
@@ -332,6 +333,7 @@ You can change the sorters state by using the `setSorters` function. Every chang
 For example we can fetch posts with the title that contains the search value.
 
 ```tsx
+import React from "react";
 import { useTable, HttpError } from "@refinedev/core";
 
 const PostList: React.FC = () => {
