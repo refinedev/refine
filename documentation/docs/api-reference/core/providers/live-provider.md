@@ -6,9 +6,9 @@ sidebar_label: Live Provider
 
 ## Overview
 
-The `liveProvider` is a built-in provider in **refine** that enables real-time updates and interactions between the server and the client. **refine** being agnostic as always allows you to integrate any solution of your choice
+**Live Provider** is **Refine**'s built-in provider that enables real-time updates and interactions between the server and the client. **Refine** being agnostic as always allows you to integrate any solution of your choice
 
-A live provider must include following methods:
+A live provider must include the following methods:
 
 ```ts
 const liveProvider = {
@@ -36,17 +36,19 @@ We have the following built-in integrations which you can use out-of-the-box.
 
 ### auto
 
-Queries of related resource are invalidated in Realtime as new events from subscription arrive.
-For example data from a `useTable` hook will be automatically updated when data is changed.
+Queries of related resources **will be invalidated** and **re-fetched** as new events from subscriptions are published.
+
+For example, `posts` data of `useList` hook will be re-fetched when a new event is published for `posts` resource.
 
 ```tsx
-const { data } = useList({ liveMode: "auto" });
+const { data } = useList({ resource: "posts", liveMode: "auto" });
 ```
 
 ### manual
 
-Queries of related resource are **not invalidated** in Realtime, instead [`onLiveEvent`](#onliveevent) is run with the `event` as new events from subscription arrive.
-For example while in an edit form, it would be undesirable for data shown to change. `manual` mode can be used to prevent data from changing.
+In `manual` mode, queries of the related resources **won't be invalidated**. Instead, the `onLiveEvent` function will be called when new events are published from the subscriptions.
+
+`manual` mode can be used to prevent those
 
 ```tsx
 const { data } = useList({
@@ -59,14 +61,15 @@ const { data } = useList({
 
 ### off
 
-Disables live mode.
-For example it can be used to disable some parts of the app if you have app wide live mode configuration in `<Refine>`.
+Disables live mode entirely.
 
 ### Global Configuration
 
-```tsx title="App.tsx"
-// ...
+`liveMode` can be configured globally by passing it to the `<Refine>` component.
 
+Underlying hooks will use this value unless it's overridden by passing it to the hook directly.
+
+```tsx title="App.tsx"
 const App: React.FC = () => {
   return <Refine liveProvider={liveProvider} options={{ liveMode: "auto" }} />;
 };
@@ -74,7 +77,7 @@ const App: React.FC = () => {
 
 ## onLiveEvent
 
-`onLiveEvent` is called when new event(s) are published from the subscriptions.
+`onLiveEvent` is called when the new event(s) are published from the subscriptions.
 
 ```tsx
 const { data } = useList({
@@ -89,7 +92,7 @@ const { data } = useList({
 
 ### With `<Refine>` component
 
-When passed to `<Refine>` component, `onLiveEvent` will be called for **every event** from any resource. It can be used for actions that are generally applicable to all events from active subscriptions.
+When passed to the `<Refine>` component, `onLiveEvent` will be called for **every event** from any resource. It can be used for actions that are generally applicable to all events from active subscriptions.
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
@@ -111,33 +114,29 @@ const App: React.FC = () => {
 
 ## Supported Hooks Subscriptions
 
-Supported hooks subscribe in the following way:
+Following hooks are supported by the live provider and works out-of-the-box:
 
-### `useList`
+### useList
 
 ```ts
 useList({ resource: "posts" });
-```
 
-```ts
+// Will subscribe to `resources/posts` channel with following parameters:
 {
     types: ["*"],
     channel: "resources/posts"
 }
 ```
 
-:::info
+Since the following hooks are derivate of `useList` hook, they will subscribe to the same events.
 
-Since following hooks uses `useList` hook under the hood, the will subscribe to same event.
-
-- [`useTable`](/docs/api-reference/core/hooks/useTable)
-- [`useEditableTable`](/api-reference/antd/hooks/table/useEditableTable.md)
-- [`useSimpleList`](/api-reference/antd/hooks/list/useSimpleList.md)
-- [`useCheckboxGroup`](/api-reference/antd/hooks/field/useCheckboxGroup.md)
-- [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
-- [`useRadioGroup`](/api-reference/antd/hooks/field/useRadioGroup.md)
-
-:::
+| Package                | Hooks                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| @refinedev/core        | [useTable](/docs/api-reference/core/hooks/useTable), [useSelect](/docs/api-reference/core/hooks/useSelect/)                                                                                                                                                                                                                                                                                                                       |
+| @refinedev/antd        | [useTable](/docs/api-reference/antd/hooks/table/useTable), [useEditableTable](/docs/api-reference/antd/hooks/table/useEditableTable.md), [useSelect](/docs/api-reference/antd/hooks/field/useSelect), [useSimpleList](/docs/api-reference/antd/hooks/list/useSimpleList.md), [useCheckboxGroup](/docs/api-reference/antd/hooks/field/useCheckboxGroup.md), [useRadioGroup](/docs/api-reference/antd/hooks/field/useRadioGroup.md) |
+| @refinedev/react-table | [useTable](/docs/packages/documentation/react-table)                                                                                                                                                                                                                                                                                                                                                                              |
+| @refinedev/mui         | [useDataGrid](/docs/api-reference/mui/hooks/useDataGrid/), [useAutoComplete](/docs/api-reference/mui/hooks/useAutoComplete)                                                                                                                                                                                                                                                                                                       |
+| @refinedev/mantine     | [useSelect](/docs/api-reference/mantine/hooks/useSelect)                                                                                                                                                                                                                                                                                                                                                                          |
 
 ### `useOne`
 
@@ -153,27 +152,20 @@ useOne({ resource: "posts", id: "1" });
 }
 ```
 
-:::tip
+Since the following hooks are derivative of `useOne` hook, they will subscribe to the same events.
 
-Following hooks uses `useOne` under the hood and subscribe to same event.
-
-TODO: Add missing hooks, datagrid, react-table vsvs
-
-- [`useForm`](/api-reference/core/hooks/useForm.md)
-- [`useModalForm`](/api-reference/antd/hooks/form/useModalForm.md)
-- [`useDrawerForm`](/api-reference/antd/hooks/form/useDrawerForm.md)
-- [`useStepsForm`](/api-reference/antd/hooks/form/useStepsForm.md)
-- [`useShow`](/api-reference/core/hooks/show/useShow.md)
-
-:::
+| Package            | Hooks                                                                                                                                                                                                                                                                      |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| @refinedev/core    | [useShow](/docs/api-reference/core/hooks/show/useShow.md), [useForm](/docs/api-reference/core/hooks/useForm.md)                                                                                                                                                            |
+| @refinedev/antd    | [useForm](/docs/api-reference/antd/hooks/form/useForm.md), [useModalForm](/docs/api-reference/antd/hooks/form/useModalForm.md), [useDrawerForm](/docs/api-reference/antd/hooks/form/useDrawerForm.md), [useStepsForm](/docs/api-reference/antd/hooks/form/useStepsForm.md) |
+| @refinedev/mantine | [useForm](/docs/api-reference/mantine/hooks/form/useForm), [useDrawerForm](/docs/api-reference/mantine/hooks/form/useDrawerForm), [useModalForm](/docs/api-reference/mantine/hooks/form/useModalForm), [useStepsForm](/docs/api-reference/mantine/hooks/form/useStepsForm) |
 
 ### `useMany`
 
 ```ts
 useMany({ resource: "posts", ids: ["1", "2"] });
 
-// Will subscribe to `resources/posts` channel with following parameters.
-
+// Will subscribe to `resources/posts` channel with following parameters:
 {
     types: ["*"],
     channel: "resources/posts"
@@ -181,17 +173,15 @@ useMany({ resource: "posts", ids: ["1", "2"] });
 }
 ```
 
-:::tip
+Since the following hooks are using `useMany` hook, they will subscribe to the same events.
 
-Following hooks uses `useMany` under the hood and subscribe to same event.
-
-- [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
-
-:::
+| Package         | Hooks                                                  |
+| --------------- | ------------------------------------------------------ |
+| @refinedev/core | [useSelect](/docs/api-reference/core/hooks/useSelect/) |
 
 ## Publish Events from Hooks
 
-**refine** publishes these events in the hooks. Let's see usage of hooks and what kind of events are published:
+**refine** publishes these events in the hooks. Let's see the usage of hooks and what kind of events are published:
 
 ### `useCreate`
 
@@ -204,9 +194,8 @@ mutate({
     title: "New Post",
   },
 });
-```
 
-```ts title="Published event"
+// Will publish the following event:
 {
     channel: `resources/posts`,
     type: "created",
@@ -233,9 +222,8 @@ mutate({
     },
   ],
 });
-```
 
-```ts title="Published event"
+// Will publish the following event:
 {
     channel: `resources/posts`,
     type: "created",
@@ -255,9 +243,8 @@ mutate({
   resource: "posts",
   id: "1",
 });
-```
 
-```ts title="Published event"
+// Will publish the following event:
 {
     channel: `resources/posts`,
     type: "deleted",
@@ -277,9 +264,8 @@ mutate({
   resource: "posts",
   ids: ["1", "2"],
 });
-```
 
-```ts title="Published event"
+// Will publish the following event:
 {
     channel: `resources/posts`,
     type: "deleted",
@@ -300,9 +286,8 @@ mutate({
   id: "2",
   values: { title: "New Post Title" },
 });
-```
 
-```ts title="Published event"
+// Will publish the following event:
 {
     channel: `resources/posts`,
     type: "updated",
@@ -323,9 +308,8 @@ mutate({
   ids: ["1", "2"],
   values: { title: "New Post Title" },
 });
-```
 
-```ts title="Published event"
+// Will publish the following event:
 {
     channel: `resources/posts`,
     type: "updated",
@@ -336,9 +320,11 @@ mutate({
 }
 ```
 
-## Publish Events from API
+## Publishing Events from the Client Side
 
-Publishing in client side must be avoided generally. It's recommended to handle it in server side. Events published from the server must be in the following ways:
+Publishing on the client side must be avoided generally. It's recommended to handle it on the server side.
+
+Events published from the server must be in the following ways:
 
 - When creating a record:
 
