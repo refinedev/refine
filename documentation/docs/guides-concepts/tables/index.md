@@ -22,7 +22,7 @@ Tables are essential in data-intensive applications, serving as the primary way 
 
 ## Basic Usage
 
-The usage of the `useTable` hooks may slightly differ between libraries, the core functionality is provided by the [`@refinedev/core`'s `useTable`][use-table-core] hook and functionality remains consistent in all implementations. Refine's core has the `useTable` hook which is the foundation of all the other `useTable` implementations.
+The usage of the `useTable` hooks may slightly differ between UI libraries, however, the core functionality of `useTable` hook in [`@refinedev/core`][use-table-core] stays consistent in all implementations. The `useTable` hook in Refine's core is the foundation of all the other `useTable` implementations.
 
 To learn more about the usage and see `useTable` in action, check out the reference pages for each library:
 
