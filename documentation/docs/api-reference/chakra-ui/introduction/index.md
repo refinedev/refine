@@ -18,7 +18,7 @@ npm install @refinedev/chakra-ui
 
 ## Tables
 
-Chakra UI offers styled table primitives but lacks the table management solution. Refine recommends using `@refinedev/react-table` package which is built on top of Refine's [`useTable`](/docs/api-reference/core/hooks/useTable.md) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Chakra UI uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
+Chakra UI offers styled table primitives but lacks the table management solution. Refine recommends using `@refinedev/react-table` package which is built on top of Refine's [`useTable`](/docs/api-reference/core/hooks/useTable/index.md) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Chakra UI uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
 
 ```tsx title="posts/list.tsx"
 import React from "react";

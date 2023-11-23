@@ -18,7 +18,7 @@ npm install @refinedev/mantine
 
 ## Tables
 
-Mantine offers styled table primitives but lacks the table management solution. Refine recommends using `@refinedev/react-table` package which is built on top of Refine's [`useTable`](/docs/api-reference/core/hooks/useTable.md) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Mantine uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
+Mantine offers styled table primitives but lacks the table management solution. Refine recommends using `@refinedev/react-table` package which is built on top of Refine's [`useTable`](/docs/api-reference/core/hooks/useTable/index.md) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Mantine uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
 
 ```tsx title="posts/list.tsx"
 import React from "react";
