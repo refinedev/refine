@@ -8,7 +8,7 @@ Realtime data is an important part of modern applications. Seeing the changes in
 
 Once a **Live Provider** is integrated, **Refine** takes care of the **invalidation**, **refetching** logic for your resources.
 
-For example if a new record is created for `products` resource, a page where you use `useList` hook will automatically refetch the lates `products` data.
+For example if a new record is created for `products` resource, a page where you use `useList` hook will automatically refetch the latest `products` data.
 
 ## Supported Hooks
 
