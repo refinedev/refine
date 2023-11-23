@@ -326,8 +326,8 @@ You can change the sorters state by using the `setSorters` function. Every chang
 
 `useTable` has a search feature with `onSearch`. The search is done by using the `onSearch` function with `searchFormProps`. These feature enables you to easily connect form state to the table filters.
 
-`onSearch`: This function is triggered when the `searchFormProps.onFinish is called`. It receives the form values as the first argument and expectes a promise that returns a [`CrudFilters`][crudfilters] type.
-`searchFormProps`: Has nessesary props for the form.
+`onSearch`: This function is triggered when the `searchFormProps.onFinish is called`. It receives the form values as the first argument and expects a promise that returns a [`CrudFilters`][crudfilters] type.
+`searchFormProps`: Has necessary props for the form.
 
 For example we can fetch posts with the title that contains the search value.
 
