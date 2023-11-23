@@ -8,7 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-f
 hide_table_of_contents: false
 ---
 
-
 ## Introduction
 
 [TailwindCSS](https://tailwindcss.com/) is a robust CSS framework that provides numerous utility classes for layout, sizing, colors, typography, etc. One of the most powerful capabilities Tailwind provides is responsive variants of utility classes for all screen sizes. Tailwind also supports variants for an element's states like `hover`, `focus`, `active`, and so on.
@@ -22,6 +21,16 @@ We'll employ a mobile-first approach, so we'll be starting with using `flex-dire
 We'll start with a collapsible React navbar that already comes in a collapsed state with the necessary spacing and sizing implemented so that we can focus on the use of Tailwind Flex classes in this article.
 
 Before starting, though, let's talk about the prerequisites that need to be managed for getting hands-on with Tailwind Flex.
+
+Steps we'll cover:
+
+- [Starter Files](#starter-files)
+  - [`<Navbar />` Component](#navbar--component)
+- [Styling a Navbar with TailwindCSS classes](#styling-a-navbar-with-tailwindcss-classes)
+  - [Nav Items with Tailwind Flex](#nav-items-with-tailwind-flex)
+  - [Ordering List Items with Tailwind Flex](#ordering-list-items-with-tailwind-flex)
+  - [Search Bar](#search-bar)
+  - [Positioning Navbar Logo with Tailwind Flex](#positioning-navbar-logo-with-tailwind-flex)
 
 ## Prerequisites
 
@@ -83,14 +92,12 @@ With this, TailwindCSS will compile styles in `./src/styles/styles.css` and put 
 6. Link the CSS file to `./public/index.html` file:
 
 ```html
-<link href="./styles/styles.css" rel="stylesheet">
+<link href="./styles/styles.css" rel="stylesheet" />
 ```
-
 
 If you run into any hurdle, please check out how to initialize a React app with `create-react-app` (CRA) for TailwindCSS from [here](https://tailwindcss.com/docs/guides/create-react-app).
 
 With the development environment set up, let's now get our starter files prepared.
-
 
 ## Starter Files
 
@@ -116,11 +123,9 @@ Please feel free to clean up all other imports and markups.
 
 We want to focus on the `<Navbar />` component.
 
-
 ### `<Navbar />` Component
 
 The `<Navbar />` component initially looks like this:
-
 
 <details>
 
@@ -138,7 +143,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div id="brand-wrapper" className="nav-wrapper">
         <a className="brand" href="/">
-            <img src={TailzupLogo} width={180} height={62} alt="tailzup-logo" />
+          <img src={TailzupLogo} width={180} height={62} alt="tailzup-logo" />
         </a>
       </div>
       <div
@@ -146,11 +151,7 @@ const Navbar = () => {
       >
         <div id="items" className="my-2">
           <div className="left mx-2 p-2">
-            <input
-              className="text-input"
-              type= "email"
-              placeholder= "Find donald trump or something..."
-            />
+            <input className="text-input" type="email" placeholder="Find donald trump or something..." />
             <SearchIcon />
           </div>
           <div>
@@ -179,10 +180,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <HamburgerIcon
-        isMobileMenuOpen={isMobileMenuOpen}
-        setIsMobileMenuOpen={setIsMobileMenuOpen}
-      />
+      <HamburgerIcon isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
     </nav>
   );
 };
@@ -192,9 +190,7 @@ export default Navbar;
 
 </details>
 
-
 If you examine, you can see that the display and hiding logic of the vertical menu is already implemented using `isMobileMenuOpen` state. We also have all the spacing, typography and color styles completed with `navbar`, `nav-wrapper`, `brand`, and `text-input` classes composed from necessary TailwindCSS utility classes. You can see what's going on in `src/styles/styles.css` file for the details.
-
 
 ### Images
 
@@ -212,8 +208,6 @@ You can download it from [here](https://imgbox.com/eCnG8yLw) and add it to the s
 
 <br/>
 
-
-
 ### Styles
 
 The CSS file we are using looks like the one below. Please copy over all the styles and place them inside `src/styles/styles.css`:
@@ -223,78 +217,76 @@ The CSS file we are using looks like the one below. Please copy over all the sty
 <summary>Show CSS styles</summary>
 
 ```css title="src/styles/styles.css"
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-    --primary-color: rgb(223, 232, 247);
-    --secondary-color: rgb(182, 76, 27);
-    --grayscale: rgb(226, 218, 218);
-    --friendly: green;
-    --neutral: blue;
-    --warning: yellow;
-    --danger: crimson;
-    --forbidden: black;
+  --primary-color: rgb(223, 232, 247);
+  --secondary-color: rgb(182, 76, 27);
+  --grayscale: rgb(226, 218, 218);
+  --friendly: green;
+  --neutral: blue;
+  --warning: yellow;
+  --danger: crimson;
+  --forbidden: black;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    min-width: 450px;
+  min-width: 450px;
 }
 
 .navbar {
-    @apply fixed mx-auto px-2 w-full h-auto bg-slate-600;
+  @apply fixed mx-auto px-2 w-full h-auto bg-slate-600;
 }
 
 .nav-wrapper {
-    @apply h-14 bg-slate-600 w-full;
+  @apply h-14 bg-slate-600 w-full;
 }
 
 .brand {
-    max-width: 12rem;
-    color: var(--primary-color);
-    @apply block text-4xl mx-2 py-2;
+  max-width: 12rem;
+  color: var(--primary-color);
+  @apply block text-4xl mx-2 py-2;
 }
 
 .nav-item {
-   @apply mx-2 p-1 rounded lg:mx-8 w-full lg:w-auto hover:scale-105 hover:backdrop-brightness-125 hover:shadow transition-all;
+  @apply mx-2 p-1 rounded lg:mx-8 w-full lg:w-auto hover:scale-105 hover:backdrop-brightness-125 hover:shadow transition-all;
 }
 
 .nav-link {
-    @apply text-center p-1
+  @apply text-center p-1;
 }
 
 .text-input {
-    @apply py-0.5 px-2 border rounded-l text-slate-800;
+  @apply py-0.5 px-2 border rounded-l text-slate-800;
 }
 
 .avatar {
-    width: 2rem;
-    height: 2rem;
-    color: whitesmoke;
+  width: 2rem;
+  height: 2rem;
+  color: whitesmoke;
 }
 
 .tailzup-logo {
-    width: 4rem;
-    height: 4rem;
+  width: 4rem;
+  height: 4rem;
 }
 
 .icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: whitesmoke;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: whitesmoke;
 }
 ```
 
 </details>
-
 
 ### Icons
 
@@ -303,7 +295,6 @@ We have some icons in `src/components/icons` folder. They are mainly the JSX mar
 <details>
 
 <summary>Show Icons</summary>
-
 
 ```tsx title="src/components/icons/index.tsx"
 import React from "react";
@@ -317,15 +308,15 @@ export const HamburgerIcon = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
       <a href="/">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill= "none"
-          viewBox= "0 0 24 24"
+          fill="none"
+          viewBox="0 0 24 24"
           strokeWidth={1.5}
-          stroke= "currentColor"
+          stroke="currentColor"
           className="w-6 h-6"
         >
           <path
-            strokeLinecap= "round"
-            strokeLinejoin= "round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
           />
         </svg>
@@ -339,15 +330,15 @@ export const Avatar = () => {
     <a href="/">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        fill= "none"
-        viewBox= "0 0 24 24"
+        fill="none"
+        viewBox="0 0 24 24"
         strokeWidth={1.5}
-        stroke= "currentColor"
-        className= "avatar"
+        stroke="currentColor"
+        className="avatar"
       >
         <path
-          strokeLinecap= "round"
-          strokeLinejoin= "round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
         />
       </svg>
@@ -363,15 +354,15 @@ export const SearchIcon = () => {
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        fill= "none"
-        viewBox= "0 0 24 24"
+        fill="none"
+        viewBox="0 0 24 24"
         strokeWidth={1.5}
-        stroke= "currentColor"
-        className= "icon"
+        stroke="currentColor"
+        className="icon"
       >
         <path
-          strokeLinecap= "round"
-          strokeLinejoin= "round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
         />
       </svg>
@@ -392,7 +383,6 @@ npm run start
 
 You can see a vertical menu and a toggle button at a screen size less than `md`. And the toggle button is functioning properly:
 
-
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/icons-min.gif"  alt="tailwind flex" />
 </div>
@@ -403,7 +393,6 @@ The menu items in `<Navbar />` are not yet following flex formatting, as all the
 
 So, let's start flexing the navbar with TailwindCSS Flex classes.
 
-
 ## Styling a Navbar with TailwindCSS classes
 
 We'll go inside out, as it is easier to manage inner flex containers and then combine container siblings up the HTML tree.
@@ -411,7 +400,7 @@ We'll go inside out, as it is easier to manage inner flex containers and then co
 ### Nav Items with Tailwind Flex
 
 We'll apply a mobile-first approach to the `<ul>` list and its items. They make up the main navigation links. And we want to start with flex columns on smaller screens and then go horizontal at `md`. While in column layout, we want the items to be justified and aligned to the top-left. This is achieved as default without any flex placing classes:
-    
+
 ```html
 <div>
   <ul
@@ -419,7 +408,7 @@ We'll apply a mobile-first approach to the `<ul>` list and its items. They make 
                 //highlight-start
     className="flex flex-col md:flex-row md:justify-start md:items-center"
                 //highlight-end
-  > 
+  >
         //highlight-next-line
     <li className= "nav-item md:order-last" >
       <a href="/">
@@ -447,11 +436,9 @@ We'll apply a mobile-first approach to the `<ul>` list and its items. They make 
 
 At `md`, with `md:flex-row md:justify-start md:items-center`, we are turning the items horizontally, justified to the start, and vertically positioned to the center.
 
-
 ### Ordering List Items with Tailwind Flex
 
 Notice, the `<Avatar />` item's `<li>` element is the first item on smaller screens, and we moved its order to last with `md:order-last`. On screens larger than `md` it's showing at the end of the horizontal navbar.
-
 
 ### Search Bar
 
@@ -463,11 +450,7 @@ Next, we look at the sibling of the container of the list we just "flexed" - the
   className="left mx-2 p-2 flex justify-center items-center"
   //highlight-end
 >
-  <input
-    className="text-input"
-    type= "email"
-    placeholder= "Find danielle trump or sth..."
-  />
+  <input className="text-input" type="email" placeholder="Find danielle trump or sth..." />
   <SearchIcon />
 </div>
 ```
@@ -476,7 +459,7 @@ Then, we want to correctly position the search bar and the nav list items. We wa
 
 ```tsx
 <div
-  id= "items"
+  id="items"
   //highlight-start
   className="my-2 flex flex-col justify-start items-start md:flex-row md:justify-start md:items-center"
   //highlight-end
@@ -486,18 +469,11 @@ Then, we want to correctly position the search bar and the nav list items. We wa
     className="left mx-2 p-2 order-last md:order-none flex justify-center items-center"
     //highlight-end
   >
-    <input
-      className="text-input"
-      type= "email"
-      placeholder= "Find danield trump or st..."
-    />
+    <input className="text-input" type="email" placeholder="Find danield trump or st..." />
     <SearchIcon />
   </div>
   <div>
-    <ul
-      id= "right"
-      className="flex flex-col md:flex-row md:justify-start md:items-center"
-    >
+    <ul id="right" className="flex flex-col md:flex-row md:justify-start md:items-center">
       <li className="nav-item md:order-last">
         <a href="/">
           <Avatar />
@@ -527,7 +503,6 @@ Notice we are applying flex order again with Tailwind Flex `order` classes. With
 
 So, with these changes, we have been able to achieve a good shape for the vertical navbar. The navbar looks almost complete, and it can now strongly flex its muscles back and forth in the horizontal position:
 
-
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/vertical-menu-min.gif"  alt="tailwind flex" />
 </div>
@@ -536,14 +511,10 @@ So, with these changes, we have been able to achieve a good shape for the vertic
 
 We need to now fix things with the brand item, which should be on the left of the other items on larger screens.
 
-
-
-
 ### Positioning Navbar Logo with Tailwind Flex
 
 Before we work on the parent `<nav>`, let's make sure all elements inside the `id= "brand-wrapper"` are always centered horizontally and vertically.
-    
-    
+
 ```html
 <div
   id= "brand-wrapper"
@@ -560,8 +531,6 @@ Before we work on the parent `<nav>`, let's make sure all elements inside the `i
 Notice the `flex-1` class. It is related to the `flex` of the `nav` element. We are making the `brand-wrapper` `div` grow to empty spaces all the time.
 
 And now, in the parent `nav` element, for screens larger than `md`, let's make the navbar items on the right become horizontal with the brand item on the left:
-    
-
 
 <details>
 
@@ -573,35 +542,24 @@ And now, in the parent `nav` element, for screens larger than `md`, let's make t
   className="navbar flex flex-col justify-start md:flex-row md:justify-between md:items-center"
   //highlight-end
 >
-  <div
-    className="nav-wrapper flex justify-start items-center flex-1 self-start"
-  >
+  <div className="nav-wrapper flex justify-start items-center flex-1 self-start">
     <a className="brand" href="/">
-        <img src={TailzupLogo} width={180} height={62} alt="tailzup-logo" />
+      <img src={TailzupLogo} width={180} height={62} alt="tailzup-logo" />
     </a>
   </div>
   <div
     className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}
   >
     <div
-      id= "items"
+      id="items"
       className="my-2 flex flex-col justify-start items-start md:flex-row md:justify-start md:items-center"
     >
-      <div
-        className="left mx-2 p-2 order-last md:order-none flex justify-center items-center"
-      >
-        <input
-          className="text-input"
-          type= "email"
-          placeholder= "Find danielle trump or stormy..."
-        />
+      <div className="left mx-2 p-2 order-last md:order-none flex justify-center items-center">
+        <input className="text-input" type="email" placeholder="Find danielle trump or stormy..." />
         <SearchIcon />
       </div>
       <div>
-        <ul
-          id= "right"
-          className="flex flex-col md:flex-row md:justify-start md:items-center"
-        >
+        <ul id="right" className="flex flex-col md:flex-row md:justify-start md:items-center">
           <li className="nav-item md:order-last">
             <a href="/">
               <Avatar />
@@ -626,10 +584,7 @@ And now, in the parent `nav` element, for screens larger than `md`, let's make t
       </div>
     </div>
   </div>
-  <HamburgerIcon
-    isMobileMenuOpen={isMobileMenuOpen}
-    setIsMobileMenuOpen={setIsMobileMenuOpen}
-  />
+  <HamburgerIcon isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
 </nav>
 ```
 
@@ -645,7 +600,6 @@ So, with this Tailwind Flex power, we have a pretty neat React responsive navbar
 
 <br/>
 
-
 And the final `<Navbar />` component looks like this:
 
 <details>
@@ -654,31 +608,33 @@ And the final `<Navbar />` component looks like this:
 
 ```tsx title="src/components/Navbar.tsx"
 import React, { useState } from "react";
-import { Avatar, HamburgerIcon, SearchIcon,  } from "./icons";
+import { Avatar, HamburgerIcon, SearchIcon } from "./icons";
 import TailzupLogo from "../images/tailzup-logo.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMenuHidden = !isMobileMenuOpen ? "hidden md:block" : "";
-  
+
   return (
     <nav className=" navbar flex flex-col justify-start md:flex-row md:justify-between md:items-center">
-      <div id="brand-wrapper" className="nav-wrapper flex flex-nowrap justify-start items-center flex-1 self-start
-">
+      <div
+        id="brand-wrapper"
+        className="nav-wrapper flex flex-nowrap justify-start items-center flex-1 self-start
+"
+      >
         <a className="brand" href="/">
-            <img src={TailzupLogo} width={180} height={62} alt="tailzup-logo" />
+          <img src={TailzupLogo} width={180} height={62} alt="tailzup-logo" />
         </a>
       </div>
       <div
         className={`${isMenuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}
       >
-        <div id= "items" className= "my-2 flex flex-col justify-start items-start md:flex-row md:justify-start md:items-center">
-          <div className= "left mx-2 p-2 order-last md:order-none flex justify-center items-center">
-            <input
-              className="text-input"
-              type= "email"
-              placeholder= "Find all trump or storm his estates..."
-            />
+        <div
+          id="items"
+          className="my-2 flex flex-col justify-start items-start md:flex-row md:justify-start md:items-center"
+        >
+          <div className="left mx-2 p-2 order-last md:order-none flex justify-center items-center">
+            <input className="text-input" type="email" placeholder="Find all trump or storm his estates..." />
             <SearchIcon />
           </div>
           <div>
@@ -707,10 +663,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <HamburgerIcon
-        isMobileMenuOpen={isMobileMenuOpen}
-        setIsMobileMenuOpen={setIsMobileMenuOpen}
-      />
+      <HamburgerIcon isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
     </nav>
   );
 };
