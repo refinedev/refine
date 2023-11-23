@@ -32,7 +32,7 @@ We have the following built-in integrations which you can use out-of-the-box.
 
 ## Live Mode Options
 
-`liveMode` must be passed to `<Refine>` in `options` or [supported hooks](#supported-hooks) for `liveProvider` to work. If it's not provided live features won't be activated. Passing it to `<Refine>` in `options` configures it app wide and hooks will use this option. It can also be passed to hooks directly without passing to `<Refine>` for detailed configuration. If both are provided value passed to the hook will override the value at `<Refine>`.
+`liveMode` must be passed to `<Refine>` in `options` or [supported hooks](#supported-hooks-subscriptions) for `liveProvider` to work. If it's not provided live features won't be activated. Passing it to `<Refine>` in `options` configures it app wide and hooks will use this option. It can also be passed to hooks directly without passing to `<Refine>` for detailed configuration. If both are provided value passed to the hook will override the value at `<Refine>`.
 
 ### auto
 
