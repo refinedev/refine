@@ -2,41 +2,39 @@
 title: Tables
 ---
 
-import BaseAntdTableExample from "./example/antd.md";
-import BaseTanStackTable from "./example/tanstack-table.md";
-import BaseHeadlessTable from "./example/core.md";
-import BaseMaterialUiTable from "./example/material-ui.md";
-import BaseMantineTable from "./example/mantine.md";
-import BaseChakraUi from "./example/chakra-ui.md";
+import BaseAntdTableExample from "./example/antd.tsx";
+import BaseTanStackTable from "./example/tanstack-table";
+import BaseCoreExample from "./example/core";
+import BaseMaterialUiTable from "./example/material-ui";
+import BaseMantineTable from "./example/mantine";
+import BaseChakraUi from "./example/chakra-ui";
 import Relationship from "./example/relationship";
 
-Tables are essential in data-intensive applications, serving as the primary way for organizing and displaying data in a readable format using rows and columns. Their integration, however, is complex due to the vast data and functionalities like sorting, filtering, and pagination. Refine's **tables** integration aims to make this process as simple as possible while providing as many real world features as possible out of the box. This guide will cover the basics of **tables** in Refine and how to use them.
+Tables are essential in data-intensive applications, serving as the primary way for organizing and displaying data in a readable format using rows and columns. Their integration, however, is complex due to functionalities like sorting, filtering, and pagination. Refine's **tables** integration aims to make this process as simple as possible while providing as many real world features as possible out of the box. This guide will cover the basics of **tables** in Refine and how to use them.
 
 ## Handling Data
 
 [`useTable`][use-table-core] allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`][use-list] for the fetch. Its designed to be headless, but Refine offers seamless integration with several popular UI libraries, simplifying the use of their table components.
 
-- [React Table](https://react-table.tanstack.com/) (for TanStack Table users) - [Documentation](/docs/packages/documentation/react-table) - [Example](/examples/table/react-table/basic.md)
+- [TansStack Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/docs/packages/documentation/react-table) - [Example](/examples/table/react-table/basic.md)
 - [Ant Design Table](https://ant.design/components/table/#header) (for Ant Design users) - [Documentation](/docs/api-reference/antd/hooks/table/useTable) - [Example](/examples/table/antd/useTable.md)
-- [Material UI Table](https://mui.com/x/react-data-grid/) (for Material UI users) - [Documentation](/docs/api-reference/mui/hooks/useDataGrid) - [Example](/examples/table/mui/useDataGrid.md)
+- [Material UI DataGrid](https://mui.com/x/react-data-grid/) (for Material UI users) - [Documentation](/docs/api-reference/mui/hooks/useDataGrid) - [Example](/examples/table/mui/useDataGrid.md)
 
 ## Basic Usage
 
 The usage of the `useTable` hooks may slightly differ between UI libraries, however, the core functionality of `useTable` hook in [`@refinedev/core`][use-table-core] stays consistent in all implementations. The `useTable` hook in Refine's core is the foundation of all the other `useTable` implementations.
 
-To learn more about the usage and see `useTable` in action, check out the reference pages for each library:
+<Tabs wrapContent={false}>
 
-<Tabs>
+<TabItem value="core" label="Refine's Core">
 
-<TabItem value="Headless">
-
-<BaseHeadlessTable />
+<BaseCoreExample />
 
 [Check out Refine's `useTable` reference page to learn more about the usage and see it in action.][use-table-core]
 
 </TabItem>
 
-<TabItem value="TanStack Table">
+<TabItem value="tanstack-table" label="TanStack Table">
 
 <BaseTanStackTable />
 
@@ -44,7 +42,7 @@ To learn more about the usage and see `useTable` in action, check out the refere
 
 </TabItem>
 
-<TabItem value="Ant Design">
+<TabItem value="ant-design" label="Ant Design">
 
 <BaseAntdTableExample />
 
@@ -52,7 +50,7 @@ To learn more about the usage and see `useTable` in action, check out the refere
 
 </TabItem>
 
-<TabItem value="Material UI">
+<TabItem value="material-ui" label="Material UI">
 
 <BaseMaterialUiTable />
 
@@ -60,7 +58,7 @@ To learn more about the usage and see `useTable` in action, check out the refere
 
 </TabItem>
 
-<TabItem value="Mantine">
+<TabItem value="mantine" label={(<span><span className="block">Mantine</span><small className="block">TanStack Table</small></span>)}>
 
 <BaseMantineTable />
 
@@ -68,7 +66,7 @@ To learn more about the usage and see `useTable` in action, check out the refere
 
 </TabItem>
 
-<TabItem value="Chakra UI">
+<TabItem value="chakra-ui" label={(<span><span className="block">Chakra UI</span><small className="block">TanStack Table</small></span>)}>
 
 <BaseChakraUi />
 
@@ -106,7 +104,7 @@ interface Pagination {
 
 You can also change the `current` and `pageSize` values by using the `setCurrent` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
 
-By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the pagination.mode property and set it to "client". Also, you can disable the pagination by setting it to "off".
+By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the `pagination.mode` property and set it to `"client"`. Also, you can disable the pagination by setting it to `"off"`.
 
 ```tsx
 import React from "react";
@@ -374,9 +372,11 @@ interface IPost {
 
 ## Integrating with Routers
 
-### Syncing with Location <GlobalConfigBadge id="api-reference/core/components/refine-config/#syncwithlocation" />
+### Sync with Location <GlobalConfigBadge id="api-reference/core/components/refine-config/#syncwithlocation" />
 
 When you use the [`syncWithLocation`](/docs/api-reference/core/hooks/useTable/#syncwithlocation) feature, the `useTable`'s state (e.g., sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
+
+### Resource
 
 ## Relationships
 
