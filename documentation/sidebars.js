@@ -720,6 +720,7 @@ module.exports = {
                         slug: "/api-reference/antd",
                     },
                     items: [
+                        "api-reference/antd/introduction/index",
                         {
                             type: "category",
                             label: "Hooks",
@@ -849,6 +850,7 @@ module.exports = {
                         slug: "/api-reference/chakra-ui",
                     },
                     items: [
+                        "api-reference/chakra-ui/introduction/index",
                         {
                             type: "category",
                             label: "Components",
@@ -914,6 +916,7 @@ module.exports = {
                         slug: "/api-reference/mantine",
                     },
                     items: [
+                        "api-reference/mantine/introduction/index",
                         {
                             type: "category",
                             label: "Hooks",
@@ -996,6 +999,7 @@ module.exports = {
                         slug: "/api-reference/mui",
                     },
                     items: [
+                        "api-reference/mui/introduction/index",
                         {
                             type: "category",
                             label: "Hooks",
