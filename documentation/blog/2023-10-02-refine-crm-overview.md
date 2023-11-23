@@ -8,11 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm
 hide_table_of_contents: false
 ---
 
-
-
-
 ![Image description](https://refine.ams3.cdn.digitaloceanspaces.com/CRM-app/crm-general.gif)
-
 
 I want to introduce our newest example app – a full-fledged React CRM (Customer Relationship Management) application built using refine, Ant Design, and GraphQL.
 
@@ -20,10 +16,9 @@ I want to introduce our newest example app – a full-fledged React CRM (Custome
 
 👉 [You can find the source code on GitHub here](https://github.com/refinedev/refine/tree/master/examples/app-crm)
 
-This example is open-source, which means anyone can freely utilize and customize the source code as they see fit. It's not just another application; it's a comprehensive solution that boasts all the features and functionalities required for an accurate enterprise-level application. 
+This example is open-source, which means anyone can freely utilize and customize the source code as they see fit. It's not just another application; it's a comprehensive solution that boasts all the features and functionalities required for an accurate enterprise-level application.
 
 Moreover, this application serves as a guiding light for all developers. Whether you're a seasoned pro or just starting, our project is a valuable resource that can be used as a reference to better understand best practices and modern development techniques.
-
 
 We'll publish an article series and Video tutorials on YouTube on building this CRM app from scratch. You can follow the refine to get notified when it's ready!
 
@@ -32,25 +27,32 @@ GitHub: https://github.com/refinedev/refine
 
 ## Introduction
 
-This article briefly overviews the CRM application built using refine, an open-source React framework designed for rapidly developing web applications. 
+This article briefly overviews the CRM application built using refine, an open-source React framework designed for rapidly developing web applications.
 
 We'll explore the key features of our CRM app, the technologies we used, and how you can adapt this template for various business needs.
 
+Step we'll cover:
+
+- [Key Features of the CRM App](#key-features-of-the-crm-app)
+- [Technologies Used](#technologies-used)
+- [Best Practices and Ecosystem Integration](#best-practices-and-ecosystem-integration)
+- [Where Can You Use This CRM As A Reference Template?](#where-can-you-use-this-crm-as-a-reference-template)
+
 ## Key Features of the CRM App
+
 Our CRM application is feature-rich and comes with everything you need to manage customer relationships efficiently:
 
 ### Dashboard
+
 The Dashboard provides an at-a-glance overview of your CRM activities. It displays key metrics, recent customer interactions, and upcoming events, offering valuable insights to help you make informed decisions.
 
-
-
 ![Image](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/halx7sfl9ctke1fu3w35.png)
-
 
 <br/>
 <br/>
 
 ### Calendar Integration
+
 Effortlessly manage appointments, meetings, and important events with the integrated Calendar feature. Stay organized and ensure you never miss a crucial interaction with your customers.
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/m2v8ghazuheiznefwat9.png)
@@ -59,9 +61,8 @@ Effortlessly manage appointments, meetings, and important events with the integr
 <br/>
 
 ### Scrumboard-Project Kanban
+
 Our Scrumboard or Project Kanban page streamlines project management. Visualize project progress, manage tasks, and facilitate team collaboration with ease. Move tasks through customizable boards to keep your projects on track.
-
-
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0hcll7tbqx3t71i6v7a9.png)
 
@@ -69,8 +70,8 @@ Our Scrumboard or Project Kanban page streamlines project management. Visualize 
 <br/>
 
 ### Sales Pipeline
-Effectively manage your sales process from lead generation to deal closure. The Sales Pipeline provides a visual representation of your sales stages, helping your team prioritize leads and track conversions.
 
+Effectively manage your sales process from lead generation to deal closure. The Sales Pipeline provides a visual representation of your sales stages, helping your team prioritize leads and track conversions.
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/q5uoj722wasvw2fx8z49.png)
 
@@ -78,6 +79,7 @@ Effectively manage your sales process from lead generation to deal closure. The 
 <br/>
 
 ### Companies
+
 The Companies page allows you to organize and categorize your business contacts. Maintain detailed profiles for each company, including contact information, communication history, and associated contacts.
 
 ![Imag](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gjlahcc1icfthu2n31ar.png)
@@ -86,9 +88,8 @@ The Companies page allows you to organize and categorize your business contacts.
 <br/>
 
 ### Contacts
+
 Manage individual contacts efficiently using the Contacts page. Keep track of customer interactions, schedule follow-ups, and access critical contact information quickly.
-
-
 
 ![Imag](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4c0ef7tv7nktax4gt3oz.png)
 
@@ -96,9 +97,8 @@ Manage individual contacts efficiently using the Contacts page. Keep track of cu
 <br/>
 
 ### Quotes
+
 Create, send, and manage quotes seamlessly with the Quotes feature. Generate professional quotes for your customers, track their status, and convert them into sales.
-
-
 
 ![Image](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9rqj0pzgkrure7ov5mr9.png)
 
@@ -106,18 +106,14 @@ Create, send, and manage quotes seamlessly with the Quotes feature. Generate pro
 <br/>
 
 ### Administration
+
 The Administration section empowers you to configure and customize your CRM application to suit your specific business needs. Manage user roles, access permissions, and system settings effortlessly.
 
-
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/m5deq6ceue79kloeuryz.png)
-
-
 
 <br/>
 
 ### Authentication & Authorization
-
-
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/m1r04i2h0cf1jegasbte.png)
 
@@ -126,7 +122,6 @@ This example app is a comprehensive set of features that ensures you can streaml
 ## Technologies Used
 
 Our CRM app's modular structure and use of open-source tools make it adaptable to various business needs. So you can build all kinds of web apps like internal tools, admin panels, or dashboards on top of it.
-
 
 To bring our CRM app to life, we leveraged several cutting-edge technologies:
 
@@ -148,18 +143,15 @@ We used [GraphQL](https://graphql.org/) for effective data retrieval and updatin
 
 For instance, on the Project Kanban page, tasks get updated automatically when cards are dragged and dropped between sections.
 
-
 ![Image](https://refine.ams3.cdn.digitaloceanspaces.com/CRM-app/real-time.gif)
 
-GraphQL's efficient data-fetching capabilities made working with large datasets a breeze. It's flexibility allowed us to tailor our queries to our exact requirements. 
+GraphQL's efficient data-fetching capabilities made working with large datasets a breeze. It's flexibility allowed us to tailor our queries to our exact requirements.
 
 refine has built-in data provider support for GraphQL.You can set it up during the project creation phase.
 
-
-
 ## Best Practices and Ecosystem Integration
 
-Throughout the development process, we adhered to best practices and incorporated elements from the broader ecosystem. This ensures our CRM app is not only functional but also scalable and maintainable. 
+Throughout the development process, we adhered to best practices and incorporated elements from the broader ecosystem. This ensures our CRM app is not only functional but also scalable and maintainable.
 
 The group responsible for the CRM example app is the core refine framework team. Feel free to explore the best practices within the ecosystem!
 
@@ -174,8 +166,3 @@ Our CRM template isn't limited to just one use case. You can adapt it for variou
 ## Conclusion
 
 In this article, we've introduced you to our CRM application built with refine. We've highlighted its key features, the technologies we used, and the advantages of our approach. With this CRM template, you have the power to tailor your customer relationship management system to meet your unique business needs. Whether you're running a B2B operation, need an efficient internal tool, or want a versatile CRUD application, our CRM template has you covered.
-
-
-
-
-
