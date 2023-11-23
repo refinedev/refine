@@ -49,6 +49,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     renderContent,
     formProps,
     title,
+    hideForm,
 }) => {
     const { token } = useToken();
     const [form] = Form.useForm<RegisterFormTypes>();
@@ -152,42 +153,46 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 requiredMark={false}
                 {...formProps}
             >
-                <Form.Item
-                    name="email"
-                    label={translate("pages.register.email", "Email")}
-                    rules={[
-                        { required: true },
-                        {
-                            type: "email",
-                            message: translate(
-                                "pages.register.errors.validEmail",
-                                "Invalid email address",
-                            ),
-                        },
-                    ]}
-                >
-                    <Input
-                        size="large"
-                        placeholder={translate(
-                            "pages.register.fields.email",
-                            "Email",
-                        )}
-                    />
-                </Form.Item>
-                <Form.Item
-                    name="password"
-                    label={translate(
-                        "pages.register.fields.password",
-                        "Password",
-                    )}
-                    rules={[{ required: true }]}
-                >
-                    <Input
-                        type="password"
-                        placeholder="●●●●●●●●"
-                        size="large"
-                    />
-                </Form.Item>
+                {hideForm ? <></> : (
+                    <>
+                        <Form.Item
+                            name="email"
+                            label={translate("pages.register.email", "Email")}
+                            rules={[
+                                { required: true },
+                                {
+                                    type: "email",
+                                    message: translate(
+                                        "pages.register.errors.validEmail",
+                                        "Invalid email address",
+                                    ),
+                                },
+                            ]}
+                        >
+                            <Input
+                                size="large"
+                                placeholder={translate(
+                                    "pages.register.fields.email",
+                                    "Email",
+                                )}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            name="password"
+                            label={translate(
+                                "pages.register.fields.password",
+                                "Password",
+                            )}
+                            rules={[{ required: true }]}
+                        >
+                            <Input
+                                type="password"
+                                placeholder="●●●●●●●●"
+                                size="large"
+                            />
+                        </Form.Item>
+                    </>
+                )}
                 <div
                     style={{
                         display: "flex",

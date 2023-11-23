@@ -52,6 +52,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     renderContent,
     formProps,
     title,
+    hideForm,
 }) => {
     const { token } = useToken();
     const [form] = Form.useForm<LoginFormTypes>();
@@ -158,39 +159,43 @@ export const LoginPage: React.FC<LoginProps> = ({
                 }}
                 {...formProps}
             >
-                <Form.Item
-                    name="email"
-                    label={translate("pages.login.fields.email", "Email")}
-                    rules={[
-                        { required: true },
-                        {
-                            type: "email",
-                            message: translate(
-                                "pages.login.errors.validEmail",
-                                "Invalid email address",
-                            ),
-                        },
-                    ]}
-                >
-                    <Input
-                        size="large"
-                        placeholder={translate(
-                            "pages.login.fields.email",
-                            "Email",
-                        )}
-                    />
-                </Form.Item>
-                <Form.Item
-                    name="password"
-                    label={translate("pages.login.fields.password", "Password")}
-                    rules={[{ required: true }]}
-                >
-                    <Input
-                        type="password"
-                        placeholder="●●●●●●●●"
-                        size="large"
-                    />
-                </Form.Item>
+                {hideForm ? <></> : (
+                    <>
+                        <Form.Item
+                            name="email"
+                            label={translate("pages.login.fields.email", "Email")}
+                            rules={[
+                                { required: true },
+                                {
+                                    type: "email",
+                                    message: translate(
+                                        "pages.login.errors.validEmail",
+                                        "Invalid email address",
+                                    ),
+                                },
+                            ]}
+                        >
+                            <Input
+                                size="large"
+                                placeholder={translate(
+                                    "pages.login.fields.email",
+                                    "Email",
+                                )}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            name="password"
+                            label={translate("pages.login.fields.password", "Password")}
+                            rules={[{ required: true }]}
+                        >
+                            <Input
+                                type="password"
+                                placeholder="●●●●●●●●"
+                                size="large"
+                            />
+                        </Form.Item>
+                    </>
+                )}
                 <div
                     style={{
                         display: "flex",

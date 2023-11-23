@@ -51,6 +51,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     renderContent,
     formProps,
     title,
+    hideForm,
 }) => {
     const theme = useMantineTheme();
     const { useForm, FormProvider } = FormContext;
@@ -148,25 +149,29 @@ export const LoginPage: React.FC<LoginProps> = ({
                         return login(values);
                     })}
                 >
-                    <TextInput
-                        name="email"
-                        label={translate("pages.login.fields.email", "Email")}
-                        placeholder={translate(
-                            "pages.login.fields.email",
-                            "Email",
-                        )}
-                        {...getInputProps("email")}
-                    />
-                    <PasswordInput
-                        name="password"
-                        mt="md"
-                        label={translate(
-                            "pages.login.fields.password",
-                            "Password",
-                        )}
-                        placeholder="●●●●●●●●"
-                        {...getInputProps("password")}
-                    />
+                    {hideForm ? <></> : (
+                        <>
+                            <TextInput
+                                name="email"
+                                label={translate("pages.login.fields.email", "Email")}
+                                placeholder={translate(
+                                    "pages.login.fields.email",
+                                    "Email",
+                                )}
+                                {...getInputProps("email")}
+                            />
+                            <PasswordInput
+                                name="password"
+                                mt="md"
+                                label={translate(
+                                    "pages.login.fields.password",
+                                    "Password",
+                                )}
+                                placeholder="●●●●●●●●"
+                                {...getInputProps("password")}
+                            />
+                        </>
+                    )}
                     <Box
                         mt="md"
                         sx={{

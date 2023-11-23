@@ -52,6 +52,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     providers,
     formProps,
     title,
+    hideForm,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const {
@@ -160,54 +161,58 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         return registerMutate(data);
                     })}
                 >
-                    <TextField
-                        {...register("email", {
-                            required: true,
-                            pattern: {
-                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                message: translate(
-                                    "pages.register.errors.validEmail",
-                                    "Invalid email address",
-                                ),
-                            },
-                        })}
-                        id="email"
-                        margin="normal"
-                        fullWidth
-                        label={translate("pages.register.email", "Email")}
-                        error={!!errors.email}
-                        helperText={
-                            errors["email"] ? errors["email"].message : ""
-                        }
-                        name="email"
-                        autoComplete="email"
-                        sx={{
-                            mt: 0,
-                        }}
-                    />
-                    <TextField
-                        {...register("password", {
-                            required: true,
-                        })}
-                        id="password"
-                        margin="normal"
-                        fullWidth
-                        name="password"
-                        label={translate(
-                            "pages.register.fields.password",
-                            "Password",
-                        )}
-                        helperText={
-                            errors["password"] ? errors["password"].message : ""
-                        }
-                        error={!!errors.password}
-                        type="password"
-                        placeholder="●●●●●●●●"
-                        autoComplete="current-password"
-                        sx={{
-                            mb: 0,
-                        }}
-                    />
+                    {hideForm ? <></> : (
+                        <>
+                            <TextField
+                                {...register("email", {
+                                    required: true,
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        message: translate(
+                                            "pages.register.errors.validEmail",
+                                            "Invalid email address",
+                                        ),
+                                    },
+                                })}
+                                id="email"
+                                margin="normal"
+                                fullWidth
+                                label={translate("pages.register.email", "Email")}
+                                error={!!errors.email}
+                                helperText={
+                                    errors["email"] ? errors["email"].message : ""
+                                }
+                                name="email"
+                                autoComplete="email"
+                                sx={{
+                                    mt: 0,
+                                }}
+                            />
+                            <TextField
+                                {...register("password", {
+                                    required: true,
+                                })}
+                                id="password"
+                                margin="normal"
+                                fullWidth
+                                name="password"
+                                label={translate(
+                                    "pages.register.fields.password",
+                                    "Password",
+                                )}
+                                helperText={
+                                    errors["password"] ? errors["password"].message : ""
+                                }
+                                error={!!errors.password}
+                                type="password"
+                                placeholder="●●●●●●●●"
+                                autoComplete="current-password"
+                                sx={{
+                                    mb: 0,
+                                }}
+                            />
+                        </>
+                    )}
                     <Button
                         type="submit"
                         fullWidth

@@ -26,6 +26,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     renderContent,
     formProps,
     title = undefined,
+    hideForm,
 }) => {
     const routerType = useRouterType();
     const Link = useLink();
@@ -100,36 +101,40 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         padding: 25,
                     }}
                 >
-                    <label htmlFor="email-input">
-                        {translate("pages.register.fields.email", "Email")}
-                    </label>
-                    <input
-                        id="email-input"
-                        name="email"
-                        type="email"
-                        size={20}
-                        autoCorrect="off"
-                        spellCheck={false}
-                        autoCapitalize="off"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <label htmlFor="password-input">
-                        {translate(
-                            "pages.register.fields.password",
-                            "Password",
-                        )}
-                    </label>
-                    <input
-                        id="password-input"
-                        name="password"
-                        type="password"
-                        required
-                        size={20}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                    {hideForm ? <></> : (
+                        <>
+                            <label htmlFor="email-input">
+                                {translate("pages.register.fields.email", "Email")}
+                            </label>
+                            <input
+                                id="email-input"
+                                name="email"
+                                type="email"
+                                size={20}
+                                autoCorrect="off"
+                                spellCheck={false}
+                                autoCapitalize="off"
+                                required
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <label htmlFor="password-input">
+                                {translate(
+                                    "pages.register.fields.password",
+                                    "Password",
+                                )}
+                            </label>
+                            <input
+                                id="password-input"
+                                name="password"
+                                type="password"
+                                required
+                                size={20}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </>
+                    )}
                     <input
                         type="submit"
                         value={translate(

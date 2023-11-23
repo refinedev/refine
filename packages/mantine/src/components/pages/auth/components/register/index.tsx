@@ -53,6 +53,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     formProps,
     providers,
     title,
+    hideForm,
 }) => {
     const theme = useMantineTheme();
     const { useForm, FormProvider } = FormContext;
@@ -149,28 +150,32 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         return register(values);
                     })}
                 >
-                    <TextInput
-                        name="email"
-                        label={translate(
-                            "pages.register.fields.email",
-                            "Email",
-                        )}
-                        placeholder={translate(
-                            "pages.register.fields.email",
-                            "Email",
-                        )}
-                        {...getInputProps("email")}
-                    />
-                    <PasswordInput
-                        mt="md"
-                        name="password"
-                        label={translate(
-                            "pages.register.fields.password",
-                            "Password",
-                        )}
-                        placeholder="●●●●●●●●"
-                        {...getInputProps("password")}
-                    />
+                    {hideForm ? <></> : (
+                        <>
+                            <TextInput
+                                name="email"
+                                label={translate(
+                                    "pages.register.fields.email",
+                                    "Email",
+                                )}
+                                placeholder={translate(
+                                    "pages.register.fields.email",
+                                    "Email",
+                                )}
+                                {...getInputProps("email")}
+                            />
+                            <PasswordInput
+                                mt="md"
+                                name="password"
+                                label={translate(
+                                    "pages.register.fields.password",
+                                    "Password",
+                                )}
+                                placeholder="●●●●●●●●"
+                                {...getInputProps("password")}
+                            />
+                        </>
+                    )}
                     <Button
                         mt="md"
                         fullWidth

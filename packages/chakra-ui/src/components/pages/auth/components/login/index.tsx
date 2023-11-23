@@ -50,6 +50,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     renderContent,
     formProps,
     title,
+    hideForm
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
 
@@ -145,46 +146,50 @@ export const LoginPage: React.FC<LoginProps> = ({
                     return login(data);
                 })}
             >
-                <FormControl mt="6" isInvalid={!!errors?.email}>
-                    <FormLabel htmlFor="email">
-                        {translate("pages.login.fields.email", "Email")}
-                    </FormLabel>
-                    <Input
-                        id="email"
-                        placeholder="Email"
-                        type="text"
-                        {...register("email", {
-                            required: true,
-                            pattern: {
-                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                message: translate(
-                                    "pages.login.errors.validEmail",
-                                    "Invalid email address",
-                                ),
-                            },
-                        })}
-                    />
-                    <FormErrorMessage>
-                        {`${errors.email?.message}`}
-                    </FormErrorMessage>
-                </FormControl>
+                {hideForm ? <></> : (
+                    <>
+                        <FormControl mt="6" isInvalid={!!errors?.email}>
+                            <FormLabel htmlFor="email">
+                                {translate("pages.login.fields.email", "Email")}
+                            </FormLabel>
+                            <Input
+                                id="email"
+                                placeholder="Email"
+                                type="text"
+                                {...register("email", {
+                                    required: true,
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        message: translate(
+                                            "pages.login.errors.validEmail",
+                                            "Invalid email address",
+                                        ),
+                                    },
+                                })}
+                            />
+                            <FormErrorMessage>
+                                {`${errors.email?.message}`}
+                            </FormErrorMessage>
+                        </FormControl>
 
-                <FormControl mt="6" isInvalid={!!errors?.password}>
-                    <FormLabel htmlFor="password">
-                        {translate("pages.login.fields.password", "Password")}
-                    </FormLabel>
-                    <Input
-                        id="password"
-                        type="password"
-                        placeholder="Password"
-                        {...register("password", {
-                            required: true,
-                        })}
-                    />
-                    <FormErrorMessage>
-                        {`${errors.password?.message}`}
-                    </FormErrorMessage>
-                </FormControl>
+                        <FormControl mt="6" isInvalid={!!errors?.password}>
+                            <FormLabel htmlFor="password">
+                                {translate("pages.login.fields.password", "Password")}
+                            </FormLabel>
+                            <Input
+                                id="password"
+                                type="password"
+                                placeholder="Password"
+                                {...register("password", {
+                                    required: true,
+                                })}
+                            />
+                            <FormErrorMessage>
+                                {`${errors.password?.message}`}
+                            </FormErrorMessage>
+                        </FormControl>
+                    </>
+                )}
 
                 {rememberMe ?? (
                     <Checkbox {...register("remember")} mt="6">

@@ -19,6 +19,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     renderContent,
     formProps,
     title = undefined,
+    hideForm,
 }) => {
     const routerType = useRouterType();
     const Link = useLink();
@@ -94,33 +95,37 @@ export const LoginPage: React.FC<LoginProps> = ({
                         padding: 25,
                     }}
                 >
-                    <label htmlFor="email-input">
-                        {translate("pages.login.fields.email", "Email")}
-                    </label>
-                    <input
-                        id="email-input"
-                        name="email"
-                        type="text"
-                        size={20}
-                        autoCorrect="off"
-                        spellCheck={false}
-                        autoCapitalize="off"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <label htmlFor="password-input">
-                        {translate("pages.login.fields.password", "Password")}
-                    </label>
-                    <input
-                        id="password-input"
-                        type="password"
-                        name="password"
-                        required
-                        size={20}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                    {hideForm ? <></> : (
+                        <>
+                            <label htmlFor="email-input">
+                                {translate("pages.login.fields.email", "Email")}
+                            </label>
+                            <input
+                                id="email-input"
+                                name="email"
+                                type="text"
+                                size={20}
+                                autoCorrect="off"
+                                spellCheck={false}
+                                autoCapitalize="off"
+                                required
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <label htmlFor="password-input">
+                                {translate("pages.login.fields.password", "Password")}
+                            </label>
+                            <input
+                                id="password-input"
+                                type="password"
+                                name="password"
+                                required
+                                size={20}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </>
+                    )}
                     {rememberMe ?? (
                         <>
                             <label htmlFor="remember-me-input">

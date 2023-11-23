@@ -53,6 +53,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     renderContent,
     formProps,
     title,
+    hideForm,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const methods = useForm<BaseRecord, HttpError, LoginFormTypes>({
@@ -160,43 +161,47 @@ export const LoginPage: React.FC<LoginProps> = ({
                     })}
                 >
                     {renderProviders()}
-                    <TextField
-                        {...register("email", {
-                            required: true,
-                        })}
-                        id="email"
-                        margin="normal"
-                        fullWidth
-                        label={translate("pages.login.fields.email", "Email")}
-                        error={!!errors.email}
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        sx={{
-                            mt: 0,
-                        }}
-                    />
-                    <TextField
-                        {...register("password", {
-                            required: true,
-                        })}
-                        id="password"
-                        margin="normal"
-                        fullWidth
-                        name="password"
-                        label={translate(
-                            "pages.login.fields.password",
-                            "Password",
-                        )}
-                        helperText={errors?.password?.message}
-                        error={!!errors.password}
-                        type="password"
-                        placeholder="●●●●●●●●"
-                        autoComplete="current-password"
-                        sx={{
-                            mb: 0,
-                        }}
-                    />
+                    {hideForm ? <></> : (
+                        <>
+                            <TextField
+                                {...register("email", {
+                                    required: true,
+                                })}
+                                id="email"
+                                margin="normal"
+                                fullWidth
+                                label={translate("pages.login.fields.email", "Email")}
+                                error={!!errors.email}
+                                name="email"
+                                type="email"
+                                autoComplete="email"
+                                sx={{
+                                    mt: 0,
+                                }}
+                            />
+                            <TextField
+                                {...register("password", {
+                                    required: true,
+                                })}
+                                id="password"
+                                margin="normal"
+                                fullWidth
+                                name="password"
+                                label={translate(
+                                    "pages.login.fields.password",
+                                    "Password",
+                                )}
+                                helperText={errors?.password?.message}
+                                error={!!errors.password}
+                                type="password"
+                                placeholder="●●●●●●●●"
+                                autoComplete="current-password"
+                                sx={{
+                                    mb: 0,
+                                }}
+                            />
+                        </>
+                    )}
 
                     <Box
                         component="div"
