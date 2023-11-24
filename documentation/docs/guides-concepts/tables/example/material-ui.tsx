@@ -1,7 +1,7 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function SearchMaterialUI() {
+export default function BaseMaterialUI() {
   return (
     <Sandpack
       dependencies={{

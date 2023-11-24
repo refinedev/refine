@@ -51,22 +51,47 @@ export default function App() {
 
 export const ProductTableTsxCode = `
 import React from "react";
-import { useTable } from "@refinedev/antd";
-import { Table } from "antd";
+import { useTable, FilterDropdown } from "@refinedev/antd";
+import { Table, Input } from "antd";
 
 export const ProductTable: React.FC = () => {
     const { tableProps } = useTable<IProduct>({
         resource: "products",
+        filters: {
+            initial: [
+                {
+                    field: "name",
+                    operator: "contains",
+                    value: "",
+                },
+            ],
+        },
     });
 
     return (
-        <div style={{ padding:"4px" }}>
-          <h2>Products</h2>
-          <Table {...tableProps} rowKey="id">
-              <Table.Column dataIndex="id" title="ID" />
-              <Table.Column dataIndex="name" title="Name" />
-              <Table.Column dataIndex="price" title="Price" />
-          </Table>
+        <div style={{ padding: "4px" }}>
+            <h2>Products</h2>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column
+                    dataIndex="id"
+                    title="ID"
+                    sorter={{ multiple: 2 }}
+                />
+                <Table.Column
+                    dataIndex="name"
+                    title="Name"
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Input placeholder="Search by name" />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column
+                    dataIndex="price"
+                    title="Price"
+                    sorter={{ multiple: 1 }}
+                />
+            </Table>
         </div>
     );
 };
@@ -75,6 +100,8 @@ interface IProduct {
     id: number;
     name: string;
     price: string;
+    material: string;
 }
+
 
 `.trim();

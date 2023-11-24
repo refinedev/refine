@@ -11,6 +11,7 @@ export default function BaseCoreTable() {
         "@tanstack/react-table": "latest",
         "@refinedev/chakra-ui": "latest",
         "@chakra-ui/react": "^2.5.1",
+        "@tabler/icons": "^1.119.0",
       }}
       startRoute="/"
       files={{
@@ -25,6 +26,14 @@ export default function BaseCoreTable() {
         },
         "/pagination.tsx": {
           code: PaginationTsxCode,
+          hidden: false,
+        },
+        "/column-sorter.tsx": {
+          code: ColumnSorterTsxCode,
+          hidden: false,
+        },
+        "/column-filter.tsx": {
+          code: ColumnFilterTsxCode,
           hidden: false,
         },
       }}
@@ -70,6 +79,9 @@ import {
 } from "@chakra-ui/react";
 import { Pagination } from "./pagination";
 
+import { ColumnSorter } from "./column-sorter";
+import { ColumnFilter } from "./column-filter";
+
 export const ProductTable: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IProduct>[]>(
         () => [
@@ -77,16 +89,25 @@ export const ProductTable: React.FC = () => {
                 id: "id",
                 header: "ID",
                 accessorKey: "id",
+                meta: {
+                    filterOperator: "eq",
+                },
             },
             {
                 id: "name",
                 header: "Name",
                 accessorKey: "name",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "price",
                 header: "Price",
                 accessorKey: "price",
+                meta: {
+                    filterOperator: "eq",
+                },
             },
         ],
         [],
@@ -122,6 +143,14 @@ export const ProductTable: React.FC = () => {
                                                         header.getContext(),
                                                     )}
                                                 </Text>
+                                                <HStack spacing="2">
+                                                    <ColumnSorter
+                                                        column={header.column}
+                                                    />
+                                                    <ColumnFilter
+                                                        column={header.column}
+                                                    />
+                                                </HStack>
                                             </HStack>
                                         )}
                                     </Th>
@@ -222,5 +251,155 @@ type PaginationProps = {
     current: number;
     pageCount: number;
     setCurrent: (page: number) => void;
+};
+`.trim();
+
+export const ColumnSorterTsxCode = `
+import React, { useState } from "react";
+import { IconButton } from "@chakra-ui/react";
+import { IconChevronDown, IconChevronUp, IconSelector } from "@tabler/icons";
+
+import type { SortDirection } from "@tanstack/react-table";
+
+export interface ColumnButtonProps {
+    column: Column<any, any>; // eslint-disable-line
+}
+
+
+export const ColumnSorter: React.FC<ColumnButtonProps> = ({ column }) => {
+    if (!column.getCanSort()) {
+        return null;
+    }
+
+    const sorted = column.getIsSorted();
+
+    return (
+        <IconButton
+            aria-label="Sort"
+            size="xs"
+            onClick={column.getToggleSortingHandler()}
+            icon={<ColumnSorterIcon sorted={sorted} />}
+            variant={sorted ? "light" : "transparent"}
+            color={sorted ? "primary" : "gray"}
+        />
+    );
+};
+
+const ColumnSorterIcon = ({ sorted }: { sorted: false | SortDirection }) => {
+    if (sorted === "asc") return <IconChevronDown size={18} />;
+    if (sorted === "desc") return <IconChevronUp size={18} />;
+    return <IconSelector size={18} />;
+};
+
+`.trim();
+
+export const ColumnFilterTsxCode = `
+import React, { useState } from "react";
+import {
+    Input,
+    Menu,
+    IconButton,
+    MenuButton,
+    MenuList,
+    VStack,
+    HStack,
+} from "@chakra-ui/react";
+import { IconFilter, IconX, IconCheck } from "@tabler/icons";
+
+
+interface ColumnButtonProps {
+    column: Column<any, any>; // eslint-disable-line
+}
+
+export const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
+    // eslint-disable-next-line
+    const [state, setState] = useState(null as null | { value: any });
+
+    if (!column.getCanFilter()) {
+        return null;
+    }
+
+    const open = () =>
+        setState({
+            value: column.getFilterValue(),
+        });
+
+    const close = () => setState(null);
+
+    // eslint-disable-next-line
+    const change = (value: any) => setState({ value });
+
+    const clear = () => {
+        column.setFilterValue(undefined);
+        close();
+    };
+
+    const save = () => {
+        if (!state) return;
+        column.setFilterValue(state.value);
+        close();
+    };
+
+    const renderFilterElement = () => {
+        // eslint-disable-next-line
+        const FilterComponent = (column.columnDef?.meta as any)?.filterElement;
+
+        if (!FilterComponent && !!state) {
+            return (
+                <Input
+                    borderRadius="md"
+                    size="sm"
+                    autoComplete="off"
+                    value={state.value}
+                    onChange={(e) => change(e.target.value)}
+                />
+            );
+        }
+
+        return (
+            <FilterComponent
+                value={state?.value}
+                onChange={(e: any) => change(e.target.value)}
+            />
+        );
+    };
+
+    return (
+        <Menu isOpen={!!state} onClose={close}>
+            <MenuButton
+                onClick={open}
+                as={IconButton}
+                aria-label="Options"
+                icon={<IconFilter size="16" />}
+                variant="ghost"
+                size="xs"
+            />
+            <MenuList p="2">
+                {!!state && (
+                    <VStack align="flex-start">
+                        {renderFilterElement()}
+                        <HStack spacing="1">
+                            <IconButton
+                                aria-label="Clear"
+                                size="sm"
+                                colorScheme="red"
+                                onClick={clear}
+                            >
+                                <IconX size={18} />
+                            </IconButton>
+                            <IconButton
+                                aria-label="Save"
+                                size="sm"
+                                onClick={save}
+                                colorScheme="green"
+                            >
+                                <IconCheck size={18} />
+                            </IconButton>
+                        </HStack>
+                    </VStack>
+                )}
+            </MenuList>
+        </Menu>
+    );
 };
 `.trim();
