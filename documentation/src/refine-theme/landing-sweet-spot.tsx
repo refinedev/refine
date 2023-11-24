@@ -79,7 +79,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                         "dark:text-gray-400 text-gray-600",
                     )}
                 >
-                    Drag-and-drop tools shine initially, but collapse under the
+                    Drag-and-drop tools shine initially but collapse under the
                     weight of complexity. Refine offers comparable speed at the
                     start and infinite scaling in the long run.
                 </p>
