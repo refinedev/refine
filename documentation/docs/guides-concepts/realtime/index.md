@@ -4,13 +4,13 @@ title: Realtime
 
 Realtime data is an important part of modern applications. Seeing the changes in the details page, without refreshing the page not only improves the user experience but also increases the productivity of the users by preventing accidental updates.
 
-**Refine** handles realtime data operations through **Live Provider** which provides a common interface for any integration. Once integrated, you'll get realtime updates across your app out of the box, without needing a further configuration.
+**Refine** handles realtime data operations through [Live Provider](/docs/api-reference/core/providers/live-provider) which provides a common interface for any integration. Once integrated, you'll get realtime updates across your app out of the box, without needing a further configuration.
 
 Once a **Live Provider** is integrated, **Refine** takes care of the **invalidation**, **refetching** logic for your resources.
 
 For example if a new record is created for `products` resource, a page where you use `useList` hook will automatically refetch the latest `products` data.
 
-```tsx title="app.tsx"
+```tsx title="App.tsx"
 import { Refine, LiveProvider } from "@refinedev/core";
 
 import { liveProvider } from "./my-live-provider";

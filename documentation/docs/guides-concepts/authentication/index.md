@@ -25,7 +25,7 @@ You can implement your own authentication system or use one of the [supported au
 
 ## Auth Provider
 
-Refine handles authentication by [auth provider](#auth-provider) and consumes the auth provider methods by [auth hooks](#auth-hooks).
+Refine handles authentication by [Auth Provider](#auth-provider) and consumes the auth provider methods by [auth hooks](#auth-hooks).
 
 Auth provider is an object that contains methods to handles authentication in your app, designed to return promises for use with async methods. By offering a structured architecture it simplifies authentication implementation and management through your app.
 
