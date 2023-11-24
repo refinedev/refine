@@ -283,7 +283,7 @@ The list of provided field components are:
 - [`<ImageField />`](/docs/api-reference/antd/components/fields/image/)
 - [`<MarkdownField />`](/docs/api-reference/antd/components/fields/markdown/)
 - [`<NumberField />`](/docs/api-reference/antd/components/fields/number/)
-- [`<TagsField />`](/docs/api-reference/antd/components/fields/tags/)
+- [`<TagField />`](/docs/api-reference/antd/components/fields/tag/)
 - [`<TextField />`](/docs/api-reference/antd/components/fields/text/)
 - [`<UrlField />`](/docs/api-reference/antd/components/fields/url/)
 
