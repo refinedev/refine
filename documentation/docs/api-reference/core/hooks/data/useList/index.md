@@ -13,7 +13,7 @@ import SortingLivePreview from "./sorting-live-preview.md";
 
 When you need to fetch data according to sort, filter, pagination, etc. from a `resource` , you can use the `useList` hook. It will return the data and some functions to control the query.
 
-- It uses the `getList` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
+- It uses the `getList` method as the **query function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
 - It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 

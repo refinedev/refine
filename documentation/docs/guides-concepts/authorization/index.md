@@ -22,7 +22,7 @@ In order to enable these features, Refine uses the **Access Control Provider** a
 
 ## Access Control Provider
 
-The [Access Control Provider](/docs/api-reference/core/providers/accessControl-provider) is an object that contains a `can` method. This method is called by **Refine** to understand if the user can see a certain resource or perform an action.
+The [Access Control Provider](/docs/api-reference/core/providers/access-control-provider) is an object that contains a `can` method. This method is called by **Refine** to understand if the user can see a certain resource or perform an action.
 
 A basic **Access Control Provider** looks like this:
 
@@ -66,7 +66,7 @@ export const App = () => {
 };
 ```
 
-[To learn more about the `Access Control Provider`, check out the reference page.](/docs/api-reference/core/providers/accessControl-provider)
+[To learn more about the `Access Control Provider`, check out the reference page.](/docs/api-reference/core/providers/access-control-provider)
 
 ## CanAccess Component
 

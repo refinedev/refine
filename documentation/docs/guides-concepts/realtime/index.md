@@ -192,7 +192,7 @@ interface MessageType extends Types.Message {
 }
 ```
 
-**refine** will use this subscribe method in the [`useSubscription`](/api-reference/core/hooks/live/useSubscription.md) hook.
+**refine** will use this subscribe method in the [`useSubscription`](/docs/api-reference/core/hooks/live/useSubscription.md) hook.
 
 ```ts
 import { useSubscription } from "@refinedev/core";
@@ -203,7 +203,7 @@ useSubscription({
 });
 ```
 
-> For more information, refer to the [useSubscription documentation&#8594](/api-reference/core/hooks/live/useSubscription.md)
+> For more information, refer to the [useSubscription documentation&#8594](/docs/api-reference/core/hooks/live/useSubscription.md)
 
 ### Implementing `unsubscribe` method
 
@@ -230,7 +230,7 @@ If you don't handle unsubscription, it could lead to memory leaks.
 
 This method is used to publish an event on client side. Beware that publishing events on client side is not recommended and the best practice is to publish events from server side. You can refer [Publish Events from API](#publish-events-from-api) to see which events must be published from the server.
 
-This `publish` is used in [realated hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notified. You can also publish your custom events using [`usePublish`](/api-reference/core/hooks/live/usePublish.md).
+This `publish` is used in [realated hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notified. You can also publish your custom events using [`usePublish`](/docs/api-reference/core/hooks/live/usePublish.md).
 
 ```ts title="liveProvider.ts"
 export const liveProvider = (client: Ably.Realtime): LiveProvider => {
@@ -250,7 +250,7 @@ If `publish` is used on client side you must handle the security of it by yourse
 
 :::
 
-**refine** will provide this publish method via the [`usePublish`](/api-reference/core/hooks/live/usePublish.md) hook.
+**refine** will provide this publish method via the [`usePublish`](/docs/api-reference/core/hooks/live/usePublish.md) hook.
 
 ```ts
 import { usePublish } from "@refinedev/core";
@@ -387,7 +387,7 @@ export const liveProvider = (client: Client): LiveProvider => {
 
 :::
 
-**Refine** hooks will create a subscription query using the parameters of the [useSubscription](/api-reference/core/hooks/live/useSubscription.md) hook and listen to it. When a live event is received, it will call the `onLiveEvent` method of the `useSubscription` hook.
+**Refine** hooks will create a subscription query using the parameters of the [useSubscription](/docs/api-reference/core/hooks/live/useSubscription.md) hook and listen to it. When a live event is received, it will call the `onLiveEvent` method of the `useSubscription` hook.
 
 ```ts
 import { useSubscription } from "@refinedev/core";

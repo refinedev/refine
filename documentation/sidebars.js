@@ -521,7 +521,7 @@ module.exports = {
                             type: "category",
                             label: "Providers",
                             items: [
-                                "api-reference/core/providers/accessControl-provider",
+                                "api-reference/core/providers/access-control-provider",
                                 "api-reference/core/providers/auth-provider",
                                 "api-reference/core/providers/audit-log-provider",
                                 "api-reference/core/providers/data-provider",

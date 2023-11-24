@@ -217,6 +217,10 @@
       "to": "/docs/api-reference/core/providers/accessControl-provider/"
     },
     {
+      "from": "/docs/api-reference/core/providers/accessControl-provider/",
+      "to": "/docs/api-reference/core/providers/access-control-provider/"
+    },
+    {
       "from": "/docs/core/providers/audit-log-provider/",
       "to": "/docs/api-reference/core/providers/audit-log-provider/"
     },

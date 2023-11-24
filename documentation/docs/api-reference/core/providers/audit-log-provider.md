@@ -285,7 +285,7 @@ When a record is deleted with the `useDeleteMany` hook, refine automatically sen
 
 :::tip
 
-If [`getUserIdentity`](/api-reference/core/providers/auth-provider.md) is defined in your auth provider, the `author` object will be added to the event with the value returned by `getUserIdentity`.
+If [`getUserIdentity`](/docs/api-reference/core/providers/auth-provider.md) is defined in your auth provider, the `author` object will be added to the event with the value returned by `getUserIdentity`.
 
 :::
 
@@ -318,7 +318,7 @@ export const auditLogProvider: AuditLogProvider = {
 
 :::info
 
-For more information, refer to the [`useLog` documentation&#8594](/api-reference/core/hooks/audit-log/useLog.md)
+For more information, refer to the [`useLog` documentation&#8594](/docs/api-reference/core/hooks/audit-log/useLog.md)
 
 :::
 
@@ -355,7 +355,7 @@ export const auditLogProvider: AuditLogProvider = {
 
 :::info
 
-For more information, refer to the [`useLog` documentation&#8594](/api-reference/core/hooks/audit-log/useLog.md)
+For more information, refer to the [`useLog` documentation&#8594](/docs/api-reference/core/hooks/audit-log/useLog.md)
 
 :::
 

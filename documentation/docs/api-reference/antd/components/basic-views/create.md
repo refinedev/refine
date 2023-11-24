@@ -195,7 +195,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/antd/components/buttons/save.md)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/api-reference/antd/components/buttons/save.md)
 
 ### `resource`
 
@@ -412,7 +412,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 :::
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/antd/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/antd/components/breadcrumb.md)
 
 ### `wrapperProps`
 

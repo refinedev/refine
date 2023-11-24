@@ -25,9 +25,9 @@ For `/posts/show/:id` route, the action will be `show`.
 import { CanAccess } from "@refinedev/core";
 
 const MyComponent = () => (
-    <CanAccess fallback={<CustomFallback />}>
-        <YourComponent />
-    </CanAccess>
+  <CanAccess fallback={<CustomFallback />}>
+    <YourComponent />
+  </CanAccess>
 );
 ```
 
@@ -41,14 +41,14 @@ In this case, you can explicitly pass props to the `CanAccess` component for aut
 import { CanAccess } from "@refinedev/core";
 
 export const MyComponent = () => {
-    return (
-        <Buttons>
-            <CreateButton>Create</CreateButton>
-            <CanAccess resource="posts" action="delete">
-                <DeleteButton>Delete</DeleteButton>
-            </CanAccess>
-        </Buttons>
-    );
+  return (
+    <Buttons>
+      <CreateButton>Create</CreateButton>
+      <CanAccess resource="posts" action="delete">
+        <DeleteButton>Delete</DeleteButton>
+      </CanAccess>
+    </Buttons>
+  );
 };
 ```
 
@@ -62,13 +62,11 @@ Callback to be called when [`useCan`][use-can] returns false.
 
 ```tsx
 <CanAccess
-    onUnauthorized={({ resource, reason, action, params }) =>
-        console.log(
-            `You cannot access ${resource}-${params.id} resource with ${action} action because ${reason}`,
-        )
-    }
+  onUnauthorized={({ resource, reason, action, params }) =>
+    console.log(`You cannot access ${resource}-${params.id} resource with ${action} action because ${reason}`)
+  }
 >
-    <YourComponent />
+  <YourComponent />
 </CanAccess>
 ```
 
@@ -78,7 +76,7 @@ Component to render if [`useCan`][use-can] returns false. If `undefined`, it ren
 
 ```tsx
 <CanAccess fallback={<div>You cannot access this section</div>}>
-    <YourComponent />
+  <YourComponent />
 </CanAccess>
 ```
 
@@ -89,4 +87,4 @@ Component to render if [`useCan`][use-can] returns false. If `undefined`, it ren
 <PropsTable module="@refinedev/core/CanAccess"/>
 
 [use-can]: /docs/api-reference/core/hooks/accessControl/useCan/
-[access-control-provider]: /docs/api-reference/core/providers/accessControl-provider/
+[access-control-provider]: /docs/api-reference/core/providers/access-control-provider/
