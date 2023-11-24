@@ -359,6 +359,10 @@ Since Refine offers application level components such as layout, sidebar and hea
 
 Additionally, Refine also provides a set of carefully crafted themes for Ant Design which outputs a nice UI with Refine's components with light and dark theme support. These themes are exported as `RefineThemes` object from the `@refinedev/antd` package and can be used in [`<ConfigProvider>`](https://ant.design/components/config-provider) component of Ant Design.
 
+import Theming from "./theming.tsx";
+
+<Theming />
+
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
 import { ConfigProvider } from "antd";
