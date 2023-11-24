@@ -363,25 +363,6 @@ import Theming from "./theming.tsx";
 
 <Theming />
 
-```tsx title="app.tsx"
-import { Refine } from "@refinedev/core";
-import { ConfigProvider } from "antd";
-import { RefineThemes } from "@refinedev/antd";
-
-const App = () => {
-  return (
-    // highlight-next-line
-    <ConfigProvider theme={RefineThemes.Blue}>
-      <Refine
-      // ...
-      >
-        {/* ... */}
-      </Refine>
-    </ConfigProvider>
-  );
-};
-```
-
 To learn more about the theme configuration of Ant Design, please refer to the [official documentation](https://ant.design/docs/react/customize-theme).
 
 ## Inferencer
