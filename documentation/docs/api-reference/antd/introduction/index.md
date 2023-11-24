@@ -153,7 +153,7 @@ const App = () => {
 ```
 
 :::tip
-If you have any configurations in the Ant Design's theme, you should wrap your app with the [`<App />`](https://ant.design/components/app) component to make sure the notifications are also recieving the current theme configuration.
+If you have any configurations in the Ant Design's theme, you should wrap your app with the [`<App />`](https://ant.design/components/app) component to make sure the notifications are also receiving the current theme configuration.
 :::
 
 ## Predefined Components and Views
