@@ -1,7 +1,7 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function BaseCoreTable() {
+export default function SearchMaterialUI() {
   return (
     <Sandpack
       dependencies={{
@@ -69,7 +69,12 @@ export const ProductTable: React.FC = () => {
         [],
     );
 
-    return <DataGrid {...dataGridProps} columns={columns} autoHeight />;
+    return (
+        <div style={{ padding:"4px" }}>
+            <h2>Products</h2>
+            <DataGrid {...dataGridProps} columns={columns} />
+        </div>
+    );
 };
 
 interface IProduct {

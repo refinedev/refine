@@ -1,7 +1,7 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function BaseAntdTableExample() {
+export default function SearchAntd() {
   return (
     <Sandpack
       dependencies={{
@@ -51,22 +51,46 @@ export default function App() {
 
 export const ProductTableTsxCode = `
 import React from "react";
+import { HttpError } from "@refinedev/core";
 import { useTable } from "@refinedev/antd";
-import { Table } from "antd";
+import { Button, Form, Input, Space, Table } from "antd";
 
 export const ProductTable: React.FC = () => {
-    const { tableProps } = useTable<IProduct>({
+    const { tableProps, searchFormProps } = useTable<
+        IProduct,
+        HttpError,
+        IProduct
+    >({
         resource: "products",
+        onSearch: (values) => {
+            return [
+                {
+                    field: "name",
+                    operator: "contains",
+                    value: values.name,
+                },
+            ];
+        },
     });
 
     return (
-        <div style={{ padding:"4px" }}>
-          <h2>Products</h2>
-          <Table {...tableProps} rowKey="id">
-              <Table.Column dataIndex="id" title="ID" />
-              <Table.Column dataIndex="name" title="Name" />
-              <Table.Column dataIndex="price" title="Price" />
-          </Table>
+        <div style={{ padding: "4px" }}>
+            <h2>Products</h2>
+            <Form {...searchFormProps}>
+                <Space>
+                    <Form.Item name="name">
+                        <Input placeholder="Search by name" />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button htmlType="submit">Search</Button>
+                    </Form.Item>
+                </Space>
+            </Form>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="name" title="Name" />
+                <Table.Column dataIndex="price" title="Price" />
+            </Table>
         </div>
     );
 };

@@ -93,7 +93,8 @@ export const ProductTable: React.FC = () => {
     });
 
     return (
-        <div>
+        <div style={{ padding:"4px" }}>
+            <h2>Products</h2>
             <Table highlightOnHover>
                 <thead>
                     {getHeaderGroups().map((headerGroup) => (

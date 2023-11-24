@@ -104,7 +104,8 @@ export const ProductTable: React.FC = () => {
     });
 
     return (
-        <div>
+        <div style={{ padding:"8px" }}>
+            <Text fontSize='3xl'>Products</Text>
             <TableContainer whiteSpace="pre-line">
                 <Table variant="simple">
                     <Thead>

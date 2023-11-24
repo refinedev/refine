@@ -8,6 +8,8 @@ import BaseCoreExample from "./example/core";
 import BaseMaterialUiTable from "./example/material-ui";
 import BaseMantineTable from "./example/mantine";
 import BaseChakraUi from "./example/chakra-ui";
+import SearchAntdTableExample from "./example/search-antd.tsx";
+import SearchMaterialUI from "./example/search-material-ui.tsx";
 import Relationship from "./example/relationship";
 import Pagination from "./example/pagination";
 import Filtering from "./example/filtering";
@@ -83,12 +85,12 @@ The usage of the `useTable` hooks may slightly differ between UI libraries, howe
 
 `useTable` has a pagination feature. The pagination is done by passing the `current`, `pageSize` and, `mode` keys to `pagination` object.
 
-- **current**: The initial page index.
-- **pageSize**: The initial number of items per page.
+- **current**: The page index.
+- **pageSize**: The number of items per page.
 - **mode**: Whether to use server side pagination or not.
   - When `server` is selected, the pagination will be handled on the server side.
   - When `client` is selected, the pagination will be handled on the client side. No request will be sent to the server.
-  - When `off` is selected, the pagination will be disabled.
+  - When `off` is selected, the pagination will be disabled. All data will be fetched from the server.
 
 You can also change the `current` and `pageSize` values by using the `setCurrent` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
 
@@ -131,57 +133,31 @@ You can change the sorters state by using the `setSorters` function. Every chang
 `useTable` has a search feature with `onSearch`. The search is done by using the `onSearch` function with `searchFormProps`. These feature enables you to easily connect form state to the table filters.
 
 - **onSearch**: function is triggered when the `searchFormProps.onFinish` is called. It receives the form values as the first argument and expects a promise that returns a [`CrudFilters`][crudfilters] type.
-- **searchFormProps**: Has necessary props for the `<form >`.
+- **searchFormProps**: Has necessary props for the `<form>`.
 
-For example we can fetch posts with the title that contains the search value.
+For example we can fetch product with the name that contains the search value.
 
-<Search />
+<Tabs wrapContent={false}>
 
-```tsx
-import React from "react";
-import { useTable, HttpError } from "@refinedev/core";
+<TabItem value="ant-design" label="Ant Design">
 
-const PostList: React.FC = () => {
-  const { searchFormProps } = useTable<IPost, HttpError, IPostFilters>({
-    onSearch: async (values) => {
-      return [
-        {
-          field: "title",
-          operator: "contains",
-          value: values.title,
-        },
-      ];
-    },
-  });
+<SearchAntdTableExample />
 
-  return (
-    <div>
-      <h1>Posts</h1>
-      <form {...searchFormProps}>
-        <input name="title" />
-        <button type="submit">Search</button>
-      </form>
-      <table>{/_ Render the table _/}</table>
-    </div>
-  );
-};
+[Check out Ant Design's `useTable` reference page to learn more about the usage and see it in action.](/docs/api-reference/antd/hooks/table/useTable)
 
-type IPostFilters = {
-  title: string;
-};
+</TabItem>
 
-interface IPost {
-  id: number;
-  title: string;
-  content: string;
-}
-```
+<TabItem value="material-ui" label="Material UI">
+
+<SearchMaterialUI />
+
+[Check out Material UI's `useDataGrid` reference page to learn more about the usage and see it in action.](/docs/api-reference/mui/hooks/useDataGrid)
+
+</TabItem>
+
+</Tabs>
 
 ## Integrating with Routers
-
-### Sync with Location <RouterBadge id="guides-concepts/routing/#usetable" /> <GlobalConfigBadge id="api-reference/core/components/refine-config/#syncwithlocation" />
-
-When you use the [`syncWithLocation`](/docs/api-reference/core/hooks/useTable/#syncwithlocation) feature, the `useTable`'s state (e.g., sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
 
 ### Resource <RouterBadge id="guides-concepts/routing/#relationship-between-resources-and-routes-"/>
 
@@ -189,10 +165,14 @@ When you use the [`syncWithLocation`](/docs/api-reference/core/hooks/useTable/#s
 
 ```tsx
 useTable({
-  // When the current route is `/products`, the resource will be `products` automatically.
+  // When the current route is `/products`, the resource prop can be omitted.
   resource: "products",
 });
 ```
+
+### Sync with Location <RouterBadge id="guides-concepts/routing/#usetable" /> <GlobalConfigBadge id="api-reference/core/components/refine-config/#syncwithlocation" />
+
+When you use the [`syncWithLocation`](/docs/api-reference/core/hooks/useTable/#syncwithlocation) feature, the `useTable`'s state (e.g., sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
 
 ## Relationships <GuideBadge id="guides-concepts/data-fetching/#relationships" />
 

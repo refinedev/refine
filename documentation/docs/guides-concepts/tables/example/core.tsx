@@ -44,12 +44,16 @@ export default function App() {
 
 export const ProductTableTsxCode = `
 import React from "react";
-import { useTable } from "@refinedev/core";
+import { useTable, pageCount, pageSize, current, setCurrent } from "@refinedev/core";
 
 
 export const ProductTable: React.FC = () => {
-    const { tableQueryResult } = useTable<IProduct>({
+    const { tableQueryResult, pageCount, pageSize, current, setCurrent } = useTable<IProduct>({
         resource: "products",
+        pagination: {
+            current: 1, 
+            pageSize: 10,
+        },
     });
     const posts = tableQueryResult?.data?.data ?? [];
 
@@ -58,7 +62,7 @@ export const ProductTable: React.FC = () => {
     }
 
     return (
-        <div>
+        <div style={{ padding:"8px" }}>
             <h1>Products</h1>
             <table>
                 <thead>
@@ -78,6 +82,25 @@ export const ProductTable: React.FC = () => {
                     ))}
                 </tbody>
             </table>
+            <hr />
+            <p>Current Page: {current}</p>
+            <p>Page Size: {pageSize}</p>
+            <button
+              onClick={() => {
+                setCurrent(current - 1);
+              }}
+              disabled={current < 2}
+            >
+              Previous Page
+            </button>
+            <button
+              onClick={() => {
+                setCurrent(current + 1);
+              }}
+              disabled={current === pageCount}
+            >
+              Next Page
+            </button>
         </div>
     );
 };
