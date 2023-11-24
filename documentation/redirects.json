@@ -366,7 +366,7 @@
     },
     {
       "from": "/docs/packages/react-table/",
-      "to": "/docs/packages/documentation/react-table/"
+      "to": "/docs/packages/documentation/tanstack-table/introduction"
     },
     {
       "from": "/docs/ui-frameworks/antd/components/antd-auth-page/",
@@ -858,7 +858,7 @@
       "to": "/docs/examples/table/tanstack-table/basic-tanstack-table"
     },
     {
-      "from": "/docs/packages/documentation/react-table/index",
+      "from": "/docs/packages/documentation/react-table",
       "to": "/docs/packages/documentation/tanstack-table/introduction"
     }
   ]
