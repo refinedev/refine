@@ -112,16 +112,16 @@ const App: React.FC = () => {
 };
 ```
 
-## Supported Hooks Subscriptions
+## Integrated Hooks
 
-Following hooks are supported by the live provider and works out-of-the-box:
+Following hooks are supported by the **Live Provider** and will subscribe to their resource channels automatically.
 
 ### useList
 
 ```ts
 useList({ resource: "posts" });
 
-// Will subscribe to `resources/posts` channel with following parameters:
+// Calls LiveProvider's `subscribe` method with following parameters:
 {
     types: ["*"],
     channel: "resources/posts"
@@ -142,9 +142,9 @@ Since the following hooks are derivative of `useList` hook, they will subscribe 
 
 ```ts
 useOne({ resource: "posts", id: "1" });
-```
 
-```ts
+
+// Calls LiveProvider's `subscribe` method with following parameters:
 {
     types: ["*"],
     channel: "resources/posts",
@@ -165,7 +165,7 @@ Since the following hooks are derivative of `useOne` hook, they will subscribe t
 ```ts
 useMany({ resource: "posts", ids: ["1", "2"] });
 
-// Will subscribe to `resources/posts` channel with following parameters:
+// Calls LiveProvider's `subscribe` method with following parameters:
 {
     types: ["*"],
     channel: "resources/posts"
@@ -195,7 +195,7 @@ mutate({
   },
 });
 
-// Will publish the following event:
+// Calls Live Provider's publish method with following parameters:
 {
     channel: `resources/posts`,
     type: "created",
@@ -223,7 +223,7 @@ mutate({
   ],
 });
 
-// Will publish the following event:
+// Calls Live Provider's publish method with following parameters:
 {
     channel: `resources/posts`,
     type: "created",
@@ -244,7 +244,7 @@ mutate({
   id: "1",
 });
 
-// Will publish the following event:
+// Calls Live Provider's publish method with following parameters:
 {
     channel: `resources/posts`,
     type: "deleted",
@@ -265,7 +265,7 @@ mutate({
   ids: ["1", "2"],
 });
 
-// Will publish the following event:
+// Calls Live Provider's publish method with following parameters:
 {
     channel: `resources/posts`,
     type: "deleted",
@@ -287,7 +287,7 @@ mutate({
   values: { title: "New Post Title" },
 });
 
-// Will publish the following event:
+// Calls Live Provider's publish method with following parameters:
 {
     channel: `resources/posts`,
     type: "updated",
@@ -309,7 +309,7 @@ mutate({
   values: { title: "New Post Title" },
 });
 
-// Will publish the following event:
+// Calls Live Provider's publish method with following parameters:
 {
     channel: `resources/posts`,
     type: "updated",

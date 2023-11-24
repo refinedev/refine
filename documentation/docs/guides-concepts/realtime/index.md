@@ -35,6 +35,7 @@ import { useList } from "@refinedev/core";
 
 const { data } = useList({
   resource: "products",
+  // Can be configured per-hook basis.
   liveMode: "auto", // manual or off
 });
 ```
@@ -47,7 +48,7 @@ See the [Supported Hooks](/docs/api-reference/core/providers/live-provider#suppo
 
 ## Built-in Integrations
 
-We have the following built-in integrations which you can use out-of-the-box.
+We have the following built-in integrations:
 
 - **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
 - **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
@@ -74,13 +75,17 @@ export const liveProvider: LiveProvider = {
     const { resource, id, ids } = params;
 
     // subscribe to the resource updates
-    // call the callback function when there is an update
-    // return unsubscribe function.
-  },
-  unsubscribe: async (unsubscribe) => {
-    unsubscribe();
+    const unsubscribe = MyWSClient.subscribe({ channel });
 
+    // call the callback function when there is an update
+    MyWSClient.on("message", (data) => callback(data));
+
+    // return value will be passed to `unsubscribe` method.
+    return { unsubscribe };
+  },
+  unsubscribe: async ({ unsubscribe }) => {
     // unsubscribe from the resource updates
+    unsubscribe();
   },
   publish: async ({ channel, type, payload, date }) => {
     console.log(channel); // products, orders, etc.
@@ -88,7 +93,8 @@ export const liveProvider: LiveProvider = {
     console.log(payload); // { id: 1, name: "Product 1" }, { id: 2, name: "Product 2" }, etc.
     console.log(date); // new Date()
 
-    // publish the data to the resource
+    // publish the data to the resource channel.
+    MyWSClient.publish({ channel, type, payload, date });
   },
 };
 ```
@@ -101,53 +107,171 @@ While most of the features already works out-of-the-box with **Live Provider**, 
 
 The `useSubscription` hook can be used to subscribe to a certain resource updates. It calls **Live Provider**'s `subscribe` method with the given parameters.
 
-```tsx title="my-page.tsx"
+```tsx
 import { useSubscription } from "@refinedev/core";
 
-export const MyPage = () => {
-  useSubscription({
-    resource: "products",
-    types: ["created", "updated"],
-    onLiveEvent: (event) => {
-      console.log(event.channel); // products, orders, etc.
-      console.log(event.type); // created, updated, deleted, etc.
-      console.log(event.payload); // { id: 1, name: "Product 1" }, { id: 2, name: "Product 2" }, etc.
-    },
-  });
-
-  return (
-    <div>
-      <h1>My Page</h1>
-    </div>
-  );
-};
+useSubscription({
+  resource: "products",
+  types: ["created", "updated"],
+  onLiveEvent: (event) => {
+    console.log(event.channel); // products, orders, etc.
+    console.log(event.type); // created, updated, deleted, etc.
+    console.log(event.payload); // { id: 1, name: "Product 1" }, { id: 2, name: "Product 2" }, etc.
+  },
+});
 ```
 
 ### usePublish
 
 While generally it's not recommended to publish updates from the frontend, you can use `usePublish` hook to publish updates to a certain resource. It calls **Live Provider**'s `publish` method with the given parameters.
 
-```tsx title="my-page.tsx"
+```tsx
 import { usePublish } from "@refinedev/core";
 
-export const MyPage = () => {
-  const publish = usePublish();
+const publish = usePublish();
 
-  const handlePublish = () => {
-    publish({
-      channel: "products",
-      type: "deleted",
-      payload: { id: 1 },
-      date: new Date(),
-    });
+publish({
+  channel: "products",
+  type: "deleted",
+  payload: { id: 1 },
+  date: new Date(),
+});
+```
+
+## Creating a live provider with Ably
+
+We will build the **"Ably Live Provider"** of [`@refinedev/ably`](https://github.com/refinedev/refine/tree/master/packages/ably) from scratch to show the logic of how live provider methods interact with Ably.
+
+### Implementing `subscribe` method
+
+This method is used to subscribe to a Realtime channel. **refine** subscribes to the related channels using subscribe method in supported hooks to be aware of the data changes.
+
+```ts title="liveProvider.ts"
+import { LiveProvider, LiveEvent } from "@refinedev/core";
+import Ably from "ably/promises";
+import { Types } from "ably";
+
+export const liveProvider = (client: Ably.Realtime): LiveProvider => {
+  return {
+    subscribe: ({ channel, types, params, callback, meta }) => {
+      console.log(channel); // products, orders, etc.
+      console.log(types); // created, updated, deleted, "*", etc.
+      console.log(params); // { id: 1 } or { ids: [1, 2, 3] }, etc.
+      console.log(callback); // a function that will be called when there is an update
+      console.log(meta); // { fields: [], operation: "", queryContext: {}, variables: {} }
+
+      const channelInstance = client.channels.get(channel);
+
+      const listener = function (message: MessageType) {
+        if (types.includes("*") || types.includes(message.data.type)) {
+          if (
+            message.data.type !== "created" &&
+            params?.ids !== undefined &&
+            message.data?.payload?.ids !== undefined
+          ) {
+            if (params.ids.filter((value) => message.data.payload.ids!.includes(value)).length > 0) {
+              callback(message.data as LiveEvent);
+            }
+          } else {
+            callback(message.data);
+          }
+        }
+      };
+
+      channelInstance.subscribe(listener);
+
+      // returned value will be passed to `unsubscribe` method.
+      // required for unsubscribing from the channel.
+      return { channelInstance, listener };
+    },
   };
+};
 
-  return (
-    <div>
-      <h1>My Page</h1>
-      <button onClick={handlePublish}>Publish</button>
-    </div>
-  );
+interface MessageType extends Types.Message {
+  data: LiveEvent;
+}
+```
+
+**refine** will use this subscribe method in the [`useSubscription`](/api-reference/core/hooks/live/useSubscription.md) hook.
+
+```ts
+import { useSubscription } from "@refinedev/core";
+
+useSubscription({
+  channel: "channel-name",
+  onLiveEvent: (event) => {},
+});
+```
+
+> For more information, refer to the [useSubscription documentation&#8594](/api-reference/core/hooks/live/useSubscription.md)
+
+### Implementing `unsubscribe` method
+
+This method is used to unsubscribe from a channel. The values returned from the `subscribe` method are passed to this method.
+
+```ts title="liveProvider.ts"
+export const liveProvider = (client: Ably.Realtime): LiveProvider => {
+  return {
+    unsubscribe: (payload: { channelInstance: Types.RealtimeChannelPromise; listener: () => void }) => {
+      const { channelInstance, listener } = payload;
+      channelInstance.unsubscribe(listener);
+    },
+  };
+};
+```
+
+:::caution
+
+If you don't handle unsubscription, it could lead to memory leaks.
+
+:::
+
+### Implementing `publish` method
+
+This method is used to publish an event on client side. Beware that publishing events on client side is not recommended and the best practice is to publish events from server side. You can refer [Publish Events from API](#publish-events-from-api) to see which events must be published from the server.
+
+This `publish` is used in [realated hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notified. You can also publish your custom events using [`usePublish`](/api-reference/core/hooks/live/usePublish.md).
+
+```ts title="liveProvider.ts"
+export const liveProvider = (client: Ably.Realtime): LiveProvider => {
+  return {
+    publish: ({ channel, type, payload, date, meta }: LiveEvent) => {
+      const channelInstance = client.channels.get(channel);
+
+      channelInstance.publish(type, event);
+    },
+  };
+};
+```
+
+:::caution
+
+If `publish` is used on client side you must handle the security of it by yourself.
+
+:::
+
+**refine** will provide this publish method via the [`usePublish`](/api-reference/core/hooks/live/usePublish.md) hook.
+
+```ts
+import { usePublish } from "@refinedev/core";
+
+const publish = usePublish();
+```
+
+### Usage
+
+Now that we have created our live provider, we can use it in our application like below:
+
+```tsx title="App.tsx"
+import { Refine } from "@refinedev/core";
+import Ably from "ably/promises";
+
+import { liveProvider } from "./liveProvider";
+
+const ablyClient = new Ably.Realtime("your-ably-token");
+
+const App = () => {
+  return <Refine liveProvider={liveProvider(ablyClient)}>{/*...*/}</Refine>;
 };
 ```
 
@@ -334,142 +458,5 @@ const gqlWebSocketClient = createClient({
 
 const App: React.FC = () => {
   return <Refine liveProvider={liveProvider(gqlWebSocketClient)}>{/* ... */} </Refine>;
-};
-```
-
-## Creating a live provider with Ably
-
-We will build the **"Ably Live Provider"** of [`@refinedev/ably`](https://github.com/refinedev/refine/tree/master/packages/ably) from scratch to show the logic of how live provider methods interact with Ably.
-
-### Implementing `subscribe` method
-
-This method is used to subscribe to a Realtime channel. **refine** subscribes to the related channels using subscribe method in supported hooks to be aware of the data changes.
-
-```ts title="liveProvider.ts"
-import { LiveProvider, LiveEvent } from "@refinedev/core";
-import Ably from "ably/promises";
-import { Types } from "ably";
-
-export const liveProvider = (client: Ably.Realtime): LiveProvider => {
-  return {
-    subscribe: ({ channel, types, params, callback, meta }) => {
-      console.log(channel); // products, orders, etc.
-      console.log(types); // created, updated, deleted, "*", etc.
-      console.log(params); // { id: 1 } or { ids: [1, 2, 3] }, etc.
-      console.log(callback); // a function that will be called when there is an update
-      console.log(meta); // { fields: [], operation: "", queryContext: {}, variables: {} }
-
-      const channelInstance = client.channels.get(channel);
-
-      const listener = function (message: MessageType) {
-        if (types.includes("*") || types.includes(message.data.type)) {
-          if (
-            message.data.type !== "created" &&
-            params?.ids !== undefined &&
-            message.data?.payload?.ids !== undefined
-          ) {
-            if (params.ids.filter((value) => message.data.payload.ids!.includes(value)).length > 0) {
-              callback(message.data as LiveEvent);
-            }
-          } else {
-            callback(message.data);
-          }
-        }
-      };
-
-      channelInstance.subscribe(listener);
-
-      // returned value will be passed to `unsubscribe` method.
-      // required for unsubscribing from the channel.
-      return { channelInstance, listener };
-    },
-  };
-};
-
-interface MessageType extends Types.Message {
-  data: LiveEvent;
-}
-```
-
-**refine** will use this subscribe method in the [`useSubscription`](/api-reference/core/hooks/live/useSubscription.md) hook.
-
-```ts
-import { useSubscription } from "@refinedev/core";
-
-useSubscription({
-  channel: "channel-name",
-  onLiveEvent: (event) => {},
-});
-```
-
-> For more information, refer to the [useSubscription documentation&#8594](/api-reference/core/hooks/live/useSubscription.md)
-
-### Implementing `unsubscribe` method
-
-This method is used to unsubscribe from a channel. The values returned from the `subscribe` method are passed to this method.
-
-```ts title="liveProvider.ts"
-export const liveProvider = (client: Ably.Realtime): LiveProvider => {
-  return {
-    unsubscribe: (payload: { channelInstance: Types.RealtimeChannelPromise; listener: () => void }) => {
-      const { channelInstance, listener } = payload;
-      channelInstance.unsubscribe(listener);
-    },
-  };
-};
-```
-
-:::caution
-
-If you don't handle unsubscription, it could lead to memory leaks.
-
-:::
-
-### Implementing `publish` method
-
-This method is used to publish an event on client side. Beware that publishing events on client side is not recommended and the best practice is to publish events from server side. You can refer [Publish Events from API](#publish-events-from-api) to see which events must be published from the server.
-
-This `publish` is used in [realated hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notified. You can also publish your custom events using [`usePublish`](/api-reference/core/hooks/live/usePublish.md).
-
-```ts title="liveProvider.ts"
-export const liveProvider = (client: Ably.Realtime): LiveProvider => {
-  return {
-    publish: ({ channel, type, payload, date, meta }: LiveEvent) => {
-      const channelInstance = client.channels.get(channel);
-
-      channelInstance.publish(type, event);
-    },
-  };
-};
-```
-
-:::caution
-
-If `publish` is used on client side you must handle the security of it by yourself.
-
-:::
-
-**refine** will provide this publish method via the [`usePublish`](/api-reference/core/hooks/live/usePublish.md) hook.
-
-```ts
-import { usePublish } from "@refinedev/core";
-
-const publish = usePublish();
-```
-
-### Usage
-
-Now that we have created our live provider, we can use it in our application like below:
-
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-import Ably from "ably/promises";
-
-import { liveProvider } from "./liveProvider";
-
-const ablyClient = new Ably.Realtime("your-ably-token");
-
-const App = () => {
-  return <Refine liveProvider={liveProvider(ablyClient)}>{/*...*/}</Refine>;
 };
 ```
