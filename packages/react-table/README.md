@@ -88,7 +88,7 @@ const EditPost = () => {
 
 ## Documentation
 
-- For more detailed information and usage, refer to the [refine TanStack React Table documentation](https://refine.dev/docs/packages/documentation/react-table/).
-- [Refer to TanStack React Table example with refine](https://refine.dev/docs/examples/table/react-table/advanced-react-table/).
+- For more detailed information and usage, refer to the [refine TanStack React Table documentation](https://refine.dev/docs/packages/documentation/tanstack-table/introduction)).
+- [Refer to TanStack React Table example with refine](https://refine.dev/docs/examples/table/tanstack/advanced-react-table/).
 - [Refer to documentation for more info about refine](https://refine.dev/docs/).
 - [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
