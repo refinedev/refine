@@ -432,9 +432,9 @@ mutate({
     foo: "bar",
   },
 });
-```
 
-```json title="Create event"
+// Calls Audit Log Provider's `create` method with the following parameters:
+
 {
   "action": "create",
   "resource": "posts",
@@ -474,9 +474,9 @@ mutate({
     foo: "bar",
   },
 });
-```
 
-```json title="CreateMany event"
+// Calls Audit Log Provider's `create` method with the following parameters:
+
 {
   "action": "createMany",
   "resource": "posts",
@@ -512,9 +512,9 @@ mutate({
     title: "Updated New Title",
   },
 });
-```
 
-```json title="Update event"
+
+
 {
   "action": "update",
   "resource": "posts",
@@ -546,9 +546,9 @@ mutate({
     title: "Updated New Title",
   },
 });
-```
 
-```json title="UpdateMany event"
+// Calls Audit Log Provider's `create` method with the following parameters:
+
 {
   "action": "updateMany",
   "resource": "posts",
@@ -578,9 +578,9 @@ mutate({
   id: 1,
   resource: "posts",
 });
-```
 
-```json title="Delete event"
+// Calls Audit Log Provider's `create` method with the following parameters:
+
 {
   "action": "delete",
   "resource": "posts",
@@ -599,9 +599,9 @@ mutate({
   ids: [1, 2],
   resource: "posts",
 });
-```
 
-```json title="DeleteMany event"
+// Calls Audit Log Provider's `create` method with the following parameters:
+
 {
   "action": "deleteMany",
   "resource": "posts",
