@@ -44,7 +44,7 @@ const { data } = useList({
 
 **Refine** hooks works out-of-the-box with **Live Provider**, means if the data these hooks consume is updated, they will automatically refetch.
 
-See the [Supported Hooks](/docs/api-reference/core/providers/live-provider#supported-hooks-subscriptions) section for more information.
+See the [Integrated Hooks](/docs/api-reference/core/providers/live-provider#integrated-hooks) section for more information.
 
 ## Built-in Integrations
 

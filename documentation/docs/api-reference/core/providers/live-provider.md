@@ -32,7 +32,29 @@ We have the following built-in integrations which you can use out-of-the-box.
 
 ## Live Mode Options
 
-`liveMode` must be passed to `<Refine>` in `options` or [supported hooks](#supported-hooks-subscriptions) for `liveProvider` to work. If it's not provided live features won't be activated. Passing it to `<Refine>` in `options` configures it app wide and hooks will use this option. It can also be passed to hooks directly without passing to `<Refine>` for detailed configuration. If both are provided value passed to the hook will override the value at `<Refine>`.
+To activate live features in **Refine**, you need to use the `liveMode` option.
+
+**Global Configuration**: Add liveMode to the options prop of the `<Refine>` component. This sets it up for your entire application, and all hooks will automatically use this by default.
+
+```tsx
+<Refine
+  liveProvider={liveProvider}
+  options={
+    // highlight-next-line
+    { liveMode: "auto" }
+  }
+/>
+```
+
+**Hook-Specific Configuration**: Alternatively, you can apply liveMode directly to [integrated hooks](#integrated-hooks) individually for more precise control. This is useful if you don't want to apply live mode globally.
+
+```tsx
+useList({ liveMode: "auto" });
+// or
+useOne({ liveMode: "auto" });
+```
+
+**Priority Handling**: If you provide `liveMode` in both the `<Refine>` component and hooks, the config in the hook will take priority over the global `<Refine>` configuration.
 
 ### auto
 
@@ -62,18 +84,6 @@ const { data } = useList({
 ### off
 
 Disables live mode entirely.
-
-### Global Configuration
-
-`liveMode` can be configured globally by passing it to the `<Refine>` component.
-
-Underlying hooks will use this value unless it's overridden by passing it to the hook directly.
-
-```tsx title="App.tsx"
-const App: React.FC = () => {
-  return <Refine liveProvider={liveProvider} options={{ liveMode: "auto" }} />;
-};
-```
 
 ## onLiveEvent
 
