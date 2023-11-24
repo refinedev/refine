@@ -1,5 +1,5 @@
 ---
-title: React Table
+title: useTable
 slug: /packages/documentation/tanstack-table/use-form
 source: /packages/react-table/src/useTable
 sidebar_label: useTable
