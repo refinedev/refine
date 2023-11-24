@@ -33,6 +33,7 @@ module.exports = {
                 "guides-concepts/authentication/index",
                 "guides-concepts/authorization/index",
                 "guides-concepts/ui-libraries/index",
+                "guides-concepts/realtime/index",
                 {
                     type: "category",
                     label: "Examples",
