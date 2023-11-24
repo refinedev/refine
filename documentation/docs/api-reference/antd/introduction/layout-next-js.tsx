@@ -1,7 +1,7 @@
 import React from "react";
 import { Sandpack } from "@site/src/components/sandpack";
 
-export default function UsageNextjs() {
+export default function LayoutNextjs() {
   return (
     <Sandpack
       showNavigator
@@ -119,7 +119,7 @@ import React from "react";
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router";
 import dataProvider from "@refinedev/simple-rest";
-import type { AppProps } from "next/app";
+import type { AppProps, NextPage } from "next/app";
 
 import { RefineThemes, ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
 import { App as AntdApp, ConfigProvider } from "antd";
@@ -129,50 +129,50 @@ import "@refinedev/antd/dist/reset.css";
 import authProvider from "../src/auth-provider";
 
 export type ExtendedNextPage = NextPage & {
-  noLayout?: boolean;
+    noLayout?: boolean;
 };
 
 type ExtendedAppProps = AppProps & {
-  Component: ExtendedNextPage;
+    Component: ExtendedNextPage;
 };
 
 function App({ Component, pageProps }: ExtendedAppProps) {
-  const renderComponent = () => {
-      if (Component.noLayout) {
-          return <Component {...pageProps} />;
-      }
+    const renderComponent = () => {
+        if (Component.noLayout) {
+            return <Component {...pageProps} />;
+        }
 
-      return (
-          <ThemedLayoutV2>
-              <Component {...pageProps} />
-          </ThemedLayoutV2>
-      );
-  }
+        return (
+            <ThemedLayoutV2>
+                <Component {...pageProps} />
+            </ThemedLayoutV2>
+        );
+    }
 
-  return (
-    <ConfigProvider theme={RefineThemes.Blue}>
-      <AntdApp>
-        <Refine
-          routerProvider={routerProvider}
-          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={useNotificationProvider}
-          authProvider={authProvider}
-          resources={[
-            {
-              name: "products",
-              list: "/products",
-              show: "/products/:id",
-              edit: "/products/:id/edit",
-              create: "/products/create"
-            },
-          ]}
-          options={{ syncWithLocation: true }}
-        >
-          {renderComponent()}
-        </Refine>
-      </AntdApp>
-    </ConfigProvider>
-  );
+    return (
+        <ConfigProvider theme={RefineThemes.Blue}>
+            <AntdApp>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    notificationProvider={useNotificationProvider}
+                    authProvider={authProvider}
+                    resources={[
+                        {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/:id",
+                        edit: "/products/:id/edit",
+                        create: "/products/create"
+                        },
+                    ]}
+                    options={{ syncWithLocation: true }}
+                >
+                    {renderComponent()}
+                </Refine>
+            </AntdApp>
+        </ConfigProvider>
+    );
 }
 
 export default App;

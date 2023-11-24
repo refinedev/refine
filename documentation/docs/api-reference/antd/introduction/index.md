@@ -165,49 +165,26 @@ Refine provides Layout components that can be used to implement a layout for the
 <Tabs wrapContent={false}>
 <TabItem value="react-router-dom" label="React Router Dom">
 
-xxxxx
+import LayoutReactRouterDom from "./layout-react-router-dom.tsx";
+
+<LayoutReactRouterDom />
 
 </TabItem>
 <TabItem value="next-js" label="Next.js">
 
-xxxxx
+import LayoutNextJs from "./layout-next-js.tsx";
+
+<LayoutNextJs />
 
 </TabItem>
 <TabItem value="remix" label="Remix">
 
-xxxxx
+import LayoutRemix from "./layout-remix.tsx";
+
+<LayoutRemix />
 
 </TabItem>
 </Tabs>
-
-```tsx title="app.tsx"
-import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2 } from "@refinedev/antd";
-import { Outlet, Routes, Route } from "react-router-dom";
-
-const App = () => {
-  return (
-    <Refine
-    // ...
-    >
-      <Routes>
-        <Route
-          element={
-            // highlight-start
-            <ThemedLayoutV2>
-              <Outlet />
-            </ThemedLayoutV2>
-            // highlight-end
-          }
-        >
-          <Route path="/posts" element={<PostList />} />
-          {/* ... */}
-        </Route>
-      </Routes>
-    </Refine>
-  );
-};
-```
 
 [`<ThemedLayoutV2>`](/docs/api-reference/antd/components/antd-themed-layout/) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
 

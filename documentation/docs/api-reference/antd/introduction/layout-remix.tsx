@@ -1,7 +1,7 @@
 import React from "react";
 import { Sandpack } from "@site/src/components/sandpack";
 
-export default function UsageNextjs() {
+export default function LayoutRemix() {
   return (
     <Sandpack
       showNavigator
@@ -11,32 +11,37 @@ export default function UsageNextjs() {
         "@refinedev/antd": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/nextjs-router": "latest",
+        "@refinedev/remix-router": "latest",
         antd: "^5.0.5",
       }}
-      // template="nextjs"
       startRoute="/products"
       files={{
-        "/pages/_app.tsx": {
-          code: AppTsxCode,
+        "/app/root.tsx": {
+          code: RootTsxCode,
+        },
+        "/app/routes/_protected.tsx": {
+          code: ProtectedTsxCode,
           active: true,
         },
-        "/pages/products/index.tsx": {
+        "/app/routes/_protected.products._index.tsx": {
           code: ListTsxCode,
         },
-        "/pages/products/[id].tsx": {
+        "/app/routes/_protected.products.$id.tsx": {
           code: ShowTsxCode,
         },
-        "/pages/products/[id]/edit.tsx": {
+        "/app/routes/_protected.products.$id.edit.tsx": {
           code: EditTsxCode,
         },
-        "/pages/products/create.tsx": {
+        "/app/routes/_protected.products.create.tsx": {
           code: CreateTsxCode,
         },
-        "/pages/login.tsx": {
+        "/app/routes/_auth.tsx": {
+          code: AuthTsxCode,
+        },
+        "/app/routes/_auth.login.tsx": {
           code: LoginTsxCode,
         },
-        "/src/auth-provider.tsx": {
+        "/app/auth-provider.tsx": {
           code: AuthProviderTsxCode,
           hidden: true,
         },
@@ -77,113 +82,140 @@ const authProvider = {
 export default authProvider;
 `.trim();
 
-const LoginTsxCode = /* jsx */ `
+const RootTsxCode = /* jsx */ `
 import React from "react";
-import { AuthPage } from "@refinedev/antd";
-import authProvider from "../src/auth-provider";
 
-import type { ExtendedNextPage } from "./_app";
-
-const Login: ExtendedNextPage = () => {
-  return <AuthPage type="login" />;
-};
-
-Login.noLayout = true;
-
-export default Login;
-
-/**
- * Same check can also be done via \`<Authenticated />\` component.
- * But we're using a server-side check for a better UX.
- */
-export const getServerSideProps = async () => {
-  const { authenticated } = await authProvider.check();
-
-  if (authenticated) {
-    return {
-      redirect: {
-        destination: "/products",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-`.trim();
-
-const AppTsxCode = /* jsx */ `
-import React from "react";
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+} from "@remix-run/react";
 
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/remix-router";
 import dataProvider from "@refinedev/simple-rest";
-import type { AppProps } from "next/app";
 
-import { RefineThemes, ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
-import { App as AntdApp, ConfigProvider } from "antd";
+import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 
-import "@refinedev/antd/dist/reset.css";
+import resetStyle from "@refinedev/antd/dist/reset.css";
 
-import authProvider from "../src/auth-provider";
+import authProvider from "./auth-provider";
 
-export type ExtendedNextPage = NextPage & {
-  noLayout?: boolean;
-};
-
-type ExtendedAppProps = AppProps & {
-  Component: ExtendedNextPage;
-};
-
-function App({ Component, pageProps }: ExtendedAppProps) {
-  const renderComponent = () => {
-      if (Component.noLayout) {
-          return <Component {...pageProps} />;
-      }
-
-      return (
-          <ThemedLayoutV2>
-              <Component {...pageProps} />
-          </ThemedLayoutV2>
-      );
-  }
-
+export default function App() {
   return (
-    <ConfigProvider theme={RefineThemes.Blue}>
-      <AntdApp>
-        <Refine
-          routerProvider={routerProvider}
-          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={useNotificationProvider}
-          authProvider={authProvider}
-          resources={[
-            {
-              name: "products",
-              list: "/products",
-              show: "/products/:id",
-              edit: "/products/:id/edit",
-              create: "/products/create"
-            },
-          ]}
-          options={{ syncWithLocation: true }}
-        >
-          {renderComponent()}
-        </Refine>
-      </AntdApp>
-    </ConfigProvider>
+    <html lang="en">
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <ConfigProvider theme={RefineThemes.Blue}>
+          <AntdApp>
+            <Refine
+              routerProvider={routerProvider}
+              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+              authProvider={authProvider}
+              notificationProvider={useNotificationProvider}
+              resources={[
+                {
+                  name: "products",
+                  list: "/products",
+                  show: "/products/:id",
+                  edit: "/products/:id/edit",
+                  create: "/products/create",
+                },
+              ]}
+              options={{ syncWithLocation: true }}
+            >
+              <Outlet />
+            </Refine>
+          </AntdApp>
+        </ConfigProvider>
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+      </body>
+    </html>
   );
 }
+`.trim();
 
-export default App;
+const ProtectedTsxCode = /* jsx */ `
+import { ThemedLayoutV2 } from "@refinedev/antd";
+import { Outlet } from "@remix-run/react";
+import { LoaderArgs, redirect } from "@remix-run/node";
+
+import authProvider from "../auth-provider";
+
+export default function AuthenticatedLayout() {
+    // \`<ThemedLayoutV2>\` is only applied to the authenticated users
+    return (
+        <ThemedLayoutV2>
+            <Outlet />
+        </ThemedLayoutV2>
+    );
+}
+
+/**
+ * We're checking if the current session is authenticated.
+ * If not, we're redirecting the user to the login page.
+ * This is applied for all routes that are nested under this layout (_protected).
+ */
+export async function loader({ request }: LoaderArgs) {
+    const { authenticated, redirectTo } = await authProvider.check(request);
+
+    if (!authenticated) {
+        throw redirect(redirectTo ?? "/login");
+    }
+
+    return {};
+}
+`.trim();
+
+const AuthTsxCode = /* jsx */ `
+import { Outlet } from "@remix-run/react";
+import { LoaderArgs, redirect } from "@remix-run/node";
+
+import { authProvider } from "~/authProvider";
+
+export default function AuthLayout() {
+    // no layout is applied for the auth routes
+    return <Outlet />;
+}
+
+/**
+ * If the current session is authenticated, we're redirecting the user to the home page.
+ * Alternatively, we could also use the \`Authenticated\` component inside the \`AuthLayout\` to handle the redirect.
+ * But, server-side redirects are more performant.
+ */
+export async function loader({ request }: LoaderArgs) {
+    const { authenticated, redirectTo } = await authProvider.check(request);
+
+    if (authenticated) {
+        throw redirect(redirectTo ?? "/");
+    }
+
+    return {};
+}
+`.trim();
+
+const LoginTsxCode = /* jsx */ `
+import { AuthPage } from "@refinedev/antd";
+
+export default function LoginPage() {
+  return <AuthPage type="login" />;
+}
+
 `.trim();
 
 const ListTsxCode = /* jsx */ `
 import React from "react";
 import { List, ShowButton, EditButton, useTable } from "@refinedev/antd";
 import { Space, Table } from "antd";
-
-import authProvider from "../../src/auth-provider";
 
 export default function ProductList() {
   const { tableProps } = useTable();
@@ -208,27 +240,6 @@ export default function ProductList() {
     </List>
   );
 };
-
-/**
- * Same check can also be done via \`<Authenticated />\` component.
- * But we're using a server-side check for a better UX.
- */
-export const getServerSideProps = async () => {
-  const { authenticated } = await authProvider.check();
-
-  if (!authenticated) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-}
 `.trim();
 
 const ShowTsxCode = /* jsx */ `
@@ -236,8 +247,6 @@ import React from "react";
 import { useShow } from "@refinedev/core";
 import { MarkdownField, NumberField, Show, TextField } from "@refinedev/antd";
 import { Typography } from "antd";
-
-import authProvider from "../../src/auth-provider";
 
 const { Title } = Typography;
 
@@ -262,35 +271,12 @@ export default function ProductShow() {
     </Show>
   );
 };
-
-/**
- * Same check can also be done via \`<Authenticated />\` component.
- * But we're using a server-side check for a better UX.
- */
-export const getServerSideProps = async () => {
-  const { authenticated } = await authProvider.check();
-
-  if (!authenticated) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-}
 `.trim();
 
 const EditTsxCode = /* jsx */ `
 import React from "react";
 import { Typography, Form, Input, InputNumber } from "antd";
 import { Edit, useForm } from "@refinedev/antd";
-
-import authProvider from "../../../src/auth-provider";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -349,35 +335,12 @@ export default function ProductEdit() {
   </Edit>
   );
 };
-
-/**
- * Same check can also be done via \`<Authenticated />\` component.
- * But we're using a server-side check for a better UX.
- */
-export const getServerSideProps = async () => {
-  const { authenticated } = await authProvider.check();
-
-  if (!authenticated) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-}
 `.trim();
 
 const CreateTsxCode = /* jsx */ `
 import React from "react";
 import { Typography, Form, Input, InputNumber } from "antd";
 import { Create, useForm } from "@refinedev/antd";
-
-import authProvider from "../../src/auth-provider";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -436,25 +399,4 @@ export default function ProductCreate() {
     </Create>
   );
 };
-
-/**
- * Same check can also be done via \`<Authenticated />\` component.
- * But we're using a server-side check for a better UX.
- */
-export const getServerSideProps = async () => {
-  const { authenticated } = await authProvider.check();
-
-  if (!authenticated) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-}
 `.trim();

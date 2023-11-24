@@ -1,7 +1,7 @@
 import React from "react";
 import { Sandpack } from "@site/src/components/sandpack";
 
-export default function UsageNextjs() {
+export default function LayoutReactRouterDom() {
   return (
     <Sandpack
       showNavigator
@@ -11,32 +11,30 @@ export default function UsageNextjs() {
         "@refinedev/antd": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/nextjs-router": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "react-router-dom": "latest",
+        "react-router": "latest",
         antd: "^5.0.5",
       }}
-      // template="nextjs"
       startRoute="/products"
       files={{
-        "/pages/_app.tsx": {
+        "/App.tsx": {
           code: AppTsxCode,
           active: true,
         },
-        "/pages/products/index.tsx": {
+        "/pages/products/list.tsx": {
           code: ListTsxCode,
         },
-        "/pages/products/[id].tsx": {
+        "/pages/products/show.tsx": {
           code: ShowTsxCode,
         },
-        "/pages/products/[id]/edit.tsx": {
+        "/pages/products/edit.tsx": {
           code: EditTsxCode,
         },
         "/pages/products/create.tsx": {
           code: CreateTsxCode,
         },
-        "/pages/login.tsx": {
-          code: LoginTsxCode,
-        },
-        "/src/auth-provider.tsx": {
+        "/auth-provider.tsx": {
           code: AuthProviderTsxCode,
           hidden: true,
         },
@@ -77,105 +75,79 @@ const authProvider = {
 export default authProvider;
 `.trim();
 
-const LoginTsxCode = /* jsx */ `
-import React from "react";
-import { AuthPage } from "@refinedev/antd";
-import authProvider from "../src/auth-provider";
-
-import type { ExtendedNextPage } from "./_app";
-
-const Login: ExtendedNextPage = () => {
-  return <AuthPage type="login" />;
-};
-
-Login.noLayout = true;
-
-export default Login;
-
-/**
- * Same check can also be done via \`<Authenticated />\` component.
- * But we're using a server-side check for a better UX.
- */
-export const getServerSideProps = async () => {
-  const { authenticated } = await authProvider.check();
-
-  if (authenticated) {
-    return {
-      redirect: {
-        destination: "/products",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-`.trim();
-
 const AppTsxCode = /* jsx */ `
 import React from "react";
 
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router";
+import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import type { AppProps } from "next/app";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
 
-import { RefineThemes, ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
+import { ErrorComponent, RefineThemes, ThemedLayoutV2, useNotificationProvider, AuthPage } from "@refinedev/antd";
 import { App as AntdApp, ConfigProvider } from "antd";
+
+import authProvider from "./auth-provider";
 
 import "@refinedev/antd/dist/reset.css";
 
-import authProvider from "../src/auth-provider";
+import { ProductList } from "./pages/products/list";
+import { ProductShow } from "./pages/products/show";
+import { ProductEdit } from "./pages/products/edit";
+import { ProductCreate } from "./pages/products/create";
 
-export type ExtendedNextPage = NextPage & {
-  noLayout?: boolean;
-};
-
-type ExtendedAppProps = AppProps & {
-  Component: ExtendedNextPage;
-};
-
-function App({ Component, pageProps }: ExtendedAppProps) {
-  const renderComponent = () => {
-      if (Component.noLayout) {
-          return <Component {...pageProps} />;
-      }
-
-      return (
-          <ThemedLayoutV2>
-              <Component {...pageProps} />
-          </ThemedLayoutV2>
-      );
-  }
-
+export default function App() {
   return (
-    <ConfigProvider theme={RefineThemes.Blue}>
-      <AntdApp>
-        <Refine
-          routerProvider={routerProvider}
-          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={useNotificationProvider}
-          authProvider={authProvider}
-          resources={[
-            {
-              name: "products",
-              list: "/products",
-              show: "/products/:id",
-              edit: "/products/:id/edit",
-              create: "/products/create"
-            },
-          ]}
-          options={{ syncWithLocation: true }}
-        >
-          {renderComponent()}
-        </Refine>
-      </AntdApp>
-    </ConfigProvider>
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <AntdApp>
+          <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            authProvider={authProvider}
+            notificationProvider={useNotificationProvider}
+            resources={[
+              {
+                name: "products",
+                list: "/products",
+                show: "/products/:id",
+                edit: "/products/:id/edit",
+                create: "/products/create"
+              }
+            ]}
+            options={{ syncWithLocation: true }}
+          >
+            <Routes>
+              <Route element={<Authenticated fallback={<Navigate to="/login" />}><Outlet /></Authenticated>}>
+                <Route
+                  element={
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  }
+                >
+                  <Route path="/products" element={<Outlet />}>
+                      <Route index element={<ProductList />} />
+                      <Route path="create" element={<ProductCreate />} />
+                      <Route path=":id" element={<ProductShow />} />
+                      <Route path=":id/edit" element={<ProductEdit />} />
+                  </Route>
+                  <Route path="*" element={<ErrorComponent />} />
+                </Route>
+              </Route>
+              <Route element={<Authenticated fallback={<Outlet />}><NavigateToResource resource="products" /></Authenticated>}>
+                <Route path="/login" element={<AuthPage type="login" />} />
+                <Route path="/register" element={<AuthPage type="register" />} />
+                <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                <Route path="/reset-password" element={<AuthPage type="resetPassword" />} />
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+          </Refine>
+        </AntdApp>
+      </ConfigProvider>
+    </BrowserRouter>
   );
-}
-
-export default App;
+};
 `.trim();
 
 const ListTsxCode = /* jsx */ `
@@ -183,9 +155,7 @@ import React from "react";
 import { List, ShowButton, EditButton, useTable } from "@refinedev/antd";
 import { Space, Table } from "antd";
 
-import authProvider from "../../src/auth-provider";
-
-export default function ProductList() {
+export const ProductList = () => {
   const { tableProps } = useTable();
 
   return (
@@ -208,27 +178,6 @@ export default function ProductList() {
     </List>
   );
 };
-
-/**
- * Same check can also be done via \`<Authenticated />\` component.
- * But we're using a server-side check for a better UX.
- */
-export const getServerSideProps = async () => {
-  const { authenticated } = await authProvider.check();
-
-  if (!authenticated) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-}
 `.trim();
 
 const ShowTsxCode = /* jsx */ `
@@ -237,11 +186,9 @@ import { useShow } from "@refinedev/core";
 import { MarkdownField, NumberField, Show, TextField } from "@refinedev/antd";
 import { Typography } from "antd";
 
-import authProvider from "../../src/auth-provider";
-
 const { Title } = Typography;
 
-export default function ProductShow() {
+export const ProductShow = () => {
   const { queryResult } = useShow();
   const { data, isLoading } = queryResult;
 
@@ -262,27 +209,6 @@ export default function ProductShow() {
     </Show>
   );
 };
-
-/**
- * Same check can also be done via \`<Authenticated />\` component.
- * But we're using a server-side check for a better UX.
- */
-export const getServerSideProps = async () => {
-  const { authenticated } = await authProvider.check();
-
-  if (!authenticated) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-}
 `.trim();
 
 const EditTsxCode = /* jsx */ `
@@ -290,12 +216,10 @@ import React from "react";
 import { Typography, Form, Input, InputNumber } from "antd";
 import { Edit, useForm } from "@refinedev/antd";
 
-import authProvider from "../../../src/auth-provider";
-
 const { Title } = Typography;
 const { TextArea } = Input;
 
-export default function ProductEdit() {
+export const ProductEdit = () => {
   const { formProps, saveButtonProps, formLoading } = useForm();
 
   return (
@@ -349,27 +273,6 @@ export default function ProductEdit() {
   </Edit>
   );
 };
-
-/**
- * Same check can also be done via \`<Authenticated />\` component.
- * But we're using a server-side check for a better UX.
- */
-export const getServerSideProps = async () => {
-  const { authenticated } = await authProvider.check();
-
-  if (!authenticated) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-}
 `.trim();
 
 const CreateTsxCode = /* jsx */ `
@@ -377,12 +280,10 @@ import React from "react";
 import { Typography, Form, Input, InputNumber } from "antd";
 import { Create, useForm } from "@refinedev/antd";
 
-import authProvider from "../../src/auth-provider";
-
 const { Title } = Typography;
 const { TextArea } = Input;
 
-export default function ProductCreate() {
+export const ProductCreate = () => {
   const { formProps, saveButtonProps, formLoading } = useForm();
 
   return (
@@ -436,25 +337,4 @@ export default function ProductCreate() {
     </Create>
   );
 };
-
-/**
- * Same check can also be done via \`<Authenticated />\` component.
- * But we're using a server-side check for a better UX.
- */
-export const getServerSideProps = async () => {
-  const { authenticated } = await authProvider.check();
-
-  if (!authenticated) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-}
 `.trim();

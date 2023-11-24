@@ -134,7 +134,20 @@ export default function App() {
                 </Route>
               </Route>
               <Route element={<Authenticated fallback={<Outlet />}><NavigateToResource resource="products" /></Authenticated>}>
-                <Route path="/login" element={<AuthPage type="login" />} />
+                <Route
+                  path="/login"
+                  element={(
+                    <AuthPage
+                      type="login"
+                      formProps={{
+                        initialValues: {
+                          email: "demo@refine.dev",
+                          password: "demodemo",
+                        },
+                      }}
+                    />
+                  )}
+                />
                 <Route path="/register" element={<AuthPage type="register" />} />
                 <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
                 <Route path="/reset-password" element={<AuthPage type="resetPassword" />} />
