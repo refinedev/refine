@@ -31,6 +31,7 @@ import { useResizable } from "./use-resizable";
 
 type Props = React.ComponentProps<SandpackInternal> & {
     startRoute?: string;
+    showOpenInCodeSandbox?: boolean;
     showNavigator?: boolean;
     showLineNumbers?: boolean;
     initialPercentage?: number;
@@ -71,6 +72,7 @@ const SandpackBase = ({
     startRoute,
     showNavigator,
     showLineNumbers,
+    showOpenInCodeSandbox,
     initialPercentage = 50,
     dependencies,
     options = {
@@ -255,6 +257,9 @@ const SandpackBase = ({
                             {hidePreview ? null : (
                                 <>
                                     <SandpackPreview
+                                        showOpenInCodeSandbox={
+                                            showOpenInCodeSandbox
+                                        }
                                         // actionsChildren={
                                         //     <BugReportButton
                                         //         onClick={() =>
