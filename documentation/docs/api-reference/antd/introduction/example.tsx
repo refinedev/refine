@@ -11,7 +11,6 @@ export default function Usage() {
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router-v6": "latest",
-        "@refinedev/inferencer": "latest",
         "react-router-dom": "latest",
         "react-router": "latest",
         antd: "^5.0.5",
@@ -34,28 +33,66 @@ export default function Usage() {
         "/pages/products/create.tsx": {
           code: CreateTsxCode,
         },
+        "/auth-provider.tsx": {
+          code: AuthProviderTsxCode,
+          hidden: true,
+        },
       }}
     />
   );
 }
 
+const AuthProviderTsxCode = /* jsx */ `
+const authProvider = {
+    login: async ({ username, password }) => {
+      (window as any).authenticated = true;
+      return { success: true };
+    },
+    check: async () => {
+      // auto login at first time
+      if (typeof (window as any).authenticated === "undefined") {
+        (window as any).authenticated = true;
+      }
+      return { authenticated: Boolean((window as any).authenticated) };
+    },
+    logout: async () => {
+      (window as any).authenticated = false;
+      return { success: true };
+    },
+    register: async () => {
+      return { success: true };
+    },
+    forgotPassword: async () => {
+      return { success: true };
+    },
+    resetPassword: async () => {
+      return { success: true };
+    },
+    getIdentity: async () => ({ id: 1, name: "John Doe", avatar: "https://i.pravatar.cc/300"})
+};
+
+export default authProvider;
+`.trim();
+
 const AppTsxCode = /* jsx */ `
 import React from "react";
 
-import { Refine } from "@refinedev/core";
+import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
 
-import { ErrorComponent, RefineThemes, ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
+import { ErrorComponent, RefineThemes, ThemedLayoutV2, useNotificationProvider, AuthPage } from "@refinedev/antd";
 import { App as AntdApp, ConfigProvider } from "antd";
+
+import authProvider from "./auth-provider";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { ProductList } from "./pages/products/list.tsx";
-import { ProductShow } from "./pages/products/show.tsx";
-import { ProductEdit } from "./pages/products/edit.tsx";
-import { ProductCreate } from "./pages/products/create.tsx";
+import { ProductList } from "./pages/products/list";
+import { ProductShow } from "./pages/products/show";
+import { ProductEdit } from "./pages/products/edit";
+import { ProductCreate } from "./pages/products/create";
 
 export default function App() {
   return (
@@ -65,10 +102,7 @@ export default function App() {
           <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            authProvider={{
-              check: async () => ({  authenticated: true }),
-              getIdentity: async () => ({ id: 1, name: "John Doe", avatar: "https://i.pravatar.cc/300"})
-            }}
+            authProvider={authProvider}
             notificationProvider={useNotificationProvider}
             resources={[
               {
@@ -82,19 +116,28 @@ export default function App() {
             options={{ syncWithLocation: true }}
           >
             <Routes>
-              <Route
-                element={
-                  <ThemedLayoutV2>
-                    <Outlet />
-                  </ThemedLayoutV2>
-                }
-              >
-                <Route path="/products" element={<Outlet />}>
-                    <Route index element={<ProductList />} />
-                    <Route path="create" element={<ProductCreate />} />
-                    <Route path=":id" element={<ProductShow />} />
-                    <Route path=":id/edit" element={<ProductEdit />} />
+              <Route element={<Authenticated fallback={<Navigate to="/login" />}><Outlet /></Authenticated>}>
+                <Route
+                  element={
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  }
+                >
+                  <Route path="/products" element={<Outlet />}>
+                      <Route index element={<ProductList />} />
+                      <Route path="create" element={<ProductCreate />} />
+                      <Route path=":id" element={<ProductShow />} />
+                      <Route path=":id/edit" element={<ProductEdit />} />
+                  </Route>
+                  <Route path="*" element={<ErrorComponent />} />
                 </Route>
+              </Route>
+              <Route element={<Authenticated fallback={<Outlet />}><NavigateToResource resource="products" /></Authenticated>}>
+                <Route path="/login" element={<AuthPage type="login" />} />
+                <Route path="/register" element={<AuthPage type="register" />} />
+                <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                <Route path="/reset-password" element={<AuthPage type="resetPassword" />} />
                 <Route path="*" element={<ErrorComponent />} />
               </Route>
             </Routes>

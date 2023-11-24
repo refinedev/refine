@@ -714,11 +714,6 @@ module.exports = {
                 {
                     type: "category",
                     label: "Ant Design API",
-                    link: {
-                        type: "generated-index",
-                        title: "Ant Design API",
-                        slug: "/api-reference/antd",
-                    },
                     items: [
                         "api-reference/antd/introduction/index",
                         {
@@ -844,11 +839,6 @@ module.exports = {
                 {
                     type: "category",
                     label: "Chakra UI API",
-                    link: {
-                        type: "generated-index",
-                        title: "Chakra UI API",
-                        slug: "/api-reference/chakra-ui",
-                    },
                     items: [
                         "api-reference/chakra-ui/introduction/index",
                         {
@@ -910,11 +900,6 @@ module.exports = {
                 {
                     type: "category",
                     label: "Mantine API",
-                    link: {
-                        type: "generated-index",
-                        title: "Mantine API",
-                        slug: "/api-reference/mantine",
-                    },
                     items: [
                         "api-reference/mantine/introduction/index",
                         {
@@ -993,11 +978,6 @@ module.exports = {
                 {
                     type: "category",
                     label: "Material UI API",
-                    link: {
-                        type: "generated-index",
-                        title: "Material UI API",
-                        slug: "/api-reference/mui",
-                    },
                     items: [
                         "api-reference/mui/introduction/index",
                         {
