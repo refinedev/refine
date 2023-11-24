@@ -22,6 +22,9 @@ export default function UsageReactRouterDom() {
           code: AppTsxCode,
           active: true,
         },
+        "/pages/products/index.tsx": {
+          code: ProductsTsxCode,
+        },
         "/pages/products/list.tsx": {
           code: ListTsxCode,
         },
@@ -76,8 +79,6 @@ export default authProvider;
 `.trim();
 
 const AppTsxCode = /* jsx */ `
-import React from "react";
-
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
@@ -90,10 +91,7 @@ import authProvider from "./auth-provider";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { ProductList } from "./pages/products/list";
-import { ProductShow } from "./pages/products/show";
-import { ProductEdit } from "./pages/products/edit";
-import { ProductCreate } from "./pages/products/create";
+import { ProductList, ProductShow, ProductEdit, ProductCreate } from "./pages/products";
 
 export default function App() {
   return (
@@ -148,6 +146,13 @@ export default function App() {
     </BrowserRouter>
   );
 };
+`.trim();
+
+const ProductsTsxCode = /* jsx */ `
+export * from "./list";
+export * from "./show";
+export * from "./edit";
+export * from "./create";
 `.trim();
 
 const ListTsxCode = /* jsx */ `

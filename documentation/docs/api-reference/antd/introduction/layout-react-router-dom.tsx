@@ -5,8 +5,9 @@ export default function LayoutReactRouterDom() {
   return (
     <Sandpack
       showNavigator
-      hidePreview
+      // hidePreview
       //   showFiles
+      initialPercentage={35}
       dependencies={{
         "@refinedev/antd": "latest",
         "@refinedev/core": "latest",
@@ -26,10 +27,46 @@ export default function LayoutReactRouterDom() {
           code: ListTsxCode,
           hidden: true,
         },
+        "/auth-provider.tsx": {
+          code: AuthProviderTsxCode,
+          hidden: true,
+        },
       }}
     />
   );
 }
+
+const AuthProviderTsxCode = /* jsx */ `
+const authProvider = {
+    login: async ({ username, password }) => {
+      (window as any).authenticated = true;
+      return { success: true };
+    },
+    check: async () => {
+      // auto login at first time
+      if (typeof (window as any).authenticated === "undefined") {
+        (window as any).authenticated = true;
+      }
+      return { authenticated: Boolean((window as any).authenticated) };
+    },
+    logout: async () => {
+      (window as any).authenticated = false;
+      return { success: true };
+    },
+    register: async () => {
+      return { success: true };
+    },
+    forgotPassword: async () => {
+      return { success: true };
+    },
+    resetPassword: async () => {
+      return { success: true };
+    },
+    getIdentity: async () => ({ id: 1, name: "John Doe", avatar: "https://i.pravatar.cc/300"})
+};
+
+export default authProvider;
+`.trim();
 
 const AppTsxCode = /* jsx */ `
 import React from "react";
@@ -44,6 +81,7 @@ import { App as AntdApp, ConfigProvider } from "antd";
 
 import "@refinedev/antd/dist/reset.css";
 
+import authProvider from "./auth-provider";
 import { ProductList } from "./pages/products/list";
 
 export default function App() {
@@ -55,6 +93,7 @@ export default function App() {
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             notificationProvider={useNotificationProvider}
+            authProvider={authProvider}
             resources={[
               {
                 name: "products",

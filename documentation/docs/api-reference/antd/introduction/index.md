@@ -309,7 +309,7 @@ export const ProductShow = () => {
 
       <Typography.Title level={5}>Price</Typography.Title>
       {/* highlight-next-line */}
-      <NumberField value={record?.price} />
+      <NumberField value={record?.price} options={{ style: "currency", currency: "USD" }} />
     </Show>
   );
 };
@@ -379,3 +379,9 @@ const App = () => {
 ```
 
 To learn more about the theme configuration of Ant Design, please refer to the [official documentation](https://ant.design/docs/react/customize-theme).
+
+## Inferencer
+
+You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports the `AntdListInferencer`, `AntdShowInferencer`, `AntdEditInferencer`, `AntdCreateInferencer` components and finally the `AntdInferencer` component, which combines all in one place.
+
+To learn more about Inferencer, please refer to the [Ant Design Inferencer](/docs/api-reference/antd/components/inferencer/) docs.
