@@ -1,5 +1,5 @@
 ---
-id: tanstack-table
+id: basic-tanstack-table
 title: Basic
 example-title: Basic TanStack Table
 example-tags: [table, react-table, tanstack-table]

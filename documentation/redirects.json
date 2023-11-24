@@ -855,7 +855,7 @@
     },
     {
       "from": "/docs/examples/table/react-table/react-table",
-      "to": "/docs/examples/table/tanstack-table/tanstack-table"
+      "to": "/docs/examples/table/tanstack-table/basic-tanstack-table"
     },
     {
       "from": "/docs/packages/documentation/react-table/index",

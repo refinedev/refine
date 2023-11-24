@@ -344,7 +344,7 @@ module.exports = {
                                     label: "TanStack Table",
                                     items: [
                                         "examples/table/tanstack-table/advanced-tanstack-table",
-                                        "examples/table/tanstack-table/tanstack-table",
+                                        "examples/table/tanstack-table/basic-tanstack-table",
                                     ],
                                 },
                                 {

@@ -16,7 +16,7 @@ import PropResource from "@site/src/partials/prop-resource";
 :::info
 If you're looking for a complete table library, Refine supports two table libraries out of the box.
 
-- [React Table](https://react-table.tanstack.com/) (for TanStack Table users) - [Documentation](/docs/packages/documentation/tanstack-table/introduction)) - [Example](/examples/table/tanstack-table/basic.md)
+- [React Table](https://react-table.tanstack.com/) (for TanStack Table users) - [Documentation](/docs/packages/documentation/tanstack-table/introduction)) - [Example](/docs/examples/table/tanstack-table/basic-tanstack-table/)
 - [Ant Design Table](https://ant.design/components/table/#header) (for Ant Design users) - [Documentation](/docs/api-reference/antd/hooks/table/useTable) - [Example](/examples/table/antd/useTable.md)
 - [Material UI Table](https://mui.com/x/react-data-grid/) (for Material UI users) - [Documentation](/docs/api-reference/mui/hooks/useDataGrid) - [Example](/examples/table/mui/useDataGrid.md)
 
