@@ -1,44 +1,80 @@
-```css live shared
-body {
-    padding: 4px;
-    background: white;
-}
-```
+import { Sandpack } from "@site/src/components/sandpack";
+import React from "react";
 
-```tsx live url=http://localhost:3000/posts previewHeight=420px
+export default function BaseTanStackTable() {
+  return (
+    <Sandpack
+      dependencies={{
+        "@refinedev/core": "latest",
+        "@refinedev/simple-rest": "latest",
+        "@tanstack/react-table": "latest",
+        "@refinedev/react-table": "latest",
+      }}
+      startRoute="/"
+      files={{
+        "/App.tsx": {
+          code: AppTsxCode,
+          hidden: false,
+        },
+        "/product-table.tsx": {
+          code: ProductTableTsxCode,
+          hidden: false,
+          active: true,
+        },
+      }}
+    />
+  );
+}
+
+const AppTsxCode = `
+import React from "react";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import { ProductTable } from "./product-table.tsx";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export default function App() {
+    return (
+        <Refine dataProvider={dataProvider(API_URL)}>
+            <ProductTable />
+        </Refine>
+    );
+}
+
+`.trim();
+
+export const ProductTableTsxCode = `
 import React from "react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
-interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-}
-
-const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
+export const ProductTable: React.FC = () => {
+    const columns = React.useMemo<ColumnDef<IProduct>[]>(
         () => [
             {
                 id: "id",
                 header: "ID",
                 accessorKey: "id",
+                meta: {
+                    filterOperator: "eq",
+                },
             },
             {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
+                id: "name",
+                header: "Name",
+                accessorKey: "name",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
-                id: "status",
-                header: "Status",
-                accessorKey: "status",
-            },
-            {
-                id: "createdAt",
-                header: "CreatedAt",
-                accessorKey: "createdAt",
+                id: "price",
+                header: "Price",
+                accessorKey: "price",
+                meta: {
+                    filterOperator: "eq",
+                },
             },
         ],
         [],
@@ -47,7 +83,6 @@ const PostList: React.FC = () => {
     const {
         getHeaderGroups,
         getRowModel,
-        // highlight-start
         getState,
         setPageIndex,
         getCanPreviousPage,
@@ -56,14 +91,16 @@ const PostList: React.FC = () => {
         nextPage,
         previousPage,
         setPageSize,
-        getPrePaginationRowModel,
-        // highlight-end
-    } = useTable({
+    } = useTable<IProduct>({
+        refineCoreProps: {
+            resource: "products",
+        },
         columns,
     });
 
     return (
         <div>
+            <h1>Products</h1>
             <table>
                 <thead>
                     {getHeaderGroups().map((headerGroup) => (
@@ -73,13 +110,38 @@ const PostList: React.FC = () => {
                                     <th key={header.id}>
                                         {header.isPlaceholder ? null : (
                                             <>
-                                                {flexRender(
-                                                    header.column.columnDef
-                                                        .header,
-                                                    header.getContext(),
-                                                )}
+                                                <div
+                                                    onClick={header.column.getToggleSortingHandler()}
+                                                >
+                                                    {flexRender(
+                                                        header.column.columnDef
+                                                            .header,
+                                                        header.getContext(),
+                                                    )}
+                                                    {{
+                                                        asc: " 🔼",
+                                                        desc: " 🔽",
+                                                    }[
+                                                        header.column.getIsSorted() as string
+                                                    ] ?? " ↕️"}
+                                                </div>
                                             </>
                                         )}
+                                        {header.column.getCanFilter() ? (
+                                            <div>
+                                                <input
+                                                    value={
+                                                        (header.column.getFilterValue() as string) ??
+                                                        ""
+                                                    }
+                                                    onChange={(e) =>
+                                                        header.column.setFilterValue(
+                                                            e.target.value,
+                                                        )
+                                                    }
+                                                />
+                                            </div>
+                                        ) : null}
                                     </th>
                                 );
                             })}
@@ -105,9 +167,7 @@ const PostList: React.FC = () => {
                     })}
                 </tbody>
             </table>
-            {/* Pagination can be built however you'd like. */}
-            {/* This is just a very basic UI implementation: */}
-            {/* highlight-start */}
+
             <div>
                 <button
                     onClick={() => setPageIndex(0)}
@@ -131,7 +191,7 @@ const PostList: React.FC = () => {
                     {">>"}
                 </button>
                 <span>
-                    <div>Page</div>
+                    Page
                     <strong>
                         {getState().pagination.pageIndex + 1} of{" "}
                         {getPageCount()}
@@ -149,7 +209,7 @@ const PostList: React.FC = () => {
                             setPageIndex(page);
                         }}
                     />
-                </span>
+                </span>{" "}
                 <select
                     value={getState().pagination.pageSize}
                     onChange={(e) => {
@@ -163,22 +223,14 @@ const PostList: React.FC = () => {
                     ))}
                 </select>
             </div>
-            <div>{getPrePaginationRowModel().rows.length} Rows</div>
-            {/* highlight-end */}
         </div>
     );
 };
 
-// visible-block-end
+interface IProduct {
+    id: number;
+    name: string;
+    price: string;
+}
 
-setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-        },
-    ],
-});
-
-render(<RefineHeadlessDemo />);
-```
+`.trim();

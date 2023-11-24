@@ -1,18 +1,18 @@
 ---
 title: React Table
-slug: /packages/documentation/react-table
+slug: /packages/documentation/tanstack-table/use-form
 source: /packages/react-table/src/useTable
-sidebar_label: React Table
+sidebar_label: useTable
 ---
 
-import BasicUsageLivePreview from "./\_partial-basic-usage-live-preview.md";
-import PaginationLivePreview from "./\_partial-pagination-live-preview.md";
-import SortingLivePreview from "./\_partial-sorting-live-preview.md";
-import FilteringLivePreview from "./\_partial-filtering-live-preview.md";
-import RelationalLivePreview from "./\_partial-relational-live-preview.md";
+import BasicUsageLivePreview from "./examples/\_partial-basic-usage-live-preview.md";
+import PaginationLivePreview from "./examples/\_partial-pagination-live-preview.md";
+import SortingLivePreview from "./examples/\_partial-sorting-live-preview.md";
+import FilteringLivePreview from "./examples/\_partial-filtering-live-preview.md";
+import RelationalLivePreview from "./examples/\_partial-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-**refine** offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
+Refine offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
 
 All of [TanStack Table's][tanstack-table] features are supported and you can use all of the [TanStack Table's][tanstack-table] examples with no changes just copy and paste them into your project.
 

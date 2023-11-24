@@ -848,6 +848,18 @@
     {
       "from": "/docs/api-reference/general-concepts/",
       "to": "/docs/guides-concepts/general-concepts"
+    },
+    {
+      "from": "/docs/examples/table/react-table/advanced-react-table",
+      "to": "/docs/examples/table/tanstack-table/advanced-tanstack-table"
+    },
+    {
+      "from": "/docs/examples/table/react-table/react-table",
+      "to": "/docs/examples/table/tanstack-table/tanstack-table"
+    },
+    {
+      "from": "/docs/packages/documentation/react-table/index",
+      "to": "/docs/packages/documentation/tanstack-table/introduction"
     }
   ]
 }
