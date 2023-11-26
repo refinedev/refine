@@ -103,7 +103,7 @@ export const useMany = <
     dataProviderName,
     overtimeOptions,
 }: UseManyProps<TQueryFnData, TError, TData>): QueryObserverResult<
-    GetManyResponse<TData>
+    GetManyResponse<TData>, TError
 > &
     UseLoadingOvertimeReturnType => {
     const { resources, resource, identifier } = useResource(resourceFromProp);

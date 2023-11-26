@@ -107,7 +107,7 @@ export const useOne = <
     dataProviderName,
     overtimeOptions,
 }: UseOneProps<TQueryFnData, TError, TData>): QueryObserverResult<
-    GetOneResponse<TData>
+    GetOneResponse<TData>, TError
 > &
     UseLoadingOvertimeReturnType => {
     const { resources, resource, identifier } = useResource(resourceFromProp);
