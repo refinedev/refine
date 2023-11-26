@@ -62,7 +62,7 @@ All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>
 
 `useRadioGroup` uses the `useList` hook for fetching data.
 
-> For more information, refer to the [Ant Design's `useList` hook documentation &#8594](/docs/api-reference/core/hooks/data/useList)
+> For more information, refer to the [Refine Core's `useList` hook documentation &#8594](/docs/api-reference/core/hooks/data/useList)
 
 ## Options
 

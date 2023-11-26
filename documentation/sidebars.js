@@ -29,10 +29,12 @@ module.exports = {
                 "guides-concepts/general-concepts/index",
                 "guides-concepts/data-fetching/index",
                 "guides-concepts/forms/index",
+                "guides-concepts/tables/index",
                 "guides-concepts/routing/index",
                 "guides-concepts/authentication/index",
                 "guides-concepts/authorization/index",
                 "guides-concepts/ui-libraries/index",
+                "guides-concepts/realtime/index",
                 {
                     type: "category",
                     label: "Examples",
