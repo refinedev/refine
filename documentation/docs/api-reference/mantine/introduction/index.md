@@ -2,57 +2,83 @@
 title: Introduction
 ---
 
-Refine provides an integration package for [Mantine](https://mantine.dev) library. This package provides a set of ready to use components and hooks that connects Refine with Mantine components.
+Refine provides an integration package for [Mantine](https://mantine.dev) library. This package provides a set of ready to use components and hooks that connects Refine with Mantine components. While Refine's integration offers a set of components and hooks, it is not a replacement for the Mantine UI packages, you will be able to use all the features of Mantine in the same way you would use it in a regular React application. Refine's integration only provides components and hooks for an easier usage of Mantine components in combination with Refine's features and functionalities.
 
-import Usage from "./usage.tsx";
+import Example from "./example.tsx";
 
-<Usage />
+<Example />
 
 ## Installation
 
 Installing the package is as simple as just by running the following command without any additional configuration:
 
 ```bash
-npm install @refinedev/mantine
+npm install @refinedev/mantine @refinedev/react-table @mantine/core@5 @mantine/hooks@5 @mantine/form@5 @mantine/notifications@5 @emotion/react@11 @tabler/icons@1 @tanstack/react-table
 ```
+
+## Usage
+
+We'll wrap our app with the [`<MantineProvider />`](https://v5.mantine.dev/theming/mantine-provider/) to make sure we have the theme available for our app, then we'll use the layout components to wrap them around our routes. Check out the examples below to see how to use Refine's Mantine integration.
+
+<Tabs wrapContent={false}>
+<TabItem value="react-router-dom" label="React Router Dom">
+
+import UsageReactRouterDom from "./usage-react-router-dom.tsx";
+
+<UsageReactRouterDom />
+
+</TabItem>
+<TabItem value="next-js" label="Next.js">
+
+import UsageNextJs from "./usage-next-js.tsx";
+
+<UsageNextJs />
+
+</TabItem>
+<TabItem value="remix" label="Remix">
+
+import UsageRemix from "./usage-remix.tsx";
+
+<UsageRemix />
+
+</TabItem>
+</Tabs>
 
 ## Tables
 
-Mantine offers styled table primitives but lacks the table management solution. Refine recommends using `@refinedev/react-table` package which is built on top of Refine's [`useTable`](/docs/api-reference/core/hooks/useTable/index.md) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Mantine uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
+Mantine offers styled [table primitives](https://v5.mantine.dev/core/table/) but lacks the table management solution. Refine recommends using [`@refinedev/react-table`](/docs/packages/documentation/react-table/) package which is built on top of Refine's [`useTable`](/docs/api-reference/core/hooks/useTable/index.md) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Mantine uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
 
-```tsx title="posts/list.tsx"
+```tsx title="pages/products/list.tsx"
 import React from "react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { GetManyResponse, useMany } from "@refinedev/core";
-import { List, ShowButton, EditButton, DeleteButton, DateField } from "@refinedev/chakra-ui";
+import { List, ShowButton, EditButton, DeleteButton } from "@refinedev/mantine";
 
-import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, HStack, Text, Select } from "@chakra-ui/react";
+import { Box, Group, ScrollArea, Select, Table, Pagination } from "@mantine/core";
 
-import { Pagination } from "../../components/pagination";
+const columns = [
+  { id: "id", header: "ID", accessorKey: "id" },
+  { id: "name", header: "Name", accessorKey: "name", meta: { filterOperator: "contains" } },
+  { id: "price", header: "Price", accessorKey: "price" },
+  {
+    id: "actions",
+    header: "Actions",
+    accessorKey: "id",
+    enableColumnFilter: false,
+    enableSorting: false,
+    cell: function render({ getValue }) {
+      return (
+        <Group spacing="xs" noWrap>
+          <ShowButton hideText recordItemId={getValue() as number} />
+          <EditButton hideText recordItemId={getValue() as number} />
+          <DeleteButton hideText recordItemId={getValue() as number} />
+        </Group>
+      );
+    },
+  },
+];
 
-export const PostList: React.FC = () => {
-  const columns = React.useMemo(
-    () => [
-      {
-        id: "id",
-        header: "ID",
-        accessorKey: "id",
-      },
-      {
-        id: "title",
-        header: "Title",
-        accessorKey: "title",
-      },
-      {
-        id: "status",
-        header: "Status",
-        accessorKey: "status",
-      },
-    ],
-    [],
-  );
-
+export const ProductList = () => {
   const {
     getHeaderGroups,
     getRowModel,
@@ -63,136 +89,77 @@ export const PostList: React.FC = () => {
       current,
       tableQueryResult: { data: tableData },
     },
-  } = useTable({
-    columns,
-    refineCoreProps: {
-      initialSorter: [
-        {
-          field: "id",
-          order: "desc",
-        },
-      ],
-    },
-  });
+  } = useTable({ columns });
 
   return (
-    <List>
-      <TableContainer whiteSpace="pre-line">
-        <Table variant="simple">
-          <Thead>
+    <ScrollArea>
+      <List>
+        <Table highlightOnHover>
+          <thead>
             {getHeaderGroups().map((headerGroup) => (
-              <Tr key={headerGroup.id}>
+              <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <Th key={header.id}>
-                    <Text>{flexRender(header.column.columnDef.header, header.getContext())}</Text>
-                  </Th>
+                  <th key={header.id}>{flexRender(header.column.columnDef.header, header.getContext())}</th>
                 ))}
-              </Tr>
+              </tr>
             ))}
-          </Thead>
-          <Tbody>
+          </thead>
+          <tbody>
             {getRowModel().rows.map((row) => (
-              <Tr key={row.id}>
+              <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <Td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</Td>
+                  <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
                 ))}
-              </Tr>
+              </tr>
             ))}
-          </Tbody>
+          </tbody>
         </Table>
-      </TableContainer>
-      <Pagination current={current} pageCount={pageCount} setCurrent={setCurrent} />
-    </List>
+        <br />
+        <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+      </List>
+    </ScrollArea>
   );
 };
 ```
 
-`<Pagination />` component is a custom component that is used to render the pagination controls which uses `usePagination` hook from `@refinedev/chakra-ui` package. This hook accepts the pagination values from `useTable` hook and returns the pagination controls and related props.
-
 ## Forms
 
-Mantine offers a form implementation that is covering many use cases and provide customization options. Refine provides a seamless integration with the `useForm` hook of `@mantine/form` from validation to submission via the [`useForm`](/docs/api-reference/mantine/hooks/form/useForm.md) hook exported from the `@refinedev/mantine` package.
+Refine provides a seamless integration with the [`useForm`](https://v5.mantine.dev/form/use-form/) hook of `@mantine/form` from validation to submission via the [`useForm`](/docs/api-reference/mantine/hooks/form/useForm.md) hook exported from the `@refinedev/mantine` package.
 
-```tsx title="posts/create.tsx"
-import { Create } from "@refinedev/chakra-ui";
-import { FormControl, FormErrorMessage, FormLabel, Input, Select, Textarea } from "@chakra-ui/react";
-import { useSelect } from "@refinedev/core";
-import { useForm } from "@refinedev/react-hook-form";
+```tsx title="pages/products/create.tsx"
+import { Create, useForm } from "@refinedev/mantine";
+import { TextInput, NumberInput } from "@mantine/core";
 
-export const PostCreate = () => {
-  const {
-    refineCore: { formLoading },
-    saveButtonProps,
-    register,
-    formState: { errors },
-  } = useForm<IPost>();
-
-  const { options } = useSelect({
-    resource: "categories",
+export const ProductCreate = () => {
+  // highlight-start
+  const { saveButtonProps, getInputProps, errors } = useForm({
+    initialValues: {
+      name: "",
+      material: "",
+      price: 0,
+    },
   });
+  // highlight-end
 
   return (
-    <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-      <FormControl mb="3" isInvalid={!!errors?.title}>
-        <FormLabel>Title</FormLabel>
-        <Input id="title" type="text" {...register("title", { required: "Title is required" })} />
-        <FormErrorMessage>{`${errors.title?.message}`}</FormErrorMessage>
-      </FormControl>
-      <FormControl mb="3" isInvalid={!!errors?.status}>
-        <FormLabel>Status</FormLabel>
-        <Select
-          id="status"
-          placeholder="Select Post Status"
-          {...register("status", {
-            required: "Status is required",
-          })}
-        >
-          <option>published</option>
-          <option>draft</option>
-          <option>rejected</option>
-        </Select>
-        <FormErrorMessage>{`${errors.status?.message}`}</FormErrorMessage>
-      </FormControl>
-      <FormControl mb="3" isInvalid={!!errors?.categoryId}>
-        <FormLabel>Category</FormLabel>
-        <Select
-          id="categoryId"
-          placeholder="Select Category"
-          {...register("category.id", {
-            required: "Category is required",
-          })}
-        >
-          {options?.map((option) => (
-            <option value={option.value} key={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </Select>
-        <FormErrorMessage>{`${errors.categoryId?.message}`}</FormErrorMessage>
-      </FormControl>
-
-      <FormControl mb="3" isInvalid={!!errors?.content}>
-        <FormLabel>Content</FormLabel>
-        <Textarea
-          id="content"
-          {...register("content", {
-            required: "content is required",
-          })}
-        />
-        <FormErrorMessage>{`${errors.content?.message}`}</FormErrorMessage>
-      </FormControl>
+    <Create saveButtonProps={saveButtonProps}>
+      <form>
+        <TextInput mt={8} id="name" label="Name" placeholder="Name" {...getInputProps("name")} />
+        <TextInput mt={8} id="material" label="Material" placeholder="Material" {...getInputProps("material")} />
+        <NumberInput mt={8} id="price" label="Price" placeholder="Price" {...getInputProps("price")} />
+      </form>
     </Create>
   );
 };
 ```
 
-`@refinedev/mantine` also offers hooks to implement different types of forms such as `useModalForm` and `useStepsForm` hooks. Additionally `useSelect` hook is also provided to make it easier to implement form fields with relational data. The `useSelect` hook of `@refinedev/mantine` leverage the `useSelect` hook from the `@refinedev/core` package.
+`@refinedev/mantine` also offers hooks to implement different types of forms such as [`useModalForm`](/docs/api-reference/mantine/hooks/form/useModalForm/), [`useDrawerForm`](/docs/api-reference/mantine/hooks/form/useDrawerForm/) and [`useStepsForm`](/docs/api-reference/mantine/hooks/form/useStepsForm/) hooks. Additionally [`useSelect`](/docs/api-reference/mantine/hooks/useSelect/) hook is also provided to make it easier to implement form fields with relational data. The `useSelect` hook of `@refinedev/mantine` leverage the [`useSelect`](/docs/api-reference/core/hooks/useSelect/) hook from the `@refinedev/core` package.
 
 ## Notifications
 
-Mantine has its own built-in notification system through `@mantine/notifications` package which works seamlessly with its UI elements. Refine also provides a seamless integration with Mantine's notification system and show notifications for related actions and events. This integration is provided by the `notificationProvider` hook exported from the `@refinedev/mantine` package which can be directly used in the `notificationProvider` prop of the `<Refine>` component.
+Mantine has its own built-in notification system through [`@mantine/notifications`](https://v5.mantine.dev/others/notifications/) package which works seamlessly with its UI elements. Refine also provides a seamless integration with Mantine's notification system and show notifications for related actions and events. This integration is provided by the `notificationProvider` hook exported from the `@refinedev/mantine` package which can be directly used in the [`notificationProvider`](/docs/api-reference/core/components/refine-config/#notificationprovider) prop of the `<Refine>` component.
 
-```tsx title="App.tsx"
+```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
 import { notificationProvider } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -213,187 +180,107 @@ const App = () => {
 
 Refine provides Layout components that can be used to implement a layout for the application. These components are crafted using Mantine's components and includes Refine's features and functionalities such as navigation menus, headers, authentication, authorization and more.
 
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2 } from "@refinedev/mantine";
-import { Outlet, Routes, Route } from "react-router-dom";
+<Tabs wrapContent={false}>
+<TabItem value="react-router-dom" label="React Router Dom">
 
-const App = () => {
-  return (
-    <Refine
-    // ...
-    >
-      <Routes>
-        <Route
-          element={
-            // highlight-start
-            <ThemedLayoutV2>
-              <Outlet />
-            </ThemedLayoutV2>
-            // highlight-end
-          }
-        >
-          <Route path="/posts" element={<PostList />} />
-          {/* ... */}
-        </Route>
-      </Routes>
-    </Refine>
-  );
-};
-```
+import LayoutReactRouterDom from "./layout-react-router-dom.tsx";
 
-`<ThemedLayoutV2>` component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+<LayoutReactRouterDom />
 
-Additionally, Refine also provides a `<Breadcrumb />` component that uses the Mantine's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Mantine package automatically.
+</TabItem>
+<TabItem value="next-js" label="Next.js">
+
+import LayoutNextJs from "./layout-next-js.tsx";
+
+<LayoutNextJs />
+
+</TabItem>
+<TabItem value="remix" label="Remix">
+
+import LayoutRemix from "./layout-remix.tsx";
+
+<LayoutRemix />
+
+</TabItem>
+</Tabs>
+
+[`<ThemedLayoutV2>`](/docs/api-reference/mantine/components/mantine-themed-layout/) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+
+Additionally, Refine also provides a [`<Breadcrumb />`](/docs/api-reference/mantine/components/breadcrumb/) component that uses the Mantine's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Mantine package automatically.
 
 ### Buttons
 
-Refine's Mantine integration offers variety of buttons that are built above the `<Button>` component of Mantine and includes many logical functionalities such as authorization checks, confirmation dialogs, loading states, invalidation, navigation and more. You can use buttons such as `<EditButton>` or `<ListButton>` etc. in your views to provide navigation for the related routes or `<DeleteButton>` and `<SaveButton>` etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
+Refine's Mantine integration offers variety of buttons that are built above the [`<Button>`](https://v5.mantine.dev/core/button/) component of Mantine and includes many logical functionalities such as;
+
+- Authorization checks
+- Confirmation dialogs
+- Loading states
+- Invalidation
+- Navigation
+- Form actions
+- Import/Export and more.
+
+You can use buttons such as [`<EditButton>`](/docs/api-reference/mantine/components/buttons/edit-button/) or [`<ListButton>`](/docs/api-reference/mantine/components/buttons/list-button/) etc. in your views to provide navigation for the related routes or [`<DeleteButton>`](/docs/api-reference/mantine/components/buttons/delete-button/) and [`<SaveButton>`](/docs/api-reference/mantine/components/buttons/save-button/) etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
 
 An example usage of the `<EditButton />` component is as follows:
 
-```tsx title="posts/list.tsx"
+```tsx title="pages/products/list.tsx"
 import React from "react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { GetManyResponse, useMany } from "@refinedev/core";
-import { List, EditButton, DateField } from "@refinedev/chakra-ui";
+import { List, EditButton } from "@refinedev/mantine";
 
-import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, HStack, Text, Select } from "@chakra-ui/react";
-
-export const PostList: React.FC = () => {
-  const columns = React.useMemo(
-    () => [
-      {
-        id: "id",
-        header: "ID",
-        accessorKey: "id",
-      },
-      {
-        id: "title",
-        header: "Title",
-        accessorKey: "title",
-      },
-      {
-        id: "actions",
-        header: "Actions",
-        accessorKey: "id",
-        cell: function render({ getValue }) {
-          // highlight-next-line
-          return <EditButton hideText size="sm" recordItemId={getValue() as number} />;
-        },
-      },
-    ],
-    [],
-  );
-
-  const {
-    getHeaderGroups,
-    getRowModel,
-    setOptions,
-    refineCore: {
-      setCurrent,
-      pageCount,
-      current,
-      tableQueryResult: { data: tableData },
+const columns = [
+  { id: "id", header: "ID", accessorKey: "id" },
+  { id: "name", header: "Name", accessorKey: "name", meta: { filterOperator: "contains" } },
+  { id: "price", header: "Price", accessorKey: "price" },
+  {
+    id: "actions",
+    header: "Actions",
+    accessorKey: "id",
+    cell: function render({ getValue }) {
+      // highlight-next-line
+      return <EditButton hideText recordItemId={getValue() as number} />;
     },
-  } = useTable({
-    columns,
-    refineCoreProps: {
-      initialSorter: [
-        {
-          field: "id",
-          order: "desc",
-        },
-      ],
-    },
-  });
+  },
+];
 
-  return (
-    <List>
-      <TableContainer whiteSpace="pre-line">
-        <Table variant="simple">
-          <Thead>
-            {getHeaderGroups().map((headerGroup) => (
-              <Tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <Th key={header.id}>
-                    <Text>{flexRender(header.column.columnDef.header, header.getContext())}</Text>
-                  </Th>
-                ))}
-              </Tr>
-            ))}
-          </Thead>
-          <Tbody>
-            {getRowModel().rows.map((row) => (
-              <Tr key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <Td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</Td>
-                ))}
-              </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      </TableContainer>
-    </List>
-  );
+export const ProductList = () => {
+  const table = useTable({ columns });
+
+  return ( /* ... */ );
 };
 ```
 
 The list of provided buttons are:
 
-- `<CreateButton />`
-- `<EditButton />`
-- `<ListButton />`
-- `<ShowButton />`
-- `<CloneButton />`
-- `<DeleteButton />`
-- `<SaveButton />`
-- `<RefreshButton />`
-- `<ImportButton />`
-- `<ExportButton />`
+- [`<CreateButton />`](/docs/api-reference/mantine/components/buttons/create-button/)
+- [`<EditButton />`](/docs/api-reference/mantine/components/buttons/edit-button/)
+- [`<ListButton />`](/docs/api-reference/mantine/components/buttons/list-button/)
+- [`<ShowButton />`](/docs/api-reference/mantine/components/buttons/show-button/)
+- [`<CloneButton />`](/docs/api-reference/mantine/components/buttons/clone-button/)
+- [`<DeleteButton />`](/docs/api-reference/mantine/components/buttons/delete-button/)
+- [`<SaveButton />`](/docs/api-reference/mantine/components/buttons/save-button/)
+- [`<RefreshButton />`](/docs/api-reference/mantine/components/buttons/refresh-button/)
+- [`<ImportButton />`](/docs/api-reference/mantine/components/buttons/import-button/)
+- [`<ExportButton />`](/docs/api-reference/mantine/components/buttons/export-button/)
 
 Many of these buttons are already used in the views provided by Refine's Mantine integration. If you're using the basic view elements provided by Refine, you will have the appropriate buttons placed in your application out of the box.
 
 ### Views
 
-Views are designed as wrappers around the content of the pages in the application. They are designed to be used within the layouts and provide basic functionalities such as titles based on the resource, breadcrumbs, related actions and authorization checks. Refine's Mantine integration uses components such as `<Box />`, `<Card />` and `<Group />` to provide these views and provides customization options by passing related props to these components.
-
-An example usage of the `<Show />` component is as follows:
-
-```tsx title="posts/show.tsx"
-import { useShow, useOne } from "@refinedev/core";
-import { Show, TextField } from "@refinedev/chakra-ui";
-
-import { Heading } from "@chakra-ui/react";
-
-export const PostShow: React.FC = () => {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
-
-  return (
-    <Show isLoading={isLoading}>
-      <Heading as="h5" size="sm">
-        Id
-      </Heading>
-      <TextField value={record?.id} />
-
-      <Heading as="h5" size="sm" mt={4}>
-        Title
-      </Heading>
-      <TextField value={record?.title} />
-    </Show>
-  );
-};
-```
+Views are designed as wrappers around the content of the pages in the application. They are designed to be used within the layouts and provide basic functionalities such as titles based on the resource, breadcrumbs, related actions and authorization checks. Refine's Mantine integration uses components such as [`<Box />`](https://v5.mantine.dev/core/box/), [`<Card />`](https://v5.mantine.dev/core/card/) and [`<Group />`](https://v5.mantine.dev/core/group/) to provide these views and provides customization options by passing related props to these components.
 
 The list of provided views are:
 
-- `<List />`
-- `<Show />`
-- `<Edit />`
-- `<Create />`
+- [`<List />`](/docs/api-reference/mantine/components/basic-views/list/)
+- [`<Show />`](/docs/api-reference/mantine/components/basic-views/show/)
+- [`<Edit />`](/docs/api-reference/mantine/components/basic-views/edit/)
+- [`<Create />`](/docs/api-reference/mantine/components/basic-views/create/)
+
+import BasicViews from "./basic-views.tsx";
+
+<BasicViews />
 
 ### Fields
 
@@ -401,38 +288,46 @@ Refine's Mantine also provides field components to render values with appropriat
 
 The list of provided field components are:
 
-- `<BooleanField />`
-- `<DateField />`
-- `<EmailField />`
-- `<FileField />`
-- `<MarkdownField />`
-- `<NumberField />`
-- `<TagField />`
-- `<TextField />`
-- `<UrlField />`
+- [`<BooleanField />`](/docs/api-reference/mantine/components/fields/boolean/)
+- [`<DateField />`](/docs/api-reference/mantine/components/fields/date/)
+- [`<EmailField />`](/docs/api-reference/mantine/components/fields/email/)
+- [`<FileField />`](/docs/api-reference/mantine/components/fields/file/)
+- [`<MarkdownField />`](/docs/api-reference/mantine/components/fields/markdown/)
+- [`<NumberField />`](/docs/api-reference/mantine/components/fields/number/)
+- [`<TagField />`](/docs/api-reference/mantine/components/fields/tag/)
+- [`<TextField />`](/docs/api-reference/mantine/components/fields/text/)
+- [`<UrlField />`](/docs/api-reference/mantine/components/fields/url/)
 
-```tsx title="posts/show.tsx"
-import { useShow, useOne } from "@refinedev/core";
-import { Show, TextField } from "@refinedev/chakra-ui";
+```tsx title="pages/products/show.tsx"
+import { useShow } from "@refinedev/core";
+import { Show, TextField, NumberField, MarkdownField } from "@refinedev/mantine";
 
-import { Heading } from "@chakra-ui/react";
+import { Title } from "@mantine/core";
 
-export const PostShow: React.FC = () => {
+export const ProductShow = () => {
   const { queryResult } = useShow();
   const { data, isLoading } = queryResult;
   const record = data?.data;
 
   return (
     <Show isLoading={isLoading}>
-      <Heading as="h5" size="sm">
-        Id
-      </Heading>
-      <TextField value={record?.id} />
+      <Title mt="xs" order={5}>
+        Name
+      </Title>
+      {/* highlight-next-line */}
+      <TextField value={record?.name} />
 
-      <Heading as="h5" size="sm" mt={4}>
-        Title
-      </Heading>
-      <TextField value={record?.title} />
+      <Title mt="xs" order={5}>
+        Description
+      </Title>
+      {/* highlight-next-line */}
+      <MarkdownField value={record?.description} />
+
+      <Title mt="xs" order={5}>
+        Price
+      </Title>
+      {/* highlight-next-line */}
+      <NumberField value={record?.price} options={{ style: "currency", currency: "USD" }} />
     </Show>
   );
 };
@@ -440,29 +335,7 @@ export const PostShow: React.FC = () => {
 
 ### Auth Pages
 
-Auth pages are designed to be used as the pages of the authentication flow of the application. They offer an out of the box solution for the login, register, forgot password and reset password pages by leveraging the authentication hooks of Refine. Auth page components are built on top of basic Mantine components such as `<TextInput>` and `<Card>` etc.
-
-An example usage of the `<AuthPage />` component is as follows:
-
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-import { AuthPage } from "@refinedev/mantine";
-import { Outlet, Routes, Route } from "react-router-dom";
-
-const App = () => {
-  return (
-    <Refine
-    // ...
-    >
-      <Routes>
-        {/* highlight-next-line */}
-        <Route path="/login" element={<AuthPage type="login" />} />
-        {/* ... */}
-      </Routes>
-    </Refine>
-  );
-};
-```
+Auth pages are designed to be used as the pages of the authentication flow of the application. They offer an out of the box solution for the login, register, forgot password and reset password pages by leveraging the authentication hooks of Refine. Auth page components are built on top of basic Mantine components such as [`<TextInput>`](https://v5.mantine.dev/core/text-input/) and [`<Card>`](https://v5.mantine.dev/core/card/) etc.
 
 The list of types of auth pages that are available in the UI integrations are:
 
@@ -471,29 +344,23 @@ The list of types of auth pages that are available in the UI integrations are:
 - `<AuthPage type="forgot-password" />`
 - `<AuthPage type="reset-password" />`
 
+An example usage of the [`<AuthPage />`](/docs/api-reference/mantine/components/mantine-auth-page/) component is as follows:
+
+import AuthPage from "./auth-page.tsx";
+
+<AuthPage />
+
 ### Error Components
 
 Refine's Mantine integration also provides an `<ErrorComponent />` component that you can use to render a 404 page in your app. While these components does not offer much functionality, they are provided as an easy way to render an error page with a consistent design language.
 
 An example usage of the `<ErrorComponent />` component is as follows:
 
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
+```tsx title="pages/404.tsx"
 import { ErrorComponent } from "@refinedev/mantine";
-import { Outlet, Routes, Route } from "react-router-dom";
 
-const App = () => {
-  return (
-    <Refine
-    // ...
-    >
-      <Routes>
-        {/* ...rest of your routes here... */}
-        {/* highlight-next-line */}
-        <Route path="*" element={<ErrorComponent />} />
-      </Routes>
-    </Refine>
-  );
+const NotFoundPage = () => {
+  return <ErrorComponent />;
 };
 ```
 
@@ -501,23 +368,16 @@ const App = () => {
 
 Since Refine offers application level components such as layout, sidebar and header and page level components for each action, it is important to have it working with the styling of Mantine. All components and providers exported from the `@refinedev/mantine` package will use the current theme of Mantine without any additional configuration.
 
-Additionally, Refine also provides a set of carefully crafted themes for Mantine which outputs a nice UI with Refine's components with light and dark theme support. These themes are exported as `RefineThemes` object from the `@refinedev/mantine` package and can be used in `<MantineProvider>` component of Mantine.
+Additionally, Refine also provides a set of carefully crafted themes for Mantine which outputs a nice UI with Refine's components with light and dark theme support. These themes are exported as `RefineThemes` object from the `@refinedev/mantine` package and can be used in [`<MantineProvider>`](https://v5.mantine.dev/theming/mantine-provider/) component of Mantine.
 
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-import { RefineThemes } from "@refinedev/mantine";
-import { MantineProvider } from "@mantine/core";
+import Theming from "./theming.tsx";
 
-const App = () => {
-  return (
-    // highlight-next-line
-    <MantineProvider theme={RefineThemes.Blue}>
-      <Refine
-      // ...
-      >
-        {/* ... */}
-      </Refine>
-    </MantineProvider>
-  );
-};
-```
+<Theming />
+
+To learn more about the theme configuration of Mantine, please refer to the [official documentation](https://v5.mantine.dev/theming/theme-object/).
+
+## Inferencer
+
+You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports the `MantineListInferencer`, `MantineShowInferencer`, `MantineEditInferencer`, `MantineCreateInferencer` components and finally the `MantineInferencer` component, which combines all in one place.
+
+To learn more about Inferencer, please refer to the [Material UI Inferencer](/docs/api-reference/mantine/components/inferencer/) docs.
