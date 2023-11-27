@@ -543,7 +543,7 @@ import { MantineLayout } from './layout/mantine';
 
 Refine provides a set of hooks to handle form state, validation, submission, autosave, and more. These hooks seamlessly integrate with popular UI libraries, making it easier to use their form components.
 
-- [React Hook Form](https://react-hook-form.com/) (for Headless, Chakra UI, Material UI) - [Documentation](/packages/documentation/react-hook-form/useForm.md) - [Example](/examples/form/react-hook-form/useForm.md)
+- [React Hook Form](https://react-hook-form.com/) (for Headless, Material UI, Chakra UI) - [Documentation](/packages/documentation/react-hook-form/useForm.md) - [Example](/examples/form/react-hook-form/useForm.md)
 - [Ant Design Form](https://ant.design/components/form/#header) - [Documentation](/api-reference/antd/hooks/form/useForm.md) - [Example](/examples/form/antd/useForm.md)
 - [Mantine Form](https://mantine.dev/form/use-form) - [Documentation](/api-reference/mantine/hooks/form/useForm.md) - [Example](/examples/form/mantine/useForm.md)
 
