@@ -6,7 +6,7 @@ swizzle: true
 
 `<DeleteButton>` uses Material UI's [`<LoadingButton>`](https://mui.com/material-ui/api/loading-button/#main-content) and [`<Dialog>`](https://mui.com/material-ui/react-dialog/) components.
 
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed, it executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed, it executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/docs/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
 
@@ -350,7 +350,7 @@ render(
 
 ### `accessControl`
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/api-reference/core/providers/access-control-provider.md) is provided to [`<Refine/>`](/docs/api-reference/core/components/refine-config.md)
 
 ```tsx
 import { DeleteButton } from "@refinedev/mui";

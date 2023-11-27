@@ -49,6 +49,7 @@ They are pluggable, which means you can use the **built-in providers** or **crea
 - **I18n Provider**: Enables i18n features such as renderin translated menu items, button texts, table columns, page titles, and more.
 - **Live Provider**: Enables real-time updates to your application. For example, when a user creates a new record, other users can see the new record in the list page without refreshing the page.
 - **Router Provider**: Matches routes to resources, enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items.
+- **Audit Log Provider**: Handles sending Audit Logs for CRUD operations.
 
 ## Hook Concept
 
@@ -491,6 +492,10 @@ export const ShowPage = () => {
 Another example is `useTable` hook. While it can infer **resource**, **pagination**, **filters**, and **sorters** parameters from the current route, it can also update the current route if any of these parameters changes.
 
 > See the [Routing](/docs/guides-concepts/routing/) guide for more information.
+
+### Audit Log Provider
+
+**Audit Log Provider**
 
 ## UI Integrations
 

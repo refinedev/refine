@@ -111,7 +111,7 @@ import { EditButton } from "@refinedev/antd";
 
 Refine has the ability to change some configurations of the components and hooks globally through the `<Refine>` component. This will let the user to change the default logical and visual approaches made in the UI components. For example, we can change the buttons' visibility based on the authorization status through `<Refine>` component. This will effect all of the buttons in the application just by changing it in one place.
 
-```tsx title="app.tsx"
+```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 
 <Refine
@@ -167,7 +167,7 @@ While this integration is not coupled with the UI integrations, it will be a wis
 
 Using of the prebuilt notification providers are optional and can be customized, extended or even swapped with a custom implementation if needed.
 
-```tsx title="app.tsx"
+```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 import { notificationProvider } from "@refinedev/mantine";
 

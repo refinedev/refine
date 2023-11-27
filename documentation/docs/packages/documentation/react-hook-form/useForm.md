@@ -494,7 +494,7 @@ render(<RefineHeadlessDemo />);
 
 > Default: It reads the `resource` value from the current URL.
 
-It will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+It will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. See the [`creating a data provider`](/docs/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
 
 - When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
 - When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
@@ -1151,7 +1151,7 @@ You can use `meta` property to pass common values to the mutation and the query.
 
 <PropsTable module="@refinedev/react-hook-form/useForm" />
 
-> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
+> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/docs/api-reference/core/components/refine-config.md)>** component.
 
 :::tip External Props
 
@@ -1180,7 +1180,7 @@ const { ... } = useForm({
 
 Returns all the properties returned by [React Hook Form][react-hook-form] of the `useForm` hook. Also, we added the following return values:
 
-`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/api-reference/core/hooks/useForm.md##return-values).
+`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/docs/api-reference/core/hooks/useForm.md##return-values).
 
 > For example, we can access the `refineCore` return value in the `useForm` hook as:
 

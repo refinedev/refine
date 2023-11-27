@@ -613,7 +613,7 @@ if (data?.includes("admin")) {
 
 Though `usePermissions` hook can be used for simple authorization purposes, if you need more complex authorization logic, we recommend using the access control provider.
 
-For more information, refer to the [`accessControlProvider` documentation&#8594](/docs/api-reference/core/providers/accessControl-provider/)
+For more information, refer to the [`accessControlProvider` documentation&#8594](/docs/api-reference/core/providers/access-control-provider/)
 
 :::
 

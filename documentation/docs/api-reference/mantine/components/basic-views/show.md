@@ -224,9 +224,9 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
 
-When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
 
-> For more information, refer to the [`<DeleteButton>`](/api-reference/antd/components/buttons/delete.md) and the [`<EditButton>`](/api-reference/antd/components/buttons/edit.md) documentation.
+> For more information, refer to the [`<DeleteButton>`](/docs/api-reference/antd/components/buttons/delete.md) and the [`<EditButton>`](/docs/api-reference/antd/components/buttons/edit.md) documentation.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
@@ -334,7 +334,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/api-reference/core/hooks/authentication/usePermissions.md)
 
 ### `recordItemId`
 
@@ -619,7 +619,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mantine/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/mantine/components/breadcrumb.md)
 
 ### `wrapperProps`
 

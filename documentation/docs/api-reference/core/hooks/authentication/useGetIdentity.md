@@ -12,7 +12,7 @@ This hook can only be used if the `authProvider` is provided.
 
 :::
 
-`useGetIdentity` calls the `getIdentity` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
+`useGetIdentity` calls the `getIdentity` method from the [`authProvider`](/docs/api-reference/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s `useQuery` which includes many properties, some of which being `isSuccess` and `isError`.
 
@@ -24,7 +24,7 @@ Data that is resolved from the `getIdentity` will be returned as the `data` in t
 
 Let's say that you want to show the user's name.
 
-We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `getIdentity` method like below:
+We have a logic in [`authProvider`](/docs/api-reference/core/providers/auth-provider.md)'s `getIdentity` method like below:
 
 ```tsx
 import type { AuthBindings } from "@refinedev/core";

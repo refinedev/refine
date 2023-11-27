@@ -221,7 +221,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/chakra-ui/components/buttons/save.md)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/api-reference/chakra-ui/components/buttons/save.md)
 
 ### `resource`
 
@@ -421,7 +421,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/chakra-ui/components/breadcrumb.md)
 
 ### `wrapperProps`
 
