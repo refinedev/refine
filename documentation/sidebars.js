@@ -29,6 +29,7 @@ module.exports = {
                 "guides-concepts/general-concepts/index",
                 "guides-concepts/data-fetching/index",
                 "guides-concepts/forms/index",
+                "guides-concepts/tables/index",
                 "guides-concepts/routing/index",
                 "guides-concepts/authentication/index",
                 "guides-concepts/authorization/index",
@@ -341,10 +342,10 @@ module.exports = {
                                 },
                                 {
                                     type: "category",
-                                    label: "React Table",
+                                    label: "TanStack Table",
                                     items: [
-                                        "examples/table/react-table/advanced-react-table",
-                                        "examples/table/react-table/react-table",
+                                        "examples/table/tanstack-table/advanced-tanstack-table",
+                                        "examples/table/tanstack-table/basic-tanstack-table",
                                     ],
                                 },
                                 {
@@ -1087,7 +1088,14 @@ module.exports = {
                         },
                         "packages/documentation/inferencer",
                         "packages/documentation/command-palette",
-                        "packages/documentation/react-table/index",
+                        {
+                            type: "category",
+                            label: "TanStack Table",
+                            items: [
+                                "packages/documentation/tanstack-table/introduction",
+                                "packages/documentation/tanstack-table/use-table",
+                            ],
+                        },
                         {
                             type: "category",
                             label: "React Hook Form",

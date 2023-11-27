@@ -1,7 +1,8 @@
 <div align="center" style="margin: 30px;">
-<a href="https://refine.dev/">
-  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
-</a>
+
+![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/social.jpg "Cover Image")
+
+
 <br />
 <br />
 
@@ -28,7 +29,6 @@
 
 </div>
 
-![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/social.jpg "Cover Image")
 
 ## About
 

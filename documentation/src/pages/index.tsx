@@ -30,7 +30,7 @@ function Home() {
                     as="document"
                 />
             </Head>
-            <CommonLayout description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibilty.">
+            <CommonLayout description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility.">
                 <div className={clsx()}>
                     <CommonHeader />
                     <div
