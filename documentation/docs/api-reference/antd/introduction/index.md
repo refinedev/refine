@@ -326,14 +326,14 @@ interface IProduct {
 
 Auth pages are designed to be used as the pages of the authentication flow of the application. They offer an out of the box solution for the login, register, forgot password and reset password pages by leveraging the authentication hooks of Refine. Auth page components are built on top of basic Ant Design components such as [`<Form>`](https://ant.design/components/form) and [`<Card>`](https://ant.design/components/card) etc.
 
-An example usage of the [`<AuthPage />`](/docs/api-reference/antd/components/antd-auth-page/) component is as follows:
-
 The list of types of auth pages that are available in the UI integrations are:
 
 - `<AuthPage type="login" />`
 - `<AuthPage type="register" />`
 - `<AuthPage type="forgot-password" />`
 - `<AuthPage type="reset-password" />`
+
+An example usage of the [`<AuthPage />`](/docs/api-reference/antd/components/antd-auth-page/) component is as follows:
 
 import AuthPage from "./auth-page.tsx";
 
