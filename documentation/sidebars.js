@@ -29,10 +29,13 @@ module.exports = {
                 "guides-concepts/general-concepts/index",
                 "guides-concepts/data-fetching/index",
                 "guides-concepts/forms/index",
+                "guides-concepts/tables/index",
                 "guides-concepts/routing/index",
                 "guides-concepts/authentication/index",
                 "guides-concepts/authorization/index",
                 "guides-concepts/ui-libraries/index",
+                "guides-concepts/realtime/index",
+                "guides-concepts/audit-logs/index",
                 {
                     type: "category",
                     label: "Examples",
@@ -339,10 +342,10 @@ module.exports = {
                                 },
                                 {
                                     type: "category",
-                                    label: "React Table",
+                                    label: "TanStack Table",
                                     items: [
-                                        "examples/table/react-table/advanced-react-table",
-                                        "examples/table/react-table/react-table",
+                                        "examples/table/tanstack-table/advanced-tanstack-table",
+                                        "examples/table/tanstack-table/basic-tanstack-table",
                                     ],
                                 },
                                 {
@@ -519,7 +522,7 @@ module.exports = {
                             type: "category",
                             label: "Providers",
                             items: [
-                                "api-reference/core/providers/accessControl-provider",
+                                "api-reference/core/providers/access-control-provider",
                                 "api-reference/core/providers/auth-provider",
                                 "api-reference/core/providers/audit-log-provider",
                                 "api-reference/core/providers/data-provider",
@@ -1069,7 +1072,14 @@ module.exports = {
                         },
                         "packages/documentation/inferencer",
                         "packages/documentation/command-palette",
-                        "packages/documentation/react-table/index",
+                        {
+                            type: "category",
+                            label: "TanStack Table",
+                            items: [
+                                "packages/documentation/tanstack-table/introduction",
+                                "packages/documentation/tanstack-table/use-table",
+                            ],
+                        },
                         {
                             type: "category",
                             label: "React Hook Form",

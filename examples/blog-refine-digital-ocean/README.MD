@@ -1,7 +1,8 @@
 <div align="center" style="margin: 30px;">
-<a href="https://refine.dev/">
-  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
-</a>
+
+
+![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/CRM-Digital-Ocean/crm-do.png "Cover Image")
+
 
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
@@ -24,7 +25,6 @@
 
 </div>
 
-![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/CRM-Digital-Ocean/crm-do.png "Cover Image")
 
 ## About
 

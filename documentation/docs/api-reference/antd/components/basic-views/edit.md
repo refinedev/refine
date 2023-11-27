@@ -214,7 +214,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/antd/components/buttons/save.md)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/api-reference/antd/components/buttons/save.md)
 
 ### `canDelete` and `deleteButtonProps`
 
@@ -314,9 +314,9 @@ render(
 );
 ```
 
-> For more information, refer to the [`<DeleteButton>` documentation &#8594](/api-reference/antd/components/buttons/delete.md)
+> For more information, refer to the [`<DeleteButton>` documentation &#8594](/docs/api-reference/antd/components/buttons/delete.md)
 
-> For more information, refer to the [`usePermission` documentation &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/api-reference/core/hooks/authentication/usePermissions.md)
 
 ### `resource`
 
@@ -737,7 +737,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 :::
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/antd/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/antd/components/breadcrumb.md)
 
 ### `wrapperProps`
 
@@ -1339,7 +1339,7 @@ goBack-default="`<ArrowLeft />`"
 goBack-type="`ReactNode`"
 />
 
-> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
+> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/docs/api-reference/core/components/refine-config.md)>** component.
 
 [list-button]: /docs/api-reference/antd/components/buttons/list-button/
 [refresh-button]: /docs/api-reference/antd/components/buttons/refresh-button/

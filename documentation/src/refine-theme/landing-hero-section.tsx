@@ -69,7 +69,7 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
                             )}
                         >
                             Build React-based internal tools, admin panels,
-                            dashboards & B2B apps with unmatched flexibilty.
+                            dashboards & B2B apps with unmatched flexibility.
                         </p>
                     </div>
                     <div

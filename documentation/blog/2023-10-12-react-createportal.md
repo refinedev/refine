@@ -8,12 +8,24 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-12-react-crea
 hide_table_of_contents: false
 ---
 
-
 ## Introduction
 
 The `createPortal` API is part of the React DOM. You can use it to flexibly render the children of a React component in another location in the DOM. Though you can render a portal in another location, it still behaves like any other React child component.
 
 This behavior of the `createPortal` API makes it easy to create UIs such as tooltips, toasts, modals, and popups. This article will take a deep dive into the `createPortal` API. We will explore its advantages, disadvantages, and possible use cases.
+
+Steps we'll cover:
+
+- [Complete guide to the `createPortal` API](#complete-guide-to-the-createportal-api)
+- [Pros of the `createPortal` API](#pros-of-the-createportal-api)
+  - [Rendering an element in another location in the DOM](#rendering-an-element-in-another-location-in-the-dom)
+  - [Integrating third-party packages into your project](#integrating-third-party-packages-into-your-project)
+- [Cons of the `createPortal` API](#cons-of-the-createportal-api)
+  - [CSS Inherited properties](#css-inherited-properties)
+  - [Complex portals are difficult to maintain](#complex-portals-are-difficult-to-maintain)
+  - [Accessibility issues](#accessibility-issues)
+  - [Mismatch between location in the DOM and event bubbling](#mismatch-between-location-in-the-dom-and-event-bubbling)
+- [Use cases of the `createPortal` API](#use-cases-of-the-createportal-api)
 
 ## Complete guide to the `createPortal` API
 
@@ -23,7 +35,7 @@ As explained above, the `createPortal` API is part of the React DOM API. Therefo
 import { createPortal } from "react-dom";
 ```
 
-Ordinarily, a  React component and its children have a parent-child relationship, and all the children are nested within their parent after rendering.
+Ordinarily, a React component and its children have a parent-child relationship, and all the children are nested within their parent after rendering.
 
 However, with the `createPortal` API, a React component can render all or some of its children in another location in the DOM rather than the parent. The code below shows its function signature.
 
@@ -46,10 +58,7 @@ export function PortalDemo() {
   return (
     <div>
       <p>This child is placed in the parent div.</p>
-      {createPortal(
-        <p>This child is placed in the document body.</p>,
-        document.body
-      )}
+      {createPortal(<p>This child is placed in the document body.</p>, document.body)}
     </div>
   );
 }
@@ -58,9 +67,6 @@ export function PortalDemo() {
 When you render a component using the `createPortal` API, only the rendering of the component in the DOM changes. Everything else remains the same. The events generated from the portal will bubble in the React Node hierarchy not in the DOM hierarchy.
 
 Though a portal is rendered in a different location in the DOM, it is still a child of the parent React Component that renders it. It re-renders whenever the props or context passed to it changes, and its parent re-renders.
-
-
-
 
 ## Pros of the `createPortal` API
 
@@ -84,7 +90,7 @@ However, the `createPortal` API is not without drawbacks. Let's explore its disa
 
 ### CSS Inherited properties
 
-Though a portal is still a child of its parent React component, it doesn't inherit CSS  properties applied to its parent because it's rendered in a different location in the DOM.   This may result in hard-to-find bugs, especially when dealing with complex portals.
+Though a portal is still a child of its parent React component, it doesn't inherit CSS properties applied to its parent because it's rendered in a different location in the DOM. This may result in hard-to-find bugs, especially when dealing with complex portals.
 
 In the example below, I'm applying `color: red` to the parent `div`. Ordinarily, the nested `p` elements inherit the `color` property from their parent. However, the `p` element rendered using `createPortal` won't because it is rendered in a different location in the DOM.
 
@@ -96,10 +102,7 @@ function PortalDemo() {
     <div style={{ color: "red" }}>
       <p>This will be red.</p>
 
-      {createPortal(
-        <p>This won't be red.</p>,
-        document.getElementById("portal")
-      )}
+      {createPortal(<p>This won't be red.</p>, document.getElementById("portal"))}
     </div>
   );
 }
@@ -145,11 +148,7 @@ function App() {
   return (
     <div>
       <button onClick={() => setShowModal(true)}>Open modal.</button>
-      {showModal &&
-        createPortal(
-          <Modal onClose={() => setShowModal(false)} />,
-          document.body
-        )}
+      {showModal && createPortal(<Modal onClose={() => setShowModal(false)} />, document.body)}
     </div>
   );
 }
@@ -167,4 +166,4 @@ Though a portal is rendered in another location, it behaves like any React child
 
 The `createPortal` function takes the `children`, `domNode`, and an optional `key` as arguments and returns a React Node, which you can render in another React component or JSX.
 
-You can use the `createPortal` API to create toasts,  modals, tooltips, and popups such as cookie permissions popups. However, make sure any portal you create is accessible.
+You can use the `createPortal` API to create toasts, modals, tooltips, and popups such as cookie permissions popups. However, make sure any portal you create is accessible.

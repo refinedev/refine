@@ -8,7 +8,7 @@ source: packages/core/src/hooks/live/useSubscription/index.ts
 
 :::info-tip
 
-**refine** use this hook internally in data hooks to `subscribe` Realtime data. You can refer liveProvider's [Supported Hooks Subscriptions][supported-hooks-subscription] section for more information.
+**refine** use this hook internally in data hooks to `subscribe` Realtime data. You can refer liveProvider's [Integrated Hooks][integrated-hooks] section for more information.
 
 :::
 
@@ -56,7 +56,7 @@ You can pass any additional parameters to the [`liveProvider`][live-provider]'s 
 
 Hooks that use `useSubscription` internally send the query's parameters' (pagination, meta, sort, filters, etc.) information along with this prop.
 
-> For more information on which hooks use `useSubscription` internally, refer to the [LiveProvider's "Supported Hooks Subscription" section&#8594][supported-hooks-subscription]
+> For more information on which hooks use `useSubscription` internally, refer to the [LiveProvider's "Integrated Hooks" section&#8594][integrated-hooks]
 
 ### dataProviderName
 
@@ -72,4 +72,4 @@ You can pass the name of the data provider to use for the subscription.
 
 [live-provider]: /docs/api-reference/core/providers/live-provider
 [live-provider-subscribe]: /docs/api-reference/core/providers/live-provider/#subscribe
-[supported-hooks-subscription]: /docs/api-reference/core/providers/live-provider/#supported-hooks-subscriptions
+[integrated-hooks]: /docs/api-reference/core/providers/live-provider/#integrated-hooks

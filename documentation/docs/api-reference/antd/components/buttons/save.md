@@ -14,7 +14,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-Let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook:
+Let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/api-reference/antd/hooks/form/useForm.md) hook:
 
 ```tsx live url=http://localhost:3000/posts/edit/123
 // visible-block-start
@@ -71,7 +71,7 @@ render(
 );
 ```
 
-The [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook exposes `saveButtonProps` to be passed to the `<SaveButton>` component which includes submitting the form action, button loading, and disable states.
+The [`useForm`](/docs/api-reference/antd/hooks/form/useForm.md) hook exposes `saveButtonProps` to be passed to the `<SaveButton>` component which includes submitting the form action, button loading, and disable states.
 
 ## Properties
 

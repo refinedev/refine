@@ -8,10 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-18-heroicons/
 hide_table_of_contents: false
 ---
 
-
-
-
-
 ## Introduction
 
 [Heroicons](https://heroicons.com) are SVG-based icons packaged by the creators of TailwindCSS. They come in two size variants, `20`, which is suitable for small buttons and form elements, and a `24` size, that is useful for primary navigation buttons like call to action and hero sections. `24` size comes as `solid` and `outline`.
@@ -26,6 +22,16 @@ In this post, we use Heroicons with both TailwindCSS and non-Tailwind classes. W
 
 The existing navbar is available in [this repository](https://github.com/anewman15/navbar-hero). As using Heroicons is pretty easy, to grasp how the examples work, it is enough just to follow the JSX. If you want to run the app and see what's going on in the browser when the style changes, please follow the steps below to clone the repo and run it locally.
 
+Steps we'll cover:
+
+- [Install Heroicons](#install-heroicons)
+- [A Navbar with Heroicons](#a-navbar-with-heroicons)
+  - [Adding and Styling Heroicons with TailwindCSS](#adding-and-styling-heroicons-with-tailwindcss)
+  - [Using Regular TailwindCSS Utilities with Heroicons](#using-regular-tailwindcss-utilities-with-heroicons)
+  - [Using `SVG` Related TailwindCSS Utilities with Heroicons](#using-svg-related-tailwindcss-utilities-with-heroicons)
+  - [Using non-TailwindCSS Classes with Heroicons](#using-non-tailwindcss-classes-with-heroicons)
+  - [Applying Native `<svg>` Properties to Heroicons](#applying-native-svg-properties-to-heroicons)
+  - [Applying Responsive TailwindCSS Utils to Heroicons](#applying-responsive-tailwindcss-utils-to-heroicons)
 
 ## Preparation
 
@@ -37,7 +43,6 @@ Then open it in your code editor and run:
 npm install
 npm run start
 ```
-
 
 ### Install Heroicons
 
@@ -51,7 +56,6 @@ Then to compile newly added TailwindCSS classes, run the CSS compiler in `watch`
 npx tailwindcss -i ./src/styles/styles.css -o ./public/styles/styles.css --watch
 ```
 
-
 ## A Navbar with Heroicons
 
 Currently, the `<Navbar />` component looks like this:
@@ -63,10 +67,9 @@ import { Avatar } from "../icons/Avatar";
 import { HamburgerIcon } from "../icons/HamburgerIcon";
 import { SearchIcon } from "../icons/SearchIcon";
 
-
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const menuHidden = !isMobileMenuOpen ? "hidden md:block": "" ;
+  const menuHidden = !isMobileMenuOpen ? "hidden md:block" : "";
   return (
     <nav className="navbar">
       <div className="brand-wrapper">
@@ -79,14 +82,10 @@ const Navbar = () => {
       >
         <div id="items" className="items-strip">
           <div id="left" className="items-left">
-            <input
-              className="text-input"
-              type= "email"
-              placeholder= "Find Donald or something..."
-            />
+            <input className="text-input" type="email" placeholder="Find Donald or something..." />
             <SearchIcon />
           </div>
-          <div id="right" >
+          <div id="right">
             <ul className="items-list">
               <li className="nav-item md:order-last">
                 <a href="/">
@@ -113,8 +112,8 @@ const Navbar = () => {
         </div>
       </div>
       <div
-          className={`absolute top-3 right-4 p-1 border border-orange-400 rounded md:hidden text-slate-500 hover:text-slate-300 hover:bg-orange-200`}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        className={`absolute top-3 right-4 p-1 border border-orange-400 rounded md:hidden text-slate-500 hover:text-slate-300 hover:bg-orange-200`}
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         <a href="/">
           <HamburgerIcon />
@@ -128,7 +127,6 @@ export default Navbar;
 ```
 
 `<SearchIcon />`, `<Avatar />` and `<HanburgerIcon />` icons contain `<svg>` elements produced from Heroicons. They are available in this folder: `src/components/icons/`. However, we will be replacing them with actual Heroicon React components.
-
 
 ### Styles
 
@@ -144,125 +142,117 @@ All the classes used on the components are styled with regular Tailwind and CSS 
 @tailwind utilities;
 
 :root {
-    --primary-color: rgb(223, 232, 247);
-    --secondary-color: rgb(182, 76, 27);
-    --grayscale: rgb(226, 218, 218);
-    --friendly: green;
-    --neutral: blue;
-    --warning: yellow;
-    --danger: crimson;
-    --forbidden: black;
+  --primary-color: rgb(223, 232, 247);
+  --secondary-color: rgb(182, 76, 27);
+  --grayscale: rgb(226, 218, 218);
+  --friendly: green;
+  --neutral: blue;
+  --warning: yellow;
+  --danger: crimson;
+  --forbidden: black;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    min-width: 450px;
+  min-width: 450px;
 }
 
 .navbar {
-    @apply sticky top-0 mx-auto px-2 w-full h-auto bg-slate-600 flex flex-col justify-start md:flex-row md:justify-between md:items-center;
+  @apply sticky top-0 mx-auto px-2 w-full h-auto bg-slate-600 flex flex-col justify-start md:flex-row md:justify-between md:items-center;
 }
 
 .brand-wrapper {
-    @apply h-14 bg-slate-600 w-full flex justify-start items-center flex-1 self-start;
+  @apply h-14 bg-slate-600 w-full flex justify-start items-center flex-1 self-start;
 }
 
 .brand {
-    max-width: 12rem;
-    color: var(--primary-color);
-    @apply text-4xl p-2;
+  max-width: 12rem;
+  color: var(--primary-color);
+  @apply text-4xl p-2;
 }
 
 .items-strip {
-    @apply my-2 flex flex-col justify-start items-start md:flex-row md:justify-start md:items-center;
+  @apply my-2 flex flex-col justify-start items-start md:flex-row md:justify-start md:items-center;
 }
 
 .items-left {
-    @apply mx-2 p-2 order-last md:order-none flex justify-center items-center;
+  @apply mx-2 p-2 order-last md:order-none flex justify-center items-center;
 }
 
 .items-list {
-    @apply flex flex-col md:flex-row md:justify-start md:items-center;
+  @apply flex flex-col md:flex-row md:justify-start md:items-center;
 }
 
 .nav-item {
-   @apply mx-2 p-1 rounded lg:mx-8 w-full lg:w-auto hover:scale-105 hover:backdrop-brightness-125 hover:shadow transition-all;
+  @apply mx-2 p-1 rounded lg:mx-8 w-full lg:w-auto hover:scale-105 hover:backdrop-brightness-125 hover:shadow transition-all;
 }
 
 .nav-link {
-    @apply text-center p-1 flex justify-start items-center;
+  @apply text-center p-1 flex justify-start items-center;
 }
 
 .text-input {
-    @apply py-0.5 px-2 border rounded-l text-slate-800;
+  @apply py-0.5 px-2 border rounded-l text-slate-800;
 }
 
 .avatar {
-    width: 2rem;
-    height: 2rem;
-    color: whitesmoke;
+  width: 2rem;
+  height: 2rem;
+  color: whitesmoke;
 }
 
 .icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: whitesmoke;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: whitesmoke;
 }
 
 .tailzup-logo {
-    width: 4rem;
-    height: 4rem;
+  width: 4rem;
+  height: 4rem;
 }
 
 .glow {
-    animation: glow 0.8s alternate infinite;
+  animation: glow 0.8s alternate infinite;
 }
 
 @keyframes glow {
-    0% {                        
-        filter: drop-shadow(0 0 1px #fff)
-        drop-shadow(0 0 2px #fff)
-        drop-shadow(0 0 3px #ff80b3)
-        drop-shadow(0 0 4px #ff4d94)
-        drop-shadow(0 0 5px #ff0066)
-    }
-     29% {
-        filter: drop-shadow(0 0 2px #fff)
-        drop-shadow(0 0 4px #fff)
-        drop-shadow(0 0 6px #ff80b3)
-        drop-shadow(0 0 8px #ff4d94)
-        drop-shadow(0 0 10px #ff0066)
-    }
+  0% {
+    filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #ff80b3) drop-shadow(
+        0 0 4px #ff4d94
+      )
+      drop-shadow(0 0 5px #ff0066);
+  }
+  29% {
+    filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 6px #ff80b3) drop-shadow(
+        0 0 8px #ff4d94
+      )
+      drop-shadow(0 0 10px #ff0066);
+  }
 
-    92% {
-        filter: drop-shadow(0 0 3px #fff)
-        drop-shadow(0 0 6px #fff)
-        drop-shadow(0 0 9px #ff80b3)
-        drop-shadow(0 0 12px #ff4d94)
-        drop-shadow(0 0 15px #ff0066)
-    }
+  92% {
+    filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 6px #fff) drop-shadow(0 0 9px #ff80b3) drop-shadow(
+        0 0 12px #ff4d94
+      )
+      drop-shadow(0 0 15px #ff0066);
+  }
 }
 ```
 
 </details>
 
-
 The navbar now looks like this:
-
-
 
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-18-heroicons/navbar-initial2.gif"  alt="tailwind flex" />
 </div>
 
 <br/>
-
-
 
 ### Adding and Styling Heroicons with TailwindCSS
 
@@ -276,7 +266,7 @@ import { Bars4Icon, MagnifyingGlassIcon, UserIcon } from "@heroicons/react/24/ou
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const menuHidden = !isMobileMenuOpen ? "hidden md:block": "" ;
+  const menuHidden = !isMobileMenuOpen ? "hidden md:block" : "";
   return (
     <nav className="navbar">
       <div className="brand-wrapper">
@@ -289,15 +279,11 @@ const Navbar = () => {
       >
         <div id="items" className="items-strip">
           <div id="left" className="items-left">
-            <input
-              className="text-input"
-              type= "email"
-              placeholder= "Find donald trump or something..."
-            />
+            <input className="text-input" type="email" placeholder="Find donald trump or something..." />
             {/*highlight-next-line*/}
             <MagnifyingGlassIcon className="h-6 w-6 mx-1 stroke-orange-400" />
           </div>
-          <div id="right" >
+          <div id="right">
             <ul className="items-list">
               <li className="nav-item md:order-last">
                 <a href="/">
@@ -325,8 +311,8 @@ const Navbar = () => {
         </div>
       </div>
       <div
-          className={`absolute top-3 right-4 p-1 border border-orange-400 rounded md:hidden text-slate-500 hover:text-slate-300 hover:bg-orange-200`}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        className={`absolute top-3 right-4 p-1 border border-orange-400 rounded md:hidden text-slate-500 hover:text-slate-300 hover:bg-orange-200`}
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         <a href="/">
           {/*highlight-next-line*/}
@@ -346,17 +332,15 @@ Notice that we are passing CSS classes with the `className` prop to the followin
 
 As discussed below, we are using three types of CSS classes.
 
-
 ### Using Regular TailwindCSS Utilities with Heroicons
 
 We can use regular Tailwind CSS utilities like `h-6 w-6`:
 
 ```tsx
-  <MagnifyingGlassIcon className="h-6 w-6 mx-1 stroke-orange-400" />
+<MagnifyingGlassIcon className="h-6 w-6 mx-1 stroke-orange-400" />
 ```
 
 In this case, we are using spacing utilities for height, width and margin.
-
 
 ### Using `SVG` Related TailwindCSS Utilities with Heroicons
 
@@ -365,16 +349,13 @@ We have also used a `SVG` related TailwindCSS class in the `<MagnifyingGlassIcon
 Another example is this:
 
 ```tsx
-  <Bars4Icon className="h-6 w-6 stroke-orange-400" />
+<Bars4Icon className="h-6 w-6 stroke-orange-400" />
 ```
 
 Internally, `stroke-{color}-{saturation}` value is relayed to the `stroke` property of the `<svg>` element with `stroke= "currentColor```.
 
 ```html
-<svg
-  fill= "none"
-  stroke= "currentColor"
->
+<svg fill="none" stroke="currentColor"></svg>
 ```
 
 ### Using non-TailwindCSS Classes with Heroicons
@@ -382,52 +363,46 @@ Internally, `stroke-{color}-{saturation}` value is relayed to the `stroke` prope
 We can use non-Tailwind classes as well:
 
 ```tsx
-  <UserIcon className="h-8 w-8 glow" stroke="pink" strokeWidth={1.2} />
+<UserIcon className="h-8 w-8 glow" stroke="pink" strokeWidth={1.2} />
 ```
 
 For the `<UserIcon />`, we are applying a `glow` class that animates the icon with a glow `filter`. It's completely custom CSS and looks like this:
 
 ```css
 .glow {
-    animation: glow 0.8s alternate infinite;
+  animation: glow 0.8s alternate infinite;
 }
 
 @keyframes glow {
-    0% {                        
-        filter: drop-shadow(0 0 1px #fff)
-        drop-shadow(0 0 2px #fff)
-        drop-shadow(0 0 3px #ff80b3)
-        drop-shadow(0 0 4px #ff4d94)
-        drop-shadow(0 0 5px #ff0066)
-    }
-     29% {
-        filter: drop-shadow(0 0 2px #fff)
-        drop-shadow(0 0 4px #fff)
-        drop-shadow(0 0 6px #ff80b3)
-        drop-shadow(0 0 8px #ff4d94)
-        drop-shadow(0 0 10px #ff0066)
-    }
+  0% {
+    filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #ff80b3) drop-shadow(
+        0 0 4px #ff4d94
+      )
+      drop-shadow(0 0 5px #ff0066);
+  }
+  29% {
+    filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 6px #ff80b3) drop-shadow(
+        0 0 8px #ff4d94
+      )
+      drop-shadow(0 0 10px #ff0066);
+  }
 
-    92% {
-        filter: drop-shadow(0 0 3px #fff)
-        drop-shadow(0 0 6px #fff)
-        drop-shadow(0 0 9px #ff80b3)
-        drop-shadow(0 0 12px #ff4d94)
-        drop-shadow(0 0 15px #ff0066)
-    }
+  92% {
+    filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 6px #fff) drop-shadow(0 0 9px #ff80b3) drop-shadow(
+        0 0 12px #ff4d94
+      )
+      drop-shadow(0 0 15px #ff0066);
+  }
 }
 ```
 
 With the above changes Heroicons and their styles, the navbar looks like this:
-
 
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-18-heroicons/navbar-heroicons2.gif"  alt="tailwind flex" />
 </div>
 
 <br/>
-
-
 
 ### Applying Native `<svg>` Properties to Heroicons
 
@@ -439,13 +414,9 @@ Notice also that we are applying `stroke` and `strokeWidth` to `<UserIcon />`:
 
 Native `<svg>` properties passed to Heroicons also get relayed to the `<svg>` element inside.
 
-
-
-
 ### Applying Responsive TailwindCSS Utils to Heroicons
 
 Okay. Now, we'll consider the case for responsive use of Heroicons. We want each nav item to have its own icon left of its text. Like this:
-
 
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-18-heroicons/icon-items.gif"  alt="tailwind flex" />
@@ -459,8 +430,6 @@ So, we'll go ahead and add the icons for each nav item:
 
 <summary>Show Navbar.tsx</summary>
 
-
-
 ```tsx title="src/components/navbar/Navbar.tsx"
 import React, { useState } from "react";
 import TailzupLogo from "../icons/TailzupLogo";
@@ -470,12 +439,12 @@ import {
   HomeIcon,
   MagnifyingGlassIcon,
   UserGroupIcon,
-  UserIcon
+  UserIcon,
 } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const menuHidden = !isMobileMenuOpen ? "hidden md:block": "" ;
+  const menuHidden = !isMobileMenuOpen ? "hidden md:block" : "";
   return (
     <nav className="navbar">
       <div className="brand-wrapper">
@@ -488,14 +457,10 @@ const Navbar = () => {
       >
         <div id="items" className="items-strip">
           <div id="left" className="items-left">
-            <input
-              className="text-input"
-              type= "email"
-              placeholder= "Find Donald  or something..."
-            />
+            <input className="text-input" type="email" placeholder="Find Donald  or something..." />
             <MagnifyingGlassIcon className="h-6 w-6 mx-1 stroke-orange-400" />
           </div>
-          <div id="right" >
+          <div id="right">
             <ul className="items-list">
               <li className="nav-item md:order-last">
                 <a href="/">
@@ -505,7 +470,7 @@ const Navbar = () => {
               <li className="nav-item">
                 <a className="nav-link" href="/">
                   {/*highlight-next-line*/}
-                  <HomeIcon className="h-6 w-6 md:hidden lg:block"/>
+                  <HomeIcon className="h-6 w-6 md:hidden lg:block" />
                   <span className="mx-2">Home</span>
                 </a>
               </li>
@@ -528,8 +493,8 @@ const Navbar = () => {
         </div>
       </div>
       <div
-          className={`absolute top-3 right-4 p-1 border border-orange-400 rounded md:hidden text-slate-500 hover:text-slate-300 hover:bg-orange-200`}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        className={`absolute top-3 right-4 p-1 border border-orange-400 rounded md:hidden text-slate-500 hover:text-slate-300 hover:bg-orange-200`}
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         <a href="/">
           <Bars4Icon className="h-6 w-6 stroke-orange-400" />
@@ -549,7 +514,6 @@ With `md:hidden lg:block` we are changing the visibility of the icon using respo
 ```tsx
 <UserGroupIcon className="h-6 w-6 md:hidden lg:block" />
 ```
-
 
 ## Summary
 
