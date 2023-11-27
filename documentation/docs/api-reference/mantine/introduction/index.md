@@ -16,6 +16,10 @@ Installing the package is as simple as just by running the following command wit
 npm install @refinedev/mantine @refinedev/react-table @mantine/core@5 @mantine/hooks@5 @mantine/form@5 @mantine/notifications@5 @emotion/react@11 @tabler/icons@1 @tanstack/react-table
 ```
 
+:::info Version Support
+Refine's Mantine integration currently uses Mantine v5.
+:::
+
 ## Usage
 
 We'll wrap our app with the [`<MantineProvider />`](https://v5.mantine.dev/theming/mantine-provider/) to make sure we have the theme available for our app, then we'll use the layout components to wrap them around our routes. Check out the examples below to see how to use Refine's Mantine integration.
