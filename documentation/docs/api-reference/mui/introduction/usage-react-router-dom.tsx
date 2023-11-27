@@ -1,32 +1,35 @@
 import React from "react";
 import { Sandpack } from "@site/src/components/sandpack";
 
-export default function Usage() {
+export default function UsageReactRouterDom() {
   return (
     <Sandpack
       showNavigator
-      previewOnly
+      hidePreview
+      showFiles
       dependencies={{
         "@refinedev/mui": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
         "@refinedev/react-hook-form": "^4.8.12",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
         "@mui/lab": "^5.0.0-alpha.85",
         "@mui/material": "^5.14.2",
         "@mui/x-data-grid": "^6.6.0",
-        "react-router-dom": "latest",
-        "react-router": "latest",
         "react-hook-form": "^7.30.0",
-        antd: "^5.0.5",
+        "react-router-dom": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "react-router": "latest",
       }}
       startRoute="/products"
       files={{
         "/App.tsx": {
           code: AppTsxCode,
           active: true,
+        },
+        "/pages/products/index.tsx": {
+          code: ProductsTsxCode,
         },
         "/pages/products/list.tsx": {
           code: ListTsxCode,
@@ -40,18 +43,59 @@ export default function Usage() {
         "/pages/products/create.tsx": {
           code: CreateTsxCode,
         },
+        "/auth-provider.tsx": {
+          code: AuthProviderTsxCode,
+          hidden: true,
+        },
       }}
     />
   );
 }
 
-const AppTsxCode = /* jsx */ `
-import React from "react";
+const AuthProviderTsxCode = /* jsx */ `
+const authProvider = {
+    login: async ({ username, password }) => {
+      (window as any).authenticated = true;
+      return { success: true };
+    },
+    check: async () => {
+      // auto login at first time
+      if (typeof (window as any).authenticated === "undefined") {
+        (window as any).authenticated = true;
+      }
+      return { authenticated: Boolean((window as any).authenticated) };
+    },
+    logout: async () => {
+      (window as any).authenticated = false;
+      return { success: true };
+    },
+    register: async () => {
+      return { success: true };
+    },
+    forgotPassword: async () => {
+      return { success: true };
+    },
+    resetPassword: async () => {
+      return { success: true };
+    },
+    getIdentity: async () => ({ id: 1, name: "John Doe", avatar: "https://i.pravatar.cc/300"})
+};
 
-import { Refine } from "@refinedev/core";
+export default authProvider;
+`.trim();
+
+const ProductsTsxCode = /* jsx */ `
+export * from "./list";
+export * from "./show";
+export * from "./edit";
+export * from "./create";
+`.trim();
+
+const AppTsxCode = /* jsx */ `
+import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
 
 import {
   ThemedLayoutV2,
@@ -59,15 +103,15 @@ import {
   RefineThemes,
   notificationProvider,
   RefineSnackbarProvider,
+  AuthPage,
 } from "@refinedev/mui";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import { ThemeProvider } from "@mui/material/styles";
 
-import { ProductList } from "./pages/products/list.tsx";
-import { ProductShow } from "./pages/products/show.tsx";
-import { ProductEdit } from "./pages/products/edit.tsx";
-import { ProductCreate } from "./pages/products/create.tsx";
+import authProvider from "./auth-provider";
+
+import { ProductList, ProductShow, ProductEdit, ProductCreate } from "./pages/products";
 
 export default function App() {
   return (
@@ -84,6 +128,7 @@ export default function App() {
                     "https://api.fake-rest.refine.dev",
                 )}
                 notificationProvider={notificationProvider}
+                authProvider={authProvider}
                 resources={[
                     {
                         name: "products",
@@ -98,10 +143,10 @@ export default function App() {
                 ]}
                 options={{
                     syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
                 }}
             >
                 <Routes>
+                  <Route element={<Authenticated fallback={<Navigate to="/login" />}><Outlet /></Authenticated>}>
                     <Route
                         element={
                             <ThemedLayoutV2>
@@ -109,22 +154,36 @@ export default function App() {
                             </ThemedLayoutV2>
                         }
                     >
-                        <Route
-                            index
-                            element={
-                                <NavigateToResource resource="products" />
-                            }
-                        />
-
+                        <Route index element={<NavigateToResource resource="products" />} />
                         <Route path="/products" element={<Outlet />}>
                           <Route index element={<ProductList />} />
                           <Route path="create" element={<ProductCreate />} />
                           <Route path=":id" element={<ProductShow />} />
                           <Route path=":id/edit" element={<ProductEdit />} />
                         </Route>
-
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
+                  </Route>
+                  <Route element={<Authenticated fallback={<Outlet />}><NavigateToResource resource="products" /></Authenticated>}>
+                    <Route
+                      path="/login"
+                      element={(
+                        <AuthPage
+                          type="login"
+                          formProps={{
+                            defaultValues: {
+                              email: "demo@refine.dev",
+                              password: "demodemo",
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                    <Route path="/register" element={<AuthPage type="register" />} />
+                    <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                    <Route path="/reset-password" element={<AuthPage type="resetPassword" />} />
+                    <Route path="*" element={<ErrorComponent />} />
+                  </Route>
                 </Routes>
             </Refine>
         </RefineSnackbarProvider>
@@ -135,16 +194,14 @@ export default function App() {
 `.trim();
 
 const ListTsxCode = /* jsx */ `
+import React from "react";
 import { EditButton, List, ShowButton, useDataGrid } from "@refinedev/mui";
-
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-import React from "react";
-
-export const ProductList: React.FC = () => {
+export const ProductList = () => {
   const { dataGridProps } = useDataGrid();
 
-  const columns = React.useMemo<GridColDef<IPost>[]>(
+  const columns = React.useMemo<GridColDef<IProduct>[]>(
     () => [
         {
             field: "id",
@@ -179,6 +236,13 @@ export const ProductList: React.FC = () => {
     </List>
   );
 };
+
+interface IProduct {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
 `.trim();
 
 const ShowTsxCode = /* jsx */ `
@@ -193,10 +257,7 @@ import { useShow } from "@refinedev/core";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
-import React from "react";
-
-
-export const ProductShow: React.FC = () => {
+export const ProductShow = () => {
   const { queryResult } = useShow();
   const { data, isLoading } = queryResult;
 
@@ -228,21 +289,6 @@ export const ProductShow: React.FC = () => {
       </Stack>
     </Show>
   );
-
-  return (
-    <Show isLoading={isLoading}>
-      <Title level={5}>Id</Title>
-      <NumberField value={record?.id ?? ""} />
-      <Title level={5}>Name</Title>
-      <TextField value={record?.name} />
-      <Title level={5}>Material</Title>
-      <TextField value={record?.material} />
-      <Title level={5}>Description</Title>
-      <MarkdownField value={record?.description} />
-      <Title level={5}>Price</Title>
-      <NumberField value={record?.price ?? ""} />
-    </Show>
-  );
 };
 `.trim();
 
@@ -256,7 +302,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 
-export const ProductEdit: React.FC = () => {
+export const ProductEdit = () => {
   const {
     saveButtonProps,
     refineCore: { queryResult, autoSaveProps },
@@ -339,7 +385,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 
-export const ProductCreate: React.FC = () => {
+export const ProductCreate = () => {
   const {
     saveButtonProps,
     refineCore: { queryResult, autoSaveProps },

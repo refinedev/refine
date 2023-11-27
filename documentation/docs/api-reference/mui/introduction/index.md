@@ -2,41 +2,66 @@
 title: Introduction
 ---
 
-Refine provides an integration package for [Material UI](https://mui.com/material-ui/getting-started/) framework. This package provides a set of ready to use components and hooks that connects Refine with Material UI components.
+Refine provides an integration package for [Material UI](https://mui.com/material-ui/getting-started/) framework. This package provides a set of ready to use components and hooks that connects Refine with Material UI components. While Refine's integration offers a set of components and hooks, it is not a replacement for the Material UI packages, you will be able to use all the features of Material UI in the same way you would use it in a regular React application. Refine's integration only provides components and hooks for an easier usage of Material UI components in combination with Refine's features and functionalities.
 
-import Usage from "./usage.tsx";
+import Example from "./example.tsx";
 
-<Usage />
+<Example />
 
 ## Installation
 
 Installing the package is as simple as just by running the following command without any additional configuration:
 
 ```bash
-npm install @refinedev/mui
+npm install @refinedev/mui @refinedev/react-hook-form @emotion/react @emotion/styled @mui/lab @mui/material @mui/x-data-grid react-hook-form
 ```
+
+## Usage
+
+We'll wrap our app with the [`<ThemeProvider />`](https://mui.com/material-ui/customization/theming/#themeprovider) to make sure we have the theme available for our app, then we'll use the layout components to wrap them around our routes. Check out the examples below to see how to use Refine's Material UI integration.
+
+<Tabs wrapContent={false}>
+<TabItem value="react-router-dom" label="React Router Dom">
+
+import UsageReactRouterDom from "./usage-react-router-dom.tsx";
+
+<UsageReactRouterDom />
+
+</TabItem>
+<TabItem value="next-js" label="Next.js">
+
+import UsageNextJs from "./usage-next-js.tsx";
+
+<UsageNextJs />
+
+</TabItem>
+<TabItem value="remix" label="Remix">
+
+import UsageRemix from "./usage-remix.tsx";
+
+<UsageRemix />
+
+</TabItem>
+</Tabs>
 
 ## Tables
 
-Material UI offers a very powerful and customizable `<DataGrid />` component. Refine provides a seamless integration with the `<DataGrid />` component of Material UI from pagination to sorting and filtering via the [`useDataGrid`](/docs/api-reference/mui/hooks/useDataGrid/index.md) hook exported from the `@refinedev/mui` package. This `useDataGrid` hook extends the `useTable` hook of `@refinedev/core` package and provides a set of additional features and transformations to make it work with Material UI's `<DataGrid />` component without any additional configuration.
+Refine provides a seamless integration with the [`<DataGrid />`](https://mui.com/x/react-data-grid/) component of Material UI from pagination to sorting and filtering via the [`useDataGrid`](/docs/api-reference/mui/hooks/useDataGrid/index.md) hook exported from the `@refinedev/mui` package. This `useDataGrid` hook extends the [`useTable`](/docs/api-reference/core/hooks/useTable/) hook of `@refinedev/core` package and provides a set of additional features and transformations to make it work with Material UI's `<DataGrid />` component without any additional configuration.
 
-```tsx title="posts/list.tsx"
+```tsx title="pages/products/list.tsx"
 // highlight-next-line
 import { useDataGrid } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-export const PostList: FC = () => {
+const columns: GridColDef<IProduct>[] = [
+  { field: "id", headerName: "ID", type: "number", width: 50 },
+  { field: "name", headerName: "Name", minWidth: 200, flex: 1 },
+  { field: "price", headerName: "Price", minWidth: 300, flex: 1 },
+];
+
+export const ProductList: FC = () => {
   // highlight-next-line
   const { dataGridProps } = useDataGrid();
-
-  const columns = React.useMemo<GridColDef<IPost>[]>(
-    () => [
-      { field: "id", headerName: "ID", type: "number", width: 50 },
-      { field: "title", headerName: "title", minWidth: 200, flex: 1 },
-      { field: "content", headerName: "Content", minWidth: 300, flex: 1 },
-    ],
-    [],
-  );
 
   return (
     <List>
@@ -45,100 +70,91 @@ export const PostList: FC = () => {
     </List>
   );
 };
+
+interface IProduct {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
 ```
 
 ## Forms
 
-Material UI offers form elements yet it does not provide a form management solution. To have a complete solution, Refine recommends using `@refinedev/react-hook-form` package which is built on top of Refine's [`useForm`](/docs/api-reference/core/hooks/useForm.md) hook and React Hook Form's [`useForm`](/docs/packages/documentation/react-hook-form/useForm.md) hook.
+Material UI offers form elements yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/documentation/react-hook-form/useForm.md) package which is built on top of Refine's [`useForm`](/docs/api-reference/core/hooks/useForm.md) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
 
 Refine's documentations and examples of Material UI uses `@refinedev/react-hook-form` package for form management but you have the option to use any form management solution you want.
 
-```tsx title="posts/create.tsx"
+```tsx title="pages/products/create.tsx"
 import { useForm } from "@refinedev/react-hook-form";
-import { Create, useAutoComplete } from "@refinedev/mui";
-import Autocomplete from "@mui/material/Autocomplete";
+import { Create } from "@refinedev/mui";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
-import { Controller } from "react-hook-form";
-
-export const PostCreate: FC = () => {
+export const ProductCreate: FC = () => {
   const {
     saveButtonProps,
     refineCore: { queryResult, autoSaveProps },
     register,
     control,
     formState: { errors },
-  } = useForm();
-
-  const { autocompleteProps } = useAutocomplete({
-    resource: "categories",
-  });
+  } = useForm<IProduct>();
 
   return (
     <Create saveButtonProps={saveButtonProps}>
       <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
         <TextField
-          id="title"
-          {...register("title", {
+          id="name"
+          {...register("name", {
             required: "This field is required",
           })}
-          error={!!errors.title}
-          helperText={errors.title?.message}
-          margin="normal"
-          fullWidth
-          label="Title"
-          name="title"
-          autoFocus
+          error={!!errors.name}
+          helperText={errors.name?.message}
+          label="Name"
+          name="name"
         />
-        <Controller
-          control={control}
-          name="category"
-          rules={{ required: "This field is required" }}
-          defaultValue={null as any}
-          render={({ field }) => (
-            <Autocomplete<ICategory>
-              id="category"
-              {...autocompleteProps}
-              {...field}
-              onChange={(_, value) => {
-                field.onChange(value);
-              }}
-              getOptionLabel={(item) => {
-                return autocompleteProps?.options?.find((p) => p?.id?.toString() === item?.id?.toString())?.title ?? "";
-              }}
-              isOptionEqualToValue={(option, value) =>
-                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
-              }
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Category"
-                  margin="normal"
-                  variant="outlined"
-                  error={!!errors.category}
-                  helperText={errors.category?.message}
-                  required
-                />
-              )}
-            />
-          )}
+        <TextField
+          id="price"
+          {...register("price", {
+            required: "This field is required",
+          })}
+          error={!!errors.price}
+          helperText={errors.price?.message}
+          label="Price"
+          name="price"
+        />
+        <TextField
+          id="description"
+          {...register("description", {
+            required: "This field is required",
+          })}
+          error={!!errors.description}
+          helperText={errors.description?.message}
+          label="Description"
+          name="description"
         />
       </Box>
     </Create>
   );
 };
+
+interface IProduct {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
 ```
 
-`@refinedev/mui` also provides `useAutocomplete` hook which can be used to implement autocomplete fields with relational data. This hook leverages the `useSelect` hook from the `@refinedev/core` package.
+`@refinedev/mui` also provides [`useAutocomplete`](/docs/api-reference/mui/hooks/useAutocomplete/) hook which can be used to implement autocomplete fields with relational data. This hook leverages the [`useSelect`](/docs/api-reference/core/hooks/useSelect/) hook from the `@refinedev/core` package.
 
-Additional hooks of `@refinedev/react-hook-form` such as `useStepsForm` and `useModalForm` can also be used together with Refine's Material UI integration with ease.
+Additional hooks of `@refinedev/react-hook-form` such as [`useStepsForm`](/docs/packages/documentation/react-hook-form/useStepsForm/) and [`useModalForm`](/docs/packages/documentation/react-hook-form/useModalForm/) can also be used together with Refine's Material UI integration with ease.
 
 ## Notifications
 
-Material UI has its own notification elements but lacks the notification management solution. As [recommended by the Material UI's documentation](https://mui.com/material-ui/react-snackbar/#notistack); Refine's integration provides a notification provider which uses `notistack` package under the hood. This integration is provided by the `notificationProvider` exported from the `@refinedev/mui` package which can be directly used in the `notificationProvider` prop of the `<Refine>` component.
+Material UI has its own notification elements but lacks the notification management solution. As [recommended by the Material UI's documentation](https://mui.com/material-ui/react-snackbar/#notistack); Refine's integration provides a notification provider which uses `notistack` package under the hood. This integration is provided by the `notificationProvider` exported from the `@refinedev/mui` package which can be directly used in the [`notificationProvider`](/docs/api-reference/core/components/refine-config/#notificationprovider) prop of the `<Refine>` component.
 
-```tsx title="App.tsx"
+```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
 import { notificationProvider, RefineSnackbarProvider } from "@refinedev/antd";
 
@@ -152,76 +168,82 @@ const App = () => {
 };
 ```
 
+:::tip
+Usage of `<RefineSnackbarProvider />` is required to manage notifications through `notistack`. The component itself is a wrapper of the [`SnackbarProvider`](https://notistack.com/api-reference#snackbarprovider-props) component of `notistack` package.
+:::
+
 ## Predefined Components and Views
 
 ### Layouts, Menus and Breadcrumbs
 
 Refine provides Layout components that can be used to implement a layout for the application. These components are crafted using Material UI's components and includes Refine's features and functionalities such as navigation menus, headers, authentication, authorization and more.
 
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2 } from "@refinedev/mui";
-import { Outlet, Routes, Route } from "react-router-dom";
+<Tabs wrapContent={false}>
+<TabItem value="react-router-dom" label="React Router Dom">
 
-const App = () => {
-  return (
-    <Refine
-    // ...
-    >
-      <Routes>
-        <Route
-          element={
-            // highlight-start
-            <ThemedLayoutV2>
-              <Outlet />
-            </ThemedLayoutV2>
-            // highlight-end
-          }
-        >
-          <Route path="/posts" element={<PostList />} />
-          {/* ... */}
-        </Route>
-      </Routes>
-    </Refine>
-  );
-};
-```
+import LayoutReactRouterDom from "./layout-react-router-dom.tsx";
 
-`<ThemedLayoutV2>` component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+<LayoutReactRouterDom />
 
-Additionally, Refine also provides a `<Breadcrumb />` component that uses the Material UI's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Material UI package automatically.
+</TabItem>
+<TabItem value="next-js" label="Next.js">
+
+import LayoutNextJs from "./layout-next-js.tsx";
+
+<LayoutNextJs />
+
+</TabItem>
+<TabItem value="remix" label="Remix">
+
+import LayoutRemix from "./layout-remix.tsx";
+
+<LayoutRemix />
+
+</TabItem>
+</Tabs>
+
+[`<ThemedLayoutV2>`](/docs/api-reference/mui/components/mui-themed-layout/) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+
+Additionally, Refine also provides a [`<Breadcrumb />`](https://refine.dev/docs/api-reference/mui/components/mui-breadcrumb/) component that uses the Material UI's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Material UI package automatically.
 
 ### Buttons
 
-Refine's Material UI integration offers variety of buttons that are built above the `<Button>` component of Material UI and includes many logical functionalities such as authorization checks, confirmation dialogs, loading states, invalidation, navigation and more. You can use buttons such as `<EditButton>` or `<ListButton>` etc. in your views to provide navigation for the related routes or `<DeleteButton>` and `<SaveButton>` etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
+Refine's Material UI integration offers variety of buttons that are built above the [`<Button>`](https://mui.com/material-ui/react-button/) component of Material UI and includes many logical functionalities such as;
+
+- Authorization checks
+- Confirmation dialogs
+- Loading states
+- Invalidation
+- Navigation
+- Form actions
+- Import/Export and more.
+
+You can use buttons such as [`<EditButton>`](/docs/api-reference/mui/components/buttons/edit-button/) or [`<ListButton>`](/docs/api-reference/mui/components/buttons/list-button/) etc. in your views to provide navigation for the related routes or [`<DeleteButton>`](/docs/api-reference/mui/components/buttons/delete-button/) and [`<SaveButton>`](/docs/api-reference/mui/components/buttons/save-button/) etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
 
 An example usage of the `<EditButton />` component is as follows:
 
-```tsx title="posts/list.tsx"
+```tsx title="pages/products/list.tsx"
 import { useDataGrid, EditButton } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-export const PostList: FC = () => {
-  const { dataGridProps } = useDataGrid();
+const columns: GridColDef[] = [
+  { field: "id", headerName: "ID", type: "number", width: 50 },
+  { field: "name", headerName: "Name", minWidth: 200, flex: 1 },
+  { field: "price", headerName: "Price", minWidth: 300, flex: 1 },
+  {
+    field: "actions",
+    headerName: "Actions",
+    renderCell: function render({ row }) {
+        return (
+          {/* highlight-next-line */}
+          <EditButton hideText recordItemId={row.id} />
+        );
+    },
+  }
+]
 
-  const columns = React.useMemo<GridColDef<IPost>[]>(
-    () => [
-      { field: "id", headerName: "ID", type: "number", width: 50 },
-      { field: "title", headerName: "title", minWidth: 200, flex: 1 },
-      { field: "content", headerName: "Content", minWidth: 300, flex: 1 },
-      {
-        field: "actions",
-        headerName: "Actions",
-        renderCell: function render({ row }) {
-            return (
-              {/* highlight-next-line */}
-              <EditButton hideText recordItemId={row.id} />
-            );
-        },
-      }
-    ],
-    [],
-  );
+export const ProductList: FC = () => {
+  const { dataGridProps } = useDataGrid();
 
   return (
     <List>
@@ -233,62 +255,33 @@ export const PostList: FC = () => {
 
 The list of provided buttons are:
 
-- `<CreateButton />`
-- `<EditButton />`
-- `<ListButton />`
-- `<ShowButton />`
-- `<CloneButton />`
-- `<DeleteButton />`
-- `<SaveButton />`
-- `<RefreshButton />`
-- `<ImportButton />`
-- `<ExportButton />`
+- [`<CreateButton />`](/docs/api-reference/mui/components/buttons/create-button/)
+- [`<EditButton />`](/docs/api-reference/mui/components/buttons/edit-button/)
+- [`<ListButton />`](/docs/api-reference/mui/components/buttons/list-button/)
+- [`<ShowButton />`](/docs/api-reference/mui/components/buttons/show-button/)
+- [`<CloneButton />`](/docs/api-reference/mui/components/buttons/clone-button/)
+- [`<DeleteButton />`](/docs/api-reference/mui/components/buttons/delete-button/)
+- [`<SaveButton />`](/docs/api-reference/mui/components/buttons/save-button/)
+- [`<RefreshButton />`](/docs/api-reference/mui/components/buttons/refresh-button/)
+- [`<ImportButton />`](/docs/api-reference/mui/components/buttons/import-button/)
+- [`<ExportButton />`](/docs/api-reference/mui/components/buttons/export-button/)
 
 Many of these buttons are already used in the views provided by Refine's Material UI integration. If you're using the basic view elements provided by Refine, you will have the appropriate buttons placed in your application out of the box.
 
 ### Views
 
-Views are designed as wrappers around the content of the pages in the application. They are designed to be used within the layouts and provide basic functionalities such as titles based on the resource, breadcrumbs, related actions and authorization checks. Refine's Material UI integration uses components such as `<Card />` and `<Box />` to provide these views and provides customization options by passing related props to these components.
-
-An example usage of the `<Show />` component is as follows:
-
-```tsx title="posts/show.tsx"
-import { useShow } from "@refinedev/core";
-import { Show, TextField } from "@refinedev/mui";
-import Typography from "@mui/material/Typography";
-
-export const PostShow: FC = () => {
-  // highlight-next-line
-  const { queryResult } = useShow<IPost>();
-
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
-
-  return (
-    // highlight-start
-    // This will add breadcrumbs, page title and edit, list, refresh and delete buttons to the page
-    <Show isLoading={isLoading}>
-      <Typography variant="body1" fontWeight="bold">
-        Id
-      </Typography>
-      <TextField value={record?.id} />
-
-      <Typography variant="body1" fontWeight="bold">
-        Title
-      </Typography>
-      <TextField value={record?.title} />
-    </Show>
-    // highlight-end
-  );
-};
-```
+Views are designed as wrappers around the content of the pages in the application. They are designed to be used within the layouts and provide basic functionalities such as titles based on the resource, breadcrumbs, related actions and authorization checks. Refine's Material UI integration uses components such as [`<Card />`](https://mui.com/material-ui/react-card/) and [`<Box />`](https://mui.com/material-ui/react-box/) to provide these views and provides customization options by passing related props to these components.
 
 The list of provided views are:
 
-- `<List />`
-- `<Show />`
-- `<Edit />`
-- `<Create />`
+- [`<List />`](/docs/api-reference/mui/components/basic-views/create/)
+- [`<Show />`](/docs/api-reference/mui/components/basic-views/show/)
+- [`<Edit />`](/docs/api-reference/mui/components/basic-views/edit/)
+- [`<Create />`](/docs/api-reference/mui/components/basic-views/create/)
+
+import BasicViews from "./basic-views.tsx";
+
+<BasicViews />
 
 ### Fields
 
@@ -296,70 +289,60 @@ Refine's Material UI also provides field components to render values with approp
 
 The list of provided field components are:
 
-- `<BooleanField />`
-- `<DateField />`
-- `<EmailField />`
-- `<FileField />`
-- `<MarkdownField />`
-- `<NumberField />`
-- `<TagField />`
-- `<TextField />`
-- `<UrlField />`
+- [`<BooleanField />`](/docs/api-reference/mui/components/fields/boolean/)
+- [`<DateField />`](/docs/api-reference/mui/components/fields/date/)
+- [`<EmailField />`](/docs/api-reference/mui/components/fields/email/)
+- [`<FileField />`](/docs/api-reference/mui/components/fields/file/)
+- [`<MarkdownField />`](/docs/api-reference/mui/components/fields/markdown/)
+- [`<NumberField />`](/docs/api-reference/mui/components/fields/number/)
+- [`<TagField />`](/docs/api-reference/mui/components/fields/tag/)
+- [`<TextField />`](/docs/api-reference/mui/components/fields/text/)
+- [`<UrlField />`](/docs/api-reference/mui/components/fields/url/)
 
-```tsx title="posts/show.tsx"
+```tsx title="pages/products/show.tsx"
 import { useShow } from "@refinedev/core";
-import { Show, TextField } from "@refinedev/mui";
+import { Show, TextField, NumberField } from "@refinedev/mui";
 import Typography from "@mui/material/Typography";
 
-export const PostShow: FC = () => {
-  const { queryResult } = useShow<IPost>();
+export const ProductShow = () => {
+  const { queryResult } = useShow<IProduct>();
   const { data, isLoading } = queryResult;
   const record = data?.data;
 
   return (
-    // highlight-start
-    // This will add breadcrumbs, page title and edit, list, refresh and delete buttons to the page
     <Show isLoading={isLoading}>
       <Typography variant="body1" fontWeight="bold">
         Id
       </Typography>
+      {/* highlight-next-line */}
       <TextField value={record?.id} />
 
       <Typography variant="body1" fontWeight="bold">
         Title
       </Typography>
+      {/* highlight-next-line */}
       <TextField value={record?.title} />
+
+      <Typography variant="body1" fontWeight="bold">
+        Title
+      </Typography>
+      {/* highlight-next-line */}
+      <NumberField value={record?.price} options={{ style: "currency", currency: "USD" }} />
     </Show>
-    // highlight-end
   );
 };
+
+interface IProduct {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
 ```
 
 ### Auth Pages
 
-Auth pages are designed to be used as the pages of the authentication flow of the application. They offer an out of the box solution for the login, register, forgot password and reset password pages by leveraging the authentication hooks of Refine. Auth page components are built on top of basic Material UI components such as `<TextField>` and `<Card>` etc.
-
-An example usage of the `<AuthPage />` component is as follows:
-
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-import { AuthPage } from "@refinedev/mui";
-import { Outlet, Routes, Route } from "react-router-dom";
-
-const App = () => {
-  return (
-    <Refine
-    // ...
-    >
-      <Routes>
-        {/* highlight-next-line */}
-        <Route path="/login" element={<AuthPage type="login" />} />
-        {/* ... */}
-      </Routes>
-    </Refine>
-  );
-};
-```
+Auth pages are designed to be used as the pages of the authentication flow of the application. They offer an out of the box solution for the login, register, forgot password and reset password pages by leveraging the authentication hooks of Refine. Auth page components are built on top of basic Material UI components such as [`<TextField>`](https://mui.com/material-ui/react-text-field/) and [`<Card>`](https://mui.com/material-ui/react-card/) etc.
 
 The list of types of auth pages that are available in the UI integrations are:
 
@@ -368,29 +351,23 @@ The list of types of auth pages that are available in the UI integrations are:
 - `<AuthPage type="forgot-password" />`
 - `<AuthPage type="reset-password" />`
 
+An example usage of the [`<AuthPage />`](/docs/api-reference/mui/components/mui-auth-page/) component is as follows:
+
+import AuthPage from "./auth-page.tsx";
+
+<AuthPage />
+
 ### Error Components
 
 Refine's Material UI integration also provides an `<ErrorComponent />` component that you can use to render a 404 page in your app. While these components does not offer much functionality, they are provided as an easy way to render an error page with a consistent design language.
 
 An example usage of the `<ErrorComponent />` component is as follows:
 
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
+```tsx title="pages/404.tsx"
 import { ErrorComponent } from "@refinedev/mui";
-import { Outlet, Routes, Route } from "react-router-dom";
 
-const App = () => {
-  return (
-    <Refine
-    // ...
-    >
-      <Routes>
-        {/* ...rest of your routes here... */}
-        {/* highlight-next-line */}
-        <Route path="*" element={<ErrorComponent />} />
-      </Routes>
-    </Refine>
-  );
+const NotFoundPage = () => {
+  return <ErrorComponent />;
 };
 ```
 
@@ -398,24 +375,16 @@ const App = () => {
 
 Since Refine offers application level components such as layout, sidebar and header and page level components for each action, it is important to have it working with the styling of Material UI. All components and providers exported from the `@refinedev/mui` package will use the current theme of Material UI without any additional configuration.
 
-Additionally, Refine also provides a set of carefully crafted themes for Material UI which outputs a nice UI with Refine's components with light and dark theme support. These themes are exported as `RefineThemes` object from the `@refinedev/mui` package and can be used in `<ThemeProvider>` component of Material UI.
+Additionally, Refine also provides a set of carefully crafted themes for Material UI which outputs a nice UI with Refine's components with light and dark theme support. These themes are exported as `RefineThemes` object from the `@refinedev/mui` package and can be used in [`<ThemeProvider>`](https://mui.com/material-ui/customization/theming/#theme-provider) component of Material UI.
 
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-import { ThemeProvider } from "@mui/material/styles";
+import Theming from "./theming.tsx";
 
-import { RefineThemes } from "@refinedev/mui";
+<Theming />
 
-const App = () => {
-  return (
-    // highlight-next-line
-    <ThemeProvider theme={RefineThemes.Blue}>
-      <Refine
-      // ...
-      >
-        {/* ... */}
-      </Refine>
-    </ThemeProvider>
-  );
-};
-```
+To learn more about the theme configuration of Material UI, please refer to the [official documentation](https://mui.com/material-ui/customization/theming/).
+
+## Inferencer
+
+You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports the `MuiListInferencer`, `MuiShowInferencer`, `MuiEditInferencer`, `MuiCreateInferencer` components and finally the `MuiInferencer` component, which combines all in one place.
+
+To learn more about Inferencer, please refer to the [Material UI Inferencer](/docs/api-reference/mui/components/inferencer/) docs.
