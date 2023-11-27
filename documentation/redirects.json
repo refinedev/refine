@@ -366,7 +366,7 @@
     },
     {
       "from": "/docs/packages/react-table/",
-      "to": "/docs/packages/documentation/react-table/"
+      "to": "/docs/packages/documentation/tanstack-table/introduction"
     },
     {
       "from": "/docs/ui-frameworks/antd/components/antd-auth-page/",
@@ -848,6 +848,18 @@
     {
       "from": "/docs/api-reference/general-concepts/",
       "to": "/docs/guides-concepts/general-concepts"
+    },
+    {
+      "from": "/docs/examples/table/react-table/advanced-react-table",
+      "to": "/docs/examples/table/tanstack-table/advanced-tanstack-table"
+    },
+    {
+      "from": "/docs/examples/table/react-table/react-table",
+      "to": "/docs/examples/table/tanstack-table/basic-tanstack-table"
+    },
+    {
+      "from": "/docs/packages/documentation/react-table",
+      "to": "/docs/packages/documentation/tanstack-table/introduction"
     }
   ]
 }
