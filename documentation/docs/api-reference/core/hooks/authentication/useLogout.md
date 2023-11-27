@@ -12,7 +12,7 @@ This hook can only be used if the `authProvider` is provided.
 
 :::
 
-`useLogout` calls the `logout` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
+`useLogout` calls the `logout` method from the [`authProvider`](/docs/api-reference/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being `isSuccess` and `isError`.
 

@@ -35,6 +35,7 @@ module.exports = {
                 "guides-concepts/authorization/index",
                 "guides-concepts/ui-libraries/index",
                 "guides-concepts/realtime/index",
+                "guides-concepts/audit-logs/index",
                 {
                     type: "category",
                     label: "Examples",
@@ -521,7 +522,7 @@ module.exports = {
                             type: "category",
                             label: "Providers",
                             items: [
-                                "api-reference/core/providers/accessControl-provider",
+                                "api-reference/core/providers/access-control-provider",
                                 "api-reference/core/providers/auth-provider",
                                 "api-reference/core/providers/audit-log-provider",
                                 "api-reference/core/providers/data-provider",

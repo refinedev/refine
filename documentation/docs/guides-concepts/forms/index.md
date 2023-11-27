@@ -6,7 +6,7 @@ In almost every user facing application, forms are a necessity. They are the pri
 
 ## Handling Data
 
-`useForm` hook orchestrates Refine's [`useOne`](/api-reference/core/hooks/data/useOne/index.md), [`useUpdate`](/api-reference/core/hooks/data/useUpdate/index.md) and [`useCreate`](/api-reference/core/hooks/data/useCreate/index.md) hooks internally to provide a single interface for form handling.
+`useForm` hook orchestrates Refine's [`useOne`](/docs/api-reference/core/hooks/data/useOne/index.md), [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/index.md) and [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/index.md) hooks internally to provide a single interface for form handling.
 
 While editing or cloning a record, `useOne` will be used to fetch the record to provide values for the form. When creating a new record, `useCreate` will be used for the mutation. When updating a record, `useUpdate` will be used for the mutation.
 
@@ -55,7 +55,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out Core's `useForm` reference page to learn more about the usage and see it in action.](/api-reference/core/hooks/useForm.md)
+[Check out Core's `useForm` reference page to learn more about the usage and see it in action.](/docs/api-reference/core/hooks/useForm.md)
 
 </TabItem>
 <TabItem value="hook-form" label="React Hook Form" default>
@@ -125,7 +125,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out Ant Design Form's `useForm` reference page to learn more about the usage and see it in action.](/api-reference/antd/hooks/form/useForm.md)
+[Check out Ant Design Form's `useForm` reference page to learn more about the usage and see it in action.](/docs/api-reference/antd/hooks/form/useForm.md)
 
 </TabItem>
 <TabItem value="mantine" label="Mantine">
@@ -164,7 +164,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out Mantine Form's `useForm` reference page to learn more about the usage and see it in action.](/api-reference/mantine/hooks/form/useForm.md)
+[Check out Mantine Form's `useForm` reference page to learn more about the usage and see it in action.](/docs/api-reference/mantine/hooks/form/useForm.md)
 
 </TabItem>
 <TabItem value="material-ui" label={(<span><span className="block">Material UI</span><small className="block">React Hook Form</small></span>)}>
@@ -269,7 +269,7 @@ const EditPage = () => {
 
 If a router integration is made, in most of the cases this enables Refine to infer the `resource`, `action` and `id` from the current route and provide them to `useForm` hook. In most of the cases, this will prevent the need of passing explicit `resource`, `action` and `id` props to the hooks including `useForm`.
 
-`useForm` also uses the router integration to redirect the user to the desired page after a successful mutation. By default, it's the list page of the resource but this can be customized by passing a `redirect` prop to the `useForm` hook. If you want to change the redirection behavior for all forms, you can use the `options.redirect` prop of the [`<Refine>` component](/api-reference/core/components/refine-config.md).
+`useForm` also uses the router integration to redirect the user to the desired page after a successful mutation. By default, it's the list page of the resource but this can be customized by passing a `redirect` prop to the `useForm` hook. If you want to change the redirection behavior for all forms, you can use the `options.redirect` prop of the [`<Refine>` component](/docs/api-reference/core/components/refine-config.md).
 
 ```tsx
 import { useForm } from "@refinedev/core";
@@ -331,7 +331,7 @@ If the mutation fails, the optimistic updates will be reverted and the error wil
 
 ### Default Mutation Mode
 
-All three modes have their own use cases and benefits, you'll be able to choose them individually for each form. If you want to specify a default mutation mode for all forms, you can use the `options.mutationMode` prop of the [`<Refine>` component](/api-reference/core/components/refine-config.md).
+All three modes have their own use cases and benefits, you'll be able to choose them individually for each form. If you want to specify a default mutation mode for all forms, you can use the `options.mutationMode` prop of the [`<Refine>` component](/docs/api-reference/core/components/refine-config.md).
 
 ```tsx
 <Refine
@@ -369,7 +369,7 @@ const { formProps } = useForm({
 });
 ```
 
-If you want to disable the invalidation completely and handle it manually, you can pass `false` to the `invalidates` prop. Then, you can use the [`useInvalidate`](/api-reference/core/hooks/invalidate/useInvalidate.md) hook to invalidate the queries manually based on your conditions.
+If you want to disable the invalidation completely and handle it manually, you can pass `false` to the `invalidates` prop. Then, you can use the [`useInvalidate`](/docs/api-reference/core/hooks/invalidate/useInvalidate.md) hook to invalidate the queries manually based on your conditions.
 
 ```tsx
 import { useInvalidate } from "@refinedev/core";
@@ -713,7 +713,7 @@ Check out the [`<Create />`](/docs/api-reference/chakra-ui/components/basic-view
 </TabItem>
 <TabItem value="antd" label="Ant Design">
 
-To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/antd`](/api-reference/antd/hooks/form/useForm.md#how-can-i-change-the-form-data-before-submitting-it-to-the-api) reference page.
+To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/antd`](/docs/api-reference/antd/hooks/form/useForm.md#how-can-i-change-the-form-data-before-submitting-it-to-the-api) reference page.
 
 ```tsx title="edit.tsx"
 import { useForm, Create } from "@refinedev/antd";
@@ -748,7 +748,7 @@ const EditPage = () => {
 </TabItem>
 <TabItem value="mantine" label="Mantine">
 
-To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/mantine`](/api-reference/mantine/hooks/form/useForm.md#how-can-i-change-the-form-data-before-submitting-it-to-the-api) reference page.
+To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/mantine`](/docs/api-reference/mantine/hooks/form/useForm.md#how-can-i-change-the-form-data-before-submitting-it-to-the-api) reference page.
 
 ```tsx title="edit.tsx"
 import { useForm, Create } from "@refinedev/mantine";
