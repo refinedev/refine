@@ -1,6 +1,6 @@
 ---
 title: A Complete guide to pnpm
-description: pnpm is an efficient, popular, open-source, MIT-licensed Node package manager.
+description: We'll explore pnpm, an efficient alternative to npm.
 slug: how-to-use-pnpm
 authors: joseph_mawa
 tags: [javascript, dev-tools]
