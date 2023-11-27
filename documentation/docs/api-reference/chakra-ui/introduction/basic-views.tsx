@@ -1,11 +1,11 @@
 import React from "react";
 import { Sandpack } from "@site/src/components/sandpack";
 
-export default function Usage() {
+export default function BasicViews() {
   return (
     <Sandpack
       showNavigator
-      previewOnly
+      initialPercentage={40}
       dependencies={{
         "@refinedev/chakra-ui": "^2.26.17",
         "@tabler/icons": "^1.119.0",
@@ -16,29 +16,32 @@ export default function Usage() {
         "@tanstack/react-table": "^8.2.6",
         "@refinedev/react-hook-form": "^4.8.12",
         "@chakra-ui/react": "^2.5.1",
-        react: "^18.0.0",
         "react-dom": "^18.0.0",
+        "react-router": "latest",
         "react-router-dom": "^6.8.1",
+        "react-hook-form": "^7.30.0",
       }}
-      startRoute="/posts"
+      startRoute="/products"
       files={{
         "/App.tsx": {
           code: AppTsxCode,
+          hidden: true,
+        },
+        "/pages/products/index.tsx": {
+          code: ProductsTsxCode,
+          hidden: true,
+        },
+        "/pages/products/list.tsx": {
+          code: ListTsxCode,
           active: true,
         },
-        "/pages/index.tsx": {
-          code: PagesIndexTsxCode,
-        },
-        "/pages/posts/list.tsx": {
-          code: ListTsxCode,
-        },
-        "/pages/posts/show.tsx": {
+        "/pages/products/show.tsx": {
           code: ShowTsxCode,
         },
-        "/pages/posts/edit.tsx": {
+        "/pages/products/edit.tsx": {
           code: EditTsxCode,
         },
-        "/pages/posts/create.tsx": {
+        "/pages/products/create.tsx": {
           code: CreateTsxCode,
         },
         "/components/pagination/index.tsx": {
@@ -49,82 +52,15 @@ export default function Usage() {
   );
 }
 
-const AppTsxCode = /* jsx */ `
-import { Refine } from "@refinedev/core";
-import {
-    ErrorComponent,
-    ThemedLayoutV2,
-    RefineThemes,
-    notificationProvider,
-} from "@refinedev/chakra-ui";
-import { ChakraProvider } from "@chakra-ui/react";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    NavigateToResource,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-import { PostList, PostCreate, PostEdit, PostShow } from "./pages";
-
-const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ChakraProvider theme={RefineThemes.Blue}>
-                <Refine
-                    notificationProvider={notificationProvider}
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            meta: {
-                                canDelete: true,
-                            },
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="posts" />
-                                }
-                            />
-
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
-
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ChakraProvider>
-        </BrowserRouter>
-    );
-};
-
-export default App;
+const ProductsTsxCode = /* jsx */ `
+export * from "./list";
+export * from "./show";
+export * from "./edit";
+export * from "./create";
 `.trim();
 
 const PaginationTsxCode = /* jsx */ `
-import { FC } from "react";
+import React from "react";
 import { HStack, Button, Box } from "@chakra-ui/react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
 import { usePagination } from "@refinedev/chakra-ui";
@@ -137,7 +73,7 @@ type PaginationProps = {
     setCurrent: (page: number) => void;
 };
 
-export const Pagination: FC<PaginationProps> = ({
+export const Pagination: React.FC<PaginationProps> = ({
     current,
     pageCount,
     setCurrent,
@@ -190,11 +126,71 @@ export const Pagination: FC<PaginationProps> = ({
 };
 `;
 
-const PagesIndexTsxCode = /* jsx */ `
-export * from "./posts/list.tsx";
-export * from "./posts/show.tsx";
-export * from "./posts/edit.tsx";
-export * from "./posts/create.tsx";
+const AppTsxCode = /* jsx */ `
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+
+import {
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineThemes,
+  notificationProvider,
+} from "@refinedev/chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
+
+import { ProductList, ProductShow, ProductEdit, ProductCreate } from "./pages/products";
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <ChakraProvider theme={RefineThemes.Blue}>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider(
+                "https://api.fake-rest.refine.dev",
+            )}
+            notificationProvider={notificationProvider}
+            resources={[
+                {
+                    name: "products",
+                    list: "/products",
+                    show: "/products/:id",
+                    edit: "/products/:id/edit",
+                    create: "/products/create",
+                    meta: {
+                        canDelete: true,
+                    },
+                },
+            ]}
+            options={{
+                syncWithLocation: true,
+            }}
+        >
+            <Routes>
+                <Route
+                    element={
+                        <ThemedLayoutV2>
+                            <Outlet />
+                        </ThemedLayoutV2>
+                    }
+                >
+                    <Route index element={<NavigateToResource resource="products" />} />
+                    <Route path="/products" element={<Outlet />}>
+                      <Route index element={<ProductList />} />
+                      <Route path="create" element={<ProductCreate />} />
+                      <Route path=":id" element={<ProductShow />} />
+                      <Route path=":id/edit" element={<ProductEdit />} />
+                    </Route>
+                    <Route path="*" element={<ErrorComponent />} />
+                </Route>
+            </Routes>
+        </Refine>
+      </ChakraProvider>
+    </BrowserRouter>
+  );
+};
 `.trim();
 
 const ListTsxCode = /* jsx */ `
@@ -220,12 +216,11 @@ import {
     TableContainer,
     HStack,
     Text,
-    Select,
 } from "@chakra-ui/react";
 
 import { Pagination } from "../../components/pagination";
 
-export const PostList: React.FC = () => {
+export const ProductList = () => {
     const columns = React.useMemo(
         () => [
             {
@@ -234,17 +229,17 @@ export const PostList: React.FC = () => {
                 accessorKey: "id",
             },
             {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
+                id: "name",
+                header: "Name",
+                accessorKey: "name",
                 meta: {
                     filterOperator: "contains",
                 },
             },
             {
-                id: "status",
-                header: "Status",
-                accessorKey: "status",
+                id: "price",
+                header: "Price",
+                accessorKey: "price",
             },
             {
                 id: "actions",
@@ -348,71 +343,59 @@ export const PostList: React.FC = () => {
 `.trim();
 
 const ShowTsxCode = /* jsx */ `
-import { useShow, useOne } from "@refinedev/core";
-import { Show, MarkdownField } from "@refinedev/chakra-ui";
+import { useShow } from "@refinedev/core";
+import { Show, TextField, NumberField, MarkdownField } from "@refinedev/chakra-ui";
 
-import { Heading, Text, Spacer } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 
-export const PostShow: React.FC = () => {
+export const ProductShow = () => {
     const { queryResult } = useShow();
     const { data, isLoading } = queryResult;
     const record = data?.data;
-
-    const { data: categoryData } = useOne({
-        resource: "categories",
-        id: record?.category.id || "",
-        queryOptions: {
-            enabled: !!record?.category.id,
-        },
-    });
 
     return (
         <Show isLoading={isLoading}>
             <Heading as="h5" size="sm">
                 Id
             </Heading>
-            <Text mt={2}>{record?.id}</Text>
+            <TextField value={record?.id} />
 
             <Heading as="h5" size="sm" mt={4}>
-                Title
+                Name
             </Heading>
-            <Text mt={2}>{record?.title}</Text>
+            <TextField value={record?.name} />
 
             <Heading as="h5" size="sm" mt={4}>
-                Status
+                Material
             </Heading>
-            <Text mt={2}>{record?.status}</Text>
+            <TextField value={record?.material} />
 
             <Heading as="h5" size="sm" mt={4}>
-                Category
+                Description
             </Heading>
-            <Text mt={2}>{categoryData?.data?.title}</Text>
+            <MarkdownField value={record?.description} />
 
             <Heading as="h5" size="sm" mt={4}>
-                Content
+                Price
             </Heading>
-            <Spacer mt={2} />
-            <MarkdownField value={record?.content} />
+            <NumberField value={record?.price}  options={{ style: "currency", currency: "USD" }} />
         </Show>
     );
 };
 `.trim();
 
 const EditTsxCode = /* jsx */ `
-import { useEffect } from "react";
 import { Edit } from "@refinedev/chakra-ui";
 import {
     FormControl,
     FormErrorMessage,
     FormLabel,
     Input,
-    Select,
     Textarea,
 } from "@chakra-ui/react";
-import { useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
-export const PostEdit = () => {
+export const ProductEdit = () => {
     const {
         refineCore: { formLoading, queryResult, autoSaveProps },
         saveButtonProps,
@@ -427,81 +410,55 @@ export const PostEdit = () => {
         },
     });
 
-    const { options } = useSelect({
-        resource: "categories",
-
-        defaultValue: queryResult?.data?.data.category.id,
-        queryOptions: { enabled: !!queryResult?.data?.data.category.id },
-    });
-
-    useEffect(() => {
-        setValue("category.id", queryResult?.data?.data?.category?.id || 1);
-    }, [options]);
-
     return (
         <Edit
             isLoading={formLoading}
             saveButtonProps={saveButtonProps}
             autoSaveProps={autoSaveProps}
         >
-            <FormControl mb="3" isInvalid={!!errors?.title}>
-                <FormLabel>Title</FormLabel>
+            <FormControl mb="3" isInvalid={!!errors?.name}>
+                <FormLabel>Name</FormLabel>
                 <Input
-                    id="title"
+                    id="name"
                     type="text"
-                    {...register("title", { required: "Title is required" })}
+                    {...register("name", { required: "Name is required" })}
                 />
                 <FormErrorMessage>
-                    {\`$\{errors.title?.message}\`}
+                    {\`$\{errors.name?.message}\`}
                 </FormErrorMessage>
             </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.status}>
-                <FormLabel>Status</FormLabel>
-                <Select
-                    id="status"
-                    placeholder="Select Post Status"
-                    {...register("status", {
-                        required: "Status is required",
-                    })}
-                >
-                    <option>published</option>
-                    <option>draft</option>
-                    <option>rejected</option>
-                </Select>
+            <FormControl mb="3" isInvalid={!!errors?.material}>
+                <FormLabel>Material</FormLabel>
+                <Input
+                    id="material"
+                    type="text"
+                    {...register("material", { required: "Material is required" })}
+                />
                 <FormErrorMessage>
-                    {\`$\{errors.status?.message}\`}
+                    {\`$\{errors.material?.message}\`}
                 </FormErrorMessage>
             </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.categoryId}>
-                <FormLabel>Category</FormLabel>
-                <Select
-                    id="categoryId"
-                    placeholder="Select Category"
-                    {...register("category.id", {
-                        required: true,
-                    })}
-                >
-                    {options?.map((option) => (
-                        <option value={option.value} key={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </Select>
-                <FormErrorMessage>
-                    {\`$\{errors.categoryId?.message}\`}
-                </FormErrorMessage>
-            </FormControl>
-
-            <FormControl mb="3" isInvalid={!!errors?.content}>
-                <FormLabel>Content</FormLabel>
+            <FormControl mb="3" isInvalid={!!errors?.description}>
+                <FormLabel>Description</FormLabel>
                 <Textarea
-                    id="content"
-                    {...register("content", {
-                        required: "content is required",
+                    id="description"
+                    {...register("description", {
+                        required: "Description is required",
                     })}
                 />
                 <FormErrorMessage>
-                    {\`$\{errors.content?.message}\`}
+                    {\`$\{errors.description?.message}\`}
+                </FormErrorMessage>
+            </FormControl>
+            <FormControl mb="3" isInvalid={!!errors?.price}>
+                <FormLabel>Price</FormLabel>
+                <Input
+                    id="price"
+                    type="number"
+                    {...register("price", { required: "Price is required" })}
+                />
+                <FormErrorMessage>
+                    {\`$\{errors.price?.message}\`}
                 </FormErrorMessage>
             </FormControl>
         </Edit>
@@ -516,13 +473,11 @@ import {
     FormErrorMessage,
     FormLabel,
     Input,
-    Select,
     Textarea,
 } from "@chakra-ui/react";
-import { useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
-export const PostCreate = () => {
+export const ProductCreate = () => {
     const {
         refineCore: { formLoading },
         saveButtonProps,
@@ -530,70 +485,51 @@ export const PostCreate = () => {
         formState: { errors },
     } = useForm<IPost>();
 
-    const { options } = useSelect({
-        resource: "categories",
-    });
-
     return (
         <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <FormControl mb="3" isInvalid={!!errors?.title}>
-                <FormLabel>Title</FormLabel>
+            <FormControl mb="3" isInvalid={!!errors?.name}>
+                <FormLabel>Name</FormLabel>
                 <Input
-                    id="title"
+                    id="name"
                     type="text"
-                    {...register("title", { required: "Title is required" })}
+                    {...register("name", { required: "Name is required" })}
                 />
                 <FormErrorMessage>
-                    {\`$\{errors.title?.message}\`}
+                    {\`$\{errors.name?.message}\`}
                 </FormErrorMessage>
             </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.status}>
-                <FormLabel>Status</FormLabel>
-                <Select
-                    id="status"
-                    placeholder="Select Post Status"
-                    {...register("status", {
-                        required: "Status is required",
-                    })}
-                >
-                    <option>published</option>
-                    <option>draft</option>
-                    <option>rejected</option>
-                </Select>
+            <FormControl mb="3" isInvalid={!!errors?.material}>
+                <FormLabel>Material</FormLabel>
+                <Input
+                    id="material"
+                    type="text"
+                    {...register("material", { required: "Material is required" })}
+                />
                 <FormErrorMessage>
-                    {\`$\{errors.status?.message}\`}
+                    {\`$\{errors.material?.message}\`}
                 </FormErrorMessage>
             </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.categoryId}>
-                <FormLabel>Category</FormLabel>
-                <Select
-                    id="categoryId"
-                    placeholder="Select Category"
-                    {...register("category.id", {
-                        required: "Category is required",
-                    })}
-                >
-                    {options?.map((option) => (
-                        <option value={option.value} key={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </Select>
-                <FormErrorMessage>
-                    {\`$\{errors.categoryId?.message}\`}
-                </FormErrorMessage>
-            </FormControl>
-
-            <FormControl mb="3" isInvalid={!!errors?.content}>
-                <FormLabel>Content</FormLabel>
+            <FormControl mb="3" isInvalid={!!errors?.description}>
+                <FormLabel>Description</FormLabel>
                 <Textarea
-                    id="content"
-                    {...register("content", {
-                        required: "content is required",
+                    id="description"
+                    {...register("description", {
+                        required: "Description is required",
                     })}
                 />
                 <FormErrorMessage>
-                    {\`$\{errors.content?.message}\`}
+                    {\`$\{errors.description?.message}\`}
+                </FormErrorMessage>
+            </FormControl>
+            <FormControl mb="3" isInvalid={!!errors?.price}>
+                <FormLabel>Price</FormLabel>
+                <Input
+                    id="price"
+                    type="number"
+                    {...register("price", { required: "Price is required" })}
+                />
+                <FormErrorMessage>
+                    {\`$\{errors.price?.message}\`}
                 </FormErrorMessage>
             </FormControl>
         </Create>
