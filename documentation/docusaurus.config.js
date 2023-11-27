@@ -30,8 +30,9 @@ const siteConfig = {
                     : {
                           path: "./docs",
                           sidebarPath: require.resolve("./sidebars.js"),
-                          editUrl:
-                              "https://github.com/refinedev/refine/tree/master/documentation",
+                          editUrl: ({ docPath }) => {
+                               return `https://holocron.so/github/pr/refinedev/refine/master/editor/documentation/docs/${docPath}`
+                          },
                           showLastUpdateAuthor: true,
                           showLastUpdateTime: true,
                           disableVersioning:
