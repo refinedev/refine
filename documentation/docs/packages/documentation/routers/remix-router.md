@@ -759,7 +759,7 @@ There are two ways to do Server Side Authentication with Remix. You can choose o
 
 On the server-side `accessControlProvider`'s `can` function inside server side functions (`loader`) to redirect unauthorized users to other pages using `redirect` from `@remix-run/node`.
 
-First, let's build our [AccessControlProvider](/docs/api-reference/core/providers/accessControl-provider.md)
+First, let's build our [AccessControlProvider](/docs/api-reference/core/providers/access-control-provider.md)
 
 ```tsx title="app/acccessControlProvider.ts"
 export const accessControlProvider = {

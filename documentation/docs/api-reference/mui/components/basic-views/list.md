@@ -260,7 +260,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/api-reference/core/hooks/authentication/usePermissions.md)
 
 ### `breadcrumb`
 
@@ -319,7 +319,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mui/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/mui/components/breadcrumb.md)
 
 ### `wrapperProps`
 
@@ -590,7 +590,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@refinedev/mui/List" 
+<PropsTable module="@refinedev/mui/List"
 wrapperProps-type="[`CardProps`](https://mui.com/material-ui/api/card/#props)"
 contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)"
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"

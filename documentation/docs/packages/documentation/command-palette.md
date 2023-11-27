@@ -374,6 +374,6 @@ Since `refine-kbar` exports the [`kbar`](https://github.com/timc1/kbar), you use
 [kbar]: https://github.com/timc1/kbar
 [kbar-actions]: https://kbar.vercel.app/docs/concepts/actions
 [refine-kbar]: https://github.com/refinedev/refine/tree/master/packages/kbar
-[access-control]: https://refine.dev/docs/core/providers/accessControl-provider/
+[access-control]: https://refine.dev/docs/core/providers/access-control-provider/
 [usecanwithoutcache]: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/accessControl/useCanWithoutCache.ts
 [refine-finefoods]: https://github.com/refinedev/refine/blob/master/examples/finefoods-material-ui/src/hooks/useOrderCustomKbarActions/index.tsx

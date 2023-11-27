@@ -406,7 +406,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/chakra-ui/components/breadcrumb.md)
 
 ### `wrapperProps`
 

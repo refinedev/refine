@@ -174,7 +174,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
 
-When clicked on, delete button executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 const { default: simpleRest } = RefineSimpleRest;
@@ -270,7 +270,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<DeleteButton>` &#8594](/api-reference/mui/components/buttons/delete.md), [`<EditButton>` &#8594](/api-reference/mui/components/buttons/edit.md) and [`usePermission` &#8594](/api-reference/core/hooks/authentication/usePermissions.md) documentations.
+> For more information, refer to the [`<DeleteButton>` &#8594](/docs/api-reference/mui/components/buttons/delete.md), [`<EditButton>` &#8594](/docs/api-reference/mui/components/buttons/edit.md) and [`usePermission` &#8594](/docs/api-reference/core/hooks/authentication/usePermissions.md) documentations.
 
 ### `recordItemId`
 
@@ -325,7 +325,7 @@ render(
 
 :::note
 
-`<Show>` component needs the `id` information for [`<RefreshButton>`](/api-reference/mui/components/buttons/refresh.md) to work properly.
+`<Show>` component needs the `id` information for [`<RefreshButton>`](/docs/api-reference/mui/components/buttons/refresh.md) to work properly.
 
 :::
 
@@ -529,7 +529,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mui/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/mui/components/breadcrumb.md)
 
 ### `wrapperProps`
 
@@ -946,7 +946,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@refinedev/mui/Show" 
+<PropsTable module="@refinedev/mui/Show"
 wrapperProps-type="[`CardProps`](https://mui.com/material-ui/api/card/#props)"
 contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)"
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"

@@ -17,16 +17,16 @@ import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 
 const App = () => {
-    return (
-        <Refine
-            dataProvider={{
-                default: dataProvider("API_URL"),
-                second: dataProvider("SECOND_API_URL"),
-            }}
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      dataProvider={{
+        default: dataProvider("API_URL"),
+        second: dataProvider("SECOND_API_URL"),
+      }}
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 
 export default App;
@@ -53,9 +53,9 @@ const secondDataProvider = dataProvider("second"); // return second data provide
 
 ### Return value
 
-| Description   | Type                                                              |
-| ------------- | ----------------------------------------------------------------- |
-| Data Provider | [`Data Provider`](/api-reference/core/providers/data-provider.md) |
+| Description   | Type                                                                   |
+| ------------- | ---------------------------------------------------------------------- |
+| Data Provider | [`Data Provider`](/docs/api-reference/core/providers/data-provider.md) |
 
 [refine]: /api-reference/core/components/refine-config.md
 [data provider]: /api-reference/core/providers/data-provider.md
