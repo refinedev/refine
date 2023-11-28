@@ -46,7 +46,7 @@ import UsageRemix from "./usage-remix.tsx";
 
 ## Tables
 
-Refine provides a seamless integration with the [`<Table>`](https://ant.design/components/table) component of Ant Design from pagination to sorting and filtering via the [`useTable`](/docs/api-reference/antd/hooks/table/useTable.md) hook exported from the `@refinedev/antd` package. This hook is an extension of the `@refinedev/core`'s [`useTable`](/docs/api-reference/core/hooks/useTable/) and provides a set of additional features and transformations to make it work with Ant Design's `<Table>` component without any additional configuration.
+Refine provides a seamless integration with the [`<Table />`](https://ant.design/components/table) component of Ant Design from pagination to sorting and filtering via the [`useTable`](/docs/api-reference/antd/hooks/table/useTable.md) hook exported from the `@refinedev/antd` package. This hook is an extension of the `@refinedev/core`'s [`useTable`](/docs/api-reference/core/hooks/useTable/) and provides a set of additional features and transformations to make it work with Ant Design's `<Table />` component without any additional configuration.
 
 ```tsx title="pages/products/list.tsx"
 import { useTable } from "@refinedev/antd";
@@ -77,11 +77,11 @@ interface IProduct {
 }
 ```
 
-`@refinedev/antd` package also provides a [`<FilterDropdown />`](/docs/api-reference/antd/components/filter-dropdown/) component to be used in the filter popover of the `<Table>` component. This component makes it easy to apply filters from the Ant Design UI without any additional configuration.
+`@refinedev/antd` package also provides a [`<FilterDropdown />`](/docs/api-reference/antd/components/filter-dropdown/) component to be used in the filter popover of the `<Table />` component. This component makes it easy to apply filters from the Ant Design UI without any additional configuration.
 
 ## Forms
 
-Refine provides a seamless integration with the [`<Form>`](https://ant.design/components/form) component of Ant Design from validation to submission via the [`useForm`](/docs/api-reference/antd/hooks/form/useForm.md) hook exported from the `@refinedev/antd` package. This hook is an extension of the `@refinedev/core`'s [`useForm`](/docs/api-reference/core/hooks/useForm/) and provides a set of additional features and transformations to make it work with Ant Design's `<Form>` component.
+Refine provides a seamless integration with the [`<Form />`](https://ant.design/components/form) component of Ant Design from validation to submission via the [`useForm`](/docs/api-reference/antd/hooks/form/useForm.md) hook exported from the `@refinedev/antd` package. This hook is an extension of the `@refinedev/core`'s [`useForm`](/docs/api-reference/core/hooks/useForm/) and provides a set of additional features and transformations to make it work with Ant Design's `<Form />` component.
 
 ```tsx title="pages/products/create.tsx"
 import { useForm, SaveButton } from "@refinedev/antd";
@@ -134,7 +134,7 @@ interface IProduct {
 
 ## Notifications
 
-Ant Design has its own [notification system](https://ant.design/components/notification) which works seamlessly with its UI elements. Refine also provides a seamless integration with Ant Design's notification system and show notifications for related actions and events. This integration is provided by the `useNotificationProvider` hook exported from the `@refinedev/antd` package which can be directly used in the [`notificationProvider`](/docs/api-reference/core/components/refine-config/#notificationprovider) prop of the `<Refine>` component.
+Ant Design has its own [notification system](https://ant.design/components/notification) which works seamlessly with its UI elements. Refine also provides a seamless integration with Ant Design's notification system and show notifications for related actions and events. This integration is provided by the `useNotificationProvider` hook exported from the `@refinedev/antd` package which can be directly used in the [`notificationProvider`](/docs/api-reference/core/components/refine-config/#notificationprovider) prop of the `<Refine />` component.
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
@@ -186,13 +186,13 @@ import LayoutRemix from "./layout-remix.tsx";
 </TabItem>
 </Tabs>
 
-[`<ThemedLayoutV2>`](/docs/api-reference/antd/components/antd-themed-layout/) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+[`<ThemedLayoutV2 />`](/docs/api-reference/antd/components/antd-themed-layout/) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
 
 Additionally, Refine also provides a [`<Breadcrumb />`](/docs/api-reference/antd/components/breadcrumb/) component that uses the Ant Design's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Ant Design package automatically.
 
 ### Buttons
 
-Refine's Ant Design integration offers variety of buttons that are built above the [`<Button>`](https://ant.design/components/button) component of Ant Design and includes many logical functionalities such as;
+Refine's Ant Design integration offers variety of buttons that are built above the [`<Button />`](https://ant.design/components/button) component of Ant Design and includes many logical functionalities such as;
 
 - Authorization checks
 - Confirmation dialogs
@@ -202,7 +202,7 @@ Refine's Ant Design integration offers variety of buttons that are built above t
 - Form actions
 - Import/Export and more.
 
-You can use buttons such as [`<EditButton>`](/docs/api-reference/antd/components/buttons/edit-button/) or [`<ListButton>`](/docs/api-reference/antd/components/buttons/list-button/) etc. in your views to provide navigation for the related routes or [`<DeleteButton>`](/docs/api-reference/antd/components/buttons/delete-button/) and [`<SaveButton>`](/docs/api-reference/antd/components/buttons/save-button/) etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
+You can use buttons such as [`<EditButton />`](/docs/api-reference/antd/components/buttons/edit-button/) or [`<ListButton />`](/docs/api-reference/antd/components/buttons/list-button/) etc. in your views to provide navigation for the related routes or [`<DeleteButton />`](/docs/api-reference/antd/components/buttons/delete-button/) and [`<SaveButton />`](/docs/api-reference/antd/components/buttons/save-button/) etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
 
 An example usage of the `<EditButton />` component is as follows:
 
@@ -324,7 +324,7 @@ interface IProduct {
 
 ### Auth Pages
 
-Auth pages are designed to be used as the pages of the authentication flow of the application. They offer an out of the box solution for the login, register, forgot password and reset password pages by leveraging the authentication hooks of Refine. Auth page components are built on top of basic Ant Design components such as [`<Form>`](https://ant.design/components/form) and [`<Card>`](https://ant.design/components/card) etc.
+Auth pages are designed to be used as the pages of the authentication flow of the application. They offer an out of the box solution for the login, register, forgot password and reset password pages by leveraging the authentication hooks of Refine. Auth page components are built on top of basic Ant Design components such as [`<Form />`](https://ant.design/components/form) and [`<Card />`](https://ant.design/components/card) etc.
 
 The list of types of auth pages that are available in the UI integrations are:
 
@@ -357,7 +357,7 @@ const NotFoundPage = () => {
 
 Since Refine offers application level components such as layout, sidebar and header and page level components for each action, it is important to have it working with the styling of Ant Design. All components and providers exported from the `@refinedev/antd` package will use the current theme of Ant Design without any additional configuration.
 
-Additionally, Refine also provides a set of carefully crafted themes for Ant Design which outputs a nice UI with Refine's components with light and dark theme support. These themes are exported as `RefineThemes` object from the `@refinedev/antd` package and can be used in [`<ConfigProvider>`](https://ant.design/components/config-provider) component of Ant Design.
+Additionally, Refine also provides a set of carefully crafted themes for Ant Design which outputs a nice UI with Refine's components with light and dark theme support. These themes are exported as `RefineThemes` object from the `@refinedev/antd` package and can be used in [`<ConfigProvider />`](https://ant.design/components/config-provider) component of Ant Design.
 
 import Theming from "./theming.tsx";
 

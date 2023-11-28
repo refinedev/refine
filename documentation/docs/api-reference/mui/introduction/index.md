@@ -61,7 +61,7 @@ const columns: GridColDef<IProduct>[] = [
 
 export const ProductList: FC = () => {
   // highlight-next-line
-  const { dataGridProps } = useDataGrid();
+  const { dataGridProps } = useDataGrid<IProduct>();
 
   return (
     <List>
@@ -152,7 +152,7 @@ Additional hooks of `@refinedev/react-hook-form` such as [`useStepsForm`](/docs/
 
 ## Notifications
 
-Material UI has its own notification elements but lacks the notification management solution. As [recommended by the Material UI's documentation](https://mui.com/material-ui/react-snackbar/#notistack); Refine's integration provides a notification provider which uses `notistack` package under the hood. This integration is provided by the `notificationProvider` exported from the `@refinedev/mui` package which can be directly used in the [`notificationProvider`](/docs/api-reference/core/components/refine-config/#notificationprovider) prop of the `<Refine>` component.
+Material UI has its own notification elements but lacks the notification management solution. As [recommended by the Material UI's documentation](https://mui.com/material-ui/react-snackbar/#notistack); Refine's integration provides a notification provider which uses `notistack` package under the hood. This integration is provided by the `notificationProvider` exported from the `@refinedev/mui` package which can be directly used in the [`notificationProvider`](/docs/api-reference/core/components/refine-config/#notificationprovider) prop of the `<Refine />` component.
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
@@ -202,13 +202,13 @@ import LayoutRemix from "./layout-remix.tsx";
 </TabItem>
 </Tabs>
 
-[`<ThemedLayoutV2>`](/docs/api-reference/mui/components/mui-themed-layout/) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+[`<ThemedLayoutV2 />`](/docs/api-reference/mui/components/mui-themed-layout/) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
 
 Additionally, Refine also provides a [`<Breadcrumb />`](https://refine.dev/docs/api-reference/mui/components/mui-breadcrumb/) component that uses the Material UI's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Material UI package automatically.
 
 ### Buttons
 
-Refine's Material UI integration offers variety of buttons that are built above the [`<Button>`](https://mui.com/material-ui/react-button/) component of Material UI and includes many logical functionalities such as;
+Refine's Material UI integration offers variety of buttons that are built above the [`<Button />`](https://mui.com/material-ui/react-button/) component of Material UI and includes many logical functionalities such as;
 
 - Authorization checks
 - Confirmation dialogs
@@ -218,7 +218,7 @@ Refine's Material UI integration offers variety of buttons that are built above 
 - Form actions
 - Import/Export and more.
 
-You can use buttons such as [`<EditButton>`](/docs/api-reference/mui/components/buttons/edit-button/) or [`<ListButton>`](/docs/api-reference/mui/components/buttons/list-button/) etc. in your views to provide navigation for the related routes or [`<DeleteButton>`](/docs/api-reference/mui/components/buttons/delete-button/) and [`<SaveButton>`](/docs/api-reference/mui/components/buttons/save-button/) etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
+You can use buttons such as [`<EditButton />`](/docs/api-reference/mui/components/buttons/edit-button/) or [`<ListButton />`](/docs/api-reference/mui/components/buttons/list-button/) etc. in your views to provide navigation for the related routes or [`<DeleteButton />`](/docs/api-reference/mui/components/buttons/delete-button/) and [`<SaveButton />`](/docs/api-reference/mui/components/buttons/save-button/) etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
 
 An example usage of the `<EditButton />` component is as follows:
 
@@ -342,7 +342,7 @@ interface IProduct {
 
 ### Auth Pages
 
-Auth pages are designed to be used as the pages of the authentication flow of the application. They offer an out of the box solution for the login, register, forgot password and reset password pages by leveraging the authentication hooks of Refine. Auth page components are built on top of basic Material UI components such as [`<TextField>`](https://mui.com/material-ui/react-text-field/) and [`<Card>`](https://mui.com/material-ui/react-card/) etc.
+Auth pages are designed to be used as the pages of the authentication flow of the application. They offer an out of the box solution for the login, register, forgot password and reset password pages by leveraging the authentication hooks of Refine. Auth page components are built on top of basic Material UI components such as [`<TextField />`](https://mui.com/material-ui/react-text-field/) and [`<Card />`](https://mui.com/material-ui/react-card/) etc.
 
 The list of types of auth pages that are available in the UI integrations are:
 
@@ -375,7 +375,7 @@ const NotFoundPage = () => {
 
 Since Refine offers application level components such as layout, sidebar and header and page level components for each action, it is important to have it working with the styling of Material UI. All components and providers exported from the `@refinedev/mui` package will use the current theme of Material UI without any additional configuration.
 
-Additionally, Refine also provides a set of carefully crafted themes for Material UI which outputs a nice UI with Refine's components with light and dark theme support. These themes are exported as `RefineThemes` object from the `@refinedev/mui` package and can be used in [`<ThemeProvider>`](https://mui.com/material-ui/customization/theming/#theme-provider) component of Material UI.
+Additionally, Refine also provides a set of carefully crafted themes for Material UI which outputs a nice UI with Refine's components with light and dark theme support. These themes are exported as `RefineThemes` object from the `@refinedev/mui` package and can be used in [`<ThemeProvider />`](https://mui.com/material-ui/customization/theming/#theme-provider) component of Material UI.
 
 import Theming from "./theming.tsx";
 

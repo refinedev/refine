@@ -93,7 +93,7 @@ export const ProductList = () => {
       current,
       tableQueryResult: { data: tableData },
     },
-  } = useTable({ columns });
+  } = useTable<IProduct>({ columns });
 
   return (
     <ScrollArea>
@@ -124,6 +124,13 @@ export const ProductList = () => {
     </ScrollArea>
   );
 };
+
+interface IProduct {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
 ```
 
 ## Forms
@@ -161,7 +168,7 @@ export const ProductCreate = () => {
 
 ## Notifications
 
-Mantine has its own built-in notification system through [`@mantine/notifications`](https://v5.mantine.dev/others/notifications/) package which works seamlessly with its UI elements. Refine also provides a seamless integration with Mantine's notification system and show notifications for related actions and events. This integration is provided by the `notificationProvider` hook exported from the `@refinedev/mantine` package which can be directly used in the [`notificationProvider`](/docs/api-reference/core/components/refine-config/#notificationprovider) prop of the `<Refine>` component.
+Mantine has its own built-in notification system through [`@mantine/notifications`](https://v5.mantine.dev/others/notifications/) package which works seamlessly with its UI elements. Refine also provides a seamless integration with Mantine's notification system and show notifications for related actions and events. This integration is provided by the `notificationProvider` hook exported from the `@refinedev/mantine` package which can be directly used in the [`notificationProvider`](/docs/api-reference/core/components/refine-config/#notificationprovider) prop of the `<Refine />` component.
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
@@ -208,13 +215,13 @@ import LayoutRemix from "./layout-remix.tsx";
 </TabItem>
 </Tabs>
 
-[`<ThemedLayoutV2>`](/docs/api-reference/mantine/components/mantine-themed-layout/) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+[`<ThemedLayoutV2 />`](/docs/api-reference/mantine/components/mantine-themed-layout/) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
 
 Additionally, Refine also provides a [`<Breadcrumb />`](/docs/api-reference/mantine/components/breadcrumb/) component that uses the Mantine's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Mantine package automatically.
 
 ### Buttons
 
-Refine's Mantine integration offers variety of buttons that are built above the [`<Button>`](https://v5.mantine.dev/core/button/) component of Mantine and includes many logical functionalities such as;
+Refine's Mantine integration offers variety of buttons that are built above the [`<Button />`](https://v5.mantine.dev/core/button/) component of Mantine and includes many logical functionalities such as;
 
 - Authorization checks
 - Confirmation dialogs
@@ -224,7 +231,7 @@ Refine's Mantine integration offers variety of buttons that are built above the 
 - Form actions
 - Import/Export and more.
 
-You can use buttons such as [`<EditButton>`](/docs/api-reference/mantine/components/buttons/edit-button/) or [`<ListButton>`](/docs/api-reference/mantine/components/buttons/list-button/) etc. in your views to provide navigation for the related routes or [`<DeleteButton>`](/docs/api-reference/mantine/components/buttons/delete-button/) and [`<SaveButton>`](/docs/api-reference/mantine/components/buttons/save-button/) etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
+You can use buttons such as [`<EditButton />`](/docs/api-reference/mantine/components/buttons/edit-button/) or [`<ListButton />`](/docs/api-reference/mantine/components/buttons/list-button/) etc. in your views to provide navigation for the related routes or [`<DeleteButton />`](/docs/api-reference/mantine/components/buttons/delete-button/) and [`<SaveButton />`](/docs/api-reference/mantine/components/buttons/save-button/) etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
 
 An example usage of the `<EditButton />` component is as follows:
 
@@ -339,7 +346,7 @@ export const ProductShow = () => {
 
 ### Auth Pages
 
-Auth pages are designed to be used as the pages of the authentication flow of the application. They offer an out of the box solution for the login, register, forgot password and reset password pages by leveraging the authentication hooks of Refine. Auth page components are built on top of basic Mantine components such as [`<TextInput>`](https://v5.mantine.dev/core/text-input/) and [`<Card>`](https://v5.mantine.dev/core/card/) etc.
+Auth pages are designed to be used as the pages of the authentication flow of the application. They offer an out of the box solution for the login, register, forgot password and reset password pages by leveraging the authentication hooks of Refine. Auth page components are built on top of basic Mantine components such as [`<TextInput />`](https://v5.mantine.dev/core/text-input/) and [`<Card />`](https://v5.mantine.dev/core/card/) etc.
 
 The list of types of auth pages that are available in the UI integrations are:
 
@@ -372,7 +379,7 @@ const NotFoundPage = () => {
 
 Since Refine offers application level components such as layout, sidebar and header and page level components for each action, it is important to have it working with the styling of Mantine. All components and providers exported from the `@refinedev/mantine` package will use the current theme of Mantine without any additional configuration.
 
-Additionally, Refine also provides a set of carefully crafted themes for Mantine which outputs a nice UI with Refine's components with light and dark theme support. These themes are exported as `RefineThemes` object from the `@refinedev/mantine` package and can be used in [`<MantineProvider>`](https://v5.mantine.dev/theming/mantine-provider/) component of Mantine.
+Additionally, Refine also provides a set of carefully crafted themes for Mantine which outputs a nice UI with Refine's components with light and dark theme support. These themes are exported as `RefineThemes` object from the `@refinedev/mantine` package and can be used in [`<MantineProvider />`](https://v5.mantine.dev/theming/mantine-provider/) component of Mantine.
 
 import Theming from "./theming.tsx";
 
