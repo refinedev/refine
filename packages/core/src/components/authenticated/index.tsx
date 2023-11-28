@@ -41,6 +41,12 @@ const useDeferredGo = () => {
 
 export type AuthenticatedCommonProps = {
     /**
+     * Unique key to identify the component.
+     * This is required if you have multiple `Authenticated` components at the same level.
+     * @required
+     */
+    key: React.Key;
+    /**
      * Whether to redirect user if not logged in or not.
      * If not set, user will be redirected to `redirectTo` property of the `check` function's response.
      * This behavior is only available for new auth providers.
@@ -87,6 +93,8 @@ export function Authenticated(props: AuthenticatedProps): JSX.Element | null;
 
 /**
  * `<Authenticated>` is the component form of {@link https://refine.dev/docs/api-reference/core/hooks/auth/useAuthenticated `useAuthenticated`}. It internally uses `useAuthenticated` to provide it's functionality.
+ *
+ *  "key" prop is required if you have multiple `Authenticated` components at the same level.
  *
  * @see {@link https://refine.dev/docs/core/components/auth/authenticated `<Authenticated>`} component for more details.
  */
