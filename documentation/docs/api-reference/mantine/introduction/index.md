@@ -4,7 +4,7 @@ title: Introduction
 
 Refine provides an integration package for [Mantine](https://mantine.dev) library. This package provides a set of ready to use components and hooks that connects Refine with Mantine components. While Refine's integration offers a set of components and hooks, it is not a replacement for the Mantine UI packages, you will be able to use all the features of Mantine in the same way you would use it in a regular React application. Refine's integration only provides components and hooks for an easier usage of Mantine components in combination with Refine's features and functionalities.
 
-import Example from "./example.tsx";
+import Example from "./previews/example.tsx";
 
 <Example />
 
@@ -27,21 +27,21 @@ We'll wrap our app with the [`<MantineProvider />`](https://v5.mantine.dev/themi
 <Tabs wrapContent={false}>
 <TabItem value="react-router-dom" label="React Router Dom">
 
-import UsageReactRouterDom from "./usage-react-router-dom.tsx";
+import UsageReactRouterDom from "./previews/usage-react-router-dom.tsx";
 
 <UsageReactRouterDom />
 
 </TabItem>
 <TabItem value="next-js" label="Next.js">
 
-import UsageNextJs from "./usage-next-js.tsx";
+import UsageNextJs from "./previews/usage-next-js.tsx";
 
 <UsageNextJs />
 
 </TabItem>
 <TabItem value="remix" label="Remix">
 
-import UsageRemix from "./usage-remix.tsx";
+import UsageRemix from "./previews/usage-remix.tsx";
 
 <UsageRemix />
 
@@ -194,21 +194,21 @@ Refine provides Layout components that can be used to implement a layout for the
 <Tabs wrapContent={false}>
 <TabItem value="react-router-dom" label="React Router Dom">
 
-import LayoutReactRouterDom from "./layout-react-router-dom.tsx";
+import LayoutReactRouterDom from "./previews/layout-react-router-dom.tsx";
 
 <LayoutReactRouterDom />
 
 </TabItem>
 <TabItem value="next-js" label="Next.js">
 
-import LayoutNextJs from "./layout-next-js.tsx";
+import LayoutNextJs from "./previews/layout-next-js.tsx";
 
 <LayoutNextJs />
 
 </TabItem>
 <TabItem value="remix" label="Remix">
 
-import LayoutRemix from "./layout-remix.tsx";
+import LayoutRemix from "./previews/layout-remix.tsx";
 
 <LayoutRemix />
 
@@ -289,7 +289,7 @@ The list of provided views are:
 - [`<Edit />`](/docs/api-reference/mantine/components/basic-views/edit/)
 - [`<Create />`](/docs/api-reference/mantine/components/basic-views/create/)
 
-import BasicViews from "./basic-views.tsx";
+import BasicViews from "./previews/basic-views.tsx";
 
 <BasicViews />
 
@@ -357,7 +357,7 @@ The list of types of auth pages that are available in the UI integrations are:
 
 An example usage of the [`<AuthPage />`](/docs/api-reference/mantine/components/mantine-auth-page/) component is as follows:
 
-import AuthPage from "./auth-page.tsx";
+import AuthPage from "./previews/auth-page.tsx";
 
 <AuthPage />
 
@@ -381,7 +381,7 @@ Since Refine offers application level components such as layout, sidebar and hea
 
 Additionally, Refine also provides a set of carefully crafted themes for Mantine which outputs a nice UI with Refine's components with light and dark theme support. These themes are exported as `RefineThemes` object from the `@refinedev/mantine` package and can be used in [`<MantineProvider />`](https://v5.mantine.dev/theming/mantine-provider/) component of Mantine.
 
-import Theming from "./theming.tsx";
+import Theming from "./previews/theming.tsx";
 
 <Theming />
 
