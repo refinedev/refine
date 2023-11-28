@@ -30,6 +30,20 @@ const MyPage = () => (
 
 ## Properties
 
+### `key` <PropTag required />
+
+Due to the [nature of react](https://react.dev/learn/rendering-lists#why-does-react-need-keys), `<Authenticated />` components are unmounted and remounted again when the route changes. This may cause unwanted behaviors on the rendering and redirections logic. To avoid such issues, You need to add `key` prop to `<Authenticated />` components if you have more than one `<Authenticated />` component in the same level.
+
+```tsx
+import { Authenticated } from "@refinedev/core";
+
+const MyPage = () => (
+  <Authenticated key="dashboard">
+    <h1>Dashboard Page</h1>
+  </Authenticated>
+);
+```
+
 ### `redirectOnFail`
 
 The path to redirect to if the user is not logged in. If left empty, the user will be redirected to the value in the `redirectTo` property of the `check` function of the `AuthProvider`.
@@ -68,6 +82,6 @@ Component to render while checking whether the user is logged in.
 
 ### Properties
 
-<PropsTable module="@refinedev/core/Authenticated"/>
+<PropsTable module="@refinedev/core/Authenticated" />
 
 [use-is-authenticated]: /docs/api-reference/core/hooks/authentication/useIsAuthenticated
