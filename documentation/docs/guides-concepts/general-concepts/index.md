@@ -8,9 +8,9 @@ Refine is an extensible framework designed for rapidly building web applications
 
 In Refine, a **resource** is a central concept representing an **entity**, which ties together various aspects of your application.
 
-They typically refers to a data entity, like `products`, `blogPosts`, or `orders`.
+It typically refers to a data entity, like `products`, `blogPosts`, or `orders`.
 
-Resource definitions allows you to manage your application in a structured way, abstracting complex operations into simpler actions through various **providers** and **UI integrations**.
+Resource definitions allow you to manage your application in a structured way, abstracting complex operations into simpler actions through various **providers** and **UI integrations**.
 
 A typical resource definition looks like this:
 
@@ -46,7 +46,7 @@ They are pluggable, which means you can use the **built-in providers** or **crea
 - **Authentication Provider**: Manages user authentication and authorization processes. Handles redirection, error cases.
 - **Access Control Provider**: Handles authorization and access control. Used to hide/disable buttons and menu items, or to protect routes and components.
 - **Notification Provider**: Enables notification features like showing notification after successful mutations or errors.
-- **I18n Provider**: Enables i18n features such as renderin translated menu items, button texts, table columns, page titles, and more.
+- **I18n Provider**: Enables i18n features such as rendering translated menu items, button texts, table columns, page titles, and more.
 - **Live Provider**: Enables real-time updates to your application. For example, when a user creates a new record, other users can see the new record in the list page without refreshing the page.
 - **Router Provider**: Matches routes to resources, enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items.
 
@@ -182,7 +182,7 @@ export const DashboardPage = () => {
 
 #### UI Integrations
 
-We have pre-built components which works with Auth Provider out-of-the-box.
+We have pre-built components which work with Auth Provider out-of-the-box.
 
 When provided, their Layout components can automatically render current user information on the header and add logout button to appropriate places.
 
@@ -264,7 +264,7 @@ export const ShowPage = () => {
 
 #### UI Integrations
 
-When provided, our UI Integrations works out-of-the-box with Access Control Provider.
+When provided, our UI Integrations work out-of-the-box with Access Control Provider.
 
 For example if user isn't authorized to see `orders` resource, it will be hidden on the sidebar menu automatically.
 
@@ -413,7 +413,7 @@ export const ShowPage = () => {
 
 #### UI Integrations
 
-When provided, our UI Integrations works out-of-the-box with I18n Provider.
+When provided, our UI Integrations work out-of-the-box with I18n Provider.
 
 For example, it will automatically translate menu items, button texts, table columns, page titles, and more.
 
@@ -458,7 +458,7 @@ export const ProductsListPage = () => {
 
 #### Hooks
 
-**refine** hooks can synchronize **resource**, **id**, **action** parameters from the current URL eliminates the need to pass them manually.
+**refine** hooks can synchronize **resource**, **id**, **action** parameters from the current URL. This eliminates the need to pass them manually.
 
 For example, `useShow` hook can infer `resource` and `id` parameters from the current URL.
 
@@ -486,7 +486,7 @@ Another example is `useTable` hook. While it can infer **resource**, **paginatio
 
 ## UI Integrations
 
-While **refine** itself is headless, it offers UI Integrations for popular UI libraries for:
+While **refine** itself is headless, it offers UI Integrations for popular UI libraries:
 
 - [Ant Design](/docs/api-reference/antd)
 - [Material UI](/docs/api-reference/mui)
@@ -533,7 +533,7 @@ import { MantineLayout } from './layout/mantine';
 
 ### Layout
 
-UI Integrations provides a Layout components, which renders the **sidebar menu**, **header**, and **content** area of your application.
+UI Integrations provide a Layout component, which renders the **sidebar menu**, **header**, and **content** area of your application.
 
 It automatically renders the sidebar menu based on the **resource definitions**, and the header based on the **current user**.
 
@@ -541,7 +541,7 @@ It automatically renders the sidebar menu based on the **resource definitions**,
 
 `List`, `Create`, `Edit`, `Show` components.
 
-These components provides layout view based on the resource information automatically like:
+These components provide layout views based on the resource information automatically like:
 
 - Header with title
 - Breadcrumb
@@ -555,7 +555,7 @@ On top of that, **refine** adds some features to these layouts:
 
 ### Buttons
 
-For example, our **UI Integrations** exports `CreateButton`, for redirecting the user to the create page of the resource.
+For example, our **UI Integrations** export `CreateButton`, for redirecting the user to the create page of the resource.
 
 While the button itself is imported from underlying UI package, **refine** adds some capabilities to it:
 
@@ -565,7 +565,7 @@ While the button itself is imported from underlying UI package, **refine** adds 
 
 ### Auth Pages
 
-Common authentication pages like `Login`, `Register`, `Forgot Password`, `Reset Password` integrated with `AuthProvider` automatically.
+Common authentication pages like `Login`, `Register`, `Forgot Password`, `Reset Password` are integrated with `AuthProvider` automatically.
 
 <Tabs wrapContent={false}>
 
@@ -613,7 +613,7 @@ import { MantineAuth } from "./auth-pages/mantine";
 
 ### UI Integration Hooks
 
-UI Integration hooks uses `@refinedev/core` hooks under the hood, making it easier to use them in your UI specific components.
+UI Integration hooks use `@refinedev/core` hooks under the hood, making it easier to use them in your UI specific components.
 
 One example is, `useTable` hook from `@refinedev/antd` package. This hook uses `@refinedev/core`'s `useTable` under the hood, but returns props compatible with `Ant Design`'s `Table` component. So you don't need to manually map the props.
 
