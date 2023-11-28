@@ -178,7 +178,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component.
 
-When clicked on, the delete button executes the `useDelete` method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
+When clicked on, the delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
 const { ShowButton, Edit } = RefineAntd;
@@ -278,9 +278,9 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/api-reference/core/hooks/authentication/usePermissions.md)
 
-> For more information, refer to the [`<DeleteButton>`](/api-reference/antd/components/buttons/delete.md) and the [`<EditButton>`](/api-reference/antd/components/buttons/edit.md) documentations.
+> For more information, refer to the [`<DeleteButton>`](/docs/api-reference/antd/components/buttons/delete.md) and the [`<EditButton>`](/docs/api-reference/antd/components/buttons/edit.md) documentations.
 
 ### `recordItemId`
 
@@ -532,7 +532,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 :::
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/antd/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/antd/components/breadcrumb.md)
 
 ### `wrapperProps`
 

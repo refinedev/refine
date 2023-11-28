@@ -109,7 +109,7 @@ const siteConfig = {
                       "./plugins/blog-plugin.js",
                       {
                           blogTitle: "Blog",
-                          blogDescription: "A Docusaurus powered blog!",
+                          blogDescription: "A resource for Refine, front-end ecosystem, and web development",
                           routeBasePath: "/blog",
                           postsPerPage: 12,
                           blogSidebarTitle: "All posts",

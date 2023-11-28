@@ -269,13 +269,13 @@ The create button redirects to the create page of the resource according to the 
 
 :::
 
-> For more information, refer to the [`usePermission` documentation &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/api-reference/core/hooks/authentication/usePermissions.md)
 
 ### `breadcrumb`
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/antd` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/docs/api-reference/antd/components/breadcrumb.md)
 
 :::tip
 

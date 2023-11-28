@@ -8,13 +8,18 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-11-docker-vol
 hide_table_of_contents: false
 ---
 
-
-
-
-
 ## Brief introduction to Docker
 
 Docker, also known as Docker Engine, has a major impact on the modern industry as it is an open-source platform for creating, distributing, and running applications. Applications are packaged and executed using Docker containers in a loosely isolated environment. You can execute applications without depending on what is already installed on the host because containers are lightweight and come up with everything you need to run them. Its containerization solution addresses major issues with application deployment, supporting microservices design, allowing CI/CD pipelines, enhancing scalability and resource efficiency, enabling hybrid and cloud-native settings, and encouraging DevOps collaboration.
+
+Steps we'll cover:
+
+- [What are Docker volumes?](#what-are-docker-volumes)
+- [Why Docker Volumes are Important](#why-docker-volumes-are-important)
+- [Understanding Docker Volumes](#understanding-docker-volumes)
+- [Working with Docker Volumes](#working-with-docker-volumes)
+- [Backup and Restore Docker Volumes](#backup-and-restore-docker-volumes)
+- [Best Practices for Docker Volumes](#best-practices-for-docker-volumes)
 
 ## Why Docker Volumes are Important
 
@@ -30,7 +35,7 @@ Data created and utilized by Docker containers can be stored on Docker volumes. 
 
 - Data can be accessed directly from the host's file system or other external storage systems, minimizing the overhead associated with containerized file operations.
 
-## Understanding Docker Volumes 
+## Understanding Docker Volumes
 
 ### Docker Volumes versus other storage options
 
@@ -66,7 +71,7 @@ Volume Security:
 
 Security features for Docker volumes include access control and permission management. You can specify who is allowed to read, write, or execute on a volume, ensuring that sensitive information is kept secure and that only authorized containers or users can access it.
 
-## Working with Docker Volumes (Screenshots of commands) 
+## Working with Docker Volumes (Screenshots of commands)
 
 ### The lifecycle of a Docker Volume
 
@@ -87,6 +92,7 @@ The `docker volume create` command(i.e., docker volume create) can be used to bu
 With the options --mount or -v of the docker run command, you can attach a docker volume to one or more containers in order to use it. But, for that purpose, you need to specify the source (the volume's name), the target (the path on which the volume is mounted in the container), and the name(name of the container). Let's take an example of mounting volume(**source**: sample-volume) with a WordPress container at path(**target**: /var/www/html).
 
 **Command in Example:** `docker run -d --name wordpress --mount source=sample-volume,target=/var/www/html wordpress`
+
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-11-docker-volume/image2.png"  alt="docker volume" />
 </div>
@@ -114,6 +120,7 @@ The `docker volume inspect` command(i.e., docker volume inspect \<name-of-volume
 ### Removing a Docker volume
 
 The `docker volume rm` command(i.e., docker volume rm \<name-of-volume\>) can delete a docker volume. By deleting the volume, the occupied disk space is released. In the example below, we will delete the '**sample-volume**' created earlier.
+
 >
 
  <div className="centered-image">
@@ -130,7 +137,6 @@ The `docker volume rm` command(i.e., docker volume rm \<name-of-volume\>) can de
 
 Lists every Docker volume on the system with `docker volume ls`. Through this command, You can have general information of all docker volumes, along with their names and related mountpoints.
 
-
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-11-docker-volume/image6.png"  alt="docker volume" />
 </div>
@@ -141,10 +147,9 @@ Lists every Docker volume on the system with `docker volume ls`. Through this co
 
 To eliminate all unused volumes, you can also use the docker volume prune command(i.e., docker volume prune). For example, we want to remove anonymous local volumes not used by at least one container. For that purpose, first, we have to list the unused volumes not referenced by any container by using the '-f dangling=true' option with the 'docker volume ls', and then we will run 'docker volume prune' to delete the volumes.
 
- **Command in Example:**
+**Command in Example:**
 
 `docker volume rm sample-volume`
-
 
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-11-docker-volume/image7.png"  alt="docker volume" />
@@ -152,11 +157,7 @@ To eliminate all unused volumes, you can also use the docker volume prune comman
 
 <br/>
 
-
-
-
-
-## Backup and Restore Docker Volumes (Screenshots of commands) 
+## Backup and Restore Docker Volumes (Screenshots of commands)
 
 ## Why backing up Docker volumes is crucial
 
@@ -166,10 +167,9 @@ Persistent data generated and consumed by Docker containers are stored on Docke
 
 There are multiple ways to backup the docker volume, but the most common way is to use a temporary container that mounts the volume and builds an archive of its contents. In order to achieve this, you need to use the docker run command with the '—volume-from' option to mount the volume from another container and the '-v' option to bind mount a directory where you want to keep your backup on a host system. To compress the backup file, you can use tools like tar and gzip. Let's take an example of creating a backup of 'sample-volume'.
 
- **Step 1:** We have created a container that stores data in 'sample-volume'
+**Step 1:** We have created a container that stores data in 'sample-volume'
 
- **Command in Example:** `docker run -d --name sample-container -v sample-volume:/data ubuntu`
-
+**Command in Example:** `docker run -d --name sample-container -v sample-volume:/data ubuntu`
 
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-11-docker-volume/image8.png"  alt="docker volume" />
@@ -177,12 +177,11 @@ There are multiple ways to backup the docker volume, but the most common way is 
 
 <br/>
 
- **Step 2:** Now, we will create a backup file 'sample-backup' of 'sample-volume' at the path of our choice on the host system by starting a temporary container and removing it using the 'rm' option once the backup is created. We created the 'sample-backup' at *'C:\Users\\my-username\]\Documents*'
+**Step 2:** Now, we will create a backup file 'sample-backup' of 'sample-volume' at the path of our choice on the host system by starting a temporary container and removing it using the 'rm' option once the backup is created. We created the 'sample-backup' at _'C:\Users\\my-username\]\Documents_'
 
 **Command in Example:**
 
 `docker run --rm --volumes-from sample-container -v C:\Users\\*my-username*\]\Documents:/backup-dir ubuntu tar cvzf /backup-dir/sample-backup.tar.gz /data`
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-11-docker-volume/image9.png"  alt="docker volume" />
@@ -197,7 +196,6 @@ A docker volume can be restored from a backup file using a method similar to the
 **Step 1:** We have created a temporary container to mount the volume and backup file(i.e., 'sample-backup') and then extract the backup content into the volume(i.e., 'restored-volume'.
 
 **Command in Example:** `docker run --rm -v sample-volume:/data -v C:\Users\\username\]\Documents:/backup-dir ubuntu tar xvzf /backup-dir/sample-backup.tar.gz -C /data`
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-11-docker-volume/image10.png"  alt="docker volume" />

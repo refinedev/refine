@@ -8,7 +8,7 @@ The `useDrawerForm` hook allows you to manage a form within a Drawer. It returns
 
 :::info
 
-The`useDrawerForm` hook is extended from [`useForm`](/api-reference/antd/hooks/form/useForm.md) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/master/packages/antd) package. This means that you can use all the features of [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook with it.
+The`useDrawerForm` hook is extended from [`useForm`](/docs/api-reference/antd/hooks/form/useForm.md) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/master/packages/antd) package. This means that you can use all the features of [`useForm`](/docs/api-reference/antd/hooks/form/useForm.md) hook with it.
 
 :::
 
@@ -542,7 +542,7 @@ export const UserCreate: React.FC = () => {
 
 <PropsTable module="@refinedev/antd/useDrawerForm"/>
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useDrawerForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/api-reference/core/components/refine-config.md)>** component. `useDrawerForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 > `**`: If not explicitly configured, default value of `redirect` depends which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). Otherwise if `action` is `edit`, `redirect`s default value is `list`.
 
@@ -566,7 +566,7 @@ export const UserCreate: React.FC = () => {
 | formProps         | Ant Design form props                                        | [`FormProps`](/docs/api-reference/antd/hooks/form/useForm/#properties)                                                                  |
 | drawerProps       | Props for managed drawer                                     | [`DrawerProps`](#drawerprops)                                                                                                           |
 | saveButtonProps   | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                         |
-| deleteButtonProps | Adds props for delete button                                 | [`DeleteButtonProps`](/api-reference/core/interfaces.md#delete-button-props)                                                            |
+| deleteButtonProps | Adds props for delete button                                 | [`DeleteButtonProps`](/docs/api-reference/core/interfaces.md#delete-button-props)                                                       |
 | submit            | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                            |
 | open              | Whether the drawer is open or not                            | `boolean`                                                                                                                               |
 | close             | Specify a function that can close the drawer                 | `() => void`                                                                                                                            |

@@ -1,5 +1,5 @@
 ---
-id: accessControl-provider
+id: access-control-provider
 title: Access Control Provider
 sidebar_label: Access Control Provider
 ---
@@ -205,7 +205,7 @@ const useCan: ({
 }) => UseQueryResult<CanReturnType*>
 ```
 
-> For more information, refer to these sections in the Interfaces documentation: [`CanParams`](/api-reference/core/interfaces.md#canparams) and [`CanReturnType`](/api-reference/core/interfaces.md#canreturntype)
+> For more information, refer to these sections in the Interfaces documentation: [`CanParams`](/docs/api-reference/core/interfaces.md#canparams) and [`CanReturnType`](/docs/api-reference/core/interfaces.md#canreturntype)
 
 ### `<CanAccess />`
 
@@ -256,12 +256,12 @@ These buttons will be checked for access control.
 
 Let's say they are rendered where `resource` is `posts` and `id` is `1` where applicable. The `can` function will receive the `resource`([ResourceItemProps][iresourceitem]) object you passed to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
 
-- [**List**](/api-reference/antd/components/buttons/list.md): `{ resource: "posts", action: "list", params: { *resource } }`
-- [**Create**](/api-reference/antd/components/buttons/create.md): `{ resource: "posts", action: "create", params: { *resource } }`
-- [**Clone**](/api-reference/antd/components/buttons/clone.md): `{ resource: "posts", action: "create", params: { id: 1, *resource } }`
-- [**Edit**](/api-reference/antd/components/buttons/edit.md): `{ resource: "posts", action: "edit", params: { id: 1, *resource } }`
-- [**Delete**](/api-reference/antd/components/buttons/delete.md): `{ resource: "posts, action: "delete", params: { id: 1, *resource } }`
-- [**Show**](/api-reference/antd/components/buttons/show.md): `{ resource: "posts", action: "show", params: { id: 1, *resource } }`
+- [**List**](/docs/api-reference/antd/components/buttons/list.md): `{ resource: "posts", action: "list", params: { *resource } }`
+- [**Create**](/docs/api-reference/antd/components/buttons/create.md): `{ resource: "posts", action: "create", params: { *resource } }`
+- [**Clone**](/docs/api-reference/antd/components/buttons/clone.md): `{ resource: "posts", action: "create", params: { id: 1, *resource } }`
+- [**Edit**](/docs/api-reference/antd/components/buttons/edit.md): `{ resource: "posts", action: "edit", params: { id: 1, *resource } }`
+- [**Delete**](/docs/api-reference/antd/components/buttons/delete.md): `{ resource: "posts, action: "delete", params: { id: 1, *resource } }`
+- [**Show**](/docs/api-reference/antd/components/buttons/show.md): `{ resource: "posts", action: "show", params: { id: 1, *resource } }`
 
 These buttons will be disabled if access control returns `{ can: false }`
 

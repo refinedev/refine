@@ -81,7 +81,7 @@ Identifier value for the current resource, this can either be the `identifier` p
 | resources    | [`IResourceItem[]`](#interfaces)                                                                                          |
 | resource     | [`IResourceItem` \| `undefined`](#interfaces)                                                                             |
 | resourceName | `string` \| `undefined`                                                                                                   |
-| id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                    |
+| id           | [`BaseKey`](/docs/api-reference/core/interfaces.md#basekey)                                                               |
 | action       | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"`                                                |
 | select       | `(resourceName: string, force?: boolean) => { resource: IResourceItem` \| `undefined, identifier: string` \| `undefined}` |
 | identifier   | `string` \| `undefined`                                                                                                   |

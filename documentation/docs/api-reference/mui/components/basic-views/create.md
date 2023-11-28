@@ -250,7 +250,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/mui/components/buttons/save.md)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/api-reference/mui/components/buttons/save.md)
 
 ### `goBack`
 
@@ -414,7 +414,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mui/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/mui/components/breadcrumb.md)
 
 ### `wrapperProps`
 
