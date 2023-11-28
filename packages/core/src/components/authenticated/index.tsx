@@ -9,35 +9,6 @@ import {
     useIsAuthenticated,
 } from "@hooks";
 import { useActiveAuthProvider } from "@definitions/index";
-import { GoConfig } from "src/interfaces";
-
-/**
- * This hook is used to avoid React's invalid setState call warning.
- * When `go` is called during the render phase, it's updating the internal router state before the render phase is finished.
- * This causes React to throw an error. This hook is used to defer the `go` call to the effect calls.
- */
-const useDeferredGo = () => {
-    const go = useGo();
-
-    const [config, setConfig] = React.useState<GoConfig | undefined>(undefined);
-
-    React.useEffect(() => {
-        if (config) {
-            go(config);
-        }
-    }, [config]);
-
-    const cb = React.useCallback(
-        (props: GoConfig) => {
-            if (!config) {
-                setConfig(props);
-            }
-        },
-        [config],
-    );
-
-    return cb;
-};
 
 export type AuthenticatedCommonProps = {
     /**
@@ -114,138 +85,93 @@ export function Authenticated({
 
     const parsed = useParsed();
     const go = useGo();
-    const deferredGo = useDeferredGo();
     const { replace } = useNavigation();
     const { useLocation } = useRouterContext();
     const legacyLocation = useLocation();
 
     const {
-        isLoading,
         isFetching,
-        // isRefetching,
         isSuccess,
         data: {
             authenticated: isAuthenticatedStatus,
             redirectTo: authenticatedRedirect,
         } = {},
-        refetch,
     } = useIsAuthenticated({
         v3LegacyAuthProviderCompatible: isLegacyAuth,
     });
 
-    React.useEffect(() => {
-        /**
-         * Refetch the authentication status if the content is changed (e.g. redirected or updated)
-         *
-         * This is done to avoid re-rendering the wrappers with the same content.
-         */
-
-        refetch();
-    }, [children, fallbackContent]);
-
-    const state = React.useRef<{
-        status: "initial" | "pending" | "settled";
-        content: React.ReactNode;
-    }>({
-        status: isLoading ? "initial" : "pending",
-        content: loadingContent ?? null,
-    });
-
-    /**
-     * Update state when fetching the authentication response.
-     */
-    if (isFetching) {
-        state.current.status = "pending";
-    } else if (!isFetching) {
-        state.current.status = "settled";
-    }
-
-    /**
-     * Authentication status
-     */
+    // Authentication status
     const isAuthenticated = hasAuthProvider
         ? isLegacyAuth
             ? isSuccess
             : isAuthenticatedStatus
         : true;
 
-    if (state.current.status === "settled") {
-        /**
-         * If the state is settled, and query is resolved.
-         */
-        if (isAuthenticated) {
-            /**
-             * If user is authenticated, show the children.
-             */
-            state.current.content = <>{children ?? null}</>;
-        } else if (typeof fallbackContent !== "undefined") {
-            /**
-             * If user is not authenticated, and `fallback` is present, show the fallback content.
-             */
-            state.current.content = <>{fallbackContent}</>;
-        } else {
-            /**
-             * If there's no `fallback` content, redirect will be applied.
-             */
-
-            /**
-             * Current pathname to append to the redirect url.
-             */
-            const pathname = `${
-                isLegacyRouter ? legacyLocation?.pathname : parsed.pathname
-            }`.replace(/(\?.*|#.*)$/, "");
-
-            /**
-             * Redirect url to use, if `redirectOnFail` is set to a string,
-             * it will be used instead of `redirectTo` property of the `check` function's response.
-             */
-            const appliedRedirect = isLegacyAuth
-                ? typeof redirectOnFail === "string"
-                    ? redirectOnFail
-                    : "/login"
-                : typeof redirectOnFail === "string"
-                ? redirectOnFail
-                : (authenticatedRedirect as string | undefined);
-
-            /**
-             * Redirect if `appliedRedirect` is set.
-             */
-            if (appliedRedirect) {
-                if (isLegacyRouter) {
-                    const toQuery = appendCurrentPathToQuery
-                        ? `?to=${encodeURIComponent(pathname)}`
-                        : "";
-                    replace(`${appliedRedirect}${toQuery}`);
-                } else {
-                    deferredGo({
-                        to: appliedRedirect,
-                        query: appendCurrentPathToQuery
-                            ? {
-                                  to: parsed.params?.to
-                                      ? parsed.params.to
-                                      : go({
-                                            to: pathname,
-                                            options: { keepQuery: true },
-                                            type: "path",
-                                        }),
-                              }
-                            : undefined,
-                        type: "replace",
-                    });
-                }
-            }
-        }
-    }
-
-    /**
-     * If there's no `authProvider` set, we don't need to check whether user is logged in or not.
-     */
+    // when there is no auth provider
     if (!hasAuthProvider) {
         return <>{children ?? null}</>;
     }
 
-    /**
-     * Returning the content based on the state, `fallback` or `children`.
-     */
-    return <>{state.current.content}</>;
+    // when checking authentication status
+    if (isFetching) {
+        return <>{loadingContent ?? null}</>;
+    }
+
+    // when user is authenticated return children
+    if (isAuthenticated) {
+        return <>{children ?? null}</>;
+    }
+    // when user is not authenticated redirect or render fallbackContent
+    else {
+        // render fallbackContent if it is exist
+        if (typeof fallbackContent !== "undefined") {
+            return <>{fallbackContent ?? null}</>;
+        }
+        // if there is no fallbackContent, redirect page
+
+        // Redirect url to use. use redirectOnFail if it is set.
+        // Otherwise use redirectTo property of the check function's response.
+        // If both are not set, use `/login` as the default redirect url. (only for legacy auth providers)
+        const appliedRedirect = isLegacyAuth
+            ? typeof redirectOnFail === "string"
+                ? redirectOnFail
+                : "/login"
+            : typeof redirectOnFail === "string"
+            ? redirectOnFail
+            : (authenticatedRedirect as string | undefined);
+
+        // Current pathname to append to the redirect url.
+        // User will be redirected to this url after successful mutation. (like login)
+        const pathname = `${
+            isLegacyRouter ? legacyLocation?.pathname : parsed.pathname
+        }`.replace(/(\?.*|#.*)$/, "");
+        // Redirect if appliedRedirect is set, otherwise return null.
+        //  Uses `replace` for legacy router and `go` for new router.
+        if (appliedRedirect) {
+            if (isLegacyRouter) {
+                const toQuery = appendCurrentPathToQuery
+                    ? `?to=${encodeURIComponent(pathname)}`
+                    : "";
+                replace(`${appliedRedirect}${toQuery}`);
+            } else {
+                go({
+                    to: appliedRedirect,
+                    query: appendCurrentPathToQuery
+                        ? {
+                              to: parsed.params?.to
+                                  ? parsed.params.to
+                                  : go({
+                                        to: pathname,
+                                        options: { keepQuery: true },
+                                        type: "path",
+                                    }),
+                          }
+                        : undefined,
+                    type: "replace",
+                });
+            }
+        }
+
+        return null;
+    }
 }
