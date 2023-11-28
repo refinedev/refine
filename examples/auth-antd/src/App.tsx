@@ -27,7 +27,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { App as AntdApp, ConfigProvider } from "antd";
 
-// import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostEdit, PostShow } from "../src/pages/posts";
 import { DashboardPage } from "../src/pages/dashboard";

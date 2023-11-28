@@ -272,7 +272,8 @@ export const LoginPage: React.FC<LoginProps> = ({
                 justify="center"
                 align="middle"
                 style={{
-                    height: "100vh",
+                    padding: "16px 0",
+                    minHeight: "100dvh",
                 }}
             >
                 <Col xs={22}>
