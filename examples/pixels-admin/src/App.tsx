@@ -74,7 +74,7 @@ function App() {
                         <Routes>
                             <Route
                                 element={
-                                    <Authenticated>
+                                    <Authenticated key="authenticated-routes">
                                         <ThemedLayoutV2 Title={Title}>
                                             <CanAccess>
                                                 <Outlet />
@@ -92,7 +92,10 @@ function App() {
                             </Route>
                             <Route
                                 element={
-                                    <Authenticated fallback={<Outlet />}>
+                                    <Authenticated
+                                        key="auth-pages"
+                                        fallback={<Outlet />}
+                                    >
                                         <NavigateToResource resource="users" />
                                     </Authenticated>
                                 }
@@ -118,7 +121,7 @@ function App() {
 
                             <Route
                                 element={
-                                    <Authenticated>
+                                    <Authenticated key="catch-all">
                                         <ThemedLayoutV2>
                                             <Outlet />
                                         </ThemedLayoutV2>

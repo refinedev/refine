@@ -228,6 +228,7 @@ const App: React.FC = () => {
                                     <Route
                                         element={
                                             <Authenticated
+                                                key="authenticated-routes"
                                                 fallback={
                                                     <CatchAllNavigate to="/login" />
                                                 }
@@ -278,6 +279,7 @@ const App: React.FC = () => {
                                     <Route
                                         element={
                                             <Authenticated
+                                                key="auth-pages"
                                                 fallback={<Outlet />}
                                             >
                                                 <NavigateToResource />
