@@ -854,6 +854,22 @@
       "to": "/docs/guides-concepts/general-concepts"
     },
     {
+      "from": "/docs/api-reference/antd",
+      "to": "/docs/api-reference/antd/introduction"
+    },
+    {
+      "from": "/docs/api-reference/mantine",
+      "to": "/docs/api-reference/mantine/introduction"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui",
+      "to": "/docs/api-reference/chakra-ui/introduction"
+    },
+    {
+      "from": "/docs/api-reference/mui",
+      "to": "/docs/api-reference/mui/introduction"
+    },
+    {
       "from": "/docs/examples/table/react-table/advanced-react-table",
       "to": "/docs/examples/table/tanstack-table/advanced-tanstack-table"
     },
