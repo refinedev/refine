@@ -14,7 +14,6 @@ CrashLoopBackOff is an error that appears most of the time when a container repe
 
 Steps we'll cover in this article:
 
-- [Brief explanation of CrashLoopBackOff and its significance](#brief-explanation-of-crashloopbackoff-and-its-significance)
 - [A Closer Look at CrashLoopBackOff](#a-closer-look-at-crashloopbackoff)
   - [Defining CrashLoopBackOff as a status message](#defining-crashloopbackoff-as-a-status-message)
   - [Highlighting the difference between this and other statuses like Pending, Running, and Failed](#highlighting-the-difference-between-this-and-other-statuses-like-pending-running-and-failed)
@@ -37,7 +36,6 @@ Steps we'll cover in this article:
 - [Strategically Using CrashLoopBackOff](#strategically-using-crashloopbackoff)
   - [Leveraging the status for effective troubleshooting](#leveraging-the-status-for-effective-troubleshooting)
   - [The role of CrashLoopBackOff in CI/CD workflows](#the-role-of-crashloopbackoff-in-cicd-workflows)
-- [Conclusion](#conclusion)
 
 ## A Closer Look at CrashLoopBackOff
 
@@ -48,9 +46,13 @@ In Kubernetes, a status message indicates the state of a pod and its containers.
 ### Highlighting the difference between this and other statuses like Pending, Running, and Failed
 
 Other statuses such as Pending, Running, and Failed, which have different meanings and implications, differ from CrashLoopBackOff.
+
 **Pending:** One or more containers have not started; however, the Kubernetes system has accepted the pod.
+
 **Running:** The pod has connected to a node, and all the containers have been created. At least one container has already started running or is in the process of starting or restarting.
+
 **Failed:** The pod contains all dead containers. Containers in the pod indicate at least one failure. Failure, in this case, refers to a non-zero exit code or stopped by the system.
+
 **CrashLoopBackOff:** Another more severe status than the failed one is CrashLoopBackOff, which indicates that a container doesn't work even after several restarts made by Kubernetes.
 
 ## Common Causes of CrashLoopBackOff
@@ -176,20 +178,29 @@ The `kubectl describe pod POD_NAME_HERE` command is useful in gaining a more ins
 To resolve the CrashLoopBackOff status, you need details that would lead to identifying and resolving the error. By focusing on the key details below, you can effectively resolve issues related to CrashLoopBackOff status:
 
 **Start time:** This will help you note when the pod was created or restarted. Look at this time in comparison with the events or logs and observe if there is any correlation or recurrent pattern.
+
 **Mounts:** These refer to the volumes that are attached to the pod or container. Check for any issues related to permissions, paths or formats that may be causing problems with the mounts.
+
 **Default tokens:** These are service account tokens that are automatically connected to the pod or container. Verify if there are any problems with expiration, revocation or authentication.
+
 **Events:** These records document actions and changes within the pod or container. Look out for any errors, warnings or messages in the events log that might provide insight into what caused the crash.
 
 ## Strategically Using CrashLoopBackOff
 
 ### Leveraging the status for effective troubleshooting
 
-In Kubernetes, efficient troubleshooting relies heavily on making use of the CrashLoopBackOff status. When a pod is starting up, this status is a signal that there is something wrong, and it should be noted for further investigation. The underlying cause can be analyzed by looking at the logs of the failed pod. Through this status, recognition and fixing of issues like resource constraints, absence of dependencies and configuration errors would be made possible, leading to an easier startup.
+In Kubernetes, efficient troubleshooting relies heavily on making use of the CrashLoopBackOff status. When a pod is starting up, this status is a signal that there is something wrong, and it should be noted for further investigation. The underlying cause can be analyzed by looking at the logs of the failed pod.
+
+Through this status, recognition and fixing of issues like resource constraints, absence of dependencies and configuration errors would be made possible, leading to an easier startup.
 
 ### The role of CrashLoopBackOff in CI/CD workflows
 
-CrashLoopBackOff in CI/CD workflows identifies issues and helps you resolve them within your application. CI/CD workflows automate software development, testing and deployment processes. When there are errors or failures during deployment, CrashLoopBackOff can help you identify configuration errors, missing dependencies or incompatible versions that may exist. Moreover, CrashLoopBackOff guarantees that each component of code and all of its dependencies are thoroughly examined and verified on your Kubernetes cluster. To do this, you can use continuous integration technologies and automated testing to validate and verify your code, including dependencies.
+CrashLoopBackOff in CI/CD workflows identifies issues and helps you resolve them within your application. CI/CD workflows automate software development, testing and deployment processes. When there are errors or failures during deployment, CrashLoopBackOff can help you identify configuration errors, missing dependencies or incompatible versions that may exist.
+
+Moreover, CrashLoopBackOff guarantees that each component of code and all of its dependencies are thoroughly examined and verified on your Kubernetes cluster. To do this, you can use continuous integration technologies and automated testing to validate and verify your code, including dependencies.
 
 ## Conclusion
 
-This article has discussed the CrashLoopBackOff error in great detail. It is one of the common errors of Kubenetes and one of the complex ones as well. Complex to diagnose because the root cause can be one of the many. Taking advantage of advanced diagnostic tools provides better insights about container and pod behavior than basic diagnostic commands commonly seen in Kubernetes environments. Tools such as `kubectl logs` for detailed container log analysis, `kubectl exec` to execute commands inside containers, and `kubectl port-forward`, which connects local ports to pods are used. Adopting methods like container debugging with kubectl debug would offer a broader approach to resolving challenges experienced while deploying on Kubernetes.
+This article has discussed the CrashLoopBackOff error in great detail. It is one of the common errors of Kubenetes and one of the complex ones as well. Complex to diagnose because the root cause can be one of the many. Taking advantage of advanced diagnostic tools provides better insights about container and pod behavior than basic diagnostic commands commonly seen in Kubernetes environments.
+
+Tools such as `kubectl logs` for detailed container log analysis, `kubectl exec` to execute commands inside containers, and `kubectl port-forward`, which connects local ports to pods are used. Adopting methods like container debugging with kubectl debug would offer a broader approach to resolving challenges experienced while deploying on Kubernetes.
