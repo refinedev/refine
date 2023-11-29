@@ -21,7 +21,7 @@ npm install @refinedev/chakra-ui @chakra-ui/react @refinedev/react-table @refine
 We'll wrap our app with the [`<ChakraProvider />`](https://chakra-ui.com/getting-started) to make sure we have the theme available for our app, then we'll use the layout components to wrap them around our routes. Check out the examples below to see how to use Refine's Chakra UI integration.
 
 <Tabs wrapContent={false}>
-<TabItem value="react-router-dom" label="React Router Dom">
+<TabItem value="react-router-dom" label="React Router v6">
 
 import UsageReactRouterDom from "./previews/usage-react-router-dom.tsx";
 
@@ -310,7 +310,7 @@ const App = () => {
 Refine provides Layout components that can be used to implement a layout for the application. These components are crafted using Chakra UI's components and includes Refine's features and functionalities such as navigation menus, headers, authentication, authorization and more.
 
 <Tabs wrapContent={false}>
-<TabItem value="react-router-dom" label="React Router Dom">
+<TabItem value="react-router-dom" label="React Router v6">
 
 import LayoutReactRouterDom from "./previews/layout-react-router-dom.tsx";
 
