@@ -1180,7 +1180,7 @@ const { ... } = useForm({
 
 Returns all the properties returned by [React Hook Form][react-hook-form] of the `useForm` hook. Also, we added the following return values:
 
-`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/docs/api-reference/core/hooks/useForm.md##return-values).
+`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/docs/api-reference/core/hooks/useForm/##return-values).
 
 > For example, we can access the `refineCore` return value in the `useForm` hook as:
 
@@ -1215,7 +1215,7 @@ const {
 
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
-[use-form-core]: /api-reference/core/hooks/useForm.md
+[use-form-core]: /docs/api-reference/core/hooks/useForm/
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
 [notification-provider]: /docs/api-reference/core/providers/notification-provider/

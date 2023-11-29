@@ -614,7 +614,7 @@ This feature also requires `UnsavedChangesNotifier` component to be mounted. You
 
 ### `redirect`
 
-By default, **refine** redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/api-reference/core/hooks/useForm.md#actions), set `redirect` as follows:
+By default, **refine** redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/api-reference/core/hooks/useForm/#actions), set `redirect` as follows:
 
 ```tsx title="App.tsx"
 const App: React.FC = () => {
