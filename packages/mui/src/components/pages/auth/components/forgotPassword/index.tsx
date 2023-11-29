@@ -191,7 +191,10 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "center",
-                        height: "100vh",
+                        minHeight: "100dvh",
+                        padding: "16px",
+                        width: "100%",
+                        maxWidth: "400px",
                     }}
                 >
                     {renderContent ? (
