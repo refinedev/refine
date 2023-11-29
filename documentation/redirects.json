@@ -290,7 +290,7 @@
     },
     {
       "from": "/docs/guides-and-concepts/forms/save-and-continue/",
-      "to": "/docs/guides-concepts/forms/#save-and-continue"
+      "to": "/docs/guides-concepts/forms"
     },
     {
       "from": "/docs/guides-and-concepts/import-export/csv-export/",
@@ -883,11 +883,11 @@
     },
     {
       "from": "/docs/advanced-tutorials/forms/server-side-form-validation",
-      "to": "/docs/guides-concepts/forms/#server-side-validation-"
+      "to": "/docs/guides-concepts/forms"
     },
     {
       "from": "/docs/advanced-tutorials/forms/save-and-continue",
-      "to": "/docs/guides-concepts/forms/#save-and-continue"
+      "to": "/docs/guides-concepts/forms"
     }
   ]
 }
