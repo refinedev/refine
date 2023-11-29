@@ -311,7 +311,7 @@ useForm({
 ##### **Usage of `<UnsavedChangesNotifier />`**
 
 <Tabs wrapContent={false}>
-<TabItem value="react-router" label="React Router Dom">
+<TabItem value="react-router" label="React Router v6">
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";

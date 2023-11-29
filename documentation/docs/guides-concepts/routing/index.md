@@ -182,7 +182,7 @@ import { ReactRouterUseFormUsage } from "./react-router/use-form-usage";
 Additionally, router integrations exposes an `<UnsavedChangesNotifier />` component which can be used to notify the user about unsaved changes before navigating away from the current page. This component provides this feature which can be enabled by setting `warnWhenUnsavedChanges` to `true` in `useForm` hooks.
 
 <Tabs wrapContent={false}>
-<TabItem value="react-router" label="React Router Dom">
+<TabItem value="react-router" label="React Router v6">
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
