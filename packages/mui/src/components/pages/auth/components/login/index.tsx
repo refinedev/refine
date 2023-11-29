@@ -303,6 +303,11 @@ export const LoginPage: React.FC<LoginProps> = ({
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "center",
+                        alignItems: "center",
+                        minHeight: "100dvh",
+                        padding: "16px",
+                        width: "100%",
+                        maxWidth: "400px",
                     }}
                 >
                     <Box
