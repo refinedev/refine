@@ -6,7 +6,7 @@ export default function Login() {
     <Sandpack
       dependencies={{
         "@refinedev/core": "latest",
-        axios: "^0.26.1",
+        axios: "^1.6.2",
       }}
       startRoute="/"
       files={{
@@ -139,7 +139,7 @@ export const RegisterPage = () => {
             <form onSubmit={(e) => onSubmit(e)}>
                 <input
                     type="email"
-                    placeholder="email"                  
+                    placeholder="email"
                 />
                 <button type="submit">Submit</button>
             </form>

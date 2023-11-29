@@ -5,7 +5,7 @@ module.exports = {
         items: [
             {
                 label: "Data Provider",
-                requiredPackages: ["query-string@7.1.1", "axios@0.26.1"],
+                requiredPackages: ["query-string@7.1.1", "axios@1.6.2"],
                 files: [
                     {
                         src: "./src/provider.ts",
