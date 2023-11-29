@@ -287,7 +287,7 @@ interface IPost {
 [use-form-react-hook-form]: /docs/packages/documentation/react-hook-form/useForm/
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
-[use-form-core]: /api-reference/core/hooks/useForm.md
+[use-form-core]: /api-reference/core/hooks/useForm/
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
 [notification-provider]: /docs/api-reference/core/providers/notification-provider/

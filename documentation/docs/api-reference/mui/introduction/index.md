@@ -81,7 +81,7 @@ interface IProduct {
 
 ## Forms
 
-Material UI offers form elements yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/documentation/react-hook-form/useForm.md) package which is built on top of Refine's [`useForm`](/docs/api-reference/core/hooks/useForm.md) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
+Material UI offers form elements yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/documentation/react-hook-form/useForm.md) package which is built on top of Refine's [`useForm`](/docs/api-reference/core/hooks/useForm/) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
 
 Refine's documentations and examples of Material UI uses `@refinedev/react-hook-form` package for form management but you have the option to use any form management solution you want.
 
