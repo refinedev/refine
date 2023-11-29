@@ -53,6 +53,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     formProps,
     providers,
     title,
+    hideForm,
 }) => {
     const theme = useMantineTheme();
     const { useForm, FormProvider } = FormContext;
@@ -118,11 +119,13 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             );
                         })}
                     </Stack>
-                    <Divider
-                        my="md"
-                        labelPosition="center"
-                        label={translate("pages.login.divider", "or")}
-                    />
+                    {!hideForm && (
+                        <Divider
+                            my="md"
+                            labelPosition="center"
+                            label={translate("pages.login.divider", "or")}
+                        />
+                    )}
                 </>
             );
         }
@@ -140,69 +143,70 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             <Space h="sm" />
             <Space h="lg" />
             {renderProviders()}
-            <FormProvider form={form}>
-                <form
-                    onSubmit={onSubmit((values: any) => {
-                        if (onSubmitProp) {
-                            return onSubmitProp(values);
-                        }
-                        return register(values);
-                    })}
-                >
-                    <TextInput
-                        name="email"
-                        label={translate(
-                            "pages.register.fields.email",
-                            "Email",
-                        )}
-                        placeholder={translate(
-                            "pages.register.fields.email",
-                            "Email",
-                        )}
-                        {...getInputProps("email")}
-                    />
-                    <PasswordInput
-                        mt="md"
-                        name="password"
-                        label={translate(
-                            "pages.register.fields.password",
-                            "Password",
-                        )}
-                        placeholder="●●●●●●●●"
-                        {...getInputProps("password")}
-                    />
-                    <Button
-                        mt="md"
-                        fullWidth
-                        size="md"
-                        type="submit"
-                        loading={isLoading}
+            {!hideForm && (
+                <FormProvider form={form}>
+                    <form
+                        onSubmit={onSubmit((values: any) => {
+                            if (onSubmitProp) {
+                                return onSubmitProp(values);
+                            }
+                            return register(values);
+                        })}
                     >
-                        {translate("pages.register.buttons.submit", "Sign up")}
-                    </Button>
-
-                    {loginLink ?? (
-                        <Group mt="md" position="center">
-                            <Text size="xs">
-                                {translate(
-                                    "pages.register.buttons.haveAccount",
-                                    "Have an account?",
-                                )}{" "}
-                                <Anchor
-                                    component={ActiveLink as any}
-                                    to="/login"
-                                    weight={700}
-                                >
-                                    {translate(
-                                        "pages.register.signin",
-                                        "Sign in",
-                                    )}
-                                </Anchor>
-                            </Text>
-                        </Group>
-                    )}
-                </form>
-            </FormProvider>
+                        <TextInput
+                            name="email"
+                            label={translate(
+                                "pages.register.fields.email",
+                                "Email",
+                            )}
+                            placeholder={translate(
+                                "pages.register.fields.email",
+                                "Email",
+                            )}
+                            {...getInputProps("email")}
+                        />
+                        <PasswordInput
+                            mt="md"
+                            name="password"
+                            label={translate(
+                                "pages.register.fields.password",
+                                "Password",
+                            )}
+                            placeholder="●●●●●●●●"
+                            {...getInputProps("password")}
+                        />
+                        <Button
+                            mt="md"
+                            fullWidth
+                            size="md"
+                            type="submit"
+                            loading={isLoading}
+                        >
+                            {translate(
+                                "pages.register.buttons.submit",
+                                "Sign up",
+                            )}
+                        </Button>
+                    </form>
+                </FormProvider>
+            )}
+            {loginLink ?? (
+                <Group mt="md" position="center">
+                    <Text size="xs">
+                        {translate(
+                            "pages.register.buttons.haveAccount",
+                            "Have an account?",
+                        )}{" "}
+                        <Anchor
+                            component={ActiveLink as any}
+                            to="/login"
+                            weight={700}
+                        >
+                            {translate("pages.register.signin", "Sign in")}
+                        </Anchor>
+                    </Text>
+                </Group>
+            )}
         </Card>
     );
 
