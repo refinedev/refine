@@ -32,7 +32,7 @@ import {
     headStyles,
     bodyStyles,
 } from "../styles";
-import { ThemedTitle } from "@components";
+import { ThemedTitleV2 } from "@components";
 
 type ResetPassworProps = ForgotPasswordPageProps<
     LayoutProps,
@@ -78,7 +78,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? <ThemedTitleV2 collapsed={false} />}
             </div>
         );
 

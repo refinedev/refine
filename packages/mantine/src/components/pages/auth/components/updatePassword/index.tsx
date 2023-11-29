@@ -25,7 +25,7 @@ import {
     pageTitleStyles,
 } from "../styles";
 import { FormPropsType } from "../..";
-import { ThemedTitle } from "@components";
+import { ThemedTitleV2 } from "@components";
 
 type UpdatePassworProps = UpdatePasswordPageProps<
     BoxProps,
@@ -77,7 +77,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     const PageTitle =
         title === false ? null : (
             <div style={pageTitleStyles}>
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? <ThemedTitleV2 collapsed={false} />}
             </div>
         );
 

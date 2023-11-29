@@ -27,7 +27,7 @@ import {
 
 import { layoutStyles, titleStyles } from "../styles";
 import { FormPropsType } from "../../index";
-import { ThemedTitle } from "@components";
+import { ThemedTitleV2 } from "@components";
 
 type UpdatePasswordProps = UpdatePasswordPageProps<
     BoxProps,
@@ -75,7 +75,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                 }}
             >
                 {title ?? (
-                    <ThemedTitle
+                    <ThemedTitleV2
                         collapsed={false}
                         wrapperStyles={{
                             gap: "8px",

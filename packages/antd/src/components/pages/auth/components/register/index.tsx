@@ -30,7 +30,7 @@ import {
     headStyles,
     bodyStyles,
 } from "../styles";
-import { ThemedTitle } from "@components";
+import { ThemedTitleV2 } from "@components";
 
 const { Text, Title } = Typography;
 const { useToken } = theme;
@@ -74,7 +74,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? <ThemedTitleV2 collapsed={false} />}
             </div>
         );
 

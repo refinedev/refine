@@ -29,7 +29,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
 import { FormPropsType } from "../..";
-import { ThemedTitle } from "@components";
+import { ThemedTitleV2 } from "@components";
 
 type RegisterProps = RegisterPageProps<
     BoxProps,
@@ -108,7 +108,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? <ThemedTitleV2 collapsed={false} />}
             </div>
         );
 

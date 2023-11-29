@@ -23,7 +23,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
 import { FormPropsType } from "../..";
-import { ThemedTitle } from "@components";
+import { ThemedTitleV2 } from "@components";
 
 type UpdatePasswordProps = UpdatePasswordPageProps<
     BoxProps,
@@ -65,7 +65,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? <ThemedTitleV2 collapsed={false} />}
             </div>
         );
 

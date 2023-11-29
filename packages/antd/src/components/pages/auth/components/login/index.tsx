@@ -31,7 +31,7 @@ import {
     layoutStyles,
     titleStyles,
 } from "../styles";
-import { ThemedTitle } from "@components";
+import { ThemedTitleV2 } from "@components";
 
 const { Text, Title } = Typography;
 const { useToken } = theme;
@@ -77,7 +77,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? <ThemedTitleV2 collapsed={false} />}
             </div>
         );
 

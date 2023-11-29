@@ -32,7 +32,7 @@ import {
 
 import { layoutStyles, titleStyles } from "../styles";
 import { FormPropsType } from "../../index";
-import { ThemedTitle } from "@components/themedLayout/title";
+import { ThemedTitleV2 } from "@components";
 
 type RegisterProps = RegisterPageProps<
     BoxProps,
@@ -85,7 +85,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 }}
             >
                 {title ?? (
-                    <ThemedTitle
+                    <ThemedTitleV2
                         collapsed={false}
                         wrapperStyles={{
                             gap: "8px",
