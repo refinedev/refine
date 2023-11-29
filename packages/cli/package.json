@@ -13,8 +13,7 @@
     "start": "tsup --watch --format esm,cjs,iife --legacy-output",
     "build": "tsup --format esm,cjs,iife --minify --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
-    "prepare": "npm run build",
-    "swag": "node ./dist/cli.js"
+    "prepare": "npm run build"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
