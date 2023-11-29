@@ -1,6 +1,6 @@
 ---
-id: quickstart
 title: Quick Start Guide
+displayed_sidebar: mainSidebar
 ---
 
 import Tabs from '@theme/Tabs';

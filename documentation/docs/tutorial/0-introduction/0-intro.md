@@ -1,6 +1,7 @@
 ---
 id: index
 title: 1. Build your first refine app
+displayed_sidebar: mainSidebar
 tutorial:
   order: 0
   prev: false
