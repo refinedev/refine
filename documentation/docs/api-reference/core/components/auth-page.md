@@ -471,6 +471,33 @@ const authProvider: AuthBindings = {
 
 ## Props
 
+### `hideForm`
+
+When you set `hideForm` to `true`, the form will be hidden. You can use this property to show only providers.
+
+```tsx
+const MyLoginPage = () => {
+  return (
+    <AuthPage
+      type="login" // or "register"
+      hideForm={true}
+      providers={[
+        {
+          name: "google",
+          icon: GoogleIcon,
+          label: "Sign in with Google",
+        },
+        {
+          name: "github",
+          icon: GithubIcon,
+          label: "Sign in with GitHub",
+        },
+      ]}
+    />
+  );
+};
+```
+
 ### `providers`
 
 :::info
