@@ -269,8 +269,6 @@ const EditPage = () => {
 
 If a router integration is made, in most of the cases this enables Refine to infer the `resource`, `action` and `id` from the current route and provide them to `useForm` hook. In most of the cases, this will prevent the need of passing explicit `resource`, `action` and `id` props to the hooks including `useForm`.
 
-`useForm` also uses the router integration to redirect the user to the desired page after a successful mutation. By default, it's the list page of the resource but this can be customized by passing a `redirect` prop to the `useForm` hook. If you want to change the redirection behavior for all forms, you can use the `options.redirect` prop of the [`<Refine>` component](/docs/api-reference/core/components/refine-config.md).
-
 ```tsx
 import { useForm } from "@refinedev/core";
 
@@ -281,11 +279,143 @@ useForm({
   action: "edit",
   id: 1,
   // removed-end
-  redirect: "show", // Can also be "list", "edit" or false
 });
 ```
 
 To learn more about the routing, check out the [Routing](/guides-concepts/routing/index.md#router-integrations) guide and the [General Concepts](/guides-concepts/general-concepts/index.md#router-provider) guide to learn more about how it benefits the development experience.
+
+### Redirection
+
+`useForm` also uses the router integration to redirect the user to the desired page after a successful mutation. By default, it's the list page of the resource but this can be customized by passing a `redirect` prop to the `useForm` hook. If you want to change the redirection behavior for all forms, you can use the `options.redirect` prop of the [`<Refine>` component](/docs/api-reference/core/components/refine-config.md).
+
+```tsx
+import { useForm } from "@refinedev/core";
+
+useForm({
+  redirect: "show", // Can also be "list", "edit" or false
+});
+```
+
+### Unsaved Changes <GuideBadge id="guides-concepts/routing/#useform" /> <GlobalConfigBadge id="api-reference/core/components/refine-config/#warnwhenunsavedchanges" />
+
+Refine's `useForm` hooks have a built-in feature to prevent the user from losing the unsaved changes via a confirmation dialog when changing the route/leaving the page. To enable this feature, you need to use the [`<UnsavedChangesNotifier />`](/docs/guides-concepts/routing/#useform) components from the router package of the library you are using and set the `warnWhenUnsavedChanges` prop to `true`.
+
+```tsx
+import { Refine, useForm } from "@refinedev/core";
+
+useForm({
+  warnWhenUnsavedChanges: true,
+});
+```
+
+##### **Usage of `<UnsavedChangesNotifier />`**
+
+<Tabs wrapContent={false}>
+<TabItem value="react-router" label="React Router Dom">
+
+```tsx title="app.tsx"
+import { Refine } from "@refinedev/core";
+import { routerProvider, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes } from "react-router-dom";
+
+const App = () => (
+  <BrowserRouter>
+    <Refine
+      // ...
+      routerProvider={routerProvider}
+      options={{
+        // highlight-next-line
+        warnWhenUnsavedChanges: true,
+      }}
+    >
+      <Routes>{/* ... */}</Routes>
+      {/* highlight-start */}
+      {/* The `UnsavedChangesNotifier` component should be placed under <Refine /> component. */}
+      <UnsavedChangesNotifier />
+      {/* highlight-end */}
+    </Refine>
+  </BrowserRouter>
+);
+```
+
+Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/documentation/routers/react-router-v6/#unsavedchangesnotifier) for more information.
+
+</TabItem>
+<TabItem value="next-js" label="Next.js">
+
+```tsx title="_app.tsx"
+import type { AppProps } from "next/app";
+import { Refine } from "@refinedev/core";
+import { routerProvider, UnsavedChangesNotifier } from "@refinedev/nextjs-router";
+
+export default function App({ Component, pageProps }) {
+  return (
+    <Refine
+      // ...
+      routerProvider={routerProvider}
+      options={{
+        // highlight-next-line
+        warnWhenUnsavedChanges: true,
+      }}
+    >
+      <Component {...pageProps} />
+      {/* highlight-start */}
+      {/* The `UnsavedChangesNotifier` component should be placed under <Refine /> component. */}
+      <UnsavedChangesNotifier />
+      {/* highlight-end */}
+    </Refine>
+  );
+}
+```
+
+Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/documentation/routers/nextjs/#unsavedchangesnotifier) for more information.
+
+</TabItem>
+<TabItem value="remix" label="Remix">
+
+```tsx title="app/root.tsx"
+import type { MetaFunction } from "@remix-run/node";
+
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+
+import { Refine } from "@refinedev/core";
+
+// highlight-next-line
+import routerProvider, { UnsavedChangesNotifier } from "@refinedev/remix-router";
+
+export default function App() {
+  return (
+    <html lang="en">
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <Refine
+          // ...
+          routerProvider={routerProvider}
+          options={{
+            // highlight-next-line
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Outlet />
+          {/* highlight-next-line */}
+          <UnsavedChangesNotifier />
+        </Refine>
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+      </body>
+    </html>
+  );
+}
+```
+
+Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/documentation/routers/remix/#unsavedchangesnotifier) for more information.
+
+</TabItem>
+</Tabs>
 
 ## Actions <RouterBadge />
 
@@ -303,9 +433,15 @@ Used for editing an existing record. This action mode requires an `id` prop to b
 
 Used for cloning an existing record. This action mode requires an `id` prop to be passed to the form. The record with the given `id` will be fetched and the values will be used as the initial values for the form fields and the mutation will be performed to create a new record.
 
-## Mutation Modes <GlobalConfigBadge />
+## Mutation Modes <GlobalConfigBadge id="api-reference/core/components/refine-config/#mutationmode" />
 
 `useForm` provides 3 mutation modes to choose from, you may need each of them in different scenarios throughout your application.
+
+```tsx
+useForm({
+  mutationMode: "optimistic", // Can be "pessimistic", "optimistic" and "undoable". Default is "pessimistic"
+});
+```
 
 ### Pessimistic
 
@@ -328,18 +464,6 @@ In this mode, the mutation will be delayed for the specified amount of time but 
 Unless it is ordered to "undo" the action by the user, the mutation will be performed after the countdown. If the mutation succeeds, the query cache will be invalidated and the active queries will trigger a refetch.
 
 If the mutation fails, the optimistic updates will be reverted and the error will be displayed to the user.
-
-### Default Mutation Mode
-
-All three modes have their own use cases and benefits, you'll be able to choose them individually for each form. If you want to specify a default mutation mode for all forms, you can use the `options.mutationMode` prop of the [`<Refine>` component](/docs/api-reference/core/components/refine-config.md).
-
-```tsx
-<Refine
-  options={{
-    mutationMode: "optimistic", // default is "pessimistic"
-  }}
-/>
-```
 
 ## Invalidation <GuideBadge id="guides-concepts/general-concepts#caching" description="To learn more about caching, refer to General Concepts guide" />
 
@@ -442,7 +566,7 @@ useForm({
 });
 ```
 
-## Server Side Validation
+## Server Side Validation <GlobalConfigBadge id="api-reference/core/components/refine-config/#disableserversidevalidation" />
 
 Server-side form validation is a technique used to validate form data on the server before processing it. Unlike client-side validation, which is performed in the user's browser using JavaScript, server-side validation occurs on the server-side code, typically in the backend of the application.
 
@@ -467,27 +591,79 @@ const error: HttpError = {
 };
 ```
 
+[Check out `HttpError` interface for more information about the error format.](/docs/api-reference/core/interfaceReferences/#httperror)
+
+Examples below demonstrates the server-side validation and error propagation:
+
+<Tabs wrapContent={false}>
+<TabItem value="core" label="Refine's Core">
+
+import ServerSideValidationCore from "./server-side-validation-core.tsx";
+
+<ServerSideValidationCore />
+
+</TabItem>
+<TabItem value="hook-form" label="React Hook Form">
+
+import ServerSideValidationReactHookForm from "./server-side-validation-react-hook-form.tsx";
+
+<ServerSideValidationReactHookForm />
+
+</TabItem>
+<TabItem default value="antd" label="Ant Design">
+
+import ServerSideValidationAntd from "./server-side-validation-antd.tsx";
+
+<ServerSideValidationAntd />
+
+</TabItem>
+<TabItem value="mantine" label="Mantine">
+
+import ServerSideValidationMantine from "./server-side-validation-mantine.tsx";
+
+<ServerSideValidationMantine />
+
+</TabItem>
+<TabItem value="material-ui" label={(<span><span className="block">Material UI</span><small className="block">React Hook Form</small></span>)}>
+
+import ServerSideValidationMui from "./server-side-validation-mui.tsx";
+
+<ServerSideValidationMui />
+
+</TabItem>
+<TabItem value="chakra-ui" label={(<span><span className="block">Chakra UI</span><small className="block">React Hook Form</small></span>)}>
+
+import ServerSideValidationChakraUi from "./server-side-validation-chakra-ui.tsx";
+
+<ServerSideValidationChakraUi />
+
+</TabItem>
+</Tabs>
+
 ## Notifications <GuideBadge id="api-reference/core/providers/notification-provider" />
 
 When forms are submitted, it is a good practice to notify the user about the result of the submission. `useForm` handles this for you, when the mutation succeeds or fails it will show a notification to the user with a proper message. This behavior can be customized or disabled using the `successNotification` and `errorNotification` props.
 
 These props accepts both a function that returns the configuration or a static configuration, this means you'll be able to use the response of the mutation to customize the notification message.
 
-```tsx
+```tsx title="Default Notification Values"
 useForm({
-  // highlight-next-line
+  // If not passed explicitly, these default values will be used. Default values can also be customized via i18n.
   successNotification: (data, values, resource) => {
     return {
-      message: `Successfully created ${data.title}`,
-      description: "good job!",
+      description: translate("notifications.success", "Successful"),
+      message: translate("notifications.(edit|create)Success", "Successfully (updated|created) {resource}"),
       type: "success",
     };
   },
-  // highlight-next-line
+  // If not passed explicitly, these default values will be used. Default values can also be customized via i18n.
   errorNotification: (error, values, resource) => {
     return {
-      message: `Failed to create ${values.title}`,
       description: error.message,
+      message: translate(
+        "notifications.(edit|create)Error",
+        "Error when (updating|creating) {resource} (status code: {error.statusCode})",
+      ),
       type: "error",
     };
   },
@@ -523,6 +699,9 @@ const { autoSaveProps } = useForm({
   resource: "posts",
   action: "edit",
   id: 1,
+  autoSave: {
+    enabled: true,
+  },
 });
 
 return (
