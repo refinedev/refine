@@ -6,7 +6,7 @@ sidebar_label: <Refine>
 
 `<Refine>` component is the entry point of a **refine** app. It is where the highest level of configuration of the app occurs.
 
-[`dataProvider`](/api-reference/core/providers/data-provider.md) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
+[`dataProvider`](/docs/api-reference/core/providers/data-provider.md) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
@@ -39,11 +39,11 @@ export default App;
 <br/>
 <br/>
 
-A [`dataProvider`](/api-reference/core/providers/data-provider.md) is the place where a refine app communicates with an API.
+A [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) is the place where a refine app communicates with an API.
 Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.
-A [`dataProvider`](/api-reference/core/providers/data-provider.md) makes HTTP requests and returns response data back using predefined methods.
+A [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) makes HTTP requests and returns response data back using predefined methods.
 
-[Refer to the Data Provider documentation for detailed information. &#8594](/api-reference/core/providers/data-provider.md)
+[Refer to the Data Provider documentation for detailed information. &#8594](/docs/api-reference/core/providers/data-provider.md)
 
 :::tip
 
@@ -126,7 +126,7 @@ export default App;
 
 :::tip
 
-You can use [useResource](/api-reference/core/hooks/resource/useResource.md) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
+You can use [useResource](/docs/api-reference/core/hooks/resource/useResource.md) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
 
 :::
 
@@ -334,7 +334,7 @@ This value will be passed to all CRUD pages defined as the `resources` element.
 
 :::tip
 
-**refine**'s <[Edit](/api-reference/antd/components/basic-views/edit.md)> component uses `canDelete` value to whether show delete button in the edit form or not.
+**refine**'s <[Edit](/docs/api-reference/antd/components/basic-views/edit.md)> component uses `canDelete` value to whether show delete button in the edit form or not.
 
 :::
 
@@ -386,7 +386,7 @@ Custom route name for the resource.
 
 :::tip
 
-You can also pass any type of property into the `meta` object. This property you pass can be received from the [useResource](/api-reference/core/hooks/resource/useResource.md)
+You can also pass any type of property into the `meta` object. This property you pass can be received from the [useResource](/docs/api-reference/core/hooks/resource/useResource.md)
 
 :::
 
@@ -396,7 +396,7 @@ You can also pass any type of property into the `meta` object. This property you
 
 `authProvider` handles authentication logic like login, logout flow, and checking user credentials. It is an object with methods that refine uses when necessary.
 
-[Refer to the Auth Provider documentation for detailed information. &#8594](/api-reference/core/providers/auth-provider.md)
+[Refer to the Auth Provider documentation for detailed information. &#8594](/docs/api-reference/core/providers/auth-provider.md)
 
 <br />
 
@@ -404,7 +404,7 @@ You can also pass any type of property into the `meta` object. This property you
 
 The `i18nProvider` property lets you add i18n support to your app. Making you able to use any i18n framework.
 
-[Refer to i18n documentation for detailed information. &#8594](/api-reference/core/providers/i18n-provider.md)
+[Refer to i18n documentation for detailed information. &#8594](/docs/api-reference/core/providers/i18n-provider.md)
 
 <br />
 
@@ -412,7 +412,7 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 `accessControlProvider` is the entry point for implementing access control for **refine** apps.
 
-[Refer to access control documentation for detailed information. &#8594](/api-reference/core/providers/accessControl-provider.md)
+[Refer to access control documentation for detailed information. &#8594](/docs/api-reference/core/providers/access-control-provider.md)
 
 <br />
 
@@ -420,7 +420,7 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 **refine** lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
 
-[Refer to live provider documentation for detailed information. &#8594](/api-reference/core/providers/live-provider.md)
+[Refer to live provider documentation for detailed information. &#8594](/docs/api-reference/core/providers/live-provider.md)
 
 <br />
 
@@ -428,7 +428,7 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 `notificationProvider` handles notification logic. It is an object with methods that refine uses when necessary.
 
-[Refer to the Notification Provider documentation for detailed information. &#8594](/api-reference/core/providers/notification-provider.md)
+[Refer to the Notification Provider documentation for detailed information. &#8594](/docs/api-reference/core/providers/notification-provider.md)
 
 <br />
 
@@ -604,7 +604,7 @@ This feature also requires `UnsavedChangesNotifier` component to be mounted. You
 
 `liveMode` controls whether to update data automatically or not, with `auto` and `manual` respectively if a related live event is received. The `off` value can be used to avoid creating a subscription all together.
 
-> For more information, refer to the [live provider documentation &#8594](/api-reference/core/providers/live-provider.md#livemode)
+> For more information, refer to the [live provider documentation &#8594](/docs/api-reference/core/providers/live-provider.md#livemode)
 
 ### `disableTelemetry`
 
@@ -614,7 +614,7 @@ This feature also requires `UnsavedChangesNotifier` component to be mounted. You
 
 ### `redirect`
 
-By default, **refine** redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/api-reference/core/hooks/useForm.md#actions), set `redirect` as follows:
+By default, **refine** redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/api-reference/core/hooks/useForm/#actions), set `redirect` as follows:
 
 ```tsx title="App.tsx"
 const App: React.FC = () => {
@@ -812,7 +812,7 @@ The callback function receives two parameters:
 | ------------ | -------------------------------------------------------------------------- |
 | resource     | [`IResourceItem` \| `undefined`](#interfaces)                              |
 | resourceName | `string` \| `undefined`                                                    |
-| id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                     |
+| id           | [`BaseKey`](/docs/api-reference/core/interfaces.md#basekey)                |
 | action       | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` |
 
 ### `useNewQueryKeys`
@@ -825,7 +825,7 @@ By default, refine uses the legacy keys for backward compatibility and in the fu
 
 Callback to handle all live events.
 
-> For more information, refer to the [live provider documentation &#8594](/api-reference/core/providers/live-provider.md#refine)
+> For more information, refer to the [live provider documentation &#8594](/docs/api-reference/core/providers/live-provider.md#refine)
 
 ## ~~`catchAll`~~
 
@@ -939,7 +939,7 @@ The default sidebar can be customized by using refine hooks and passing custom c
 
 **refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default.
 
-> For more information, refer to the [`useMenu` hook documentation &#8594](/api-reference/core/hooks/ui/useMenu.md)
+> For more information, refer to the [`useMenu` hook documentation &#8594](/docs/api-reference/core/hooks/ui/useMenu.md)
 
 ## ~~`Footer`~~
 

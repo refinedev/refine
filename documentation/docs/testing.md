@@ -12,4 +12,3 @@ We strongly recommend that you write end-to-end tests of your application. **ref
 ## Example
 
 <CodeSandboxExample path="with-cypress" />
-

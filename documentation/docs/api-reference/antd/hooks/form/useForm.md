@@ -179,7 +179,7 @@ Submit functionality is provided by `saveButtonProps` which includes all of the 
 
 :::tip
 
-If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/api-reference/antd/hooks/form/useModalForm.md) or the [useDrawerForm](/api-reference/antd/hooks/form/useDrawerForm.md) hook.
+If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/docs/api-reference/antd/hooks/form/useModalForm.md) or the [useDrawerForm](/docs/api-reference/antd/hooks/form/useDrawerForm.md) hook.
 
 :::
 
@@ -431,7 +431,7 @@ render(<RefineAntdDemo />);
 
 `resource` will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path but it all depends on how to handle the `resource` in your [`dataProvider`][data-provider].
 
-> For more information on how `resource` is handled, refer to the [`creating a data provider` section](/api-reference/core/providers/data-provider.md#creating-a-data-provider)
+> For more information on how `resource` is handled, refer to the [`creating a data provider` section](/docs/api-reference/core/providers/data-provider.md#creating-a-data-provider)
 
 - When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
 - When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
@@ -1132,7 +1132,7 @@ You can use the `meta` property to pass common values to the mutation and the qu
 
 <PropsTable module="@refinedev/antd/useForm"/>
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/api-reference/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>
 
@@ -1149,20 +1149,20 @@ You can use the `meta` property to pass common values to the mutation and the qu
 
 ### Return values
 
-| Property        | Description                                             | Type                                                                                                                                                               |
-| --------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                     |
-| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                                 |
-| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                            |
-| saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                                    |
-| redirect        | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/api-reference/core/interfaces.md#basekey)\|`undefined`) => `data` |
-| queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                    |
-| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                                   |
-| formLoading     | Loading state of form request                           | `boolean`                                                                                                                                                          |
-| id              | Record id for `clone` and `create` action               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                                             |
-| setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                   |
-| overtime        | Overtime loading props                                  | `{ elapsedTime?: number }`                                                                                                                                         |
-| autoSaveProps   | Auto save props                                         | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                            |
+| Property        | Description                                             | Type                                                                                                                                                                    |
+| --------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                          |
+| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                                      |
+| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                 |
+| saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                                         |
+| redirect        | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/docs/api-reference/core/interfaces.md#basekey)\|`undefined`) => `data` |
+| queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                         |
+| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                                        |
+| formLoading     | Loading state of form request                           | `boolean`                                                                                                                                                               |
+| id              | Record id for `clone` and `create` action               | [`BaseKey`](/docs/api-reference/core/interfaces.md#basekey)                                                                                                             |
+| setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                        |
+| overtime        | Overtime loading props                                  | `{ elapsedTime?: number }`                                                                                                                                              |
+| autoSaveProps   | Auto save props                                         | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                                 |
 
 ## Example
 

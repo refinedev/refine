@@ -824,7 +824,7 @@ For page level access control, server-side approach is recommended.
 
 On the server side, you can use your `accessControlProvider`'s `can` function inside `getServerSideProps` to redirect unauthorized users to other pages.
 
-First, let's build our [AccessControlProvider](/docs/api-reference/core/providers/accessControl-provider.md)
+First, let's build our [AccessControlProvider](/docs/api-reference/core/providers/access-control-provider.md)
 
 ```tsx title="app/acccessControlProvider.ts"
 export const accessControlProvider = {

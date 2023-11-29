@@ -4,7 +4,7 @@ title: Edit
 swizzle: true
 ---
 
-`<Edit>` provides us a layout for displaying the page. It does not contain any logic and just adds extra functionalities like a [`<RefreshButton>`](/api-reference/mui/components/buttons/refresh.md).
+`<Edit>` provides us a layout for displaying the page. It does not contain any logic and just adds extra functionalities like a [`<RefreshButton>`](/docs/api-reference/mui/components/buttons/refresh.md).
 
 We will show what `<Edit>` does using properties with examples.
 
@@ -255,13 +255,13 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/mui/components/buttons/save.md)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/api-reference/mui/components/buttons/save.md)
 
 ### `canDelete` and `deleteButtonProps`
 
 `canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property, refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
-When clicked on, the delete button executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md).
+When clicked on, the delete button executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md).
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 const { default: simpleRest } = RefineSimpleRest;
@@ -358,7 +358,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<DeleteButton>` &#8594](/api-reference/mui/components/buttons/delete.md) and [`usePermission` &#8594](/api-reference/core/hooks/authentication/usePermissions.md) documentations
+> For more information, refer to the [`<DeleteButton>` &#8594](/docs/api-reference/mui/components/buttons/delete.md) and [`usePermission` &#8594](/docs/api-reference/core/hooks/authentication/usePermissions.md) documentations
 
 ### `recordItemId`
 
@@ -412,13 +412,13 @@ render(
 
 :::note
 
-The `<Edit>` component needs the `id` information for the [`<RefreshButton>`](/api-reference/mui/components/buttons/refresh.md) to work properly.
+The `<Edit>` component needs the `id` information for the [`<RefreshButton>`](/docs/api-reference/mui/components/buttons/refresh.md) to work properly.
 
 :::
 
 ### `mutationMode`
 
-Determines which mode mutation will have while executing [`<DeleteButton>`](/api-reference/mui/components/buttons/delete.md).
+Determines which mode mutation will have while executing [`<DeleteButton>`](/docs/api-reference/mui/components/buttons/delete.md).
 
 ```tsx live hideCode url=http://localhost:3000/posts/edit/123
 // visible-block-start
@@ -726,7 +726,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mui/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/mui/components/breadcrumb.md)
 
 ### `wrapperProps`
 
@@ -1316,7 +1316,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@refinedev/mui/Edit" 
+<PropsTable module="@refinedev/mui/Edit"
 wrapperProps-type="[`CardProps`](https://mui.com/material-ui/api/card/#props)"
 contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)"
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"
@@ -1327,7 +1327,7 @@ saveButtonProps-type="[`SaveButtonProps`](https://refine.dev/docs/api-reference/
 footerButtons-default="[`SaveButton`](https://refine.dev/docs/api-reference/mui/components/buttons/save-button/) and [`DeleteButton`](https://refine.dev/docs/api-reference/mui/components/buttons/delete-button/)"
 footerButtonsProps-type="[`CardActionsProps`](https://mui.com/material-ui/api/card-actions/#props)"
 breadcrumb-default="[`<Breadcrumb/>`](/docs/api-reference/mui/components/mui-breadcrumb/)"
-goBack-default="`<ArrowLeft />`" 
+goBack-default="`<ArrowLeft />`"
 goBack-type="`ReactNode`"
 />
 

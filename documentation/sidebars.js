@@ -29,10 +29,13 @@ module.exports = {
                 "guides-concepts/general-concepts/index",
                 "guides-concepts/data-fetching/index",
                 "guides-concepts/forms/index",
+                "guides-concepts/tables/index",
                 "guides-concepts/routing/index",
                 "guides-concepts/authentication/index",
                 "guides-concepts/authorization/index",
                 "guides-concepts/ui-libraries/index",
+                "guides-concepts/realtime/index",
+                "guides-concepts/audit-logs/index",
                 {
                     type: "category",
                     label: "Examples",
@@ -339,10 +342,10 @@ module.exports = {
                                 },
                                 {
                                     type: "category",
-                                    label: "React Table",
+                                    label: "TanStack Table",
                                     items: [
-                                        "examples/table/react-table/advanced-react-table",
-                                        "examples/table/react-table/react-table",
+                                        "examples/table/tanstack-table/advanced-tanstack-table",
+                                        "examples/table/tanstack-table/basic-tanstack-table",
                                     ],
                                 },
                                 {
@@ -447,8 +450,6 @@ module.exports = {
                             label: "Form",
                             items: [
                                 "advanced-tutorials/forms/custom-form-validation",
-                                "advanced-tutorials/forms/server-side-form-validation",
-                                "advanced-tutorials/forms/save-and-continue",
                             ],
                         },
                         {
@@ -519,7 +520,7 @@ module.exports = {
                             type: "category",
                             label: "Providers",
                             items: [
-                                "api-reference/core/providers/accessControl-provider",
+                                "api-reference/core/providers/access-control-provider",
                                 "api-reference/core/providers/auth-provider",
                                 "api-reference/core/providers/audit-log-provider",
                                 "api-reference/core/providers/data-provider",
@@ -600,7 +601,9 @@ module.exports = {
                                 {
                                     type: "category",
                                     label: "Form",
-                                    items: ["api-reference/core/hooks/useForm"],
+                                    items: [
+                                        "api-reference/core/hooks/useForm/useForm",
+                                    ],
                                 },
                                 {
                                     type: "category",
@@ -714,12 +717,8 @@ module.exports = {
                 {
                     type: "category",
                     label: "Ant Design API",
-                    link: {
-                        type: "generated-index",
-                        title: "Ant Design API",
-                        slug: "/api-reference/antd",
-                    },
                     items: [
+                        "api-reference/antd/introduction/index",
                         {
                             type: "category",
                             label: "Hooks",
@@ -843,12 +842,8 @@ module.exports = {
                 {
                     type: "category",
                     label: "Chakra UI API",
-                    link: {
-                        type: "generated-index",
-                        title: "Chakra UI API",
-                        slug: "/api-reference/chakra-ui",
-                    },
                     items: [
+                        "api-reference/chakra-ui/introduction/index",
                         {
                             type: "category",
                             label: "Components",
@@ -908,12 +903,8 @@ module.exports = {
                 {
                     type: "category",
                     label: "Mantine API",
-                    link: {
-                        type: "generated-index",
-                        title: "Mantine API",
-                        slug: "/api-reference/mantine",
-                    },
                     items: [
+                        "api-reference/mantine/introduction/index",
                         {
                             type: "category",
                             label: "Hooks",
@@ -990,12 +981,8 @@ module.exports = {
                 {
                     type: "category",
                     label: "Material UI API",
-                    link: {
-                        type: "generated-index",
-                        title: "Material UI API",
-                        slug: "/api-reference/mui",
-                    },
                     items: [
+                        "api-reference/mui/introduction/index",
                         {
                             type: "category",
                             label: "Hooks",
@@ -1085,7 +1072,14 @@ module.exports = {
                         },
                         "packages/documentation/inferencer",
                         "packages/documentation/command-palette",
-                        "packages/documentation/react-table/index",
+                        {
+                            type: "category",
+                            label: "TanStack Table",
+                            items: [
+                                "packages/documentation/tanstack-table/introduction",
+                                "packages/documentation/tanstack-table/use-table",
+                            ],
+                        },
                         {
                             type: "category",
                             label: "React Hook Form",

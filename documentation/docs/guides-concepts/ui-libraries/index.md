@@ -12,10 +12,10 @@ Refine has out of the box support for the four libraries that are widely used in
 
 These integrations are made to provide solutions for common use cases such as menus, layouts, action buttons, tables, forms and more while providing a consistent design language with the UI library. Rather than a constraint, these integrations are designed as helpers and extensions to the core functionalities of Refine and the UI libraries.
 
-- [Ant Design with `@refinedev/antd`](/docs/api-reference/antd/)
-- [Material UI with `@refinedev/mui`](/docs/api-reference/mui/)
-- [Chakra UI with `@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/)
-- [Mantine with `@refinedev/mantine`](/docs/api-reference/mantine/)
+- [Ant Design with `@refinedev/antd`](/docs/api-reference/antd/introduction)
+- [Material UI with `@refinedev/mui`](/docs/api-reference/mui/introduction)
+- [Chakra UI with `@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/introduction)
+- [Mantine with `@refinedev/mantine`](/docs/api-reference/mantine/introduction)
 
 ## Prebuilt Components
 
@@ -111,7 +111,7 @@ import { EditButton } from "@refinedev/antd";
 
 Refine has the ability to change some configurations of the components and hooks globally through the `<Refine>` component. This will let the user to change the default logical and visual approaches made in the UI components. For example, we can change the buttons' visibility based on the authorization status through `<Refine>` component. This will effect all of the buttons in the application just by changing it in one place.
 
-```tsx title="app.tsx"
+```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 
 <Refine
@@ -167,7 +167,7 @@ While this integration is not coupled with the UI integrations, it will be a wis
 
 Using of the prebuilt notification providers are optional and can be customized, extended or even swapped with a custom implementation if needed.
 
-```tsx title="app.tsx"
+```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 import { notificationProvider } from "@refinedev/mantine";
 

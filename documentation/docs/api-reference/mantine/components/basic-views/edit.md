@@ -241,7 +241,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/mantine/components/buttons/save.md)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/api-reference/mantine/components/buttons/save.md)
 
 ### `canDelete` and `deleteButtonProps`
 
@@ -358,7 +358,7 @@ render(
 );
 ```
 
-> For more information, refer to the documentations [`<DeleteButton>` &#8594](/api-reference/mantine/components/buttons/delete.md) and [`usePermission` &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the documentations [`<DeleteButton>` &#8594](/docs/api-reference/mantine/components/buttons/delete.md) and [`usePermission` &#8594](/docs/api-reference/core/hooks/authentication/usePermissions.md)
 
 ### `resource`
 
@@ -766,7 +766,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mantine/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/mantine/components/breadcrumb.md)
 
 ### `wrapperProps`
 

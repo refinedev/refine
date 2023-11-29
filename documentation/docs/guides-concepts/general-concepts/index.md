@@ -49,6 +49,7 @@ They are pluggable, which means you can use the **built-in providers** or **crea
 - **I18n Provider**: Enables i18n features such as renderin translated menu items, button texts, table columns, page titles, and more.
 - **Live Provider**: Enables real-time updates to your application. For example, when a user creates a new record, other users can see the new record in the list page without refreshing the page.
 - **Router Provider**: Matches routes to resources, enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items.
+- **Audit Log Provider**: Handles sending Audit Logs for CRUD operations.
 
 ## Hook Concept
 
@@ -492,6 +493,10 @@ Another example is `useTable` hook. While it can infer **resource**, **paginatio
 
 > See the [Routing](/docs/guides-concepts/routing/) guide for more information.
 
+### Audit Log Provider
+
+**Audit Log Provider**
+
 ## UI Integrations
 
 While **refine** itself is headless, it offers UI Integrations for popular UI libraries for:
@@ -538,6 +543,22 @@ import { MantineLayout } from './layout/mantine';
 </TabItem>
 
 </Tabs>
+
+### Forms <GuideBadge id="guides-concepts/forms" />
+
+Refine provides a set of hooks to handle form state, validation, submission, autosave, and more. These hooks seamlessly integrate with popular UI libraries, making it easier to use their form components.
+
+- [React Hook Form](https://react-hook-form.com/) (for Headless, Material UI, Chakra UI) - [Documentation](/packages/documentation/react-hook-form/useForm.md) - [Example](/examples/form/react-hook-form/useForm.md)
+- [Ant Design Form](https://ant.design/components/form/#header) - [Documentation](/api-reference/antd/hooks/form/useForm.md) - [Example](/examples/form/antd/useForm.md)
+- [Mantine Form](https://mantine.dev/form/use-form) - [Documentation](/api-reference/mantine/hooks/form/useForm.md) - [Example](/examples/form/mantine/useForm.md)
+
+### Tables <GuideBadge id="guides-concepts/tables" />
+
+Refine offers seamless integration with several popular UI libraries, simplifying the use of their table component features such as pagination, sorting, filtering, and more.
+
+- [TanStack Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/docs/packages/documentation/tanstack-table/introduction) - [Example](/docs/examples/table/tanstack-table/basic-tanstack-table/)
+- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/docs/api-reference/antd/hooks/table/useTable) - [Example](/examples/table/antd/useTable.md)
+- [Material UI DataGrid](https://mui.com/x/react-data-grid/) - [Documentation](/docs/api-reference/mui/hooks/useDataGrid) - [Example](/examples/table/mui/useDataGrid.md)
 
 ### Layout
 

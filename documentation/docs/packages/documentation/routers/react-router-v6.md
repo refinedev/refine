@@ -261,7 +261,7 @@ Notice that we've wrapped the `<Outlet>` with `<ThemedLayoutV2>` component. This
 
 ### Usage with Access Control providers
 
-If you want to protect your routes with [Access Control Provider](/docs/api-reference/core/providers/accessControl-provider), all you have to do is to wrap `Outlet` with `CanAccess` component.
+If you want to protect your routes with [Access Control Provider](/docs/api-reference/core/providers/access-control-provider), all you have to do is to wrap `Outlet` with `CanAccess` component.
 
 :::info
 

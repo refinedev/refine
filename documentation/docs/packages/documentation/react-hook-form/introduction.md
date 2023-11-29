@@ -16,9 +16,39 @@ This package exports following hooks to manage your forms:
 
 Install the [`@refinedev/react-hook-form`][refine-react-hook-form] library.
 
+<Tabs
+defaultValue="npm"
+values={[
+{label: 'npm', value: 'npm'},
+{label: 'yarn', value: 'yarn'},
+{label: 'pnpm', value: 'pnpm'}
+]}>
+
+<TabItem value="npm">
+
 ```bash
 npm i @refinedev/react-hook-form
 ```
+
+</TabItem>
+
+<TabItem value="yarn">
+
+```bash
+yarn add @refinedev/react-hook-form
+```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+```bash
+pnpm add @refinedev/react-hook-form
+```
+
+</TabItem>
+
+</Tabs>
 
 ## Usage
 
@@ -257,7 +287,7 @@ interface IPost {
 [use-form-react-hook-form]: /docs/packages/documentation/react-hook-form/useForm/
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
-[use-form-core]: /api-reference/core/hooks/useForm.md
+[use-form-core]: /docs/api-reference/core/hooks/useForm/
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
 [notification-provider]: /docs/api-reference/core/providers/notification-provider/

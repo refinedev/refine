@@ -90,46 +90,21 @@ The event is created with parameters that were passed to the `useLogList` hook.
 
 Now let's see how we can handle these events in our audit log provider.
 
-```ts title="auditLogProvider.ts"
-import refineSimpleRestDataProvider from "@refinedev/simple-rest";
+```ts title="audit-log-provider.ts"
+export const auditLogProvider: AuditLogProvider = {
+  get: async (params) => {
+    const { resource, meta, action, author, metaData } = params;
 
-const API_URL = "https://api.fake-rest.refine.dev";
-
-const dataProvider = refineSimpleRestDataProvider(API_URL);
-
-const auditLogProvider: AuditLogProvider = {
-  get: async ({ resource, meta }) => {
-    const { data } = await dataProvider(API_URL).getList({
-      resource: "logs",
-      filters: [
-        {
-          field: "resource",
-          operator: "eq",
-          value: resource,
-        },
-        {
-          field: "meta.id",
-          operator: "eq",
-          value: meta?.id,
-        },
-      ],
+    const response = await fetch(`https://example.com/api/audit-logs/${resource}/${meta.id}`, {
+      method: "GET",
     });
+
+    const data = await response.json();
 
     return data;
   },
 };
 ```
-
-#### Parameter Types
-
-This method can take the following parameters via hooks. You can use these parameters to filter the events.
-
-| Name     | Type                                                                                                     |
-| -------- | -------------------------------------------------------------------------------------------------------- |
-| resource | `string`                                                                                                 |
-| action   | `"create"` \| `"update"` \| `"delete"` \| `"createMany"` \| `"updateMany"` \| `"deleteMany"` \| `string` |
-| meta     | `Record<string, any>`                                                                                    |
-| author   | `Record<string, any>`                                                                                    |
 
 ### `create`
 
@@ -205,7 +180,7 @@ When a record is updated, refine automatically sends an event to `create` method
 
 :::info
 
-**refine** returns the `previousData` from the react-query cache but it can't find it, it will return `undefined`.
+**refine** returns the `previousData` from the react-query cache if it can find it, returns `undefined` otherwise.
 
 :::
 
@@ -310,7 +285,7 @@ When a record is deleted with the `useDeleteMany` hook, refine automatically sen
 
 :::tip
 
-If [`getUserIdentity`](/api-reference/core/providers/auth-provider.md) is defined in your auth provider, the `author` object will be added to the event with the value returned by `getUserIdentity`.
+If [`getUserIdentity`](/docs/api-reference/core/providers/auth-provider.md) is defined in your auth provider, the `author` object will be added to the event with the value returned by `getUserIdentity`.
 
 :::
 
@@ -318,40 +293,32 @@ If [`getUserIdentity`](/api-reference/core/providers/auth-provider.md) is define
 
 And here is how we can handle these events in our audit log provider:
 
-```ts title="auditLogProvider.ts"
-import refineSimpleRestDataProvider from "@refinedev/simple-rest";
-
-const API_URL = "https://api.fake-rest.refine.dev";
-
-const dataProvider = refineSimpleRestDataProvider(API_URL);
-
-const auditLogProvider: AuditLogProvider = {
+```ts title="audit-log-provider.ts"
+export const auditLogProvider: AuditLogProvider = {
   create: (params) => {
-    return dataProvider(API_URL).create({
-      resource: "logs",
-      variables: params,
+    const { resource, meta, action, author, data, previousData } = params;
+
+    console.log(resource); // "produts", "posts", etc.
+    console.log(meta); // { id: "1" }, { id: "2" }, etc.
+    console.log(action); // "create", "update", "delete"
+    // author object is `useGetIdentity` hook's return value.
+    console.log(author); // { id: "1", name: "John Doe" }
+    console.log(data); // { name: "Product 1", price: 100 }
+    console.log(previousData); // { name: "Product 1", price: 50 }
+
+    await fetch("https://example.com/api/audit-logs", {
+      method: "POST",
+      body: JSON.stringify(params),
     });
+
+    return { success: true };
   },
 };
 ```
 
-#### Parameter Types
-
-This method can take the following parameters.
-
-| Name     | Type                                                                                                     |
-| -------- | -------------------------------------------------------------------------------------------------------- |
-| resource | `string`                                                                                                 |
-| action   | `"create"` \| `"update"` \| `"delete"` \| `"createMany"` \| `"updateMany"` \| `"deleteMany"` \| `string` |
-| meta     | `Record<string, any>`                                                                                    |
-| data     | `Record<string, any>`                                                                                    |
-| author   | `Record<string, any>`                                                                                    |
-
-<br/>
-
 :::info
 
-For more information, refer to the [`useLog` documentation&#8594](/api-reference/core/hooks/audit-log/useLog.md)
+For more information, refer to the [`useLog` documentation&#8594](/docs/api-reference/core/hooks/audit-log/useLog.md)
 
 :::
 
@@ -368,41 +335,29 @@ For example, using `useLog`'s `log` method creates an event like below:
 }
 ```
 
-```ts title="auditLogProvider.ts"
-import refineSimpleRestDataProvider from "@refinedev/simple-rest";
+```ts title="audit-log-provider.ts"
+export const auditLogProvider: AuditLogProvider = {
+  update: async (params) => {
+    const { id, name, ...rest } = params;
+    console.log(id); // "1"
+    console.log(name); // "Created Product 1"
+    console.log(rest); // { foo: "bar" }
 
-const API_URL = "https://api.fake-rest.refine.dev";
-
-const dataProvider = refineSimpleRestDataProvider(API_URL);
-
-const auditLogProvider: AuditLogProvider = {
-  update: async ({ id, name }) => {
-    const { data } = await dataProvider(API_URL).update({
-      resource: "logs",
-      id,
-      variables: { name },
+    await fetch(`https://example.com/api/audit-logs/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(params),
     });
-    return data;
+
+    return { success: true };
   },
 };
 ```
 
 :::info
 
-For more information, refer to the [`useLog` documentation&#8594](/api-reference/core/hooks/audit-log/useLog.md)
+For more information, refer to the [`useLog` documentation&#8594](/docs/api-reference/core/hooks/audit-log/useLog.md)
 
 :::
-
-#### Parameter Types
-
-This method can take the following parameters.
-
-| Name | Type      |
-| ---- | --------- |
-| id   | `BaseKey` |
-| name | `string`  |
-
-<br />
 
 :::tip
 
@@ -412,11 +367,18 @@ You can use this hook to name an event and create a milestone.
 
 ## Supported Hooks
 
-**refine** will send specific parameters to the audit log provider's `create` method when a mutation is successful.
+The following hooks will call **Audit Log Provider**'s `create` method when a mutation is successful.
+
+| Package                    | Hooks                                                                                                                                                                                                                                                                      |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| @refinedev/core            | [useForm](/docs/api-reference/core/hooks/useForm/)                                                                                                                                                                                                                         |
+| @refinedev/antd            | [useForm](/docs/api-reference/antd/hooks/form/useForm.md), [useModalForm](/docs/api-reference/antd/hooks/form/useModalForm.md), [useDrawerForm](/docs/api-reference/antd/hooks/form/useDrawerForm.md), [useStepsForm](/docs/api-reference/antd/hooks/form/useStepsForm.md) |
+| @refinedev/mantine         | [useForm](/docs/api-reference/mantine/hooks/form/useForm), [useModalForm](/docs/api-reference/mantine/hooks/form/useModalForm), [useDrawerForm](/docs/api-reference/mantine/hooks/form/useDrawerForm), [useStepsForm](/docs/api-reference/mantine/hooks/form/useStepsForm) |
+| @refinedev/react-hook-form | [useForm](/docs/packages/documentation/react-hook-form/useForm/), [useModalForm](/docs/packages/documentation/react-hook-form/useModalForm/), [useStepsForm](/docs/packages/documentation/react-hook-form/useStepsForm/)                                                   |
 
 Here are the parameters each hook send to `create`:
 
-### `useCreate`
+### useCreate
 
 ```ts
 const { mutate } = useCreate();
@@ -432,9 +394,9 @@ mutate({
     foo: "bar",
   },
 });
-```
 
-```json title="Create event"
+// Calls Audit Log Provider's `create` method with the following parameters:
+
 {
   "action": "create",
   "resource": "posts",
@@ -451,7 +413,7 @@ mutate({
 }
 ```
 
-### `useCreateMany`
+### useCreateMany
 
 ```ts
 const { mutate } = useCreateMany();
@@ -474,9 +436,9 @@ mutate({
     foo: "bar",
   },
 });
-```
 
-```json title="CreateMany event"
+// Calls Audit Log Provider's `create` method with the following parameters:
+
 {
   "action": "createMany",
   "resource": "posts",
@@ -500,7 +462,7 @@ mutate({
 }
 ```
 
-### `useUpdate`
+### useUpdate
 
 ```ts
 const { mutate } = useUpdate();
@@ -512,9 +474,9 @@ mutate({
     title: "Updated New Title",
   },
 });
-```
 
-```json title="Update event"
+// Calls Audit Log Provider's `create` method with the following parameters:
+
 {
   "action": "update",
   "resource": "posts",
@@ -534,7 +496,7 @@ mutate({
 }
 ```
 
-### `useUpdateMany`
+### useUpdateMany
 
 ```ts
 const { mutate } = useUpdateMany();
@@ -546,9 +508,9 @@ mutate({
     title: "Updated New Title",
   },
 });
-```
 
-```json title="UpdateMany event"
+// Calls Audit Log Provider's `create` method with the following parameters:
+
 {
   "action": "updateMany",
   "resource": "posts",
@@ -569,7 +531,7 @@ mutate({
 }
 ```
 
-### `useDelete`
+### useDelete
 
 ```ts
 const { mutate } = useDelete();
@@ -578,9 +540,9 @@ mutate({
   id: 1,
   resource: "posts",
 });
-```
 
-```json title="Delete event"
+// Calls Audit Log Provider's `create` method with the following parameters:
+
 {
   "action": "delete",
   "resource": "posts",
@@ -590,7 +552,7 @@ mutate({
 }
 ```
 
-### `useDeleteMany`
+### useDeleteMany
 
 ```ts
 const { mutate } = useDeleteMany();
@@ -599,9 +561,9 @@ mutate({
   ids: [1, 2],
   resource: "posts",
 });
-```
 
-```json title="DeleteMany event"
+// Calls Audit Log Provider's `create` method with the following parameters:
+
 {
   "action": "deleteMany",
   "resource": "posts",

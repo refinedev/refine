@@ -1,7 +1,7 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import { useOne } from "@refinedev/core";
+import { useOne, useModal } from "@refinedev/core";
 
 import { EditOutlined, LeftOutlined } from "@ant-design/icons";
 import { Button, Space } from "antd";
@@ -22,7 +22,7 @@ import styles from "./index.module.css";
 const PdfExport = lazy(() => import("../components/pdf-export"));
 
 export const QuotesShowPage = () => {
-    const [editModalVisible, setEditModalVisible] = useState(false);
+    const { visible, show, close } = useModal();
 
     const params = useParams<{ id: string }>();
 
@@ -64,7 +64,7 @@ export const QuotesShowPage = () => {
                         </Suspense>
                         <Button
                             icon={<EditOutlined />}
-                            onClick={() => setEditModalVisible(true)}
+                            onClick={() => show()}
                         >
                             Edit
                         </Button>
@@ -112,12 +112,12 @@ export const QuotesShowPage = () => {
                     <ShowDescription />
                 </div>
             </div>
-            {editModalVisible && (
+            {visible && (
                 <QuotesFormModal
                     action={"edit"}
                     redirect={false}
-                    onCancel={() => setEditModalVisible(false)}
-                    onMutationSuccess={() => setEditModalVisible(false)}
+                    onCancel={() => close()}
+                    onMutationSuccess={() => close()}
                 />
             )}
         </>
