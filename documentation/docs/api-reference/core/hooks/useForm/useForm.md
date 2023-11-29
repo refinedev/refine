@@ -11,9 +11,7 @@ A hook that orchestrates refine's data hooks to create, edit, and clone data. It
 ```tsx
 import { useForm } from "@refinedev/core";
 
-function MyForm(){
-    const { onFinish, ... } = useForm({ ... });
-}
+const { onFinish, ... } = useForm({ ... });
 ```
 
 :::info Extended Versions
@@ -35,7 +33,7 @@ Basic usage of the `useForm` hook demonstrates how to use the hook in all three 
 
 ## Parameters
 
-### `action` <RouterBadge />
+### action <RouterBadge />
 
 The action that will be performed with the submission of the form. Can be `create`, `edit`, or `clone`. If not specified, it will be determined by the current route or fallback to `create`.
 
@@ -90,7 +88,7 @@ After form is submitted:
 6.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/api-reference/core/providers/notification-provider/) to inform the user.
 7.  `useForm` redirects to the `list` page.
 
-### `resource` <GuideBadge id="/guides-concepts/general-concepts" /> <RouterBadge />
+### resource <GuideBadge id="guides-concepts/general-concepts" /> <RouterBadge />
 
 The resource name or identifier that will be used for the form. If not specified, it will be determined by the current route.
 
@@ -98,19 +96,21 @@ The resource name or identifier that will be used for the form. If not specified
 useForm({ resource: "products" });
 ```
 
-### `id` <RouterBadge />
+### id <RouterBadge />
 
 The ID of the record that will be used for the action. If not specified, it will be determined by the current route. Required for `edit` and `clone` actions.
 
 ```tsx
-useForm({ id: 123 });
+useForm({
+  id: 123,
+});
 ```
 
 :::caution Using with explicit resource
 If explicit `resource` is provided, `id` must be provided as well to avoid any unexpected API calls.
 :::
 
-### `redirect` <GuideBadge id="guides-concepts/forms#redirection" /><GlobalConfigBadge />
+### redirect <GuideBadge id="guides-concepts/forms#redirection" /><GlobalConfigBadge />
 
 The redirection behavior after the form submission. It can be `list`, `edit`, `show`, `create`, or `false`. By default it will be `list` or whatever is defined in the refine's global options.
 
@@ -122,7 +122,7 @@ useForm({ redirect: "show" });
 This will only work if you have `routerProvider` defined in your `<Refine>` component along with the proper `resource` definition with routes and actions.
 :::
 
-### `onMutationSuccess`
+### onMutationSuccess
 
 Callback function to be called after a successful mutation. It will be called with the mutation result and variables.
 
@@ -137,7 +137,7 @@ useForm({
 });
 ```
 
-### `onMutationError`
+### onMutationError
 
 Callback function to be called after a failed mutation. It will be called with the mutation error and variables.
 
@@ -152,7 +152,7 @@ useForm({
 });
 ```
 
-### `invalidates` <GuideBadge id="guides-concepts/forms#invalidation" />
+### invalidates <GuideBadge id="guides-concepts/forms#invalidation" />
 
 Determines the scope of the invalidation after a successful mutation. Can be array of `list`, `many`, `detail`, `resourceAll`, `all` or `false`. By default, `create` and `clone` actions will invalidate `list` and `many`. `edit` action will invalidate `list`, `many` and `detail` queries.
 
@@ -160,7 +160,7 @@ Determines the scope of the invalidation after a successful mutation. Can be arr
 useForm({ invalidates: ["list", "many"] });
 ```
 
-### `dataProviderName` <GlobalConfigBadge description="This property can also be included in the `resource` definition." />
+### dataProviderName <GlobalConfigBadge description="This property can also be included in the `resource` definition." />
 
 Name of the data provider to be used in API interactions. Useful when there are more than one data providers defined.
 
@@ -168,7 +168,7 @@ Name of the data provider to be used in API interactions. Useful when there are 
 useForm({ dataProviderName: "store" });
 ```
 
-### `mutationMode` <GuideBadge id="guides-concepts/forms#mutation-modes" /> <GlobalConfigBadge />
+### mutationMode <GuideBadge id="guides-concepts/forms#mutation-modes" /> <GlobalConfigBadge />
 
 Behavior of the mutation, can either be `pessimistic`, `optimistic` or `undoable`. By default, `pessimistic` or whatever is defined in the refine's global options.
 
@@ -176,7 +176,7 @@ Behavior of the mutation, can either be `pessimistic`, `optimistic` or `undoable
 useForm({ mutationMode: "optimistic" });
 ```
 
-### `successNotification` <GuideBadge id="guides-concepts/forms#notifications" />
+### successNotification <GuideBadge id="guides-concepts/forms#notifications" />
 
 Customization options for the notification that will be shown after a successful mutation.
 
@@ -198,7 +198,7 @@ useForm({
 This will only work if you have `notificationProvider` defined in your `<Refine>` component.
 :::
 
-### `errorNotification` <GuideBadge id="guides-concepts/forms#notifications" />
+### errorNotification <GuideBadge id="guides-concepts/forms#notifications" />
 
 Customization options for the notification that will be shown after a failed mutation.
 
@@ -220,7 +220,7 @@ useForm({
 This will only work if you have `notificationProvider` defined in your `<Refine>` component.
 :::
 
-### `meta` <GuideBadge id="guides-concepts/general-concepts#meta" description="To learn more about the `meta` and how it works with the data providers, refer to General Concepts guide" />
+### meta <GuideBadge id="guides-concepts/general-concepts#meta" description="To learn more about the `meta` and how it works with the data providers, refer to General Concepts guide" />
 
 Additional information that will be passed to the data provider. Can be used to handle special cases in the data provider, generating GraphQL queries or handling additional parameters in the redirection routes.
 
@@ -228,7 +228,7 @@ Additional information that will be passed to the data provider. Can be used to 
 useForm({ meta: { headers: { "x-greetings": "hello world" } } });
 ```
 
-### `queryMeta`
+### queryMeta
 
 Meta data values to be used in the internal `useOne` call for the `edit` and `clone` actions. These values will take precedence over the `meta` values.
 
@@ -236,7 +236,7 @@ Meta data values to be used in the internal `useOne` call for the `edit` and `cl
 useForm({ meta: { headers: { "x-greetings": "hello mars" } } });
 ```
 
-### `mutationMeta`
+### mutationMeta
 
 Meta data values to be used in the internal `useCreate` and `useUpdate` calls for form submissions. These values will take precedence over the `meta` values.
 
@@ -244,7 +244,7 @@ Meta data values to be used in the internal `useCreate` and `useUpdate` calls fo
 useForm({ meta: { headers: { "x-greetings": "hello pluto" } } });
 ```
 
-### `queryOptions`
+### queryOptions
 
 Options to be used in the internal `useOne` call for the `edit` and `clone` actions.
 
@@ -254,7 +254,7 @@ useForm({
 });
 ```
 
-### `createMutationOptions`
+### createMutationOptions
 
 Options to be used in the internal `useCreate` call for the `create` and `clone` actions.
 
@@ -264,7 +264,7 @@ useForm({
 });
 ```
 
-### `updateMutationOptions`
+### updateMutationOptions
 
 Options to be used in the internal `useUpdate` call for the `edit` action.
 
@@ -274,7 +274,7 @@ useForm({
 });
 ```
 
-### `liveMode` <GuideBadge id="guides-concepts/realtime" />
+### liveMode <GuideBadge id="guides-concepts/realtime" />
 
 Behavior of how to handle received real-time updates, can be `auto`, `manual` or `off`. By default, `auto` or whatever is defined in the refine's global options.
 
@@ -286,7 +286,7 @@ useForm({ liveMode: "auto" });
 This will only work if you have `liveProvider` defined in your `<Refine>` component.
 :::
 
-### `onLiveEvent` <GuideBadge id="guides-concepts/realtime" />
+### onLiveEvent <GuideBadge id="guides-concepts/realtime" />
 
 A callback function that will be called when a related real-time event is received.
 
@@ -298,7 +298,7 @@ useForm({
 });
 ```
 
-### `liveParams`
+### liveParams
 
 Additional parameters to be used in the `liveProvider`'s `subscribe` method.
 
@@ -310,7 +310,7 @@ useForm({
 });
 ```
 
-### `overtimeOptions`
+### overtimeOptions
 
 A set of options to be used for the overtime loading state. Useful when the API is slow to respond and a visual feedback is needed to indicate that the request is still in progress. `overtimeOptions` accept `interval` as `number` to determine the ticking intervals and `onInterval` to be called on each tick. `useForm` also returns `overtime` object with `elapsedTime` value that can be used for the feedback.
 
@@ -323,7 +323,7 @@ const { overtime } = useForm({
 });
 ```
 
-### `autoSave` <GuideBadge id="guides-concepts/forms#auto-save" />
+### autoSave <GuideBadge id="guides-concepts/forms#auto-save" />
 
 Auto-save behavior of the form. Can have `enabled` to toggle auto-save, `debounce` to set the debounce interval for saving and `invalidateOnUnmount` to invalidate the queries specified in `invalidates` prop on unmount. By default, `autoSave` is disabled.
 
@@ -345,7 +345,7 @@ This feature is only available for the `edit` action.
 Core implementation of the `useForm` hook doesn't provide out of the box auto-save functionality since it doesn't have access to the form values but it provides the necessary props and callbacks to implement it. Extended versions of `useForm` (such as the one in `@refinedev/react-hook-form`) provides auto-save functionality out of the box.
 :::
 
-### `optimisticUpdateMap` <GuideBadge id="guides-concepts/forms#optimistic-updates" />
+### optimisticUpdateMap <GuideBadge id="guides-concepts/forms#optimistic-updates" />
 
 In `optimistic` and `undoable` mutation modes, `useForm` will automatically update the query cache with the form values immediately after the mutation is triggered. This behavior can be customized for each query set (`list`, `many` and `detail` queries) using `optimisticUpdateMap`.
 
@@ -373,7 +373,7 @@ useForm({
 
 ## Return Values
 
-### `onFinish`
+### onFinish
 
 A function to call to trigger the mutation. Depending on the action, it will trigger the mutation of `useCreate` or `useUpdate` hooks.
 
@@ -387,7 +387,7 @@ return (
 );
 ```
 
-### `onFinishAutoSave`
+### onFinishAutoSave
 
 A function to call to trigger the auto-save mutation. It will trigger the mutation of `useUpdate` hook. This will not trigger the `formLoading` state.
 
@@ -400,7 +400,7 @@ React.useEffect(() => {
 }, [values]);
 ```
 
-### `formLoading`
+### formLoading
 
 A boolean value indicating the loading state of the form. It will reflect the loading status of the mutation or the query in `edit` and `clone` actions.
 
@@ -408,7 +408,7 @@ A boolean value indicating the loading state of the form. It will reflect the lo
 const { formLoading } = useForm({ ... });
 ```
 
-### `mutationResult`
+### mutationResult
 
 Result of the mutation triggered by calling `onFinish`. Depending on the action, it will be the result of `useCreate` or `useUpdate` hooks.
 
@@ -416,7 +416,7 @@ Result of the mutation triggered by calling `onFinish`. Depending on the action,
 const { mutationResult: { data, error, isLoading } } = useForm({ ... });
 ```
 
-### `queryResult`
+### queryResult
 
 In `edit` and `clone` actions, result of the query of a record. It will be the result of `useOne` hook.
 
@@ -424,7 +424,7 @@ In `edit` and `clone` actions, result of the query of a record. It will be the r
 const { queryResult: { data, error, isLoading } } = useForm({ ... });
 ```
 
-### `setId`
+### setId
 
 A setter function to set the `id` value. Useful when you want to change the `id` value after the form is mounted.
 
@@ -436,7 +436,7 @@ const onItemSelect = (id) => {
 };
 ```
 
-### `redirect` <GuideBadge id="guides-concepts/forms#redirection" />
+### redirect <GuideBadge id="guides-concepts/forms#redirection" />
 
 A function to handle custom redirections, it accepts `redirect` and `id` parameters. `redirect` can be `list`, `edit`, `show`, `create` or `false`. `id` is the record id if needed in the specified `redirect` route.
 
@@ -446,7 +446,7 @@ const { redirect } = useForm({ ... });
 redirect("show", 123);
 ```
 
-### `overtime`
+### overtime
 
 An object with `elapsedTime` value that can be used for the overtime loading feedback.
 
@@ -454,7 +454,7 @@ An object with `elapsedTime` value that can be used for the overtime loading fee
 const { overtime: { elapsedTime } } = useForm({ ... });
 ```
 
-### `autoSaveProps`
+### autoSaveProps
 
 An object with `data`, `error` and `status` values that can be used for the auto-save feedback. `data` will be the result of the auto-save mutation, `error` will be the error of the auto-save mutation and `status` will be the status of the auto-save mutation.
 
