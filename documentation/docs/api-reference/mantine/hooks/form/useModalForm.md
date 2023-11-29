@@ -1109,6 +1109,6 @@ const UserCreate: React.FC = () => {
 <CodeSandboxExample path="form-mantine-use-modal-form" />
 
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
-[use-form-core]: /api-reference/core/hooks/useForm/
+[use-form-core]: /docs/api-reference/core/hooks/useForm/
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
