@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { unparse, UnparseConfig } from "papaparse";
+import warnOnce from "warn-once";
 import { useResource, useDataProvider, useMeta } from "@hooks";
 import {
     BaseRecord,
@@ -11,8 +13,24 @@ import {
     useUserFriendlyName,
     pickDataProvider,
     pickNotDeprecated,
+    downloadInBrowser,
 } from "@definitions";
-import { ExportToCsv, Options } from "export-to-csv-fix-source-map";
+
+// Old options interface taken from export-to-csv-fix-source-map@0.2.1
+// Kept here to ensure backward compatibility
+export interface ExportOptions {
+    filename?: string;
+    fieldSeparator?: string;
+    quoteStrings?: string;
+    decimalSeparator?: string;
+    showLabels?: boolean;
+    showTitle?: boolean;
+    title?: string;
+    useTextFile?: boolean;
+    useBom?: boolean;
+    headers?: string[];
+    useKeysAsHeaders?: boolean;
+}
 
 type UseExportOptionsType<
     TData extends BaseRecord = BaseRecord,
@@ -54,8 +72,14 @@ type UseExportOptionsType<
     /**
      *  Used for exporting options
      *  @type [Options](https://github.com/alexcaza/export-to-csv)
+     * @deprecated `exportOptions` is deprecated. Use `unparseConfig` instead.
      */
-    exportOptions?: Options;
+    exportOptions?: ExportOptions;
+    /**
+     *  Used for exporting options
+     *  @type [UnparseConfig](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/papaparse)
+     */
+    unparseConfig?: UnparseConfig;
     /**
      *  Metadata query for `dataProvider`
      */
@@ -77,7 +101,7 @@ type UseExportOptionsType<
 
 type UseExportReturnType = {
     isLoading: boolean;
-    triggerExport: () => Promise<void>;
+    triggerExport: () => Promise<string | undefined>;
 };
 
 /**
@@ -102,6 +126,7 @@ export const useExport = <
     pageSize = 20,
     mapData = (item) => item as any,
     exportOptions,
+    unparseConfig,
     meta,
     metaData,
     dataProviderName,
@@ -175,15 +200,66 @@ export const useExport = <
             }
         }
 
-        const csvExporter = new ExportToCsv({
-            filename,
-            useKeysAsHeaders: true,
-            ...exportOptions,
-        });
+        const hasUnparseConfig = typeof unparseConfig !== "undefined" && unparseConfig !== null;
 
-        csvExporter.generateCsv(rawData.map(mapData as any));
+        warnOnce(hasUnparseConfig && typeof exportOptions !== "undefined" && exportOptions !== null,
+            `[useExport]: resource: "${identifier}" \n\n` +
+            `Both \`unparseConfig\` and \`exportOptions\` are set, \`unparseConfig\` will take precedence`,
+        )
+
+            const options: ExportOptions = {
+                filename,
+                useKeysAsHeaders: true,
+                useBom: true, // original default
+                title: 'My Generated Report', // original default
+                quoteStrings: '"', // original default
+                ...exportOptions
+            }
+
+            warnOnce(exportOptions?.decimalSeparator !== undefined,
+                `[useExport]: resource: "${identifier}" \n\n` +
+                `Use of \`decimalSeparator\` no longer supported, please use \`mapData\` instead.\n\n` +
+                `See https://refine.dev/docs/api-reference/core/hooks/import-export/useExport/`,
+            )
+
+        if(!hasUnparseConfig) {
+            unparseConfig = {
+                // useKeysAsHeaders takes priority over options.headers
+                columns: options.useKeysAsHeaders ? undefined : options.headers,
+                delimiter: options.fieldSeparator,
+                header: options.showLabels || options.useKeysAsHeaders,
+                quoteChar: options.quoteStrings,
+                quotes: true
+            }
+        } else {
+            unparseConfig = {
+                // Set to force quote for better compatibility
+                quotes: true,
+                ...unparseConfig
+            }
+        }
+
+        let csv = unparse(rawData.map(mapData as any), unparseConfig);
+        if (options.showTitle) {
+            csv = options.title + '\r\n\n' + csv
+        }
+
+        // Backward compatibility support for downloadInBrowser of the exported file, only works for browsers.
+        if(window && csv.length > 0){
+            const fileExtension = options.useTextFile ? '.txt' : '.csv';
+            const fileType = `text/${options.useTextFile ? "plain" : "csv"};charset=utf8;`;
+            const downloadFilename =
+                `${(options.filename ?? 'download').replace(/ /g, "_")}${fileExtension}`
+
+            downloadInBrowser(
+                downloadFilename,
+                `${options?.useBom ? "\ufeff" : ""}${csv}`,
+                fileType
+            );
+        }
 
         setIsLoading(false);
+        return csv;
     };
 
     return {
