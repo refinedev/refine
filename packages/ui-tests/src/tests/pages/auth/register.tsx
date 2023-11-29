@@ -294,5 +294,44 @@ export const pageRegisterTests = function (
                 {},
             );
         });
+
+        it("should not render form when `hideForm` is true", async () => {
+            const { queryByLabelText, getByText, queryByRole } = render(
+                <RegisterPage
+                    hideForm
+                    providers={[
+                        {
+                            name: "google",
+                            label: "Google",
+                        },
+                        { name: "github", label: "GitHub" },
+                    ]}
+                />,
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(queryByLabelText(/email/i)).not.toBeInTheDocument();
+            expect(queryByLabelText(/password/i)).not.toBeInTheDocument();
+            expect(
+                queryByRole("link", {
+                    name: /forgot password/i,
+                }),
+            ).not.toBeInTheDocument();
+            expect(
+                queryByRole("button", {
+                    name: /sign up/i,
+                }),
+            ).not.toBeInTheDocument();
+
+            expect(getByText(/google/i)).toBeInTheDocument();
+            expect(getByText(/github/i)).toBeInTheDocument();
+            expect(
+                queryByRole("link", {
+                    name: /sign in/i,
+                }),
+            ).toBeInTheDocument();
+        });
     });
 };

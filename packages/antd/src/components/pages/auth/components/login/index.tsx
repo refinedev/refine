@@ -122,6 +122,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             </Button>
                         );
                     })}
+                    {!hideForm && (
                     <Divider>
                         <Text
                             style={{
@@ -131,6 +132,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             {translate("pages.login.divider", "or")}
                         </Text>
                     </Divider>
+                    )}
                 </>
             );
         }
@@ -149,6 +151,7 @@ export const LoginPage: React.FC<LoginProps> = ({
             {...(contentProps ?? {})}
         >
             {renderProviders()}
+            {!hideForm && (
             <Form<LoginFormTypes>
                 layout="vertical"
                 form={form}
@@ -159,8 +162,6 @@ export const LoginPage: React.FC<LoginProps> = ({
                 }}
                 {...formProps}
             >
-                {hideForm ? <></> : (
-                    <>
                         <Form.Item
                             name="email"
                             label={translate("pages.login.fields.email", "Email")}
@@ -185,7 +186,10 @@ export const LoginPage: React.FC<LoginProps> = ({
                         </Form.Item>
                         <Form.Item
                             name="password"
-                            label={translate("pages.login.fields.password", "Password")}
+                        label={translate(
+                            "pages.login.fields.password",
+                            "Password",
+                        )}
                             rules={[{ required: true }]}
                         >
                             <Input
@@ -194,8 +198,6 @@ export const LoginPage: React.FC<LoginProps> = ({
                                 size="large"
                             />
                         </Form.Item>
-                    </>
-                )}
                 <div
                     style={{
                         display: "flex",
@@ -237,6 +239,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         </ActiveLink>
                     )}
                 </div>
+                    {!hideForm && (
                 <Form.Item>
                     <Button
                         type="primary"
@@ -248,8 +251,10 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {translate("pages.login.signin", "Sign in")}
                     </Button>
                 </Form.Item>
+                    )}
             </Form>
-            <div style={{ marginTop: 8 }}>
+            )}
+            <div style={{ marginTop: hideForm ? 16 : 8 }}>
                 {registerLink ?? (
                     <Text style={{ fontSize: 12 }}>
                         {translate(

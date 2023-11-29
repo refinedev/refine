@@ -118,11 +118,13 @@ export const LoginPage: React.FC<LoginProps> = ({
                             );
                         })}
                     </Stack>
-                    <Divider
-                        my="md"
-                        labelPosition="center"
-                        label={translate("pages.login.divider", "or")}
-                    />
+                    {!hideForm && (
+                        <Divider
+                            my="md"
+                            labelPosition="center"
+                            label={translate("pages.login.divider", "or")}
+                        />
+                    )}
                 </>
             );
         }
@@ -140,83 +142,83 @@ export const LoginPage: React.FC<LoginProps> = ({
             <Space h="sm" />
             <Space h="lg" />
             {renderProviders()}
-            <FormProvider form={form}>
-                <form
-                    onSubmit={onSubmit((values: any) => {
-                        if (onSubmitProp) {
-                            return onSubmitProp(values);
-                        }
-                        return login(values);
-                    })}
-                >
-                    {hideForm ? <></> : (
-                        <>
-                            <TextInput
-                                name="email"
-                                label={translate("pages.login.fields.email", "Email")}
-                                placeholder={translate(
-                                    "pages.login.fields.email",
-                                    "Email",
-                                )}
-                                {...getInputProps("email")}
-                            />
-                            <PasswordInput
-                                name="password"
-                                mt="md"
-                                label={translate(
-                                    "pages.login.fields.password",
-                                    "Password",
-                                )}
-                                placeholder="●●●●●●●●"
-                                {...getInputProps("password")}
-                            />
-                        </>
-                    )}
-                    <Box
-                        mt="md"
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                        }}
+            {!hideForm && (
+                <FormProvider form={form}>
+                    <form
+                        onSubmit={onSubmit((values: any) => {
+                            if (onSubmitProp) {
+                                return onSubmitProp(values);
+                            }
+                            return login(values);
+                        })}
                     >
-                        {rememberMe ?? (
-                            <Checkbox
-                                label={translate(
-                                    "pages.login.buttons.rememberMe",
-                                    "Remember me",
-                                )}
-                                size="xs"
-                                {...getInputProps("remember", {
-                                    type: "checkbox",
-                                })}
-                            />
-                        )}
-                        {forgotPasswordLink ?? (
-                            <Anchor
-                                component={ActiveLink as any}
-                                to="/forgot-password"
-                                size="xs"
-                            >
-                                {translate(
-                                    "pages.login.buttons.forgotPassword",
-                                    "Forgot password?",
-                                )}
-                            </Anchor>
-                        )}
-                    </Box>
-                    <Button
-                        mt="md"
-                        fullWidth
-                        size="md"
-                        type="submit"
-                        loading={isLoading}
-                    >
-                        {translate("pages.login.signin", "Sign in")}
-                    </Button>
-                </form>
-            </FormProvider>
-
+                        <TextInput
+                            name="email"
+                            label={translate(
+                                "pages.login.fields.email",
+                                "Email",
+                            )}
+                            placeholder={translate(
+                                "pages.login.fields.email",
+                                "Email",
+                            )}
+                            {...getInputProps("email")}
+                        />
+                        <PasswordInput
+                            name="password"
+                            mt="md"
+                            label={translate(
+                                "pages.login.fields.password",
+                                "Password",
+                            )}
+                            placeholder="●●●●●●●●"
+                            {...getInputProps("password")}
+                        />
+                        <Box
+                            mt="md"
+                            sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                            }}
+                        >
+                            {rememberMe ?? (
+                                <Checkbox
+                                    label={translate(
+                                        "pages.login.buttons.rememberMe",
+                                        "Remember me",
+                                    )}
+                                    size="xs"
+                                    {...getInputProps("remember", {
+                                        type: "checkbox",
+                                    })}
+                                />
+                            )}
+                            {forgotPasswordLink ?? (
+                                <Anchor
+                                    component={ActiveLink as any}
+                                    to="/forgot-password"
+                                    size="xs"
+                                >
+                                    {translate(
+                                        "pages.login.buttons.forgotPassword",
+                                        "Forgot password?",
+                                    )}
+                                </Anchor>
+                            )}
+                        </Box>
+                        <Button
+                            mt="md"
+                            fullWidth
+                            size="md"
+                            type="submit"
+                            loading={isLoading}
+                        >
+                            {translate("pages.login.signin", "Sign in")}
+                        </Button>
+                    </form>
+                </FormProvider>
+            )}
             {registerLink ?? (
                 <Text mt="md" size="xs" align="center">
                     {translate(

@@ -123,14 +123,16 @@ export const LoginPage: React.FC<LoginProps> = ({
                             );
                         })}
                     </Stack>
-                    <Divider
-                        sx={{
-                            fontSize: "12px",
-                            marginY: "16px",
-                        }}
-                    >
-                        {translate("pages.login.divider", "or")}
-                    </Divider>
+                    {!hideForm && (
+                        <Divider
+                            sx={{
+                                fontSize: "12px",
+                                marginY: "16px",
+                            }}
+                        >
+                            {translate("pages.login.divider", "or")}
+                        </Divider>
+                    )}
                 </>
             );
         }
@@ -150,150 +152,150 @@ export const LoginPage: React.FC<LoginProps> = ({
                 >
                     {translate("pages.login.title", "Sign in to your account")}
                 </Typography>
-                <Box
-                    component="form"
-                    onSubmit={handleSubmit((data) => {
-                        if (onSubmit) {
-                            return onSubmit(data);
-                        }
-
-                        return login(data);
-                    })}
-                >
-                    {renderProviders()}
-                    {hideForm ? <></> : (
-                        <>
-                            <TextField
-                                {...register("email", {
-                                    required: true,
-                                })}
-                                id="email"
-                                margin="normal"
-                                fullWidth
-                                label={translate("pages.login.fields.email", "Email")}
-                                error={!!errors.email}
-                                name="email"
-                                type="email"
-                                autoComplete="email"
-                                sx={{
-                                    mt: 0,
-                                }}
-                            />
-                            <TextField
-                                {...register("password", {
-                                    required: true,
-                                })}
-                                id="password"
-                                margin="normal"
-                                fullWidth
-                                name="password"
-                                label={translate(
-                                    "pages.login.fields.password",
-                                    "Password",
-                                )}
-                                helperText={errors?.password?.message}
-                                error={!!errors.password}
-                                type="password"
-                                placeholder="●●●●●●●●"
-                                autoComplete="current-password"
-                                sx={{
-                                    mb: 0,
-                                }}
-                            />
-                        </>
-                    )}
-
+                {renderProviders()}
+                {!hideForm && (
                     <Box
-                        component="div"
-                        sx={{
-                            mt: "24px",
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                        }}
+                        component="form"
+                        onSubmit={handleSubmit((data) => {
+                            if (onSubmit) {
+                                return onSubmit(data);
+                            }
+
+                            return login(data);
+                        })}
                     >
-                        {rememberMe ?? (
-                            <FormControlLabel
-                                sx={{
-                                    span: {
-                                        fontSize: "14px",
-                                        color: "text.secondary",
-                                    },
-                                }}
-                                color="secondary"
-                                control={
-                                    <Checkbox
-                                        size="small"
-                                        id="remember"
-                                        {...register("remember")}
-                                    />
-                                }
-                                label={translate(
-                                    "pages.login.buttons.rememberMe",
-                                    "Remember me",
-                                )}
-                            />
-                        )}
-                        {forgotPasswordLink ?? (
-                            <MuiLink
-                                variant="body2"
-                                color="primary"
-                                fontSize="12px"
-                                component={ActiveLink}
-                                underline="none"
-                                to="/forgot-password"
-                            >
-                                {translate(
-                                    "pages.login.buttons.forgotPassword",
-                                    "Forgot password?",
-                                )}
-                            </MuiLink>
-                        )}
-                    </Box>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        disabled={isLoading}
-                        sx={{ mt: "24px" }}
-                    >
-                        {translate("pages.login.signin", "Sign in")}
-                    </Button>
-                    {registerLink ?? (
+                        <TextField
+                            {...register("email", {
+                                required: true,
+                            })}
+                            id="email"
+                            margin="normal"
+                            fullWidth
+                            label={translate(
+                                "pages.login.fields.email",
+                                "Email",
+                            )}
+                            error={!!errors.email}
+                            name="email"
+                            type="email"
+                            autoComplete="email"
+                            sx={{
+                                mt: 0,
+                            }}
+                        />
+                        <TextField
+                            {...register("password", {
+                                required: true,
+                            })}
+                            id="password"
+                            margin="normal"
+                            fullWidth
+                            name="password"
+                            label={translate(
+                                "pages.login.fields.password",
+                                "Password",
+                            )}
+                            helperText={errors?.password?.message}
+                            error={!!errors.password}
+                            type="password"
+                            placeholder="●●●●●●●●"
+                            autoComplete="current-password"
+                            sx={{
+                                mb: 0,
+                            }}
+                        />
                         <Box
+                            component="div"
                             sx={{
                                 mt: "24px",
                                 display: "flex",
-                                justifyContent: "center",
+                                justifyContent: "space-between",
                                 alignItems: "center",
                             }}
                         >
-                            <Typography
-                                textAlign="center"
-                                variant="body2"
-                                component="span"
-                                fontSize="12px"
-                            >
-                                {translate(
-                                    "pages.login.buttons.noAccount",
-                                    "Don’t have an account?",
-                                )}
-                            </Typography>
-                            <MuiLink
-                                ml="4px"
-                                fontSize="12px"
-                                variant="body2"
-                                color="primary"
-                                component={ActiveLink}
-                                underline="none"
-                                to="/register"
-                                fontWeight="bold"
-                            >
-                                {translate("pages.login.signup", "Sign up")}
-                            </MuiLink>
+                            {rememberMe ?? (
+                                <FormControlLabel
+                                    sx={{
+                                        span: {
+                                            fontSize: "14px",
+                                            color: "text.secondary",
+                                        },
+                                    }}
+                                    color="secondary"
+                                    control={
+                                        <Checkbox
+                                            size="small"
+                                            id="remember"
+                                            {...register("remember")}
+                                        />
+                                    }
+                                    label={translate(
+                                        "pages.login.buttons.rememberMe",
+                                        "Remember me",
+                                    )}
+                                />
+                            )}
+                            {forgotPasswordLink ?? (
+                                <MuiLink
+                                    variant="body2"
+                                    color="primary"
+                                    fontSize="12px"
+                                    component={ActiveLink}
+                                    underline="none"
+                                    to="/forgot-password"
+                                >
+                                    {translate(
+                                        "pages.login.buttons.forgotPassword",
+                                        "Forgot password?",
+                                    )}
+                                </MuiLink>
+                            )}
                         </Box>
-                    )}
-                </Box>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            disabled={isLoading}
+                            sx={{ mt: "24px" }}
+                        >
+                            {translate("pages.login.signin", "Sign in")}
+                        </Button>
+                    </Box>
+                )}
+                {registerLink ?? (
+                    <Box
+                        sx={{
+                            mt: "24px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        <Typography
+                            textAlign="center"
+                            variant="body2"
+                            component="span"
+                            fontSize="12px"
+                        >
+                            {translate(
+                                "pages.login.buttons.noAccount",
+                                "Don’t have an account?",
+                            )}
+                        </Typography>
+                        <MuiLink
+                            ml="4px"
+                            fontSize="12px"
+                            variant="body2"
+                            color="primary"
+                            component={ActiveLink}
+                            underline="none"
+                            to="/register"
+                            fontWeight="bold"
+                        >
+                            {translate("pages.login.signup", "Sign up")}
+                        </MuiLink>
+                    </Box>
+                )}
             </CardContent>
         </Card>
     );

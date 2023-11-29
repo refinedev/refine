@@ -4,6 +4,7 @@
 "@refinedev/core": minor
 "@refinedev/mantine": minor
 "@refinedev/mui": minor
+"@refinedev/ui-tests": minor
 ---
 
 feat: added `hideForm` props for `LoginPage` and `RegisterPage` for `AuthPage` feature.
