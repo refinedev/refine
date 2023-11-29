@@ -603,7 +603,9 @@ module.exports = {
                                 {
                                     type: "category",
                                     label: "Form",
-                                    items: ["api-reference/core/hooks/useForm"],
+                                    items: [
+                                        "api-reference/core/hooks/useForm/useForm",
+                                    ],
                                 },
                                 {
                                     type: "category",
