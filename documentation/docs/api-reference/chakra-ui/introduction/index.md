@@ -21,7 +21,7 @@ npm install @refinedev/chakra-ui @chakra-ui/react @refinedev/react-table @refine
 We'll wrap our app with the [`<ChakraProvider />`](https://chakra-ui.com/getting-started) to make sure we have the theme available for our app, then we'll use the layout components to wrap them around our routes. Check out the examples below to see how to use Refine's Chakra UI integration.
 
 <Tabs wrapContent={false}>
-<TabItem value="react-router-dom" label="React Router Dom">
+<TabItem value="react-router-dom" label="React Router v6">
 
 import UsageReactRouterDom from "./previews/usage-react-router-dom.tsx";
 
@@ -206,7 +206,7 @@ export const Pagination: React.FC<PaginationProps> = ({ current, pageCount, setC
 
 ## Forms
 
-Chakra UI offers [form elements](https://chakra-ui.com/docs/components/input) yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/documentation/react-hook-form/useForm.md) package which is built on top of Refine's [`useForm`](/docs/api-reference/core/hooks/useForm.md) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
+Chakra UI offers [form elements](https://chakra-ui.com/docs/components/input) yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/documentation/react-hook-form/useForm.md) package which is built on top of Refine's [`useForm`](/docs/api-reference/core/hooks/useForm/) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
 
 Refine's documentations and examples of Chakra UI uses `@refinedev/react-hook-form` package for form management but you have the option to use any form management solution you want.
 
@@ -310,7 +310,7 @@ const App = () => {
 Refine provides Layout components that can be used to implement a layout for the application. These components are crafted using Chakra UI's components and includes Refine's features and functionalities such as navigation menus, headers, authentication, authorization and more.
 
 <Tabs wrapContent={false}>
-<TabItem value="react-router-dom" label="React Router Dom">
+<TabItem value="react-router-dom" label="React Router v6">
 
 import LayoutReactRouterDom from "./previews/layout-react-router-dom.tsx";
 

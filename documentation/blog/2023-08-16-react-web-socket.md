@@ -18,7 +18,8 @@ Steps we'll cover:
 
 - [Why WebSocket?](#why-websocket)
 - [Unleashing the Power of WebSockets using Node.js and React](#unleashing-the-power-of-websockets-using-nodejs-and-react)
-- [Understanding the Code](#understanding-the-code)
+- [Accessing the Code](#accessing-the-code)
+- [Run the application after Setting up the Environment](#run-the-application-after-setting-up-the-environment)
   - [Understanding the WebSocket Handshake](#understanding-the-websocket-handshake)
   - [Managing Client Connections](#managing-client-connections)
   - [Establishing the Handshake at the Client Level](#establishing-the-handshake-at-the-client-level)
