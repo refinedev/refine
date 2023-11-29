@@ -236,7 +236,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         fontWeight="bold"
                         to="/register"
                     >
-                        {translate("pages.login.register", "Sign up")}
+                        {translate("pages.login.signin", "Sign in")}
                     </ChakraLink>
                 </Box>
             )}
