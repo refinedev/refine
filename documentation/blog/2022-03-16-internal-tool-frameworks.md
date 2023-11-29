@@ -3,19 +3,10 @@ title: ReactJS Frameworks You Should Know Before Start Developing B2B/Internal A
 description: We have listed Open source ReactJS frameworks that will help and speed you up while developing internal-tool applications.
 slug: best-internal-tool-react-frameworks
 authors: melih
-tags:
-    [
-        comparison
-    ]
+tags: [comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
-
-
-
-
-
-
 
 ## Best Internal Tool Frameworks for ReactJS
 
@@ -31,10 +22,10 @@ Internal tools manage the activities your company or product needs, such as trac
 
 Internal Tool React.js Frameworks that we will review:
 
--   [Blitz.js](https://blitzjs.com/)
--   [Refine](https://refine.dev/)
--   [Redwood.js](https://redwoodjs.com/)
--   [React Admin](https://marmelab.com/react-admin/)
+- [Blitz.js](https://blitzjs.com/)
+- [Refine](https://refine.dev/)
+- [Redwood.js](https://redwoodjs.com/)
+- [React Admin](https://github.com/marmelab/react-admin)
 
 ## 1. Blitz.js
 
@@ -42,11 +33,11 @@ Internal Tool React.js Frameworks that we will review:
 
 ### Key Features
 
--   The zero-api data layer
--   Authentication
--   Authorization
--   Conventions
--   New app templates
+- The zero-api data layer
+- Authentication
+- Authorization
+- Conventions
+- New app templates
 
 ### Installation
 
@@ -115,13 +106,13 @@ Redwood includes deploy support for Netlify, Vercel, Render.com, AWS and more. B
 
 ### Key Features
 
--   Database and Data migrations
--   Automatic page-based code-splitting
--   Cells: a declarative way to fetch data from the backend API
--   Scaffold generator for CRUD operations specific to a DB table
--   Simple but powerful GraphQL Directives to validate access or transform resolved data
--   Simple but powerful routing (all routes defined in one file) with dynamic (typed)
--   Opinionated defaults for formatting, file organization, Webpack, Babel, and more
+- Database and Data migrations
+- Automatic page-based code-splitting
+- Cells: a declarative way to fetch data from the backend API
+- Scaffold generator for CRUD operations specific to a DB table
+- Simple but powerful GraphQL Directives to validate access or transform resolved data
+- Simple but powerful routing (all routes defined in one file) with dynamic (typed)
+- Opinionated defaults for formatting, file organization, Webpack, Babel, and more
 
 ### Installation
 
@@ -137,16 +128,16 @@ Redwood includes deploy support for Netlify, Vercel, Render.com, AWS and more. B
 
 ## 4. React Admin
 
-[React Admin](https://marmelab.com/react-admin/) is a frontend Framework for building data-driven applications running in the browser, on top of REST/GraphQL APIs, using React and Material Design.
+[React Admin](https://github.com/marmelab/react-admin) is a frontend Framework for building data-driven applications running in the browser, on top of REST/GraphQL APIs, using React and Material Design.
 
 ### Key Features
 
--   Powered by material-ui, redux, react-final-form, react-router and a few more
--   Adapts to any backend (REST, GraphQL, SOAP, etc.)
--   Internationalization (i18n)
--   Supports any authentication provider (REST API, OAuth, Basic Auth, ...)
--   Can be included in another React app
--   Powered by material-ui, redux, react-final-form, react-router and a few more
+- Powered by material-ui, redux, react-final-form, react-router and a few more
+- Adapts to any backend (REST, GraphQL, SOAP, etc.)
+- Internationalization (i18n)
+- Supports any authentication provider (REST API, OAuth, Basic Auth, ...)
+- Can be included in another React app
+- Powered by material-ui, redux, react-final-form, react-router and a few more
 
 ### Installation
 

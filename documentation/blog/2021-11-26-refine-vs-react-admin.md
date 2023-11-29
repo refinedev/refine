@@ -35,7 +35,7 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 
 ## React-Admin
 
-[React-Admin](https://marmelab.com/react-admin/) is an B2B application framework based on Material Design, using Material UI. It provides ready-to-fetch-data components, so you just compose them together to create an application.
+React-Admin is an B2B application framework based on Material Design, using Material UI. It provides ready-to-fetch-data components, so you just compose them together to create an application.
 
 It can fetch data from any API connected to the data source, like REST, GraphQL, RPC. It’s powered by React, React Router, Redux, and Redux Saga, while Material UI is responsible for the visual.
 
@@ -207,8 +207,6 @@ The providers that React admin supports are as follows:
 - Local Storage: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage)
 - Supabase: [https://github.com/marmelab/ra-supabase](https://github.com/marmelab/ra-supabase)
 
-[You can view the full list of providers here ->](https://marmelab.com/react-admin/DataProviders.html)
-
 ### Customization
 
 With React-Admin, you can develop effective B2B applications and admin panels in a very short time. Although most of the processes are handled with hooks, the general architecture is built on components. In general, we can say that it is customizable but not very flexible. In some cases or business models, you may need to think about this yourself and make some additions.
@@ -232,10 +230,6 @@ A few of these modules are as follows:
 - Realtime
 - Search
 - Navigation
-
-[For more information about Enterprise-Edition and other modules](https://marmelab.com/ra-enterprise)
-
-React-Admin Docs & Demo : [Documentation](https://marmelab.com/react-admin/Readme.html) - [Live Demo](https://marmelab.com/react-admin-demo/#/)
 
 ## Refine
 

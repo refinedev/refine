@@ -31,7 +31,9 @@ import { useResizable } from "./use-resizable";
 
 type Props = React.ComponentProps<SandpackInternal> & {
     startRoute?: string;
+    showOpenInCodeSandbox?: boolean;
     showNavigator?: boolean;
+    showLineNumbers?: boolean;
     initialPercentage?: number;
     dependencies?: React.ComponentProps<SandpackInternal>["customSetup"]["dependencies"];
     height?: number;
@@ -69,6 +71,8 @@ export const Sandpack = (props: Props) => {
 const SandpackBase = ({
     startRoute,
     showNavigator,
+    showLineNumbers,
+    showOpenInCodeSandbox,
     initialPercentage = 50,
     dependencies,
     options = {
@@ -212,6 +216,9 @@ const SandpackBase = ({
                             {!previewOnly && (
                                 <SandpackCodeEditor
                                     {...codeEditorOptions}
+                                    // showTabs={!showFiles}
+                                    showLineNumbers={showLineNumbers}
+                                    closableTabs={showFiles}
                                     initMode="lazy"
                                     style={{
                                         height: options.editorHeight ?? height,
@@ -247,50 +254,74 @@ const SandpackBase = ({
                                     horizontalSize={horizontalSize}
                                 />
                             ) : null}
-                            <SandpackPreview
-                                actionsChildren={
-                                    <BugReportButton
-                                        onClick={() =>
-                                            setBugReportModalVisible(true)
+                            {hidePreview ? null : (
+                                <>
+                                    <SandpackPreview
+                                        showOpenInCodeSandbox={
+                                            showOpenInCodeSandbox
                                         }
-                                    />
-                                }
-                                startRoute={startRoute}
-                                showNavigator={
-                                    showNavigator ?? options.showNavigator
-                                }
-                                showRefreshButton={options.showRefreshButton}
-                                style={{
-                                    display: hidePreview ? "none" : "flex",
-                                    ...(layout?.includes("col")
-                                        ? { flex: "initial", width: "100%" }
-                                        : {
-                                              flexGrow: 100 - horizontalSize,
-                                              flexShrink: 100 - horizontalSize,
-                                              flexBasis: 0,
-                                              width: previewOnly
-                                                  ? "100%"
-                                                  : 100 - horizontalSize + "%",
-                                          }),
-                                    gap: 0,
-                                    height: options.editorHeight ?? height, // use the original editor height
-                                }}
-                            >
-                                <div className="sp-custom-loading">
-                                    <img
-                                        src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/spinner.gif"
-                                        className={clsx(
-                                            "w-12",
-                                            "h-12",
-                                            "rounded-full",
-                                        )}
-                                    />
-                                </div>
-                            </SandpackPreview>
-                            <BugReportModal
-                                visible={bugReportModalVisible}
-                                onClose={() => setBugReportModalVisible(false)}
-                            />
+                                        // actionsChildren={
+                                        //     <BugReportButton
+                                        //         onClick={() =>
+                                        //             setBugReportModalVisible(
+                                        //                 true,
+                                        //             )
+                                        //         }
+                                        //     />
+                                        // }
+                                        startRoute={startRoute}
+                                        showNavigator={
+                                            showNavigator ??
+                                            options.showNavigator
+                                        }
+                                        showRefreshButton={
+                                            options.showRefreshButton
+                                        }
+                                        style={{
+                                            display: hidePreview
+                                                ? "none"
+                                                : "flex",
+                                            ...(layout?.includes("col")
+                                                ? {
+                                                      flex: "initial",
+                                                      width: "100%",
+                                                  }
+                                                : {
+                                                      flexGrow:
+                                                          100 - horizontalSize,
+                                                      flexShrink:
+                                                          100 - horizontalSize,
+                                                      flexBasis: 0,
+                                                      width: previewOnly
+                                                          ? "100%"
+                                                          : 100 -
+                                                            horizontalSize +
+                                                            "%",
+                                                  }),
+                                            gap: 0,
+                                            height:
+                                                options.editorHeight ?? height, // use the original editor height
+                                        }}
+                                    >
+                                        <div className="sp-custom-loading">
+                                            <img
+                                                src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/spinner.gif"
+                                                className={clsx(
+                                                    "w-12",
+                                                    "h-12",
+                                                    "rounded-full",
+                                                )}
+                                            />
+                                        </div>
+                                    </SandpackPreview>
+                                    {/* <BugReportModal
+                                        visible={bugReportModalVisible}
+                                        onClose={() =>
+                                            setBugReportModalVisible(false)
+                                        }
+                                    /> */}
+                                </>
+                            )}
                         </SandpackLayout>
                     </SandpackProvider>
                 </div>

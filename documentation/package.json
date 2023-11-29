@@ -16,7 +16,7 @@
     "clear": "docusaurus clear"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^2.8.0",
+    "@codesandbox/sandpack-react": "^2.10.0",
     "@codesandbox/sandpack-themes": "^2.0.21",
     "@docusaurus/core": "2.4.0",
     "@docusaurus/plugin-client-redirects": "2.4.0",

@@ -16,10 +16,12 @@ Markdown has gained popularity due to its straightforward syntax, making it acce
 
 In this article, we will explore the process of integrating the [**uiw/react-md-editor**](https://www.npmjs.com/package/@uiw/react-md-editor) library into a React application to create a standard Markdown editor.
 
-Steps we'll cover include:
+
+
+
+Steps we'll cover:
 
 - [What is react-md-editor](#what-is-react-md-editor)
-- [Project setup](#project-setup)
 - [Using the MDEditor component](#using-the-mdeditor-component)
 - [Custom toolbar](#custom-toolbar)
 - [commands prop](#commands-prop)
