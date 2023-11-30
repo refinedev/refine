@@ -37,11 +37,11 @@ const CreatePage = () => {
 };
 ```
 
-`<CreateButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `create` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index) under the hood. It can be useful to redirect the app to the create page route of resource.
+`<CreateButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `create` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -187,15 +187,15 @@ render(
 );
 ```
 
-Clicking the button will trigger the `create` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index) and then redirect the app to the `create` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `create` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `create` action path of the resource, filling the necessary parameters in the route.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `meta`
 
-It is used to pass additional parameters to the `create` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index). By default, existing parameters in the route are used by the `create` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+It is used to pass additional parameters to the `create` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation). By default, existing parameters in the route are used by the `create` method. You can pass additional parameters or override the existing ones using the `meta` prop.
 
 If the `create` action route is defined by the pattern: `/posts/:authorId/create`, the `meta` prop can be used as follows:
 
@@ -245,7 +245,7 @@ render(
 
 ### `accessControl`
 
-The `accessControl` prop can be used to skip the access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/core/providers/access-control-provider/index) is provided to [`<Refine/>`](/docs/core/refine-component/index)
+The `accessControl` prop can be used to skip the access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/core/providers/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
 
 ```tsx
 import { CreateButton } from "@refinedev/chakra-ui";
@@ -298,7 +298,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `create` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index) and then redirect to `/posts/create`.
+Clicking the button will trigger the `create` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect to `/posts/create`.
 
 ## API Reference
 

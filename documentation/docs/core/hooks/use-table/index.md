@@ -10,15 +10,15 @@ import FilteringLivePreview from "./\_partial-filtering-live-preview.md";
 import RelationalDataLivePreview from "./\_partial-relational-data-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/docs/core/hooks/data/use-list/index) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
+`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
 
 :::info
 
 If you're looking for a complete table library, Refine supports two table libraries out of the box.
 
-- [React Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/docs/packages/list-of-packages/index) - [Example](/docs/examples/table/tanstack-table/basic-tanstack-table/)
-- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-table/index) - [Example](/examples/table/antd/useTable.md)
-- [Material UI Table](https://mui.com/x/react-data-grid/) - [Documentation](/docs/ui-integrations/material-ui/hooks/use-data-grid/index) - [Example](/examples/table/mui/useDataGrid.md)
+- [React Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/docs/packages/list-of-packages) - [Example](/docs/examples/table/tanstack-table/basic-tanstack-table/)
+- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-table) - [Example](/examples/table/antd/useTable.md)
+- [Material UI Table](https://mui.com/x/react-data-grid/) - [Documentation](/docs/ui-integrations/material-ui/hooks/use-data-grid) - [Example](/examples/table/mui/useDataGrid.md)
 
 :::
 
@@ -74,13 +74,13 @@ If you are using `merge` behavior and want to remove one of the filters, you sho
 
 :::caution
 
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider/index).
+This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
 
 :::
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider/index)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
@@ -106,7 +106,7 @@ useTable({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `dataProviderName`
 
@@ -204,7 +204,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudSorting` interface&#8594](/docs/core/interface-references/index#crudsorting)
+> For more information, refer to the [`CrudSorting` interface&#8594](/docs/core/interface-references#crudsorting)
 
 ### `sorters.permanent`
 
@@ -224,7 +224,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudSorting` interface &#8594](/docs/core/interface-references/index#crudsorting)
+> For more information, refer to the [`CrudSorting` interface &#8594](/docs/core/interface-references#crudsorting)
 
 ### `filters.mode`
 
@@ -263,7 +263,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references/index#crudfilters)
+> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references#crudfilters)
 
 ### `filters.permanent`
 
@@ -284,7 +284,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references/index#crudfilters)
+> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references#crudfilters)
 
 ### `filters.defaultBehavior`
 
@@ -324,7 +324,7 @@ useTable({
 
 ### `queryOptions`
 
-`useTable` uses [`useList`](/docs/core/hooks/data/use-list/index) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useTable` uses [`useList`](/docs/core/hooks/data/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 import { useTable } from "@refinedev/core";
@@ -434,7 +434,7 @@ useTable({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
@@ -447,13 +447,13 @@ useTable({
 });
 ```
 
-> For more information, refer to the [Live / Realtime page](/docs/core/providers/live-provider/index#livemode)
+> For more information, refer to the [Live / Realtime page](/docs/core/providers/live-provider#livemode)
 
 ### `onLiveEvent`
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
@@ -472,11 +472,11 @@ useTable({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
-Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider/index#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
 ### `overtimeOptions`
 
@@ -572,7 +572,7 @@ Use `sorters.initial` instead.
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](/docs/core/interface-references/index#crudsorting)
+[Refer to the `CrudSorting` interface for more information &#8594](/docs/core/interface-references#crudsorting)
 
 ```tsx
 import { useTable } from "@refinedev/core";
@@ -608,7 +608,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudSorting` interface &#8594](/docs/core/interface-references/index#crudsorting)
+> For more information, refer to the [`CrudSorting` interface &#8594](/docs/core/interface-references#crudsorting)
 
 ### ~~`initialFilter`~~
 
@@ -633,7 +633,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references/index#crudfilters)
+> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references#crudfilters)
 
 ### ~~`permanentFilter`~~
 
@@ -658,7 +658,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references/index#crudfilters)
+> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references#crudfilters)
 
 ### ~~`defaultSetFilterBehavior`~~
 
@@ -689,7 +689,7 @@ useTable({
 
 ### `tableQueryResult`
 
-Returned values from [`useList`](/docs/core/hooks/data/use-list/index) hook.
+Returned values from [`useList`](/docs/core/hooks/data/use-list) hook.
 
 ### `sorters`
 
@@ -790,7 +790,7 @@ A function to set current [sorters state][crudsorting].
 
 ### How can I handle relational data?
 
-You can use [`useMany`](/docs/core/hooks/data/use-many/index) hook to fetch relational data.
+You can use [`useMany`](/docs/core/hooks/data/use-many) hook to fetch relational data.
 
 <RelationalDataLivePreview/>
 
@@ -941,10 +941,10 @@ errorNotification-default='"There was an error creating resource (status code: `
 | overtime                      | Overtime loading props                                                                | `{ elapsedTime?: number }`                                                                                                                        |
 
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[baserecord]: /docs/core/interface-references/index#baserecord
-[crudsorting]: /docs/core/interface-references/index#crudsorting
-[crudfilters]: /docs/core/interface-references/index#crudfilters
-[httperror]: /docs/core/interface-references/index#httperror
-[refine swl]: /docs/core/refine-component/index#syncwithlocation
-[syncwithlocationparams]: /docs/core/interface-references/index#syncwithlocationparams
-[notification-provider]: /docs/core/providers/notification-provider/index
+[baserecord]: /docs/core/interface-references#baserecord
+[crudsorting]: /docs/core/interface-references#crudsorting
+[crudfilters]: /docs/core/interface-references#crudfilters
+[httperror]: /docs/core/interface-references#httperror
+[refine swl]: /docs/core/refine-component#syncwithlocation
+[syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
+[notification-provider]: /docs/core/providers/notification-provider

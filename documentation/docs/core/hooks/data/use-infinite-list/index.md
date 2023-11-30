@@ -11,7 +11,7 @@ import FilteringLivePreview from "./filtering-live-preview.md";
 
 The `useInfiniteList` hook is an extended version of TanStack Query's [`useInfiniteQuery`](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) used for retrieving items from a `resource` with pagination, sort, and filter configurations. It is ideal for lists where the total number of records is unknown and the user loads the next pages with a button.
 
-- It uses the `getList` method as the query function from the [`dataProvider`](/docs/core/providers/data-provider/index) which is passed to `<Refine>`.
+- It uses the `getList` method as the query function from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
 
 - It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 
@@ -23,7 +23,7 @@ Here is a basic example of how to use the `useInfiniteList` hook.
 
 ## Pagination
 
-The `useInfiniteList` hook supports pagination properties just like [`useList`](/docs/core/hooks/data/use-list/index). To handle pagination, the `useInfiniteList` hook passes the `pagination` property to the `getList` method from the `dataProvider`.
+The `useInfiniteList` hook supports pagination properties just like [`useList`](/docs/core/hooks/data/use-list). To handle pagination, the `useInfiniteList` hook passes the `pagination` property to the `getList` method from the `dataProvider`.
 
 Dynamically changing the `pagination` properties will trigger a new request. The `fetchNextPage` method will increase the `pagination.current` property by one and trigger a new request as well.
 
@@ -56,13 +56,13 @@ Dynamically changing the `filters` property will trigger a new request.
 
 :::caution
 
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider/index).
+This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
 
 :::
 
 When the `useInfiniteList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. This is useful when you want to subscribe to live updates.
 
-> For more information, refer to the [`liveProvider` documentation&#8594](/docs/core/providers/live-provider/index)
+> For more information, refer to the [`liveProvider` documentation&#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
@@ -80,7 +80,7 @@ useInfiniteList({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `dataProviderName`
 
@@ -108,7 +108,7 @@ useInfiniteList({
 });
 ```
 
-> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references/index#crudfilters)
+> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references#crudfilters)
 
 ### `sorters`
 
@@ -125,7 +125,7 @@ useInfiniteList({
 });
 ```
 
-> For more information, refer to the [`CrudSorting` interface &#8594](/docs/core/interface-references/index#crudsorting)
+> For more information, refer to the [`CrudSorting` interface &#8594](/docs/core/interface-references#crudsorting)
 
 ### `pagination`
 
@@ -233,7 +233,7 @@ const myDataProvider = {
 
 :::caution
 
-[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 :::
 
@@ -255,7 +255,7 @@ useInfiniteList({
 
 :::caution
 
-[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 :::
 
@@ -277,7 +277,7 @@ useInfiniteList({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
@@ -289,13 +289,13 @@ useInfiniteList({
 });
 ```
 
-> For more information, refer to the [Live / Realtime page&#8594](/docs/core/providers/live-provider/index#livemode)
+> For more information, refer to the [Live / Realtime page&#8594](/docs/core/providers/live-provider#livemode)
 
 ### `onLiveEvent`
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
@@ -313,11 +313,11 @@ useInfiniteList({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
-Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider/index#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
 ### `overtimeOptions`
 
@@ -495,5 +495,5 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 <CodeSandboxExample path="use-infinite-list" />
 
-[baserecord]: /docs/core/interface-references/index#baserecord
-[httperror]: /docs/core/interface-references/index#httperror
+[baserecord]: /docs/core/interface-references#baserecord
+[httperror]: /docs/core/interface-references#httperror

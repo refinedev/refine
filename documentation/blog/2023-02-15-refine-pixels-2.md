@@ -148,7 +148,7 @@ We will be using them in our **Pixels** app. Some provider objects like the `rou
 
 :::caution
 
-[`<Refine />`](http://localhost:3000/docs/api-reference/core/components/refine-config/) comes with [dark mode support](/docs/ui-integrations/ant-design/theming/index#theme-customization) out-of-the-box. However, we will not be using it in this series. So, we will be replace the `ColorModeContextProvider` with the `ConfigProvider`.
+[`<Refine />`](http://localhost:3000/docs/api-reference/core/components/refine-config/) comes with [dark mode support](/docs/ui-integrations/ant-design/theming#theme-customization) out-of-the-box. However, we will not be using it in this series. So, we will be replace the `ColorModeContextProvider` with the `ConfigProvider`.
 
 Also You can remove `src/context/color-mode` that comes with `create refine-app`.
 

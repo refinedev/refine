@@ -93,7 +93,7 @@ const App = () => {
 
 ### Usage with Authentication
 
-When handling authenticated routes, we can use [`<Authenticated>`](/docs/core/components/authenticated/index) to check if the user is authenticated or not. Internally, it uses the `useIsAuthenticated` hook and handles the redirection or showing the appropriate elements based on the authentication status by the `children` and `fallback` props.
+When handling authenticated routes, we can use [`<Authenticated>`](/docs/core/components/authenticated) to check if the user is authenticated or not. Internally, it uses the `useIsAuthenticated` hook and handles the redirection or showing the appropriate elements based on the authentication status by the `children` and `fallback` props.
 
 Additionally, we'll use the [`<Outlet>`](https://reactrouter.com/en/main/components/outlet) component from `react-router-dom` to render our routes inside the `<Authenticated>` component. This will allow us to create protected routes and render the routes only when the user is authenticated.
 
@@ -260,7 +260,7 @@ Notice that we've wrapped the `<Outlet>` with `<ThemedLayoutV2>` component. This
 
 ### Usage with Access Control providers
 
-If you want to protect your routes with [Access Control Provider](/docs/core/providers/access-control-provider/index), all you have to do is to wrap `Outlet` with `CanAccess` component.
+If you want to protect your routes with [Access Control Provider](/docs/core/providers/access-control-provider), all you have to do is to wrap `Outlet` with `CanAccess` component.
 
 :::info
 
@@ -1307,8 +1307,8 @@ Default paths are:
 
 :::
 
-[routerprovider]: /docs/core/providers/router-provider/index
-[resources]: /docs/tutorial/understanding-resources/index/
+[routerprovider]: /docs/core/providers/router-provider
+[resources]: /docs/tutorial/understanding-resources/
 
 ```
 

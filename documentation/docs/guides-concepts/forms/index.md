@@ -6,7 +6,7 @@ In almost every user facing application, forms are a necessity. They are the pri
 
 ## Handling Data
 
-`useForm` hook orchestrates Refine's [`useOne`](/docs/core/hooks/data/use-one/index), [`useUpdate`](/docs/core/hooks/data/use-update/index) and [`useCreate`](/docs/core/hooks/data/use-create/index) hooks internally to provide a single interface for form handling.
+`useForm` hook orchestrates Refine's [`useOne`](/docs/core/hooks/data/use-one), [`useUpdate`](/docs/core/hooks/data/use-update) and [`useCreate`](/docs/core/hooks/data/use-create) hooks internally to provide a single interface for form handling.
 
 While editing or cloning a record, `useOne` will be used to fetch the record to provide values for the form. When creating a new record, `useCreate` will be used for the mutation. When updating a record, `useUpdate` will be used for the mutation.
 
@@ -94,7 +94,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/docs/packages/list-of-packages/index)
+[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/docs/packages/list-of-packages)
 
 </TabItem>
 <TabItem value="antd" label="Ant Design">
@@ -125,7 +125,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out Ant Design Form's `useForm` reference page to learn more about the usage and see it in action.](/docs/ui-integrations/ant-design/hooks/use-form/index)
+[Check out Ant Design Form's `useForm` reference page to learn more about the usage and see it in action.](/docs/ui-integrations/ant-design/hooks/use-form)
 
 </TabItem>
 <TabItem value="mantine" label="Mantine">
@@ -164,7 +164,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out Mantine Form's `useForm` reference page to learn more about the usage and see it in action.](/docs/ui-integrations/mantine/hooks/use-form/index)
+[Check out Mantine Form's `useForm` reference page to learn more about the usage and see it in action.](/docs/ui-integrations/mantine/hooks/use-form)
 
 </TabItem>
 <TabItem value="material-ui" label={(<span><span className="block">Material UI</span><small className="block">React Hook Form</small></span>)}>
@@ -212,7 +212,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/docs/packages/list-of-packages/index)
+[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/docs/packages/list-of-packages)
 
 </TabItem>
 <TabItem value="chakra-ui" label={(<span><span className="block">Chakra UI</span><small className="block">React Hook Form</small></span>)}>
@@ -260,7 +260,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/docs/packages/list-of-packages/index)
+[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/docs/packages/list-of-packages)
 
 </TabItem>
 </Tabs>
@@ -286,7 +286,7 @@ To learn more about the routing, check out the [Routing](/guides-concepts/routin
 
 ### Redirection
 
-`useForm` also uses the router integration to redirect the user to the desired page after a successful mutation. By default, it's the list page of the resource but this can be customized by passing a `redirect` prop to the `useForm` hook. If you want to change the redirection behavior for all forms, you can use the `options.redirect` prop of the [`<Refine>` component](/docs/core/refine-component/index).
+`useForm` also uses the router integration to redirect the user to the desired page after a successful mutation. By default, it's the list page of the resource but this can be customized by passing a `redirect` prop to the `useForm` hook. If you want to change the redirection behavior for all forms, you can use the `options.redirect` prop of the [`<Refine>` component](/docs/core/refine-component).
 
 ```tsx
 import { useForm } from "@refinedev/core";
@@ -338,7 +338,7 @@ const App = () => (
 );
 ```
 
-Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/list-of-packages/index#unsavedchangesnotifier) for more information.
+Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/list-of-packages#unsavedchangesnotifier) for more information.
 
 </TabItem>
 <TabItem value="next-js" label="Next.js">
@@ -368,7 +368,7 @@ export default function App({ Component, pageProps }) {
 }
 ```
 
-Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/list-of-packages/index#unsavedchangesnotifier) for more information.
+Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/list-of-packages#unsavedchangesnotifier) for more information.
 
 </TabItem>
 <TabItem value="remix" label="Remix">
@@ -412,7 +412,7 @@ export default function App() {
 }
 ```
 
-Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/list-of-packages/index#unsavedchangesnotifier) for more information.
+Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/list-of-packages#unsavedchangesnotifier) for more information.
 
 </TabItem>
 </Tabs>
@@ -493,7 +493,7 @@ const { formProps } = useForm({
 });
 ```
 
-If you want to disable the invalidation completely and handle it manually, you can pass `false` to the `invalidates` prop. Then, you can use the [`useInvalidate`](/docs/core/hooks/data/use-invalidate/index) hook to invalidate the queries manually based on your conditions.
+If you want to disable the invalidation completely and handle it manually, you can pass `false` to the `invalidates` prop. Then, you can use the [`useInvalidate`](/docs/core/hooks/data/use-invalidate) hook to invalidate the queries manually based on your conditions.
 
 ```tsx
 import { useInvalidate } from "@refinedev/core";
@@ -591,7 +591,7 @@ const error: HttpError = {
 };
 ```
 
-[Check out `HttpError` interface for more information about the error format.](/docs/core/interface-references/index#httperror)
+[Check out `HttpError` interface for more information about the error format.](/docs/core/interface-references#httperror)
 
 Examples below demonstrates the server-side validation and error propagation:
 
@@ -721,7 +721,7 @@ Each of these form implementations have a way to modify the data before submissi
 <Tabs>
 <TabItem value="react-hook-form" label="React Hook Form" default>
 
-To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/react-hook-form`](/docs/packages/list-of-packages/index##how-can-i-change-the-form-data-before-submitting-it-to-the-api) reference page.
+To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/react-hook-form`](/docs/packages/list-of-packages##how-can-i-change-the-form-data-before-submitting-it-to-the-api) reference page.
 
 <Tabs>
 <TabItem value="headless" label="Headless">
@@ -824,7 +824,7 @@ export const UserCreate: React.FC = () => {
 };
 ```
 
-Check out the [`<Create />`](/docs/ui-integrations/material-ui/components/basic-views/create/index#savebuttonprops) component and [`saveButtonProps`](/docs/packages/list-of-packages/index#savebuttonprops) prop to learn more about their usage.
+Check out the [`<Create />`](/docs/ui-integrations/material-ui/components/basic-views/create#savebuttonprops) component and [`saveButtonProps`](/docs/packages/list-of-packages#savebuttonprops) prop to learn more about their usage.
 
 </TabItem>
 <TabItem value="chakra-ui" label="With Chakra UI">
@@ -884,7 +884,7 @@ export const UserCreate: React.FC = () => {
 };
 ```
 
-Check out the [`<Create />`](/docs/ui-integrations/chakra-ui/components/basic-views/create/index#savebuttonprops) component and [`saveButtonProps`](/docs/packages/list-of-packages/index#savebuttonprops) prop to learn more about their usage.
+Check out the [`<Create />`](/docs/ui-integrations/chakra-ui/components/basic-views/create#savebuttonprops) component and [`saveButtonProps`](/docs/packages/list-of-packages#savebuttonprops) prop to learn more about their usage.
 
 </TabItem>
 </Tabs>
@@ -892,7 +892,7 @@ Check out the [`<Create />`](/docs/ui-integrations/chakra-ui/components/basic-vi
 </TabItem>
 <TabItem value="antd" label="Ant Design">
 
-To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/antd`](/docs/ui-integrations/ant-design/hooks/use-form/index#how-can-i-change-the-form-data-before-submitting-it-to-the-api) reference page.
+To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/antd`](/docs/ui-integrations/ant-design/hooks/use-form#how-can-i-change-the-form-data-before-submitting-it-to-the-api) reference page.
 
 ```tsx title="edit.tsx"
 import { useForm, Create } from "@refinedev/antd";
@@ -927,7 +927,7 @@ const EditPage = () => {
 </TabItem>
 <TabItem value="mantine" label="Mantine">
 
-To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/mantine`](/docs/ui-integrations/mantine/hooks/use-form/index#how-can-i-change-the-form-data-before-submitting-it-to-the-api) reference page.
+To learn more about how to modify the data before submission, check out the [Using `useForm` of `@refinedev/mantine`](/docs/ui-integrations/mantine/hooks/use-form#how-can-i-change-the-form-data-before-submitting-it-to-the-api) reference page.
 
 ```tsx title="edit.tsx"
 import { useForm, Create } from "@refinedev/mantine";

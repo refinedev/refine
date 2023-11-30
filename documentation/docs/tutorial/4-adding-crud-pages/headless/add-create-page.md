@@ -93,11 +93,11 @@ render(<App />);
 
 - The `useForm` hook is imported from `@refinedev/react-hook-form`, which combines the features of `useForm` hook from both **React Hook Form** and `@refinedev/core`. When used in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted. It also offers `saveButtonProps` for the form's submit button.
 
-  > For more information, refer to the [`useForm` documentation](/docs/packages/list-of-packages/index) and the [**React Hook Form** documentation&#8594](https://react-hook-form.com/)
+  > For more information, refer to the [`useForm` documentation](/docs/packages/list-of-packages) and the [**React Hook Form** documentation&#8594](https://react-hook-form.com/)
 
 - The `useNavigation` hook is used for navigating between pages. In this case, we are using it to navigate to the `list` pages when the user clicks on the "Blog Posts List" buttons.
 
-  > For more information, refer to the [`useNavigation` documentation &#8594](/docs/core/hooks/navigation/use-navigation/index)
+  > For more information, refer to the [`useNavigation` documentation &#8594](/docs/core/hooks/navigation/use-navigation)
 
 ### Handling Relationships
 
@@ -113,7 +113,7 @@ const { options: categoryOptions } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect` documentation&#8594](/docs/core/hooks/use-select/index)
+> For more information, refer to the [`useSelect` documentation&#8594](/docs/core/hooks/use-select)
 
 ## Adding the Create Page to the App
 

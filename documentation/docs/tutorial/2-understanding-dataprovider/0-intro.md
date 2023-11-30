@@ -11,7 +11,7 @@ import SupportedDataProviders from "@site/src/partials/data-provider/supported-d
 
 :::info
 
-The Data Provider unit is optional for the tutorial. You can directly skip to the next unit, <UIConditional is="headless">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/headless/index)</UIConditional><UIConditional is="antd">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/antd/index)</UIConditional><UIConditional is="mantine">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/mantine/index)</UIConditional><UIConditional is="chakra-ui">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/chakra-ui/index)</UIConditional><UIConditional is="mui">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/mui/index)</UIConditional>, if desired
+The Data Provider unit is optional for the tutorial. You can directly skip to the next unit, <UIConditional is="headless">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/headless)</UIConditional><UIConditional is="antd">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/antd)</UIConditional><UIConditional is="mantine">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/mantine)</UIConditional><UIConditional is="chakra-ui">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/chakra-ui)</UIConditional><UIConditional is="mui">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/mui)</UIConditional>, if desired
 
 :::
 
@@ -69,7 +69,7 @@ import dataProvider from "@refinedev/simple-rest";
 />;
 ```
 
-> For more information, refer to **refine's** [dataProvider prop component documentation&#8594](/docs/core/refine-component/index#dataprovider)
+> For more information, refer to **refine's** [dataProvider prop component documentation&#8594](/docs/core/refine-component#dataprovider)
 
 ## How are data provider methods used in the app?
 

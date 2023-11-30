@@ -327,7 +327,7 @@ interface IPost {
 
 :::tip
 
-We can reach the API URL by using the [`useApiUrl`](/docs/core/hooks/data/use-api-url/index) hook.
+We can reach the API URL by using the [`useApiUrl`](/docs/core/hooks/data/use-api-url) hook.
 
 :::
 

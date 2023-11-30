@@ -94,11 +94,11 @@ render(<App />);
 
 - `<Show/>` is a **refine** component that is used for presentation purposes like showing the title of the page, list button, etc.
 
-  > For more information, refer to the [`<Show/>` documentation&#8594](/docs/ui-integrations/ant-design/components/basic-views/show/index)
+  > For more information, refer to the [`<Show/>` documentation&#8594](/docs/ui-integrations/ant-design/components/basic-views/show)
 
 - The `useShow` hook is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
 
-  > For more information, refer to the [`useShow` documentation#8594](/docs/core/hooks/use-show/index)
+  > For more information, refer to the [`useShow` documentation#8594](/docs/core/hooks/use-show)
 
 ### Handling Relationships
 
@@ -127,7 +127,7 @@ const { data: categoryData, isLoading: categoryIsLoading } = useOne({
 });
 ```
 
-> For more information, refer to the [`useOne` documentation&#8594](/docs/core/hooks/data/use-one/index)
+> For more information, refer to the [`useOne` documentation&#8594](/docs/core/hooks/data/use-one)
 
 ## Adding the Show Page to the App
 

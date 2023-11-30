@@ -12,15 +12,15 @@ import OnSearchLivePreview from "./on-search-live-preview.md";
 
 `useAutocomplete` hook allows you to manage Material UI's [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/) component when records in a resource needs to be used as select options.
 
-This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/docs/core/hooks/data/use-list/index)
+This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/docs/core/hooks/data/use-list)
 
 :::info-tip DERIVATIVES
 
 If you're looking for a complete select library, refine has out-of-the-box support for the libraries below:
 
-- refine's `useSelect` (for Headless users) - [Documentation](/docs/core/hooks/use-select/index) - [Example](/docs/examples/core/useSelect)
-- [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-select/index) - [Example](/docs/examples/field/useSelect)
-- [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/ui-integrations/mantine/hooks/use-select/index)
+- refine's `useSelect` (for Headless users) - [Documentation](/docs/core/hooks/use-select) - [Example](/docs/examples/core/useSelect)
+- [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-select) - [Example](/docs/examples/field/useSelect)
+- [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/ui-integrations/mantine/hooks/use-select)
 
 :::
 
@@ -34,20 +34,20 @@ Here is a basic example of how to use `useAutocomplete` hook.
 
 :::caution
 
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider/index)
+This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider)
 
 :::
 
 When `useAutocomplete` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`.
 It is useful when you want to subscribe to the live updates.
 
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider/index)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
 ### `resource` <PropTag required />
 
-It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/core/providers/data-provider/index#creating-a-data-provider) section for an example of how resources are handled.
+It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/core/providers/data-provider#creating-a-data-provider) section for an example of how resources are handled.
 
 ```tsx
 useAutocomplete({
@@ -57,13 +57,13 @@ useAutocomplete({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `sorters`
 
 It allows to show the options in the desired order. `sorters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send `sorters` query parameters to the API.
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references/index#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references#crudsorting)
 
 ```tsx
 useAutocomplete({
@@ -82,7 +82,7 @@ useAutocomplete({
 
 `filters` is used to show options by filtering them. `filters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send filter query parameters to the API.
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references/index#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references#crudfilters)
 
 ```tsx
 useAutocomplete({
@@ -106,7 +106,7 @@ useAutocomplete({
 });
 ```
 
-> For more information, refer to the [`useMany` documentation &#8594](/docs/core/hooks/data/use-many/index)
+> For more information, refer to the [`useMany` documentation &#8594](/docs/core/hooks/data/use-many)
 
 ### `debounce`
 
@@ -191,7 +191,7 @@ useAutocomplete({
 
 It allows us to `AutoComplete` the `options`.
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references/index#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references#crudfilters)
 
 <OnSearchLivePreview />
 
@@ -294,7 +294,7 @@ useAutocomplete({
 
 :::caution
 
-[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 :::
 
@@ -316,7 +316,7 @@ useAutocomplete({
 
 :::caution
 
-[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 :::
 
@@ -338,13 +338,13 @@ useAutocomplete({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
-> For more information, please refer to the [Live / Realtime documentation](/docs/core/providers/live-provider/index#livemode)
+> For more information, please refer to the [Live / Realtime documentation](/docs/core/providers/live-provider#livemode)
 
 ```tsx
 useAutocomplete({
@@ -356,7 +356,7 @@ useAutocomplete({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
@@ -374,11 +374,11 @@ useAutocomplete({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
-Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider/index#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
 ### `overtimeOptions`
 
@@ -434,7 +434,7 @@ useAutocomplete({
 
 ### How to ensure `defaultValue` is included in the options?
 
-In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/core/hooks/data/use-many/index), gets the data and mark as selected.
+In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/core/hooks/data/use-many), gets the data and mark as selected.
 
 <DefaultValueLivePreview />
 
@@ -457,11 +457,11 @@ return <Autocomplete {...autocompleteProps} options={options || []} />;
 
 <CrudLivePreview />
 
-The use of `useAutocomplete` with [`useForm`](/docs/packages/list-of-packages/index) is demonstrated in the code above. You can use the `useAutocomplete` hook independently of the `useForm` hook.
+The use of `useAutocomplete` with [`useForm`](/docs/packages/list-of-packages) is demonstrated in the code above. You can use the `useAutocomplete` hook independently of the `useForm` hook.
 
 :::info
 
-By default, refine does the search using the [`useList`](/docs/core/hooks/data/use-delete/index) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
+By default, refine does the search using the [`useList`](/docs/core/hooks/data/use-delete) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
 
 :::
 
@@ -502,5 +502,5 @@ By default, refine does the search using the [`useList`](/docs/core/hooks/data/u
 
 <CodeSandboxExample path="field-material-ui-use-autocomplete" />
 
-[baserecord]: /docs/core/interface-references/index#baserecord
-[httperror]: /docs/core/interface-references/index#httperror
+[baserecord]: /docs/core/interface-references#baserecord
+[httperror]: /docs/core/interface-references#httperror

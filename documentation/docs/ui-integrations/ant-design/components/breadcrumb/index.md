@@ -4,11 +4,11 @@ sidebar_label: Breadcrumb
 swizzle: true
 ---
 
-A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. The `<Breadcrumb>` component was built with Ant Design's [Breadcrumb][antd-breadcrumb] components using the [`useBreadcrumb`](/docs/core/hooks/utilities/use-breadcrumb/index) hook.
+A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. The `<Breadcrumb>` component was built with Ant Design's [Breadcrumb][antd-breadcrumb] components using the [`useBreadcrumb`](/docs/core/hooks/utilities/use-breadcrumb) hook.
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
 :::
 

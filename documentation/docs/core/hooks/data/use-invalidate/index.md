@@ -5,7 +5,7 @@ source: /packages/core/src/hooks/invalidate
 
 `useInvalidate` is a hook that can be used to invalidate the state of a particular `resource` or [`dataProvider`][data-provider] (with dataProviderName).
 
-This hook will be called when a mutation hook is successful. For example, creating a `Posts` with the [useCreate](/docs/core/hooks/data/use-create/index) hook will invalidate the `list` ([useList](/docs/core/hooks/data/use-list/index)) and `many` ([useMany](/docs/core/hooks/data/use-many/index)) state of the `Posts` resource.
+This hook will be called when a mutation hook is successful. For example, creating a `Posts` with the [useCreate](/docs/core/hooks/data/use-create) hook will invalidate the `list` ([useList](/docs/core/hooks/data/use-list)) and `many` ([useMany](/docs/core/hooks/data/use-many)) state of the `Posts` resource.
 
 :::info-tip
 
@@ -131,9 +131,9 @@ By default settings, all the targeted queries are invalidated and the active one
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | <div className="required-block"><div>invalidates</div> <div className="required">Required</div></div> | The states you want to invalidate.                                | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                                                     |                                          |
 | resource                                                                                              | Resource name for State invalidation.                             | `string`                                                                                                                    |                                          |
-| id                                                                                                    | The `id` to use when invalidating the "detail" state.             | [`BaseKey`](/docs/core/interface-references/index#basekey)                                                                  |                                          |
+| id                                                                                                    | The `id` to use when invalidating the "detail" state.             | [`BaseKey`](/docs/core/interface-references#basekey)                                                                        |                                          |
 | dataProviderName                                                                                      | The name of the data provider whose state you want to invalidate. | `string`                                                                                                                    | `default`                                |
 | invalidationFilters                                                                                   | The filters to use when picking queries to invalidate             | [`InvalidateQueryFilters`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries) | `{ type: "all", refetchType: "active" }` |
 | invalidationOptions                                                                                   | The options to use in the invalidation process                    | [`InvalidateOptions`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries)      | `{ cancelRefetch: false }`               |
 
-[data-provider]: /docs/core/providers/data-provider/index
+[data-provider]: /docs/core/providers/data-provider

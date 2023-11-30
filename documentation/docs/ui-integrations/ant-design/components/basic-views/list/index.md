@@ -80,7 +80,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -165,7 +165,7 @@ render(<App />);
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `canCreate` and `createButtonProps`
 
@@ -268,17 +268,17 @@ The create button redirects to the create page of the resource according to the 
 
 :::
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions/index)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions)
 
 ### `breadcrumb`
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/antd` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/docs/ui-integrations/ant-design/components/breadcrumb/index)
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/docs/ui-integrations/ant-design/components/breadcrumb)
 
 :::tip
 
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component/index#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
 
 :::
 
@@ -586,4 +586,4 @@ breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
 canCreate-default="If the resource is passed a create component, `true` else `false`"
 />
 
-[create-button]: /docs/ui-integrations/ant-design/components/buttons/create-button/index
+[create-button]: /docs/ui-integrations/ant-design/components/buttons/create-button

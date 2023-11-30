@@ -42,7 +42,7 @@ useImport({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `mapData`
 
@@ -197,7 +197,7 @@ return (
 
 ### `mutationResult`
 
-Returns the result of either the [`useCreate`](/docs/core/hooks/data/use-create/index) or the [`useCreateMany`](/docs/core/hooks/data/use-create/index) hook.
+Returns the result of either the [`useCreate`](/docs/core/hooks/data/use-create) or the [`useCreateMany`](/docs/core/hooks/data/use-create) hook.
 
 ## FAQ
 
@@ -270,12 +270,12 @@ With this code, the parsed data will be mapped to conform to the API requirement
 | TError     | Custom error object that extends [`HttpError`][httperror]                  | [`HttpError`][httperror]   |
 | TVariables | Values for mutation function                                               | `any`                      |
 
-[baserecord]: /docs/core/interface-references/index#baserecord
-[httperror]: /docs/core/interface-references/index#httperror
+[baserecord]: /docs/core/interface-references#baserecord
+[httperror]: /docs/core/interface-references#httperror
 [papaparse]: https://www.papaparse.com/
 [usemutation]: https://tanstack.com/query/latest/docs/react/reference/useMutation
 [number.max_safe_integer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
-[useimportinputpropstype]: /docs/core/interface-references/index#useimportinputpropstype
+[useimportinputpropstype]: /docs/core/interface-references#useimportinputpropstype
 
 ## Example
 

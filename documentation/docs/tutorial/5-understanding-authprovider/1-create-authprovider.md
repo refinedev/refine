@@ -223,7 +223,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useLogin` documentation&#8594](/docs/core/hooks/auth/use-login/index)
+> For more information, refer to the [`useLogin` documentation&#8594](/docs/core/hooks/auth/use-login)
 
 ### check
 
@@ -287,7 +287,7 @@ const { data, isSuccess, isLoading, isError, refetch } = useIsAuthenticated();
 
 The `<Authenticated>` component makes use of the `useIsAuthenticated` hook, allowing you to render the components only if the user is authenticated.
 
-For more information, refer to the [`<Authenticated>`&#8594](/docs/core/components/authenticated/index)
+For more information, refer to the [`<Authenticated>`&#8594](/docs/core/components/authenticated)
 
 :::
 
@@ -313,7 +313,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useIsAuthenticated` documentation&#8594](/docs/core/hooks/auth/use-is-authenticated/index)
+> For more information, refer to the [`useIsAuthenticated` documentation&#8594](/docs/core/hooks/auth/use-is-authenticated)
 
 ### logout
 
@@ -466,7 +466,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useLogout` documentation&#8594](/docs/core/hooks/auth/use-logout/index)
+> For more information, refer to the [`useLogout` documentation&#8594](/docs/core/hooks/auth/use-logout)
 
 ### onError
 
@@ -549,7 +549,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useOnError` documentation&#8594](/docs/core/hooks/auth/use-on-error/index)
+> For more information, refer to the [`useOnError` documentation&#8594](/docs/core/hooks/auth/use-on-error)
 
 ## Optional Methods
 
@@ -606,11 +606,11 @@ if (data?.includes("admin")) {
 
 Though `usePermissions` hook can be used for simple authorization purposes, if you need more complex authorization logic, we recommend using the access control provider.
 
-For more information, refer to the [`accessControlProvider` documentation&#8594](/docs/core/providers/access-control-provider/index)
+For more information, refer to the [`accessControlProvider` documentation&#8594](/docs/core/providers/access-control-provider)
 
 :::
 
-> For more information, refer to the [`usePermissions` documentation &#8594](/docs/core/hooks/auth/use-permissions/index)
+> For more information, refer to the [`usePermissions` documentation &#8594](/docs/core/hooks/auth/use-permissions)
 
 ### getIdentity
 
@@ -690,7 +690,7 @@ const authProvider: AuthBindings = {
 
 :::
 
-> For more information, refer to the [`useGetIdentity` documentation&#8594](/docs/core/hooks/auth/use-get-identity/index)
+> For more information, refer to the [`useGetIdentity` documentation&#8594](/docs/core/hooks/auth/use-get-identity)
 
 ### register
 
@@ -861,7 +861,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useRegister` documentation&#8594](/docs/core/hooks/auth/use-register/index)
+> For more information, refer to the [`useRegister` documentation&#8594](/docs/core/hooks/auth/use-register)
 
 ### forgotPassword
 
@@ -1009,7 +1009,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useForgotPassword` documentation &#8594](/docs/core/hooks/auth/use-forgot-password/index)
+> For more information, refer to the [`useForgotPassword` documentation &#8594](/docs/core/hooks/auth/use-forgot-password)
 
 ### updatePassword
 
@@ -1173,7 +1173,7 @@ const authProvider: AuthBindings = {
 
 </details>
 
-> For more information, refer to the [`useUpdatePassword` documentation &#8594](/docs/core/hooks/auth/use-update-password/index)
+> For more information, refer to the [`useUpdatePassword` documentation &#8594](/docs/core/hooks/auth/use-update-password)
 
 ## Setting Authorization Credentials
 
@@ -1240,7 +1240,7 @@ const App = () => {
 
 :::note
 
-We recommend using **axios** as the **HTTP** client with the **@refinedev/simple-rest** [`dataProvider`](/docs/core/providers/data-provider/index) but other **HTTP** clients can also be preferred.
+We recommend using **axios** as the **HTTP** client with the **@refinedev/simple-rest** [`dataProvider`](/docs/core/providers/data-provider) but other **HTTP** clients can also be preferred.
 
 :::
 

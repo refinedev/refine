@@ -5,6 +5,6 @@ example-title: Custom Pages with Ant Design
 example-tags: [customization]
 ---
 
-The feature to modify your project in detail is a major benefit of using **refine**. In this example, you learn how to include and manage your own [Pages / Routes](/docs/packages/list-of-packages/index) in your project.
+The feature to modify your project in detail is a major benefit of using **refine**. In this example, you learn how to include and manage your own [Pages / Routes](/docs/packages/list-of-packages) in your project.
 
 <CodeSandboxExample path="with-custom-pages" />

@@ -96,11 +96,11 @@ render(<App />);
 
 - `<Create/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button etc.
 
-  > For more information, refer to the [`<Create/>` documentation&#8594](/docs/ui-integrations/chakra-ui/components/basic-views/create/index)
+  > For more information, refer to the [`<Create/>` documentation&#8594](/docs/ui-integrations/chakra-ui/components/basic-views/create)
 
 - The `useForm` hook is imported from `@refinedev/react-hook-form`, which combines the features of `useForm` hook from both **React Hook Form** and `@refinedev/core`. When used in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted. It also offers `saveButtonProps` for the form's submit button.
 
-  > For more information, refer to the [`useForm`](/docs/packages/list-of-packages/index) and[**React Hook Form** documentation&#8594](https://react-hook-form.com/)
+  > For more information, refer to the [`useForm`](/docs/packages/list-of-packages) and[**React Hook Form** documentation&#8594](https://react-hook-form.com/)
 
 - All other components provided by **Chakra UI** are used to display the form fields.
 
@@ -120,7 +120,7 @@ const { options: categoryOptions } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect` documentation](/docs/core/hooks/use-select/index) and the [**Chakra UI** `<Select/>` documentation&#8594](https://chakra-ui.com/docs/components/select/usage)
+> For more information, refer to the [`useSelect` documentation](/docs/core/hooks/use-select) and the [**Chakra UI** `<Select/>` documentation&#8594](https://chakra-ui.com/docs/components/select/usage)
 
 ## Adding the Create Page to the App
 

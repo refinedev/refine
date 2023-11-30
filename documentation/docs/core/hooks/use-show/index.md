@@ -5,7 +5,7 @@ title: useShow
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-`useShow` is an extended version of [`useOne`](/docs/core/hooks/data/use-one/index) that supports all of its features and adds some more.
+`useShow` is an extended version of [`useOne`](/docs/core/hooks/data/use-one) that supports all of its features and adds some more.
 
 It is useful when you want to fetch a single record from the API. It will return the data and some functions to control the query.
 
@@ -21,13 +21,13 @@ If you define `resource` and `id` on the hook, when these properties are changed
 
 :::caution
 
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider/index).
+This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
 
 :::
 
 When the `useShow` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-> For more information, refer to the [`liveProvider` documentation&#8594](/docs/core/providers/live-provider/index)
+> For more information, refer to the [`liveProvider` documentation&#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
@@ -81,7 +81,7 @@ setShowId("123");
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `id`
 
@@ -170,7 +170,7 @@ useShow({
 
 :::caution
 
-[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 :::
 
@@ -192,7 +192,7 @@ useShow({
 
 :::caution
 
-[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 :::
 
@@ -214,7 +214,7 @@ useShow({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
@@ -226,13 +226,13 @@ useShow({
 });
 ```
 
-> For more information, refer to the [Live / Realtime page&#8594](/docs/core/providers/live-provider/index#livemode)
+> For more information, refer to the [Live / Realtime page&#8594](/docs/core/providers/live-provider#livemode)
 
 ### `onLiveEvent`
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
@@ -250,11 +250,11 @@ useShow({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
-Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider/index#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
 ### `overtimeOptions`
 
@@ -335,5 +335,5 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 | setShowId   | `showId` setter                 | `Dispatch<SetStateAction< string` \| `undefined>>`                                            |
 | overtime    | Overtime loading props          | `{ elapsedTime?: number }`                                                                    |
 
-[baserecord]: /docs/core/interface-references/index#baserecord
-[httperror]: /docs/core/interface-references/index#httperror
+[baserecord]: /docs/core/interface-references#baserecord
+[httperror]: /docs/core/interface-references#httperror

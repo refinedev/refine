@@ -12,4 +12,4 @@ When `dataProvider` returns rejected promise with `errors` field, [`useForm`][re
 
 <CodeSandboxExample path="server-side-form-validation-material-ui" />
 
-[react-hook-form-use-form]: /docs/packages/list-of-packages/index
+[react-hook-form-use-form]: /docs/packages/list-of-packages

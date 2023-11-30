@@ -77,7 +77,7 @@ render(<RefineMuiDemo initialRoutes={["/samples"]} resources={[{ name: "samples"
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages/index) to customize it.
+You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -172,7 +172,7 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `canCreate` and `createButtonProps`
 
@@ -259,7 +259,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions/index)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions)
 
 ### `breadcrumb`
 
@@ -267,7 +267,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 
 :::tip
 
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component/index#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
 
 :::
 
@@ -318,7 +318,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/material-ui/components/breadcrumb/index)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/material-ui/components/breadcrumb)
 
 ### `wrapperProps`
 
@@ -595,7 +595,7 @@ contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-con
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"
 headerButtons-default="[`CreateButton`](https://refine.dev/docs/api-reference/mui/components/buttons/create-button/)"
 headerButtonProps-type="[`BoxProps`](https://mui.com/material-ui/api/box/#props)"
-breadcrumb-default="[`<Breadcrumb/>`](/docs/ui-integrations/material-ui/components/breadcrumb/index)"
+breadcrumb-default="[`<Breadcrumb/>`](/docs/ui-integrations/material-ui/components/breadcrumb)"
 createButtonProps-type="[`CreateButtonProps`](https://refine.dev/docs/api-reference/mui/components/buttons/create-button/)"
 />
 
@@ -611,4 +611,4 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-[create-button]: /docs/ui-integrations/material-ui/components/buttons/create-button/index
+[create-button]: /docs/ui-integrations/material-ui/components/buttons/create-button

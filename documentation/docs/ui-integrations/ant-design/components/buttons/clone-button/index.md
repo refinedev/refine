@@ -3,13 +3,13 @@ title: Clone
 swizzle: true
 ---
 
-`<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component and the `clone` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index) under the hood.
+`<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component and the `clone` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood.
 
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -101,7 +101,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
 :::note
 
@@ -147,15 +147,15 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `meta`
 
-It is used to pass additional parameters to the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index). By default, the existing parameters in the route are used by the `clone` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+It is used to pass additional parameters to the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation). By default, the existing parameters in the route are used by the `clone` method. You can pass additional parameters or override the existing ones using the `meta` prop.
 
 If the `clone` action route is defined by the pattern: `/posts/:authorId/clone/:id`, the `meta` prop can be used as follows:
 
@@ -207,7 +207,7 @@ render(
 
 ### `accessControl`
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/core/providers/access-control-provider/index) is provided to [`<Refine/>`](/docs/core/refine-component/index)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/core/providers/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
 
 ```tsx
 import { CloneButton } from "@refinedev/antd";
@@ -264,7 +264,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index) and then redirect the app to `/categories/clone/2`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to `/categories/clone/2`.
 
 ## API Reference
 

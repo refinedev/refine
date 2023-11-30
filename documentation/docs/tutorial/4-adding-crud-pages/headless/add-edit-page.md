@@ -92,11 +92,11 @@ render(<App />);
 
 - The `useForm` hook is imported from `@refinedev/react-hook-form`, which combines the features of `useForm` hook from both **React Hook Form** and `@refinedev/core`. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
 
-  > For more information, refer to the [`useForm` documentation](/docs/packages/list-of-packages/index) and the [**React Hook Form** documentation&#8594](https://react-hook-form.com/)
+  > For more information, refer to the [`useForm` documentation](/docs/packages/list-of-packages) and the [**React Hook Form** documentation&#8594](https://react-hook-form.com/)
 
 - The `useNavigation` hook is used for navigating between pages. In this case, we are using it to navigate to the `list` pages when the user clicks on the "Blog Posts List" buttons.
 
-  > For more information, refer to the [`useNavigation` documentation &#8594](/docs/core/hooks/navigation/use-navigation/index)
+  > For more information, refer to the [`useNavigation` documentation &#8594](/docs/core/hooks/navigation/use-navigation)
 
 ### Handling Relationships
 
@@ -104,7 +104,7 @@ On the edit page, we may need to select a record from another resource.
 
 For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the `options` to be used in the `<select/>` component.
 
-> For more information, refer to the [`useSelect` documentation&#8594](/docs/core/hooks/use-select/index)
+> For more information, refer to the [`useSelect` documentation&#8594](/docs/core/hooks/use-select)
 
 In the auto-generated edit page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 

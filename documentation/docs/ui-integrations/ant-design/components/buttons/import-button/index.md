@@ -9,7 +9,7 @@ It uses Ant Design's [`<Button>`][button] and [`<Upload>`][upload] components. I
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -115,6 +115,6 @@ render(
 
 <PropsTable module="@refinedev/antd/ImportButton" />
 
-[useimport]: /docs/ui-integrations/ant-design/hooks/use-import/index
+[useimport]: /docs/ui-integrations/ant-design/hooks/use-import
 [button]: https://ant.design/components/button/
 [upload]: https://ant.design/components/upload/

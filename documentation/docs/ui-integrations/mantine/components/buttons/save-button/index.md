@@ -31,13 +31,13 @@ const Wrapper = ({ children }) => {
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages/index) to customize it.
+You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
 ## Usage
 
-For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/ui-integrations/mantine/hooks/use-form/index) hook.
+For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/ui-integrations/mantine/hooks/use-form) hook.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);

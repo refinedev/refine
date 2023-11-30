@@ -9,7 +9,7 @@ swizzle: true
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages/index) to customize it.
+You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -116,4 +116,4 @@ It also accepts all props of Material UI [LoadingButton](https://mui.com/materia
 :::
 
 [button]: https://mui.com/material-ui/api/loading-button/#main-content
-[useexport]: /docs/core/hooks/utilities/use-export/index
+[useexport]: /docs/core/hooks/utilities/use-export

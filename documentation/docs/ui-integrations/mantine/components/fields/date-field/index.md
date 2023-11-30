@@ -30,7 +30,7 @@ This field is used to display dates. It uses [`Day.js`](https://day.js.org/docs/
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
 :::
 

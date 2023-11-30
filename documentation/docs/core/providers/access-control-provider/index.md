@@ -122,11 +122,11 @@ Depending on your router, providing `accessControlProvider` to the `<Refine>` co
 
 Refer to one of the following documentations, depending on your preferred router:
 
-- [React Router Access Control](/docs/packages/list-of-packages/index#usage-with-access-control-providers)
+- [React Router Access Control](/docs/packages/list-of-packages#usage-with-access-control-providers)
 
-- [NextJS Router Access Control](/docs/packages/list-of-packages/index#access-control)
+- [NextJS Router Access Control](/docs/packages/list-of-packages#access-control)
 
-- [Remix Router Access Control](/docs/packages/list-of-packages/index#access-control)
+- [Remix Router Access Control](/docs/packages/list-of-packages#access-control)
 
 :::
 
@@ -204,7 +204,7 @@ const useCan: ({
 }) => UseQueryResult<CanReturnType*>
 ```
 
-> For more information, refer to these sections in the Interfaces documentation: [`CanParams`](/docs/core/interface-references/index#canparams) and [`CanReturnType`](/docs/core/interface-references/index#canreturntype)
+> For more information, refer to these sections in the Interfaces documentation: [`CanParams`](/docs/core/interface-references#canparams) and [`CanReturnType`](/docs/core/interface-references#canreturntype)
 
 ### `<CanAccess />`
 
@@ -255,12 +255,12 @@ These buttons will be checked for access control.
 
 Let's say they are rendered where `resource` is `posts` and `id` is `1` where applicable. The `can` function will receive the `resource`([ResourceItemProps][iresourceitem]) object you passed to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
 
-- [**List**](/docs/ui-integrations/ant-design/components/buttons/list-button/index): `{ resource: "posts", action: "list", params: { *resource } }`
-- [**Create**](/docs/ui-integrations/ant-design/components/buttons/create-button/index): `{ resource: "posts", action: "create", params: { *resource } }`
-- [**Clone**](/docs/ui-integrations/ant-design/components/buttons/clone-button/index): `{ resource: "posts", action: "create", params: { id: 1, *resource } }`
-- [**Edit**](/docs/ui-integrations/ant-design/components/buttons/edit-button/index): `{ resource: "posts", action: "edit", params: { id: 1, *resource } }`
-- [**Delete**](/docs/ui-integrations/ant-design/components/buttons/delete-button/index): `{ resource: "posts, action: "delete", params: { id: 1, *resource } }`
-- [**Show**](/docs/ui-integrations/ant-design/components/buttons/show-button/index): `{ resource: "posts", action: "show", params: { id: 1, *resource } }`
+- [**List**](/docs/ui-integrations/ant-design/components/buttons/list-button): `{ resource: "posts", action: "list", params: { *resource } }`
+- [**Create**](/docs/ui-integrations/ant-design/components/buttons/create-button): `{ resource: "posts", action: "create", params: { *resource } }`
+- [**Clone**](/docs/ui-integrations/ant-design/components/buttons/clone-button): `{ resource: "posts", action: "create", params: { id: 1, *resource } }`
+- [**Edit**](/docs/ui-integrations/ant-design/components/buttons/edit-button): `{ resource: "posts", action: "edit", params: { id: 1, *resource } }`
+- [**Delete**](/docs/ui-integrations/ant-design/components/buttons/delete-button): `{ resource: "posts, action: "delete", params: { id: 1, *resource } }`
+- [**Show**](/docs/ui-integrations/ant-design/components/buttons/show-button): `{ resource: "posts", action: "show", params: { id: 1, *resource } }`
 
 These buttons will be disabled if access control returns `{ can: false }`
 
@@ -269,7 +269,7 @@ These buttons will be disabled if access control returns `{ can: false }`
 This example is for **Casbin** access control provider. You can check our other access control provider, [**Cerbos**](/docs/examples/access-control/cerbos/) as well.
 <CodeSandboxExample path="access-control-casbin" />
 
-[iresourceitem]: /docs/core/interface-references/index#resourceitemprops
-[basekey]: /docs/core/interface-references/index#basekey
-[canparams]: /docs/core/interface-references/index#canparams
-[canreturntype]: /docs/core/interface-references/index#canreturntype
+[iresourceitem]: /docs/core/interface-references#resourceitemprops
+[basekey]: /docs/core/interface-references#basekey
+[canparams]: /docs/core/interface-references#canparams
+[canreturntype]: /docs/core/interface-references#canreturntype

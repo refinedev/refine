@@ -8,7 +8,7 @@ import SortingLivePreview from "./sorting-live-preview.md";
 import FilteringLivePreview from "./filtering-live-preview.md";
 import SearchLivePreview from "./search-live-preview.md";
 
-By using `useSimpleList`, you can get properties that are compatible with the Ant Design's [`<List>`](https://ant.design/components/list/) component. All features such as sorting, filtering, and pagination come out of the box. `useSimpleList` uses [`useTable`](/docs/core/hooks/use-table/index) under the hood for the fetch.
+By using `useSimpleList`, you can get properties that are compatible with the Ant Design's [`<List>`](https://ant.design/components/list/) component. All features such as sorting, filtering, and pagination come out of the box. `useSimpleList` uses [`useTable`](/docs/core/hooks/use-table) under the hood for the fetch.
 
 For all the other features, you can refer to the Ant Design's [`<List>`](https://ant.design/components/list/) documentation.
 
@@ -81,13 +81,13 @@ We can use the [`onSearch`](#onsearch) property and the [`searchFormProps`](#sea
 
 :::caution
 
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider/index).
+This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
 
 :::
 
 When the `useSimpleList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider/index)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
@@ -95,7 +95,7 @@ When the `useSimpleList` hook is mounted, it will call the `subscribe` method fr
 
 The `useSimpleList` passes the `resource` to the `dataProvider` as a param. This parameter is usually used as an API endpoint path. It all depends on how to handle the resources in your `dataProvider`.
 
-Refer to the [`creating a data provider`](/docs/core/providers/data-provider/index#creating-a-data-provider) documentation for an example of how resources are handled.
+Refer to the [`creating a data provider`](/docs/core/providers/data-provider#creating-a-data-provider) documentation for an example of how resources are handled.
 
 The `resource` value is inferred from the current route where the component or the hook is used. It can be overridden by passing the `resource` prop.
 
@@ -141,7 +141,7 @@ useSimpleList({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `pagination.current`
 
@@ -187,7 +187,7 @@ useSimpleList({
 
 Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references/index#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references#crudsorting)
 
 ```tsx
 useSimpleList({
@@ -206,7 +206,7 @@ useSimpleList({
 
 Sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references/index#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references#crudsorting)
 
 ```tsx
 useSimpleList({
@@ -225,7 +225,7 @@ useSimpleList({
 
 Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
 
-> For more information, refer to the [`CrudFilters` &#8594](/docs/core/interface-references/index#crudfilters)
+> For more information, refer to the [`CrudFilters` &#8594](/docs/core/interface-references#crudfilters)
 
 ```tsx
 useSimpleList({
@@ -245,7 +245,7 @@ useSimpleList({
 
 Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
 
-> For more information, refer to the [`CrudFilters` &#8594](/docs/core/interface-references/index#crudfilters)
+> For more information, refer to the [`CrudFilters` &#8594](/docs/core/interface-references#crudfilters)
 
 ```tsx
 useSimpleList({
@@ -293,7 +293,7 @@ useSimpleList({
 
 ### `queryOptions`
 
-`useSimpleList` uses the [`useTable`](/docs/core/hooks/use-table/index) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
+`useSimpleList` uses the [`useTable`](/docs/core/hooks/use-table) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
 
 ```tsx
 useSimpleList({
@@ -365,7 +365,7 @@ useSimpleList({
 
 :::caution
 
-[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 :::
 
@@ -387,7 +387,7 @@ useSimpleList({
 
 :::caution
 
-[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 :::
 
@@ -409,13 +409,13 @@ useSimpleList({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
 Determines whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
-> For more information, refer to the [Live / Realtime documentation &#8594](/docs/core/providers/live-provider/index#livemode)
+> For more information, refer to the [Live / Realtime documentation &#8594](/docs/core/providers/live-provider#livemode)
 
 ```tsx
 useSimpleList({
@@ -427,7 +427,7 @@ useSimpleList({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
@@ -445,11 +445,11 @@ useSimpleList({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
-Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider/index#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
 ### `onSearch`
 
@@ -555,7 +555,7 @@ Use `sorters.initial` instead.
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references/index#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references#crudsorting)
 
 ```tsx
 useSimpleList({
@@ -578,7 +578,7 @@ Use `sorters.permanent` instead.
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references/index#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references#crudsorting)
 
 ```tsx
 useSimpleList({
@@ -601,7 +601,7 @@ Use `filters.initial` instead.
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references/index#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references#crudfilters)
 
 ```tsx
 useSimpleList({
@@ -625,7 +625,7 @@ Use `filters.permanent` instead.
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references/index#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references#crudfilters)
 
 ```tsx
 useSimpleList({
@@ -691,7 +691,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### `queryResult`
 
-`queryResult` is the returned values from [`useList`](/docs/core/hooks/data/use-list/index) hook.
+`queryResult` is the returned values from [`useList`](/docs/core/hooks/data/use-list) hook.
 
 ### `searchFormProps`
 
@@ -746,7 +746,7 @@ return (
 
 #### `dataSource`
 
-`dataSource` contains the data to be displayed in the list. Values are fetched with the [`useList`](/docs/core/hooks/data/use-list/index) hook.
+`dataSource` contains the data to be displayed in the list. Values are fetched with the [`useList`](/docs/core/hooks/data/use-list) hook.
 
 #### `loading`
 
@@ -885,11 +885,11 @@ Use `setSorters` instead.
 | setFilters      | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
 | overtime        | Overtime loading props                                                                | `{ elapsedTime?: number }`                                                                                                                              |
 
-[crudfilters]: /docs/core/interface-references/index#crudfilters
-[crudsorting]: /docs/core/interface-references/index#crudsorting
+[crudfilters]: /docs/core/interface-references#crudfilters
+[crudsorting]: /docs/core/interface-references#crudsorting
 [form]: https://ant.design/components/form/#API
 [list]: https://ant.design/components/list/#API
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[baserecord]: /docs/core/interface-references/index#baserecord
-[httperror]: /docs/core/interface-references/index#httperror
-[refine swl]: /docs/core/refine-component/index#syncwithlocation
+[baserecord]: /docs/core/interface-references#baserecord
+[httperror]: /docs/core/interface-references#httperror
+[refine swl]: /docs/core/refine-component#syncwithlocation

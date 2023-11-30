@@ -271,7 +271,7 @@ Now, we can use `<ColumnFilter/>` in our table header.
 
    :::tip
 
-   There are many values that you can pass to the `filterOperator`, for more information about them, refer to the [Filtering section of the `useTable` documentation&#8594](/docs/packages/list-of-packages/index#filtering)
+   There are many values that you can pass to the `filterOperator`, for more information about them, refer to the [Filtering section of the `useTable` documentation&#8594](/docs/packages/list-of-packages#filtering)
 
    :::
 

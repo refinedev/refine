@@ -5,7 +5,7 @@ sidebar_label: <Refine>
 
 `<Refine>` component is the entry point of a **refine** app. It is where the highest level of configuration of the app occurs.
 
-[`dataProvider`](/docs/core/providers/data-provider/index) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
+[`dataProvider`](/docs/core/providers/data-provider) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
@@ -38,11 +38,11 @@ export default App;
 <br/>
 <br/>
 
-A [`dataProvider`](/docs/core/providers/data-provider/index) is the place where a refine app communicates with an API.
+A [`dataProvider`](/docs/core/providers/data-provider) is the place where a refine app communicates with an API.
 Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.
-A [`dataProvider`](/docs/core/providers/data-provider/index) makes HTTP requests and returns response data back using predefined methods.
+A [`dataProvider`](/docs/core/providers/data-provider) makes HTTP requests and returns response data back using predefined methods.
 
-[Refer to the Data Provider documentation for detailed information. &#8594](/docs/core/providers/data-provider/index)
+[Refer to the Data Provider documentation for detailed information. &#8594](/docs/core/providers/data-provider)
 
 :::tip
 
@@ -125,7 +125,7 @@ export default App;
 
 :::tip
 
-You can use [useResource](/docs/core/hooks/navigation/use-resource/index) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
+You can use [useResource](/docs/core/hooks/navigation/use-resource) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
 
 :::
 
@@ -211,7 +211,7 @@ There's also a third option, which is to pass an object with the `component` and
 
 :::info
 
-Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/list-of-packages/index) is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/list-of-packages) is used in the app to render the routes.
 
 :::
 
@@ -231,7 +231,7 @@ There's also a third option, which is to pass an object with the `component` and
 
 :::info
 
-Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/list-of-packages/index) is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/list-of-packages) is used in the app to render the routes.
 
 :::
 
@@ -251,7 +251,7 @@ There's also a third option, which is to pass an object with the `component` and
 
 :::info
 
-Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/list-of-packages/index) is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/list-of-packages) is used in the app to render the routes.
 
 :::
 
@@ -271,7 +271,7 @@ There's also a third option, which is to pass an object with the `component` and
 
 :::info
 
-Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/list-of-packages/index) is used in the app to render the routes.
+Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/packages/list-of-packages) is used in the app to render the routes.
 
 :::
 
@@ -333,7 +333,7 @@ This value will be passed to all CRUD pages defined as the `resources` element.
 
 :::tip
 
-**refine**'s <[Edit](/docs/ui-integrations/ant-design/components/basic-views/edit/index)> component uses `canDelete` value to whether show delete button in the edit form or not.
+**refine**'s <[Edit](/docs/ui-integrations/ant-design/components/basic-views/edit)> component uses `canDelete` value to whether show delete button in the edit form or not.
 
 :::
 
@@ -385,7 +385,7 @@ Custom route name for the resource.
 
 :::tip
 
-You can also pass any type of property into the `meta` object. This property you pass can be received from the [useResource](/docs/core/hooks/navigation/use-resource/index)
+You can also pass any type of property into the `meta` object. This property you pass can be received from the [useResource](/docs/core/hooks/navigation/use-resource)
 
 :::
 
@@ -395,7 +395,7 @@ You can also pass any type of property into the `meta` object. This property you
 
 `authProvider` handles authentication logic like login, logout flow, and checking user credentials. It is an object with methods that refine uses when necessary.
 
-[Refer to the Auth Provider documentation for detailed information. &#8594](/docs/core/providers/auth-provider/index)
+[Refer to the Auth Provider documentation for detailed information. &#8594](/docs/core/providers/auth-provider)
 
 <br />
 
@@ -403,7 +403,7 @@ You can also pass any type of property into the `meta` object. This property you
 
 The `i18nProvider` property lets you add i18n support to your app. Making you able to use any i18n framework.
 
-[Refer to i18n documentation for detailed information. &#8594](/docs/core/providers/i18n-provider/index)
+[Refer to i18n documentation for detailed information. &#8594](/docs/core/providers/i18n-provider)
 
 <br />
 
@@ -411,7 +411,7 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 `accessControlProvider` is the entry point for implementing access control for **refine** apps.
 
-[Refer to access control documentation for detailed information. &#8594](/docs/core/providers/access-control-provider/index)
+[Refer to access control documentation for detailed information. &#8594](/docs/core/providers/access-control-provider)
 
 <br />
 
@@ -419,7 +419,7 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 **refine** lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
 
-[Refer to live provider documentation for detailed information. &#8594](/docs/core/providers/live-provider/index)
+[Refer to live provider documentation for detailed information. &#8594](/docs/core/providers/live-provider)
 
 <br />
 
@@ -427,7 +427,7 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 `notificationProvider` handles notification logic. It is an object with methods that refine uses when necessary.
 
-[Refer to the Notification Provider documentation for detailed information. &#8594](/docs/core/providers/notification-provider/index)
+[Refer to the Notification Provider documentation for detailed information. &#8594](/docs/core/providers/notification-provider)
 
 <br />
 
@@ -466,9 +466,9 @@ const App: React.FC = () => {
 
 Customize or disable the breadcrumb. By default it uses the Breadcrumb component from respective package.
 
-The value set in individual CRUD components ([ANTD](/docs/ui-integrations/ant-design/components/basic-views/create/index#breadcrumb), [Mantine](/docs/ui-integrations/mantine/components/basic-views/create/index#breadcrumb), [Material UI](/docs/ui-integrations/material-ui/components/basic-views/create/index#breadcrumb)) will override the value set with `breadcrumb`.
+The value set in individual CRUD components ([ANTD](/docs/ui-integrations/ant-design/components/basic-views/create#breadcrumb), [Mantine](/docs/ui-integrations/mantine/components/basic-views/create#breadcrumb), [Material UI](/docs/ui-integrations/material-ui/components/basic-views/create#breadcrumb)) will override the value set with `breadcrumb`.
 
-[Refer to the Breadcrumb docs for further information. &#8594](/docs/ui-integrations/ant-design/components/breadcrumb/index)
+[Refer to the Breadcrumb docs for further information. &#8594](/docs/ui-integrations/ant-design/components/breadcrumb)
 
 ```tsx title="App.tsx"
 import { Breadcrumb } from "antd";
@@ -603,7 +603,7 @@ This feature also requires `UnsavedChangesNotifier` component to be mounted. You
 
 `liveMode` controls whether to update data automatically or not, with `auto` and `manual` respectively if a related live event is received. The `off` value can be used to avoid creating a subscription all together.
 
-> For more information, refer to the [live provider documentation &#8594](/docs/core/providers/live-provider/index#livemode)
+> For more information, refer to the [live provider documentation &#8594](/docs/core/providers/live-provider#livemode)
 
 ### `disableTelemetry`
 
@@ -811,7 +811,7 @@ The callback function receives two parameters:
 | ------------ | -------------------------------------------------------------------------- |
 | resource     | [`IResourceItem` \| `undefined`](#interfaces)                              |
 | resourceName | `string` \| `undefined`                                                    |
-| id           | [`BaseKey`](/docs/core/interface-references/index#basekey)                 |
+| id           | [`BaseKey`](/docs/core/interface-references#basekey)                       |
 | action       | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` |
 
 ### `useNewQueryKeys`
@@ -824,7 +824,7 @@ By default, refine uses the legacy keys for backward compatibility and in the fu
 
 Callback to handle all live events.
 
-> For more information, refer to the [live provider documentation &#8594](/docs/core/providers/live-provider/index#refine)
+> For more information, refer to the [live provider documentation &#8594](/docs/core/providers/live-provider#refine)
 
 ## ~~`catchAll`~~
 
@@ -938,7 +938,7 @@ The default sidebar can be customized by using refine hooks and passing custom c
 
 **refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default.
 
-> For more information, refer to the [`useMenu` hook documentation &#8594](/docs/core/hooks/utilities/use-menu/index)
+> For more information, refer to the [`useMenu` hook documentation &#8594](/docs/core/hooks/utilities/use-menu)
 
 ## ~~`Footer`~~
 
@@ -1110,5 +1110,5 @@ const App: React.FC = () => (
 
 <PropsTable module="@refinedev/core/Refine"/>
 
-[routerprovider]: /docs/core/providers/router-provider/index
-[http-error]: /docs/core/interface-references/index#httperror
+[routerprovider]: /docs/core/providers/router-provider
+[http-error]: /docs/core/interface-references#httperror

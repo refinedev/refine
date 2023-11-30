@@ -800,7 +800,7 @@ interface IPost {
 
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
-[Refer to `useSelect` documentation for detailed usage. &#8594](/docs/ui-integrations/ant-design/hooks/use-select/index)
+[Refer to `useSelect` documentation for detailed usage. &#8594](/docs/ui-integrations/ant-design/hooks/use-select)
 
 :::
 
@@ -947,7 +947,7 @@ interface IPost {
 
 ### `refineCoreProps`
 
-All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index#return-values) docs.
+All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) docs.
 
 ```tsx
 const stepsForm = useStepsForm({
@@ -1085,7 +1085,7 @@ useStepsForm({
 
 :::tip
 
-All [`useForm`](/docs/packages/list-of-packages/index) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/packages/list-of-packages/index#return-values) docs.
+All [`useForm`](/docs/packages/list-of-packages) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/packages/list-of-packages#return-values) docs.
 
 :::
 
@@ -1108,7 +1108,7 @@ It takes in one argument, step, which is a number representing the index of the 
 
 <PropsTable module="@refinedev/react-hook-form/useStepsForm" />
 
-> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/docs/core/refine-component/index)>** component.
+> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/docs/core/refine-component)>** component.
 
 :::tip External Props
 
@@ -1141,8 +1141,8 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 <CodeSandboxExample path="form-react-hook-form-use-steps-form" />
 
 [@refinedev/react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
-[refine-react-hook-form-use-form]: /docs/packages/list-of-packages/index
+[refine-react-hook-form-use-form]: /docs/packages/list-of-packages
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
-[baserecord]: /docs/core/interface-references/index#baserecord
-[httperror]: /docs/core/interface-references/index#httperror
+[baserecord]: /docs/core/interface-references#baserecord
+[httperror]: /docs/core/interface-references#httperror

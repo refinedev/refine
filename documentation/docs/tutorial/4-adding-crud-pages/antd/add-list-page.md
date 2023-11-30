@@ -91,7 +91,7 @@ render(<App />);
 
 - `<List/>` is a **refine** component that is used for presentation purposes like showing the create button, page title etc.
 
-  > For more information, refer to the [`<List/>` documentation&#8594](/docs/ui-integrations/ant-design/components/basic-views/list/index)
+  > For more information, refer to the [`<List/>` documentation&#8594](/docs/ui-integrations/ant-design/components/basic-views/list)
 
 - `<Table/>` is a native **Ant Design** component. It renders records row by row as a table. It expects a `rowKey` prop as the unique key of the records. In the auto-generated list page code, Inferencer used `id` field as the `rowKey`.
 
@@ -99,15 +99,15 @@ render(<App />);
 
 - `useTable` hook fetches data from API, provides helper hooks for `<Table/>` component, enabling instant access to sorting, filtering, pagination with single line of code, and returns necessary `tableProps` values.
 
-  > For more information, refer to the [`useTable` documentation&#8594](/docs/ui-integrations/ant-design/hooks/use-table/index)
+  > For more information, refer to the [`useTable` documentation&#8594](/docs/ui-integrations/ant-design/hooks/use-table)
 
 - `<Table.Column/>` is a native **Ant Design** component that renders a column in the table with `dataIndex` and `render` props used to specify the record field and custom content, respectively, such as rendering `description` with `<MarkdownField/>`.
 
-  > For more information, refer to the [`<MarkdownField/>` documentation&#8594](/docs/ui-integrations/ant-design/components/fields/markdown-field/index)
+  > For more information, refer to the [`<MarkdownField/>` documentation&#8594](/docs/ui-integrations/ant-design/components/fields/markdown-field)
 
 - `<EditButton/>` and `<ShowButton/>` are **refine** components that are used to navigate to the edit and show pages of the record, respectively.
 
-  > For more information, refer to the [`<EditButton/>`](/docs/ui-integrations/ant-design/components/buttons/edit-button/index) and [`<ShowButton/>` documentations&#8594](/docs/ui-integrations/ant-design/components/buttons/show-button/index)
+  > For more information, refer to the [`<EditButton/>`](/docs/ui-integrations/ant-design/components/buttons/edit-button) and [`<ShowButton/>` documentations&#8594](/docs/ui-integrations/ant-design/components/buttons/show-button)
 
 ### Handling Relationships
 
@@ -164,7 +164,7 @@ This will pass the `resource` and `ids` to the `dataProvider`'s `getMany` funct
 
 We can then use this `data` array to display the `title` of each category in the table.
 
-> For more information, refer to the [`useMany` documentation&#8594](/docs/core/hooks/data/use-many/index)
+> For more information, refer to the [`useMany` documentation&#8594](/docs/core/hooks/data/use-many)
 
 ## Adding the List Page to the App
 

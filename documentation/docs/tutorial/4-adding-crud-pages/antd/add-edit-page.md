@@ -96,7 +96,7 @@ render(<App />);
 
 - `<Edit/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
 
-  > For more information, refer to the [`<Edit/>` documentation&#8594](/docs/ui-integrations/ant-design/components/basic-views/edit/index)
+  > For more information, refer to the [`<Edit/>` documentation&#8594](/docs/ui-integrations/ant-design/components/basic-views/edit)
 
 - `<Form/>` and `<Form.Item/>` are **Ant Design** components that are used to build the form.
 
@@ -104,7 +104,7 @@ render(<App />);
 
 - `useForm` is a **refine** hook that provides the necessary props for the form. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
 
-  > For more information, refer to the [`useForm` documentation&#8594](/docs/ui-integrations/ant-design/hooks/use-form/index)
+  > For more information, refer to the [`useForm` documentation&#8594](/docs/ui-integrations/ant-design/hooks/use-form)
 
 ### Handling Relationships
 
@@ -129,7 +129,7 @@ const { selectProps: categorySelectProps } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect`](/docs/core/hooks/use-select/index) and the [**Ant Design** `<Select/>` documentations&#8594](https://ant.design/components/select)
+> For more information, refer to the [`useSelect`](/docs/core/hooks/use-select) and the [**Ant Design** `<Select/>` documentations&#8594](https://ant.design/components/select)
 
 ## Adding the Edit Page to the App
 

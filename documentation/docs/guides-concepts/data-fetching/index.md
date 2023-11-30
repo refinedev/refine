@@ -17,7 +17,7 @@ import DataProviderInterface from "./data-provider-interface.md";
 
 Data is essential for any UI Application and these applications are a bridge between users and the underlying data source(s), making it possible for users to interact with data in a meaningful way.
 
-To manage data, **refine** needs a `data provider`, which is a function that implements the [`DataProvider`](/docs/core/interface-references/index#dataprovider) interface. It is responsible for communicating with your API and making data available to **refine** applications. While you can use one of our built-in data providers, you can also easily create your own data provider matching your API.
+To manage data, **refine** needs a `data provider`, which is a function that implements the [`DataProvider`](/docs/core/interface-references#dataprovider) interface. It is responsible for communicating with your API and making data available to **refine** applications. While you can use one of our built-in data providers, you can also easily create your own data provider matching your API.
 
 **refine** passes relevant parameters like `resource` name, or the `id` of the record to your data provider, so data provider can make API calls to appropriate endpoints.
 
@@ -184,11 +184,11 @@ As you can see the example below:
 
 ## Handling errors
 
-**refine** expects errors to be extended from [HttpError](/docs/core/interface-references/index#httperror). We believe that having consistent error interface makes it easier to handle errors coming from your API.
+**refine** expects errors to be extended from [HttpError](/docs/core/interface-references#httperror). We believe that having consistent error interface makes it easier to handle errors coming from your API.
 
 When implemented correctly, **refine** offers several advantages in error handling:
 
-- **Notification**: If you have [`notificationProvider` ](/docs/core/providers/notification-provider/index), **refine** will automatically show a notification when an error occurs.
+- **Notification**: If you have [`notificationProvider` ](/docs/core/providers/notification-provider), **refine** will automatically show a notification when an error occurs.
 - **Server-Side Validation**: Shows [errors coming from the API](/docs/advanced-tutorials/forms/server-side-form-validation/) on the corresponding form fields.
 - **Optimistic Updates**: Instantly update UI when you send a mutation and automatically revert the changes if an error occurs during the mutation.
 
@@ -363,7 +363,7 @@ const { data: categories } = useMany({
 
 Imagine you want to fetch a data from a protected API. To do this, you will first need to obtain your authentication token and you will need to send this token with every request.
 
-In **refine** we handle [authentication](/docs/guides-concepts/authentication/) with [Auth Provider](/docs/core/providers/auth-provider/). To get token from the API, we will use the `authProvider.login` method. Then, we will use [`<Authenticated />`](/docs/core/components/authenticated/index) component to to render the appropriate components.
+In **refine** we handle [authentication](/docs/guides-concepts/authentication/) with [Auth Provider](/docs/core/providers/auth-provider/). To get token from the API, we will use the `authProvider.login` method. Then, we will use [`<Authenticated />`](/docs/core/components/authenticated) component to to render the appropriate components.
 
 After obtaining the token, we'll use Axios interceptors to include the token in the headers of all requests.
 
@@ -371,7 +371,7 @@ After obtaining the token, we'll use Axios interceptors to include the token in 
 
 ## TanStack Query `QueryClient`
 
-To modify the [`QueryClient`](https://tanstack.com/query/latest/docs/react/reference/QueryClient) instance, you can use the `reactQuery` prop of the [`<Refine />`](/docs/core/refine-component/index) component.
+To modify the [`QueryClient`](https://tanstack.com/query/latest/docs/react/reference/QueryClient) instance, you can use the `reactQuery` prop of the [`<Refine />`](/docs/core/refine-component) component.
 
 ## `dataProvider` interface
 
@@ -381,7 +381,7 @@ To better understand the data provider interface, we have created an example tha
 
 <DataProviderInterface />
 
-[To learn more about the `dataProvider` interface, check out the reference page.](/docs/core/providers/data-provider/index)
+[To learn more about the `dataProvider` interface, check out the reference page.](/docs/core/providers/data-provider)
 
 ## Supported data providers
 
@@ -391,27 +391,27 @@ To better understand the data provider interface, we have created an example tha
 
 <DataHooks />
 
-[basekey]: /docs/core/interface-references/index#basekey
+[basekey]: /docs/core/interface-references#basekey
 [create-a-data-provider]: /docs/tutorial/understanding-dataprovider/create-dataprovider/
 [swizzle-a-data-provider]: /docs/tutorial/understanding-dataprovider/swizzle/
-[data-provider-tutorial]: /docs/tutorial/understanding-dataprovider/index/
-[use-api-url]: /docs/core/hooks/data/use-api-url/index
-[use-create]: /docs/core/hooks/data/use-create/index
-[use-create-many]: /docs/core/hooks/data/use-create/index
-[use-custom]: /docs/core/hooks/data/use-custom/index
-[use-delete]: /docs/core/hooks/data/use-delete/index
-[use-delete-many]: /docs/core/hooks/data/use-delete/index
-[use-list]: /docs/core/hooks/data/use-list/index
-[use-infinite-list]: /docs/core/hooks/data/use-infinite-list/index
-[use-many]: /docs/core/hooks/data/use-many/index
-[use-one]: /docs/core/hooks/data/use-one/index
-[use-update]: /docs/core/hooks/data/use-update/index
-[use-update-many]: /docs/core/hooks/data/use-update/index
-[crud-sorting]: /docs/core/interface-references/index#crudsorting
-[crud-filters]: /docs/core/interface-references/index#crudfilters
-[pagination]: /docs/core/interface-references/index#pagination
-[http-error]: /docs/core/interface-references/index#httperror
-[meta-data]: /docs/core/interface-references/index#metadataquery
-[meta]: /docs/core/interface-references/index#metadataquery
-[use-login]: /docs/core/hooks/auth/use-login/index
-[use-register]: /docs/core/hooks/auth/use-register/index
+[data-provider-tutorial]: /docs/tutorial/understanding-dataprovider/
+[use-api-url]: /docs/core/hooks/data/use-api-url
+[use-create]: /docs/core/hooks/data/use-create
+[use-create-many]: /docs/core/hooks/data/use-create
+[use-custom]: /docs/core/hooks/data/use-custom
+[use-delete]: /docs/core/hooks/data/use-delete
+[use-delete-many]: /docs/core/hooks/data/use-delete
+[use-list]: /docs/core/hooks/data/use-list
+[use-infinite-list]: /docs/core/hooks/data/use-infinite-list
+[use-many]: /docs/core/hooks/data/use-many
+[use-one]: /docs/core/hooks/data/use-one
+[use-update]: /docs/core/hooks/data/use-update
+[use-update-many]: /docs/core/hooks/data/use-update
+[crud-sorting]: /docs/core/interface-references#crudsorting
+[crud-filters]: /docs/core/interface-references#crudfilters
+[pagination]: /docs/core/interface-references#pagination
+[http-error]: /docs/core/interface-references#httperror
+[meta-data]: /docs/core/interface-references#metadataquery
+[meta]: /docs/core/interface-references#metadataquery
+[use-login]: /docs/core/hooks/auth/use-login
+[use-register]: /docs/core/hooks/auth/use-register

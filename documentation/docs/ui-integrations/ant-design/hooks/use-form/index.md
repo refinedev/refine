@@ -178,7 +178,7 @@ Submit functionality is provided by `saveButtonProps` which includes all of the 
 
 :::tip
 
-If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/docs/ui-integrations/ant-design/hooks/use-modal-form/index) or the [useDrawerForm](/docs/ui-integrations/ant-design/hooks/use-drawer-form/index) hook.
+If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/docs/ui-integrations/ant-design/hooks/use-modal-form) or the [useDrawerForm](/docs/ui-integrations/ant-design/hooks/use-drawer-form) hook.
 
 :::
 
@@ -207,7 +207,7 @@ values={[
 ]}>
 <TabItem value="create">
 
-`action: "create"` is used for creating new records. `useForm` uses [`useCreate`](/docs/core/hooks/data/use-create/index) under the hood for mutations on create mode.
+`action: "create"` is used for creating new records. `useForm` uses [`useCreate`](/docs/core/hooks/data/use-create) under the hood for mutations on create mode.
 
 In the following example, we will show how to use `useForm` with `action: "create"`:
 
@@ -280,7 +280,7 @@ render(<RefineAntdDemo />);
 
 `action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route but that can be changed with the `setId` function or `id` property.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/core/hooks/data/use-one/index) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/core/hooks/data/use-update/index).
+It fetches the record data according to the `id` with [`useOne`](/docs/core/hooks/data/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/core/hooks/data/use-update).
 
 In the following example, we will show how to use `useForm` with `action: "edit"`.
 
@@ -355,7 +355,7 @@ render(<RefineAntdDemo />);
 
 You can think `action:clone` like "save as". It is also similar to `action:edit` but it creates a new record instead of updating the existing one.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/core/hooks/data/use-one/index) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/core/hooks/data/use-create/index).
+It fetches the record data according to the `id` with [`useOne`](/docs/core/hooks/data/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/core/hooks/data/use-create).
 
 ```tsx live url=http://localhost:3000/clone/123 previewHeight=420px
 setInitialRoutes(["/posts/clone/123"]);
@@ -430,7 +430,7 @@ render(<RefineAntdDemo />);
 
 `resource` will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path but it all depends on how to handle the `resource` in your [`dataProvider`][data-provider].
 
-> For more information on how `resource` is handled, refer to the [`creating a data provider` section](/docs/core/providers/data-provider/index#creating-a-data-provider)
+> For more information on how `resource` is handled, refer to the [`creating a data provider` section](/docs/core/providers/data-provider#creating-a-data-provider)
 
 - When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
 - When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
@@ -474,7 +474,7 @@ setId("123");
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `id`
 
@@ -514,7 +514,7 @@ useForm({
 
 It receives the following parameters:
 
-- `data`: Returned value from [`useCreate`](/docs/core/hooks/data/use-create/index) or [`useUpdate`](/docs/core/hooks/data/use-update/index) depending on the `action`.
+- `data`: Returned value from [`useCreate`](/docs/core/hooks/data/use-create) or [`useUpdate`](/docs/core/hooks/data/use-update) depending on the `action`.
 - `variables`: The variables passed to the mutation.
 - `context`: react-query context.
 - `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
@@ -533,7 +533,7 @@ It's a callback function that will be called after a mutation fails.
 
 It receives the following parameters:
 
-- `data`: Returned value from [`useCreate`](/docs/core/hooks/data/use-create/index) or [`useUpdate`](/docs/core/hooks/data/use-update/index) depending on the `action`.
+- `data`: Returned value from [`useCreate`](/docs/core/hooks/data/use-create) or [`useUpdate`](/docs/core/hooks/data/use-update) depending on the `action`.
 - `variables`: The variables passed to the mutation.
 - `context`: react-query context.
 - `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
@@ -567,7 +567,7 @@ If there is more than one `dataProvider`, you should pass the name of the `dataP
 
 :::tip
 
-If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop](/docs/core/refine-component/index#dataprovidername) of the `<Refine>` component.
+If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop](/docs/core/refine-component#dataprovidername) of the `<Refine>` component.
 
 :::
 
@@ -726,7 +726,7 @@ This works only in the `action: "edit"` and the `action: "clone"` mode.
 
 :::
 
-In the `edit` and `clone` modes, **refine** uses [`useOne`](/docs/core/hooks/data/use-one/index) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property.
+In the `edit` and `clone` modes, **refine** uses [`useOne`](/docs/core/hooks/data/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property.
 
 ```tsx
 useForm({
@@ -744,7 +744,7 @@ This option is only available when `action: "create"` or `action: "clone"`.
 
 :::
 
-In the `create` and `clone` modes, **refine** uses the [`useCreate`](/docs/core/hooks/data/use-create/index) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing the `createMutationOptions` property.
+In the `create` and `clone` modes, **refine** uses the [`useCreate`](/docs/core/hooks/data/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing the `createMutationOptions` property.
 
 ```tsx
 useForm({
@@ -762,7 +762,7 @@ This option is only available when `action: "edit"`.
 
 :::
 
-In the `edit` mode, **refine** uses [`useUpdate`](/docs/core/hooks/data/use-update/index) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
+In the `edit` mode, **refine** uses [`useUpdate`](/docs/core/hooks/data/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
 
 ```tsx
 useForm({
@@ -776,7 +776,7 @@ useForm({
 
 When set to true, `warnWhenUnsavedChanges` shows a warning when the user tries to leave the page with unsaved changes. It is used to prevent the user from accidentally leaving the page. It is `false` by default
 
-It can be set globally in [`refine config`](/docs/core/refine-component/index#warnwhenunsavedchanges).
+It can be set globally in [`refine config`](/docs/core/refine-component#warnwhenunsavedchanges).
 
 ```tsx
 useForm({
@@ -806,7 +806,7 @@ useForm({
 });
 ```
 
-> For more information, refer to the [Live / Realtime documentation](/docs/core/providers/live-provider/index#livemode)
+> For more information, refer to the [Live / Realtime documentation](/docs/core/providers/live-provider#livemode)
 
 ### `onLiveEvent`
 
@@ -822,7 +822,7 @@ useForm({
 
 ### `liveParams`
 
-Params to pass to [liveProvider](/docs/core/providers/live-provider/index#subscribe)'s subscribe method.
+Params to pass to [liveProvider](/docs/core/providers/live-provider#subscribe)'s subscribe method.
 
 ### `overtimeOptions`
 
@@ -964,7 +964,7 @@ The `warnWhenUnsavedChanges` feature requires this function to work. If you want
 
 #### `initialValues`
 
-When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/docs/core/hooks/data/use-one/index) hook.
+When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/docs/core/hooks/data/use-one) hook.
 
 ### `saveButtonProps`
 
@@ -976,7 +976,7 @@ It contains all the props needed by the `"submit"` button within the form (disab
 
 ### `queryResult`
 
-If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/core/hooks/data/use-one/index) and set the returned values as the `queryResult` property.
+If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/core/hooks/data/use-one) and set the returned values as the `queryResult` property.
 
 ```tsx
 const { queryResult } = useForm();
@@ -986,7 +986,7 @@ const { data } = queryResult;
 
 ### `mutationResult`
 
-When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/core/hooks/data/use-create/index). When in `"edit"` mode, it will call [`useUpdate`](/docs/core/hooks/data/use-update/index) and set the resulting values as the `mutationResult` property.
+When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/core/hooks/data/use-create). When in `"edit"` mode, it will call [`useUpdate`](/docs/core/hooks/data/use-update) and set the resulting values as the `mutationResult` property.
 
 ```tsx
 const { mutationResult } = useForm();
@@ -1037,7 +1037,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 `onFinish` is a function that is called when the form is submitted. It will call the appropriate mutation based on the `action` property.
 You can override the default behavior by passing an `onFinish` function in the hook's options.
 
-For example you can [change values before sending to the API](/docs/ui-integrations/ant-design/hooks/use-form/index#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
+For example you can [change values before sending to the API](/docs/ui-integrations/ant-design/hooks/use-form#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
 
 ### `overtime`
 
@@ -1057,7 +1057,7 @@ If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, 
 
 ### How can Invalidate other resources?
 
-You can invalidate other resources with help of [`useInvalidate`](/docs/core/hooks/data/use-invalidate/index) hook.
+You can invalidate other resources with help of [`useInvalidate`](/docs/core/hooks/data/use-invalidate) hook.
 
 It is useful when you want to `invalidate` other resources don't have relation with the current resource.
 
@@ -1131,7 +1131,7 @@ You can use the `meta` property to pass common values to the mutation and the qu
 
 <PropsTable module="@refinedev/antd/useForm"/>
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/core/refine-component/index)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/core/refine-component)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>
 
@@ -1148,29 +1148,29 @@ You can use the `meta` property to pass common values to the mutation and the qu
 
 ### Return values
 
-| Property        | Description                                             | Type                                                                                                                                                                   |
-| --------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                         |
-| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                                     |
-| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                |
-| saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                                        |
-| redirect        | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/docs/core/interface-references/index#basekey)\|`undefined`) => `data` |
-| queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                        |
-| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                                       |
-| formLoading     | Loading state of form request                           | `boolean`                                                                                                                                                              |
-| id              | Record id for `clone` and `create` action               | [`BaseKey`](/docs/core/interface-references/index#basekey)                                                                                                             |
-| setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                       |
-| overtime        | Overtime loading props                                  | `{ elapsedTime?: number }`                                                                                                                                             |
-| autoSaveProps   | Auto save props                                         | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                                |
+| Property        | Description                                             | Type                                                                                                                                                             |
+| --------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                   |
+| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                               |
+| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                          |
+| saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                                  |
+| redirect        | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/docs/core/interface-references#basekey)\|`undefined`) => `data` |
+| queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                  |
+| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                                 |
+| formLoading     | Loading state of form request                           | `boolean`                                                                                                                                                        |
+| id              | Record id for `clone` and `create` action               | [`BaseKey`](/docs/core/interface-references#basekey)                                                                                                             |
+| setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                 |
+| overtime        | Overtime loading props                                  | `{ elapsedTime?: number }`                                                                                                                                       |
+| autoSaveProps   | Auto save props                                         | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                          |
 
 ## Example
 
 <CodeSandboxExample path="form-antd-use-form" />
 
-[baserecord]: /docs/core/interface-references/index#baserecord
-[httperror]: /docs/core/interface-references/index#httperror
-[notification-provider]: /docs/core/providers/notification-provider/index
-[get-one]: /docs/core/providers/data-provider/index#getone-
-[create]: /docs/core/providers/data-provider/index#create-
-[update]: /docs/core/providers/data-provider/index#update-
-[data-provider]: /docs/core/providers/data-provider/index
+[baserecord]: /docs/core/interface-references#baserecord
+[httperror]: /docs/core/interface-references#httperror
+[notification-provider]: /docs/core/providers/notification-provider
+[get-one]: /docs/core/providers/data-provider#getone-
+[create]: /docs/core/providers/data-provider#create-
+[update]: /docs/core/providers/data-provider#update-
+[data-provider]: /docs/core/providers/data-provider

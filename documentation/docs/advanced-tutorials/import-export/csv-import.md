@@ -133,7 +133,7 @@ Depending on the [`batchSize`][batchsize] option, posts can get sent one by one 
 <CodeSandboxExample path="import-export-antd" />
 
 [papa parse]: https://www.papaparse.com/
-[batchsize]: /docs/core/hooks/utilities/use-import/index#batchsize
-[dataprovider]: /docs/core/providers/data-provider/index
-[create]: /docs/core/providers/data-provider/index#create
-[createmany]: /docs/core/providers/data-provider/index#createmany
+[batchsize]: /docs/core/hooks/utilities/use-import#batchsize
+[dataprovider]: /docs/core/providers/data-provider
+[create]: /docs/core/providers/data-provider#create
+[createmany]: /docs/core/providers/data-provider#createmany

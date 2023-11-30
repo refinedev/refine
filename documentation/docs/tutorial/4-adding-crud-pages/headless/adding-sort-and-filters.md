@@ -100,7 +100,7 @@ To do this, open the `src/pages/blog-posts/list.tsx` file on your editor and cha
 
 :::note
 
-There are many values that you can pass to the `filterOperator`, for more information about them, refer to the [Filtering section of the `useTable` documentation&#8594](/docs/packages/list-of-packages/index#filtering)
+There are many values that you can pass to the `filterOperator`, for more information about them, refer to the [Filtering section of the `useTable` documentation&#8594](/docs/packages/list-of-packages#filtering)
 
 :::
 
@@ -195,7 +195,7 @@ We added the `enableColumnFilter` property to the column definition, which will 
 
 :::
 
-> For more information about sorting and filters, refer to the [`useTable` documentation&#8594](/docs/packages/list-of-packages/index)
+> For more information about sorting and filters, refer to the [`useTable` documentation&#8594](/docs/packages/list-of-packages)
 
 <br />
 

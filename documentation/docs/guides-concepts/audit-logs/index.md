@@ -6,9 +6,9 @@ Audit logs are useful tool for web applications, providing a reliable record of 
 
 ## Audit Log Provider
 
-**Refine** offers [Audit Log Provider](/docs/core/providers/audit-log-provider/index) to centralize retrieving audit logs easily across your application.
+**Refine** offers [Audit Log Provider](/docs/core/providers/audit-log-provider) to centralize retrieving audit logs easily across your application.
 
-CRUD operations are automatically logged when **Audit Log Provider** is provided, along with the current user information coming from [useGetIdentity](/docs/core/hooks/auth/use-get-identity/index) hook.
+CRUD operations are automatically logged when **Audit Log Provider** is provided, along with the current user information coming from [useGetIdentity](/docs/core/hooks/auth/use-get-identity) hook.
 
 **Audit Log Provider** is an object that contains `get`, `create` and `update` methods.
 
@@ -79,13 +79,13 @@ export const App = () => {
 
 **Refine**'s mutation hooks such as `useCreate`, `useCreateMany`, `useUpdate`, `useUpdateMany`, `useDelete`, `useDeleteMany` are already integrated with **Audit Log Provider**.
 
-See the [Supported Hooks](/docs/core/providers/audit-log-provider/index#supported-hooks) section for more information.
+See the [Supported Hooks](/docs/core/providers/audit-log-provider#supported-hooks) section for more information.
 
 ### Hooks
 
 #### useLogList
 
-You can use [useLogList](/docs/core/hooks/audit-log/use-log/index) hook to retrieve audit logs. It uses **Audit Log Provider**'s `get` method under the hood.
+You can use [useLogList](/docs/core/hooks/audit-log/use-log) hook to retrieve audit logs. It uses **Audit Log Provider**'s `get` method under the hood.
 
 ```tsx
 import { useLogList } from "@refinedev/core";
@@ -97,7 +97,7 @@ const postAuditLogResults = useLogList({
 
 #### useLog
 
-You can use [useLog](/docs/core/hooks/audit-log/use-log/index) hook for your custom logging needs. It uses **Audit Log Provider**'s `create` method under the hood.
+You can use [useLog](/docs/core/hooks/audit-log/use-log) hook for your custom logging needs. It uses **Audit Log Provider**'s `create` method under the hood.
 
 ```tsx
 import { useLog } from "@refinedev/core";

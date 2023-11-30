@@ -306,7 +306,7 @@ const App: React.FC = () => {
 
 ## Using the `tenant` at the other components
 
-You may want to get the `tenant` within the project. This is easily get with the [`useParsed`](/docs/core/hooks/navigation/use-parsed/index) hook.
+You may want to get the `tenant` within the project. This is easily get with the [`useParsed`](/docs/core/hooks/navigation/use-parsed) hook.
 
 ```tsx
 import { useParsed } from "@refinedev/core";
@@ -381,7 +381,7 @@ Here we have created a select component. Then we fetch the store id and title we
 
 Let's define the select component in the **refine** `Header`.
 
-[Check out how you can customize `Header` →](/docs/ui-integrations/ant-design/components/themed-layout/index#header)
+[Check out how you can customize `Header` →](/docs/ui-integrations/ant-design/components/themed-layout#header)
 
 <details>
 <summary>Show Code</summary>
@@ -555,7 +555,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
 In this example, we used the `filter.permanent` object to filter the data, as Appwrite does not support multitenancy. However, you can do this from a single point by swizzle the data provider in your own RestApi.
 
-You can check out the [swizzle data provider guide](/docs/packages/list-of-packages/index#swizzle) for more information.
+You can check out the [swizzle data provider guide](/docs/packages/list-of-packages#swizzle) for more information.
 
 The `resource.meta` object is passed as `meta` to **all methods** in the data providers. For this you have to swizzle the data provider.
 

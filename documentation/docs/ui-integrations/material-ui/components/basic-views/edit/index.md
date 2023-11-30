@@ -3,7 +3,7 @@ title: Edit
 swizzle: true
 ---
 
-`<Edit>` provides us a layout for displaying the page. It does not contain any logic and just adds extra functionalities like a [`<RefreshButton>`](/docs/ui-integrations/material-ui/components/buttons/refresh-button/index).
+`<Edit>` provides us a layout for displaying the page. It does not contain any logic and just adds extra functionalities like a [`<RefreshButton>`](/docs/ui-integrations/material-ui/components/buttons/refresh-button).
 
 We will show what `<Edit>` does using properties with examples.
 
@@ -113,7 +113,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages/index) to customize it.
+You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -215,7 +215,7 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `saveButtonProps`
 
@@ -254,13 +254,13 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/material-ui/components/buttons/save-button/index)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/material-ui/components/buttons/save-button)
 
 ### `canDelete` and `deleteButtonProps`
 
 `canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property, refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
-When clicked on, the delete button executes the [`useDelete`](/docs/core/hooks/data/use-delete/index) method provided by the [`dataProvider`](/docs/core/providers/data-provider/index).
+When clicked on, the delete button executes the [`useDelete`](/docs/core/hooks/data/use-delete) method provided by the [`dataProvider`](/docs/core/providers/data-provider).
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 const { default: simpleRest } = RefineSimpleRest;
@@ -357,7 +357,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<DeleteButton>` &#8594](/docs/ui-integrations/material-ui/components/buttons/delete-button/index) and [`usePermission` &#8594](/docs/core/hooks/auth/use-permissions/index) documentations
+> For more information, refer to the [`<DeleteButton>` &#8594](/docs/ui-integrations/material-ui/components/buttons/delete-button) and [`usePermission` &#8594](/docs/core/hooks/auth/use-permissions) documentations
 
 ### `recordItemId`
 
@@ -411,13 +411,13 @@ render(
 
 :::note
 
-The `<Edit>` component needs the `id` information for the [`<RefreshButton>`](/docs/ui-integrations/material-ui/components/buttons/refresh-button/index) to work properly.
+The `<Edit>` component needs the `id` information for the [`<RefreshButton>`](/docs/ui-integrations/material-ui/components/buttons/refresh-button) to work properly.
 
 :::
 
 ### `mutationMode`
 
-Determines which mode mutation will have while executing [`<DeleteButton>`](/docs/ui-integrations/material-ui/components/buttons/delete-button/index).
+Determines which mode mutation will have while executing [`<DeleteButton>`](/docs/ui-integrations/material-ui/components/buttons/delete-button).
 
 ```tsx live hideCode url=http://localhost:3000/posts/edit/123
 // visible-block-start
@@ -676,7 +676,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 
 :::tip
 
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component/index#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
 
 :::
 
@@ -725,7 +725,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/material-ui/components/breadcrumb/index)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/material-ui/components/breadcrumb)
 
 ### `wrapperProps`
 
@@ -1321,11 +1321,11 @@ contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-con
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"
 headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/mui/components/buttons/list-button/) and [`RefreshButton`](https://refine.dev/docs/api-reference/mui/components/buttons/refresh-button/)"
 headerButtonProps-type="[`BoxProps`](https://mui.com/material-ui/api/box/#props)"
-deleteButtonProps-type="[`DeleteButtonProps`](/docs/ui-integrations/material-ui/components/buttons/delete-button/index)"
+deleteButtonProps-type="[`DeleteButtonProps`](/docs/ui-integrations/material-ui/components/buttons/delete-button)"
 saveButtonProps-type="[`SaveButtonProps`](https://refine.dev/docs/api-reference/mui/components/buttons/save-button/)"
 footerButtons-default="[`SaveButton`](https://refine.dev/docs/api-reference/mui/components/buttons/save-button/) and [`DeleteButton`](https://refine.dev/docs/api-reference/mui/components/buttons/delete-button/)"
 footerButtonsProps-type="[`CardActionsProps`](https://mui.com/material-ui/api/card-actions/#props)"
-breadcrumb-default="[`<Breadcrumb/>`](/docs/ui-integrations/material-ui/components/breadcrumb/index)"
+breadcrumb-default="[`<Breadcrumb/>`](/docs/ui-integrations/material-ui/components/breadcrumb)"
 goBack-default="`<ArrowLeft />`"
 goBack-type="`ReactNode`"
 />
@@ -1412,7 +1412,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-[list-button]: /docs/ui-integrations/material-ui/components/buttons/list-button/index
-[refresh-button]: /docs/ui-integrations/material-ui/components/buttons/refresh-button/index
-[save-button]: /docs/ui-integrations/material-ui/components/buttons/save-button/index
-[delete-button]: /docs/ui-integrations/material-ui/components/buttons/delete-button/index
+[list-button]: /docs/ui-integrations/material-ui/components/buttons/list-button
+[refresh-button]: /docs/ui-integrations/material-ui/components/buttons/refresh-button
+[save-button]: /docs/ui-integrations/material-ui/components/buttons/save-button
+[delete-button]: /docs/ui-integrations/material-ui/components/buttons/delete-button

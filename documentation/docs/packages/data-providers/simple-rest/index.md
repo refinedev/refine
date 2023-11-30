@@ -139,7 +139,7 @@ In some cases, you may need to customize the data provider to work with a REST A
 
 :::caution
 
-The `swizzle` command is only available in the `@refinedev/cli` package. If you don't have it installed, refer to the [CLI documentation](/docs/packages/list-of-packages/index).
+The `swizzle` command is only available in the `@refinedev/cli` package. If you don't have it installed, refer to the [CLI documentation](/docs/packages/list-of-packages).
 
 :::
 

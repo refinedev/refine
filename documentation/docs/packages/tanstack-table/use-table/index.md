@@ -11,7 +11,7 @@ import FilteringLivePreview from "../examples/\_partial-filtering-live-preview.m
 import RelationalLivePreview from "../examples/\_partial-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-Refine offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list/index) for the fetch. Since it is designed as headless, It expects you to handle the UI.
+Refine offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch. Since it is designed as headless, It expects you to handle the UI.
 
 All of [TanStack Table's][tanstack-table] features are supported and you can use all of the [TanStack Table's][tanstack-table] examples with no changes just copy and paste them into your project.
 
@@ -93,17 +93,17 @@ It also syncs the sorting state with the URL if you enable the [`syncWithLocatio
 
 It also syncs the filtering state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
-By default, filter operators are set to "eq" for all fields. You can specify which field will be filtered with which filter operator with the `filterOperator` property in the `meta` object. Just be aware that the `filterOperator` must be a [`CrudOperators`](/docs/core/interface-references/index#crudoperators) type.
+By default, filter operators are set to "eq" for all fields. You can specify which field will be filtered with which filter operator with the `filterOperator` property in the `meta` object. Just be aware that the `filterOperator` must be a [`CrudOperators`](/docs/core/interface-references#crudoperators) type.
 
 <FilteringLivePreview/>
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider/index).
+> This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/core/providers/live-provider/index)
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
@@ -136,7 +136,7 @@ useTable({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `dataProviderName`
 
@@ -206,7 +206,7 @@ useTable({
 
 Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](/docs/core/interface-references/index#crudsorting)
+[Refer to the `CrudSorting` interface for more information &#8594](/docs/core/interface-references#crudsorting)
 
 ```tsx
 useTable({
@@ -227,7 +227,7 @@ useTable({
 
 Sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](/docs/core/interface-references/index#crudsorting)
+[Refer to the `CrudSorting` interface for more information &#8594](/docs/core/interface-references#crudsorting)
 
 ```tsx
 useTable({
@@ -267,7 +267,7 @@ useTable({
 
 Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/core/interface-references/index#crudfilters)
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/core/interface-references#crudfilters)
 
 ```tsx
 useTable({
@@ -289,7 +289,7 @@ useTable({
 
 Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/core/interface-references/index#crudfilters)
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/core/interface-references#crudfilters)
 
 ```tsx
 useTable({
@@ -366,7 +366,7 @@ useTable({
 
 ### `queryOptions`
 
-`useTable` uses [`useList`](/docs/core/hooks/data/use-list/index) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useTable` uses [`useList`](/docs/core/hooks/data/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 useTable({
@@ -468,10 +468,10 @@ useTable({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/core/providers/live-provider/index) is required.
+> [`LiveProvider`](/docs/core/providers/live-provider) is required.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/core/providers/live-provider/index#livemode) page.
+For more information about live mode, please check [Live / Realtime](/docs/core/providers/live-provider#livemode) page.
 
 ```tsx
 useTable({
@@ -483,7 +483,7 @@ useTable({
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/core/providers/live-provider/index) is required.
+> [`LiveProvider`](/docs/core/providers/live-provider) is required.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -499,9 +499,9 @@ useTable({
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/core/providers/live-provider/index) is required.
+> [`LiveProvider`](/docs/core/providers/live-provider) is required.
 
-Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider/index#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
 ### ~~`initialCurrent`~~
 
@@ -573,7 +573,7 @@ Use `sorters.initial` instead.
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](/docs/core/interface-references/index#crudsorting)
+[Refer to the `CrudSorting` interface for more information &#8594](/docs/core/interface-references#crudsorting)
 
 ```tsx
 useTable({
@@ -598,7 +598,7 @@ Use `sorters.permanent` instead.
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](/docs/core/interface-references/index#crudsorting)
+[Refer to the `CrudSorting` interface for more information &#8594](/docs/core/interface-references#crudsorting)
 
 ```tsx
 useTable({
@@ -623,7 +623,7 @@ Use `filters.initial` instead.
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/core/interface-references/index#crudfilters)
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/core/interface-references#crudfilters)
 
 ```tsx
 useTable({
@@ -649,7 +649,7 @@ Use `filters.permanent` instead.
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/core/interface-references/index#crudfilters)
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/core/interface-references#crudfilters)
 
 ```tsx
 useTable({
@@ -703,7 +703,7 @@ It also have all return values of [TanStack Table](https://tanstack.com/table/v8
 
 #### `tableQueryResult`
 
-Returned values from [`useList`](/docs/core/hooks/data/use-list/index) hook.
+Returned values from [`useList`](/docs/core/hooks/data/use-list) hook.
 
 ### `sorters`
 
@@ -795,7 +795,7 @@ A function to set current [sorters state][crudsorting].
 
 ### How can I handle relational data?
 
-You can use [`useMany`](/docs/core/hooks/data/use-many/index) hook to fetch relational data.
+You can use [`useMany`](/docs/core/hooks/data/use-many) hook to fetch relational data.
 
 <RelationalLivePreview/>
 
@@ -843,9 +843,9 @@ useTable({
 
 ### Return values
 
-| Property                     | Description                                                                                     | Type                                                                     |
-| ---------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| refineCore                   | The return values of the [`useTable`][use-table-core] in the core                               | [`UseTableReturnValues`](/docs/core/hooks/use-table/index#return-values) |
+| Property                     | Description                                                                                     | Type                                                               |
+| ---------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| refineCore                   | The return values of the [`useTable`][use-table-core] in the core                               | [`UseTableReturnValues`](/docs/core/hooks/use-table#return-values) |
 | Tanstack Table Return Values | See [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#table-api) documentation |
 
 ## Example
@@ -854,11 +854,11 @@ useTable({
 
 [tanstack-table]: https://tanstack.com/table/v8
 [refine-react-table]: https://github.com/refinedev/refine/tree/master/packages/react-table
-[use-table-core]: /docs/core/hooks/use-table/index
-[baserecord]: /docs/core/interface-references/index#baserecord
-[httperror]: /docs/core/interface-references/index#httperror
-[syncwithlocationparams]: /docs/core/interface-references/index#syncwithlocationparams
-[notification-provider]: /docs/core/providers/notification-provider/index
-[crudsorting]: /docs/core/interface-references/index#crudsorting
-[crudfilters]: /docs/core/interface-references/index#crudfilters
-[refine swl]: /docs/core/refine-component/index#syncwithlocation
+[use-table-core]: /docs/core/hooks/use-table
+[baserecord]: /docs/core/interface-references#baserecord
+[httperror]: /docs/core/interface-references#httperror
+[syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
+[notification-provider]: /docs/core/providers/notification-provider
+[crudsorting]: /docs/core/interface-references#crudsorting
+[crudfilters]: /docs/core/interface-references#crudfilters
+[refine swl]: /docs/core/refine-component#syncwithlocation

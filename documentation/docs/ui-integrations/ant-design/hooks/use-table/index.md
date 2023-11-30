@@ -10,7 +10,7 @@ import SearchPreview from "./\_partial-use-table-search-live-preview.md";
 import RelationalLivePreview from "./\_partial-use-table-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-By using `useTable`, you can get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list/index) for the fetch.
+By using `useTable`, you can get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch.
 
 For all the other features, you can refer to the Ant Design [`<Table>`][table] documentation.
 
@@ -153,13 +153,13 @@ We can use the [`onSearch`](#onsearch) and [`searchFormProps`](#searchformprops)
 
 :::caution
 
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider/index).
+This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
 
 :::
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider/index)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
@@ -184,7 +184,7 @@ useTable({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `onSearch`
 
@@ -277,7 +277,7 @@ useTable({
 
 Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references/index#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references#crudsorting)
 
 ```tsx
 useTable({
@@ -296,7 +296,7 @@ useTable({
 
 Sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references/index#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references#crudsorting)
 
 ```tsx
 useTable({
@@ -330,7 +330,7 @@ useTable({
 
 Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references/index#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references#crudfilters)
 
 ```tsx
 useTable({
@@ -350,7 +350,7 @@ useTable({
 
 Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references/index#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references#crudfilters)
 
 ```tsx
 useTable({
@@ -415,7 +415,7 @@ useTable({
 
 ### `queryOptions`
 
-`useTable` uses the [`useList`](/docs/core/hooks/data/use-list/index) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
+`useTable` uses the [`useList`](/docs/core/hooks/data/use-list) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
 
 ```tsx
 useTable({
@@ -521,13 +521,13 @@ useTable({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
 `liveMode` determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
-> For more information, refer to the [Live / Realtime documentation &#8594](/docs/core/providers/live-provider/index#livemode)
+> For more information, refer to the [Live / Realtime documentation &#8594](/docs/core/providers/live-provider#livemode)
 
 ```tsx
 useTable({
@@ -539,7 +539,7 @@ useTable({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
@@ -557,11 +557,11 @@ useTable({
 
 :::caution
 
-[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 :::
 
-Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider/index#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
 ### `overtimeOptions`
 
@@ -772,7 +772,7 @@ const { tableProps } = useTable()
 
 #### `dataSource`
 
-`dataSource` contains the data to be displayed in the table. Values fetched with [`useList`](/docs/core/hooks/data/use-list/index) hook.
+`dataSource` contains the data to be displayed in the table. Values fetched with [`useList`](/docs/core/hooks/data/use-list) hook.
 
 #### `loading`
 
@@ -840,7 +840,7 @@ const PostList: React.FC = () => {
 
 ### `tableQueryResult`
 
-`tableQueryResult` are the returned values from [`useList`](/docs/core/hooks/data/use-list/index) hook.
+`tableQueryResult` are the returned values from [`useList`](/docs/core/hooks/data/use-list) hook.
 
 ### `sorters`
 
@@ -940,7 +940,7 @@ Use `setSorters` instead.
 
 ### How can I handle relational data?
 
-You can use the [`useMany`](/docs/core/hooks/data/use-many/index) hook to fetch relational data and filter `<Table>` by categories with the help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
+You can use the [`useMany`](/docs/core/hooks/data/use-many) hook to fetch relational data and filter `<Table>` by categories with the help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
 
 <RelationalLivePreview/>
 
@@ -1051,17 +1051,17 @@ const ListPage = () => {
 
 <CodeSandboxExample path="table-antd-use-table" />
 
-[use-table-core]: /docs/core/hooks/use-table/index
+[use-table-core]: /docs/core/hooks/use-table
 [table]: https://ant.design/components/table/#API
 [table-column]: https://ant.design/components/table#column
 [form]: https://ant.design/components/form/#API
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[baserecord]: /docs/core/interface-references/index#baserecord
-[crudsorting]: /docs/core/interface-references/index#crudsorting
-[crudfilters]: /docs/core/interface-references/index#crudfilters
-[httperror]: /docs/core/interface-references/index#httperror
+[baserecord]: /docs/core/interface-references#baserecord
+[crudsorting]: /docs/core/interface-references#crudsorting
+[crudfilters]: /docs/core/interface-references#crudfilters
+[httperror]: /docs/core/interface-references#httperror
 [table search]: /advanced-tutorials/search/table-search.md
-[refine swl]: /docs/core/refine-component/index#syncwithlocation
-[filter-dropdown]: /docs/ui-integrations/ant-design/components/filter-dropdown/index
-[syncwithlocationparams]: /docs/core/interface-references/index#syncwithlocationparams
-[notification-provider]: /docs/core/providers/notification-provider/index
+[refine swl]: /docs/core/refine-component#syncwithlocation
+[filter-dropdown]: /docs/ui-integrations/ant-design/components/filter-dropdown
+[syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
+[notification-provider]: /docs/core/providers/notification-provider

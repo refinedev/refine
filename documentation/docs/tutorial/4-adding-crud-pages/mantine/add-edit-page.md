@@ -94,7 +94,7 @@ render(<App />);
 
 - `<Edit/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
 
-  > For more information, refer to the [`<Edit/>` documentation&#8594](/docs/ui-integrations/mantine/components/basic-views/edit/index)
+  > For more information, refer to the [`<Edit/>` documentation&#8594](/docs/ui-integrations/mantine/components/basic-views/edit)
 
 - The `useForm` hook is imported from `@refinedev/mantine` package and has been developed by using the **Mantine** `useForm` hook and `@refinedev/core` `useForm` hook. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
 
@@ -127,7 +127,7 @@ const { selectProps: categorySelectProps } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect`](/docs/ui-integrations/mantine/hooks/use-select/index) and [**Mantine** `<Select/>` documentations&#8594](https://mantine.dev/core/select/)
+> For more information, refer to the [`useSelect`](/docs/ui-integrations/mantine/hooks/use-select) and [**Mantine** `<Select/>` documentations&#8594](https://mantine.dev/core/select/)
 
 ## Adding the Edit Page to the App
 

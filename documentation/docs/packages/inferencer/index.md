@@ -32,11 +32,11 @@ yarn add @refinedev/inferencer
 
 ## Available UI Inferencers
 
-- [Ant Design](/docs/ui-integrations/ant-design/components/inferencer/index)
-- [Material UI](/docs/ui-integrations/material-ui/components/inferencer/index)
-- [Mantine](/docs/ui-integrations/mantine/components/inferencer/index)
-- [Chakra UI](/docs/ui-integrations/chakra-ui/components/inferencer/index)
-- [Headless](/docs/core/components/inferencer/index)
+- [Ant Design](/docs/ui-integrations/ant-design/components/inferencer)
+- [Material UI](/docs/ui-integrations/material-ui/components/inferencer)
+- [Mantine](/docs/ui-integrations/mantine/components/inferencer)
+- [Chakra UI](/docs/ui-integrations/chakra-ui/components/inferencer)
+- [Headless](/docs/core/components/inferencer)
 
 :::info
 

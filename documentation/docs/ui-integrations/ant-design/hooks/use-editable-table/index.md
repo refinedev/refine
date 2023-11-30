@@ -371,15 +371,15 @@ Takes a `id` as a parameter and returns `true` if the given `BaseKey` is equal t
 
 [table]: https://ant.design/components/table/#API
 [form]: https://ant.design/components/form/#API
-[useform]: /docs/ui-integrations/ant-design/hooks/use-table/index
-[usetable]: /docs/ui-integrations/ant-design/hooks/use-table/index
+[useform]: /docs/ui-integrations/ant-design/hooks/use-table
+[usetable]: /docs/ui-integrations/ant-design/hooks/use-table
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [usemutation]: https://react-query.tanstack.com/reference/useMutation
-[baserecord]: /docs/core/interface-references/index#baserecord
-[basekey]: /docs/core/interface-references/index#basekey
-[crudsorting]: /docs/core/interface-references/index#crudsorting
-[crudfilters]: /docs/core/interface-references/index#crudfilters
-[httperror]: /docs/core/interface-references/index#httperror
+[baserecord]: /docs/core/interface-references#baserecord
+[basekey]: /docs/core/interface-references#basekey
+[crudsorting]: /docs/core/interface-references#crudsorting
+[crudfilters]: /docs/core/interface-references#crudfilters
+[httperror]: /docs/core/interface-references#httperror
 [table search]: /advanced-tutorials/search/table-search.md
 [table.column]: https://ant.design/components/table/#Column
 [forminstance]: https://ant.design/components/form/#FormInstance

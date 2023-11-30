@@ -110,7 +110,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -194,7 +194,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/ant-design/components/buttons/save-button/index)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/ant-design/components/buttons/save-button)
 
 ### `resource`
 
@@ -246,7 +246,7 @@ render(<App />);
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `goBack`
 
@@ -407,11 +407,11 @@ render(
 
 :::tip
 
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component/index#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
 
 :::
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/ant-design/components/breadcrumb/index)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/ant-design/components/breadcrumb)
 
 ### `wrapperProps`
 
@@ -814,4 +814,4 @@ render(
 
 <PropsTable module="@refinedev/antd/Create" goBack-default="`<ArrowLeft />`" headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" />
 
-[save-button]: /docs/ui-integrations/ant-design/components/buttons/save-button/index
+[save-button]: /docs/ui-integrations/ant-design/components/buttons/save-button

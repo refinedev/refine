@@ -7,7 +7,7 @@ This field lets you embed a link. It uses Ant Design's [<Typography.Link\>](http
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
 :::
 

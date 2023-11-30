@@ -53,7 +53,7 @@ export const MyComponent = () => {
 
 ## Properties
 
-It also accepts all the properties of [`useCan`](/docs/core/hooks/use-can/index#properties).
+It also accepts all the properties of [`useCan`](/docs/core/hooks/use-can#properties).
 
 ### `onUnauthorized`
 
@@ -85,5 +85,5 @@ Component to render if [`useCan`][use-can] returns false. If `undefined`, it ren
 
 <PropsTable module="@refinedev/core/CanAccess"/>
 
-[use-can]: /docs/core/hooks/use-can/index
-[access-control-provider]: /docs/core/providers/access-control-provider/index
+[use-can]: /docs/core/hooks/use-can
+[access-control-provider]: /docs/core/providers/access-control-provider

@@ -124,7 +124,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages/index) to customize it.
+You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -229,15 +229,15 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `canDelete` and `canEdit`
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
 
-When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/core/providers/data-provider/index) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/core/providers/data-provider) and the edit button redirects the user to the record edit page.
 
-Refer to the [`<DeleteButton>`](/docs/ui-integrations/chakra-ui/components/buttons/delete-button/index) and the [`<EditButton>`](/docs/ui-integrations/chakra-ui/components/buttons/edit-button/index) documentation for detailed usage.
+Refer to the [`<DeleteButton>`](/docs/ui-integrations/chakra-ui/components/buttons/delete-button) and the [`<EditButton>`](/docs/ui-integrations/chakra-ui/components/buttons/edit-button) documentation for detailed usage.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
@@ -337,7 +337,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions/index)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions)
 
 ### `recordItemId`
 
@@ -539,7 +539,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 
 :::tip
 
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component/index#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
 
 :::
 
@@ -595,7 +595,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/chakra-ui/components/breadcrumb/index)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/chakra-ui/components/breadcrumb)
 
 ### `wrapperProps`
 
@@ -1057,7 +1057,7 @@ render(
 
 <PropsTable module="@refinedev/chakra-ui/Show" title-default="<Title order={3}>Show {resource.name}</Title>"/>
 
-[list-button]: /docs/ui-integrations/chakra-ui/components/buttons/list-button/index
-[refresh-button]: /docs/ui-integrations/chakra-ui/components/buttons/refresh-button/index
-[edit-button]: /docs/ui-integrations/chakra-ui/components/buttons/edit-button/index
-[delete-button]: /docs/ui-integrations/chakra-ui/components/buttons/delete-button/index
+[list-button]: /docs/ui-integrations/chakra-ui/components/buttons/list-button
+[refresh-button]: /docs/ui-integrations/chakra-ui/components/buttons/refresh-button
+[edit-button]: /docs/ui-integrations/chakra-ui/components/buttons/edit-button
+[delete-button]: /docs/ui-integrations/chakra-ui/components/buttons/delete-button

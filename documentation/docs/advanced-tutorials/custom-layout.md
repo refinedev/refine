@@ -88,6 +88,6 @@ You can find more examples about custom layouts for different UI packages in the
 
 <CodeSandboxExample path="customization-top-menu-layout" />
 
-[refine]: /docs/core/refine-component/index
-[cli]: /docs/packages/list-of-packages/index#swizzle
-[usemenu]: /docs/core/hooks/utilities/use-menu/index
+[refine]: /docs/core/refine-component
+[cli]: /docs/packages/list-of-packages#swizzle
+[usemenu]: /docs/core/hooks/utilities/use-menu

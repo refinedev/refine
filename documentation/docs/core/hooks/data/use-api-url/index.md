@@ -67,4 +67,4 @@ const apiUrl = useApiUrl("other");
 | ----------- | -------- |
 | API URL     | `string` |
 
-[data provider]: /docs/core/providers/data-provider/index
+[data provider]: /docs/core/providers/data-provider

@@ -741,7 +741,7 @@ const PostCreatePage: React.FC = () => {
 
 ### `refineCoreProps`
 
-All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index#properties) docs.
+All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#properties) docs.
 
 ```tsx
 const stepsForm = useStepsForm({
@@ -878,7 +878,7 @@ useStepsForm({
 
 :::tip
 
-All [`useForm`](/docs/ui-integrations/mantine/hooks/use-form/index) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/mantine/hooks/use-form/index#return-values) docs.
+All [`useForm`](/docs/ui-integrations/mantine/hooks/use-form) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/mantine/hooks/use-form#return-values) docs.
 
 :::
 
@@ -981,7 +981,7 @@ stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
 
 <CodeSandboxExample path="form-mantine-use-steps-form" />
 
-[use-form-refine-mantine]: /docs/ui-integrations/mantine/hooks/use-form/index
+[use-form-refine-mantine]: /docs/ui-integrations/mantine/hooks/use-form
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
-[baserecord]: /docs/core/interface-references/index#baserecord
-[httperror]: /docs/core/interface-references/index#httperror
+[baserecord]: /docs/core/interface-references#baserecord
+[httperror]: /docs/core/interface-references#httperror

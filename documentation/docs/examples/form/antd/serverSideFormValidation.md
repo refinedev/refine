@@ -12,4 +12,4 @@ When `dataProvider` returns rejected promise with `errors` field, [`useForm`][re
 
 <CodeSandboxExample path="server-side-form-validation-antd" />
 
-[antd-use-form]: /docs/ui-integrations/ant-design/hooks/use-form/index
+[antd-use-form]: /docs/ui-integrations/ant-design/hooks/use-form

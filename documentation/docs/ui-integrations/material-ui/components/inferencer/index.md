@@ -105,7 +105,7 @@ const SampleEdit = () => {
 
 :::info
 
-To learn more about `@refinedev/inferencer` package, please check out [Docs](/docs/packages/list-of-packages/index)
+To learn more about `@refinedev/inferencer` package, please check out [Docs](/docs/packages/list-of-packages)
 
 :::
 

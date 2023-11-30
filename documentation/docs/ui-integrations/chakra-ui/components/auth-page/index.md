@@ -8,11 +8,11 @@ source: packages/chakra-ui/src/components/pages/auth/index.tsx
 
 `<AuthPage>` component from **refine** for **Chakra UI** contains authentication pages that can be used to login, register, forgot password and update password.
 
-Before using the `<AuthPage>` component you need to add [authProvider](/docs/core/providers/auth-provider/index) that will be used to handle authentication.
+Before using the `<AuthPage>` component you need to add [authProvider](/docs/core/providers/auth-provider) that will be used to handle authentication.
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -904,8 +904,8 @@ interface FormPropsType extends UseFormProps {
 }
 ```
 
-[auth-provider]: /docs/core/providers/auth-provider/index
-[login]: /docs/core/providers/auth-provider/index#login-
-[register]: /docs/core/providers/auth-provider/index#register
-[forgot-password]: /docs/core/providers/auth-provider/index#forgotpassword
-[update-password]: /docs/core/providers/auth-provider/index#updatepassword
+[auth-provider]: /docs/core/providers/auth-provider
+[login]: /docs/core/providers/auth-provider#login-
+[register]: /docs/core/providers/auth-provider#register
+[forgot-password]: /docs/core/providers/auth-provider#forgotpassword
+[update-password]: /docs/core/providers/auth-provider#updatepassword

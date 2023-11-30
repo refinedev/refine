@@ -121,9 +121,9 @@ console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
 
 ### Type Parameters
 
-| Property                                                             | Description                                                                             |
-| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| [CanReturnType](/docs/core/interface-references/index#canreturntype) | Result data of the query [`HttpError`](/docs/core/interface-references/index#httperror) |
+| Property                                                       | Description                                                                       |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| [CanReturnType](/docs/core/interface-references#canreturntype) | Result data of the query [`HttpError`](/docs/core/interface-references#httperror) |
 
 ### Return values
 
@@ -131,8 +131,8 @@ console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
 | ------------------------------------------------------------------------ | ---------------------------------------------------------------- |
 | Result of the [TanStack Query's][tanstack-query] [`useQuery`][use-query] | [`QueryObserverResult<{ data: CanReturnType; }>`][query-options] |
 
-[access-control-provider]: /docs/core/providers/access-control-provider/index
+[access-control-provider]: /docs/core/providers/access-control-provider
 [use-query]: https://tanstack.com/query/latest/docs/react/guides/queries
 [tanstack-query]: https://tanstack.com/query/latest
 [query-options]: https://tanstack.com/query/v4/docs/react/reference/useQuery
-[can-params]: /docs/core/interface-references/index#canparams
+[can-params]: /docs/core/interface-references#canparams

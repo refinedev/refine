@@ -43,7 +43,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-> For more information about these methods and how **refine** hooks use them, refer to the [Auth Provider documentation&#8594](/docs/core/providers/auth-provider/index)
+> For more information about these methods and how **refine** hooks use them, refer to the [Auth Provider documentation&#8594](/docs/core/providers/auth-provider)
 
 ## Using Auth Providers in refine
 
@@ -68,7 +68,7 @@ const authProvider: AuthBindings = {
 />;
 ```
 
-> For more information, refer to the [`<Refine/>` documentation&#8594](/docs/core/refine-component/index)
+> For more information, refer to the [`<Refine/>` documentation&#8594](/docs/core/refine-component)
 
 ## How are auth provider methods used in the app?
 
@@ -125,7 +125,7 @@ All auth hooks are identical in usage
 
 :::
 
-> For more information about each hook, refer to the [Auth Hooks documentation&#8594](/docs/core/hooks/auth/use-is-authenticated/index)
+> For more information about each hook, refer to the [Auth Hooks documentation&#8594](/docs/core/hooks/auth/use-is-authenticated)
 
 ## Auth Provider Examples
 

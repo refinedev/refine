@@ -26,8 +26,8 @@ You can take a look at the similar app that we'll be constructing in this tutori
 
 - Setting up your development environment.
 - Creating your first **refine** app.
-- Communicate with your API through [`dataProvider`](/docs/core/providers/data-provider/index).
-- The concept of the [`resources`](/docs/core/refine-component/index#resources) property.
+- Communicate with your API through [`dataProvider`](/docs/core/providers/data-provider).
+- The concept of the [`resources`](/docs/core/refine-component#resources) property.
 - Adding CRUD pages to your project.
 - Handle authentication with [`authProvider`](https://refine.dev/docs/tutorial/understanding-authprovider/index/).
 

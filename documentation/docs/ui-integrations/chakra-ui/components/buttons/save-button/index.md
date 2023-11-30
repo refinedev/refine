@@ -23,13 +23,13 @@ const Wrapper = ({ children }) => {
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
 ## Usage
 
-For example, lets add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/packages/list-of-packages/index) hook.
+For example, lets add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/packages/list-of-packages) hook.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);

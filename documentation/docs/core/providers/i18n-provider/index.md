@@ -999,9 +999,9 @@ You can use the [`useGetLocale`][use-getlocale] hook to call `getLocale` method.
 [i18nnextjs]: /examples/i18n/i18n-nextjs.md
 [react-i18next]: https://react.i18next.com/
 [create-refine-app]: /docs/getting-started/quickstart.md
-[use-translate]: /docs/core/hooks/translate/use-translate/index
-[use-getlocale]: /docs/core/hooks/translate/use-get-locale/index
-[use-setlocale]: /docs/core/hooks/translate/use-set-locale/index
+[use-translate]: /docs/core/hooks/translate/use-translate
+[use-getlocale]: /docs/core/hooks/translate/use-get-locale
+[use-setlocale]: /docs/core/hooks/translate/use-set-locale
 
 ## FAQ
 

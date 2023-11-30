@@ -80,12 +80,12 @@ We provide implementation examples for the Mantine and Chakra UI. If you using a
 
 [tanstack-table]: https://tanstack.com/table/v8
 [refine-react-table]: https://github.com/refinedev/refine/tree/master/packages/react-table
-[use-table-core]: /docs/core/hooks/use-table/index
-[use-table-tanstack]: /docs/packages/list-of-packages/index
-[baserecord]: /docs/core/interface-references/index#baserecord
-[httperror]: /docs/core/interface-references/index#httperror
-[syncwithlocationparams]: /docs/core/interface-references/index#syncwithlocationparams
-[notification-provider]: /docs/core/providers/notification-provider/index
-[crudsorting]: /docs/core/interface-references/index#crudsorting
-[crudfilters]: /docs/core/interface-references/index#crudfilters
-[refine swl]: /docs/core/refine-component/index#syncwithlocation
+[use-table-core]: /docs/core/hooks/use-table
+[use-table-tanstack]: /docs/packages/list-of-packages
+[baserecord]: /docs/core/interface-references#baserecord
+[httperror]: /docs/core/interface-references#httperror
+[syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
+[notification-provider]: /docs/core/providers/notification-provider
+[crudsorting]: /docs/core/interface-references#crudsorting
+[crudfilters]: /docs/core/interface-references#crudfilters
+[refine swl]: /docs/core/refine-component#syncwithlocation

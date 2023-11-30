@@ -103,7 +103,7 @@ render(<App />);
 
 - `<Create/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button etc.
 
-  > For more information, refer to the [`<Create/>` documentation&#8594](/docs/ui-integrations/material-ui/components/basic-views/create/index)
+  > For more information, refer to the [`<Create/>` documentation&#8594](/docs/ui-integrations/material-ui/components/basic-views/create)
 
 - The `useForm` hook is imported from `@refinedev/mantine` package and has been developed by using the **Mantine** `useForm` hook and `@refinedev/core` `useForm` hook. When used in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted. It also offers `saveButtonProps` for the form's submit button.
 
@@ -127,7 +127,7 @@ const { selectProps: categorySelectProps } = useAutocomplete({
 });
 ```
 
-> For more information, refer to the [`useAutocomplete`](/docs/ui-integrations/material-ui/hooks/use-auto-complete/index) and [**Material UI** `<Autocomplete/>` documentations&#8594](https://mui.com/material-ui/react-autocomplete/)
+> For more information, refer to the [`useAutocomplete`](/docs/ui-integrations/material-ui/hooks/use-auto-complete) and [**Material UI** `<Autocomplete/>` documentations&#8594](https://mui.com/material-ui/react-autocomplete/)
 
 ## Adding the Create Page to the App
 

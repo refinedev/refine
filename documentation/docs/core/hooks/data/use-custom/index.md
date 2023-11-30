@@ -6,15 +6,15 @@ source: packages/core/src/hooks/data/useCustom.ts
 
 `useCustom` is used to send custom query requests using the Tanstack Query advantages. It is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `custom` method as the **query function** from the [`dataProvider`](/docs/core/providers/data-provider/index) which is passed to `<Refine>`.
+It uses the `custom` method as the **query function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
 
 :::danger attention
 
-`useCustom` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/core/hooks/data/use-create/index), [useUpdate](/docs/core/hooks/data/use-update/index) or [useDelete](/docs/core/hooks/data/use-delete/index)
+`useCustom` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/core/hooks/data/use-create), [useUpdate](/docs/core/hooks/data/use-update) or [useDelete](/docs/core/hooks/data/use-delete)
 
 This is because `useCustom`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
-If you need to customize the mutation request, use the [useCustomMutation](/docs/core/hooks/data/use-custom/index) hook instead.
+If you need to customize the mutation request, use the [useCustomMutation](/docs/core/hooks/data/use-custom) hook instead.
 
 :::
 
@@ -214,7 +214,7 @@ useCustom({
 
 :::caution
 
-[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 :::
 
@@ -236,7 +236,7 @@ useCustom({
 
 :::caution
 
-[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 :::
 
@@ -335,5 +335,5 @@ By default, the query key is generated based on the properties passed to `useCus
 | Result of the TanStack Query's useQuery | [`QueryObserverResult<CustomResponse<TData>, TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
 | overtime                                | `{ elapsedTime?: number }`                                                                                          |
 
-[baserecord]: /docs/core/interface-references/index#baserecord
-[httperror]: /docs/core/interface-references/index#httperror
+[baserecord]: /docs/core/interface-references#baserecord
+[httperror]: /docs/core/interface-references#httperror

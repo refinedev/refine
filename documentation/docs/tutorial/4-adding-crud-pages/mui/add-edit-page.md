@@ -103,11 +103,11 @@ render(<App />);
 
 - `<Edit/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
 
-  > For more information, refer to the [`<Edit/>` documentation&#8594](/docs/ui-integrations/material-ui/components/basic-views/edit/index)
+  > For more information, refer to the [`<Edit/>` documentation&#8594](/docs/ui-integrations/material-ui/components/basic-views/edit)
 
 - The `useForm` hook is imported from `@refinedev/react-hook-form`, which combines the features of `useForm` hook from both **React Hook Form** and `@refinedev/core`. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
 
-  > For more information, refer to the [`useForm`](/docs/packages/list-of-packages/index) and [**React Hook Form** documentation&#8594](https://react-hook-form.com/)
+  > For more information, refer to the [`useForm`](/docs/packages/list-of-packages) and [**React Hook Form** documentation&#8594](https://react-hook-form.com/)
 
 - All other components provided by **Material UI** are used to display the form fields.
 
@@ -136,7 +136,7 @@ const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
 });
 ```
 
-> For more information, refer to the [`useAutocomplete`](/docs/ui-integrations/material-ui/hooks/use-auto-complete/index) and [**Material UI** `<Autocomplete/>` documentations&#8594](https://mui.com/material-ui/react-autocomplete/)
+> For more information, refer to the [`useAutocomplete`](/docs/ui-integrations/material-ui/hooks/use-auto-complete) and [**Material UI** `<Autocomplete/>` documentations&#8594](https://mui.com/material-ui/react-autocomplete/)
 
 ## Adding the Edit Page to the App
 

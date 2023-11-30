@@ -6,15 +6,15 @@ source: packages/core/src/hooks/data/useCustomMutation.ts
 
 `useCustomMutation` is used when sending custom mutation requests using the TanStack Query advantages. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `custom` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider/index) which is passed to `<Refine>`.
+It uses the `custom` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
 
 :::danger attention
 
-`useCustomMutation` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/core/hooks/data/use-create/index), [useUpdate](/docs/core/hooks/data/use-update/index) or [useDelete](/docs/core/hooks/data/use-delete/index).
+`useCustomMutation` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/core/hooks/data/use-create), [useUpdate](/docs/core/hooks/data/use-update) or [useDelete](/docs/core/hooks/data/use-delete).
 
 This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
-If you need to custom query request, use the [useCustom](/docs/core/hooks/data/use-custom/index) hook.
+If you need to custom query request, use the [useCustom](/docs/core/hooks/data/use-custom) hook.
 
 :::
 
@@ -148,7 +148,7 @@ mutate({
 
 :::caution
 
-[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 :::
 
@@ -170,7 +170,7 @@ mutate({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useCustomMutation` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -281,25 +281,25 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Mutation Parameters
 
-| Property                                         | Description                                                                                        | Type                                                                                         |
-| ------------------------------------------------ | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| url <div className="required">Required</div>     | URL                                                                                                | string                                                                                       |
-| method <div className="required">Required</div>  | Method                                                                                             | `post`, `put`, `patch`, `delete`                                                             |
-| values <div className=" required">Required</div> | Values for mutation function                                                                       | `TVariables`                                                                                 |
-| config                                           | The config of your request. You can send `headers` using this field.                               | { headers?: {}; }                                                                            |
-| successNotification                              | Successful mutation notification                                                                   | [`SuccessErrorNotification`](/docs/core/interface-references/index#successerrornotification) |
-| errorNotification                                | Unsuccessful mutation notification                                                                 | [`SuccessErrorNotification`](/docs/core/interface-references/index#successerrornotification) |
-| meta                                             | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/core/interface-references/index#metadataquery)                       |
-| dataProviderName                                 | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                     |
+| Property                                         | Description                                                                                        | Type                                                                                   |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| url <div className="required">Required</div>     | URL                                                                                                | string                                                                                 |
+| method <div className="required">Required</div>  | Method                                                                                             | `post`, `put`, `patch`, `delete`                                                       |
+| values <div className=" required">Required</div> | Values for mutation function                                                                       | `TVariables`                                                                           |
+| config                                           | The config of your request. You can send `headers` using this field.                               | { headers?: {}; }                                                                      |
+| successNotification                              | Successful mutation notification                                                                   | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) |
+| errorNotification                                | Unsuccessful mutation notification                                                                 | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) |
+| meta                                             | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/core/interface-references#metadataquery)                       |
+| dataProviderName                                 | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                               |
 
 ### Type Parameters
 
-| Property | Description                                                                                        | Type                                                             | Default                                                          |
-| -------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| TData    | Result data of the query. Extends [`BaseRecord`](/docs/core/interface-references/index#baserecord) | [`BaseRecord`](/docs/core/interface-references/index#baserecord) | [`BaseRecord`](/docs/core/interface-references/index#baserecord) |
-| TError   | Custom error object that extends [`HttpError`](/docs/core/interface-references/index#httperror)    | [`HttpError`](/docs/core/interface-references/index#httperror)   | [`HttpError`](/docs/core/interface-references/index#httperror)   |
-| TQuery   | Values for query params.                                                                           | `TQuery`                                                         | unknown                                                          |
-| TPayload | Values for params.                                                                                 | `TPayload`                                                       | unknown                                                          |
+| Property | Description                                                                                  | Type                                                       | Default                                                    |
+| -------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| TData    | Result data of the query. Extends [`BaseRecord`](/docs/core/interface-references#baserecord) | [`BaseRecord`](/docs/core/interface-references#baserecord) | [`BaseRecord`](/docs/core/interface-references#baserecord) |
+| TError   | Custom error object that extends [`HttpError`](/docs/core/interface-references#httperror)    | [`HttpError`](/docs/core/interface-references#httperror)   | [`HttpError`](/docs/core/interface-references#httperror)   |
+| TQuery   | Values for query params.                                                                     | `TQuery`                                                   | unknown                                                    |
+| TPayload | Values for params.                                                                           | `TPayload`                                                 | unknown                                                    |
 
 ### Return value
 

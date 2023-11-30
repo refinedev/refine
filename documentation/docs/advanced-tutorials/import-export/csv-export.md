@@ -43,5 +43,5 @@ Manually running the `triggerExport` function is another option.
 
 <CodeSandboxExample path="import-export-antd" />
 
-[useexport]: /docs/core/hooks/utilities/use-export/index
+[useexport]: /docs/core/hooks/utilities/use-export
 [export-to-csv]: https://github.com/alexcaza/export-to-csv

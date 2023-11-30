@@ -13,7 +13,7 @@ import SharedComponents from "../../../partials/tutorial/headless-layout.md";
 
 In [Unit 2.4](/docs/tutorial/getting-started/headless/generate-crud-pages/), we created the CRUD pages automatically with Inferencer and wrapped them with a `<Layout>` component.
 
-This component is provided when you create a new application using `create-refine-app` to help you get started quickly by providing simple implementations of `Menu` and `Breadcrumb` components using **refine**'s hooks, [`useMenu`](/docs/core/hooks/utilities/use-menu/index) and [`useBreadcrumb`](/docs/core/hooks/utilities/use-breadcrumb/index).
+This component is provided when you create a new application using `create-refine-app` to help you get started quickly by providing simple implementations of `Menu` and `Breadcrumb` components using **refine**'s hooks, [`useMenu`](/docs/core/hooks/utilities/use-menu) and [`useBreadcrumb`](/docs/core/hooks/utilities/use-breadcrumb).
 
 Here is the preview for the `Layout`, `Menu` and `Breadcrumb` components:
 
@@ -128,7 +128,7 @@ export const Menu = () => {
 
 It uses the `useMenu` hook to get the menu items and renders them as a list. Also, it uses the `NavLink` component from the `react-router-dom` package to render the links.
 
-> For more information, refer to the [`useMenu` documentation &#8594](/docs/core/hooks/utilities/use-menu/index)
+> For more information, refer to the [`useMenu` documentation &#8594](/docs/core/hooks/utilities/use-menu)
 
 ## Breadcrumb
 
@@ -155,7 +155,7 @@ export const Breadcrumb = () => {
 
 It uses the `useBreadcrumb` hook to get the breadcrumb items and renders them as a list. Also, it uses the `Link` component from the `react-router-dom` package to render the links.
 
-> For more information, refer to the [`useBreadcrumb` documentation &#8594](/docs/core/hooks/utilities/use-breadcrumb/index)
+> For more information, refer to the [`useBreadcrumb` documentation &#8594](/docs/core/hooks/utilities/use-breadcrumb)
 
 <br/>
 

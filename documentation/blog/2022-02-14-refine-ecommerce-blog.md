@@ -25,7 +25,7 @@ In this article, we will create the e-commerce client of our [Strapi-Multitenanc
 
 It is now used **headless** with the **refine** 3 version. You can use any UI library you want with the **headless** feature.
 
-We will use [Strapi](https://strapi.io/) and [Chakra-UI](https://chakra-ui.com/) together with [**Next.js**](/docs/packages/list-of-packages/index) in our E-commerce client example application.
+We will use [Strapi](https://strapi.io/) and [Chakra-UI](https://chakra-ui.com/) together with [**Next.js**](/docs/packages/list-of-packages) in our E-commerce client example application.
 
 <!--truncate-->
 
@@ -45,7 +45,7 @@ npm create refine-app@latest refine-ecommerce-example -- -p refine-nextjs -b v3
 ✔ i18n - Internationalization: · no
 ```
 
-superplate will quickly create our **refine** project according to the features we choose. Let's continue by install the [**refine** Strapi-v4 Data Provider](/docs/packages/list-of-packages/index) and Chakra-UI packages that we will use later.
+superplate will quickly create our **refine** project according to the features we choose. Let's continue by install the [**refine** Strapi-v4 Data Provider](/docs/packages/list-of-packages) and Chakra-UI packages that we will use later.
 
 ## Installation
 

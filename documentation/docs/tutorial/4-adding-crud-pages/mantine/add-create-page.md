@@ -102,7 +102,7 @@ render(<App />);
 
 - `<Create/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button etc.
 
-  > For more information, refer to the [`<Create/>` documentation&#8594](/docs/ui-integrations/mantine/components/basic-views/create/index)
+  > For more information, refer to the [`<Create/>` documentation&#8594](/docs/ui-integrations/mantine/components/basic-views/create)
 
 - The `useForm` hook is imported from `@refinedev/mantine` package and has been developed by using the **Mantine** `useForm` hook and `@refinedev/core` `useForm` hook. When used in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted. It also offers `saveButtonProps` for the form's submit button.
 
@@ -126,7 +126,7 @@ const { selectProps: categorySelectProps } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect`](/docs/ui-integrations/mantine/hooks/use-select/index) and [**Mantine** `<Select/>` documentations&#8594](https://mantine.dev/core/select/)
+> For more information, refer to the [`useSelect`](/docs/ui-integrations/mantine/hooks/use-select) and [**Mantine** `<Select/>` documentations&#8594](https://mantine.dev/core/select/)
 
 ## Adding the Create Page to the App
 

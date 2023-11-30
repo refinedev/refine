@@ -61,7 +61,7 @@ All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useCheckboxGroup/basic.png" alt="Tags" />
 
-> For more information, refer to the [`useList` documentation &#8594](/docs/core/hooks/data/use-list/index)
+> For more information, refer to the [`useList` documentation &#8594](/docs/core/hooks/data/use-list)
 
 ## Options
 
@@ -73,11 +73,11 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-`resource` property determines which API resource endpoint to fetch records from [`dataProvider`](/docs/core/providers/data-provider/index). It returns properly configured `options` values for checkboxes.
+`resource` property determines which API resource endpoint to fetch records from [`dataProvider`](/docs/core/providers/data-provider). It returns properly configured `options` values for checkboxes.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 > For more information, refer to the [Ant Design's Checkbox.Group component documentation &#8594](https://ant.design/components/checkbox)
 
@@ -231,5 +231,5 @@ Use `sorters` instead.
 
 <CodeSandboxExample path="field-antd-use-checkbox-group" />
 
-[baserecord]: /docs/core/interface-references/index#baserecord
-[httperror]: /docs/core/interface-references/index#httperror
+[baserecord]: /docs/core/interface-references#baserecord
+[httperror]: /docs/core/interface-references#httperror

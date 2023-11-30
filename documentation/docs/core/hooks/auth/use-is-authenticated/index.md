@@ -11,7 +11,7 @@ This hook can only be used if the `authProvider` is provided.
 
 :::
 
-`useIsAuthenticated` calls the `check` method from the [`authProvider`](/docs/core/providers/auth-provider/index) under the hood.
+`useIsAuthenticated` calls the `check` method from the [`authProvider`](/docs/core/providers/auth-provider) under the hood.
 
 It returns the result of `react-query`'s `useQuery` which includes many properties, some of which being `isSuccess` and `isError`.
 
@@ -35,11 +35,11 @@ type CheckResponse = {
 
 `useIsAuthenticated` can be useful when you want to check for authentication and handle the result manually.
 
-We have used this hook in refine's [`<Authenticated>`](/docs/core/components/authenticated/index) component, which allows only authenticated users to access the page or any part of the code.
+We have used this hook in refine's [`<Authenticated>`](/docs/core/components/authenticated) component, which allows only authenticated users to access the page or any part of the code.
 
 We will demonstrate a similar basic implementation below. Imagine that you have a public page, but you want to make some specific fields private.
 
-We have a logic in [`authProvider`](/docs/core/providers/auth-provider/index)'s `check` method like below:
+We have a logic in [`authProvider`](/docs/core/providers/auth-provider)'s `check` method like below:
 
 ```tsx
 const authProvider: AuthBindings = {

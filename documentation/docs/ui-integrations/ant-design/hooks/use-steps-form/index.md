@@ -736,7 +736,7 @@ interface IPost {
 
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
-Refer to [`useSelect` documentation for detailed usage. &#8594](/docs/ui-integrations/ant-design/hooks/use-select/index)
+Refer to [`useSelect` documentation for detailed usage. &#8594](/docs/ui-integrations/ant-design/hooks/use-select)
 
 :::
 
@@ -948,7 +948,7 @@ interface IPost {
 
 :::tip
 
-All of the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index) props are also available in `useStepsForm`. You can find descriptions on [`useForm` documentation](/docs/ui-integrations/ant-design/hooks/use-form/index#properties).
+All of the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) props are also available in `useStepsForm`. You can find descriptions on [`useForm` documentation](/docs/ui-integrations/ant-design/hooks/use-form#properties).
 
 :::
 
@@ -1096,7 +1096,7 @@ useStepsForm({
 
 :::tip
 
-All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index#return-values) docs.
+All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) docs.
 
 :::
 
@@ -1177,7 +1177,7 @@ const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } = 
 
 <PropsTable module="@refinedev/antd/useStepsForm"/>
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/core/refine-component/index)>** component. `useModalForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/core/refine-component)>** component. `useModalForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 > `**`: If not explicitly configured, default value of `redirect` depends on which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). if `action` is `edit` instead, `redirect`s default value is `list`.
 
@@ -1199,7 +1199,7 @@ const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } = 
 | stepsProps               | Ant Design steps props                                       | [`StepsProps`](https://ant.design/components/steps/#API)                                                                                |
 | current                  | Current step, counting from 0.                               | `number`                                                                                                                                |
 | gotoStep                 | Go to the target step                                        | `(step: number) => void`                                                                                                                |
-| formProps                | Ant Design form props                                        | [`FormProps`](/docs/ui-integrations/ant-design/hooks/use-form/index#formprops)                                                          |
+| formProps                | Ant Design form props                                        | [`FormProps`](/docs/ui-integrations/ant-design/hooks/use-form#formprops)                                                                |
 | form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                          |
 | defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                                                                               |
 | submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                            |
@@ -1210,6 +1210,6 @@ const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } = 
 
 <CodeSandboxExample path="form-antd-use-steps-form" />
 
-[baserecord]: /docs/core/interface-references/index#baserecord
-[httperror]: /docs/core/interface-references/index#httperror
-[antd-use-form]: /docs/ui-integrations/ant-design/hooks/use-form/index
+[baserecord]: /docs/core/interface-references#baserecord
+[httperror]: /docs/core/interface-references#httperror
+[antd-use-form]: /docs/ui-integrations/ant-design/hooks/use-form

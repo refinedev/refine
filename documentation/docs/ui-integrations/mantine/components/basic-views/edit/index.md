@@ -131,7 +131,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages/index) to customize it.
+You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -240,7 +240,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/mantine/components/buttons/save-button/index)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/mantine/components/buttons/save-button)
 
 ### `canDelete` and `deleteButtonProps`
 
@@ -357,7 +357,7 @@ render(
 );
 ```
 
-> For more information, refer to the documentations [`<DeleteButton>` &#8594](/docs/ui-integrations/mantine/components/buttons/delete-button/index) and [`usePermission` &#8594](/docs/core/hooks/auth/use-permissions/index)
+> For more information, refer to the documentations [`<DeleteButton>` &#8594](/docs/ui-integrations/mantine/components/buttons/delete-button) and [`usePermission` &#8594](/docs/core/hooks/auth/use-permissions)
 
 ### `resource`
 
@@ -413,7 +413,7 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `recordItemId`
 
@@ -702,7 +702,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 
 :::tip
 
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component/index#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
 
 :::
 
@@ -765,7 +765,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/mantine/components/breadcrumb/index)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/mantine/components/breadcrumb)
 
 ### `wrapperProps`
 
@@ -1453,7 +1453,7 @@ render(
 
 <PropsTable module="@refinedev/mantine/Edit" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Edit {resource.name}</Title>`" />
 
-[list-button]: /docs/ui-integrations/mantine/components/buttons/list-button/index
-[refresh-button]: /docs/ui-integrations/mantine/components/buttons/refresh-button/index
-[save-button]: /docs/ui-integrations/mantine/components/buttons/save-button/index
-[delete-button]: /docs/ui-integrations/mantine/components/buttons/delete-button/index
+[list-button]: /docs/ui-integrations/mantine/components/buttons/list-button
+[refresh-button]: /docs/ui-integrations/mantine/components/buttons/refresh-button
+[save-button]: /docs/ui-integrations/mantine/components/buttons/save-button
+[delete-button]: /docs/ui-integrations/mantine/components/buttons/delete-button

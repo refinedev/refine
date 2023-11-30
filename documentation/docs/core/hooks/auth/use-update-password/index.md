@@ -11,7 +11,7 @@ This hook can only be used if `authProvider` is provided.
 
 :::
 
-`useUpdatePassword` calls `updatePassword` method from [`authProvider`](/docs/core/providers/auth-provider/index) under the hood.
+`useUpdatePassword` calls `updatePassword` method from [`authProvider`](/docs/core/providers/auth-provider) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
 

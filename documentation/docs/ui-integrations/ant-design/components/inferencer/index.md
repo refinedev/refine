@@ -84,7 +84,7 @@ const SampleEdit = () => {
   </TabItem>
 </Tabs>
 
-> For more information, refer to the [Inferencer documentation](/docs/packages/list-of-packages/index)
+> For more information, refer to the [Inferencer documentation](/docs/packages/list-of-packages)
 
 ## Views
 

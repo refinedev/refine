@@ -96,7 +96,7 @@ render(<App />);
 
 - `<Create/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button etc.
 
-  > For more information, refer to the [`<Create/>` documentation&#8594](/docs/ui-integrations/ant-design/components/basic-views/create/index)
+  > For more information, refer to the [`<Create/>` documentation&#8594](/docs/ui-integrations/ant-design/components/basic-views/create)
 
 - `<Form/>` and `<Form.Item/>` are **Ant Design** components that are used to build the form.
 
@@ -104,7 +104,7 @@ render(<App />);
 
 - `useForm` is a **refine** hook that provides the necessary props for the form. When used in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted. It also offers `saveButtonProps` for the form's submit button.
 
-  > For more information, refer to the [`useForm` documentation&#8594](/docs/ui-integrations/ant-design/hooks/use-form/index)
+  > For more information, refer to the [`useForm` documentation&#8594](/docs/ui-integrations/ant-design/hooks/use-form)
 
 ### Handling Relationships
 
@@ -120,7 +120,7 @@ const { selectProps: categorySelectProps } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect` documentation](/docs/core/hooks/use-select/index) and the [**Ant Design** `<Select/>` documentation&#8594](https://ant.design/components/select)
+> For more information, refer to the [`useSelect` documentation](/docs/core/hooks/use-select) and the [**Ant Design** `<Select/>` documentation&#8594](https://ant.design/components/select)
 
 ## Adding the Create Page to the App
 

@@ -86,11 +86,11 @@ render(<App />);
 
 - The `useTable` hook is used for fetching data and managing the table state. It is imported from the `@refinedev/react-table package`, which combines the functionality of the **TanStack Table v8** package and the `useTable` hook from the `@refinedev/core package`, providing the features of both.
 
-  > For more information, refer to the [`useTable` documentation](/docs/packages/list-of-packages/index) and the [TanStack Table v8 documentation&#8594](https://tanstack.com/table/v8)
+  > For more information, refer to the [`useTable` documentation](/docs/packages/list-of-packages) and the [TanStack Table v8 documentation&#8594](https://tanstack.com/table/v8)
 
 - The `useNavigation` hook is used for navigating between pages. In this case, we are using it to navigate to the `edit` and `show` pages when the user clicks on their respective buttons in the table.
 
-  > For more information, refer to the [`useNavigation` documentation &#8594](/docs/core/hooks/navigation/use-navigation/index)
+  > For more information, refer to the [`useNavigation` documentation &#8594](/docs/core/hooks/navigation/use-navigation)
 
 ### Handling Relationships
 
@@ -147,7 +147,7 @@ This will pass the `resource` and `ids` to the `dataProvider`'s `getMany` funct
 
 We can then use this `data` array to display the `title` of each category in the table.
 
-> For more information, refer to the [`useMany` documentation&#8594](/docs/core/hooks/data/use-many/index)
+> For more information, refer to the [`useMany` documentation&#8594](/docs/core/hooks/data/use-many)
 
 ## Adding the List Page to the App
 
