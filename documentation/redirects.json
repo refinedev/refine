@@ -888,6 +888,26 @@
     {
       "from": "/docs/advanced-tutorials/forms/save-and-continue",
       "to": "/docs/guides-concepts/forms"
+    },
+    {
+      "from": "/docs/faq",
+      "to": "/docs/guides-concepts/faq"
+    },
+    {
+      "from": "/docs/comparison",
+      "to": "/docs/further-readings/comparison"
+    },
+    {
+      "from": "/docs/contributing",
+      "to": "/docs/further-readings/contributing"
+    },
+    {
+      "from": "/docs/testing",
+      "to": "/docs/further-readings/testing"
+    },
+    {
+      "from": "/docs/license",
+      "to": "/docs/further-readings/license"
     }
   ]
 }

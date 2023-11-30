@@ -55,10 +55,10 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 **refine** has a very friendly community and we are always happy to help you get started:
 
--   [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
--   [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback.
--   [Contributing](/docs/contributing/) – learn how to contribute refine project.
--   [Guest Technical Writer Program](https://refine.dev/blog/refine-writer-program/) – join the program and become a blog writer for refine.
+- [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
+- [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback.
+- [Contributing](/docs/further-readings/contributing/) – learn how to contribute refine project.
+- [Guest Technical Writer Program](https://refine.dev/blog/refine-writer-program/) – join the program and become a blog writer for refine.
 
 ## Next Steps
 

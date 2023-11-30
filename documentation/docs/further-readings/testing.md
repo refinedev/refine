@@ -1,5 +1,4 @@
 ---
-id: testing
 title: Testing
 ---
 

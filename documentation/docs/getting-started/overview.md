@@ -98,7 +98,7 @@ This means you can use refine seamlessly in different platforms like React Nativ
 - [🌟 Apply for the Priority support program!](https://s.refine.dev/enterprise) You can apply to priority support program and receive assistance from the refine **core** team in your **private** channel.
 - [Join the Discord community!](https://discord.gg/refine) It is the easiest way to get help and ask questions to the community.
 - [Join the GitHub Discussions](https://github.com/refinedev/refine/discussions) to ask anything about the refine project or give feedback; we would love to hear your thoughts!
-- [Learn how to contribute to the refine!](/docs/contributing/)
+- [Learn how to contribute to the refine!](/docs/further-readings/contributing/)
 - [Join our Guest Technical Writer Program](https://refine.dev/blog/refine-writer-program/) and become a blog writer for **refine**.
 
 ## Next Steps

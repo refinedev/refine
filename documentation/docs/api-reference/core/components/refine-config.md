@@ -706,7 +706,7 @@ const App: React.FC = () => (
 
 :::caution Deprecated
 
-React Query Devtools are removed from the `@refinedev/core` and this prop is no longer supported for the configuration of the devtools. You can use the `@tanstack/react-query-devtools` in your app directly to use the devtools. For more information, please check out [FAQ - How to use React Query Devtools with refine?](/docs/faq/#how-to-use-react-query-devtools-with-refine)
+React Query Devtools are removed from the `@refinedev/core` and this prop is no longer supported for the configuration of the devtools. You can use the `@tanstack/react-query-devtools` in your app directly to use the devtools. For more information, please check out [FAQ - How to use React Query Devtools with refine?](/docs/guides-concepts/faq/#how-to-use-react-query-devtools-with-refine)
 
 :::
 

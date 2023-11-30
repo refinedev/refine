@@ -591,7 +591,7 @@ The object accepts an event listener key and a function value. It overrides the 
 
 [`handleSubmit`](https://react-hook-form.com/api/useform/handlesubmit/) is a React hook form function for managing form submission events. It receives the form's data if the form validation is successful and passes it to the `submitHandler` function.
 
-Refer to the documentation to learn more about the [`onFinish`](https://refine.dev/docs/faq/#how-can-i-change-the-form-data-before-submitting-it-to-the-api) hook and the [`saveButtonProps`](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/#return-values) prop.
+Refer to the documentation to learn more about the [`onFinish`](https://refine.dev/docs/guides-concepts/faq/#how-can-i-change-the-form-data-before-submitting-it-to-the-api) hook and the [`saveButtonProps`](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/#return-values) prop.
 
 Now, if you save your progress and go back to the browser, everything should work as expected.
 

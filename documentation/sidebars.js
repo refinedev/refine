@@ -4,6 +4,7 @@ module.exports = {
         {
             type: "category",
             label: "Getting Started",
+            className: "category-as-header",
             items: [
                 "getting-started/overview",
                 "getting-started/quickstart",
@@ -14,7 +15,6 @@ module.exports = {
                 },
                 "examples/index",
             ],
-            className: "category-as-header",
         },
         {
             type: "link",
@@ -742,25 +742,12 @@ module.exports = {
             label: "Further Readings",
             className: "category-as-header",
             items: [
-                {
-                    type: "doc",
-                    id: "contributing",
-                },
-                {
-                    type: "doc",
-                    id: "testing",
-                },
+                "further-readings/contributing",
+                "further-readings/testing",
                 "further-readings/benchmarks",
                 "further-readings/telemetry",
-                {
-                    type: "doc",
-                    id: "comparison",
-                    label: "Comparison",
-                },
-                {
-                    type: "doc",
-                    id: "license",
-                },
+                "further-readings/comparison",
+                "further-readings/license",
             ],
         },
     ],

@@ -1,5 +1,4 @@
 ---
-id: comparison
 title: Comparison | Refine vs React-Admin vs AdminBro vs Retool vs Redwood
 ---
 
