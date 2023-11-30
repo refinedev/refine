@@ -811,7 +811,7 @@ The callback function receives two parameters:
 | ------------ | -------------------------------------------------------------------------- |
 | resource     | [`IResourceItem` \| `undefined`](#interfaces)                              |
 | resourceName | `string` \| `undefined`                                                    |
-| id           | [`BaseKey`](/docs/api-reference/core/interfaces.md#basekey)                |
+| id           | [`BaseKey`](/docs/core/interface-references/index#basekey)                 |
 | action       | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` |
 
 ### `useNewQueryKeys`

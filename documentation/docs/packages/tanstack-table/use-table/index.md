@@ -93,7 +93,7 @@ It also syncs the sorting state with the URL if you enable the [`syncWithLocatio
 
 It also syncs the filtering state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
-By default, filter operators are set to "eq" for all fields. You can specify which field will be filtered with which filter operator with the `filterOperator` property in the `meta` object. Just be aware that the `filterOperator` must be a [`CrudOperators`](/docs/api-reference/core/interfaces.md#crudoperators) type.
+By default, filter operators are set to "eq" for all fields. You can specify which field will be filtered with which filter operator with the `filterOperator` property in the `meta` object. Just be aware that the `filterOperator` must be a [`CrudOperators`](/docs/core/interface-references/index#crudoperators) type.
 
 <FilteringLivePreview/>
 

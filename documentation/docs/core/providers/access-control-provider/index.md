@@ -204,7 +204,7 @@ const useCan: ({
 }) => UseQueryResult<CanReturnType*>
 ```
 
-> For more information, refer to these sections in the Interfaces documentation: [`CanParams`](/docs/api-reference/core/interfaces.md#canparams) and [`CanReturnType`](/docs/api-reference/core/interfaces.md#canreturntype)
+> For more information, refer to these sections in the Interfaces documentation: [`CanParams`](/docs/core/interface-references/index#canparams) and [`CanReturnType`](/docs/core/interface-references/index#canreturntype)
 
 ### `<CanAccess />`
 

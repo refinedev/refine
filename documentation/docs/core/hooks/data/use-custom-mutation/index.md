@@ -281,25 +281,25 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Mutation Parameters
 
-| Property                                         | Description                                                                                        | Type                                                                                          |
-| ------------------------------------------------ | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| url <div className="required">Required</div>     | URL                                                                                                | string                                                                                        |
-| method <div className="required">Required</div>  | Method                                                                                             | `post`, `put`, `patch`, `delete`                                                              |
-| values <div className=" required">Required</div> | Values for mutation function                                                                       | `TVariables`                                                                                  |
-| config                                           | The config of your request. You can send `headers` using this field.                               | { headers?: {}; }                                                                             |
-| successNotification                              | Successful mutation notification                                                                   | [`SuccessErrorNotification`](/docs/api-reference/core/interfaces.md#successerrornotification) |
-| errorNotification                                | Unsuccessful mutation notification                                                                 | [`SuccessErrorNotification`](/docs/api-reference/core/interfaces.md#successerrornotification) |
-| meta                                             | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/api-reference/core/interfaces.md#metadataquery)                       |
-| dataProviderName                                 | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                      |
+| Property                                         | Description                                                                                        | Type                                                                                         |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| url <div className="required">Required</div>     | URL                                                                                                | string                                                                                       |
+| method <div className="required">Required</div>  | Method                                                                                             | `post`, `put`, `patch`, `delete`                                                             |
+| values <div className=" required">Required</div> | Values for mutation function                                                                       | `TVariables`                                                                                 |
+| config                                           | The config of your request. You can send `headers` using this field.                               | { headers?: {}; }                                                                            |
+| successNotification                              | Successful mutation notification                                                                   | [`SuccessErrorNotification`](/docs/core/interface-references/index#successerrornotification) |
+| errorNotification                                | Unsuccessful mutation notification                                                                 | [`SuccessErrorNotification`](/docs/core/interface-references/index#successerrornotification) |
+| meta                                             | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/core/interface-references/index#metadataquery)                       |
+| dataProviderName                                 | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                     |
 
 ### Type Parameters
 
-| Property | Description                                                                                         | Type                                                              | Default                                                           |
-| -------- | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| TData    | Result data of the query. Extends [`BaseRecord`](/docs/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/docs/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/docs/api-reference/core/interfaces.md#baserecord) |
-| TError   | Custom error object that extends [`HttpError`](/docs/api-reference/core/interfaces.md#httperror)    | [`HttpError`](/docs/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/docs/api-reference/core/interfaces.md#httperror)   |
-| TQuery   | Values for query params.                                                                            | `TQuery`                                                          | unknown                                                           |
-| TPayload | Values for params.                                                                                  | `TPayload`                                                        | unknown                                                           |
+| Property | Description                                                                                        | Type                                                             | Default                                                          |
+| -------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| TData    | Result data of the query. Extends [`BaseRecord`](/docs/core/interface-references/index#baserecord) | [`BaseRecord`](/docs/core/interface-references/index#baserecord) | [`BaseRecord`](/docs/core/interface-references/index#baserecord) |
+| TError   | Custom error object that extends [`HttpError`](/docs/core/interface-references/index#httperror)    | [`HttpError`](/docs/core/interface-references/index#httperror)   | [`HttpError`](/docs/core/interface-references/index#httperror)   |
+| TQuery   | Values for query params.                                                                           | `TQuery`                                                         | unknown                                                          |
+| TPayload | Values for params.                                                                                 | `TPayload`                                                       | unknown                                                          |
 
 ### Return value
 

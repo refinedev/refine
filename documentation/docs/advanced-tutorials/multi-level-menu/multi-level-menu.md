@@ -12,7 +12,7 @@ The multi-level menu is a great way to organize your sider menu items. You can c
 
 ## Usage
 
-To do this, it is necessary to create an object array with the following [resources properties](/docs/api-reference/core/interfaces.md#resourceitemprops):
+To do this, it is necessary to create an object array with the following [resources properties](/docs/core/interface-references/index#resourceitemprops):
 
 ```tsx title="src/App.tsx"
         <Refine

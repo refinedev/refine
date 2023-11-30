@@ -26,14 +26,14 @@ const postAuditLogResults = useLogList({
 
 ### Properties
 
-| Property                                                                                            | Type                                                                    | Default                         |
-| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | `string`                                                                | Action that it reads from route |
-| action                                                                                              | `string`                                                                |                                 |
-| author                                                                                              | `Record<string, any>`                                                   |                                 |
-| meta                                                                                                | `Record<string, any>`                                                   |                                 |
-| metaData                                                                                            | [`MetaDataQuery`](/docs/api-reference/core/interfaces.md#metadataquery) |                                 |
-| queryOptions                                                                                        | `UseQueryOptions<TQueryFnData, TError, TData>`                          |                                 |
+| Property                                                                                            | Type                                                                   | Default                         |
+| --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | `string`                                                               | Action that it reads from route |
+| action                                                                                              | `string`                                                               |                                 |
+| author                                                                                              | `Record<string, any>`                                                  |                                 |
+| meta                                                                                                | `Record<string, any>`                                                  |                                 |
+| metaData                                                                                            | [`MetaDataQuery`](/docs/core/interface-references/index#metadataquery) |                                 |
+| queryOptions                                                                                        | `UseQueryOptions<TQueryFnData, TError, TData>`                         |                                 |
 
 ### Type Parameters
 

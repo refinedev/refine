@@ -229,11 +229,11 @@ ButtonProps
 
 ## CanParams
 
-| Key      | Type                                                                                                                                                                               |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| resource | `string`                                                                                                                                                                           |
-| action   | `string`                                                                                                                                                                           |
-| params?  | { `resource`?: [IResourceItem](/docs/api-reference/core/interfaces.md#resourceitemprops), `id`?: [BaseKey](/docs/api-reference/core/interfaces.md#basekey), `[key: string]: any` } |
+| Key      | Type                                                                                                                                                                             |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| resource | `string`                                                                                                                                                                         |
+| action   | `string`                                                                                                                                                                         |
+| params?  | { `resource`?: [IResourceItem](/docs/core/interface-references/index#resourceitemprops), `id`?: [BaseKey](/docs/core/interface-references/index#basekey), `[key: string]: any` } |
 
 ## CanReturnType
 
