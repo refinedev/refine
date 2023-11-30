@@ -67,7 +67,7 @@ This is the page size that is parsed from the URL. It will be `undefined` if the
 
 This is the object that contains all the parameters that are parsed from the URL. It will be an empty object if there is no parameter in the URL. `params` object contains both the URL parameters and the query parameters.
 
-[routerprovider]: /docs/api-reference/core/providers/router-provider.md
+[routerprovider]: /docs/core/providers/router-provider/index
 
 ## Type Parameters
 

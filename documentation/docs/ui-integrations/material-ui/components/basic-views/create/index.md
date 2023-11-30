@@ -109,7 +109,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages/index) to customize it.
 
 :::
 
@@ -210,7 +210,7 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
 
 ### `saveButtonProps`
 
@@ -249,7 +249,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/api-reference/mui/components/buttons/save.md)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/material-ui/components/buttons/save-button/index)
 
 ### `goBack`
 
@@ -364,7 +364,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 
 :::tip
 
-This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component/index#breadcrumb)
 
 :::
 
@@ -413,7 +413,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/mui/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/material-ui/components/breadcrumb/index)
 
 ### `wrapperProps`
 
@@ -889,4 +889,4 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-[save-button]: /docs/api-reference/mui/components/buttons/save-button/
+[save-button]: /docs/ui-integrations/material-ui/components/buttons/save-button/index

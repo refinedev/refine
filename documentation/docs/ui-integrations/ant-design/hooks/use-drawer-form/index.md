@@ -7,7 +7,7 @@ The `useDrawerForm` hook allows you to manage a form within a Drawer. It returns
 
 :::info
 
-The`useDrawerForm` hook is extended from [`useForm`](/docs/api-reference/antd/hooks/form/useForm.md) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/master/packages/antd) package. This means that you can use all the features of [`useForm`](/docs/api-reference/antd/hooks/form/useForm.md) hook with it.
+The`useDrawerForm` hook is extended from [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/master/packages/antd) package. This means that you can use all the features of [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index) hook with it.
 
 :::
 
@@ -284,7 +284,7 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 
 :::tip
 
-All [`useForm`][antd-use-form] props are also available in `useDrawerForm`. You can find descriptions on the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) documentation.
+All [`useForm`][antd-use-form] props are also available in `useDrawerForm`. You can find descriptions on the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index#properties) documentation.
 
 :::
 
@@ -446,7 +446,7 @@ It contains the props needed by the `"delete"` button within the `<Drawer>` (dis
 
 It's required to manage `<Form>` state and actions. Under the hood the `formProps` came from [`useForm`][antd-use-form].
 
-It contains the props to manage the [Antd `<Form>`](https://ant.design/components/form#api) component such as [_`onValuesChange`, `initialValues`, `onFieldsChange`, `onFinish` etc._](/docs/api-reference/antd/hooks/form/useForm/#return-values)
+It contains the props to manage the [Antd `<Form>`](https://ant.design/components/form#api) component such as [_`onValuesChange`, `initialValues`, `onFieldsChange`, `onFinish` etc._](/docs/ui-integrations/ant-design/hooks/use-form/index#return-values)
 
 ### `drawerProps`
 
@@ -461,7 +461,7 @@ It's the width of the `<Drawer>`.
 #### `onClose`
 
 A function that can close the `<Drawer>`. It's useful when you want to close the `<Drawer>` manually.
-When [`warnWhenUnsavedChanges`](/docs/api-reference/antd/hooks/form/useForm/#warnwhenunsavedchanges) is `true`, it will show a confirmation modal before closing the `<Drawer>`. If you override this function, you have to handle this confirmation modal manually.
+When [`warnWhenUnsavedChanges`](/docs/ui-integrations/ant-design/hooks/use-form/index#warnwhenunsavedchanges) is `true`, it will show a confirmation modal before closing the `<Drawer>`. If you override this function, you have to handle this confirmation modal manually.
 
 #### `open`
 
@@ -541,7 +541,7 @@ export const UserCreate: React.FC = () => {
 
 <PropsTable module="@refinedev/antd/useDrawerForm"/>
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/api-reference/core/components/refine-config.md)>** component. `useDrawerForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/core/refine-component/index)>** component. `useDrawerForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 > `**`: If not explicitly configured, default value of `redirect` depends which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). Otherwise if `action` is `edit`, `redirect`s default value is `list`.
 
@@ -562,7 +562,7 @@ export const UserCreate: React.FC = () => {
 | ----------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
 | show              | A function that opens the drawer                             | `(id?: BaseKey) => void`                                                                                                                |
 | form              | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                          |
-| formProps         | Ant Design form props                                        | [`FormProps`](/docs/api-reference/antd/hooks/form/useForm/#properties)                                                                  |
+| formProps         | Ant Design form props                                        | [`FormProps`](/docs/ui-integrations/ant-design/hooks/use-form/index#properties)                                                         |
 | drawerProps       | Props for managed drawer                                     | [`DrawerProps`](#drawerprops)                                                                                                           |
 | saveButtonProps   | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                         |
 | deleteButtonProps | Adds props for delete button                                 | [`DeleteButtonProps`](/docs/core/interface-references/index#delete-button-props)                                                        |
@@ -578,4 +578,4 @@ export const UserCreate: React.FC = () => {
 
 [baserecord]: /docs/core/interface-references/index#baserecord
 [httperror]: /docs/core/interface-references/index#httperror
-[antd-use-form]: /docs/api-reference/antd/hooks/form/useForm.md
+[antd-use-form]: /docs/ui-integrations/ant-design/hooks/use-form/index

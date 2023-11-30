@@ -343,7 +343,7 @@ This function can be used to parse the query parameters of a table page. It can 
 
 In Remix you can achieve authentication control in multiple ways;
 
-On the client-side [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@refinedev/core` can be used to protect your pages from unauthenticated access.
+On the client-side [`Authenticated`](/docs/core/components/authenticated/index) component from `@refinedev/core` can be used to protect your pages from unauthenticated access.
 
 On the server-side `authProvider`'s `check` function inside server side functions (`loader`) to redirect unauthorized users to other pages using `redirect` from `@remix-run/node`.
 
@@ -758,7 +758,7 @@ There are two ways to do Server Side Authentication with Remix. You can choose o
 
 On the server-side `accessControlProvider`'s `can` function inside server side functions (`loader`) to redirect unauthorized users to other pages using `redirect` from `@remix-run/node`.
 
-First, let's build our [AccessControlProvider](/docs/api-reference/core/providers/access-control-provider.md)
+First, let's build our [AccessControlProvider](/docs/core/providers/access-control-provider/index)
 
 ```tsx title="app/acccessControlProvider.ts"
 export const accessControlProvider = {
@@ -838,7 +838,7 @@ Tadaa! that's all! 🎉
 
 ### Client Side
 
-For client-side, you can wrap your pages with [`CanAccess`](/docs/api-reference/core/components/accessControl/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
+For client-side, you can wrap your pages with [`CanAccess`](/docs/core/components/can-access/index) component from `@refinedev/core` to protect your pages from unauthorized access.
 
 ```tsx
 import { CanAccess } from "@refinedev/core";
@@ -1045,18 +1045,18 @@ Default paths are:
 
 <CodeSandboxExample path="with-remix-headless" hideSandbox />
 
-[routerprovider]: /api-reference/core/providers/router-provider.md
+[routerprovider]: /docs/core/providers/router-provider/index
 [remix]: https://remix.run/
 [remixrouter]: https://www.npmjs.com/package/@refinedev/remix-router
-[refine]: /api-reference/core/components/refine-config.md
+[refine]: /docs/core/refine-component/index
 [remixroutes]: https://remix.run/docs/en/v1/api/conventions#routes
-[usetable]: /docs/api-reference/core/hooks/useTable
+[usetable]: /docs/core/hooks/use-table/index
 [reactqueryssr]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [reactquery]: https://react-query.tanstack.com/
-[getlist]: /docs/api-reference/core/providers/data-provider/#getlist-
-[dataprovider]: /api-reference/core/providers/data-provider.md
-[usetable]: /docs/api-reference/core/hooks/useTable
+[getlist]: /docs/core/providers/data-provider/index#getlist-
+[dataprovider]: /docs/core/providers/data-provider/index
+[usetable]: /docs/core/hooks/use-table/index
 [interfaces]: /docs/core/interface-references/index/#crudfilters
 [loaderfunction]: https://remix.run/docs/en/v1/api/conventions#loader
 [jokesapp]: https://remix.run/docs/en/v1/tutorials/jokes#authentication
-[authprovider]: /api-reference/core/providers/auth-provider.md
+[authprovider]: /docs/core/providers/auth-provider/index

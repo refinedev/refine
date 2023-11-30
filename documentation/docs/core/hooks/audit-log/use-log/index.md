@@ -14,7 +14,7 @@ const { log, rename } = useLog();
 
 ## `log`
 
-The `log` mutation is used to create an audit log event using the `create` method from [`auditLogProvider`](/docs/api-reference/core/providers/audit-log-provider.md#create) under the hood.
+The `log` mutation is used to create an audit log event using the `create` method from [`auditLogProvider`](/docs/core/providers/audit-log-provider/index#create) under the hood.
 
 ```tsx
 import { useLog } from "@refinedev/core";
@@ -71,7 +71,7 @@ This hook can only be used if `auditLogProvider`'s `create` method is provided.
 
 ## `rename`
 
-The `rename` mutation is used to update an audit log event using the `update` method from [`auditLogProvider`](/docs/api-reference/core/providers/audit-log-provider.md#update) under the hood.
+The `rename` mutation is used to update an audit log event using the `update` method from [`auditLogProvider`](/docs/core/providers/audit-log-provider/index#update) under the hood.
 
 ```tsx
 import { useLog } from "@refinedev/core";
@@ -116,6 +116,6 @@ This hook can only be used if `auditLogProvider`'s `update` method is provided.
 
 :::info
 
-You can get audit logs with [`useLogList`](/docs/api-reference/core/hooks/audit-log/useLogList.md).
+You can get audit logs with [`useLogList`](/docs/core/hooks/audit-log/use-log/index).
 
 :::

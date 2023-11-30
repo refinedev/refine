@@ -69,6 +69,6 @@ You can pass the name of the data provider to use for the subscription.
 
 <PropsTable module="@refinedev/core/useSubscription"  />
 
-[live-provider]: /docs/api-reference/core/providers/live-provider
-[live-provider-subscribe]: /docs/api-reference/core/providers/live-provider/#subscribe
-[integrated-hooks]: /docs/api-reference/core/providers/live-provider/#integrated-hooks
+[live-provider]: /docs/core/providers/live-provider/index
+[live-provider-subscribe]: /docs/core/providers/live-provider/index#subscribe
+[integrated-hooks]: /docs/core/providers/live-provider/index#integrated-hooks

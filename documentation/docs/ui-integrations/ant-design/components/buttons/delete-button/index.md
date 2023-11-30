@@ -5,11 +5,11 @@ swizzle: true
 
 `<DeleteButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) and [`<Popconfirm>`](https://ant.design/components/popconfirm/) components.
 
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/docs/api-reference/core/providers/data-provider.md).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/core/hooks/data/use-delete/index) method provided by your [`dataProvider`](/docs/core/providers/data-provider/index).
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
 
 :::
 
@@ -105,7 +105,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "posts" and whose id is "123" will be deleted.
+Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete/index) method and then the record whose resource is "posts" and whose id is "123" will be deleted.
 
 :::note
 
@@ -151,7 +151,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "categories" and whose id is "2" will be deleted.
+Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete/index) method and then the record whose resource is "categories" and whose id is "2" will be deleted.
 
 :::note
 
@@ -161,7 +161,7 @@ Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hook
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
 
 ### `onSuccess`
 
@@ -293,7 +293,7 @@ render(
 
 ### `accessControl`
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/api-reference/core/providers/access-control-provider.md) is provided to [`<Refine/>`](/docs/api-reference/core/components/refine-config.md)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/core/providers/access-control-provider/index) is provided to [`<Refine/>`](/docs/core/refine-component/index)
 
 ```tsx
 import { DeleteButton } from "@refinedev/antd";
@@ -343,7 +343,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
+Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete/index) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
 
 :::note
 

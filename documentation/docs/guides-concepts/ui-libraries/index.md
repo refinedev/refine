@@ -12,10 +12,10 @@ Refine has out of the box support for the four libraries that are widely used in
 
 These integrations are made to provide solutions for common use cases such as menus, layouts, action buttons, tables, forms and more while providing a consistent design language with the UI library. Rather than a constraint, these integrations are designed as helpers and extensions to the core functionalities of Refine and the UI libraries.
 
-- [Ant Design with `@refinedev/antd`](/docs/api-reference/antd/introduction)
-- [Material UI with `@refinedev/mui`](/docs/api-reference/mui/introduction)
-- [Chakra UI with `@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/introduction)
-- [Mantine with `@refinedev/mantine`](/docs/api-reference/mantine/introduction)
+- [Ant Design with `@refinedev/antd`](/docs/ui-integrations/ant-design/introduction/index)
+- [Material UI with `@refinedev/mui`](/docs/ui-integrations/material-ui/introduction/index)
+- [Chakra UI with `@refinedev/chakra-ui`](/docs/ui-integrations/chakra-ui/introduction/index)
+- [Mantine with `@refinedev/mantine`](/docs/ui-integrations/mantine/introduction/index)
 
 ## Prebuilt Components
 
@@ -126,7 +126,7 @@ import { Refine } from "@refinedev/core";
 />
 ```
 
-[To learn more about the options, check out the `<Refine>` component documentation.](/docs/api-reference/core/components/refine-config)
+[To learn more about the options, check out the `<Refine>` component documentation.](/docs/core/refine-component/index)
 
 ### Using the `swizzle` command
 
@@ -155,7 +155,7 @@ Pages
 (Move up and down to reveal more choices)
 ```
 
-[To learn more about the `swizzle` command, check out the CLI documentation.](/docs/packages/documentation/cli/)
+[To learn more about the `swizzle` command, check out the CLI documentation.](/docs/packages/list-of-packages/index)
 
 > While `swizzle` provides a way to customize the components, it's a one time operation and it may be hard to maintain the changes and keep track of the new features in the future. Swizzling a component will detach it from the related package and it will be your responsibility to keep it up to date.
 

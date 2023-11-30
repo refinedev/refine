@@ -284,7 +284,7 @@ When a record is deleted with the `useDeleteMany` hook, refine automatically sen
 
 :::tip
 
-If [`getUserIdentity`](/docs/api-reference/core/providers/auth-provider.md) is defined in your auth provider, the `author` object will be added to the event with the value returned by `getUserIdentity`.
+If [`getUserIdentity`](/docs/core/providers/auth-provider/index) is defined in your auth provider, the `author` object will be added to the event with the value returned by `getUserIdentity`.
 
 :::
 
@@ -317,7 +317,7 @@ export const auditLogProvider: AuditLogProvider = {
 
 :::info
 
-For more information, refer to the [`useLog` documentation&#8594](/docs/api-reference/core/hooks/audit-log/useLog.md)
+For more information, refer to the [`useLog` documentation&#8594](/docs/core/hooks/audit-log/use-log/index)
 
 :::
 
@@ -354,7 +354,7 @@ export const auditLogProvider: AuditLogProvider = {
 
 :::info
 
-For more information, refer to the [`useLog` documentation&#8594](/docs/api-reference/core/hooks/audit-log/useLog.md)
+For more information, refer to the [`useLog` documentation&#8594](/docs/core/hooks/audit-log/use-log/index)
 
 :::
 
@@ -368,12 +368,12 @@ You can use this hook to name an event and create a milestone.
 
 The following hooks will call **Audit Log Provider**'s `create` method when a mutation is successful.
 
-| Package                    | Hooks                                                                                                                                                                                                                                                                      |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| @refinedev/core            | [useForm](/docs/api-reference/core/hooks/useForm/)                                                                                                                                                                                                                         |
-| @refinedev/antd            | [useForm](/docs/api-reference/antd/hooks/form/useForm.md), [useModalForm](/docs/api-reference/antd/hooks/form/useModalForm.md), [useDrawerForm](/docs/api-reference/antd/hooks/form/useDrawerForm.md), [useStepsForm](/docs/api-reference/antd/hooks/form/useStepsForm.md) |
-| @refinedev/mantine         | [useForm](/docs/api-reference/mantine/hooks/form/useForm), [useModalForm](/docs/api-reference/mantine/hooks/form/useModalForm), [useDrawerForm](/docs/api-reference/mantine/hooks/form/useDrawerForm), [useStepsForm](/docs/api-reference/mantine/hooks/form/useStepsForm) |
-| @refinedev/react-hook-form | [useForm](/docs/packages/documentation/react-hook-form/useForm/), [useModalForm](/docs/packages/documentation/react-hook-form/useModalForm/), [useStepsForm](/docs/packages/documentation/react-hook-form/useStepsForm/)                                                   |
+| Package                    | Hooks                                                                                                                                                                                                                                                                                                     |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| @refinedev/core            | [useForm](/docs/api-reference/core/hooks/useForm/)                                                                                                                                                                                                                                                        |
+| @refinedev/antd            | [useForm](/docs/ui-integrations/ant-design/hooks/use-form/index), [useModalForm](/docs/ui-integrations/ant-design/hooks/use-modal-form/index), [useDrawerForm](/docs/ui-integrations/ant-design/hooks/use-drawer-form/index), [useStepsForm](/docs/ui-integrations/ant-design/hooks/use-steps-form/index) |
+| @refinedev/mantine         | [useForm](/docs/ui-integrations/mantine/hooks/use-form/index), [useModalForm](/docs/ui-integrations/mantine/hooks/use-modal-form/index), [useDrawerForm](/docs/ui-integrations/mantine/hooks/use-drawer-form/index), [useStepsForm](/docs/ui-integrations/mantine/hooks/use-steps-form/index)             |
+| @refinedev/react-hook-form | [useForm](/docs/packages/list-of-packages/index), [useModalForm](/docs/packages/list-of-packages/index), [useStepsForm](/docs/packages/list-of-packages/index)                                                                                                                                            |
 
 Here are the parameters each hook send to `create`:
 

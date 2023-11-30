@@ -104,7 +104,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages/index) to customize it.
 
 :::
 
@@ -217,15 +217,15 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
 
 ### `canDelete` and `canEdit`
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
 
-When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/core/providers/data-provider/index) and the edit button redirects the user to the record edit page.
 
-> For more information, refer to the [`<DeleteButton>`](/docs/api-reference/antd/components/buttons/delete.md) and the [`<EditButton>`](/docs/api-reference/antd/components/buttons/edit.md) documentation.
+> For more information, refer to the [`<DeleteButton>`](/docs/ui-integrations/ant-design/components/buttons/delete-button/index) and the [`<EditButton>`](/docs/ui-integrations/ant-design/components/buttons/edit-button/index) documentation.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
@@ -333,7 +333,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions/index)
 
 ### `recordItemId`
 
@@ -551,7 +551,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 
 :::tip
 
-This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component/index#breadcrumb)
 
 :::
 
@@ -618,7 +618,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/mantine/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/mantine/components/breadcrumb/index)
 
 ### `wrapperProps`
 
@@ -1144,7 +1144,7 @@ render(
 
 <PropsTable module="@refinedev/mantine/Show" title-default="<Title order={3}>Show {resource.name}</Title>"/>
 
-[list-button]: /docs/api-reference/mantine/components/buttons/list-button/
-[refresh-button]: /docs/api-reference/mantine/components/buttons/refresh-button/
-[edit-button]: /docs/api-reference/mantine/components/buttons/edit-button/
-[delete-button]: /docs/api-reference/mantine/components/buttons/delete-button/
+[list-button]: /docs/ui-integrations/mantine/components/buttons/list-button/index
+[refresh-button]: /docs/ui-integrations/mantine/components/buttons/refresh-button/index
+[edit-button]: /docs/ui-integrations/mantine/components/buttons/edit-button/index
+[delete-button]: /docs/ui-integrations/mantine/components/buttons/delete-button/index

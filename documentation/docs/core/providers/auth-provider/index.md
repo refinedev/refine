@@ -612,7 +612,7 @@ if (data?.includes("admin")) {
 
 Though `usePermissions` hook can be used for simple authorization purposes, if you need more complex authorization logic, we recommend using the access control provider.
 
-For more information, refer to the [`accessControlProvider` documentation&#8594](/docs/api-reference/core/providers/access-control-provider/)
+For more information, refer to the [`accessControlProvider` documentation&#8594](/docs/core/providers/access-control-provider/index)
 
 :::
 
@@ -1193,13 +1193,13 @@ const App = () => {
 
 <AuthProviderExamplesLinks/>
 
-[use-login]: /docs/api-reference/core/hooks/authentication/useLogin/
-[use-logout]: /docs/api-reference/core/hooks/authentication/useLogout/
-[use-is-authenticated]: /docs/api-reference/core/hooks/authentication/useIsAuthenticated/
-[use-on-error]: /docs/api-reference/core/hooks/authentication/useOnError/
-[use-get-identity]: /docs/api-reference/core/hooks/authentication/useGetIdentity/
-[use-permissions]: /docs/api-reference/core/hooks/authentication/usePermissions/
-[use-register]: /docs/api-reference/core/hooks/authentication/useRegister/
-[use-forgot-password]: /docs/api-reference/core/hooks/authentication/useForgotPassword/
-[use-update-password]: /docs/api-reference/core/hooks/authentication/useUpdatePassword/
+[use-login]: /docs/core/hooks/auth/use-login/index
+[use-logout]: /docs/core/hooks/auth/use-logout/index
+[use-is-authenticated]: /docs/core/hooks/auth/use-is-authenticated/index
+[use-on-error]: /docs/core/hooks/auth/use-on-error/index
+[use-get-identity]: /docs/core/hooks/auth/use-get-identity/index
+[use-permissions]: /docs/core/hooks/auth/use-permissions/index
+[use-register]: /docs/core/hooks/auth/use-register/index
+[use-forgot-password]: /docs/core/hooks/auth/use-forgot-password/index
+[use-update-password]: /docs/core/hooks/auth/use-update-password/index
 [create-auth-provider-tutorial]: /docs/tutorial/understanding-authprovider/create-authprovider

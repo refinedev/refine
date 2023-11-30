@@ -142,7 +142,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
 
 :::
 

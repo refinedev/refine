@@ -28,7 +28,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-> For more information, refer to the [`<ImportButton>` interface &#8594](/docs/api-reference/antd/components/buttons/import-button/)
+> For more information, refer to the [`<ImportButton>` interface &#8594](/docs/ui-integrations/ant-design/components/buttons/import-button/index)
 
 Also, you can use the `inputProps` and `uploadProps` properties without the `<ImportButton>` component for more customization:
 
@@ -61,7 +61,7 @@ useImport({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation #8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation #8594](/docs/core/refine-component/index#identifier)
 
 ### `mapData`
 
@@ -227,7 +227,7 @@ It is a boolean value that indicates whether the import is in progress.
 
 ### `mutationResult`
 
-Result of the [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useCreateMany`](/docs/api-reference/core/hooks/data/useCreateMany/) method of your data provider.
+Result of the [`useCreate`](/docs/core/hooks/data/use-create/index) or [`useCreateMany`](/docs/core/hooks/data/use-create/index) method of your data provider.
 
 ## FAQ
 
@@ -305,4 +305,4 @@ With this code, the parsed data will be mapped to conform to the API requirement
 [papaparse]: https://www.papaparse.com/docs
 [usemutation]: https://react-query.tanstack.com/reference/useMutation
 [number.max_safe_integer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
-[use-import-core]: /docs/api-reference/core/hooks/import-export/useImport/
+[use-import-core]: /docs/core/hooks/utilities/use-import/index

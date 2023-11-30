@@ -7,7 +7,7 @@ swizzle: true
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
 
 :::
 
@@ -159,7 +159,7 @@ Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and 
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
 
 ### `hideText`
 
@@ -250,4 +250,4 @@ It also accepts all props of Ant Design [Button](https://ant.design/components/b
 
 :::
 
-[use-invalidate]: /docs/api-reference/core/hooks/invalidate/useInvalidate
+[use-invalidate]: /docs/core/hooks/data/use-invalidate/index

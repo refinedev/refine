@@ -152,7 +152,7 @@ If the `resource` definition has a `label` property, `useBreadcrumbs` uses the `
 
 :::info
 
-If a `label` is not provided in your `posts` resource, `useBreadcrumb` uses the [`useTranslate`](/docs/api-reference/core/hooks/translate/useTranslate.md) hook to translate the names.
+If a `label` is not provided in your `posts` resource, `useBreadcrumb` uses the [`useTranslate`](/docs/core/hooks/translate/use-translate/index) hook to translate the names.
 
 For CRUD operations (`list`,`create`,`edit`,`show`) the `useBreadcrumb` uses the `actions` key to translate the key `` translate(`actions.${action}`) ``.
 

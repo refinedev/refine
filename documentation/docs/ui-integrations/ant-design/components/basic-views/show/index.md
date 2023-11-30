@@ -67,7 +67,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
 
 :::
 
@@ -171,13 +171,13 @@ render(<App />);
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
 
 ### `canDelete` and `canEdit`
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component.
 
-When clicked on, the delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
+When clicked on, the delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/core/providers/data-provider/index) and the edit button redirects the user to the record edit page.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
 const { ShowButton, Edit } = RefineAntd;
@@ -277,9 +277,9 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions/index)
 
-> For more information, refer to the [`<DeleteButton>`](/docs/api-reference/antd/components/buttons/delete.md) and the [`<EditButton>`](/docs/api-reference/antd/components/buttons/edit.md) documentations.
+> For more information, refer to the [`<DeleteButton>`](/docs/ui-integrations/ant-design/components/buttons/delete-button/index) and the [`<EditButton>`](/docs/ui-integrations/ant-design/components/buttons/edit-button/index) documentations.
 
 ### `recordItemId`
 
@@ -527,11 +527,11 @@ render(
 
 :::tip
 
-This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component/index#breadcrumb)
 
 :::
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/antd/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/ant-design/components/breadcrumb/index)
 
 ### `wrapperProps`
 
@@ -956,7 +956,7 @@ contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
 headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)"
 headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/antd/components/buttons/list-button/), [`RefreshButton`](https://refine.dev/docs/api-reference/antd/components/buttons/refresh-button/), [`EditButton`](https://refine.dev/docs/api-reference/antd/components/buttons/edit-button/) and [`DeleteButton`](https://refine.dev/docs/api-reference/antd/components/buttons/delete-button/)"
 headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
-deleteButtonProps-type="[`DeleteButtonProps`](/docs/api-reference/antd/components/buttons/delete-button/)"
+deleteButtonProps-type="[`DeleteButtonProps`](/docs/ui-integrations/ant-design/components/buttons/delete-button/index)"
 saveButtonProps-type="[`SaveButtonProps`](https://refine.dev/docs/api-reference/antd/components/buttons/save-button/)"
 footerButtonsProps-type="[`SpaceProps`](https://ant.design/components/space/)"
 breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
@@ -964,7 +964,7 @@ goBack-default="`<ArrowLeft />`"
 goBack-type="`ReactNode`"
 />
 
-[list-button]: /docs/api-reference/antd/components/buttons/list-button/
-[refresh-button]: /docs/api-reference/antd/components/buttons/refresh-button/
-[edit-button]: /docs/api-reference/antd/components/buttons/edit-button/
-[delete-button]: /docs/api-reference/antd/components/buttons/delete-button/
+[list-button]: /docs/ui-integrations/ant-design/components/buttons/list-button/index
+[refresh-button]: /docs/ui-integrations/ant-design/components/buttons/refresh-button/index
+[edit-button]: /docs/ui-integrations/ant-design/components/buttons/edit-button/index
+[delete-button]: /docs/ui-integrations/ant-design/components/buttons/delete-button/index

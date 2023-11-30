@@ -5,7 +5,7 @@ source: /packages/core/src/hooks/invalidate
 
 `useInvalidate` is a hook that can be used to invalidate the state of a particular `resource` or [`dataProvider`][data-provider] (with dataProviderName).
 
-This hook will be called when a mutation hook is successful. For example, creating a `Posts` with the [useCreate](/docs/api-reference/core/hooks/data/useCreate/) hook will invalidate the `list` ([useList](/docs/api-reference/core/hooks/data/useList/)) and `many` ([useMany](/docs/api-reference/core/hooks/data/useMany/)) state of the `Posts` resource.
+This hook will be called when a mutation hook is successful. For example, creating a `Posts` with the [useCreate](/docs/core/hooks/data/use-create/index) hook will invalidate the `list` ([useList](/docs/core/hooks/data/use-list/index)) and `many` ([useMany](/docs/core/hooks/data/use-many/index)) state of the `Posts` resource.
 
 :::info-tip
 
@@ -136,4 +136,4 @@ By default settings, all the targeted queries are invalidated and the active one
 | invalidationFilters                                                                                   | The filters to use when picking queries to invalidate             | [`InvalidateQueryFilters`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries) | `{ type: "all", refetchType: "active" }` |
 | invalidationOptions                                                                                   | The options to use in the invalidation process                    | [`InvalidateOptions`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries)      | `{ cancelRefetch: false }`               |
 
-[data-provider]: /docs/api-reference/core/providers/data-provider/
+[data-provider]: /docs/core/providers/data-provider/index

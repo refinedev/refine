@@ -427,7 +427,7 @@ export const Authenticated: React.FC = ({ children }) => {
 
 Though auth hooks should be familiar, they need to updated according to the new system.
 
-[Please refer to the hooks documentation for more information.](/docs/api-reference/core/providers/auth-provider.md/#hooks-and-components)
+[Please refer to the hooks documentation for more information.](/docs/core/providers/auth-provider/index#hooks-and-components)
 
 ## Backward compatibility
 

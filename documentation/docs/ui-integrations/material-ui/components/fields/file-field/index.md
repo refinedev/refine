@@ -7,7 +7,7 @@ This field is used to display files and it uses the [`<Link>`](https://mui.com/m
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages/index) to customize it.
 
 :::
 

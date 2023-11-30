@@ -6,15 +6,15 @@ source: packages/core/src/hooks/data/useCustomMutation.ts
 
 `useCustomMutation` is used when sending custom mutation requests using the TanStack Query advantages. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `custom` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
+It uses the `custom` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider/index) which is passed to `<Refine>`.
 
 :::danger attention
 
-`useCustomMutation` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useUpdate](/docs/api-reference/core/hooks/data/useUpdate/) or [useDelete](/docs/api-reference/core/hooks/data/useDelete/).
+`useCustomMutation` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/core/hooks/data/use-create/index), [useUpdate](/docs/core/hooks/data/use-update/index) or [useDelete](/docs/core/hooks/data/use-delete/index).
 
 This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
-If you need to custom query request, use the [useCustom](/docs/api-reference/core/hooks/data/useCustomMutation/) hook.
+If you need to custom query request, use the [useCustom](/docs/core/hooks/data/use-custom/index) hook.
 
 :::
 
@@ -148,7 +148,7 @@ mutate({
 
 :::caution
 
-[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
 
 :::
 
@@ -170,7 +170,7 @@ mutate({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+> [`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
 
 After data fetching is failed, `useCustomMutation` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 

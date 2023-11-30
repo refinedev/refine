@@ -300,7 +300,7 @@ For example, after creating, updating, or deleting a record for `products` resou
 
 **refine** has out-of-the-box notification providers for popular UI libraries like **Ant Design**, **Material UI**, **Chakra UI**, and **Mantine**.
 
-> See the [Notifications](/docs/api-reference/core/providers/notification-provider) guide for more information.
+> See the [Notifications](/docs/core/providers/notification-provider/index) guide for more information.
 
 #### Hooks
 
@@ -426,7 +426,7 @@ When provided, our UI Integrations works out-of-the-box with I18n Provider.
 
 For example, it will automatically translate menu items, button texts, table columns, page titles, and more.
 
-> See the [Internationalization](/docs/api-reference/core/providers/i18n-provider/) guide for more information.
+> See the [Internationalization](/docs/core/providers/i18n-provider/index) guide for more information.
 
 ### Router Provider
 
@@ -548,17 +548,17 @@ import { MantineLayout } from './layout/mantine';
 
 Refine provides a set of hooks to handle form state, validation, submission, autosave, and more. These hooks seamlessly integrate with popular UI libraries, making it easier to use their form components.
 
-- [React Hook Form](https://react-hook-form.com/) (for Headless, Material UI, Chakra UI) - [Documentation](/packages/documentation/react-hook-form/useForm.md) - [Example](/examples/form/react-hook-form/useForm.md)
-- [Ant Design Form](https://ant.design/components/form/#header) - [Documentation](/api-reference/antd/hooks/form/useForm.md) - [Example](/examples/form/antd/useForm.md)
-- [Mantine Form](https://mantine.dev/form/use-form) - [Documentation](/api-reference/mantine/hooks/form/useForm.md) - [Example](/examples/form/mantine/useForm.md)
+- [React Hook Form](https://react-hook-form.com/) (for Headless, Material UI, Chakra UI) - [Documentation](/docs/packages/list-of-packages/index) - [Example](/examples/form/react-hook-form/useForm.md)
+- [Ant Design Form](https://ant.design/components/form/#header) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-form/index) - [Example](/examples/form/antd/useForm.md)
+- [Mantine Form](https://mantine.dev/form/use-form) - [Documentation](/docs/ui-integrations/mantine/hooks/use-form/index) - [Example](/examples/form/mantine/useForm.md)
 
 ### Tables <GuideBadge id="guides-concepts/tables" />
 
 Refine offers seamless integration with several popular UI libraries, simplifying the use of their table component features such as pagination, sorting, filtering, and more.
 
-- [TanStack Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/docs/packages/documentation/tanstack-table/introduction) - [Example](/docs/examples/table/tanstack-table/basic-tanstack-table/)
-- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/docs/api-reference/antd/hooks/table/useTable) - [Example](/examples/table/antd/useTable.md)
-- [Material UI DataGrid](https://mui.com/x/react-data-grid/) - [Documentation](/docs/api-reference/mui/hooks/useDataGrid) - [Example](/examples/table/mui/useDataGrid.md)
+- [TanStack Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/docs/packages/list-of-packages/index) - [Example](/docs/examples/table/tanstack-table/basic-tanstack-table/)
+- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-table/index) - [Example](/examples/table/antd/useTable.md)
+- [Material UI DataGrid](https://mui.com/x/react-data-grid/) - [Documentation](/docs/ui-integrations/material-ui/hooks/use-data-grid/index) - [Example](/examples/table/mui/useDataGrid.md)
 
 ### Layout
 
@@ -741,7 +741,7 @@ export const myAccessControlProvider = {
 
 These are some but not all examples of how you can use the `meta` property.
 
-> See the [Refine Component](/docs/api-reference/core/components/refine-config/) page for more information.
+> See the [Refine Component](/docs/core/refine-component/index) page for more information.
 
 ## State Management
 
@@ -763,7 +763,7 @@ Key Aspects of State Management in refine:
 
 refine CLI allows you to interact with your **refine** project and perform certain tasks such as creating a new resource, managing version updates, swizzling components, running your project (build, start, dev).
 
-> See the [CLI](/docs/packages/documentation/cli/) page for more information.
+> See the [CLI](/docs/packages/list-of-packages/index) page for more information.
 
 ### Devtools
 
@@ -775,7 +775,7 @@ refine CLI allows you to interact with your **refine** project and perform certa
 
 `@refinedev/inferencer` is a package that automatically generates basic boilerplate code for your application based on API responses, serving as a starting point to save time. However, it's not always reliable for all cases and isn't intended for production use.
 
-> See the [Inferencer](/docs/packages/documentation/inferencer/) page for more information.
+> See the [Inferencer](/docs/packages/list-of-packages/index) page for more information.
 
 For example, the following code:
 

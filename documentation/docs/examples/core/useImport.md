@@ -8,7 +8,6 @@ example-tags: [headless]
 
 The `useImport` hook was created by **refine** to help you import CSV files. You can use this hook to import your CSV data. This example shows how to use the `useImport` hook.
 
-[Refer to the **refine** useImport hook documentation for more information. →](/docs/api-reference/core/hooks/import-export/useImport/)
-
+[Refer to the **refine** useImport hook documentation for more information. →](/docs/core/hooks/utilities/use-import/index)
 
 <CodeSandboxExample path="core-use-import" />

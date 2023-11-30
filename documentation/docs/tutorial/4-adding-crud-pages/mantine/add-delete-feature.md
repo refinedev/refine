@@ -51,7 +51,7 @@ tutorial:
 
 You can now delete a record from the list page by clicking on the delete button of any blog post.
 
-> For more information, refer to the [`<DeleteButton/>` documentation&#8594](/docs/api-reference/mantine/components/buttons/delete-button/)
+> For more information, refer to the [`<DeleteButton/>` documentation&#8594](/docs/ui-integrations/mantine/components/buttons/delete-button/index)
 
 ## Enabling the Delete Feature on Show and Edit Pages
 
@@ -109,7 +109,7 @@ export default App;
 
 After setting the `canDelete` property in `meta` to `true`, you will see a delete button on both show and edit pages.
 
-> For more information, refer to the [`canDelete` section of the `<Refine/>` documentation&#8594](/docs/api-reference/core/components/refine-config.md#candelete)
+> For more information, refer to the [`canDelete` section of the `<Refine/>` documentation&#8594](/docs/core/refine-component/index#candelete)
 
 <br/>
 
@@ -117,7 +117,7 @@ After setting the `canDelete` property in `meta` to `true`, you will see a delet
 
 You can also use `useDelete` hook provided by **refine** to delete a record.
 
-For more information, refer to the [`useDelete` documentation&#8594](/docs/api-reference/core/hooks/data/useDelete/)
+For more information, refer to the [`useDelete` documentation&#8594](/docs/core/hooks/data/use-delete/index)
 
 :::
 

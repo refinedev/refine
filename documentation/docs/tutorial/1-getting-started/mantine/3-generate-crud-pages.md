@@ -24,7 +24,7 @@ Overall, using Inferencer will greatly speed up development time and reduce the 
 
 #### Learn Inferencer
 
-You can Learn more about [how Inferencer works](/docs/packages/documentation/inferencer) and [how to use it with Mantine](/docs/api-reference/mantine/components/inferencer/) in our documents.
+You can Learn more about [how Inferencer works](/docs/packages/list-of-packages/index) and [how to use it with Mantine](/docs/ui-integrations/mantine/components/inferencer/index) in our documents.
 
 ## How to use Inferencer
 

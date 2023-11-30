@@ -69,4 +69,4 @@ Component to render while checking whether the user is logged in.
 
 <PropsTable module="@refinedev/core/Authenticated"/>
 
-[use-is-authenticated]: /docs/api-reference/core/hooks/authentication/useIsAuthenticated
+[use-is-authenticated]: /docs/core/hooks/auth/use-is-authenticated/index

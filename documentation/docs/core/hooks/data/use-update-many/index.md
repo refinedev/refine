@@ -6,7 +6,7 @@ source: packages/core/src/hooks/data/useUpdateMany.ts
 
 `useUpdateMany` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.
 
-- It uses the `updateMany` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
+- It uses the `updateMany` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider/index) which is passed to `<Refine>`.
 
 It is useful when you want to update many records at once.
 
@@ -37,11 +37,11 @@ mutate({
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+> This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider/index).
 
 When the `useUpdateMany` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/core/providers/live-provider/index)
 
 ## Invalidating Queries
 
@@ -136,7 +136,7 @@ mutate({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
 
 ### `ids` <PropTag required />
 
@@ -232,7 +232,7 @@ const MyComponent = () => {
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+> [`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
 
 After data is fetched successfully, `useUpdateMany` can call the `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -252,7 +252,7 @@ mutate({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+> [`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
 
 After data fetching is failed, `useUpdateMany` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -501,7 +501,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 | dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                     | `default`                                                    |
 | invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                      | `["list", "many", "detail"]`                                 |
 
-> `*`: These props have default values in `RefineContext` and can also be set on [`<Refine>`](/docs/api-reference/core/components/refine-config.md) component. `useUpdateMany` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on [`<Refine>`](/docs/core/refine-component/index) component. `useUpdateMany` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>
 

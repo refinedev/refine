@@ -31,4 +31,4 @@ const MyComponent = () => {
 
 This is the path that the link will navigate to. It should be a string.
 
-[routerprovider]: /docs/api-reference/core/providers/router-provider.md
+[routerprovider]: /docs/core/providers/router-provider/index

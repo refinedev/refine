@@ -8,7 +8,7 @@ import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
 `useOne` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) that supports all of its features and adds some more.
 
-- It uses the `getOne` method as the **query function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
+- It uses the `getOne` method as the **query function** from the [`dataProvider`](/docs/core/providers/data-provider/index) which is passed to `<Refine>`.
 
 - It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 
@@ -26,13 +26,13 @@ When these properties are changed, the `useOne` hook will trigger a new request.
 
 :::caution
 
-This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider/index).
 
 :::
 
 When the `useOne` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-> For more information, refer to the [`liveProvider` documentation&#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation&#8594](/docs/core/providers/live-provider/index)
 
 ## Properties
 
@@ -50,7 +50,7 @@ useOne({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
 
 ### `id` <PropTag required />
 
@@ -137,7 +137,7 @@ const myDataProvider = {
 
 :::caution
 
-[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
 
 :::
 
@@ -159,7 +159,7 @@ useOne({
 
 :::caution
 
-[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
 
 :::
 
@@ -181,12 +181,12 @@ useOne({
 
 :::caution
 
-[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
 
 :::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check the [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+For more information about live mode, please check the [Live / Realtime](/docs/core/providers/live-provider/index#livemode) page.
 
 ```tsx
 useOne({
@@ -194,13 +194,13 @@ useOne({
 });
 ```
 
-> For more information, refer to the [Live / Realtime page&#8594](/docs/api-reference/core/providers/live-provider/#livemode)
+> For more information, refer to the [Live / Realtime page&#8594](/docs/core/providers/live-provider/index#livemode)
 
 ### `onLiveEvent`
 
 :::caution
 
-[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
 
 :::
 
@@ -218,11 +218,11 @@ useOne({
 
 :::caution
 
-[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
 
 :::
 
-Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider/index#subscribe) method.
 
 ### `overtimeOptions`
 

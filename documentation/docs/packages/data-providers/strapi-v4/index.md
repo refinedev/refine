@@ -27,20 +27,20 @@ A few of the Strapi-v4 API features are as follows:
 
 Hooks and components that support `meta`:
 
-| Supported data hooks                                                         | Supported other hooks                                                              | Supported components                                                                 |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| [`useUpdate` &#8594](/docs/api-reference/core/hooks/data/useUpdate/)         | [`useForm` &#8594](/docs/api-reference/core/hooks/useForm)                         | [`DeleteButton` &#8594](/docs/api-reference/antd/components/buttons/delete-button)   |
-| [`useUpdateMany` &#8594](/docs/api-reference/core/hooks/data/useUpdateMany/) | [`useModalForm` &#8594](/docs/api-reference/antd/hooks/form/useModalForm)          | [`RefreshButton` &#8594](/docs/api-reference/antd/components/buttons/refresh-button) |
-| [`useDelete` &#8594](/docs/api-reference/core/hooks/data/useDelete/)         | [`useDrawerForm` &#8594](/docs/api-reference/antd/hooks/form/useDrawerForm)        |                                                                                      |
-| [`useDeleteMany` &#8594](/docs/api-reference/core/hooks/data/useDeleteMany/) | [`useStepsForm` &#8594](/docs/api-reference/antd/hooks/form/useStepsForm)          |                                                                                      |
-| [`useCreate` &#8594](/docs/api-reference/core/hooks/data/useCreate/)         | [`useTable` &#8594](/docs/api-reference/core/hooks/useTable)                       |                                                                                      |
-| [`useCreateMany` &#8594](/docs/api-reference/core/hooks/data/useCreateMany/) | [`useEditableTable` &#8594](/docs/api-reference/antd/hooks/table/useEditableTable) |                                                                                      |
-| [`useList` &#8594](/docs/api-reference/core/hooks/data/useList/)             | [`useSimpleList` &#8594](/docs/api-reference/antd/hooks/list/useSimpleList)        |                                                                                      |
-| [`useOne` &#8594](/docs/api-reference/core/hooks/data/useOne/)               | [`useShow` &#8594](/docs/api-reference/core/hooks/show/useShow)                    |                                                                                      |
-| [`useMany` &#8594](/docs/api-reference/core/hooks/data/useMany/)             | [`useExport` &#8594](/docs/api-reference/core/hooks/import-export/useExport)       |                                                                                      |
-| [`useCustom` &#8594](/docs/api-reference/core/hooks/data/useCustom/)         | [`useCheckboxGroup` &#8594](/docs/api-reference/antd/hooks/field/useCheckboxGroup) |                                                                                      |
-|                                                                              | [`useSelect` &#8594](/docs/api-reference/core/hooks/useSelect/)                    |                                                                                      |
-|                                                                              | [`useRadioGroup` &#8594](/docs/api-reference/antd/hooks/field/useRadioGroup)       |                                                                                      |
+| Supported data hooks                                             | Supported other hooks                                                                        | Supported components                                                                               |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [`useUpdate` &#8594](/docs/core/hooks/data/use-update/index)     | [`useForm` &#8594](/docs/api-reference/core/hooks/useForm)                                   | [`DeleteButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/delete-button/index)   |
+| [`useUpdateMany` &#8594](/docs/core/hooks/data/use-update/index) | [`useModalForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-modal-form/index)         | [`RefreshButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/refresh-button/index) |
+| [`useDelete` &#8594](/docs/core/hooks/data/use-delete/index)     | [`useDrawerForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-drawer-form/index)       |                                                                                                    |
+| [`useDeleteMany` &#8594](/docs/core/hooks/data/use-delete/index) | [`useStepsForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-steps-form/index)         |                                                                                                    |
+| [`useCreate` &#8594](/docs/core/hooks/data/use-create/index)     | [`useTable` &#8594](/docs/core/hooks/use-table/index)                                        |                                                                                                    |
+| [`useCreateMany` &#8594](/docs/core/hooks/data/use-create/index) | [`useEditableTable` &#8594](/docs/ui-integrations/ant-design/hooks/use-editable-table/index) |                                                                                                    |
+| [`useList` &#8594](/docs/core/hooks/data/use-list/index)         | [`useSimpleList` &#8594](/docs/ui-integrations/ant-design/hooks/use-simple-list/index)       |                                                                                                    |
+| [`useOne` &#8594](/docs/core/hooks/data/use-one/index)           | [`useShow` &#8594](/docs/core/hooks/use-show/index)                                          |                                                                                                    |
+| [`useMany` &#8594](/docs/core/hooks/data/use-many/index)         | [`useExport` &#8594](/docs/core/hooks/utilities/use-export/index)                            |                                                                                                    |
+| [`useCustom` &#8594](/docs/core/hooks/data/use-custom/index)     | [`useCheckboxGroup` &#8594](/docs/ui-integrations/ant-design/hooks/use-checkbox-group/index) |                                                                                                    |
+|                                                                  | [`useSelect` &#8594](/docs/core/hooks/use-select/index)                                      |                                                                                                    |
+|                                                                  | [`useRadioGroup` &#8594](/docs/ui-integrations/ant-design/hooks/use-radio-group/index)       |                                                                                                    |
 
 :::note
 
@@ -1131,7 +1131,7 @@ Strapi provides a way to add validation rules to your models. So if you send a r
 
 [Refer to the Strapi documentation for more information &#8594 ](https://docs.strapi.io/dev-docs/backend-customization/models#validations)
 
-By default, `@refinedev/strapi-v4` transforms the error response from Strapi into a [`HttpError`](/docs/api-reference/core/interfaceReferences/#httperror) object. This object contains the following properties:
+By default, `@refinedev/strapi-v4` transforms the error response from Strapi into a [`HttpError`](/docs/core/interface-references/index#httperror) object. This object contains the following properties:
 
 - `statusCode` - The status code of the response.
 - `message` - The error message.

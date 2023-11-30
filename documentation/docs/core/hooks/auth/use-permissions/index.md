@@ -11,7 +11,7 @@ This hook can only be used if the `authProvider` is provided.
 
 :::
 
-`usePermissions` calls the `getPermissions` method from the [`authProvider`](/docs/api-reference/core/providers/auth-provider.md) under the hood.
+`usePermissions` calls the `getPermissions` method from the [`authProvider`](/docs/core/providers/auth-provider/index) under the hood.
 
 It returns the result of `react-query`'s `useQuery` which includes many properties, some of which being `isSuccess` and `isError`.
 
@@ -21,7 +21,7 @@ Data that is resolved from the `getPermissions` will be returned as the `data` i
 
 `usePermissions` can be useful when you want to get user's permission's anywhere in your code.
 
-For example, if you want only the users with the admin role to see the create button in a list page, we have a logic in [`authProvider`](/docs/api-reference/core/providers/auth-provider.md)'s `getPermissions` method like below:
+For example, if you want only the users with the admin role to see the create button in a list page, we have a logic in [`authProvider`](/docs/core/providers/auth-provider/index)'s `getPermissions` method like below:
 
 ```tsx
 import type { AuthBindings } from "@refinedev/core";
@@ -52,4 +52,4 @@ export const PostList: React.FC = () => {
 };
 ```
 
-> For more information, refer to the [`<List>` documentation &#8594](/docs/api-reference/antd/components/basic-views/list.md)
+> For more information, refer to the [`<List>` documentation &#8594](/docs/ui-integrations/ant-design/components/basic-views/list/index)

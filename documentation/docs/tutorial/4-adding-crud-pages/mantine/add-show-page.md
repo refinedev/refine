@@ -2,9 +2,9 @@
 id: add-show-page
 title: 3. Adding Show Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
-    next: tutorial/adding-crud-pages/{preferredUI}/add-create-page
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
+  next: tutorial/adding-crud-pages/{preferredUI}/add-create-page
 ---
 
 ## Creating the Show Page
@@ -29,16 +29,8 @@ setInitialRoutes(["/blog-posts/show/123"]);
 import { Global, MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { Refine } from "@refinedev/core";
-import {
-    ErrorComponent,
-    ThemedLayoutV2,
-    RefineThemes,
-    notificationProvider,
-} from "@refinedev/mantine";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes, notificationProvider } from "@refinedev/mantine";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
@@ -46,78 +38,55 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="blog_posts" />
-                                    }
-                                />
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
 
-                                <Route path="/blog-posts">
-                                    <Route
-                                        index
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MantineInferencer />}
-                                    />
-                                </Route>
+                <Route path="/blog-posts">
+                  <Route index element={<MantineInferencer />} />
+                  <Route path="show/:id" element={<MantineInferencer />} />
+                  <Route path="edit/:id" element={<MantineInferencer />} />
+                  <Route path="create" element={<MantineInferencer />} />
+                </Route>
 
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 render(<App />);
@@ -127,17 +96,17 @@ render(<App />);
 
 ### Hooks and Components in Show Page
 
--   `<Show/>` is a **refine** component that is used for presentation purposes like showing the title of the page, list button, etc.
+- `<Show/>` is a **refine** component that is used for presentation purposes like showing the title of the page, list button, etc.
 
-    > For more information, refer to the [`<Show/>` documentation&#8594](/docs/api-reference/mantine/components/basic-views/show/)
+  > For more information, refer to the [`<Show/>` documentation&#8594](/docs/ui-integrations/mantine/components/basic-views/show/index)
 
--   The `useShow` hook is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
+- The `useShow` hook is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
 
-    > For more information, refer to the [`useShow` documentation&#8594](/docs/api-reference/core/hooks/show/useShow/)
+  > For more information, refer to the [`useShow` documentation&#8594](/docs/core/hooks/use-show/index)
 
--   All other components are **Mantine** components that are used to show the record data.
+- All other components are **Mantine** components that are used to show the record data.
 
-    > For more information, refer to the [**Mantine** documentation&#8594](https://mantine.dev/)
+  > For more information, refer to the [**Mantine** documentation&#8594](https://mantine.dev/)
 
 ### Handling Relationships
 
@@ -149,8 +118,8 @@ In the auto-generated show page code, Inferencer used the `useOne` hook to fetch
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-    resource: "categories",
-    id: record?.category?.id || "",
+  resource: "categories",
+  id: record?.category?.id || "",
 });
 ```
 
@@ -158,15 +127,15 @@ To ensure that the related data is fetched only after the blog post record has b
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-    resource: "categories",
-    id: record?.category?.id || "",
-    queryOptions: {
-        enabled: !!record,
-    },
+  resource: "categories",
+  id: record?.category?.id || "",
+  queryOptions: {
+    enabled: !!record,
+  },
 });
 ```
 
-> For more information, refer to the [`useOne` documentation&#8594](/docs/api-reference/core/hooks/data/useOne/)
+> For more information, refer to the [`useOne` documentation&#8594](/docs/core/hooks/data/use-one/index)
 
 ## Adding the Show Page to the App
 
@@ -183,16 +152,8 @@ import { Global, MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { Refine } from "@refinedev/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
-import {
-    ErrorComponent,
-    ThemedLayoutV2,
-    RefineThemes,
-    notificationProvider,
-} from "@refinedev/mantine";
-import routerBindings, {
-    UnsavedChangesNotifier,
-    NavigateToResource,
-} from "@refinedev/react-router-v6";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes, notificationProvider } from "@refinedev/mantine";
+import routerBindings, { UnsavedChangesNotifier, NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
@@ -202,78 +163,58 @@ import { BlogPostList } from "pages/blog-posts/list";
 import { BlogPostShow } from "pages/blog-posts/show";
 
 const App = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                // highlight-next-line
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="blog_posts" />
-                                    }
-                                />
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                // highlight-next-line
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
 
-                                <Route path="blog-posts">
-                                    <Route index element={<BlogPostList />} />
-                                    {/* highlight-start */}
-                                    <Route
-                                        path="show/:id"
-                                        element={<BlogPostShow />}
-                                    />
-                                    {/* highlight-end */}
-                                    <Route
-                                        path="edit/:id"
-                                        element={<BlogPostEdit />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MantineInferencer />}
-                                    />
-                                </Route>
+                <Route path="blog-posts">
+                  <Route index element={<BlogPostList />} />
+                  {/* highlight-start */}
+                  <Route path="show/:id" element={<BlogPostShow />} />
+                  {/* highlight-end */}
+                  <Route path="edit/:id" element={<BlogPostEdit />} />
+                  <Route path="create" element={<MantineInferencer />} />
+                </Route>
 
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 export default App;
 ```

@@ -650,7 +650,7 @@ const PostList = () => {
 
 In Next.js you can achieve authentication control in multiple ways;
 
-On the client-side, you can wrap your pages with [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component from `@refinedev/core` to protect your pages from unauthenticated access.
+On the client-side, you can wrap your pages with [`Authenticated`](/docs/core/components/authenticated/index) component from `@refinedev/core` to protect your pages from unauthenticated access.
 
 On the server-side, you can use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthenticated users to other pages like login...
 
@@ -823,7 +823,7 @@ For page level access control, server-side approach is recommended.
 
 On the server side, you can use your `accessControlProvider`'s `can` function inside `getServerSideProps` to redirect unauthorized users to other pages.
 
-First, let's build our [AccessControlProvider](/docs/api-reference/core/providers/access-control-provider.md)
+First, let's build our [AccessControlProvider](/docs/core/providers/access-control-provider/index)
 
 ```tsx title="app/acccessControlProvider.ts"
 export const accessControlProvider = {
@@ -892,7 +892,7 @@ export default function PostList() {
 
 ### Client Side
 
-For client-side, you can wrap your pages with [`CanAccess`](/docs/api-reference/core/components/accessControl/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
+For client-side, you can wrap your pages with [`CanAccess`](/docs/core/components/can-access/index) component from `@refinedev/core` to protect your pages from unauthorized access.
 
 ```tsx
 import { CanAccess } from "@refinedev/core";
@@ -1251,4 +1251,4 @@ Default paths are:
 
 <CodeSandboxExample path="with-nextjs-appdir" />
 
-[routerprovider]: /api-reference/core/providers/router-provider.md
+[routerprovider]: /docs/core/providers/router-provider/index

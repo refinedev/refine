@@ -66,7 +66,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-> For more information about data hooks, refer to the [Data Provider documentation&#8594](/docs/api-reference/core/providers/data-provider/#supported-hooks)
+> For more information about data hooks, refer to the [Data Provider documentation&#8594](/docs/core/providers/data-provider/index#supported-hooks)
 
 ## Usage
 
@@ -84,7 +84,7 @@ fetch("http://example.com/payment")
   .catch((error) => onError(error));
 ```
 
-We have a logic in [`authProvider`](/docs/api-reference/core/providers/auth-provider.md)'s `onError` method like below.
+We have a logic in [`authProvider`](/docs/core/providers/auth-provider/index)'s `onError` method like below.
 
 ```tsx
 import type { AuthBindings } from "@refinedev/core";
@@ -121,5 +121,5 @@ Any error passed to `mutate` function will be available in the `onError` in the 
 
 :::
 
-[on-error]: /docs/api-reference/core/providers/auth-provider/#onerror-
-[auth-provider]: /docs/api-reference/core/providers/auth-provider/
+[on-error]: /docs/core/providers/auth-provider/index#onerror-
+[auth-provider]: /docs/core/providers/auth-provider/index

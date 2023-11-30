@@ -2,9 +2,9 @@
 id: index
 title: 1. Adding List Page
 tutorial:
-    order: 0
-    prev: false
-    next: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
+  order: 0
+  prev: false
+  next: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
 ---
 
 import SharedComponents from "../../../partials/tutorial/headless-layout.md";
@@ -37,58 +37,44 @@ import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route
-                            index
-                            element={
-                                <NavigateToResource resource="blog_posts" />
-                            }
-                        />
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerBindings}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "blog_posts",
+            list: "/blog-posts",
+            show: "/blog-posts/show/:id",
+            create: "/blog-posts/create",
+            edit: "/blog-posts/edit/:id",
+          },
+        ]}
+      >
+        <Routes>
+          <Route
+            element={
+              <Layout>
+                <Outlet />
+              </Layout>
+            }
+          >
+            <Route index element={<NavigateToResource resource="blog_posts" />} />
 
-                        <Route path="/blog-posts">
-                            <Route index element={<HeadlessInferencer />} />
-                            <Route
-                                path="show/:id"
-                                element={<HeadlessInferencer />}
-                            />
-                            <Route
-                                path="edit/:id"
-                                element={<HeadlessInferencer />}
-                            />
-                            <Route
-                                path="create"
-                                element={<HeadlessInferencer />}
-                            />
-                        </Route>
+            <Route path="/blog-posts">
+              <Route index element={<HeadlessInferencer />} />
+              <Route path="show/:id" element={<HeadlessInferencer />} />
+              <Route path="edit/:id" element={<HeadlessInferencer />} />
+              <Route path="create" element={<HeadlessInferencer />} />
+            </Route>
 
-                        <Route path="*" element={<div>Error!</div>} />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+            <Route path="*" element={<div>Error!</div>} />
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -98,13 +84,13 @@ render(<App />);
 
 ### Hooks and Components in List Page
 
--   The `useTable` hook is used for fetching data and managing the table state. It is imported from the `@refinedev/react-table package`, which combines the functionality of the **TanStack Table v8** package and the `useTable` hook from the `@refinedev/core package`, providing the features of both.
+- The `useTable` hook is used for fetching data and managing the table state. It is imported from the `@refinedev/react-table package`, which combines the functionality of the **TanStack Table v8** package and the `useTable` hook from the `@refinedev/core package`, providing the features of both.
 
-    > For more information, refer to the [`useTable` documentation](/docs/packages/documentation/react-table/) and the [TanStack Table v8 documentation&#8594](https://tanstack.com/table/v8)
+  > For more information, refer to the [`useTable` documentation](/docs/packages/list-of-packages/index) and the [TanStack Table v8 documentation&#8594](https://tanstack.com/table/v8)
 
--   The `useNavigation` hook is used for navigating between pages. In this case, we are using it to navigate to the `edit` and `show` pages when the user clicks on their respective buttons in the table.
+- The `useNavigation` hook is used for navigating between pages. In this case, we are using it to navigate to the `edit` and `show` pages when the user clicks on their respective buttons in the table.
 
-    > For more information, refer to the [`useNavigation` documentation &#8594](/docs/api-reference/core/hooks/navigation/useNavigation/)
+  > For more information, refer to the [`useNavigation` documentation &#8594](/docs/core/hooks/navigation/use-navigation/index)
 
 ### Handling Relationships
 
@@ -139,8 +125,8 @@ We can use the `useMany` hook to fetch the full category records for each of the
 import { useMany } from "@refinedev/core";
 
 const { data } = useMany({
-    resource: "categories",
-    ids: blogPosts.map((blogPost) => blogPost.category.id),
+  resource: "categories",
+  ids: blogPosts.map((blogPost) => blogPost.category.id),
 });
 ```
 
@@ -148,20 +134,20 @@ This will pass the `resource` and `ids` to the `dataProvider`'s `getMany` funct
 
 ```ts
 [
-    {
-        id: 1,
-        title: "mock category title",
-    },
-    {
-        id: 2,
-        title: "another mock category title",
-    },
+  {
+    id: 1,
+    title: "mock category title",
+  },
+  {
+    id: 2,
+    title: "another mock category title",
+  },
 ];
 ```
 
 We can then use this `data` array to display the `title` of each category in the table.
 
-> For more information, refer to the [`useMany` documentation&#8594](/docs/api-reference/core/hooks/data/useMany/)
+> For more information, refer to the [`useMany` documentation&#8594](/docs/core/hooks/data/use-many/index)
 
 ## Adding the List Page to the App
 
@@ -188,60 +174,46 @@ import { Layout } from "components/layout";
 import "./App.css";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        // highlight-next-line
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route
-                            index
-                            element={
-                                <NavigateToResource resource="blog_posts" />
-                            }
-                        />
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerBindings}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "blog_posts",
+            // highlight-next-line
+            list: "/blog-posts",
+            show: "/blog-posts/show/:id",
+            create: "/blog-posts/create",
+            edit: "/blog-posts/edit/:id",
+          },
+        ]}
+      >
+        <Routes>
+          <Route
+            element={
+              <Layout>
+                <Outlet />
+              </Layout>
+            }
+          >
+            <Route index element={<NavigateToResource resource="blog_posts" />} />
 
-                        <Route path="blog-posts">
-                            {/* highlight-next-line */}
-                            <Route index element={<BlogPostList />} />
-                            <Route
-                                path="show/:id"
-                                element={<HeadlessInferencer />}
-                            />
-                            <Route
-                                path="edit/:id"
-                                element={<HeadlessInferencer />}
-                            />
-                            <Route
-                                path="create"
-                                element={<HeadlessInferencer />}
-                            />
-                        </Route>
+            <Route path="blog-posts">
+              {/* highlight-next-line */}
+              <Route index element={<BlogPostList />} />
+              <Route path="show/:id" element={<HeadlessInferencer />} />
+              <Route path="edit/:id" element={<HeadlessInferencer />} />
+              <Route path="create" element={<HeadlessInferencer />} />
+            </Route>
 
-                        <Route path="*" element={<div>Error!</div>} />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+            <Route path="*" element={<div>Error!</div>} />
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 export default App;
 ```

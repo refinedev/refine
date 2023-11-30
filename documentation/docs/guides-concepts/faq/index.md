@@ -187,7 +187,7 @@ export const UserCreate: React.FC = () => {
 };
 ```
 
-If you use [`<Create>`](/docs/api-reference/mui/components/basic-views/create/#savebuttonprops) component, you can override the [`saveButtonProps`](/docs/packages/documentation/react-hook-form/useForm/#savebuttonprops) prop to modify the form data before submitting it to the API.
+If you use [`<Create>`](/docs/ui-integrations/material-ui/components/basic-views/create/index#savebuttonprops) component, you can override the [`saveButtonProps`](/docs/packages/list-of-packages/index#savebuttonprops) prop to modify the form data before submitting it to the API.
 
 ```tsx
 import React from "react";
@@ -306,7 +306,7 @@ export const UserCreate: React.FC = () => {
 };
 ```
 
-If you use [`<Create>`](/docs/api-reference/chakra-ui/components/basic-views/create/#savebuttonprops) component, you can override the [`saveButtonProps`](/docs/packages/documentation/react-hook-form/useForm/#savebuttonprops) prop to modify the form data before submitting it to the API.
+If you use [`<Create>`](/docs/ui-integrations/chakra-ui/components/basic-views/create/index#savebuttonprops) component, you can override the [`saveButtonProps`](/docs/packages/list-of-packages/index#savebuttonprops) prop to modify the form data before submitting it to the API.
 
 ```tsx
 import React from "react";
@@ -429,7 +429,7 @@ invalidate({
 });
 ```
 
-[Refer to the **refine** useInvalidate hook documentation for more information. →](/docs/api-reference/core/hooks/invalidate/useInvalidate)
+[Refer to the **refine** useInvalidate hook documentation for more information. →](/docs/core/hooks/data/use-invalidate/index)
 
 </TabItem>
 </Tabs>
@@ -711,7 +711,7 @@ The third way is to use the `swizzle` command.
 
 You can use the command to copy the default `Sider` component to your project. This will allow you to customize the sider as you want.
 
-[Refer to the swizzle documentation for more information. &#8594](/docs/packages/documentation/cli/#swizzle)
+[Refer to the swizzle documentation for more information. &#8594](/docs/packages/list-of-packages/index#swizzle)
 
 ## How can I remove GitHub Banner?
 
@@ -772,6 +772,6 @@ In both cases, if there are any ongoing queries, **refine** will keep them as th
 When you're implementing client side pagination with the `pagination.mode` set to "client," you might run into issues when applying client side filtering and sorting. This is due to the fact that client side filtering and sorting are applied to the sliced data, not the whole data. To ensure that the client side filtering and sorting are applied to the whole data, you need to use the `pagination.mode: "off"` prop.
 
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
-[use-form-react-hook-form]: /docs/packages/documentation/react-hook-form/useForm/
-[use-form-antd]: /docs/api-reference/antd/hooks/form/useForm/
-[edit-mui]: /docs/packages/documentation/mui/edit/
+[use-form-react-hook-form]: /docs/packages/list-of-packages/index
+[use-form-antd]: /docs/ui-integrations/ant-design/hooks/use-form/index
+[edit-mui]: /docs/packages/list-of-packages/index

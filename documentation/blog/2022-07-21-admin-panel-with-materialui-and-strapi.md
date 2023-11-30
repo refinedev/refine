@@ -194,9 +194,9 @@ We import and use Material UI components from refine's `@refinedev/mui` to show 
 
 [`<DataGrid/>`](https://mui.com/x/react-data-grid/components/#main-content) is a native Material UI component. It renders records row by row as a table. `<DataGrid/>` expects a columns prop as a required.
 
-refine hook [`useDataGrid`](/docs/api-reference/mui/hooks/useDataGrid) fetches data from API and wraps them with various helper hooks required for the `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
+refine hook [`useDataGrid`](/docs/ui-integrations/material-ui/hooks/use-data-grid/index) fetches data from API and wraps them with various helper hooks required for the `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
 
-[Refer to refine's useDataGrid hook doc to more information&#8594](/docs/api-reference/mui/hooks/useDataGrid)
+[Refer to refine's useDataGrid hook doc to more information&#8594](/docs/ui-integrations/material-ui/hooks/use-data-grid/index)
 
 `columns` array are used for mapping and formatting each field shown on the `<DataGrid/>` field prop maps the field to a matching key from the API response. `renderCell` prop is used to choose the appropriate Field component for the given data type.
 

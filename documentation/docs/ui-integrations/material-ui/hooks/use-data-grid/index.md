@@ -7,7 +7,7 @@ import BasicUsagePreview from "./\_partial-use-data-grid-basic-usage-live-previe
 import RelationalPreview from "./\_partial-use-data-grid-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch.
+By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list/index) for the fetch.
 
 For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation
 
@@ -244,13 +244,13 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 
 :::caution
 
-This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider/index).
 
 :::
 
 When the `useDataGrid` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider/index)
 
 ## Properties
 
@@ -275,7 +275,7 @@ useDataGrid({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
 
 ### `dataProviderName`
 
@@ -333,7 +333,7 @@ useDataGrid({
 
 `sorters.initial` sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references/index#crudsorting)
 
 ```tsx
 useDataGrid({
@@ -352,7 +352,7 @@ useDataGrid({
 
 `sorters.permanent` sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references/index#crudsorting)
 
 ```tsx
 useDataGrid({
@@ -386,7 +386,7 @@ useDataGrid({
 
 Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references/index#crudfilters)
 
 ```tsx
 useDataGrid({
@@ -406,7 +406,7 @@ useDataGrid({
 
 Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references/index#crudfilters)
 
 ```tsx
 useDataGrid({
@@ -469,7 +469,7 @@ useDataGrid({
 
 ### `queryOptions`
 
-`useDataGrid` uses [`useList`](/docs/api-reference/core/hooks/data/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useDataGrid` uses [`useList`](/docs/core/hooks/data/use-list/index) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 useDataGrid({
@@ -573,13 +573,13 @@ useDataGrid({
 
 :::caution
 
-[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
 
 :::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
-For more information, please refer to the [Live / Realtime documentation](/docs/api-reference/core/providers/live-provider/#livemode)
+For more information, please refer to the [Live / Realtime documentation](/docs/core/providers/live-provider/index#livemode)
 
 ```tsx
 useDataGrid({
@@ -591,7 +591,7 @@ useDataGrid({
 
 :::caution
 
-[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
 
 :::
 
@@ -609,11 +609,11 @@ useDataGrid({
 
 :::caution
 
-[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
 
 :::
 
-Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider/index#subscribe) method.
 
 ### `overtimeOptions`
 
@@ -699,7 +699,7 @@ Use `sorters.initial` instead.
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references/index#crudsorting)
 
 ```tsx
 useDataGrid({
@@ -722,7 +722,7 @@ Use `sorters.permanent` instead.
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references/index#crudsorting)
 
 ```tsx
 useDataGrid({
@@ -745,7 +745,7 @@ Use `filters.initial` instead.
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references/index#crudfilters)
 
 ```tsx
 useDataGrid({
@@ -769,7 +769,7 @@ Use `filters.permanent` instead.
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references/index#crudfilters)
 
 ```tsx
 useDataGrid({
@@ -895,11 +895,11 @@ The `onStateChange` callback is used internally by the `useDataGrid` hook. If yo
 
 #### `rows`
 
-Contains the data to be displayed in the data grid. Values fetched with [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
+Contains the data to be displayed in the data grid. Values fetched with [`useList`](/docs/core/hooks/data/use-list/index) hook.
 
 #### `rowCount`
 
-Total number of data. Value fetched with [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
+Total number of data. Value fetched with [`useList`](/docs/core/hooks/data/use-list/index) hook.
 
 #### `loading`
 
@@ -911,7 +911,7 @@ Returns pagination configuration values(pageSize, current, setCurrent, etc.).
 
 ### `tableQueryResult`
 
-Returned values from [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
+Returned values from [`useList`](/docs/core/hooks/data/use-list/index) hook.
 
 ### `sorters`
 
@@ -1093,13 +1093,13 @@ useDataGrid({
 
 <CodeSandboxExample path="table-material-ui-use-data-grid" />
 
-[use-table-core]: /docs/api-reference/core/hooks/useTable
+[use-table-core]: /docs/core/hooks/use-table/index
 [syncwithlocationparams]: /docs/core/interface-references/index#syncwithlocationparams
 [crudsorting]: /docs/core/interface-references/index#crudsorting
 [crudfilters]: /docs/core/interface-references/index#crudfilters
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [baserecord]: /docs/core/interface-references/index#baserecord
 [httperror]: /docs/core/interface-references/index#httperror
-[refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation
+[refine swl]: /docs/core/refine-component/index#syncwithlocation
 [data-grid]: https://mui.com/x/react-data-grid/
-[notification-provider]: /api-reference/core/providers/notification-provider.md
+[notification-provider]: /docs/core/providers/notification-provider/index

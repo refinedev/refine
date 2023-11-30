@@ -47,7 +47,7 @@ The `<Refine>` component serves as the starting point for **refine**. It is a wr
 
 Though `dataProvider` is the only necessary prop for initializing the app, there are other props such as `resources`, `routerProvider`, `authProvider`, `i18nProvider`, etc. Each of these props enables the configuration of various aspects of the application, such as data management, routing, authentication, localization, layout and more.
 
-> For more information, refer to the [`<Refine>` Documentation&#8594](/docs/api-reference/core/components/refine-config/)
+> For more information, refer to the [`<Refine>` Documentation&#8594](/docs/core/refine-component/index)
 
 ## What is resource?
 
@@ -436,11 +436,11 @@ Features related to routing, such as the inference of the resource by the route,
 
 When using the **refine** hooks and components, if you provide a `routerProvider` the `resource` will be inferred from the current route and the inferred resource will be passed as `resource` to `dataProvider` functions, hooks and components by default.
 
-For more information, refer to the [`<routerProvider` part of the `<Refine>` Documentation&#8594](/docs/api-reference/core/components/refine-config/#routerprovider)
+For more information, refer to the [`<routerProvider` part of the `<Refine>` Documentation&#8594](/docs/core/refine-component/index#routerprovider)
 
 :::
 
-> To learn more about `resource`, refer to [its section in the API reference documentation](/docs/api-reference/core/components/refine-config/#resources)
+> To learn more about `resource`, refer to [its section in the API reference documentation](/docs/core/refine-component/index#resources)
 
 <Checklist>
 

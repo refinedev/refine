@@ -2,9 +2,9 @@
 id: add-edit-page
 title: 2. Adding Edit Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/index
-    next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/index
+  next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
 ---
 
 ## Creating Edit Page
@@ -30,87 +30,68 @@ import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import { Refine } from "@refinedev/core";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 import {
-    ErrorComponent,
-    ThemedLayoutV2,
-    RefineThemes,
-    notificationProvider,
-    RefineSnackbarProvider,
+  ErrorComponent,
+  ThemedLayoutV2,
+  RefineThemes,
+  notificationProvider,
+  RefineSnackbarProvider,
 } from "@refinedev/mui";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={RefineThemes.Blue}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="blog_posts" />
-                                    }
-                                />
+  return (
+    <ThemeProvider theme={RefineThemes.Blue}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
 
-                                <Route path="blog-posts">
-                                    <Route index element={<MuiInferencer />} />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MuiInferencer />}
-                                    />
-                                </Route>
+                <Route path="blog-posts">
+                  <Route index element={<MuiInferencer />} />
+                  <Route path="show/:id" element={<MuiInferencer />} />
+                  <Route path="edit/:id" element={<MuiInferencer />} />
+                  <Route path="create" element={<MuiInferencer />} />
+                </Route>
 
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);
@@ -120,17 +101,17 @@ render(<App />);
 
 ### Hooks and Components in Edit Page
 
--   `<Edit/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
+- `<Edit/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
 
-    > For more information, refer to the [`<Edit/>` documentation&#8594](/docs/api-reference/mui/components/basic-views/edit)
+  > For more information, refer to the [`<Edit/>` documentation&#8594](/docs/ui-integrations/material-ui/components/basic-views/edit/index)
 
--   The `useForm` hook is imported from `@refinedev/react-hook-form`, which combines the features of `useForm` hook from both **React Hook Form** and `@refinedev/core`. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
+- The `useForm` hook is imported from `@refinedev/react-hook-form`, which combines the features of `useForm` hook from both **React Hook Form** and `@refinedev/core`. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
 
-    > For more information, refer to the [`useForm`](/docs/packages/documentation/react-hook-form/useForm/) and [**React Hook Form** documentation&#8594](https://react-hook-form.com/)
+  > For more information, refer to the [`useForm`](/docs/packages/list-of-packages/index) and [**React Hook Form** documentation&#8594](https://react-hook-form.com/)
 
--   All other components provided by **Material UI** are used to display the form fields.
+- All other components provided by **Material UI** are used to display the form fields.
 
-    > For more information, refer to the [**Material UI** documentation&#8594](https://mui.com/material-ui/getting-started/overview/)
+  > For more information, refer to the [**Material UI** documentation&#8594](https://mui.com/material-ui/getting-started/overview/)
 
 ### Handling Relationships
 
@@ -142,7 +123,7 @@ In the auto-generated edit page code, Inferencer used the `useAutocomplete` hook
 
 ```tsx
 const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -150,12 +131,12 @@ The `useAutocomplete` hook returns 10 records by default, but the category of th
 
 ```tsx
 const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
-    resource: "categories",
-    defaultValue: blogPostsData?.category?.id,
+  resource: "categories",
+  defaultValue: blogPostsData?.category?.id,
 });
 ```
 
-> For more information, refer to the [`useAutocomplete`](/docs/api-reference/mui/hooks/useAutocomplete/) and [**Material UI** `<Autocomplete/>` documentations&#8594](https://mui.com/material-ui/react-autocomplete/)
+> For more information, refer to the [`useAutocomplete`](/docs/ui-integrations/material-ui/hooks/use-auto-complete/index) and [**Material UI** `<Autocomplete/>` documentations&#8594](https://mui.com/material-ui/react-autocomplete/)
 
 ## Adding the Edit Page to the App
 
@@ -172,16 +153,16 @@ import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import { Refine } from "@refinedev/core";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 import {
-    ErrorComponent,
-    ThemedLayoutV2,
-    RefineThemes,
-    notificationProvider,
-    RefineSnackbarProvider,
+  ErrorComponent,
+  ThemedLayoutV2,
+  RefineThemes,
+  notificationProvider,
+  RefineSnackbarProvider,
 } from "@refinedev/mui";
 import routerBindings, {
-    NavigateToResource,
-    // highlight-next-line
-    UnsavedChangesNotifier,
+  NavigateToResource,
+  // highlight-next-line
+  UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
@@ -191,79 +172,63 @@ import { BlogPostList } from "pages/blog-posts/list";
 import { BlogPostEdit } from "pages/blog-posts/edit";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={RefineThemes.Blue}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                // highlight-next-line
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        // highlight-start
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                        // highlight-end
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="blog_posts" />
-                                    }
-                                />
+  return (
+    <ThemeProvider theme={RefineThemes.Blue}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                // highlight-next-line
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            // highlight-start
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+            // highlight-end
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
 
-                                <Route path="blog-posts">
-                                    <Route index element={<BlogPostList />} />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    {/* highlight-start */}
-                                    <Route
-                                        path="edit/:id"
-                                        element={<BlogPostEdit />}
-                                    />
-                                    {/* highlight-end */}
-                                    <Route
-                                        path="create"
-                                        element={<MuiInferencer />}
-                                    />
-                                </Route>
+                <Route path="blog-posts">
+                  <Route index element={<BlogPostList />} />
+                  <Route path="show/:id" element={<MuiInferencer />} />
+                  {/* highlight-start */}
+                  <Route path="edit/:id" element={<BlogPostEdit />} />
+                  {/* highlight-end */}
+                  <Route path="create" element={<MuiInferencer />} />
+                </Route>
 
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
 
-                        {/* highlight-next-line */}
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+            {/* highlight-next-line */}
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 export default App;
 ```

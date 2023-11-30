@@ -8,11 +8,11 @@ source: packages/mantine/src/components/pages/auth/index.tsx
 
 `<AuthPage>` component from **refine** for **Mantine** contains authentication pages that can be used to login, register, forgot password, and update password.
 
-Before using the `<AuthPage>` component you need to add [authProvider](/docs/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
+Before using the `<AuthPage>` component you need to add [authProvider](/docs/core/providers/auth-provider/index) that will be used to handle authentication.
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) CCC to customize it.
+You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages/index) CCC to customize it.
 
 :::
 
@@ -917,8 +917,8 @@ interface FormPropsType extends UseFormProps {
 }
 ```
 
-[auth-provider]: /docs/api-reference/core/providers/auth-provider/
-[login]: /docs/api-reference/core/providers/auth-provider/#login-
-[register]: /docs/api-reference/core/providers/auth-provider/#register
-[forgot-password]: /docs/api-reference/core/providers/auth-provider/#forgotpassword
-[update-password]: /docs/api-reference/core/providers/auth-provider/#updatepassword
+[auth-provider]: /docs/core/providers/auth-provider/index
+[login]: /docs/core/providers/auth-provider/index#login-
+[register]: /docs/core/providers/auth-provider/index#register
+[forgot-password]: /docs/core/providers/auth-provider/index#forgotpassword
+[update-password]: /docs/core/providers/auth-provider/index#updatepassword

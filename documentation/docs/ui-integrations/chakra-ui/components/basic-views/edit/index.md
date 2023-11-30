@@ -142,7 +142,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
 
 :::
 
@@ -237,7 +237,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/api-reference/chakra-ui/components/buttons/save.md)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/chakra-ui/components/buttons/save-button/index)
 
 ### `canDelete` and `deleteButtonProps`
 
@@ -342,7 +342,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<DeleteButton>` &#8594](/docs/api-reference/chakra-ui/components/buttons/delete.md) and [`usePermission` &#8594](/docs/api-reference/core/hooks/authentication/usePermissions.md) documentations
+> For more information, refer to the [`<DeleteButton>` &#8594](/docs/ui-integrations/chakra-ui/components/buttons/delete-button/index) and [`usePermission` &#8594](/docs/core/hooks/auth/use-permissions/index) documentations
 
 ### `resource`
 
@@ -398,7 +398,7 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
 
 ### `recordItemId`
 
@@ -669,7 +669,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 
 :::tip
 
-This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component/index#breadcrumb)
 
 :::
 
@@ -722,7 +722,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/chakra-ui/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/chakra-ui/components/breadcrumb/index)
 
 ### `wrapperProps`
 
@@ -1365,7 +1365,7 @@ render(
 
 <PropsTable module="@refinedev/chakra-ui/Edit" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Edit {resource.name}</Title>`" />
 
-[list-button]: /docs/api-reference/chakra-ui/components/buttons/list-button/
-[refresh-button]: /docs/api-reference/chakra-ui/components/buttons/refresh-button/
-[save-button]: /docs/api-reference/chakra-ui/components/buttons/save-button/
-[delete-button]: /docs/api-reference/chakra-ui/components/buttons/delete-button/
+[list-button]: /docs/ui-integrations/chakra-ui/components/buttons/list-button/index
+[refresh-button]: /docs/ui-integrations/chakra-ui/components/buttons/refresh-button/index
+[save-button]: /docs/ui-integrations/chakra-ui/components/buttons/save-button/index
+[delete-button]: /docs/ui-integrations/chakra-ui/components/buttons/delete-button/index

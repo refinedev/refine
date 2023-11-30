@@ -4,9 +4,9 @@ title: Live / Realtime
 sidebar_label: Live / Realtime
 ---
 
-**refine** lets you add Realtime support to your app via the `liveProvider` prop for [`<Refine />`](/docs/api-reference/core/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
+**refine** lets you add Realtime support to your app via the `liveProvider` prop for [`<Refine />`](/docs/core/refine-component/index). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
 
-[Refer to the Live Provider documentation for detailed information. &#8594](/docs/api-reference/core/providers/live-provider.md)
+[Refer to the Live Provider documentation for detailed information. &#8594](/docs/core/providers/live-provider/index)
 
 We will be using [Ably](https://ably.com) in this guide to provide Realtime features.
 
@@ -117,7 +117,7 @@ export default App;
 
 For live features to work automatically we added `liveMode: "auto"` in the `options` prop.
 
-[Refer to the Live Provider documentation for detailed information. &#8594](/docs/api-reference/core/providers/live-provider.md#livemode)
+[Refer to the Live Provider documentation for detailed information. &#8594](/docs/core/providers/live-provider/index#livemode)
 
 :::
 

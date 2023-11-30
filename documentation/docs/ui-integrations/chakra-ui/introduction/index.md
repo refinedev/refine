@@ -46,7 +46,7 @@ import UsageRemix from "./previews/usage-remix.tsx";
 
 ## Tables
 
-Chakra UI offers styled [table primitives](https://chakra-ui.com/docs/components/table) but lacks the table management solution. Refine recommends using [`@refinedev/react-table`](/docs/packages/documentation/react-table/) package which is built on top of Refine's [`useTable`](/docs/api-reference/core/hooks/useTable/index.md) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Chakra UI uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
+Chakra UI offers styled [table primitives](https://chakra-ui.com/docs/components/table) but lacks the table management solution. Refine recommends using [`@refinedev/react-table`](/docs/packages/list-of-packages/index) package which is built on top of Refine's [`useTable`](/docs/core/hooks/use-table/index) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Chakra UI uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
 
 ```tsx title="pages/products/list.tsx"
 import React from "react";
@@ -206,7 +206,7 @@ export const Pagination: React.FC<PaginationProps> = ({ current, pageCount, setC
 
 ## Forms
 
-Chakra UI offers [form elements](https://chakra-ui.com/docs/components/input) yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/documentation/react-hook-form/useForm.md) package which is built on top of Refine's [`useForm`](/docs/api-reference/core/hooks/useForm/) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
+Chakra UI offers [form elements](https://chakra-ui.com/docs/components/input) yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/list-of-packages/index) package which is built on top of Refine's [`useForm`](/docs/api-reference/core/hooks/useForm/) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
 
 Refine's documentations and examples of Chakra UI uses `@refinedev/react-hook-form` package for form management but you have the option to use any form management solution you want.
 
@@ -281,11 +281,11 @@ export const ProductCreate = () => {
 };
 ```
 
-Additional hooks of `@refinedev/react-hook-form` such as [`useStepsForm`](/docs/packages/documentation/react-hook-form/useStepsForm/) and [`useModalForm`](/docs/packages/documentation/react-hook-form/useModalForm/) can also be used together with Refine's Chakra UI integration with ease.
+Additional hooks of `@refinedev/react-hook-form` such as [`useStepsForm`](/docs/packages/list-of-packages/index) and [`useModalForm`](/docs/packages/list-of-packages/index) can also be used together with Refine's Chakra UI integration with ease.
 
 ## Notifications
 
-Chakra UI has its own [notification system](https://chakra-ui.com/docs/components/toast) which works seamlessly with its UI elements. Refine also provides a seamless integration with Chakra UI's notification system and show notifications for related actions and events. This integration is provided by the `notificationProvider` hook exported from the `@refinedev/chakra-ui` package which can be directly used in the [`notificationProvider`](/docs/api-reference/core/components/refine-config/#notificationprovider) prop of the `<Refine />` component.
+Chakra UI has its own [notification system](https://chakra-ui.com/docs/components/toast) which works seamlessly with its UI elements. Refine also provides a seamless integration with Chakra UI's notification system and show notifications for related actions and events. This integration is provided by the `notificationProvider` hook exported from the `@refinedev/chakra-ui` package which can be directly used in the [`notificationProvider`](/docs/core/refine-component/index#notificationprovider) prop of the `<Refine />` component.
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
@@ -333,9 +333,9 @@ import LayoutRemix from "./previews/layout-remix.tsx";
 </TabItem>
 </Tabs>
 
-[`<ThemedLayoutV2 />`](/docs/api-reference/chakra-ui/components/chakra-ui-themed-layout/) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+[`<ThemedLayoutV2 />`](/docs/ui-integrations/chakra-ui/components/themed-layout/index) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
 
-Additionally, Refine also provides a [`<Breadcrumb />`](/docs/api-reference/chakra-ui/components/breadcrumb/) component that uses the Chakra UI's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Chakra UI package automatically.
+Additionally, Refine also provides a [`<Breadcrumb />`](/docs/ui-integrations/chakra-ui/components/breadcrumb/index) component that uses the Chakra UI's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Chakra UI package automatically.
 
 ### Buttons
 
@@ -349,7 +349,7 @@ Refine's Chakra UI integration offers variety of buttons that are built above th
 - Form actions
 - Import/Export and more.
 
-You can use buttons such as [`<EditButton />`](/docs/api-reference/chakra-ui/components/buttons/edit-button/) or [`<ListButton />`](/docs/api-reference/chakra-ui/components/buttons/list-button/) etc. in your views to provide navigation for the related routes or [`<DeleteButton />`](/docs/api-reference/chakra-ui/components/buttons/delete-button/) and [`<SaveButton />`](/docs/api-reference/chakra-ui/components/buttons/save-button/) etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
+You can use buttons such as [`<EditButton />`](/docs/ui-integrations/chakra-ui/components/buttons/edit-button/index) or [`<ListButton />`](/docs/ui-integrations/chakra-ui/components/buttons/list-button/index) etc. in your views to provide navigation for the related routes or [`<DeleteButton />`](/docs/ui-integrations/chakra-ui/components/buttons/delete-button/index) and [`<SaveButton />`](/docs/ui-integrations/chakra-ui/components/buttons/save-button/index) etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
 
 An example usage of the `<EditButton />` component is as follows:
 
@@ -388,16 +388,16 @@ export const ProductList = () => {
 
 The list of provided buttons are:
 
-- [`<CreateButton />`](/docs/api-reference/chakra-ui/components/buttons/create-button/)
-- [`<EditButton />`](/docs/api-reference/chakra-ui/components/buttons/edit-button/)
-- [`<ListButton />`](/docs/api-reference/chakra-ui/components/buttons/list-button/)
-- [`<ShowButton />`](/docs/api-reference/chakra-ui/components/buttons/show-button/)
-- [`<CloneButton />`](/docs/api-reference/chakra-ui/components/buttons/clone-button/)
-- [`<DeleteButton />`](/docs/api-reference/chakra-ui/components/buttons/delete-button/)
-- [`<SaveButton />`](/docs/api-reference/chakra-ui/components/buttons/save-button/)
-- [`<RefreshButton />`](/docs/api-reference/chakra-ui/components/buttons/refresh-button/)
-- [`<ImportButton />`](/docs/api-reference/chakra-ui/components/buttons/import-button/)
-- [`<ExportButton />`](/docs/api-reference/chakra-ui/components/buttons/export-button/)
+- [`<CreateButton />`](/docs/ui-integrations/chakra-ui/components/buttons/create-button/index)
+- [`<EditButton />`](/docs/ui-integrations/chakra-ui/components/buttons/edit-button/index)
+- [`<ListButton />`](/docs/ui-integrations/chakra-ui/components/buttons/list-button/index)
+- [`<ShowButton />`](/docs/ui-integrations/chakra-ui/components/buttons/show-button/index)
+- [`<CloneButton />`](/docs/ui-integrations/chakra-ui/components/buttons/clone-button/index)
+- [`<DeleteButton />`](/docs/ui-integrations/chakra-ui/components/buttons/delete-button/index)
+- [`<SaveButton />`](/docs/ui-integrations/chakra-ui/components/buttons/save-button/index)
+- [`<RefreshButton />`](/docs/ui-integrations/chakra-ui/components/buttons/refresh-button/index)
+- [`<ImportButton />`](/docs/ui-integrations/chakra-ui/components/buttons/import-button/index)
+- [`<ExportButton />`](/docs/ui-integrations/chakra-ui/components/buttons/export-button/index)
 
 Many of these buttons are already used in the views provided by Refine's Chakra UI integration. If you're using the basic view elements provided by Refine, you will have the appropriate buttons placed in your application out of the box.
 
@@ -407,10 +407,10 @@ Views are designed as wrappers around the content of the pages in the applicatio
 
 The list of provided views are:
 
-- [`<List />`](/docs/api-reference/chakra-ui/components/basic-views/create/)
-- [`<Show />`](/docs/api-reference/chakra-ui/components/basic-views/show/)
-- [`<Edit />`](/docs/api-reference/chakra-ui/components/basic-views/edit/)
-- [`<Create />`](/docs/api-reference/chakra-ui/components/basic-views/create/)
+- [`<List />`](/docs/ui-integrations/chakra-ui/components/basic-views/create/index)
+- [`<Show />`](/docs/ui-integrations/chakra-ui/components/basic-views/show/index)
+- [`<Edit />`](/docs/ui-integrations/chakra-ui/components/basic-views/edit/index)
+- [`<Create />`](/docs/ui-integrations/chakra-ui/components/basic-views/create/index)
 
 import BasicViews from "./previews/basic-views.tsx";
 
@@ -422,15 +422,15 @@ Refine's Material UI also provides field components to render values with approp
 
 The list of provided field components are:
 
-- [`<BooleanField />`](/docs/api-reference/chakra-ui/components/fields/boolean/)
-- [`<DateField />`](/docs/api-reference/chakra-ui/components/fields/date/)
-- [`<EmailField />`](/docs/api-reference/chakra-ui/components/fields/email/)
-- [`<FileField />`](/docs/api-reference/chakra-ui/components/fields/file/)
-- [`<MarkdownField />`](/docs/api-reference/chakra-ui/components/fields/markdown/)
-- [`<NumberField />`](/docs/api-reference/chakra-ui/components/fields/number/)
-- [`<TagField />`](/docs/api-reference/chakra-ui/components/fields/tag/)
-- [`<TextField />`](/docs/api-reference/chakra-ui/components/fields/text/)
-- [`<UrlField />`](/docs/api-reference/chakra-ui/components/fields/url/)
+- [`<BooleanField />`](/docs/ui-integrations/chakra-ui/components/fields/boolean-field/index)
+- [`<DateField />`](/docs/ui-integrations/chakra-ui/components/fields/date-field/index)
+- [`<EmailField />`](/docs/ui-integrations/chakra-ui/components/fields/email-field/index)
+- [`<FileField />`](/docs/ui-integrations/chakra-ui/components/fields/file-field/index)
+- [`<MarkdownField />`](/docs/ui-integrations/chakra-ui/components/fields/markdown-field/index)
+- [`<NumberField />`](/docs/ui-integrations/chakra-ui/components/fields/number-field/index)
+- [`<TagField />`](/docs/ui-integrations/chakra-ui/components/fields/tag-field/index)
+- [`<TextField />`](/docs/ui-integrations/chakra-ui/components/fields/text-field/index)
+- [`<UrlField />`](/docs/ui-integrations/chakra-ui/components/fields/url-field/index)
 
 ```tsx title="pages/products/show.tsx"
 import { useShow } from "@refinedev/core";
@@ -489,7 +489,7 @@ The list of types of auth pages that are available in the UI integrations are:
 - `<AuthPage type="forgot-password" />`
 - `<AuthPage type="reset-password" />`
 
-An example usage of the [`<AuthPage />`](/docs/api-reference/chakra-ui/components/chakra-auth-page/) component is as follows:
+An example usage of the [`<AuthPage />`](/docs/ui-integrations/chakra-ui/components/auth-page/index) component is as follows:
 
 import AuthPage from "./previews/auth-page.tsx";
 
@@ -525,4 +525,4 @@ To learn more about the theme configuration of Chakra UI, please refer to the [o
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports the `ChakraListInferencer`, `ChakraShowInferencer`, `ChakraEditInferencer`, `ChakraCreateInferencer` components and finally the `ChakraInferencer` component, which combines all in one place.
 
-To learn more about Inferencer, please refer to the [Material UI Inferencer](/docs/api-reference/chakra-ui/components/inferencer/) docs.
+To learn more about Inferencer, please refer to the [Material UI Inferencer](/docs/ui-integrations/chakra-ui/components/inferencer/index) docs.

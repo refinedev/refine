@@ -456,7 +456,7 @@ const App: React.FC = () => {
 
 `@refinedev/appwrite` package supports Live/Realtime Provider natively 🚀
 
-[Refer to the Live/Realtime Provider docs for detailed usage. →](/docs/api-reference/core/providers/live-provider.md)
+[Refer to the Live/Realtime Provider docs for detailed usage. →](/docs/core/providers/live-provider/index)
 
 :::
 
@@ -506,7 +506,7 @@ We indicate that the read and write permission is open to everyone by giving the
 
 ## Login page​
 
-Before creating CRUD pages, let's create a login page. For this we use the [`AuthPage`](/docs/api-reference/antd/components/antd-auth-page/) component. This component returns ready-to-use authentication pages for `login`, `register`, `forgot password` and `update password` actions.
+Before creating CRUD pages, let's create a login page. For this we use the [`AuthPage`](/docs/ui-integrations/ant-design/components/auth-page/index) component. This component returns ready-to-use authentication pages for `login`, `register`, `forgot password` and `update password` actions.
 
 Below we see its implementation in the `App.tsx` file:
 

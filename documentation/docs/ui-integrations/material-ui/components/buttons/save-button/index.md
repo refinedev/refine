@@ -7,7 +7,7 @@ swizzle: true
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages/index) to customize it.
 
 :::
 

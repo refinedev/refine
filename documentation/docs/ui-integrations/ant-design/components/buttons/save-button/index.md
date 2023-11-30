@@ -7,13 +7,13 @@ swizzle: true
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
 
 :::
 
 ## Usage
 
-Let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/api-reference/antd/hooks/form/useForm.md) hook:
+Let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index) hook:
 
 ```tsx live url=http://localhost:3000/posts/edit/123
 // visible-block-start
@@ -70,7 +70,7 @@ render(
 );
 ```
 
-The [`useForm`](/docs/api-reference/antd/hooks/form/useForm.md) hook exposes `saveButtonProps` to be passed to the `<SaveButton>` component which includes submitting the form action, button loading, and disable states.
+The [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index) hook exposes `saveButtonProps` to be passed to the `<SaveButton>` component which includes submitting the form action, button loading, and disable states.
 
 ## Properties
 

@@ -7,7 +7,7 @@ sidebar_label: useNavigation
 
 This hook is a legacy hook and is not recommended, despite not being deprecated. You should use your router libraries' hooks and methods instead when dealing with the custom navigations.
 
-If you're in need of a navigation hook to use to navigate between your actions and resources, we recommend using the [`useGo`](./useGo.md) and [`useGetToPath`](./useGetToPath.md) hooks.
+If you're in need of a navigation hook to use to navigate between your actions and resources, we recommend using the [`useGo`](/docs/core/hooks/navigation/use-go/index) and [`useGetToPath`](/docs/core/hooks/navigation/use-get-to-path/index) hooks.
 
 ```tsx
 import { useNavigation } from "@refinedev/core";
@@ -222,5 +222,5 @@ cloneUrl("posts", "1"); // It returns the `/posts/clone/1` URL
 export type HistoryType = "push" | "replace";
 ```
 
-[routerprovider]: /api-reference/core/providers/router-provider.md
+[routerprovider]: /docs/core/providers/router-provider/index
 [basekey]: /docs/core/interface-references/index#basekey

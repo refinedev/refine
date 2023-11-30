@@ -45,7 +45,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ## Error Handling
 
-When the API returns an error, you need to extend **refine** from [HttpError](/docs/api-reference/core/interfaceReferences/#httperror) to handle it. To transform the error from the response before `axios` returns the response to your code, you can use the `axios` interceptor.
+When the API returns an error, you need to extend **refine** from [HttpError](/docs/core/interface-references/index#httperror) to handle it. To transform the error from the response before `axios` returns the response to your code, you can use the `axios` interceptor.
 
 To do this, create an `axiosInstance` in a `utility` file, define an `interceptor` to handle errors, and then export it.
 
@@ -426,7 +426,7 @@ const { data } = useList({
 });
 ```
 
-> [Refer to the useList documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useList)
+> [Refer to the useList documentation for more information. &#8594](/docs/core/hooks/data/use-list/index)
 
 ### create
 
@@ -457,7 +457,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-reference/core/hooks/data/useCreate#type-parameters) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useCreate`](/docs/core/hooks/data/use-create/index#type-parameters) to type `variables`
 
 :::
 
@@ -478,7 +478,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreate documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useCreate/)
+> [Refer to the useCreate documentation for more information. &#8594](/docs/core/hooks/data/use-create/index)
 
 ### update
 
@@ -510,7 +510,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/core/hooks/data/use-update/index#type-parameters) to type `variables`
 
 :::
 
@@ -530,7 +530,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdate documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useUpdate/)
+> [Refer to the useUpdate documentation for more information. &#8594](/docs/core/hooks/data/use-update/index)
 
 ### deleteOne
 
@@ -564,7 +564,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useDelete`](/docs/core/hooks/data/use-delete/index) to type `variables`
 
 :::
 
@@ -580,7 +580,7 @@ const { mutate } = useDelete();
 mutate({ resource: "posts", id: 2 });
 ```
 
-> [Refer to the useDelete documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useDelete/)
+> [Refer to the useDelete documentation for more information. &#8594](/docs/core/hooks/data/use-delete/index)
 
 ### getOne
 
@@ -619,7 +619,7 @@ import { useOne } from "@refinedev/core";
 const { data } = useOne({ resource: "posts", id: 1 });
 ```
 
-> [Refer to the useOne documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useOne/)
+> [Refer to the useOne documentation for more information. &#8594](/docs/core/hooks/data/use-one/index)
 
 <br/>
 
@@ -735,7 +735,7 @@ const { data, isLoading } = useCustom({
 });
 ```
 
-> [Refer to the useCustom documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useCustom/)
+> [Refer to the useCustom documentation for more information. &#8594](/docs/core/hooks/data/use-custom/index)
 
 ## Bulk Actions
 
@@ -778,7 +778,7 @@ import { useMany } from "@refinedev/core";
 const { data } = useMany({ resource: "posts", ids: [1, 2] });
 ```
 
-> [Refer to the useMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useMany/)
+> [Refer to the useMany documentation for more information. &#8594](/docs/core/hooks/data/use-many/index)
 
 ### createMany
 
@@ -808,7 +808,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/api-reference/core/hooks/data/useCreateMany/) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/core/hooks/data/use-create/index) to type `variables`
 
 :::
 
@@ -834,7 +834,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreateMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useCreateMany/)
+> [Refer to the useCreateMany documentation for more information. &#8594](/docs/core/hooks/data/use-create/index)
 
 ### deleteMany
 
@@ -865,7 +865,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useDeleteMany`](/docs/api-reference/core/hooks/data/useDeleteMany/) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useDeleteMany`](/docs/core/hooks/data/use-delete/index) to type `variables`
 
 :::
 
@@ -884,7 +884,7 @@ mutate({
 });
 ```
 
-> [Refer to the useDeleteMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useDeleteMany/)
+> [Refer to the useDeleteMany documentation for more information. &#8594](/docs/core/hooks/data/use-delete/index)
 
 ### updateMany
 
@@ -919,7 +919,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdateMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useUpdateMany/)
+> [Refer to the useUpdateMany documentation for more information. &#8594](/docs/core/hooks/data/use-update/index)
 
 ## meta usage
 

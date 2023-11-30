@@ -40,7 +40,7 @@ const App = () => (
 );
 ```
 
-[Check out React Router documentation for detailed information](/docs/packages/documentation/routers/react-router-v6)
+[Check out React Router documentation for detailed information](/docs/packages/list-of-packages/index)
 
 </TabItem>
 <TabItem value="next-js" label="Next.js">
@@ -63,7 +63,7 @@ export function MyApp({ Component, pageProps }) {
 
 > While using this integration, you won't be missing out Next.js features such as **SSR** and **ISR**.
 
-[Check out Next.js Router documentation for detailed information](/docs/packages/documentation/routers/nextjs)
+[Check out Next.js Router documentation for detailed information](/docs/packages/list-of-packages/index)
 
 </TabItem>
 <TabItem value="remix" label="Remix">
@@ -90,7 +90,7 @@ export default function App() {
 
 > While using this integration, you won't be missing out Remix features such as **SSR** and **ISR**.
 
-[Check out Remix Router documentation for detailed information](/docs/packages/documentation/routers/remix)
+[Check out Remix Router documentation for detailed information](/docs/packages/list-of-packages/index)
 
 </TabItem>
 <TabItem value="expo-router" label="Expo Router (React Native)">
@@ -209,7 +209,7 @@ const App = () => (
 );
 ```
 
-Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/documentation/routers/react-router-v6/#unsavedchangesnotifier) for more information.
+Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/list-of-packages/index#unsavedchangesnotifier) for more information.
 
 </TabItem>
 <TabItem value="next-js" label="Next.js">
@@ -239,7 +239,7 @@ export default function App({ Component, pageProps }) {
 }
 ```
 
-Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/documentation/routers/nextjs/#unsavedchangesnotifier) for more information.
+Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/list-of-packages/index#unsavedchangesnotifier) for more information.
 
 </TabItem>
 <TabItem value="remix" label="Remix">
@@ -283,7 +283,7 @@ export default function App() {
 }
 ```
 
-Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/documentation/routers/remix/#unsavedchangesnotifier) for more information.
+Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/list-of-packages/index#unsavedchangesnotifier) for more information.
 
 </TabItem>
 </Tabs>

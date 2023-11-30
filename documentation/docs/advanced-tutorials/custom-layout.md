@@ -35,10 +35,10 @@ sidebar_label: Custom Layout
 
 ```tsx
 type SiderRenderFunction = (props: {
-    items: JSX.Element[];
-    logout: React.ReactNode;
-    dashboard: React.ReactNode;
-    collapsed: boolean;
+  items: JSX.Element[];
+  logout: React.ReactNode;
+  dashboard: React.ReactNode;
+  collapsed: boolean;
 }) => React.ReactNode;
 ```
 
@@ -48,19 +48,19 @@ You can use the `render` prop to customize the render of the `<Sider>` without n
 import { Sider } from "@refinedev/antd";
 
 const CustomSider = () => {
-    return (
-        <Sider
-            render={({ items, logout, collapsed }) => {
-                return (
-                    <>
-                        <div>My Custom Element</div>
-                        {items}
-                        {logout}
-                    </>
-                );
-            }}
-        />
-    );
+  return (
+    <Sider
+      render={({ items, logout, collapsed }) => {
+        return (
+          <>
+            <div>My Custom Element</div>
+            {items}
+            {logout}
+          </>
+        );
+      }}
+    />
+  );
 };
 ```
 
@@ -88,6 +88,6 @@ You can find more examples about custom layouts for different UI packages in the
 
 <CodeSandboxExample path="customization-top-menu-layout" />
 
-[refine]: /docs/api-reference/core/components/refine-config
-[cli]: /docs/packages/documentation/cli#swizzle
-[usemenu]: /docs/api-reference/core/hooks/ui/useMenu/
+[refine]: /docs/core/refine-component/index
+[cli]: /docs/packages/list-of-packages/index#swizzle
+[usemenu]: /docs/core/hooks/utilities/use-menu/index

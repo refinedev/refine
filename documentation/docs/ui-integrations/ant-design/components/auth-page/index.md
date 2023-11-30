@@ -8,11 +8,11 @@ source: packages/antd/src/components/pages/auth/index.tsx
 
 `<AuthPage>` component from **refine** for **Ant Design** contains authentication pages that can be used for the login, register, forgot password, and update password actions.
 
-Before using `<AuthPage>` component you need to add [authProvider](/docs/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
+Before using `<AuthPage>` component you need to add [authProvider](/docs/core/providers/auth-provider/index) that will be used to handle authentication.
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
 
 :::
 
@@ -938,7 +938,7 @@ const MyLoginPage = () => {
 formProps-type="[`FormProps`](https://ant.design/components/form/#API)"
 wrapperProps-type="[`WrapperProps`](https://ant.design/components/layout/#API)"
 contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
-rememberMe-default="[`<Checkbox>Remember me</Checkbox>`](/docs/api-reference/antd/components/antd-auth-page/#rememberme)"
+rememberMe-default="[`<Checkbox>Remember me</Checkbox>`](/docs/ui-integrations/ant-design/components/auth-page/index#rememberme)"
 />
 
 ### Interface
@@ -951,8 +951,8 @@ interface OAuthProvider {
 }
 ```
 
-[auth-provider]: /docs/api-reference/core/providers/auth-provider/
-[login]: /docs/api-reference/core/providers/auth-provider/#login-
-[register]: /docs/api-reference/core/providers/auth-provider/#register
-[forgot-password]: /docs/api-reference/core/providers/auth-provider/#forgotpassword
-[update-password]: /docs/api-reference/core/providers/auth-provider/#updatepassword
+[auth-provider]: /docs/core/providers/auth-provider/index
+[login]: /docs/core/providers/auth-provider/index#login-
+[register]: /docs/core/providers/auth-provider/index#register
+[forgot-password]: /docs/core/providers/auth-provider/index#forgotpassword
+[update-password]: /docs/core/providers/auth-provider/index#updatepassword

@@ -18,13 +18,13 @@ This hook uses the `useList` hook for fetching data.
 
 If you're looking for a complete select library, refine has out-of-the-box support for the libraries below:
 
-- refine's `useSelect` (for Headless users) - [Documentation](/docs/api-reference/core/hooks/useSelect/) - [Example](/docs/examples/core/useSelect)
-- [Material UI Autocomplete](https://mui.com/material-ui/react-autocomplete) (for Material UI users) - [Documentation](/docs/api-reference/mui/hooks/useAutocomplete)
-- [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/api-reference/mantine/hooks/useSelect)
+- refine's `useSelect` (for Headless users) - [Documentation](/docs/core/hooks/use-select/index) - [Example](/docs/examples/core/useSelect)
+- [Material UI Autocomplete](https://mui.com/material-ui/react-autocomplete) (for Material UI users) - [Documentation](/docs/ui-integrations/material-ui/hooks/use-auto-complete/index)
+- [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/ui-integrations/mantine/hooks/use-select/index)
 
 :::
 
-> For more information, refer to the [useList documentation &#8594](/docs/api-reference/core/hooks/data/useList/)
+> For more information, refer to the [useList documentation &#8594](/docs/core/hooks/data/use-list/index)
 
 ## Basic Usage
 
@@ -36,13 +36,13 @@ Here is a basic example that uses the `useSelect` hook.
 
 :::caution
 
-This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider)
+This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider/index)
 
 :::
 
 When the `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider` that allow you to subscribe to live updates.
 
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider/index)
 
 ## Properties
 
@@ -60,7 +60,7 @@ useSelect({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
 
 ### `optionLabel` and `optionValue`
 
@@ -106,7 +106,7 @@ useSelect({
 
 <SortLivePreview />
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references/index#crudsorting)
 
 ### `filters`
 
@@ -124,7 +124,7 @@ useSelect({
 });
 ```
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references/index#crudfilters)
 
 ### `defaultValue`
 
@@ -142,7 +142,7 @@ useSelect({
 });
 ```
 
-> For more information, refer to the [`useMany` documentation &#8594](/docs/api-reference/core/hooks/data/useMany/)
+> For more information, refer to the [`useMany` documentation &#8594](/docs/core/hooks/data/use-many/index)
 
 ### `debounce`
 
@@ -238,7 +238,7 @@ If `onSearch` is used, it will override the existing `filters`.
 
 :::
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references/index#crudfilters)
 
 #### Client-side filtering
 
@@ -316,7 +316,7 @@ useSelect({
 
 :::caution
 
-[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
 
 :::
 
@@ -338,7 +338,7 @@ useSelect({
 
 :::caution
 
-[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
 
 :::
 
@@ -360,7 +360,7 @@ useSelect({
 
 :::caution
 
-[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
 
 :::
 
@@ -372,13 +372,13 @@ useSelect({
 });
 ```
 
-> For more information, refer to the [Live / Realtime documentation &#8594](/docs/api-reference/core/providers/live-provider/#livemode)
+> For more information, refer to the [Live / Realtime documentation &#8594](/docs/core/providers/live-provider/index#livemode)
 
 ### `onLiveEvent`
 
 :::caution
 
-[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
 
 :::
 
@@ -396,11 +396,11 @@ useSelect({
 
 :::caution
 
-[`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+[`LiveProvider`](/docs/core/providers/live-provider/index) is required for this prop to work.
 
 :::
 
-Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider/index#subscribe) method.
 
 ### `overtimeOptions`
 
@@ -458,19 +458,19 @@ useSelect({
 
 ### How to add search to options (Autocomplete)?
 
-[`onSearch`](/docs/api-reference/core/hooks/useSelect/#onsearch) is a function that is used to set the search value. It is useful when you want to search for a specific value. A simple example of this is shown below.
+[`onSearch`](/docs/core/hooks/use-select/index#onsearch) is a function that is used to set the search value. It is useful when you want to search for a specific value. A simple example of this is shown below.
 
 <OnSearchLivePreview />
 
 ### How to ensure `defaultValue` is included in the options?
 
-In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/api-reference/core/hooks/data/useMany/), gets the data and mark as selected.
+In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/core/hooks/data/use-many/index), gets the data and mark as selected.
 
 <DefaultValueLivePreview />
 
 ### How to change the `label` and `value` properties in options?
 
-[`optionLabel` and `optionValue`](/docs/api-reference/core/hooks/useSelect/#optionlabel-and-optionvalue) are used to change the value of your options.
+[`optionLabel` and `optionValue`](/docs/core/hooks/use-select/index#optionlabel-and-optionvalue) are used to change the value of your options.
 The default values are `optionsLabel="title"` and `optionsValue="id"`.
 
 To change to `name` and `categoryId`;

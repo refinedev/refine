@@ -49,7 +49,7 @@ The `meta.parent` you give in the resource objects must be strictly equal to the
 
 ### Headless
 
-If you want to create your multi-level menu without any UI framework integration, [`useMenu`](/docs/api-reference/core/hooks/ui/useMenu.md) hook gives your resources.
+If you want to create your multi-level menu without any UI framework integration, [`useMenu`](/docs/core/hooks/utilities/use-menu/index) hook gives your resources.
 
 ```tsx title="src/components/layout/sider/index.tsx"
 //highlight-next-line

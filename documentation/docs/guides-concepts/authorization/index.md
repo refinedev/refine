@@ -22,7 +22,7 @@ In order to enable these features, Refine uses the **Access Control Provider** a
 
 ## Access Control Provider
 
-The [Access Control Provider](/docs/api-reference/core/providers/access-control-provider) is an object that contains a `can` method. This method is called by **Refine** to understand if the user can see a certain resource or perform an action.
+The [Access Control Provider](/docs/core/providers/access-control-provider/index) is an object that contains a `can` method. This method is called by **Refine** to understand if the user can see a certain resource or perform an action.
 
 A basic **Access Control Provider** looks like this:
 
@@ -66,7 +66,7 @@ export const App = () => {
 };
 ```
 
-[To learn more about the `Access Control Provider`, check out the reference page.](/docs/api-reference/core/providers/access-control-provider)
+[To learn more about the `Access Control Provider`, check out the reference page.](/docs/core/providers/access-control-provider/index)
 
 ## CanAccess Component
 
@@ -93,7 +93,7 @@ export const ListPage = () => {
 };
 ```
 
-[To learn more about the `CanAccess` component, check out the reference page.](/docs/api-reference/core/components/accessControl/can-access)
+[To learn more about the `CanAccess` component, check out the reference page.](/docs/core/components/can-access/index)
 
 ### Router Integrations
 
@@ -101,7 +101,7 @@ export const ListPage = () => {
 
 This means you can wrap all of your routes with a single `<CanAccess />` component, instead of wrapping each page individually.
 
-See [React Router](/docs/packages/documentation/routers/react-router-v6), [Next.js](/docs/packages/documentation/routers/nextjs), [Remix](/docs/packages/documentation/routers/remix) integration pages for more information.
+See [React Router](/docs/packages/list-of-packages/index), [Next.js](/docs/packages/list-of-packages/index), [Remix](/docs/packages/list-of-packages/index) integration pages for more information.
 
 ## useCan Hook
 
@@ -130,7 +130,7 @@ export const ListPage = () => {
 };
 ```
 
-[To learn more about the `useCan` hook, check out the reference page.](/docs/api-reference/core/hooks/accessControl/useCan)
+[To learn more about the `useCan` hook, check out the reference page.](/docs/core/hooks/use-can/index)
 
 ## Handling Authorization
 

@@ -70,7 +70,7 @@ We'll build a simple CRUD app with refine and use Supabase as a data provider. W
 
 We are assuming that you have already know how refine works. If not, please check out the [Tutorial](/docs/tutorial/introduction/index/) section first.
 
-[Refer to docs for more information about data provider &#8594](/docs/api-reference/core/providers/data-provider.md)
+[Refer to docs for more information about data provider &#8594](/docs/core/providers/data-provider/index)
 
 [Discover the +15 most popular backend service data providers supported out-of-the-box by refine &#8594](/integrations/)
 
@@ -194,7 +194,7 @@ Highlighted lines are the ones the CLI generator automatically added to register
 
 With this configuration, refine can now communicate with Supabase API and perform all required data service CRUD methods using data hooks.
 
-[Refer to documentation to learn more about how to use data hooks &#8594](/docs/api-reference/core/hooks/data/useCreate/)
+[Refer to documentation to learn more about how to use data hooks &#8594](/docs/core/hooks/data/use-create/index)
 
 ## Understanding the Auth Provider
 
@@ -206,7 +206,7 @@ So basically, this is where we set complete authentication logic for the app.
 
 Since we preferred refine-supabase as the data provider during the CLI project initialization, all required Supabase authentication methods are already implemented for us. This shows us how easy it is to bootstrap a refine app with CLI
 
-[Refer to docs for more information about Auth Provider methods and custom Auth Providers &#8594](/docs/api-reference/core/providers/auth-provider.md)
+[Refer to docs for more information about Auth Provider methods and custom Auth Providers &#8594](/docs/core/providers/auth-provider/index)
 
 <details><summary>Take a look the auto-generated <b>authProvider.ts</b> file </summary>
 <p>
@@ -460,7 +460,7 @@ export default authProvider;
 
 :::tip
 
-Auth provider functions are also consumed by [refine authorization hooks](/docs/api-reference/core/hooks/authentication/useLogin.md). Since this is out of scope of this tutorial, we'll not cover them for now
+Auth provider functions are also consumed by [refine authorization hooks](/docs/core/hooks/auth/use-login/index). Since this is out of scope of this tutorial, we'll not cover them for now
 
 :::
 
@@ -982,7 +982,7 @@ The resources property activates the connection between CRUD pages and Supabase 
 
 - The `create` property registers `/posts/create` endpoint to the `PostCreate` component. Thereby, when you head over to `yourdomain.com/posts/create`, you will see the `PostCreate` page you just created.
 
-[Refer to resources docs for more information &#8594](/docs/api-reference/core/components/refine-config.md/#resources)
+[Refer to resources docs for more information &#8594](/docs/core/refine-component/index#resources)
 
 ## Understanding the Login screen
 
@@ -1088,7 +1088,7 @@ Remember the [Understanding the Auth Provider](#understanding-auth-provider) sec
 
 We'll show how to implement third party logins in the next sections.
 
-[Refer to AuthPage docs for more information &#8594](/docs/api-reference/antd/components/auth-page.md)
+[Refer to AuthPage docs for more information &#8594](/docs/ui-integrations/ant-design/components/auth-page/index)
 
 Sign in the app with followings credentials:
 
@@ -1302,7 +1302,7 @@ So far, we have implemented the followings:
 - We have reviewed Supabase Client and data provider concepts. We've seen benefits of using **refine** and how it can handle complex setups for us.
 - We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of **refine**'s built-in authentication support.
 - We have added CRUD pages to make the app interact with Supabase API. We've seen how the `resources` property works and how it connects the pages with the API.
-- We have seen how the [`Authentication`](/docs/packages/documentation/routers/react-router-v6/#usage-with-authentication) component works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
+- We have seen how the [`Authentication`](/docs/packages/list-of-packages/index#usage-with-authentication) component works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
 - We have seen how authorization handling in **refine** app by understanding the logic behind of `authProvider`, and `<AuthPage>` component.
 
 **refine provides solutions for critical parts of the complete CRUD app requirements. It saves development time and effort by providing ready-to-use components and features.**
@@ -1344,7 +1344,7 @@ function App() {
 
 For live features to work automatically, we set `liveMode: "auto"` in the options prop.
 
-[Refer to Live Provider docs for more information &#8594](/docs/api-reference/core/providers/live-provider.md/#livemode)
+[Refer to Live Provider docs for more information &#8594](/docs/core/providers/live-provider/index#livemode)
 
 :::
 
@@ -1376,7 +1376,7 @@ The [`meta`](/docs/guides-concepts/general-concepts/#meta-concept) property is u
 
 We'll show an example of getting relational data from different tables on Supabase API using `meta` property.
 
-Take a look at the useTable hook in List page we created on the [previous sections](/docs/packages/documentation/data-providers/supabase/#adding-a-list-page).
+Take a look at the useTable hook in List page we created on the [previous sections](/docs/packages/list-of-packages/index#adding-a-list-page).
 
 ### `select` - Getting selected fields
 
@@ -1452,7 +1452,7 @@ const { tableProps, sorter } = useTable<IUser>({
 
 `meta` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 
-refine's [useMany](/docs/api-reference/core/hooks/data/useMany/) hook accepts `meta` property and uses `getMany` method of data provider.
+refine's [useMany](/docs/core/hooks/data/use-many/index) hook accepts `meta` property and uses `getMany` method of data provider.
 
 ```tsx
 useMany({

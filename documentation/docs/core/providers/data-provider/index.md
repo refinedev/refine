@@ -308,7 +308,7 @@ getList: async ({ resource, pagination, sorters, filters, meta }) => {
 
 :::tip
 
-`getList` can also support cursor-based pagination. Refer to [related section in the `useInfiniteList` documentation](/docs/api-reference/core/hooks/data/useInfiniteList/#how-to-use-cursor-based-pagination) for more information.
+`getList` can also support cursor-based pagination. Refer to [related section in the `useInfiniteList` documentation](/docs/core/hooks/data/use-infinite-list/index#how-to-use-cursor-based-pagination) for more information.
 
 :::
 
@@ -346,7 +346,7 @@ create: async ({ resource, variables, meta }) => {
 | variables | `TVariables`                 | `{}`    |
 | meta?     | [`MetaDataQuery`][meta-data] |
 
-> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-reference/core/hooks/data/useCreate#type-parameters) to type `variables`.
+> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/core/hooks/data/use-create/index#type-parameters) to type `variables`.
 
 ### update <PropTag required />
 
@@ -373,7 +373,7 @@ update: async ({ resource, id, variables, meta }) => {
 | variables | `TVariables`                 | `{}`    |
 | meta?     | [`MetaDataQuery`][meta-data] |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`.
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/core/hooks/data/use-update/index#type-parameters) to type `variables`.
 
 ### deleteOne <PropTag required />
 
@@ -400,7 +400,7 @@ deleteOne: async ({ resource, id, variables, meta }) => {
 | variables | `TVariables[]`               | `{}`    |
 | meta?     | [`MetaDataQuery`][meta-data] |
 
-> `TVariables` is a user defined type which can be passed to [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) to type `variables`.
+> `TVariables` is a user defined type which can be passed to [`useDelete`](/docs/core/hooks/data/use-delete/index) to type `variables`.
 
 ### getOne <PropTag required />
 
@@ -473,7 +473,7 @@ custom: async ({ url, method, filters, sorters, payload, query, headers, meta })
 
 ## Bulk Actions
 
-Bulk actions are actions that can be performed on multiple items at once to improve speed and efficiency. They are commonly used in admin panels. They can be used for data [`import`](/docs/api-reference/core/hooks/import-export/useImport/) and [`export`](/docs/api-reference/core/hooks/import-export/useExport/), and are also atomic, meaning that they are treated as a single unit.
+Bulk actions are actions that can be performed on multiple items at once to improve speed and efficiency. They are commonly used in admin panels. They can be used for data [`import`](/docs/core/hooks/utilities/use-import/index) and [`export`](/docs/core/hooks/utilities/use-export/index), and are also atomic, meaning that they are treated as a single unit.
 
 If your API supports bulk actions, you can implement them in your data provider.
 
@@ -769,24 +769,24 @@ const myDataProvider = {
 <Refine dataProvider={myDataProvider}>{/* ... */}</Refine>;
 ```
 
-[basekey]: /docs/api-reference/core/interfaceReferences/#basekey
+[basekey]: /docs/core/interface-references/index#basekey
 [create-a-data-provider]: /docs/tutorial/understanding-dataprovider/create-dataprovider/
 [swizzle-a-data-provider]: /docs/tutorial/understanding-dataprovider/swizzle/
 [data-provider-tutorial]: /docs/tutorial/understanding-dataprovider/index/
-[use-api-url]: /docs/api-reference/core/hooks/data/useApiUrl/
-[use-create]: /docs/api-reference/core/hooks/data/useCreate/
-[use-create-many]: /docs/api-reference/core/hooks/data/useCreateMany/
-[use-custom]: /docs/api-reference/core/hooks/data/useCustom/
-[use-delete]: /docs/api-reference/core/hooks/data/useDelete/
-[use-delete-many]: /docs/api-reference/core/hooks/data/useDeleteMany/
-[use-list]: /docs/api-reference/core/hooks/data/useList/
-[use-infinite-list]: /docs/api-reference/core/hooks/data/useInfiniteList/
-[use-many]: /docs/api-reference/core/hooks/data/useMany/
-[use-one]: /docs/api-reference/core/hooks/data/useOne/
-[use-update]: /docs/api-reference/core/hooks/data/useUpdate/
-[use-update-many]: /docs/api-reference/core/hooks/data/useUpdateMany/
-[crud-sorting]: /docs/api-reference/core/interfaceReferences/#crudsorting
-[crud-filters]: /docs/api-reference/core/interfaceReferences/#crudfilters
-[pagination]: /docs/api-reference/core/interfaceReferences/#pagination
-[http-error]: /docs/api-reference/core/interfaceReferences/#httperror
-[meta-data]: /docs/api-reference/core/interfaceReferences/#metadataquery
+[use-api-url]: /docs/core/hooks/data/use-api-url/index
+[use-create]: /docs/core/hooks/data/use-create/index
+[use-create-many]: /docs/core/hooks/data/use-create/index
+[use-custom]: /docs/core/hooks/data/use-custom/index
+[use-delete]: /docs/core/hooks/data/use-delete/index
+[use-delete-many]: /docs/core/hooks/data/use-delete/index
+[use-list]: /docs/core/hooks/data/use-list/index
+[use-infinite-list]: /docs/core/hooks/data/use-infinite-list/index
+[use-many]: /docs/core/hooks/data/use-many/index
+[use-one]: /docs/core/hooks/data/use-one/index
+[use-update]: /docs/core/hooks/data/use-update/index
+[use-update-many]: /docs/core/hooks/data/use-update/index
+[crud-sorting]: /docs/core/interface-references/index#crudsorting
+[crud-filters]: /docs/core/interface-references/index#crudfilters
+[pagination]: /docs/core/interface-references/index#pagination
+[http-error]: /docs/core/interface-references/index#httperror
+[meta-data]: /docs/core/interface-references/index#metadataquery

@@ -479,7 +479,7 @@ If you still want to use the `useNavigation` hook and its returned functions in 
 
 ### `useRouterContext` hook
 
-This hook is now deprecated and will only work with the legacy router provider. While it was primarily used internally, you might have used it if you had a custom `<Sider>` component in your layout. If this is the case, you should replace it with the appropriate replacement hooks based on your use case: [`useGo`](/docs/api-reference/core/hooks/navigation/useGo/), [`useParsed`](/docs/api-reference/core/hooks/navigation/useParsed/), [`useBack`](/docs/api-reference/core/hooks/navigation/useBack/) or [`useLink`](/docs/api-reference/core/hooks/navigation/useLink/).
+This hook is now deprecated and will only work with the legacy router provider. While it was primarily used internally, you might have used it if you had a custom `<Sider>` component in your layout. If this is the case, you should replace it with the appropriate replacement hooks based on your use case: [`useGo`](/docs/core/hooks/navigation/use-go/index), [`useParsed`](/docs/core/hooks/navigation/use-parsed/index), [`useBack`](/docs/core/hooks/navigation/use-back/index) or [`useLink`](/docs/core/hooks/navigation/use-link/index).
 
 ```diff
 + import { useRouterContext } from "@pankod/refine-core";
@@ -533,7 +533,7 @@ The `<ReadyPage>` component is deprecated and will be removed in the next major 
 
 Before upgrading your project to refine@4, please upgrade your Ant Design to version 5. Don't worry, we have codemod support for this upgrade 🎉.
 
-[To upgrade now, visit the Migration Guide document >](/docs/api-reference/antd/migration-guide/v4-to-v5/)
+[To upgrade now, visit the Migration Guide document >](/docs/ui-integrations/ant-design/migration-guide/index)
 
 :::
 
@@ -1473,7 +1473,7 @@ After that, you can import them from `react-hook-form` package directly.
 ```
 
 [refine-codemod]: https://github.com/refinedev/refine/tree/master/packages/codemod
-[refine]: /api-reference/core/components/refine-config.md
-[resources]: /api-reference/core/components/refine-config.md#resources
-[routerprovider]: /api-reference/core/providers/router-provider.md
-[auth-provider]: /api-reference/core/providers/auth-provider/
+[refine]: /docs/core/refine-component/index
+[resources]: /docs/core/refine-component/index#resources
+[routerprovider]: /docs/core/providers/router-provider/index
+[auth-provider]: /docs/core/providers/auth-provider/index

@@ -608,7 +608,7 @@ textarea {
 
 :::tip
 
-All [`useForm`][refine-react-hook-form-use-form] props also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/documentation/react-hook-form/useForm/#properties) docs.
+All [`useForm`][refine-react-hook-form-use-form] props also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/list-of-packages/index#properties) docs.
 
 All [`React Hook Form useForm`][react-hook-form-use-form] props also available in `useModalForm`. You can find descriptions on [`React Hook Form`][react-hook-form-use-form] docs.
 
@@ -676,7 +676,7 @@ const modalForm = useModalForm({
 
 When you have unsaved changes and try to leave the current page, refine shows a confirmation modal box. To activate this feature.
 
-You can also set this value in [`<Refine>`](/docs/api-reference/core/components/refine-config/#warnwhenunsavedchanges) component.
+You can also set this value in [`<Refine>`](/docs/core/refine-component/index#warnwhenunsavedchanges) component.
 
 ```tsx
 const modalForm = useModalForm({
@@ -810,9 +810,9 @@ useDrawerForm({
 
 :::tip
 
-All [`useForm`][refine-react-hook-form-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/documentation/react-hook-form/useForm/#return-values) docs.
+All [`useForm`][refine-react-hook-form-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/list-of-packages/index#return-values) docs.
 
-All [`React Hook Form useForm`][react-hook-form-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/documentation/react-hook-form/useForm/#return-values) docs.
+All [`React Hook Form useForm`][react-hook-form-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/list-of-packages/index#return-values) docs.
 
 :::
 
@@ -995,7 +995,7 @@ return (
 
 <PropsTable module="@refinedev/react-hook-form/useModalForm" />
 
-> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/docs/api-reference/core/components/refine-config.md)>** component.
+> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/docs/core/refine-component/index)>** component.
 
 :::tip External Props
 
@@ -1041,7 +1041,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 <CodeSandboxExample path="form-react-hook-form-use-modal-form" />
 
 [@refinedev/react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
-[refine-react-hook-form-use-form]: /packages/documentation/react-hook-form/useForm.md
+[refine-react-hook-form-use-form]: /docs/packages/list-of-packages/index
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
 [baserecord]: /docs/core/interface-references/index#baserecord

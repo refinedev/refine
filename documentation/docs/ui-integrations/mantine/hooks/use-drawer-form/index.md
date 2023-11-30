@@ -437,7 +437,7 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 
 ### `refineCoreProps`
 
-All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties are also available in `useStepsForm`. You can find descriptions on the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) documentation.
+All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index) properties are also available in `useStepsForm`. You can find descriptions on the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index#properties) documentation.
 
 ```tsx
 const drawerForm = useDrawerForm({
@@ -631,7 +631,7 @@ useDrawerForm({
 
 :::tip
 
-All [`useForm`][use-form-refine-mantine] return values are also available in `useDrawerForm`. You can find descriptions on the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) documentation.
+All [`useForm`][use-form-refine-mantine] return values are also available in `useDrawerForm`. You can find descriptions on the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form/index#return-values) documentation.
 
 All [`mantine useForm`](https://mantine.dev/form/use-form/) return values also available in `useDrawerForm`. You can find descriptions on [`mantine`](https://mantine.dev/form/use-form/) docs.
 
@@ -880,8 +880,8 @@ const UserCreate: React.FC = () => {
 
 <CodeSandboxExample path="form-mantine-use-drawer-form" />
 
-[use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
+[use-form-refine-mantine]: /docs/ui-integrations/mantine/hooks/use-form/index
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
-[use-modal-form-refine-mantine]: /api-reference/mantine/hooks/form/useModalForm.md
+[use-modal-form-refine-mantine]: /docs/ui-integrations/mantine/hooks/use-modal-form/index
 [baserecord]: /docs/core/interface-references/index#baserecord
 [httperror]: /docs/core/interface-references/index#httperror

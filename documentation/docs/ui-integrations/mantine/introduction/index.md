@@ -50,7 +50,7 @@ import UsageRemix from "./previews/usage-remix.tsx";
 
 ## Tables
 
-Mantine offers styled [table primitives](https://v5.mantine.dev/core/table/) but lacks the table management solution. Refine recommends using [`@refinedev/react-table`](/docs/packages/documentation/react-table/) package which is built on top of Refine's [`useTable`](/docs/api-reference/core/hooks/useTable/index.md) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Mantine uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
+Mantine offers styled [table primitives](https://v5.mantine.dev/core/table/) but lacks the table management solution. Refine recommends using [`@refinedev/react-table`](/docs/packages/list-of-packages/index) package which is built on top of Refine's [`useTable`](/docs/core/hooks/use-table/index) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Mantine uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
 
 ```tsx title="pages/products/list.tsx"
 import React from "react";
@@ -135,7 +135,7 @@ interface IProduct {
 
 ## Forms
 
-Refine provides a seamless integration with the [`useForm`](https://v5.mantine.dev/form/use-form/) hook of `@mantine/form` from validation to submission via the [`useForm`](/docs/api-reference/mantine/hooks/form/useForm.md) hook exported from the `@refinedev/mantine` package.
+Refine provides a seamless integration with the [`useForm`](https://v5.mantine.dev/form/use-form/) hook of `@mantine/form` from validation to submission via the [`useForm`](/docs/ui-integrations/mantine/hooks/use-form/index) hook exported from the `@refinedev/mantine` package.
 
 ```tsx title="pages/products/create.tsx"
 import { Create, useForm } from "@refinedev/mantine";
@@ -164,11 +164,11 @@ export const ProductCreate = () => {
 };
 ```
 
-`@refinedev/mantine` also offers hooks to implement different types of forms such as [`useModalForm`](/docs/api-reference/mantine/hooks/form/useModalForm/), [`useDrawerForm`](/docs/api-reference/mantine/hooks/form/useDrawerForm/) and [`useStepsForm`](/docs/api-reference/mantine/hooks/form/useStepsForm/) hooks. Additionally [`useSelect`](/docs/api-reference/mantine/hooks/useSelect/) hook is also provided to make it easier to implement form fields with relational data. The `useSelect` hook of `@refinedev/mantine` leverage the [`useSelect`](/docs/api-reference/core/hooks/useSelect/) hook from the `@refinedev/core` package.
+`@refinedev/mantine` also offers hooks to implement different types of forms such as [`useModalForm`](/docs/ui-integrations/mantine/hooks/use-modal-form/index), [`useDrawerForm`](/docs/ui-integrations/mantine/hooks/use-drawer-form/index) and [`useStepsForm`](/docs/ui-integrations/mantine/hooks/use-steps-form/index) hooks. Additionally [`useSelect`](/docs/ui-integrations/mantine/hooks/use-select/index) hook is also provided to make it easier to implement form fields with relational data. The `useSelect` hook of `@refinedev/mantine` leverage the [`useSelect`](/docs/core/hooks/use-select/index) hook from the `@refinedev/core` package.
 
 ## Notifications
 
-Mantine has its own built-in notification system through [`@mantine/notifications`](https://v5.mantine.dev/others/notifications/) package which works seamlessly with its UI elements. Refine also provides a seamless integration with Mantine's notification system and show notifications for related actions and events. This integration is provided by the `notificationProvider` hook exported from the `@refinedev/mantine` package which can be directly used in the [`notificationProvider`](/docs/api-reference/core/components/refine-config/#notificationprovider) prop of the `<Refine />` component.
+Mantine has its own built-in notification system through [`@mantine/notifications`](https://v5.mantine.dev/others/notifications/) package which works seamlessly with its UI elements. Refine also provides a seamless integration with Mantine's notification system and show notifications for related actions and events. This integration is provided by the `notificationProvider` hook exported from the `@refinedev/mantine` package which can be directly used in the [`notificationProvider`](/docs/core/refine-component/index#notificationprovider) prop of the `<Refine />` component.
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
@@ -215,9 +215,9 @@ import LayoutRemix from "./previews/layout-remix.tsx";
 </TabItem>
 </Tabs>
 
-[`<ThemedLayoutV2 />`](/docs/api-reference/mantine/components/mantine-themed-layout/) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+[`<ThemedLayoutV2 />`](/docs/ui-integrations/mantine/components/themed-layout/index) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
 
-Additionally, Refine also provides a [`<Breadcrumb />`](/docs/api-reference/mantine/components/breadcrumb/) component that uses the Mantine's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Mantine package automatically.
+Additionally, Refine also provides a [`<Breadcrumb />`](/docs/ui-integrations/mantine/components/breadcrumb/index) component that uses the Mantine's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Mantine package automatically.
 
 ### Buttons
 
@@ -231,7 +231,7 @@ Refine's Mantine integration offers variety of buttons that are built above the 
 - Form actions
 - Import/Export and more.
 
-You can use buttons such as [`<EditButton />`](/docs/api-reference/mantine/components/buttons/edit-button/) or [`<ListButton />`](/docs/api-reference/mantine/components/buttons/list-button/) etc. in your views to provide navigation for the related routes or [`<DeleteButton />`](/docs/api-reference/mantine/components/buttons/delete-button/) and [`<SaveButton />`](/docs/api-reference/mantine/components/buttons/save-button/) etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
+You can use buttons such as [`<EditButton />`](/docs/ui-integrations/mantine/components/buttons/edit-button/index) or [`<ListButton />`](/docs/ui-integrations/mantine/components/buttons/list-button/index) etc. in your views to provide navigation for the related routes or [`<DeleteButton />`](/docs/ui-integrations/mantine/components/buttons/delete-button/index) and [`<SaveButton />`](/docs/ui-integrations/mantine/components/buttons/save-button/index) etc. to perform related actions without having to worry about the authorization checks and other logical functionalities.
 
 An example usage of the `<EditButton />` component is as follows:
 
@@ -265,16 +265,16 @@ export const ProductList = () => {
 
 The list of provided buttons are:
 
-- [`<CreateButton />`](/docs/api-reference/mantine/components/buttons/create-button/)
-- [`<EditButton />`](/docs/api-reference/mantine/components/buttons/edit-button/)
-- [`<ListButton />`](/docs/api-reference/mantine/components/buttons/list-button/)
-- [`<ShowButton />`](/docs/api-reference/mantine/components/buttons/show-button/)
-- [`<CloneButton />`](/docs/api-reference/mantine/components/buttons/clone-button/)
-- [`<DeleteButton />`](/docs/api-reference/mantine/components/buttons/delete-button/)
-- [`<SaveButton />`](/docs/api-reference/mantine/components/buttons/save-button/)
-- [`<RefreshButton />`](/docs/api-reference/mantine/components/buttons/refresh-button/)
-- [`<ImportButton />`](/docs/api-reference/mantine/components/buttons/import-button/)
-- [`<ExportButton />`](/docs/api-reference/mantine/components/buttons/export-button/)
+- [`<CreateButton />`](/docs/ui-integrations/mantine/components/buttons/create-button/index)
+- [`<EditButton />`](/docs/ui-integrations/mantine/components/buttons/edit-button/index)
+- [`<ListButton />`](/docs/ui-integrations/mantine/components/buttons/list-button/index)
+- [`<ShowButton />`](/docs/ui-integrations/mantine/components/buttons/show-button/index)
+- [`<CloneButton />`](/docs/ui-integrations/mantine/components/buttons/clone-button/index)
+- [`<DeleteButton />`](/docs/ui-integrations/mantine/components/buttons/delete-button/index)
+- [`<SaveButton />`](/docs/ui-integrations/mantine/components/buttons/save-button/index)
+- [`<RefreshButton />`](/docs/ui-integrations/mantine/components/buttons/refresh-button/index)
+- [`<ImportButton />`](/docs/ui-integrations/mantine/components/buttons/import-button/index)
+- [`<ExportButton />`](/docs/ui-integrations/mantine/components/buttons/export-button/index)
 
 Many of these buttons are already used in the views provided by Refine's Mantine integration. If you're using the basic view elements provided by Refine, you will have the appropriate buttons placed in your application out of the box.
 
@@ -284,10 +284,10 @@ Views are designed as wrappers around the content of the pages in the applicatio
 
 The list of provided views are:
 
-- [`<List />`](/docs/api-reference/mantine/components/basic-views/list/)
-- [`<Show />`](/docs/api-reference/mantine/components/basic-views/show/)
-- [`<Edit />`](/docs/api-reference/mantine/components/basic-views/edit/)
-- [`<Create />`](/docs/api-reference/mantine/components/basic-views/create/)
+- [`<List />`](/docs/ui-integrations/mantine/components/basic-views/list/index)
+- [`<Show />`](/docs/ui-integrations/mantine/components/basic-views/show/index)
+- [`<Edit />`](/docs/ui-integrations/mantine/components/basic-views/edit/index)
+- [`<Create />`](/docs/ui-integrations/mantine/components/basic-views/create/index)
 
 import BasicViews from "./previews/basic-views.tsx";
 
@@ -299,15 +299,15 @@ Refine's Mantine also provides field components to render values with appropriat
 
 The list of provided field components are:
 
-- [`<BooleanField />`](/docs/api-reference/mantine/components/fields/boolean/)
-- [`<DateField />`](/docs/api-reference/mantine/components/fields/date/)
-- [`<EmailField />`](/docs/api-reference/mantine/components/fields/email/)
-- [`<FileField />`](/docs/api-reference/mantine/components/fields/file/)
-- [`<MarkdownField />`](/docs/api-reference/mantine/components/fields/markdown/)
-- [`<NumberField />`](/docs/api-reference/mantine/components/fields/number/)
-- [`<TagField />`](/docs/api-reference/mantine/components/fields/tag/)
-- [`<TextField />`](/docs/api-reference/mantine/components/fields/text/)
-- [`<UrlField />`](/docs/api-reference/mantine/components/fields/url/)
+- [`<BooleanField />`](/docs/ui-integrations/mantine/components/fields/boolean-field/index)
+- [`<DateField />`](/docs/ui-integrations/mantine/components/fields/date-field/index)
+- [`<EmailField />`](/docs/ui-integrations/mantine/components/fields/email-field/index)
+- [`<FileField />`](/docs/ui-integrations/mantine/components/fields/file-field/index)
+- [`<MarkdownField />`](/docs/ui-integrations/mantine/components/fields/markdown-field/index)
+- [`<NumberField />`](/docs/ui-integrations/mantine/components/fields/number-field/index)
+- [`<TagField />`](/docs/ui-integrations/mantine/components/fields/tag-field/index)
+- [`<TextField />`](/docs/ui-integrations/mantine/components/fields/text-field/index)
+- [`<UrlField />`](/docs/ui-integrations/mantine/components/fields/url-field/index)
 
 ```tsx title="pages/products/show.tsx"
 import { useShow } from "@refinedev/core";
@@ -355,7 +355,7 @@ The list of types of auth pages that are available in the UI integrations are:
 - `<AuthPage type="forgot-password" />`
 - `<AuthPage type="reset-password" />`
 
-An example usage of the [`<AuthPage />`](/docs/api-reference/mantine/components/mantine-auth-page/) component is as follows:
+An example usage of the [`<AuthPage />`](/docs/ui-integrations/mantine/components/auth-page/index) component is as follows:
 
 import AuthPage from "./previews/auth-page.tsx";
 
@@ -391,4 +391,4 @@ To learn more about the theme configuration of Mantine, please refer to the [off
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports the `MantineListInferencer`, `MantineShowInferencer`, `MantineEditInferencer`, `MantineCreateInferencer` components and finally the `MantineInferencer` component, which combines all in one place.
 
-To learn more about Inferencer, please refer to the [Material UI Inferencer](/docs/api-reference/mantine/components/inferencer/) docs.
+To learn more about Inferencer, please refer to the [Material UI Inferencer](/docs/ui-integrations/mantine/components/inferencer/index) docs.

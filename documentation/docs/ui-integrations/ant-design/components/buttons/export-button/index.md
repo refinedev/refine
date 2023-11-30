@@ -9,7 +9,7 @@ swizzle: true
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
 
 :::
 
@@ -118,4 +118,4 @@ It also accepts all props of Ant Design [Button](https://ant.design/components/b
 :::
 
 [button]: https://ant.design/components/button/
-[useexport]: /api-reference/core/hooks/import-export/useExport.md
+[useexport]: /docs/core/hooks/utilities/use-export/index

@@ -6,7 +6,7 @@ source: packages/core/src/hooks/data/useCreateMany.ts
 
 `useCreateMany` is used for creating multiple records. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `createMany` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
+It uses the `createMany` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider/index) which is passed to `<Refine>`.
 
 :::caution
 
@@ -44,13 +44,13 @@ mutate({
 
 :::caution
 
-This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider/index).
 
 :::
 
 When the `useCreateMany` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
 
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/api-reference/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider/index)
 
 ## Invalidating Queries
 
@@ -62,13 +62,13 @@ When the `useCreateMany` mutation runs successfully, it will invalidate the foll
 
 :::caution
 
-This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
+This feature is only available if you use a [Audit Log Provider](/docs/core/providers/audit-log-provider/index).
 
 :::
 
 When the `useCreateMany` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data` etc. It is useful when you want to log the changes to the database.
 
-> For more information, refer to the [`auditLogProvider` documentation &#8594](/docs/api-reference/core/providers/audit-log-provider/)
+> For more information, refer to the [`auditLogProvider` documentation &#8594](/docs/core/providers/audit-log-provider/index)
 
 ## Properties
 
@@ -164,7 +164,7 @@ mutate({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
 
 ### `values` <PropTag required />
 
@@ -191,7 +191,7 @@ mutate({
 
 :::caution
 
-[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
 
 :::
 
@@ -215,7 +215,7 @@ mutate({
 
 :::caution
 
-[`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+[`NotificationProvider`](/docs/core/providers/notification-provider/index) is required for this prop to work.
 
 :::
 

@@ -266,9 +266,9 @@ That's it for the project setup, next we'll integrate React Hook Forms into our 
 
 But before we start implementing React Hook Form in our app, we need to first understand its fundamentals.
 
-The library provides a set of useful components and hooks, such as the controller component and the [`useForm`](/docs/packages/documentation/react-hook-form/useForm/) hook, that let us register our form component into the hook, thus making its values available for both validation and submission.
+The library provides a set of useful components and hooks, such as the controller component and the [`useForm`](/docs/packages/list-of-packages/index) hook, that let us register our form component into the hook, thus making its values available for both validation and submission.
 
-The library performs most of these functionalities using the methods exposed by the [`useForm`](/docs/packages/documentation/react-hook-form/useForm/) hook. Here are some of the available methods:
+The library performs most of these functionalities using the methods exposed by the [`useForm`](/docs/packages/list-of-packages/index) hook. Here are some of the available methods:
 
 - `register`: This method allows you to register an input for validation
 

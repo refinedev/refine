@@ -3,7 +3,7 @@ id: list-search
 title: List Search
 ---
 
-We will examine how to make an extensive search and filtering with the [`useSimpleList`](/docs/api-reference/antd/hooks/list/useSimpleList.md) hook that works with the Ant Design's [`<List>`](https://ant.design/components/list) component.
+We will examine how to make an extensive search and filtering with the [`useSimpleList`](/docs/ui-integrations/ant-design/hooks/use-simple-list/index) hook that works with the Ant Design's [`<List>`](https://ant.design/components/list) component.
 
 To do this, let's list posts using the posts resource.
 
@@ -138,7 +138,7 @@ export default App;
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/list-search/basic-list.png" alt="basic list" />
 <br />
 
-We will create a form by extracting `searchFormProps` from [`useSimpleList`](/docs/api-reference/antd/hooks/list/useSimpleList.md). We will use this form for search/filtering. We will also create an interface to determine the types of values from the form.
+We will create a form by extracting `searchFormProps` from [`useSimpleList`](/docs/ui-integrations/ant-design/hooks/use-simple-list/index). We will use this form for search/filtering. We will also create an interface to determine the types of values from the form.
 
 ```tsx title="pages/posts/list.tsx"
 ...

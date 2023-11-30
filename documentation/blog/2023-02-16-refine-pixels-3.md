@@ -325,7 +325,7 @@ Before we move on, you need to add required page and components to the project i
 - styles: https://github.com/refinedev/refine/tree/master/examples/pixels/src/styles
 - assets: https://github.com/refinedev/refine/tree/master/examples/pixels/public
 
-After creating files above you need to add some imports and [routes](/docs/packages/documentation/routers/react-router-v6/) to `src/App.tsx` file. Simply add replace your App.tsx with following.
+After creating files above you need to add some imports and [routes](/docs/packages/list-of-packages/index) to `src/App.tsx` file. Simply add replace your App.tsx with following.
 
 <details>
 <summary>Show App.tsx code</summary>
@@ -625,7 +625,7 @@ check: async () => {
 </p>
 </details>
 
-**refine** provides [`<Authenticated/>`](/docs/api-reference/core/components/auth/authenticated/) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/docs/api-reference/core/components/auth/authenticated/) component.
+**refine** provides [`<Authenticated/>`](/docs/core/components/authenticated/index) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/docs/core/components/authenticated/index) component.
 
 Let's look at the routes implementation:
 
@@ -704,9 +704,9 @@ const App = () => {
 </p>
 </details>
 
-In this example we didn't wrap our `canvases` resource routes with [`<Authenticated/>`](/docs/api-reference/core/components/auth/authenticated/) component. This means that we can access the `canvases` resource routes without being authenticated.
+In this example we didn't wrap our `canvases` resource routes with [`<Authenticated/>`](/docs/core/components/authenticated/index) component. This means that we can access the `canvases` resource routes without being authenticated.
 
-However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/docs/api-reference/core/components/auth/authenticated/) component. This means that we can not access these routes if we are authenticated.
+However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/docs/core/components/authenticated/index) component. This means that we can not access these routes if we are authenticated.
 
 [Refer to the Auth Provider tutorial for more information. →](/docs/tutorial/understanding-authprovider/index)
 

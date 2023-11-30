@@ -144,7 +144,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
 
 :::
 
@@ -193,6 +193,6 @@ render(
 
 <PropsTable module="@refinedev/chakra-ui/ImportButton" />
 
-[useimport]: /api-reference/core/hooks/import-export/useImport.md
+[useimport]: /docs/core/hooks/utilities/use-import/index
 [button]: https://chakra-ui.com/docs/components/button/usage
 [input]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input

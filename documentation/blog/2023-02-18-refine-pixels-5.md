@@ -165,7 +165,7 @@ In order to run the app without warnings you need to follow [Casbin RBAC system 
 
 :::
 
-After creating files above you need to add some imports and [routes](/docs/packages/documentation/routers/react-router-v6/) to `src/App.tsx` file. Simply add replace your App.tsx with following.
+After creating files above you need to add some imports and [routes](/docs/packages/list-of-packages/index) to `src/App.tsx` file. Simply add replace your App.tsx with following.
 
 <details>
 <summary>Show App.tsx code</summary>
@@ -287,7 +287,7 @@ export default App;
 
 :::note
 
-[`<Refine />`](/docs/api-reference/core/components/refine-config/) comes with [dark mode support](/docs/api-reference/antd/theming/#switching-to-dark-theme) out-of-the-box. However, we will not be using it in this series. So, after copied `App.tsx` you will see that we have already replaced `ColorModeContextProvider` with the `ConfigProvider`.
+[`<Refine />`](/docs/core/refine-component/index) comes with [dark mode support](/docs/ui-integrations/ant-design/theming/index#switching-to-dark-theme) out-of-the-box. However, we will not be using it in this series. So, after copied `App.tsx` you will see that we have already replaced `ColorModeContextProvider` with the `ConfigProvider`.
 
 Also, you can remove `src/context/color-mode` that comes with `create refine-app`.
 

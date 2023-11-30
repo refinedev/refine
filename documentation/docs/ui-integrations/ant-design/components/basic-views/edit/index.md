@@ -117,7 +117,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
 
 :::
 
@@ -213,7 +213,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/api-reference/antd/components/buttons/save.md)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/ant-design/components/buttons/save-button/index)
 
 ### `canDelete` and `deleteButtonProps`
 
@@ -313,9 +313,9 @@ render(
 );
 ```
 
-> For more information, refer to the [`<DeleteButton>` documentation &#8594](/docs/api-reference/antd/components/buttons/delete.md)
+> For more information, refer to the [`<DeleteButton>` documentation &#8594](/docs/ui-integrations/ant-design/components/buttons/delete-button/index)
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions/index)
 
 ### `resource`
 
@@ -365,7 +365,7 @@ render(<App />);
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
 
 ### `recordItemId`
 
@@ -732,11 +732,11 @@ render(
 
 :::tip
 
-This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component/index#breadcrumb)
 
 :::
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/antd/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/ant-design/components/breadcrumb/index)
 
 ### `wrapperProps`
 
@@ -1329,7 +1329,7 @@ contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
 headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)"
 headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/antd/components/buttons/list-button/) and [`RefreshButton`](https://refine.dev/docs/api-reference/antd/components/buttons/refresh-button/)"
 headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
-deleteButtonProps-type="[`DeleteButtonProps`](/docs/api-reference/antd/components/buttons/delete-button/)"
+deleteButtonProps-type="[`DeleteButtonProps`](/docs/ui-integrations/ant-design/components/buttons/delete-button/index)"
 saveButtonProps-type="[`SaveButtonProps`](https://refine.dev/docs/api-reference/antd/components/buttons/save-button/)"
 footerButtons-default="[`SaveButton`](https://refine.dev/docs/api-reference/antd/components/buttons/save-button/) and [`DeleteButton`](https://refine.dev/docs/api-reference/antd/components/buttons/delete-button/)"
 footerButtonsProps-type="[`SpaceProps`](https://ant.design/components/space/)"
@@ -1338,9 +1338,9 @@ goBack-default="`<ArrowLeft />`"
 goBack-type="`ReactNode`"
 />
 
-> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/docs/api-reference/core/components/refine-config.md)>** component.
+> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/docs/core/refine-component/index)>** component.
 
-[list-button]: /docs/api-reference/antd/components/buttons/list-button/
-[refresh-button]: /docs/api-reference/antd/components/buttons/refresh-button/
-[save-button]: /docs/api-reference/antd/components/buttons/save-button/
-[delete-button]: /docs/api-reference/antd/components/buttons/delete-button/
+[list-button]: /docs/ui-integrations/ant-design/components/buttons/list-button/index
+[refresh-button]: /docs/ui-integrations/ant-design/components/buttons/refresh-button/index
+[save-button]: /docs/ui-integrations/ant-design/components/buttons/save-button/index
+[delete-button]: /docs/ui-integrations/ant-design/components/buttons/delete-button/index

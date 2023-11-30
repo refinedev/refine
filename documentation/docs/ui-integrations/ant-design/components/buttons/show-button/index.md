@@ -3,13 +3,13 @@ title: Show
 swizzle: true
 ---
 
-`<ShowButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component and the`show` method from [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
+`<ShowButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component and the`show` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index) under the hood.
 
 It can be useful when redirecting the app to the show page with the record id route of resource.
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages/index)
 
 :::
 
@@ -107,7 +107,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `show` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
 
 :::note
 
@@ -165,15 +165,15 @@ render(
 );
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `show` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/api-reference/core/components/refine-config#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component/index#identifier)
 
 ### `meta`
 
-It is used to pass additional parameters to the `show` method of [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `show` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+It is used to pass additional parameters to the `show` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index). By default, existing parameters in the route are used by the `show` method. You can pass additional parameters or override the existing ones using the `meta` prop.
 
 If the `show` action route is defined by the pattern: `/posts/:authorId/show/:id`, the `meta` prop can be used as follows:
 
@@ -223,7 +223,7 @@ render(
 
 ### `accessControl`
 
-This prop can be used to skip the access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with its `hideIfUnauthorized` property. However, this only works when an [`accessControlProvider`](/docs/api-reference/core/providers/access-control-provider.md) is provided to [`<Refine/>`](/docs/api-reference/core/components/refine-config.md)
+This prop can be used to skip the access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with its `hideIfUnauthorized` property. However, this only works when an [`accessControlProvider`](/docs/core/providers/access-control-provider/index) is provided to [`<Refine/>`](/docs/core/refine-component/index)
 
 ```tsx
 import { ShowButton } from "@refinedev/antd";
@@ -294,7 +294,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/123`.
+Clicking the button will trigger the `show` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation/index) and then redirect the app to `/categories/show/123`.
 
 ## API Reference
 
