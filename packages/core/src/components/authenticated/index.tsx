@@ -56,19 +56,40 @@ export type AuthenticatedProps = {
     v3LegacyAuthProviderCompatible?: false;
 } & AuthenticatedCommonProps;
 
+/**
+ * `<Authenticated>` is the component form of {@link https://refine.dev/docs/api-reference/core/hooks/auth/useAuthenticated `useAuthenticated`}. It internally uses `useAuthenticated` to provide it's functionality.
+ *
+ * @requires {@link https://react.dev/learn/rendering-lists#why-does-react-need-keys `key`} prop if you have multiple components at the same level.
+ * In React, components don't automatically unmount and remount with prop changes, which is generally good for performance. However, for specific cases this can cause issues like unwanted content rendering (`fallback` or `children`). To solve this, assigning unique `key` values to each instance of component is necessary, forcing React to unmount and remount the component, rather than just updating its props.
+ * @example
+ *```tsx
+ * <Authenticated key="dashboard">
+ *   <h1>Dashboard Page</h1>
+ * </Authenticated>
+ *```
+ *
+ * @see {@link https://refine.dev/docs/core/components/auth/authenticated `<Authenticated>`} component for more details.
+ */
 export function Authenticated(
     props: LegacyAuthenticatedProps,
 ): JSX.Element | null;
 
-export function Authenticated(props: AuthenticatedProps): JSX.Element | null;
-
 /**
  * `<Authenticated>` is the component form of {@link https://refine.dev/docs/api-reference/core/hooks/auth/useAuthenticated `useAuthenticated`}. It internally uses `useAuthenticated` to provide it's functionality.
  *
- *  "key" prop is required if you have multiple `Authenticated` components at the same level.
+ * @requires {@link https://react.dev/learn/rendering-lists#why-does-react-need-keys `key`} prop if you have multiple components at the same level.
+ * In React, components don't automatically unmount and remount with prop changes, which is generally good for performance. However, for specific cases this can cause issues like unwanted content rendering (`fallback` or `children`). To solve this, assigning unique `key` values to each instance of component is necessary, forcing React to unmount and remount the component, rather than just updating its props.
+ * @example
+ *```tsx
+ * <Authenticated key="dashboard">
+ *   <h1>Dashboard Page</h1>
+ * </Authenticated>
+ *```
  *
  * @see {@link https://refine.dev/docs/core/components/auth/authenticated `<Authenticated>`} component for more details.
  */
+export function Authenticated(props: AuthenticatedProps): JSX.Element | null;
+
 export function Authenticated({
     redirectOnFail = true,
     appendCurrentPathToQuery = true,

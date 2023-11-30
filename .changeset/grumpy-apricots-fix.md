@@ -2,7 +2,9 @@
 "@refinedev/core": patch
 ---
 
-BREAKING CHANGE fix: added required `key` prop to `<Auhtenticated />` component to resolve issues of rendering of the unwanted content and wrongful redirections.
+### Breaking changes
+
+fix: added required `key` prop to `<Auhtenticated />` component to resolve issues of rendering of the unwanted content and wrongful redirections.
 
 #### Why is it required?
 
