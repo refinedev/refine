@@ -40,7 +40,7 @@ Due to the [nature of React](https://react.dev/learn/rendering-lists#why-does-re
 
 The `<Authenticated />` component has this kind of scenario when its used for page level authentication checks. If the previous check results were used for the rendering of the content (`fallback` or `children`) this may lead to unexpected behaviors and flashing of the unwanted content.
 
-To avoid this, a key propery must be set with different values for each use of the `<Authenticated />` components. This will make sure that React will unmount and remount the component instead of updating the props.
+To avoid this, a `key` prop must be set with different values for each use of the `<Authenticated />` components. This will make sure that React will unmount and remount the component instead of updating the props.
 
 ```tsx
 import { Authenticated } from "@refinedev/core";
