@@ -32,7 +32,15 @@ const MyPage = () => (
 
 ### `key` <PropTag required />
 
-Due to the [nature of react](https://react.dev/learn/rendering-lists#why-does-react-need-keys), `<Authenticated />` components are unmounted and remounted again when the route changes. This may cause unwanted behaviors on the rendering and redirections logic. To avoid such issues, You need to add `key` prop to `<Authenticated />` components if you have more than one `<Authenticated />` component in the same level.
+A differentiator prop for the `<Authenticated />` component. This is crucial for the authentication logic to work properly in certain scenarios where `<Authenticated />` is used multiple times in same tree level. key prop will signal React to remount the component rather than updating the current props.
+
+#### Why is it required?
+
+Due to the [nature of React](https://react.dev/learn/rendering-lists#why-does-react-need-keys), components are not unmounted and remounted again if props are changed. While this is mostly a good practice for performance, in some cases you'll want your component to re-mount instead of updating; for example if you don't want to use any of the previous states and effects initiated with the old props.
+
+The `<Authenticated />` component has this kind of scenario when its used for page level authentication checks. If the previous check results were used for the rendering of the content (`fallback` or `children`) this may lead to unexpected behaviors and flashing of the unwanted content.
+
+To avoid this, a key propery must be set with different values for each use of the `<Authenticated />` components. This will make sure that React will unmount and remount the component instead of updating the props.
 
 ```tsx
 import { Authenticated } from "@refinedev/core";

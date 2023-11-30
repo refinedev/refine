@@ -2,17 +2,22 @@
 "@refinedev/core": patch
 ---
 
-BREAKING CHANGE fix: added required `key` prop to `<Auhtenticated />` component to resolve issues with its unmounting and remounting behavior.
+BREAKING CHANGE fix: added required `key` prop to `<Auhtenticated />` component to resolve issues of rendering of the unwanted content and wrongful redirections.
 
-Due to the [nature of react](https://react.dev/learn/rendering-lists#why-does-react-need-keys), `<Authenticated />` components are unmounted and remounted again when the route changes. This may cause unwanted behaviors on the rendering and redirections logic. To avoid such issues, You need to add `key` prop to `<Authenticated />` components if you have more than one `<Authenticated />` component in the same level.
+#### Why is it required?
+
+Due to the [nature of React](https://react.dev/learn/rendering-lists#why-does-react-need-keys), components are not unmounted and remounted again if props are changed. While this is mostly a good practice for performance, in some cases you'll want your component to re-mount instead of updating; for example if you don't want to use any of the previous states and effects initiated with the old props.
+
+The `<Authenticated />` component has this kind of scenario when its used for page level authentication checks. If the previous check results were used for the rendering of the content (`fallback` or `children`) this may lead to unexpected behaviors and flashing of the unwanted content.
+
+To avoid this, a key propery must be set with different values for each use of the `<Authenticated />` components. This will make sure that React will unmount and remount the component instead of updating the props.
 
 ```tsx
 import { Refine, Authenticated, AuthPage } from "@refinedev/core";
 import {
-  NavigateToResource,
   CatchAllNavigate,
 } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
 
 const App = () => {
   return (
@@ -34,13 +39,12 @@ const App = () => {
 
           <Route
             element={
-              <Authenticated key="auth-pages" fallback={<Outlet />}>
-                <NavigateToResource resource="posts" />
+              <Authenticated key="unauthenticated-routes" fallback={<Outlet />}>
+                 <Navigate to="/" replace />
               </Authenticated>
             }
           >
             <Route path="/login" element={<AuthPage type="login" />} />
-            <Route path="/register" element={<AuthPage type="register" />} />
           </Route>
         </Routes>
       </Refine>
@@ -48,3 +52,5 @@ const App = () => {
   );
 };
 ```
+
+In the example above, the `<Authenticated />` is rendered as the wrapper of both the `index` route and `/login` route. Without a `key` property, `<Authenticated />` will not be re-mounted and can result in rendering the content depending on the previous authentication check. This will lead to redirecting to `/login` when trying to access the `index` route instead of rendering the content of the `index` or navigating to `index` route instead of `/login` if the user just logged out.
