@@ -79,9 +79,13 @@ const SidebarCategory = ({
     const [settled, setSettled] = React.useState(false);
 
     React.useEffect(() => {
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
             setSettled(true);
         }, 210);
+
+        return () => {
+            clearTimeout(timeout);
+        };
     }, [collapsed]);
 
     const toggle = () => {
