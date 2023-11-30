@@ -21,7 +21,7 @@ npm install @refinedev/mui @refinedev/react-hook-form @emotion/react @emotion/st
 We'll wrap our app with the [`<ThemeProvider />`](https://mui.com/material-ui/customization/theming/#themeprovider) to make sure we have the theme available for our app, then we'll use the layout components to wrap them around our routes. Check out the examples below to see how to use Refine's Material UI integration.
 
 <Tabs wrapContent={false}>
-<TabItem value="react-router-dom" label="React Router Dom">
+<TabItem value="react-router-dom" label="React Router v6">
 
 import UsageReactRouterDom from "./previews/usage-react-router-dom.tsx";
 
@@ -81,7 +81,7 @@ interface IProduct {
 
 ## Forms
 
-Material UI offers form elements yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/documentation/react-hook-form/useForm.md) package which is built on top of Refine's [`useForm`](/docs/api-reference/core/hooks/useForm.md) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
+Material UI offers form elements yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/documentation/react-hook-form/useForm.md) package which is built on top of Refine's [`useForm`](/docs/api-reference/core/hooks/useForm/) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
 
 Refine's documentations and examples of Material UI uses `@refinedev/react-hook-form` package for form management but you have the option to use any form management solution you want.
 
@@ -179,7 +179,7 @@ Usage of `<RefineSnackbarProvider />` is required to manage notifications throug
 Refine provides Layout components that can be used to implement a layout for the application. These components are crafted using Material UI's components and includes Refine's features and functionalities such as navigation menus, headers, authentication, authorization and more.
 
 <Tabs wrapContent={false}>
-<TabItem value="react-router-dom" label="React Router Dom">
+<TabItem value="react-router-dom" label="React Router v6">
 
 import LayoutReactRouterDom from "./previews/layout-react-router-dom.tsx";
 

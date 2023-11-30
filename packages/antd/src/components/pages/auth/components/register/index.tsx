@@ -49,6 +49,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     renderContent,
     formProps,
     title,
+    hideForm,
 }) => {
     const { token } = useToken();
     const [form] = Form.useForm<RegisterFormTypes>();
@@ -118,15 +119,17 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             </Button>
                         );
                     })}
-                    <Divider>
-                        <Text
-                            style={{
-                                color: token.colorTextLabel,
-                            }}
-                        >
-                            {translate("pages.login.divider", "or")}
-                        </Text>
-                    </Divider>
+                    {!hideForm && (
+                        <Divider>
+                            <Text
+                                style={{
+                                    color: token.colorTextLabel,
+                                }}
+                            >
+                                {translate("pages.login.divider", "or")}
+                            </Text>
+                        </Divider>
+                    )}
                 </>
             );
         }
@@ -145,96 +148,130 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             {...(contentProps ?? {})}
         >
             {renderProviders()}
-            <Form<RegisterFormTypes>
-                layout="vertical"
-                form={form}
-                onFinish={(values) => register(values)}
-                requiredMark={false}
-                {...formProps}
-            >
-                <Form.Item
-                    name="email"
-                    label={translate("pages.register.email", "Email")}
-                    rules={[
-                        { required: true },
-                        {
-                            type: "email",
-                            message: translate(
-                                "pages.register.errors.validEmail",
-                                "Invalid email address",
-                            ),
-                        },
-                    ]}
+            {!hideForm && (
+                <Form<RegisterFormTypes>
+                    layout="vertical"
+                    form={form}
+                    onFinish={(values) => register(values)}
+                    requiredMark={false}
+                    {...formProps}
                 >
-                    <Input
-                        size="large"
-                        placeholder={translate(
-                            "pages.register.fields.email",
-                            "Email",
+                    <Form.Item
+                        name="email"
+                        label={translate("pages.register.email", "Email")}
+                        rules={[
+                            { required: true },
+                            {
+                                type: "email",
+                                message: translate(
+                                    "pages.register.errors.validEmail",
+                                    "Invalid email address",
+                                ),
+                            },
+                        ]}
+                    >
+                        <Input
+                            size="large"
+                            placeholder={translate(
+                                "pages.register.fields.email",
+                                "Email",
+                            )}
+                        />
+                    </Form.Item>
+                    <Form.Item
+                        name="password"
+                        label={translate(
+                            "pages.register.fields.password",
+                            "Password",
                         )}
-                    />
-                </Form.Item>
-                <Form.Item
-                    name="password"
-                    label={translate(
-                        "pages.register.fields.password",
-                        "Password",
-                    )}
-                    rules={[{ required: true }]}
-                >
-                    <Input
-                        type="password"
-                        placeholder="●●●●●●●●"
-                        size="large"
-                    />
-                </Form.Item>
+                        rules={[{ required: true }]}
+                    >
+                        <Input
+                            type="password"
+                            placeholder="●●●●●●●●"
+                            size="large"
+                        />
+                    </Form.Item>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            marginBottom: "24px",
+                        }}
+                    >
+                        {loginLink ?? (
+                            <Text
+                                style={{
+                                    fontSize: 12,
+                                    marginLeft: "auto",
+                                }}
+                            >
+                                {translate(
+                                    "pages.login.buttons.haveAccount",
+                                    "Have an account?",
+                                )}{" "}
+                                <ActiveLink
+                                    style={{
+                                        fontWeight: "bold",
+                                        color: token.colorPrimaryTextHover,
+                                    }}
+                                    to="/login"
+                                >
+                                    {translate("pages.login.signin", "Sign in")}
+                                </ActiveLink>
+                            </Text>
+                        )}
+                    </div>
+                    <Form.Item
+                        style={{
+                            marginBottom: 0,
+                        }}
+                    >
+                        <Button
+                            type="primary"
+                            size="large"
+                            htmlType="submit"
+                            loading={isLoading}
+                            block
+                        >
+                            {translate(
+                                "pages.register.buttons.submit",
+                                "Sign up",
+                            )}
+                        </Button>
+                    </Form.Item>
+                </Form>
+            )}
+            {hideForm && loginLink !== false && (
                 <div
                     style={{
                         display: "flex",
-                        justifyContent: "space-between",
-                        marginBottom: "24px",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        marginTop: "24px",
                     }}
                 >
-                    {loginLink ?? (
-                        <Text
-                            style={{
-                                fontSize: 12,
-                                marginLeft: "auto",
-                            }}
-                        >
-                            {translate(
-                                "pages.login.buttons.haveAccount",
-                                "Have an account?",
-                            )}{" "}
-                            <ActiveLink
-                                style={{
-                                    fontWeight: "bold",
-                                    color: token.colorPrimaryTextHover,
-                                }}
-                                to="/login"
-                            >
-                                {translate("pages.login.signin", "Sign in")}
-                            </ActiveLink>
-                        </Text>
-                    )}
-                </div>
-
-                <Form.Item
-                    style={{
-                        marginBottom: 0,
-                    }}
-                >
-                    <Button
-                        type="primary"
-                        size="large"
-                        htmlType="submit"
-                        loading={isLoading}
-                        block
+                    <Text
+                        style={{
+                            fontSize: 12,
+                        }}
                     >
-                        {translate("pages.register.buttons.submit", "Sign up")}
-                    </Button>
-                </Form.Item>
-            </Form>
+                        {translate(
+                            "pages.login.buttons.haveAccount",
+                            "Have an account?",
+                        )}{" "}
+                        <ActiveLink
+                            style={{
+                                fontWeight: "bold",
+                                color: token.colorPrimaryTextHover,
+                            }}
+                            to="/login"
+                        >
+                            {translate("pages.login.signin", "Sign in")}
+                        </ActiveLink>
+                    </Text>
+                </div>
+            )}
         </Card>
     );
 

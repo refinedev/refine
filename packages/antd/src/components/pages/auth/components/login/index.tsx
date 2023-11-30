@@ -52,6 +52,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     renderContent,
     formProps,
     title,
+    hideForm,
 }) => {
     const { token } = useToken();
     const [form] = Form.useForm<LoginFormTypes>();
@@ -121,6 +122,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             </Button>
                         );
                     })}
+                    {!hideForm && (
                     <Divider>
                         <Text
                             style={{
@@ -130,6 +132,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             {translate("pages.login.divider", "or")}
                         </Text>
                     </Divider>
+                    )}
                 </>
             );
         }
@@ -148,6 +151,7 @@ export const LoginPage: React.FC<LoginProps> = ({
             {...(contentProps ?? {})}
         >
             {renderProviders()}
+            {!hideForm && (
             <Form<LoginFormTypes>
                 layout="vertical"
                 form={form}
@@ -158,39 +162,42 @@ export const LoginPage: React.FC<LoginProps> = ({
                 }}
                 {...formProps}
             >
-                <Form.Item
-                    name="email"
-                    label={translate("pages.login.fields.email", "Email")}
-                    rules={[
-                        { required: true },
-                        {
-                            type: "email",
-                            message: translate(
-                                "pages.login.errors.validEmail",
-                                "Invalid email address",
-                            ),
-                        },
-                    ]}
-                >
-                    <Input
-                        size="large"
-                        placeholder={translate(
-                            "pages.login.fields.email",
-                            "Email",
+                        <Form.Item
+                            name="email"
+                            label={translate("pages.login.fields.email", "Email")}
+                            rules={[
+                                { required: true },
+                                {
+                                    type: "email",
+                                    message: translate(
+                                        "pages.login.errors.validEmail",
+                                        "Invalid email address",
+                                    ),
+                                },
+                            ]}
+                        >
+                            <Input
+                                size="large"
+                                placeholder={translate(
+                                    "pages.login.fields.email",
+                                    "Email",
+                                )}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            name="password"
+                        label={translate(
+                            "pages.login.fields.password",
+                            "Password",
                         )}
-                    />
-                </Form.Item>
-                <Form.Item
-                    name="password"
-                    label={translate("pages.login.fields.password", "Password")}
-                    rules={[{ required: true }]}
-                >
-                    <Input
-                        type="password"
-                        placeholder="●●●●●●●●"
-                        size="large"
-                    />
-                </Form.Item>
+                            rules={[{ required: true }]}
+                        >
+                            <Input
+                                type="password"
+                                placeholder="●●●●●●●●"
+                                size="large"
+                            />
+                        </Form.Item>
                 <div
                     style={{
                         display: "flex",
@@ -232,6 +239,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         </ActiveLink>
                     )}
                 </div>
+                    {!hideForm && (
                 <Form.Item>
                     <Button
                         type="primary"
@@ -243,8 +251,10 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {translate("pages.login.signin", "Sign in")}
                     </Button>
                 </Form.Item>
+                    )}
             </Form>
-            <div style={{ marginTop: 8 }}>
+            )}
+            <div style={{ marginTop: hideForm ? 16 : 8 }}>
                 {registerLink ?? (
                     <Text style={{ fontSize: 12 }}>
                         {translate(

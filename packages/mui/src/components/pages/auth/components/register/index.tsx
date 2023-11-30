@@ -52,6 +52,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     providers,
     formProps,
     title,
+    hideForm,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const {
@@ -124,9 +125,16 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             );
                         })}
                     </Stack>
-                    <Divider sx={{ fontSize: 12, marginY: "16px" }}>
-                        {translate("pages.login.divider", "or")}
-                    </Divider>
+                    {!hideForm && (
+                        <Divider
+                            sx={{
+                                fontSize: "12px",
+                                marginY: "16px",
+                            }}
+                        >
+                            {translate("pages.login.divider", "or")}
+                        </Divider>
+                    )}
                 </>
             );
         }
@@ -150,112 +158,116 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     )}
                 </Typography>
                 {renderProviders()}
-                <Box
-                    component="form"
-                    onSubmit={handleSubmit((data) => {
-                        if (onSubmit) {
-                            return onSubmit(data);
-                        }
+                {!hideForm && (
+                    <Box
+                        component="form"
+                        onSubmit={handleSubmit((data) => {
+                            if (onSubmit) {
+                                return onSubmit(data);
+                            }
 
-                        return registerMutate(data);
-                    })}
-                >
-                    <TextField
-                        {...register("email", {
-                            required: true,
-                            pattern: {
-                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                message: translate(
-                                    "pages.register.errors.validEmail",
-                                    "Invalid email address",
-                                ),
-                            },
+                            return registerMutate(data);
                         })}
-                        id="email"
-                        margin="normal"
-                        fullWidth
-                        label={translate("pages.register.email", "Email")}
-                        error={!!errors.email}
-                        helperText={
-                            errors["email"] ? errors["email"].message : ""
-                        }
-                        name="email"
-                        autoComplete="email"
-                        sx={{
-                            mt: 0,
-                        }}
-                    />
-                    <TextField
-                        {...register("password", {
-                            required: true,
-                        })}
-                        id="password"
-                        margin="normal"
-                        fullWidth
-                        name="password"
-                        label={translate(
-                            "pages.register.fields.password",
-                            "Password",
-                        )}
-                        helperText={
-                            errors["password"] ? errors["password"].message : ""
-                        }
-                        error={!!errors.password}
-                        type="password"
-                        placeholder="●●●●●●●●"
-                        autoComplete="current-password"
-                        sx={{
-                            mb: 0,
-                        }}
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        disabled={isLoading}
-                        sx={{
-                            mt: "24px",
-                        }}
                     >
-                        {translate("pages.register.signup", "Sign up")}
-                    </Button>
-                    {loginLink ?? (
-                        <Box
-                            display="flex"
-                            justifyContent="flex-end"
-                            alignItems="center"
+                        <TextField
+                            {...register("email", {
+                                required: true,
+                                pattern: {
+                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                    message: translate(
+                                        "pages.register.errors.validEmail",
+                                        "Invalid email address",
+                                    ),
+                                },
+                            })}
+                            id="email"
+                            margin="normal"
+                            fullWidth
+                            label={translate("pages.register.email", "Email")}
+                            error={!!errors.email}
+                            helperText={
+                                errors["email"] ? errors["email"].message : ""
+                            }
+                            name="email"
+                            autoComplete="email"
+                            sx={{
+                                mt: 0,
+                            }}
+                        />
+                        <TextField
+                            {...register("password", {
+                                required: true,
+                            })}
+                            id="password"
+                            margin="normal"
+                            fullWidth
+                            name="password"
+                            label={translate(
+                                "pages.register.fields.password",
+                                "Password",
+                            )}
+                            helperText={
+                                errors["password"]
+                                    ? errors["password"].message
+                                    : ""
+                            }
+                            error={!!errors.password}
+                            type="password"
+                            placeholder="●●●●●●●●"
+                            autoComplete="current-password"
+                            sx={{
+                                mb: 0,
+                            }}
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            disabled={isLoading}
                             sx={{
                                 mt: "24px",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
                             }}
                         >
-                            <Typography
-                                variant="body2"
-                                component="span"
-                                fontSize="12px"
-                            >
-                                {translate(
-                                    "pages.login.buttons.haveAccount",
-                                    "Have an account?",
-                                )}
-                            </Typography>
-                            <MuiLink
-                                ml="4px"
-                                variant="body2"
-                                color="primary"
-                                component={ActiveLink}
-                                underline="none"
-                                to="/login"
-                                fontSize="12px"
-                                fontWeight="bold"
-                            >
-                                {translate("pages.login.signin", "Sign in")}
-                            </MuiLink>
-                        </Box>
-                    )}
-                </Box>
+                            {translate("pages.register.signup", "Sign up")}
+                        </Button>
+                    </Box>
+                )}
+                {loginLink ?? (
+                    <Box
+                        display="flex"
+                        justifyContent="flex-end"
+                        alignItems="center"
+                        sx={{
+                            mt: "24px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        <Typography
+                            variant="body2"
+                            component="span"
+                            fontSize="12px"
+                        >
+                            {translate(
+                                "pages.login.buttons.haveAccount",
+                                "Have an account?",
+                            )}
+                        </Typography>
+                        <MuiLink
+                            ml="4px"
+                            variant="body2"
+                            color="primary"
+                            component={ActiveLink}
+                            underline="none"
+                            to="/login"
+                            fontSize="12px"
+                            fontWeight="bold"
+                        >
+                            {translate("pages.login.signin", "Sign in")}
+                        </MuiLink>
+                    </Box>
+                )}
             </CardContent>
         </Card>
     );
