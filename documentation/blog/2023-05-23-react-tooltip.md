@@ -8,72 +8,53 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tool
 hide_table_of_contents: false
 ---
 
-
-
 ## Introduction
+
 A tooltip is a short and informative message that appears when a user interacts with certain elements on a webpage. The main objective of a tooltip is to provide users with relevant information about the features and elements on the page when they are hovered or clicked.
 
 Typically, a tooltip is displayed as a small box or pop-up and is commonly used to offer additional information about an icon, button, or other UI elements in an application. The content of a tooltip can also consist of various multimedia, including images, videos, and GIFs, based on the application's design.
 
 You can see a tooltip in action through the following GIF example:
 
-
-
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/first.gif" alt="react tooltip" />
 
 <br/>
 
-
 In this article, we'll explore how to create a custom tooltip component in a React application, as well as integrating a tooltip library like react-tooltip.
 
+## Project setup
 
-
-
-## Project setup 
-
-There are two ways you can use tooltips in your React applications, you either create a custom tooltip component from scratch or use a library such as react-tooltip. We'll go over how to set up both approaches, but before delving into the specifics, we'll quickly set up a simple React application to showcase the examples in this article. 
+There are two ways you can use tooltips in your React applications, you either create a custom tooltip component from scratch or use a library such as react-tooltip. We'll go over how to set up both approaches, but before delving into the specifics, we'll quickly set up a simple React application to showcase the examples in this article.
 To this end, [refine.new](https://refine.new/) serves as an excellent tool that we can use to rapidly create a new React CRUD application.
 
-[refine.new](https://refine.new/) enables you to quickly bootstrap a new [refine](https://github.com/refinedev/refine) application, an open-source React-based, headless UI library for creating enterprise applications, within your browser with features such as preview, tweaking, and instant download. 
+[refine.new](https://refine.new/) enables you to quickly bootstrap a new [refine](https://github.com/refinedev/refine) application, an open-source React-based, headless UI library for creating enterprise applications, within your browser with features such as preview, tweaking, and instant download.
 
 To get started, head on to [https://refine.new/](https://refine.new/), scroll down the page, and click on the `Let's start` button.
 
-
 Upon clicking the button, you’ll be presented with a stepper component that let you choose and combine your preferred React platform, UI framework, backend connector, and auth provider.
-
-
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/select.png" alt="react tooltip" />
 
 <br/>
 
-Since we’re not creating something complex, we’ll use these options to set up our application: 
-
+Since we’re not creating something complex, we’ll use these options to set up our application:
 
     Vite > Headless > Rest Api > No auth
 
-
-
 After completing the required steps and clicking the 'complete' button, you will be redirected to a preview page for your refine application. Here, you can make any necessary adjustments before building and downloading the application file.
-
 
 Once you're done tweaking the application to your taste, click on the `Build & Download` button on the sidebar to download the application. If you haven't already, you will be prompted to sign in with your Google or GitHub profile.
 
- 
 After logging in, a second pop-up would appear with a URL for downloading the project file.
-
 
 Finally, extract the downloaded file and open it in your IDE of choice.
 
-
 Now that we have our project set up, the final step is to install the development dependencies and start the development server. you can do this by executing the commands below in your terminal:
-
 
     npm install
     npm run dev
 
-These commands will install the necessary dependencies for your project and start the development server. If your browser doesn’t automatically preview the application, you can manually navigate to it by entering `[http://127.0.0.1:5173](http://127.0.0.1:5173)`  in your browser.
+These commands will install the necessary dependencies for your project and start the development server. If your browser doesn’t automatically preview the application, you can manually navigate to it by entering `[http://127.0.0.1:5173](http://127.0.0.1:5173)` in your browser.
 
 <br/>
 
@@ -83,9 +64,7 @@ These commands will install the necessary dependencies for your project and star
 
 refine was originally designed to provide a rapid way of bootstrapping enterprise-level React applications, complete with predefined pages. When you create a new headless project with refine, you’ll notice that these pages are already set up by default, but with placeholder data generated using the refine Inferencer package.
 
-
 <br/>
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/inferencer.png"  alt="react tooltip" />
@@ -93,8 +72,7 @@ refine was originally designed to provide a rapid way of bootstrapping enterpris
 
 <br/>
 
-
-The refine inferencer package is a tool that automates the generation of CRUD (Create, Read, Update, Delete) pages for resources in your refine application based on the data model. You can find more information about this package by visiting the [documentation](https://refine.dev/docs/packages/documentation/inferencer/https://refine.dev/docs/packages/documentation/inferencer/).
+The refine inferencer package is a tool that automates the generation of CRUD (Create, Read, Update, Delete) pages for resources in your refine application based on the data model. You can find more information about this package by visiting the [documentation](https://refine.dev/docs/packages/documentation/inferencer).
 
 Since our application's pages are being populated by the inferencer, we don't have direct access to the rendered content, so we cannot add a tooltip to a specific element like the `create` button on the table. However, we can access the sidebar navigations via the `Menu` component in the `src/component` directory.
 
@@ -104,18 +82,13 @@ Since our application's pages are being populated by the inferencer, we don't ha
 
 <br/>
 
-
-
 When you create a Headless refine application, a `Layout` component is automatically generated in the `src/components` directory. This component wraps the pages created by the inferencer and the `Menu` component, which contains the sidebar navigation.
-
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/layout.png"  alt="react tooltip" />
 </div>
 
 <br/>
-
 
 While the pages in the applications are automatically generate and are not editable, the `Layout` component provides some level of control over how the application is rendered to the browser.
 
@@ -139,7 +112,7 @@ If we were to create a custom tooltip for the sidebar navigation, the markup ins
   </ul>
 </nav>;
 ```
-    
+
 What we did here is self-explanatory; we simply added a `span` element containing some text next to the navigation links.
 
 And now for the styles:
@@ -171,16 +144,13 @@ Here, we’re positioning the tooltip absolutely to the navigation links. initia
 
 If you save your progress and go back to the browser, you should see something similar to the GIF below.
 
-
-
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/custom_tip.gif"  alt="react tooltip" />
 </div>
 
 <br/>
 
-
-As of now, we have hardcoded the tooltip into our application, but this approach won't be practical for larger and more complex real-world applications. To make it scalable, we can create a separate component for the tooltip and pass the text and other properties such as color, position, and background color to it through props. 
+As of now, we have hardcoded the tooltip into our application, but this approach won't be practical for larger and more complex real-world applications. To make it scalable, we can create a separate component for the tooltip and pass the text and other properties such as color, position, and background color to it through props.
 
 To implement this, create a new `tooltip` folder within the `src/component` directory of your project and then add a `index.tsx` file with the following code:
 
@@ -258,11 +228,9 @@ export const Menu = () => {
 
 <br/>
 
-
-Our tooltip component is now ready for use throughout the application, however, it's missing some crucial features that would require significant time and effort to implement. For this reason, it is recommended to use a tooltip library like react-tooltip. 
+Our tooltip component is now ready for use throughout the application, however, it's missing some crucial features that would require significant time and effort to implement. For this reason, it is recommended to use a tooltip library like react-tooltip.
 
 In the following sections, we will introduce and demonstrate how to integrate react-tooltip into our application.
-
 
 ## What is React-tooltip?
 
@@ -276,7 +244,7 @@ To incorporate react-tooltip into our application, we need to install the packag
 
 ```
 npm install react-tooltip
-or 
+or
 yarn add react-tooltip
 ```
 
@@ -288,7 +256,7 @@ import "react-tooltip/dist/react-tooltip.css";
 
 This CSS file contains all the necessary styles react-tooltip needs to properly render tooltips in your application. It is crucial to include this file in the `index.tsx` or an equivalent top-level file; otherwise, the tooltip may not render correctly.
 
-react-tooltip has been successfully incorporated, we can now leverage its features throughout our application. We'll explore how to do so efficiently in the following sections. 
+react-tooltip has been successfully incorporated, we can now leverage its features throughout our application. We'll explore how to do so efficiently in the following sections.
 
 ## Using React-tooltip
 
@@ -298,7 +266,7 @@ The `react-tooltip` package provides a `<Tooltip/>` component that can be bound 
 - Using the ReactTooltip component and props
 
 **Using data attributes**
-This method entails binding and defining the tooltip's content and position directly on anchor elements via specific data attributes, such as `data-tooltip-content`, `data-tooltip-place`, and `data-tooltip-id`. 
+This method entails binding and defining the tooltip's content and position directly on anchor elements via specific data attributes, such as `data-tooltip-content`, `data-tooltip-place`, and `data-tooltip-id`.
 
 The `data-tooltip-id` attribute is used to link the anchor element to the `<Tooltip/>` component. it is assigned an ID that corresponds to the ID on the anchor element. While the `data-tooltip-content` and `data-tooltip-place` are used to set the content and position of the tooltip, respectively.
 
@@ -346,7 +314,7 @@ Next, we will define the `<Tooltip>` component next to the anchor element and gi
     </NavLink>
     <Tooltip id="my-tooltip" />
   </>
-</li>;
+</li>
 ```
 
 This will bind the `<Tooltip/>` component to the navigations and display the specified content when they are hovered on.
@@ -359,10 +327,8 @@ This will bind the `<Tooltip/>` component to the navigations and display the spe
 
 <br/>
 
-
-
-
 ## Using React Tooltip component
+
 In contrast to the previous method, this technique employs CSS selectors to bind the anchor element with the tooltip component instead of relying on data attributes. The tooltip component’s content is assigned to it as children, while other properties such as `place` and `delay` are defined using props.
 
 ```tsx
@@ -375,9 +341,9 @@ In contrast to the previous method, this technique employs CSS selectors to bind
       route to {item.label}
     </Tooltip>
   </>
-</li>;
+</li>
 ```
-  
+
 The `anchorSelect` property takes a string that matches the CSS selector provided on the anchor element. Its function is to locate anchor elements with matching selectors and attach the tooltip to them.
 
 Notice that the `anchorSelect` property is prefixed with a dot, which is necessary because it accepts valid CSS selectors. If we were to set an ID on the anchor element instead, we would use a hash to begin the selector.
@@ -392,9 +358,9 @@ Notice that the `anchorSelect` property is prefixed with a dot, which is necessa
       route to {item.label}
     </Tooltip>
   </>
-</li>;
+</li>
 ```
-  
+
 The tooltip will render on the browser just the same.
 
 <br/>
@@ -405,13 +371,11 @@ The tooltip will render on the browser just the same.
 
 <br/>
 
-
 ## Positioning
 
 Throughout this article, we've consistently demonstrated how to use positioning in different examples, so you likely have a good understanding of how it works for both low-level and high-level implementations.
 
 The `place` prop in the react-tooltip package is used to set the position of the tooltips and can be assigned one of four values that are similar to the position properties in CSS.
-
 
 - `top`: This positions the tooltip at the top of the anchor element
 
@@ -421,10 +385,6 @@ The `place` prop in the react-tooltip package is used to set the position of the
 
 <br/>
 
-
-
-
-
 - `right`: This positions the tooltip on the right side of the anchor element
 
 <div className="centered-image">
@@ -433,11 +393,7 @@ The `place` prop in the react-tooltip package is used to set the position of the
 
 <br/>
 
-
-
-
 - `bottom`: This positions the tooltip at the top of the anchor element
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/positioning-bottom.png"  alt="react tooltip" />
@@ -445,10 +401,7 @@ The `place` prop in the react-tooltip package is used to set the position of the
 
 <br/>
 
-
 - `left`: This positions the tooltip on the left side of the anchor element
-
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/positioning_left.png"  alt="react tooltip" />
@@ -479,7 +432,7 @@ The `tooltip-delay-show` attribute adds a delay before the tooltip appears when 
     </NavLink>
     <Tooltip id="my-tooltip" />
   </>
-</li>;
+</li>
 ```
 
 <br/>
@@ -490,9 +443,8 @@ The `tooltip-delay-show` attribute adds a delay before the tooltip appears when 
 
 <br/>
 
-
 **tooltip-delay-hide**
-This attribute does the opposite of the former, as it adds a delay to when the tooltip disappears from the screen after the mouse leaves the anchor element. 
+This attribute does the opposite of the former, as it adds a delay to when the tooltip disappears from the screen after the mouse leaves the anchor element.
 
 ```tsx
 <li key={item.key} className="tooltip_element">
@@ -508,11 +460,10 @@ This attribute does the opposite of the former, as it adds a delay to when the t
     </NavLink>
     <Tooltip id="my-tooltip" />
   </>
-</li>;
+</li>
 ```
 
 <br/>
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/delay_hide.gif"  alt="react tooltip" />
@@ -533,17 +484,11 @@ react-tooltip also provides a feature that allows you to create clickable toolti
     <Tooltip anchorSelect="#my-tooltip" place="right" clickable>
       route to {item.label}
       <br />
-      <button
-        onClick={() => alert(`This link routes to the ${item.label} page`)}
-      >
-        learn more
-      </button>
+      <button onClick={() => alert(`This link routes to the ${item.label} page`)}>learn more</button>
     </Tooltip>
   </>
-</li>;
+</li>
 ```
-
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/clickable.gif"  alt="react tooltip" />
@@ -563,4 +508,3 @@ react-tooltip also provides a feature that allows you to create clickable toolti
 In this article, we covered the steps involved in creating and implementing a custom tooltip in a React application, and highlighted the challenges of building a comprehensive tooltip component from scratch. We then introduced react-tooltip and explored various methods of integrating the package into a React application.
 
 There are many more features available in react-tooltip than what we covered in this article. I would suggest visiting the documentation and exploring the many capabilities of the package.
-

@@ -78,6 +78,17 @@ const siteConfig = {
             "@docusaurus/plugin-client-redirects",
             {
                 redirects: redirectJson.redirects,
+                createRedirects(existingPath) {
+                    if (existingPath.includes("/api-reference/core/")) {
+                        return [
+                            existingPath.replace(
+                                "/api-reference/core/",
+                                "/api-references/",
+                            ),
+                        ];
+                    }
+                    return undefined; // Return a falsy value: no redirect created
+                },
             },
         ],
         [
@@ -109,7 +120,8 @@ const siteConfig = {
                       "./plugins/blog-plugin.js",
                       {
                           blogTitle: "Blog",
-                          blogDescription: "A resource for Refine, front-end ecosystem, and web development",
+                          blogDescription:
+                              "A resource for Refine, front-end ecosystem, and web development",
                           routeBasePath: "/blog",
                           postsPerPage: 12,
                           blogSidebarTitle: "All posts",
