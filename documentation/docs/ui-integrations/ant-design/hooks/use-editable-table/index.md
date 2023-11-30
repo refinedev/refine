@@ -375,11 +375,11 @@ Takes a `id` as a parameter and returns `true` if the given `BaseKey` is equal t
 [usetable]: /docs/api-reference/antd/hooks/table/useTable
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [usemutation]: https://react-query.tanstack.com/reference/useMutation
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[basekey]: /api-reference/core/interfaces.md#basekey
-[crudsorting]: /api-reference/core/interfaces.md#crudsorting
-[crudfilters]: /api-reference/core/interfaces.md#crudfilters
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[basekey]: /docs/core/interface-references/index#basekey
+[crudsorting]: /docs/core/interface-references/index#crudsorting
+[crudfilters]: /docs/core/interface-references/index#crudfilters
+[httperror]: /docs/core/interface-references/index#httperror
 [table search]: /advanced-tutorials/search/table-search.md
 [table.column]: https://ant.design/components/table/#Column
 [forminstance]: https://ant.design/components/form/#FormInstance

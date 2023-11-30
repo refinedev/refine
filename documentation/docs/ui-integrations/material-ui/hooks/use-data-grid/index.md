@@ -1094,12 +1094,12 @@ useDataGrid({
 <CodeSandboxExample path="table-material-ui-use-data-grid" />
 
 [use-table-core]: /docs/api-reference/core/hooks/useTable
-[syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams
-[crudsorting]: /api-reference/core/interfaces.md#crudsorting
-[crudfilters]: /api-reference/core/interfaces.md#crudfilters
+[syncwithlocationparams]: /docs/core/interface-references/index#syncwithlocationparams
+[crudsorting]: /docs/core/interface-references/index#crudsorting
+[crudfilters]: /docs/core/interface-references/index#crudfilters
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror
 [refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation
 [data-grid]: https://mui.com/x/react-data-grid/
 [notification-provider]: /api-reference/core/providers/notification-provider.md

@@ -199,7 +199,7 @@ Now let's add the sorting feature. The API expects the following parameters for 
 ```
 
 **refine** uses the `sorters` parameter for sorting. This parameter includes the `field` and `order` values.
-Supports multiple field sorting. [CrudSort[]](../../api-reference/core/interfaces.md#crudsorting) type, it comes in the data provider as follows.
+Supports multiple field sorting. [CrudSort[]](/docs/core/interface-references/index#crudsorting) type, it comes in the data provider as follows.
 
 ```bash
 [
@@ -256,7 +256,7 @@ Now let's add the filtering feature. The API expects the following parameters fo
 [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc&title_like
 ```
 
-**refine** uses the `filters` parameter for filtering. This parameter contains the `field`, `operator` and `value` values with the [CrudFilters []](../../api-reference/core/interfaces.md#crudfilters) type.
+**refine** uses the `filters` parameter for filtering. This parameter contains the `field`, `operator` and `value` values with the [CrudFilters []](/docs/core/interface-references/index#crudfilters) type.
 
 ```bash
 [
@@ -273,7 +273,7 @@ Now let's add the filtering feature. The API expects the following parameters fo
 ]
 ```
 
-The `operator` data comes with the [CrudOperators](../../api-reference/core/interfaces.md#crudoperators) type and needs to be mapped to the API. For this, the following `mapOperator` function needs to be written:
+The `operator` data comes with the [CrudOperators](/docs/core/interface-references/index#crudoperators) type and needs to be mapped to the API. For this, the following `mapOperator` function needs to be written:
 
 ```ts
 // Map refine operators to API operators
@@ -394,12 +394,12 @@ The conditional filters can also be made using `and` and `or`. For example:
 
 **Parameter Types:**
 
-| Name        | Type                                                                |
-| ----------- | ------------------------------------------------------------------- |
-| resource    | `string`                                                            |
-| pagination? | [`Pagination`](../../api-reference/core/interfaces.md#pagination)   |
-| sorters?    | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting) |
-| filters?    | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters) |
+| Name        | Type                                                               |
+| ----------- | ------------------------------------------------------------------ |
+| resource    | `string`                                                           |
+| pagination? | [`Pagination`](/docs/core/interface-references/index#pagination)   |
+| sorters?    | [`CrudSorting`](/docs/core/interface-references/index#crudsorting) |
+| filters?    | [`CrudFilters`](/docs/core/interface-references/index#crudfilters) |
 
 <br/>
 
@@ -502,11 +502,11 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 **Parameter Types:**
 
-| Name      | Type                                                      | Default |
-| --------- | --------------------------------------------------------- | ------- |
-| resource  | `string`                                                  |         |
-| id        | [BaseKey](../../api-reference/core/interfaces.md#basekey) |         |
-| variables | `TVariables`                                              | `{}`    |
+| Name      | Type                                                     | Default |
+| --------- | -------------------------------------------------------- | ------- |
+| resource  | `string`                                                 |         |
+| id        | [BaseKey](/docs/core/interface-references/index#basekey) |         |
+| variables | `TVariables`                                             | `{}`    |
 
 :::note
 
@@ -556,11 +556,11 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 **Parameter Types:**
 
-| Name      | Type                                                      | Default |
-| --------- | --------------------------------------------------------- | ------- |
-| resource  | `string`                                                  |         |
-| id        | [BaseKey](../../api-reference/core/interfaces.md#basekey) |         |
-| variables | `TVariables[]`                                            | `{}`    |
+| Name      | Type                                                     | Default |
+| --------- | -------------------------------------------------------- | ------- |
+| resource  | `string`                                                 |         |
+| id        | [BaseKey](/docs/core/interface-references/index#basekey) |         |
+| variables | `TVariables[]`                                           | `{}`    |
 
 :::note
 
@@ -604,10 +604,10 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 **Parameter Types:**
 
-| Name     | Type                                                      | Default |
-| -------- | --------------------------------------------------------- | ------- |
-| resource | `string`                                                  |         |
-| id       | [BaseKey](../../api-reference/core/interfaces.md#basekey) |         |
+| Name     | Type                                                     | Default |
+| -------- | -------------------------------------------------------- | ------- |
+| resource | `string`                                                 |         |
+| id       | [BaseKey](/docs/core/interface-references/index#basekey) |         |
 
 <br/>
 
@@ -645,7 +645,7 @@ import { useApiUrl } from "@refinedev/core";
 const { data } = useApiUrl();
 ```
 
-> [Refer to the useApiUrl documentation for more information. &#8594](../../api-reference/core/hooks/data/useApiUrl.md)
+> [Refer to the useApiUrl documentation for more information. &#8594](/docs/core/hooks/data/use-api-url/index)
 
 ### custom
 
@@ -707,15 +707,15 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 **Parameter Types**
 
-| Name     | Type                                                                 |
-| -------- | -------------------------------------------------------------------- |
-| url      | `string`                                                             |
-| method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`           |
-| sorters? | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting); |
-| filters? | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters); |
-| payload? | `{}`                                                                 |
-| query?   | `{}`                                                                 |
-| headers? | `{}`                                                                 |
+| Name     | Type                                                                |
+| -------- | ------------------------------------------------------------------- |
+| url      | `string`                                                            |
+| method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`          |
+| sorters? | [`CrudSorting`](/docs/core/interface-references/index#crudsorting); |
+| filters? | [`CrudFilters`](/docs/core/interface-references/index#crudfilters); |
+| payload? | `{}`                                                                |
+| query?   | `{}`                                                                |
+| headers? | `{}`                                                                |
 
 <br/>
 
@@ -739,7 +739,7 @@ const { data, isLoading } = useCustom({
 
 ## Bulk Actions
 
-Bulk actions are actions that can be performed on multiple items at once to improve speed and efficiency. They are commonly used in admin panels. They can be used for data [`import`](../../examples/core/useImport.md) and [`export`](../../api-reference/core/hooks/import-export/useExport.md), and are also atomic, meaning that they are treated as a single unit.
+Bulk actions are actions that can be performed on multiple items at once to improve speed and efficiency. They are commonly used in admin panels. They can be used for data [`import`](../../examples/core/useImport.md) and [`export`](/docs/core/hooks/utilities/use-export/index), and are also atomic, meaning that they are treated as a single unit.
 
 If your API supports bulk actions, you can implement them in your data provider.
 
@@ -763,10 +763,10 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 **Parameter Types:**
 
-| Name     | Type                                                        | Default |
-| -------- | ----------------------------------------------------------- | ------- |
-| resource | `string`                                                    |         |
-| ids      | [[BaseKey](../../api-reference/core/interfaces.md#basekey)] |         |
+| Name     | Type                                                       | Default |
+| -------- | ---------------------------------------------------------- | ------- |
+| resource | `string`                                                   |         |
+| ids      | [[BaseKey](/docs/core/interface-references/index#basekey)] |         |
 
 <br/>
 
@@ -857,11 +857,11 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 **Parameter Types:**
 
-| Name      | Type                                                        | Default |
-| --------- | ----------------------------------------------------------- | ------- |
-| resource  | `string`                                                    |         |
-| ids       | [[BaseKey](../../api-reference/core/interfaces.md#basekey)] |         |
-| variables | `TVariables[]`                                              | `{}`    |
+| Name      | Type                                                       | Default |
+| --------- | ---------------------------------------------------------- | ------- |
+| resource  | `string`                                                   |         |
+| ids       | [[BaseKey](/docs/core/interface-references/index#basekey)] |         |
+| variables | `TVariables[]`                                             | `{}`    |
 
 :::note
 

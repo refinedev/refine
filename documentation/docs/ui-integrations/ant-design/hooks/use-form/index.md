@@ -1167,8 +1167,8 @@ You can use the `meta` property to pass common values to the mutation and the qu
 
 <CodeSandboxExample path="form-antd-use-form" />
 
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror
 [notification-provider]: /docs/api-reference/core/providers/notification-provider/
 [get-one]: /docs/api-reference/core/providers/data-provider/#getone-
 [create]: /docs/api-reference/core/providers/data-provider/#create-

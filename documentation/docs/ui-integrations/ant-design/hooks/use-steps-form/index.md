@@ -1210,6 +1210,6 @@ const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } = 
 
 <CodeSandboxExample path="form-antd-use-steps-form" />
 
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror
 [antd-use-form]: /docs/api-reference/antd/hooks/form/useForm

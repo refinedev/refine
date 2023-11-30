@@ -1215,8 +1215,8 @@ const {
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror
 [notification-provider]: /docs/api-reference/core/providers/notification-provider/
 [get-one]: /docs/api-reference/core/providers/data-provider/#getone-
 [create]: /docs/api-reference/core/providers/data-provider/#create-

@@ -891,9 +891,9 @@ export const UserCreate: React.FC = () => {
 <CodeSandboxExample path="form-antd-use-modal-form" />
 
 [@refinedev/antd]: https://github.com/refinedev/refine/tree/master/packages/antd
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
-[basekey]: /api-reference/core/interfaces.md#basekey
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror
+[basekey]: /docs/core/interface-references/index#basekey
 [antd-use-form]: /docs/api-reference/antd/hooks/form/useForm
 [antd-modal]: https://ant.design/components/modal/
 [antd-form]: https://ant.design/components/form/

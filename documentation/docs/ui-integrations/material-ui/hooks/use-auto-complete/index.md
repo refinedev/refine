@@ -502,5 +502,5 @@ By default, refine does the search using the [`useList`](/docs/api-reference/cor
 
 <CodeSandboxExample path="field-material-ui-use-autocomplete" />
 
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror

@@ -1056,12 +1056,12 @@ const ListPage = () => {
 [table-column]: https://ant.design/components/table#column
 [form]: https://ant.design/components/form/#API
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[crudsorting]: /api-reference/core/interfaces.md#crudsorting
-[crudfilters]: /api-reference/core/interfaces.md#crudfilters
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[crudsorting]: /docs/core/interface-references/index#crudsorting
+[crudfilters]: /docs/core/interface-references/index#crudfilters
+[httperror]: /docs/core/interface-references/index#httperror
 [table search]: /advanced-tutorials/search/table-search.md
 [refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation
 [filter-dropdown]: /docs/api-reference/antd/components/filter-dropdown/
-[syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams
+[syncwithlocationparams]: /docs/core/interface-references/index#syncwithlocationparams
 [notification-provider]: /api-reference/core/providers/notification-provider.md

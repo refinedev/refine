@@ -983,5 +983,5 @@ stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
 
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror

@@ -1209,8 +1209,8 @@ const {
 
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
 [use-form-mantine]: https://mantine.dev/form/use-form
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror
 [notification-provider]: /docs/api-reference/core/providers/notification-provider/
 [get-one]: /docs/api-reference/core/providers/data-provider/#getone-
 [create]: /docs/api-reference/core/providers/data-provider/#create-

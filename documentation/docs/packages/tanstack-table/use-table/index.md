@@ -855,10 +855,10 @@ useTable({
 [tanstack-table]: https://tanstack.com/table/v8
 [refine-react-table]: https://github.com/refinedev/refine/tree/master/packages/react-table
 [use-table-core]: /docs/api-reference/core/hooks/useTable
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
-[syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror
+[syncwithlocationparams]: /docs/core/interface-references/index#syncwithlocationparams
 [notification-provider]: /api-reference/core/providers/notification-provider.md
-[crudsorting]: /api-reference/core/interfaces.md#crudsorting
-[crudfilters]: /api-reference/core/interfaces.md#crudfilters
+[crudsorting]: /docs/core/interface-references/index#crudsorting
+[crudfilters]: /docs/core/interface-references/index#crudfilters
 [refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation

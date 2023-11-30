@@ -300,8 +300,8 @@ With this code, the parsed data will be mapped to conform to the API requirement
 | TError     | Custom error object that extends [`HttpError`][httperror]                  | [`HttpError`][httperror]   |
 | TVariables | Values for mutation function                                               | `any`                      |
 
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror
 [papaparse]: https://www.papaparse.com/docs
 [usemutation]: https://react-query.tanstack.com/reference/useMutation
 [number.max_safe_integer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER

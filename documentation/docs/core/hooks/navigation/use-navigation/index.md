@@ -223,4 +223,4 @@ export type HistoryType = "push" | "replace";
 ```
 
 [routerprovider]: /api-reference/core/providers/router-provider.md
-[basekey]: /api-reference/core/interfaces.md#basekey
+[basekey]: /docs/core/interface-references/index#basekey

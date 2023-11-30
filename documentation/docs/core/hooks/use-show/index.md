@@ -335,5 +335,5 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 | setShowId   | `showId` setter                 | `Dispatch<SetStateAction< string` \| `undefined>>`                                            |
 | overtime    | Overtime loading props          | `{ elapsedTime?: number }`                                                                    |
 
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror

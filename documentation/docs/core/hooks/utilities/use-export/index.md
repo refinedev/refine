@@ -330,4 +330,4 @@ This will save the data as follows:
 | TVariables | Values for params                                                          | `any`                      |
 
 [export-to-csv]: https://github.com/alexcaza/export-to-csv
-[baserecord]: /api-reference/core/interfaces.md#baserecord
+[baserecord]: /docs/core/interface-references/index#baserecord

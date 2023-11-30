@@ -1044,5 +1044,5 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 [refine-react-hook-form-use-form]: /packages/documentation/react-hook-form/useForm.md
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
 [use-form-core]: /docs/api-reference/core/hooks/useForm/
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror

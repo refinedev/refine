@@ -269,7 +269,7 @@ These buttons will be disabled if access control returns `{ can: false }`
 This example is for **Casbin** access control provider. You can check our other access control provider, [**Cerbos**](/docs/examples/access-control/cerbos/) as well.
 <CodeSandboxExample path="access-control-casbin" />
 
-[iresourceitem]: /api-reference/core/interfaces.md#resourceitemprops
-[basekey]: /api-reference/core/interfaces.md#basekey
-[canparams]: /api-reference/core/interfaces.md#canparams
-[canreturntype]: /api-reference/core/interfaces.md#canreturntype
+[iresourceitem]: /docs/core/interface-references/index#resourceitemprops
+[basekey]: /docs/core/interface-references/index#basekey
+[canparams]: /docs/core/interface-references/index#canparams
+[canreturntype]: /docs/core/interface-references/index#canreturntype

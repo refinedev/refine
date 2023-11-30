@@ -1056,7 +1056,7 @@ Default paths are:
 [getlist]: /docs/api-reference/core/providers/data-provider/#getlist-
 [dataprovider]: /api-reference/core/providers/data-provider.md
 [usetable]: /docs/api-reference/core/hooks/useTable
-[interfaces]: /api-reference/core/interfaces.md/#crudfilters
+[interfaces]: /docs/core/interface-references/index/#crudfilters
 [loaderfunction]: https://remix.run/docs/en/v1/api/conventions#loader
 [jokesapp]: https://remix.run/docs/en/v1/tutorials/jokes#authentication
 [authprovider]: /api-reference/core/providers/auth-provider.md

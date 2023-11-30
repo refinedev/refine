@@ -116,4 +116,4 @@ The `options.keepHash` parameter is a boolean that determines whether the curren
 `useGo` does not return any value except for the `path` type, which returns the navigation path for the given config without mutating the history stack.
 
 [routerprovider]: /docs/api-reference/core/providers/router-provider.md
-[basekey]: /api-reference/core/interfaces.md#basekey
+[basekey]: /docs/core/interface-references/index#basekey

@@ -495,5 +495,5 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 <CodeSandboxExample path="use-infinite-list" />
 
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror

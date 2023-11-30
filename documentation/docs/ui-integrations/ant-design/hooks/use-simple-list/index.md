@@ -885,11 +885,11 @@ Use `setSorters` instead.
 | setFilters      | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
 | overtime        | Overtime loading props                                                                | `{ elapsedTime?: number }`                                                                                                                              |
 
-[crudfilters]: /api-reference/core/interfaces.md#crudfilters
-[crudsorting]: /api-reference/core/interfaces.md#crudsorting
+[crudfilters]: /docs/core/interface-references/index#crudfilters
+[crudsorting]: /docs/core/interface-references/index#crudsorting
 [form]: https://ant.design/components/form/#API
 [list]: https://ant.design/components/list/#API
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror
 [refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation

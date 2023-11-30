@@ -406,5 +406,5 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 | Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[]; total: number; }, TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
 | overtime                                  | `{ elapsedTime?: number }`                                                                                                      |
 
-[baserecord]: /api-reference/core/interfaces.md#baserecord
-[httperror]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /docs/core/interface-references/index#baserecord
+[httperror]: /docs/core/interface-references/index#httperror
