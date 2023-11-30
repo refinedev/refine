@@ -1,6 +1,7 @@
 /** @type {import('@docusaurus/plugin-content-docs/src/sidebars/types').Sidebars} */
 module.exports = {
     mainSidebar: [
+        // Getting Started
         {
             type: "category",
             label: "Getting Started",
@@ -16,15 +17,17 @@ module.exports = {
                 "examples/index",
             ],
         },
+        // Devtools
         {
             type: "link",
             href: "https://s.refine.dev/devtools-beta",
             label: "refine Devtools",
             className: "sidebar-item-shiny mt-6 -ml-2",
         },
+        // Guides & Concepts
         {
             type: "category",
-            label: "Guides",
+            label: "Guides & Concepts",
             className: "category-as-header",
             items: [
                 "guides-concepts/general-concepts/index",
@@ -113,12 +116,10 @@ module.exports = {
                         },
                     ],
                 },
-                {
-                    type: "doc",
-                    id: "faq",
-                },
+                "guides-concepts/faq/index",
             ],
         },
+        // OLD API
         {
             type: "category",
             collapsible: false,
