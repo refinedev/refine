@@ -55,7 +55,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out Core's `useForm` reference page to learn more about the usage and see it in action.](/docs/api-reference/core/hooks/useForm/)
+[Check out Core's `useForm` reference page to learn more about the usage and see it in action.](/docs/core/hooks/use-form/)
 
 </TabItem>
 <TabItem value="hook-form" label="React Hook Form" default>

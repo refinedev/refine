@@ -1031,7 +1031,7 @@ return (
 
 ### `redirect`
 
-"By default, after a successful mutation, `useForm` will `redirect` to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the redirect [property](/docs/api-reference/core/hooks/useForm/#redirect) in the hook's options.
+"By default, after a successful mutation, `useForm` will `redirect` to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the redirect [property](/docs/core/hooks/use-form/#redirect) in the hook's options.
 
 In the following example we will redirect to the `"show"` page after a successful mutation.
 
@@ -1179,7 +1179,7 @@ const { ... } = useForm({
 
 Returns all the properties returned by [React Hook Form][react-hook-form] of the `useForm` hook. Also, we added the following return values:
 
-`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/docs/api-reference/core/hooks/useForm/##return-values).
+`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/docs/core/hooks/use-form/##return-values).
 
 > For example, we can access the `refineCore` return value in the `useForm` hook as:
 
@@ -1214,7 +1214,7 @@ const {
 
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
-[use-form-core]: /docs/api-reference/core/hooks/useForm/
+[use-form-core]: /docs/core/hooks/use-form/
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
 [notification-provider]: /docs/core/providers/notification-provider

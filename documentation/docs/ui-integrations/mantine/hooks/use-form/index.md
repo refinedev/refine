@@ -222,7 +222,7 @@ const PostEdit: React.FC = () => {
 };
 ```
 
-In the example if you navigate to `/posts/edit/1234` it will manage the data of the post with id of `1234` in an editing context. See [Actions](/docs/api-reference/core/hooks/useForm/#actions) on how `useForm` determines this is an editing context.
+In the example if you navigate to `/posts/edit/1234` it will manage the data of the post with id of `1234` in an editing context. See [Actions](/docs/core/hooks/use-form/#actions) on how `useForm` determines this is an editing context.
 
 Since this is an edit form it will fill the form with the data of the post with id of `1234` and then the form will be ready to edit further and submit the changes.
 
@@ -1026,7 +1026,7 @@ return (
 
 ### `redirect`
 
-"By default, after a successful mutation, `useForm` will `redirect` to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the redirect [property](/docs/api-reference/core/hooks/useForm/#redirect) in the hook's options.
+"By default, after a successful mutation, `useForm` will `redirect` to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the redirect [property](/docs/core/hooks/use-form/#redirect) in the hook's options.
 
 In the following example we will redirect to the `"show"` page after a successful mutation:
 
@@ -1147,7 +1147,7 @@ You can use `meta` property to pass common values to the mutation and the query.
 It supports all the features of the [`useForm`][use-form-mantine] hook provided by `@mantine/form`.
 Also, we added the following return values.
 
-`refineCoreProps`: You can define all properties provided by [`useForm`][use-form-core] here. You can see all of them in [here](/docs/api-reference/core/hooks/useForm/#properties).
+`refineCoreProps`: You can define all properties provided by [`useForm`][use-form-core] here. You can see all of them in [here](/docs/core/hooks/use-form/#properties).
 
 For example, we can define the `refineCoreProps` property in the `useForm` hook as:
 
@@ -1168,7 +1168,7 @@ const { ... } = useForm({
 
 Returns all the return values of the [`useForm`][use-form-mantine] hook provided by `@mantine/form`. Also, we added the following return values.
 
-`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/docs/api-reference/core/hooks/useForm/#return-values).
+`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/docs/core/hooks/use-form/#return-values).
 
 For example, we can access the `refineCore` return value in the `useForm` hook as:
 
@@ -1207,7 +1207,7 @@ const {
 
 <CodeSandboxExample path="form-mantine-use-form" />
 
-[use-form-core]: /docs/api-reference/core/hooks/useForm/
+[use-form-core]: /docs/core/hooks/use-form/
 [use-form-mantine]: https://mantine.dev/form/use-form
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

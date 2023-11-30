@@ -29,7 +29,7 @@ Hooks and components that support `meta`:
 
 | Supported data hooks                                       | Supported other hooks                                                                  | Supported components                                                                         |
 | ---------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/docs/core/hooks/data/use-update)     | [`useForm` &#8594](/docs/api-reference/core/hooks/useForm)                             | [`DeleteButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/delete-button)   |
+| [`useUpdate` &#8594](/docs/core/hooks/data/use-update)     | [`useForm` &#8594](/docs/core/hooks/use-form)                                          | [`DeleteButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/delete-button)   |
 | [`useUpdateMany` &#8594](/docs/core/hooks/data/use-update) | [`useModalForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-modal-form)         | [`RefreshButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/refresh-button) |
 | [`useDelete` &#8594](/docs/core/hooks/data/use-delete)     | [`useDrawerForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-drawer-form)       |                                                                                              |
 | [`useDeleteMany` &#8594](/docs/core/hooks/data/use-delete) | [`useStepsForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-steps-form)         |                                                                                              |

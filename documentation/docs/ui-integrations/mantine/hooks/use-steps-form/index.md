@@ -949,8 +949,8 @@ const UserCreate: React.FC = () => {
 ### Properties
 
 <PropsTable module="@refinedev/mantine/useStepsForm"
-refineCoreProps-type="[`UseFormCoreProps<TData, TError, TVariables>`](/docs/api-reference/core/hooks/useForm/#properties)"
-refineCoreProps-description="Configuration object for the core of the [useForm](/docs/api-reference/core/hooks/useForm/)"
+refineCoreProps-type="[`UseFormCoreProps<TData, TError, TVariables>`](/docs/core/hooks/use-form/#properties)"
+refineCoreProps-description="Configuration object for the core of the [useForm](/docs/core/hooks/use-form/)"
 stepsProps-description="Configuration object for the steps. `defaultStep`: Allows you to set the initial step. `isBackValidate`: Whether to validation the current step when going back."
 stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
  />
@@ -972,7 +972,7 @@ stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
 | Property                                  | Description                                                     | Type                                                                                                                                    |
 | ----------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | steps                                     | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                                                                                           |
-| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/api-reference/core/hooks/useForm/#return-values)                                                          |
+| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values)                                                                       |
 | `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |
 | overtime                                  | Overtime loading props                                          | `{ elapsedTime?: number }`                                                                                                              |
 | autoSaveProps                             | Auto save props                                                 | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }` |
@@ -982,6 +982,6 @@ stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
 <CodeSandboxExample path="form-mantine-use-steps-form" />
 
 [use-form-refine-mantine]: /docs/ui-integrations/mantine/hooks/use-form
-[use-form-core]: /docs/api-reference/core/hooks/useForm/
+[use-form-core]: /docs/core/hooks/use-form/
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

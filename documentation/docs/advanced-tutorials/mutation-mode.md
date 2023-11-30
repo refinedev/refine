@@ -413,7 +413,7 @@ Mutation mode can be set application-wide in [`<Refine>`](/docs/core/refine-comp
 
 <br />
 
-It can also be set in supported [data hooks](/docs/core/hooks/data/use-update#mutation-mode) and [form hooks](/docs/api-reference/core/hooks/useForm/#properties) for fine-grained configuration.
+It can also be set in supported [data hooks](/docs/core/hooks/data/use-update#mutation-mode) and [form hooks](/docs/core/hooks/use-form/#properties) for fine-grained configuration.
 
 ```tsx
 import { useUpdate } from "@refinedev/core";

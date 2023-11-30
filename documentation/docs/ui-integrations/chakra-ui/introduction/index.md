@@ -206,7 +206,7 @@ export const Pagination: React.FC<PaginationProps> = ({ current, pageCount, setC
 
 ## Forms
 
-Chakra UI offers [form elements](https://chakra-ui.com/docs/components/input) yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) package which is built on top of Refine's [`useForm`](/docs/api-reference/core/hooks/useForm/) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
+Chakra UI offers [form elements](https://chakra-ui.com/docs/components/input) yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) package which is built on top of Refine's [`useForm`](/docs/core/hooks/use-form/) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
 
 Refine's documentations and examples of Chakra UI uses `@refinedev/react-hook-form` package for form management but you have the option to use any form management solution you want.
 

@@ -111,7 +111,7 @@ const PostCreate = () => {
 };
 ```
 
-`useForm` is used to manage forms. It returns the necessary properties and methods to control the [Antd Form](https://ant.design/components/form/). It has been developed by using [`useForm`](/docs/api-reference/core/hooks/useForm/) imported from the [@refinedev/core](https://github.com/refinedev/refine/tree/master/packages/core) package.
+`useForm` is used to manage forms. It returns the necessary properties and methods to control the [Antd Form](https://ant.design/components/form/). It has been developed by using [`useForm`](/docs/core/hooks/use-form/) imported from the [@refinedev/core](https://github.com/refinedev/refine/tree/master/packages/core) package.
 
 <GeneralConceptsLink />
 
@@ -936,7 +936,7 @@ useForm({
 
 :::tip
 
-All [`core useForm`](/docs/api-reference/core/hooks/useForm/) return values also available in `useForm`.
+All [`core useForm`](/docs/core/hooks/use-form/) return values also available in `useForm`.
 
 :::
 
@@ -1014,7 +1014,7 @@ return (
 
 ### `redirect`
 
-By default, after a successful mutation, `useForm` will redirect to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the `redirect` [property](/docs/api-reference/core/hooks/useForm/#redirect) in the hook's options.
+By default, after a successful mutation, `useForm` will redirect to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the `redirect` [property](/docs/core/hooks/use-form/#redirect) in the hook's options.
 
 In the following example, we redirect to the `"show"` page after a successful mutation:
 

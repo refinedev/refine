@@ -81,7 +81,7 @@ interface IProduct {
 
 ## Forms
 
-Refine provides a seamless integration with the [`<Form />`](https://ant.design/components/form) component of Ant Design from validation to submission via the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) hook exported from the `@refinedev/antd` package. This hook is an extension of the `@refinedev/core`'s [`useForm`](/docs/api-reference/core/hooks/useForm/) and provides a set of additional features and transformations to make it work with Ant Design's `<Form />` component.
+Refine provides a seamless integration with the [`<Form />`](https://ant.design/components/form) component of Ant Design from validation to submission via the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) hook exported from the `@refinedev/antd` package. This hook is an extension of the `@refinedev/core`'s [`useForm`](/docs/core/hooks/use-form/) and provides a set of additional features and transformations to make it work with Ant Design's `<Form />` component.
 
 ```tsx title="pages/products/create.tsx"
 import { useForm, SaveButton } from "@refinedev/antd";

@@ -1130,10 +1130,10 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 
 ### Return values
 
-| Property                      | Description                                                     | Type                                                                           |
-| ----------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| steps                         | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                                  |
-| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/api-reference/core/hooks/useForm/#return-values) |
+| Property                      | Description                                                     | Type                                                              |
+| ----------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- |
+| steps                         | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                     |
+| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values) |
 | React Hook Form Return Values | See [React Hook Form][react-hook-form-use-form] documentation   |
 
 ## Example
@@ -1143,6 +1143,6 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 [@refinedev/react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [refine-react-hook-form-use-form]: /docs/packages/list-of-packages
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
-[use-form-core]: /docs/api-reference/core/hooks/useForm/
+[use-form-core]: /docs/core/hooks/use-form/
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

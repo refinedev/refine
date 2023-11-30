@@ -501,10 +501,10 @@ Another example is `useTable` hook. While it can infer **resource**, **paginatio
 
 While **refine** itself is headless, it offers UI Integrations for popular UI libraries for:
 
-- [Ant Design](/docs/api-reference/antd)
-- [Material UI](/docs/api-reference/mui)
-- [Chakra UI](/docs/api-reference/chakra-ui)
-- [Mantine](/docs/api-reference/mantine)
+- [Ant Design](/docs/ui-integrations/ant-design/introduction)
+- [Material UI](/docs/ui-integrations/material-ui/introduction)
+- [Chakra UI](/docs/ui-integrations/chakra-ui/introduction)
+- [Mantine](/docs/ui-integrations/mantine/introduction)
 
 These integrations use `@refinedev/core` under the hood, becomes a bridge between the UI library and the **refine** framework.
 

@@ -27,7 +27,7 @@ Hooks and components that support `MetaDataQuery`:
 
 | Supported data hooks                                       | Supported other hooks                                                                  | Supported components                                                                         |
 | ---------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/docs/core/hooks/data/use-update)     | [`useForm` &#8594](/docs/api-reference/core/hooks/useForm)                             | [`DeleteButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/delete-button)   |
+| [`useUpdate` &#8594](/docs/core/hooks/data/use-update)     | [`useForm` &#8594](/docs/core/hooks/use-form)                                          | [`DeleteButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/delete-button)   |
 | [`useUpdateMany` &#8594](/docs/core/hooks/data/use-update) | [`useModalForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-modal-form)         | [`RefreshButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/refresh-button) |
 | [`useDelete` &#8594](/docs/core/hooks/data/use-delete)     | [`useDrawerForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-drawer-form)       |                                                                                              |
 | [`useDeleteMany` &#8594](/docs/core/hooks/data/use-delete) | [`useStepsForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-steps-form)         |                                                                                              |
@@ -437,7 +437,7 @@ render(<App />);
 
 :::info
 
-The create page is largely the same as the edit page, there is no need to pass `meta` to [`useForm`](/docs/api-reference/core/hooks/useForm) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `meta`.
+The create page is largely the same as the edit page, there is no need to pass `meta` to [`useForm`](/docs/core/hooks/use-form) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `meta`.
 
 :::
 
