@@ -28,7 +28,7 @@ export const CommunityStatsProvider: FC = ({ children }) => {
     const [githubCommitCount, setGithubCommitCount] = useState(0);
     const [discordMemberCount, setDiscordMemberCount] = useState(0);
 
-    const fetchGithubCount = useCallback(async () => {
+    const fetchGithubCount = useCallback(async (signal: AbortSignal) => {
         try {
             setLoading(true);
 
@@ -39,6 +39,7 @@ export const CommunityStatsProvider: FC = ({ children }) => {
                     headers: {
                         "Content-Type": "application/json",
                     },
+                    signal,
                 },
             );
 
@@ -53,7 +54,12 @@ export const CommunityStatsProvider: FC = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        fetchGithubCount();
+        const abortController = new AbortController();
+        fetchGithubCount(abortController.signal);
+
+        return () => {
+            abortController.abort();
+        };
     }, [fetchGithubCount]);
 
     const githubStarCountText = useMemo(() => {
