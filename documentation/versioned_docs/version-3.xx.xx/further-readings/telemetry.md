@@ -54,7 +54,7 @@ You can opt out of telemetry by simply adding `disableTelemetry` prop to the `<R
 
 <TabItem value="refine-cli" label="refine CLI">
 
-After running a command with the `refine` CLI, a single HTTP request is sent to "https://telemetry.refine.dev/cli"
+After running a command with the `refine` CLI, a single HTTP POST request is sent to `https://telemetry.refine.dev/cli`.
 
 ## What is collected?
 
