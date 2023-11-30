@@ -1,5 +1,4 @@
 ---
-id: 3x-to-4x
 title: Migrating from 3.x.x to 4.x.x
 sidebar_label: 3.x.x to 4.x.x
 ---

@@ -1,5 +1,4 @@
 ---
-id: telemetry
 title: Telemetry
 sidebar_label: Telemetry
 ---
