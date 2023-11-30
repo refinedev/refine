@@ -908,6 +908,915 @@
     {
       "from": "/docs/license",
       "to": "/docs/further-readings/license"
+    },
+    {
+      "from": "/docs/api-reference/core",
+      "to": "/docs/core/refine-component/index"
+    },
+    {
+      "from": "/docs/api-reference/core/components/refine-config",
+      "to": "/docs/core/refine-component/index"
+    },
+    {
+      "from": "/docs/api-reference/core/interfaceReferences",
+      "to": "/docs/core/interface-references/index"
+    },
+    {
+      "from": "/docs/api-reference/core/providers/access-control-provider",
+      "to": "/docs/core/providers/access-control-provider/index"
+    },
+    {
+      "from": "/docs/api-reference/core/providers/auth-provider",
+      "to": "/docs/core/providers/auth-provider/index"
+    },
+    {
+      "from": "/docs/api-reference/core/providers/audit-log-provider",
+      "to": "/docs/core/providers/audit-log-provider/index"
+    },
+    {
+      "from": "/docs/api-reference/core/providers/data-provider",
+      "to": "/docs/core/providers/data-provider/index"
+    },
+    {
+      "from": "/docs/api-reference/core/providers/i18n-provider",
+      "to": "/docs/core/providers/i18n-provider/index"
+    },
+    {
+      "from": "/docs/api-reference/core/providers/live-provider",
+      "to": "/docs/core/providers/live-provider/index"
+    },
+    {
+      "from": "/docs/api-reference/core/providers/notification-provider",
+      "to": "/docs/core/providers/notification-provider/index"
+    },
+    {
+      "from": "/docs/api-reference/core/providers/router-provider",
+      "to": "/docs/core/providers/router-provider/index"
+    },
+    {
+      "from": "/docs/api-reference/core/components/auth/authenticated",
+      "to": "/docs/core/components/authenticated/index"
+    },
+    {
+      "from": "/docs/api-reference/core/components/accessControl/can-access",
+      "to": "/docs/core/components/can-access/index"
+    },
+    {
+      "from": "/docs/api-reference/core/components/auth-page",
+      "to": "/docs/core/components/auth-page/index"
+    },
+    {
+      "from": "/docs/api-reference/core/components/inferencer",
+      "to": "/docs/core/components/inferencer/index"
+    },
+
+    {
+      "from": "/docs/api-reference/core/hooks/accessControl/useCan",
+      "to": "/docs/core/hooks/use-can/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/authentication/useIsAuthenticated",
+      "to": "/docs/core/hooks/auth/use-is-authenticated/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/authentication/useOnError",
+      "to": "/docs/core/hooks/auth/use-on-error/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/authentication/useGetIdentity",
+      "to": "/docs/core/hooks/auth/use-get-identity/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/authentication/useLogin",
+      "to": "/docs/core/hooks/auth/use-login/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/authentication/useLogout",
+      "to": "/docs/core/hooks/auth/use-logout/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/authentication/usePermissions",
+      "to": "/docs/core/hooks/auth/use-permissions/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/authentication/useRegister",
+      "to": "/docs/core/hooks/auth/use-register/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/authentication/useForgotPassword",
+      "to": "/docs/core/hooks/auth/use-forgot-password/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/authentication/useUpdatePassword",
+      "to": "/docs/core/hooks/auth/use-update-password/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/audit-log/useLog",
+      "to": "/docs/core/hooks/audit-log/use-log/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/audit-log/useLogList",
+      "to": "/docs/core/hooks/audit-log/use-log-list/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/useBreadcrumb",
+      "to": "/docs/core/hooks/utilities/use-breadcrumb/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useApiUrl",
+      "to": "/docs/core/hooks/data/use-api-url/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useCreate/index",
+      "to": "/docs/core/hooks/data/use-create/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useCreateMany/index",
+      "to": "/docs/core/hooks/data/use-create-many/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useCustom/index",
+      "to": "/docs/core/hooks/data/use-custom/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useCustomMutation/index",
+      "to": "/docs/core/hooks/data/use-custom-mutation/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useDataProvider",
+      "to": "/docs/core/hooks/data/use-data-provider/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useDelete/index",
+      "to": "/docs/core/hooks/data/use-delete/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useDeleteMany/index",
+      "to": "/docs/core/hooks/data/use-delete-many/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useList/index",
+      "to": "/docs/core/hooks/data/use-list/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useInfiniteList/index",
+      "to": "/docs/core/hooks/data/use-infinite-list/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useMany/index",
+      "to": "/docs/core/hooks/data/use-many/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useOne/index",
+      "to": "/docs/core/hooks/data/use-one/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useUpdate/index",
+      "to": "/docs/core/hooks/data/use-update/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/data/useUpdateMany/index",
+      "to": "/docs/core/hooks/data/use-update-many/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/useSelect/index",
+      "to": "/docs/core/hooks/use-select/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/useForm/useForm",
+      "to": "/docs/core/hooks/use-form/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/import-export/useExport",
+      "to": "/docs/core/hooks/utilities/use-export/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/import-export/useImport",
+      "to": "/docs/core/hooks/utilities/use-import/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/invalidate/useInvalidate",
+      "to": "/docs/core/hooks/data/use-invalidate/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/live/usePublish",
+      "to": "/docs/core/hooks/realtime/use-publish/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/live/useSubscription",
+      "to": "/docs/core/hooks/realtime/use-subscription/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/navigation/useGo",
+      "to": "/docs/core/hooks/navigation/use-go/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/navigation/useParsed",
+      "to": "/docs/core/hooks/navigation/use-parsed/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/navigation/useBack",
+      "to": "/docs/core/hooks/navigation/use-back/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/navigation/useLink",
+      "to": "/docs/core/hooks/navigation/use-link/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/navigation/useGetToPath",
+      "to": "/docs/core/hooks/navigation/use-get-to-path/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/navigation/useNavigation",
+      "to": "/docs/core/hooks/navigation/use-navigation/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/useNotification/index",
+      "to": "/docs/core/hooks/utilities/use-notification/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/resource/useResource",
+      "to": "/docs/core/hooks/navigation/use-resource/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/show/useShow",
+      "to": "/docs/core/hooks/use-show/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/useTable/index",
+      "to": "/docs/core/hooks/use-table/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/translate/useGetLocale",
+      "to": "/docs/core/hooks/translate/use-get-locale/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/translate/useSetLocale",
+      "to": "/docs/core/hooks/translate/use-set-locale/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/translate/useTranslate",
+      "to": "/docs/core/hooks/translate/use-translate/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/ui/useModal",
+      "to": "/docs/core/hooks/utilities/use-modal/index"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/ui/useMenu",
+      "to": "/docs/core/hooks/utilities/use-menu/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/introduction/index",
+      "to": "/docs/ui-integrations/ant-design/introduction/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/inputs/custom-inputs",
+      "to": "/docs/ui-integrations/ant-design/hooks/use-form/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/antd-auth-page",
+      "to": "/docs/ui-integrations/ant-design/components/auth-page/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/antd-themed-layout",
+      "to": "/docs/ui-integrations/ant-design/components/themed-layout/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/inferencer",
+      "to": "/docs/ui-integrations/ant-design/components/inferencer/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/basic-views/create",
+      "to": "/docs/ui-integrations/ant-design/components/basic-views/create/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/basic-views/edit",
+      "to": "/docs/ui-integrations/ant-design/components/basic-views/edit/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/basic-views/list",
+      "to": "/docs/ui-integrations/ant-design/components/basic-views/list/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/basic-views/show",
+      "to": "/docs/ui-integrations/ant-design/components/basic-views/show/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/breadcrumb",
+      "to": "/docs/ui-integrations/ant-design/components/breadcrumb/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/buttons/clone-button",
+      "to": "/docs/ui-integrations/ant-design/components/buttons/clone-button/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/buttons/create-button",
+      "to": "/docs/ui-integrations/ant-design/components/buttons/create-button/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/buttons/delete-button",
+      "to": "/docs/ui-integrations/ant-design/components/buttons/delete-button/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/buttons/edit-button",
+      "to": "/docs/ui-integrations/ant-design/components/buttons/edit-button/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/buttons/export-button",
+      "to": "/docs/ui-integrations/ant-design/components/buttons/export-button/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/buttons/import-button",
+      "to": "/docs/ui-integrations/ant-design/components/buttons/import-button/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/buttons/list-button",
+      "to": "/docs/ui-integrations/ant-design/components/buttons/list-button/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/buttons/refresh-button",
+      "to": "/docs/ui-integrations/ant-design/components/buttons/refresh-button/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/buttons/save-button",
+      "to": "/docs/ui-integrations/ant-design/components/buttons/save-button/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/buttons/show-button",
+      "to": "/docs/ui-integrations/ant-design/components/buttons/show-button/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/fields/boolean",
+      "to": "/docs/ui-integrations/ant-design/components/fields/boolean-field/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/fields/date",
+      "to": "/docs/ui-integrations/ant-design/components/fields/date-field/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/fields/email",
+      "to": "/docs/ui-integrations/ant-design/components/fields/email-field/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/fields/file",
+      "to": "/docs/ui-integrations/ant-design/components/fields/file-field/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/fields/image",
+      "to": "/docs/ui-integrations/ant-design/components/fields/image-field/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/fields/markdown",
+      "to": "/docs/ui-integrations/ant-design/components/fields/markdown-field/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/fields/number",
+      "to": "/docs/ui-integrations/ant-design/components/fields/number-field/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/fields/tag",
+      "to": "/docs/ui-integrations/ant-design/components/fields/tag-field/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/fields/text",
+      "to": "/docs/ui-integrations/ant-design/components/fields/text-field/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/fields/url",
+      "to": "/docs/ui-integrations/ant-design/components/fields/url-field/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/filter-dropdown",
+      "to": "/docs/ui-integrations/ant-design/components/filter-dropdown/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/components/antd-auto-save-indicator",
+      "to": "/docs/ui-integrations/ant-design/components/auto-save-indicator/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/hooks/field/useCheckboxGroup",
+      "to": "/docs/ui-integrations/ant-design/hooks/use-checkbox-group/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/hooks/field/useRadioGroup",
+      "to": "/docs/ui-integrations/ant-design/hooks/use-radio-group/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/hooks/field/useSelect/index",
+      "to": "/docs/ui-integrations/ant-design/hooks/use-select/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/hooks/form/useDrawerForm",
+      "to": "/docs/ui-integrations/ant-design/hooks/use-drawer-form/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/hooks/form/useForm",
+      "to": "/docs/ui-integrations/ant-design/hooks/use-form/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/hooks/form/useModalForm",
+      "to": "/docs/ui-integrations/ant-design/hooks/use-modal-form/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/hooks/form/useStepsForm",
+      "to": "/docs/ui-integrations/ant-design/hooks/use-steps-form/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/hooks/import/useImport",
+      "to": "/docs/ui-integrations/ant-design/hooks/use-import/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/hooks/list/useSimpleList",
+      "to": "/docs/ui-integrations/ant-design/hooks/use-simple-list/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/hooks/table/useEditableTable",
+      "to": "/docs/ui-integrations/ant-design/hooks/use-editable-table/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/hooks/table/useTable",
+      "to": "/docs/ui-integrations/ant-design/hooks/use-table/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/hooks/ui/useModal",
+      "to": "/docs/ui-integrations/ant-design/hooks/use-modal/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/theming",
+      "to": "/docs/ui-integrations/ant-design/theming/index"
+    },
+    {
+      "from": "/docs/api-reference/antd/migration-guide/v4-to-v5",
+      "to": "/docs/ui-integrations/ant-design/migration-guide/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/introduction/index",
+      "to": "/docs/ui-integrations/material-ui/introduction/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/hooks/useAutocomplete/index",
+      "to": "/docs/ui-integrations/material-ui/hooks/use-auto-complete/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/hooks/useDataGrid/index",
+      "to": "/docs/ui-integrations/material-ui/hooks/use-data-grid/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/mui-auth-page",
+      "to": "/docs/ui-integrations/material-ui/components/auth-page/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/mui-themed-layout",
+      "to": "/docs/ui-integrations/material-ui/components/themed-layout/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/inferencer",
+      "to": "/docs/ui-integrations/material-ui/components/inferencer/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/basic-views/create",
+      "to": "/docs/ui-integrations/material-ui/components/basic-views/create/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/basic-views/edit",
+      "to": "/docs/ui-integrations/material-ui/components/basic-views/edit/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/basic-views/list",
+      "to": "/docs/ui-integrations/material-ui/components/basic-views/list/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/basic-views/show",
+      "to": "/docs/ui-integrations/material-ui/components/basic-views/show/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/mui-breadcrumb",
+      "to": "/docs/ui-integrations/material-ui/components/breadcrumb/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/buttons/clone-button",
+      "to": "/docs/ui-integrations/material-ui/components/buttons/clone-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/buttons/create-button",
+      "to": "/docs/ui-integrations/material-ui/components/buttons/create-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/buttons/delete-button",
+      "to": "/docs/ui-integrations/material-ui/components/buttons/delete-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/buttons/edit-button",
+      "to": "/docs/ui-integrations/material-ui/components/buttons/edit-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/buttons/export-button",
+      "to": "/docs/ui-integrations/material-ui/components/buttons/export-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/buttons/import-button",
+      "to": "/docs/ui-integrations/material-ui/components/buttons/import-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/buttons/list-button",
+      "to": "/docs/ui-integrations/material-ui/components/buttons/list-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/buttons/refresh-button",
+      "to": "/docs/ui-integrations/material-ui/components/buttons/refresh-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/buttons/save-button",
+      "to": "/docs/ui-integrations/material-ui/components/buttons/save-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/buttons/show-button",
+      "to": "/docs/ui-integrations/material-ui/components/buttons/show-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/fields/boolean",
+      "to": "/docs/ui-integrations/material-ui/components/fields/boolean-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/fields/date",
+      "to": "/docs/ui-integrations/material-ui/components/fields/date-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/fields/email",
+      "to": "/docs/ui-integrations/material-ui/components/fields/email-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/fields/file",
+      "to": "/docs/ui-integrations/material-ui/components/fields/file-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/fields/markdown",
+      "to": "/docs/ui-integrations/material-ui/components/fields/markdown-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/fields/number",
+      "to": "/docs/ui-integrations/material-ui/components/fields/number-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/fields/tag",
+      "to": "/docs/ui-integrations/material-ui/components/fields/tag-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/fields/text",
+      "to": "/docs/ui-integrations/material-ui/components/fields/text-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/fields/url",
+      "to": "/docs/ui-integrations/material-ui/components/fields/url-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/components/mui-auto-save-indicator",
+      "to": "/docs/ui-integrations/material-ui/components/auto-save-indicator/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/theming",
+      "to": "/docs/ui-integrations/material-ui/theming/index"
+    },
+    {
+      "from": "/docs/api-reference/mui/migration-guide/v4-to-v5",
+      "to": "/docs/ui-integrations/material-ui/migration-guide/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/introduction/index",
+      "to": "/docs/ui-integrations/chakra-ui/introduction/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/chakra-auth-page",
+      "to": "/docs/ui-integrations/chakra-ui/components/auth-page/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/chakra-ui-themed-layout",
+      "to": "/docs/ui-integrations/chakra-ui/components/themed-layout/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/inferencer",
+      "to": "/docs/ui-integrations/chakra-ui/components/inferencer/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/basic-views/create",
+      "to": "/docs/ui-integrations/chakra-ui/components/basic-views/create/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/basic-views/edit",
+      "to": "/docs/ui-integrations/chakra-ui/components/basic-views/edit/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/basic-views/list",
+      "to": "/docs/ui-integrations/chakra-ui/components/basic-views/list/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/basic-views/show",
+      "to": "/docs/ui-integrations/chakra-ui/components/basic-views/show/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/breadcrumb",
+      "to": "/docs/ui-integrations/chakra-ui/components/breadcrumb/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/buttons/clone-button",
+      "to": "/docs/ui-integrations/chakra-ui/components/buttons/clone-button/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/buttons/create-button",
+      "to": "/docs/ui-integrations/chakra-ui/components/buttons/create-button/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/buttons/delete-button",
+      "to": "/docs/ui-integrations/chakra-ui/components/buttons/delete-button/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/buttons/edit-button",
+      "to": "/docs/ui-integrations/chakra-ui/components/buttons/edit-button/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/buttons/export-button",
+      "to": "/docs/ui-integrations/chakra-ui/components/buttons/export-button/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/buttons/import-button",
+      "to": "/docs/ui-integrations/chakra-ui/components/buttons/import-button/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/buttons/list-button",
+      "to": "/docs/ui-integrations/chakra-ui/components/buttons/list-button/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/buttons/refresh-button",
+      "to": "/docs/ui-integrations/chakra-ui/components/buttons/refresh-button/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/buttons/save-button",
+      "to": "/docs/ui-integrations/chakra-ui/components/buttons/save-button/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/buttons/show-button",
+      "to": "/docs/ui-integrations/chakra-ui/components/buttons/show-button/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/fields/boolean",
+      "to": "/docs/ui-integrations/chakra-ui/components/fields/boolean-field/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/fields/date",
+      "to": "/docs/ui-integrations/chakra-ui/components/fields/date-field/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/fields/email",
+      "to": "/docs/ui-integrations/chakra-ui/components/fields/email-field/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/fields/file",
+      "to": "/docs/ui-integrations/chakra-ui/components/fields/file-field/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/fields/markdown",
+      "to": "/docs/ui-integrations/chakra-ui/components/fields/markdown-field/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/fields/number",
+      "to": "/docs/ui-integrations/chakra-ui/components/fields/number-field/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/fields/tag",
+      "to": "/docs/ui-integrations/chakra-ui/components/fields/tag-field/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/fields/text",
+      "to": "/docs/ui-integrations/chakra-ui/components/fields/text-field/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/fields/url",
+      "to": "/docs/ui-integrations/chakra-ui/components/fields/url-field/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/components/chakra-ui-auto-save-indicator",
+      "to": "/docs/ui-integrations/chakra-ui/components/auto-save-indicator/index"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/theming",
+      "to": "/docs/ui-integrations/chakra-ui/theming/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/introduction/index",
+      "to": "/docs/ui-integrations/mantine/introduction/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/hooks/form/useDrawerForm",
+      "to": "/docs/ui-integrations/mantine/hooks/use-drawer-form/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/hooks/form/useForm",
+      "to": "/docs/ui-integrations/mantine/hooks/use-form/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/hooks/form/useModalForm",
+      "to": "/docs/ui-integrations/mantine/hooks/use-modal-form/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/hooks/form/useStepsForm",
+      "to": "/docs/ui-integrations/mantine/hooks/use-steps-form/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/hooks/useSelect/index",
+      "to": "/docs/ui-integrations/mantine/hooks/use-select/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/mantine-auth-page",
+      "to": "/docs/ui-integrations/mantine/components/auth-page/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/mantine-themed-layout",
+      "to": "/docs/ui-integrations/mantine/components/themed-layout/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/inferencer",
+      "to": "/docs/ui-integrations/mantine/components/inferencer/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/basic-views/create",
+      "to": "/docs/ui-integrations/mantine/components/basic-views/create/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/basic-views/edit",
+      "to": "/docs/ui-integrations/mantine/components/basic-views/edit/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/basic-views/list",
+      "to": "/docs/ui-integrations/mantine/components/basic-views/list/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/basic-views/show",
+      "to": "/docs/ui-integrations/mantine/components/basic-views/show/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/breadcrumb",
+      "to": "/docs/ui-integrations/mantine/components/breadcrumb/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/buttons/clone-button",
+      "to": "/docs/ui-integrations/mantine/components/buttons/clone-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/buttons/create-button",
+      "to": "/docs/ui-integrations/mantine/components/buttons/create-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/buttons/delete-button",
+      "to": "/docs/ui-integrations/mantine/components/buttons/delete-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/buttons/edit-button",
+      "to": "/docs/ui-integrations/mantine/components/buttons/edit-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/buttons/export-button",
+      "to": "/docs/ui-integrations/mantine/components/buttons/export-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/buttons/import-button",
+      "to": "/docs/ui-integrations/mantine/components/buttons/import-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/buttons/list-button",
+      "to": "/docs/ui-integrations/mantine/components/buttons/list-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/buttons/refresh-button",
+      "to": "/docs/ui-integrations/mantine/components/buttons/refresh-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/buttons/save-button",
+      "to": "/docs/ui-integrations/mantine/components/buttons/save-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/buttons/show-button",
+      "to": "/docs/ui-integrations/mantine/components/buttons/show-button/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/fields/boolean",
+      "to": "/docs/ui-integrations/mantine/components/fields/boolean-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/fields/date",
+      "to": "/docs/ui-integrations/mantine/components/fields/date-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/fields/email",
+      "to": "/docs/ui-integrations/mantine/components/fields/email-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/fields/file",
+      "to": "/docs/ui-integrations/mantine/components/fields/file-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/fields/markdown",
+      "to": "/docs/ui-integrations/mantine/components/fields/markdown-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/fields/number",
+      "to": "/docs/ui-integrations/mantine/components/fields/number-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/fields/tag",
+      "to": "/docs/ui-integrations/mantine/components/fields/tag-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/fields/text",
+      "to": "/docs/ui-integrations/mantine/components/fields/text-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/fields/url",
+      "to": "/docs/ui-integrations/mantine/components/fields/url-field/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/components/mantine-auto-save-indicator",
+      "to": "/docs/ui-integrations/mantine/components/auto-save-indicator/index"
+    },
+    {
+      "from": "/docs/api-reference/mantine/theming",
+      "to": "/docs/ui-integrations/mantine/theming/index"
+    },
+    {
+      "from": "/docs/packages",
+      "to": "/docs/packages/list-of-packages/index"
+    },
+    {
+      "from": "/docs/packages/list-of-packages",
+      "to": "/docs/packages/list-of-packages/index"
+    },
+    {
+      "from": "/docs/packages/documentation/routers",
+      "to": "/docs/guides-concepts/routing/index"
+    },
+    {
+      "from": "/docs/packages/documentation/data-providers/appwrite",
+      "to": "/docs/packages/data-providers/appwrite/index"
+    },
+    {
+      "from": "/docs/packages/documentation/data-providers/graphql",
+      "to": "/docs/packages/data-providers/graphql/index"
+    },
+    {
+      "from": "/docs/packages/documentation/data-providers/simple-rest",
+      "to": "/docs/packages/data-providers/simple-rest/index"
+    },
+    {
+      "from": "/docs/packages/documentation/data-providers/strapi-v4",
+      "to": "/docs/packages/data-providers/strapi-v4/index"
+    },
+    {
+      "from": "/docs/packages/documentation/data-providers/supabase",
+      "to": "/docs/packages/data-providers/supabase/index"
+    },
+    {
+      "from": "/docs/packages/documentation/inferencer",
+      "to": "/docs/packages/inferencer/index"
+    },
+    {
+      "from": "/docs/packages/documentation/command-palette",
+      "to": "/docs/packages/command-palette/index"
+    },
+    {
+      "from": "/docs/packages/documentation/tanstack-table/introduction",
+      "to": "/docs/packages/tanstack-table/introduction/index"
+    },
+    {
+      "from": "/docs/packages/documentation/tanstack-table/use-table",
+      "to": "/docs/packages/tanstack-table/use-table/index"
+    },
+    {
+      "from": "/docs/packages/documentation/react-hook-form/introduction",
+      "to": "/docs/packages/react-hook-form/introduction/index"
+    },
+    {
+      "from": "/docs/packages/documentation/react-hook-form/useForm",
+      "to": "/docs/packages/react-hook-form/use-form/index"
+    },
+    {
+      "from": "/docs/packages/documentation/react-hook-form/useModalForm",
+      "to": "/docs/packages/react-hook-form/use-modal-form/index"
+    },
+    {
+      "from": "/docs/packages/documentation/react-hook-form/useStepsForm",
+      "to": "/docs/packages/react-hook-form/use-steps-form/index"
+    },
+    {
+      "from": "/docs/packages/documentation/routers/react-router-v6",
+      "to": "/docs/router-integrations/react-router/index"
+    },
+    {
+      "from": "/docs/packages/documentation/routers/nextjs",
+      "to": "/docs/router-integrations/next-js/index"
+    },
+    {
+      "from": "/docs/packages/documentation/routers/remix",
+      "to": "/docs/router-integrations/remix/index"
     }
   ]
 }
