@@ -276,25 +276,35 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         <Box component="div" style={layoutStyles} {...(wrapperProps ?? {})}>
             <Container
                 component="main"
-                maxWidth="xs"
                 sx={{
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "center",
+                    justifyContent: hideForm ? "flex-start" : "center",
+                    alignItems: "center",
                     minHeight: "100dvh",
                     padding: "16px",
                     width: "100%",
                     maxWidth: "400px",
                 }}
             >
-                {renderContent ? (
-                    renderContent(Content, PageTitle)
-                ) : (
-                    <>
-                        {PageTitle}
-                        {Content}
-                    </>
-                )}
+                <Box
+                    sx={{
+                        width: "100%",
+                        maxWidth: "400px",
+                        display: "flex",
+                        flexDirection: "column",
+                        paddingTop: hideForm ? "15dvh" : 0,
+                    }}
+                >
+                    {renderContent ? (
+                        renderContent(Content, PageTitle)
+                    ) : (
+                        <>
+                            {PageTitle}
+                            {Content}
+                        </>
+                    )}
+                </Box>
             </Container>
         </Box>
     );

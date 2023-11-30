@@ -234,7 +234,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         ml="1"
                         as={Link}
                         fontWeight="bold"
-                        to="/register"
+                        to="/login"
                     >
                         {translate("pages.login.signin", "Sign in")}
                     </ChakraLink>
@@ -243,9 +243,15 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         </Box>
     );
 
-    const allWrapperProps = { ...layoutProps, ...wrapperProps };
     return (
-        <Box {...allWrapperProps}>
+        <Box
+            style={{
+                ...layoutProps,
+                justifyContent: hideForm ? "flex-start" : "center",
+                paddingTop: hideForm ? "15dvh" : 0,
+            }}
+            {...wrapperProps}
+        >
             {renderContent ? (
                 renderContent(content, PageTitle)
             ) : (

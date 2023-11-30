@@ -245,10 +245,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             {hideForm && loginLink !== false && (
                 <div
                     style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginTop: "24px",
+                        marginTop: hideForm ? 16 : 8,
                     }}
                 >
                     <Text
@@ -279,10 +276,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
             <Row
                 justify="center"
-                align="middle"
+                align={hideForm ? "top" : "middle"}
                 style={{
                     padding: "16px 0",
                     minHeight: "100dvh",
+                    paddingTop: hideForm ? "15dvh" : "0",
                 }}
             >
                 <Col xs={22}>

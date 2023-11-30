@@ -305,11 +305,10 @@ export const LoginPage: React.FC<LoginProps> = ({
             <Box component="div" style={layoutStyles} {...(wrapperProps ?? {})}>
                 <Container
                     component="main"
-                    maxWidth="xs"
                     sx={{
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: "center",
+                        justifyContent: hideForm ? "flex-start" : "center",
                         alignItems: "center",
                         minHeight: "100dvh",
                         padding: "16px",
@@ -319,10 +318,11 @@ export const LoginPage: React.FC<LoginProps> = ({
                 >
                     <Box
                         sx={{
+                            width: "100%",
+                            maxWidth: "400px",
                             display: "flex",
-                            justifyContent: "center",
                             flexDirection: "column",
-                            alignItems: "center",
+                            paddingTop: hideForm ? "15dvh" : 0,
                         }}
                     >
                         {renderContent ? (

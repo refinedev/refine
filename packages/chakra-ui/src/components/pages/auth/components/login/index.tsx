@@ -272,10 +272,16 @@ export const LoginPage: React.FC<LoginProps> = ({
         </Box>
     );
 
-    const allWrapperProps = { ...layoutProps, ...wrapperProps };
     return (
         <FormProvider {...methods}>
-            <Box {...allWrapperProps}>
+            <Box
+                style={{
+                    ...layoutProps,
+                    justifyContent: hideForm ? "flex-start" : "center",
+                    paddingTop: hideForm ? "15dvh" : 0,
+                }}
+                {...wrapperProps}
+            >
                 {renderContent ? (
                     renderContent(content, PageTitle)
                 ) : (
