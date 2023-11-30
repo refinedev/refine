@@ -170,7 +170,7 @@ import { RemixResourceAndRoutesUsage } from "./remix/resource-and-routes-usage";
 
 ## Hook Integrations
 
-### useForm
+### useForm <GuideBadge id="guides-concepts/forms/#integration-with-routers" />
 
 Router integration of **refine** allows you to use `useForm` without passing **resource**, **id** and **action** parameters.
 It will also redirect you to resource's action route defined in `redirect` prop. `redirect` prop is `list` by default.
@@ -179,7 +179,116 @@ import { ReactRouterUseFormUsage } from "./react-router/use-form-usage";
 
 <ReactRouterUseFormUsage />
 
-### useTable
+Additionally, router integrations exposes an `<UnsavedChangesNotifier />` component which can be used to notify the user about unsaved changes before navigating away from the current page. This component provides this feature which can be enabled by setting `warnWhenUnsavedChanges` to `true` in `useForm` hooks.
+
+<Tabs wrapContent={false}>
+<TabItem value="react-router" label="React Router v6">
+
+```tsx title="app.tsx"
+import { Refine } from "@refinedev/core";
+import { routerProvider, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes } from "react-router-dom";
+
+const App = () => (
+  <BrowserRouter>
+    <Refine
+      // ...
+      routerProvider={routerProvider}
+      options={{
+        // highlight-next-line
+        warnWhenUnsavedChanges: true,
+      }}
+    >
+      <Routes>{/* ... */}</Routes>
+      {/* highlight-start */}
+      {/* The `UnsavedChangesNotifier` component should be placed under <Refine /> component. */}
+      <UnsavedChangesNotifier />
+      {/* highlight-end */}
+    </Refine>
+  </BrowserRouter>
+);
+```
+
+Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/documentation/routers/react-router-v6/#unsavedchangesnotifier) for more information.
+
+</TabItem>
+<TabItem value="next-js" label="Next.js">
+
+```tsx title="_app.tsx"
+import type { AppProps } from "next/app";
+import { Refine } from "@refinedev/core";
+import { routerProvider, UnsavedChangesNotifier } from "@refinedev/nextjs-router";
+
+export default function App({ Component, pageProps }) {
+  return (
+    <Refine
+      // ...
+      routerProvider={routerProvider}
+      options={{
+        // highlight-next-line
+        warnWhenUnsavedChanges: true,
+      }}
+    >
+      <Component {...pageProps} />
+      {/* highlight-start */}
+      {/* The `UnsavedChangesNotifier` component should be placed under <Refine /> component. */}
+      <UnsavedChangesNotifier />
+      {/* highlight-end */}
+    </Refine>
+  );
+}
+```
+
+Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/documentation/routers/nextjs/#unsavedchangesnotifier) for more information.
+
+</TabItem>
+<TabItem value="remix" label="Remix">
+
+```tsx title="app/root.tsx"
+import type { MetaFunction } from "@remix-run/node";
+
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+
+import { Refine } from "@refinedev/core";
+
+// highlight-next-line
+import routerProvider, { UnsavedChangesNotifier } from "@refinedev/remix-router";
+
+export default function App() {
+  return (
+    <html lang="en">
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <Refine
+          // ...
+          routerProvider={routerProvider}
+          options={{
+            // highlight-next-line
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Outlet />
+          {/* highlight-next-line */}
+          <UnsavedChangesNotifier />
+        </Refine>
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+      </body>
+    </html>
+  );
+}
+```
+
+Check out the [`UnsavedChangesNotifier` section of the React Router integration documentation](/docs/packages/documentation/routers/remix/#unsavedchangesnotifier) for more information.
+
+</TabItem>
+</Tabs>
+
+### useTable <GuideBadge id="guides-concepts/tables/#integrating-with-routers" />
 
 `useTable` can synchronize it's parameters (filters, pagination, sorting) with the current route.
 

@@ -12,10 +12,10 @@ Refine has out of the box support for the four libraries that are widely used in
 
 These integrations are made to provide solutions for common use cases such as menus, layouts, action buttons, tables, forms and more while providing a consistent design language with the UI library. Rather than a constraint, these integrations are designed as helpers and extensions to the core functionalities of Refine and the UI libraries.
 
-- [Ant Design with `@refinedev/antd`](/docs/api-reference/antd/)
-- [Material UI with `@refinedev/mui`](/docs/api-reference/mui/)
-- [Chakra UI with `@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/)
-- [Mantine with `@refinedev/mantine`](/docs/api-reference/mantine/)
+- [Ant Design with `@refinedev/antd`](/docs/api-reference/antd/introduction)
+- [Material UI with `@refinedev/mui`](/docs/api-reference/mui/introduction)
+- [Chakra UI with `@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/introduction)
+- [Mantine with `@refinedev/mantine`](/docs/api-reference/mantine/introduction)
 
 ## Prebuilt Components
 
