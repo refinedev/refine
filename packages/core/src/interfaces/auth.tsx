@@ -73,6 +73,11 @@ export type AuthPageProps<
            * @optional
            */
           rememberMe?: React.ReactNode;
+          /**
+           * @description Can be used to hide the form components
+           * @optional
+           */
+          hideForm?: boolean;
       }>
     | PropsWithChildren<{
           /**
@@ -85,6 +90,11 @@ export type AuthPageProps<
            * @optional
            */
           providers?: OAuthProvider[];
+          /**
+           * @description Can be used to hide the form components
+           * @optional
+           */
+          hideForm?: boolean;
       }>
     | PropsWithChildren<{
           /**
@@ -156,6 +166,7 @@ export type LoginPageProps<
     contentProps?: TContentProps;
     formProps?: TFormProps;
     title?: React.ReactNode;
+    hideForm?: boolean;
 }>;
 
 /**
@@ -176,6 +187,7 @@ export type RegisterPageProps<
     contentProps?: TContentProps;
     formProps?: TFormProps;
     title?: React.ReactNode;
+    hideForm?: boolean;
 }>;
 
 /**
