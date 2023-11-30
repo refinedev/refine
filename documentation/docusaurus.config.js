@@ -79,10 +79,10 @@ const siteConfig = {
             {
                 redirects: redirectJson.redirects,
                 createRedirects(existingPath) {
-                    if (existingPath.includes("/api-reference/")) {
+                    if (existingPath.includes("/api-reference/core/")) {
                         return [
                             existingPath.replace(
-                                "/api-reference/",
+                                "/api-reference/core/",
                                 "/api-references/",
                             ),
                         ];
