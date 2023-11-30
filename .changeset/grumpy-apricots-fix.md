@@ -4,7 +4,7 @@
 
 ### Breaking changes
 
-fix: added required `key` prop to `<Auhtenticated />` component to resolve issues of rendering of the unwanted content and wrongful redirections.
+fix: added required `key` prop to `<Auhtenticated />` component to resolve issues of rendering of the unwanted content and wrongful redirections. #4782
 
 #### Why is it required?
 
