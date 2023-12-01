@@ -9,6 +9,7 @@ import {
     useIsAuthenticated,
 } from "@hooks";
 import { useActiveAuthProvider } from "@definitions/index";
+import { GoConfig } from "src/interfaces";
 
 export type AuthenticatedCommonProps = {
     /**
@@ -106,7 +107,6 @@ export function Authenticated({
 
     const parsed = useParsed();
     const go = useGo();
-    const { replace } = useNavigation();
     const { useLocation } = useRouterContext();
     const legacyLocation = useLocation();
 
@@ -173,26 +173,50 @@ export function Authenticated({
                 const toQuery = appendCurrentPathToQuery
                     ? `?to=${encodeURIComponent(pathname)}`
                     : "";
-                replace(`${appliedRedirect}${toQuery}`);
+                return <RedirectLegacy to={`${appliedRedirect}${toQuery}`} />;
             } else {
-                go({
-                    to: appliedRedirect,
-                    query: appendCurrentPathToQuery
-                        ? {
-                              to: parsed.params?.to
-                                  ? parsed.params.to
-                                  : go({
-                                        to: pathname,
-                                        options: { keepQuery: true },
-                                        type: "path",
-                                    }),
-                          }
-                        : undefined,
-                    type: "replace",
-                });
+                return (
+                    <Redirect
+                        config={{
+                            to: appliedRedirect,
+                            query: appendCurrentPathToQuery
+                                ? {
+                                      to: parsed.params?.to
+                                          ? parsed.params.to
+                                          : go({
+                                                to: pathname,
+                                                options: { keepQuery: true },
+                                                type: "path",
+                                            }),
+                                  }
+                                : undefined,
+                            type: "replace",
+                        }}
+                    />
+                );
             }
         }
 
         return null;
     }
 }
+
+const Redirect = ({ config }: { config: GoConfig }) => {
+    const go = useGo();
+
+    React.useEffect(() => {
+        go(config);
+    }, [go, config]);
+
+    return null;
+};
+
+const RedirectLegacy = ({ to }: { to: string }) => {
+    const { replace } = useNavigation();
+
+    React.useEffect(() => {
+        replace(to);
+    }, [replace, to]);
+
+    return null;
+};
