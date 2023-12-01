@@ -8,36 +8,36 @@ swizzle: true
 const { default: routerProvider } = RefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
-    Sider: () => null,
-    catchAll: <RefineMantine.ErrorComponent />,
+  routerProvider,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  notificationProvider: RefineMantine.notificationProvider,
+  Layout: RefineMantine.Layout,
+  Sider: () => null,
+  catchAll: <RefineMantine.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
-    );
+  return (
+    <RefineMantine.MantineProvider
+      theme={RefineMantine.LightTheme}
+      withNormalizeCSS
+      withGlobalStyles
+    >
+      <RefineMantine.Global
+        styles={{ body: { WebkitFontSmoothing: "auto" } }}
+      />
+      <RefineMantine.NotificationsProvider position="top-right">
+        {children}
+      </RefineMantine.NotificationsProvider>
+    </RefineMantine.MantineProvider>
+  );
 };
 ```
 
-`<RefreshButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button) component to update the data shown on the page via the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+`<RefreshButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button) component to update the data shown on the page via the [`useOne`](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -50,63 +50,61 @@ import { ShowButton } from "@pankod/refine-mantine";
 // visible-block-start
 import { useShow } from "@pankod/refine-core";
 import {
-    Show,
-    Title,
-    Text,
-    MarkdownField,
-    //highlight-next-line
-    RefreshButton,
+  Show,
+  Title,
+  Text,
+  MarkdownField,
+  //highlight-next-line
+  RefreshButton,
 } from "@pankod/refine-mantine";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        // highlight-next-line
-        <Show headerButtons={<RefreshButton />} isLoading={isLoading}>
-            <Title order={5}>Id</Title>
-            <Text mt="sm">{record?.id}</Text>
+  return (
+    // highlight-next-line
+    <Show headerButtons={<RefreshButton />} isLoading={isLoading}>
+      <Title order={5}>Id</Title>
+      <Text mt="sm">{record?.id}</Text>
 
-            <Title mt="sm" order={5}>
-                Title
-            </Title>
-            <Text mt="sm">{record?.title}</Text>
+      <Title mt="sm" order={5}>
+        Title
+      </Title>
+      <Text mt="sm">{record?.title}</Text>
 
-            <Title mt="sm" order={5}>
-                Content
-            </Title>
-            <MarkdownField value={record?.content} />
-        </Show>
-    );
+      <Title mt="sm" order={5}>
+        Content
+      </Title>
+      <MarkdownField value={record?.content} />
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -124,31 +122,31 @@ import { Refine } from "@pankod/refine-core";
 import { RefreshButton } from "@pankod/refine-mantine";
 
 const MyRefreshComponent = () => {
-    return <RefreshButton recordItemId="123" />;
+  return <RefreshButton recordItemId="123" />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyRefreshComponent,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyRefreshComponent,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "post" and whose id is "123".
+Clicking the button will trigger the [`useOne`](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "post" and whose id is "123".
 
 :::note
 `<RefreshButton>` component reads the id information from the route by default.
@@ -167,33 +165,33 @@ import { Refine } from "@pankod/refine-core";
 import { RefreshButton } from "@pankod/refine-mantine";
 
 const MyRefreshComponent = () => {
-    return (
-        <RefreshButton resourceNameOrRouteName="categories" recordItemId="2" />
-    );
+  return (
+    <RefreshButton resourceNameOrRouteName="categories" recordItemId="2" />
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyRefreshComponent,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyRefreshComponent,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+Clicking the button will trigger the [`useOne`](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
@@ -212,27 +210,27 @@ import { Refine } from "@pankod/refine-core";
 import { RefreshButton } from "@pankod/refine-mantine";
 
 const MyRefreshComponent = () => {
-    return <RefreshButton hideText recordItemId="123" />;
+  return <RefreshButton hideText recordItemId="123" />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyRefreshComponent,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyRefreshComponent,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 

@@ -3,7 +3,7 @@ id: inferencer
 title: Inferencer
 ---
 
-`@pankod/refine-inferencer` is a package that provides a way to automatically generate views for resources based on the data structure. The aim is to reduce the amount of time spent on creating views for resources by generating the code automatically that can be customized easily. 
+`@pankod/refine-inferencer` is a package that provides a way to automatically generate views for resources based on the data structure. The aim is to reduce the amount of time spent on creating views for resources by generating the code automatically that can be customized easily.
 
 The package exports components for **List**, **Show**, **Create** and **Edit** views inside UI package scopes. For example, `@pankod/refine-inferencer/antd` exports components for `@pankod/refine-antd` package.
 
@@ -33,11 +33,11 @@ yarn add @pankod/refine-inferencer
 
 ## Available UI Inferencers
 
-- [Ant Design](/docs/api-reference/antd/components/inferencer)
-- [Material UI](/docs/api-reference/mui/components/inferencer)
-- [Mantine](/docs/api-reference/mantine/components/inferencer)
-- [Chakra UI](/docs/api-reference/chakra-ui/components/inferencer)
-- [Headless](/docs/api-reference/core/components/inferencer)
+- [Ant Design](/docs/3.xx.xx/api-reference/antd/components/inferencer)
+- [Material UI](/docs/3.xx.xx/api-reference/mui/components/inferencer)
+- [Mantine](/docs/3.xx.xx/api-reference/mantine/components/inferencer)
+- [Chakra UI](/docs/3.xx.xx/api-reference/chakra-ui/components/inferencer)
+- [Headless](/docs/3.xx.xx/api-reference/core/components/inferencer)
 
 :::info
 `@pankod/refine-inferencer` is an experimental package and it is now in the early stages of development. We are working on improving the package and adding new features.
@@ -55,7 +55,7 @@ Simply, `@pankod/refine-inferencer` generates views and codes based on the data 
 
 ### How the data is obtained?
 
-For, `edit` and `show` actions, we send the request with `resource` and `id`. For `list` and `create` actions, we send a list request with `resource` and use one of the items to generate the view. These actions will take place in your app. 
+For, `edit` and `show` actions, we send the request with `resource` and `id`. For `list` and `create` actions, we send a list request with `resource` and use one of the items to generate the view. These actions will take place in your app.
 
 ### How the fields are inferred?
 
@@ -66,15 +66,19 @@ Properties with multiple values are identified as `array` type but also repeats 
 If the property is an `object` type, we try to pick a key to represent that property. For example, if we have a `category` field with `{ label: string; id: string; }` type, we pick `label` as the key to represent the property. These `object` fields with keys to represent them have the property `fieldable` set to `true` in the return value.
 
 :::tip Available field types and functions
+
 ```
 "relation" | "array" | "object" | "date" | "email" | "image" | "url" | "richtext" | "text" | "number" | "boolean" | "unknown" | "custom_{string}"
 ```
+
 :::
 
 :::note List of keys that can be used to represent an `object` type property
+
 ```
 "name" | "label" | "title" | "count" | "content" | "username" | "nickname" | "login" | "firstName" | "lastName" | "url"
 ```
+
 :::
 
 :::note
@@ -113,7 +117,7 @@ If your `dataProvider` and `resources` has a different way of work that makes it
 To render the components we use a [fork](https://github.com/aliemir/react-live) of [`react-live`](https://github.com/FormidableLabs/react-live) package with Typescript support.
 :::
 
-After the fields are determined, we use the `renderer` functions to create the code for the components and also use the same code to render the components in the view. `renderer` functions are constructed per action type and the UI package. This means, `@pankod/refine-inferencer/antd` and other UI scopes has different `renderer` functions for `list`, `show`, `edit` and `create` actions. 
+After the fields are determined, we use the `renderer` functions to create the code for the components and also use the same code to render the components in the view. `renderer` functions are constructed per action type and the UI package. This means, `@pankod/refine-inferencer/antd` and other UI scopes has different `renderer` functions for `list`, `show`, `edit` and `create` actions.
 
 `renderer` function returns a `string` that includes the code for the component which is presented to user to copy and paste to their project. The same code is also used to render the component in the view.
 

@@ -4,11 +4,10 @@ title: List
 swizzle: true
 ---
 
-
 `<ListButton>` is using Material UI [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -20,46 +19,50 @@ import { useShow } from "@pankod/refine-core";
 import { ListButton, Show, Typography, Stack } from "@pankod/refine-mui";
 
 const PostShow: React.FC = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        <Show
-            isLoading={isLoading}
-            headerButtons={(
-                    // highlight-start
-                    <ListButton />
-                    // highlight-end
-            )}
-        >
-            <Stack gap="10px">
-                <Typography fontWeight="bold">Id</Typography>
-                <Typography>{record?.id}</Typography>
-                <Typography fontWeight="bold">Title</Typography>
-                <Typography>{record?.title}</Typography>
-            </Stack>
-        </Show>
-    );
+  return (
+    <Show
+      isLoading={isLoading}
+      headerButtons={
+        // highlight-start
+        <ListButton />
+        // highlight-end
+      }
+    >
+      <Stack gap="10px">
+        <Typography fontWeight="bold">Id</Typography>
+        <Typography>{record?.id}</Typography>
+        <Typography fontWeight="bold">Title</Typography>
+        <Typography>{record?.title}</Typography>
+      </Stack>
+    </Show>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts/show/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => <RefineMui.List><p>Rest of the page here...</p></RefineMui.List>,
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts/show/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <RefineMui.List>
+            <p>Rest of the page here...</p>
+          </RefineMui.List>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -80,26 +83,28 @@ const { useRouterContext } = RefineCore;
 import { ListButton } from "@pankod/refine-mui";
 
 const MyListComponent = () => {
-    return (
-        <ListButton resourceNameOrRouteName="categories" recordItemId="2" />
-    );
+  return <ListButton resourceNameOrRouteName="categories" recordItemId="2" />;
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                list: () => <RefineMui.List><p>Rest of the page here...</p></RefineMui.List>,
-            },
-        ]}
-        DashboardPage={MyListComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        list: () => (
+          <RefineMui.List>
+            <p>Rest of the page here...</p>
+          </RefineMui.List>
+        ),
+      },
+    ]}
+    DashboardPage={MyListComponent}
+  />,
 );
 ```
 
@@ -116,28 +121,32 @@ const { useRouterContext } = RefineCore;
 import { ListButton } from "@pankod/refine-mui";
 
 const MyListComponent = () => {
-    return (
-        <ListButton
-            resourceNameOrRouteName="posts"
-            // highlight-next-line
-            hideText
-        />
-    );
+  return (
+    <ListButton
+      resourceNameOrRouteName="posts"
+      // highlight-next-line
+      hideText
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => <RefineMui.List><p>Rest of the page here...</p></RefineMui.List>,
-            },
-        ]}
-        DashboardPage={MyListComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <RefineMui.List>
+            <p>Rest of the page here...</p>
+          </RefineMui.List>
+        ),
+      },
+    ]}
+    DashboardPage={MyListComponent}
+  />,
 );
 ```
 
@@ -149,7 +158,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ListButton } from "@pankod/refine-mui";
 
 export const MyListComponent = () => {
-    return <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

@@ -7,37 +7,37 @@ swizzle: true
 ```tsx live shared
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    Layout: RefineChakra.Layout,
-    Sider: () => null,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  Layout: RefineChakra.Layout,
+  Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
-            {children}
-        </RefineChakra.ChakraProvider>
-    );
+  return (
+    <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+      {children}
+    </RefineChakra.ChakraProvider>
+  );
 };
 
 const DummyListPage = () => (
-    <RefineChakra.VStack alignItems="flex-start">
-        <RefineChakra.Text>This page is empty.</RefineChakra.Text>
-        <CreateButton colorScheme="black" />
-    </RefineChakra.VStack>
+  <RefineChakra.VStack alignItems="flex-start">
+    <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+    <CreateButton colorScheme="black" />
+  </RefineChakra.VStack>
 );
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
@@ -53,105 +53,99 @@ import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
 import {
-    Create,
-    FormControl,
-    FormErrorMessage,
-    FormLabel,
-    Input,
-    Select,
+  Create,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  Select,
 } from "@pankod/refine-chakra-ui";
 import { useSelect } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 const PostCreate: React.FC = () => {
-    const {
-        refineCore: { formLoading },
-        saveButtonProps,
-        register,
-        formState: { errors },
-    } = useForm<IPost>();
+  const {
+    refineCore: { formLoading },
+    saveButtonProps,
+    register,
+    formState: { errors },
+  } = useForm<IPost>();
 
-    const { options } = useSelect({
-        resource: "categories",
-    });
+  const { options } = useSelect({
+    resource: "categories",
+  });
 
-    return (
-        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <FormControl mb="3" isInvalid={!!errors?.title}>
-                <FormLabel>Title</FormLabel>
-                <Input
-                    id="title"
-                    type="text"
-                    {...register("title", { required: "Title is required" })}
-                />
-                <FormErrorMessage>
-                    {`${errors.title?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.status}>
-                <FormLabel>Status</FormLabel>
-                <Select
-                    id="content"
-                    placeholder="Select Post Status"
-                    {...register("status", {
-                        required: "Status is required",
-                    })}
-                >
-                    <option>published</option>
-                    <option>draft</option>
-                    <option>rejected</option>
-                </Select>
-                <FormErrorMessage>
-                    {`${errors.status?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.categoryId}>
-                <FormLabel>Category</FormLabel>
-                <Select
-                    id="categoryId"
-                    placeholder="Select Category"
-                    {...register("categoryId", {
-                        required: "Category is required",
-                    })}
-                >
-                    {options?.map((option) => (
-                        <option value={option.value} key={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </Select>
-                <FormErrorMessage>
-                    {`${errors.categoryId?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-        </Create>
-    );
+  return (
+    <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+      <FormControl mb="3" isInvalid={!!errors?.title}>
+        <FormLabel>Title</FormLabel>
+        <Input
+          id="title"
+          type="text"
+          {...register("title", { required: "Title is required" })}
+        />
+        <FormErrorMessage>{`${errors.title?.message}`}</FormErrorMessage>
+      </FormControl>
+      <FormControl mb="3" isInvalid={!!errors?.status}>
+        <FormLabel>Status</FormLabel>
+        <Select
+          id="content"
+          placeholder="Select Post Status"
+          {...register("status", {
+            required: "Status is required",
+          })}
+        >
+          <option>published</option>
+          <option>draft</option>
+          <option>rejected</option>
+        </Select>
+        <FormErrorMessage>{`${errors.status?.message}`}</FormErrorMessage>
+      </FormControl>
+      <FormControl mb="3" isInvalid={!!errors?.categoryId}>
+        <FormLabel>Category</FormLabel>
+        <Select
+          id="categoryId"
+          placeholder="Select Category"
+          {...register("categoryId", {
+            required: "Category is required",
+          })}
+        >
+          {options?.map((option) => (
+            <option value={option.value} key={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </Select>
+        <FormErrorMessage>{`${errors.categoryId?.message}`}</FormErrorMessage>
+      </FormControl>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Properties
@@ -170,33 +164,33 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { Create, Heading } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create title={<Heading size="lg">Custom Title</Heading>}>
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create title={<Heading size="lg">Custom Title</Heading>}>
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -216,33 +210,33 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { Create } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create saveButtonProps={{ colorScheme: "red" }}>
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create saveButtonProps={{ colorScheme: "red" }}>
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -262,40 +256,40 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { Layout, Create } from "@pankod/refine-chakra-ui";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create resource="categories">
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create resource="categories">
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom",
-                    },
-                ],
-                // highlight-end
-            }}
-            Layout={Layout}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom",
+          },
+        ],
+        // highlight-end
+      }}
+      Layout={Layout}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -310,24 +304,24 @@ import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 const IconMoodSmile = (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="icon icon-tabler icon-tabler-mood-smile"
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
-        strokeWidth="2"
-        stroke="currentColor"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <circle cx={12} cy={12} r={9}></circle>
-        <line x1={9} y1={10} x2="9.01" y2={10}></line>
-        <line x1={15} y1={10} x2="15.01" y2={10}></line>
-        <path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path>
-    </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="icon icon-tabler icon-tabler-mood-smile"
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    strokeWidth="2"
+    stroke="currentColor"
+    fill="none"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+    <circle cx={12} cy={12} r={9}></circle>
+    <line x1={9} y1={10} x2="9.01" y2={10}></line>
+    <line x1={15} y1={10} x2="15.01" y2={10}></line>
+    <path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path>
+  </svg>
 );
 
 // visible-block-start
@@ -336,33 +330,33 @@ import { Create } from "@pankod/refine-chakra-ui";
 import { IconMoodSmile } from "@tabler/icons";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create goBack={IconMoodSmile}>
-            <p>Rest of your page here 2</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create goBack={IconMoodSmile}>
+      <p>Rest of your page here 2</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -380,33 +374,33 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { Create } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create isLoading={true}>
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create isLoading={true}>
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -417,7 +411,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
 
 :::tip
-This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/3.xx.xx/api-reference/core/components/refine-config/#breadcrumb)
 :::
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
@@ -430,40 +424,40 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { Create, Breadcrumb, Box } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            breadcrumb={
-                <Box borderColor="blue" borderStyle="dashed" borderWidth="2px">
-                    <Breadcrumb />
-                </Box>
-            }
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      breadcrumb={
+        <Box borderColor="blue" borderStyle="dashed" borderWidth="2px">
+          <Breadcrumb />
+        </Box>
+      }
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -483,40 +477,40 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { Create } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            wrapperProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      wrapperProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -536,40 +530,40 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { Create } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            headerProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -589,40 +583,40 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { Create } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            contentProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      contentProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -640,48 +634,43 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { Create, Button, Box } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <Box
-                    borderColor="blue"
-                    borderStyle="dashed"
-                    borderWidth="2px"
-                    p="2"
-                >
-                    {defaultButtons}
-                    <Button colorScheme="red" variant="solid">
-                        Custom Button
-                    </Button>
-                </Box>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <Box borderColor="blue" borderStyle="dashed" borderWidth="2px" p="2">
+          {defaultButtons}
+          <Button colorScheme="red" variant="solid">
+            Custom Button
+          </Button>
+        </Box>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -701,41 +690,41 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { Create, Button } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            headerButtonProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-            }}
-            // highlight-end
-            headerButtons={<Button type="primary">Custom Button</Button>}
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerButtonProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+      }}
+      // highlight-end
+      headerButtons={<Button type="primary">Custom Button</Button>}
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -753,48 +742,43 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { Create, Button, HStack } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            footerButtons={({ defaultButtons }) => (
-                <HStack
-                    borderColor="blue"
-                    borderStyle="dashed"
-                    borderWidth="2px"
-                    p="2"
-                >
-                    {defaultButtons}
-                    <Button colorScheme="red" variant="solid">
-                        Custom Button
-                    </Button>
-                </HStack>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtons={({ defaultButtons }) => (
+        <HStack borderColor="blue" borderStyle="dashed" borderWidth="2px" p="2">
+          {defaultButtons}
+          <Button colorScheme="red" variant="solid">
+            Custom Button
+          </Button>
+        </HStack>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -814,42 +798,42 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { Create } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            footerButtonProps={{
-                float: "right",
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-                p: "2",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtonProps={{
+        float: "right",
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+        p: "2",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 

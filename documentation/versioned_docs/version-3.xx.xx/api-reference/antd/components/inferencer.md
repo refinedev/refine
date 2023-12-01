@@ -22,21 +22,21 @@ values={[
 import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "samples",
-                    // highlight-start
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                    // highlight-end
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "samples",
+          // highlight-start
+          list: AntdInferencer,
+          show: AntdInferencer,
+          create: AntdInferencer,
+          edit: AntdInferencer,
+          // highlight-end
+        },
+      ]}
+    />
+  );
 };
 ```
 
@@ -48,31 +48,31 @@ const App = () => {
 import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 
 const SampleList = () => {
-    return (
-        // highlight-next-line
-        <AntdInferencer resource="samples" action="list" />
-    );
+  return (
+    // highlight-next-line
+    <AntdInferencer resource="samples" action="list" />
+  );
 };
 
 const SampleShow = () => {
-    return (
-        // highlight-next-line
-        <AntdInferencer resource="samples" action="show" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <AntdInferencer resource="samples" action="show" id="1" />
+  );
 };
 
 const SampleCreate = () => {
-    return (
-        // highlight-next-line
-        <AntdInferencer resource="samples" action="create" />
-    );
+  return (
+    // highlight-next-line
+    <AntdInferencer resource="samples" action="create" />
+  );
 };
 
 const SampleEdit = () => {
-    return (
-        // highlight-next-line
-        <AntdInferencer resource="samples" action="edit" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <AntdInferencer resource="samples" action="edit" id="1" />
+  );
 };
 ```
 
@@ -80,7 +80,7 @@ const SampleEdit = () => {
 </Tabs>
 
 :::info
-To learn more about `@pankod/refine-inferencer` package, please check out [Docs](/docs/packages/documentation/inferencer)
+To learn more about `@pankod/refine-inferencer` package, please check out [Docs](/docs/3.xx.xx/packages/documentation/inferencer)
 :::
 
 ## Views
@@ -104,36 +104,36 @@ import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            resources={[
-                {
-                    name: "samples",
-                    // highlight-next-line
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    // highlight-next-line
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                },
-                {
-                    name: "tags",
-                    // highlight-next-line
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      Layout={Layout}
+      resources={[
+        {
+          name: "samples",
+          // highlight-next-line
+          list: AntdInferencer,
+          show: AntdInferencer,
+          create: AntdInferencer,
+          edit: AntdInferencer,
+          canDelete: true,
+        },
+        {
+          name: "categories",
+          // highlight-next-line
+          list: AntdInferencer,
+          show: AntdInferencer,
+        },
+        {
+          name: "tags",
+          // highlight-next-line
+          list: AntdInferencer,
+          show: AntdInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 // visible-block-end
@@ -160,36 +160,36 @@ import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            resources={[
-                {
-                    name: "samples",
-                    list: AntdInferencer,
-                    // highlight-next-line
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    list: AntdInferencer,
-                    // highlight-next-line
-                    show: AntdInferencer,
-                },
-                {
-                    name: "tags",
-                    list: AntdInferencer,
-                    // highlight-next-line
-                    show: AntdInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      Layout={Layout}
+      resources={[
+        {
+          name: "samples",
+          list: AntdInferencer,
+          // highlight-next-line
+          show: AntdInferencer,
+          create: AntdInferencer,
+          edit: AntdInferencer,
+          canDelete: true,
+        },
+        {
+          name: "categories",
+          list: AntdInferencer,
+          // highlight-next-line
+          show: AntdInferencer,
+        },
+        {
+          name: "tags",
+          list: AntdInferencer,
+          // highlight-next-line
+          show: AntdInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 // visible-block-end
@@ -216,34 +216,34 @@ import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            resources={[
-                {
-                    name: "samples",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    // highlight-next-line
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                },
-                {
-                    name: "tags",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      Layout={Layout}
+      resources={[
+        {
+          name: "samples",
+          list: AntdInferencer,
+          show: AntdInferencer,
+          // highlight-next-line
+          create: AntdInferencer,
+          edit: AntdInferencer,
+          canDelete: true,
+        },
+        {
+          name: "categories",
+          list: AntdInferencer,
+          show: AntdInferencer,
+        },
+        {
+          name: "tags",
+          list: AntdInferencer,
+          show: AntdInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 // visible-block-end
@@ -270,34 +270,34 @@ import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            resources={[
-                {
-                    name: "samples",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    // highlight-next-line
-                    edit: AntdInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                },
-                {
-                    name: "tags",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      Layout={Layout}
+      resources={[
+        {
+          name: "samples",
+          list: AntdInferencer,
+          show: AntdInferencer,
+          create: AntdInferencer,
+          // highlight-next-line
+          edit: AntdInferencer,
+          canDelete: true,
+        },
+        {
+          name: "categories",
+          list: AntdInferencer,
+          show: AntdInferencer,
+        },
+        {
+          name: "tags",
+          list: AntdInferencer,
+          show: AntdInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 // visible-block-end

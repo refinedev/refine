@@ -3,12 +3,12 @@ id: general-concepts
 title: General Concepts
 ---
 
--   **refine** core is fully independent of UI. So you can use core components and hooks without any UI dependency.
--   All the **data** related hooks([`useTable`](/docs/api-reference/core/hooks/useTable/), [`useForm`](/api-reference/core/hooks/useForm.md), [`useList`](/docs/api-reference/core/hooks/data/useList) etc.) of **refine** can be given some common properties like `resource`, `metaData`, `queryOptions` etc.
+- **refine** core is fully independent of UI. So you can use core components and hooks without any UI dependency.
+- All the **data** related hooks([`useTable`](/docs/3.xx.xx/api-reference/core/hooks/useTable/), [`useForm`](/api-reference/core/hooks/useForm.md), [`useList`](/docs/3.xx.xx/api-reference/core/hooks/data/useList) etc.) of **refine** can be given some common properties like `resource`, `metaData`, `queryOptions` etc.
 
 ### `resource`
 
-**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how `resource` are handled.
+**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/docs/3.xx.xx/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how `resource` are handled.
 
 How does refine know what the resource value is?
 
@@ -24,18 +24,18 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { PostList } from "pages/posts/list.tsx";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 
 export default App;
@@ -49,12 +49,12 @@ You can override the default `resource` value hook by passing the `resource` pro
 import { useTable } from "@pankod/refine-core";
 
 const PostList: React.FC = () => {
-    const result = useTable({
-        //highlight-next-line
-        resource: "users",
-    });
+  const result = useTable({
+    //highlight-next-line
+    resource: "users",
+  });
 
-    return <div>...</div>;
+  return <div>...</div>;
 };
 ```
 
@@ -68,8 +68,8 @@ How can I request an API with nested route?
 
 `metaData` is used following two purposes:
 
--   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON).
+- To pass additional information to data provider methods.
+- Generate GraphQL queries using plain JavaScript Objects (JSON).
 
 How to use `metaData` to pass additional information to data provider methods?
 

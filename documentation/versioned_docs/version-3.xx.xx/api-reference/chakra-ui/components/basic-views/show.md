@@ -7,39 +7,39 @@ swizzle: true
 ```tsx live shared
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    Layout: RefineChakra.Layout,
-    Sider: () => null,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  Layout: RefineChakra.Layout,
+  Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
-            {children}
-        </RefineChakra.ChakraProvider>
-    );
+  return (
+    <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+      {children}
+    </RefineChakra.ChakraProvider>
+  );
 };
 
 const DummyListPage = () => (
-    <RefineChakra.VStack alignItems="flex-start">
-        <RefineChakra.Text>This page is empty.</RefineChakra.Text>
-        <ShowButton colorScheme="black" recordItemId="123">
-            Show Item 123
-        </ShowButton>
-    </RefineChakra.VStack>
+  <RefineChakra.VStack alignItems="flex-start">
+    <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+    <ShowButton colorScheme="black" recordItemId="123">
+      Show Item 123
+    </ShowButton>
+  </RefineChakra.VStack>
 );
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
@@ -57,83 +57,83 @@ import dataProvider from "@pankod/refine-simple-rest";
 // visible-block-start
 import { useShow, useOne } from "@pankod/refine-core";
 import {
-    Show,
-    Heading,
-    Text,
-    MarkdownField,
-    Spacer,
+  Show,
+  Heading,
+  Text,
+  MarkdownField,
+  Spacer,
 } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    const { data: categoryData } = useOne<ICategory>({
-        resource: "categories",
-        id: record?.category.id || "",
-        queryOptions: {
-            enabled: !!record?.category.id,
-        },
-    });
+  const { data: categoryData } = useOne<ICategory>({
+    resource: "categories",
+    id: record?.category.id || "",
+    queryOptions: {
+      enabled: !!record?.category.id,
+    },
+  });
 
-    return (
-        <Show isLoading={isLoading}>
-            <Heading as="h5" size="sm">
-                Id
-            </Heading>
-            <Text mt={2}>{record?.id}</Text>
+  return (
+    <Show isLoading={isLoading}>
+      <Heading as="h5" size="sm">
+        Id
+      </Heading>
+      <Text mt={2}>{record?.id}</Text>
 
-            <Heading as="h5" size="sm" mt={4}>
-                Title
-            </Heading>
-            <Text mt={2}>{record?.title}</Text>
+      <Heading as="h5" size="sm" mt={4}>
+        Title
+      </Heading>
+      <Text mt={2}>{record?.title}</Text>
 
-            <Heading as="h5" size="sm" mt={4}>
-                Status
-            </Heading>
-            <Text mt={2}>{record?.status}</Text>
+      <Heading as="h5" size="sm" mt={4}>
+        Status
+      </Heading>
+      <Text mt={2}>{record?.status}</Text>
 
-            <Heading as="h5" size="sm" mt={4}>
-                Category
-            </Heading>
-            <Text mt={2}>{categoryData?.data?.title}</Text>
+      <Heading as="h5" size="sm" mt={4}>
+        Category
+      </Heading>
+      <Text mt={2}>{categoryData?.data?.title}</Text>
 
-            <Heading as="h5" size="sm" mt={4}>
-                Content
-            </Heading>
-            <Spacer mt={2} />
-            <MarkdownField value={record?.content} />
-        </Show>
-    );
+      <Heading as="h5" size="sm" mt={4}>
+        Content
+      </Heading>
+      <Spacer mt={2} />
+      <MarkdownField value={record?.content} />
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            notificationProvider={RefineChakra.notificationProvider()}
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      notificationProvider={RefineChakra.notificationProvider()}
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Properties
@@ -153,34 +153,34 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Show, Heading } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Show title={<Heading size="lg">Custom Title</Heading>}>
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    /* highlight-next-line */
+    <Show title={<Heading size="lg">Custom Title</Heading>}>
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -200,40 +200,40 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Show resource="categories">
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    /* highlight-next-line */
+    <Show resource="categories">
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom/:id",
-                    },
-                ],
-                // highlight-end
-            }}
-            Layout={Layout}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom/:id",
+          },
+        ],
+        // highlight-end
+      }}
+      Layout={Layout}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -257,63 +257,63 @@ import { Show } from "@pankod/refine-chakra-ui";
 import { usePermissions } from "@pankod/refine-core";
 
 const PostShow: React.FC = () => {
-    const { data: permissionsData } = usePermissions();
+  const { data: permissionsData } = usePermissions();
 
-    return (
-        <Show
-            /* highlight-start */
-            canDelete={permissionsData?.includes("admin")}
-            canEdit={permissionsData?.includes("admin")}
-            /* highlight-end */
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      /* highlight-start */
+      canDelete={permissionsData?.includes("admin")}
+      canEdit={permissionsData?.includes("admin")}
+      /* highlight-end */
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    const simpleRestDataProvider = dataProvider(
-        "https://api.fake-rest.refine.dev",
-    );
+  const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+  );
 
-    const customDataProvider = {
-        ...simpleRestDataProvider,
-        deleteOne: async ({ resource, id, variables }) => {
-            return {
-                data: {},
-            };
+  const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+      return {
+        data: {},
+      };
+    },
+  };
+
+  const authProvider = {
+    login: () => Promise.resolve(),
+    logout: () => Promise.resolve(),
+    checkAuth: () => Promise.resolve(),
+    checkError: () => Promise.resolve(),
+    getPermissions: () => Promise.resolve("admin"),
+    getUserIdentity: () => Promise.resolve(),
+  };
+
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={customDataProvider}
+      authProvider={authProvider}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
         },
-    };
-
-    const authProvider = {
-        login: () => Promise.resolve(),
-        logout: () => Promise.resolve(),
-        checkAuth: () => Promise.resolve(),
-        checkError: () => Promise.resolve(),
-        getPermissions: () => Promise.resolve("admin"),
-        getUserIdentity: () => Promise.resolve(),
-    };
-
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={customDataProvider}
-            authProvider={authProvider}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -333,65 +333,65 @@ import dataProvider from "@pankod/refine-simple-rest";
 // visible-block-start
 import { useModalForm } from "@pankod/refine-react-hook-form";
 import {
-    Show,
-    Modal,
-    Button,
-    ModalOverlay,
-    ModalContent,
-    ModalCloseButton,
-    ModalHeader,
-    ModalBody,
+  Show,
+  Modal,
+  Button,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+  ModalHeader,
+  ModalBody,
 } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
-    const {
-        modal: { visible, close, show },
-        id,
-    } = useModalForm({
-        refineCoreProps: { action: "show" },
-    });
+  const {
+    modal: { visible, close, show },
+    id,
+  } = useModalForm({
+    refineCoreProps: { action: "show" },
+  });
 
-    return (
-        <div>
-            <Button onClick={() => show()}>Edit Button</Button>
-            <Modal isOpen={visible} onClose={close} size="xl">
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalCloseButton />
-                    <ModalHeader>Show</ModalHeader>
+  return (
+    <div>
+      <Button onClick={() => show()}>Edit Button</Button>
+      <Modal isOpen={visible} onClose={close} size="xl">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalHeader>Show</ModalHeader>
 
-                    <ModalBody>
-                        {/* highlight-next-line */}
-                        <Show recordItemId={id}>
-                            <p>Rest of your page here</p>
-                        </Show>
-                    </ModalBody>
-                </ModalContent>
-            </Modal>
-        </div>
-    );
+          <ModalBody>
+            {/* highlight-next-line */}
+            <Show recordItemId={id}>
+              <p>Rest of your page here</p>
+            </Show>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </div>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -411,23 +411,23 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-start
 const PostShow = () => {
-    return <Show dataProviderName="other">...</Show>;
+  return <Show dataProviderName="other">...</Show>;
 };
 // highlight-end
 
 export const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            // highlight-start
-            dataProvider={{
-                default: dataProvider("https://api.fake-rest.refine.dev/"),
-                other: dataProvider("https://other-api.fake-rest.refine.dev/"),
-            }}
-            // highlight-end
-            resources={[{ name: "posts", show: PostShow }]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      // highlight-start
+      dataProvider={{
+        default: dataProvider("https://api.fake-rest.refine.dev/"),
+        other: dataProvider("https://other-api.fake-rest.refine.dev/"),
+      }}
+      // highlight-end
+      resources={[{ name: "posts", show: PostShow }]}
+    />
+  );
 };
 ```
 
@@ -443,24 +443,24 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const IconMoodSmile = (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="icon icon-tabler icon-tabler-mood-smile"
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
-        strokeWidth="2"
-        stroke="currentColor"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <circle cx={12} cy={12} r={9}></circle>
-        <line x1={9} y1={10} x2="9.01" y2={10}></line>
-        <line x1={15} y1={10} x2="15.01" y2={10}></line>
-        <path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path>
-    </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="icon icon-tabler icon-tabler-mood-smile"
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    strokeWidth="2"
+    stroke="currentColor"
+    fill="none"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+    <circle cx={12} cy={12} r={9}></circle>
+    <line x1={9} y1={10} x2="9.01" y2={10}></line>
+    <line x1={15} y1={10} x2="15.01" y2={10}></line>
+    <path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path>
+  </svg>
 );
 
 // visible-block-start
@@ -469,34 +469,34 @@ import { Show } from "@pankod/refine-chakra-ui";
 import { IconMoodSmile } from "@tabler/icons";
 
 const PostShow: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Show goBack={IconMoodSmile}>
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    /* highlight-next-line */
+    <Show goBack={IconMoodSmile}>
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -515,34 +515,34 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Show } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Show isLoading={true}>
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    /* highlight-next-line */
+    <Show isLoading={true}>
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -553,7 +553,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
 
 :::tip
-This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/3.xx.xx/api-reference/core/components/refine-config/#breadcrumb)
 :::
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
@@ -567,45 +567,45 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Show, Box, Breadcrumb } from "@pankod/refine-chakra-ui";
 
 const CustomBreadcrumb: React.FC = () => {
-    return (
-        <Box borderColor="blue" borderStyle="dashed" borderWidth="2px">
-            <Breadcrumb />
-        </Box>
-    );
+  return (
+    <Box borderColor="blue" borderStyle="dashed" borderWidth="2px">
+      <Breadcrumb />
+    </Box>
+  );
 };
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            breadcrumb={<CustomBreadcrumb />}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      breadcrumb={<CustomBreadcrumb />}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -626,42 +626,42 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Show } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            wrapperProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-                p: "2",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      wrapperProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+        p: "2",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -682,41 +682,41 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Show } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            headerProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      headerProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -737,42 +737,42 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Show } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            contentProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-                p: "2",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      contentProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+        p: "2",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -791,42 +791,42 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Show, Button, HStack, Box } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <HStack>
-                    {defaultButtons}
-                    <Button colorScheme="red">Custom Button</Button>
-                </HStack>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <HStack>
+          {defaultButtons}
+          <Button colorScheme="red">Custom Button</Button>
+        </HStack>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -847,47 +847,47 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Show, Button } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            headerButtonProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-                p: "2",
-            }}
-            // highlight-end
-            headerButtons={
-                <Button variant="outline" colorScheme="green">
-                    Custom Button
-                </Button>
-            }
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      headerButtonProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+        p: "2",
+      }}
+      // highlight-end
+      headerButtons={
+        <Button variant="outline" colorScheme="green">
+          Custom Button
+        </Button>
+      }
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -906,49 +906,44 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Show, Button, HStack } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            footerButtons={({ defaultButtons }) => (
-                <HStack
-                    borderColor="blue"
-                    borderStyle="dashed"
-                    borderWidth="2px"
-                    p="2"
-                >
-                    {defaultButtons}
-                    <Button colorScheme="red" variant="solid">
-                        Custom Button
-                    </Button>
-                </HStack>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      footerButtons={({ defaultButtons }) => (
+        <HStack borderColor="blue" borderStyle="dashed" borderWidth="2px" p="2">
+          {defaultButtons}
+          <Button colorScheme="red" variant="solid">
+            Custom Button
+          </Button>
+        </HStack>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -969,46 +964,46 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Show, Button } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            footerButtonProps={{
-                style: {
-                    float: "right",
-                    borderColor: "blue",
-                    borderStyle: "dashed",
-                    borderWidth: "2px",
-                    padding: "8px",
-                },
-            }}
-            // highlight-end
-            footerButtons={<Button colorScheme="green">Custom Button</Button>}
-        >
-            <p>Rest of your page here</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-start
+      footerButtonProps={{
+        style: {
+          float: "right",
+          borderColor: "blue",
+          borderStyle: "dashed",
+          borderWidth: "2px",
+          padding: "8px",
+        },
+      }}
+      // highlight-end
+      footerButtons={<Button colorScheme="green">Custom Button</Button>}
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 

@@ -2,9 +2,9 @@
 id: add-show-page
 title: 3. Adding Show Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
-    next: tutorial/adding-crud-pages/{preferredUI}/add-create-page
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
+  next: tutorial/adding-crud-pages/{preferredUI}/add-create-page
 ---
 
 Show page is the page where you can see the record. In this tutorial, we will create the show page for the `blog_posts` resource.
@@ -32,48 +32,46 @@ setInitialRoutes(["/blog-posts/show/123"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
-    RefineSnackbarProvider,
-    notificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
+  ThemeProvider,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MuiInferencer,
-                            show: MuiInferencer,
-                            create: MuiInferencer,
-                            edit: MuiInferencer,
-                        },
-                    ]}
-                />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          Layout={Layout}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          resources={[
+            {
+              name: "blog_posts",
+              list: MuiInferencer,
+              show: MuiInferencer,
+              create: MuiInferencer,
+              edit: MuiInferencer,
+            },
+          ]}
+        />
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);
@@ -85,17 +83,17 @@ Instead of coding the show page component from scratch, Inferencer created the r
 
 We will go through the show page components and hooks one by one.
 
--   `<Show/>` is a **refine** component that is used to presentation purposes like showing the title of the page, list button, etc.
+- `<Show/>` is a **refine** component that is used to presentation purposes like showing the title of the page, list button, etc.
 
-    [Refer to the `<Show/>` documentation for more information &#8594](/docs/api-reference/mui/components/basic-views/show/)
+  [Refer to the `<Show/>` documentation for more information &#8594](/docs/3.xx.xx/api-reference/mui/components/basic-views/show/)
 
--   `useShow` is a **refine** hook that is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
+- `useShow` is a **refine** hook that is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
 
-    [Refer to the `useShow` documentation for more information &#8594](/docs/api-reference/core/hooks/show/useShow/)
+  [Refer to the `useShow` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/show/useShow/)
 
--   All other components are **Material UI** components that are used to show the record data.
+- All other components are **Material UI** components that are used to show the record data.
 
-    [Refer to the **Material UI** documentation for more information &#8594](https://mui.com/material-ui/getting-started/overview/)
+  [Refer to the **Material UI** documentation for more information &#8594](https://mui.com/material-ui/getting-started/overview/)
 
 ### Handling Relationships
 
@@ -103,14 +101,14 @@ In the show page, we have a single record. The record may have relationships wit
 
 For example, the `blog_posts` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **refine**. This hook allows us to fetch single record data by using the `id` and `resource` parameters.
 
-[Refer to the `useOne` documentation for more information &#8594](/docs/api-reference/core/hooks/data/useOne/)
+[Refer to the `useOne` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/)
 
 In the auto-generated show page code, Inferencer used the `useOne` hook to fetch the category data of the blog post record.
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-    resource: "categories",
-    id: record?.category?.id || "",
+  resource: "categories",
+  id: record?.category?.id || "",
 });
 ```
 
@@ -118,11 +116,11 @@ To ensure that the related data is only fetched after the blog post record has b
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-    resource: "categories",
-    id: record?.category?.id || "",
-    queryOptions: {
-        enabled: !!record,
-    },
+  resource: "categories",
+  id: record?.category?.id || "",
+  queryOptions: {
+    enabled: !!record,
+  },
 });
 ```
 
@@ -139,15 +137,15 @@ Now that we have created the show page, we need to add it to the `App.tsx` file.
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
-    RefineSnackbarProvider,
-    notificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
+  ThemeProvider,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -159,34 +157,32 @@ import { BlogPostEdit } from "pages/blog-posts/edit";
 import { BlogPostShow } from "pages/blog-posts/show";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: BlogPostList,
-                            edit: BlogPostEdit,
-                            //highlight-next-line
-                            show: BlogPostShow,
-                            create: MuiInferencer,
-                        },
-                    ]}
-                />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          Layout={Layout}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          resources={[
+            {
+              name: "blog_posts",
+              list: BlogPostList,
+              edit: BlogPostEdit,
+              //highlight-next-line
+              show: BlogPostShow,
+              create: MuiInferencer,
+            },
+          ]}
+        />
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 export default App;
 ```

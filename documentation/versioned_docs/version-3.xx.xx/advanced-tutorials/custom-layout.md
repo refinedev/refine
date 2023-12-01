@@ -7,12 +7,12 @@ You can create custom layouts using [`<Refine>`][refine] and [`<LayoutWrapper>`]
 
 Both of these components can accept the listed props for customization. [`<Refine>`][refine] is for global customization and the [`<LayoutWrapper>`][layoutwrapper] is for local.
 
--   [`Layout`][layout]
--   [`Sider`][sider]
--   [`Footer`][footer]
--   [`Header`][header]
--   [`OffLayoutArea`][offlayoutarea]
--   [`Title`][title]
+- [`Layout`][layout]
+- [`Sider`][sider]
+- [`Footer`][footer]
+- [`Header`][header]
+- [`OffLayoutArea`][offlayoutarea]
+- [`Title`][title]
 
 ## Usage
 
@@ -25,10 +25,10 @@ Let's look at an example of modifying the default layout to have a top menu layo
 ```tsx title="/src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-    AntdLayout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  AntdLayout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -44,38 +44,36 @@ const { Link } = routerProvider;
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            // highlight-start
-            Layout={({ children, Footer, OffLayoutArea }) => (
-                <AntdLayout>
-                    <AntdLayout.Header>
-                        <CustomSider />
-                    </AntdLayout.Header>
-                    <AntdLayout.Content>
-                        <AntdLayout.Content>
-                            <div style={{ padding: 24, minHeight: 360 }}>
-                                {children}
-                            </div>
-                        </AntdLayout.Content>
-                        {Footer && <Footer />}
-                    </AntdLayout.Content>
-                    {OffLayoutArea && <OffLayoutArea />}
-                </AntdLayout>
-            )}
-            // highlight-end
-            Title={() => (
-                <Link to="/" style={{ float: "left", marginRight: "10px" }}>
-                    <img src="/refine.svg" alt="Refine" />
-                </Link>
-            )}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      // highlight-start
+      Layout={({ children, Footer, OffLayoutArea }) => (
+        <AntdLayout>
+          <AntdLayout.Header>
+            <CustomSider />
+          </AntdLayout.Header>
+          <AntdLayout.Content>
+            <AntdLayout.Content>
+              <div style={{ padding: 24, minHeight: 360 }}>{children}</div>
+            </AntdLayout.Content>
+            {Footer && <Footer />}
+          </AntdLayout.Content>
+          {OffLayoutArea && <OffLayoutArea />}
+        </AntdLayout>
+      )}
+      // highlight-end
+      Title={() => (
+        <Link to="/" style={{ float: "left", marginRight: "10px" }}>
+          <img src="/refine.svg" alt="Refine" />
+        </Link>
+      )}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+    />
+  );
 };
 
 export default App;
@@ -93,25 +91,25 @@ import routerProvider from "@pankod/refine-react-router-v6";
 const { Link } = routerProvider;
 
 export const CustomSider: React.FC = () => {
-    // highlight-start
-    const Title = useTitle();
-    const { menuItems, selectedKey } = useMenu();
-    // highlight-end
+  // highlight-start
+  const Title = useTitle();
+  const { menuItems, selectedKey } = useMenu();
+  // highlight-end
 
-    return (
-        <>
-            // highlight-start
-            {Title && <Title collapsed={false} />}
-            <Menu selectedKeys={[selectedKey]} mode="horizontal">
-                {menuItems.map(({ icon, route, label }) => (
-                    <Menu.Item key={route} icon={icon}>
-                        <Link to={route ?? ""}>{label}</Link>
-                    </Menu.Item>
-                ))}
-            </Menu>
-            // highlight-end
-        </>
-    );
+  return (
+    <>
+      // highlight-start
+      {Title && <Title collapsed={false} />}
+      <Menu selectedKeys={[selectedKey]} mode="horizontal">
+        {menuItems.map(({ icon, route, label }) => (
+          <Menu.Item key={route} icon={icon}>
+            <Link to={route ?? ""}>{label}</Link>
+          </Menu.Item>
+        ))}
+      </Menu>
+      // highlight-end
+    </>
+  );
 };
 ```
 
@@ -131,16 +129,16 @@ Here's how it looks in the end:
 
 <CodeSandboxExample path="customization-top-menu-layout" />
 
-[refine]: /docs/api-reference/core/components/refine-config
-[layout]: /docs/api-reference/core/components/refine-config#layout
-[sider]: /docs/api-reference/core/components/refine-config#sider
-[footer]: /docs/api-reference/core/components/refine-config#footer
-[header]: /docs/api-reference/core/components/refine-config#header
-[offlayoutarea]: /docs/api-reference/core/components/refine-config#offlayoutarea
-[title]: /docs/api-reference/core/components/refine-config#title
-[layoutwrapper]: /docs/api-reference/core/components/layout-wrapper
+[refine]: /docs/3.xx.xx/api-reference/core/components/refine-config
+[layout]: /docs/3.xx.xx/api-reference/core/components/refine-config#layout
+[sider]: /docs/3.xx.xx/api-reference/core/components/refine-config#sider
+[footer]: /docs/3.xx.xx/api-reference/core/components/refine-config#footer
+[header]: /docs/3.xx.xx/api-reference/core/components/refine-config#header
+[offlayoutarea]: /docs/3.xx.xx/api-reference/core/components/refine-config#offlayoutarea
+[title]: /docs/3.xx.xx/api-reference/core/components/refine-config#title
+[layoutwrapper]: /docs/3.xx.xx/api-reference/core/components/layout-wrapper
 [custom page example]: /advanced-tutorials/custom-pages
 [custom page example code]: /examples/customization/topMenuLayout
 [antdlayout]: https://ant.design/components/layout/
-[usemenu]: /docs/api-reference/core/hooks/ui/useMenu
-[usetitle]: /docs/api-reference/core/hooks/refine/useTitle
+[usemenu]: /docs/3.xx.xx/api-reference/core/hooks/ui/useMenu
+[usetitle]: /docs/3.xx.xx/api-reference/core/hooks/refine/useTitle

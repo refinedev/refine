@@ -35,10 +35,10 @@ import { AppProps } from "next/app";
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 
 import dataProvider from "@pankod/refine-simple-rest";
@@ -50,34 +50,34 @@ import { UserList, UserShow } from "pages/users";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    return (
-        // highlight-start
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-                {
-                    name: "users",
-                    list: UserList,
-                    show: UserShow,
-                },
-            ]}
-        >
-            <Component {...pageProps} />
-        </Refine>
-        // highlight-end
-    );
+  return (
+    // highlight-start
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: PostCreate,
+          edit: PostEdit,
+          show: PostShow,
+        },
+        {
+          name: "users",
+          list: UserList,
+          show: UserShow,
+        },
+      ]}
+    >
+      <Component {...pageProps} />
+    </Refine>
+    // highlight-end
+  );
 }
 
 export default MyApp;
@@ -94,25 +94,25 @@ import { useTable, List, Table } from "@pankod/refine-antd";
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
 export const UserList: React.FC = () => {
-    const { tableProps } = useTable<IUser>({
-        resource: "users",
-    });
+  const { tableProps } = useTable<IUser>({
+    resource: "users",
+  });
 
-    return (
-        <LayoutWrapper>
-            <List title="Users">
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" sorter />
-                    <Table.Column dataIndex="firstName" title="Name" />
-                </Table>
-            </List>
-        </LayoutWrapper>
-    );
+  return (
+    <LayoutWrapper>
+      <List title="Users">
+        <Table {...tableProps} rowKey="id">
+          <Table.Column dataIndex="id" title="ID" sorter />
+          <Table.Column dataIndex="firstName" title="Name" />
+        </Table>
+      </List>
+    </LayoutWrapper>
+  );
 };
 // highlight-end
 interface IUser {
-    id: number;
-    firstName: string;
+  id: number;
+  firstName: string;
 }
 
 export default UserList;
@@ -123,12 +123,12 @@ If you want to handle your `resource` with a custom page or create a custom page
 
 ```tsx title="Example"
 const App = () => (
-    <Refine
-        resources={[
-            // This will add an item to `<Sider/>` with route `/my-custom-item`
-            { name: "my-custom-item", list: () => null },
-        ]}
-    />
+  <Refine
+    resources={[
+      // This will add an item to `<Sider/>` with route `/my-custom-item`
+      { name: "my-custom-item", list: () => null },
+    ]}
+  />
 );
 ```
 
@@ -151,54 +151,54 @@ We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Ref
 import { GetServerSideProps } from "next";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    LayoutWrapper,
-    // highlight-next-line
-    GetListResponse,
+  LayoutWrapper,
+  // highlight-next-line
+  GetListResponse,
 } from "@pankod/refine-core";
 import { useTable, List, Table } from "@pankod/refine-antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
 export const UserList: React.FC<{ users: GetListResponse<IUser> }> = ({
-    users,
+  users,
 }) => {
+  // highlight-end
+  const { tableProps } = useTable<IUser>({
+    resource: "users",
+    // highlight-start
+    queryOptions: {
+      initialData: users,
+    },
     // highlight-end
-    const { tableProps } = useTable<IUser>({
-        resource: "users",
-        // highlight-start
-        queryOptions: {
-            initialData: users,
-        },
-        // highlight-end
-    });
+  });
 
-    return (
-        <LayoutWrapper>
-            <List title="Users">
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" sorter />
-                    <Table.Column dataIndex="firstName" title="Name" />
-                </Table>
-            </List>
-        </LayoutWrapper>
-    );
+  return (
+    <LayoutWrapper>
+      <List title="Users">
+        <Table {...tableProps} rowKey="id">
+          <Table.Column dataIndex="id" title="ID" sorter />
+          <Table.Column dataIndex="firstName" title="Name" />
+        </Table>
+      </List>
+    </LayoutWrapper>
+  );
 };
 
 // highlight-start
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const data = await dataProvider(API_URL).getList({
-        resource: "users",
-    });
+  const data = await dataProvider(API_URL).getList({
+    resource: "users",
+  });
 
-    return {
-        props: { users: data },
-    };
+  return {
+    props: { users: data },
+  };
 };
 // highlight-end
 
 interface IUser {
-    id: number;
-    firstName: string;
+  id: number;
+  firstName: string;
 }
 
 export default UserList;
@@ -224,16 +224,16 @@ You can also define routes without using `[[...refine]].tsx` file like below, bu
 
 Export `NextRouteComponent` as default in the following pages:
 
--   `pages/[resource].tsx`
--   `pages/[resource]/[action].tsx`
--   `pages/[resource]/[action]/[id].tsx`
--   `pages/index.tsx`
+- `pages/[resource].tsx`
+- `pages/[resource]/[action].tsx`
+- `pages/[resource]/[action]/[id].tsx`
+- `pages/index.tsx`
 
 `NextRouteComponent` will use route parameters `resource` and `action` and render the associated component defined in [`resources`][refine].
 
--   `list` component will be rendered for `/[resource]` route
--   `create`, `edit` and `show` will be rendered for `/[resource]/[action]` and `/[resource]/[action]/[id]` routes
--   For the root `/` route, it will render `DashboardPage` if it's defined and if not will navigate to the first resource in `resources`.
+- `list` component will be rendered for `/[resource]` route
+- `create`, `edit` and `show` will be rendered for `/[resource]/[action]` and `/[resource]/[action]/[id]` routes
+- For the root `/` route, it will render `DashboardPage` if it's defined and if not will navigate to the first resource in `resources`.
 
 :::
 
@@ -247,7 +247,7 @@ Export `NextRouteComponent` as default in the following pages:
 
 ```ts
 type NextRouteComponentProps = {
-    initialData?: any;
+  initialData?: any;
 };
 ```
 
@@ -265,38 +265,38 @@ import { GetServerSideProps } from "next";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { resource, action, id } = handleRefineParams(context.params?.refine);
+  const { resource, action, id } = handleRefineParams(context.params?.refine);
 
-    try {
-        if (resource && action === "show" && id) {
-            const data = await dataProvider(API_URL).getOne({
-                // we're slicing the resource param to get the resource name from the last part
-                resource: resource.slice(resource.lastIndexOf("/") + 1),
-                id,
-            });
+  try {
+    if (resource && action === "show" && id) {
+      const data = await dataProvider(API_URL).getOne({
+        // we're slicing the resource param to get the resource name from the last part
+        resource: resource.slice(resource.lastIndexOf("/") + 1),
+        id,
+      });
 
-            return {
-                props: {
-                    initialData: data,
-                },
-            };
-        } else if (resource && !action && !id) {
-            const data = await dataProvider(API_URL).getList({
-                // we're slicing the resource param to get the resource name from the last part
-                resource: resource.slice(resource.lastIndexOf("/") + 1),
-            });
+      return {
+        props: {
+          initialData: data,
+        },
+      };
+    } else if (resource && !action && !id) {
+      const data = await dataProvider(API_URL).getList({
+        // we're slicing the resource param to get the resource name from the last part
+        resource: resource.slice(resource.lastIndexOf("/") + 1),
+      });
 
-            return {
-                props: {
-                    initialData: data,
-                },
-            };
-        }
-    } catch (error) {
-        return { props: {} };
+      return {
+        props: {
+          initialData: data,
+        },
+      };
     }
-
+  } catch (error) {
     return { props: {} };
+  }
+
+  return { props: {} };
 };
 ```
 
@@ -307,30 +307,30 @@ import { GetListResponse, IResourceComponentsProps } from "@pankod/refine-core";
 import { useTable, List, Table } from "@pankod/refine-antd";
 
 export const PostList: React.FC<
-    IResourceComponentsProps<GetListResponse<IPost>>
-    // highlight-next-line
+  IResourceComponentsProps<GetListResponse<IPost>>
+  // highlight-next-line
 > = ({ initialData }) => {
-    const { tableProps } = useTable<IPost>({
-        // highlight-start
-        queryOptions: {
-            initialData,
-        },
-        // highlight-end
-    });
+  const { tableProps } = useTable<IPost>({
+    // highlight-start
+    queryOptions: {
+      initialData,
+    },
+    // highlight-end
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="status" title="Status" />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="status" title="Status" />
+      </Table>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    firstName: string;
+  id: number;
+  firstName: string;
 }
 ```
 
@@ -356,20 +356,20 @@ import { authProvider } from "../../src/authProvider";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    // highlight-start
-    const { isAuthenticated, ...props } = await checkAuthentication(
-        authProvider,
-        context,
-    );
+  // highlight-start
+  const { isAuthenticated, ...props } = await checkAuthentication(
+    authProvider,
+    context,
+  );
 
-    if (!isAuthenticated) {
-        return props;
-    }
-    // highlight-end
+  if (!isAuthenticated) {
+    return props;
+  }
+  // highlight-end
 
-    return {
-        props: {},
-    };
+  return {
+    props: {},
+  };
 };
 ```
 
@@ -388,25 +388,25 @@ import dataProvider from "@pankod/refine-simple-rest";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  // highlight-start
+  const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+    parseTableParamsFromQuery(context.query);
+  // highlight-end
+  const data = await dataProvider(API_URL).getList({
+    resource: "users",
     // highlight-start
-    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-        parseTableParamsFromQuery(context.query);
+    filters: parsedFilters,
+    pagination: {
+      current: parsedCurrent || 1,
+      pageSize: parsedPageSize || 10,
+    },
+    sort: parsedSorter,
     // highlight-end
-    const data = await dataProvider(API_URL).getList({
-        resource: "users",
-        // highlight-start
-        filters: parsedFilters,
-        pagination: {
-            current: parsedCurrent || 1,
-            pageSize: parsedPageSize || 10,
-        },
-        sort: parsedSorter,
-        // highlight-end
-    });
+  });
 
-    return {
-        props: { users: data },
-    };
+  return {
+    props: { users: data },
+  };
 };
 ```
 
@@ -444,20 +444,20 @@ your-project
 import routerProvider from "@pankod/refine-nextjs-router/app";
 
 export default function RefineLayout({
-    children,
-    params,
+  children,
+  params,
 }: {
-    children: React.ReactNode;
-    params: Record<"refine", string[]>;
+  children: React.ReactNode;
+  params: Record<"refine", string[]>;
 }) {
-    return (
-        <Refine
-            routerProvider={routerProvider.call({ params })}
-            /* ... */
-        >
-            {children}
-        </Refine>
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider.call({ params })}
+      /* ... */
+    >
+      {children}
+    </Refine>
+  );
 }
 ```
 
@@ -499,12 +499,12 @@ You can find the `app/` directory example with **refine** in [examples/nextjs/ap
 [nextjscustomapp]: https://nextjs.org/docs/advanced-features/custom-app
 [refine]: /api-reference/core/components/refine-config.md
 [nextjspages]: https://nextjs.org/docs/basic-features/pages
-[usetable]: /docs/api-reference/core/hooks/useTable
+[usetable]: /docs/3.xx.xx/api-reference/core/hooks/useTable
 [reactqueryssr]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [reactquery]: https://react-query.tanstack.com/
-[getlist]: /docs/api-reference/core/providers/data-provider/#getlist-
+[getlist]: /docs/3.xx.xx/api-reference/core/providers/data-provider/#getlist-
 [dataprovider]: /api-reference/core/providers/data-provider.md
-[usetable]: /docs/api-reference/core/hooks/useTable
+[usetable]: /docs/3.xx.xx/api-reference/core/hooks/useTable
 [interfaces]: /api-reference/core/interfaces.md/#crudfilters
 [autostaticopt]: https://nextjs.org/docs/advanced-features/automatic-static-optimization
 [datafetching]: https://nextjs.org/docs/basic-features/data-fetching

@@ -2,8 +2,8 @@
 id: create-authprovider
 title: 2. Create Auth Provider From Scratch
 tutorial:
-    prev: tutorial/understanding-authprovider/index
-    next: tutorial/understanding-authprovider/{preferredUI}/auth-pages
+  prev: tutorial/understanding-authprovider/index
+  next: tutorial/understanding-authprovider/{preferredUI}/auth-pages
 ---
 
 This section will show you how to create an auth provider from scratch. We'll use mock data to be able to focus on the auth provider methods. When you understand the logic of auth provider, you can easly integrate third-party authentication services or your own custom auth provider which includes many possible strategies like JWT, OAuth, etc.
@@ -12,34 +12,34 @@ This section will show you how to create an auth provider from scratch. We'll us
 
 1. Create a new file named `authProvider.ts` in `src` folder and add the following code:
 
-    ```tsx title="src/authProvider.ts"
-    import { AuthProvider } from "@pankod/refine-core";
+   ```tsx title="src/authProvider.ts"
+   import { AuthProvider } from "@pankod/refine-core";
 
-    const authProvider: AuthProvider = {
-        login: () => Promise.resolve(),
-        checkAuth: () => Promise.resolve(),
-        logout: () => Promise.resolve(),
-        checkError: () => Promise.resolve(),
-    };
+   const authProvider: AuthProvider = {
+     login: () => Promise.resolve(),
+     checkAuth: () => Promise.resolve(),
+     logout: () => Promise.resolve(),
+     checkError: () => Promise.resolve(),
+   };
 
-    export default authProvider;
-    ```
+   export default authProvider;
+   ```
 
-    We created a mock auth provider. It has all the required methods. But, they don't do anything. We'll add the logic to these methods in the next.
+   We created a mock auth provider. It has all the required methods. But, they don't do anything. We'll add the logic to these methods in the next.
 
 2. Now, we need to pass the `authProvider` to the `<Refine/>` component. Open `App.tsx` file and add related code:
 
-    ```tsx title="src/App.tsx"
-    ...
-    import authProvider from "./authProvider";
+   ```tsx title="src/App.tsx"
+   ...
+   import authProvider from "./authProvider";
 
-    <Refine
-        ...
-        authProvider={authProvider}
-    />
-    ```
+   <Refine
+       ...
+       authProvider={authProvider}
+   />
+   ```
 
-    The `authProvider` is not required for the `<Refine/>` component. If you don't pass it, your app will work without authentication. But, you won't be able to use the auth hooks.
+   The `authProvider` is not required for the `<Refine/>` component. If you don't pass it, your app will work without authentication. But, you won't be able to use the auth hooks.
 
 <br />
 
@@ -51,9 +51,9 @@ We created a mock auth provider and passed it to the `<Refine/>` component. Now,
 
 `login` method is used to authenticate users. It expects to return a Promise.
 
--   If the Promise resolves, the user is authenticated and pages that require authentication will be accessible.
+- If the Promise resolves, the user is authenticated and pages that require authentication will be accessible.
 
--   If the Promise rejects, the user is not authenticated and stays on the login page.
+- If the Promise rejects, the user is not authenticated and stays on the login page.
 
 We'll use mock data to authenticate users. So, we'll create a mock user list and check if the user exists in the list. If the user exists, we'll save the user data to the local storage and resolve the Promise. Otherwise, we'll reject the Promise.
 
@@ -82,7 +82,7 @@ const authProvider: AuthProvider = {
 
 Invoking the `useLogin` hook's mutation will call the `login` method, passing in the mutation's parameters as arguments. This means the parameters for the `useLogin` hook's mutation must match the parameters of the login method.
 
-[Refer to the `useLogin` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useLogin/)
+[Refer to the `useLogin` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/auth/useLogin/)
 
 For example, if we call the `useLogin` hook's mutation like this:
 
@@ -91,8 +91,7 @@ import { useLogin } from "@pankod/refine-core";
 
 const { mutate } = useLogin();
 
-mutate({ email: "john@mail.com", password: "123456"})
-
+mutate({ email: "john@mail.com", password: "123456" });
 ```
 
 The `login` method will get the mutation's parameters as arguments.
@@ -108,10 +107,10 @@ Yes, you can pass any parameters to the `login` method. `useLogin` hook's mutati
 
 ```ts
 const { mutate } = useLogin<{
-    username: string;
-    password: string;
-    foo: string;
-    remember: boolean;
+  username: string;
+  password: string;
+  foo: string;
+  remember: boolean;
 }>();
 ```
 
@@ -194,9 +193,9 @@ const authProvider: AuthProvider = {
 
 `checkAuth` method expects to return a Promise.
 
--   If the Promise resolves, the user is authenticated and pages that require authentication will be accessible.
+- If the Promise resolves, the user is authenticated and pages that require authentication will be accessible.
 
--   If the Promise rejects, the user is not authenticated and pages that require authentication will not be accessible and by default, the user will be redirected to the `/login` page.
+- If the Promise rejects, the user is not authenticated and pages that require authentication will not be accessible and by default, the user will be redirected to the `/login` page.
 
 In the `login` method, we've saved the user data to the local storage when the user logs in. So, we'll check if the user data exists in the local storage to determine if the user is authenticated.
 
@@ -222,7 +221,7 @@ const authProvider: AuthProvider = {
 
 Invoking the `useAuthenticated` hook will call the `checkAuth` method. If `checkAuth` method resolves a data, it will be available in the `useAuthenticated` hook's `data` property.
 
-[Refer to the `useAuthenticated` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useAuthenticated/)
+[Refer to the `useAuthenticated` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/auth/useAuthenticated/)
 
 ```tsx
 import { useAuthenticated } from "@pankod/refine-core";
@@ -234,7 +233,7 @@ const { data, isSuccess, isLoading, isError, refetch } = useAuthenticated();
 
 The `<Authenticated>` component makes use of the `useAuthenticated` hook. It allows you to render components only if the user is authenticated.
 
-[Refer to the `<Authenticated>` documentation for more information &#8594](/docs/api-reference/core/components/auth/authenticated/)
+[Refer to the `<Authenticated>` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/components/auth/authenticated/)
 
 :::
 
@@ -263,9 +262,9 @@ const authProvider: AuthProvider = {
 
 `logout` method is used to log out users. It expects to return a Promise.
 
--   If the Promise resolves, the user is logged out and pages that require authentication will not be accessible and by default, the user will be redirected to the `/login` page.
+- If the Promise resolves, the user is logged out and pages that require authentication will not be accessible and by default, the user will be redirected to the `/login` page.
 
--   If the Promise rejects, the user is not logged out and stays on the page.
+- If the Promise rejects, the user is not logged out and stays on the page.
 
 In the `login` method, we've saved the user data to the local storage when the user logs in. So, we'll remove the user data from the local storage when the user logs out.
 
@@ -286,7 +285,7 @@ const authProvider: AuthProvider = {
 
 Invoking the `useLogout` hook's mutation will call the `logout` method. If you need to pass any parameters to the `logout` method, you can use the `useLogout` hook's mutation.
 
-[Refer to the `useLogout` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useLogout/)
+[Refer to the `useLogout` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/auth/useLogout/)
 
 For example, if we call the `useLogout` hook's mutation like this:
 
@@ -309,8 +308,8 @@ Yes, you can pass any parameters to the `logout` method. `useLogout` hook's muta
 
 ```ts
 const { mutate } = useLogout<{
-    id: string;
-    name: string;
+  id: string;
+  name: string;
 }>();
 ```
 
@@ -394,9 +393,9 @@ const authProvider: AuthProvider = {
 
 `checkError` method expects to return a Promise.
 
--   If the Promise resolves, the user is not logged out and stays on the page.
+- If the Promise resolves, the user is not logged out and stays on the page.
 
--   If the Promise rejects, the `logout` method is called to log out the user and by default, the user is redirected to the `/login` route.
+- If the Promise rejects, the `logout` method is called to log out the user and by default, the user is redirected to the `/login` route.
 
 We'll use the `checkError` method to log out the user if the API returns a `401` or `403` error.
 
@@ -420,7 +419,7 @@ const authProvider: AuthProvider = {
 
 Invoking the `useCheckError` hook's mutation will call the `checkError` method, passing in the mutation's parameters as arguments.
 
-[Refer to the `useCheckError` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useCheckError/)
+[Refer to the `useCheckError` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/auth/useCheckError/)
 
 For example, if you want to check the error of a fetch request, you can use the `useCheckError` hook's mutation like this:
 
@@ -430,8 +429,8 @@ import { useCheckError } from "@pankod/refine-core";
 const { mutate } = useCheckError();
 
 fetch("http://example.com/payment")
-    .then(() => console.log("Success"))
-    .catch((error) => mutate(error));
+  .then(() => console.log("Success"))
+  .catch((error) => mutate(error));
 ```
 
 <br />
@@ -465,9 +464,9 @@ const authProvider: AuthProvider = {
 
 `getPermissions` method is used to get the user's permissions. It expects to return a Promise.
 
--   If the Promise resolves with data, the user's permissions will be available in the `usePermissions` hook's `data` property.
+- If the Promise resolves with data, the user's permissions will be available in the `usePermissions` hook's `data` property.
 
--   If the Promise rejects, the user's permissions will not be available and `usePermissions` hook throw an error.
+- If the Promise rejects, the user's permissions will not be available and `usePermissions` hook throw an error.
 
 We'll use the `getPermissions` method to get the user's permissions from the `localStorage`.
 
@@ -500,7 +499,7 @@ const authProvider: AuthProvider = {
 
 Invoking the `usePermissions` hook will call the `getPermissions` method. If `getPermissions` method resolves a data, it will be available in the `usePermissions` hook's `data` property.
 
-[Refer to the `usePermissions` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/usePermissions/)
+[Refer to the `usePermissions` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/auth/usePermissions/)
 
 For example, if you want to check if the user has a specific permission, you can use the `usePermissions` hook like this:
 
@@ -510,7 +509,7 @@ import { usePermissions } from "@pankod/refine-core";
 const { data } = usePermissions();
 
 if (data?.includes("admin")) {
-    console.log("User has admin permissions");
+  console.log("User has admin permissions");
 }
 ```
 
@@ -519,16 +518,16 @@ if (data?.includes("admin")) {
 :::info
 `usePermissions` hook can be used for simply authorization purposes. If you need more complex authorization logic, we recommend using the access control provider to handle the authorization logic.
 
-[Refer to the `accessControlProvider` documentation for more information &#8594](/docs/api-reference/core/providers/accessControl-provider/)
+[Refer to the `accessControlProvider` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/providers/accessControl-provider/)
 :::
 
 ### getUserIdentity
 
 `getUserIdentity` method is used to get the user's identity. It expects to return a Promise.
 
--   If the Promise resolves with a data, the user's identity will be available in the `useGetIdentity` hook's `data` property.
+- If the Promise resolves with a data, the user's identity will be available in the `useGetIdentity` hook's `data` property.
 
--   If the Promise rejects, the user's identity will not be available and `useGetIdentity` hook throw an error.
+- If the Promise rejects, the user's identity will not be available and `useGetIdentity` hook throw an error.
 
 We'll get the user's identity from the local storage and resolve the Promise.
 
@@ -561,7 +560,7 @@ const authProvider: AuthProvider = {
 
 Invoking the `useGetIdentity` hook will call the `getUserIdentity` method. If `getUserIdentity` method resolves a data, it will be available in the `useGetIdentity` hook's `data` property.
 
-[Refer to the `useGetIdentity` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useGetIdentity/)
+[Refer to the `useGetIdentity` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/auth/useGetIdentity/)
 
 For example, if you want to get the user's email, you can use the `useGetIdentity` hook like this:
 
@@ -571,7 +570,7 @@ import { useGetIdentity } from "@pankod/refine-core";
 const { data } = useGetIdentity();
 
 if (data) {
-    console.log(data.email);
+  console.log(data.email);
 }
 ```
 
@@ -610,9 +609,9 @@ const authProvider: AuthProvider = {
 
 `register` method is used to register a new user. It is similar to the `login` method. It expects to return a Promise.
 
--   If the Promise resolves, by default, the user will be redirected to the `/` page.
+- If the Promise resolves, by default, the user will be redirected to the `/` page.
 
--   If the Promise rejects, the `useRegister` hook will throw an error.
+- If the Promise rejects, the `useRegister` hook will throw an error.
 
 We'll register a new user and resolve the Promise.
 
@@ -642,7 +641,7 @@ const authProvider: AuthProvider = {
 
 Invoking the `useRegister` hook's mutation will call the `register` method, passing in the mutation's parameters as arguments.
 
-[Refer to the `useRegister` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useRegister/)
+[Refer to the `useRegister` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/auth/useRegister/)
 
 For example, if you want to register a new user, you can use the `useRegister` hook like this:
 
@@ -652,7 +651,7 @@ import { useRegister } from "@pankod/refine-core";
 const { mutate } = useRegister();
 
 const handleRegister = (values) => {
-    mutate(values);
+  mutate(values);
 };
 ```
 
@@ -667,11 +666,11 @@ Yes, you can pass any parameters to the `register` method. `useRegister` hook's 
 
 ```ts
 const { mutate } = useRegister<{
-    username: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-    remember: boolean;
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  remember: boolean;
 }>();
 ```
 
@@ -771,7 +770,7 @@ const authProvider: AuthProvider = {
 
 Invoking the `useForgotPassword` hook's mutation will call the `forgotPassword` method, passing in the mutation's parameters as arguments.
 
-[Refer to the `useForgotPassword` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useForgotPassword/)
+[Refer to the `useForgotPassword` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/auth/useForgotPassword/)
 
 For example, if you want to send a password reset link to the user's email address, you can use the `useForgotPassword` hook like this:
 
@@ -781,7 +780,7 @@ import { useForgotPassword } from "@pankod/refine-core";
 const { mutate } = useForgotPassword();
 
 const handleForgotPassword = (values) => {
-    mutate(values);
+  mutate(values);
 };
 ```
 
@@ -796,7 +795,7 @@ Yes, you can pass any parameters to the `forgotPassword` method. `useForgotPassw
 
 ```ts
 const { mutate } = useForgotPassword<{
-    email: string;
+  email: string;
 }>();
 ```
 
@@ -883,7 +882,7 @@ const authProvider: AuthProvider = {
 
 Invoking the `useUpdatePassword` hook's mutation will call the `updatePassword` method, passing in the mutation's parameters as arguments. Additionally, the `updatePassword` method will take query parameters as arguments from the URL as well.
 
-[Refer to the `useUpdatePassword` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useUpdatePassword/)
+[Refer to the `useUpdatePassword` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/auth/useUpdatePassword/)
 
 For example, if you want to update the user's password, you can use the `useUpdatePassword` hook like this:
 
@@ -918,8 +917,8 @@ Yes, you can pass any parameters to the `updatePassword` method. `useUpdatePassw
 
 ```ts
 const { mutate } = useUpdatePassword<{
-    password: string;
-    newPassword: string;
+  password: string;
+  newPassword: string;
 }>();
 ```
 

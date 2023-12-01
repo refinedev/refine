@@ -4,11 +4,10 @@ title: Show
 swizzle: true
 ---
 
-
 `<ShowButton>` uses Material UI [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -16,56 +15,56 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
 import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    // highlight-next-line
-    ShowButton,
+  useDataGrid,
+  DataGrid,
+  GridColumns,
+  List,
+  // highlight-next-line
+  ShowButton,
 } from "@pankod/refine-mui";
 
 const columns: GridColumns = [
-    { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
-    {
-        field: "actions",
-        headerName: "Actions",
-        renderCell: function render({ row }) {
-            // highlight-next-line
-            return <ShowButton size="small" recordItemId={row.id} />;
-        },
-        align: "center",
-        headerAlign: "center",
-        minWidth: 80,
+  { field: "id", headerName: "ID", type: "number" },
+  { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+  {
+    field: "actions",
+    headerName: "Actions",
+    renderCell: function render({ row }) {
+      // highlight-next-line
+      return <ShowButton size="small" recordItemId={row.id} />;
     },
+    align: "center",
+    headerAlign: "center",
+    minWidth: 80,
+  },
 ];
 
 const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+  const { dataGridProps } = useDataGrid<IPost>();
 
-    return (
-        <List>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    <List>
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostsList,
-                show: () => <RefineMui.Show>Rest of the page here...</RefineMui.Show>,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostsList,
+        show: () => <RefineMui.Show>Rest of the page here...</RefineMui.Show>,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -81,31 +80,33 @@ const { useRouterContext } = RefineCore;
 import { ShowButton } from "@pankod/refine-mui";
 
 const MyShowComponent = () => {
-    return <ShowButton
-        resourceNameOrRouteName="posts"
-        // highlight-next-line
-        recordItemId="1"
-    />;
+  return (
+    <ShowButton
+      resourceNameOrRouteName="posts"
+      // highlight-next-line
+      recordItemId="1"
+    />
+  );
 };
 
 // visible-block-end
 
 const ShowPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                show: ShowPage,
-            },
-        ]}
-        DashboardPage={MyShowComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        show: ShowPage,
+      },
+    ]}
+    DashboardPage={MyShowComponent}
+  />,
 );
 ```
 
@@ -126,36 +127,36 @@ const { useRouterContext } = RefineCore;
 import { ShowButton } from "@pankod/refine-mui";
 
 const MyShowComponent = () => {
-    return (
-        <ShowButton
-            // highlight-next-line
-            resourceNameOrRouteName="categories"
-            recordItemId="2"
-        />
-    );
+  return (
+    <ShowButton
+      // highlight-next-line
+      resourceNameOrRouteName="categories"
+      recordItemId="2"
+    />
+  );
 };
 
 // visible-block-end
 
 const ShowPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                show: ShowPage,
-            },
-        ]}
-        DashboardPage={MyShowComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        show: ShowPage,
+      },
+    ]}
+    DashboardPage={MyShowComponent}
+  />,
 );
 ```
 
@@ -172,32 +173,32 @@ const { useRouterContext } = RefineCore;
 import { ShowButton } from "@pankod/refine-mui";
 
 const MyShowComponent = () => {
-    return (
-        <ShowButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <ShowButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 const ShowPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyShowComponent,
-                show: ShowPage,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyShowComponent,
+        show: ShowPage,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -209,7 +210,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ShowButton } from "@pankod/refine-mui";
 
 export const MyListComponent = () => {
-    return <ShowButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <ShowButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

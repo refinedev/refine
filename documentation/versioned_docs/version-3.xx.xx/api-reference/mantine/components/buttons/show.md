@@ -8,58 +8,58 @@ swizzle: true
 const { default: routerProvider } = RefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
-    Sider: () => null,
-    catchAll: <RefineMantine.ErrorComponent />,
+  routerProvider,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  notificationProvider: RefineMantine.notificationProvider,
+  Layout: RefineMantine.Layout,
+  Sider: () => null,
+  catchAll: <RefineMantine.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
-    );
+  return (
+    <RefineMantine.MantineProvider
+      theme={RefineMantine.LightTheme}
+      withNormalizeCSS
+      withGlobalStyles
+    >
+      <RefineMantine.Global
+        styles={{ body: { WebkitFontSmoothing: "auto" } }}
+      />
+      <RefineMantine.NotificationsProvider position="top-right">
+        {children}
+      </RefineMantine.NotificationsProvider>
+    </RefineMantine.MantineProvider>
+  );
 };
 
 const ShowPage = () => {
-    const { list } = RefineCore.useNavigation();
-    const params = RefineCore.useRouterContext().useParams();
+  const { list } = RefineCore.useNavigation();
+  const params = RefineCore.useRouterContext().useParams();
 
-    return (
-        <div>
-            <RefineMantine.Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </RefineMantine.Text>
-            <RefineMantine.Code>{JSON.stringify(params)}</RefineMantine.Code>
-            <RefineMantine.Space h="md" />
-            <RefineMantine.Button
-                size="xs"
-                variant="outline"
-                onClick={() => list("posts")}
-            >
-                Go back
-            </RefineMantine.Button>
-        </div>
-    );
+  return (
+    <div>
+      <RefineMantine.Text italic color="dimmed" size="sm">
+        URL Parameters:
+      </RefineMantine.Text>
+      <RefineMantine.Code>{JSON.stringify(params)}</RefineMantine.Code>
+      <RefineMantine.Space h="md" />
+      <RefineMantine.Button
+        size="xs"
+        variant="outline"
+        onClick={() => list("posts")}
+      >
+        Go back
+      </RefineMantine.Button>
+    </div>
+  );
 };
 ```
 
 `<ShowButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -73,113 +73,107 @@ import { List, Table, Pagination, ShowButton } from "@pankod/refine-mantine";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-            },
-            {
-                id: "actions",
-                header: "Actions",
-                accessorKey: "id",
-                cell: function render({ getValue }) {
-                    return (
-                        // highlight-start
-                        <ShowButton
-                            size="xs"
-                            recordItemId={getValue() as number}
-                        />
-                        // highlight-end
-                    );
-                },
-            },
-        ],
-        [],
-    );
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        accessorKey: "id",
+        cell: function render({ getValue }) {
+          return (
+            // highlight-start
+            <ShowButton size="xs" recordItemId={getValue() as number} />
+            // highlight-end
+          );
+        },
+      },
+    ],
+    [],
+  );
 
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { setCurrent, pageCount, current },
-    } = useTable({
-        columns,
-    });
+  const {
+    getHeaderGroups,
+    getRowModel,
+    refineCore: { setCurrent, pageCount, current },
+  } = useTable({
+    columns,
+  });
 
-    return (
-        <List>
-            <Table>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                              header.column.columnDef.header,
-                                              header.getContext(),
-                                          )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext(),
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <br />
-            <Pagination
-                position="right"
-                total={pageCount}
-                page={current}
-                onChange={setCurrent}
-            />
-        </List>
-    );
+  return (
+    <List>
+      <Table>
+        <thead>
+          {getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {getRowModel().rows.map((row) => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      <br />
+      <Pagination
+        position="right"
+        total={pageCount}
+        page={current}
+        onChange={setCurrent}
+      />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    show: ShowPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          show: ShowPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -197,28 +191,28 @@ import { Refine } from "@pankod/refine-core";
 import { ShowButton } from "@pankod/refine-mantine";
 
 const MyShowComponent = () => {
-    return <ShowButton recordItemId="123" />;
+  return <ShowButton recordItemId="123" />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    show: ShowPage,
-                    list: MyShowComponent,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          show: ShowPage,
+          list: MyShowComponent,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -241,31 +235,31 @@ import { Refine } from "@pankod/refine-core";
 import { ShowButton } from "@pankod/refine-mantine";
 
 const MyShowComponent = () => {
-    return <ShowButton resourceNameOrRouteName="categories" recordItemId="2" />;
+  return <ShowButton resourceNameOrRouteName="categories" recordItemId="2" />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyShowComponent,
-                },
-                {
-                    name: "categories",
-                    show: ShowPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyShowComponent,
+        },
+        {
+          name: "categories",
+          show: ShowPage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -284,28 +278,28 @@ import { Refine } from "@pankod/refine-core";
 import { ShowButton } from "@pankod/refine-mantine";
 
 const MyShowComponent = () => {
-    return <ShowButton recordItemId="123" hideText />;
+  return <ShowButton recordItemId="123" hideText />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyShowComponent,
-                    show: ShowPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyShowComponent,
+          show: ShowPage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -317,11 +311,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ShowButton } from "@pankod/refine-mantine";
 
 export const MyListComponent = () => {
-    return (
-        <ShowButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return (
+    <ShowButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

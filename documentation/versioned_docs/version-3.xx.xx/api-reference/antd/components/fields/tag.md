@@ -4,11 +4,10 @@ title: Tag
 swizzle: true
 ---
 
-
 This field lets you display a value in a tag. It uses Ant Design's [`<Tag>`](https://ant.design/components/tag/) component.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -20,48 +19,48 @@ Let's see how we can use it in a basic list page:
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
-    List,
-    // highlight-next-line
-    TagField,
-    Table,
-    useTable,
+  List,
+  // highlight-next-line
+  TagField,
+  Table,
+  useTable,
 } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="Sitle"  width="50%"/>
-                <Table.Column
-                    dataIndex="status"
-                    title="Status"
-                    // highlight-next-line
-                    render={(value: string) => <TagField value={value} />}
-                    width="50%"
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="title" title="Sitle" width="50%" />
+        <Table.Column
+          dataIndex="status"
+          title="Status"
+          // highlight-next-line
+          render={(value: string) => <TagField value={value} />}
+          width="50%"
+        />
+      </Table>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostList
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 

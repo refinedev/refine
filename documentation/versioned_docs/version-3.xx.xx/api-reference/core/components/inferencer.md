@@ -7,12 +7,11 @@ You can automatically generate views for your resources using `@pankod/refine-in
 
 :::caution Dependencies
 
-`@pankod/refine-inferencer/headless` uses [`@pankod/refine-react-hook-form`](/docs/packages/documentation/react-hook-form/useForm) and [`@pankod/refine-react-table`](/docs/packages/documentation/react-table) to create views.
+`@pankod/refine-inferencer/headless` uses [`@pankod/refine-react-hook-form`](/docs/3.xx.xx/packages/documentation/react-hook-form/useForm) and [`@pankod/refine-react-table`](/docs/3.xx.xx/packages/documentation/react-table) to create views.
 
 Make sure you include them in your dependencies.
 
 :::
-
 
 ## Usage
 
@@ -31,21 +30,21 @@ values={[
 import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "samples",
-                    // highlight-start
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                    create: HeadlessInferencer,
-                    edit: HeadlessInferencer,
-                    // highlight-end
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "samples",
+          // highlight-start
+          list: HeadlessInferencer,
+          show: HeadlessInferencer,
+          create: HeadlessInferencer,
+          edit: HeadlessInferencer,
+          // highlight-end
+        },
+      ]}
+    />
+  );
 };
 ```
 
@@ -57,31 +56,31 @@ const App = () => {
 import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
 
 const SampleList = () => {
-    return (
-        // highlight-next-line
-        <HeadlessInferencer resource="samples" action="list" />
-    );
+  return (
+    // highlight-next-line
+    <HeadlessInferencer resource="samples" action="list" />
+  );
 };
 
 const SampleShow = () => {
-    return (
-        // highlight-next-line
-        <HeadlessInferencer resource="samples" action="show" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <HeadlessInferencer resource="samples" action="show" id="1" />
+  );
 };
 
 const SampleCreate = () => {
-    return (
-        // highlight-next-line
-        <HeadlessInferencer resource="samples" action="create" />
-    );
+  return (
+    // highlight-next-line
+    <HeadlessInferencer resource="samples" action="create" />
+  );
 };
 
 const SampleEdit = () => {
-    return (
-        // highlight-next-line
-        <HeadlessInferencer resource="samples" action="edit" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <HeadlessInferencer resource="samples" action="edit" id="1" />
+  );
 };
 ```
 
@@ -89,7 +88,7 @@ const SampleEdit = () => {
 </Tabs>
 
 :::info
-To learn more about `@pankod/refine-inferencer` package, please check out [Docs](/docs/packages/documentation/inferencer)
+To learn more about `@pankod/refine-inferencer` package, please check out [Docs](/docs/3.xx.xx/packages/documentation/inferencer)
 :::
 
 ## Views
@@ -112,35 +111,35 @@ import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            resources={[
-                {
-                    name: "samples",
-                    // highlight-next-line
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                    create: HeadlessInferencer,
-                    edit: HeadlessInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    // highlight-next-line
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                },
-                {
-                    name: "tags",
-                    // highlight-next-line
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      resources={[
+        {
+          name: "samples",
+          // highlight-next-line
+          list: HeadlessInferencer,
+          show: HeadlessInferencer,
+          create: HeadlessInferencer,
+          edit: HeadlessInferencer,
+          canDelete: true,
+        },
+        {
+          name: "categories",
+          // highlight-next-line
+          list: HeadlessInferencer,
+          show: HeadlessInferencer,
+        },
+        {
+          name: "tags",
+          // highlight-next-line
+          list: HeadlessInferencer,
+          show: HeadlessInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 // visible-block-end
@@ -166,35 +165,35 @@ import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            resources={[
-                {
-                    name: "samples",
-                    list: HeadlessInferencer,
-                    // highlight-next-line
-                    show: HeadlessInferencer,
-                    create: HeadlessInferencer,
-                    edit: HeadlessInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    list: HeadlessInferencer,
-                    // highlight-next-line
-                    show: HeadlessInferencer,
-                },
-                {
-                    name: "tags",
-                    list: HeadlessInferencer,
-                    // highlight-next-line
-                    show: HeadlessInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      resources={[
+        {
+          name: "samples",
+          list: HeadlessInferencer,
+          // highlight-next-line
+          show: HeadlessInferencer,
+          create: HeadlessInferencer,
+          edit: HeadlessInferencer,
+          canDelete: true,
+        },
+        {
+          name: "categories",
+          list: HeadlessInferencer,
+          // highlight-next-line
+          show: HeadlessInferencer,
+        },
+        {
+          name: "tags",
+          list: HeadlessInferencer,
+          // highlight-next-line
+          show: HeadlessInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 // visible-block-end
@@ -220,33 +219,33 @@ import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            resources={[
-                {
-                    name: "samples",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                    // highlight-next-line
-                    create: HeadlessInferencer,
-                    edit: HeadlessInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                },
-                {
-                    name: "tags",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      resources={[
+        {
+          name: "samples",
+          list: HeadlessInferencer,
+          show: HeadlessInferencer,
+          // highlight-next-line
+          create: HeadlessInferencer,
+          edit: HeadlessInferencer,
+          canDelete: true,
+        },
+        {
+          name: "categories",
+          list: HeadlessInferencer,
+          show: HeadlessInferencer,
+        },
+        {
+          name: "tags",
+          list: HeadlessInferencer,
+          show: HeadlessInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 // visible-block-end
@@ -272,33 +271,33 @@ import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            resources={[
-                {
-                    name: "samples",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                    create: HeadlessInferencer,
-                    // highlight-next-line
-                    edit: HeadlessInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                },
-                {
-                    name: "tags",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      resources={[
+        {
+          name: "samples",
+          list: HeadlessInferencer,
+          show: HeadlessInferencer,
+          create: HeadlessInferencer,
+          // highlight-next-line
+          edit: HeadlessInferencer,
+          canDelete: true,
+        },
+        {
+          name: "categories",
+          list: HeadlessInferencer,
+          show: HeadlessInferencer,
+        },
+        {
+          name: "tags",
+          list: HeadlessInferencer,
+          show: HeadlessInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 // visible-block-end

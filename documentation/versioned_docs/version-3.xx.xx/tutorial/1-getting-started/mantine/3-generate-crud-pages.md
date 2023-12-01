@@ -2,8 +2,8 @@
 id: generate-crud-pages
 title: 4. Generate CRUD pages automatically with Inferencer
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/create-project
-    next: tutorial/getting-started/store-your-repository
+  prev: tutorial/getting-started/{preferredUI}/create-project
+  next: tutorial/getting-started/store-your-repository
 ---
 
 ## Inferencer
@@ -24,8 +24,8 @@ Overall, using Inferencer can greatly speed up development time and reduce the a
 
 #### Learn Inferencer
 
--   Learn about [how Inferencer works](/docs/packages/documentation/inferencer).
--   Learn about [how to use Inferencer with Mantine](/docs/api-reference/mantine/components/inferencer/).
+- Learn about [how Inferencer works](/docs/3.xx.xx/packages/documentation/inferencer).
+- Learn about [how to use Inferencer with Mantine](/docs/3.xx.xx/api-reference/mantine/components/inferencer/).
 
 ## How to use Inferencer
 
@@ -35,7 +35,7 @@ The `<MantineInferencer/>` component is used by passing to appropriate values in
 
 :::info
 
-In [Unit 4](/docs/tutorial/understanding-resources/index), the resources concept will be explained in detail. For now, you can assume that the resource is a collection of data on your API used in the app.
+In [Unit 4](/docs/3.xx.xx/tutorial/understanding-resources/index), the resources concept will be explained in detail. For now, you can assume that the resource is a collection of data on your API used in the app.
 
 :::
 
@@ -44,47 +44,45 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
-    notificationProvider,
-    LightTheme,
-    Layout,
-    ReadyPage,
-    ErrorComponent,
+  MantineProvider,
+  Global,
+  NotificationsProvider,
+  notificationProvider,
+  LightTheme,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
 } from "@pankod/refine-mantine";
 //highlight-next-line
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    //highlight-start
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                    //highlight-end
-                />
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          Layout={Layout}
+          //highlight-start
+          resources={[
+            {
+              name: "blog_posts",
+              list: MantineInferencer,
+              show: MantineInferencer,
+              create: MantineInferencer,
+              edit: MantineInferencer,
+            },
+          ]}
+          //highlight-end
+        />
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 export default App;
@@ -100,7 +98,7 @@ Before we start, let's understand the API that we will be using in this tutorial
 
 :::info
 
-In [Unit 3](/docs/tutorial/understanding-dataprovider/index), it will be explained in detail how **refine** apps communicate with the API via the `dataProvider`.
+In [Unit 3](/docs/3.xx.xx/tutorial/understanding-dataprovider/index), it will be explained in detail how **refine** apps communicate with the API via the `dataProvider`.
 
 :::
 
@@ -123,44 +121,42 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
-    notificationProvider,
-    LightTheme,
-    Layout,
-    ReadyPage,
-    ErrorComponent,
+  MantineProvider,
+  Global,
+  NotificationsProvider,
+  notificationProvider,
+  LightTheme,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
 } from "@pankod/refine-mantine";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          Layout={Layout}
+          resources={[
+            {
+              name: "blog_posts",
+              list: MantineInferencer,
+              show: MantineInferencer,
+              create: MantineInferencer,
+              edit: MantineInferencer,
+            },
+          ]}
+        />
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 render(<App />);
@@ -179,44 +175,42 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
-    notificationProvider,
-    LightTheme,
-    Layout,
-    ReadyPage,
-    ErrorComponent,
+  MantineProvider,
+  Global,
+  NotificationsProvider,
+  notificationProvider,
+  LightTheme,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
 } from "@pankod/refine-mantine";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          Layout={Layout}
+          resources={[
+            {
+              name: "blog_posts",
+              list: MantineInferencer,
+              show: MantineInferencer,
+              create: MantineInferencer,
+              edit: MantineInferencer,
+            },
+          ]}
+        />
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 render(<App />);
@@ -235,44 +229,42 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
-    notificationProvider,
-    LightTheme,
-    Layout,
-    ReadyPage,
-    ErrorComponent,
+  MantineProvider,
+  Global,
+  NotificationsProvider,
+  notificationProvider,
+  LightTheme,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
 } from "@pankod/refine-mantine";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          Layout={Layout}
+          resources={[
+            {
+              name: "blog_posts",
+              list: MantineInferencer,
+              show: MantineInferencer,
+              create: MantineInferencer,
+              edit: MantineInferencer,
+            },
+          ]}
+        />
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 render(<App />);
@@ -291,44 +283,42 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
-    notificationProvider,
-    LightTheme,
-    Layout,
-    ReadyPage,
-    ErrorComponent,
+  MantineProvider,
+  Global,
+  NotificationsProvider,
+  notificationProvider,
+  LightTheme,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
 } from "@pankod/refine-mantine";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          Layout={Layout}
+          resources={[
+            {
+              name: "blog_posts",
+              list: MantineInferencer,
+              show: MantineInferencer,
+              create: MantineInferencer,
+              edit: MantineInferencer,
+            },
+          ]}
+        />
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 render(<App />);
@@ -337,7 +327,7 @@ render(<App />);
 <br/>
 <br/>
 
-In [Unit 5](/docs/tutorial/adding-crud-pages/mantine/index), you will learn how to create CRUD pages manually using the code generated by Inferencer as a reference.
+In [Unit 5](/docs/3.xx.xx/tutorial/adding-crud-pages/mantine/index), you will learn how to create CRUD pages manually using the code generated by Inferencer as a reference.
 
 <Checklist>
 

@@ -2,9 +2,9 @@
 id: add-create-page
 title: 4. Adding Create Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-show-page
-    next: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+  next: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
 ---
 
 Create page is the page where you can create the record. In this tutorial, we will create the create page for the `blog_posts` resource.
@@ -32,48 +32,46 @@ setInitialRoutes(["/blog-posts/create"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
-    RefineSnackbarProvider,
-    notificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
+  ThemeProvider,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MuiInferencer,
-                            show: MuiInferencer,
-                            create: MuiInferencer,
-                            edit: MuiInferencer,
-                        },
-                    ]}
-                />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          Layout={Layout}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          resources={[
+            {
+              name: "blog_posts",
+              list: MuiInferencer,
+              show: MuiInferencer,
+              create: MuiInferencer,
+              edit: MuiInferencer,
+            },
+          ]}
+        />
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);
@@ -85,31 +83,31 @@ Instead of coding the create page component from scratch, Inferencer've created 
 
 We will go through the create page components and hooks one by one.
 
--   `<Create/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button etc.
+- `<Create/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button etc.
 
-    [Refer to the `<Create/>` documentation for more information &#8594](/docs/api-reference/mui/components/basic-views/create)
+  [Refer to the `<Create/>` documentation for more information &#8594](/docs/3.xx.xx/api-reference/mui/components/basic-views/create)
 
--   `useForm` hook, imported from `@pankod/refine-react-hook-form` package, has been developed by using the **React Hook Form** and `useForm` hook imported from `@pankod/refine-core` package.
+- `useForm` hook, imported from `@pankod/refine-react-hook-form` package, has been developed by using the **React Hook Form** and `useForm` hook imported from `@pankod/refine-core` package.
 
-    It provides all the features of the `useForm` hook from `@pankod/refine-core` package as well as the `useForm` hook from **React Hook Form**.
+  It provides all the features of the `useForm` hook from `@pankod/refine-core` package as well as the `useForm` hook from **React Hook Form**.
 
-    It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
+  It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
 
-    When you use `useForm` in the edit page,it sends the form data to `dataProvider`'s `create` method when the form is submitted.
+  When you use `useForm` in the edit page,it sends the form data to `dataProvider`'s `create` method when the form is submitted.
 
-    [Refer to the **@pankod/refine-react-hook-form** `useForm` documentation for more information &#8594](/docs/packages/documentation/react-hook-form/useForm/)
+  [Refer to the **@pankod/refine-react-hook-form** `useForm` documentation for more information &#8594](/docs/3.xx.xx/packages/documentation/react-hook-form/useForm/)
 
-    [Refer to the **React Hook Form** documentation for more information &#8594](https://react-hook-form.com/)
+  [Refer to the **React Hook Form** documentation for more information &#8594](https://react-hook-form.com/)
 
--   All other components provided by **Material UI** are used to display the form fields.
+- All other components provided by **Material UI** are used to display the form fields.
 
-    [Refer to the **Material UI** documentation for more information &#8594](https://mui.com/material-ui/getting-started/overview/)
+  [Refer to the **Material UI** documentation for more information &#8594](https://mui.com/material-ui/getting-started/overview/)
 
 ### Handling Relationships
 
 In the edit page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the blog post to the category. In this case, we can use the `useAutocomplete` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method. Then, it returns the necessary props for the `<Autocomplete/>` component.
 
-[Refer to the `useAutocomplete` documentation for more information &#8594](/docs/api-reference/mui/hooks/useAutocomplete/)
+[Refer to the `useAutocomplete` documentation for more information &#8594](/docs/3.xx.xx/api-reference/mui/hooks/useAutocomplete/)
 
 [Refer to the **Material UI** `<Autocomplete/>` documentation for more information &#8594](https://mui.com/material-ui/react-autocomplete/)
 
@@ -117,7 +115,7 @@ In the auto-generated create page code, Inferencer used the `useAutocomplete` ho
 
 ```tsx
 const { selectProps: categorySelectProps } = useAutocomplete({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -134,15 +132,15 @@ Now that we have created the create page, we need to add it to the `App.tsx` fil
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
-    RefineSnackbarProvider,
-    notificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
+  ThemeProvider,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -155,34 +153,32 @@ import { BlogPostShow } from "pages/blog-posts/show";
 import { BlogPostCreate } from "pages/blog-posts/create";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: BlogPostList,
-                            edit: BlogPostEdit,
-                            show: BlogPostShow,
-                            //highlight-next-line
-                            create: BlogPostCreate,
-                        },
-                    ]}
-                />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          Layout={Layout}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          resources={[
+            {
+              name: "blog_posts",
+              list: BlogPostList,
+              edit: BlogPostEdit,
+              show: BlogPostShow,
+              //highlight-next-line
+              create: BlogPostCreate,
+            },
+          ]}
+        />
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 export default App;
 ```

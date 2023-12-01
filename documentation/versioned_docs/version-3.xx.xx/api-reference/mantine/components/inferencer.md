@@ -19,34 +19,34 @@ values={[
 
 ```tsx
 import {
-    Layout,
-    MantineProvider,
-    LightTheme,
-    Global,
+  Layout,
+  MantineProvider,
+  LightTheme,
+  Global,
 } from "@pankod/refine-mantine";
 
 // highlight-next-line
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                resources={[
-                    {
-                        name: "samples",
-                        // highlight-start
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                        create: MantineInferencer,
-                        edit: MantineInferencer,
-                        // highlight-end
-                    },
-                ]}
-            />
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <Refine
+        resources={[
+          {
+            name: "samples",
+            // highlight-start
+            list: MantineInferencer,
+            show: MantineInferencer,
+            create: MantineInferencer,
+            edit: MantineInferencer,
+            // highlight-end
+          },
+        ]}
+      />
+    </MantineProvider>
+  );
 };
 ```
 
@@ -58,31 +58,31 @@ const App = () => {
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const SampleList = () => {
-    return (
-        // highlight-next-line
-        <MantineInferencer resource="samples" action="list" />
-    );
+  return (
+    // highlight-next-line
+    <MantineInferencer resource="samples" action="list" />
+  );
 };
 
 const SampleShow = () => {
-    return (
-        // highlight-next-line
-        <MantineInferencer resource="samples" action="show" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <MantineInferencer resource="samples" action="show" id="1" />
+  );
 };
 
 const SampleCreate = () => {
-    return (
-        // highlight-next-line
-        <MantineInferencer resource="samples" action="create" />
-    );
+  return (
+    // highlight-next-line
+    <MantineInferencer resource="samples" action="create" />
+  );
 };
 
 const SampleEdit = () => {
-    return (
-        // highlight-next-line
-        <MantineInferencer resource="samples" action="edit" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <MantineInferencer resource="samples" action="edit" id="1" />
+  );
 };
 ```
 
@@ -90,7 +90,7 @@ const SampleEdit = () => {
 </Tabs>
 
 :::info
-To learn more about `@pankod/refine-inferencer` package, please check out [Docs](/docs/packages/documentation/inferencer)
+To learn more about `@pankod/refine-inferencer` package, please check out [Docs](/docs/3.xx.xx/packages/documentation/inferencer)
 :::
 
 ## Views
@@ -105,10 +105,10 @@ setInitialRoutes(["/"]);
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    MantineProvider,
-    LightTheme,
-    Global,
+  Layout,
+  MantineProvider,
+  LightTheme,
+  Global,
 } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -119,39 +119,39 @@ import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        // highlight-next-line
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                        create: MantineInferencer,
-                        edit: MantineInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        // highlight-next-line
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                    },
-                    {
-                        name: "tags",
-                        // highlight-next-line
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                    },
-                ]}
-            />
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        Layout={Layout}
+        resources={[
+          {
+            name: "samples",
+            // highlight-next-line
+            list: MantineInferencer,
+            show: MantineInferencer,
+            create: MantineInferencer,
+            edit: MantineInferencer,
+            canDelete: true,
+          },
+          {
+            name: "categories",
+            // highlight-next-line
+            list: MantineInferencer,
+            show: MantineInferencer,
+          },
+          {
+            name: "tags",
+            // highlight-next-line
+            list: MantineInferencer,
+            show: MantineInferencer,
+          },
+        ]}
+      />
+    </MantineProvider>
+  );
 };
 
 // visible-block-end
@@ -169,10 +169,10 @@ setInitialRoutes(["/samples/show/123"]);
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    MantineProvider,
-    LightTheme,
-    Global,
+  Layout,
+  MantineProvider,
+  LightTheme,
+  Global,
 } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -183,39 +183,39 @@ import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: MantineInferencer,
-                        // highlight-next-line
-                        show: MantineInferencer,
-                        create: MantineInferencer,
-                        edit: MantineInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: MantineInferencer,
-                        // highlight-next-line
-                        show: MantineInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: MantineInferencer,
-                        // highlight-next-line
-                        show: MantineInferencer,
-                    },
-                ]}
-            />
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        Layout={Layout}
+        resources={[
+          {
+            name: "samples",
+            list: MantineInferencer,
+            // highlight-next-line
+            show: MantineInferencer,
+            create: MantineInferencer,
+            edit: MantineInferencer,
+            canDelete: true,
+          },
+          {
+            name: "categories",
+            list: MantineInferencer,
+            // highlight-next-line
+            show: MantineInferencer,
+          },
+          {
+            name: "tags",
+            list: MantineInferencer,
+            // highlight-next-line
+            show: MantineInferencer,
+          },
+        ]}
+      />
+    </MantineProvider>
+  );
 };
 
 // visible-block-end
@@ -233,10 +233,10 @@ setInitialRoutes(["/samples/create"]);
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    MantineProvider,
-    LightTheme,
-    Global,
+  Layout,
+  MantineProvider,
+  LightTheme,
+  Global,
 } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -247,37 +247,37 @@ import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                        // highlight-next-line
-                        create: MantineInferencer,
-                        edit: MantineInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                    },
-                ]}
-            />
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        Layout={Layout}
+        resources={[
+          {
+            name: "samples",
+            list: MantineInferencer,
+            show: MantineInferencer,
+            // highlight-next-line
+            create: MantineInferencer,
+            edit: MantineInferencer,
+            canDelete: true,
+          },
+          {
+            name: "categories",
+            list: MantineInferencer,
+            show: MantineInferencer,
+          },
+          {
+            name: "tags",
+            list: MantineInferencer,
+            show: MantineInferencer,
+          },
+        ]}
+      />
+    </MantineProvider>
+  );
 };
 
 // visible-block-end
@@ -295,10 +295,10 @@ setInitialRoutes(["/samples/edit/123"]);
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    MantineProvider,
-    LightTheme,
-    Global,
+  Layout,
+  MantineProvider,
+  LightTheme,
+  Global,
 } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -309,37 +309,37 @@ import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                        create: MantineInferencer,
-                        // highlight-next-line
-                        edit: MantineInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                    },
-                ]}
-            />
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        Layout={Layout}
+        resources={[
+          {
+            name: "samples",
+            list: MantineInferencer,
+            show: MantineInferencer,
+            create: MantineInferencer,
+            // highlight-next-line
+            edit: MantineInferencer,
+            canDelete: true,
+          },
+          {
+            name: "categories",
+            list: MantineInferencer,
+            show: MantineInferencer,
+          },
+          {
+            name: "tags",
+            list: MantineInferencer,
+            show: MantineInferencer,
+          },
+        ]}
+      />
+    </MantineProvider>
+  );
 };
 
 // visible-block-end

@@ -2,9 +2,9 @@
 id: add-show-page
 title: 3. Adding Show Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
-    next: tutorial/adding-crud-pages/{preferredUI}/add-create-page
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
+  next: tutorial/adding-crud-pages/{preferredUI}/add-create-page
 ---
 
 Show page is the page where you can see the record. In this tutorial, we will create the show page for the `blog_posts` resource.
@@ -36,21 +36,21 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                    create: HeadlessInferencer,
-                    edit: HeadlessInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "blog_posts",
+          list: HeadlessInferencer,
+          show: HeadlessInferencer,
+          create: HeadlessInferencer,
+          edit: HeadlessInferencer,
+        },
+      ]}
+    />
+  );
 };
 render(<App />);
 ```
@@ -61,17 +61,17 @@ Instead of coding the show page component from scratch, Inferencer created the r
 
 We will go through the list page hooks one by one.
 
--   `useShow` is a **refine** hook that is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
+- `useShow` is a **refine** hook that is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
 
-    [Refer to the `useShow` documentation for more information &#8594](/docs/api-reference/core/hooks/show/useShow/)
+  [Refer to the `useShow` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/show/useShow/)
 
--   `useNavigation` is a **refine** hook that is used to navigate between pages. In this case, we are using it to navigate to the `edit` and `list` pages when the user clicks on the "Edit" and "Blog Posts List" buttons.
+- `useNavigation` is a **refine** hook that is used to navigate between pages. In this case, we are using it to navigate to the `edit` and `list` pages when the user clicks on the "Edit" and "Blog Posts List" buttons.
 
-    [Refer to the `useNavigation` documentation for more information &#8594](/docs/api-reference/core/hooks/navigation/useNavigation/)
+  [Refer to the `useNavigation` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/navigation/useNavigation/)
 
--   `useResource` is a **refine** hook that is used to get current resource information and `resources` that are defined on the `<Refine/>`.
+- `useResource` is a **refine** hook that is used to get current resource information and `resources` that are defined on the `<Refine/>`.
 
-    [Refer to the `useResource` documentation for more information &#8594](/docs/api-reference/core/hooks/resource/useResource/)
+  [Refer to the `useResource` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/resource/useResource/)
 
 ### Handling Relationships
 
@@ -79,14 +79,14 @@ In the show page, we have a single record. The record may have relationships wit
 
 For example, the `blog_posts` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **refine**. This hook allows us to fetch single record data by using the `id` and `resource` parameters.
 
-[Refer to the `useOne` documentation for more information &#8594](/docs/api-reference/core/hooks/data/useOne/)
+[Refer to the `useOne` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/)
 
 In the auto-generated show page code, Inferencer used the `useOne` hook to fetch the category data of the blog post record.
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-    resource: "categories",
-    id: record?.category?.id || "",
+  resource: "categories",
+  id: record?.category?.id || "",
 });
 ```
 
@@ -94,11 +94,11 @@ To ensure that the related data is only fetched after the blog post record has b
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-    resource: "categories",
-    id: record?.category?.id || "",
-    queryOptions: {
-        enabled: !!record,
-    },
+  resource: "categories",
+  id: record?.category?.id || "",
+  queryOptions: {
+    enabled: !!record,
+  },
 });
 ```
 
@@ -124,22 +124,22 @@ import { BlogPostEdit } from "pages/blog-posts/edit";
 import { BlogPostShow } from "pages/blog-posts/show";
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: BlogPostList,
-                    edit: BlogPostEdit,
-                    //highlight-next-line
-                    show: BlogPostShow,
-                    create: HeadlessInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "blog_posts",
+          list: BlogPostList,
+          edit: BlogPostEdit,
+          //highlight-next-line
+          show: BlogPostShow,
+          create: HeadlessInferencer,
+        },
+      ]}
+    />
+  );
 };
 export default App;
 ```

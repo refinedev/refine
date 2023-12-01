@@ -11,93 +11,90 @@ We will show what `<List>` does using properties with examples.
 
 ```tsx live hideCode url=http://localhost:3000/posts
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 
 // visible-block-start
 import { useMany } from "@pankod/refine-core";
 
 import {
-    List,
-    Table,
-    TextField,
-    TagField,
-    useTable,
+  List,
+  Table,
+  TextField,
+  TagField,
+  useTable,
 } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>({
-        syncWithLocation: true,
-    });
+  const { tableProps } = useTable<IPost>({
+    syncWithLocation: true,
+  });
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+  const categoryIds =
+    tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const { data, isLoading } = useMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="Category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+        <Table.Column
+          dataIndex={["category", "id"]}
+          title="Category"
+          render={(value) => {
+            if (isLoading) {
+              return <TextField value="Loading..." />;
+            }
 
-                        return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
-                    }}
-                />
-                <Table.Column
-                    dataIndex="status"
-                    title="Status"
-                    render={(value: string) => <TagField value={value} />}
-                />
-            </Table>
-        </List>
-    );
+            return (
+              <TextField
+                value={data?.data.find((item) => item.id === value)?.title}
+              />
+            );
+          }}
+        />
+        <Table.Column
+          dataIndex="status"
+          title="Status"
+          render={(value: string) => <TagField value={value} />}
+        />
+      </Table>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Properties
@@ -111,25 +108,25 @@ It allows adding a title for the `<List>` component. if you don't pass title pro
 import { List } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <List title="Custom Title">
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    /* highlight-next-line */
+    <List title="Custom Title">
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -149,32 +146,32 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <List resource="posts">
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    /* highlight-next-line */
+    <List resource="posts">
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom",
-                    },
-                ],
-                // highlight-end
-            }}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom",
+          },
+        ],
+        // highlight-end
+      }}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 
@@ -194,21 +191,21 @@ const { default: simpleRest } = RefineSimpleRest;
 const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
-    ...dataProvider,
-    create: async ({ resource, variables }) => {
-        return {
-            data: {},
-        };
-    },
+  ...dataProvider,
+  create: async ({ resource, variables }) => {
+    return {
+      data: {},
+    };
+  },
 };
 
 const authProvider = {
-    login: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve("admin"),
-    getUserIdentity: () => Promise.resolve(),
+  login: () => Promise.resolve(),
+  logout: () => Promise.resolve(),
+  checkAuth: () => Promise.resolve(),
+  checkError: () => Promise.resolve(),
+  getPermissions: () => Promise.resolve("admin"),
+  getUserIdentity: () => Promise.resolve(),
 };
 
 // visible-block-start
@@ -216,35 +213,35 @@ import { List } from "@pankod/refine-antd";
 import { usePermissions } from "@pankod/refine-core";
 
 const PostList: React.FC = () => {
-    const { data: permissionsData } = usePermissions();
-    return (
-        <List
-            /* highlight-start */
-            canCreate={permissionsData?.includes("admin")}
-            createButtonProps={{ size: "small" }}
-            /* highlight-end */
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  const { data: permissionsData } = usePermissions();
+  return (
+    <List
+      /* highlight-start */
+      canCreate={permissionsData?.includes("admin")}
+      createButtonProps={{ size: "small" }}
+      /* highlight-end */
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        authProvider={authProvider}
-        dataProvider={customDataProvider}
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-                create: () => {
-                    return <Create>Create Page</Create>;
-                },
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    authProvider={authProvider}
+    dataProvider={customDataProvider}
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+        create: () => {
+          return <Create>Create Page</Create>;
+        },
+      },
+    ]}
+  />,
 );
 ```
 
@@ -257,7 +254,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
 
 :::tip
-This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/3.xx.xx/api-reference/core/components/refine-config/#breadcrumb)
 :::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
@@ -265,41 +262,41 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 import { List } from "@pankod/refine-antd";
 
 const CustomBreadcrumb: React.FC = () => {
-    return (
-        <p
-            style={{
-                padding: "3px 6px",
-                border: "2px dashed cornflowerblue",
-            }}
-        >
-            My Custom Breadcrumb
-        </p>
-    );
+  return (
+    <p
+      style={{
+        padding: "3px 6px",
+        border: "2px dashed cornflowerblue",
+      }}
+    >
+      My Custom Breadcrumb
+    </p>
+  );
 };
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            breadcrumb={<CustomBreadcrumb />}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      breadcrumb={<CustomBreadcrumb />}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -312,33 +309,33 @@ If you want to customize the wrapper of the `<List/>` component, you can use the
 import { List } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            wrapperProps={{
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      wrapperProps={{
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -353,34 +350,34 @@ If you want to customize the header of the `<List/>` component, you can use the 
 import { List } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            headerProps={{
-                subTitle: "This is a subtitle",
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerProps={{
+        subTitle: "This is a subtitle",
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -393,33 +390,33 @@ If you want to customize the content of the `<List/>` component, you can use the
 import { List } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            contentProps={{
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      contentProps={{
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -432,33 +429,33 @@ You can customize the buttons at the header by using the `headerButtons` propert
 import { List, Button } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -473,34 +470,34 @@ You can customize the wrapper element of the buttons at the header by using the 
 import { List, Button } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            headerButtonProps={{
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-            headerButtons={<Button type="primary">Custom Button</Button>}
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtonProps={{
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+      headerButtons={<Button type="primary">Custom Button</Button>}
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 

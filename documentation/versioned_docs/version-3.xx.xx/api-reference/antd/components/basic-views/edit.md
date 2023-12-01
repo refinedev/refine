@@ -12,118 +12,118 @@ We will show what `<Edit>` does using properties with examples.
 const { EditButton } = RefineAntd;
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 // visible-block-start
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 
 import {
-    Edit,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
+  Edit,
+  Form,
+  Input,
+  Select,
+  useForm,
+  useSelect,
 } from "@pankod/refine-antd";
 
 const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        warnWhenUnsavedChanges: true,
-    });
+  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+    warnWhenUnsavedChanges: true,
+  });
 
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.category.id,
-    });
+  const postData = queryResult?.data?.data;
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+    defaultValue: postData?.category.id,
+  });
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name={["category", "id"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Status"
+          name="status"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select
+            options={[
+              {
+                label: "Published",
+                value: "published",
+              },
+              {
+                label: "Draft",
+                value: "draft",
+              },
+              {
+                label: "Rejected",
+                value: "rejected",
+              },
+            ]}
+          />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton recordItemId="123">Edit Item 123</EditButton>
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton recordItemId="123">Edit Item 123</EditButton>
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Properties
@@ -139,43 +139,43 @@ const { default: simpleRest } = RefineSimpleRest;
 const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
-    ...dataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-        return {
-            data: {},
-        };
-    },
+  ...dataProvider,
+  deleteOne: async ({ resource, id, variables }) => {
+    return {
+      data: {},
+    };
+  },
 };
 
 // visible-block-start
 import { Edit } from "@pankod/refine-antd";
 
 const PostEdit: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Edit title="Custom Title">
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    /* highlight-next-line */
+    <Edit title="Custom Title">
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton recordItemId="2">Edit Item 2</EditButton>
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton recordItemId="2">Edit Item 2</EditButton>
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -194,31 +194,31 @@ const { EditButton } = RefineAntd;
 import { Edit } from "@pankod/refine-antd";
 
 const PostEdit: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Edit saveButtonProps={{ size: "small" }}>
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    /* highlight-next-line */
+    <Edit saveButtonProps={{ size: "small" }}>
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -237,21 +237,21 @@ const { default: simpleRest } = RefineSimpleRest;
 const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
-    ...dataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-        return {
-            data: {},
-        };
-    },
+  ...dataProvider,
+  deleteOne: async ({ resource, id, variables }) => {
+    return {
+      data: {},
+    };
+  },
 };
 
 const authProvider = {
-    login: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve("admin"),
-    getUserIdentity: () => Promise.resolve(),
+  login: () => Promise.resolve(),
+  logout: () => Promise.resolve(),
+  checkAuth: () => Promise.resolve(),
+  checkError: () => Promise.resolve(),
+  getPermissions: () => Promise.resolve("admin"),
+  getUserIdentity: () => Promise.resolve(),
 };
 
 // visible-block-start
@@ -259,39 +259,39 @@ import { Edit } from "@pankod/refine-antd";
 import { usePermissions } from "@pankod/refine-core";
 
 const PostEdit: React.FC = () => {
-    const { data: permissionsData } = usePermissions();
-    return (
-        <Edit
-            /* highlight-start */
-            canDelete={permissionsData?.includes("admin")}
-            deleteButtonProps={{ size: "small" }}
-            /* highlight-end */
-            saveButtonProps={{ size: "small" }}
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  const { data: permissionsData } = usePermissions();
+  return (
+    <Edit
+      /* highlight-start */
+      canDelete={permissionsData?.includes("admin")}
+      deleteButtonProps={{ size: "small" }}
+      /* highlight-end */
+      saveButtonProps={{ size: "small" }}
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        authProvider={authProvider}
-        dataProvider={customDataProvider}
-        initialRoutes={["/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton recordItemId="123">Edit Item 123</EditButton>
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    authProvider={authProvider}
+    dataProvider={customDataProvider}
+    initialRoutes={["/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton recordItemId="123">Edit Item 123</EditButton>
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -313,32 +313,32 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Edit resource="posts">
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    /* highlight-next-line */
+    <Edit resource="posts">
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom/:id",
-                    },
-                ],
-                // highlight-end
-            }}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom/:id",
+          },
+        ],
+        // highlight-end
+      }}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 
@@ -356,40 +356,40 @@ const { EditButton } = RefineAntd;
 import { Edit, useModalForm, Modal, Button } from "@pankod/refine-antd";
 
 const PostEdit: React.FC = () => {
-    const { modalProps, id, show } = useModalForm({
-        action: "edit",
-    });
+  const { modalProps, id, show } = useModalForm({
+    action: "edit",
+  });
 
-    return (
-        <div>
-            <Button onClick={() => show()}>Edit Button</Button>
-            <Modal {...modalProps}>
-                {/* highlight-next-line */}
-                <Edit recordItemId={id}>
-                    <p>Rest of your page here</p>
-                </Edit>
-            </Modal>
-        </div>
-    );
+  return (
+    <div>
+      <Button onClick={() => show()}>Edit Button</Button>
+      <Modal {...modalProps}>
+        {/* highlight-next-line */}
+        <Edit recordItemId={id}>
+          <p>Rest of your page here</p>
+        </Edit>
+      </Modal>
+    </div>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton recordItemId="2">Edit Item 2</EditButton>
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton recordItemId="2">Edit Item 2</EditButton>
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -407,118 +407,118 @@ Determines which mode mutation will have while executing `<DeleteButton>` .
 const { EditButton } = RefineAntd;
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 // visible-block-start
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 
 import {
-    Edit,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
+  Edit,
+  Form,
+  Input,
+  Select,
+  useForm,
+  useSelect,
 } from "@pankod/refine-antd";
 
 const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        warnWhenUnsavedChanges: true,
-    });
+  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+    warnWhenUnsavedChanges: true,
+  });
 
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.category.id,
-    });
+  const postData = queryResult?.data?.data;
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+    defaultValue: postData?.category.id,
+  });
 
-    return (
-        <Edit
-            /* highlight-next-line */
-            mutationMode="undoable"
-            canDelete
-            saveButtonProps={saveButtonProps}
+  return (
+    <Edit
+      /* highlight-next-line */
+      mutationMode="undoable"
+      canDelete
+      saveButtonProps={saveButtonProps}
+    >
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
         >
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name={["category", "id"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Status"
+          name="status"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select
+            options={[
+              {
+                label: "Published",
+                value: "published",
+              },
+              {
+                label: "Draft",
+                value: "draft",
+              },
+              {
+                label: "Rejected",
+                value: "rejected",
+              },
+            ]}
+          />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton recordItemId="2">Edit Item 2</EditButton>
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton recordItemId="2">Edit Item 2</EditButton>
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -534,23 +534,23 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-start
 const PostEdit = () => {
-    return <Edit dataProviderName="other">...</Edit>;
+  return <Edit dataProviderName="other">...</Edit>;
 };
 // highlight-end
 
 export const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            // highlight-start
-            dataProvider={{
-                default: dataProvider("https://api.fake-rest.refine.dev/"),
-                other: dataProvider("https://other-api.fake-rest.refine.dev/"),
-            }}
-            // highlight-end
-            resources={[{ name: "posts", edit: PostEdit }]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      // highlight-start
+      dataProvider={{
+        default: dataProvider("https://api.fake-rest.refine.dev/"),
+        other: dataProvider("https://other-api.fake-rest.refine.dev/"),
+      }}
+      // highlight-end
+      resources={[{ name: "posts", edit: PostEdit }]}
+    />
+  );
 };
 ```
 
@@ -565,31 +565,31 @@ const { EditButton } = RefineAntd;
 import { Edit, Icons } from "@pankod/refine-antd";
 
 const PostEdit: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Edit goBack={<Icons.SmileOutlined />}>
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    /* highlight-next-line */
+    <Edit goBack={<Icons.SmileOutlined />}>
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts", "/posts/edit/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton recordItemId="123">Edit Item 123</EditButton>
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts", "/posts/edit/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton recordItemId="123">Edit Item 123</EditButton>
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -604,31 +604,31 @@ const { EditButton } = RefineAntd;
 import { Edit } from "@pankod/refine-antd";
 
 const PostEdit: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Edit isLoading={true}>
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    /* highlight-next-line */
+    <Edit isLoading={true}>
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -639,7 +639,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
 
 :::tip
-This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/3.xx.xx/api-reference/core/components/refine-config/#breadcrumb)
 :::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
@@ -649,43 +649,43 @@ const { EditButton } = RefineAntd;
 import { Edit, Breadcrumb } from "@pankod/refine-antd";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            breadcrumb={
-                <div
-                    style={{
-                        padding: "3px 6px",
-                        border: "2px dashed cornflowerblue",
-                    }}
-                >
-                    <Breadcrumb />
-                </div>
-            }
-            // highlight-end
+  return (
+    <Edit
+      // highlight-start
+      breadcrumb={
+        <div
+          style={{
+            padding: "3px 6px",
+            border: "2px dashed cornflowerblue",
+          }}
         >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+          <Breadcrumb />
+        </div>
+      }
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -700,39 +700,39 @@ const { EditButton } = RefineAntd;
 import { Edit } from "@pankod/refine-antd";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            wrapperProps={{
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      wrapperProps={{
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -749,40 +749,40 @@ const { EditButton } = RefineAntd;
 import { Edit } from "@pankod/refine-antd";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            headerProps={{
-                subTitle: "This is a subtitle",
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      headerProps={{
+        subTitle: "This is a subtitle",
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -799,39 +799,39 @@ const { EditButton } = RefineAntd;
 import { Edit } from "@pankod/refine-antd";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            contentProps={{
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      contentProps={{
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -846,39 +846,39 @@ const { EditButton } = RefineAntd;
 import { Edit, Button } from "@pankod/refine-antd";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit/2"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit/2"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -895,40 +895,40 @@ const { EditButton } = RefineAntd;
 import { Edit, Button } from "@pankod/refine-antd";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            headerButtonProps={{
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-            headerButtons={<Button type="primary">Custom Button</Button>}
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      headerButtonProps={{
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+      headerButtons={<Button type="primary">Custom Button</Button>}
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -943,39 +943,39 @@ const { EditButton } = RefineAntd;
 import { Edit, Button } from "@pankod/refine-antd";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            footerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      footerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -992,43 +992,43 @@ const { EditButton } = RefineAntd;
 import { Edit, Button } from "@pankod/refine-antd";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            footerButtonProps={{
-                style: {
-                    // hide-start
-                    float: "right",
-                    marginRight: 24,
-                    // hide-end
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      footerButtonProps={{
+        style: {
+          // hide-start
+          float: "right",
+          marginRight: 24,
+          // hide-end
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/edit"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <EditButton />
-                    </div>
-                ),
-                edit: PostEdit,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/edit"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <EditButton />
+          </div>
+        ),
+        edit: PostEdit,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -1041,7 +1041,7 @@ contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
 headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" 
 headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/antd/components/buttons/list-button/) and [`RefreshButton`](https://refine.dev/docs/api-reference/antd/components/buttons/refresh-button/)"
 headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
-deleteButtonProps-type="[`DeleteButtonProps`](/docs/api-reference/antd/components/buttons/delete-button/)"
+deleteButtonProps-type="[`DeleteButtonProps`](/docs/3.xx.xx/api-reference/antd/components/buttons/delete-button/)"
 saveButtonProps-type="[`SaveButtonProps`](https://refine.dev/docs/api-reference/antd/components/buttons/save-button/)"
 footerButtons-default="[`SaveButton`](https://refine.dev/docs/api-reference/antd/components/buttons/save-button/) and [`DeleteButton`](https://refine.dev/docs/api-reference/antd/components/buttons/delete-button/)"
 footerButtonsProps-type="[`SpaceProps`](https://ant.design/components/space/)"
