@@ -1308,7 +1308,7 @@ Default paths are:
 :::
 
 [routerprovider]: /docs/core/providers/router-provider
-[resources]: /docs/tutorial/understanding-resources/
+[resources]: /docs/tutorial/understanding-resources/index
 
 ```
 

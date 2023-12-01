@@ -11,7 +11,7 @@ tutorial:
 
 In some cases, **refine's** built-in data providers may not fully meet your API needs, and you may want to edit the existing data provider logic. If that is the case, you should use `swizzle`.
 
-The [`swizzle`](..//docs/packages/list-of-packages/index#swizzle) is a command in [`refine-cli`](..//docs/packages/list-of-packages/index) that allows you to customize **refine’s** supported components and data providers by letting you eject selected files from the **refine** packages and modify them depending on your needs.
+The [`swizzle`](/docs/packages/list-of-packages/#swizzle) is a command in [`refine-cli`](/docs/packages/list-of-packages) that allows you to customize **refine’s** supported components and data providers by letting you eject selected files from the **refine** packages and modify them depending on your needs.
 
 This also allows you to use the ejected file code logic as a starting point for your modifications instead of starting from scratch.
 

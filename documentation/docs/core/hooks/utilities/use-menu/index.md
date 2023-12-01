@@ -13,7 +13,7 @@ body {
 
 `useMenu` is used to get menu items derived from the resources. These items include a link to the dashboard page (if it exists) and links to the user-defined resources (passed as children to `<Refine>`).
 
-This hook can also be used to build custom menus, including multi-level support. `<Sider/>` components inside the [`@refinedev/antd`](/docs/ui-integrations/antd/introduction), [`@refinedev/mui`](/docs/ui-integrations/material-ui/introduction), [`@refinedev/chakra-ui`](/docs/ui-integrations/chakra-ui/introduction) and, [`@refinedev/mantine`](/docs/ui-integrations/mantine/introduction) packages for example use this hook as a base for their menus.
+This hook can also be used to build custom menus, including multi-level support. `<Sider/>` components inside the [`@refinedev/antd`](/docs/ui-integrations/ant-design/introduction), [`@refinedev/mui`](/docs/ui-integrations/material-ui/introduction), [`@refinedev/chakra-ui`](/docs/ui-integrations/chakra-ui/introduction) and, [`@refinedev/mantine`](/docs/ui-integrations/mantine/introduction) packages for example use this hook as a base for their menus.
 
 ```ts
 const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
@@ -35,7 +35,7 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 
 :::tip
 
-If you are using [`@refinedev/antd`](/docs/ui-integrations/antd/introduction), [`@refinedev/mui`](/docs/ui-integrations/material-ui/introduction), [`@refinedev/chakra-ui`](/docs/ui-integrations/chakra-ui/introduction) or [`@refinedev/mantine`](/docs/ui-integrations/mantine/introduction) as a UI framework integration, you can find out more info about their structure and how to use `useMenu` in the [Custom Layout][customlayout]
+If you are using [`@refinedev/antd`](/docs/ui-integrations/ant-design/introduction), [`@refinedev/mui`](/docs/ui-integrations/material-ui/introduction), [`@refinedev/chakra-ui`](/docs/ui-integrations/chakra-ui/introduction) or [`@refinedev/mantine`](/docs/ui-integrations/mantine/introduction) as a UI framework integration, you can find out more info about their structure and how to use `useMenu` in the [Custom Layout][customlayout]
 
 :::
 

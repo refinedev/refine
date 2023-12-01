@@ -708,7 +708,7 @@ In this example we didn't wrap our `canvases` resource routes with [`<Authentica
 
 However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/docs/core/components/authenticated) component. This means that we can not access these routes if we are authenticated.
 
-[Refer to the Auth Provider tutorial for more information. →](/docs/tutorial/understanding-authprovider)
+[Refer to the Auth Provider tutorial for more information. →](/docs/tutorial/understanding-authprovider/index)
 
 ### `<Refine />` `create` Action
 
@@ -1133,7 +1133,7 @@ Now that we have our `<CanvasShow />` component ready, let's start implementing 
 
 ## Supabase Authentication with Refine
 
-[Refer to the Auth Provider tutorial for more information. →](/docs/tutorial/understanding-authprovider)
+[Refer to the Auth Provider tutorial for more information. →](/docs/tutorial/understanding-authprovider/index)
 
 ```tsx title="src/App.tsx"
 <Refine

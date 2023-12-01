@@ -772,7 +772,7 @@ const myDataProvider = {
 [basekey]: /docs/core/interface-references#basekey
 [create-a-data-provider]: /docs/tutorial/understanding-dataprovider/create-dataprovider/
 [swizzle-a-data-provider]: /docs/tutorial/understanding-dataprovider/swizzle/
-[data-provider-tutorial]: /docs/tutorial/understanding-dataprovider/
+[data-provider-tutorial]: /docs/tutorial/understanding-dataprovider/index
 [use-api-url]: /docs/core/hooks/data/use-api-url
 [use-create]: /docs/core/hooks/data/use-create
 [use-create-many]: /docs/core/hooks/data/use-create
