@@ -232,6 +232,7 @@ export const WelcomePage: React.FC = () => {
                     gap: "48px",
                     paddingRight: "16px",
                     paddingLeft: "16px",
+                        paddingBottom: "32px",
                     maxWidth: "976px",
                     margin: "auto",
                 }}
