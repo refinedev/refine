@@ -133,8 +133,6 @@ export function useLogout<TVariables = {}>({
                 open?.(buildNotification(error));
             }
 
-            await invalidateAuthStore();
-
             if (redirect !== false) {
                 if (routerType === "legacy") {
                     push(redirect ?? "/login");
@@ -144,6 +142,8 @@ export function useLogout<TVariables = {}>({
                     }
                 }
             }
+
+            await invalidateAuthStore();
         },
         onError: (error: any) => {
             open?.(buildNotification(error));
@@ -172,8 +172,6 @@ export function useLogout<TVariables = {}>({
             onSuccess: async (data, variables) => {
                 const redirectPath = variables?.redirectPath ?? data;
 
-                await invalidateAuthStore();
-
                 if (redirectPath === false) {
                     return;
                 }
@@ -192,6 +190,8 @@ export function useLogout<TVariables = {}>({
                 } else {
                     go({ to: "/login" });
                 }
+
+                await invalidateAuthStore();
             },
             onError: (error: any) => {
                 open?.(buildNotification(error));

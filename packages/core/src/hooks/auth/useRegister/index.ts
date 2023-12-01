@@ -133,8 +133,6 @@ export function useRegister<TVariables = {}>({
                     open?.(buildNotification(error));
                 }
 
-                await invalidateAuthStore();
-
                 if (redirectTo) {
                     if (routerType === "legacy") {
                         replace(redirectTo);
@@ -146,6 +144,8 @@ export function useRegister<TVariables = {}>({
                         replace("/");
                     }
                 }
+
+                await invalidateAuthStore();
             },
             onError: (error: any) => {
                 open?.(buildNotification(error));
@@ -173,8 +173,6 @@ export function useRegister<TVariables = {}>({
         legacyRegisterFromContext,
         {
             onSuccess: async (redirectPathFromAuth) => {
-                await invalidateAuthStore();
-
                 if (redirectPathFromAuth !== false) {
                     if (redirectPathFromAuth) {
                         if (routerType === "legacy") {
@@ -189,6 +187,9 @@ export function useRegister<TVariables = {}>({
                             go({ to: "/", type: "replace" });
                         }
                     }
+
+                    await invalidateAuthStore();
+
                     close?.("register-error");
                 }
             },
