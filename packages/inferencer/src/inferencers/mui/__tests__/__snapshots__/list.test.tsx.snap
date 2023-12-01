@@ -120,7 +120,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                           aria-label="Menu"
                           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
                           data-mui-internal-clone-element="true"
-                          id=":r4:"
+                          id=":r5:"
                           tabindex="-1"
                           type="button"
                         >
@@ -224,7 +224,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                           aria-label="Menu"
                           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
                           data-mui-internal-clone-element="true"
-                          id=":ra:"
+                          id=":rb:"
                           tabindex="-1"
                           type="button"
                         >
@@ -328,7 +328,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                           aria-label="Menu"
                           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
                           data-mui-internal-clone-element="true"
-                          id=":rg:"
+                          id=":rh:"
                           tabindex="-1"
                           type="button"
                         >
@@ -554,6 +554,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     aria-hidden="true"
                     aria-invalid="false"
                     class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                    name=":r3:"
                     tabindex="-1"
                     value="25"
                   />
