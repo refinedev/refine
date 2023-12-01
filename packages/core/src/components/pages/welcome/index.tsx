@@ -188,7 +188,11 @@ export const WelcomePage: React.FC = () => {
             </div>
             <div
                 style={{
-                    height: isMobile ? "120px" : isTablet ? "270px" : "28vw",
+                        height: isMobile
+                            ? "120px"
+                            : isTablet
+                            ? "270px"
+                            : "40vh",
                     minHeight: isMobile
                         ? "120px"
                         : isTablet
