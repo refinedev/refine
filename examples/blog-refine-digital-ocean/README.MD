@@ -1,7 +1,7 @@
 <div align="center" style="margin: 30px;">
 
 
-![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/CRM-Digital-Ocean/crm-do.png "Cover Image")
+[![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/CRM/crm-readme-temp.png "Cover Image")](https://github.com/refinedev/refine)
 
 
 <div align="center">
