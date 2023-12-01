@@ -111,7 +111,7 @@ export const WelcomePage: React.FC = () => {
         } else if (isTablet) {
             return "2, 280px";
         } else {
-            return "4, 208px";
+            return "4, 1fr";
         }
     };
 
@@ -146,104 +146,104 @@ export const WelcomePage: React.FC = () => {
                 height: "100dvh",
             }}
         >
-        <div
-            style={{
-                overflow: "hidden",
-                position: "relative",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                background: isMobile
-                    ? "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp), radial-gradient(88.89% 50% at 50% 100%, rgba(38, 217, 127, 0.10) 0%, rgba(38, 217, 127, 0.00) 100%), radial-gradient(88.89% 50% at 50% 0%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%), #1D1E30"
-                    : isTablet
-                    ? "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp), radial-gradient(66.67% 50% at 50% 100%, rgba(38, 217, 127, 0.10) 0%, rgba(38, 217, 127, 0.00) 100%), radial-gradient(66.67% 50% at 50% 0%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%), #1D1E30"
-                    : "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp), radial-gradient(35.56% 50% at 50% 100%, rgba(38, 217, 127, 0.12) 0%, rgba(38, 217, 127, 0) 100%), radial-gradient(35.56% 50% at 50% 0%, rgba(71, 235, 235, 0.18) 0%, rgba(71, 235, 235, 0) 100%), #1D1E30",
+            <div
+                style={{
+                    overflow: "hidden",
+                    position: "relative",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    background: isMobile
+                        ? "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp), radial-gradient(88.89% 50% at 50% 100%, rgba(38, 217, 127, 0.10) 0%, rgba(38, 217, 127, 0.00) 100%), radial-gradient(88.89% 50% at 50% 0%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%), #1D1E30"
+                        : isTablet
+                        ? "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp), radial-gradient(66.67% 50% at 50% 100%, rgba(38, 217, 127, 0.10) 0%, rgba(38, 217, 127, 0.00) 100%), radial-gradient(66.67% 50% at 50% 0%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%), #1D1E30"
+                        : "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp), radial-gradient(35.56% 50% at 50% 100%, rgba(38, 217, 127, 0.12) 0%, rgba(38, 217, 127, 0) 100%), radial-gradient(35.56% 50% at 50% 0%, rgba(71, 235, 235, 0.18) 0%, rgba(71, 235, 235, 0) 100%), #1D1E30",
                     minHeight: "100%",
                     minWidth: "100%",
-                fontFamily: "Arial",
-                color: "#FFFFFF",
-            }}
-        >
-            <div
-                style={{
-                    zIndex: 2,
-                    position: "absolute",
-                    width: isMobile ? "400px" : "800px",
-                    height: "552px",
-                    opacity: "0.5",
-                    background:
-                        "url(https://refine.ams3.cdn.digitaloceanspaces.com/assets/welcome-page-hexagon.png)",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "contain",
-                    top: "0",
-                    left: "50%",
-                    transform: "translateX(-50%)",
+                    fontFamily: "Arial",
+                    color: "#FFFFFF",
                 }}
-            />
-            <div style={{ height: isMobile ? "40px" : "80px" }}></div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-                <RefineLogoIcon
-                    width={isMobile ? 100 : 200}
-                    height={isMobile ? 30 : 60}
+            >
+                <div
+                    style={{
+                        zIndex: 2,
+                        position: "absolute",
+                        width: isMobile ? "400px" : "800px",
+                        height: "552px",
+                        opacity: "0.5",
+                        background:
+                            "url(https://refine.ams3.cdn.digitaloceanspaces.com/assets/welcome-page-hexagon.png)",
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "contain",
+                        top: "0",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                    }}
                 />
-            </div>
-            <div
-                style={{
+                <div style={{ height: isMobile ? "40px" : "80px" }}></div>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                    <RefineLogoIcon
+                        width={isMobile ? 100 : 200}
+                        height={isMobile ? 30 : 60}
+                    />
+                </div>
+                <div
+                    style={{
                         height: isMobile
                             ? "120px"
                             : isTablet
                             ? "270px"
                             : "40vh",
-                    minHeight: isMobile
-                        ? "120px"
-                        : isTablet
-                        ? "270px"
-                        : "270px",
-                }}
-            ></div>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "16px",
-                    textAlign: "center",
-                }}
-            >
-                <h1
+                        minHeight: isMobile
+                            ? "120px"
+                            : isTablet
+                            ? "270px"
+                            : "270px",
+                    }}
+                ></div>
+                <div
                     style={{
-                        fontSize: getHeaderFontSize(),
-                        fontWeight: 700,
-                        margin: "0px",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "16px",
+                        textAlign: "center",
                     }}
                 >
-                    Welcome Aboard!
-                </h1>
-                <h4
+                    <h1
+                        style={{
+                            fontSize: getHeaderFontSize(),
+                            fontWeight: 700,
+                            margin: "0px",
+                        }}
+                    >
+                        Welcome Aboard!
+                    </h1>
+                    <h4
+                        style={{
+                            fontSize: getSubHeaderFontSize(),
+                            fontWeight: 400,
+                            margin: "0px",
+                        }}
+                    >
+                        Your configuration is completed.
+                    </h4>
+                </div>
+                <div style={{ height: "64px" }}></div>
+                <div
                     style={{
-                        fontSize: getSubHeaderFontSize(),
-                        fontWeight: 400,
-                        margin: "0px",
-                    }}
-                >
-                    Your configuration is completed.
-                </h4>
-            </div>
-            <div style={{ height: "64px" }}></div>
-            <div
-                style={{
-                    display: "grid",
-                    gridTemplateColumns: `repeat(${getGridTemplateColumns()})`,
-                    justifyContent: "center",
-                    gap: "48px",
-                    paddingRight: "16px",
-                    paddingLeft: "16px",
+                        display: "grid",
+                        gridTemplateColumns: `repeat(${getGridTemplateColumns()})`,
+                        justifyContent: "center",
+                        gap: "48px",
+                        paddingRight: "16px",
+                        paddingLeft: "16px",
                         paddingBottom: "32px",
-                    maxWidth: "976px",
-                    margin: "auto",
-                }}
-            >
-                {CARDS.map((card) => (
-                    <Card key={`welcome-page-${card.title}`} card={card} />
-                ))}
+                        maxWidth: "976px",
+                        margin: "auto",
+                    }}
+                >
+                    {CARDS.map((card) => (
+                        <Card key={`welcome-page-${card.title}`} card={card} />
+                    ))}
                 </div>
             </div>
         </div>
