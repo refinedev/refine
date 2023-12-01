@@ -138,6 +138,16 @@ export const WelcomePage: React.FC = () => {
     return (
         <div
             style={{
+                position: "fixed",
+                zIndex: 10,
+                inset: 0,
+                overflow: "auto",
+                width: "100dvw",
+                height: "100dvh",
+            }}
+        >
+        <div
+            style={{
                 overflow: "hidden",
                 position: "relative",
                 backgroundSize: "cover",
@@ -147,8 +157,8 @@ export const WelcomePage: React.FC = () => {
                     : isTablet
                     ? "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp), radial-gradient(66.67% 50% at 50% 100%, rgba(38, 217, 127, 0.10) 0%, rgba(38, 217, 127, 0.00) 100%), radial-gradient(66.67% 50% at 50% 0%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%), #1D1E30"
                     : "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp), radial-gradient(35.56% 50% at 50% 100%, rgba(38, 217, 127, 0.12) 0%, rgba(38, 217, 127, 0) 100%), radial-gradient(35.56% 50% at 50% 0%, rgba(71, 235, 235, 0.18) 0%, rgba(71, 235, 235, 0) 100%), #1D1E30",
-                minHeight: "100dvh",
-                minWidth: "100vw",
+                    minHeight: "100%",
+                    minWidth: "100%",
                 fontFamily: "Arial",
                 color: "#FFFFFF",
             }}
@@ -229,6 +239,7 @@ export const WelcomePage: React.FC = () => {
                 {CARDS.map((card) => (
                     <Card key={`welcome-page-${card.title}`} card={card} />
                 ))}
+                </div>
             </div>
         </div>
     );
