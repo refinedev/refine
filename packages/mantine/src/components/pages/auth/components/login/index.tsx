@@ -244,7 +244,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                 justifyContent: hideForm
                     ? "flex-start"
                     : layoutStyles.justifyContent,
-                paddingTop: hideForm ? "15dvh" : layoutStyles.paddingTop,
+                paddingTop: hideForm ? "15dvh" : layoutStyles.padding,
             }}
             {...(wrapperProps ?? {})}
         >

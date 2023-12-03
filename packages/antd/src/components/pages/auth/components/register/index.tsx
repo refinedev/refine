@@ -280,7 +280,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 style={{
                     padding: "16px 0",
                     minHeight: "100dvh",
-                    paddingTop: hideForm ? "15dvh" : "0",
+                    paddingTop: hideForm ? "15dvh" : "16px",
                 }}
             >
                 <Col xs={22}>

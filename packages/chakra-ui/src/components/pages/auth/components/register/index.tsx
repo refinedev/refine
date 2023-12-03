@@ -248,7 +248,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             style={{
                 ...layoutProps,
                 justifyContent: hideForm ? "flex-start" : "center",
-                paddingTop: hideForm ? "15dvh" : 0,
+                paddingTop: hideForm ? "15dvh" : "16px",
             }}
             {...wrapperProps}
         >
