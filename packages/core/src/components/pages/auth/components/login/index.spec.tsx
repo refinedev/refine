@@ -289,4 +289,63 @@ describe("Auth Page Login", () => {
             providerName: "Google",
         });
     });
+
+    it("should not render form when `hideForm` is true", async () => {
+        const { queryByLabelText, getByText, queryByRole } = render(
+            <LoginPage
+                hideForm
+                providers={[
+                    {
+                        name: "google",
+                        label: "Google",
+                    },
+                    { name: "github", label: "GitHub" },
+                ]}
+            />,
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(queryByLabelText(/email/i)).not.toBeInTheDocument();
+        expect(queryByLabelText(/password/i)).not.toBeInTheDocument();
+        expect(queryByLabelText(/remember/i)).not.toBeInTheDocument();
+        expect(
+            queryByRole("link", {
+                name: /forgot password/i,
+            }),
+        ).not.toBeInTheDocument();
+        expect(
+            queryByRole("button", {
+                name: /sign in/i,
+            }),
+        ).not.toBeInTheDocument();
+
+        expect(getByText(/google/i)).toBeInTheDocument();
+        expect(getByText(/github/i)).toBeInTheDocument();
+        expect(
+            queryByRole("link", {
+                name: /sign up/i,
+            }),
+        ).toBeInTheDocument();
+    });
+
+    it.each([true, false])("should has default links", async (hideForm) => {
+        const { getByRole } = render(<LoginPage hideForm={hideForm} />, {
+            wrapper: TestWrapper({}),
+        });
+        expect(
+            getByRole("link", {
+                name: /sign up/i,
+            }),
+        ).toHaveAttribute("href", "/register");
+
+        if (hideForm === false) {
+            expect(
+                getByRole("link", {
+                    name: /forgot password/i,
+                }),
+            ).toHaveAttribute("href", "/forgot-password");
+        }
+    });
 });

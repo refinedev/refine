@@ -86,25 +86,28 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 {translate("pages.register.title", "Sign up for your account")}
             </h1>
             {renderProviders()}
-            <hr />
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    register({ email, password });
-                }}
-                {...formProps}
-            >
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        padding: 25,
-                    }}
-                >
-                    {hideForm ? <></> : (
-                        <>
+            {!hideForm && (
+                <>
+                    <hr />
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            register({ email, password });
+                        }}
+                        {...formProps}
+                    >
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                padding: 25,
+                            }}
+                        >
                             <label htmlFor="email-input">
-                                {translate("pages.register.fields.email", "Email")}
+                                {translate(
+                                    "pages.register.fields.email",
+                                    "Email",
+                                )}
                             </label>
                             <input
                                 id="email-input"
@@ -133,32 +136,47 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                        </>
-                    )}
-                    <input
-                        type="submit"
-                        value={translate(
-                            "pages.register.buttons.submit",
-                            "Sign up",
-                        )}
-                        disabled={isLoading}
-                    />
-                    {loginLink ?? (
-                        <>
-                            <span>
-                                {translate(
-                                    "pages.login.buttons.haveAccount",
-                                    "Have an account?",
-                                )}{" "}
-                                {renderLink(
-                                    "/login",
-                                    translate("pages.login.signin", "Sign in"),
+                            <input
+                                type="submit"
+                                value={translate(
+                                    "pages.register.buttons.submit",
+                                    "Sign up",
                                 )}
-                            </span>
-                        </>
+                                disabled={isLoading}
+                            />
+                            {loginLink ?? (
+                                <>
+                                    <span>
+                                        {translate(
+                                            "pages.login.buttons.haveAccount",
+                                            "Have an account?",
+                                        )}{" "}
+                                        {renderLink(
+                                            "/login",
+                                            translate(
+                                                "pages.login.signin",
+                                                "Sign in",
+                                            ),
+                                        )}
+                                    </span>
+                                </>
+                            )}
+                        </div>
+                    </form>
+                </>
+            )}
+            {loginLink !== false && hideForm && (
+                <div style={{ textAlign: "center" }}>
+                    {translate(
+                        "pages.login.buttons.haveAccount",
+                        "Have an account?",
+                    )}{" "}
+                    {renderLink(
+                        "/login",
+                        translate("pages.login.signin", "Sign in"),
                     )}
                 </div>
-            </form>
+            )}
         </div>
     );
 
