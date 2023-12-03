@@ -36,13 +36,23 @@ import "@refinedev/antd/dist/reset.css";
 
 const API_URL = "https://api.crm.refine.dev/graphql";
 const WS_URL = "wss://api.crm.refine.dev/graphql";
+const ACCESS_TOKEN =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoiamltLmhhbHBlcnRAZHVuZGVybWlmZmxpbi5jb20iLCJpYXQiOjE2OTQ2ODI0OTksImV4cCI6MTg1MjQ3MDQ5OX0.4PF7-VYY4tlpuvGHmsunaH_ETLd-N_ANSjEB_NiPExw";
 
 const gqlClient = new GraphQLClient(API_URL, {
     headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoiamltLmhhbHBlcnRAZHVuZGVybWlmZmxpbi5jb20iLCJpYXQiOjE2OTQ2ODI0OTksImV4cCI6MTg1MjQ3MDQ5OX0.4PF7-VYY4tlpuvGHmsunaH_ETLd-N_ANSjEB_NiPExw`,
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
     },
 });
-const wsClient = createClient({ url: WS_URL });
+
+const wsClient = createClient({
+    url: WS_URL,
+    connectionParams: () => ({
+        headers: {
+            Authorization: `Bearer ${ACCESS_TOKEN}`,
+        },
+    }),
+});
 
 function App() {
     return (
