@@ -52,7 +52,7 @@ export const CreateClient: React.FC<CreateClientProps> = ({
             <Drawer
                 {...drawerProps}
                 width={breakpoint.sm ? "500px" : "100%"}
-                bodyStyle={{ padding: 0 }}
+                styles={{ body: { padding: 0 } }}
             >
                 <Create saveButtonProps={saveButtonProps}>
                     <Form

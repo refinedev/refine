@@ -22,49 +22,47 @@ export const ClientItem: React.FC<ClientItemProps> = ({ item, editShow }) => {
         <Card style={{ width: 300, height: 300, borderColor: "black" }}>
             <div style={{ position: "absolute", top: "10px", right: "5px" }}>
                 <Dropdown
-                    overlay={
-                        <Menu mode="vertical">
-                            <Menu.Item
-                                key="1"
-                                style={{
+                    menu={{
+                        mode: "vertical",
+                        items: [
+                            {
+                                key: "1",
+                                style: {
                                     fontWeight: 500,
-                                }}
-                                icon={
+                                },
+                                label: "Edit Client",
+                                icon: (
                                     <FormOutlined
                                         style={{
                                             color: "green",
                                         }}
                                     />
-                                }
-                                onClick={() => editShow(item.id)}
-                            >
-                                Edit Client
-                            </Menu.Item>
-                            <Menu.Item
-                                key="2"
-                                style={{
+                                ),
+                                onClick: () => editShow(item.id),
+                            },
+                            {
+                                key: "2",
+                                style: {
                                     fontWeight: 500,
-                                }}
-                                icon={
+                                },
+                                label: "Delete Client",
+                                icon: (
                                     <DeleteOutlined
                                         style={{
                                             color: "red",
                                         }}
                                     />
-                                }
-                                onClick={() =>
+                                ),
+                                onClick: () =>
                                     mutate({
                                         resource: "clients",
                                         id: item.id,
                                         mutationMode: "undoable",
                                         undoableTimeout: 5000,
-                                    })
-                                }
-                            >
-                                Delete Client
-                            </Menu.Item>
-                        </Menu>
-                    }
+                                    }),
+                            },
+                        ],
+                    }}
                     trigger={["click"]}
                 >
                     <Icons.MoreOutlined
