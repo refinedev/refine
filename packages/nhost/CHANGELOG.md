@@ -1,5 +1,11 @@
 # @refinedev/nhost
 
+## 4.1.5
+
+### Patch Changes
+
+-   [#5330](https://github.com/refinedev/refine/pull/5330) [`7c8827b43d`](https://github.com/refinedev/refine/commit/7c8827b43d9e378818be6ee23032925c97ce02d5) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: upgrade nock library version to ^13.4.0
+
 ## 4.1.4
 
 ### Patch Changes

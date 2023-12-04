@@ -1,5 +1,14 @@
 # @refinedev/mantine
 
+## 4.5.15
+
+### Patch Changes
+
+-   [#5335](https://github.com/refinedev/refine/pull/5335) [`9321a02a8f`](https://github.com/refinedev/refine/commit/9321a02a8f909d933088374d33a486bb9330512e) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: Material UI snapshots tests.
+
+-   Updated dependencies [[`17aa8c1cd6`](https://github.com/refinedev/refine/commit/17aa8c1cd6858c5a2b0c996c97230047e049bf3b), [`dd8f1270f6`](https://github.com/refinedev/refine/commit/dd8f1270f692d1eec279973e53fcc5a7e650b983), [`4c49ef0a06`](https://github.com/refinedev/refine/commit/4c49ef0a0660c2941c983025a187d45b521aa27c), [`3bdb9cb1cb`](https://github.com/refinedev/refine/commit/3bdb9cb1cb4cdcfaf363e7e9938737ed6f8e634e), [`f8e407f850`](https://github.com/refinedev/refine/commit/f8e407f85054bccf1e6ff45c84928bc01db7f5eb)]:
+    -   @refinedev/core@4.46.0
+
 ## 4.5.14
 
 ### Patch Changes

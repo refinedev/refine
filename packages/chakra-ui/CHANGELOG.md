@@ -1,5 +1,22 @@
 # @refinedev/chakra-ui
 
+## 2.27.0
+
+### Minor Changes
+
+-   [#5307](https://github.com/refinedev/refine/pull/5307) [`f8e407f850`](https://github.com/refinedev/refine/commit/f8e407f85054bccf1e6ff45c84928bc01db7f5eb) Thanks [@jackprogramsjp](https://github.com/jackprogramsjp)! - feat: added `hideForm` props for `LoginPage` and `RegisterPage` for `AuthPage` feature.
+
+    Now with the `hideForm` props feature, you can be able to hide the forms (like email/password)
+    to only show the OAuth providers. This avoids having to make your own entire AuthPage.
+
+### Patch Changes
+
+-   [#5269](https://github.com/refinedev/refine/pull/5269) [`a23a0945d3`](https://github.com/refinedev/refine/commit/a23a0945d3fe003ae081fca1c47312dd6bf8c2ee) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: add "autoComplete" field for Login pages.
+
+-   [#5325](https://github.com/refinedev/refine/pull/5325) [`7ff54b2060`](https://github.com/refinedev/refine/commit/7ff54b2060b0ce942c4170f744cbdf52d0940434) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `<AuthPage />` styling issues on mobile screens.
+
+    chore: new tests are added to `<AuthPage />`.
+
 ## 2.26.17
 
 ### Patch Changes

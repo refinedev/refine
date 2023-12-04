@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@refinedev/cli": "^2.16.19",
-    "@refinedev/core": "^4.45.1",
+    "@refinedev/cli": "^2.16.20",
+    "@refinedev/core": "^4.46.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
-    "@refinedev/simple-rest": "^4.5.4",
-    "@refinedev/antd": "^5.36.19",
+    "@refinedev/simple-rest": "^5.0.0",
+    "@refinedev/antd": "^5.37.0",
     "@refinedev/react-router-v6": "^4.5.4"
   },
   "devDependencies": {
