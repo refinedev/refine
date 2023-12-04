@@ -6,7 +6,7 @@ type CardInfo = {
     title: string;
     description: string;
     link: string;
-    icon: React.ReactNode;
+    iconUrl: string;
 };
 
 const cards: CardInfo[] = [
@@ -15,86 +15,32 @@ const cards: CardInfo[] = [
         description:
             "Learn about the technical details of using refine in your projects.",
         link: "https://refine.dev/",
-        icon: (
-            <svg
-                width="14"
-                height="16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a1 1 0 0 0-1-1H3a1 1 0 0 1 0-2h10a1 1 0 1 0 0-2H2Z"
-                    fill="#fff"
-                />
-            </svg>
-        ),
+        iconUrl:
+            "https://refine.ams3.cdn.digitaloceanspaces.com/welcome-page/book.svg",
     },
     {
         title: "Tutorial",
         description:
             "Learn how to use refine by building a fully-functioning CRUD app, from scratch to full launch.",
         link: "https://refine.dev/docs/tutorial/introduction/index/",
-        icon: (
-            <svg
-                width="16"
-                height="14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="M0 4.573c0-.475.163-.948.53-1.25a4.57 4.57 0 0 1 .854-.553L5.956.485a4.571 4.571 0 0 1 4.088 0l4.572 2.285c.308.154.594.34.853.553.306.251.47.62.517 1.01.01.055.014.112.014.169v6.5a1 1 0 0 1-2 0V6.684l-3.956 1.978a4.571 4.571 0 0 1-4.088 0L1.384 6.376a4.57 4.57 0 0 1-.853-.553C.163 5.522 0 5.05 0 4.573Z"
-                    fill="#fff"
-                />
-                <path
-                    d="M5.061 13.305 3 12.274V9.42l2.061 1.031a6.571 6.571 0 0 0 5.878 0L13 9.421v2.853l-2.061 1.03a6.571 6.571 0 0 1-5.878 0Z"
-                    fill="#fff"
-                />
-            </svg>
-        ),
+        iconUrl:
+            "https://refine.ams3.cdn.digitaloceanspaces.com/welcome-page/hat.svg",
     },
     {
         title: "Examples",
         description:
             "A collection of reference applications you can use as a starting point.",
         link: "https://refine.dev/examples",
-        icon: (
-            <svg
-                width="16"
-                height="16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4H0V2Zm3 2a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm4-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm2 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
-                    fill="#fff"
-                />
-                <path
-                    d="M0 14V8h16v6a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2Z"
-                    fill="#fff"
-                />
-            </svg>
-        ),
+        iconUrl:
+            "https://refine.ams3.cdn.digitaloceanspaces.com/welcome-page/application.svg",
     },
     {
         title: "Community",
         description:
             "Join our Discord community and keep up with the latest news.",
         link: "https://discord.gg/refine",
-        icon: (
-            <svg
-                width="16"
-                height="12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="M13.553 1.005A13.334 13.334 0 0 0 10.253 0c-.156.276-.298.56-.423.85a12.42 12.42 0 0 0-3.664 0A8.975 8.975 0 0 0 5.744 0 13.43 13.43 0 0 0 2.44 1.007C.351 4.066-.215 7.05.068 9.99A13.36 13.36 0 0 0 4.116 12c.328-.436.618-.9.867-1.384a8.647 8.647 0 0 1-1.365-.645c.115-.082.227-.167.335-.249a9.594 9.594 0 0 0 8.094 0c.11.089.222.173.335.25-.436.254-.894.47-1.368.646.249.484.539.946.867 1.382a13.3 13.3 0 0 0 4.051-2.01c.332-3.41-.568-6.365-2.379-8.985Zm-8.21 7.176c-.79 0-1.442-.709-1.442-1.58 0-.872.63-1.587 1.439-1.587s1.456.715 1.442 1.586c-.014.872-.636 1.58-1.44 1.58Zm5.315 0c-.79 0-1.44-.709-1.44-1.58 0-.872.63-1.587 1.44-1.587.81 0 1.452.715 1.438 1.586-.014.872-.634 1.58-1.438 1.58Z"
-                    fill="#fff"
-                />
-            </svg>
-        ),
+        iconUrl:
+            "https://refine.ams3.cdn.digitaloceanspaces.com/welcome-page/discord.svg",
     },
 ];
 
@@ -263,7 +209,7 @@ type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ card }) => {
-    const { title, description, icon, link } = card;
+    const { title, description, iconUrl, link } = card;
 
     const [isHover, setIsHover] = useState(false);
 
@@ -292,7 +238,16 @@ const Card: React.FC<CardProps> = ({ card }) => {
                     }}
                     href={link}
                 >
-                    {icon}
+                    <div
+                        style={{
+                            width: "16px",
+                            height: "16px",
+                            backgroundPosition: "center",
+                            backgroundSize: "contain",
+                            backgroundRepeat: "no-repeat",
+                            backgroundImage: `url(${iconUrl})`,
+                        }}
+                    />
                     <span
                         style={{
                             fontSize: "16px",
