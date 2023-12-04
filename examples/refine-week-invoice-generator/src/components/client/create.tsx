@@ -31,7 +31,6 @@ export const CreateClient: React.FC<CreateClientProps> = ({
     const { selectProps } = useSelect<IContact>({
         resource: "contacts",
         optionLabel: "first_name",
-
         pagination: {
             mode: "server",
         },
@@ -63,8 +62,8 @@ export const CreateClient: React.FC<CreateClientProps> = ({
                         }}
                     >
                         <Form.Item
-                            label="Client Company Name"
                             name="name"
+                            label="Client Name"
                             rules={[
                                 {
                                     required: true,
@@ -73,15 +72,17 @@ export const CreateClient: React.FC<CreateClientProps> = ({
                         >
                             <Input />
                         </Form.Item>
-                        <Form.Item label="Select Contact">
-                            <div style={{ display: "flex" }}>
-                                <Form.Item name={"contacts"} noStyle>
-                                    <Select {...selectProps} mode="multiple" />
-                                </Form.Item>
+                        <Form.Item
+                            name="contacts"
+                            label="Select Contacts"
+                            rules={[{ required: true }]}
+                            extra={
                                 <Button type="link" onClick={() => show()}>
                                     Create Contact
                                 </Button>
-                            </div>
+                            }
+                        >
+                            <Select {...selectProps} mode="multiple" />
                         </Form.Item>
                     </Form>
                 </Create>
