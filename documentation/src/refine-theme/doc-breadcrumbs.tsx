@@ -21,23 +21,18 @@ export const DocBreadcrumbs = () => {
         return null;
     }
 
-    const breadcrumbList = useMemo(() => {
-        const breadcrumbsLength = breadcrumbs.length;
-        const shouldRenderDotdotdot = breadcrumbsLength >= 3 && !breakpoints.sm;
-
-        if (!shouldRenderDotdotdot) {
-            return breadcrumbs;
-        }
-
-        const firstBreadcrumb = breadcrumbs[0];
-        const lastBreadcrumb = breadcrumbs[breadcrumbsLength - 1];
-        const secondLastBreadcrumb = breadcrumbs[breadcrumbsLength - 2];
+    const [breadcrumbList, renderDots] = useMemo(() => {
+        const shouldRenderDotdotdot = breadcrumbs.length > 3 && !breakpoints.sm;
 
         return [
-            firstBreadcrumb,
-            hiddenBreadcrumbText,
-            lastBreadcrumb,
-            secondLastBreadcrumb,
+            (breadcrumbs as any[]).map((item, index, array) => ({
+                ...item,
+                hideOnMobile:
+                    shouldRenderDotdotdot &&
+                    index > 0 &&
+                    index < array.length - 2,
+            })),
+            shouldRenderDotdotdot,
         ];
     }, [breadcrumbs]);
 
@@ -73,52 +68,91 @@ export const DocBreadcrumbs = () => {
                 itemType="https://schema.org/BreadcrumbList"
             >
                 {homePageRoute && (
-                    <li>
-                        <Link href="/docs">
+                    <li
+                        itemScope={true}
+                        itemProp="itemListElement"
+                        itemType="https://schema.org/ListItem"
+                    >
+                        <Link href="/docs" itemProp="item">
                             <HomeIcon className="text-gray-400 dark:text-gray-400" />
-                            <span className="sr-only">Documentation</span>
+                            <span className="sr-only" itemProp="name">
+                                Documentation
+                            </span>
+                            <meta itemProp="position" content="1" />
                         </Link>
                     </li>
                 )}
                 {breadcrumbList.map((item, idx) => {
-                    const isHidden = item === hiddenBreadcrumbText;
                     const isLast = idx === breadcrumbs.length - 1;
 
                     return (
-                        <li
-                            key={idx}
-                            className={clsx("flex flex-row flex-nowrap")}
-                        >
-                            <ChevronRightIcon className="text-gray-300" />
-                            {isHidden ? (
-                                <div className="text-gray-600 dark:text-gray-400">
-                                    {hiddenBreadcrumbText}
-                                </div>
-                            ) : item.href && !isLast ? (
-                                <Link
-                                    href={item.href}
+                        <>
+                            <li
+                                key={idx}
+                                className={clsx("flex-row flex-nowrap")}
+                                itemScope={true}
+                                itemProp="itemListElement"
+                                itemType="https://schema.org/ListItem"
+                                style={{
+                                    display: item.hideOnMobile
+                                        ? "none"
+                                        : "flex",
+                                }}
+                            >
+                                <ChevronRightIcon className="text-gray-300" />
+                                {item.href && !isLast ? (
+                                    <Link
+                                        href={item.href}
+                                        className={clsx(
+                                            "text-gray-600 dark:text-gray-400",
+                                            "text-sm",
+                                            "leading-6",
+                                        )}
+                                        itemProp="item"
+                                        itemID={item.href}
+                                    >
+                                        <span itemProp="name">
+                                            {item.label}
+                                        </span>
+                                    </Link>
+                                ) : (
+                                    <span
+                                        className={clsx(
+                                            isLast
+                                                ? "text-gray-500"
+                                                : "text-gray-600 dark:text-gray-400",
+                                            "text-sm",
+                                            "leading-6",
+                                        )}
+                                        itemProp="item"
+                                        itemID="#"
+                                    >
+                                        <span itemProp="name">
+                                            {item.label}
+                                        </span>
+                                    </span>
+                                )}
+                                <meta
+                                    itemProp="position"
+                                    content={String(idx + 2)}
+                                />
+                            </li>
+                            {idx === 0 &&
+                            breadcrumbList.length > 1 &&
+                            renderDots ? (
+                                <li
+                                    key={idx}
                                     className={clsx(
-                                        "text-gray-600 dark:text-gray-400",
-                                        "text-sm",
-                                        "leading-6",
+                                        "flex flex-row flex-nowrap",
                                     )}
                                 >
-                                    {item.label}
-                                </Link>
-                            ) : (
-                                <span
-                                    className={clsx(
-                                        isLast
-                                            ? "text-gray-500"
-                                            : "text-gray-600 dark:text-gray-400",
-                                        "text-sm",
-                                        "leading-6",
-                                    )}
-                                >
-                                    {item.label}
-                                </span>
-                            )}
-                        </li>
+                                    <ChevronRightIcon className="text-gray-300" />
+                                    <div className="text-gray-600 dark:text-gray-400">
+                                        {hiddenBreadcrumbText}
+                                    </div>
+                                </li>
+                            ) : null}
+                        </>
                     );
                 })}
             </ul>
