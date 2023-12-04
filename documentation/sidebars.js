@@ -974,6 +974,13 @@ module.exports = {
                 },
             ],
         },
+        // Enterprise Edition
+        {
+            type: "category",
+            label: "Enterprise Edition",
+            className: "category-as-header",
+            items: ["enterprise-edition/okta/index"],
+        },
         // Migration Guide
         {
             type: "category",

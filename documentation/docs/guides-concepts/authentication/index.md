@@ -16,7 +16,7 @@ Refine's **flexible architecture** allows you to easily implement various authen
 
 - [Google](https://developers.google.com/identity/protocols/oauth2)
 - [Amazon Cognito](https://aws.amazon.com/cognito/)
-- [Okta](https://www.okta.com/)
+- [Okta](https://www.okta.com/) (Included in [Refine's Enterprise Edition](/docs/enterprise-edition/okta))
 - [Auth0](https://auth0.com/)
 
 You can implement your own authentication system or use one of the [supported auth providers](#supported-auth-providers).
