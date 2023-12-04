@@ -2,20 +2,16 @@ import { IResourceComponentsProps } from "@refinedev/core";
 import { useForm, useSelect, Edit } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
-import { IInvoice } from "../../interfaces";
+import { IInvoice, IMission } from "../../interfaces";
 
 export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IInvoice>({
+    const { formProps, saveButtonProps } = useForm<IInvoice>({
         meta: { populate: ["company", "contact", "missions"] },
     });
 
-    const defaultValue = queryResult?.data?.data;
-
     const { selectProps: companySelectProps } = useSelect({
         resource: "companies",
-        defaultValue: defaultValue?.company.id,
         optionLabel: "name",
-
         pagination: {
             mode: "server",
         },
@@ -23,9 +19,7 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: contactSelectProps } = useSelect({
         resource: "contacts",
-        defaultValue: defaultValue?.contact?.id,
         optionLabel: "first_name",
-
         pagination: {
             mode: "server",
         },
@@ -34,7 +28,6 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: missionSelectProps } = useSelect({
         resource: "missions",
         optionLabel: "mission",
-
         pagination: {
             mode: "server",
         },
@@ -44,6 +37,15 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
         <Edit saveButtonProps={saveButtonProps}>
             <Form
                 {...formProps}
+                initialValues={{
+                    ...formProps.initialValues,
+                    missions: formProps.initialValues?.missions?.map(
+                        (m: IMission) => ({
+                            label: m.mission,
+                            value: m.id,
+                        }),
+                    ),
+                }}
                 layout="vertical"
                 wrapperCol={{ md: 18, lg: 16 }}
             >

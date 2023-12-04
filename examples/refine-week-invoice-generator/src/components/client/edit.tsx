@@ -51,12 +51,18 @@ export const EditClient: React.FC<EditClientProps> = ({
                     layout="vertical"
                     initialValues={{
                         isActive: true,
+                        ...formProps.initialValues,
+                        contacts: formProps.initialValues?.contacts?.map(
+                            (c: IContact) => ({
+                                label: c.first_name,
+                                value: c.id,
+                            }),
+                        ),
                     }}
                 >
                     <Form.Item
-                        label="Client Company Name"
+                        label="Client Name"
                         name="name"
-                        initialValue={formProps.initialValues?.name}
                         rules={[
                             {
                                 required: true,
@@ -65,16 +71,7 @@ export const EditClient: React.FC<EditClientProps> = ({
                     >
                         <Input />
                     </Form.Item>
-                    <Form.Item
-                        initialValue={formProps?.initialValues?.contacts?.map(
-                            (c: IContact) => ({
-                                label: c.first_name,
-                                value: c.id,
-                            }),
-                        )}
-                        label="Select Contact"
-                        name="contacts"
-                    >
+                    <Form.Item label="Select Contacts" name={["contacts"]}>
                         <Select {...selectProps} mode="multiple" />
                     </Form.Item>
                 </Form>

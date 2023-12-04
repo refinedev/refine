@@ -9,14 +9,10 @@ export const EditContact: React.FC<IResourceComponentsProps> = () => {
         meta: { populate: ["client"] },
     });
 
-    const defaultClientCompany = queryResult?.data?.data;
-
     const { selectProps } = useSelect({
         resource: "clients",
-        defaultValue: defaultClientCompany?.client?.id,
         optionValue: "id",
         optionLabel: "name",
-
         pagination: {
             mode: "server",
         },

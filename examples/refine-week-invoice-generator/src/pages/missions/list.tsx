@@ -25,7 +25,6 @@ export const MissionList: React.FC = () => {
         modalProps: editModalProps,
         show: editShow,
     } = useModalForm({
-        resource: "missions",
         action: "edit",
     });
 
