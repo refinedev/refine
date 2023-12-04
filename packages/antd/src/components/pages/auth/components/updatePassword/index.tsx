@@ -27,7 +27,7 @@ import {
     headStyles,
     bodyStyles,
 } from "../styles";
-import { ThemedTitle } from "@components";
+import { ThemedTitleV2 } from "@components";
 
 const { Title } = Typography;
 const { useToken } = theme;
@@ -69,7 +69,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? <ThemedTitleV2 collapsed={false} />}
             </div>
         );
 
@@ -184,7 +184,8 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                 justify="center"
                 align="middle"
                 style={{
-                    height: "100vh",
+                    padding: "16px 0",
+                    minHeight: "100dvh",
                 }}
             >
                 <Col xs={22}>
