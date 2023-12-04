@@ -155,8 +155,6 @@ export function useLogin<TVariables = {}>({
                 open?.(buildNotification(error));
             }
 
-            await invalidateAuthStore();
-
             if (to && success) {
                 if (routerType === "legacy") {
                     replace(to as string);
@@ -174,6 +172,8 @@ export function useLogin<TVariables = {}>({
                     replace("/");
                 }
             }
+
+            await invalidateAuthStore();
         },
         onError: (error: any) => {
             open?.(buildNotification(error));
@@ -200,8 +200,6 @@ export function useLogin<TVariables = {}>({
         legacyLoginFromContext,
         {
             onSuccess: async (redirectPathFromAuth) => {
-                await invalidateAuthStore();
-
                 if (to) {
                     replace(to as string);
                 }
@@ -221,6 +219,8 @@ export function useLogin<TVariables = {}>({
                         }
                     }
                 }
+
+                await invalidateAuthStore();
 
                 close?.("login-error");
             },

@@ -67,6 +67,14 @@ module.exports = {
                         src: "./src/utils/axios.ts",
                         dest: "./providers/nestjsx-crud/utils/axios.ts",
                     },
+                    {
+                        src: "./src/utils/transformErrorMessages.ts",
+                        dest: "./providers/nestjsx-crud/utils/transformErrorMessages.ts"
+                    },
+                    {
+                        src: "./src/utils/transformHttpError.ts",
+                        dest: "./providers/nestjsx-crud/utils/transformHttpError.ts"
+                    }
                 ],
             },
         ],

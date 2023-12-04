@@ -1,21 +1,17 @@
 import React, { FC, PropsWithChildren } from "react";
 import { Card, Skeleton, Typography } from "antd";
-import { useCustom } from "@refinedev/core";
+import { useList } from "@refinedev/core";
 import { Area, AreaConfig } from "@ant-design/plots";
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
 
 type MetricType = "companies" | "contacts" | "deals";
 
 export const MetricCard = ({ variant }: { variant: MetricType }) => {
-    const { data, isLoading, isError, error } = useCustom({
-        method: "post",
-        url: "https://api.crm.refine.dev/graphql",
+    const { data, isLoading, isError, error } = useList({
+        resource: variant,
+        liveMode: "off",
         meta: {
-            rawQuery: `query Dashboard {
-                ${variant} {
-                  totalCount
-                }
-              }`,
+            fields: ["id"],
         },
     });
 
@@ -110,7 +106,7 @@ export const MetricCard = ({ variant }: { variant: MetricType }) => {
                             fontVariantNumeric: "tabular-nums",
                         }}
                     >
-                        {data?.data[variant].totalCount}
+                        {data?.total}
                     </Typography.Text>
                 )}
             </div>

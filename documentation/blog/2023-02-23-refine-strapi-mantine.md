@@ -111,17 +111,14 @@ The refine documentation does a great job of explaining the `useForm` hook. Chec
 import { useForm } from "@refinedev/mantine";
 
 const { saveButtonProps, getInputProps } = useForm({
-    initialValues: {
-        title: "",
-        status: "",
-    },
-    validate: {
-        title: (value) =>
-            value.length < 2
-                ? "Post title should be atleast 2 characters long"
-                : null,
-        status: (value) => (value.length <= 0 ? "Status is required" : null),
-    },
+  initialValues: {
+    title: "",
+    status: "",
+  },
+  validate: {
+    title: (value) => (value.length < 2 ? "Post title should be atleast 2 characters long" : null),
+    status: (value) => (value.length <= 0 ? "Status is required" : null),
+  },
 });
 ```
 
@@ -141,17 +138,17 @@ We need to fetch the list of posts from our Strapi API and display it when you l
 
 ```ts title="src/interfaces/index.d.ts"
 export interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 export interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: ICategory;
-    createdAt: string;
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: ICategory;
+  createdAt: string;
 }
 ```
 
@@ -173,87 +170,71 @@ import { Table, Pagination } from "@mantine/core";
 import { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                accessorKey: "id",
-                header: "Id",
-            },
-            {
-                id: "title",
-                accessorKey: "title",
-                header: "Title",
-            },
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        accessorKey: "id",
+        header: "Id",
+      },
+      {
+        id: "title",
+        accessorKey: "title",
+        header: "Title",
+      },
 
-            {
-                id: "createdAt",
-                accessorKey: "createdAt",
-                header: "Created At",
-                cell: function render({ getValue }) {
-                    return <DateField format="LL" value={getValue<string>()} />;
-                },
-            },
-        ],
-        [],
-    );
+      {
+        id: "createdAt",
+        accessorKey: "createdAt",
+        header: "Created At",
+        cell: function render({ getValue }) {
+          return <DateField format="LL" value={getValue<string>()} />;
+        },
+      },
+    ],
+    [],
+  );
 
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { setCurrent, pageCount, current },
-    } = useTable({
-        columns,
-    });
+  const {
+    getHeaderGroups,
+    getRowModel,
+    refineCore: { setCurrent, pageCount, current },
+  } = useTable({
+    columns,
+  });
 
-    return (
-        <List>
-            <Table highlightOnHover striped withBorder withColumnBorders>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => {
-                                return (
-                                    <th key={header.id}>
-                                        {!header.isPlaceholder &&
-                                            flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext(),
-                                            )}
-                                    </th>
-                                );
-                            })}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => {
-                        return (
-                            <tr key={row.id}>
-                                {row.getVisibleCells().map((cell) => {
-                                    return (
-                                        <td key={cell.id}>
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext(),
-                                            )}
-                                        </td>
-                                    );
-                                })}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </Table>
-            <br />
-            <Pagination
-                position="right"
-                total={pageCount}
-                page={current}
-                onChange={setCurrent}
-            />
-        </List>
-    );
+  return (
+    <List>
+      <Table highlightOnHover striped withBorder withColumnBorders>
+        <thead>
+          {getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
+                return (
+                  <th key={header.id}>
+                    {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+                  </th>
+                );
+              })}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {getRowModel().rows.map((row) => {
+            return (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => {
+                  return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+      <br />
+      <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+    </List>
+  );
 };
 ```
 
@@ -284,26 +265,16 @@ Finally, replace the `src/App.tsx` file with the code below:
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import {
-    notificationProvider,
-    RefineThemes,
-    ThemedLayoutV2,
-    AuthPage,
-} from "@refinedev/mantine";
+import { notificationProvider, RefineThemes, ThemedLayoutV2, AuthPage } from "@refinedev/mantine";
 import { DataProvider } from "@refinedev/strapi-v4";
 import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
-    CatchAllNavigate,
+  NavigateToResource,
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
+  CatchAllNavigate,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
-import {
-    MantineProvider,
-    Global,
-    ColorSchemeProvider,
-    ColorScheme,
-} from "@mantine/core";
+import { MantineProvider, Global, ColorSchemeProvider, ColorScheme } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { useLocalStorage } from "@mantine/hooks";
 
@@ -313,111 +284,82 @@ import { API_URL } from "./constants";
 import { PostList } from "./pages/posts";
 
 function App() {
-    const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-        key: "mantine-color-scheme",
-        defaultValue: "light",
-        getInitialValueInEffect: true,
-    });
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: "mantine-color-scheme",
+    defaultValue: "light",
+    getInitialValueInEffect: true,
+  });
 
-    const toggleColorScheme = (value?: ColorScheme) =>
-        setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                <ColorSchemeProvider
-                    colorScheme={colorScheme}
-                    toggleColorScheme={toggleColorScheme}
-                >
-                    <MantineProvider
-                        theme={{
-                            ...RefineThemes.Blue,
-                            colorScheme: colorScheme,
-                        }}
-                        withNormalizeCSS
-                        withGlobalStyles
-                    >
-                        <Global
-                            styles={{ body: { WebkitFontSmoothing: "auto" } }}
-                        />
-                        <NotificationsProvider position="top-right">
-                            <Refine
-                                authProvider={authProvider}
-                                dataProvider={DataProvider(
-                                    API_URL + `/api`,
-                                    axiosInstance,
-                                )}
-                                notificationProvider={notificationProvider}
-                                routerProvider={routerBindings}
-                                resources={[
-                                    {
-                                        name: "posts",
-                                        list: "/posts",
-                                    },
-                                ]}
-                                options={{
-                                    syncWithLocation: true,
-                                    warnWhenUnsavedChanges: true,
-                                }}
-                            >
-                                <Routes>
-                                    <Route
-                                        element={
-                                            <Authenticated
-                                                fallback={
-                                                    <CatchAllNavigate to="/login" />
-                                                }
-                                            >
-                                                <ThemedLayoutV2
-                                                    Header={() => (
-                                                        <Header sticky />
-                                                    )}
-                                                >
-                                                    <Outlet />
-                                                </ThemedLayoutV2>
-                                            </Authenticated>
-                                        }
-                                    >
-                                        <Route
-                                            index
-                                            element={
-                                                <NavigateToResource resource="posts" />
-                                            }
-                                        />
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+          <MantineProvider
+            theme={{
+              ...RefineThemes.Blue,
+              colorScheme: colorScheme,
+            }}
+            withNormalizeCSS
+            withGlobalStyles
+          >
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+            <NotificationsProvider position="top-right">
+              <Refine
+                authProvider={authProvider}
+                dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
+                notificationProvider={notificationProvider}
+                routerProvider={routerBindings}
+                resources={[
+                  {
+                    name: "posts",
+                    list: "/posts",
+                  },
+                ]}
+                options={{
+                  syncWithLocation: true,
+                  warnWhenUnsavedChanges: true,
+                }}
+              >
+                <Routes>
+                  <Route
+                    element={
+                      <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                        <ThemedLayoutV2 Header={() => <Header sticky />}>
+                          <Outlet />
+                        </ThemedLayoutV2>
+                      </Authenticated>
+                    }
+                  >
+                    <Route index element={<NavigateToResource resource="posts" />} />
 
-                                        <Route path="/posts">
-                                            <Route
-                                                index
-                                                element={<PostList />}
-                                            />
-                                        </Route>
-                                    </Route>
+                    <Route path="/posts">
+                      <Route index element={<PostList />} />
+                    </Route>
+                  </Route>
 
-                                    <Route
-                                        element={
-                                            <Authenticated
-                                                fallback={<Outlet />}
-                                            >
-                                                <NavigateToResource resource="posts" />
-                                            </Authenticated>
-                                        }
-                                    >
-                                        <Route
-                                            path="/login"
-                                            element={<AuthPage type="login" />}
-                                        />
-                                    </Route>
-                                </Routes>
-                                <RefineKbar />
-                                <UnsavedChangesNotifier />
-                                <DocumentTitleHandler />
-                            </Refine>
-                        </NotificationsProvider>
-                    </MantineProvider>
-                </ColorSchemeProvider>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+                  <Route
+                    element={
+                      <Authenticated fallback={<Outlet />}>
+                        <NavigateToResource resource="posts" />
+                      </Authenticated>
+                    }
+                  >
+                    <Route path="/login" element={<AuthPage type="login" />} />
+                  </Route>
+                </Routes>
+                <RefineKbar />
+                <UnsavedChangesNotifier />
+                <DocumentTitleHandler />
+              </Refine>
+            </NotificationsProvider>
+          </MantineProvider>
+        </ColorSchemeProvider>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -433,7 +375,7 @@ You can refer to the [`<Refine />`](https://refine.dev/docs/api-reference/core/c
 
 We'll use [React Router v6](https://refine.dev/docs/packages/documentation/routers/react-router-v6/) for routing in our application. refine provides router bindings and utilities for React Router v6. It is built on top of the `react-router-dom` and it provides easy integration between refine and `react-router-dom`.
 
-We used to `<Route />` components to define the routes for rendering the CRUD pages and authentication pages. For protected routes, we used the [`<Authenticated />`](https://refine.dev/docs/api-reference/core/components/authenticated/) component. The `<Authenticated />` component will redirect the user to the login page if they are not logged in.
+We used to `<Route />` components to define the routes for rendering the CRUD pages and authentication pages. For protected routes, we used the [`<Authenticated />`](https://refine.dev/docs/api-reference/core/components/auth/authenticated) component. The `<Authenticated />` component will redirect the user to the login page if they are not logged in.
 
 Finally, we used the [`<ThemedLayoutV2 />`](https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout/) component to wrap protected routes.
 
@@ -443,8 +385,6 @@ After modifying your code, let's update the `src/constants.ts` to use the fake S
 export const API_URL = "https://automatic-sweltering-dog.strapiapp.com";
 export const TOKEN_KEY = "strapi-jwt-token";
 ```
-
-
 
 ### Understanding the `authProvider` concept
 
@@ -456,30 +396,28 @@ Of particular interest is the `login` method of the `authProvider`. We will use 
 import type { AuthBindings } from "@refinedev/core";
 
 export const authProvider: AuthBindings = {
-    login: async ({ email, password }) => {
-        const { data, status } = await strapiAuthHelper.login(email, password);
-        if (status === 200) {
-            localStorage.setItem(TOKEN_KEY, data.jwt);
+  login: async ({ email, password }) => {
+    const { data, status } = await strapiAuthHelper.login(email, password);
+    if (status === 200) {
+      localStorage.setItem(TOKEN_KEY, data.jwt);
 
-            // set header axios instance
-            axiosInstance.defaults.headers.common[
-                "Authorization"
-            ] = `Bearer ${data.jwt}`;
+      // set header axios instance
+      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
 
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        }
-        return {
-            success: false,
-            error: {
-                message: "Login failed",
-                name: "Invalid email or password",
-            },
-        };
-    },
-    //...
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    }
+    return {
+      success: false,
+      error: {
+        message: "Login failed",
+        name: "Invalid email or password",
+      },
+    };
+  },
+  //...
 };
 ```
 
@@ -487,7 +425,7 @@ After these changes, you should be able to log into your application. Open the b
 
 For this demonstration, use the credentials below to log into an existing account. It is a fake Strapi instance set up for development. Be sure to use it responsibly.
 
-> Email: demo@refine.dev  
+> Email: demo@refine.dev
 > Password: demodemo
 
 <img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-23-refine-strapi-mantine/login-page.jpeg"  alt="react admin panel" className="border border-gray-200 rounded" />
@@ -513,18 +451,18 @@ import { useTable } from "@refinedev/react-table";
 //...
 
 const {
-    getHeaderGroups,
-    getRowModel,
-    refineCore: { setCurrent, pageCount, current },
+  getHeaderGroups,
+  getRowModel,
+  refineCore: { setCurrent, pageCount, current },
 } = useTable({
-    columns,
-    //highlight-start
-    refineCoreProps: {
-        meta: {
-            populate: ["category"],
-        },
+  columns,
+  //highlight-start
+  refineCoreProps: {
+    meta: {
+      populate: ["category"],
     },
-    //highlight-end
+  },
+  //highlight-end
 });
 //...
 ```
@@ -536,19 +474,19 @@ Since each post object now has a category field, we need to add a category colum
 ```tsx title="src/pages/posts/list.tsx"
 //...
 const columns = React.useMemo<ColumnDef<IPost>[]>(
-    () => [
-        //...
-        //highlight-start
-        {
-            id: "category",
-            header: "Category",
-            accessorFn: ({ category }) => {
-                return category?.title;
-            },
-        },
-        //highlight-end
-    ],
-    [],
+  () => [
+    //...
+    //highlight-start
+    {
+      id: "category",
+      header: "Category",
+      accessorFn: ({ category }) => {
+        return category?.title;
+      },
+    },
+    //highlight-end
+  ],
+  [],
 );
 //...
 ```
@@ -575,65 +513,56 @@ import { TextInput, Select } from "@mantine/core";
 import { ICategory } from "../../interfaces";
 
 export const PostCreate = () => {
-    const {
-        getInputProps,
-        saveButtonProps,
-        refineCore: { formLoading },
-    } = useForm({
-        initialValues: {
-            title: "",
-            category: {
-                id: "",
-            },
-            status: "",
-        },
-        validate: {
-            title: (value) =>
-                value.length < 5
-                    ? "Title should be atleast 5 characters long"
-                    : null,
-            category: {
-                id: (value) => (value.length <= 0 ? "Title is required" : null),
-            },
-            status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
-        },
-    });
+  const {
+    getInputProps,
+    saveButtonProps,
+    refineCore: { formLoading },
+  } = useForm({
+    initialValues: {
+      title: "",
+      category: {
+        id: "",
+      },
+      status: "",
+    },
+    validate: {
+      title: (value) => (value.length < 5 ? "Title should be atleast 5 characters long" : null),
+      category: {
+        id: (value) => (value.length <= 0 ? "Title is required" : null),
+      },
+      status: (value) => (value.length <= 0 ? "Status is required" : null),
+    },
+  });
 
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
+  const { selectProps } = useSelect<ICategory>({
+    resource: "categories",
+  });
 
-    return (
-        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <TextInput
-                mt="sm"
-                required={true}
-                label="Title"
-                {...getInputProps("title")}
-            />
-            <Select
-                mt={8}
-                label="Status"
-                required={true}
-                placeholder="Pick one"
-                {...getInputProps("status")}
-                data={[
-                    { label: "Published", value: "published" },
-                    { label: "Draft", value: "draft" },
-                    { label: "Rejected", value: "rejected" },
-                ]}
-            />
-            <Select
-                mt={8}
-                label="Category"
-                required={true}
-                placeholder="Select category"
-                {...getInputProps("category.id")}
-                {...selectProps}
-            />
-        </Create>
-    );
+  return (
+    <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+      <TextInput mt="sm" required={true} label="Title" {...getInputProps("title")} />
+      <Select
+        mt={8}
+        label="Status"
+        required={true}
+        placeholder="Pick one"
+        {...getInputProps("status")}
+        data={[
+          { label: "Published", value: "published" },
+          { label: "Draft", value: "draft" },
+          { label: "Rejected", value: "rejected" },
+        ]}
+      />
+      <Select
+        mt={8}
+        label="Category"
+        required={true}
+        placeholder="Select category"
+        {...getInputProps("category.id")}
+        {...selectProps}
+      />
+    </Create>
+  );
 };
 ```
 
@@ -657,33 +586,33 @@ You can now import the `<PostCreate />` component into the `src/App.tsx` file. Y
 import { PostList, PostCreate } from "./pages/posts";
 
 function App() {
+  //...
+  return (
     //...
-    return (
-        //...
-        <Refine
-            //...
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                    //highlight-next-line
-                    create: "/posts/create",
-                },
-            ]}
-        >
-            <Routes>
-                {/*...*/}
-                <Route path="/posts">
-                    <Route index element={<PostList />} />
-                    //highlight-next-line
-                    <Route path="create" element={<PostCreate />} />
-                </Route>
-                {/*...*/}
-            </Routes>
-            {/*...*/}
-        </Refine>
-        //...
-    );
+    <Refine
+      //...
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          //highlight-next-line
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <Routes>
+        {/*...*/}
+        <Route path="/posts">
+          <Route index element={<PostList />} />
+          //highlight-next-line
+          <Route path="create" element={<PostCreate />} />
+        </Route>
+        {/*...*/}
+      </Routes>
+      {/*...*/}
+    </Refine>
+    //...
+  );
 }
 
 export default App;
@@ -707,27 +636,22 @@ import { Group } from "@mantine/core";
 //...
 
 const columns = React.useMemo<ColumnDef<IPost>[]>(
-    () => [
-        //...
-        {
-            id: "actions",
-            accessorKey: "id",
-            header: "Actions",
-            cell: ({ getValue }) => {
-                return (
-                    <Group>
-                        <EditButton
-                            hideText
-                            size="xs"
-                            recordItemId={getValue() as number}
-                            variant="subtle"
-                        />
-                    </Group>
-                );
-            },
-        },
-    ],
-    [],
+  () => [
+    //...
+    {
+      id: "actions",
+      accessorKey: "id",
+      header: "Actions",
+      cell: ({ getValue }) => {
+        return (
+          <Group>
+            <EditButton hideText size="xs" recordItemId={getValue() as number} variant="subtle" />
+          </Group>
+        );
+      },
+    },
+  ],
+  [],
 );
 
 //...
@@ -753,59 +677,51 @@ import { TextInput, Select } from "@mantine/core";
 import { ICategory } from "../../interfaces";
 
 export const PostEdit = () => {
-    const {
-        getInputProps,
-        saveButtonProps,
-        refineCore: { queryResult },
-    } = useForm({
-        initialValues: {
-            id: "",
-            title: "",
-            category: {
-                id: "",
-            },
-        },
-        refineCoreProps: {
-            metaData: {
-                populate: ["category"],
-            },
-        },
-        validate: {
-            title: (value) =>
-                value.length < 5
-                    ? "Title should be atleast 5 characters long"
-                    : null,
-            category: {
-                id: (value) => (value.length <= 0 ? "Title is required" : null),
-            },
-        },
-    });
+  const {
+    getInputProps,
+    saveButtonProps,
+    refineCore: { queryResult },
+  } = useForm({
+    initialValues: {
+      id: "",
+      title: "",
+      category: {
+        id: "",
+      },
+    },
+    refineCoreProps: {
+      metaData: {
+        populate: ["category"],
+      },
+    },
+    validate: {
+      title: (value) => (value.length < 5 ? "Title should be atleast 5 characters long" : null),
+      category: {
+        id: (value) => (value.length <= 0 ? "Title is required" : null),
+      },
+    },
+  });
 
-    const postData = queryResult?.data?.data;
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.category?.id,
-    });
+  const postData = queryResult?.data?.data;
+  const { selectProps } = useSelect<ICategory>({
+    resource: "categories",
+    defaultValue: postData?.category?.id,
+  });
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <TextInput mt="sm" disabled label="Id" {...getInputProps("id")} />
-            <TextInput
-                mt="sm"
-                required
-                label="Title"
-                {...getInputProps("title")}
-            />
-            <Select
-                mt={8}
-                label="Category"
-                required
-                placeholder="Select category"
-                {...selectProps}
-                {...getInputProps("category.id")}
-            />
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <TextInput mt="sm" disabled label="Id" {...getInputProps("id")} />
+      <TextInput mt="sm" required label="Title" {...getInputProps("title")} />
+      <Select
+        mt={8}
+        label="Category"
+        required
+        placeholder="Select category"
+        {...selectProps}
+        {...getInputProps("category.id")}
+      />
+    </Edit>
+  );
 };
 ```
 
@@ -827,35 +743,35 @@ Now, you can import the `<PostEdit />` component into the `src/App.tsx` file. Yo
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
 
 function App() {
+  //...
+  return (
     //...
-    return (
-        //...
-        <Refine
-            //...
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                    create: "/posts/create",
-                    //highlight-next-line
-                    edit: "/posts/edit/:id",
-                },
-            ]}
-        >
-            <Routes>
-                {/*...*/}
-                <Route path="/posts">
-                    <Route index element={<PostList />} />
-                    <Route path="create" element={<PostCreate />} />
-                    //highlight-next-line
-                    <Route path="edit/:id" element={<PostEdit />} />
-                </Route>
-                {/*...*/}
-            </Routes>
-            {/*...*/}
-        </Refine>
-        //...
-    );
+    <Refine
+      //...
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+          //highlight-next-line
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <Routes>
+        {/*...*/}
+        <Route path="/posts">
+          <Route index element={<PostList />} />
+          <Route path="create" element={<PostCreate />} />
+          //highlight-next-line
+          <Route path="edit/:id" element={<PostEdit />} />
+        </Route>
+        {/*...*/}
+      </Routes>
+      {/*...*/}
+    </Refine>
+    //...
+  );
 }
 
 export default App;
@@ -869,8 +785,8 @@ Clicking the edit button should now redirect you to a page for editing the conte
 
 You can use two methods to delete records in a collection. These methods are:
 
--   Using the delete action button on each table row
--   Using the delete button on the edit page
+- Using the delete action button on each table row
+- Using the delete button on the edit page
 
 #### How to add delete action button on each table row
 
@@ -887,35 +803,25 @@ import { Group } from "@mantine/core";
 //...
 
 const columns = React.useMemo<ColumnDef<IPost>[]>(
-    () => [
-        //...
-        {
-            id: "actions",
-            accessorKey: "id",
-            header: "Actions",
-            cell: ({ getValue }) => {
-                return (
-                    <Group>
-                        <EditButton
-                            hideText
-                            size="xs"
-                            recordItemId={getValue() as number}
-                            variant="subtle"
-                        />
-                        //highlight-start
-                        <DeleteButton
-                            hideText
-                            size="xs"
-                            recordItemId={getValue() as number}
-                            variant="subtle"
-                        />
-                        //highlight-end
-                    </Group>
-                );
-            },
-        },
-    ],
-    [],
+  () => [
+    //...
+    {
+      id: "actions",
+      accessorKey: "id",
+      header: "Actions",
+      cell: ({ getValue }) => {
+        return (
+          <Group>
+            <EditButton hideText size="xs" recordItemId={getValue() as number} variant="subtle" />
+            //highlight-start
+            <DeleteButton hideText size="xs" recordItemId={getValue() as number} variant="subtle" />
+            //highlight-end
+          </Group>
+        );
+      },
+    },
+  ],
+  [],
 );
 
 //...
@@ -933,29 +839,29 @@ Instead of adding a delete button to each row in a table, you can also add it to
 // ...
 
 function App() {
+  //...
+  return (
     //...
-    return (
-        //...
-        <Refine
-            //...
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                    create: "/posts/create",
-                    edit: "/posts/edit/:id",
-                    //highlight-start
-                    meta: {
-                        canDelete: true,
-                    },
-                    //highlight-end
-                },
-            ]}
-        >
-            {/*...*/}
-        </Refine>
-        //...
-    );
+    <Refine
+      //...
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+          edit: "/posts/edit/:id",
+          //highlight-start
+          meta: {
+            canDelete: true,
+          },
+          //highlight-end
+        },
+      ]}
+    >
+      {/*...*/}
+    </Refine>
+    //...
+  );
 }
 
 export default App;
@@ -969,9 +875,9 @@ Your edit page should now include a delete button on the bottom right.
 
 Mutation mode is a handy feature in refine when performing side effects. It can help you provide a better user experience to your clients. You can configure your refine app to use any of the three mutation modes below.
 
--   Pessimistic
--   Optimistic
--   Undoable
+- Pessimistic
+- Optimistic
+- Undoable
 
 ### Pessimistic mutation mode
 
@@ -991,17 +897,17 @@ You can configure the mutation mode using the `options` prop of the `<Refine />`
 // ...
 
 function App() {
+  //...
+  return (
     //...
-    return (
-        //...
-        <Refine
-            //...
-            options={{ mutationMode: "optimistic" }}
-        >
-            {/*...*/}
-        </Refine>
-        //...
-    );
+    <Refine
+      //...
+      options={{ mutationMode: "optimistic" }}
+    >
+      {/*...*/}
+    </Refine>
+    //...
+  );
 }
 
 export default App;
@@ -1017,17 +923,17 @@ By default, `npm create refine-app` bootstraps a refine application with the `sy
 // ...
 
 function App() {
+  //...
+  return (
     //...
-    return (
-        //...
-        <Refine
-            //...
-            options={{ syncWithLocation: true }}
-        >
-            {/*...*/}
-        </Refine>
-        //...
-    );
+    <Refine
+      //...
+      options={{ syncWithLocation: true }}
+    >
+      {/*...*/}
+    </Refine>
+    //...
+  );
 }
 
 export default App;
@@ -1049,104 +955,76 @@ Since we are using Mantine as our components library, import and add `<MantineIn
 // ...
 //highlight-start
 import {
-    MantineListInferencer,
-    MantineCreateInferencer,
-    MantineEditInferencer,
-    MantineShowInferencer,
-    InferField,
+  MantineListInferencer,
+  MantineCreateInferencer,
+  MantineEditInferencer,
+  MantineShowInferencer,
+  InferField,
 } from "@refinedev/inferencer/mantine";
 //highlight-end
 
 //highlight-start
 const fieldTransformer = (field: InferField) => {
-    if (["locale", "updatedAt", "publishedAt"].includes(field.key)) {
-        return false;
-    }
+  if (["locale", "updatedAt", "publishedAt"].includes(field.key)) {
+    return false;
+  }
 
-    return field;
+  return field;
 };
 //highlight-end
 
 function App() {
+  //...
+  return (
     //...
-    return (
-        //...
-        <Refine
-            //...
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                    create: "/posts/create",
-                    edit: "/posts/edit/:id",
-                    show: "/posts/show/:id",
-                    meta: {
-                        canDelete: true,
-                    },
-                },
-                //highlight-start
-                {
-                    name: "categories",
-                    list: "/categories",
-                    create: "/categories/create",
-                    edit: "/categories/edit/:id",
-                    show: "/categories/show/:id",
-                    meta: {
-                        canDelete: true,
-                    },
-                },
-                //highlight-end
-            ]}
-        >
-            <Routes>
-                {/*...*/}
-                <Route path="/posts">
-                    <Route index element={<PostList />} />
-                    <Route path="create" element={<PostCreate />} />
-                    <Route path="edit/:id" element={<PostEdit />} />
-                </Route>
-                //highlight-start
-                <Route path="/categories">
-                    <Route
-                        index
-                        element={
-                            <MantineListInferencer
-                                fieldTransformer={fieldTransformer}
-                            />
-                        }
-                    />
-                    <Route
-                        path="create"
-                        element={
-                            <MantineCreateInferencer
-                                fieldTransformer={fieldTransformer}
-                            />
-                        }
-                    />
-                    <Route
-                        path="edit/:id"
-                        element={
-                            <MantineEditInferencer
-                                fieldTransformer={fieldTransformer}
-                            />
-                        }
-                    />
-                    <Route
-                        path="show/:id"
-                        element={
-                            <MantineShowInferencer
-                                fieldTransformer={fieldTransformer}
-                            />
-                        }
-                    />
-                </Route>
-                //highlight-end
-                {/*...*/}
-            </Routes>
-            {/*...*/}
-        </Refine>
-        //...
-    );
+    <Refine
+      //...
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+          edit: "/posts/edit/:id",
+          show: "/posts/show/:id",
+          meta: {
+            canDelete: true,
+          },
+        },
+        //highlight-start
+        {
+          name: "categories",
+          list: "/categories",
+          create: "/categories/create",
+          edit: "/categories/edit/:id",
+          show: "/categories/show/:id",
+          meta: {
+            canDelete: true,
+          },
+        },
+        //highlight-end
+      ]}
+    >
+      <Routes>
+        {/*...*/}
+        <Route path="/posts">
+          <Route index element={<PostList />} />
+          <Route path="create" element={<PostCreate />} />
+          <Route path="edit/:id" element={<PostEdit />} />
+        </Route>
+        //highlight-start
+        <Route path="/categories">
+          <Route index element={<MantineListInferencer fieldTransformer={fieldTransformer} />} />
+          <Route path="create" element={<MantineCreateInferencer fieldTransformer={fieldTransformer} />} />
+          <Route path="edit/:id" element={<MantineEditInferencer fieldTransformer={fieldTransformer} />} />
+          <Route path="show/:id" element={<MantineShowInferencer fieldTransformer={fieldTransformer} />} />
+        </Route>
+        //highlight-end
+        {/*...*/}
+      </Routes>
+      {/*...*/}
+    </Refine>
+    //...
+  );
 }
 
 export default App;
