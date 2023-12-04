@@ -11,7 +11,9 @@ import { IMission } from "../../interfaces";
 import { CreateMission, EditMission } from "../../components/mission";
 
 export const MissionList: React.FC = () => {
-    const { tableProps } = useTable<IMission>();
+    const { tableProps } = useTable<IMission>({
+        sorters: { initial: [{ field: "id", order: "desc" }] },
+    });
 
     const { formProps, modalProps, show } = useModalForm({
         resource: "missions",

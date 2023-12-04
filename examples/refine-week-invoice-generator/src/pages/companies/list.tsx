@@ -12,6 +12,7 @@ import {
 export const CompanyList: React.FC<IResourceComponentsProps> = () => {
     const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
         { listProps } = useSimpleList<ICompany>({
+            sorters: { initial: [{ field: "id", order: "desc" }] },
             meta: { populate: ["logo"] },
         });
 
