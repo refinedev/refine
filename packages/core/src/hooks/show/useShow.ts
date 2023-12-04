@@ -22,8 +22,8 @@ import {
     UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 
-export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
-    queryResult: QueryObserverResult<GetOneResponse<TData>>;
+export type useShowReturnType<TData extends BaseRecord = BaseRecord, TError extends HttpError = HttpError> = {
+    queryResult: QueryObserverResult<GetOneResponse<TData>, TError>;
     showId?: BaseKey;
     setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
 } & UseLoadingOvertimeReturnType;
@@ -106,7 +106,7 @@ export const useShow = <
     TQueryFnData,
     TError,
     TData
-> = {}): useShowReturnType<TData> => {
+> = {}): useShowReturnType<TData, TError> => {
     const {
         resource,
         id: idFromRoute,
