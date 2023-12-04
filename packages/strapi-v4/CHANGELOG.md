@@ -1,5 +1,15 @@
 # @refinedev/strapi-v4
 
+## 6.0.0
+
+### Major Changes
+
+-   [#5330](https://github.com/refinedev/refine/pull/5330) [`7c8827b43d`](https://github.com/refinedev/refine/commit/7c8827b43d9e378818be6ee23032925c97ce02d5) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: upgrade axios dependency to ^1.6.2
+
+### Patch Changes
+
+-   [#5285](https://github.com/refinedev/refine/pull/5285) [`011eef1a96`](https://github.com/refinedev/refine/commit/011eef1a96cb9dd3c51007cb8487a5c76fa34ba2) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: Error messages are undefined.
+
 ## 5.2.5
 
 ### Patch Changes

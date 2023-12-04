@@ -1,5 +1,14 @@
 # @refinedev/devtools-server
 
+## 1.1.22
+
+### Patch Changes
+
+-   [#5296](https://github.com/refinedev/refine/pull/5296) [`1b031a2c19`](https://github.com/refinedev/refine/commit/1b031a2c19126ec1c01a85ecfbc794dc82480776) Thanks [@aliemir](https://github.com/aliemir)! - Added error conditions on WS and HTTP servers to prevent crashing if ports are already in use. (Issue: #5215, #5294)
+
+-   Updated dependencies [[`00ac812347`](https://github.com/refinedev/refine/commit/00ac8123475748875df513a829684002677b5f43)]:
+    -   @refinedev/devtools-ui@1.1.15
+
 ## 1.1.21
 
 ### Patch Changes

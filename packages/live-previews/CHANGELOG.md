@@ -1,5 +1,25 @@
 # @refinedev/live-previews
 
+## 0.3.6
+
+### Patch Changes
+
+-   Updated dependencies [[`011eef1a96`](https://github.com/refinedev/refine/commit/011eef1a96cb9dd3c51007cb8487a5c76fa34ba2), [`30a2834a81`](https://github.com/refinedev/refine/commit/30a2834a819ef857506b5c932500868e458fd319), [`17aa8c1cd6`](https://github.com/refinedev/refine/commit/17aa8c1cd6858c5a2b0c996c97230047e049bf3b), [`9321a02a8f`](https://github.com/refinedev/refine/commit/9321a02a8f909d933088374d33a486bb9330512e), [`a23a0945d3`](https://github.com/refinedev/refine/commit/a23a0945d3fe003ae081fca1c47312dd6bf8c2ee), [`dd8f1270f6`](https://github.com/refinedev/refine/commit/dd8f1270f692d1eec279973e53fcc5a7e650b983), [`7c8827b43d`](https://github.com/refinedev/refine/commit/7c8827b43d9e378818be6ee23032925c97ce02d5), [`4c49ef0a06`](https://github.com/refinedev/refine/commit/4c49ef0a0660c2941c983025a187d45b521aa27c), [`7c8827b43d`](https://github.com/refinedev/refine/commit/7c8827b43d9e378818be6ee23032925c97ce02d5), [`1bc21de08b`](https://github.com/refinedev/refine/commit/1bc21de08bae1dfed34651013d12d76b4ec6e875), [`7ff54b2060`](https://github.com/refinedev/refine/commit/7ff54b2060b0ce942c4170f744cbdf52d0940434), [`3bdb9cb1cb`](https://github.com/refinedev/refine/commit/3bdb9cb1cb4cdcfaf363e7e9938737ed6f8e634e), [`f8e407f850`](https://github.com/refinedev/refine/commit/f8e407f85054bccf1e6ff45c84928bc01db7f5eb)]:
+    -   @refinedev/strapi-v4@6.0.0
+    -   @refinedev/antd@5.37.0
+    -   @refinedev/core@4.46.0
+    -   @refinedev/inferencer@4.5.15
+    -   @refinedev/chakra-ui@2.27.0
+    -   @refinedev/mantine@2.29.0
+    -   @refinedev/nestjsx-crud@5.0.0
+    -   @refinedev/simple-rest@5.0.0
+    -   @refinedev/airtable@4.4.5
+    -   @refinedev/appwrite@6.4.5
+    -   @refinedev/hasura@6.4.11
+    -   @refinedev/strapi-graphql@6.0.4
+    -   @refinedev/supabase@5.7.3
+    -   @refinedev/mui@5.14.0
+
 ## 0.3.5
 
 ### Patch Changes

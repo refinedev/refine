@@ -1,5 +1,17 @@
 # @refinedev/nestjsx-crud
 
+## 5.0.0
+
+### Major Changes
+
+-   [#5330](https://github.com/refinedev/refine/pull/5330) [`7c8827b43d`](https://github.com/refinedev/refine/commit/7c8827b43d9e378818be6ee23032925c97ce02d5) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: upgrade axios dependency to ^1.6.2
+
+### Patch Changes
+
+-   [#5300](https://github.com/refinedev/refine/pull/5300) [`1bc21de08b`](https://github.com/refinedev/refine/commit/1bc21de08bae1dfed34651013d12d76b4ec6e875) Thanks [@ksankeerth](https://github.com/ksankeerth)! - fix: missing files in package nestjsx-crud
+
+    There was an issue with nestjsx-crud package due to missing files(transformErrorMessages.ts and transformHttpError.ts)
+
 ## 4.5.5
 
 ### Patch Changes
