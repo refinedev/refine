@@ -9,7 +9,7 @@ type CardInfo = {
     icon: React.ReactNode;
 };
 
-const CARDS: CardInfo[] = [
+const cards: CardInfo[] = [
     {
         title: "Documentation",
         description:
@@ -249,7 +249,7 @@ export const WelcomePage: React.FC = () => {
                         margin: "auto",
                     }}
                 >
-                    {CARDS.map((card) => (
+                    {cards.map((card) => (
                         <Card key={`welcome-page-${card.title}`} card={card} />
                     ))}
                 </div>
