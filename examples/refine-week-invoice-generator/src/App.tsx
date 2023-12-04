@@ -11,7 +11,7 @@ import { DataProvider } from "@refinedev/strapi-v4";
 import {
     AuthPage,
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ThemedTitleV2,
 } from "@refinedev/antd";
@@ -80,7 +80,7 @@ function App() {
                             API_URL + `/api`,
                             axiosInstance,
                         )}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         routerProvider={routerBindings}
                         options={{
                             syncWithLocation: true,
