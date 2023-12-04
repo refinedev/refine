@@ -30,6 +30,28 @@ const MyPage = () => (
 
 ## Properties
 
+### `key` <PropTag required />
+
+A differentiator prop for the `<Authenticated />` component. This is crucial for the authentication logic to work properly in certain scenarios where `<Authenticated />` is used multiple times in same tree level. key prop will signal React to remount the component rather than updating the current props.
+
+#### Why is it required?
+
+Due to the [nature of React](https://react.dev/learn/rendering-lists#why-does-react-need-keys), components are not unmounted and remounted again if props are changed. While this is mostly a good practice for performance, in some cases you'll want your component to re-mount instead of updating; for example if you don't want to use any of the previous states and effects initiated with the old props.
+
+The `<Authenticated />` component has this kind of scenario when its used for page level authentication checks. If the previous check results were used for the rendering of the content (`fallback` or `children`) this may lead to unexpected behaviors and flashing of the unwanted content.
+
+To avoid this, a `key` prop must be set with different values for each use of the `<Authenticated />` components. This will make sure that React will unmount and remount the component instead of updating the props.
+
+```tsx
+import { Authenticated } from "@refinedev/core";
+
+const MyPage = () => (
+  <Authenticated key="dashboard">
+    <h1>Dashboard Page</h1>
+  </Authenticated>
+);
+```
+
 ### `redirectOnFail`
 
 The path to redirect to if the user is not logged in. If left empty, the user will be redirected to the value in the `redirectTo` property of the `check` function of the `AuthProvider`.
@@ -68,6 +90,6 @@ Component to render while checking whether the user is logged in.
 
 ### Properties
 
-<PropsTable module="@refinedev/core/Authenticated"/>
+<PropsTable module="@refinedev/core/Authenticated" />
 
 [use-is-authenticated]: /docs/api-reference/core/hooks/authentication/useIsAuthenticated
