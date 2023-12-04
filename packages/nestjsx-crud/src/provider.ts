@@ -134,10 +134,14 @@ export const dataProvider = (
         }
     },
 
-    getOne: async ({ resource, id }) => {
+    getOne: async ({ resource, id, meta }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.get(url);
+        let query = RequestQueryBuilder.create()
+
+        query = handleJoin(query, meta?.join)
+
+        const { data } = await httpClient.get(`${url}?${query.query()}`)
 
         return {
             data,

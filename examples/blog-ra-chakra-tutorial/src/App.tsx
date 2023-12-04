@@ -60,6 +60,7 @@ function App() {
                             <Route
                                 element={
                                     <Authenticated
+                                        key="authenticated-routes"
                                         fallback={
                                             <CatchAllNavigate to="/login" />
                                         }
@@ -96,7 +97,10 @@ function App() {
 
                             <Route
                                 element={
-                                    <Authenticated fallback={<Outlet />}>
+                                    <Authenticated
+                                        key="auth-pages"
+                                        fallback={<Outlet />}
+                                    >
                                         <NavigateToResource resource="posts" />
                                     </Authenticated>
                                 }
@@ -119,7 +123,7 @@ function App() {
 
                             <Route
                                 element={
-                                    <Authenticated>
+                                    <Authenticated key="catch-all">
                                         <ThemedLayoutV2>
                                             <Outlet />
                                         </ThemedLayoutV2>

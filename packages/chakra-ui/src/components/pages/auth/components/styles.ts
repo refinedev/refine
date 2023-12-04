@@ -6,11 +6,13 @@ export const layoutProps: BoxProps = {
     alignItems: "center",
     justifyContent: "center",
     backgroundSize: "cover",
-    minHeight: "100vh",
+    minHeight: "100dvh",
+    padding: "16px",
 };
 
 export const cardProps: BoxProps = {
-    width: "400px",
+    width: "100%",
+    maxWidth: "400px",
     borderRadius: "12px",
     padding: "32px",
 };

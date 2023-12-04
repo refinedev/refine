@@ -27,7 +27,7 @@ module.exports = {
                 `,
                 requiredPackages: [
                     "query-string@7.1.1",
-                    "axios@0.26.1",
+                    "axios@1.6.2",
                     "@nestjsx/crud-request@5.0.0-alpha.3",
                 ],
                 files: [
@@ -67,6 +67,14 @@ module.exports = {
                         src: "./src/utils/axios.ts",
                         dest: "./providers/nestjsx-crud/utils/axios.ts",
                     },
+                    {
+                        src: "./src/utils/transformErrorMessages.ts",
+                        dest: "./providers/nestjsx-crud/utils/transformErrorMessages.ts"
+                    },
+                    {
+                        src: "./src/utils/transformHttpError.ts",
+                        dest: "./providers/nestjsx-crud/utils/transformHttpError.ts"
+                    }
                 ],
             },
         ],

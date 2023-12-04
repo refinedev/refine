@@ -6,7 +6,7 @@ export default function Authentication() {
     <Sandpack
       dependencies={{
         "@refinedev/core": "latest",
-        axios: "^0.26.1",
+        axios: "^1.6.2",
       }}
       startRoute="/"
       files={{
@@ -62,7 +62,7 @@ import { AuthBindings } from "@refinedev/core";
 
 export const authProvider = (url: string): AuthBindings => ({
     login: async ({ email, password }) => {
-        // To keep the example short and simple, 
+        // To keep the example short and simple,
         // we didn't send a request, and we save the token in localStorage.
         localStorage.setItem("token", JSON.stringify({ email, password }));
 

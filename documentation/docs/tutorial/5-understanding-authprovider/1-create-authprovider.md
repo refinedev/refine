@@ -1252,27 +1252,22 @@ You can also use `axios.interceptors.request.use` to add the token acquired from
 // ---
 import { AuthBindings } from "@refinedev/core";
 // highlight-next-line
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 
 // highlight-next-line
 const axiosInstance = axios.create();
 
 // highlight-start
-axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
+axiosInstance.interceptors.request.use((config) => {
   // Retrieve the token from local storage
   const token = JSON.parse(localStorage.getItem("auth"));
   // Check if the header property exists
-  if (request.headers) {
+  if (config.headers) {
     // Set the Authorization header if it exists
-    request.headers["Authorization"] = `Bearer ${token}`;
-  } else {
-    // Create the headers property if it does not exist
-    request.headers = {
-      Authorization: `Bearer ${token}`,
-    };
+    config.headers["Authorization"] = `Bearer ${token}`;
   }
 
-  return request;
+  return config;
 });
 // highlight-end
 

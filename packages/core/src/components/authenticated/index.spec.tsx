@@ -53,7 +53,10 @@ describe("v3LegacyAuthProviderCompatible Authenticated", () => {
 
     it("should render children successfully", async () => {
         const { getByText } = render(
-            <Authenticated v3LegacyAuthProviderCompatible={true}>
+            <Authenticated
+                key="should-render-children-legacy"
+                v3LegacyAuthProviderCompatible={true}
+            >
                 Custom Authenticated
             </Authenticated>,
             {
@@ -70,7 +73,10 @@ describe("v3LegacyAuthProviderCompatible Authenticated", () => {
 
     it("not authenticated test", async () => {
         const { queryByText } = render(
-            <Authenticated v3LegacyAuthProviderCompatible={true}>
+            <Authenticated
+                key="not-authenticated-legacy"
+                v3LegacyAuthProviderCompatible={true}
+            >
                 Custom Authenticated
             </Authenticated>,
             {
@@ -99,6 +105,7 @@ describe("v3LegacyAuthProviderCompatible Authenticated", () => {
 
         const { queryByText } = render(
             <Authenticated
+                key="fallback-component-test"
                 fallback={<div>Error fallback</div>}
                 v3LegacyAuthProviderCompatible={true}
             >
@@ -125,6 +132,7 @@ describe("v3LegacyAuthProviderCompatible Authenticated", () => {
 
         const { queryByText } = render(
             <Authenticated
+                key="loading-test"
                 loading={<div>loading</div>}
                 v3LegacyAuthProviderCompatible={true}
             >
@@ -154,7 +162,9 @@ describe("Authenticated", () => {
 
     it("should render children successfully", async () => {
         const { getByText } = render(
-            <Authenticated>Custom Authenticated</Authenticated>,
+            <Authenticated key="render-children-successfully">
+                Custom Authenticated
+            </Authenticated>,
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -169,7 +179,9 @@ describe("Authenticated", () => {
 
     it("not authenticated test", async () => {
         const { queryByText } = render(
-            <Authenticated>Custom Authenticated</Authenticated>,
+            <Authenticated key="not-authenticated-test">
+                Custom Authenticated
+            </Authenticated>,
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -198,7 +210,10 @@ describe("Authenticated", () => {
         );
 
         const { queryByText } = render(
-            <Authenticated fallback={<div>Error fallback</div>}>
+            <Authenticated
+                key="not-authenticated-fallback-component-test"
+                fallback={<div>Error fallback</div>}
+            >
                 Custom Authenticated
             </Authenticated>,
             {
@@ -217,7 +232,7 @@ describe("Authenticated", () => {
 
     it("loading test", async () => {
         const { queryByText } = render(
-            <Authenticated loading={<div>loading</div>}>
+            <Authenticated key="loading-test" loading={<div>loading</div>}>
                 Custom Authenticated
             </Authenticated>,
             {
@@ -238,7 +253,9 @@ describe("Authenticated", () => {
         const mockGo = jest.fn();
 
         const { queryByText } = render(
-            <Authenticated>Custom Authenticated</Authenticated>,
+            <Authenticated key="should-redirect-custom-provider-check">
+                Custom Authenticated
+            </Authenticated>,
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -274,7 +291,10 @@ describe("Authenticated", () => {
         const mockGo = jest.fn();
 
         const { queryByText } = render(
-            <Authenticated redirectOnFail="/my-path">
+            <Authenticated
+                key="should-redirect-custom-on-fail"
+                redirectOnFail="/my-path"
+            >
                 Custom Authenticated
             </Authenticated>,
             {
@@ -320,7 +340,10 @@ describe("Authenticated", () => {
         };
 
         const { queryByText } = render(
-            <Authenticated fallback={<NavigateComp to="/my-path" />}>
+            <Authenticated
+                key="should-redirect-fallback"
+                fallback={<NavigateComp to="/my-path" />}
+            >
                 Custom Authenticated
             </Authenticated>,
             {
@@ -365,7 +388,11 @@ describe("Authenticated", () => {
         const currentPathname = "dashboard";
 
         const { queryByText } = render(
-            <Authenticated redirectOnFail="/my-path" appendCurrentPathToQuery>
+            <Authenticated
+                key="should-redirect-with-to"
+                redirectOnFail="/my-path"
+                appendCurrentPathToQuery
+            >
                 Custom Authenticated
             </Authenticated>,
             {
@@ -433,7 +460,10 @@ describe("Authenticated", () => {
         const currentPathname = "dashboard";
 
         const { queryByText } = render(
-            <Authenticated appendCurrentPathToQuery>
+            <Authenticated
+                key="should-redirect-path-from-provider"
+                appendCurrentPathToQuery
+            >
                 Custom Authenticated
             </Authenticated>,
             {

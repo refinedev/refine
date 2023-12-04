@@ -8,6 +8,7 @@ on:
       - synchronize
       - opened
       - reopened
+      - ready_for_review
     paths:
       - "packages/**"
       - "examples/**"

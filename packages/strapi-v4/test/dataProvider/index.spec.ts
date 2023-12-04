@@ -3,8 +3,6 @@ import axios from "axios";
 import { DataProvider } from "../../src/dataProvider";
 import "./index.mock";
 
-axios.defaults.adapter = require("axios/lib/adapters/http");
-
 describe("dataProvider", () => {
     const API_URL = "http://localhost:1337/api";
     const axiosInstance = axios.create();

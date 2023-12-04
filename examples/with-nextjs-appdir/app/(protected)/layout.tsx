@@ -9,7 +9,7 @@ export default function ProtectedLayout({
     children: React.ReactNode;
 }) {
     return (
-        <Authenticated redirectOnFail="/login">
+        <Authenticated key="protected-layout" redirectOnFail="/login">
             <ThemedLayoutV2>{children}</ThemedLayoutV2>
         </Authenticated>
     );

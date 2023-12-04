@@ -5,7 +5,7 @@ module.exports = {
         items: [
             {
                 label: "Data Provider",
-                requiredPackages: ["query-string@7.1.1", "axios@0.26.1"],
+                requiredPackages: ["query-string@7.1.1", "axios@1.6.2"],
                 files: [
                     {
                         src: "./src/index.ts",
@@ -43,7 +43,7 @@ module.exports = {
               // title: App.tsx
               import dataProvider, { authProvider } from "/src/providers/medusa";
 
-              export const API_URL = "dummy-api-url";  
+              export const API_URL = "dummy-api-url";
 
               const App = () => {
                   return (

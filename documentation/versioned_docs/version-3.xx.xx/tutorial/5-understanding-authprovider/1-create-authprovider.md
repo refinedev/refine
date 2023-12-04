@@ -1045,68 +1045,56 @@ You can also use `axios.interceptors.request.use` to add the token acquired from
 [Refer to the axios documentation for more information about interceptors &#8594](https://axios-http.com/docs/interceptors)
 
 ```tsx title="App.tsx"
-...
 // highlight-next-line
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 
 // highlight-next-line
 const axiosInstance = axios.create();
 
 // highlight-start
-axiosInstance.interceptors.request.use(
-    (request: AxiosRequestConfig) => {
-        // Retrieve the token from local storage
-        const token = JSON.parse(localStorage.getItem("auth"));
-        // Check if the header property exists
-        if (request.headers) {
-            // Set the Authorization header if it exists
-            request.headers[
-                "Authorization"
-            ] = `Bearer ${token}`;
-        } else {
-            // Create the headers property if it does not exist
-            request.headers = {
-                Authorization: `Bearer ${token}`,
-            };
-        }
+axiosInstance.interceptors.request.use((config) => {
+  // Retrieve the token from local storage
+  const token = JSON.parse(localStorage.getItem("auth"));
+  // Check if the header property exists
+  if (config.headers) {
+    // Set the Authorization header if it exists
+    config.headers["Authorization"] = `Bearer ${token}`;
+  }
 
-        return request;
-    },
-);
+  return config;
+});
 // highlight-end
 
-
 const mockUsers = [
-    { username: "admin", token: "123" },
-    { username: "editor", token: "321" }
+  { username: "admin", token: "123" },
+  { username: "editor", token: "321" },
 ];
 
 const App = () => {
-    const authProvider: AuthProvider = {
-        //highlight-start
-        login: ({ username, password }) => {
-            // Suppose we actually send a request to the back end here.
-            const user = mockUsers.find((item) => item.username === username);
+  const authProvider: AuthProvider = {
+    //highlight-start
+    login: ({ username, password }) => {
+      // Suppose we actually send a request to the back end here.
+      const user = mockUsers.find((item) => item.username === username);
 
-            if (user) {
-                localStorage.setItem("auth", JSON.stringify(user));
-                return Promise.resolve();
-            }
-            return Promise.reject();
-        },
-        //highlight-end
-            ...
-    };
+      if (user) {
+        localStorage.setItem("auth", JSON.stringify(user));
+        return Promise.resolve();
+      }
+      return Promise.reject();
+    },
+    //highlight-end
+  };
 
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={routerProvider}
-            //highlight-next-line
-            dataProvider={dataProvider(API_URL, axiosInstance)}
-        />
-    );
-}
+  return (
+    <Refine
+      authProvider={authProvider}
+      routerProvider={routerProvider}
+      //highlight-next-line
+      dataProvider={dataProvider(API_URL, axiosInstance)}
+    />
+  );
+};
 ```
 
 <br />

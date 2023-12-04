@@ -4,3 +4,4 @@ node_modules/
 .snapshots/
 *.min.js
 packages/**/coverage/
+CHANGELOG.md

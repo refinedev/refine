@@ -18,7 +18,7 @@ import routerProvider, {
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 import { ConfigProvider, App as AntdApp } from "antd";
 
 import "@refinedev/antd/dist/reset.css";
@@ -31,17 +31,13 @@ const axiosInstance = axios.create();
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
+axiosInstance.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
-    if (request.headers) {
-        request.headers["Authorization"] = `Bearer ${token}`;
-    } else {
-        request.headers = {
-            Authorization: `Bearer ${token}`,
-        };
+    if (config.headers) {
+        config.headers["Authorization"] = `Bearer ${token}`;
     }
 
-    return request;
+    return config;
 });
 
 const App: React.FC = () => {
@@ -148,6 +144,7 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated
+                                        key="authenticated-routes"
                                         fallback={
                                             <CatchAllNavigate to="/login" />
                                         }
@@ -184,7 +181,10 @@ const App: React.FC = () => {
 
                             <Route
                                 element={
-                                    <Authenticated fallback={<Outlet />}>
+                                    <Authenticated
+                                        key="auth-pages"
+                                        fallback={<Outlet />}
+                                    >
                                         <NavigateToResource resource="posts" />
                                     </Authenticated>
                                 }
@@ -194,7 +194,7 @@ const App: React.FC = () => {
 
                             <Route
                                 element={
-                                    <Authenticated>
+                                    <Authenticated key="catch-all">
                                         <ThemedLayoutV2>
                                             <Outlet />
                                         </ThemedLayoutV2>

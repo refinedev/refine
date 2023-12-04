@@ -19,7 +19,7 @@ Using `axios` as our HTTP client will allow us to make efficient and reliable HT
 To get started, install the `axios` to our project.
 
 ```bash
-npm install axios@0.26
+npm install axios
 ```
 
 Using the `stringify` library will allow us to convert the query parameters into a string format. This can be useful when we need to pass query parameters as part of an HTTP request.

@@ -30,7 +30,7 @@ import {
     headStyles,
     bodyStyles,
 } from "../styles";
-import { ThemedTitle } from "@components";
+import { ThemedTitleV2 } from "@components";
 
 const { Text, Title } = Typography;
 const { useToken } = theme;
@@ -75,7 +75,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? <ThemedTitleV2 collapsed={false} />}
             </div>
         );
 
@@ -245,10 +245,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             {hideForm && loginLink !== false && (
                 <div
                     style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginTop: "24px",
+                        marginTop: hideForm ? 16 : 8,
                     }}
                 >
                     <Text
@@ -279,9 +276,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
             <Row
                 justify="center"
-                align="middle"
+                align={hideForm ? "top" : "middle"}
                 style={{
-                    height: "100vh",
+                    padding: "16px 0",
+                    minHeight: "100dvh",
+                    paddingTop: hideForm ? "15dvh" : "16px",
                 }}
             >
                 <Col xs={22}>

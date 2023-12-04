@@ -35,7 +35,7 @@ import {
 import { layoutStyles, titleStyles } from "../styles";
 
 import { FormPropsType } from "../../index";
-import { ThemedTitle } from "@components";
+import { ThemedTitleV2 } from "@components";
 
 type LoginProps = LoginPageProps<BoxProps, CardContentProps, FormPropsType>;
 
@@ -87,7 +87,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                 }}
             >
                 {title ?? (
-                    <ThemedTitle
+                    <ThemedTitleV2
                         collapsed={false}
                         wrapperStyles={{
                             gap: "8px",
@@ -305,20 +305,24 @@ export const LoginPage: React.FC<LoginProps> = ({
             <Box component="div" style={layoutStyles} {...(wrapperProps ?? {})}>
                 <Container
                     component="main"
-                    maxWidth="xs"
                     sx={{
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: "center",
-                        height: "100vh",
+                        justifyContent: hideForm ? "flex-start" : "center",
+                        alignItems: "center",
+                        minHeight: "100dvh",
+                        padding: "16px",
+                        width: "100%",
+                        maxWidth: "400px",
                     }}
                 >
                     <Box
                         sx={{
+                            width: "100%",
+                            maxWidth: "400px",
                             display: "flex",
-                            justifyContent: "center",
                             flexDirection: "column",
-                            alignItems: "center",
+                            paddingTop: hideForm ? "15dvh" : 0,
                         }}
                     >
                         {renderContent ? (

@@ -27,7 +27,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { App as AntdApp, ConfigProvider } from "antd";
 
-// import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostEdit, PostShow } from "../src/pages/posts";
 import { DashboardPage } from "../src/pages/dashboard";
@@ -191,6 +191,7 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated
+                                        key="authenticated-routes"
                                         fallback={
                                             <CatchAllNavigate to="/login" />
                                         }
@@ -218,7 +219,10 @@ const App: React.FC = () => {
 
                             <Route
                                 element={
-                                    <Authenticated fallback={<Outlet />}>
+                                    <Authenticated
+                                        key="auth-pages"
+                                        fallback={<Outlet />}
+                                    >
                                         <NavigateToResource resource="posts" />
                                     </Authenticated>
                                 }
@@ -308,7 +312,7 @@ const App: React.FC = () => {
 
                             <Route
                                 element={
-                                    <Authenticated>
+                                    <Authenticated key="catch-all">
                                         <ThemedLayoutV2>
                                             <Outlet />
                                         </ThemedLayoutV2>

@@ -1,57 +1,55 @@
-import React from "react";
-
-import {
-    GitHubBanner,
-    Refine,
-    LegacyAuthProvider as AuthProvider,
-} from "@refinedev/core";
-import {
-    notificationProvider,
-    RefineSnackbarProvider,
-    ReadyPage,
-    ErrorComponent,
-} from "@refinedev/mui";
-import CssBaseline from "@mui/material/CssBaseline";
-import GlobalStyles from "@mui/material/GlobalStyles";
 import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
 import ChatBubbleOutline from "@mui/icons-material/ChatBubbleOutline";
 import PeopleAltOutlined from "@mui/icons-material/PeopleAltOutlined";
 import StarOutlineRounded from "@mui/icons-material/StarOutlineRounded";
 import VillaOutlined from "@mui/icons-material/VillaOutlined";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
+import {
+    GitHubBanner,
+    LegacyAuthProvider as AuthProvider,
+    Refine,
+} from "@refinedev/core";
+import {
+    ErrorComponent,
+    notificationProvider,
+    ReadyPage,
+    RefineSnackbarProvider,
+} from "@refinedev/mui";
 
-import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6/legacy";
-import axios, { AxiosRequestConfig } from "axios";
-import { Title, Sider, Layout, Header } from "components/layout";
+import dataProvider from "@refinedev/simple-rest";
+import axios from "axios";
+import { Header, Layout, Sider, Title } from "components/layout";
 import { ColorModeContextProvider } from "contexts";
 import { CredentialResponse } from "interfaces/google";
 import { parseJwt } from "utils/parse-jwt";
 
 import {
-    Login,
-    Home,
+    AgentProfile,
     Agents,
-    MyProfile,
-    PropertyDetails,
     AllProperties,
     CreateProperty,
-    AgentProfile,
     EditProperty,
+    Home,
+    Login,
+    MyProfile,
+    PropertyDetails,
 } from "pages";
 
 const axiosInstance = axios.create();
-axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
-    const token = localStorage.getItem("token");
-    if (request.headers) {
-        request.headers["Authorization"] = `Bearer ${token}`;
-    } else {
-        request.headers = {
-            Authorization: `Bearer ${token}`,
-        };
-    }
+axiosInstance.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem("token");
 
-    return request;
-});
+        if (config.headers) {
+            config.headers["Authorization"] = `Bearer ${token}`;
+        }
+
+        return config;
+    },
+    (error) => Promise.reject(error),
+);
 
 function App() {
     const authProvider: AuthProvider = {

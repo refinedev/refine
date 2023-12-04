@@ -3,8 +3,6 @@ import axios from "axios";
 import DataProvider from "../../src/index";
 import "./index.mock";
 
-axios.defaults.adapter = require("axios/lib/adapters/http");
-
 describe("create", () => {
     it("correct response", async () => {
         const response = await DataProvider(

@@ -3,8 +3,6 @@ import axios from "axios";
 import DataProvider from "../../src/index";
 import "./index.mock";
 
-axios.defaults.adapter = require("axios/lib/adapters/http");
-
 describe("custom", () => {
     const API_URL = "https://refine-example-storefront.herokuapp.com/store";
 

@@ -137,9 +137,10 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
 
 export type UseSelectReturnType<
     TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
     TOption extends BaseOption = BaseOption,
 > = {
-    queryResult: QueryObserverResult<GetListResponse<TData>>;
+    queryResult: QueryObserverResult<GetListResponse<TData>, TError>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
     onSearch: (value: string) => void;
     options: TOption[];
@@ -166,7 +167,7 @@ export const useSelect = <
     TOption extends BaseOption = BaseOption,
 >(
     props: UseSelectProps<TQueryFnData, TError, TData>,
-): UseSelectReturnType<TData, TOption> => {
+): UseSelectReturnType<TData, TError, TOption> => {
     const [search, setSearch] = useState<CrudFilters>([]);
     const [options, setOptions] = useState<TOption[]>([]);
     const [selectedOptions, setSelectedOptions] = useState<TOption[]>([]);

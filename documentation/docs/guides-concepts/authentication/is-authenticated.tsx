@@ -6,7 +6,7 @@ export default function IsAuthentcated() {
     <Sandpack
       dependencies={{
         "@refinedev/core": "latest",
-        axios: "^0.26.1",
+        axios: "^1.6.2",
       }}
       startRoute="/"
       files={{

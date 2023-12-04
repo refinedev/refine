@@ -333,5 +333,16 @@ export const pageRegisterTests = function (
                 }),
             ).toBeInTheDocument();
         });
+
+        it.each([true, false])("should has default links", async (hideForm) => {
+            const { getByRole } = render(<RegisterPage hideForm={hideForm} />, {
+                wrapper: TestWrapper({}),
+            });
+            expect(
+                getByRole("link", {
+                    name: /sign in/i,
+                }),
+            ).toHaveAttribute("href", "/login");
+        });
     });
 };

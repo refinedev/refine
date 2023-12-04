@@ -32,7 +32,7 @@ import {
 
 import { layoutStyles, titleStyles } from "../styles";
 import { FormPropsType } from "../../index";
-import { ThemedTitle } from "@components/themedLayout/title";
+import { ThemedTitleV2 } from "@components";
 
 type RegisterProps = RegisterPageProps<
     BoxProps,
@@ -86,7 +86,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 }}
             >
                 {title ?? (
-                    <ThemedTitle
+                    <ThemedTitleV2
                         collapsed={false}
                         wrapperStyles={{
                             gap: "8px",
@@ -276,22 +276,35 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         <Box component="div" style={layoutStyles} {...(wrapperProps ?? {})}>
             <Container
                 component="main"
-                maxWidth="xs"
                 sx={{
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "center",
-                    height: "100vh",
+                    justifyContent: hideForm ? "flex-start" : "center",
+                    alignItems: "center",
+                    minHeight: "100dvh",
+                    padding: "16px",
+                    width: "100%",
+                    maxWidth: "400px",
                 }}
             >
-                {renderContent ? (
-                    renderContent(Content, PageTitle)
-                ) : (
-                    <>
-                        {PageTitle}
-                        {Content}
-                    </>
-                )}
+                <Box
+                    sx={{
+                        width: "100%",
+                        maxWidth: "400px",
+                        display: "flex",
+                        flexDirection: "column",
+                        paddingTop: hideForm ? "15dvh" : 0,
+                    }}
+                >
+                    {renderContent ? (
+                        renderContent(Content, PageTitle)
+                    ) : (
+                        <>
+                            {PageTitle}
+                            {Content}
+                        </>
+                    )}
+                </Box>
             </Container>
         </Box>
     );

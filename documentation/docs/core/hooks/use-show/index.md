@@ -328,12 +328,12 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Return values
 
-| Property    | Description                     | Type                                                                                          |
-| ----------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
-| queryResult | Result of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| showId      | Record id                       | `string`                                                                                      |
-| setShowId   | `showId` setter                 | `Dispatch<SetStateAction< string` \| `undefined>>`                                            |
-| overtime    | Overtime loading props          | `{ elapsedTime?: number }`                                                                    |
+| Property    | Description                     | Type                                                                                                         |
+| ----------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| queryResult | Result of the query of a record | [`QueryObserverResult<{ data: TData; error: TError }>`](https://react-query.tanstack.com/reference/useQuery) |
+| showId      | Record id                       | `string`                                                                                                     |
+| setShowId   | `showId` setter                 | `Dispatch<SetStateAction< string` \| `undefined>>`                                                           |
+| overtime    | Overtime loading props          | `{ elapsedTime?: number }`                                                                                   |
 
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

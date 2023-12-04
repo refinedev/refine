@@ -31,7 +31,7 @@ import {
     layoutStyles,
     titleStyles,
 } from "../styles";
-import { ThemedTitle } from "@components";
+import { ThemedTitleV2 } from "@components";
 
 const { Text, Title } = Typography;
 const { useToken } = theme;
@@ -78,7 +78,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? <ThemedTitleV2 collapsed={false} />}
             </div>
         );
 
@@ -123,15 +123,15 @@ export const LoginPage: React.FC<LoginProps> = ({
                         );
                     })}
                     {!hideForm && (
-                    <Divider>
-                        <Text
-                            style={{
-                                color: token.colorTextLabel,
-                            }}
-                        >
-                            {translate("pages.login.divider", "or")}
-                        </Text>
-                    </Divider>
+                        <Divider>
+                            <Text
+                                style={{
+                                    color: token.colorTextLabel,
+                                }}
+                            >
+                                {translate("pages.login.divider", "or")}
+                            </Text>
+                        </Divider>
                     )}
                 </>
             );
@@ -152,110 +152,116 @@ export const LoginPage: React.FC<LoginProps> = ({
         >
             {renderProviders()}
             {!hideForm && (
-            <Form<LoginFormTypes>
-                layout="vertical"
-                form={form}
-                onFinish={(values) => login(values)}
-                requiredMark={false}
-                initialValues={{
-                    remember: false,
-                }}
-                {...formProps}
-            >
-                        <Form.Item
-                            name="email"
-                            label={translate("pages.login.fields.email", "Email")}
-                            rules={[
-                                { required: true },
-                                {
-                                    type: "email",
-                                    message: translate(
-                                        "pages.login.errors.validEmail",
-                                        "Invalid email address",
-                                    ),
-                                },
-                            ]}
-                        >
-                            <Input
-                                size="large"
-                                placeholder={translate(
-                                    "pages.login.fields.email",
-                                    "Email",
-                                )}
-                            />
-                        </Form.Item>
-                        <Form.Item
-                            name="password"
+                <Form<LoginFormTypes>
+                    layout="vertical"
+                    form={form}
+                    onFinish={(values) => login(values)}
+                    requiredMark={false}
+                    initialValues={{
+                        remember: false,
+                    }}
+                    {...formProps}
+                >
+                    <Form.Item
+                        name="email"
+                        label={translate("pages.login.fields.email", "Email")}
+                        rules={[
+                            { required: true },
+                            {
+                                type: "email",
+                                message: translate(
+                                    "pages.login.errors.validEmail",
+                                    "Invalid email address",
+                                ),
+                            },
+                        ]}
+                    >
+                        <Input
+                            size="large"
+                            placeholder={translate(
+                                "pages.login.fields.email",
+                                "Email",
+                            )}
+                        />
+                    </Form.Item>
+                    <Form.Item
+                        name="password"
                         label={translate(
                             "pages.login.fields.password",
                             "Password",
                         )}
-                            rules={[{ required: true }]}
-                        >
-                            <Input
-                                type="password"
-                                placeholder="●●●●●●●●"
-                                size="large"
-                            />
-                        </Form.Item>
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        marginBottom: "24px",
-                    }}
-                >
-                    {rememberMe ?? (
-                        <Form.Item
-                            name="remember"
-                            valuePropName="checked"
-                            noStyle
-                        >
-                            <Checkbox
+                        rules={[{ required: true }]}
+                    >
+                        <Input
+                            type="password"
+                            autoComplete="current-password"
+                            placeholder="●●●●●●●●"
+                            size="large"
+                        />
+                    </Form.Item>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            marginBottom: "24px",
+                        }}
+                    >
+                        {rememberMe ?? (
+                            <Form.Item
+                                name="remember"
+                                valuePropName="checked"
+                                noStyle
+                            >
+                                <Checkbox
+                                    style={{
+                                        fontSize: "12px",
+                                    }}
+                                >
+                                    {translate(
+                                        "pages.login.buttons.rememberMe",
+                                        "Remember me",
+                                    )}
+                                </Checkbox>
+                            </Form.Item>
+                        )}
+                        {forgotPasswordLink ?? (
+                            <ActiveLink
                                 style={{
+                                    color: token.colorPrimaryTextHover,
                                     fontSize: "12px",
+                                    marginLeft: "auto",
                                 }}
+                                to="/forgot-password"
                             >
                                 {translate(
-                                    "pages.login.buttons.rememberMe",
-                                    "Remember me",
+                                    "pages.login.buttons.forgotPassword",
+                                    "Forgot password?",
                                 )}
-                            </Checkbox>
+                            </ActiveLink>
+                        )}
+                    </div>
+                    {!hideForm && (
+                        <Form.Item>
+                            <Button
+                                type="primary"
+                                size="large"
+                                htmlType="submit"
+                                loading={isLoading}
+                                block
+                            >
+                                {translate("pages.login.signin", "Sign in")}
+                            </Button>
                         </Form.Item>
                     )}
-                    {forgotPasswordLink ?? (
-                        <ActiveLink
-                            style={{
-                                color: token.colorPrimaryTextHover,
-                                fontSize: "12px",
-                                marginLeft: "auto",
-                            }}
-                            to="/forgot-password"
-                        >
-                            {translate(
-                                "pages.login.buttons.forgotPassword",
-                                "Forgot password?",
-                            )}
-                        </ActiveLink>
-                    )}
-                </div>
-                    {!hideForm && (
-                <Form.Item>
-                    <Button
-                        type="primary"
-                        size="large"
-                        htmlType="submit"
-                        loading={isLoading}
-                        block
-                    >
-                        {translate("pages.login.signin", "Sign in")}
-                    </Button>
-                </Form.Item>
-                    )}
-            </Form>
+                </Form>
             )}
-            <div style={{ marginTop: hideForm ? 16 : 8 }}>
-                {registerLink ?? (
+
+            {registerLink ?? (
+                <div
+                    style={{
+                        marginTop: hideForm ? 16 : 8,
+                    }}
+                >
                     <Text style={{ fontSize: 12 }}>
                         {translate(
                             "pages.login.buttons.noAccount",
@@ -271,8 +277,8 @@ export const LoginPage: React.FC<LoginProps> = ({
                             {translate("pages.login.signup", "Sign up")}
                         </ActiveLink>
                     </Text>
-                )}
-            </div>
+                </div>
+            )}
         </Card>
     );
 
@@ -280,9 +286,11 @@ export const LoginPage: React.FC<LoginProps> = ({
         <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
             <Row
                 justify="center"
-                align="middle"
+                align={hideForm ? "top" : "middle"}
                 style={{
-                    height: "100vh",
+                    padding: "16px 0",
+                    minHeight: "100dvh",
+                    paddingTop: hideForm ? "15dvh" : "16px",
                 }}
             >
                 <Col xs={22}>

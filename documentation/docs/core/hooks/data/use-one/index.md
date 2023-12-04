@@ -287,10 +287,10 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 ### Return values
 
-| Description                               | Type                                                                                                   |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData; }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
-| overtime                                  | `{ elapsedTime?: number }`                                                                             |
+| Description                               | Type                                                                                                                  |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData; error: TError; }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
+| overtime                                  | `{ elapsedTime?: number }`                                                                                            |
 
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

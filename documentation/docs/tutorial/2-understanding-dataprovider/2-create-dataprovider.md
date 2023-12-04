@@ -23,7 +23,7 @@ We will begin developing our data provider by creating a file and adding additio
 To get started, install `axios` in your project.
 
 ```bash
-npm install axios@0.26
+npm install axios
 ```
 
 Using the `stringify` library will allow us to convert the query parameters into a string format. This can be useful when we need to pass query parameters as part of an HTTP request.
