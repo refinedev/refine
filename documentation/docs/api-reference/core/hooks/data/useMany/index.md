@@ -296,7 +296,7 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 | Description                               | Type                                                                                                                  |
 | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[];error: TError }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
+| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[]; error: TError }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
 | overtime                                  | `{ elapsedTime?: number }`                                                                                            |
 
 [baserecord]: /api-reference/core/interfaces.md#baserecord
