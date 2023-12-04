@@ -38,7 +38,7 @@ export const MissionList: React.FC = () => {
                     },
                 }}
             >
-                <Table {...tableProps}>
+                <Table {...tableProps} rowKey="id">
                     <Table.Column dataIndex="id" title="ID" />
                     <Table.Column dataIndex="mission" title="Name" />
                     <Table.Column

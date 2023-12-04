@@ -38,8 +38,8 @@ export const InvoiceList: React.FC = () => {
     return (
         <>
             <List>
-                <Table {...tableProps}>
-                    <Table.Column dataIndex="id" title="ID" />
+                <Table {...tableProps} rowKey="id">
+                    <Table.Column key={"asd"} dataIndex="id" title="ID" />
                     <Table.Column<IInvoice>
                         dataIndex="name"
                         title="Invoice Name"
