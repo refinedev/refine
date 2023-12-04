@@ -68,7 +68,10 @@ function App() {
                             </Route>
                             <Route
                                 element={
-                                    <Authenticated fallback={<Outlet />}>
+                                    <Authenticated
+                                        key="authenticated-routes"
+                                        fallback={<Outlet />}
+                                    >
                                         <NavigateToResource />
                                     </Authenticated>
                                 }

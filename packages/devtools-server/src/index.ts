@@ -130,10 +130,4 @@ export const server = async ({ projectPath = process.cwd() }: Options = {}) => {
     serveApi(app, db);
     serveProxy(app);
     serveOpenInEditor(app, projectPath);
-
-    console.log(
-        `\n${cyanBright.bold("\u2713 ")}${bold(
-            "refine devtools",
-        )} is running at port ${cyanBright.bold(SERVER_PORT)}\n`,
-    );
 };
