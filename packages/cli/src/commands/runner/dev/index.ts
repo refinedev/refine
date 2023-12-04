@@ -1,5 +1,3 @@
-import boxen from "boxen";
-
 import { ProjectTypes } from "@definitions/projectTypes";
 import { getProjectType } from "@utils/project";
 import { Command, Option } from "commander";
@@ -26,7 +24,10 @@ const dev = (program: Command) => {
             ),
         )
         .addOption(
-            new Option("-d, --devtools", "Start refine's devtools server"),
+            new Option(
+                "-d, --devtools <devtools>",
+                "Start refine's devtools server",
+            ).default("true", "true if devtools is installed"),
         )
         .argument("[args...]")
         .action(action);
@@ -34,7 +35,7 @@ const dev = (program: Command) => {
 
 const action = async (
     args: string[],
-    { platform, devtools }: { devtools: boolean; platform: ProjectTypes },
+    { platform, ...params }: { devtools: string; platform: ProjectTypes },
 ) => {
     const projectType = getProjectType(platform);
 
@@ -46,7 +47,9 @@ const action = async (
 
     const devtoolsDefault = await isDevtoolsInstalled();
 
-    if (devtools ?? devtoolsDefault) {
+    const devtools = params.devtools === "false" ? false : devtoolsDefault;
+
+    if (devtools) {
         devtoolsRunner();
     }
 
