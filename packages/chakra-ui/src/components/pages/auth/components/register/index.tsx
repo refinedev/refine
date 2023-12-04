@@ -29,7 +29,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
 import { FormPropsType } from "../..";
-import { ThemedTitle } from "@components";
+import { ThemedTitleV2 } from "@components";
 
 type RegisterProps = RegisterPageProps<
     BoxProps,
@@ -109,7 +109,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? <ThemedTitleV2 collapsed={false} />}
             </div>
         );
 
@@ -234,7 +234,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         ml="1"
                         as={Link}
                         fontWeight="bold"
-                        to="/register"
+                        to="/login"
                     >
                         {translate("pages.login.signin", "Sign in")}
                     </ChakraLink>
@@ -243,9 +243,15 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         </Box>
     );
 
-    const allWrapperProps = { ...layoutProps, ...wrapperProps };
     return (
-        <Box {...allWrapperProps}>
+        <Box
+            style={{
+                ...layoutProps,
+                justifyContent: hideForm ? "flex-start" : "center",
+                paddingTop: hideForm ? "15dvh" : "16px",
+            }}
+            {...wrapperProps}
+        >
             {renderContent ? (
                 renderContent(content, PageTitle)
             ) : (

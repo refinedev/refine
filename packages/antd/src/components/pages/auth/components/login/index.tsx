@@ -31,7 +31,7 @@ import {
     layoutStyles,
     titleStyles,
 } from "../styles";
-import { ThemedTitle } from "@components";
+import { ThemedTitleV2 } from "@components";
 
 const { Text, Title } = Typography;
 const { useToken } = theme;
@@ -78,7 +78,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     fontSize: "20px",
                 }}
             >
-                {title ?? <ThemedTitle collapsed={false} />}
+                {title ?? <ThemedTitleV2 collapsed={false} />}
             </div>
         );
 
@@ -255,8 +255,13 @@ export const LoginPage: React.FC<LoginProps> = ({
                     )}
                 </Form>
             )}
-            <div style={{ marginTop: hideForm ? 16 : 8 }}>
-                {registerLink ?? (
+
+            {registerLink ?? (
+                <div
+                    style={{
+                        marginTop: hideForm ? 16 : 8,
+                    }}
+                >
                     <Text style={{ fontSize: 12 }}>
                         {translate(
                             "pages.login.buttons.noAccount",
@@ -272,8 +277,8 @@ export const LoginPage: React.FC<LoginProps> = ({
                             {translate("pages.login.signup", "Sign up")}
                         </ActiveLink>
                     </Text>
-                )}
-            </div>
+                </div>
+            )}
         </Card>
     );
 
@@ -281,9 +286,11 @@ export const LoginPage: React.FC<LoginProps> = ({
         <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
             <Row
                 justify="center"
-                align="middle"
+                align={hideForm ? "top" : "middle"}
                 style={{
-                    height: "100vh",
+                    padding: "16px 0",
+                    minHeight: "100dvh",
+                    paddingTop: hideForm ? "15dvh" : "16px",
                 }}
             >
                 <Col xs={22}>
