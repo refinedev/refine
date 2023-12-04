@@ -11,7 +11,9 @@ sidebar_label: Azure AD Login
 The Microsoft Authentication Library (MSAL) enables developers to acquire security tokens from the Microsoft identity platform to authenticate users and access secured web APIs. It can be used to provide secure access to Microsoft Graph, other Microsoft APIs, third-party web APIs, or your own web API. MSAL supports many different application architectures and platforms including .NET, JavaScript, Java, Python, Android, and iOS.
 
 :::tip
+
 We use Azure AD B2C in our example but authentication with Azure AD should be very similar.
+
 :::
 
 ### Installation
@@ -64,7 +66,9 @@ export const graphConfig = {
 ```
 
 :::note
+
 We recommend to use environment variables for the configuration parameters.
+
 :::
 
 Wrap your root component with an `MsalProvider` that you can import from the SDK.
@@ -73,13 +77,7 @@ Wrap your root component with an `MsalProvider` that you can import from the SDK
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import {
-    EventType,
-    PublicClientApplication,
-    AccountInfo,
-    EventPayload,
-    SilentRequest,
-} from "@azure/msal-browser";
+import { EventType, PublicClientApplication, AccountInfo, EventPayload, SilentRequest } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
 
 import App, { TOKEN_KEY } from "./App";
@@ -88,41 +86,39 @@ import { msalConfig, tokenRequest } from "./config";
 const msalInstance = new PublicClientApplication(msalConfig);
 
 msalInstance.addEventCallback(async (event) => {
-    if (event.eventType === EventType.LOGIN_SUCCESS) {
-        const payload: EventPayload = event.payload;
-        msalInstance.setActiveAccount(payload as AccountInfo);
+  if (event.eventType === EventType.LOGIN_SUCCESS) {
+    const payload: EventPayload = event.payload;
+    msalInstance.setActiveAccount(payload as AccountInfo);
 
-        let account = msalInstance.getActiveAccount();
+    let account = msalInstance.getActiveAccount();
 
-        const request: SilentRequest = {
-            ...tokenRequest,
-            account: account!,
-        };
-        try {
-            // Silently acquires an access token which is then attached to a request for API access
-            const response = await msalInstance.acquireTokenSilent(request);
-            console.log("Fetching access token: success");
-            console.log("Scopes", response.scopes);
-            console.log("Token Type", response.tokenType);
+    const request: SilentRequest = {
+      ...tokenRequest,
+      account: account!,
+    };
+    try {
+      // Silently acquires an access token which is then attached to a request for API access
+      const response = await msalInstance.acquireTokenSilent(request);
+      console.log("Fetching access token: success");
+      console.log("Scopes", response.scopes);
+      console.log("Token Type", response.tokenType);
 
-            localStorage.setItem(TOKEN_KEY, response.accessToken);
-        } catch (e) {
-            msalInstance.acquireTokenPopup(request).then((response) => {
-                localStorage.setItem(TOKEN_KEY, response.accessToken);
-            });
-        }
+      localStorage.setItem(TOKEN_KEY, response.accessToken);
+    } catch (e) {
+      msalInstance.acquireTokenPopup(request).then((response) => {
+        localStorage.setItem(TOKEN_KEY, response.accessToken);
+      });
     }
+  }
 });
 
-const root = ReactDOM.createRoot(
-    document.getElementById("root") as HTMLElement,
-);
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-    <React.StrictMode>
-        <MsalProvider instance={msalInstance}>
-            <App />
-        </MsalProvider>
-    </React.StrictMode>,
+  <React.StrictMode>
+    <MsalProvider instance={msalInstance}>
+      <App />
+    </MsalProvider>
+  </React.StrictMode>,
 );
 ```
 
@@ -136,33 +132,33 @@ import { useLogin } from "@refinedev/core";
 import { Layout, Button } from "antd";
 
 const LoginPage = () => {
-    const SignInButton = () => {
-        const { mutate: login } = useLogin();
-
-        return (
-            <Button type="primary" size="large" block onClick={() => login()}>
-                Sign in
-            </Button>
-        );
-    };
+  const SignInButton = () => {
+    const { mutate: login } = useLogin();
 
     return (
-        <Layout
-            style={{
-                background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
-                backgroundSize: "cover",
-            }}
-        >
-            <div style={{ height: "100vh", display: "flex" }}>
-                <div style={{ maxWidth: "200px", margin: "auto" }}>
-                    <div style={{ marginBottom: "28px" }}>
-                        <img src="./refine.svg" alt="Refine" />
-                    </div>
-                    <SignInButton />
-                </div>
-            </div>
-        </Layout>
+      <Button type="primary" size="large" block onClick={() => login()}>
+        Sign in
+      </Button>
     );
+  };
+
+  return (
+    <Layout
+      style={{
+        background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
+        backgroundSize: "cover",
+      }}
+    >
+      <div style={{ height: "100vh", display: "flex" }}>
+        <div style={{ maxWidth: "200px", margin: "auto" }}>
+          <div style={{ marginBottom: "28px" }}>
+            <img src="./refine.svg" alt="Refine" />
+          </div>
+          <SignInButton />
+        </div>
+      </div>
+    </Layout>
+  );
 };
 
 export default LoginPage;
@@ -175,10 +171,7 @@ In refine, authentication and authorization processes are performed with the aut
 ```tsx title="src/App.tsx"
 import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
 import { Layout, ErrorComponent } from "@refinedev/antd";
-import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
-} from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { AccountInfo, SilentRequest } from "@azure/msal-browser";
@@ -194,139 +187,134 @@ export const TOKEN_KEY = "refine-auth";
 export const axiosInstance = axios.create();
 
 axiosInstance.interceptors.request.use(
-    // Here we can perform any function we'd like on the request
-    (request: AxiosRequestConfig) => {
-        // Retrieve the token from local storage
-        const token = localStorage.getItem(TOKEN_KEY);
+  // Here we can perform any function we'd like on the request
+  (request: AxiosRequestConfig) => {
+    // Retrieve the token from local storage
+    const token = localStorage.getItem(TOKEN_KEY);
 
-        // Check if the header property exists
-        if (request.headers) {
-            // Set the Authorization header if it exists
-            request.headers["Authorization"] = `Bearer ${token}`;
-        } else {
-            // Create the headers property if it does not exist
-            request.headers = {
-                Authorization: `Bearer ${token}`,
-            };
-        }
-        return request;
-    },
+    // Check if the header property exists
+    if (request.headers) {
+      // Set the Authorization header if it exists
+      request.headers["Authorization"] = `Bearer ${token}`;
+    } else {
+      // Create the headers property if it does not exist
+      request.headers = {
+        Authorization: `Bearer ${token}`,
+      };
+    }
+    return request;
+  },
 );
 
 const App: React.FC = () => {
-    const API_URL = "https://api.fake-rest.refine.dev";
+  const API_URL = "https://api.fake-rest.refine.dev";
 
-    const isAuthenticated = useIsAuthenticated();
-    const { instance, inProgress, accounts } = useMsal();
+  const isAuthenticated = useIsAuthenticated();
+  const { instance, inProgress, accounts } = useMsal();
 
-    if (inProgress === "login" || inProgress === "handleRedirect") {
-        return <div>Loading...</div>;
-    }
+  if (inProgress === "login" || inProgress === "handleRedirect") {
+    return <div>Loading...</div>;
+  }
 
-    const account: AccountInfo = accounts[0];
+  const account: AccountInfo = accounts[0];
 
-    const request: SilentRequest = {
-        ...tokenRequest,
-        account,
-    };
+  const request: SilentRequest = {
+    ...tokenRequest,
+    account,
+  };
 
-    const authProvider: AuthBindings = {
-        login: async () => {
-            instance.loginRedirect(); // Pick the strategy you prefer i.e. redirect or popup
-            return {
-                success: true,
-            };
-        },
-        register: async () => ({
-            success: true,
-        }),
-        resetPassword: async () => ({
-            success: true,
-        }),
-        updatePassword: async () => ({
-            success: true,
-        }),
-        logout: async () => ({
-            success: true,
-        }),
-        check: async () => {
-            try {
-                if (account) {
-                    const token = await instance.acquireTokenSilent(request);
-                    localStorage.setItem(TOKEN_KEY, token.accessToken);
-                    return {
-                        authenticated: true,
-                    };
-                } else {
-                    return {
-                        authenticated: false,
-                        redirectTo: "/login",
-                    };
-                }
-            } catch (e) {
-                return {
-                    authenticated: false,
-                    redirectTo: "/login",
-                };
+  const authProvider: AuthBindings = {
+    login: async () => {
+      instance.loginRedirect(); // Pick the strategy you prefer i.e. redirect or popup
+      return {
+        success: true,
+      };
+    },
+    register: async () => ({
+      success: true,
+    }),
+    resetPassword: async () => ({
+      success: true,
+    }),
+    updatePassword: async () => ({
+      success: true,
+    }),
+    logout: async () => ({
+      success: true,
+    }),
+    check: async () => {
+      try {
+        if (account) {
+          const token = await instance.acquireTokenSilent(request);
+          localStorage.setItem(TOKEN_KEY, token.accessToken);
+          return {
+            authenticated: true,
+          };
+        } else {
+          return {
+            authenticated: false,
+            redirectTo: "/login",
+          };
+        }
+      } catch (e) {
+        return {
+          authenticated: false,
+          redirectTo: "/login",
+        };
+      }
+    },
+    onError: async (error) => {
+      console.error(error);
+      return { error };
+    },
+    getPermissions: async () => null,
+    getIdentity: async (): Promise<AccountInfo> => {
+      if (account === null || account === undefined) {
+        return null;
+      }
+      return account;
+    },
+  };
+
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL, axiosInstance)}
+        authProvider={authProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+        ]}
+      >
+        <Routes>
+          <Route
+            element={
+              <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                <Layout>
+                  <Outlet />
+                </Layout>
+              </Authenticated>
             }
-        },
-        onError: async (error) => {
-            console.error(error);
-            return { error };
-        },
-        getPermissions: async () => null,
-        getIdentity: async (): Promise<AccountInfo> => {
-            if (account === null || account === undefined) {
-                return null;
+          >
+            <Route path="/posts" element={<div>dummy list page</div>} />
+          </Route>
+          <Route
+            element={
+              <Authenticated fallback={<Outlet />}>
+                <NavigateToResource />
+              </Authenticated>
             }
-            return account;
-        },
-    };
-
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL, axiosInstance)}
-                authProvider={authProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            path="/posts"
-                            element={<div>dummy list page</div>}
-                        />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="/login" element={<LoginPage />} />
-                    </Route>
-                    <Route path="*" element={<ErrorComponent />} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+          >
+            <Route path="/login" element={<LoginPage />} />
+          </Route>
+          <Route path="*" element={<ErrorComponent />} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 export default App;

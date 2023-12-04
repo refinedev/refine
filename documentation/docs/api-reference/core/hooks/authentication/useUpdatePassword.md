@@ -7,10 +7,12 @@ source: /packages/core/src/hooks/auth/useUpdatePassword/index.ts
 ---
 
 :::caution
+
 This hook can only be used if `authProvider` is provided.
+
 :::
 
-`useUpdatePassword` calls `updatePassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
+`useUpdatePassword` calls `updatePassword` method from [`authProvider`](/docs/api-reference/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
 
@@ -18,18 +20,18 @@ Data that is resolved from `updatePassword` will be returned as the `data` in th
 
 ```ts
 type AuthActionResponse = {
-    success: boolean;
-    redirectTo?: string;
-    error?: Error;
-    [key: string]: unknown;
+  success: boolean;
+  redirectTo?: string;
+  error?: Error;
+  [key: string]: unknown;
 };
 ```
 
--   `success`: A boolean indicating whether the operation was successful. If `success` is false, a notification will be shown.
-    -   When `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values: `{ name: "Update Password Error", message: "Error while resetting password" }`.
--   `redirectTo`: If has a value, the app will be redirected to the given URL.
--   `error`: If has a value, a notification will be shown with the error message and name.
--   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
+- `success`: A boolean indicating whether the operation was successful. If `success` is false, a notification will be shown.
+  - When `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values: `{ name: "Update Password Error", message: "Error while resetting password" }`.
+- `redirectTo`: If has a value, the app will be redirected to the given URL.
+- `error`: If has a value, a notification will be shown with the error message and name.
+- `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 ## Usage
 
@@ -40,34 +42,34 @@ If you want to use a custom 'update password' however, you can use the `useUpdat
 import { useUpdatePassword } from "@refinedev/core";
 
 type updatePasswordVariables = {
-    password: string;
+  password: string;
 };
 
 export const UpdatePasswordPage = () => {
-    const { mutate: updatePassword } =
-        useUpdatePassword<updatePasswordVariables>();
+  const { mutate: updatePassword } = useUpdatePassword<updatePasswordVariables>();
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        const values = {
-            password: e.currentTarget.password.value,
-        };
-
-        updatePassword(values);
+    const values = {
+      password: e.currentTarget.password.value,
     };
 
-    return (
-        <form onSubmit={onSubmit}>
-            <label>Password</label>
-            <input name="password" value="refine" />
-            <button type="submit">Submit</button>
-        </form>
-    );
+    updatePassword(values);
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <label>Password</label>
+      <input name="password" value="refine" />
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 ```
 
 :::tip
+
 `mutate` acquired from `useUpdatePassword` can accept any kind of object for values since the `updatePassword` method from `authProvider` doesn't have a restriction on its parameters.
 A type parameter for the values can be provided to `useUpdatePassword`.
 
@@ -78,21 +80,22 @@ const { mutate: updatePassword } = useUpdatePassword<{ newPassword: string }>();
 :::
 
 :::info
+
 `useUpdatePassword` gives you query strings for the `updatePassword` method from `authProvider`. If you have logic that sends a password regeneration email to the email address while resetting the password and proceeds through the access token, you can use the `queryStrings` variable's `updatePassword` method from `authProvider`. For example, if your regeneration link is `YOUR_DOMAIN/update-password?token=123`, you can access the token from the parameters of the URL.
 
 ```tsx
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
+  // ---
+  updatePassword: (params) => {
+    // you can access query strings from params.queryStrings
+    console.log(params.token);
+    if (params.token === "123") {
+      // your logic to update the password
+    }
     // ---
-    updatePassword: (params) => {
-        // you can access query strings from params.queryStrings
-        console.log(params.token);
-        if (params.token === "123") {
-            // your logic to update the password
-        }
-        // ---
-    },
+  },
 };
 ```
 
@@ -116,19 +119,21 @@ Then, you can handle this URL in your `updatePassword` method of the `authProvid
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
+  // ---
+  updatePassword: async ({ redirectPath }) => {
     // ---
-    updatePassword: async ({ redirectPath }) => {
-        // ---
-        return {
-            success: true,
-            redirectTo: redirectPath,
-        };
-    },
+    return {
+      success: true,
+      redirectTo: redirectPath,
+    };
+  },
 };
 ```
 
 :::info
+
 If the promise returned from `updatePassword` is resolved with nothing, app won't be redirected to any route by default.
+
 :::
 
 ## Error handling
@@ -141,18 +146,18 @@ import { useUpdatePassword } from "@refinedev/core";
 const { mutate: updatePassword } = useUpdatePassword();
 
 updatePassword(
-    {
-        newPassword: "refine",
-    },
-    {
-        onSuccess: (data) => {
-            if (!data.success) {
-                // handle error
-            }
+  {
+    newPassword: "refine",
+  },
+  {
+    onSuccess: (data) => {
+      if (!data.success) {
+        // handle error
+      }
 
-            // handle success
-        },
+      // handle success
     },
+  },
 );
 ```
 

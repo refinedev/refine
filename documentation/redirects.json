@@ -214,7 +214,11 @@
     },
     {
       "from": "/docs/core/providers/accessControl-provider/",
-      "to": "/docs/api-reference/core/providers/accessControl-provider/"
+      "to": "/docs/api-reference/core/providers/access-control-provider/"
+    },
+    {
+      "from": "/docs/api-reference/core/providers/accessControl-provider/",
+      "to": "/docs/api-reference/core/providers/access-control-provider/"
     },
     {
       "from": "/docs/core/providers/audit-log-provider/",
@@ -286,7 +290,7 @@
     },
     {
       "from": "/docs/guides-and-concepts/forms/save-and-continue/",
-      "to": "/docs/advanced-tutorials/forms/save-and-continue/"
+      "to": "/docs/guides-concepts/forms"
     },
     {
       "from": "/docs/guides-and-concepts/import-export/csv-export/",
@@ -366,7 +370,7 @@
     },
     {
       "from": "/docs/packages/react-table/",
-      "to": "/docs/packages/documentation/react-table/"
+      "to": "/docs/packages/documentation/tanstack-table/introduction"
     },
     {
       "from": "/docs/ui-frameworks/antd/components/antd-auth-page/",
@@ -694,7 +698,7 @@
     },
     {
       "from": "/docs/general-concepts/",
-      "to": "/docs/api-reference/general-concepts/"
+      "to": "/docs/guides-concepts/general-concepts/"
     },
     {
       "from": "/docs/getting-started/components/",
@@ -823,7 +827,7 @@
     },
     {
       "from": "/docs/api-reference/",
-      "to": "/docs/api-reference/general-concepts/"
+      "to": "/docs/guides-concepts/general-concepts/"
     },
     {
       "from": "/examples/",
@@ -844,6 +848,46 @@
     {
       "from": "/docs/examples/next-js/NextAuth.js/",
       "to": "/docs/examples/next-js/NextAuth-js/"
+    },
+    {
+      "from": "/docs/api-reference/general-concepts/",
+      "to": "/docs/guides-concepts/general-concepts"
+    },
+    {
+      "from": "/docs/api-reference/antd",
+      "to": "/docs/api-reference/antd/introduction"
+    },
+    {
+      "from": "/docs/api-reference/mantine",
+      "to": "/docs/api-reference/mantine/introduction"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui",
+      "to": "/docs/api-reference/chakra-ui/introduction"
+    },
+    {
+      "from": "/docs/api-reference/mui",
+      "to": "/docs/api-reference/mui/introduction"
+    },
+    {
+      "from": "/docs/examples/table/react-table/advanced-react-table",
+      "to": "/docs/examples/table/tanstack-table/advanced-tanstack-table"
+    },
+    {
+      "from": "/docs/examples/table/react-table/react-table",
+      "to": "/docs/examples/table/tanstack-table/basic-tanstack-table"
+    },
+    {
+      "from": "/docs/packages/documentation/react-table",
+      "to": "/docs/packages/documentation/tanstack-table/introduction"
+    },
+    {
+      "from": "/docs/advanced-tutorials/forms/server-side-form-validation",
+      "to": "/docs/guides-concepts/forms"
+    },
+    {
+      "from": "/docs/advanced-tutorials/forms/save-and-continue",
+      "to": "/docs/guides-concepts/forms"
     }
   ]
 }

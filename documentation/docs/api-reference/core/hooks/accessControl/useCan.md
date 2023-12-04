@@ -12,9 +12,9 @@ siderbar_label: useCan
 import { useCan } from "@refinedev/core";
 
 const { data } = useCan({
-    resource: "resource-you-ask-for-access",
-    action: "action-type-on-resource",
-    params: { foo: "optional-params" },
+  resource: "resource-you-ask-for-access",
+  action: "action-type-on-resource",
+  params: { foo: "optional-params" },
 });
 ```
 
@@ -45,7 +45,7 @@ Passes to [Access Control Provider's][access-control-provider] `can` function's 
 
 ```ts
 useCan({
-    resource: "resource-you-ask-for-access",
+  resource: "resource-you-ask-for-access",
 });
 ```
 
@@ -55,7 +55,7 @@ Passes to [Access Control Provider's][access-control-provider] `can` function's 
 
 ```ts
 useCan({
-    action: "resource-you-ask-for-access",
+  action: "resource-you-ask-for-access",
 });
 ```
 
@@ -65,7 +65,7 @@ Passes to [Access Control Provider's][access-control-provider] `can` function's 
 
 ```ts
 useCan({
-    params: { foo: "optional-params" },
+  params: { foo: "optional-params" },
 });
 ```
 
@@ -75,9 +75,9 @@ Query options for [TanStack Query's][tanstack-query] [`useQuery`][use-query].
 
 ```ts
 useCan({
-    queryOptions: {
-        staleTime: 5 * 60 * 1000, // 5 minutes
-    },
+  queryOptions: {
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  },
 });
 ```
 
@@ -89,26 +89,26 @@ For example, if you want to check if the user can create a post based on the ret
 
 ```tsx
 <Refine
-    accessControlProvider={{
-        can: async ({ resource, action }) => {
-            if (resource === "post" && action === "create") {
-                return {
-                    can: false,
-                    reason: "Unauthorized",
-                };
-            }
+  accessControlProvider={{
+    can: async ({ resource, action }) => {
+      if (resource === "post" && action === "create") {
+        return {
+          can: false,
+          reason: "Unauthorized",
+        };
+      }
 
-            return { can: true };
-        },
-    }}
+      return { can: true };
+    },
+  }}
 
-    // ...
+  // ...
 />;
 
 // inside your component
 const { data: canCreatePost } = useCan({
-    action: "create",
-    resource: "post",
+  action: "create",
+  resource: "post",
 });
 
 console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
@@ -122,9 +122,9 @@ console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
 
 ### Type Parameters
 
-| Property                                                         | Desription                                                                          |
-| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [CanReturnType](/api-reference/core/interfaces.md#canreturntype) | Result data of the query [`HttpError`](/api-reference/core/interfaces.md#httperror) |
+| Property                                                              | Description                                                                              |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| [CanReturnType](/docs/api-reference/core/interfaces.md#canreturntype) | Result data of the query [`HttpError`](/docs/api-reference/core/interfaces.md#httperror) |
 
 ### Return values
 
@@ -132,7 +132,7 @@ console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
 | ------------------------------------------------------------------------ | ---------------------------------------------------------------- |
 | Result of the [TanStack Query's][tanstack-query] [`useQuery`][use-query] | [`QueryObserverResult<{ data: CanReturnType; }>`][query-options] |
 
-[access-control-provider]: /docs/api-reference/core/providers/accessControl-provider/
+[access-control-provider]: /docs/api-reference/core/providers/access-control-provider/
 [use-query]: https://tanstack.com/query/latest/docs/react/guides/queries
 [tanstack-query]: https://tanstack.com/query/latest
 [query-options]: https://tanstack.com/query/v4/docs/react/reference/useQuery

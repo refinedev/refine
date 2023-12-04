@@ -1,5 +1,5 @@
 ---
-title: A Comprehensive Guide of React Unit Testing 
+title: A Comprehensive Guide of React Unit Testing
 description: We'll learn how to unit test our component down to hooks and Context.
 slug: react-unit-testing
 authors: chidume_nnamdi
@@ -7,8 +7,6 @@ tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-26-react-unit-testing/social.png
 hide_table_of_contents: false
 ---
-
-
 
 ## Introduction
 
@@ -28,7 +26,6 @@ In this article, we will learn all about unit testing in the Reactjs framework. 
 
 ## Setting up a testing environment
 
-
 Let's create a new React project.
 
 ```sh
@@ -36,11 +33,10 @@ create-react-app test-prj
 cd test-prj
 ```
 
-
-The testing tools that we will use are [Jest](https://jestjs.io/) and [React Testing Libary](https://testing-library.com/docs/react-testing-library/intro/).
+The testing tools that we will use are [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 
 - **Jest**: This is a popular testing library built by Facebook. It has simple APIs that make testing very easy.
-- **React Testing Libary**: This is a testing built on-top DOM Testing Library that gives us the power to test React components. It comes with React project scaffolded with the `create-react-app` tool, if it is not present you can install it using `npm install --save-dev @testing-library/react`.
+- **React Testing Library**: This is a testing built on-top DOM Testing Library that gives us the power to test React components. It comes with React project scaffolded with the `create-react-app` tool, if it is not present you can install it using `npm install --save-dev @testing-library/react`.
 
 To install Jest we run the command: `npm install --save-dev jest`.
 
@@ -268,8 +264,6 @@ test("increments count on button click", () => {
 
 Here, we rendered the `Counter` component passing a value of 9 via its `count` props. Then, we got hold of the `p` element where the props will be rendered. Then, we expect it to be the value 9.
 
-
-
 ## Mocking function calls
 
 During testing, we might not really want an actual function to be called based on some factors. For example, the function might have a number of calls set on it. The only way to go about this is to mock that function, ie, to create a dumb version function of that actual function. We do this in Jest by calling the `fn()` API. This creates a mock function and returns it.
@@ -419,7 +413,7 @@ test("renders fetched data after async call", async () => {
   jest.spyOn(window, "fetch").mockImplementation(() =>
     Promise.resolve({
       json: () => Promise.resolve(mockData),
-    })
+    }),
   );
 
   const { getByText } = render(<AsyncComponent />);
@@ -462,9 +456,7 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const theme = "light";
 
-  return (
-    <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 };
 
 export const useTheme = () => useContext(ThemeContext);
@@ -488,7 +480,7 @@ test("renders theme value from the context", () => {
   const { getByText } = render(
     <ThemeProvider>
       <ThemeConsumer />
-    </ThemeProvider>
+    </ThemeProvider>,
   );
 
   expect(getByText("light")).toBeInTheDocument();
@@ -520,7 +512,7 @@ const About = () => {
   return <div>This is the About component</div>;
 };
 
-export default About
+export default About;
 ```
 
 Let's set up the routing:
@@ -568,7 +560,7 @@ test("renders home component when visiting the home route", () => {
   render(
     <Router initialEntries={["/home"]}>
       <App />
-    </Router>
+    </Router>,
   );
 
   expect(screen.getByText("This is the Home component")).toBeInTheDocument();
@@ -578,7 +570,7 @@ test("renders about component when visiting the about route", () => {
   render(
     <Router initialEntries={["/about"]}>
       <App />
-    </Router>
+    </Router>,
   );
 
   expect(screen.getByText("This is the About component")).toBeInTheDocument();

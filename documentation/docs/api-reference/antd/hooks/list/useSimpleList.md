@@ -29,7 +29,6 @@ It also syncs the pagination state with the URL if you enable the [`syncWithLoca
 
 If you want to make a change in the pagination of the `<List>`. You should pass the pagination object of the `listProps` to the pagination property of the `<List>` as below. You can override the values of the pagination object as your need.
 
-
 ```tsx
 // ...
 const { listProps } = useSimpleList<IProduct>();
@@ -37,22 +36,24 @@ const { listProps } = useSimpleList<IProduct>();
 // ...
 
 return (
-    <AntdList
-        {...listProps}
-        renderItem={renderItem}
-        // highlight-start
-        pagination={{
-            ...listProps.pagination,
-            position: "top",
-            size: "small",
-        }}
-        // highlight-end
-    />
+  <AntdList
+    {...listProps}
+    renderItem={renderItem}
+    // highlight-start
+    pagination={{
+      ...listProps.pagination,
+      position: "top",
+      size: "small",
+    }}
+    // highlight-end
+  />
 );
 ```
 
 :::info
+
 By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the pagination.mode property and set it to "client". You can also disable the pagination by setting it to "off".
+
 :::
 
 ## Sorting
@@ -80,7 +81,9 @@ We can use the [`onSearch`](#onsearch) property and the [`searchFormProps`](#sea
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useSimpleList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
@@ -93,13 +96,13 @@ When the `useSimpleList` hook is mounted, it will call the `subscribe` method fr
 
 The `useSimpleList` passes the `resource` to the `dataProvider` as a param. This parameter is usually used as an API endpoint path. It all depends on how to handle the resources in your `dataProvider`.
 
-Refer to the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) documentation for an example of how resources are handled.
+Refer to the [`creating a data provider`](/docs/api-reference/core/providers/data-provider.md#creating-a-data-provider) documentation for an example of how resources are handled.
 
 The `resource` value is inferred from the current route where the component or the hook is used. It can be overridden by passing the `resource` prop.
 
 The use case for overriding the `resource` prop:
 
--   We can list a `category` from the `<ProductList>` page.
+- We can list a `category` from the `<ProductList>` page.
 
 ```tsx
 import React from "react";
@@ -107,31 +110,25 @@ import { HttpError } from "@refinedev/core";
 import { useSimpleList } from "@refinedev/antd";
 
 interface IProduct {
-    id: number;
-    name: string;
-    description: string;
-    price: string;
+  id: number;
+  name: string;
+  description: string;
+  price: string;
 }
 
 interface ICategory {
-    id: number;
-    name: string;
+  id: number;
+  name: string;
 }
 
 export const ProductList: React.FC = () => {
-    const { tableQueryResult: productsQueryResult } = useSimpleList<
-        IProduct,
-        HttpError
-    >();
+  const { tableQueryResult: productsQueryResult } = useSimpleList<IProduct, HttpError>();
 
-    const { tableQueryResult: categoriesQueryResult } = useSimpleList<
-        ICategory,
-        HttpError
-    >({
-        resource: "categories",
-    });
+  const { tableQueryResult: categoriesQueryResult } = useSimpleList<ICategory, HttpError>({
+    resource: "categories",
+  });
 
-    return <div>{/* ... */}</div>;
+  return <div>{/* ... */}</div>;
 };
 ```
 
@@ -139,7 +136,7 @@ Also, you can give a URL path to the `resource` prop.
 
 ```tsx
 useSimpleList({
-    resource: "categories/subcategory", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory
+  resource: "categories/subcategory", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory
 });
 ```
 
@@ -153,9 +150,9 @@ Sets the initial value of the page index. It is `1` by default.
 
 ```tsx
 useSimpleList({
-    pagination: {
-        current: 2,
-    },
+  pagination: {
+    current: 2,
+  },
 });
 ```
 
@@ -165,9 +162,9 @@ Sets the initial value of the page size. It is `10` by default.
 
 ```tsx
 useSimpleList({
-    pagination: {
-        pageSize: 20,
-    },
+  pagination: {
+    pageSize: 20,
+  },
 });
 ```
 
@@ -175,15 +172,15 @@ useSimpleList({
 
 It can be `"off"`, `"server"` or `"client"`. It is `"server"` by default.
 
--   **"off":** Pagination is disabled. All records will be fetched.
--   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
--   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+- **"off":** Pagination is disabled. All records will be fetched.
+- **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
+- **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
 
 ```tsx
 useSimpleList({
-    pagination: {
-        mode: "client",
-    },
+  pagination: {
+    mode: "client",
+  },
 });
 ```
 
@@ -195,14 +192,14 @@ Sets the initial value of the sorter. The `initial` is not permanent. It will be
 
 ```tsx
 useSimpleList({
-    sorters: {
-        initial: [
-            {
-                field: "name",
-                order: "asc",
-            },
-        ],
-    },
+  sorters: {
+    initial: [
+      {
+        field: "name",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
@@ -214,14 +211,14 @@ Sets the permanent value of the sorter. The `permanent` is permanent and unchang
 
 ```tsx
 useSimpleList({
-    sorters: {
-        permanent: [
-            {
-                field: "name",
-                order: "asc",
-            },
-        ],
-    },
+  sorters: {
+    permanent: [
+      {
+        field: "name",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
@@ -233,15 +230,15 @@ Sets the initial value of the filter. The `initial` is not permanent. It will be
 
 ```tsx
 useSimpleList({
-    filters: {
-        initial: [
-            {
-                field: "name",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  filters: {
+    initial: [
+      {
+        field: "name",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
@@ -253,15 +250,15 @@ Sets the permanent value of the filter. The `permanent` is permanent and unchang
 
 ```tsx
 useSimpleList({
-    filters: {
-        permanent: [
-            {
-                field: "name",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  filters: {
+    permanent: [
+      {
+        field: "name",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
@@ -269,17 +266,17 @@ useSimpleList({
 
 The filtering behavior can be set to either `"merge"` or `"replace"`. It is `merge` by default.
 
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 useSimpleList({
-    filters: {
-        defaultBehavior: "replace",
-    },
+  filters: {
+    defaultBehavior: "replace",
+  },
 });
 ```
 
@@ -291,7 +288,7 @@ Also, you can set this value globally on the [`<Refine>`][refine swl] component.
 
 ```tsx
 useSimpleList({
-    syncWithLocation: true,
+  syncWithLocation: true,
 });
 ```
 
@@ -301,9 +298,9 @@ useSimpleList({
 
 ```tsx
 useSimpleList({
-    queryOptions: {
-        retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -311,47 +308,47 @@ useSimpleList({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-> For more information, refer to the [`meta` section of the General Concepts documentation for more information &#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation for more information &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useSimpleList({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  getList: async ({
+    resource,
+    pagination,
+    sorters,
+    filters,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    getList: async ({
-        resource,
-        pagination,
-        sorters,
-        filters,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data, headers } = await httpClient.get(`${url}`, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data, headers } = await httpClient.get(`${url}`, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -361,54 +358,60 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 
 ```tsx
 useSimpleList({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 After data is fetched successfully, `useSimpleList` can call the `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx
 useSimpleList({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 After data fetching is failed, `useSimpleList` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useSimpleList({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
 ### `liveMode`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Determines whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. It can be used to update and show data in Realtime throughout your app.
@@ -417,30 +420,34 @@ Determines whether to update data automatically (`"auto"`) or not (`"manual"`) i
 
 ```tsx
 useSimpleList({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
 ### `onLiveEvent`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useSimpleList({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
 ### `liveParams`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
@@ -455,88 +462,96 @@ When [`searchFormProps.onFinish`](#searchformprops) is called, the `onSearch` fu
 // ...
 
 const { searchFormProps, listProps } = useSimpleList({
-    onSearch: (values) => {
-        return [
-            {
-                field: "name",
-                operator: "contains",
-                value: values.name,
-            },
-            {
-                field: "description",
-                operator: "contains",
-                value: values.description,
-            },
-        ];
-    },
+  onSearch: (values) => {
+    return [
+      {
+        field: "name",
+        operator: "contains",
+        value: values.name,
+      },
+      {
+        field: "description",
+        operator: "contains",
+        value: values.description,
+      },
+    ];
+  },
 });
 
 // ...
 
 return (
-    <div>
-        <Form {...searchFormProps} layout="inline">
-            <Form.Item name="name">
-                <Input placeholder="Search by name" />
-            </Form.Item>
-            <Form.Item name="description">
-                <Input placeholder="Search by description" />
-            </Form.Item>
-            <Button type="primary" onClick={searchFormProps.form?.submit}>
-                Search
-            </Button>
-        </Form>
-        <AntdList {...listProps} renderItem={renderItem} />
-    </div>
+  <div>
+    <Form {...searchFormProps} layout="inline">
+      <Form.Item name="name">
+        <Input placeholder="Search by name" />
+      </Form.Item>
+      <Form.Item name="description">
+        <Input placeholder="Search by description" />
+      </Form.Item>
+      <Button type="primary" onClick={searchFormProps.form?.submit}>
+        Search
+      </Button>
+    </Form>
+    <AntdList {...listProps} renderItem={renderItem} />
+  </div>
 );
 ```
 
 ### ~~`initialCurrent`~~
 
 :::caution Deprecated
+
 Use `pagination.current` instead.
+
 :::
 
 Sets the initial value of the page index. It is set to `1` by default.
 
 ```tsx
 useSimpleList({
-    initialCurrent: 2,
+  initialCurrent: 2,
 });
 ```
 
 ### ~~`initialPageSize`~~
 
 :::caution Deprecated
+
 Use `pagination.pageSize` instead.
+
 :::
 
 Sets the initial value of the page size. It is set to `10` by default.
 
 ```tsx
 useSimpleList({
-    initialPageSize: 20,
+  initialPageSize: 20,
 });
 ```
 
 ### ~~`hasPagination`~~
 
 :::caution Deprecated
+
 Use `pagination.mode` instead.
+
 :::
 
 Determines whether to use server-side pagination or not. It is set to `true` by default.
 
 ```tsx
 useSimpleList({
-    hasPagination: false,
+  hasPagination: false,
 });
 ```
 
 ### ~~`initialSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.initial` instead.
+
 :::
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
@@ -545,19 +560,21 @@ Sets the initial value of the sorter. The `initialSorter` is not permanent. It w
 
 ```tsx
 useSimpleList({
-    initialSorter: [
-        {
-            field: "name",
-            order: "asc",
-        },
-    ],
+  initialSorter: [
+    {
+      field: "name",
+      order: "asc",
+    },
+  ],
 });
 ```
 
 ### ~~`permanentSorter`~~
 
 :::caution Deprecated
+
 Use `sorters.permanent` instead.
+
 :::
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
@@ -566,19 +583,21 @@ Sets the permanent value of the sorter. The `permanentSorter` is permanent and u
 
 ```tsx
 useSimpleList({
-    permanentSorter: [
-        {
-            field: "name",
-            order: "asc",
-        },
-    ],
+  permanentSorter: [
+    {
+      field: "name",
+      order: "asc",
+    },
+  ],
 });
 ```
 
 ### ~~`initialFilter`~~
 
 :::caution Deprecated
+
 Use `filters.initial` instead.
+
 :::
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
@@ -587,20 +606,22 @@ Sets the initial value of the filter. The `initialFilter` is not permanent. It w
 
 ```tsx
 useSimpleList({
-    initialFilter: [
-        {
-            field: "name",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+  initialFilter: [
+    {
+      field: "name",
+      operator: "contains",
+      value: "Foo",
+    },
+  ],
 });
 ```
 
 ### ~~`permanentFilter`~~
 
 :::caution Deprecated
+
 Use `filters.permanent` instead.
+
 :::
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
@@ -609,33 +630,35 @@ Sets the permanent value of the filter. The `permanentFilter` is permanent and u
 
 ```tsx
 useSimpleList({
-    permanentFilter: [
-        {
-            field: "name",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+  permanentFilter: [
+    {
+      field: "name",
+      operator: "contains",
+      value: "Foo",
+    },
+  ],
 });
 ```
 
 ### ~~`defaultSetFilterBehavior`~~
 
 :::caution Deprecated
+
 Use `filters.defaultBehavior` instead.
+
 :::
 
 The filtering behavior can be set to either `"merge"` or `"replace"`. It is set to `merge` by default.
 
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 useSimpleList({
-    defaultSetFilterBehavior: "replace",
+  defaultSetFilterBehavior: "replace",
 });
 ```
 
@@ -648,20 +671,23 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useSimpleList({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
-    }
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
+    },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ## Return Values
 
 ### `queryResult`
@@ -679,39 +705,39 @@ It's useful when you want to create a filter form for your `<List>`.
 // ...
 
 const { searchFormProps, listProps } = useSimpleList({
-    onSearch: (values) => {
-        return [
-            {
-                field: "name",
-                operator: "contains",
-                value: values.name,
-            },
-            {
-                field: "description",
-                operator: "contains",
-                value: values.description,
-            },
-        ];
-    },
+  onSearch: (values) => {
+    return [
+      {
+        field: "name",
+        operator: "contains",
+        value: values.name,
+      },
+      {
+        field: "description",
+        operator: "contains",
+        value: values.description,
+      },
+    ];
+  },
 });
 
 // ...
 
 return (
-    <div>
-        <Form {...searchFormProps} layout="inline">
-            <Form.Item name="name">
-                <Input placeholder="Search by name" />
-            </Form.Item>
-            <Form.Item name="description">
-                <Input placeholder="Search by description" />
-            </Form.Item>
-            <Button type="primary" onClick={searchFormProps.form?.submit}>
-                Search
-            </Button>
-        </Form>
-        <AntdList {...listProps} renderItem={renderItem} />
-    </div>
+  <div>
+    <Form {...searchFormProps} layout="inline">
+      <Form.Item name="name">
+        <Input placeholder="Search by name" />
+      </Form.Item>
+      <Form.Item name="description">
+        <Input placeholder="Search by description" />
+      </Form.Item>
+      <Button type="primary" onClick={searchFormProps.form?.submit}>
+        Search
+      </Button>
+    </Form>
+    <AntdList {...listProps} renderItem={renderItem} />
+  </div>
 );
 ```
 
@@ -800,10 +826,13 @@ const { overtime } = useSimpleList();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ### ~~`sorter`~~
 
 :::caution Deprecated
+
 Use `sorters` instead.
+
 :::
 
 `sorter` is the current [sorters state][crudsorting].
@@ -811,7 +840,9 @@ Use `sorters` instead.
 ### ~~`setSorter`~~
 
 :::caution Deprecated
+
 Use `setSorters` instead.
+
 :::
 
 `setSorter` is a function to set current [sorters state][crudsorting].
@@ -828,7 +859,7 @@ Use `setSorters` instead.
 
 ### Type Parameters
 
-| Property         | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property         | Description                                                                                                                                                         | Type                       | Default                    |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData     | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError           | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

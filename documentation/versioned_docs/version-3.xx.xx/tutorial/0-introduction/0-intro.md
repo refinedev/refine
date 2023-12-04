@@ -2,9 +2,9 @@
 id: index
 title: 1. Build your first refine app
 tutorial:
-    order: 0
-    prev: false
-    next: tutorial/introduction/prequisite
+  order: 0
+  prev: false
+  next: tutorial/introduction/prerequisite
 ---
 
 ## About this Tutorial
@@ -13,11 +13,11 @@ In this tutorial, you'll learn how to use **refine** by building a fully-functio
 
 We'll cover the following topics:
 
--   Setting up your development environment
--   Create your first refine app
--   Understanding the [`dataProvider`](/docs/api-reference/core/providers/data-provider/)
--   What is the [`resources`](docs/api-reference/core/components/refine-config.md#resources) concept
--   Adding CRUD pages
+- Setting up your development environment
+- Create your first refine app
+- Understanding the [`dataProvider`](/docs/api-reference/core/providers/data-provider/)
+- What is the [`resources`](docs/api-reference/core/components/refine-config.md#resources) concept
+- Adding CRUD pages
 <!-- -   Understanding the `authProvider` -->
 
 :::note

@@ -42,7 +42,7 @@ In this guide, you will implement OTP-based login in **refine** using the Supaba
 
 [refine](https://github.com/refinedev/refine) is a React-based open-source frameworks for building admin panels, dashboards, internal tools and storefront apps rapidly. It helps developers to avoid from repetitive tasks demanded by CRUD operations and provides solutions for like authentication, access control, routing, networking, state management.
 
-One of the great features of refine is its out-of-the-box data providers integrations. refine has a built-in data provider for supabase and we'll see how to use it propery.
+One of the great features of refine is its out-of-the-box data providers integrations. refine has a built-in data provider for supabase and we'll see how to use it properly.
 
 ## Prerequisites
 
@@ -98,31 +98,31 @@ Update the recently added `tailwind.config.js` file to add some theming to the r
 ```tsx title="tailwind.config.js"
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: [
-        "node_modules/daisyui/dist/**/*.js",
-        "node_modules/react-daisyui/dist/**/*.js",
-        "./src/**/*.{js,jsx,ts,tsx}",
-    ],
-    theme: {
-        extend: {
-            colors: {
-                dark: "#030303",
-                gray: "#eaeaec",
-            },
+  content: [
+    "node_modules/daisyui/dist/**/*.js",
+    "node_modules/react-daisyui/dist/**/*.js",
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        dark: "#030303",
+        gray: "#eaeaec",
+      },
+    },
+  },
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#545bef",
+          secondary: "#757EC0",
+          accent: "#09f08a",
         },
-    },
-    plugins: [require("daisyui")],
-    daisyui: {
-        themes: [
-            {
-                mytheme: {
-                    primary: "#545bef",
-                    secondary: "#757EC0",
-                    accent: "#09f08a",
-                },
-            },
-        ],
-    },
+      },
+    ],
+  },
 };
 ```
 
@@ -131,10 +131,10 @@ Create `postcss.config.js`:
 ```tsx title="postcss.config.js"
 /** @type {import('tailwindcss').Config} */
 export default {
-    plugins: {
-        tailwindcss: {},
-        autoprefixer: {},
-    },
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
 };
 ```
 
@@ -219,92 +219,83 @@ import { Alert, Button, Card, Input } from "react-daisyui";
 import { supabaseClient } from "../utility";
 
 export const LoginPage = () => {
-    const mobileNoRef = useRef<string>();
-    const otpRef = useRef<string>();
-    const [error, setError] = useState<string>();
-    const [formState, setFormState] = useState<"SEND_OTP" | "LOGIN">(
-        "SEND_OTP",
-    );
+  const mobileNoRef = useRef<string>();
+  const otpRef = useRef<string>();
+  const [error, setError] = useState<string>();
+  const [formState, setFormState] = useState<"SEND_OTP" | "LOGIN">("SEND_OTP");
 
-    const { mutate: login } = useLogin();
+  const { mutate: login } = useLogin();
 
-    const onLogin = () => {
-        login(
-            { mobileNo: mobileNoRef.current, otp: otpRef.current },
-            { onError: (error) => setError(error.message) },
-        );
-    };
+  const onLogin = () => {
+    login({ mobileNo: mobileNoRef.current, otp: otpRef.current }, { onError: (error) => setError(error.message) });
+  };
 
-    const mobileFormRender = () => (
-        <>
-            <label className="text-dark font-medium">
-                Enter your mobile mumber
-            </label>
-            <Input
-                className="border-gray bg-gray text-dark mb-4 text-lg font-medium"
-                onChange={(e) => (mobileNoRef.current = e.target.value)}
-                onFocus={() => setError("")}
-                name="mobile"
-                type={"tel"}
-                defaultValue={mobileNoRef.current}
-            />
-            <Button color="accent" className="shadow" onClick={onSendOtp}>
-                Send OTP
-            </Button>
-        </>
-    );
+  const mobileFormRender = () => (
+    <>
+      <label className="text-dark font-medium">Enter your mobile number</label>
+      <Input
+        className="border-gray bg-gray text-dark mb-4 text-lg font-medium"
+        onChange={(e) => (mobileNoRef.current = e.target.value)}
+        onFocus={() => setError("")}
+        name="mobile"
+        type={"tel"}
+        defaultValue={mobileNoRef.current}
+      />
+      <Button color="accent" className="shadow" onClick={onSendOtp}>
+        Send OTP
+      </Button>
+    </>
+  );
 
-    const otpFormRender = () => (
-        <>
-            <label className="text-dark font-medium">Enter OTP</label>
-            <Input
-                className="border-gray bg-gray text-dark mb-4 text-lg font-medium"
-                onChange={(e) => (otpRef.current = e.target.value)}
-                onFocus={() => setError("")}
-                name="otp"
-                value={otpRef.current}
-            />
-            <Button color="accent" className="shadow" onClick={onLogin}>
-                Login
-            </Button>
-        </>
-    );
+  const otpFormRender = () => (
+    <>
+      <label className="text-dark font-medium">Enter OTP</label>
+      <Input
+        className="border-gray bg-gray text-dark mb-4 text-lg font-medium"
+        onChange={(e) => (otpRef.current = e.target.value)}
+        onFocus={() => setError("")}
+        name="otp"
+        value={otpRef.current}
+      />
+      <Button color="accent" className="shadow" onClick={onLogin}>
+        Login
+      </Button>
+    </>
+  );
 
-    const onSendOtp = async () => {
-        const mobileNo = mobileNoRef.current || "";
-        if (!/^\+[1-9]{1}[0-9]{3,14}$/.test(mobileNo)) {
-            setError("Please enter a valid mobile number");
-            return;
-        }
+  const onSendOtp = async () => {
+    const mobileNo = mobileNoRef.current || "";
+    if (!/^\+[1-9]{1}[0-9]{3,14}$/.test(mobileNo)) {
+      setError("Please enter a valid mobile number");
+      return;
+    }
 
-        const { error } = await supabaseClient.auth.signInWithOtp({
-            phone: mobileNo,
-        });
-        if (error) {
-            setError(error.message);
-            return;
-        }
-        setFormState("LOGIN");
-    };
+    const { error } = await supabaseClient.auth.signInWithOtp({
+      phone: mobileNo,
+    });
+    if (error) {
+      setError(error.message);
+      return;
+    }
+    setFormState("LOGIN");
+  };
 
-    return (
-        <div className="bg-primary flex min-h-screen items-center justify-center">
-            <Card className="w-1/2 bg-white shadow-lg " bordered={false}>
-                <Card.Body>
-                    {error && (
-                        <Alert status="error" className="mb-2">
-                            {error}
-                        </Alert>
-                    )}
-                    <h2 className="text-dark mb-3  text-xl font-bold">
-                        Sign In
-                    </h2>
-                    {formState === "SEND_OTP" && mobileFormRender()}
-                    {formState === "LOGIN" && otpFormRender()}
-                </Card.Body>
-            </Card>
-        </div>
-    );
+  return (
+    <div className="bg-primary flex min-h-screen items-center justify-center">
+      <Card className="w-1/2 bg-white shadow-lg " bordered={false}>
+        <Card.Body>
+          {error && (
+            <Alert status="error" className="mb-2">
+              {error}
+            </Alert>
+          )}
+          <h2 className="text-dark mb-3  text-xl font-bold">Sign In</h2>
+          {formState === "SEND_OTP" && mobileFormRender()}
+          {formState === "LOGIN" && otpFormRender()}
+        </Card.Body>
+      </Card>
+    </div>
+  );
 };
 ```
 
@@ -330,18 +321,12 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 // highlight-start
 import routerBindings, {
-    CatchAllNavigate,
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
+  CatchAllNavigate,
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import {
-    BrowserRouter,
-    Navigate,
-    Outlet,
-    Route,
-    Routes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 // highlight-end
 
 import authProvider from "./authProvider";
@@ -353,50 +338,48 @@ import { LoginPage } from "./pages/Login";
 import "./App.css";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(supabaseClient)}
-                    liveProvider={liveProvider(supabaseClient)}
-                    authProvider={authProvider}
-                    routerProvider={routerBindings}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    {/* highlight-start */}
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <Outlet />
-                                </Authenticated>
-                            }
-                        >
-                            <Route index element={<WelcomePage />} />
-                        </Route>
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <Navigate to="/" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="/login" element={<LoginPage />} />
-                        </Route>
-                    </Routes>
-                    {/* highlight-end */}
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider(supabaseClient)}
+          liveProvider={liveProvider(supabaseClient)}
+          authProvider={authProvider}
+          routerProvider={routerBindings}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          {/* highlight-start */}
+          <Routes>
+            <Route
+              element={
+                <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                  <Outlet />
+                </Authenticated>
+              }
+            >
+              <Route index element={<WelcomePage />} />
+            </Route>
+            <Route
+              element={
+                <Authenticated fallback={<Outlet />}>
+                  <Navigate to="/" />
+                </Authenticated>
+              }
+            >
+              <Route path="/login" element={<LoginPage />} />
+            </Route>
+          </Routes>
+          {/* highlight-end */}
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -417,8 +400,6 @@ In this case, we pass the `supabaseClient` as the data provider. Supabase is sup
 
 [You can learn more about data provider in the refine docs.](https://refine.dev/docs/api-reference/core/providers/data-provider/)
 
-
-
 ## Auth Provider
 
 The `authProvider` is an object that refine uses to authenticate and authorize the users. The auth provider must have methods like `login()`, `register()`, etc., to manage authentication in your app. These methods should return a Promise and are accessible via hooks.
@@ -427,7 +408,7 @@ The `authProvider` is an object that refine uses to authenticate and authorize t
 
 [You can read more about auth provider in detail here.](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
 
-Allright, now coming back to the `<LoginPage />` component. When the user requests for OTP, validate the mobile number using the regex shown in the below code. The mobile number is expected to include the country code; you can use other third-party components for mobile input with a country code dropdown and mobile validation out-of-the-box.
+Alright, now coming back to the `<LoginPage />` component. When the user requests for OTP, validate the mobile number using the regex shown in the below code. The mobile number is expected to include the country code; you can use other third-party components for mobile input with a country code dropdown and mobile validation out-of-the-box.
 
 We'll use the input field in this guide for brevity.
 
@@ -437,20 +418,20 @@ import { supabaseClient } from "../utility";
 // ...
 
 const onSendOtp = async () => {
-    const mobileNo = mobileNoRef.current || "";
-    if (!/^\+[1-9]{1}[0-9]{3,14}$/.test(mobileNo)) {
-        setError("Please enter a valid mobile number");
-        return;
-    }
+  const mobileNo = mobileNoRef.current || "";
+  if (!/^\+[1-9]{1}[0-9]{3,14}$/.test(mobileNo)) {
+    setError("Please enter a valid mobile number");
+    return;
+  }
 
-    const { error } = await supabaseClient.auth.signInWithOtp({
-        phone: mobileNo,
-    });
-    if (error) {
-        setError(error.message);
-        return;
-    }
-    setFormState("LOGIN");
+  const { error } = await supabaseClient.auth.signInWithOtp({
+    phone: mobileNo,
+  });
+  if (error) {
+    setError(error.message);
+    return;
+  }
+  setFormState("LOGIN");
 };
 
 // ...
@@ -485,35 +466,35 @@ Update the `login` property in `authProvider` to accept the mobile number and OT
 // ...
 
 const authProvider: AuthBindings = {
-    login: async ({ mobileNo, otp }) => {
-        const { data, error } = await supabaseClient.auth.verifyOtp({
-            type: "sms",
-            phone: mobileNo,
-            token: otp,
-        });
+  login: async ({ mobileNo, otp }) => {
+    const { data, error } = await supabaseClient.auth.verifyOtp({
+      type: "sms",
+      phone: mobileNo,
+      token: otp,
+    });
 
-        if (error) {
-            return {
-                success: false,
-                error,
-            };
-        }
-        if (data?.user) {
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        }
+    if (error) {
+      return {
+        success: false,
+        error,
+      };
+    }
+    if (data?.user) {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    }
 
-        return {
-            success: false,
-            error: {
-                message: "Login failed",
-                name: "Invalid mobile number or otp",
-            },
-        };
-    },
-    // ...
+    return {
+      success: false,
+      error: {
+        message: "Login failed",
+        name: "Invalid mobile number or otp",
+      },
+    };
+  },
+  // ...
 };
 ```
 
@@ -525,10 +506,7 @@ In the `onLogin()` function of the `<LoginPage />` component, pass the mobile nu
 const { mutate: login } = useLogin();
 
 const onLogin = () => {
-    login(
-        { mobileNo: mobileNoRef.current, otp: otpRef.current },
-        { onError: (error) => setError(error.message) },
-    );
+  login({ mobileNo: mobileNoRef.current, otp: otpRef.current }, { onError: (error) => setError(error.message) });
 };
 ```
 
@@ -581,42 +559,32 @@ import { Table } from "react-daisyui";
 const columns = ["ID", "Name", "ISO Code", "Local Name", "Continent"];
 
 export const Countries = () => {
-    const { data: countries } = useList({
-        resource: "countries",
-        hasPagination: false,
-    });
-    return (
-        <div className="overflow-x-auto">
-            <Table color="primary" className="w-full">
-                <Table.Head className="bg-primary">
-                    {columns.map((column) => (
-                        <span key={column}>{column}</span>
-                    ))}
-                </Table.Head>
-                <Table.Body>
-                    {countries?.data.map((country: Record<string, string>) => (
-                        <Table.Row key={country.id}>
-                            <span className="text-dark font-medium opacity-50">
-                                {country.id}
-                            </span>
-                            <span className="text-dark font-medium opacity-50">
-                                {country.name}
-                            </span>
-                            <span className="text-dark font-medium opacity-50">
-                                {country.iso2}
-                            </span>
-                            <span className="text-dark font-medium opacity-50">
-                                {country.local_name}
-                            </span>
-                            <span className="text-dark font-medium opacity-50">
-                                {country.continent}
-                            </span>
-                        </Table.Row>
-                    ))}
-                </Table.Body>
-            </Table>
-        </div>
-    );
+  const { data: countries } = useList({
+    resource: "countries",
+    hasPagination: false,
+  });
+  return (
+    <div className="overflow-x-auto">
+      <Table color="primary" className="w-full">
+        <Table.Head className="bg-primary">
+          {columns.map((column) => (
+            <span key={column}>{column}</span>
+          ))}
+        </Table.Head>
+        <Table.Body>
+          {countries?.data.map((country: Record<string, string>) => (
+            <Table.Row key={country.id}>
+              <span className="text-dark font-medium opacity-50">{country.id}</span>
+              <span className="text-dark font-medium opacity-50">{country.name}</span>
+              <span className="text-dark font-medium opacity-50">{country.iso2}</span>
+              <span className="text-dark font-medium opacity-50">{country.local_name}</span>
+              <span className="text-dark font-medium opacity-50">{country.continent}</span>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    </div>
+  );
 };
 ```
 
@@ -627,24 +595,19 @@ import { LayoutProps, useLogout } from "@refinedev/core";
 import { Button } from "react-daisyui";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
-    const { mutate: logout } = useLogout();
-    return (
-        <div className="flex min-h-screen flex-col">
-            <div className="bg-gray mb-2 py-3">
-                <div className="container mx-auto flex">
-                    <Button
-                        color="accent"
-                        size="sm"
-                        className="ml-auto shadow"
-                        onClick={() => logout()}
-                    >
-                        Logout
-                    </Button>
-                </div>
-            </div>
-            <div className="container mx-auto bg-white py-4">{children}</div>
+  const { mutate: logout } = useLogout();
+  return (
+    <div className="flex min-h-screen flex-col">
+      <div className="bg-gray mb-2 py-3">
+        <div className="container mx-auto flex">
+          <Button color="accent" size="sm" className="ml-auto shadow" onClick={() => logout()}>
+            Logout
+          </Button>
         </div>
-    );
+      </div>
+      <div className="container mx-auto bg-white py-4">{children}</div>
+    </div>
+  );
 };
 ```
 
@@ -659,11 +622,11 @@ import { Authenticated, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import routerBindings, {
-    CatchAllNavigate,
-    DocumentTitleHandler,
-    // highlight-next-line
-    NavigateToResource,
-    UnsavedChangesNotifier,
+  CatchAllNavigate,
+  DocumentTitleHandler,
+  // highlight-next-line
+  NavigateToResource,
+  UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
@@ -680,61 +643,54 @@ import { supabaseClient } from "./utility";
 import "./App.css";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(supabaseClient)}
-                    liveProvider={liveProvider(supabaseClient)}
-                    authProvider={authProvider}
-                    routerProvider={routerBindings}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                    // highlight-next-line
-                    resources={[{ name: "countries", list: "/countries" }]}
-                >
-                    {/* highlight-start */}
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                    <Layout>
-                                        <Outlet />
-                                    </Layout>
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                index
-                                element={
-                                    <NavigateToResource resource="countries" />
-                                }
-                            />
-                            <Route path="/countries" element={<Countries />} />
-                        </Route>
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider(supabaseClient)}
+          liveProvider={liveProvider(supabaseClient)}
+          authProvider={authProvider}
+          routerProvider={routerBindings}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+          // highlight-next-line
+          resources={[{ name: "countries", list: "/countries" }]}
+        >
+          {/* highlight-start */}
+          <Routes>
+            <Route
+              element={
+                <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                  <Layout>
+                    <Outlet />
+                  </Layout>
+                </Authenticated>
+              }
+            >
+              <Route index element={<NavigateToResource resource="countries" />} />
+              <Route path="/countries" element={<Countries />} />
+            </Route>
 
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="countries" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="/login" element={<LoginPage />} />
-                        </Route>
-                    </Routes>
-                    {/* highlight-end */}
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+            <Route
+              element={
+                <Authenticated fallback={<Outlet />}>
+                  <NavigateToResource resource="countries" />
+                </Authenticated>
+              }
+            >
+              <Route path="/login" element={<LoginPage />} />
+            </Route>
+          </Routes>
+          {/* highlight-end */}
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;

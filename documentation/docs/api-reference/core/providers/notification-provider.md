@@ -12,8 +12,8 @@ An `notificationProvider` must include following methods:
 
 ```tsx
 const notificationProvider = {
-    show: () => {},
-    close: () => {},
+  show: () => {},
+  close: () => {},
 };
 ```
 
@@ -21,17 +21,17 @@ And these methods types like this:
 
 ```tsx
 interface NotificationProvider {
-    open: (params: OpenNotificationParams) => void;
-    close: (key: string) => void;
+  open: (params: OpenNotificationParams) => void;
+  close: (key: string) => void;
 }
 
 interface OpenNotificationParams {
-    key?: string;
-    message: string;
-    type: "success" | "error" | "progress";
-    description?: string;
-    cancelMutation?: () => void;
-    undoableTimeout?: number;
+  key?: string;
+  message: string;
+  type: "success" | "error" | "progress";
+  description?: string;
+  cancelMutation?: () => void;
+  undoableTimeout?: number;
 }
 ```
 
@@ -44,21 +44,21 @@ import { Refine, NotificationProvider } from "@refinedev/core";
 
 //highlight-start
 const notificationProvider: NotificationProvider = {
-    open: () => {},
-    close: () => {},
+  open: () => {},
+  close: () => {},
 };
 //highlight-end
 
 const App = () => {
-    return (
-        <Refine
-            //highlight-next-line
-            notificationProvider={notificationProvider}
-            /* ... */
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      //highlight-next-line
+      notificationProvider={notificationProvider}
+      /* ... */
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
@@ -86,10 +86,10 @@ values={[
 import { notificationProvider } from "@refinedev/antd";
 
 return (
-    <Refine
-        //...
-        notificationProvider={notificationProvider}
-    />
+  <Refine
+    //...
+    notificationProvider={notificationProvider}
+  />
 );
 ```
 
@@ -101,12 +101,12 @@ return (
 import { notificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
 
 return (
-    <RefineSnackbarProvider>
-        <Refine
-            //...
-            notificationProvider={notificationProvider}
-        />
-    </RefineSnackbarProvider>
+  <RefineSnackbarProvider>
+    <Refine
+      //...
+      notificationProvider={notificationProvider}
+    />
+  </RefineSnackbarProvider>
 );
 ```
 
@@ -119,12 +119,12 @@ import { notificationProvider } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 
 return (
-    <NotificationsProvider position="top-right">
-        <Refine
-            //...
-            notificationProvider={notificationProvider}
-        />
-    </NotificationsProvider>
+  <NotificationsProvider position="top-right">
+    <Refine
+      //...
+      notificationProvider={notificationProvider}
+    />
+  </NotificationsProvider>
 );
 ```
 
@@ -136,10 +136,10 @@ return (
 import { notificationProvider } from "@refinedev/chakra";
 
 return (
-    <Refine
-        //...
-        notificationProvider={notificationProvider()}
-    />
+  <Refine
+    //...
+    notificationProvider={notificationProvider()}
+  />
 );
 ```
 
@@ -161,16 +161,16 @@ import "react-toastify/dist/ReactToastify.css";
 //highlight-end
 
 const App: React.FC = () => {
-    return (
-        <Refine
-        /* ...*/
-        >
-            {/* ... */}
-            {/* highlight-start */}
-            <ToastContainer />
-            {/* highlight-end */}
-        </Refine>
-    );
+  return (
+    <Refine
+    /* ...*/
+    >
+      {/* ... */}
+      {/* highlight-start */}
+      <ToastContainer />
+      {/* highlight-end */}
+    </Refine>
+  );
 };
 
 export default App;
@@ -186,12 +186,12 @@ Here we open a notification with [`react-toastify`](https://github.com/fkhadra/r
 import { toast } from "react-toastify";
 
 const notificationProvider: NotificationProvider = {
-    open: ({ message, key, type }) => {
-        toast(message, {
-            toastId: key,
-            type,
-        });
-    },
+  open: ({ message, key, type }) => {
+    toast(message, {
+      toastId: key,
+      type,
+    });
+  },
 };
 ```
 
@@ -201,21 +201,21 @@ Let's make it so that the previous notification is updated when the notification
 import { toast } from "react-toastify";
 
 const notificationProvider: NotificationProvider = {
-    open: ({ message, key, type }) => {
-        //highlight-start
-        if (toast.isActive(key)) {
-            toast.update(key, {
-                render: message,
-                type,
-            });
-        } else {
-            //highlight-end
-            toast(message, {
-                toastId: key,
-                type,
-            });
-        }
-    },
+  open: ({ message, key, type }) => {
+    //highlight-start
+    if (toast.isActive(key)) {
+      toast.update(key, {
+        render: message,
+        type,
+      });
+    } else {
+      //highlight-end
+      toast(message, {
+        toastId: key,
+        type,
+      });
+    }
+  },
 };
 ```
 
@@ -227,55 +227,44 @@ Now, let's create a custom notification when the mutation mode is `undoable`. In
 import { toast } from "react-toastify";
 
 const notificationProvider: NotificationProvider = {
-    open: ({ message, key, type }) => {
-        //highlight-start
-        if (type === "progress") {
-            if (toast.isActive(key)) {
-                toast.update(key, {
-                    progress: undoableTimeout && (undoableTimeout / 10) * 2,
-                    render: (
-                        <UndoableNotification
-                            message={message}
-                            cancelMutation={cancelMutation}
-                        />
-                    ),
-                    type: "default",
-                });
-            } else {
-                toast(
-                    <UndoableNotification
-                        message={message}
-                        cancelMutation={cancelMutation}
-                    />,
-                    {
-                        toastId: key,
-                        updateId: key,
-                        closeOnClick: false,
-                        closeButton: false,
-                        autoClose: false,
-                        progress: undoableTimeout && (undoableTimeout / 10) * 2,
-                    },
-                );
-            }
-        } else {
-            //highlight-end
-            if (toast.isActive(key)) {
-                toast.update(key, {
-                    render: message,
-                    //highlight-start
-                    closeButton: true,
-                    autoClose: 5000,
-                    //highlight-end
-                    type,
-                });
-            } else {
-                toast(message, {
-                    toastId: key,
-                    type,
-                });
-            }
-        }
-    },
+  open: ({ message, key, type }) => {
+    //highlight-start
+    if (type === "progress") {
+      if (toast.isActive(key)) {
+        toast.update(key, {
+          progress: undoableTimeout && (undoableTimeout / 10) * 2,
+          render: <UndoableNotification message={message} cancelMutation={cancelMutation} />,
+          type: "default",
+        });
+      } else {
+        toast(<UndoableNotification message={message} cancelMutation={cancelMutation} />, {
+          toastId: key,
+          updateId: key,
+          closeOnClick: false,
+          closeButton: false,
+          autoClose: false,
+          progress: undoableTimeout && (undoableTimeout / 10) * 2,
+        });
+      }
+    } else {
+      //highlight-end
+      if (toast.isActive(key)) {
+        toast.update(key, {
+          render: message,
+          //highlight-start
+          closeButton: true,
+          autoClose: 5000,
+          //highlight-end
+          type,
+        });
+      } else {
+        toast(message, {
+          toastId: key,
+          type,
+        });
+      }
+    }
+  },
 };
 ```
 
@@ -284,40 +273,39 @@ const notificationProvider: NotificationProvider = {
 
 ```tsx
 type UndoableNotification = {
-    message: string;
-    cancelMutation?: () => void;
-    closeToast?: () => void;
+  message: string;
+  cancelMutation?: () => void;
+  closeToast?: () => void;
 };
 
-export const UndoableNotification: React.FC<UndoableNotification> = ({
-    closeToast,
-    cancelMutation,
-    message,
-}) => {
-    return (
-        <div>
-            <p>{message}</p>
-            <button
-                onClick={() => {
-                    cancelMutation?.();
-                    closeToast?.();
-                }}
-            >
-                Undo
-            </button>
-        </div>
-    );
+export const UndoableNotification: React.FC<UndoableNotification> = ({ closeToast, cancelMutation, message }) => {
+  return (
+    <div>
+      <p>{message}</p>
+      <button
+        onClick={() => {
+          cancelMutation?.();
+          closeToast?.();
+        }}
+      >
+        Undo
+      </button>
+    </div>
+  );
 };
 ```
 
 :::note
+
 We add `closeButton` and `autoClose` for progress notifications, which are not closable by default to allow users to close them when the progress is done.
+
 :::
 
 </p>
 </details>
 
 :::tip
+
 The `open` method will be accessible via [`useNotification`](/docs/api-reference/core/hooks/useNotification/) hook.
 
 ```tsx
@@ -326,10 +314,10 @@ import { useNotification } from "@refinedev/core";
 const { open } = useNotification();
 
 open?.({
-    type: "success",
-    message: "Hey",
-    description: "I <3 Refine",
-    key: "unique-id",
+  type: "success",
+  message: "Hey",
+  description: "I <3 Refine",
+  key: "unique-id",
 });
 ```
 
@@ -343,12 +331,13 @@ open?.({
 import { toast } from "react-toastify";
 
 const notificationProvider: NotificationProvider = {
-    //...
-    close: (key) => toast.dismiss(key),
+  //...
+  close: (key) => toast.dismiss(key),
 };
 ```
 
 :::tip
+
 `close` method will be accessible via [`useNotification`](/docs/api-reference/core/hooks/useNotification/) hook.
 
 ```tsx

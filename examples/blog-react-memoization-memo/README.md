@@ -1,5 +1,7 @@
 # Memoization in React
+
 ## Project Setup
+
 We will take off from where we left off in the previous post. In order to get everything up and running, please follow these steps:
 
 1. Clone the `react-memoization` project from [this repo](https://github.com/anewman15/react-memoization) to a folder of your choice.

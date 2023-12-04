@@ -7,10 +7,12 @@ source: /packages/core/src/hooks/auth/useLogout/index.ts
 ---
 
 :::caution
+
 This hook can only be used if the `authProvider` is provided.
+
 :::
 
-`useLogout` calls the `logout` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
+`useLogout` calls the `logout` method from the [`authProvider`](/docs/api-reference/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being `isSuccess` and `isError`.
 
@@ -18,18 +20,18 @@ Data that is resolved from `logout` will be returned as the `data` in the query 
 
 ```ts
 type AuthActionResponse = {
-    success: boolean;
-    redirectTo?: string;
-    error?: Error;
-    [key: string]: unknown;
+  success: boolean;
+  redirectTo?: string;
+  error?: Error;
+  [key: string]: unknown;
 };
 ```
 
--   `success`: A boolean indicating whether the operation was successful. If `success` is false, a notification will be shown.
-    -   If `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values: `{ name: "useLogout Error", message: "Something went wrong during logout" }`.
--   `redirectTo`: If it has a value, the app will be redirected to the given URL.
--   `error`: If it has a value, a notification will be shown with the error message and name.
--   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
+- `success`: A boolean indicating whether the operation was successful. If `success` is false, a notification will be shown.
+  - If `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values: `{ name: "useLogout Error", message: "Something went wrong during logout" }`.
+- `redirectTo`: If it has a value, the app will be redirected to the given URL.
+- `error`: If it has a value, a notification will be shown with the error message and name.
+- `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 ## Usage
 
@@ -41,13 +43,14 @@ If you want to use a custom logout page however, you can use the `useLogout` hoo
 import { useLogout } from "@refinedev/core";
 
 export const LogoutButton = () => {
-    const { mutate: logout } = useLogout();
+  const { mutate: logout } = useLogout();
 
-    return <button onClick={() => logout()}>Logout</button>;
+  return <button onClick={() => logout()}>Logout</button>;
 };
 ```
 
 :::tip
+
 `mutate` acquired from the `useLogout` can accept any kind of object for values since the `logout` method from the `authProvider` doesn't have a restriction on its parameters.
 A type parameter for the values can be provided to `useLogout`.
 
@@ -75,14 +78,14 @@ Then, you can handle this URL in your `logout` method of the `authProvider`:
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
+  // ---
+  logout: async ({ redirectPath }) => {
     // ---
-    logout: async ({ redirectPath }) => {
-        // ---
-        return {
-            success: true,
-            redirectTo: redirectPath,
-        };
-    },
+    return {
+      success: true,
+      redirectTo: redirectPath,
+    };
+  },
 };
 ```
 
@@ -96,18 +99,18 @@ import { useLogout } from "@refinedev/core";
 const { mutate: logout } = useLogout();
 
 logout(
-    {
-        redirectPath: "/custom-url",
-    },
-    {
-        onSuccess: (data) => {
-            if (!data.success) {
-                // handle error
-            }
+  {
+    redirectPath: "/custom-url",
+  },
+  {
+    onSuccess: (data) => {
+      if (!data.success) {
+        // handle error
+      }
 
-            // handle success
-        },
+      // handle success
     },
+  },
 );
 ```
 

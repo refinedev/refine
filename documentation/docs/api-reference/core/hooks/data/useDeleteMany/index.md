@@ -9,9 +9,11 @@ source: packages/core/src/hooks/data/useDeleteMany.ts
 It uses the `deleteMany` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
 
 :::caution
+
 If your data provider does not have a `deleteMany` method, `useDeleteMany` will use the `deleteOne` method instead. This is not recommended since it will make requests one by one for each id.
 
 It is better to implement the `deleteMany` method in the data provider.
+
 :::
 
 ## Basic Usage
@@ -24,15 +26,17 @@ import { useDeleteMany } from "@refinedev/core";
 const { mutate } = useDeleteMany();
 
 mutate({
-    resource: "products",
-    ids: [1, 2, 3],
+  resource: "products",
+  ids: [1, 2, 3],
 });
 ```
 
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useDeleteMany` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. This is useful when you want to publish the changes to the subscribers on the client side.
@@ -55,9 +59,9 @@ When the `useDeleteMany` mutation runs successfully, it will invalidate the foll
 
 ```tsx
 useDeleteMany({
-    mutationOptions: {
-        retry: 3,
-    },
+  mutationOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -69,18 +73,18 @@ useDeleteMany({
 const { mutate } = useDeleteMany();
 
 mutate(
-    {
-        resource: "products",
-        ids: [1, 2, 3],
+  {
+    resource: "products",
+    ids: [1, 2, 3],
+  },
+  {
+    onError: (error, variables, context) => {
+      // An error occurred!
     },
-    {
-        onError: (error, variables, context) => {
-            // An error occurred!
-        },
-        onSuccess: (data, variables, context) => {
-            // Let's celebrate!
-        },
+    onSuccess: (data, variables, context) => {
+      // Let's celebrate!
     },
+  },
 );
 ```
 
@@ -95,19 +99,21 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useDeleteMany({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
 
 ## Mutation Parameters
@@ -120,7 +126,7 @@ This parameter will be passed to the `deleteMany` method from the `dataProvider`
 const { mutate } = useDeleteMany();
 
 mutate({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -138,7 +144,7 @@ This parameter will be passed to the `deleteMany` method from the `dataProvider`
 const { mutate } = useDeleteMany();
 
 mutate({
-    ids: [1, 2, 3],
+  ids: [1, 2, 3],
 });
 ```
 
@@ -153,7 +159,7 @@ Each mode corresponds to a different type of user experience.
 const { mutate } = useDeleteMany();
 
 mutate({
-    mutationMode: "undoable",
+  mutationMode: "undoable",
 });
 ```
 
@@ -165,8 +171,8 @@ When `mutationMode` is set to `undoable`, `undoableTimeout` is used to determine
 const { mutate } = useDeleteMany();
 
 mutate({
-    mutationMode: "undoable",
-    undoableTimeout: 10000,
+  mutationMode: "undoable",
+  undoableTimeout: 10000,
 });
 ```
 
@@ -181,36 +187,38 @@ import { useRef } from "react";
 import { useDeleteMany } from "@refinedev/core";
 
 const MyComponent = () => {
-    const { mutate } = useDeleteMany();
-    const cancelRef = useRef<(() => void) | null>(null);
+  const { mutate } = useDeleteMany();
+  const cancelRef = useRef<(() => void) | null>(null);
 
-    const deleteItems = () => {
-        mutate({
-            //...
-            mutationMode: "undoable",
-            onCancel: (cancelMutation) => {
-                cancelRef.current = cancelMutation;
-            },
-        });
-    };
+  const deleteItems = () => {
+    mutate({
+      //...
+      mutationMode: "undoable",
+      onCancel: (cancelMutation) => {
+        cancelRef.current = cancelMutation;
+      },
+    });
+  };
 
-    const cancelDelete = () => {
-        cancelRef.current?.();
-    };
+  const cancelDelete = () => {
+    cancelRef.current?.();
+  };
 
-    return (
-        <>
-            <button onClick={deleteItems}>Delete</button>
-            <button onClick={cancelDelete}>Cancel</button>
-        </>
-    );
+  return (
+    <>
+      <button onClick={deleteItems}>Delete</button>
+      <button onClick={cancelDelete}>Cancel</button>
+    </>
+  );
 };
 ```
 
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useDeleteMany` calls `open` function from `NotificationProvider`:
@@ -219,20 +227,22 @@ This prop allows you to customize the success notification that shows up when th
 const { mutate } = useDeleteMany();
 
 mutate({
-    successNotification: (data, ids, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, ids, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useDeleteMany` calls `open` function from `NotificationProvider`:
@@ -241,13 +251,13 @@ This prop allows you to customize the error notification that shows up when the 
 const { mutate } = useDeleteMany();
 
 mutate({
-    errorNotification: (data, ids, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, ids, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -255,8 +265,8 @@ mutate({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
 In the following example, we pass the `headers` property in the `meta` object to the `deleteMany` method. You can pass any properties to specifically handle the data provider methods with similar logic.
 
@@ -264,41 +274,41 @@ In the following example, we pass the `headers` property in the `meta` object to
 const { mutate } = useDeleteMany();
 
 mutate({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  deleteMany: async ({
+    resource,
+    ids,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    deleteMany: async ({
-        resource,
-        ids,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-start
-        const { data } = await httpClient.delete(url, { ids }, { headers });
-        // highlight-end
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-start
+    const { data } = await httpClient.delete(url, { ids }, { headers });
+    // highlight-end
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### `dataProviderName`
 
@@ -308,7 +318,7 @@ This prop allows you to specify which `dataProvider` if you have more than one. 
 const { mutate } = useDeleteMany();
 
 mutate({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -322,7 +332,7 @@ By default, it invalidates the following queries from the current `resource`: `"
 const { mutate } = useDeleteMany();
 
 mutate({
-    invalidates: ["list", "many", "detail"],
+  invalidates: ["list", "many", "detail"],
 });
 ```
 
@@ -348,32 +358,34 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Mutation Parameters
 
-| Property                                                                                            | Description                                                                                        | Type                                                                                     | Default                                                      |
-| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                                 |                                                              |
-| ids <div className=" required">Required</div>                                                       | ids for mutation function                                                                          | [`BaseKey[]`](/api-reference/core/interfaces.md#basekey)                                 |                                                              |
-| mutationMode                                                                                        | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                         | `"pessimistic"`\*                                            |
-| undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                                 | `5000ms`\*                                                   |
-| onCancel                                                                                            | Provides a function to cancel the mutation when `mutationMode = "undoable"`                        | `(cancelMutation: () => void) => void`                                                   |                                                              |
-| successNotification                                                                                 | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) | "Successfully deleted `resource`"                            |
-| errorNotification                                                                                   | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) | "Error when updating `resource` (status code: `statusCode`)" |
-| meta                                                                                                | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                       | {}                                                           |
-| dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                 | `default`                                                    |
-| invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                  | `["list", "many"]`                                           |
+| Property                                                                                            | Description                                                                                        | Type                                                                                          | Default                                                      |
+| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                                      |                                                              |
+| ids <div className=" required">Required</div>                                                       | ids for mutation function                                                                          | [`BaseKey[]`](/docs/api-reference/core/interfaces.md#basekey)                                 |                                                              |
+| mutationMode                                                                                        | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                              | `"pessimistic"`\*                                            |
+| undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                                      | `5000ms`\*                                                   |
+| onCancel                                                                                            | Provides a function to cancel the mutation when `mutationMode = "undoable"`                        | `(cancelMutation: () => void) => void`                                                        |                                                              |
+| successNotification                                                                                 | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/docs/api-reference/core/interfaces.md#successerrornotification) | "Successfully deleted `resource`"                            |
+| errorNotification                                                                                   | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/docs/api-reference/core/interfaces.md#successerrornotification) | "Error when updating `resource` (status code: `statusCode`)" |
+| meta                                                                                                | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/api-reference/core/interfaces.md#metadataquery)                       | {}                                                           |
+| dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                      | `default`                                                    |
+| invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                       | `["list", "many"]`                                           |
 
 :::note
-These props have default values in `RefineContext` and can also be set on [`<Refine>`](/api-reference/core/components/refine-config.md) component. `useDeleteMany` will use what is passed to `<Refine>` as default but a local value will override it.
+
+These props have default values in `RefineContext` and can also be set on [`<Refine>`](/docs/api-reference/core/components/refine-config.md) component. `useDeleteMany` will use what is passed to `<Refine>` as default but a local value will override it.
+
 :::
 
 <br/>
 
 ### Type Parameters
 
-| Property   | Desription                                                                                        | Type                                                         | Default                                                      |
-| ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
-| TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
-| TVariables | Values for mutation function                                                                      | `{}`                                                         | `{}`                                                         |
+| Property   | Description                                                                                            | Type                                                              | Default                                                           |
+| ---------- | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](/docs/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/docs/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/docs/api-reference/core/interfaces.md#baserecord) |
+| TError     | Custom error object that extends [`HttpError`](/docs/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/docs/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/docs/api-reference/core/interfaces.md#httperror)   |
+| TVariables | Values for mutation function                                                                           | `{}`                                                              | `{}`                                                              |
 
 ### Return value
 

@@ -16,30 +16,30 @@ import { useGetToPath, useGo } from "@refinedev/core";
 // Let's assume that we have a resource named `posts` and the `edit` action path is `/:authorId/posts/:id/edit`
 
 const MyComponent = () => {
-    const getToPath = useGetToPath();
+  const getToPath = useGetToPath();
 
-    const go = useGo();
+  const go = useGo();
 
-    return (
-        <Button
-            onClick={() => {
-                go({
-                    to: getToPath({
-                        resource: "posts",
-                        action: "edit",
-                        meta: {
-                            id: 1,
-                            authorId: 2,
-                        },
-                    }),
-                });
-            }}
-        >
-            Go To Edit Post
-        </Button>
-    );
+  return (
+    <Button
+      onClick={() => {
+        go({
+          to: getToPath({
+            resource: "posts",
+            action: "edit",
+            meta: {
+              id: 1,
+              authorId: 2,
+            },
+          }),
+        });
+      }}
+    >
+      Go To Edit Post
+    </Button>
+  );
 
-    /* ... */
+  /* ... */
 };
 ```
 

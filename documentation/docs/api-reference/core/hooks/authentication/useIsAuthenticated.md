@@ -7,10 +7,12 @@ source: /packages/core/src/hooks/auth/useIsAuthenticated/index.ts
 ---
 
 :::caution
+
 This hook can only be used if the `authProvider` is provided.
+
 :::
 
-`useIsAuthenticated` calls the `check` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
+`useIsAuthenticated` calls the `check` method from the [`authProvider`](/docs/api-reference/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s `useQuery` which includes many properties, some of which being `isSuccess` and `isError`.
 
@@ -18,48 +20,48 @@ Data that is resolved from the `useIsAuthenticated` will be returned as the `dat
 
 ```ts
 type CheckResponse = {
-    authenticated: boolean;
-    redirectTo?: string;
-    logout?: boolean;
-    error?: Error;
+  authenticated: boolean;
+  redirectTo?: string;
+  logout?: boolean;
+  error?: Error;
 };
 ```
 
--   `authenticated`: A boolean value indicating whether the user is authenticated or not.
--   `redirectTo`: A string value indicating the URL to redirect to if authentication is required.
--   `logout`: A boolean value indicating whether the logout method should be called.
--   `error`: An Error object representing any errors that may have occurred during the check.
+- `authenticated`: A boolean value indicating whether the user is authenticated or not.
+- `redirectTo`: A string value indicating the URL to redirect to if authentication is required.
+- `logout`: A boolean value indicating whether the logout method should be called.
+- `error`: An Error object representing any errors that may have occurred during the check.
 
 ## Usage
 
 `useIsAuthenticated` can be useful when you want to check for authentication and handle the result manually.
 
-We have used this hook in refine's [`<Authenticated>`](/api-reference/core/components/auth/authenticated.md) component, which allows only authenticated users to access the page or any part of the code.
+We have used this hook in refine's [`<Authenticated>`](/docs/api-reference/core/components/auth/authenticated.md) component, which allows only authenticated users to access the page or any part of the code.
 
 We will demonstrate a similar basic implementation below. Imagine that you have a public page, but you want to make some specific fields private.
 
-We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `check` method like below:
+We have a logic in [`authProvider`](/docs/api-reference/core/providers/auth-provider.md)'s `check` method like below:
 
 ```tsx
 const authProvider: AuthBindings = {
-    // ---
-    // highlight-start
-    check: () =>
-        localStorage.getItem("email")
-            ? {
-                  authenticated: true,
-              }
-            : {
-                  authenticated: false,
-                  error: {
-                      message: "Check failed",
-                      name: "Not authenticated",
-                  },
-                  logout: true,
-                  redirectTo: "/login",
-              },
-    // highlight-end
-    // ---
+  // ---
+  // highlight-start
+  check: () =>
+    localStorage.getItem("email")
+      ? {
+          authenticated: true,
+        }
+      : {
+          authenticated: false,
+          error: {
+            message: "Check failed",
+            name: "Not authenticated",
+          },
+          logout: true,
+          redirectTo: "/login",
+        },
+  // highlight-end
+  // ---
 };
 ```
 
@@ -71,39 +73,35 @@ Let's create a wrapper component that renders children if `check` method returns
 // highlight-next-line
 import { useIsAuthenticated, useGo } from "@refinedev/core";
 
-export const Authenticated: React.FC<AuthenticatedProps> = ({
-    children,
-    fallback,
-    loading,
-}) => {
-    // highlight-next-line
-    const { isLoading, data } = useIsAuthenticated();
+export const Authenticated: React.FC<AuthenticatedProps> = ({ children, fallback, loading }) => {
+  // highlight-next-line
+  const { isLoading, data } = useIsAuthenticated();
 
-    const go = useGo();
+  const go = useGo();
 
-    if (isLoading) {
-        return <>{loading}</> || null;
+  if (isLoading) {
+    return <>{loading}</> || null;
+  }
+
+  if (data.error) {
+    if (!fallback) {
+      go({ to: redirectTo, type: "replace" });
+      return null;
     }
 
-    if (data.error) {
-        if (!fallback) {
-            go({ to: redirectTo, type: "replace" });
-            return null;
-        }
+    return <>{fallback}</>;
+  }
 
-        return <>{fallback}</>;
-    }
+  if (data.authenticated) {
+    return <>{children}</>;
+  }
 
-    if (data.authenticated) {
-        return <>{children}</>;
-    }
-
-    return null;
+  return null;
 };
 
 type AuthenticatedProps = {
-    fallback?: React.ReactNode;
-    loading?: React.ReactNode;
+  fallback?: React.ReactNode;
+  loading?: React.ReactNode;
 };
 ```
 
@@ -116,12 +114,12 @@ Now, only authenticated users can see the price field:
 import { Authenticated } from "components/authenticated";
 
 export const PostShow: React.FC = () => (
-    <div>
-        // highlight-start
-        <Authenticated>
-            <span>Only authenticated users can see</span>
-        </Authenticated>
-        // highlight-end
-    </div>
+  <div>
+    // highlight-start
+    <Authenticated>
+      <span>Only authenticated users can see</span>
+    </Authenticated>
+    // highlight-end
+  </div>
 );
 ```

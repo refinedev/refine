@@ -7,321 +7,297 @@ title: useStepsForm
 import { useMany } from "@refinedev/core";
 
 import {
-    Create as AntdCreate,
-    Edit as AntdEdit,
-    EditButton,
-    List,
-    SaveButton as AntdSaveButton,
-    TextField,
-    useSelect as useSelectAntd,
-    useStepsForm as useStepsFormAntd,
-    useTable,
+  Create as AntdCreate,
+  Edit as AntdEdit,
+  EditButton,
+  List,
+  SaveButton as AntdSaveButton,
+  TextField,
+  useSelect as useSelectAntd,
+  useStepsForm as useStepsFormAntd,
+  useTable,
 } from "@refinedev/antd";
 import {
-    Button as AntdButton,
-    Form as AntdForm,
-    Input as AntdInput,
-    Select as AntdSelect,
-    Space,
-    Steps as AntdSteps,
-    Table,
+  Button as AntdButton,
+  Form as AntdForm,
+  Input as AntdInput,
+  Select as AntdSelect,
+  Space,
+  Steps as AntdSteps,
+  Table,
 } from "antd";
 
 const PostList = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const { data, isLoading } = useMany({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="Category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+        <Table.Column
+          dataIndex={["category", "id"]}
+          title="Category"
+          render={(value) => {
+            if (isLoading) {
+              return <TextField value="Loading..." />;
+            }
 
-                        return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
-                    }}
-                />
-                <Table.Column
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+          }}
+        />
+        <Table.Column
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 
 const PostEdit = () => {
-    const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
-        useStepsFormAntd();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps } = useStepsFormAntd();
 
-    const { selectProps: categorySelectProps } = useSelectAntd({
-        resource: "categories",
-    });
+  const { selectProps: categorySelectProps } = useSelectAntd({
+    resource: "categories",
+  });
 
-    const formList = [
+  const formList = [
+    <>
+      <AntdForm.Item
+        label="Title"
+        name="title"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <AntdInput />
+      </AntdForm.Item>
+      <AntdForm.Item
+        label="Category"
+        name={["category", "id"]}
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <AntdSelect {...categorySelectProps} />
+      </AntdForm.Item>
+      <AntdForm.Item
+        label="Status"
+        name="status"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <AntdSelect
+          options={[
+            {
+              label: "Published",
+              value: "published",
+            },
+            {
+              label: "Draft",
+              value: "draft",
+            },
+            {
+              label: "Rejected",
+              value: "rejected",
+            },
+          ]}
+        />
+      </AntdForm.Item>
+    </>,
+    <>
+      <AntdForm.Item
+        label="Content"
+        name="content"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <AntdInput.TextArea />
+      </AntdForm.Item>
+    </>,
+  ];
+
+  return (
+    <AntdEdit
+      footerButtons={
         <>
-            <AntdForm.Item
-                label="Title"
-                name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
+          {current > 0 && (
+            <AntdButton
+              onClick={() => {
+                gotoStep(current - 1);
+              }}
             >
-                <AntdInput />
-            </AntdForm.Item>
-            <AntdForm.Item
-                label="Category"
-                name={["category", "id"]}
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
+              Previous
+            </AntdButton>
+          )}
+          {current < formList.length - 1 && (
+            <AntdButton
+              onClick={() => {
+                gotoStep(current + 1);
+              }}
             >
-                <AntdSelect {...categorySelectProps} />
-            </AntdForm.Item>
-            <AntdForm.Item
-                label="Status"
-                name="status"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <AntdSelect
-                    options={[
-                        {
-                            label: "Published",
-                            value: "published",
-                        },
-                        {
-                            label: "Draft",
-                            value: "draft",
-                        },
-                        {
-                            label: "Rejected",
-                            value: "rejected",
-                        },
-                    ]}
-                />
-            </AntdForm.Item>
-        </>,
-        <>
-            <AntdForm.Item
-                label="Content"
-                name="content"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <AntdInput.TextArea />
-            </AntdForm.Item>
-        </>,
-    ];
+              Next
+            </AntdButton>
+          )}
+          {current === formList.length - 1 && <AntdSaveButton {...saveButtonProps} />}
+        </>
+      }
+    >
+      <AntdSteps {...stepsProps}>
+        <AntdSteps.Step title="About Post" />
+        <AntdSteps.Step title="Content" />
+      </AntdSteps>
 
-    return (
-        <AntdEdit
-            footerButtons={
-                <>
-                    {current > 0 && (
-                        <AntdButton
-                            onClick={() => {
-                                gotoStep(current - 1);
-                            }}
-                        >
-                            Previous
-                        </AntdButton>
-                    )}
-                    {current < formList.length - 1 && (
-                        <AntdButton
-                            onClick={() => {
-                                gotoStep(current + 1);
-                            }}
-                        >
-                            Next
-                        </AntdButton>
-                    )}
-                    {current === formList.length - 1 && (
-                        <AntdSaveButton {...saveButtonProps} />
-                    )}
-                </>
-            }
-        >
-            <AntdSteps {...stepsProps}>
-                <AntdSteps.Step title="About Post" />
-                <AntdSteps.Step title="Content" />
-            </AntdSteps>
-
-            <AntdForm
-                {...formProps}
-                layout="vertical"
-                style={{ marginTop: 30 }}
-            >
-                {formList[current]}
-            </AntdForm>
-        </AntdEdit>
-    );
+      <AntdForm {...formProps} layout="vertical" style={{ marginTop: 30 }}>
+        {formList[current]}
+      </AntdForm>
+    </AntdEdit>
+  );
 };
 
 const PostCreate = () => {
-    const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
-        useStepsFormAntd();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps } = useStepsFormAntd();
 
-    const { selectProps: categorySelectProps } = useSelectAntd({
-        resource: "categories",
-    });
+  const { selectProps: categorySelectProps } = useSelectAntd({
+    resource: "categories",
+  });
 
-    const formList = [
+  const formList = [
+    <>
+      <AntdForm.Item
+        label="Title"
+        name="title"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <AntdInput />
+      </AntdForm.Item>
+      <AntdForm.Item
+        label="Category"
+        name={["category", "id"]}
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <AntdSelect {...categorySelectProps} />
+      </AntdForm.Item>
+      <AntdForm.Item
+        label="Status"
+        name="status"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <AntdSelect
+          options={[
+            {
+              label: "Published",
+              value: "published",
+            },
+            {
+              label: "Draft",
+              value: "draft",
+            },
+            {
+              label: "Rejected",
+              value: "rejected",
+            },
+          ]}
+        />
+      </AntdForm.Item>
+    </>,
+    <>
+      <AntdForm.Item
+        label="Content"
+        name="content"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <AntdInput.TextArea />
+      </AntdForm.Item>
+    </>,
+  ];
+
+  return (
+    <AntdCreate
+      footerButtons={
         <>
-            <AntdForm.Item
-                label="Title"
-                name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
+          {current > 0 && (
+            <AntdButton
+              onClick={() => {
+                gotoStep(current - 1);
+              }}
             >
-                <AntdInput />
-            </AntdForm.Item>
-            <AntdForm.Item
-                label="Category"
-                name={["category", "id"]}
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
+              Previous
+            </AntdButton>
+          )}
+          {current < formList.length - 1 && (
+            <AntdButton
+              onClick={() => {
+                gotoStep(current + 1);
+              }}
             >
-                <AntdSelect {...categorySelectProps} />
-            </AntdForm.Item>
-            <AntdForm.Item
-                label="Status"
-                name="status"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <AntdSelect
-                    options={[
-                        {
-                            label: "Published",
-                            value: "published",
-                        },
-                        {
-                            label: "Draft",
-                            value: "draft",
-                        },
-                        {
-                            label: "Rejected",
-                            value: "rejected",
-                        },
-                    ]}
-                />
-            </AntdForm.Item>
-        </>,
-        <>
-            <AntdForm.Item
-                label="Content"
-                name="content"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <AntdInput.TextArea />
-            </AntdForm.Item>
-        </>,
-    ];
+              Next
+            </AntdButton>
+          )}
+          {current === formList.length - 1 && <AntdSaveButton {...saveButtonProps} />}
+        </>
+      }
+    >
+      <AntdSteps {...stepsProps}>
+        <AntdSteps.Step title="About Post" />
+        <AntdSteps.Step title="Content" />
+      </AntdSteps>
 
-    return (
-        <AntdCreate
-            footerButtons={
-                <>
-                    {current > 0 && (
-                        <AntdButton
-                            onClick={() => {
-                                gotoStep(current - 1);
-                            }}
-                        >
-                            Previous
-                        </AntdButton>
-                    )}
-                    {current < formList.length - 1 && (
-                        <AntdButton
-                            onClick={() => {
-                                gotoStep(current + 1);
-                            }}
-                        >
-                            Next
-                        </AntdButton>
-                    )}
-                    {current === formList.length - 1 && (
-                        <AntdSaveButton {...saveButtonProps} />
-                    )}
-                </>
-            }
-        >
-            <AntdSteps {...stepsProps}>
-                <AntdSteps.Step title="About Post" />
-                <AntdSteps.Step title="Content" />
-            </AntdSteps>
-
-            <AntdForm
-                {...formProps}
-                layout="vertical"
-                style={{ marginTop: 30 }}
-            >
-                {formList[current]}
-            </AntdForm>
-        </AntdCreate>
-    );
+      <AntdForm {...formProps} layout="vertical" style={{ marginTop: 30 }}>
+        {formList[current]}
+      </AntdForm>
+    </AntdCreate>
+  );
 };
 ```
 
 The `useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful functionalities that will help you manage your form.
 
 :::info
+
 The `useStepsForm` hook is extended from [`useForm`][antd-use-form] under the hood. This means that you can use all the functionalities of [`useForm`][antd-use-form] in your `useStepsForm`.
+
 :::
 
 ## Basic Usage
@@ -352,145 +328,139 @@ import { Button, Form, Input, Select, Steps } from "antd";
 const { Step } = Steps;
 
 const PostCreatePage: React.FC = () => {
-    const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
-        useStepsForm<IPost, HttpError, IPost>();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps } = useStepsForm<IPost, HttpError, IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<
-        ICategory,
-        HttpError
-    >({
-        resource: "categories",
-    });
+  const { selectProps: categorySelectProps } = useSelect<ICategory, HttpError>({
+    resource: "categories",
+  });
 
-    const formList = [
+  const formList = [
+    <>
+      <Form.Item
+        label="Title"
+        name="title"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="Category"
+        name={["category", "id"]}
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Select {...categorySelectProps} />
+      </Form.Item>
+      <Form.Item
+        label="Status"
+        name="status"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Select
+          options={[
+            {
+              label: "Published",
+              value: "published",
+            },
+            {
+              label: "Draft",
+              value: "draft",
+            },
+            {
+              label: "Rejected",
+              value: "rejected",
+            },
+          ]}
+        />
+      </Form.Item>
+    </>,
+    <>
+      <Form.Item
+        label="Content"
+        name="content"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input.TextArea />
+      </Form.Item>
+    </>,
+  ];
+
+  return (
+    <Create
+      footerButtons={
         <>
-            <Form.Item
-                label="Title"
-                name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
+          {current > 0 && (
+            <Button
+              onClick={() => {
+                gotoStep(current - 1);
+              }}
             >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label="Category"
-                name={["category", "id"]}
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
+              Previous
+            </Button>
+          )}
+          {current < formList.length - 1 && (
+            <Button
+              onClick={() => {
+                gotoStep(current + 1);
+              }}
             >
-                <Select {...categorySelectProps} />
-            </Form.Item>
-            <Form.Item
-                label="Status"
-                name="status"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Select
-                    options={[
-                        {
-                            label: "Published",
-                            value: "published",
-                        },
-                        {
-                            label: "Draft",
-                            value: "draft",
-                        },
-                        {
-                            label: "Rejected",
-                            value: "rejected",
-                        },
-                    ]}
-                />
-            </Form.Item>
-        </>,
-        <>
-            <Form.Item
-                label="Content"
-                name="content"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input.TextArea />
-            </Form.Item>
-        </>,
-    ];
+              Next
+            </Button>
+          )}
+          {current === formList.length - 1 && <SaveButton {...saveButtonProps} />}
+        </>
+      }
+    >
+      <Steps {...stepsProps}>
+        <Step title="About Post" />
+        <Step title="Content" />
+      </Steps>
 
-    return (
-        <Create
-            footerButtons={
-                <>
-                    {current > 0 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current - 1);
-                            }}
-                        >
-                            Previous
-                        </Button>
-                    )}
-                    {current < formList.length - 1 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current + 1);
-                            }}
-                        >
-                            Next
-                        </Button>
-                    )}
-                    {current === formList.length - 1 && (
-                        <SaveButton {...saveButtonProps} />
-                    )}
-                </>
-            }
-        >
-            <Steps {...stepsProps}>
-                <Step title="About Post" />
-                <Step title="Content" />
-            </Steps>
-
-            <Form {...formProps} layout="vertical" style={{ marginTop: 30 }}>
-                {formList[current]}
-            </Form>
-        </Create>
-    );
+      <Form {...formProps} layout="vertical" style={{ marginTop: 30 }}>
+        {formList[current]}
+      </Form>
+    </Create>
+  );
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreatePage,
-            edit: PostEdit,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreatePage,
+      edit: PostEdit,
+    },
+  ],
 });
 
 render(<RefineAntdDemo />);
@@ -515,153 +485,145 @@ import { Button, Form, Input, Select, Steps } from "antd";
 const { Step } = Steps;
 
 const PostEditPage: React.FC = () => {
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        formProps,
-        saveButtonProps,
-        queryResult,
-    } = useStepsForm<IPost, HttpError, IPost>();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps, queryResult } = useStepsForm<
+    IPost,
+    HttpError,
+    IPost
+  >();
 
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<
-        ICategory,
-        HttpError
-    >({
-        resource: "categories",
-        defaultValue: postData?.category.id,
-    });
+  const postData = queryResult?.data?.data;
+  const { selectProps: categorySelectProps } = useSelect<ICategory, HttpError>({
+    resource: "categories",
+    defaultValue: postData?.category.id,
+  });
 
-    const formList = [
+  const formList = [
+    <>
+      <Form.Item
+        label="Title"
+        name="title"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="Category"
+        name={["category", "id"]}
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Select {...categorySelectProps} />
+      </Form.Item>
+      <Form.Item
+        label="Status"
+        name="status"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Select
+          options={[
+            {
+              label: "Published",
+              value: "published",
+            },
+            {
+              label: "Draft",
+              value: "draft",
+            },
+            {
+              label: "Rejected",
+              value: "rejected",
+            },
+          ]}
+        />
+      </Form.Item>
+    </>,
+    <>
+      <Form.Item
+        label="Content"
+        name="content"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input.TextArea />
+      </Form.Item>
+    </>,
+  ];
+
+  return (
+    <Edit
+      footerButtons={
         <>
-            <Form.Item
-                label="Title"
-                name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
+          {current > 0 && (
+            <Button
+              onClick={() => {
+                gotoStep(current - 1);
+              }}
             >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label="Category"
-                name={["category", "id"]}
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
+              Previous
+            </Button>
+          )}
+          {current < formList.length - 1 && (
+            <Button
+              onClick={() => {
+                gotoStep(current + 1);
+              }}
             >
-                <Select {...categorySelectProps} />
-            </Form.Item>
-            <Form.Item
-                label="Status"
-                name="status"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Select
-                    options={[
-                        {
-                            label: "Published",
-                            value: "published",
-                        },
-                        {
-                            label: "Draft",
-                            value: "draft",
-                        },
-                        {
-                            label: "Rejected",
-                            value: "rejected",
-                        },
-                    ]}
-                />
-            </Form.Item>
-        </>,
-        <>
-            <Form.Item
-                label="Content"
-                name="content"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input.TextArea />
-            </Form.Item>
-        </>,
-    ];
-
-    return (
-        <Edit
-            footerButtons={
-                <>
-                    {current > 0 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current - 1);
-                            }}
-                        >
-                            Previous
-                        </Button>
-                    )}
-                    {current < formList.length - 1 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current + 1);
-                            }}
-                        >
-                            Next
-                        </Button>
-                    )}
-                    {current === formList.length - 1 && (
-                        <SaveButton {...saveButtonProps} />
-                    )}
-                </>
-            }
-        >
-            <Steps {...stepsProps}>
-                <Step title="About Post" />
-                <Step title="Content" />
-            </Steps>
-            <Form {...formProps} layout="vertical" style={{ marginTop: 30 }}>
-                {formList[current]}
-            </Form>
-        </Edit>
-    );
+              Next
+            </Button>
+          )}
+          {current === formList.length - 1 && <SaveButton {...saveButtonProps} />}
+        </>
+      }
+    >
+      <Steps {...stepsProps}>
+        <Step title="About Post" />
+        <Step title="Content" />
+      </Steps>
+      <Form {...formProps} layout="vertical" style={{ marginTop: 30 }}>
+        {formList[current]}
+      </Form>
+    </Edit>
+  );
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreate,
-            edit: PostEditPage,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreate,
+      edit: PostEditPage,
+    },
+  ],
 });
 
 render(<RefineAntdDemo />);
@@ -681,29 +643,26 @@ import { HttpError } from "@refinedev/core";
 import React from "react";
 
 export const PostCreate: React.FC = () => {
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        formProps,
-        saveButtonProps,
-        queryResult,
-    } = useStepsForm<IPost, HttpError, IPost>();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps, queryResult } = useStepsForm<
+    IPost,
+    HttpError,
+    IPost
+  >();
 
-    return null;
+  return null;
 };
 
 interface ICategory {
-    id: number;
+  id: number;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
-    category: {
-        id: ICategory["id"];
-    };
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
+  category: {
+    id: ICategory["id"];
+  };
 }
 ```
 
@@ -720,65 +679,62 @@ import { Form, Input, Select } from "antd";
 import React from "react";
 
 export const PostCreate: React.FC = () => {
-    const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
-        useStepsForm<IPost, HttpError, IPost>();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps } = useStepsForm<IPost, HttpError, IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<
-        ICategory,
-        HttpError
-    >({
-        resource: "categories",
-    });
+  const { selectProps: categorySelectProps } = useSelect<ICategory, HttpError>({
+    resource: "categories",
+  });
 
-    // highlight-start
-    const formList = [
-        <>
-            <Form.Item
-                label="Title"
-                name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-        </>,
-        <>
-            <Form.Item
-                label="Category"
-                name={["category", "id"]}
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Select {...categorySelectProps} />
-            </Form.Item>
-        </>,
-    ];
-    // highlight-end
+  // highlight-start
+  const formList = [
+    <>
+      <Form.Item
+        label="Title"
+        name="title"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+    </>,
+    <>
+      <Form.Item
+        label="Category"
+        name={["category", "id"]}
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Select {...categorySelectProps} />
+      </Form.Item>
+    </>,
+  ];
+  // highlight-end
 
-    return null;
+  return null;
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
 :::tip
+
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
 Refer to [`useSelect` documentation for detailed usage. &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
@@ -793,91 +749,87 @@ You should use `stepsProps` on `<Steps>` component, `formProps` on the `<Form>` 
 import { Create, useSelect, useStepsForm } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 import {
-    Form,
-    Input,
-    Select,
-    // highlight-next-line
-    Steps,
+  Form,
+  Input,
+  Select,
+  // highlight-next-line
+  Steps,
 } from "antd";
 import React from "react";
 
 export const PostCreate: React.FC = () => {
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        formProps,
-        saveButtonProps,
-        queryResult,
-    } = useStepsForm<IPost, HttpError, IPost>();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps, queryResult } = useStepsForm<
+    IPost,
+    HttpError,
+    IPost
+  >();
 
-    const { selectProps: categorySelectProps } = useSelect<
-        ICategory,
-        HttpError
-    >({
-        resource: "categories",
-    });
+  const { selectProps: categorySelectProps } = useSelect<ICategory, HttpError>({
+    resource: "categories",
+  });
 
-    const formList = [
-        <>
-            <Form.Item
-                label="Title"
-                name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-        </>,
-        <>
-            <Form.Item
-                label="Category"
-                name={["category", "id"]}
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Select {...categorySelectProps} />
-            </Form.Item>
-        </>,
-    ];
+  const formList = [
+    <>
+      <Form.Item
+        label="Title"
+        name="title"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+    </>,
+    <>
+      <Form.Item
+        label="Category"
+        name={["category", "id"]}
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Select {...categorySelectProps} />
+      </Form.Item>
+    </>,
+  ];
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            // highlight-start
-            <Steps {...stepsProps}>
-                <Step title="About Post" />
-                <Step title="Content" />
-            </Steps>
-            <Form {...formProps} layout="vertical">
-                {formList[current]}
-            </Form>
-            // highlight-end
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      // highlight-start
+      <Steps {...stepsProps}>
+        <Step title="About Post" />
+        <Step title="Content" />
+      </Steps>
+      <Form {...formProps} layout="vertical">
+        {formList[current]}
+      </Form>
+      // highlight-end
+    </Create>
+  );
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
 :::danger Important
+
 Make sure to add as much `<Steps.Step>` components as the number of steps in the `formList` array.
+
 :::
 
 <br />
@@ -886,119 +838,108 @@ To help users navigate between steps in the form, you can use the action buttons
 
 ```tsx title="pages/posts/create.tsx"
 import {
-    Create,
-    // highlight-next-line
-    SaveButton,
-    useSelect,
-    useStepsForm,
+  Create,
+  // highlight-next-line
+  SaveButton,
+  useSelect,
+  useStepsForm,
 } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 import { Button, Form, Input, Select, Steps } from "antd";
 import React from "react";
 
 export const PostCreate: React.FC = () => {
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        formProps,
-        saveButtonProps,
-        queryResult,
-        submit,
-    } = useStepsForm<IPost, HttpError, IPost>();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps, queryResult, submit } = useStepsForm<
+    IPost,
+    HttpError,
+    IPost
+  >();
 
-    const { selectProps: categorySelectProps } = useSelect<
-        ICategory,
-        HttpError
-    >({
-        resource: "categories",
-    });
+  const { selectProps: categorySelectProps } = useSelect<ICategory, HttpError>({
+    resource: "categories",
+  });
 
-    const formList = [
+  const formList = [
+    <>
+      <Form.Item
+        label="Title"
+        name="title"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+    </>,
+    <>
+      <Form.Item
+        label="Category"
+        name={["category", "id"]}
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Select {...categorySelectProps} />
+      </Form.Item>
+    </>,
+  ];
+
+  return (
+    <Create
+      // highlight-start
+      footerButtons={
         <>
-            <Form.Item
-                label="Title"
-                name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
+          {current > 0 && (
+            <Button
+              onClick={() => {
+                gotoStep(current - 1);
+              }}
             >
-                <Input />
-            </Form.Item>
-        </>,
-        <>
-            <Form.Item
-                label="Category"
-                name={["category", "id"]}
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
+              Previous
+            </Button>
+          )}
+          {current < formList.length - 1 && (
+            <Button
+              onClick={() => {
+                gotoStep(current + 1);
+              }}
             >
-                <Select {...categorySelectProps} />
-            </Form.Item>
-        </>,
-    ];
-
-    return (
-        <Create
-            // highlight-start
-            footerButtons={
-                <>
-                    {current > 0 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current - 1);
-                            }}
-                        >
-                            Previous
-                        </Button>
-                    )}
-                    {current < formList.length - 1 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current + 1);
-                            }}
-                        >
-                            Next
-                        </Button>
-                    )}
-                    {current === formList.length - 1 && (
-                        <SaveButton
-                            {...saveButtonProps}
-                            style={{ marginRight: 10 }}
-                            onClick={() => submit()}
-                        />
-                    )}
-                </>
-            }
-            // highlight-end
-        >
-            <Steps {...stepsProps}>
-                <Step title="About Post" />
-                <Step title="Content" />
-            </Steps>
-            <Form {...formProps} layout="vertical">
-                {formList[current]}
-            </Form>
-        </Create>
-    );
+              Next
+            </Button>
+          )}
+          {current === formList.length - 1 && (
+            <SaveButton {...saveButtonProps} style={{ marginRight: 10 }} onClick={() => submit()} />
+          )}
+        </>
+      }
+      // highlight-end
+    >
+      <Steps {...stepsProps}>
+        <Step title="About Post" />
+        <Step title="Content" />
+      </Steps>
+      <Form {...formProps} layout="vertical">
+        {formList[current]}
+      </Form>
+    </Create>
+  );
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
@@ -1007,7 +948,9 @@ interface IPost {
 ## Properties
 
 :::tip
+
 All of the [`useForm`](/docs/api-reference/antd/hooks/form/useForm) props are also available in `useStepsForm`. You can find descriptions on [`useForm` documentation](/docs/api-reference/antd/hooks/form/useForm/#properties).
+
 :::
 
 ### `defaultCurrent`
@@ -1016,7 +959,7 @@ All of the [`useForm`](/docs/api-reference/antd/hooks/form/useForm) props are al
 
 ```tsx
 const stepsForm = useStepsForm({
-    defaultCurrent: 2,
+  defaultCurrent: 2,
 });
 ```
 
@@ -1026,7 +969,7 @@ const stepsForm = useStepsForm({
 
 ```tsx
 const stepsForm = useStepsForm({
-    total: 3,
+  total: 3,
 });
 ```
 
@@ -1036,7 +979,7 @@ When `isBackValidate` is `true`, it validates a form fields when the user naviga
 
 ```tsx
 const stepsForm = useStepsForm({
-    isBackValidate: true,
+  isBackValidate: true,
 });
 ```
 
@@ -1051,20 +994,20 @@ Return the `overtime` object from this hook. `elapsedTime` is the elapsed time i
 
 ```tsx
 const { overtime } = useStepsForm({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
 {
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
 }
 ```
 
@@ -1077,7 +1020,9 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
+
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -1090,9 +1035,9 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useStepsForm({
-    autoSave: {
-        enabled: true,
-    },
+  autoSave: {
+    enabled: true,
+  },
 });
 ```
 
@@ -1104,11 +1049,11 @@ Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useStepsForm({
-    autoSave: {
-        enabled: true,
-        // highlight-next-line
-        debounce: 2000,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    debounce: 2000,
+  },
 });
 ```
 
@@ -1118,17 +1063,17 @@ If you want to modify the data before sending it to the server, you can use `onF
 
 ```tsx
 useStepsForm({
-    autoSave: {
-        enabled: true,
-        // highlight-start
-        onFinish: (values) => {
-            return {
-                foo: "bar",
-                ...values,
-            };
-        },
-        // highlight-end
+  autoSave: {
+    enabled: true,
+    // highlight-start
+    onFinish: (values) => {
+      return {
+        foo: "bar",
+        ...values,
+      };
     },
+    // highlight-end
+  },
 });
 ```
 
@@ -1140,18 +1085,20 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useStepsForm({
-    autoSave: {
-        enabled: true,
-        // highlight-next-line
-        invalidateOnUnmount: true,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    invalidateOnUnmount: true,
+  },
 });
 ```
 
 ## Return Values
 
 :::tip
+
 All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
+
 :::
 
 ### `stepsProps`
@@ -1208,19 +1155,18 @@ We need to send the values we received from the user in two separate inputs, `na
 ```tsx title="pages/user/create.tsx"
 import { useStepsForm } from "@refinedev/antd";
 // ...
-const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } =
-    useStepsForm<IPost>({
-        submit: (values) => {
-            // highlight-start
-            const data = {
-                fullName: `${formValues.name} ${formValues.surname}`,
-                age: formValues.age,
-                city: formValues.city,
-            };
-            onFinish(data as any);
-            // highlight-end
-        },
-    });
+const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } = useStepsForm<IPost>({
+  submit: (values) => {
+    // highlight-start
+    const data = {
+      fullName: `${formValues.name} ${formValues.surname}`,
+      age: formValues.age,
+      city: formValues.city,
+    };
+    onFinish(data as any);
+    // highlight-end
+  },
+});
 // ...
 ```
 
@@ -1232,13 +1178,13 @@ const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } =
 
 <PropsTable module="@refinedev/antd/useStepsForm"/>
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useModalForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/api-reference/core/components/refine-config.md)>** component. `useModalForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 > `**`: If not explicitly configured, default value of `redirect` depends on which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). if `action` is `edit` instead, `redirect`s default value is `list`.
 
 ### Type Parameters
 
-| Property       | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                         | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

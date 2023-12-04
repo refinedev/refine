@@ -8,13 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-15-ts-satisfi
 hide_table_of_contents: false
 ---
 
-
-
-
-
-
-
-
 ## Introduction
 
 This post is about how to use TypeScript `satisfies` operator to effectively apply property value conformance in complex object types with nested properties.
@@ -25,16 +18,19 @@ As of the features added to the current iteration (dating November, 2023), `sati
 
 In this post, we get into the details of using TypeScript `satisfies` while validating types of property values in a fairly nested user (`joe`) object. We first consider how `satisfies` is focused on type checking and validation of variable values, rather than their annotation. We explore examples that further illustrate type validation of nested properties of objects - which we transform with the `Record<>` utility. We also understand how `satisfies` is geared to handle associated property name constraining and fulfillment that come with the `Record<>` type. In the end, we go through an example of partial member conformance with the `Partial<>` transformation utility.
 
+Step by step, we'll cover the following:
 
-## Prerequisites
-
-In order to properly follow this post and test out the examples, you need to have a JavaScript engine and you should have knowledge about at least the basics of TypeScript and utility types.
-
+- [What is the TypeScript satisfies Operator ?](#what-is-the-typescript-satisfies-operator-)
+  - [TypeScript satisfies Leverages Contextual Typing](#typescript-satisfies-leverages-contextual-typing)
+  - [TypeScript satisfies - Annotated Type Has Precedence Over `satisfies` Type](#typescript-satisfies---annotated-type-has-precedence-over-satisfies-type)
+- [TypeScript satisfies - Checking for Property Value Conformance](#typescript-satisfies---checking-for-property-value-conformance)
+- [TypeScript satisfies - Property Name Constraining](#typescript-satisfies---property-name-constraining)
+- [TypeScript satisfies - Property Name Fulfillment](#typescript-satisfies---property-name-fulfillment)
+- [TypeScript satisfies - Optional Member Conformance](#typescript-satisfies---optional-member-conformance)
 
 ### TypeScript Setup
 
 Your JavaScript engine has to have TypeScript installed. It could be [**Node.js**](https://nodejs.org/en) in your local machine with TypeScript supported or you could use the [TypeScript Playground](https://www.typescriptlang.org/play#code).
-
 
 ### Prior Knowledge
 
@@ -53,61 +49,59 @@ Here's a nested `joe` user object example:
 
 ```ts
 type TAddress = {
-    addressLine1: string;
-    addressLine2?: string;
-    postCode: number | string;
-    city: string;
-    state: string;
-    country: string;
+  addressLine1: string;
+  addressLine2?: string;
+  postCode: number | string;
+  city: string;
+  state: string;
+  country: string;
 };
 
 type UserKeys = "username" | "email" | "firstName" | "lastName" | "address";
 type TUser = Record<UserKeys, string | TAddress>;
 
 const joe = {
-    username: "joe_hiyden",
-    email: "joe@exmaple.com",
-    firstName: "Joe",
-    lastName: "Hiyden",
-    address: {
-        addressLine1: "1, New Avenue",
-        addressLine2: "Old Avenue",
-        postCode: 12345,
-        city: "California",
-        state: "California",
-        country: "USA",
-    }
+  username: "joe_hiyden",
+  email: "joe@exmaple.com",
+  firstName: "Joe",
+  lastName: "Hiyden",
+  address: {
+    addressLine1: "1, New Avenue",
+    addressLine2: "Old Avenue",
+    postCode: 12345,
+    city: "California",
+    state: "California",
+    country: "USA",
+  },
 } satisfies TUser;
 
 console.log(joe.address.postCode); // 12345
 ```
 
-Notice in the example that, we have used `TUser` on `joe` for its value validation with `satisfies`. And `TUser` is a tranformed record with `Record<UserKeys, string | TAddress>`
+Notice in the example that, we have used `TUser` on `joe` for its value validation with `satisfies`. And `TUser` is a transformed record with `Record<UserKeys, string | TAddress>`
 
+### TypeScript satisfies Leverages Contextual Typing
 
-### TypeSript satisfies Leverages Contextual Typing
-
-It is necessary to undestand that type inference before assignment is different from type validation of the assigned value with `satisfies`. In other words, `joe` above has a contextual typing: its type is set to itself and then `satisfies` checks `joe`'s internals against it to validate the types for all properties and their values, including nested ones. You can find `joe`'s type when you hover over `joe`. You'll see this:
+It is necessary to understand that type inference before assignment is different from type validation of the assigned value with `satisfies`. In other words, `joe` above has a contextual typing: its type is set to itself and then `satisfies` checks `joe`'s internals against it to validate the types for all properties and their values, including nested ones. You can find `joe`'s type when you hover over `joe`. You'll see this:
 
 ```ts
 // joe's inferred type is the object itself
 
 const joe: {
-    username: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    address: {
-        addressLine1: string;
-        addressLine2: string;
-        postCode: number;
-        city: string;
-        state: string;
-        country: string;
-    };
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  address: {
+    addressLine1: string;
+    addressLine2: string;
+    postCode: number;
+    city: string;
+    state: string;
+    country: string;
+  };
 };
 ```
-
 
 ### TypeScript satisfies - Annotated Type Has Precedence Over `satisfies` Type
 
@@ -115,12 +109,12 @@ When we explicitly annotate the variable `joe`, the annotated type gains precede
 
 ```ts
 type TAddress = {
-    addressLine1: string;
-    addressLine2?: string;
-    postCode: number | string;
-    city: string;
-    state: string;
-    country: string;
+  addressLine1: string;
+  addressLine2?: string;
+  postCode: number | string;
+  city: string;
+  state: string;
+  country: string;
 };
 
 type UserKeys = "username" | "email" | "firstName" | "lastName" | "address";
@@ -128,18 +122,18 @@ type TUser = Record<UserKeys, string | TAddress>;
 
 // highlight-next-line
 const joe: TUser = {
-    username: "joe_hiyden",
-    email: "joe@exmaple.com",
-    firstName: "Joe",
-    lastName: "Hiyden",
-    address: {
-        addressLine1: "1, New Avenue",
-        addressLine2: "Mission Bay",
-        postCode: 12345,
-        city: "California",
-        state: "California",
-        country: "USA",
-    }
+  username: "joe_hiyden",
+  email: "joe@exmaple.com",
+  firstName: "Joe",
+  lastName: "Hiyden",
+  address: {
+    addressLine1: "1, New Avenue",
+    addressLine2: "Mission Bay",
+    postCode: 12345,
+    city: "California",
+    state: "California",
+    country: "USA",
+  },
 } satisfies TUser;
 
 console.log(joe.address.postCode); // Property 'postCode' does not exist on type 'string | TAddress'. Property 'postCode' does not exist on type 'string'.(2339)
@@ -149,37 +143,36 @@ In the modification above, we are using the same `TUser` type for both annotatin
 
 The point to be delivered here is that type inference or annotation of the variable declaration, `joe`, is not the same thing as type validation of its value with `satisfies`. And `satisfies` is not intended for annotation, but rather largely for validating conformance.
 
-
 ## TypeScript satisfies - Checking for Property Value Conformance
 
 Annotating `joe` above with `TUser` prevents access to `joe.address` on the grounds of TypeScript's _typal dissonance_ between the union members: `string` and `TAddress`. Removing it and reinstating validation with `satisfies` restores clarity and access, because `satisfies` keeps track of the types of all property names and values at nested levels:
 
 ```ts
 type TAddress = {
-    addressLine1: string;
-    addressLine2?: string;
-    postCode: number | string;
-    city: string;
-    state: string;
-    country: string;
+  addressLine1: string;
+  addressLine2?: string;
+  postCode: number | string;
+  city: string;
+  state: string;
+  country: string;
 };
 
 type UserKeys = "username" | "email" | "firstName" | "lastName" | "address";
 type TUser = Record<UserKeys, string | TAddress>;
 
 const joe = {
-    username: "joe_hiyden",
-    email: "joe@exmaple.com",
-    firstName: "Joe",
-    lastName: "Hiyden",
-    address: {
-        addressLine1: "1, New Avenue",
-        addressLine2: "Mission Bay",
-        postCode: 12345,
-        city: "California",
-        state: "California",
-        country: "USA",
-    }
+  username: "joe_hiyden",
+  email: "joe@exmaple.com",
+  firstName: "Joe",
+  lastName: "Hiyden",
+  address: {
+    addressLine1: "1, New Avenue",
+    addressLine2: "Mission Bay",
+    postCode: 12345,
+    city: "California",
+    state: "California",
+    country: "USA",
+  },
 } satisfies TUser;
 
 console.log(joe.address.postCode); // 12345
@@ -187,49 +180,47 @@ console.log(joe.address.postCode); // 12345
 
 Since we are using a number for `joe.address.postCode` above, `satisfies` correctly tracks it and no longer leads to the `2339` error.
 
-
 ## TypeScript satisfies - Property Name Constraining
 
-Notice that we are using the `Record<>` utility to derive a record type for the user. TypeScript `satisfies` is generally used in conjuction with the `Record<>` type. And as you notice already, we are applying property name constraints to limit `TUser`'s keys with: `type UserKeys = "username" | "email" | "firstName" | "lastName" | "address";`.
+Notice that we are using the `Record<>` utility to derive a record type for the user. TypeScript `satisfies` is generally used in conjunction with the `Record<>` type. And as you notice already, we are applying property name constraints to limit `TUser`'s keys with: `type UserKeys = "username" | "email" | "firstName" | "lastName" | "address";`.
 
 Due to this, property overloading is prevented. In the below version, `role` is not included in `UserKeys`, so we get a complain:
 
 ```ts
 type TAddress = {
-    addressLine1: string;
-    addressLine2?: string;
-    postCode: number | string;
-    city: string;
-    state: string;
-    country: string;
+  addressLine1: string;
+  addressLine2?: string;
+  postCode: number | string;
+  city: string;
+  state: string;
+  country: string;
 };
 
 type UserKeys = "username" | "email" | "firstName" | "lastName" | "address";
 type TUser = Record<UserKeys, string | TAddress>;
 
 const joe = {
-    username: "joe_hiyden",
-    email: "joe@exmaple.com",
-    firstName: "Joe",
-    lastName: "Hiyden",
+  username: "joe_hiyden",
+  email: "joe@exmaple.com",
+  firstName: "Joe",
+  lastName: "Hiyden",
 
-    // Complains about property overloading
-    // highlight-start
-    role: "Admin", // Object literal may only specify known properties, and 'role' does not exist in type 'TUser'.(1360)
-    // highlight-end
-    address: {
-        addressLine1: "1, New Avenue",
-        addressLine2: "Mission Bay",
-        postCode: 12345,
-        city: "California",
-        state: "California",
-        country: "USA",
-    }
+  // Complains about property overloading
+  // highlight-start
+  role: "Admin", // Object literal may only specify known properties, and 'role' does not exist in type 'TUser'.(1360)
+  // highlight-end
+  address: {
+    addressLine1: "1, New Avenue",
+    addressLine2: "Mission Bay",
+    postCode: 12345,
+    city: "California",
+    state: "California",
+    country: "USA",
+  },
 } satisfies TUser;
 
 console.log(joe.address.postCode); // 12345
 ```
-
 
 ## TypeScript satisfies - Property Name Fulfillment
 
@@ -237,35 +228,34 @@ Similarly, if we have a missing property in `joe`, we get accused till we get al
 
 ```ts
 type TAddress = {
-    addressLine1: string;
-    addressLine2?: string;
-    postCode: number | string;
-    city: string;
-    state: string;
-    country: string;
+  addressLine1: string;
+  addressLine2?: string;
+  postCode: number | string;
+  city: string;
+  state: string;
+  country: string;
 };
 
 type UserKeys = "username" | "email" | "firstName" | "lastName" | "address";
 type TUser = Record<UserKeys, string | TAddress>;
 
 const joe = {
-    username: "joe_hiyden",
-    email: "joe@exmaple.com",
-    firstName: "Joe",
-    // lastName missing
-    address: {
-        addressLine1: "1, New Avenue",
-        addressLine2: "Mission Bay",
-        postCode: 12345,
-        city: "California",
-        state: "California",
-        country: "USA",
-    }
-    // Complains about missing property at `satisfies`
-    // highlight-next-line
+  username: "joe_hiyden",
+  email: "joe@exmaple.com",
+  firstName: "Joe",
+  // lastName missing
+  address: {
+    addressLine1: "1, New Avenue",
+    addressLine2: "Mission Bay",
+    postCode: 12345,
+    city: "California",
+    state: "California",
+    country: "USA",
+  },
+  // Complains about missing property at `satisfies`
+  // highlight-next-line
 } satisfies TUser; //  Property 'lastName' is missing in type '{ username: string; email: string; firstName: string; address: { addressLine1: string; addressLine2: string; postCode: number; city: string; state: string; country: string; }; }' but required in type 'TUser'.(1360)
 ```
-
 
 ## TypeScript satisfies - Optional Member Conformance
 
@@ -273,33 +263,33 @@ Instead of mandatory property name fulfillment, we can force an optional member 
 
 ```ts
 type TAddress = {
-    addressLine1: string;
-    addressLine2?: string;
-    postCode: number | string;
-    city: string;
-    state: string;
-    country: string;
+  addressLine1: string;
+  addressLine2?: string;
+  postCode: number | string;
+  city: string;
+  state: string;
+  country: string;
 };
 
 type UserKeys = "username" | "email" | "firstName" | "lastName" | "address";
 type TUser = Record<UserKeys, string | TAddress>;
 
 const joe = {
-    username: "joe_hiyden",
-    email: "joe@exmaple.com",
-    firstName: "Joe",
-    address: {
-        addressLine1: "1, New Avenue",
-        addressLine2: "Mission Bay",
-        postCode: 12345,
-        city: "California",
-        state: "California",
-        country: "USA",
-    }
-    // highlight-next-line
+  username: "joe_hiyden",
+  email: "joe@exmaple.com",
+  firstName: "Joe",
+  address: {
+    addressLine1: "1, New Avenue",
+    addressLine2: "Mission Bay",
+    postCode: 12345,
+    city: "California",
+    state: "California",
+    country: "USA",
+  },
+  // highlight-next-line
 } satisfies Partial<TUser>; // No complains about missing `lastName`
 ```
 
 ## Summary
 
-In this post, we covered the `satisfies` operator, a `v4.9` addition to TypeScript. We discovered that TypeScript `satisfies` offers a set of features primarily aimed for type validation of assigned variable values and their nested properties and values. We illustrated through examples that the `satisfies` operator is used in conjunction with the `Record<>` utility type. In our examples, we found out that property name constraining, fulfillment associated with a `Record<>` derived type are handled well by TypeScript `satisfies`. Finally, we also saw how `satisfies` can be used to enforce partial member conformance with `Partial<>` tranformation of a variable's value.
+In this post, we covered the `satisfies` operator, a `v4.9` addition to TypeScript. We discovered that TypeScript `satisfies` offers a set of features primarily aimed for type validation of assigned variable values and their nested properties and values. We illustrated through examples that the `satisfies` operator is used in conjunction with the `Record<>` utility type. In our examples, we found out that property name constraining, fulfillment associated with a `Record<>` derived type are handled well by TypeScript `satisfies`. Finally, we also saw how `satisfies` can be used to enforce partial member conformance with `Partial<>` transformation of a variable's value.

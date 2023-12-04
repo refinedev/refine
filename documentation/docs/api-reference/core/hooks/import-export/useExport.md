@@ -15,16 +15,16 @@ Here is a basic usage example of the `useExport` hook:
 import { useExport } from "@refinedev/core";
 
 interface IPost {
-    id: number;
-    slug: string;
-    title: string;
-    content: string;
+  id: number;
+  slug: string;
+  title: string;
+  content: string;
 }
 
 export const PostList: React.FC = () => {
-    const { triggerExport } = useExport<IPost>();
+  const { triggerExport } = useExport<IPost>();
 
-    return <button onClick={triggerExport}>Export Button</button>;
+  return <button onClick={triggerExport}>Export Button</button>;
 };
 ```
 
@@ -38,7 +38,7 @@ Determines which resource is passed to the `getList` method of your data provide
 
 ```ts
 useExport({
-    resource: "posts",
+  resource: "posts",
 });
 ```
 
@@ -52,25 +52,25 @@ If you want to map the data before exporting it, you can use the `mapData` prope
 
 ```ts
 interface IPost {
+  id: number;
+  slug: string;
+  title: string;
+  content: string;
+  category: {
     id: number;
-    slug: string;
-    title: string;
-    content: string;
-    category: {
-        id: number;
-    };
+  };
 }
 
 useExport<IPost>({
-    mapData: (item) => {
-        return {
-            id: item.id,
-            slug: item.slug,
-            title: item.title,
-            content: item.content,
-            categoryId: item.category.id,
-        };
-    },
+  mapData: (item) => {
+    return {
+      id: item.id,
+      slug: item.slug,
+      title: item.title,
+      content: item.content,
+      categoryId: item.category.id,
+    };
+  },
 });
 ```
 
@@ -82,12 +82,12 @@ If you want to sort the data before exporting it, you can use the `sorters` prop
 
 ```ts
 useExport({
-    sorters: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
+  sorters: [
+    {
+      field: "title",
+      order: "asc",
+    },
+  ],
 });
 ```
 
@@ -99,13 +99,13 @@ If you want to filter the data before exporting it, you can use the `filters` pr
 
 ```ts
 useExport({
-    filters: [
-        {
-            field: "title",
-            operator: "contains",
-            value: "foo",
-        },
-    ],
+  filters: [
+    {
+      field: "title",
+      operator: "contains",
+      value: "foo",
+    },
+  ],
 });
 ```
 
@@ -115,7 +115,7 @@ By default, the `useExport` hook will export all the data. If you want to limit 
 
 ```ts
 useExport({
-    maxItemCount: 100,
+  maxItemCount: 100,
 });
 ```
 
@@ -125,7 +125,7 @@ Requests to fetch data are made in batches of 20 by default. The `pageSize` prop
 
 ```ts
 useExport({
-    pageSize: 50,
+  pageSize: 50,
 });
 ```
 
@@ -137,9 +137,9 @@ You can pass additional options to the `export-to-csv` package by using the `exp
 
 ```ts
 useExport({
-    exportOptions: {
-        filename: "posts",
-    },
+  exportOptions: {
+    filename: "posts",
+  },
 });
 ```
 
@@ -149,9 +149,9 @@ If you want to send additional data to the `create` or `createMany` method of yo
 
 ```ts
 useExport({
-    meta: {
-        foo: "bar",
-    },
+  meta: {
+    foo: "bar",
+  },
 });
 ```
 
@@ -161,7 +161,7 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 
 ```tsx
 useExport({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -171,22 +171,26 @@ Callback function that is called when an error occurs while fetching data.
 
 ```ts
 useExport({
-    onError: (error) => {
-        console.log(error);
-    },
+  onError: (error) => {
+    console.log(error);
+  },
 });
 ```
 
 ### ~~`resourceName`~~
 
 :::caution Deprecated
+
 Use `resource` instead.
+
 :::
 
 ### ~~`sorter`~~
 
 :::caution Deprecated
+
 Use `sorters` instead.
+
 :::
 
 ## Return Values
@@ -255,30 +259,30 @@ If we want to save their `id`'s without any other related data, we can use a map
 
 ```ts
 useExport<IPost>({
-    mapData: (item) => {
-        return {
-            id: item.id,
-            title: item.title,
-            slug: item.slug,
-            content: item.content,
-            categoryId: item.category.id,
-            userId: item.user.id,
-        };
-    },
+  mapData: (item) => {
+    return {
+      id: item.id,
+      title: item.title,
+      slug: item.slug,
+      content: item.content,
+      categoryId: item.category.id,
+      userId: item.user.id,
+    };
+  },
 });
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    slug: string;
-    category: { id: number };
-    user: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  slug: string;
+  category: { id: number };
+  user: { id: number };
 }
 ```
 
@@ -321,7 +325,7 @@ This will save the data as follows:
 
 ### Type Parameters
 
-| Property   | Desription                                                                 | Default                    |
+| Property   | Description                                                                | Default                    |
 | ---------- | -------------------------------------------------------------------------- | -------------------------- |
 | TData      | Result type of the data query type that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TVariables | Values for params                                                          | `any`                      |

@@ -3,81 +3,78 @@ id: list-search
 title: List Search
 ---
 
-We will examine how to make an extensive search and filtering with the [`useSimpleList`](/api-reference/antd/hooks/list/useSimpleList.md) hook that works with the Ant Design's [`<List>`](https://ant.design/components/list) component.
+We will examine how to make an extensive search and filtering with the [`useSimpleList`](/docs/api-reference/antd/hooks/list/useSimpleList.md) hook that works with the Ant Design's [`<List>`](https://ant.design/components/list) component.
 
 To do this, let's list posts using the posts resource.
 
 ```tsx title="pages/posts/list.tsx"
 import { useMany } from "@refinedev/core";
 import {
-    List,
-    // highlight-next-line
-    useSimpleList,
-    NumberField,
+  List,
+  // highlight-next-line
+  useSimpleList,
+  NumberField,
 } from "@refinedev/antd";
 import { List as AntdList, Typography, Space } from "antd";
 
 const { Text } = Typography;
 
 export const PostList: React.FC = () => {
-    // highlight-next-line
-    const { listProps } = useSimpleList<IPost>();
+  // highlight-next-line
+  const { listProps } = useSimpleList<IPost>();
 
-    const categoryIds =
-        listProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+  const categoryIds = listProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const { data } = useMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-    const renderItem = (item: IPost) => {
-        const { title, hit, content } = item;
+  const renderItem = (item: IPost) => {
+    const { title, hit, content } = item;
 
-        const categoryTitle = data?.data.find(
-            (category: ICategory) => category.id === item.category.id,
-        )?.title;
-
-        return (
-            <AntdList.Item
-                actions={[
-                    <Space key={item.id} direction="vertical" align="end">
-                        <NumberField
-                            value={hit}
-                            options={{
-                                notation: "compact",
-                            }}
-                        />
-                        <Text>{categoryTitle}</Text>
-                    </Space>,
-                ]}
-            >
-                <AntdList.Item.Meta title={title} description={content} />
-            </AntdList.Item>
-        );
-    };
+    const categoryTitle = data?.data.find((category: ICategory) => category.id === item.category.id)?.title;
 
     return (
-        <List>
-            // highlight-next-line
-            <AntdList {...listProps} renderItem={renderItem} />
-        </List>
+      <AntdList.Item
+        actions={[
+          <Space key={item.id} direction="vertical" align="end">
+            <NumberField
+              value={hit}
+              options={{
+                notation: "compact",
+              }}
+            />
+            <Text>{categoryTitle}</Text>
+          </Space>,
+        ]}
+      >
+        <AntdList.Item.Meta title={title} description={content} />
+      </AntdList.Item>
     );
+  };
+
+  return (
+    <List>
+      // highlight-next-line
+      <AntdList {...listProps} renderItem={renderItem} />
+    </List>
+  );
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    hit: number;
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  hit: number;
+  category: { id: number };
 }
 ```
 
@@ -85,12 +82,7 @@ After creating the `<PostList>` component, add it to the resource with `list` pr
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import {
-    ThemedLayoutV2,
-    notificationProvider,
-    ErrorComponent,
-    RefineThemes,
-} from "@refinedev/antd";
+import { ThemedLayoutV2, notificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -105,39 +97,39 @@ import { PostList } from "pages/posts";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    notificationProvider={notificationProvider}
-                    // highlight-start
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                        },
-                    ]}
-                    //highlight-end
-                >
-                    <Routes>
-                        <Route index element={<NavigateToResource />} />
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="/posts" element={<PostList />} />
-                        </Route>
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          notificationProvider={notificationProvider}
+          // highlight-start
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+            },
+          ]}
+          //highlight-end
+        >
+          <Routes>
+            <Route index element={<NavigateToResource />} />
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="/posts" element={<PostList />} />
+            </Route>
+            <Route path="*" element={<ErrorComponent />} />
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 export default App;
@@ -146,7 +138,7 @@ export default App;
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/list-search/basic-list.png" alt="basic list" />
 <br />
 
-We will create a form by extracting `searchFormProps` from [`useSimpleList`](/api-reference/antd/hooks/list/useSimpleList.md). We will use this form for search/filtering. We will also create an interface to determine the types of values from the form.
+We will create a form by extracting `searchFormProps` from [`useSimpleList`](/docs/api-reference/antd/hooks/list/useSimpleList.md). We will use this form for search/filtering. We will also create an interface to determine the types of values from the form.
 
 ```tsx title="pages/posts/list.tsx"
 ...
@@ -236,7 +228,9 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 <br />
 
 :::caution
-[`CrudFilters`](/api-reference/core/interfaces.md#crudfilters) type object has `field`, `operator`, and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
+
+[`CrudFilters`](/docs/api-reference/core/interfaces.md#crudfilters) type object has `field`, `operator`, and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
+
 :::
 
 ## Example

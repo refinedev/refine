@@ -1,8 +1,9 @@
 ---
 id: nhost
 title: Nhost
-example-tags: [data-provider,live-provider]
+example-tags: [data-provider, live-provider]
 ---
+
 **refine** [Nhost](https://nhost.io/) GraphQL Data Provider comes out-of-the-box. Thanks to **refine**, you can connect to your Nhost database and create special queries and use your data easily. This example shows in detail how you can use the data in your Nhost database with **refine** project.
 
 ## ID Data Type
@@ -15,7 +16,7 @@ This will allow you to determine the `idType` for all resources.
 
 ```tsx
 const myDataProvider = dataProvider(client, {
-    idType: "Int",
+  idType: "Int",
 });
 ```
 
@@ -25,18 +26,20 @@ This will allow you to determine the `idType` based on the resource name.
 
 ```tsx
 const idTypeMap: Record<string, "Int" | "uuid"> = {
-    users: "Int",
-    posts: "uuid",
+  users: "Int",
+  posts: "uuid",
 };
 
 const myDataProvider = dataProvider(client, {
-    idType: (resource) => idTypeMap[resource] ?? "uuid",
+  idType: (resource) => idTypeMap[resource] ?? "uuid",
 });
 ```
 
 :::note Demo Credentials
+
 **Username**: info@refine.dev
 **Password**: demodemo
+
 :::
 
 <CodeSandboxExample path="data-provider-nhost" />

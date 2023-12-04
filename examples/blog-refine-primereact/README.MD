@@ -1,16 +1,10 @@
 <div align="center" style="margin: 30px;">
-<a href="https://refine.dev/">
-<picture  style="display: inline-block;" >
-  <source media="(prefers-color-scheme: dark)" srcset="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-white-logo.png">
-  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-dark-logo.png">
-</picture>
 
-<br />
-<br />
-</a>
 
-<br />
-<br />
+![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/cover.jpg "Cover Image")
+
+
+</br>
 
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
@@ -35,7 +29,6 @@
 
 </div>
 
-![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/cover.jpg "Cover Image")
 
 ## About
 
@@ -44,7 +37,6 @@ This example is a great starting point to learn how to build a full-fledged admi
 PrimeReact is a collection of rich UI components. It offers a wide range of components from simple to complex, making it easy to create a beautiful and functional application. In this example, you'll discover how to use PrimeReact components, but remember that there's no limit to what you can do with PrimeReact.
 
 On the other hand, refine is a React-based framework for building internal tooling such as admin panel, dashboards, and CRUD apps. It comes with ready-made features like data handling, authentication, access control, and more. Most importantly, it's highly customizable and extensible. In this example, you'll have the opportunity to understand how refine works.
-
 
 Refer to complete tutorial of this app[here](https://refine.dev/blog/building-react-admin-panel-with-primereact-and-refine/)
 
@@ -71,8 +63,6 @@ Your application will be accessible at http://localhost:5173
 ![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/final-product-edit.png "Product Edit Page")
 
 ### Resources
-
-
 
 Refer to [PrimeReact docs](https://primereact.org/) for more information.
 

@@ -7,7 +7,9 @@ sidebar_label: useModalForm
 The `useModalForm` hook allows you to manage a form within a [`<Modal>`][antd-modal]. It returns Ant Design [`<Form>`][antd-form] and [Modal][antd-modal] components props.
 
 :::info
+
 `useModalForm` hook is extended from [`useForm`][antd-use-form] from the [`@refinedev/antd`][@refinedev/antd] package. This means that you can use all the features of [`useForm`][antd-use-form] hook.
+
 :::
 
 ## Basic Usage
@@ -37,98 +39,98 @@ import { List, useModalForm, useTable } from "@refinedev/antd";
 import { Form, Input, Modal, Select, Table } from "antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    // highlight-start
-    const {
-        modalProps: createModalProps,
-        formProps: createFormProps,
-        show: createModalShow,
-    } = useModalForm<IPost>({
-        action: "create",
-    });
-    // highlight-end
+  // highlight-start
+  const {
+    modalProps: createModalProps,
+    formProps: createFormProps,
+    show: createModalShow,
+  } = useModalForm<IPost>({
+    action: "create",
+  });
+  // highlight-end
 
-    return (
-        <>
-            <List
-                // createButtonProps allows us to create and manage a button above the table.
-                // This code block makes <Modal> appear when you click the button.
-                createButtonProps={{
-                    // highlight-start
-                    onClick: () => {
-                        createModalShow();
-                    },
-                    // highlight-end
-                }}
-            >
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column dataIndex="title" title="Title" />
-                    <Table.Column dataIndex="status" title="Status" />
-                </Table>
-            </List>
-            {/* highlight-start */}
-            <Modal {...createModalProps}>
-                <Form {...createFormProps} layout="vertical">
-                    <Form.Item
-                        label="Title"
-                        name="title"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        label="Status"
-                        name="status"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Select
-                            options={[
-                                {
-                                    label: "Published",
-                                    value: "published",
-                                },
-                                {
-                                    label: "Draft",
-                                    value: "draft",
-                                },
-                                {
-                                    label: "Rejected",
-                                    value: "rejected",
-                                },
-                            ]}
-                        />
-                    </Form.Item>
-                </Form>
-            </Modal>
-            {/* highlight-end */}
-        </>
-    );
+  return (
+    <>
+      <List
+        // createButtonProps allows us to create and manage a button above the table.
+        // This code block makes <Modal> appear when you click the button.
+        createButtonProps={{
+          // highlight-start
+          onClick: () => {
+            createModalShow();
+          },
+          // highlight-end
+        }}
+      >
+        <Table {...tableProps} rowKey="id">
+          <Table.Column dataIndex="id" title="ID" />
+          <Table.Column dataIndex="title" title="Title" />
+          <Table.Column dataIndex="status" title="Status" />
+        </Table>
+      </List>
+      {/* highlight-start */}
+      <Modal {...createModalProps}>
+        <Form {...createFormProps} layout="vertical">
+          <Form.Item
+            label="Title"
+            name="title"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Status"
+            name="status"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Select
+              options={[
+                {
+                  label: "Published",
+                  value: "published",
+                },
+                {
+                  label: "Draft",
+                  value: "draft",
+                },
+                {
+                  label: "Rejected",
+                  value: "rejected",
+                },
+              ]}
+            />
+          </Form.Item>
+        </Form>
+      </Modal>
+      {/* highlight-end */}
+    </>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+    },
+  ],
 });
 
 render(<RefineAntdDemo />);
@@ -149,129 +151,127 @@ import { EditButton, List, useModalForm, useTable } from "@refinedev/antd";
 import { Form, Input, Modal, Select, Space, Table } from "antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    // highlight-start
-    const {
-        modalProps: editModalProps,
-        formProps: editFormProps,
-        show: editModalShow,
-    } = useModalForm<IPost>({
-        action: "edit",
-        warnWhenUnsavedChanges: true,
-    });
-    // highlight-end
+  // highlight-start
+  const {
+    modalProps: editModalProps,
+    formProps: editFormProps,
+    show: editModalShow,
+  } = useModalForm<IPost>({
+    action: "edit",
+    warnWhenUnsavedChanges: true,
+  });
+  // highlight-end
 
-    return (
-        <>
-            <List>
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column dataIndex="title" title="Title" />
-                    <Table.Column dataIndex="status" title="Status" />
-                    <Table.Column<IPost>
-                        title="Actions"
-                        dataIndex="actions"
-                        key="actions"
-                        render={(_, record) => (
-                            <Space>
-                                {/* highlight-start */}
-                                <EditButton
-                                    hideText
-                                    size="small"
-                                    recordItemId={record.id}
-                                    onClick={() => editModalShow(record.id)}
-                                />
-                                {/* highlight-end */}
-                            </Space>
-                        )}
-                    />
-                </Table>
-            </List>
-            {/* highlight-start */}
-            <Modal {...editModalProps}>
-                <Form {...editFormProps} layout="vertical">
-                    <Form.Item
-                        label="Title"
-                        name="title"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        label="Status"
-                        name="status"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Select
-                            options={[
-                                {
-                                    label: "Published",
-                                    value: "published",
-                                },
-                                {
-                                    label: "Draft",
-                                    value: "draft",
-                                },
-                                {
-                                    label: "Rejected",
-                                    value: "rejected",
-                                },
-                            ]}
-                        />
-                    </Form.Item>
-                </Form>
-            </Modal>
-            {/* highlight-end */}
-        </>
-    );
+  return (
+    <>
+      <List>
+        <Table {...tableProps} rowKey="id">
+          <Table.Column dataIndex="id" title="ID" />
+          <Table.Column dataIndex="title" title="Title" />
+          <Table.Column dataIndex="status" title="Status" />
+          <Table.Column<IPost>
+            title="Actions"
+            dataIndex="actions"
+            key="actions"
+            render={(_, record) => (
+              <Space>
+                {/* highlight-start */}
+                <EditButton hideText size="small" recordItemId={record.id} onClick={() => editModalShow(record.id)} />
+                {/* highlight-end */}
+              </Space>
+            )}
+          />
+        </Table>
+      </List>
+      {/* highlight-start */}
+      <Modal {...editModalProps}>
+        <Form {...editFormProps} layout="vertical">
+          <Form.Item
+            label="Title"
+            name="title"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Status"
+            name="status"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Select
+              options={[
+                {
+                  label: "Published",
+                  value: "published",
+                },
+                {
+                  label: "Draft",
+                  value: "draft",
+                },
+                {
+                  label: "Rejected",
+                  value: "rejected",
+                },
+              ]}
+            />
+          </Form.Item>
+        </Form>
+      </Modal>
+      {/* highlight-end */}
+    </>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+    },
+  ],
 });
 
 render(<RefineAntdDemo />);
 ```
 
 :::caution
+
 **refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens the edit form in `<Modal>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by the record `id`.
 
 ```tsx
 <Table.Column<IPost>
-    title="Actions"
-    dataIndex="actions"
-    key="actions"
-    render={(_value, record) => <EditButton onClick={() => show(record.id)} />}
+  title="Actions"
+  dataIndex="actions"
+  key="actions"
+  render={(_value, record) => <EditButton onClick={() => show(record.id)} />}
 />
 ```
 
 :::
 
 :::caution
+
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
+
 :::
 
 </TabItem>
@@ -289,128 +289,126 @@ import { CloneButton, List, useModalForm, useTable } from "@refinedev/antd";
 import { Form, Input, Modal, Select, Space, Table } from "antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    // highlight-start
-    const {
-        modalProps: cloneModalProps,
-        formProps: cloneFormProps,
-        show: cloneModalShow,
-    } = useModalForm<IPost>({
-        action: "clone",
-    });
-    // highlight-end
+  // highlight-start
+  const {
+    modalProps: cloneModalProps,
+    formProps: cloneFormProps,
+    show: cloneModalShow,
+  } = useModalForm<IPost>({
+    action: "clone",
+  });
+  // highlight-end
 
-    return (
-        <>
-            <List>
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column dataIndex="title" title="Title" />
-                    <Table.Column dataIndex="status" title="Status" />
-                    <Table.Column<IPost>
-                        title="Actions"
-                        dataIndex="actions"
-                        key="actions"
-                        render={(_, record) => (
-                            <Space>
-                                {/* highlight-start */}
-                                <CloneButton
-                                    hideText
-                                    size="small"
-                                    recordItemId={record.id}
-                                    onClick={() => cloneModalShow(record.id)}
-                                />
-                                {/* highlight-end */}
-                            </Space>
-                        )}
-                    />
-                </Table>
-            </List>
-            {/* highlight-start */}
-            <Modal {...cloneModalProps}>
-                <Form {...cloneFormProps} layout="vertical">
-                    <Form.Item
-                        label="Title"
-                        name="title"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        label="Status"
-                        name="status"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Select
-                            options={[
-                                {
-                                    label: "Published",
-                                    value: "published",
-                                },
-                                {
-                                    label: "Draft",
-                                    value: "draft",
-                                },
-                                {
-                                    label: "Rejected",
-                                    value: "rejected",
-                                },
-                            ]}
-                        />
-                    </Form.Item>
-                </Form>
-            </Modal>
-            {/* highlight-end */}
-        </>
-    );
+  return (
+    <>
+      <List>
+        <Table {...tableProps} rowKey="id">
+          <Table.Column dataIndex="id" title="ID" />
+          <Table.Column dataIndex="title" title="Title" />
+          <Table.Column dataIndex="status" title="Status" />
+          <Table.Column<IPost>
+            title="Actions"
+            dataIndex="actions"
+            key="actions"
+            render={(_, record) => (
+              <Space>
+                {/* highlight-start */}
+                <CloneButton hideText size="small" recordItemId={record.id} onClick={() => cloneModalShow(record.id)} />
+                {/* highlight-end */}
+              </Space>
+            )}
+          />
+        </Table>
+      </List>
+      {/* highlight-start */}
+      <Modal {...cloneModalProps}>
+        <Form {...cloneFormProps} layout="vertical">
+          <Form.Item
+            label="Title"
+            name="title"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Status"
+            name="status"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Select
+              options={[
+                {
+                  label: "Published",
+                  value: "published",
+                },
+                {
+                  label: "Draft",
+                  value: "draft",
+                },
+                {
+                  label: "Rejected",
+                  value: "rejected",
+                },
+              ]}
+            />
+          </Form.Item>
+        </Form>
+      </Modal>
+      {/* highlight-end */}
+    </>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+    },
+  ],
 });
 
 render(<RefineAntdDemo />);
 ```
 
 :::caution
+
 **refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens clone form in `<Modal>` when clicked.
 
 So, we have to put the `<CloneButton/>` on our list. In that way, `<Clone>` form in `<Modal>` can fetch data by the record `id`.
 
 ```tsx
 <Table.Column<IPost>
-    title="Actions"
-    dataIndex="actions"
-    key="actions"
-    render={(_value, record) => <CloneButton onClick={() => show(record.id)} />}
+  title="Actions"
+  dataIndex="actions"
+  key="actions"
+  render={(_value, record) => <CloneButton onClick={() => show(record.id)} />}
 />
 ```
 
 :::
 
 :::caution
+
 Don't forget to pass the record id to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
+
 :::
 
 </TabItem>
@@ -420,7 +418,9 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 ## Properties
 
 :::tip
+
 All [`useForm`][antd-use-form] props are also available in `useModalForm`. You can find descriptions on the [`useForm` documentation](/docs/api-reference/antd/hooks/form/useForm/#properties).
+
 :::
 
 ### `syncWithLocation`
@@ -431,23 +431,25 @@ This property can also be set as an object `{ key: string; syncId?: boolean }` t
 
 ```tsx
 const modalForm = useModalForm({
-    syncWithLocation: { key: "my-modal", syncId: true },
+  syncWithLocation: { key: "my-modal", syncId: true },
 });
 ```
 
 ### `defaultFormValues`
 
 :::caution
+
 `defaultFormValues` is only available in `"create"` form.
+
 :::
 
 Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
 
 ```tsx
 const modalForm = useModalForm({
-    defaultFormValues: {
-        title: "Hello World",
-    },
+  defaultFormValues: {
+    title: "Hello World",
+  },
 });
 ```
 
@@ -457,7 +459,7 @@ When `defaultVisible` is `true`, the modal will be visible by default. It is `fa
 
 ```tsx
 const modalForm = useModalForm({
-    defaultVisible: true,
+  defaultVisible: true,
 });
 ```
 
@@ -467,7 +469,7 @@ const modalForm = useModalForm({
 
 ```tsx
 const modalForm = useModalForm({
-    autoSubmitClose: false,
+  autoSubmitClose: false,
 });
 ```
 
@@ -477,7 +479,7 @@ const modalForm = useModalForm({
 
 ```tsx
 const modalForm = useModalForm({
-    autoResetForm: false,
+  autoResetForm: false,
 });
 ```
 
@@ -489,7 +491,7 @@ You can also set this value in [`<Refine>`](/docs/api-reference/core/components/
 
 ```tsx
 const modalForm = useModalForm({
-    warnWhenUnsavedChanges: true,
+  warnWhenUnsavedChanges: true,
 });
 ```
 
@@ -502,20 +504,20 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useModalForm({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
 {
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
 }
 ```
 
@@ -528,7 +530,9 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
+
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -541,9 +545,9 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useModalForm({
-    autoSave: {
-        enabled: true,
-    },
+  autoSave: {
+    enabled: true,
+  },
 });
 ```
 
@@ -555,11 +559,11 @@ Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useModalForm({
-    autoSave: {
-        enabled: true,
-        // highlight-next-line
-        debounce: 2000,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    debounce: 2000,
+  },
 });
 ```
 
@@ -569,17 +573,17 @@ If you want to modify the data before sending it to the server, you can use `onF
 
 ```tsx
 useModalForm({
-    autoSave: {
-        enabled: true,
-        // highlight-start
-        onFinish: (values) => {
-            return {
-                foo: "bar",
-                ...values,
-            };
-        },
-        // highlight-end
+  autoSave: {
+    enabled: true,
+    // highlight-start
+    onFinish: (values) => {
+      return {
+        foo: "bar",
+        ...values,
+      };
     },
+    // highlight-end
+  },
 });
 ```
 
@@ -591,11 +595,11 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useModalForm({
-    autoSave: {
-        enabled: true,
-        // highlight-next-line
-        invalidateOnUnmount: true,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    invalidateOnUnmount: true,
+  },
 });
 ```
 
@@ -607,11 +611,11 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useModalForm({
-    autoSave: {
-        enabled: true,
-        // highlight-next-line
-        invalidateOnClose: true,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    invalidateOnClose: true,
+  },
 });
 ```
 
@@ -683,20 +687,20 @@ A function that can close the `<Modal>`. It's useful when you want to close the 
 const { close, modalProps, formProps, onFinish } = useModalForm();
 
 const onFinishHandler = (values) => {
-    onFinish(values);
-    close();
+  onFinish(values);
+  close();
 };
 
 // ---
 
 return (
-    <Modal {...modalProps}>
-        <Form {...formProps} onFinish={onFinishHandler} layout="vertical">
-            <Form.Item label="Title" name="title">
-                <Input />
-            </Form.Item>
-        </Form>
-    </Modal>
+  <Modal {...modalProps}>
+    <Form {...formProps} onFinish={onFinishHandler} layout="vertical">
+      <Form.Item label="Title" name="title">
+        <Input />
+      </Form.Item>
+    </Form>
+  </Modal>
 );
 ```
 
@@ -710,20 +714,20 @@ const { modalProps, formProps, submit } = useModalForm();
 // ---
 
 return (
-    <Modal
-        {...modalProps}
-        footer={[
-            <Button key="submit" type="primary" onClick={submit}>
-                Submit
-            </Button>,
-        ]}
-    >
-        <Form {...formProps} layout="vertical">
-            <Form.Item label="Title" name="title">
-                <Input />
-            </Form.Item>
-        </Form>
-    </Modal>
+  <Modal
+    {...modalProps}
+    footer={[
+      <Button key="submit" type="primary" onClick={submit}>
+        Submit
+      </Button>,
+    ]}
+  >
+    <Form {...formProps} layout="vertical">
+      <Form.Item label="Title" name="title">
+        <Input />
+      </Form.Item>
+    </Form>
+  </Modal>
 );
 ```
 
@@ -735,25 +739,25 @@ return (
 const { modalProps, formProps, show } = useModalForm();
 
 return (
-    <>
-        <Button type="primary" onClick={() => show()}>
-            Show Modal
-        </Button>
-        <Modal
-            {...modalProps}
-            footer={[
-                <Button key="submit" type="primary" onClick={submit}>
-                    Submit
-                </Button>,
-            ]}
-        >
-            <Form {...formProps} onFinish={onFinishHandler} layout="vertical">
-                <Form.Item label="Title" name="title">
-                    <Input />
-                </Form.Item>
-            </Form>
-        </Modal>
-    </>
+  <>
+    <Button type="primary" onClick={() => show()}>
+      Show Modal
+    </Button>
+    <Modal
+      {...modalProps}
+      footer={[
+        <Button key="submit" type="primary" onClick={submit}>
+          Submit
+        </Button>,
+      ]}
+    >
+      <Form {...formProps} onFinish={onFinishHandler} layout="vertical">
+        <Form.Item label="Title" name="title">
+          <Input />
+        </Form.Item>
+      </Form>
+    </Modal>
+  </>
 );
 ```
 
@@ -763,25 +767,24 @@ const { modalProps, formProps } = useModalForm();
 // ---
 
 return (
-    <Modal
-        {...modalProps}
-        footer={
-            <Button
-                onClick={(
-                    e: React.MouseEvent<HTMLAnchorElement, MouseEvent> &
-                        React.MouseEvent<HTMLButtonElement, MouseEvent>,
-                ) => modalProps.onCancel(e)}
-            >
-                Cancel
-            </Button>
-        }
-    >
-        <Form {...formProps} layout="vertical">
-            <Form.Item label="Title" name="title">
-                <Input />
-            </Form.Item>
-        </Form>
-    </Modal>
+  <Modal
+    {...modalProps}
+    footer={
+      <Button
+        onClick={(
+          e: React.MouseEvent<HTMLAnchorElement, MouseEvent> & React.MouseEvent<HTMLButtonElement, MouseEvent>,
+        ) => modalProps.onCancel(e)}
+      >
+        Cancel
+      </Button>
+    }
+  >
+    <Form {...formProps} layout="vertical">
+      <Form.Item label="Title" name="title">
+        <Input />
+      </Form.Item>
+    </Form>
+  </Modal>
 );
 ```
 
@@ -813,33 +816,33 @@ import { Form, Input } from "antd";
 import React from "react";
 
 export const UserCreate: React.FC = () => {
-    // highlight-start
-    const { formProps, modalProps } = useModalForm({
-        action: "create",
+  // highlight-start
+  const { formProps, modalProps } = useModalForm({
+    action: "create",
+  });
+  // highlight-end
+
+  // highlight-start
+  const handleOnFinish = (values) => {
+    formProps.onFinish?.({
+      fullName: `${values.name} ${values.surname}`,
     });
-    // highlight-end
+  };
+  // highlight-end
 
-    // highlight-start
-    const handleOnFinish = (values) => {
-        formProps.onFinish?.({
-            fullName: `${values.name} ${values.surname}`,
-        });
-    };
-    // highlight-end
-
-    return (
-        <Modal {...modalProps}>
-            // highlight-next-line
-            <Form {...formProps} onFinish={handleOnFinish} layout="vertical">
-                <Form.Item label="Name" name="name">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Surname" name="surname">
-                    <Input />
-                </Form.Item>
-            </Form>
-        </Modal>
-    );
+  return (
+    <Modal {...modalProps}>
+      // highlight-next-line
+      <Form {...formProps} onFinish={handleOnFinish} layout="vertical">
+        <Form.Item label="Name" name="name">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Surname" name="surname">
+          <Input />
+        </Form.Item>
+      </Form>
+    </Modal>
+  );
 };
 ```
 
@@ -849,13 +852,13 @@ export const UserCreate: React.FC = () => {
 
 <PropsTable module="@refinedev/antd/useModalForm"/>
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useModalForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/api-reference/core/components/refine-config.md)>** component. `useModalForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 > `**`: If not explicitly configured, default value of `redirect` depends on which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). If `action` is `edit` instead, `redirect`s default value is `list`.
 
 ### Type Parameters
 
-| Property       | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                         | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

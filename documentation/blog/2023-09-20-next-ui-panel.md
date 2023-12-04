@@ -16,13 +16,24 @@ Any refine project has built-in features for state management, routing, networki
 
 [NextUI](https://nextui.org/) is a React library for building accessible UIs. You can use NextUI in a vanilla React project or React-based frameworks like refine and Next.js. In this article, you will learn to build a React admin panel using refine and NextUI components library.
 
-
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/next-ui.gif
 "  alt="react admin panel next ui" />
 </div>
 
 <br/>
+
+Steps we'll cover:
+
+- [What is refine](#what-is-refine)
+- [How to create a refine application](#how-to-create-a-refine-application)
+- [What is NextUI](#what-is-nextui)
+- [How to set up NextUI in a refine application](#how-to-set-up-nextui-in-a-refine-application)
+- [How to build React admin dashboard with NextUI and refine]
+- [How to build product CRUD pages with NextUI and refine](#how-to-build-product-crud-pages-with-nextui-and-refine)
+- [How to build categories CRUD pages with NextUI and refine](#how-to-build-categories-crud-pages-with-nextui-and-refine)
+- [Update the layout](#update-the-layout)
+- [Update the breadcrumb](#update-the-breadcrumb)
 
 ## What is refine
 
@@ -32,12 +43,9 @@ Similarly, refine has built-in support for integrating some of the commonest UI 
 
 All these built-in refine features accelerate development speed, improve developer experience, and significantly reduce time to production. Check out the refine documentation for more on what else it can do.
 
-
-
 ## How to create a refine application
 
 You can create a refine application either using the CLI or the [Browser-based Scaffolder](https://refine.dev/?playground=true).
-
 
 The [Browser-based Scaffolder](https://refine.dev/?playground=true) is an efficient tool that allows you to create refine app seamlessly in your browser.
 
@@ -56,7 +64,6 @@ For this tutorial, we'll be select the following options:
 
 Once you've completed the steps, you'll have the ability to download your project
 
-
 After creating the project, you can download it to your local machine. You may need to sign into the refine.new platform with your GitHub or Google account to build and download the project.
 
 Then use the command below to install dependencies.
@@ -65,13 +72,11 @@ Then use the command below to install dependencies.
 npm install
 ```
 
-
 After installing dependencies, use the command below to launch the development server on localhost. You can then view the project in a web browser.
 
 ```sh
 npm run dev
 ```
-
 
 Once your project is successfully run, you will see the following page:
 
@@ -83,10 +88,9 @@ Once your project is successfully run, you will see the following page:
 
 The refine project we created above has a set of default styles in the `src/App.css` file, which will interfere with the NextUI styles. Therefore, you can delete the `src/App.css` file.
 
-Similarly, we won't use the generated `blog-posts` pages. Therefore, you can delete the  `src/pages/blog-posts` directory.
+Similarly, we won't use the generated `blog-posts` pages. Therefore, you can delete the `src/pages/blog-posts` directory.
 
 Finally, copy and paste the code below into the `src/App.tsx` file.
-
 
 <details>
 
@@ -106,12 +110,7 @@ import { useTranslation } from "react-i18next";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/layout";
 
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "./pages/categories";
+import { CategoryCreate, CategoryEdit, CategoryList, CategoryShow } from "./pages/categories";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -177,6 +176,7 @@ function App() {
 
 export default App;
 ```
+
 </details>
 
 ## What is NextUI
@@ -185,7 +185,6 @@ export default App;
     <img alt="React admin panel next ui" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/nextui%20(1).jpeg
 " className="border border-gray-200 rounded" />
 </div>
-
 
 [NextUI](https://nextui.org/) is a fully-featured React UI library for building accessible UI in React. It is built on top of React Aria and Tailwind CSS. It uses Framer motion internally for animating some of the built-in components.
 
@@ -209,9 +208,9 @@ We will also use [heroicons](https://heroicons.com/) in this article. Install it
 npm install @heroicons/react
 ```
 
-###  Add Tailwind CSS configuration file
+### Add Tailwind CSS configuration file
 
-After successfully installing Tailwind CSS, use the command below to create a `tailwind.config.js`  file at the root of your project directory.
+After successfully installing Tailwind CSS, use the command below to create a `tailwind.config.js` file at the root of your project directory.
 
 ```sh
 npx tailwindcss init -p
@@ -224,11 +223,7 @@ const { nextui } = require("@nextui-org/react");
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}", "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
   },
@@ -237,7 +232,7 @@ export default {
 };
 ```
 
-###  Add Tailwind CSS directives
+### Add Tailwind CSS directives
 
 Create the `src/index.css` file and add the following Tailwind CSS directives.
 
@@ -266,7 +261,7 @@ root.render(
     <React.Suspense fallback="loading">
       <App />
     </React.Suspense>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 ```
 
@@ -289,20 +284,18 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-  // highlight-start
+    // highlight-start
     <NextUIProvider>
       <React.Suspense fallback="loading">
         <App />
       </React.Suspense>
     </NextUIProvider>
-  // highlight-end
-  </React.StrictMode>
+    // highlight-end
+  </React.StrictMode>,
 );
 ```
 
 That is everything you need to start using NextUI in your refine application. You may need to restart the development server after making the above changes.
-
-
 
 ## How to build React admin dashboard with NextUI and refine
 
@@ -312,7 +305,7 @@ The refine team has put together several APIs that you can experiment with when 
 
 The dashboard we want to create will track the key performance indicators for a restaurant business against set targets. The key performance indicators comprise the restaurant's weekly revenue, weekly customers, and weekly orders.
 
-Before we start building the dashboard, let's declare the interfaces that we will use throughout this application. They define the shape of our data.  Create the `src/interfaces/index.d.ts` file. 
+Before we start building the dashboard, let's declare the interfaces that we will use throughout this application. They define the shape of our data. Create the `src/interfaces/index.d.ts` file.
 
 Copy and paste the code below into it.
 
@@ -320,14 +313,13 @@ Copy and paste the code below into it.
 
 <summary>Show Interfaces file</summary>
 
-
 ```ts title="src/interfaces/index.d.ts"
 export interface IOrder {
   id: number;
   user: IUser;
   createdAt: string;
   status: IOrderStatus;
-  adress: IAddress;
+  address: IAddress;
   amount: number;
 }
 
@@ -384,7 +376,6 @@ export interface ICategory {
   cover: string;
 }
 
-
 export interface IProductCategory {
   value: number;
   label: string;
@@ -399,15 +390,16 @@ export interface IDeleteModalProps {
 
 interface IDisplayAreaGraphProps {
   data: IChartDatum[];
-  stroke: string,
-  fill: string,
+  stroke: string;
+  fill: string;
 }
 
 interface IDisplayBarChartProps {
   data: IChartDatum[];
-  fill: string,
+  fill: string;
 }
 ```
+
 </details>
 
 ### Create key performance indicator card
@@ -416,7 +408,6 @@ In this section, we will represent the key performance indicators(KPIs) we are t
 
 We need to create a `KpiCard` component and reuse it for all three performance indicators. Create the `src/components/kpiCard/index.tsx` file. Copy and paste the code below into it. Be aware that the `kpiCard` directory doesn't exist yet. You need to create it yourself.
 
-
 <details>
 
 <summary>Show KpiCard code</summary>
@@ -424,13 +415,7 @@ We need to create a `KpiCard` component and reuse it for all three performance i
 ```tsx title="src/components/kpiCard/index.tsx"
 import { Progress, Card, Chip, Spinner } from "@nextui-org/react";
 import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/20/solid";
-type DeltaType =
-  | "warning"
-  | "default"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "danger";
+type DeltaType = "warning" | "default" | "primary" | "secondary" | "success" | "danger";
 
 const getColor = (num: number): DeltaType => {
   if (num < 20) return "danger";
@@ -473,16 +458,7 @@ export const KpiCard = ({
           {Number.isNaN(percent) ? (
             <Spinner />
           ) : (
-            <Chip
-              color={color}
-              startContent={
-                percent < 0 ? (
-                  <ArrowDownIcon width={12} />
-                ) : (
-                  <ArrowUpIcon width={12} />
-                )
-              }
-            >
+            <Chip color={color} startContent={percent < 0 ? <ArrowDownIcon width={12} /> : <ArrowUpIcon width={12} />}>
               {`${percent}%`}
             </Chip>
           )}
@@ -508,8 +484,6 @@ In the code above, we imported the built-in NextUI components and applied Tailwi
 
 The above component will look like the image below after rendering.
 
-
-
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/kpi-card.png"  alt="react admin panel next ui" />
 </div>
@@ -522,7 +496,7 @@ We will use `dayjs` to query the data for the last one week from the fake REST A
 npm install dayjs
 ```
 
-We need to fetch the data for the key performance indicators from the database and pass them as props to the `KpiCard` component we created above.  
+We need to fetch the data for the key performance indicators from the database and pass them as props to the `KpiCard` component we created above.
 
 Create the `src/pages/dashboard/DashboardPage.tsx` file. Copy and paste the code below into it. Be aware that the `dashboard` directory doesn't exist. You need to create it yourself.
 
@@ -586,9 +560,7 @@ export const DashboardPage: React.FC = () => {
           total={dailyRevenue?.data.total ?? 0}
           trend={dailyRevenue?.data.trend ?? 0}
           target={10_500}
-          formattedTotal={`${currencyFormatter.format(
-            dailyRevenue?.data.total ?? 0
-          )}`}
+          formattedTotal={`${currencyFormatter.format(dailyRevenue?.data.total ?? 0)}`}
           formattedTarget={`${currencyFormatter.format(10_500)}`}
         />
         <KpiCard
@@ -596,9 +568,7 @@ export const DashboardPage: React.FC = () => {
           total={dailyOrders?.data.total ?? 0}
           trend={dailyOrders?.data.trend ?? 0}
           target={500}
-          formattedTotal={`${numberFormatter.format(
-            dailyOrders?.data.total ?? 0
-          )}`}
+          formattedTotal={`${numberFormatter.format(dailyOrders?.data.total ?? 0)}`}
           formattedTarget={`${numberFormatter.format(500)}`}
         />
         <KpiCard
@@ -606,9 +576,7 @@ export const DashboardPage: React.FC = () => {
           total={newCustomers?.data.total ?? 0}
           trend={newCustomers?.data.trend ?? 0}
           target={200}
-          formattedTotal={`${numberFormatter.format(
-            newCustomers?.data.total ?? 0
-          )}`}
+          formattedTotal={`${numberFormatter.format(newCustomers?.data.total ?? 0)}`}
           formattedTarget={`${numberFormatter.format(200)}`}
         />
       </div>
@@ -706,7 +674,6 @@ export default App;
 
 The three `KpiCard` components we rendered in the above component will look like the image below.
 
-
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/kpi-cards.png"  alt="react admin panel next ui" />
 </div>
@@ -727,44 +694,33 @@ After successfully installing Recharts, create the `src/components/charts/Displa
 
 ```tsx title="src/components/charts/DisplayBarChart.tsx"
 import React from "react";
-import {
-    BarChart,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    ResponsiveContainer,
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 import { IDisplayBarChartProps } from "../../interfaces";
 
 export const formatDate = new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    year: "numeric",
-    day: "numeric",
+  month: "short",
+  year: "numeric",
+  day: "numeric",
 });
 
-export const DisplayBarChart: React.FC<IDisplayBarChartProps> = ({
-    data,
-    fill,
-}) => {
-    const transformedData = data.map(({ date, value }) => ({
-        date: formatDate.format(new Date(date)),
-        value,
-    }));
+export const DisplayBarChart: React.FC<IDisplayBarChartProps> = ({ data, fill }) => {
+  const transformedData = data.map(({ date, value }) => ({
+    date: formatDate.format(new Date(date)),
+    value,
+  }));
 
-    return (
-        <ResponsiveContainer aspect={3.5}>
-            <BarChart data={transformedData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis dataKey="value" />
-                <Tooltip />
-                <Bar dataKey="value" fill={fill} />
-            </BarChart>
-        </ResponsiveContainer>
-    );
+  return (
+    <ResponsiveContainer aspect={3.5}>
+      <BarChart data={transformedData}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" />
+        <YAxis dataKey="value" />
+        <Tooltip />
+        <Bar dataKey="value" fill={fill} />
+      </BarChart>
+    </ResponsiveContainer>
+  );
 };
 ```
 
@@ -772,15 +728,7 @@ Similarly, create the `src/components/charts/DisplayAreaGraph.tsx` file. Copy an
 
 ```tsx title="src/components/charts/DisplayAreaGraph.tsx"
 import React from "react";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 import { IDisplayAreaGraphProps } from "../../interfaces";
 import { formatDate } from "./DisplayBarChart";
@@ -788,7 +736,7 @@ import { formatDate } from "./DisplayBarChart";
 export const DisplayAreaGraph: React.FC<IDisplayAreaGraphProps> = ({ data, stroke, fill }) => {
   const transformedData = data.map(({ date, value }) => ({
     date: formatDate.format(new Date(date)),
-    value
+    value,
   }));
 
   return (
@@ -798,7 +746,7 @@ export const DisplayAreaGraph: React.FC<IDisplayAreaGraphProps> = ({ data, strok
         <XAxis dataKey="date" />
         <YAxis dataKey="value" />
         <Tooltip label="Daily Revenue" />
-        <Area type="monotone" dataKey="value"  stroke={stroke}  fill={fill} />
+        <Area type="monotone" dataKey="value" stroke={stroke} fill={fill} />
       </AreaChart>
     </ResponsiveContainer>
   );
@@ -814,14 +762,12 @@ export { DisplayBarChart } from "./DisplayBarChart";
 
 We need to import the above components and render them in the dashboard component. Add the following highlighted codes to the `src/pages/dashboard/DashboardPage.tsx` file.
 
-
 <details>
 
 <summary>Show DashboardPage code</summary>
 
-
 ```tsx title="src/pages/dashboard/DashboardPage.tsx"
-... 
+...
 //highlight-next-line
 import { DisplayAreaGraph, DisplayBarChart } from "../../components/charts";
 import dayjs from "dayjs";
@@ -934,7 +880,6 @@ Similar to the previous section, let's represent the recent sales of the restaur
 
 Create the `src/components/table/RecentSalesTable.tsx` file. Copy and paste the code below into it. The `table` directory doesn't exist yet. You need to first create it.
 
-
 <details>
 
 <summary>Show RecentSalesTable Code</summary>
@@ -969,7 +914,7 @@ const columns = [
   { header: "Ordered By", key: "user", sortable: true },
   { header: "Gender", key: "gender", sortable: true },
   { header: "Tel", key: "gsm", sortable: false },
-  { header: "Delivery Address", key: "adress", sortable: true },
+  { header: "Delivery Address", key: "address", sortable: true },
   { header: "Delivery Status", key: "status", sortable: true },
   { header: "Created At", key: "createdAt", sortable: false },
 ];
@@ -1036,12 +981,9 @@ export const RecentSalesTable = () => {
     if (columnKey === "user") return item.user.fullName;
     if (columnKey === "gender") return item.user.gender;
     if (columnKey === "gsm") return item.user.gsm;
-    if (columnKey === "adress") return item.adress.text;
+    if (columnKey === "address") return item.address.text;
     if (columnKey === "createdAt") return formatDateTime(item.createdAt);
-    if (columnKey === "status")
-      return (
-        <Chip color={getChipColor(item.status.id)}>{item.status.text}</Chip>
-      );
+    if (columnKey === "status") return <Chip color={getChipColor(item.status.id)}>{item.status.text}</Chip>;
     return "";
   }, []);
 
@@ -1066,8 +1008,8 @@ export const RecentSalesTable = () => {
           case "gsm":
             sorter.field = "user.gsm";
             break;
-          case "adress":
-            sorter.field = "adress.text";
+          case "address":
+            sorter.field = "address.text";
             break;
           case "status":
             sorter.field = "status.text";
@@ -1139,11 +1081,7 @@ export const RecentSalesTable = () => {
               }}
             >
               {[5, 10, 25, 50].map((rowsPerPage) => {
-                return (
-                  <DropdownItem
-                    key={`${rowsPerPage}`}
-                  >{`${rowsPerPage}`}</DropdownItem>
-                );
+                return <DropdownItem key={`${rowsPerPage}`}>{`${rowsPerPage}`}</DropdownItem>;
               })}
             </DropdownMenu>
           </Dropdown>
@@ -1163,11 +1101,7 @@ export const RecentSalesTable = () => {
             return (
               <TableRow key={item.id}>
                 {(columnKey) => {
-                  return (
-                    <TableCell>
-                      {getCellContents(columnKey as string, item)}
-                    </TableCell>
-                  );
+                  return <TableCell>{getCellContents(columnKey as string, item)}</TableCell>;
                 }}
               </TableRow>
             );
@@ -1193,8 +1127,6 @@ export { RecentSalesTable } from "./RecentSalesTable";
 
 Import the `RecentSalesTable` component we created above into the `src/pages/dashboard/DashboardPage.tsx` file and render it like so:
 
-
-
 ```tsx title="src/pages/dashboard/DashboardPage.tsx"
 ...
 
@@ -1216,7 +1148,6 @@ export const DashboardPage: React.FC = () => {
 };
 ```
 
-
 The `<RecentSalesTable />` component we created above will look like the image below after rendering.
 
 <div className="centered-image">
@@ -1224,7 +1155,6 @@ The `<RecentSalesTable />` component we created above will look like the image b
 </div>
 
 <br/>
-
 
 ## How to build product CRUD pages with NextUI and refine
 
@@ -1240,31 +1170,17 @@ Create the `src/components/modal/index.tsx` file. Copy and paste the code below 
 
 ```tsx title="src/components/modal/index.tsx"
 import React from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-} from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
 
 import { IDeleteModalProps } from "../../interfaces";
 
-export const DeleteModal: React.FC<IDeleteModalProps> = ({
-  isOpen,
-  onOpenChange,
-  onDelete,
-  warningMessage,
-}) => {
+export const DeleteModal: React.FC<IDeleteModalProps> = ({ isOpen, onOpenChange, onDelete, warningMessage }) => {
   return (
     <Modal isOpen={isOpen} backdrop="opaque" onOpenChange={onOpenChange}>
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1">
-              Product deletion
-            </ModalHeader>
+            <ModalHeader className="flex flex-col gap-1">Product deletion</ModalHeader>
             <ModalBody>
               <p>{warningMessage}</p>
             </ModalBody>
@@ -1291,7 +1207,6 @@ export const DeleteModal: React.FC<IDeleteModalProps> = ({
 ```
 
 Create the `src/pages/products/list.tsx` file. Copy and paste the code below into it. Be aware that the `products` directory doesn't exist yet. You need to first create it.
-
 
 <details>
 
@@ -1325,13 +1240,7 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 
-import {
-  TrashIcon,
-  EyeIcon,
-  PencilIcon,
-  MagnifyingGlassIcon,
-  PlusIcon,
-} from "@heroicons/react/24/outline";
+import { TrashIcon, EyeIcon, PencilIcon, MagnifyingGlassIcon, PlusIcon } from "@heroicons/react/24/outline";
 
 import { ICategory, IProduct } from "../../interfaces";
 
@@ -1349,17 +1258,8 @@ const columns = [
 ];
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-  const {
-    tableQueryResult,
-    pageCount,
-    current,
-    pageSize,
-    filters,
-    setCurrent,
-    setPageSize,
-    setSorters,
-    setFilters,
-  } = useTable();
+  const { tableQueryResult, pageCount, current, pageSize, filters, setCurrent, setPageSize, setSorters, setFilters } =
+    useTable();
   const { edit, show, create } = useNavigation();
   const { mutate: deleteProduct } = useDelete();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -1443,7 +1343,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
       return <TableCell>{(item as any)[columnKey]}</TableCell>;
     },
-    [products, categoryData]
+    [products, categoryData],
   );
 
   return (
@@ -1540,11 +1440,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 }}
               >
                 {[5, 10, 25, 50].map((rowsPerPage) => {
-                  return (
-                    <DropdownItem
-                      key={`${rowsPerPage}`}
-                    >{`${rowsPerPage}`}</DropdownItem>
-                  );
+                  return <DropdownItem key={`${rowsPerPage}`}>{`${rowsPerPage}`}</DropdownItem>;
                 })}
               </DropdownMenu>
             </Dropdown>
@@ -1555,11 +1451,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
           {(column) => {
             if (column.key === "actions") {
               return (
-                <TableColumn
-                  allowsSorting={column.sortable}
-                  key={column.key}
-                  className="text-end pr-16"
-                >
+                <TableColumn allowsSorting={column.sortable} key={column.key} className="text-end pr-16">
                   {column.header}
                 </TableColumn>
               );
@@ -1590,9 +1482,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
       {isOpen ? (
         <DeleteModal
           isOpen={isOpen}
-          onDelete={() =>
-            deleteProduct({ resource: "products", id: deleteItemId as number })
-          }
+          onDelete={() => deleteProduct({ resource: "products", id: deleteItemId as number })}
           onOpenChange={onOpenChange}
           warningMessage={`You are about to delete product with id ${deleteItemId} from the database. This action is irreversible.`}
         />
@@ -1617,7 +1507,6 @@ export { ProductList } from "./list";
 
 We need to add the `products` resource to the `<Refine />` component. Therefore, add the following changes to the `src/App.tsx` file.
 
-
 <details>
 
 <summary>Show App.tsx Code</summary>
@@ -1638,12 +1527,7 @@ import { Layout } from "./components/layout";
 import { DashboardPage } from "./pages/dashboard";
 //highlight-next-line
 import { ProductList } from "./pages/products";
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "./pages/categories";
+import { CategoryCreate, CategoryEdit, CategoryList, CategoryShow } from "./pages/categories";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -1704,10 +1588,7 @@ function App() {
                 </Layout>
               }
             >
-              <Route
-                index
-                element={<NavigateToResource resource="dashboard" />}
-              />
+              <Route index element={<NavigateToResource resource="dashboard" />} />
               <Route path="/dashboard">
                 <Route index element={<DashboardPage />} />
               </Route>
@@ -1884,21 +1765,13 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
                     <DropdownMenu
                       aria-label="Select category"
                       selectionMode="single"
-                      selectedKeys={[
-                        field.value ?? categoryOptions[0]?.label ?? "",
-                      ]}
+                      selectedKeys={[field.value ?? categoryOptions[0]?.label ?? ""]}
                       onSelectionChange={(selectedItem) => {
-                        field.onChange(
-                          (selectedItem as Set<string>).values().next().value
-                        );
+                        field.onChange((selectedItem as Set<string>).values().next().value);
                       }}
                     >
                       {categoryOptions.map((categoryOption) => {
-                        return (
-                          <DropdownItem key={`${categoryOption.label}`}>
-                            {categoryOption.label}
-                          </DropdownItem>
-                        );
+                        return <DropdownItem key={`${categoryOption.label}`}>{categoryOption.label}</DropdownItem>;
                       })}
                     </DropdownMenu>
                   </Dropdown>
@@ -1926,12 +1799,7 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
             />
           </div>
           <div className="flex justify-content-end">
-            <Button
-              type="submit"
-              isLoading={formLoading}
-              color="primary"
-              className="mt-5"
-            >
+            <Button type="submit" isLoading={formLoading} color="primary" className="mt-5">
               Save Product
             </Button>
           </div>
@@ -1983,7 +1851,6 @@ export default App;
 
 The above component will look like the image below after rendering.
 
-
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-create.png"  alt="react admin panel next ui" />
 </div>
@@ -1995,7 +1862,6 @@ The above component will look like the image below after rendering.
 The products table we created above has an actions column that you can use to edit, show, and delete a record. Clicking the edit button takes you to a blank page at the moment.
 
 Let's create a component for editing an existing record in the products table. Create the `src/pages/products/edit.tsx` file. Copy and paste the code below into it.
-
 
 <details>
 
@@ -2119,17 +1985,11 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
                       selectionMode="single"
                       selectedKeys={[`${field.value}`]}
                       onSelectionChange={(selectedItem) => {
-                        field.onChange(
-                          +(selectedItem as Set<string>).values().next().value
-                        );
+                        field.onChange(+(selectedItem as Set<string>).values().next().value);
                       }}
                     >
                       {categoryOptions.map((categoryOption) => {
-                        return (
-                          <DropdownItem key={categoryOption.value}>
-                            {categoryOption.label}
-                          </DropdownItem>
-                        );
+                        return <DropdownItem key={categoryOption.value}>{categoryOption.label}</DropdownItem>;
                       })}
                     </DropdownMenu>
                   </Dropdown>
@@ -2157,12 +2017,7 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
             />
           </div>
           <div className="flex justify-content-end">
-            <Button
-              type="submit"
-              isLoading={formLoading}
-              color="primary"
-              className="mt-5"
-            >
+            <Button type="submit" isLoading={formLoading} color="primary" className="mt-5">
               Save Product
             </Button>
           </div>
@@ -2172,6 +2027,7 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
   );
 };
 ```
+
 </details>
 
 Export the above component from the `src/pages/products/index.ts` file.
@@ -2193,7 +2049,7 @@ import { ProductList, ProductCreate, ProductEdit } from "./pages/products";
 function App() {
 
   ...
-  
+
   return (
         <Refine
           ...
@@ -2220,7 +2076,6 @@ export default App;
 
 The above component should now look like the image below after rendering. You can edit any record in the products table by clicking the edit button under the actions column. You can also do so by pointing the browser to the `/products/edit` route.
 
-
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-edit.png"  alt="react admin panel next ui" />
 </div>
@@ -2237,14 +2092,8 @@ Let's create a component that shows the details of a specific product. Create th
 
 <summary>Show ProductShow code</summary>
 
-
 ```tsx title="src/pages/products/show.tsx"
-import {
-  useBack,
-  useOne,
-  useShow,
-  IResourceComponentsProps,
-} from "@refinedev/core";
+import { useBack, useOne, useShow, IResourceComponentsProps } from "@refinedev/core";
 import { ICategory, IProduct } from "../../interfaces";
 import { Button, Card, CardHeader, CardBody, Image } from "@nextui-org/react";
 
@@ -2272,32 +2121,26 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
   return (
     <div className="my-3">
       <Card className="rounded-none">
-      <div className="flex items-center px-5">
-        <Button
-          onClick={goBack}
-          className="m-1"
-          color="primary"
-          variant="light"
-          isIconOnly
-          aria-label="Go to products page"
-        >
-          <ArrowLongLeftIcon width={16} />
-        </Button>
+        <div className="flex items-center px-5">
+          <Button
+            onClick={goBack}
+            className="m-1"
+            color="primary"
+            variant="light"
+            isIconOnly
+            aria-label="Go to products page"
+          >
+            <ArrowLongLeftIcon width={16} />
+          </Button>
 
-        <h1 className="text-lg font-bold">Show product</h1>
-      </div>
+          <h1 className="text-lg font-bold">Show product</h1>
+        </div>
         <CardBody>
           <CardHeader className="text-lg font-bold p-5">
             <h2>Product details</h2>
           </CardHeader>
           <CardBody>
-            {product?.images?.length ? (
-              <Image
-                src={product.images[0].url}
-                width={300}
-                alt={product.name}
-              />
-            ) : null}
+            {product?.images?.length ? <Image src={product.images[0].url} width={300} alt={product.name} /> : null}
             <h2 className="text-base font-medium mt-3">Name</h2>
             <p>{product?.name}</p>
             <h2 className="text-base font-medium mt-3">Price</h2>
@@ -2347,7 +2190,7 @@ function App() {
   ...
 
   return (
-    
+
         <Refine
          ...
         >
@@ -2367,10 +2210,10 @@ function App() {
 
 export default App;
 ```
+
 </details>
 
 The above component will look like the image below after rendering.
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-show.png"  alt="react admin panel next ui" />
@@ -2378,10 +2221,9 @@ The above component will look like the image below after rendering.
 
 <br/>
 
-
 ## How to build categories CRUD pages with NextUI and refine
 
-Like the product CRUD pages we created above, let's create CRUD pages for the categories in the database. The categories are sourced from the [categories](https://api.finefoods.refine.dev/categories) endpoint of the fake REST API.  You can follow the link to explore the available resources.
+Like the product CRUD pages we created above, let's create CRUD pages for the categories in the database. The categories are sourced from the [categories](https://api.finefoods.refine.dev/categories) endpoint of the fake REST API. You can follow the link to explore the available resources.
 
 ### Categories list page
 
@@ -2420,13 +2262,7 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 
-import {
-  TrashIcon,
-  EyeIcon,
-  PencilIcon,
-  MagnifyingGlassIcon,
-  PlusIcon,
-} from "@heroicons/react/24/outline";
+import { TrashIcon, EyeIcon, PencilIcon, MagnifyingGlassIcon, PlusIcon } from "@heroicons/react/24/outline";
 
 import { IProduct } from "../../interfaces";
 
@@ -2440,21 +2276,12 @@ const columns = [
 ];
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
-  const {
-    tableQueryResult,
-    pageCount,
-    current,
-    pageSize,
-    filters,
-    setCurrent,
-    setPageSize,
-    setSorters,
-    setFilters,
-  } = useTable({
-    pagination: {
-      pageSize: 5,
-    },
-  });
+  const { tableQueryResult, pageCount, current, pageSize, filters, setCurrent, setPageSize, setSorters, setFilters } =
+    useTable({
+      pagination: {
+        pageSize: 5,
+      },
+    });
   const { edit, show, create } = useNavigation();
   const { mutate: deleteCategory } = useDelete();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -2609,11 +2436,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 }}
               >
                 {[5, 10].map((rowsPerPage) => {
-                  return (
-                    <DropdownItem
-                      key={`${rowsPerPage}`}
-                    >{`${rowsPerPage}`}</DropdownItem>
-                  );
+                  return <DropdownItem key={`${rowsPerPage}`}>{`${rowsPerPage}`}</DropdownItem>;
                 })}
               </DropdownMenu>
             </Dropdown>
@@ -2624,11 +2447,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
           {(column) => {
             if (column.key === "actions") {
               return (
-                <TableColumn
-                  allowsSorting={column.sortable}
-                  key={column.key}
-                  className="text-end pr-16"
-                >
+                <TableColumn allowsSorting={column.sortable} key={column.key} className="text-end pr-16">
                   {column.header}
                 </TableColumn>
               );
@@ -2678,17 +2497,15 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
 
 The above component will look like the image below after rendering. You can search and sort the contents of the table.
 
-
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-list.png"  alt="react admin panel next ui" />
 </div>
 
 <br/>
 
-
 ### Categories create page
 
-You can use this page to create a new product. A user can navigate to it by clicking the "Create Category" button or pointing the browser to the `/categories/create`  endpoint in the browser's address bar.
+You can use this page to create a new product. A user can navigate to it by clicking the "Create Category" button or pointing the browser to the `/categories/create` endpoint in the browser's address bar.
 
 Copy and paste the code below into the `src/pages/categories/create.tsx` file.
 
@@ -2762,12 +2579,7 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
             />
           </div>
           <div className="flex justify-content-end">
-            <Button
-              type="submit"
-              isLoading={formLoading}
-              color="primary"
-              className="mt-5"
-            >
+            <Button type="submit" isLoading={formLoading} color="primary" className="mt-5">
               Save Category
             </Button>
           </div>
@@ -2866,12 +2678,7 @@ export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
             />
           </div>
           <div className="flex justify-content-end">
-            <Button
-              type="submit"
-              isLoading={formLoading}
-              color="primary"
-              className="mt-5"
-            >
+            <Button type="submit" isLoading={formLoading} color="primary" className="mt-5">
               Save Category
             </Button>
           </div>
@@ -2881,10 +2688,10 @@ export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
   );
 };
 ```
+
 </details>
 
 The above component looks like the image below after rendering. You can edit a category and save the changes using the "Save Category" button.
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-edit.png"  alt="react admin panel next ui" />
@@ -2894,10 +2701,9 @@ The above component looks like the image below after rendering. You can edit a c
 
 ### Categories show page
 
-The categories show page displays a specific product category. At the moment when you click the show button under the actions column, you will navigate to a page that's not styled.  
+The categories show page displays a specific product category. At the moment when you click the show button under the actions column, you will navigate to a page that's not styled.
 
 Let's create a component that displays the contents of a specific category. Copy and paste the code below into the `src/pages/categories/show.tsx` file.
-
 
 <details>
 
@@ -2939,9 +2745,7 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
             <h2>Category details</h2>
           </CardHeader>
           <CardBody>
-            {category?.cover ? (
-              <Image src={category.cover} width={300} alt={category.title} />
-            ) : null}
+            {category?.cover ? <Image src={category.cover} width={300} alt={category.title} /> : null}
             <h2 className="text-base font-medium mt-3">Id</h2>
             <p>{category?.id ?? 0}</p>
             <h2 className="text-base font-medium mt-3">Title</h2>
@@ -2953,10 +2757,10 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
   );
 };
 ```
+
 </details>
 
 The above component looks like the image below after rendering.
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-show.png"  alt="react admin panel next ui" />
@@ -3045,8 +2849,7 @@ export const Breadcrumb = () => {
               {breadcrumb.href ? (
                 <span className="flex text-blue-500 hover:text-blue-400">
                   {" "}
-                  <ChevronRightIcon aria-hidden width={16} />{" "}
-                  <Link to={breadcrumb.href}>{breadcrumb.label}</Link>
+                  <ChevronRightIcon aria-hidden width={16} /> <Link to={breadcrumb.href}>{breadcrumb.label}</Link>
                 </span>
               ) : (
                 <span className="flex">
@@ -3072,8 +2875,6 @@ You can easily add design systems and UI libraries such as Chakra UI, Material U
 
 NextUI is a React library for building accessible UIs fast. Internally, it uses Tailwind CSS and framer-motion. To use NextUI in a refine or any other React application, install and configure it as highlighted above.
 
-
 ## Live CodeSandbox Example
-
 
 <CodeSandboxExample path="blog-refine-nextui" />

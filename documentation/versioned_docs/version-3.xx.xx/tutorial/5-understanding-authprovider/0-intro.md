@@ -2,12 +2,12 @@
 id: index
 title: 1. Auth Provider
 tutorial:
-    order: 0
-    prev: false
-    next: tutorial/understanding-authprovider/create-authprovider
+  order: 0
+  prev: false
+  next: tutorial/understanding-authprovider/create-authprovider
 ---
 
-import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples-links.md";
+import AuthProviderExamplesLinks from "@site/src/partials/auth-provider/auth-provider-examples-links.md";
 
 ## What is auth provider?
 
@@ -70,14 +70,14 @@ For example, you can use `useLogin` hook to perform login operation like below:
 import { useLogin } from "@pankod/refine-core";
 
 type LoginVariables = {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 };
 
 const { mutate } = useLogin<LoginVariables>();
 
 const handleLogin = async (values) => {
-    await mutate(values);
+  await mutate(values);
 };
 ```
 

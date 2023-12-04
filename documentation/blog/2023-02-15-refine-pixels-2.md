@@ -14,13 +14,13 @@ This is Day 2 of the [**refineWeek**](https://refine.dev/week-of-refine-supabase
 
 ### refineWeek series
 
--   Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
--   Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
--   Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
--   Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
--   Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
--   Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
--   Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+- Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
+- Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
+- Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
+- Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+- Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
+- Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
 
 ## Overview
 
@@ -96,10 +96,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { notificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
@@ -107,33 +104,33 @@ import { ColorModeContextProvider } from "./contexts/color-mode";
 import { supabaseClient } from "./utility";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                <ColorModeContextProvider>
-                    <Refine
-                        dataProvider={dataProvider(supabaseClient)}
-                        liveProvider={liveProvider(supabaseClient)}
-                        authProvider={authProvider}
-                        routerProvider={routerBindings}
-                        notificationProvider={notificationProvider}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route index element={<WelcomePage />} />
-                        </Routes>
-                        <RefineKbar />
-                        <UnsavedChangesNotifier />
-                        <DocumentTitleHandler />
-                    </Refine>
-                </ColorModeContextProvider>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <RefineKbarProvider>
+        <ColorModeContextProvider>
+          <Refine
+            dataProvider={dataProvider(supabaseClient)}
+            liveProvider={liveProvider(supabaseClient)}
+            authProvider={authProvider}
+            routerProvider={routerBindings}
+            notificationProvider={notificationProvider}
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route index element={<WelcomePage />} />
+            </Routes>
+            <RefineKbar />
+            <UnsavedChangesNotifier />
+            <DocumentTitleHandler />
+          </Refine>
+        </ColorModeContextProvider>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -192,7 +189,7 @@ import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "./utility";
 
 function App() {
-    return <Refine dataProvider={dataProvider(supabaseClient)} />;
+  return <Refine dataProvider={dataProvider(supabaseClient)} />;
 }
 ```
 
@@ -204,19 +201,17 @@ The returned object, also called the **`dataProvider`** object, has the followin
 
 ```tsx
 const dataProvider = {
-    create: ({ resource, variables, meta }) => Promise,
-    createMany: ({ resource, variables, meta }) => Promise,
-    deleteOne: ({ resource, id, variables, meta }) => Promise,
-    deleteMany: ({ resource, ids, variables, meta }) => Promise,
-    getList: ({ resource, pagination, hasPagination, sort, filters, meta }) =>
-        Promise,
-    getMany: ({ resource, ids, meta }) => Promise,
-    getOne: ({ resource, id, meta }) => Promise,
-    update: ({ resource, id, variables, meta }) => Promise,
-    updateMany: ({ resource, ids, variables, meta }) => Promise,
-    custom: ({ url, method, sort, filters, payload, query, headers, meta }) =>
-        Promise,
-    getApiUrl: () => "",
+  create: ({ resource, variables, meta }) => Promise,
+  createMany: ({ resource, variables, meta }) => Promise,
+  deleteOne: ({ resource, id, variables, meta }) => Promise,
+  deleteMany: ({ resource, ids, variables, meta }) => Promise,
+  getList: ({ resource, pagination, hasPagination, sort, filters, meta }) => Promise,
+  getMany: ({ resource, ids, meta }) => Promise,
+  getOne: ({ resource, id, meta }) => Promise,
+  update: ({ resource, id, variables, meta }) => Promise,
+  updateMany: ({ resource, ids, variables, meta }) => Promise,
+  custom: ({ url, method, sort, filters, payload, query, headers, meta }) => Promise,
+  getApiUrl: () => "",
 };
 ```
 
@@ -238,245 +233,229 @@ import { DataProvider } from "@refinedev/core";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { generateFilter, handleError } from "../utils";
 
-export const dataProvider = (
-    supabaseClient: SupabaseClient,
-): Required<DataProvider> => {
-    return {
-        getList: async ({ resource, pagination, filters, sorters, meta }) => {
-            const {
-                current = 1,
-                pageSize = 10,
-                mode = "server",
-            } = pagination ?? {};
+export const dataProvider = (supabaseClient: SupabaseClient): Required<DataProvider> => {
+  return {
+    getList: async ({ resource, pagination, filters, sorters, meta }) => {
+      const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};
 
-            const query = supabaseClient
-                .from(resource)
-                .select(meta?.select ?? "*", {
-                    count: "exact",
-                });
+      const query = supabaseClient.from(resource).select(meta?.select ?? "*", {
+        count: "exact",
+      });
 
-            if (mode === "server") {
-                query.range((current - 1) * pageSize, current * pageSize - 1);
-            }
+      if (mode === "server") {
+        query.range((current - 1) * pageSize, current * pageSize - 1);
+      }
 
-            sorters?.map((item) => {
-                const [foreignTable, field] = item.field.split(/\.(.*)/);
+      sorters?.map((item) => {
+        const [foreignTable, field] = item.field.split(/\.(.*)/);
 
-                if (foreignTable && field) {
-                    query
-                        .select(meta?.select ?? `*, ${foreignTable}(${field})`)
-                        .order(field, {
-                            ascending: item.order === "asc",
-                            foreignTable: foreignTable,
-                        });
-                } else {
-                    query.order(item.field, {
-                        ascending: item.order === "asc",
-                    });
-                }
-            });
+        if (foreignTable && field) {
+          query.select(meta?.select ?? `*, ${foreignTable}(${field})`).order(field, {
+            ascending: item.order === "asc",
+            foreignTable: foreignTable,
+          });
+        } else {
+          query.order(item.field, {
+            ascending: item.order === "asc",
+          });
+        }
+      });
 
-            filters?.map((item) => {
-                generateFilter(item, query);
-            });
+      filters?.map((item) => {
+        generateFilter(item, query);
+      });
 
-            const { data, count, error } = await query;
+      const { data, count, error } = await query;
 
-            if (error) {
-                return handleError(error);
-            }
+      if (error) {
+        return handleError(error);
+      }
 
-            return {
-                data: data || [],
-                total: count || 0,
-            } as any;
-        },
+      return {
+        data: data || [],
+        total: count || 0,
+      } as any;
+    },
 
-        getMany: async ({ resource, ids, meta }) => {
-            const query = supabaseClient
-                .from(resource)
-                .select(meta?.select ?? "*");
+    getMany: async ({ resource, ids, meta }) => {
+      const query = supabaseClient.from(resource).select(meta?.select ?? "*");
 
-            if (meta?.idColumnName) {
-                query.in(meta.idColumnName, ids);
-            } else {
-                query.in("id", ids);
-            }
+      if (meta?.idColumnName) {
+        query.in(meta.idColumnName, ids);
+      } else {
+        query.in("id", ids);
+      }
 
-            const { data, error } = await query;
+      const { data, error } = await query;
 
-            if (error) {
-                return handleError(error);
-            }
+      if (error) {
+        return handleError(error);
+      }
 
-            return {
-                data: data || [],
-            } as any;
-        },
+      return {
+        data: data || [],
+      } as any;
+    },
 
-        create: async ({ resource, variables, meta }) => {
-            const query = supabaseClient.from(resource).insert(variables);
+    create: async ({ resource, variables, meta }) => {
+      const query = supabaseClient.from(resource).insert(variables);
 
-            if (meta?.select) {
-                query.select(meta.select);
-            }
+      if (meta?.select) {
+        query.select(meta.select);
+      }
 
-            const { data, error } = await query;
+      const { data, error } = await query;
 
-            if (error) {
-                return handleError(error);
-            }
+      if (error) {
+        return handleError(error);
+      }
 
-            return {
-                data: (data || [])[0] as any,
-            };
-        },
+      return {
+        data: (data || [])[0] as any,
+      };
+    },
 
-        createMany: async ({ resource, variables, meta }) => {
-            const query = supabaseClient.from(resource).insert(variables);
+    createMany: async ({ resource, variables, meta }) => {
+      const query = supabaseClient.from(resource).insert(variables);
 
-            if (meta?.select) {
-                query.select(meta.select);
-            }
+      if (meta?.select) {
+        query.select(meta.select);
+      }
 
-            const { data, error } = await query;
+      const { data, error } = await query;
 
-            if (error) {
-                return handleError(error);
-            }
+      if (error) {
+        return handleError(error);
+      }
 
-            return {
-                data: data as any,
-            };
-        },
+      return {
+        data: data as any,
+      };
+    },
 
-        update: async ({ resource, id, variables, meta }) => {
-            const query = supabaseClient.from(resource).update(variables);
+    update: async ({ resource, id, variables, meta }) => {
+      const query = supabaseClient.from(resource).update(variables);
 
-            if (meta?.idColumnName) {
-                query.eq(meta.idColumnName, id);
-            } else {
-                query.match({ id });
-            }
+      if (meta?.idColumnName) {
+        query.eq(meta.idColumnName, id);
+      } else {
+        query.match({ id });
+      }
 
-            if (meta?.select) {
-                query.select(meta.select);
-            }
+      if (meta?.select) {
+        query.select(meta.select);
+      }
 
-            const { data, error } = await query;
-            if (error) {
-                return handleError(error);
-            }
+      const { data, error } = await query;
+      if (error) {
+        return handleError(error);
+      }
 
-            return {
-                data: (data || [])[0] as any,
-            };
-        },
+      return {
+        data: (data || [])[0] as any,
+      };
+    },
 
-        updateMany: async ({ resource, ids, variables, meta }) => {
-            const response = await Promise.all(
-                ids.map(async (id) => {
-                    const query = supabaseClient
-                        .from(resource)
-                        .update(variables);
+    updateMany: async ({ resource, ids, variables, meta }) => {
+      const response = await Promise.all(
+        ids.map(async (id) => {
+          const query = supabaseClient.from(resource).update(variables);
 
-                    if (meta?.idColumnName) {
-                        query.eq(meta.idColumnName, id);
-                    } else {
-                        query.match({ id });
-                    }
+          if (meta?.idColumnName) {
+            query.eq(meta.idColumnName, id);
+          } else {
+            query.match({ id });
+          }
 
-                    if (meta?.select) {
-                        query.select(meta.select);
-                    }
+          if (meta?.select) {
+            query.select(meta.select);
+          }
 
-                    const { data, error } = await query;
-                    if (error) {
-                        return handleError(error);
-                    }
+          const { data, error } = await query;
+          if (error) {
+            return handleError(error);
+          }
 
-                    return (data || [])[0] as any;
-                }),
-            );
+          return (data || [])[0] as any;
+        }),
+      );
 
-            return {
-                data: response,
-            };
-        },
+      return {
+        data: response,
+      };
+    },
 
-        getOne: async ({ resource, id, meta }) => {
-            const query = supabaseClient
-                .from(resource)
-                .select(meta?.select ?? "*");
+    getOne: async ({ resource, id, meta }) => {
+      const query = supabaseClient.from(resource).select(meta?.select ?? "*");
 
-            if (meta?.idColumnName) {
-                query.eq(meta.idColumnName, id);
-            } else {
-                query.match({ id });
-            }
+      if (meta?.idColumnName) {
+        query.eq(meta.idColumnName, id);
+      } else {
+        query.match({ id });
+      }
 
-            const { data, error } = await query;
-            if (error) {
-                return handleError(error);
-            }
+      const { data, error } = await query;
+      if (error) {
+        return handleError(error);
+      }
 
-            return {
-                data: (data || [])[0] as any,
-            };
-        },
+      return {
+        data: (data || [])[0] as any,
+      };
+    },
 
-        deleteOne: async ({ resource, id, meta }) => {
-            const query = supabaseClient.from(resource).delete();
+    deleteOne: async ({ resource, id, meta }) => {
+      const query = supabaseClient.from(resource).delete();
 
-            if (meta?.idColumnName) {
-                query.eq(meta.idColumnName, id);
-            } else {
-                query.match({ id });
-            }
+      if (meta?.idColumnName) {
+        query.eq(meta.idColumnName, id);
+      } else {
+        query.match({ id });
+      }
 
-            const { data, error } = await query;
-            if (error) {
-                return handleError(error);
-            }
+      const { data, error } = await query;
+      if (error) {
+        return handleError(error);
+      }
 
-            return {
-                data: (data || [])[0] as any,
-            };
-        },
+      return {
+        data: (data || [])[0] as any,
+      };
+    },
 
-        deleteMany: async ({ resource, ids, meta }) => {
-            const response = await Promise.all(
-                ids.map(async (id) => {
-                    const query = supabaseClient.from(resource).delete();
+    deleteMany: async ({ resource, ids, meta }) => {
+      const response = await Promise.all(
+        ids.map(async (id) => {
+          const query = supabaseClient.from(resource).delete();
 
-                    if (meta?.idColumnName) {
-                        query.eq(meta.idColumnName, id);
-                    } else {
-                        query.match({ id });
-                    }
+          if (meta?.idColumnName) {
+            query.eq(meta.idColumnName, id);
+          } else {
+            query.match({ id });
+          }
 
-                    const { data, error } = await query;
-                    if (error) {
-                        return handleError(error);
-                    }
+          const { data, error } = await query;
+          if (error) {
+            return handleError(error);
+          }
 
-                    return (data || [])[0] as any;
-                }),
-            );
+          return (data || [])[0] as any;
+        }),
+      );
 
-            return {
-                data: response,
-            };
-        },
+      return {
+        data: response,
+      };
+    },
 
-        getApiUrl: () => {
-            throw Error("Not implemented on refine-supabase data provider.");
-        },
+    getApiUrl: () => {
+      throw Error("Not implemented on refine-supabase data provider.");
+    },
 
-        custom: () => {
-            throw Error("Not implemented on refine-supabase data provider.");
-        },
-    };
+    custom: () => {
+      throw Error("Not implemented on refine-supabase data provider.");
+    },
+  };
 };
 ```
 
@@ -498,15 +477,15 @@ import { createClient } from "@refinedev/supabase";
 
 const SUPABASE_URL = "https://ifbdnkfqbypnkmwcfdes.supabase.co";
 const SUPABASE_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlmYmRua2ZxYnlwbmttd2NmZGVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzA5MTgzOTEsImV4cCI6MTk4NjQ5NDM5MX0.ThQ40H-xay-Hi5cf7H9mKccMCvAX3iCvYVJDe0KiHtw";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlmYmRua2ZxYnlwbmttd2NmZGVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzA5MTgzOTEsImV4cCI6MTk4NjQ5NDM5MX0.ThQ40H-xay-Hi5cf7H9mKccMCvAX3iCvYVJDe0KiHtw";
 
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
-    db: {
-        schema: "public",
-    },
-    auth: {
-        persistSession: true,
-    },
+  db: {
+    schema: "public",
+  },
+  auth: {
+    persistSession: true,
+  },
 });
 ```
 
@@ -521,7 +500,7 @@ import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "./utility";
 
 function App() {
-    return <Refine dataProvider={dataProvider(supabaseClient)} />;
+  return <Refine dataProvider={dataProvider(supabaseClient)} />;
 }
 ```
 
@@ -549,238 +528,235 @@ import { AuthBindings } from "@refinedev/core";
 import { supabaseClient } from "../utility";
 
 export const authProvider: AuthBindings = {
-    login: async ({ email, password, providerName }) => {
-        try {
-            // sign in with oauth
-            if (providerName) {
-                const { data, error } =
-                    await supabaseClient.auth.signInWithOAuth({
-                        provider: providerName,
-                    });
-
-                if (error) {
-                    return {
-                        success: false,
-                        error,
-                    };
-                }
-
-                if (data?.url) {
-                    return {
-                        success: true,
-                    };
-                }
-            }
-
-            // sign in with email and password
-            const { data, error } =
-                await supabaseClient.auth.signInWithPassword({
-                    email,
-                    password,
-                });
-
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data?.user) {
-                return {
-                    success: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
-
-        return {
-            success: false,
-            error: {
-                message: "Login failed",
-                name: "Invalid email or password",
-            },
-        };
-    },
-    register: async ({ email, password }) => {
-        try {
-            const { data, error } = await supabaseClient.auth.signUp({
-                email,
-                password,
-            });
-
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data) {
-                return {
-                    success: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
-
-        return {
-            success: false,
-            error: {
-                message: "Register failed",
-                name: "Invalid email or password",
-            },
-        };
-    },
-    forgotPassword: async ({ email }) => {
-        try {
-            const { data, error } =
-                await supabaseClient.auth.resetPasswordForEmail(email, {
-                    redirectTo: `${window.location.origin}/update-password`,
-                });
-
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data) {
-                return {
-                    success: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
-
-        return {
-            success: false,
-            error: {
-                message: "Forgot password failed",
-                name: "Invalid email",
-            },
-        };
-    },
-    updatePassword: async ({ password }) => {
-        try {
-            const { data, error } = await supabaseClient.auth.updateUser({
-                password,
-            });
-
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data) {
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
-
-        return {
-            success: false,
-            error: {
-                message: "Update password failed",
-                name: "Invalid password",
-            },
-        };
-    },
-    logout: async () => {
-        const { error } = await supabaseClient.auth.signOut();
+  login: async ({ email, password, providerName }) => {
+    try {
+      // sign in with oauth
+      if (providerName) {
+        const { data, error } = await supabaseClient.auth.signInWithOAuth({
+          provider: providerName,
+        });
 
         if (error) {
-            return {
-                success: false,
-                error,
-            };
+          return {
+            success: false,
+            error,
+          };
         }
 
-        return {
+        if (data?.url) {
+          return {
             success: true,
-            redirectTo: "/",
-        };
-    },
-    onError: async (_error: any) => ({}),
-    check: async () => {
-        try {
-            const { data } = await supabaseClient.auth.getSession();
-            const { session } = data;
-
-            if (!session) {
-                return {
-                    authenticated: false,
-                    error: {
-                        message: "Check failed",
-                        name: "Session not found",
-                    },
-                    logout: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                authenticated: false,
-                error: error,
-                logout: true,
-            };
+          };
         }
+      }
 
+      // sign in with email and password
+      const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
         return {
-            authenticated: true,
+          success: false,
+          error,
         };
-    },
-    getPermissions: async () => {
-        try {
-            const user = await supabaseClient.auth.getUser();
+      }
 
-            if (user) {
-                return user.data.user?.role;
-            }
-        } catch (error) {
-            console.error(error);
-            return;
-        }
-    },
-    getIdentity: async () => {
-        try {
-            const { data } = await supabaseClient.auth.getUser();
+      if (data?.user) {
+        return {
+          success: true,
+        };
+      }
+    } catch (error: any) {
+      return {
+        success: false,
+        error,
+      };
+    }
 
-            if (data?.user) {
-                return {
-                    ...data.user,
-                    name: data.user.email,
-                };
-            }
+    return {
+      success: false,
+      error: {
+        message: "Login failed",
+        name: "Invalid email or password",
+      },
+    };
+  },
+  register: async ({ email, password }) => {
+    try {
+      const { data, error } = await supabaseClient.auth.signUp({
+        email,
+        password,
+      });
 
-            return null;
-        } catch (error: any) {
-            console.error(error);
+      if (error) {
+        return {
+          success: false,
+          error,
+        };
+      }
 
-            return null;
-        }
-    },
+      if (data) {
+        return {
+          success: true,
+        };
+      }
+    } catch (error: any) {
+      return {
+        success: false,
+        error,
+      };
+    }
+
+    return {
+      success: false,
+      error: {
+        message: "Register failed",
+        name: "Invalid email or password",
+      },
+    };
+  },
+  forgotPassword: async ({ email }) => {
+    try {
+      const { data, error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/update-password`,
+      });
+
+      if (error) {
+        return {
+          success: false,
+          error,
+        };
+      }
+
+      if (data) {
+        return {
+          success: true,
+        };
+      }
+    } catch (error: any) {
+      return {
+        success: false,
+        error,
+      };
+    }
+
+    return {
+      success: false,
+      error: {
+        message: "Forgot password failed",
+        name: "Invalid email",
+      },
+    };
+  },
+  updatePassword: async ({ password }) => {
+    try {
+      const { data, error } = await supabaseClient.auth.updateUser({
+        password,
+      });
+
+      if (error) {
+        return {
+          success: false,
+          error,
+        };
+      }
+
+      if (data) {
+        return {
+          success: true,
+          redirectTo: "/",
+        };
+      }
+    } catch (error: any) {
+      return {
+        success: false,
+        error,
+      };
+    }
+
+    return {
+      success: false,
+      error: {
+        message: "Update password failed",
+        name: "Invalid password",
+      },
+    };
+  },
+  logout: async () => {
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+      return {
+        success: false,
+        error,
+      };
+    }
+
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  onError: async (_error: any) => ({}),
+  check: async () => {
+    try {
+      const { data } = await supabaseClient.auth.getSession();
+      const { session } = data;
+
+      if (!session) {
+        return {
+          authenticated: false,
+          error: {
+            message: "Check failed",
+            name: "Session not found",
+          },
+          logout: true,
+        };
+      }
+    } catch (error: any) {
+      return {
+        authenticated: false,
+        error: error,
+        logout: true,
+      };
+    }
+
+    return {
+      authenticated: true,
+    };
+  },
+  getPermissions: async () => {
+    try {
+      const user = await supabaseClient.auth.getUser();
+
+      if (user) {
+        return user.data.user?.role;
+      }
+    } catch (error) {
+      console.error(error);
+      return;
+    }
+  },
+  getIdentity: async () => {
+    try {
+      const { data } = await supabaseClient.auth.getUser();
+
+      if (data?.user) {
+        return {
+          ...data.user,
+          name: data.user.email,
+        };
+      }
+
+      return null;
+    } catch (error: any) {
+      console.error(error);
+
+      return null;
+    }
+  },
 };
 ```
 

@@ -5,19 +5,21 @@ title: useLogList
 
 ## Overview
 
-If you need to list audit log events, you can use the `useLogList` hook of **refine**, which uses the `get` method from [`auditLogProvider`](/api-reference/core/providers/audit-log-provider.md#get) under the hood.
+If you need to list audit log events, you can use the `useLogList` hook of **refine**, which uses the `get` method from [`auditLogProvider`](/docs/api-reference/core/providers/audit-log-provider.md#get) under the hood.
 
 ## Usage
 
 :::caution
+
 This hook can only be used if `auditLogProvider`'s `get` method is provided.
+
 :::
 
 ```tsx
 import { useLogList } from "@refinedev/core";
 
 const postAuditLogResults = useLogList({
-    resource: "posts",
+  resource: "posts",
 });
 ```
 
@@ -25,18 +27,18 @@ const postAuditLogResults = useLogList({
 
 ### Properties
 
-| Property                                                                                            | Type                                                               | Default                         |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | `string`                                                           | Action that it reads from route |
-| action                                                                                              | `string`                                                           |                                 |
-| author                                                                                              | `Record<string, any>`                                              |                                 |
-| meta                                                                                                | `Record<string, any>`                                              |                                 |
-| metaData                                                                                            | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery) |                                 |
-| queryOptions                                                                                        | `UseQueryOptions<TQueryFnData, TError, TData>`                     |                                 |
+| Property                                                                                            | Type                                                                    | Default                         |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | `string`                                                                | Action that it reads from route |
+| action                                                                                              | `string`                                                                |                                 |
+| author                                                                                              | `Record<string, any>`                                                   |                                 |
+| meta                                                                                                | `Record<string, any>`                                                   |                                 |
+| metaData                                                                                            | [`MetaDataQuery`](/docs/api-reference/core/interfaces.md#metadataquery) |                                 |
+| queryOptions                                                                                        | `UseQueryOptions<TQueryFnData, TError, TData>`                          |                                 |
 
 ### Type Parameters
 
-| Property     | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property     | Description                                                                                                                                                         | Type                       | Default                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

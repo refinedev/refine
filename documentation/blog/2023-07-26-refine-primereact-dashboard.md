@@ -135,13 +135,13 @@ Previously, we mentioned that the scaffolded project includes auto-generated CRU
 
     ```css title="App.css"
     html {
-        font-size: 14px;
+      font-size: 14px;
     }
 
     body {
-        margin: 0px;
-        // Build-in PrimeReact themes use this variable
-        font-family: var(--font-family);
+      margin: 0px;
+      // Build-in PrimeReact themes use this variable
+      font-family: var(--font-family);
     }
     ```
 
@@ -152,39 +152,34 @@ Previously, we mentioned that the scaffolded project includes auto-generated CRU
     ```tsx title="src/App.tsx"
     import { ErrorComponent, Refine } from "@refinedev/core";
     import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-    import routerBindings, {
-        DocumentTitleHandler,
-        UnsavedChangesNotifier,
-    } from "@refinedev/react-router-v6";
+    import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
     import dataProvider from "@refinedev/simple-rest";
     import { BrowserRouter, Route, Routes } from "react-router-dom";
 
     import "./App.css";
 
     function App() {
-        return (
-            <BrowserRouter>
-                <RefineKbarProvider>
-                    <Refine
-                        dataProvider={dataProvider(
-                            "https://api.finefoods.refine.dev",
-                        )}
-                        routerProvider={routerBindings}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                        <RefineKbar />
-                        <UnsavedChangesNotifier />
-                        <DocumentTitleHandler />
-                    </Refine>
-                </RefineKbarProvider>
-            </BrowserRouter>
-        );
+      return (
+        <BrowserRouter>
+          <RefineKbarProvider>
+            <Refine
+              dataProvider={dataProvider("https://api.finefoods.refine.dev")}
+              routerProvider={routerBindings}
+              options={{
+                syncWithLocation: true,
+                warnWhenUnsavedChanges: true,
+              }}
+            >
+              <Routes>
+                <Route path="*" element={<ErrorComponent />} />
+              </Routes>
+              <RefineKbar />
+              <UnsavedChangesNotifier />
+              <DocumentTitleHandler />
+            </Refine>
+          </RefineKbarProvider>
+        </BrowserRouter>
+      );
     }
 
     export default App;
@@ -221,11 +216,11 @@ First, let's create a `<Dashboard />` component in `src/pages/dashboard/index.ts
 import { Button } from "primereact/Button";
 
 export const Dashboard = () => {
-    return (
-        <div className="flex justify-content-center">
-            <Button label="Hello PrimeReact!" icon="pi pi-prime" />
-        </div>
-    );
+  return (
+    <div className="flex justify-content-center">
+      <Button label="Hello PrimeReact!" icon="pi pi-prime" />
+    </div>
+  );
 };
 ```
 
@@ -318,68 +313,54 @@ Let's start enhancing the dashboard by adding KPI cards to display the weekly re
 import { Card } from "primereact/card";
 
 type KpiCardProps = {
-    title: string;
-    total: number;
-    trend: number;
-    icon: string;
-    color: string;
-    formatTotal?: (value: number) => number | string;
+  title: string;
+  total: number;
+  trend: number;
+  icon: string;
+  color: string;
+  formatTotal?: (value: number) => number | string;
 };
 
-export const KpiCard = ({
-    title,
-    color,
-    total,
-    trend,
-    icon,
-    formatTotal = (value) => value,
-}: KpiCardProps) => {
-    const renderTrend = () => {
-        const calc = Math.round((trend / total) * 100);
+export const KpiCard = ({ title, color, total, trend, icon, formatTotal = (value) => value }: KpiCardProps) => {
+  const renderTrend = () => {
+    const calc = Math.round((trend / total) * 100);
 
-        if (total < trend) {
-            return (
-                <div className="text-green-500">
-                    <span className="font-medium mr-2">+{calc}%</span>
-                </div>
-            );
-        }
-
-        return (
-            <div className="text-pink-500">
-                <span className="font-medium mr-2">-{calc}%</span>
-            </div>
-        );
-    };
+    if (total < trend) {
+      return (
+        <div className="text-green-500">
+          <span className="font-medium mr-2">+{calc}%</span>
+        </div>
+      );
+    }
 
     return (
-        <Card
-            className={`shadow-1 border-left-3 border-${color}`}
-            title={
-                <div className="flex justify-content-between">
-                    <div>
-                        <span className="block font-bold text-xl mb-3">
-                            {title}
-                        </span>
-                        <div className="text-900 font-medium text-2xl">
-                            {formatTotal(total)}
-                        </div>
-                    </div>
-                    <div
-                        className="flex align-items-center justify-content-center"
-                        style={{ width: "2.5rem", height: "2.5rem" }}
-                    >
-                        <i className={`pi ${icon} text-${color} text-2xl`} />
-                    </div>
-                </div>
-            }
-        >
-            <div className="flex">
-                {renderTrend()}
-                <span className="text-500">since last week</span>
-            </div>
-        </Card>
+      <div className="text-pink-500">
+        <span className="font-medium mr-2">-{calc}%</span>
+      </div>
     );
+  };
+
+  return (
+    <Card
+      className={`shadow-1 border-left-3 border-${color}`}
+      title={
+        <div className="flex justify-content-between">
+          <div>
+            <span className="block font-bold text-xl mb-3">{title}</span>
+            <div className="text-900 font-medium text-2xl">{formatTotal(total)}</div>
+          </div>
+          <div className="flex align-items-center justify-content-center" style={{ width: "2.5rem", height: "2.5rem" }}>
+            <i className={`pi ${icon} text-${color} text-2xl`} />
+          </div>
+        </div>
+      }
+    >
+      <div className="flex">
+        {renderTrend()}
+        <span className="text-500">since last week</span>
+      </div>
+    </Card>
+  );
 };
 ```
 
@@ -415,69 +396,69 @@ import { KpiCard } from "../../components/dashboard/kpiCard";
 import { IChart } from "../../interfaces";
 
 const query = {
-    start: dayjs().subtract(7, "days").startOf("day"),
-    end: dayjs().startOf("day"),
+  start: dayjs().subtract(7, "days").startOf("day"),
+  end: dayjs().startOf("day"),
 };
 
 export const Dashboard: React.FC = () => {
-    const API_URL = useApiUrl();
+  const API_URL = useApiUrl();
 
-    const { data: dailyRevenue } = useCustom<IChart>({
-        url: `${API_URL}/dailyRevenue`,
-        method: "get",
-        config: {
-            query,
-        },
-    });
+  const { data: dailyRevenue } = useCustom<IChart>({
+    url: `${API_URL}/dailyRevenue`,
+    method: "get",
+    config: {
+      query,
+    },
+  });
 
-    const { data: dailyOrders } = useCustom<IChart>({
-        url: `${API_URL}/dailyOrders`,
-        method: "get",
-        config: {
-            query,
-        },
-    });
+  const { data: dailyOrders } = useCustom<IChart>({
+    url: `${API_URL}/dailyOrders`,
+    method: "get",
+    config: {
+      query,
+    },
+  });
 
-    const { data: newCustomers } = useCustom<IChart>({
-        url: `${API_URL}/newCustomers`,
-        method: "get",
-        config: {
-            query,
-        },
-    });
+  const { data: newCustomers } = useCustom<IChart>({
+    url: `${API_URL}/newCustomers`,
+    method: "get",
+    config: {
+      query,
+    },
+  });
 
-    return (
-        <div className="grid">
-            <div className="col-12 lg:col-6 xl:col-4">
-                <KpiCard
-                    title="Weekly Revenue"
-                    color="blue-300"
-                    total={dailyRevenue?.data.total ?? 0}
-                    trend={dailyRevenue?.data.trend ?? 0}
-                    formatTotal={(value) => `$ ${value}`}
-                    icon="pi-dollar"
-                />
-            </div>
-            <div className="col-12 lg:col-6 xl:col-4">
-                <KpiCard
-                    title="Weekly Orders"
-                    color="orange-300"
-                    total={dailyOrders?.data.total ?? 0}
-                    trend={dailyOrders?.data.trend ?? 0}
-                    icon="pi-shopping-cart"
-                />
-            </div>
-            <div className="col-12 lg:col-6 xl:col-4">
-                <KpiCard
-                    title="New Customers"
-                    color="green-500"
-                    total={newCustomers?.data.total ?? 0}
-                    trend={newCustomers?.data.trend ?? 0}
-                    icon="pi-users"
-                />
-            </div>
-        </div>
-    );
+  return (
+    <div className="grid">
+      <div className="col-12 lg:col-6 xl:col-4">
+        <KpiCard
+          title="Weekly Revenue"
+          color="blue-300"
+          total={dailyRevenue?.data.total ?? 0}
+          trend={dailyRevenue?.data.trend ?? 0}
+          formatTotal={(value) => `$ ${value}`}
+          icon="pi-dollar"
+        />
+      </div>
+      <div className="col-12 lg:col-6 xl:col-4">
+        <KpiCard
+          title="Weekly Orders"
+          color="orange-300"
+          total={dailyOrders?.data.total ?? 0}
+          trend={dailyOrders?.data.trend ?? 0}
+          icon="pi-shopping-cart"
+        />
+      </div>
+      <div className="col-12 lg:col-6 xl:col-4">
+        <KpiCard
+          title="New Customers"
+          color="green-500"
+          total={newCustomers?.data.total ?? 0}
+          trend={newCustomers?.data.trend ?? 0}
+          icon="pi-users"
+        />
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -493,59 +474,59 @@ export const Dashboard: React.FC = () => {
 
 ```tsx title="src/interfaces/index.d.ts"
 export interface IOrder {
-    id: number;
-    user: IUser;
-    createdAt: string;
-    status: IOrderStatus;
-    adress: IAddress;
-    amount: number;
+  id: number;
+  user: IUser;
+  createdAt: string;
+  status: IOrderStatus;
+  address: IAddress;
+  amount: number;
 }
 
 export interface IUser {
-    id: number;
-    fullName: string;
-    gender: string;
-    gsm: string;
-    createdAt: string;
-    addresses: IAddress[];
+  id: number;
+  fullName: string;
+  gender: string;
+  gsm: string;
+  createdAt: string;
+  addresses: IAddress[];
 }
 
 export interface IOrderStatus {
-    id: number;
-    text: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
+  id: number;
+  text: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
 }
 
 export interface IAddress {
-    text: string;
-    coordinate: [string, string];
+  text: string;
+  coordinate: [string, string];
 }
 
 export interface IChartDatum {
-    date: string;
-    value: string;
+  date: string;
+  value: string;
 }
 
 export interface IChart {
-    data: IChartDatum[];
-    total: number;
-    trend: number;
+  data: IChartDatum[];
+  total: number;
+  trend: number;
 }
 
 export interface IProduct {
-    id: number;
-    name: string;
-    isActive: boolean;
-    description: string;
-    createdAt: string;
-    price: number;
-    category: ICategory;
-    stock: number;
+  id: number;
+  name: string;
+  isActive: boolean;
+  description: string;
+  createdAt: string;
+  price: number;
+  category: ICategory;
+  stock: number;
 }
 
 export interface ICategory {
-    id: number;
-    title: string;
-    isActive: boolean;
+  id: number;
+  title: string;
+  isActive: boolean;
 }
 ```
 
@@ -577,122 +558,107 @@ import { ChartData, ChartOptions } from "chart.js";
 import { IChartDatum } from "../../../interfaces";
 
 interface ChartViewProps {
-    revenue: IChartDatum[];
-    orders: IChartDatum[];
-    customers: IChartDatum[];
+  revenue: IChartDatum[];
+  orders: IChartDatum[];
+  customers: IChartDatum[];
 }
 
 const commonLineOptions: ChartOptions = {
-    maintainAspectRatio: false,
-    responsive: true,
-    plugins: {
-        legend: {
-            display: false,
-        },
+  maintainAspectRatio: false,
+  responsive: true,
+  plugins: {
+    legend: {
+      display: false,
     },
-    scales: {
-        y: {
-            beginAtZero: true,
-        },
+  },
+  scales: {
+    y: {
+      beginAtZero: true,
     },
+  },
 };
 
 const formatDate = new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    year: "numeric",
-    day: "numeric",
+  month: "short",
+  year: "numeric",
+  day: "numeric",
 });
 
 export const ChartView = ({ revenue, orders, customers }: ChartViewProps) => {
-    const dailyRevenueLabels = revenue.map((dataObj) => {
-        const date = new Date(dataObj.date);
-        return formatDate.format(date);
-    });
-    const dailyRevenueData = revenue.map((data) => Number(data.value));
+  const dailyRevenueLabels = revenue.map((dataObj) => {
+    const date = new Date(dataObj.date);
+    return formatDate.format(date);
+  });
+  const dailyRevenueData = revenue.map((data) => Number(data.value));
 
-    const dailyOrdersLabels = orders.map((data) => {
-        const date = new Date(data.date);
-        return formatDate.format(date);
-    });
-    const dailyOrdersData = orders.map((data) => Number(data.value));
+  const dailyOrdersLabels = orders.map((data) => {
+    const date = new Date(data.date);
+    return formatDate.format(date);
+  });
+  const dailyOrdersData = orders.map((data) => Number(data.value));
 
-    const newCustomersLabels = customers.map((data) => {
-        const date = new Date(data.date);
-        return formatDate.format(date);
-    });
-    const newCustomersData = customers.map((data) => Number(data.value));
+  const newCustomersLabels = customers.map((data) => {
+    const date = new Date(data.date);
+    return formatDate.format(date);
+  });
+  const newCustomersData = customers.map((data) => Number(data.value));
 
-    const documentStyle = getComputedStyle(document.documentElement);
+  const documentStyle = getComputedStyle(document.documentElement);
 
-    const revenuelineData: ChartData = {
-        labels: dailyRevenueLabels,
-        datasets: [
-            {
-                label: "Daily Revenue",
-                data: dailyRevenueData,
-                fill: true,
-                borderColor: documentStyle.getPropertyValue("--blue-500"),
-                backgroundColor: "rgba(54, 162, 235, 0.2)",
-                tension: 0.4,
-            },
-        ],
-    };
+  const revenuelineData: ChartData = {
+    labels: dailyRevenueLabels,
+    datasets: [
+      {
+        label: "Daily Revenue",
+        data: dailyRevenueData,
+        fill: true,
+        borderColor: documentStyle.getPropertyValue("--blue-500"),
+        backgroundColor: "rgba(54, 162, 235, 0.2)",
+        tension: 0.4,
+      },
+    ],
+  };
 
-    const orderBarData: ChartData = {
-        labels: dailyOrdersLabels,
-        datasets: [
-            {
-                label: "Daily Orders",
-                data: dailyOrdersData,
-                backgroundColor: "rgba(255, 159, 64, 0.5)",
-            },
-        ],
-    };
+  const orderBarData: ChartData = {
+    labels: dailyOrdersLabels,
+    datasets: [
+      {
+        label: "Daily Orders",
+        data: dailyOrdersData,
+        backgroundColor: "rgba(255, 159, 64, 0.5)",
+      },
+    ],
+  };
 
-    const newCustomersLineData: ChartData = {
-        labels: newCustomersLabels,
-        datasets: [
-            {
-                label: "New Customers",
-                data: newCustomersData,
-                fill: true,
-                borderColor: documentStyle.getPropertyValue("--green-500"),
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-                tension: 0.4,
-            },
-        ],
-    };
+  const newCustomersLineData: ChartData = {
+    labels: newCustomersLabels,
+    datasets: [
+      {
+        label: "New Customers",
+        data: newCustomersData,
+        fill: true,
+        borderColor: documentStyle.getPropertyValue("--green-500"),
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        tension: 0.4,
+      },
+    ],
+  };
 
-    return (
-        <Card className="shadow-1">
-            <TabView>
-                <TabPanel header="Daily Revenue">
-                    <Chart
-                        type="line"
-                        data={revenuelineData}
-                        options={commonLineOptions}
-                        style={{ height: "400px" }}
-                    />
-                </TabPanel>
-                <TabPanel header="Daily Orders">
-                    <Chart
-                        type="bar"
-                        data={orderBarData}
-                        options={commonLineOptions}
-                        style={{ height: "400px" }}
-                    />
-                </TabPanel>
-                <TabPanel header="New Customers">
-                    <Chart
-                        type="line"
-                        data={newCustomersLineData}
-                        options={commonLineOptions}
-                        style={{ height: "400px" }}
-                    />
-                </TabPanel>
-            </TabView>
-        </Card>
-    );
+  return (
+    <Card className="shadow-1">
+      <TabView>
+        <TabPanel header="Daily Revenue">
+          <Chart type="line" data={revenuelineData} options={commonLineOptions} style={{ height: "400px" }} />
+        </TabPanel>
+        <TabPanel header="Daily Orders">
+          <Chart type="bar" data={orderBarData} options={commonLineOptions} style={{ height: "400px" }} />
+        </TabPanel>
+        <TabPanel header="New Customers">
+          <Chart type="line" data={newCustomersLineData} options={commonLineOptions} style={{ height: "400px" }} />
+        </TabPanel>
+      </TabView>
+    </Card>
+  );
 };
 ```
 
@@ -720,52 +686,52 @@ import { ChartView } from "../../components/dashboard/chartView";
 import { IChart } from "../../interfaces";
 
 const query = {
-    start: dayjs().subtract(7, "days").startOf("day"),
-    end: dayjs().startOf("day"),
+  start: dayjs().subtract(7, "days").startOf("day"),
+  end: dayjs().startOf("day"),
 };
 
 export const Dashboard: React.FC = () => {
-    const API_URL = useApiUrl();
+  const API_URL = useApiUrl();
 
-    const { data: dailyRevenue } = useCustom<IChart>({
-        url: `${API_URL}/dailyRevenue`,
-        method: "get",
-        config: {
-            query,
-        },
-    });
+  const { data: dailyRevenue } = useCustom<IChart>({
+    url: `${API_URL}/dailyRevenue`,
+    method: "get",
+    config: {
+      query,
+    },
+  });
 
-    const { data: dailyOrders } = useCustom<IChart>({
-        url: `${API_URL}/dailyOrders`,
-        method: "get",
-        config: {
-            query,
-        },
-    });
+  const { data: dailyOrders } = useCustom<IChart>({
+    url: `${API_URL}/dailyOrders`,
+    method: "get",
+    config: {
+      query,
+    },
+  });
 
-    const { data: newCustomers } = useCustom<IChart>({
-        url: `${API_URL}/newCustomers`,
-        method: "get",
-        config: {
-            query,
-        },
-    });
+  const { data: newCustomers } = useCustom<IChart>({
+    url: `${API_URL}/newCustomers`,
+    method: "get",
+    config: {
+      query,
+    },
+  });
 
-    return (
-        <div className="grid">
-            {/* ... */}
+  return (
+    <div className="grid">
+      {/* ... */}
 
-            {/*highlight-start*/}
-            <div className="col-12">
-                <ChartView
-                    revenue={dailyRevenue?.data.data ?? []}
-                    orders={dailyOrders?.data.data ?? []}
-                    customers={newCustomers?.data.data ?? []}
-                />
-            </div>
-            {/*highlight-end*/}
-        </div>
-    );
+      {/*highlight-start*/}
+      <div className="col-12">
+        <ChartView
+          revenue={dailyRevenue?.data.data ?? []}
+          orders={dailyOrders?.data.data ?? []}
+          customers={newCustomers?.data.data ?? []}
+        />
+      </div>
+      {/*highlight-end*/}
+    </div>
+  );
 };
 ```
 
@@ -800,185 +766,156 @@ import { InputText } from "primereact/inputtext";
 import { IOrder, IOrderStatus } from "../../../interfaces";
 
 export const RecentSales = () => {
-    const {
-        tableQueryResult,
-        pageCount,
-        current,
-        pageSize,
-        sorters,
-        filters,
-        setCurrent,
-        setPageSize,
-        setSorters,
-        setFilters,
-    } = useTable<IOrder>({
-        resource: "orders",
-        pagination: {
-            pageSize: 5,
-        },
+  const {
+    tableQueryResult,
+    pageCount,
+    current,
+    pageSize,
+    sorters,
+    filters,
+    setCurrent,
+    setPageSize,
+    setSorters,
+    setFilters,
+  } = useTable<IOrder>({
+    resource: "orders",
+    pagination: {
+      pageSize: 5,
+    },
+  });
+
+  const orders = tableQueryResult?.data?.data;
+
+  const formatCurrency = (value: number) => {
+    return value.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
     });
+  };
 
-    const orders = tableQueryResult?.data?.data;
+  const formatDateTime = (value: string) => {
+    return new Date(value).toLocaleString("en-US", {
+      dateStyle: "short",
+      timeStyle: "short",
+    });
+  };
 
-    const formatCurrency = (value: number) => {
-        return value.toLocaleString("en-US", {
-            style: "currency",
-            currency: "USD",
-        });
-    };
+  const getSeverity = (status: IOrderStatus["text"]) => {
+    switch (status) {
+      case "Cancelled":
+        return "danger";
 
-    const formatDateTime = (value: string) => {
-        return new Date(value).toLocaleString("en-US", {
-            dateStyle: "short",
-            timeStyle: "short",
-        });
-    };
+      case "Ready":
+        return "success";
 
-    const getSeverity = (status: IOrderStatus["text"]) => {
-        switch (status) {
-            case "Cancelled":
-                return "danger";
+      case "On The Way":
+        return "info";
 
-            case "Ready":
-                return "success";
+      case "Pending":
+        return "warning";
 
-            case "On The Way":
-                return "info";
+      case "Delivered":
+        return null;
+    }
+  };
 
-            case "Pending":
-                return "warning";
+  const amountBodyTemplate = (rowData: IOrder) => {
+    return formatCurrency(rowData.amount);
+  };
 
-            case "Delivered":
-                return null;
-        }
-    };
+  const statusBodyTemplate = (rowData: IOrder) => {
+    return <Tag value={rowData.status.text} severity={getSeverity(rowData.status.text)} />;
+  };
 
-    const amountBodyTemplate = (rowData: IOrder) => {
-        return formatCurrency(rowData.amount);
-    };
+  const dateBodyTemplate = (rowData: IOrder) => {
+    return formatDateTime(rowData.createdAt);
+  };
 
-    const statusBodyTemplate = (rowData: IOrder) => {
-        return (
-            <Tag
-                value={rowData.status.text}
-                severity={getSeverity(rowData.status.text)}
-            />
-        );
-    };
+  const header = (
+    <div className="flex justify-content-between">
+      <Button
+        type="button"
+        icon="pi pi-filter-slash"
+        label="Clear"
+        outlined
+        onClick={() => {
+          setCurrent(1);
+          setFilters([], "replace");
+        }}
+      />
+      <span className="p-input-icon-left">
+        <i className="pi pi-search" />
+        <InputText
+          value={getDefaultFilter("q", filters)}
+          onChange={(e) => {
+            setCurrent(1);
+            setFilters([
+              {
+                field: "q",
+                value: e.target.value,
+                operator: "contains",
+              },
+            ]);
+          }}
+          placeholder="Keyword Search"
+        />
+      </span>
+    </div>
+  );
 
-    const dateBodyTemplate = (rowData: IOrder) => {
-        return formatDateTime(rowData.createdAt);
-    };
-
-    const header = (
-        <div className="flex justify-content-between">
-            <Button
-                type="button"
-                icon="pi pi-filter-slash"
-                label="Clear"
-                outlined
-                onClick={() => {
-                    setCurrent(1);
-                    setFilters([], "replace");
-                }}
-            />
-            <span className="p-input-icon-left">
-                <i className="pi pi-search" />
-                <InputText
-                    value={getDefaultFilter("q", filters)}
-                    onChange={(e) => {
-                        setCurrent(1);
-                        setFilters([
-                            {
-                                field: "q",
-                                value: e.target.value,
-                                operator: "contains",
-                            },
-                        ]);
-                    }}
-                    placeholder="Keyword Search"
-                />
-            </span>
-        </div>
-    );
-
-    return (
-        <Card className="shadow-1" title="Recent Sales">
-            <DataTable
-                value={orders}
-                dataKey="id"
-                lazy
-                paginator
-                rows={pageSize}
-                rowsPerPageOptions={[5, 10, 25, 50]}
-                first={current * pageSize - pageSize}
-                totalRecords={pageCount * pageSize}
-                onPage={(event) => {
-                    setCurrent((event.page ?? 0) + 1);
-                    setPageSize(event.rows);
-                }}
-                onSort={(event) => {
-                    setSorters([
-                        {
-                            field: event.sortField,
-                            order: event.sortOrder === 1 ? "asc" : "desc",
-                        },
-                    ]);
-                }}
-                sortField={sorters[0]?.field}
-                sortOrder={sorters[0]?.order === "asc" ? 1 : -1}
-                loading={tableQueryResult?.isLoading}
-                header={header}
-            >
-                <Column
-                    field="id"
-                    header="Id"
-                    sortable
-                    style={{ minWidth: "2rem" }}
-                />
-                <Column
-                    field="amount"
-                    header="Amount"
-                    body={amountBodyTemplate}
-                    sortable
-                />
-                <Column
-                    field="user.fullName"
-                    header="Ordered By"
-                    style={{ minWidth: "10rem" }}
-                    sortable
-                />
-                <Column field="user.gender" header="Gender" sortable />
-                <Column
-                    field="user.gsm"
-                    header="Tel"
-                    align="center"
-                    style={{ minWidth: "12rem" }}
-                />
-                <Column
-                    field="adress.text"
-                    header="Delivery Address"
-                    style={{ minWidth: "16rem" }}
-                />
-                <Column
-                    field="status.text"
-                    header="Delivery Status"
-                    body={statusBodyTemplate}
-                    align="center"
-                    sortable
-                    style={{ minWidth: "10rem" }}
-                />
-                <Column
-                    field="createdAt"
-                    header="Created At"
-                    body={dateBodyTemplate}
-                    align="center"
-                    sortable
-                    style={{ minWidth: "12rem" }}
-                />
-            </DataTable>
-        </Card>
-    );
+  return (
+    <Card className="shadow-1" title="Recent Sales">
+      <DataTable
+        value={orders}
+        dataKey="id"
+        lazy
+        paginator
+        rows={pageSize}
+        rowsPerPageOptions={[5, 10, 25, 50]}
+        first={current * pageSize - pageSize}
+        totalRecords={pageCount * pageSize}
+        onPage={(event) => {
+          setCurrent((event.page ?? 0) + 1);
+          setPageSize(event.rows);
+        }}
+        onSort={(event) => {
+          setSorters([
+            {
+              field: event.sortField,
+              order: event.sortOrder === 1 ? "asc" : "desc",
+            },
+          ]);
+        }}
+        sortField={sorters[0]?.field}
+        sortOrder={sorters[0]?.order === "asc" ? 1 : -1}
+        loading={tableQueryResult?.isLoading}
+        header={header}
+      >
+        <Column field="id" header="Id" sortable style={{ minWidth: "2rem" }} />
+        <Column field="amount" header="Amount" body={amountBodyTemplate} sortable />
+        <Column field="user.fullName" header="Ordered By" style={{ minWidth: "10rem" }} sortable />
+        <Column field="user.gender" header="Gender" sortable />
+        <Column field="user.gsm" header="Tel" align="center" style={{ minWidth: "12rem" }} />
+        <Column field="address.text" header="Delivery Address" style={{ minWidth: "16rem" }} />
+        <Column
+          field="status.text"
+          header="Delivery Status"
+          body={statusBodyTemplate}
+          align="center"
+          sortable
+          style={{ minWidth: "10rem" }}
+        />
+        <Column
+          field="createdAt"
+          header="Created At"
+          body={dateBodyTemplate}
+          align="center"
+          sortable
+          style={{ minWidth: "12rem" }}
+        />
+      </DataTable>
+    </Card>
+  );
 };
 ```
 
@@ -997,17 +934,17 @@ import React from "react";
 import { RecentSales } from "../../components/dashboard/recentSales";
 
 export const Dashboard: React.FC = () => {
-    /* ... */
-    return (
-        <div className="grid">
-            {/* ... */}
-            {/*highlight-start*/}
-            <div className="col-12">
-                <RecentSales />
-            </div>
-            {/*highlight-end*/}
-        </div>
-    );
+  /* ... */
+  return (
+    <div className="grid">
+      {/* ... */}
+      {/*highlight-start*/}
+      <div className="col-12">
+        <RecentSales />
+      </div>
+      {/*highlight-end*/}
+    </div>
+  );
 };
 ```
 
@@ -1028,10 +965,7 @@ Now that we have the dashboard, let's create the product CRUD pages. Before that
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -1045,48 +979,46 @@ import "primeicons/primeicons.css";
 import "./App.css";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.finefoods.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "dashboard",
-                            list: "/",
-                        },
-                        //highlight-start
-                        {
-                            name: "products",
-                            list: "/products",
-                            create: "/products/create",
-                            edit: "/products/edit/:id",
-                            show: "/products/show/:id",
-                        },
-                        //highlight-end
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route path="/">
-                            <Route index element={<Dashboard />} />
-                        </Route>
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider("https://api.finefoods.refine.dev")}
+          routerProvider={routerBindings}
+          resources={[
+            {
+              name: "dashboard",
+              list: "/",
+            },
+            //highlight-start
+            {
+              name: "products",
+              list: "/products",
+              create: "/products/create",
+              edit: "/products/edit/:id",
+              show: "/products/show/:id",
+            },
+            //highlight-end
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route path="/">
+              <Route index element={<Dashboard />} />
+            </Route>
 
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Routes>
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+            <Route path="*" element={<ErrorComponent />} />
+          </Routes>
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -1111,13 +1043,7 @@ Let's create a `<ProductList />` component in `src/pages/products/list.tsx` dire
 <summary>Show ProductList component</summary>
 
 ```tsx title="src/pages/products/list.tsx"
-import {
-    useTable,
-    getDefaultFilter,
-    useNavigation,
-    useDelete,
-    useMany,
-} from "@refinedev/core";
+import { useTable, getDefaultFilter, useNavigation, useDelete, useMany } from "@refinedev/core";
 
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -1129,199 +1055,151 @@ import { confirmDialog } from "primereact/confirmdialog";
 import { ICategory, IProduct } from "../../interfaces";
 
 const formatCurrency = (value: number) => {
-    return value.toLocaleString("en-US", {
-        style: "currency",
-        currency: "USD",
-    });
+  return value.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
 };
 
 export const ProductList = () => {
-    const {
-        tableQueryResult,
-        pageCount,
-        current,
-        pageSize,
-        sorters,
-        filters,
-        setCurrent,
-        setPageSize,
-        setSorters,
-        setFilters,
-    } = useTable();
-    const { edit, show, create } = useNavigation();
-    const { mutate: deleteProduct } = useDelete();
+  const {
+    tableQueryResult,
+    pageCount,
+    current,
+    pageSize,
+    sorters,
+    filters,
+    setCurrent,
+    setPageSize,
+    setSorters,
+    setFilters,
+  } = useTable();
+  const { edit, show, create } = useNavigation();
+  const { mutate: deleteProduct } = useDelete();
 
-    const products = tableQueryResult?.data?.data;
+  const products = tableQueryResult?.data?.data;
 
-    const { data: categoryData } = useMany<ICategory>({
-        resource: "categories",
-        ids: products?.map((item) => item?.category?.id) ?? [],
-        queryOptions: {
-            enabled: !!products,
-        },
-    });
+  const { data: categoryData } = useMany<ICategory>({
+    resource: "categories",
+    ids: products?.map((item) => item?.category?.id) ?? [],
+    queryOptions: {
+      enabled: !!products,
+    },
+  });
 
-    const confirmDeleteProduct = (id: number) => {
-        confirmDialog({
-            message: "Do you want to delete this record?",
-            header: "Delete Confirmation",
-            icon: "pi pi-exclamation-triangle",
-            acceptClassName: "p-button-danger",
-            accept: () => {
-                deleteProduct({
-                    resource: "products",
-                    id,
-                });
-            },
+  const confirmDeleteProduct = (id: number) => {
+    confirmDialog({
+      message: "Do you want to delete this record?",
+      header: "Delete Confirmation",
+      icon: "pi pi-exclamation-triangle",
+      acceptClassName: "p-button-danger",
+      accept: () => {
+        deleteProduct({
+          resource: "products",
+          id,
         });
-    };
+      },
+    });
+  };
 
-    const amountBodyTemplate = (rowData: IProduct) => {
-        return formatCurrency(rowData.price);
-    };
+  const amountBodyTemplate = (rowData: IProduct) => {
+    return formatCurrency(rowData.price);
+  };
 
-    const categoryBodyTemplate = (rowData: IProduct) => {
-        const category = categoryData?.data?.find(
-            (item) => item.id === rowData.category?.id,
-        );
+  const categoryBodyTemplate = (rowData: IProduct) => {
+    const category = categoryData?.data?.find((item) => item.id === rowData.category?.id);
 
-        return category?.title ?? "Loading...";
-    };
+    return category?.title ?? "Loading...";
+  };
 
-    const actionBodyTemplate = (rowData: IProduct) => {
-        return (
-            <>
-                <Button
-                    icon="pi pi-pencil"
-                    rounded
-                    text
-                    severity="secondary"
-                    onClick={() => edit("products", rowData.id)}
-                />
-                <Button
-                    icon="pi pi-eye"
-                    rounded
-                    text
-                    severity="secondary"
-                    onClick={() => show("products", rowData.id)}
-                />
-                <Button
-                    icon="pi pi-trash"
-                    rounded
-                    text
-                    severity="danger"
-                    onClick={() => confirmDeleteProduct(rowData.id)}
-                />
-            </>
-        );
-    };
-
-    const header = (
-        <div className="flex justify-content-between">
-            <Button
-                type="button"
-                icon="pi pi-filter-slash"
-                label="Clear"
-                outlined
-                onClick={() => {
-                    setCurrent(1);
-                    setFilters([], "replace");
-                }}
-            />
-            <span className="p-input-icon-left">
-                <i className="pi pi-search" />
-                <InputText
-                    value={getDefaultFilter("q", filters)}
-                    onChange={(e) => {
-                        setCurrent(1);
-                        setFilters([
-                            {
-                                field: "q",
-                                value: e.target.value,
-                                operator: "contains",
-                            },
-                        ]);
-                    }}
-                    placeholder="Keyword Search"
-                />
-            </span>
-        </div>
-    );
-
+  const actionBodyTemplate = (rowData: IProduct) => {
     return (
-        <Card
-            className="shadow-1"
-            title={
-                <div className="flex justify-content-between align-items-center">
-                    <span className="p-card-title">Products</span>
-                    <Button
-                        icon="pi pi-plus"
-                        label="Create"
-                        onClick={() => create("products")}
-                    />
-                </div>
-            }
-        >
-            <DataTable
-                value={products}
-                dataKey="id"
-                showGridlines
-                lazy
-                paginator
-                rows={pageSize}
-                rowsPerPageOptions={[5, 10, 25, 50]}
-                first={current * pageSize - pageSize}
-                totalRecords={pageCount * pageSize}
-                onPage={(event) => {
-                    setCurrent((event.page ?? 0) + 1);
-                    setPageSize(event.rows);
-                }}
-                onSort={(event) => {
-                    setSorters([
-                        {
-                            field: event.sortField,
-                            order: event.sortOrder === 1 ? "asc" : "desc",
-                        },
-                    ]);
-                }}
-                sortField={sorters[0]?.field}
-                sortOrder={sorters[0]?.order === "asc" ? 1 : -1}
-                loading={tableQueryResult?.isLoading}
-                header={header}
-            >
-                <Column
-                    field="id"
-                    header="Id"
-                    sortable
-                    style={{ minWidth: "1rem" }}
-                />
-                <Column
-                    field="name"
-                    header="Name"
-                    style={{ minWidth: "12rem" }}
-                    sortable
-                />
-                <Column
-                    field="price"
-                    header="Price"
-                    body={amountBodyTemplate}
-                    sortable
-                />
-                <Column header="Category" body={categoryBodyTemplate} />
-                <Column
-                    field="description"
-                    header="Description"
-                    style={{ minWidth: "24rem" }}
-                />
-                <Column
-                    body={actionBodyTemplate}
-                    header="Actions"
-                    align="center"
-                    style={{ minWidth: "10rem" }}
-                />
-            </DataTable>
-        </Card>
+      <>
+        <Button icon="pi pi-pencil" rounded text severity="secondary" onClick={() => edit("products", rowData.id)} />
+        <Button icon="pi pi-eye" rounded text severity="secondary" onClick={() => show("products", rowData.id)} />
+        <Button icon="pi pi-trash" rounded text severity="danger" onClick={() => confirmDeleteProduct(rowData.id)} />
+      </>
     );
+  };
+
+  const header = (
+    <div className="flex justify-content-between">
+      <Button
+        type="button"
+        icon="pi pi-filter-slash"
+        label="Clear"
+        outlined
+        onClick={() => {
+          setCurrent(1);
+          setFilters([], "replace");
+        }}
+      />
+      <span className="p-input-icon-left">
+        <i className="pi pi-search" />
+        <InputText
+          value={getDefaultFilter("q", filters)}
+          onChange={(e) => {
+            setCurrent(1);
+            setFilters([
+              {
+                field: "q",
+                value: e.target.value,
+                operator: "contains",
+              },
+            ]);
+          }}
+          placeholder="Keyword Search"
+        />
+      </span>
+    </div>
+  );
+
+  return (
+    <Card
+      className="shadow-1"
+      title={
+        <div className="flex justify-content-between align-items-center">
+          <span className="p-card-title">Products</span>
+          <Button icon="pi pi-plus" label="Create" onClick={() => create("products")} />
+        </div>
+      }
+    >
+      <DataTable
+        value={products}
+        dataKey="id"
+        showGridlines
+        lazy
+        paginator
+        rows={pageSize}
+        rowsPerPageOptions={[5, 10, 25, 50]}
+        first={current * pageSize - pageSize}
+        totalRecords={pageCount * pageSize}
+        onPage={(event) => {
+          setCurrent((event.page ?? 0) + 1);
+          setPageSize(event.rows);
+        }}
+        onSort={(event) => {
+          setSorters([
+            {
+              field: event.sortField,
+              order: event.sortOrder === 1 ? "asc" : "desc",
+            },
+          ]);
+        }}
+        sortField={sorters[0]?.field}
+        sortOrder={sorters[0]?.order === "asc" ? 1 : -1}
+        loading={tableQueryResult?.isLoading}
+        header={header}
+      >
+        <Column field="id" header="Id" sortable style={{ minWidth: "1rem" }} />
+        <Column field="name" header="Name" style={{ minWidth: "12rem" }} sortable />
+        <Column field="price" header="Price" body={amountBodyTemplate} sortable />
+        <Column header="Category" body={categoryBodyTemplate} />
+        <Column field="description" header="Description" style={{ minWidth: "24rem" }} />
+        <Column body={actionBodyTemplate} header="Actions" align="center" style={{ minWidth: "10rem" }} />
+      </DataTable>
+    </Card>
+  );
 };
 ```
 
@@ -1348,10 +1226,7 @@ Next, import the `<ProductList />` component in `src/App.tsx` and add a route fo
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 //highlight-next-line
@@ -1369,54 +1244,52 @@ import "primeicons/primeicons.css";
 import "./App.css";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.finefoods.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "dashboard",
-                            list: "/",
-                        },
-                        {
-                            name: "products",
-                            list: "/products",
-                            create: "/products/create",
-                            edit: "/products/edit/:id",
-                            show: "/products/show/:id",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route path="/">
-                            <Route index element={<Dashboard />} />
-                        </Route>
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider("https://api.finefoods.refine.dev")}
+          routerProvider={routerBindings}
+          resources={[
+            {
+              name: "dashboard",
+              list: "/",
+            },
+            {
+              name: "products",
+              list: "/products",
+              create: "/products/create",
+              edit: "/products/edit/:id",
+              show: "/products/show/:id",
+            },
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route path="/">
+              <Route index element={<Dashboard />} />
+            </Route>
 
-                        {/*highlight-start*/}
-                        <Route path="/products">
-                            <Route index element={<ProductList />} />
-                        </Route>
-                        {/*highlight-end*/}
+            {/*highlight-start*/}
+            <Route path="/products">
+              <Route index element={<ProductList />} />
+            </Route>
+            {/*highlight-end*/}
 
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Routes>
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                    {/*highlight-next-line*/}
-                    <ConfirmDialog />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+            <Route path="*" element={<ErrorComponent />} />
+          </Routes>
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+          {/*highlight-next-line*/}
+          <ConfirmDialog />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -1462,153 +1335,141 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { IProduct } from "../../interfaces";
 
 export const ProductCreate = () => {
-    const goBack = useBack();
+  const goBack = useBack();
 
-    const {
-        refineCore: { onFinish, formLoading },
-        handleSubmit,
-        control,
-        formState: { errors },
-    } = useForm<IProduct, HttpError, IProduct>({
-        defaultValues: {
-            name: "",
-            description: "",
-        },
-    });
+  const {
+    refineCore: { onFinish, formLoading },
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<IProduct, HttpError, IProduct>({
+    defaultValues: {
+      name: "",
+      description: "",
+    },
+  });
 
-    const { options: categoryOptions } = useSelect({
-        resource: "categories",
-    });
+  const { options: categoryOptions } = useSelect({
+    resource: "categories",
+  });
 
-    const getFormErrorMessage = (name: keyof IProduct) => {
-        return errors[name] ? (
-            <small className="p-error">{errors[name]?.message}</small>
-        ) : (
-            <small className="p-error">&nbsp;</small>
-        );
-    };
-
-    return (
-        <Card
-            className="shadow-1"
-            title={
-                <div className="flex align-items-center">
-                    <Button
-                        onClick={goBack}
-                        icon="pi pi-arrow-left"
-                        className="mr-1"
-                        text
-                        severity="secondary"
-                    />
-                    <span>Create Product</span>
-                </div>
-            }
-        >
-            <form onSubmit={handleSubmit(onFinish)}>
-                <div className="p-fluid">
-                    <Controller
-                        name="name"
-                        control={control}
-                        rules={{ required: "Name is required." }}
-                        render={({ field, fieldState }) => (
-                            <div className="mb-1">
-                                <label htmlFor={field.name}>Name</label>
-                                <InputText
-                                    id={field.name}
-                                    value={field.value}
-                                    className={classNames("mb-1 mt-1", {
-                                        "p-invalid": fieldState.error,
-                                    })}
-                                    onChange={(e) =>
-                                        field.onChange(e.target.value)
-                                    }
-                                />
-                                {getFormErrorMessage(field.name)}
-                            </div>
-                        )}
-                    />
-                    <Controller
-                        name="price"
-                        control={control}
-                        rules={{
-                            required: "Price is required.",
-                        }}
-                        render={({ field, fieldState }) => (
-                            <div className="mb-1">
-                                <label htmlFor={field.name}>Price</label>
-                                <InputNumber
-                                    id={field.name}
-                                    inputRef={field.ref}
-                                    value={field.value}
-                                    onBlur={field.onBlur}
-                                    onChange={(e) =>
-                                        field.onChange(e.value ?? 0)
-                                    }
-                                    useGrouping={false}
-                                    mode="currency"
-                                    currency="USD"
-                                    locale="en-US"
-                                    inputClassName={classNames({
-                                        "p-invalid": fieldState.error,
-                                    })}
-                                    className="mb-1 mt-1"
-                                />
-                                {getFormErrorMessage(field.name)}
-                            </div>
-                        )}
-                    />
-                    <Controller
-                        name="category.id"
-                        control={control}
-                        rules={{ required: "Category is required." }}
-                        render={({ field, fieldState }) => (
-                            <div className="mb-1">
-                                <label htmlFor={field.name}>Category</label>
-                                <Dropdown
-                                    id={field.name}
-                                    value={field.value}
-                                    placeholder="Select a Category"
-                                    options={categoryOptions}
-                                    focusInputRef={field.ref}
-                                    onChange={(e) => field.onChange(e.value)}
-                                    className={classNames("mb-1 mt-1", {
-                                        "p-invalid": fieldState.error,
-                                    })}
-                                />
-                                <small className="p-error">&nbsp;</small>
-                                <small className="p-error">
-                                    {errors.category?.id?.message}
-                                </small>
-                            </div>
-                        )}
-                    />
-                    <Controller
-                        name="description"
-                        control={control}
-                        rules={{ required: "Description is required." }}
-                        render={({ field, fieldState }) => (
-                            <div className="mb-1">
-                                <label htmlFor={field.name}>Description</label>
-                                <InputTextarea
-                                    id={field.name}
-                                    {...field}
-                                    rows={4}
-                                    cols={30}
-                                    className={classNames("mb-1 mt-1", {
-                                        "p-invalid": fieldState.error,
-                                    })}
-                                />
-                                {getFormErrorMessage(field.name)}
-                            </div>
-                        )}
-                    />
-                </div>
-                <div className="flex justify-content-end">
-                    <Button label="Save" type="submit" loading={formLoading} />
-                </div>
-            </form>
-        </Card>
+  const getFormErrorMessage = (name: keyof IProduct) => {
+    return errors[name] ? (
+      <small className="p-error">{errors[name]?.message}</small>
+    ) : (
+      <small className="p-error">&nbsp;</small>
     );
+  };
+
+  return (
+    <Card
+      className="shadow-1"
+      title={
+        <div className="flex align-items-center">
+          <Button onClick={goBack} icon="pi pi-arrow-left" className="mr-1" text severity="secondary" />
+          <span>Create Product</span>
+        </div>
+      }
+    >
+      <form onSubmit={handleSubmit(onFinish)}>
+        <div className="p-fluid">
+          <Controller
+            name="name"
+            control={control}
+            rules={{ required: "Name is required." }}
+            render={({ field, fieldState }) => (
+              <div className="mb-1">
+                <label htmlFor={field.name}>Name</label>
+                <InputText
+                  id={field.name}
+                  value={field.value}
+                  className={classNames("mb-1 mt-1", {
+                    "p-invalid": fieldState.error,
+                  })}
+                  onChange={(e) => field.onChange(e.target.value)}
+                />
+                {getFormErrorMessage(field.name)}
+              </div>
+            )}
+          />
+          <Controller
+            name="price"
+            control={control}
+            rules={{
+              required: "Price is required.",
+            }}
+            render={({ field, fieldState }) => (
+              <div className="mb-1">
+                <label htmlFor={field.name}>Price</label>
+                <InputNumber
+                  id={field.name}
+                  inputRef={field.ref}
+                  value={field.value}
+                  onBlur={field.onBlur}
+                  onChange={(e) => field.onChange(e.value ?? 0)}
+                  useGrouping={false}
+                  mode="currency"
+                  currency="USD"
+                  locale="en-US"
+                  inputClassName={classNames({
+                    "p-invalid": fieldState.error,
+                  })}
+                  className="mb-1 mt-1"
+                />
+                {getFormErrorMessage(field.name)}
+              </div>
+            )}
+          />
+          <Controller
+            name="category.id"
+            control={control}
+            rules={{ required: "Category is required." }}
+            render={({ field, fieldState }) => (
+              <div className="mb-1">
+                <label htmlFor={field.name}>Category</label>
+                <Dropdown
+                  id={field.name}
+                  value={field.value}
+                  placeholder="Select a Category"
+                  options={categoryOptions}
+                  focusInputRef={field.ref}
+                  onChange={(e) => field.onChange(e.value)}
+                  className={classNames("mb-1 mt-1", {
+                    "p-invalid": fieldState.error,
+                  })}
+                />
+                <small className="p-error">&nbsp;</small>
+                <small className="p-error">{errors.category?.id?.message}</small>
+              </div>
+            )}
+          />
+          <Controller
+            name="description"
+            control={control}
+            rules={{ required: "Description is required." }}
+            render={({ field, fieldState }) => (
+              <div className="mb-1">
+                <label htmlFor={field.name}>Description</label>
+                <InputTextarea
+                  id={field.name}
+                  {...field}
+                  rows={4}
+                  cols={30}
+                  className={classNames("mb-1 mt-1", {
+                    "p-invalid": fieldState.error,
+                  })}
+                />
+                {getFormErrorMessage(field.name)}
+              </div>
+            )}
+          />
+        </div>
+        <div className="flex justify-content-end">
+          <Button label="Save" type="submit" loading={formLoading} />
+        </div>
+      </form>
+    </Card>
+  );
 };
 ```
 
@@ -1705,161 +1566,144 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { IProduct } from "../../interfaces";
 
 export const ProductEdit = () => {
-    const goBack = useBack();
+  const goBack = useBack();
 
-    const {
-        refineCore: { onFinish, formLoading, queryResult },
-        handleSubmit,
-        control,
-        formState: { errors },
-    } = useForm<IProduct, HttpError, IProduct>({
-        defaultValues: {
-            name: "",
-            description: "",
-        },
-    });
+  const {
+    refineCore: { onFinish, formLoading, queryResult },
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<IProduct, HttpError, IProduct>({
+    defaultValues: {
+      name: "",
+      description: "",
+    },
+  });
 
-    const { options: categoryOptions } = useSelect({
-        resource: "categories",
-    });
+  const { options: categoryOptions } = useSelect({
+    resource: "categories",
+  });
 
-    const getFormErrorMessage = (name: keyof IProduct) => {
-        return errors[name] ? (
-            <small className="p-error">{errors[name]?.message}</small>
-        ) : (
-            <small className="p-error">&nbsp;</small>
-        );
-    };
-
-    return (
-        <Card
-            className="shadow-1"
-            title={
-                <div className="flex justify-content-between align-items-center">
-                    <div className="flex align-items-center">
-                        <Button
-                            onClick={goBack}
-                            icon="pi pi-arrow-left"
-                            className="mr-1"
-                            text
-                            severity="secondary"
-                        />
-                        <span>Edit Product</span>
-                    </div>
-                    <Button
-                        label="Refresh"
-                        icon="pi pi-refresh"
-                        outlined
-                        onClick={() => queryResult?.refetch()}
-                    />
-                </div>
-            }
-        >
-            <form onSubmit={handleSubmit(onFinish)}>
-                <div className="p-fluid">
-                    <Controller
-                        name="name"
-                        control={control}
-                        rules={{ required: "Name is required." }}
-                        render={({ field, fieldState }) => (
-                            <div className="mb-1">
-                                <label htmlFor={field.name}>Name</label>
-                                <InputText
-                                    id={field.name}
-                                    value={field.value}
-                                    className={classNames("mb-1 mt-1", {
-                                        "p-invalid": fieldState.error,
-                                    })}
-                                    onChange={(e) =>
-                                        field.onChange(e.target.value)
-                                    }
-                                />
-                                {getFormErrorMessage(field.name)}
-                            </div>
-                        )}
-                    />
-                    <Controller
-                        name="price"
-                        control={control}
-                        rules={{
-                            required: "Price is required.",
-                        }}
-                        render={({ field, fieldState }) => (
-                            <div className="mb-1">
-                                <label htmlFor={field.name}>Price</label>
-                                <InputNumber
-                                    id={field.name}
-                                    inputRef={field.ref}
-                                    value={field.value}
-                                    onBlur={field.onBlur}
-                                    onChange={(e) =>
-                                        field.onChange(e.value ?? 0)
-                                    }
-                                    useGrouping={false}
-                                    mode="currency"
-                                    currency="USD"
-                                    locale="en-US"
-                                    inputClassName={classNames({
-                                        "p-invalid": fieldState.error,
-                                    })}
-                                    className="mb-1 mt-1"
-                                />
-                                {getFormErrorMessage(field.name)}
-                            </div>
-                        )}
-                    />
-                    <Controller
-                        name="category.id"
-                        control={control}
-                        rules={{ required: "Category is required." }}
-                        render={({ field, fieldState }) => (
-                            <div className="mb-1">
-                                <label htmlFor={field.name}>Category</label>
-                                <Dropdown
-                                    id={field.name}
-                                    value={field.value}
-                                    placeholder="Select a Category"
-                                    options={categoryOptions}
-                                    focusInputRef={field.ref}
-                                    onChange={(e) => field.onChange(e.value)}
-                                    className={classNames("mb-1 mt-1", {
-                                        "p-invalid": fieldState.error,
-                                    })}
-                                />
-                                <small className="p-error">&nbsp;</small>
-                                <small className="p-error">
-                                    {errors.category?.id?.message}
-                                </small>
-                            </div>
-                        )}
-                    />
-                    <Controller
-                        name="description"
-                        control={control}
-                        rules={{ required: "Description is required." }}
-                        render={({ field, fieldState }) => (
-                            <div className="mb-1">
-                                <label htmlFor={field.name}>Description</label>
-                                <InputTextarea
-                                    id={field.name}
-                                    {...field}
-                                    rows={4}
-                                    cols={30}
-                                    className={classNames("mb-1 mt-1", {
-                                        "p-invalid": fieldState.error,
-                                    })}
-                                />
-                                {getFormErrorMessage(field.name)}
-                            </div>
-                        )}
-                    />
-                </div>
-                <div className="flex justify-content-end">
-                    <Button label="Save" type="submit" loading={formLoading} />
-                </div>
-            </form>
-        </Card>
+  const getFormErrorMessage = (name: keyof IProduct) => {
+    return errors[name] ? (
+      <small className="p-error">{errors[name]?.message}</small>
+    ) : (
+      <small className="p-error">&nbsp;</small>
     );
+  };
+
+  return (
+    <Card
+      className="shadow-1"
+      title={
+        <div className="flex justify-content-between align-items-center">
+          <div className="flex align-items-center">
+            <Button onClick={goBack} icon="pi pi-arrow-left" className="mr-1" text severity="secondary" />
+            <span>Edit Product</span>
+          </div>
+          <Button label="Refresh" icon="pi pi-refresh" outlined onClick={() => queryResult?.refetch()} />
+        </div>
+      }
+    >
+      <form onSubmit={handleSubmit(onFinish)}>
+        <div className="p-fluid">
+          <Controller
+            name="name"
+            control={control}
+            rules={{ required: "Name is required." }}
+            render={({ field, fieldState }) => (
+              <div className="mb-1">
+                <label htmlFor={field.name}>Name</label>
+                <InputText
+                  id={field.name}
+                  value={field.value}
+                  className={classNames("mb-1 mt-1", {
+                    "p-invalid": fieldState.error,
+                  })}
+                  onChange={(e) => field.onChange(e.target.value)}
+                />
+                {getFormErrorMessage(field.name)}
+              </div>
+            )}
+          />
+          <Controller
+            name="price"
+            control={control}
+            rules={{
+              required: "Price is required.",
+            }}
+            render={({ field, fieldState }) => (
+              <div className="mb-1">
+                <label htmlFor={field.name}>Price</label>
+                <InputNumber
+                  id={field.name}
+                  inputRef={field.ref}
+                  value={field.value}
+                  onBlur={field.onBlur}
+                  onChange={(e) => field.onChange(e.value ?? 0)}
+                  useGrouping={false}
+                  mode="currency"
+                  currency="USD"
+                  locale="en-US"
+                  inputClassName={classNames({
+                    "p-invalid": fieldState.error,
+                  })}
+                  className="mb-1 mt-1"
+                />
+                {getFormErrorMessage(field.name)}
+              </div>
+            )}
+          />
+          <Controller
+            name="category.id"
+            control={control}
+            rules={{ required: "Category is required." }}
+            render={({ field, fieldState }) => (
+              <div className="mb-1">
+                <label htmlFor={field.name}>Category</label>
+                <Dropdown
+                  id={field.name}
+                  value={field.value}
+                  placeholder="Select a Category"
+                  options={categoryOptions}
+                  focusInputRef={field.ref}
+                  onChange={(e) => field.onChange(e.value)}
+                  className={classNames("mb-1 mt-1", {
+                    "p-invalid": fieldState.error,
+                  })}
+                />
+                <small className="p-error">&nbsp;</small>
+                <small className="p-error">{errors.category?.id?.message}</small>
+              </div>
+            )}
+          />
+          <Controller
+            name="description"
+            control={control}
+            rules={{ required: "Description is required." }}
+            render={({ field, fieldState }) => (
+              <div className="mb-1">
+                <label htmlFor={field.name}>Description</label>
+                <InputTextarea
+                  id={field.name}
+                  {...field}
+                  rows={4}
+                  cols={30}
+                  className={classNames("mb-1 mt-1", {
+                    "p-invalid": fieldState.error,
+                  })}
+                />
+                {getFormErrorMessage(field.name)}
+              </div>
+            )}
+          />
+        </div>
+        <div className="flex justify-content-end">
+          <Button label="Save" type="submit" loading={formLoading} />
+        </div>
+      </form>
+    </Card>
+  );
 };
 ```
 
@@ -1950,45 +1794,39 @@ import { Button } from "primereact/button";
 import { ICategory, IProduct } from "../../interfaces";
 
 export const ProductShow = () => {
-    const goBack = useBack();
+  const goBack = useBack();
 
-    const { queryResult } = useShow<IProduct>();
-    const product = queryResult?.data?.data;
+  const { queryResult } = useShow<IProduct>();
+  const product = queryResult?.data?.data;
 
-    const { data: categoryData } = useOne<ICategory>({
-        resource: "categories",
-        id: product?.category.id,
-        queryOptions: {
-            enabled: !!product?.category.id,
-        },
-    });
+  const { data: categoryData } = useOne<ICategory>({
+    resource: "categories",
+    id: product?.category.id,
+    queryOptions: {
+      enabled: !!product?.category.id,
+    },
+  });
 
-    return (
-        <Card
-            className="shadow-1"
-            title={
-                <div className="flex align-items-center">
-                    <Button
-                        onClick={goBack}
-                        icon="pi pi-arrow-left"
-                        className="mr-1"
-                        text
-                        severity="secondary"
-                    />
-                    <span>Product Details</span>
-                </div>
-            }
-        >
-            <h3>Name</h3>
-            <span>{product?.name}</span>
-            <h3>Price</h3>
-            <span>$ {product?.price}</span>
-            <h3>Category</h3>
-            <span>{categoryData?.data.title ?? "Loading..."}</span>
-            <h3>Description</h3>
-            <span>{product?.description}</span>
-        </Card>
-    );
+  return (
+    <Card
+      className="shadow-1"
+      title={
+        <div className="flex align-items-center">
+          <Button onClick={goBack} icon="pi pi-arrow-left" className="mr-1" text severity="secondary" />
+          <span>Product Details</span>
+        </div>
+      }
+    >
+      <h3>Name</h3>
+      <span>{product?.name}</span>
+      <h3>Price</h3>
+      <span>$ {product?.price}</span>
+      <h3>Category</h3>
+      <span>{categoryData?.data.title ?? "Loading..."}</span>
+      <h3>Description</h3>
+      <span>{product?.description}</span>
+    </Card>
+  );
 };
 ```
 
@@ -2077,21 +1915,13 @@ Let's start by defining the "category" resource in `src/App.tsx` file as follows
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ConfirmDialog } from "primereact/confirmdialog";
 
 import { Dashboard } from "./pages/dashboard";
-import {
-    ProductList,
-    ProductCreate,
-    ProductEdit,
-    ProductShow,
-} from "./pages/products";
+import { ProductList, ProductCreate, ProductEdit, ProductShow } from "./pages/products";
 
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.css";
@@ -2101,63 +1931,61 @@ import "primeicons/primeicons.css";
 import "./App.css";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.finefoods.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "dashboard",
-                            list: "/",
-                        },
-                        {
-                            name: "products",
-                            list: "/products",
-                            create: "/products/create",
-                            edit: "/products/edit/:id",
-                            show: "/products/show/:id",
-                        },
-                        //highlight-start
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            create: "/categories/create",
-                            edit: "/categories/edit/:id",
-                            show: "/categories/show/:id",
-                        },
-                        //highlight-end
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route path="/">
-                            <Route index element={<Dashboard />} />
-                        </Route>
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider("https://api.finefoods.refine.dev")}
+          routerProvider={routerBindings}
+          resources={[
+            {
+              name: "dashboard",
+              list: "/",
+            },
+            {
+              name: "products",
+              list: "/products",
+              create: "/products/create",
+              edit: "/products/edit/:id",
+              show: "/products/show/:id",
+            },
+            //highlight-start
+            {
+              name: "categories",
+              list: "/categories",
+              create: "/categories/create",
+              edit: "/categories/edit/:id",
+              show: "/categories/show/:id",
+            },
+            //highlight-end
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route path="/">
+              <Route index element={<Dashboard />} />
+            </Route>
 
-                        <Route path="/products">
-                            <Route index element={<ProductList />} />
-                            <Route path="create" element={<ProductCreate />} />
-                            <Route path="edit/:id" element={<ProductEdit />} />
-                            <Route path="show/:id" element={<ProductShow />} />
-                        </Route>
+            <Route path="/products">
+              <Route index element={<ProductList />} />
+              <Route path="create" element={<ProductCreate />} />
+              <Route path="edit/:id" element={<ProductEdit />} />
+              <Route path="show/:id" element={<ProductShow />} />
+            </Route>
 
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Routes>
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                    <ConfirmDialog />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+            <Route path="*" element={<ErrorComponent />} />
+          </Routes>
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+          <ConfirmDialog />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -2174,12 +2002,7 @@ First, let's create a `list.tsx` file in `src/pages/categories` directory with t
 <summary>Show CategoryList component</summary>
 
 ```tsx title="src/pages/categories/list.tsx"
-import {
-    useTable,
-    getDefaultFilter,
-    useNavigation,
-    useDelete,
-} from "@refinedev/core";
+import { useTable, getDefaultFilter, useNavigation, useDelete } from "@refinedev/core";
 
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -2191,164 +2014,132 @@ import { confirmDialog } from "primereact/confirmdialog";
 import { ICategory } from "../../interfaces";
 
 export const CategoryList = () => {
-    const {
-        tableQueryResult,
-        pageCount,
-        current,
-        pageSize,
-        sorters,
-        filters,
-        setCurrent,
-        setPageSize,
-        setSorters,
-        setFilters,
-    } = useTable({
-        pagination: {
-            pageSize: 5,
-        },
-    });
-    const { edit, show, create } = useNavigation();
-    const { mutate: deleteProduct } = useDelete();
+  const {
+    tableQueryResult,
+    pageCount,
+    current,
+    pageSize,
+    sorters,
+    filters,
+    setCurrent,
+    setPageSize,
+    setSorters,
+    setFilters,
+  } = useTable({
+    pagination: {
+      pageSize: 5,
+    },
+  });
+  const { edit, show, create } = useNavigation();
+  const { mutate: deleteProduct } = useDelete();
 
-    const categories = tableQueryResult?.data?.data;
+  const categories = tableQueryResult?.data?.data;
 
-    const confirmDeleteProduct = (id: number) => {
-        confirmDialog({
-            message: "Do you want to delete this record?",
-            header: "Delete Confirmation",
-            icon: "pi pi-exclamation-triangle",
-            acceptClassName: "p-button-danger",
-            accept: () => {
-                deleteProduct({
-                    resource: "categories",
-                    id,
-                });
-            },
+  const confirmDeleteProduct = (id: number) => {
+    confirmDialog({
+      message: "Do you want to delete this record?",
+      header: "Delete Confirmation",
+      icon: "pi pi-exclamation-triangle",
+      acceptClassName: "p-button-danger",
+      accept: () => {
+        deleteProduct({
+          resource: "categories",
+          id,
         });
-    };
+      },
+    });
+  };
 
-    const actionBodyTemplate = (rowData: ICategory) => {
-        return (
-            <>
-                <Button
-                    icon="pi pi-pencil"
-                    rounded
-                    text
-                    severity="secondary"
-                    onClick={() => edit("categories", rowData.id)}
-                />
-                <Button
-                    icon="pi pi-eye"
-                    rounded
-                    text
-                    severity="secondary"
-                    onClick={() => show("categories", rowData.id)}
-                />
-                <Button
-                    icon="pi pi-trash"
-                    rounded
-                    text
-                    severity="danger"
-                    onClick={() => confirmDeleteProduct(rowData.id)}
-                />
-            </>
-        );
-    };
-
-    const header = (
-        <div className="flex justify-content-between">
-            <Button
-                type="button"
-                icon="pi pi-filter-slash"
-                label="Clear"
-                outlined
-                onClick={() => {
-                    setCurrent(1);
-                    setFilters([], "replace");
-                }}
-            />
-            <span className="p-input-icon-left">
-                <i className="pi pi-search" />
-                <InputText
-                    value={getDefaultFilter("q", filters)}
-                    onChange={(e) => {
-                        setCurrent(1);
-                        setFilters([
-                            {
-                                field: "q",
-                                value: e.target.value,
-                                operator: "contains",
-                            },
-                        ]);
-                    }}
-                    placeholder="Keyword Search"
-                />
-            </span>
-        </div>
-    );
-
+  const actionBodyTemplate = (rowData: ICategory) => {
     return (
-        <Card
-            className="shadow-1"
-            title={
-                <div className="flex justify-content-between align-items-center">
-                    <span className="p-card-title">Categories</span>
-                    <Button
-                        icon="pi pi-plus"
-                        label="Create"
-                        onClick={() => create("categories")}
-                    />
-                </div>
-            }
-        >
-            <DataTable
-                value={categories}
-                dataKey="id"
-                showGridlines
-                lazy
-                paginator
-                rows={pageSize}
-                rowsPerPageOptions={[5, 10, 25, 50]}
-                first={current * pageSize - pageSize}
-                totalRecords={pageCount * pageSize}
-                onPage={(event) => {
-                    setCurrent((event.page ?? 0) + 1);
-                    setPageSize(event.rows);
-                }}
-                onSort={(event) => {
-                    setSorters([
-                        {
-                            field: event.sortField,
-                            order: event.sortOrder === 1 ? "asc" : "desc",
-                        },
-                    ]);
-                }}
-                sortField={sorters[0]?.field}
-                sortOrder={sorters[0]?.order === "asc" ? 1 : -1}
-                loading={tableQueryResult?.isLoading}
-                header={header}
-            >
-                <Column
-                    field="id"
-                    header="Id"
-                    sortable
-                    style={{ minWidth: "1rem", width: "10rem" }}
-                />
-                <Column
-                    field="title"
-                    header="Name"
-                    style={{ minWidth: "12rem" }}
-                    sortable
-                />
-                <Column
-                    body={actionBodyTemplate}
-                    header="Actions"
-                    align="center"
-                    style={{ minWidth: "10rem", width: "10rem" }}
-                />
-            </DataTable>
-        </Card>
+      <>
+        <Button icon="pi pi-pencil" rounded text severity="secondary" onClick={() => edit("categories", rowData.id)} />
+        <Button icon="pi pi-eye" rounded text severity="secondary" onClick={() => show("categories", rowData.id)} />
+        <Button icon="pi pi-trash" rounded text severity="danger" onClick={() => confirmDeleteProduct(rowData.id)} />
+      </>
     );
+  };
+
+  const header = (
+    <div className="flex justify-content-between">
+      <Button
+        type="button"
+        icon="pi pi-filter-slash"
+        label="Clear"
+        outlined
+        onClick={() => {
+          setCurrent(1);
+          setFilters([], "replace");
+        }}
+      />
+      <span className="p-input-icon-left">
+        <i className="pi pi-search" />
+        <InputText
+          value={getDefaultFilter("q", filters)}
+          onChange={(e) => {
+            setCurrent(1);
+            setFilters([
+              {
+                field: "q",
+                value: e.target.value,
+                operator: "contains",
+              },
+            ]);
+          }}
+          placeholder="Keyword Search"
+        />
+      </span>
+    </div>
+  );
+
+  return (
+    <Card
+      className="shadow-1"
+      title={
+        <div className="flex justify-content-between align-items-center">
+          <span className="p-card-title">Categories</span>
+          <Button icon="pi pi-plus" label="Create" onClick={() => create("categories")} />
+        </div>
+      }
+    >
+      <DataTable
+        value={categories}
+        dataKey="id"
+        showGridlines
+        lazy
+        paginator
+        rows={pageSize}
+        rowsPerPageOptions={[5, 10, 25, 50]}
+        first={current * pageSize - pageSize}
+        totalRecords={pageCount * pageSize}
+        onPage={(event) => {
+          setCurrent((event.page ?? 0) + 1);
+          setPageSize(event.rows);
+        }}
+        onSort={(event) => {
+          setSorters([
+            {
+              field: event.sortField,
+              order: event.sortOrder === 1 ? "asc" : "desc",
+            },
+          ]);
+        }}
+        sortField={sorters[0]?.field}
+        sortOrder={sorters[0]?.order === "asc" ? 1 : -1}
+        loading={tableQueryResult?.isLoading}
+        header={header}
+      >
+        <Column field="id" header="Id" sortable style={{ minWidth: "1rem", width: "10rem" }} />
+        <Column field="title" header="Name" style={{ minWidth: "12rem" }} sortable />
+        <Column
+          body={actionBodyTemplate}
+          header="Actions"
+          align="center"
+          style={{ minWidth: "10rem", width: "10rem" }}
+        />
+      </DataTable>
+    </Card>
+  );
 };
 ```
 
@@ -2373,73 +2164,65 @@ import { classNames } from "primereact/utils";
 import { ICategory } from "../../interfaces";
 
 export const CategoryCreate = () => {
-    const goBack = useBack();
+  const goBack = useBack();
 
-    const {
-        refineCore: { onFinish, formLoading },
-        handleSubmit,
-        control,
-        formState: { errors },
-    } = useForm<ICategory, HttpError, ICategory>({
-        defaultValues: {
-            title: "",
-        },
-    });
+  const {
+    refineCore: { onFinish, formLoading },
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<ICategory, HttpError, ICategory>({
+    defaultValues: {
+      title: "",
+    },
+  });
 
-    const getFormErrorMessage = (name: keyof ICategory) => {
-        return errors[name] ? (
-            <small className="p-error">{errors[name]?.message}</small>
-        ) : (
-            <small className="p-error">&nbsp;</small>
-        );
-    };
-
-    return (
-        <Card
-            className="shadow-1"
-            title={
-                <div className="flex align-items-center">
-                    <Button
-                        onClick={goBack}
-                        icon="pi pi-arrow-left"
-                        className="mr-1"
-                        text
-                        severity="secondary"
-                    />
-                    <span>Create Category</span>
-                </div>
-            }
-        >
-            <form onSubmit={handleSubmit(onFinish)}>
-                <div className="p-fluid">
-                    <Controller
-                        name="title"
-                        control={control}
-                        rules={{ required: "Name is required." }}
-                        render={({ field, fieldState }) => (
-                            <div className="mb-1">
-                                <label htmlFor={field.name}>Name</label>
-                                <InputText
-                                    id={field.name}
-                                    value={field.value}
-                                    className={classNames("mb-1 mt-1", {
-                                        "p-invalid": fieldState.error,
-                                    })}
-                                    onChange={(e) =>
-                                        field.onChange(e.target.value)
-                                    }
-                                />
-                                {getFormErrorMessage(field.name)}
-                            </div>
-                        )}
-                    />
-                </div>
-                <div className="flex justify-content-end">
-                    <Button label="Save" type="submit" loading={formLoading} />
-                </div>
-            </form>
-        </Card>
+  const getFormErrorMessage = (name: keyof ICategory) => {
+    return errors[name] ? (
+      <small className="p-error">{errors[name]?.message}</small>
+    ) : (
+      <small className="p-error">&nbsp;</small>
     );
+  };
+
+  return (
+    <Card
+      className="shadow-1"
+      title={
+        <div className="flex align-items-center">
+          <Button onClick={goBack} icon="pi pi-arrow-left" className="mr-1" text severity="secondary" />
+          <span>Create Category</span>
+        </div>
+      }
+    >
+      <form onSubmit={handleSubmit(onFinish)}>
+        <div className="p-fluid">
+          <Controller
+            name="title"
+            control={control}
+            rules={{ required: "Name is required." }}
+            render={({ field, fieldState }) => (
+              <div className="mb-1">
+                <label htmlFor={field.name}>Name</label>
+                <InputText
+                  id={field.name}
+                  value={field.value}
+                  className={classNames("mb-1 mt-1", {
+                    "p-invalid": fieldState.error,
+                  })}
+                  onChange={(e) => field.onChange(e.target.value)}
+                />
+                {getFormErrorMessage(field.name)}
+              </div>
+            )}
+          />
+        </div>
+        <div className="flex justify-content-end">
+          <Button label="Save" type="submit" loading={formLoading} />
+        </div>
+      </form>
+    </Card>
+  );
 };
 ```
 
@@ -2464,81 +2247,68 @@ import { classNames } from "primereact/utils";
 import { ICategory } from "../../interfaces";
 
 export const CategoryEdit = () => {
-    const goBack = useBack();
+  const goBack = useBack();
 
-    const {
-        refineCore: { onFinish, formLoading, queryResult },
-        handleSubmit,
-        control,
-        formState: { errors },
-    } = useForm<ICategory, HttpError, ICategory>({
-        defaultValues: {
-            title: "",
-        },
-    });
+  const {
+    refineCore: { onFinish, formLoading, queryResult },
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<ICategory, HttpError, ICategory>({
+    defaultValues: {
+      title: "",
+    },
+  });
 
-    const getFormErrorMessage = (name: keyof ICategory) => {
-        return errors[name] ? (
-            <small className="p-error">{errors[name]?.message}</small>
-        ) : (
-            <small className="p-error">&nbsp;</small>
-        );
-    };
-
-    return (
-        <Card
-            className="shadow-1"
-            title={
-                <div className="flex justify-content-between align-items-center">
-                    <div className="flex align-items-center">
-                        <Button
-                            onClick={goBack}
-                            icon="pi pi-arrow-left"
-                            className="mr-1"
-                            text
-                            severity="secondary"
-                        />
-                        <span>Edit Category</span>
-                    </div>
-                    <Button
-                        label="Refresh"
-                        icon="pi pi-refresh"
-                        outlined
-                        onClick={() => queryResult?.refetch()}
-                    />
-                </div>
-            }
-        >
-            <form onSubmit={handleSubmit(onFinish)}>
-                <div className="p-fluid">
-                    <Controller
-                        name="title"
-                        control={control}
-                        rules={{ required: "Name is required." }}
-                        render={({ field, fieldState }) => (
-                            <div className="mb-1">
-                                <label htmlFor={field.name}>Name</label>
-                                <InputText
-                                    id={field.name}
-                                    value={field.value}
-                                    className={classNames("mb-1 mt-1", {
-                                        "p-invalid": fieldState.error,
-                                    })}
-                                    onChange={(e) =>
-                                        field.onChange(e.target.value)
-                                    }
-                                />
-                                {getFormErrorMessage(field.name)}
-                            </div>
-                        )}
-                    />
-                </div>
-                <div className="flex justify-content-end">
-                    <Button label="Save" type="submit" loading={formLoading} />
-                </div>
-            </form>
-        </Card>
+  const getFormErrorMessage = (name: keyof ICategory) => {
+    return errors[name] ? (
+      <small className="p-error">{errors[name]?.message}</small>
+    ) : (
+      <small className="p-error">&nbsp;</small>
     );
+  };
+
+  return (
+    <Card
+      className="shadow-1"
+      title={
+        <div className="flex justify-content-between align-items-center">
+          <div className="flex align-items-center">
+            <Button onClick={goBack} icon="pi pi-arrow-left" className="mr-1" text severity="secondary" />
+            <span>Edit Category</span>
+          </div>
+          <Button label="Refresh" icon="pi pi-refresh" outlined onClick={() => queryResult?.refetch()} />
+        </div>
+      }
+    >
+      <form onSubmit={handleSubmit(onFinish)}>
+        <div className="p-fluid">
+          <Controller
+            name="title"
+            control={control}
+            rules={{ required: "Name is required." }}
+            render={({ field, fieldState }) => (
+              <div className="mb-1">
+                <label htmlFor={field.name}>Name</label>
+                <InputText
+                  id={field.name}
+                  value={field.value}
+                  className={classNames("mb-1 mt-1", {
+                    "p-invalid": fieldState.error,
+                  })}
+                  onChange={(e) => field.onChange(e.target.value)}
+                />
+                {getFormErrorMessage(field.name)}
+              </div>
+            )}
+          />
+        </div>
+        <div className="flex justify-content-end">
+          <Button label="Save" type="submit" loading={formLoading} />
+        </div>
+      </form>
+    </Card>
+  );
 };
 ```
 
@@ -2559,33 +2329,27 @@ import { Button } from "primereact/button";
 import { ICategory } from "../../interfaces";
 
 export const CategoryShow = () => {
-    const goBack = useBack();
+  const goBack = useBack();
 
-    const { queryResult } = useShow<ICategory>();
-    const category = queryResult?.data?.data;
+  const { queryResult } = useShow<ICategory>();
+  const category = queryResult?.data?.data;
 
-    return (
-        <Card
-            className="shadow-1"
-            title={
-                <div className="flex align-items-center">
-                    <Button
-                        onClick={goBack}
-                        icon="pi pi-arrow-left"
-                        className="mr-1"
-                        text
-                        severity="secondary"
-                    />
-                    <span>Category Details</span>
-                </div>
-            }
-        >
-            <h3>Id</h3>
-            <span>{category?.id}</span>
-            <h3>Title</h3>
-            <span>{category?.title}</span>
-        </Card>
-    );
+  return (
+    <Card
+      className="shadow-1"
+      title={
+        <div className="flex align-items-center">
+          <Button onClick={goBack} icon="pi pi-arrow-left" className="mr-1" text severity="secondary" />
+          <span>Category Details</span>
+        </div>
+      }
+    >
+      <h3>Id</h3>
+      <span>{category?.id}</span>
+      <h3>Title</h3>
+      <span>{category?.title}</span>
+    </Card>
+  );
 };
 ```
 
@@ -2609,28 +2373,15 @@ Next, import the category CRUD pages in `src/App.tsx` and add routes for renderi
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ConfirmDialog } from "primereact/confirmdialog";
 
 import { Dashboard } from "./pages/dashboard";
-import {
-    ProductList,
-    ProductCreate,
-    ProductEdit,
-    ProductShow,
-} from "./pages/products";
+import { ProductList, ProductCreate, ProductEdit, ProductShow } from "./pages/products";
 //highlight-start
-import {
-    CategoryList,
-    CategoryCreate,
-    CategoryEdit,
-    CategoryShow,
-} from "./pages/categories";
+import { CategoryList, CategoryCreate, CategoryEdit, CategoryShow } from "./pages/categories";
 //highlight-end
 
 import "primereact/resources/themes/saga-blue/theme.css";
@@ -2641,70 +2392,68 @@ import "primeicons/primeicons.css";
 import "./App.css";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.finefoods.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "dashboard",
-                            list: "/",
-                        },
-                        {
-                            name: "products",
-                            list: "/products",
-                            create: "/products/create",
-                            edit: "/products/edit/:id",
-                            show: "/products/show/:id",
-                        },
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            create: "/categories/create",
-                            edit: "/categories/edit/:id",
-                            show: "/categories/show/:id",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route path="/">
-                            <Route index element={<Dashboard />} />
-                        </Route>
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider("https://api.finefoods.refine.dev")}
+          routerProvider={routerBindings}
+          resources={[
+            {
+              name: "dashboard",
+              list: "/",
+            },
+            {
+              name: "products",
+              list: "/products",
+              create: "/products/create",
+              edit: "/products/edit/:id",
+              show: "/products/show/:id",
+            },
+            {
+              name: "categories",
+              list: "/categories",
+              create: "/categories/create",
+              edit: "/categories/edit/:id",
+              show: "/categories/show/:id",
+            },
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route path="/">
+              <Route index element={<Dashboard />} />
+            </Route>
 
-                        <Route path="/products">
-                            <Route index element={<ProductList />} />
-                            <Route path="create" element={<ProductCreate />} />
-                            <Route path="edit/:id" element={<ProductEdit />} />
-                            <Route path="show/:id" element={<ProductShow />} />
-                        </Route>
+            <Route path="/products">
+              <Route index element={<ProductList />} />
+              <Route path="create" element={<ProductCreate />} />
+              <Route path="edit/:id" element={<ProductEdit />} />
+              <Route path="show/:id" element={<ProductShow />} />
+            </Route>
 
-                        {/*highlight-start*/}
-                        <Route path="/categories">
-                            <Route index element={<CategoryList />} />
-                            <Route path="create" element={<CategoryCreate />} />
-                            <Route path="edit/:id" element={<CategoryEdit />} />
-                            <Route path="show/:id" element={<CategoryShow />} />
-                        </Route>
-                        {/*highlight-end*/}
+            {/*highlight-start*/}
+            <Route path="/categories">
+              <Route index element={<CategoryList />} />
+              <Route path="create" element={<CategoryCreate />} />
+              <Route path="edit/:id" element={<CategoryEdit />} />
+              <Route path="show/:id" element={<CategoryShow />} />
+            </Route>
+            {/*highlight-end*/}
 
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Routes>
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                    <ConfirmDialog />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+            <Route path="*" element={<ErrorComponent />} />
+          </Routes>
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+          <ConfirmDialog />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -2735,28 +2484,15 @@ Additionally, we'll add `meta` property to the resources to render icons in the 
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 //highlight-next-line
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { ConfirmDialog } from "primereact/confirmdialog";
 
 import { Dashboard } from "./pages/dashboard";
-import {
-    ProductList,
-    ProductCreate,
-    ProductEdit,
-    ProductShow,
-} from "./pages/products";
-import {
-    CategoryList,
-    CategoryCreate,
-    CategoryEdit,
-    CategoryShow,
-} from "./pages/categories";
+import { ProductList, ProductCreate, ProductEdit, ProductShow } from "./pages/products";
+import { CategoryList, CategoryCreate, CategoryEdit, CategoryShow } from "./pages/categories";
 
 //highlight-next-line
 import { Layout } from "./components/layout";
@@ -2769,114 +2505,92 @@ import "primeicons/primeicons.css";
 import "./App.css";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.finefoods.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "dashboard",
-                            list: "/",
-                            //highlight-start
-                            meta: {
-                                icon: <i className="pi pi-fw pi-home" />,
-                            },
-                            //highlight-end
-                        },
-                        {
-                            name: "products",
-                            list: "/products",
-                            create: "/products/create",
-                            edit: "/products/edit/:id",
-                            show: "/products/show/:id",
-                            //highlight-start
-                            meta: {
-                                icon: (
-                                    <i className="pi pi-fw pi-shopping-cart" />
-                                ),
-                            },
-                            //highlight-end
-                        },
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            create: "/categories/create",
-                            edit: "/categories/edit/:id",
-                            show: "/categories/show/:id",
-                            //highlight-start
-                            meta: {
-                                icon: <i className="pi pi-fw pi-tags" />,
-                            },
-                            //highlight-end
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        {/*highlight-start*/}
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            {/*highlight-end*/}
-                            <Route path="/">
-                                <Route index element={<Dashboard />} />
-                            </Route>
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider("https://api.finefoods.refine.dev")}
+          routerProvider={routerBindings}
+          resources={[
+            {
+              name: "dashboard",
+              list: "/",
+              //highlight-start
+              meta: {
+                icon: <i className="pi pi-fw pi-home" />,
+              },
+              //highlight-end
+            },
+            {
+              name: "products",
+              list: "/products",
+              create: "/products/create",
+              edit: "/products/edit/:id",
+              show: "/products/show/:id",
+              //highlight-start
+              meta: {
+                icon: <i className="pi pi-fw pi-shopping-cart" />,
+              },
+              //highlight-end
+            },
+            {
+              name: "categories",
+              list: "/categories",
+              create: "/categories/create",
+              edit: "/categories/edit/:id",
+              show: "/categories/show/:id",
+              //highlight-start
+              meta: {
+                icon: <i className="pi pi-fw pi-tags" />,
+              },
+              //highlight-end
+            },
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            {/*highlight-start*/}
+            <Route
+              element={
+                <Layout>
+                  <Outlet />
+                </Layout>
+              }
+            >
+              {/*highlight-end*/}
+              <Route path="/">
+                <Route index element={<Dashboard />} />
+              </Route>
 
-                            <Route path="/products">
-                                <Route index element={<ProductList />} />
-                                <Route
-                                    path="create"
-                                    element={<ProductCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<ProductEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<ProductShow />}
-                                />
-                            </Route>
+              <Route path="/products">
+                <Route index element={<ProductList />} />
+                <Route path="create" element={<ProductCreate />} />
+                <Route path="edit/:id" element={<ProductEdit />} />
+                <Route path="show/:id" element={<ProductShow />} />
+              </Route>
 
-                            <Route path="/categories">
-                                <Route index element={<CategoryList />} />
-                                <Route
-                                    path="create"
-                                    element={<CategoryCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<CategoryEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<CategoryShow />}
-                                />
-                            </Route>
+              <Route path="/categories">
+                <Route index element={<CategoryList />} />
+                <Route path="create" element={<CategoryCreate />} />
+                <Route path="edit/:id" element={<CategoryEdit />} />
+                <Route path="show/:id" element={<CategoryShow />} />
+              </Route>
 
-                            <Route path="*" element={<ErrorComponent />} />
-                            {/*highlight-next-line*/}
-                        </Route>
-                    </Routes>
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                    <ConfirmDialog />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+              <Route path="*" element={<ErrorComponent />} />
+              {/*highlight-next-line*/}
+            </Route>
+          </Routes>
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+          <ConfirmDialog />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -2893,15 +2607,15 @@ import { Menu } from "../menu";
 import { Breadcrumb } from "../breadcrumb";
 
 export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
-    return (
-        <div className="min-h-screen surface-ground">
-            <Menu />
-            <div className="p-3">
-                <Breadcrumb />
-                {children}
-            </div>
-        </div>
-    );
+  return (
+    <div className="min-h-screen surface-ground">
+      <Menu />
+      <div className="p-3">
+        <Breadcrumb />
+        {children}
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -2918,35 +2632,28 @@ import { MenuItem } from "primereact/menuitem";
 import { classNames } from "primereact/utils";
 
 export const Menu = () => {
-    const { menuItems } = useMenu();
+  const { menuItems } = useMenu();
 
-    const items: MenuItem[] = menuItems.map((menuItem) => ({
-        label: menuItem.label,
-        icon: menuItem.icon,
-        template: (item, options) => {
-            return (
-                <div onClick={options.onClick}>
-                    <Link to={menuItem.route ?? "/"} className={options.className}>
-                        {item.icon}
-                        <span
-                            className={classNames(
-                                "ml-2",
-                                options.labelClassName,
-                            )}
-                        >
-                            {item.label}
-                        </span>
-                    </Link>
-                </div>
-            );
-        },
-    }));
-
-    return (
-        <div className="sticky top-0 z-5">
-            <TabMenu model={items} />
+  const items: MenuItem[] = menuItems.map((menuItem) => ({
+    label: menuItem.label,
+    icon: menuItem.icon,
+    template: (item, options) => {
+      return (
+        <div onClick={options.onClick}>
+          <Link to={menuItem.route ?? "/"} className={options.className}>
+            {item.icon}
+            <span className={classNames("ml-2", options.labelClassName)}>{item.label}</span>
+          </Link>
         </div>
-    );
+      );
+    },
+  }));
+
+  return (
+    <div className="sticky top-0 z-5">
+      <TabMenu model={items} />
+    </div>
+  );
 };
 ```
 
@@ -2965,39 +2672,30 @@ import { MenuItem } from "primereact/menuitem";
 import { classNames } from "primereact/utils";
 
 export const Breadcrumb = () => {
-    const { breadcrumbs } = useBreadcrumb();
+  const { breadcrumbs } = useBreadcrumb();
 
-    if (breadcrumbs.length === 1) {
-        return null;
-    }
+  if (breadcrumbs.length === 1) {
+    return null;
+  }
 
-    const items: MenuItem[] = breadcrumbs.map((breadcrumb) => ({
-        label: breadcrumb.label,
-        icon: breadcrumb.icon,
-        template: (item, options) => {
-            return breadcrumb.href ? (
-                <Link
-                    to={breadcrumb.href}
-                    className={classNames("text-color", options.className)}
-                >
-                    {item.icon}
-                    <span
-                        className={classNames("ml-2 ", options.labelClassName)}
-                    >
-                        {item.label}
-                    </span>
-                </Link>
-            ) : (
-                <span className={options.className}>
-                    <span className={options.labelClassName}>{item.label}</span>
-                </span>
-            );
-        },
-    }));
+  const items: MenuItem[] = breadcrumbs.map((breadcrumb) => ({
+    label: breadcrumb.label,
+    icon: breadcrumb.icon,
+    template: (item, options) => {
+      return breadcrumb.href ? (
+        <Link to={breadcrumb.href} className={classNames("text-color", options.className)}>
+          {item.icon}
+          <span className={classNames("ml-2 ", options.labelClassName)}>{item.label}</span>
+        </Link>
+      ) : (
+        <span className={options.className}>
+          <span className={options.labelClassName}>{item.label}</span>
+        </span>
+      );
+    },
+  }));
 
-    return (
-        <BreadCrumb className="surface-ground pl-0 border-none" model={items} />
-    );
+  return <BreadCrumb className="surface-ground pl-0 border-none" model={items} />;
 };
 ```
 

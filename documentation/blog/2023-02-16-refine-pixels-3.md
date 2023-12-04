@@ -16,13 +16,13 @@ This is Day Three and **refineWeek** is a seven-part tutorial that aims to help 
 
 ### refineWeek series
 
--   Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
--   Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
--   Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
--   Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
--   Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
--   Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
--   Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+- Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
+- Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
+- Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
+- Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+- Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
+- Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
 
 ## Overview
 
@@ -50,7 +50,7 @@ Below, we go over these steps one by one.
 
 ### 1. Creating a PostgreSQL Server with Supabase
 
-Creating a database server is quite intutive in **Supabase**. Just go over to your organization's dashboard and start doing something. For me, I have initialized a server with the name `refine-pixels` under a free tier. If you need a quick hand, please follow [this quickstart guide](https://supabase.com/docs/guides/with-react#create-a-project).
+Creating a database server is quite intuitive in **Supabase**. Just go over to your organization's dashboard and start doing something. For me, I have initialized a server with the name `refine-pixels` under a free tier. If you need a quick hand, please follow [this quickstart guide](https://supabase.com/docs/guides/with-react#create-a-project).
 
 ### 2. Adding Tables to a Supabase Database
 
@@ -226,41 +226,38 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { notificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
 import { supabaseClient } from "./utility";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(supabaseClient)}
-                    liveProvider={liveProvider(supabaseClient)}
-                    authProvider={authProvider}
-                    routerProvider={routerBindings}
-                    notificationProvider={notificationProvider}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route index element={<WelcomePage />} />
-                    </Routes>
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider(supabaseClient)}
+          liveProvider={liveProvider(supabaseClient)}
+          authProvider={authProvider}
+          routerProvider={routerBindings}
+          notificationProvider={notificationProvider}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route index element={<WelcomePage />} />
+          </Routes>
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -270,9 +267,9 @@ Focusing on the top, in order to add a resource to our app, we have to introduce
 
 ```json title="Typical resource object inside resources array"
 {
-    "name": "canvases",
-    "list": "/canvases",
-    "show": "/canvases/show/:id"
+  "name": "canvases",
+  "list": "/canvases",
+  "show": "/canvases/show/:id"
 }
 ```
 
@@ -292,16 +289,16 @@ For our app, we'll configure our `resources` object with actions for `canvases`.
 
 ```tsx title="App.tsx"
 <Refine
-    // ...
-    //highlight-start
-    resources={[
-        {
-            name: "canvases",
-            list: "/canvases",
-            show: "/canvases/show/:id",
-        },
-    ]}
-    //highlight-end
+  // ...
+  //highlight-start
+  resources={[
+    {
+      name: "canvases",
+      list: "/canvases",
+      show: "/canvases/show/:id",
+    },
+  ]}
+  //highlight-end
 />
 ```
 
@@ -320,13 +317,13 @@ https://github.com/refinedev/refine/tree/master/examples/pixels
 
 Before we move on, you need to add required page and components to the project if you want build the app by following the article. Please add the following components and files into the project:
 
--   pages: https://github.com/refinedev/refine/tree/master/examples/pixels/src/pages
--   components: https://github.com/refinedev/refine/tree/master/examples/pixels/src/components
--   providers: https://github.com/refinedev/refine/tree/master/examples/pixels/src/providers
--   utility: https://github.com/refinedev/refine/tree/master/examples/pixels/src/utility
--   types: https://github.com/refinedev/refine/tree/master/examples/pixels/src/types
--   styles: https://github.com/refinedev/refine/tree/master/examples/pixels/src/styles
--   assets: https://github.com/refinedev/refine/tree/master/examples/pixels/public
+- pages: https://github.com/refinedev/refine/tree/master/examples/pixels/src/pages
+- components: https://github.com/refinedev/refine/tree/master/examples/pixels/src/components
+- providers: https://github.com/refinedev/refine/tree/master/examples/pixels/src/providers
+- utility: https://github.com/refinedev/refine/tree/master/examples/pixels/src/utility
+- types: https://github.com/refinedev/refine/tree/master/examples/pixels/src/types
+- styles: https://github.com/refinedev/refine/tree/master/examples/pixels/src/styles
+- assets: https://github.com/refinedev/refine/tree/master/examples/pixels/public
 
 After creating files above you need to add some imports and [routes](/docs/packages/documentation/routers/react-router-v6/) to `src/App.tsx` file. Simply add replace your App.tsx with following.
 
@@ -353,111 +350,99 @@ import "@refinedev/antd/dist/reset.css";
 import "./styles/style.css";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ConfigProvider
-                theme={{
-                    token: {
-                        colorPrimary: "#3ecf8e",
-                        colorText: "#80808a",
-                        colorError: "#fa541c",
-                        colorBgLayout: "#f0f2f5",
-                        colorLink: "#3ecf8e",
-                        colorLinkActive: "#3ecf8e",
-                        colorLinkHover: "#3ecf8e",
-                    },
-                }}
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#3ecf8e",
+            colorText: "#80808a",
+            colorError: "#fa541c",
+            colorBgLayout: "#f0f2f5",
+            colorLink: "#3ecf8e",
+            colorLinkActive: "#3ecf8e",
+            colorLinkHover: "#3ecf8e",
+          },
+        }}
+      >
+        <Refine
+          authProvider={authProvider}
+          dataProvider={dataProvider(supabaseClient)}
+          liveProvider={liveProvider(supabaseClient)}
+          auditLogProvider={auditLogProvider}
+          routerProvider={routerBindings}
+          resources={[
+            {
+              name: "canvases",
+              list: "/canvases",
+              show: "/canvases/show/:id",
+            },
+          ]}
+          notificationProvider={notificationProvider}
+        >
+          <Routes>
+            <Route
+              element={
+                <Layout>
+                  <Outlet />
+                </Layout>
+              }
             >
-                <Refine
-                    authProvider={authProvider}
-                    dataProvider={dataProvider(supabaseClient)}
-                    liveProvider={liveProvider(supabaseClient)}
-                    auditLogProvider={auditLogProvider}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "canvases",
-                            list: "/canvases",
-                            show: "/canvases/show/:id",
-                        },
+              <Route index element={<CanvasFeaturedList />} />
+
+              <Route path="/canvases">
+                <Route index element={<CanvasList />} />
+                <Route path="show/:id" element={<CanvasShow />} />
+              </Route>
+            </Route>
+            <Route
+              element={
+                <Authenticated fallback={<Outlet />}>
+                  <NavigateToResource />
+                </Authenticated>
+              }
+            >
+              <Route
+                path="/login"
+                element={
+                  <AuthPage
+                    type="login"
+                    providers={[
+                      {
+                        name: "github",
+                        icon: (
+                          <GithubOutlined
+                            style={{
+                              fontSize: "18px",
+                            }}
+                          />
+                        ),
+                        label: "Sign in with GitHub",
+                      },
                     ]}
-                    notificationProvider={notificationProvider}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            <Route index element={<CanvasFeaturedList />} />
+                  />
+                }
+              />
+              <Route path="/register" element={<AuthPage type="register" />} />
+              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            </Route>
 
-                            <Route path="/canvases">
-                                <Route index element={<CanvasList />} />
-                                <Route
-                                    path="show/:id"
-                                    element={<CanvasShow />}
-                                />
-                            </Route>
-                        </Route>
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        type="login"
-                                        providers={[
-                                            {
-                                                name: "github",
-                                                icon: (
-                                                    <GithubOutlined
-                                                        style={{
-                                                            fontSize: "18px",
-                                                        }}
-                                                    />
-                                                ),
-                                                label: "Sign in with GitHub",
-                                            },
-                                        ]}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/register"
-                                element={<AuthPage type="register" />}
-                            />
-                            <Route
-                                path="/forgot-password"
-                                element={<AuthPage type="forgotPassword" />}
-                            />
-                            <Route
-                                path="/update-password"
-                                element={<AuthPage type="updatePassword" />}
-                            />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+            <Route
+              element={
+                <Layout>
+                  <Outlet />
+                </Layout>
+              }
+            >
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -467,9 +452,11 @@ export default App;
 </details>
 
 :::note
+
 After creating files above you can remove `src/authProvider` and `src/components/header` that comes with `create refine-app`.
 
 We move this files to `src/providers/authProvider.ts` and `src/components/layout/header` for better folder structure.
+
 :::
 
 ### `<Refine />` `list` Action
@@ -489,44 +476,44 @@ import { SponsorsBanner } from "../../components/banners";
 import { Canvas } from "../../types";
 
 export const CanvasList: React.FC = () => {
-    const { listProps, queryResult } = useSimpleList<Canvas>({
-        resource: "canvases",
-        pagination: {
-            pageSize: 12,
+  const { listProps, queryResult } = useSimpleList<Canvas>({
+    resource: "canvases",
+    pagination: {
+      pageSize: 12,
+    },
+    sorters: {
+      initial: [
+        {
+          field: "created_at",
+          order: "desc",
         },
-        sorters: {
-            initial: [
-                {
-                    field: "created_at",
-                    order: "desc",
-                },
-            ],
-        },
-    });
+      ],
+    },
+  });
 
-    const { isLoading } = queryResult;
+  const { isLoading } = queryResult;
 
-    return (
-        <div className="container">
-            <div className="paper">
-                {isLoading ? (
-                    <div className="canvas-skeleton-list">
-                        {[...Array(12)].map((_, index) => (
-                            <Skeleton key={index} paragraph={{ rows: 8 }} />
-                        ))}
-                    </div>
-                ) : (
-                    <List
-                        {...listProps}
-                        className="canvas-list"
-                        split={false}
-                        renderItem={(canvas) => <CanvasTile canvas={canvas} />}
-                    />
-                )}
-            </div>
-            <SponsorsBanner />
-        </div>
-    );
+  return (
+    <div className="container">
+      <div className="paper">
+        {isLoading ? (
+          <div className="canvas-skeleton-list">
+            {[...Array(12)].map((_, index) => (
+              <Skeleton key={index} paragraph={{ rows: 8 }} />
+            ))}
+          </div>
+        ) : (
+          <List
+            {...listProps}
+            className="canvas-list"
+            split={false}
+            renderItem={(canvas) => <CanvasTile canvas={canvas} />}
+          />
+        )}
+      </div>
+      <SponsorsBanner />
+    </div>
+  );
 };
 ```
 
@@ -654,72 +641,63 @@ import { GithubOutlined } from "@ant-design/icons";
 import { AuthPage } from "./pages/auth";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                // ...
-                routerProvider={routerBindings}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route index element={<CanvasFeaturedList />} />
+  return (
+    <BrowserRouter>
+      <Refine
+        // ...
+        routerProvider={routerBindings}
+      >
+        <Routes>
+          <Route
+            element={
+              <Layout>
+                <Outlet />
+              </Layout>
+            }
+          >
+            <Route index element={<CanvasFeaturedList />} />
 
-                        <Route path="/canvases">
-                            <Route index element={<CanvasList />} />
-                            <Route path="show/:id" element={<CanvasShow />} />
-                        </Route>
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            path="/login"
-                            element={
-                                <AuthPage
-                                    type="login"
-                                    providers={[
-                                        {
-                                            name: "github",
-                                            icon: (
-                                                <GithubOutlined
-                                                    style={{
-                                                        fontSize: "18px",
-                                                    }}
-                                                />
-                                            ),
-                                            label: "Sign in with GitHub",
-                                        },
-                                    ]}
-                                />
-                            }
+            <Route path="/canvases">
+              <Route index element={<CanvasList />} />
+              <Route path="show/:id" element={<CanvasShow />} />
+            </Route>
+          </Route>
+          <Route
+            element={
+              <Authenticated fallback={<Outlet />}>
+                <NavigateToResource />
+              </Authenticated>
+            }
+          >
+            <Route
+              path="/login"
+              element={
+                <AuthPage
+                  type="login"
+                  providers={[
+                    {
+                      name: "github",
+                      icon: (
+                        <GithubOutlined
+                          style={{
+                            fontSize: "18px",
+                          }}
                         />
-                        <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                        <Route
-                            path="/update-password"
-                            element={<AuthPage type="updatePassword" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+                      ),
+                      label: "Sign in with GitHub",
+                    },
+                  ]}
+                />
+              }
+            />
+            <Route path="/register" element={<AuthPage type="register" />} />
+            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -746,125 +724,100 @@ The `<Header />` component looks like this:
 
 ```tsx title="src/components/layout/header/index.tsx"
 import React from "react";
-import {
-    useIsAuthenticated,
-    useLogout,
-    useMenu,
-    useNavigation,
-    useParsed,
-} from "@refinedev/core";
+import { useIsAuthenticated, useLogout, useMenu, useNavigation, useParsed } from "@refinedev/core";
 import { Link } from "react-router-dom";
 import { useModalForm } from "@refinedev/antd";
 
-import {
-    PlusSquareOutlined,
-    LogoutOutlined,
-    LoginOutlined,
-} from "@ant-design/icons";
+import { PlusSquareOutlined, LogoutOutlined, LoginOutlined } from "@ant-design/icons";
 import { Button, Image, Space } from "antd";
 
 import { CreateCanvas } from "../../../components/canvas";
 import { Canvas } from "../../../types";
 
 export const Header: React.FC = () => {
-    const { data } = useIsAuthenticated();
-    const { mutate: mutateLogout } = useLogout();
-    const { push } = useNavigation();
-    const { selectedKey } = useMenu();
-    const { pathname } = useParsed();
+  const { data } = useIsAuthenticated();
+  const { mutate: mutateLogout } = useLogout();
+  const { push } = useNavigation();
+  const { selectedKey } = useMenu();
+  const { pathname } = useParsed();
 
-    const { modalProps, formProps, show } = useModalForm<Canvas>({
-        resource: "canvases",
-        action: "create",
-        redirect: "show",
-    });
+  const { modalProps, formProps, show } = useModalForm<Canvas>({
+    resource: "canvases",
+    action: "create",
+    redirect: "show",
+  });
 
-    const isAuthenticated = data?.authenticated;
+  const isAuthenticated = data?.authenticated;
 
-    const handleRedirect = () => {
-        if (!pathname) {
-            return push("/login");
-        }
+  const handleRedirect = () => {
+    if (!pathname) {
+      return push("/login");
+    }
 
-        if (pathname === "/") {
-            return push("/login");
-        }
+    if (pathname === "/") {
+      return push("/login");
+    }
 
-        push(`/login?to=${encodeURIComponent(pathname)}`);
-    };
+    push(`/login?to=${encodeURIComponent(pathname)}`);
+  };
 
-    return (
-        <div className="container">
-            <div className="layout-header">
-                <Link to="/">
-                    <Image
-                        width="120px"
-                        src="/pixels-logo.svg"
-                        alt="Pixels Logo"
-                        preview={false}
-                    />
-                </Link>
-                <Space size="large">
-                    <Link
-                        to="/"
-                        className={`nav-button ${
-                            selectedKey === "/" ? "active" : ""
-                        }`}
-                    >
-                        <span className="dot-icon" />
-                        HOME
-                    </Link>
-                    <Link
-                        to="/canvases"
-                        className={`nav-button ${
-                            selectedKey === "/canvases" ? "active" : ""
-                        }`}
-                    >
-                        <span className="dot-icon" />
-                        NEW
-                    </Link>
-                </Space>
-                <Space>
-                    <Button
-                        icon={<PlusSquareOutlined />}
-                        onClick={() => {
-                            if (isAuthenticated) {
-                                show();
-                            } else {
-                                handleRedirect();
-                            }
-                        }}
-                        title="Create a new canvas"
-                    >
-                        Create
-                    </Button>
-                    {isAuthenticated ? (
-                        <Button
-                            type="primary"
-                            danger
-                            onClick={() => {
-                                mutateLogout();
-                            }}
-                            icon={<LogoutOutlined />}
-                            title="Logout"
-                        />
-                    ) : (
-                        <Button
-                            type="primary"
-                            onClick={() => {
-                                handleRedirect();
-                            }}
-                            icon={<LoginOutlined />}
-                            title="Login"
-                        >
-                            Login
-                        </Button>
-                    )}
-                </Space>
-            </div>
-            <CreateCanvas modalProps={modalProps} formProps={formProps} />
-        </div>
-    );
+  return (
+    <div className="container">
+      <div className="layout-header">
+        <Link to="/">
+          <Image width="120px" src="/pixels-logo.svg" alt="Pixels Logo" preview={false} />
+        </Link>
+        <Space size="large">
+          <Link to="/" className={`nav-button ${selectedKey === "/" ? "active" : ""}`}>
+            <span className="dot-icon" />
+            HOME
+          </Link>
+          <Link to="/canvases" className={`nav-button ${selectedKey === "/canvases" ? "active" : ""}`}>
+            <span className="dot-icon" />
+            NEW
+          </Link>
+        </Space>
+        <Space>
+          <Button
+            icon={<PlusSquareOutlined />}
+            onClick={() => {
+              if (isAuthenticated) {
+                show();
+              } else {
+                handleRedirect();
+              }
+            }}
+            title="Create a new canvas"
+          >
+            Create
+          </Button>
+          {isAuthenticated ? (
+            <Button
+              type="primary"
+              danger
+              onClick={() => {
+                mutateLogout();
+              }}
+              icon={<LogoutOutlined />}
+              title="Logout"
+            />
+          ) : (
+            <Button
+              type="primary"
+              onClick={() => {
+                handleRedirect();
+              }}
+              icon={<LoginOutlined />}
+              title="Login"
+            >
+              Login
+            </Button>
+          )}
+        </Space>
+      </div>
+      <CreateCanvas modalProps={modalProps} formProps={formProps} />
+    </div>
+  );
 };
 ```
 
@@ -897,83 +850,80 @@ import { getRandomName, DEFAULT_CANVAS_SIZE } from "../../utility";
 import { User } from "../../types";
 
 type CreateCanvasProps = {
-    modalProps: ModalProps;
-    formProps: FormProps;
+  modalProps: ModalProps;
+  formProps: FormProps;
 };
 
-export const CreateCanvas: React.FC<CreateCanvasProps> = ({
-    modalProps,
-    formProps,
-}) => {
-    const { data: user } = useGetIdentity<User | null>();
+export const CreateCanvas: React.FC<CreateCanvasProps> = ({ modalProps, formProps }) => {
+  const { data: user } = useGetIdentity<User | null>();
 
-    const [values, setValues] = useState(() => {
+  const [values, setValues] = useState(() => {
+    const name = getRandomName();
+    return {
+      name: name,
+      id: name.replace(/\s/g, "-").toLowerCase(),
+      width: DEFAULT_CANVAS_SIZE,
+      height: DEFAULT_CANVAS_SIZE,
+    };
+  });
+
+  return (
+    <Modal
+      {...modalProps}
+      title="Create Canvas"
+      width={600}
+      centered
+      afterClose={() => {
         const name = getRandomName();
-        return {
-            name: name,
-            id: name.replace(/\s/g, "-").toLowerCase(),
-            width: DEFAULT_CANVAS_SIZE,
-            height: DEFAULT_CANVAS_SIZE,
-        };
-    });
+        setValues({
+          name: name,
+          id: name.replace(/\s/g, "-").toLowerCase(),
+          width: DEFAULT_CANVAS_SIZE,
+          height: DEFAULT_CANVAS_SIZE,
+        });
+      }}
+      bodyStyle={{ borderRadius: "6px" }}
+    >
+      <Form
+        {...formProps}
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 12 }}
+        onFinish={() => {
+          return (
+            formProps.onFinish &&
+            formProps.onFinish({
+              ...values,
+              user_id: user?.id,
+            })
+          );
+        }}
+      >
+        <Form.Item label="ID:">
+          <Input value={values.id} disabled />
+        </Form.Item>
 
-    return (
-        <Modal
-            {...modalProps}
-            title="Create Canvas"
-            width={600}
-            centered
-            afterClose={() => {
-                const name = getRandomName();
-                setValues({
-                    name: name,
-                    id: name.replace(/\s/g, "-").toLowerCase(),
-                    width: DEFAULT_CANVAS_SIZE,
-                    height: DEFAULT_CANVAS_SIZE,
-                });
-            }}
-            bodyStyle={{ borderRadius: "6px" }}
-        >
-            <Form
-                {...formProps}
-                labelCol={{ span: 6 }}
-                wrapperCol={{ span: 12 }}
-                onFinish={() => {
-                    return (
-                        formProps.onFinish &&
-                        formProps.onFinish({
-                            ...values,
-                            user_id: user?.id,
-                        })
-                    );
-                }}
-            >
-                <Form.Item label="ID:">
-                    <Input value={values.id} disabled />
-                </Form.Item>
+        <Form.Item label="Name:">
+          <Input value={values.name} disabled />
+        </Form.Item>
 
-                <Form.Item label="Name:">
-                    <Input value={values.name} disabled />
-                </Form.Item>
-
-                <Form.Item label="Size:">
-                    <Radio.Group
-                        options={[10, 20, 30]}
-                        onChange={({ target: { value } }) =>
-                            setValues((p) => ({
-                                ...p,
-                                height: value,
-                                width: value,
-                            }))
-                        }
-                        value={values.width}
-                        optionType="button"
-                        buttonStyle="solid"
-                    />
-                </Form.Item>
-            </Form>
-        </Modal>
-    );
+        <Form.Item label="Size:">
+          <Radio.Group
+            options={[10, 20, 30]}
+            onChange={({ target: { value } }) =>
+              setValues((p) => ({
+                ...p,
+                height: value,
+                width: value,
+              }))
+            }
+            value={values.width}
+            optionType="button"
+            buttonStyle="solid"
+          />
+        </Form.Item>
+      </Form>
+    </Modal>
+  );
 };
 ```
 
@@ -994,17 +944,17 @@ This is because for the `onClick` event on the `Create` canvas button inside the
 
 ```tsx title="src/components/layout/header/index.tsx"
 <Button
-    icon={<PlusSquareOutlined />}
-    onClick={() => {
-        if (isLogin) {
-            show();
-        } else {
-            handleRedirect();
-        }
-    }}
-    title="Create a new canvas"
+  icon={<PlusSquareOutlined />}
+  onClick={() => {
+    if (isLogin) {
+      show();
+    } else {
+      handleRedirect();
+    }
+  }}
+  title="Create a new canvas"
 >
-    Create
+  Create
 </Button>
 ```
 
@@ -1022,14 +972,7 @@ The `<CanvasShow />` component looks like this:
 
 ```tsx title="src/pages/canvases/show.tsx"
 import { useState } from "react";
-import {
-    useCreate,
-    useGetIdentity,
-    useNavigation,
-    useShow,
-    useParsed,
-    useIsAuthenticated,
-} from "@refinedev/core";
+import { useCreate, useGetIdentity, useNavigation, useShow, useParsed, useIsAuthenticated } from "@refinedev/core";
 import { useModal } from "@refinedev/antd";
 
 import { LeftOutlined } from "@ant-design/icons";
@@ -1047,123 +990,116 @@ const { Title } = Typography;
 type Colors = typeof colors;
 
 export const CanvasShow: React.FC = () => {
-    const { pathname } = useParsed();
-    const [color, setColor] = useState<Colors[number]>("black");
-    const { modalProps, show, close } = useModal();
-    const { data: identity } = useGetIdentity<any>();
-    const { data: { authenticated } = {} } = useIsAuthenticated();
+  const { pathname } = useParsed();
+  const [color, setColor] = useState<Colors[number]>("black");
+  const { modalProps, show, close } = useModal();
+  const { data: identity } = useGetIdentity<any>();
+  const { data: { authenticated } = {} } = useIsAuthenticated();
 
-    const {
-        queryResult: { data: { data: canvas } = {} },
-    } = useShow<Canvas>();
-    const { mutate } = useCreate();
-    const { list, push } = useNavigation();
+  const {
+    queryResult: { data: { data: canvas } = {} },
+  } = useShow<Canvas>();
+  const { mutate } = useCreate();
+  const { list, push } = useNavigation();
 
-    const onSubmit = (x: number, y: number) => {
-        if (!authenticated) {
-            if (pathname) {
-                return push(`/login?to=${encodeURIComponent(pathname)}`);
-            }
+  const onSubmit = (x: number, y: number) => {
+    if (!authenticated) {
+      if (pathname) {
+        return push(`/login?to=${encodeURIComponent(pathname)}`);
+      }
 
-            return push(`/login`);
-        }
+      return push(`/login`);
+    }
 
-        if (typeof x === "number" && typeof y === "number" && canvas?.id) {
-            mutate({
-                resource: "pixels",
-                values: {
-                    x,
-                    y,
-                    color,
-                    canvas_id: canvas?.id,
-                    user_id: identity.id,
-                },
-                meta: {
-                    canvas,
-                },
-                successNotification: false,
-            });
-        }
-    };
+    if (typeof x === "number" && typeof y === "number" && canvas?.id) {
+      mutate({
+        resource: "pixels",
+        values: {
+          x,
+          y,
+          color,
+          canvas_id: canvas?.id,
+          user_id: identity.id,
+        },
+        meta: {
+          canvas,
+        },
+        successNotification: false,
+      });
+    }
+  };
 
-    return (
-        <div className="container">
-            <div className="paper">
-                <div className="paper-header">
-                    <Button
-                        type="text"
-                        onClick={() => list("canvases")}
-                        style={{ textTransform: "uppercase" }}
-                    >
-                        <LeftOutlined />
-                        Back
-                    </Button>
-                    <Title level={3}>{canvas?.name ?? canvas?.id ?? ""}</Title>
-                    <Button type="primary" onClick={show}>
-                        View Changes
-                    </Button>
-                </div>
-                <Modal
-                    title="Canvas Changes"
-                    {...modalProps}
-                    centered
-                    destroyOnClose
-                    onOk={close}
-                    onCancel={() => {
-                        close();
-                    }}
-                    footer={[
-                        <Button type="primary" key="close" onClick={close}>
-                            Close
-                        </Button>,
-                    ]}
-                >
-                    <LogList currentCanvas={canvas} />
-                </Modal>
-
-                {canvas ? (
-                    <DisplayCanvas canvas={canvas}>
-                        {(pixels) =>
-                            pixels ? (
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        gap: 48,
-                                    }}
-                                >
-                                    <div>
-                                        <ColorSelect
-                                            selected={color}
-                                            onChange={setColor}
-                                        />
-                                    </div>
-                                    <CanvasItem
-                                        canvas={canvas}
-                                        pixels={pixels}
-                                        onPixelClick={onSubmit}
-                                        scale={(20 / (canvas?.width ?? 20)) * 2}
-                                        active={true}
-                                    />
-                                    <div style={{ width: 120 }}>
-                                        <AvatarPanel pixels={pixels} />
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="spin-wrapper">
-                                    <Spin />
-                                </div>
-                            )
-                        }
-                    </DisplayCanvas>
-                ) : (
-                    <div className="spin-wrapper">
-                        <Spin />
-                    </div>
-                )}
-            </div>
+  return (
+    <div className="container">
+      <div className="paper">
+        <div className="paper-header">
+          <Button type="text" onClick={() => list("canvases")} style={{ textTransform: "uppercase" }}>
+            <LeftOutlined />
+            Back
+          </Button>
+          <Title level={3}>{canvas?.name ?? canvas?.id ?? ""}</Title>
+          <Button type="primary" onClick={show}>
+            View Changes
+          </Button>
         </div>
-    );
+        <Modal
+          title="Canvas Changes"
+          {...modalProps}
+          centered
+          destroyOnClose
+          onOk={close}
+          onCancel={() => {
+            close();
+          }}
+          footer={[
+            <Button type="primary" key="close" onClick={close}>
+              Close
+            </Button>,
+          ]}
+        >
+          <LogList currentCanvas={canvas} />
+        </Modal>
+
+        {canvas ? (
+          <DisplayCanvas canvas={canvas}>
+            {(pixels) =>
+              pixels ? (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 48,
+                  }}
+                >
+                  <div>
+                    <ColorSelect selected={color} onChange={setColor} />
+                  </div>
+                  <CanvasItem
+                    canvas={canvas}
+                    pixels={pixels}
+                    onPixelClick={onSubmit}
+                    scale={(20 / (canvas?.width ?? 20)) * 2}
+                    active={true}
+                  />
+                  <div style={{ width: 120 }}>
+                    <AvatarPanel pixels={pixels} />
+                  </div>
+                </div>
+              ) : (
+                <div className="spin-wrapper">
+                  <Spin />
+                </div>
+              )
+            }
+          </DisplayCanvas>
+        ) : (
+          <div className="spin-wrapper">
+            <Spin />
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -1174,7 +1110,7 @@ In the code above, we have two instances of data hooks in action. First, with th
 
 ```tsx title="src/pages/canvases/show.tsx"
 const {
-    queryResult: { data: { data: canvas } = {} },
+  queryResult: { data: { data: canvas } = {} },
 } = useShow<Canvas>();
 ```
 
@@ -1184,12 +1120,12 @@ Additionally, we are letting another `mutation` to create a `pixel` in our `pixe
 const { mutate } = useCreate();
 
 const onSubmit = (x: number, y: number) => {
-    if (typeof x === "number" && typeof y === "number" && canvas?.id) {
-        mutate({
-            resource: "pixels",
-            values: { x, y, color, canvas_id: canvas?.id },
-        });
-    }
+  if (typeof x === "number" && typeof y === "number" && canvas?.id) {
+    mutate({
+      resource: "pixels",
+      values: { x, y, color, canvas_id: canvas?.id },
+    });
+  }
 };
 ```
 
@@ -1201,8 +1137,8 @@ Now that we have our `<CanvasShow />` component ready, let's start implementing 
 
 ```tsx title="src/App.tsx"
 <Refine
-    // ...
-    authProvider={authProvider}
+  // ...
+  authProvider={authProvider}
 />
 ```
 
@@ -1225,62 +1161,53 @@ import { AuthPage } from "./pages/auth";
 import { authProvider } from "./providers";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                // ...
-                authProvider={authProvider}
-                routerProvider={routerBindings}
-            >
-                <Routes>
-                    {/* ... */}
-                    {/* highlight-start */}
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource />
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            path="/login"
-                            element={
-                                <AuthPage
-                                    type="login"
-                                    providers={[
-                                        {
-                                            name: "github",
-                                            icon: (
-                                                <GithubOutlined
-                                                    style={{
-                                                        fontSize: "18px",
-                                                    }}
-                                                />
-                                            ),
-                                            label: "Sign in with GitHub",
-                                        },
-                                    ]}
-                                />
-                            }
+  return (
+    <BrowserRouter>
+      <Refine
+        // ...
+        authProvider={authProvider}
+        routerProvider={routerBindings}
+      >
+        <Routes>
+          {/* ... */}
+          {/* highlight-start */}
+          <Route
+            element={
+              <Authenticated fallback={<Outlet />}>
+                <NavigateToResource />
+              </Authenticated>
+            }
+          >
+            <Route
+              path="/login"
+              element={
+                <AuthPage
+                  type="login"
+                  providers={[
+                    {
+                      name: "github",
+                      icon: (
+                        <GithubOutlined
+                          style={{
+                            fontSize: "18px",
+                          }}
                         />
-                        <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                        <Route
-                            path="/update-password"
-                            element={<AuthPage type="updatePassword" />}
-                        />
-                    </Route>
-                    {/* highlight-end */}
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+                      ),
+                      label: "Sign in with GitHub",
+                    },
+                  ]}
+                />
+              }
+            />
+            <Route path="/register" element={<AuthPage type="register" />} />
+            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+          </Route>
+          {/* highlight-end */}
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -1288,25 +1215,25 @@ The `LoginPage` route was also added:
 
 ```tsx title="src/App.tsx"
 <Route
-    path="/login"
-    element={
-        <AuthPage
-            type="login"
-            providers={[
-                {
-                    name: "github",
-                    icon: (
-                        <GithubOutlined
-                            style={{
-                                fontSize: "18px",
-                            }}
-                        />
-                    ),
-                    label: "Sign in with GitHub",
-                },
-            ]}
-        />
-    }
+  path="/login"
+  element={
+    <AuthPage
+      type="login"
+      providers={[
+        {
+          name: "github",
+          icon: (
+            <GithubOutlined
+              style={{
+                fontSize: "18px",
+              }}
+            />
+          ),
+          label: "Sign in with GitHub",
+        },
+      ]}
+    />
+  }
 />
 ```
 
@@ -1339,111 +1266,99 @@ import "@refinedev/antd/dist/reset.css";
 import "./styles/style.css";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ConfigProvider
-                theme={{
-                    token: {
-                        colorPrimary: "#3ecf8e",
-                        colorText: "#80808a",
-                        colorError: "#fa541c",
-                        colorBgLayout: "#f0f2f5",
-                        colorLink: "#3ecf8e",
-                        colorLinkActive: "#3ecf8e",
-                        colorLinkHover: "#3ecf8e",
-                    },
-                }}
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#3ecf8e",
+            colorText: "#80808a",
+            colorError: "#fa541c",
+            colorBgLayout: "#f0f2f5",
+            colorLink: "#3ecf8e",
+            colorLinkActive: "#3ecf8e",
+            colorLinkHover: "#3ecf8e",
+          },
+        }}
+      >
+        <Refine
+          authProvider={authProvider}
+          dataProvider={dataProvider(supabaseClient)}
+          liveProvider={liveProvider(supabaseClient)}
+          auditLogProvider={auditLogProvider}
+          routerProvider={routerBindings}
+          resources={[
+            {
+              name: "canvases",
+              list: "/canvases",
+              show: "/canvases/show/:id",
+            },
+          ]}
+          notificationProvider={notificationProvider}
+        >
+          <Routes>
+            <Route
+              element={
+                <Layout>
+                  <Outlet />
+                </Layout>
+              }
             >
-                <Refine
-                    authProvider={authProvider}
-                    dataProvider={dataProvider(supabaseClient)}
-                    liveProvider={liveProvider(supabaseClient)}
-                    auditLogProvider={auditLogProvider}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "canvases",
-                            list: "/canvases",
-                            show: "/canvases/show/:id",
-                        },
+              <Route index element={<CanvasFeaturedList />} />
+
+              <Route path="/canvases">
+                <Route index element={<CanvasList />} />
+                <Route path="show/:id" element={<CanvasShow />} />
+              </Route>
+            </Route>
+            <Route
+              element={
+                <Authenticated fallback={<Outlet />}>
+                  <NavigateToResource />
+                </Authenticated>
+              }
+            >
+              <Route
+                path="/login"
+                element={
+                  <AuthPage
+                    type="login"
+                    providers={[
+                      {
+                        name: "github",
+                        icon: (
+                          <GithubOutlined
+                            style={{
+                              fontSize: "18px",
+                            }}
+                          />
+                        ),
+                        label: "Sign in with GitHub",
+                      },
                     ]}
-                    notificationProvider={notificationProvider}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            <Route index element={<CanvasFeaturedList />} />
+                  />
+                }
+              />
+              <Route path="/register" element={<AuthPage type="register" />} />
+              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            </Route>
 
-                            <Route path="/canvases">
-                                <Route index element={<CanvasList />} />
-                                <Route
-                                    path="show/:id"
-                                    element={<CanvasShow />}
-                                />
-                            </Route>
-                        </Route>
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        type="login"
-                                        providers={[
-                                            {
-                                                name: "github",
-                                                icon: (
-                                                    <GithubOutlined
-                                                        style={{
-                                                            fontSize: "18px",
-                                                        }}
-                                                    />
-                                                ),
-                                                label: "Sign in with GitHub",
-                                            },
-                                        ]}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/register"
-                                element={<AuthPage type="register" />}
-                            />
-                            <Route
-                                path="/forgot-password"
-                                element={<AuthPage type="forgotPassword" />}
-                            />
-                            <Route
-                                path="/update-password"
-                                element={<AuthPage type="updatePassword" />}
-                            />
-                        </Route>
-
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+            <Route
+              element={
+                <Layout>
+                  <Outlet />
+                </Layout>
+              }
+            >
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -1507,30 +1422,30 @@ import { Layout } from "./components/layout";
 import { CanvasFeaturedList } from "./pages/canvases";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                // ...
-                routerProvider={routerBindings}
-            >
-                <Routes>
-                    {/* ... */}
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        {/* highlight-start */}
-                        <Route index element={<CanvasFeaturedList />} />
-                        {/* highlight-end */}
-                        {/* ... */}
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        // ...
+        routerProvider={routerBindings}
+      >
+        <Routes>
+          {/* ... */}
+          <Route
+            element={
+              <Layout>
+                <Outlet />
+              </Layout>
+            }
+          >
+            {/* highlight-start */}
+            <Route index element={<CanvasFeaturedList />} />
+            {/* highlight-end */}
+            {/* ... */}
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 

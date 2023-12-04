@@ -35,14 +35,14 @@ We'll use the `routerProvider` from `@refinedev/remix-router` to set up the rout
 
 We'll create four pages for our resources:
 
--   `app/routes/posts._index.tsx` - List page for posts
--   `app/routes/posts.show.$id.tsx` - Detail page for posts
--   `app/routes/categories._index.tsx` - List page for categories
--   `app/routes/categories.show.$id.tsx` - Detail page for categories
+- `app/routes/posts._index.tsx` - List page for posts
+- `app/routes/posts.show.$id.tsx` - Detail page for posts
+- `app/routes/categories._index.tsx` - List page for categories
+- `app/routes/categories.show.$id.tsx` - Detail page for categories
 
 And we'll create one page for the index route and use it to redirect to the `posts` resource:
 
--   `app/routes/_index.tsx` - Index page
+- `app/routes/_index.tsx` - Index page
 
 :::note
 
@@ -52,9 +52,9 @@ Currently, to enable that you need to add the following line to your `remix.conf
 
 ```node title=remix.config.js
 module.exports = {
-    future: {
-        v2_routeConvention: true,
-    },
+  future: {
+    v2_routeConvention: true,
+  },
 };
 ```
 
@@ -63,14 +63,7 @@ module.exports = {
 Let's start with the initialization of the **refine** app in the `app/root.tsx` file:
 
 ```tsx title=app/root.tsx
-import {
-    Links,
-    LiveReload,
-    Meta,
-    Outlet,
-    Scripts,
-    ScrollRestoration,
-} from "@remix-run/react";
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
@@ -79,42 +72,40 @@ import routerProvider from "@refinedev/remix-router";
 import { Layout } from "components/Layout";
 
 export default function App(): JSX.Element {
-    return (
-        <html lang="en">
-            <head>
-                <Meta />
-                <Links />
-            </head>
-            <body>
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    // highlight-next-line
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                        },
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            show: "/categories/show/:id",
-                        },
-                    ]}
-                >
-                    <Layout>
-                        <Outlet />
-                    </Layout>
-                </Refine>
-                <ScrollRestoration />
-                <Scripts />
-                <LiveReload />
-            </body>
-        </html>
-    );
+  return (
+    <html lang="en">
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <Refine
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          // highlight-next-line
+          routerProvider={routerProvider}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+              show: "/posts/show/:id",
+            },
+            {
+              name: "categories",
+              list: "/categories",
+              show: "/categories/show/:id",
+            },
+          ]}
+        >
+          <Layout>
+            <Outlet />
+          </Layout>
+        </Refine>
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+      </body>
+    </html>
+  );
 }
 ```
 
@@ -139,44 +130,44 @@ import { useTable } from "@refinedev/core";
 import { NavLink } from "@remix-run/react";
 
 type IPost = {
-    id: string;
-    title: string;
-    description: string;
+  id: string;
+  title: string;
+  description: string;
 };
 
 export default function PostList() {
-    // `posts` resource will be inferred from the route.
-    // Because we've defined `/posts` as the `list` action of the `posts` resource.
-    const {
-        tableQueryResult: { data, isLoading },
-    } = useTable<IPost>();
+  // `posts` resource will be inferred from the route.
+  // Because we've defined `/posts` as the `list` action of the `posts` resource.
+  const {
+    tableQueryResult: { data, isLoading },
+  } = useTable<IPost>();
 
-    const getToPath = useGetToPath();
+  const getToPath = useGetToPath();
 
-    const tableData = data?.data;
+  const tableData = data?.data;
 
-    return (
-        <div>
-            {isLoading && <p>Loading...</p>}
-            {!isLoading && (
-                <ul>
-                    {tableData?.map((post) => (
-                        <li key={post.id}>
-                            <NavLink
-                                to={getToPath({
-                                    resource: "categories",
-                                    action: "show",
-                                    meta: { id: category.id },
-                                })}
-                            >
-                                {post.title}
-                            </NavLink>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
+  return (
+    <div>
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && (
+        <ul>
+          {tableData?.map((post) => (
+            <li key={post.id}>
+              <NavLink
+                to={getToPath({
+                  resource: "categories",
+                  action: "show",
+                  meta: { id: category.id },
+                })}
+              >
+                {post.title}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
 ```
 
@@ -213,43 +204,43 @@ import { useTable, getToPath } from "@refinedev/core";
 import { NavLink } from "@remix-run/react";
 
 type ICategory = {
-    id: string;
-    label: string;
+  id: string;
+  label: string;
 };
 
 export default function CategoryList() {
-    // `categories` resource will be inferred from the route.
-    // Because we've defined `/categories` as the `list` action of the `categories` resource.
-    const {
-        tableQueryResult: { data, isLoading },
-    } = useTable<ICategory>();
+  // `categories` resource will be inferred from the route.
+  // Because we've defined `/categories` as the `list` action of the `categories` resource.
+  const {
+    tableQueryResult: { data, isLoading },
+  } = useTable<ICategory>();
 
-    const getToPath = useGetToPath();
+  const getToPath = useGetToPath();
 
-    const tableData = data?.data;
+  const tableData = data?.data;
 
-    return (
-        <div>
-            {isLoading && <p>Loading...</p>}
-            {!isLoading && (
-                <ul>
-                    {tableData?.map((category) => (
-                        <li key={category.id}>
-                            <NavLink
-                                to={getToPath({
-                                    resource: "categories",
-                                    action: "show",
-                                    meta: { id: category.id },
-                                })}
-                            >
-                                {category.label}
-                            </NavLink>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
+  return (
+    <div>
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && (
+        <ul>
+          {tableData?.map((category) => (
+            <li key={category.id}>
+              <NavLink
+                to={getToPath({
+                  resource: "categories",
+                  action: "show",
+                  meta: { id: category.id },
+                })}
+              >
+                {category.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
 ```
 
@@ -257,24 +248,24 @@ export default function CategoryList() {
 import { useShow } from "@refinedev/core";
 
 type ICategory = {
-    id: string;
-    label: string;
+  id: string;
+  label: string;
 };
 
 export default function CategoryShow() {
-    // `categories` resource and the `id` will be inferred from the route.
-    // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
-    const {
-        queryResult: { data, isLoading },
-    } = useShow<ICategory>();
+  // `categories` resource and the `id` will be inferred from the route.
+  // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
+  const {
+    queryResult: { data, isLoading },
+  } = useShow<ICategory>();
 
-    const categoryData = data?.data;
+  const categoryData = data?.data;
 
-    return (
-        <div>
-            <h1>{categoryData?.label}</h1>
-        </div>
-    );
+  return (
+    <div>
+      <h1>{categoryData?.label}</h1>
+    </div>
+  );
 }
 ```
 
@@ -290,7 +281,7 @@ Even though we're using the `NavigateToResource` component, when using Remix it'
 import { NavigateToResource } from "@refinedev/remix-router";
 
 export default function Index() {
-    return <NavigateToResource />;
+  return <NavigateToResource />;
 }
 ```
 
@@ -306,7 +297,7 @@ A basic component to navigate to a resource page. It is useful when you want to 
 import { NavigateToResource } from "@refinedev/remix-router";
 
 export default function IndexPage() {
-    return <NavigateToResource />;
+  return <NavigateToResource />;
 }
 ```
 
@@ -327,15 +318,15 @@ import { Refine } from "@refinedev/core";
 import { UnsavedChangesNotifier } from "@refinedev/remix-router";
 
 export default function App(): JSX.Element {
-    return (
-        <Refine
-        /* ... */
-        >
-            <Outlet />
-            {/* highlight-next-line */}
-            <UnsavedChangesNotifier />
-        </Refine>
-    );
+  return (
+    <Refine
+    /* ... */
+    >
+      <Outlet />
+      {/* highlight-next-line */}
+      <UnsavedChangesNotifier />
+    </Refine>
+  );
 }
 ```
 
@@ -371,74 +362,74 @@ First, let's create our `AuthProvider`. For more information on `AuthProvider`, 
 import { AuthBindings } from "@refinedev/core";
 
 const mockUsers = [
-    {
-        username: "admin",
-        roles: ["admin"],
-    },
-    {
-        username: "editor",
-        roles: ["editor"],
-    },
+  {
+    username: "admin",
+    roles: ["admin"],
+  },
+  {
+    username: "editor",
+    roles: ["editor"],
+  },
 ];
 
 export const authProvider: AuthBindings = {
-    login: async ({ username, password, remember }) => {
-        // Suppose we actually send a request to the back end here.
-        const user = mockUsers.find((item) => item.username === username);
+  login: async ({ username, password, remember }) => {
+    // Suppose we actually send a request to the back end here.
+    const user = mockUsers.find((item) => item.username === username);
 
-        if (user) {
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        }
+    if (user) {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    }
 
-        return {
-            success: false,
-            error: {
-                message: "Login failed",
-                name: "Invalid email or password",
-            },
-        };
-    },
-    logout: async () => {
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    onError: async (error) => {
-        if (error && error.statusCode === 401) {
-            return {
-                logout: true,
-                redirectTo: "/login",
-            };
-        }
+    return {
+      success: false,
+      error: {
+        message: "Login failed",
+        name: "Invalid email or password",
+      },
+    };
+  },
+  logout: async () => {
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  onError: async (error) => {
+    if (error && error.statusCode === 401) {
+      return {
+        logout: true,
+        redirectTo: "/login",
+      };
+    }
 
-        return {};
-    },
-    check: async ({ request, storage }) => {
-        const session = await storage.getSession(request.headers.get("Cookie"));
+    return {};
+  },
+  check: async ({ request, storage }) => {
+    const session = await storage.getSession(request.headers.get("Cookie"));
 
-        const user = session.get("user");
+    const user = session.get("user");
 
-        if (!user) {
-            return {
-                authenticated: false,
-                logout: true,
-                redirectTo: "/login",
-            };
-        }
-        return {
-            authenticated: true,
-        };
-    },
-    getPermissions: async () => {
-        return null;
-    },
-    getIdentity: async () => {
-        return null;
-    },
+    if (!user) {
+      return {
+        authenticated: false,
+        logout: true,
+        redirectTo: "/login",
+      };
+    }
+    return {
+      authenticated: true,
+    };
+  },
+  getPermissions: async () => {
+    return null;
+  },
+  getIdentity: async () => {
+    return null;
+  },
 };
 ```
 
@@ -449,73 +440,70 @@ import { createCookieSessionStorage, redirect } from "@remix-run/node";
 import { authProvider } from "./authProvider";
 
 type LoginForm = {
-    username: string;
-    password: string;
+  username: string;
+  password: string;
 };
 
 // normally you want this to be env variable
 const sessionSecret = "SUPER_SECRET_SESSION"; //process.env.SESSION_SECRET;
 
 if (!sessionSecret) {
-    throw new Error("SESSION_SECRET must be set");
+  throw new Error("SESSION_SECRET must be set");
 }
 
 const storage = createCookieSessionStorage({
-    cookie: {
-        name: "RJ_session",
-        // normally you want this to be `secure: true`
-        // but that doesn't work on localhost for Safari
-        // https://web.dev/when-to-use-local-https/
-        secure: process.env.NODE_ENV === "production",
-        secrets: [sessionSecret],
-        sameSite: "lax",
-        path: "/",
-        maxAge: 60 * 60 * 24 * 30,
-        httpOnly: true,
-    },
+  cookie: {
+    name: "RJ_session",
+    // normally you want this to be `secure: true`
+    // but that doesn't work on localhost for Safari
+    // https://web.dev/when-to-use-local-https/
+    secure: process.env.NODE_ENV === "production",
+    secrets: [sessionSecret],
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 30,
+    httpOnly: true,
+  },
 });
 
 export async function login({ username, password }: LoginForm) {
-    try {
-        const user = await authProvider.login({ username, password });
-        if (user) {
-            return { user };
-        }
-    } catch (error) {
-        return error;
+  try {
+    const user = await authProvider.login({ username, password });
+    if (user) {
+      return { user };
     }
+  } catch (error) {
+    return error;
+  }
 }
 
-export async function requireUserId(
-    request: Request,
-    redirectTo: string = new URL(request.url).pathname,
-) {
-    try {
-        const user = await authProvider.check?.({ request, storage });
-        return user;
-    } catch (error) {
-        const searchParams = new URLSearchParams([["to", redirectTo]]);
-        throw redirect(`/login?${searchParams}`);
-    }
+export async function requireUserId(request: Request, redirectTo: string = new URL(request.url).pathname) {
+  try {
+    const user = await authProvider.check?.({ request, storage });
+    return user;
+  } catch (error) {
+    const searchParams = new URLSearchParams([["to", redirectTo]]);
+    throw redirect(`/login?${searchParams}`);
+  }
 }
 
 export async function createUserSession(user: object, redirectTo: string) {
-    const session = await storage.getSession();
-    session.set("user", { ...user });
-    return redirect(redirectTo, {
-        headers: {
-            "Set-Cookie": await storage.commitSession(session),
-        },
-    });
+  const session = await storage.getSession();
+  session.set("user", { ...user });
+  return redirect(redirectTo, {
+    headers: {
+      "Set-Cookie": await storage.commitSession(session),
+    },
+  });
 }
 
 export async function logout(request: Request) {
-    const session = await storage.getSession(request.headers.get("Cookie"));
-    return redirect("/login", {
-        headers: {
-            "Set-Cookie": await storage.destroySession(session),
-        },
-    });
+  const session = await storage.getSession(request.headers.get("Cookie"));
+  return redirect("/login", {
+    headers: {
+      "Set-Cookie": await storage.destroySession(session),
+    },
+  });
 }
 ```
 
@@ -532,87 +520,64 @@ import { ActionFunction } from "@remix-run/node";
 import { useSearchParams } from "@remix-run/react";
 
 export interface ILoginForm {
-    username: string;
-    password: string;
+  username: string;
+  password: string;
 }
 
 const LoginPage: React.FC = () => {
-    const translate = useTranslate();
-    const [searchParams] = useSearchParams();
+  const translate = useTranslate();
+  const [searchParams] = useSearchParams();
 
-    return (
-        <>
-            <h1>{translate("pages.login.title", "Sign in your account")}</h1>
-            <form method="post">
+  return (
+    <>
+      <h1>{translate("pages.login.title", "Sign in your account")}</h1>
+      <form method="post">
+        <input type="hidden" name="redirectTo" value={searchParams.get("to") ?? undefined} />
+        <table>
+          <tbody>
+            <tr>
+              <td>{translate("pages.login.username", undefined, "username")}:</td>
+              <td>
                 <input
-                    type="hidden"
-                    name="redirectTo"
-                    value={searchParams.get("to") ?? undefined}
+                  name="username"
+                  type="text"
+                  size={20}
+                  autoCorrect="off"
+                  spellCheck={false}
+                  autoCapitalize="off"
+                  autoFocus
+                  required
                 />
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                {translate(
-                                    "pages.login.username",
-                                    undefined,
-                                    "username",
-                                )}
-                                :
-                            </td>
-                            <td>
-                                <input
-                                    name="username"
-                                    type="text"
-                                    size={20}
-                                    autoCorrect="off"
-                                    spellCheck={false}
-                                    autoCapitalize="off"
-                                    autoFocus
-                                    required
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                {translate(
-                                    "pages.login.password",
-                                    undefined,
-                                    "password",
-                                )}
-                                :
-                            </td>
-                            <td>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    required
-                                    size={20}
-                                />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br />
-                <input type="submit" value="login" />
-            </form>
-        </>
-    );
+              </td>
+            </tr>
+            <tr>
+              <td>{translate("pages.login.password", undefined, "password")}:</td>
+              <td>
+                <input type="password" name="password" required size={20} />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <input type="submit" value="login" />
+      </form>
+    </>
+  );
 };
 
 export const action: ActionFunction = async ({ request }) => {
-    const form = await request.formData();
-    const username = form.get("username") as string;
-    const password = form.get("password") as string;
-    const redirectTo = form.get("redirectTo") || "/";
-    // highlight-start
-    const user = await login({ username, password });
-    if (!user) {
-        return null;
-    }
+  const form = await request.formData();
+  const username = form.get("username") as string;
+  const password = form.get("password") as string;
+  const redirectTo = form.get("redirectTo") || "/";
+  // highlight-start
+  const user = await login({ username, password });
+  if (!user) {
+    return null;
+  }
 
-    return createUserSession(user as any, redirectTo as string);
-    // highlight-end
+  return createUserSession(user as any, redirectTo as string);
+  // highlight-end
 };
 
 export default LoginPage;
@@ -621,7 +586,9 @@ export default LoginPage;
 Yeeyy! Now our users can login! 🎉
 
 :::tip
+
 Remember, actions and loaders run on the server, so console.log calls you put in those you can't see in the browser console. Those will show up in the terminal window you're running your server in.
+
 :::
 
 We can call the `requireUserId` function on our routes where we want the authentication check done.
@@ -632,10 +599,10 @@ import { json, LoaderFunction } from "@remix-run/node";
 import { requireUserId } from "~/session.server";
 
 export const loader: LoaderFunction = async ({ params, request, context }) => {
-    //highlight-next-line
-    await requireUserId(request);
+  //highlight-next-line
+  await requireUserId(request);
 
-    return json({});
+  return json({});
 };
 ```
 
@@ -647,7 +614,7 @@ import type { LoaderFunction } from "@remix-run/node";
 import { logout } from "~/session.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
-    return await logout(request);
+  return await logout(request);
 };
 ```
 
@@ -672,93 +639,93 @@ import * as cookie from "cookie";
 // highlight-end
 
 const mockUsers = [
-    {
-        username: "admin",
-        roles: ["admin"],
-    },
-    {
-        username: "editor",
-        roles: ["editor"],
-    },
+  {
+    username: "admin",
+    roles: ["admin"],
+  },
+  {
+    username: "editor",
+    roles: ["editor"],
+  },
 ];
 
 // highlight-next-line
 const COOKIE_NAME = "user";
 
 export const authProvider: AuthBindings = {
-    login: ({ username, password, remember }) => {
-        // Suppose we actually send a request to the back end here.
-        const user = mockUsers.find((item) => item.username === username);
+  login: ({ username, password, remember }) => {
+    // Suppose we actually send a request to the back end here.
+    const user = mockUsers.find((item) => item.username === username);
 
-        if (user) {
-            // highlight-next-line
-            Cookies.set(COOKIE_NAME, JSON.stringify(user));
-            return {
-                success: true,
-            };
-        }
+    if (user) {
+      // highlight-next-line
+      Cookies.set(COOKIE_NAME, JSON.stringify(user));
+      return {
+        success: true,
+      };
+    }
 
-        return {
-            success: false,
-        };
-    },
-    logout: () => {
-        // highlight-next-line
-        Cookies.remove(COOKIE_NAME);
+    return {
+      success: false,
+    };
+  },
+  logout: () => {
+    // highlight-next-line
+    Cookies.remove(COOKIE_NAME);
 
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
-    onError: (error) => {
-        if (error && error.statusCode === 401) {
-            return {
-                error: new Error("Unauthorized"),
-                logout: true,
-                redirectTo: "/login",
-            };
-        }
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
+  onError: (error) => {
+    if (error && error.statusCode === 401) {
+      return {
+        error: new Error("Unauthorized"),
+        logout: true,
+        redirectTo: "/login",
+      };
+    }
 
-        return {};
-    },
-    check: async (context) => {
-        // highlight-start
-        let user = undefined;
-        if (context) {
-            // for SSR
-            const { request } = context;
-            const parsedCookie = cookie.parse(request.headers.get("Cookie"));
-            user = parsedCookie[COOKIE_NAME];
-        } else {
-            // for CSR
-            const parsedCookie = Cookies.get(COOKIE_NAME);
-            user = parsedCookie ? JSON.parse(parsedCookie) : undefined;
-        }
-        // highlight-end
+    return {};
+  },
+  check: async (context) => {
+    // highlight-start
+    let user = undefined;
+    if (context) {
+      // for SSR
+      const { request } = context;
+      const parsedCookie = cookie.parse(request.headers.get("Cookie"));
+      user = parsedCookie[COOKIE_NAME];
+    } else {
+      // for CSR
+      const parsedCookie = Cookies.get(COOKIE_NAME);
+      user = parsedCookie ? JSON.parse(parsedCookie) : undefined;
+    }
+    // highlight-end
 
-        if (!user) {
-            return {
-                authenticated: false,
-                error: {
-                    message: "Check failed",
-                    name: "Unauthorized",
-                },
-                logout: true,
-                redirectTo: "/login",
-            };
-        }
+    if (!user) {
+      return {
+        authenticated: false,
+        error: {
+          message: "Check failed",
+          name: "Unauthorized",
+        },
+        logout: true,
+        redirectTo: "/login",
+      };
+    }
 
-        return {
-            authenticated: true,
-        };
-    },
-    getPermissions: async () => {
-        return null;
-    },
-    getIdentity: async () => {
-        return null;
-    },
+    return {
+      authenticated: true,
+    };
+  },
+  getPermissions: async () => {
+    return null;
+  },
+  getIdentity: async () => {
+    return null;
+  },
 };
 ```
 
@@ -771,14 +738,14 @@ import { json, LoaderFunction } from "@remix-run/node";
 import { authProvider } from "~/authProvider";
 
 export const loader: LoaderFunction = async ({ params, request, context }) => {
-    // We've handled the SSR case in our `check` function by sending the `request` as parameter.
-    const { authenticated } = await authProvider.check(request);
+  // We've handled the SSR case in our `check` function by sending the `request` as parameter.
+  const { authenticated } = await authProvider.check(request);
 
-    if (!authenticated) {
-        return json({}, { status: 401 });
-    }
+  if (!authenticated) {
+    return json({}, { status: 401 });
+  }
 
-    return null;
+  return null;
 };
 ```
 
@@ -792,24 +759,25 @@ There are two ways to do Server Side Authentication with Remix. You can choose o
 
 On the server-side `accessControlProvider`'s `can` function inside server side functions (`loader`) to redirect unauthorized users to other pages using `redirect` from `@remix-run/node`.
 
-First, let's build our [AccessControlProvider](/docs/api-reference/core/providers/accessControl-provider.md)
+First, let's build our [AccessControlProvider](/docs/api-reference/core/providers/access-control-provider.md)
 
 ```tsx title="app/acccessControlProvider.ts"
 export const accessControlProvider = {
-    can: async ({ resource, action, params }) => {
-        if (resource === "posts" && action === "edit") {
-            return {
-                can: false,
-                reason: "Unauthorized",
-            };
-        }
+  can: async ({ resource, action, params }) => {
+    if (resource === "posts" && action === "edit") {
+      return {
+        can: false,
+        reason: "Unauthorized",
+      };
+    }
 
-        return { can: true };
-    },
+    return { can: true };
+  },
 };
 ```
 
 :::tip
+
 You can also access resource object directly.
 
 ```tsx
@@ -817,18 +785,14 @@ const resourceName = params?.resource?.name;
 const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
 
 export const accessControlProvider = {
-    can: async ({ resource, action, params }) => {
-        if (
-            resourceName === "posts" &&
-            anyUsefulMeta === true &&
-            action === "edit"
-        ) {
-            return {
-                can: false,
-                reason: "Unauthorized",
-            };
-        }
-    },
+  can: async ({ resource, action, params }) => {
+    if (resourceName === "posts" && anyUsefulMeta === true && action === "edit") {
+      return {
+        can: false,
+        reason: "Unauthorized",
+      };
+    }
+  },
 };
 ```
 
@@ -846,28 +810,28 @@ import { API_URL } from "~/constants";
 import { accessControlProvider } from "../accessControlProvider";
 
 const PostList: React.FC = () => {
-    const { initialData } = useLoaderData<typeof loader>();
+  const { initialData } = useLoaderData<typeof loader>();
 
-    return <>{/* ... */}</>;
+  return <>{/* ... */}</>;
 };
 
 export default PostList;
 
 export async function loader({ request }: LoaderArgs) {
-    const can = accessControlProvider.can({
-        resource: "posts",
-        action: "list",
-    });
+  const can = accessControlProvider.can({
+    resource: "posts",
+    action: "list",
+  });
 
-    if (!can) {
-        return json({}, { status: 403 });
-    }
+  if (!can) {
+    return json({}, { status: 403 });
+  }
 
-    const data = await dataProvider(API_URL).getList<IPost>({
-        resource: "posts",
-    });
+  const data = await dataProvider(API_URL).getList<IPost>({
+    resource: "posts",
+  });
 
-    return json({ initialData: data });
+  return json({ initialData: data });
 }
 ```
 
@@ -881,9 +845,9 @@ For client-side, you can wrap your pages with [`CanAccess`](/docs/api-reference/
 import { CanAccess } from "@refinedev/core";
 
 export const MyPage = () => (
-    <CanAccess>
-        <div>{/* ... */}</div>
-    </CanAccess>
+  <CanAccess>
+    <div>{/* ... */}</div>
+  </CanAccess>
 );
 ```
 
@@ -908,34 +872,34 @@ import { useLoaderData } from "@remix-run/react";
 import { dataProvider } from "src/providers";
 
 type IPost = {
-    id: number;
-    title: string;
-    description: string;
+  id: number;
+  title: string;
+  description: string;
 };
 
 export async function loader() {
-    const { data } = await dataProvider.getList<IPost>("posts", {
-        pagination: {
-            page: 1,
-            perPage: 10,
-        },
-    });
+  const { data } = await dataProvider.getList<IPost>("posts", {
+    pagination: {
+      page: 1,
+      perPage: 10,
+    },
+  });
 
-    return json(data);
+  return json(data);
 }
 
 export default function Posts() {
-    const initialPosts = useLoaderData<typeof loader>();
+  const initialPosts = useLoaderData<typeof loader>();
 
-    const {
-        tableQueryResult: { data },
-    } = useTable<IPost>({
-        queryOptions: {
-            initialData: initialPosts,
-        },
-    });
+  const {
+    tableQueryResult: { data },
+  } = useTable<IPost>({
+    queryOptions: {
+      initialData: initialPosts,
+    },
+  });
 
-    return <>{/* ... */}</>;
+  return <>{/* ... */}</>;
 }
 ```
 
@@ -945,33 +909,33 @@ If `syncWithLocation` is enabled, query parameters must be handled while doing S
 
 ```tsx
 import { json, LoaderFunction } from "@remix-run/node";
-// highligt-next-line
+// highlight-next-line
 import { parseTableParams } from "@refinedev/remix-router";
 import dataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 export const loader: LoaderFunction = async ({ params, request }) => {
-    const { resource } = params;
-    const url = new URL(request.url);
+  const { resource } = params;
+  const url = new URL(request.url);
 
-    // highligt-next-line
-    const tableParams = parseTableParams(url.search);
+  // highlight-next-line
+  const tableParams = parseTableParams(url.search);
 
-    try {
-        const data = await dataProvider(API_URL).getList({
-            resource: resource as string,
-            ...tableParams, // this includes `filters`, `sorters` and `pagination`
-        });
+  try {
+    const data = await dataProvider(API_URL).getList({
+      resource: resource as string,
+      ...tableParams, // this includes `filters`, `sorters` and `pagination`
+    });
 
-        return json({ initialData: data });
-    } catch (error) {
-        return json({});
-    }
+    return json({ initialData: data });
+  } catch (error) {
+    return json({});
+  }
 };
 
 export default function MyListRoute() {
-    return <>{/* ... */}</>;
+  return <>{/* ... */}</>;
 }
 ```
 
@@ -989,7 +953,7 @@ In remix, you can use a splat ($) route to handle the 404s. Check out the [remix
 import { json, LoaderFunction } from "@remix-run/node";
 
 export const loader: LoaderFunction = async ({ params, request, context }) => {
-    return json({}, { status: 404 });
+  return json({}, { status: 404 });
 };
 ```
 
@@ -999,11 +963,11 @@ export const loader: LoaderFunction = async ({ params, request, context }) => {
 import { Authenticated } from "@refinedev/core";
 
 export default function NotFound() {
-    return (
-        <Authenticated>
-            <div>I'm the 404 page for the authenticated users.</div>
-        </Authenticated>
-    );
+  return (
+    <Authenticated>
+      <div>I'm the 404 page for the authenticated users.</div>
+    </Authenticated>
+  );
 }
 ```
 
@@ -1023,21 +987,21 @@ We'll define our resources in the `<Refine>` component:
 
 ```tsx title=app/root.tsx
 return (
-    <Refine
-        resources={[
-            {
-                name: "posts",
-                list: "/posts",
-                show: "/posts/show/:id",
-            },
-            {
-                name: "categories",
-                list: "/categories",
-            },
-        ]}
-    >
-        {/* ... */}
-    </Refine>
+  <Refine
+    resources={[
+      {
+        name: "posts",
+        list: "/posts",
+        show: "/posts/show/:id",
+      },
+      {
+        name: "categories",
+        list: "/categories",
+      },
+    ]}
+  >
+    {/* ... */}
+  </Refine>
 );
 ```
 
@@ -1049,29 +1013,31 @@ import { RefineRoutes } from "@refinedev/remix-router";
 import { ErrorPage } from "components/error";
 
 export default function CatchAll() {
-    return (
-        <RefineRoutes>
-            {(matchingRoute) => {
-                if (matchingRoute) {
-                    return { matchingRoute };
-                }
+  return (
+    <RefineRoutes>
+      {(matchingRoute) => {
+        if (matchingRoute) {
+          return { matchingRoute };
+        }
 
-                return <ErrorPage />;
-            }}
-        </RefineRoutes>
-    );
+        return <ErrorPage />;
+      }}
+    </RefineRoutes>
+  );
 }
 ```
 
 :::info
+
 When components are used to define the resource actions, default paths will be used. You can override the default paths by assigning an object with `component` and `path` properties to the action properties.
 
 Default paths are:
 
--   `list`: `/resources`
--   `create`: `/resources/create`
--   `edit`: `/resources/edit/:id`
--   `show`: `/resources/show/:id`
+- `list`: `/resources`
+- `create`: `/resources/create`
+- `edit`: `/resources/edit/:id`
+- `show`: `/resources/show/:id`
+
 :::
 
 ## Example

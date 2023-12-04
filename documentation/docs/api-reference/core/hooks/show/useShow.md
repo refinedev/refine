@@ -21,7 +21,9 @@ If you define `resource` and `id` on the hook, when these properties are changed
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useShow` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
@@ -45,7 +47,7 @@ method={{
 
 ```tsx
 useShow({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -59,8 +61,8 @@ import { useShow, useParsed } from "@refinedev/core";
 const { id } = useParsed();
 
 useShow({
-    resource: "custom-resource",
-    id,
+  resource: "custom-resource",
+  id,
 });
 ```
 
@@ -70,7 +72,7 @@ Or you can use the `setId` function to set the `id` value.
 import { useShow } from "@refinedev/core";
 
 const { setShowId } = useShow({
-    resource: "custom-resource",
+  resource: "custom-resource",
 });
 
 setShowId("123");
@@ -90,7 +92,7 @@ It will be passed to the `getOne` method from the `dataProvider` as a parameter.
 
 ```tsx
 useShow({
-    id: 123,
+  id: 123,
 });
 ```
 
@@ -98,47 +100,47 @@ useShow({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useShow({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  getOne: async ({
+    resource,
+    id,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}/${id}`;
+
     //...
-    getOne: async ({
-        resource,
-        id,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}/${id}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data } = await httpClient.get(`${url}`, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data } = await httpClient.get(`${url}`, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### `dataProviderName`
 
@@ -146,7 +148,7 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 
 ```tsx
 useShow({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -156,10 +158,10 @@ useShow({
 
 ```tsx
 useShow({
-    queryOptions: {
-        retry: 3,
-        enabled: false,
-    },
+  queryOptions: {
+    retry: 3,
+    enabled: false,
+  },
 });
 ```
 
@@ -168,54 +170,60 @@ useShow({
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 After data is fetched successfully, `useShow` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx
 useShow({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 After data fetching is failed, `useShow` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useShow({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
 ### `liveMode`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
 ```tsx
 useShow({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
@@ -224,23 +232,27 @@ useShow({
 ### `onLiveEvent`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useShow({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
 ### `liveParams`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
@@ -248,26 +260,29 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
 const { overtime } = useShow({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
-    }
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
+    },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ## Return Values
 
 ### `queryResult`
@@ -287,6 +302,7 @@ When you want to change the `showId` value, you can use this setter. It is usefu
 It will trigger new request to fetch the data when the `showId` value is changed.
 
 ### Additional Values
+
 #### `overtime`
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
@@ -305,7 +321,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Type Parameters
 
-| Property     | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property     | Description                                                                                                                                                         | Type                       | Default                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

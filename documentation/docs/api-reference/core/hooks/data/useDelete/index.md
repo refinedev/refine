@@ -18,15 +18,17 @@ import { useDelete } from "@refinedev/core";
 const { mutate } = useDelete();
 
 mutate({
-    resource: "products",
-    id: 1,
+  resource: "products",
+  id: 1,
 });
 ```
 
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useDelete` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. This is useful when you want to publish the changes to the subscribers on the client side.
@@ -42,7 +44,9 @@ When the `useDelete` mutation runs successfully, it will invalidate the followin
 ## Audit Logs
 
 :::caution
+
 This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
+
 :::
 
 When the `useDelete` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data`, `previousData` etc. This is useful when you want to log the changes to the database.
@@ -59,9 +63,9 @@ When the `useDelete` mutation runs successfully, it will call the `log` method f
 
 ```tsx
 useDelete({
-    mutationOptions: {
-        retry: 3,
-    },
+  mutationOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -73,18 +77,18 @@ useDelete({
 const { mutate } = useDelete();
 
 mutate(
-    {
-        resource: "products",
-        id: 1,
+  {
+    resource: "products",
+    id: 1,
+  },
+  {
+    onError: (error, variables, context) => {
+      // An error occurred!
     },
-    {
-        onError: (error, variables, context) => {
-            // An error occurred!
-        },
-        onSuccess: (data, variables, context) => {
-            // Let's celebrate!
-        },
+    onSuccess: (data, variables, context) => {
+      // Let's celebrate!
     },
+  },
 );
 ```
 
@@ -99,19 +103,21 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useDelete({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
 
 ## Mutation Parameters
@@ -124,7 +130,7 @@ This parameter will be passed to the `deleteOne` method from the `dataProvider` 
 const { mutate } = useDelete();
 
 mutate({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -142,7 +148,7 @@ This parameter will be passed to the `deleteOne` method from the `dataProvider` 
 const { mutate } = useDelete();
 
 mutate({
-    id: 123,
+  id: 123,
 });
 ```
 
@@ -157,7 +163,7 @@ Each mode corresponds to a different type of user experience.
 const { mutate } = useDelete();
 
 mutate({
-    mutationMode: "undoable",
+  mutationMode: "undoable",
 });
 ```
 
@@ -169,8 +175,8 @@ When `mutationMode` is set to `undoable`, `undoableTimeout` is used to determine
 const { mutate } = useDelete();
 
 mutate({
-    mutationMode: "undoable",
-    undoableTimeout: 10000,
+  mutationMode: "undoable",
+  undoableTimeout: 10000,
 });
 ```
 
@@ -185,36 +191,38 @@ import { useRef } from "react";
 import { useDelete } from "@refinedev/core";
 
 const MyComponent = () => {
-    const { mutate } = useDelete();
-    const cancelRef = useRef<(() => void) | null>(null);
+  const { mutate } = useDelete();
+  const cancelRef = useRef<(() => void) | null>(null);
 
-    const deleteItem = () => {
-        mutate({
-            //...
-            mutationMode: "undoable",
-            onCancel: (cancelMutation) => {
-                cancelRef.current = cancelMutation;
-            },
-        });
-    };
+  const deleteItem = () => {
+    mutate({
+      //...
+      mutationMode: "undoable",
+      onCancel: (cancelMutation) => {
+        cancelRef.current = cancelMutation;
+      },
+    });
+  };
 
-    const cancelDelete = () => {
-        cancelRef.current?.();
-    };
+  const cancelDelete = () => {
+    cancelRef.current?.();
+  };
 
-    return (
-        <>
-            <button onClick={deleteItem}>Delete</button>
-            <button onClick={cancelDelete}>Cancel</button>
-        </>
-    );
+  return (
+    <>
+      <button onClick={deleteItem}>Delete</button>
+      <button onClick={cancelDelete}>Cancel</button>
+    </>
+  );
 };
 ```
 
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useDelete` calls the `open` function from `NotificationProvider`:
@@ -223,20 +231,22 @@ This prop allows you to customize the success notification that shows up when th
 const { mutate } = useDelete();
 
 mutate({
-    successNotification: (data, id, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, id, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useDelete` calls the `open` function from `NotificationProvider`:
@@ -245,13 +255,13 @@ This prop allows you to customize the error notification that shows up when the 
 const { mutate } = useDelete();
 
 mutate({
-    errorNotification: (data, id, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, id, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -259,8 +269,8 @@ mutate({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
 In the following example, we pass the `headers` property in the `meta` object to the `deleteOne` method. You can pass any properties to specifically handle the data provider methods with similar logic.
 
@@ -268,40 +278,40 @@ In the following example, we pass the `headers` property in the `meta` object to
 const { mutate } = useDelete();
 
 mutate({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  deleteOne: async ({
+    resource,
+    id,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}/${id}`;
+
     //...
-    deleteOne: async ({
-        resource,
-        id,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}/${id}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data } = await httpClient.delete(url, undefined, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data } = await httpClient.delete(url, undefined, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### `dataProviderName`
 
@@ -311,7 +321,7 @@ This prop allows you to specify which `dataProvider` if you have more than one. 
 const { mutate } = useDelete();
 
 mutate({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -325,7 +335,7 @@ By default, it invalidates the following queries from the current `resource`: `"
 const { mutate } = useDelete();
 
 mutate({
-    invalidates: ["list", "many"],
+  invalidates: ["list", "many"],
 });
 ```
 
@@ -351,32 +361,34 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Mutation Parameters
 
-| Property                                                                                            | Description                                                                                        | Type                                                                                     | Default                             |
-| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                                 |                                     |
-| id <div className=" required">Required</div>                                                        | id for mutation function                                                                           | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                   |                                     |
-| mutationMode                                                                                        | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                         | `"pessimistic"`\*                   |
-| undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                                 | `5000ms`\*                          |
-| onCancel                                                                                            | Provides a function to cancel the mutation when `mutationMode = "undoable"`                        | `(cancelMutation: () => void) => void`                                                   |                                     |
-| successNotification                                                                                 | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) | "Successfully deleted a `resource`" |
-| errorNotification                                                                                   | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) | "Error (status code: `status`"      |
-| meta                                                                                                | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                       | {}                                  |
-| dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                 | `default`                           |
-| invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                  | `["list", "many"]`                  |
+| Property                                                                                            | Description                                                                                        | Type                                                                                          | Default                             |
+| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                                      |                                     |
+| id <div className=" required">Required</div>                                                        | id for mutation function                                                                           | [`BaseKey`](/docs/api-reference/core/interfaces.md#basekey)                                   |                                     |
+| mutationMode                                                                                        | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                              | `"pessimistic"`\*                   |
+| undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                                      | `5000ms`\*                          |
+| onCancel                                                                                            | Provides a function to cancel the mutation when `mutationMode = "undoable"`                        | `(cancelMutation: () => void) => void`                                                        |                                     |
+| successNotification                                                                                 | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/docs/api-reference/core/interfaces.md#successerrornotification) | "Successfully deleted a `resource`" |
+| errorNotification                                                                                   | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/docs/api-reference/core/interfaces.md#successerrornotification) | "Error (status code: `status`"      |
+| meta                                                                                                | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/api-reference/core/interfaces.md#metadataquery)                       | {}                                  |
+| dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                      | `default`                           |
+| invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                       | `["list", "many"]`                  |
 
 :::note
-These props have default values in `RefineContext` and can also be set on [`<Refine>`](/api-reference/core/components/refine-config.md) component. `useDelete` will use what is passed to `<Refine>` as default but a local value will override it.
+
+These props have default values in `RefineContext` and can also be set on [`<Refine>`](/docs/api-reference/core/components/refine-config.md) component. `useDelete` will use what is passed to `<Refine>` as default but a local value will override it.
+
 :::
 
 <br/>
 
 ### Type Parameters
 
-| Property   | Desription                                                                                        | Type                                                         | Default                                                      |
-| ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
-| TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
-| TVariables | Values for mutation function                                                                      | `{}`                                                         | `{}`                                                         |
+| Property   | Description                                                                                            | Type                                                              | Default                                                           |
+| ---------- | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](/docs/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/docs/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/docs/api-reference/core/interfaces.md#baserecord) |
+| TError     | Custom error object that extends [`HttpError`](/docs/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/docs/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/docs/api-reference/core/interfaces.md#httperror)   |
+| TVariables | Values for mutation function                                                                           | `{}`                                                              | `{}`                                                              |
 
 ### Return value
 

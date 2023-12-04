@@ -26,30 +26,27 @@ import { MantineProvider, LightTheme } from "@mantine/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        {/* highlight-next-line */}
-                        <Route
-                            path="/samples"
-                            element={<MantineInferencer />}
-                        />
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          routerProvider={routerProvider}
+          resources={[
+            {
+              name: "samples",
+              list: "/samples",
+            },
+          ]}
+        >
+          <Routes>
+            {/* highlight-next-line */}
+            <Route path="/samples" element={<MantineInferencer />} />
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </MantineProvider>
+  );
 };
 ```
 
@@ -61,31 +58,31 @@ const App = () => {
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const SampleList = () => {
-    return (
-        // highlight-next-line
-        <MantineInferencer resource="samples" action="list" />
-    );
+  return (
+    // highlight-next-line
+    <MantineInferencer resource="samples" action="list" />
+  );
 };
 
 const SampleShow = () => {
-    return (
-        // highlight-next-line
-        <MantineInferencer resource="samples" action="show" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <MantineInferencer resource="samples" action="show" id="1" />
+  );
 };
 
 const SampleCreate = () => {
-    return (
-        // highlight-next-line
-        <MantineInferencer resource="samples" action="create" />
-    );
+  return (
+    // highlight-next-line
+    <MantineInferencer resource="samples" action="create" />
+  );
 };
 
 const SampleEdit = () => {
-    return (
-        // highlight-next-line
-        <MantineInferencer resource="samples" action="edit" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <MantineInferencer resource="samples" action="edit" id="1" />
+  );
 };
 ```
 
@@ -93,7 +90,9 @@ const SampleEdit = () => {
 </Tabs>
 
 :::info
+
 To learn more about `@refinedev/inferencer` package, please check out its [Documentation](/docs/packages/documentation/inferencer)
+
 :::
 
 ## Views
@@ -120,43 +119,36 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          resources={[
+            {
+              name: "samples",
+              list: "/samples",
+            },
+          ]}
         >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            {/* highlight-next-line */}
-                            <Route
-                                path="/samples"
-                                element={<MantineInferencer />}
-                            />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </MantineProvider>
-    );
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              {/* highlight-next-line */}
+              <Route path="/samples" element={<MantineInferencer />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </MantineProvider>
+  );
 };
 
 // visible-block-end
@@ -186,43 +178,36 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          resources={[
+            {
+              name: "samples",
+              show: "/samples/show/:id",
+            },
+          ]}
         >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "samples",
-                            show: "/samples/show/:id",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            {/* highlight-next-line */}
-                            <Route
-                                path="/samples/show/:id"
-                                element={<MantineInferencer />}
-                            />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </MantineProvider>
-    );
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              {/* highlight-next-line */}
+              <Route path="/samples/show/:id" element={<MantineInferencer />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </MantineProvider>
+  );
 };
 
 // visible-block-end
@@ -252,43 +237,36 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          resources={[
+            {
+              name: "samples",
+              create: "/samples/create",
+            },
+          ]}
         >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "samples",
-                            create: "/samples/create",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            {/* highlight-next-line */}
-                            <Route
-                                path="/samples/create"
-                                element={<MantineInferencer />}
-                            />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </MantineProvider>
-    );
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              {/* highlight-next-line */}
+              <Route path="/samples/create" element={<MantineInferencer />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </MantineProvider>
+  );
 };
 
 // visible-block-end
@@ -318,43 +296,36 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          resources={[
+            {
+              name: "samples",
+              edit: "/samples/edit/:id",
+            },
+          ]}
         >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "samples",
-                            edit: "/samples/edit/:id",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            {/* highlight-next-line */}
-                            <Route
-                                path="/samples/edit/:id"
-                                element={<MantineInferencer />}
-                            />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </MantineProvider>
-    );
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              {/* highlight-next-line */}
+              <Route path="/samples/edit/:id" element={<MantineInferencer />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </MantineProvider>
+  );
 };
 
 // visible-block-end

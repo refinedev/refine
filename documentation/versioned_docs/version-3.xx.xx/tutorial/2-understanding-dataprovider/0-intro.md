@@ -2,9 +2,9 @@
 id: index
 title: 1. Data Provider
 tutorial:
-    order: 0
-    prev: false
-    next: tutorial/understanding-dataprovider/swizzle
+  order: 0
+  prev: false
+  next: tutorial/understanding-dataprovider/swizzle
 ---
 
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
@@ -25,7 +25,7 @@ We'll see how to create data provider in the next sections.
 Data providers can communicate with `REST`, `GraphQL`, `RPC`, and `SOAP` based API's. You can imagine the data provider is an adapter between refine and the API.
 
 <div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/tutorial_dataprovider_flog.png" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.png" />
 </div>
 <br/>
 <br/>
@@ -85,22 +85,22 @@ To illustrate this internal connection, imagine we want to get all records from 
 import { useList } from "@pankod/refine-core";
 
 const postUseListResult = useList({
-    resource: "posts",
-    config: {
-        sort: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-        filters: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "hello",
-            },
-        ],
-    },
+  resource: "posts",
+  config: {
+    sort: [
+      {
+        field: "id",
+        order: "desc",
+      },
+    ],
+    filters: [
+      {
+        field: "title",
+        operator: "contains",
+        value: "hello",
+      },
+    ],
+  },
 });
 ```
 

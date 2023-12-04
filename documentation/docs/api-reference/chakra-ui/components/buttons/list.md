@@ -8,26 +8,24 @@ swizzle: true
 const { default: sharedRouterProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    legacyRouterProvider: sharedRouterProvider,
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    Layout: RefineChakra.Layout,
-    Sider: () => null,
-    catchAll: <RefineChakra.ErrorComponent />,
+  legacyRouterProvider: sharedRouterProvider,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  Layout: RefineChakra.Layout,
+  Sider: () => null,
+  catchAll: <RefineChakra.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
-            {children}
-        </ChakraUI.ChakraProvider>
-    );
+  return <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>{children}</ChakraUI.ChakraProvider>;
 };
 ```
 
-`<ListButton>` is using Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
+`<ListButton>` is using Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `list` method from [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
+
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+
 :::
 
 ## Usage
@@ -40,73 +38,73 @@ import { ShowButton } from "@refinedev/chakra-ui";
 // visible-block-start
 import { useShow } from "@refinedev/core";
 import {
-    Show,
-    MarkdownField,
-    //highlight-next-line
-    ListButton,
+  Show,
+  MarkdownField,
+  //highlight-next-line
+  ListButton,
 } from "@refinedev/chakra-ui";
 import { Heading, Text, Spacer } from "@chakra-ui/react";
 
 const PostShow: React.FC = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        // highlight-next-line
-        <Show headerButtons={<ListButton />} isLoading={isLoading}>
-            <Heading as="h5" size="sm">
-                Id
-            </Heading>
-            <Text mt={2}>{record?.id}</Text>
+  return (
+    // highlight-next-line
+    <Show headerButtons={<ListButton />} isLoading={isLoading}>
+      <Heading as="h5" size="sm">
+        Id
+      </Heading>
+      <Text mt={2}>{record?.id}</Text>
 
-            <Heading as="h5" size="sm" mt={4}>
-                Title
-            </Heading>
-            <Text mt={2}>{record?.title}</Text>
+      <Heading as="h5" size="sm" mt={4}>
+        Title
+      </Heading>
+      <Text mt={2}>{record?.title}</Text>
 
-            <Heading as="h5" size="sm" mt={4}>
-                Content
-            </Heading>
-            <Spacer mt={2} />
-            <MarkdownField value={record?.content} />
-        </Show>
-    );
+      <Heading as="h5" size="sm" mt={4}>
+        Content
+      </Heading>
+      <Spacer mt={2} />
+      <MarkdownField value={record?.content} />
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            notificationProvider={RefineChakra.notificationProvider()}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <RefineChakra.VStack alignItems="flex-start">
-                            <RefineChakra.Text>
-                                This page is empty.
-                            </RefineChakra.Text>
-                            <ShowButton colorScheme="black" recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </RefineChakra.VStack>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      notificationProvider={RefineChakra.notificationProvider()}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <RefineChakra.VStack alignItems="flex-start">
+              <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+              <ShowButton colorScheme="black" recordItemId="123">
+                Show Item 123
+              </ShowButton>
+            </RefineChakra.VStack>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 :::note
-The button text is defined automatically by **refine** based on the *resource* object name property.
+
+The button text is defined automatically by **refine** based on the _resource_ object name property.
+
 :::
 
 ## Properties
@@ -123,57 +121,53 @@ import { Refine } from "@refinedev/core";
 import { ListButton } from "@refinedev/chakra-ui";
 
 const MyListComponent = () => {
-    return <ListButton colorScheme="black" resource="categories" />;
+  return <ListButton colorScheme="black" resource="categories" />;
 };
 // visible-block-end
 
 const ListPage = () => {
-    const { list } = RefineCore.useNavigation();
-    const params = RefineCore.useRouterContext().useParams();
+  const { list } = RefineCore.useNavigation();
+  const params = RefineCore.useRouterContext().useParams();
 
-    return (
-        <RefineChakra.VStack alignItems="flex-start">
-            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
-                URL Parameters:
-            </RefineChakra.Text>
-            <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
+  return (
+    <RefineChakra.VStack alignItems="flex-start">
+      <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
+        URL Parameters:
+      </RefineChakra.Text>
+      <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
 
-            <RefineChakra.Button
-                size="sm"
-                onClick={() => list("posts")}
-                colorScheme="green"
-            >
-                Go back
-            </RefineChakra.Button>
-        </RefineChakra.VStack>
-    );
+      <RefineChakra.Button size="sm" onClick={() => list("posts")} colorScheme="green">
+        Go back
+      </RefineChakra.Button>
+    </RefineChakra.VStack>
+  );
 };
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyListComponent,
-                },
-                {
-                    name: "categories",
-                    list: ListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyListComponent,
+        },
+        {
+          name: "categories",
+          list: ListPage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
-Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `list` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `list` method of [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `list` action path of the resource, filling the necessary parameters in the route.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
@@ -181,13 +175,13 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `meta`
 
-It is used to pass additional parameters to the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `list` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+It is used to pass additional parameters to the `list` method of [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `list` method. You can pass additional parameters or override the existing ones using the `meta` prop.
 
 If the `list` action route is defined by the pattern: `/:authorId/posts`, the `meta` prop can be used as follows:
 
 ```tsx
 const MyComponent = () => {
-    return <ListButton meta={{ authorId: "10" }} />;
+  return <ListButton meta={{ authorId: "10" }} />;
 };
 ```
 
@@ -204,43 +198,39 @@ import { Refine } from "@refinedev/core";
 import { ListButton } from "@refinedev/chakra-ui";
 
 const MyListComponent = () => {
-    return <ListButton colorScheme="black" hideText />;
+  return <ListButton colorScheme="black" hideText />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyListComponent,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyListComponent,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 ### `accessControl`
 
-The `accessControl` prop can be used to skip the access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+The `accessControl` prop can be used to skip the access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/api-reference/core/providers/access-control-provider.md) is provided to [`<Refine/>`](/docs/api-reference/core/components/refine-config.md)
 
 ```tsx
 import { ListButton } from "@refinedev/chakra-ui";
 
 export const MyListComponent = () => {
-    return (
-        <ListButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -258,59 +248,53 @@ import { Refine } from "@refinedev/core";
 import { ListButton } from "@refinedev/chakra-ui";
 
 const MyListComponent = () => {
-    return (
-        <ListButton colorScheme="black" resourceNameOrRouteName="categories" />
-    );
+  return <ListButton colorScheme="black" resourceNameOrRouteName="categories" />;
 };
 // visible-block-end
 
 const ListPage = () => {
-    const { list } = RefineCore.useNavigation();
-    const params = RefineCore.useRouterContext().useParams();
+  const { list } = RefineCore.useNavigation();
+  const params = RefineCore.useRouterContext().useParams();
 
-    return (
-        <RefineChakra.VStack alignItems="flex-start">
-            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
-                URL Parameters:
-            </RefineChakra.Text>
-            <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
+  return (
+    <RefineChakra.VStack alignItems="flex-start">
+      <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
+        URL Parameters:
+      </RefineChakra.Text>
+      <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
 
-            <RefineChakra.Button
-                size="sm"
-                onClick={() => list("posts")}
-                colorScheme="green"
-            >
-                Go back
-            </RefineChakra.Button>
-        </RefineChakra.VStack>
-    );
+      <RefineChakra.Button size="sm" onClick={() => list("posts")} colorScheme="green">
+        Go back
+      </RefineChakra.Button>
+    </RefineChakra.VStack>
+  );
 };
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyListComponent,
-                },
-                {
-                    name: "categories",
-                    list: ListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyListComponent,
+        },
+        {
+          name: "categories",
+          list: ListPage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
-Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
+Clicking the button will trigger the `list` method of [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
 ## API Reference
 

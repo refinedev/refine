@@ -1,9 +1,10 @@
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-  <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
+  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
 </a>
-<br />
-<br />
+
+</br>
+</br>
 
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
@@ -28,13 +29,13 @@
 
 </div>
 
-## Try it out on your local
+## Try this example on your local
 
 ```bash
 npm create refine-app@latest -- --example server-side-form-validation-mantine
 ```
 
-## Try it out on CodeSandbox
+## Try this example on CodeSandbox
 
 <br/>
 

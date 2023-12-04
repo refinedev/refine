@@ -20,15 +20,13 @@ In this tutorial, we are going to build a mini e-commerce store and walk through
 
 Steps we'll cover:
 
-  - [What is a Context](#what-is-a-context)
-  - [Project Setup](#project-setup)
-  - [Building the Product Listings](#building-the-product-listings)
-  - [Why and When Do we need the context API?](#why-and-when-do-we-need-the-context-api?)
-  - [Creating a Context](#creating-a-context)
-  - [Consuming the Context](#consuming-the-context)
-  - [Share Data across components](#share-data-across-components)
-
-
+- [What is a Context](#what-is-a-context)
+- [Project Setup](#project-setup)
+- [Building the Product Listings](#building-the-product-listings)
+- [Why and When Do we need the context API?](#why-and-when-do-we-need-the-context-api?)
+- [Creating a Context](#creating-a-context)
+- [Consuming the Context](#consuming-the-context)
+- [Share Data across components](#share-data-across-components)
 
 ## What is a React Context API?
 
@@ -60,13 +58,14 @@ function App() {
 
 <br />
 
-
 ## Project Setup
+
 To get started with the project, run the command
 
 ```
-npx create-next-app react-context-tutorial --typescript 
+npx create-next-app react-context-tutorial --typescript
 ```
+
 This will bootstrap a Next.js app with TypeScript. I like to use absolute paths when building next.js applications.
 
 - Open the tsconfig.json file and add the highlighted line.
@@ -74,30 +73,26 @@ This will bootstrap a Next.js app with TypeScript. I like to use absolute paths 
   ```
   "baseUrl":"src"
   ```
-  
 
 - Create a new folder named `src` in the root directory of the app.
 - Move the pages and styles folder into the `src` folder.
 
-
 - Change the path of the style in `_app.tsx` to use absolute path.
 
 ```tsx title="src/_app.tsx"
-  import 'styles/globals.css'
-  import type { AppProps } from 'next/app'
+import "styles/globals.css";
+import type { AppProps } from "next/app";
 
-  function MyApp({ Component, pageProps }: AppProps) {
-    return <Component {...pageProps} />
-  }
+function MyApp({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />;
+}
 
-  export default MyApp
-
+export default MyApp;
 ```
-  
+
 - Run the command `npm run dev` to start the app.
 - Open your browser on port 3000 (`http://localhost:3000`).
 - You should see the default welcome to next.js message!
-  
 
 <br />
 
@@ -107,7 +102,7 @@ This is where things start to get interesting. We are going to build the UIs for
 
 - Replace the styles in global.css with this [CSS](https://gist.github.com/pseudoeazy/62e3259eaba1b253ced7c02b86caec40).
 
--  Copy and paste `products` data below inside the `products.ts` file.
+- Copy and paste `products` data below inside the `products.ts` file.
 
 ```ts title="src/constants/products.ts"
 const products = [
@@ -127,8 +122,9 @@ const products = [
 
 export default products;
 ```
+
 - Create the `Product` data type structure for the product of the app inside a `product.ts` file in the `types` directory.
-  
+
 ```ts title="src/types/product.ts"
 export default interface Product {
   id: number;
@@ -136,9 +132,8 @@ export default interface Product {
 }
 ```
 
-  
 - Replace the `index.tsx` in the `pages` directory with the following code.
-  
+
 ```tsx title="src/pages/index.tsx"
 import type { NextPage } from "next";
 
@@ -154,12 +149,12 @@ const Home: NextPage = () => {
 
 export default Home;
 ```
-If we reload our browser, we should see "Hello World" printed on the screen.
 
+If we reload our browser, we should see "Hello World" printed on the screen.
 
 <br />
 
-- Create the following files (*favorites.tsx*, *product-list.tsx*, *product-item.tsx* and *product-details.tsx*) in the `components` directory.
+- Create the following files (_favorites.tsx_, _product-list.tsx_, _product-item.tsx_ and _product-details.tsx_) in the `components` directory.
 
 <details><summary>Show the favorites.tsx</summary>
 <p>
@@ -217,33 +212,24 @@ interface Props {
   handleFavorite: (productId: number) => void;
 }
 
-const ProductList: React.FC<Props> = ({
-  favorites,
-  products,
-  handleFavorite,
-}) => {
+const ProductList: React.FC<Props> = ({ favorites, products, handleFavorite }) => {
   return (
     <section className="product-container">
       {products.map((product) => (
-        <ProductItem
-          key={product.id}
-          product={product}
-          handleFavorite={handleFavorite}
-          favorites={favorites}
-        />
+        <ProductItem key={product.id} product={product} handleFavorite={handleFavorite} favorites={favorites} />
       ))}
     </section>
   );
 };
 export default ProductList;
 ```
+
  </p>
 </details>
 
 <details><summary>Show the product-item.tsx  </summary>
 <p>
 
-  
 ```tsx title="src/components/product-item.tsx"
 import React from "react";
 import ProductDetails from "components/product-details";
@@ -255,19 +241,10 @@ interface Props {
   handleFavorite: (productId: number) => void;
 }
 
-const ProductItem: React.FC<Props> = ({
-  product,
-  handleFavorite,
-  favorites,
-}) => {
-
+const ProductItem: React.FC<Props> = ({ product, handleFavorite, favorites }) => {
   return (
     <div className="product-card">
-      <ProductDetails
-        product={product}
-        handleFavorite={handleFavorite}
-        favorites={favorites}
-      />
+      <ProductDetails product={product} handleFavorite={handleFavorite} favorites={favorites} />
     </div>
   );
 };
@@ -280,8 +257,6 @@ export default ProductItem;
 <details><summary>Show the product-details.tsx </summary>
 <p>
 
-
-
 ```tsx title="src/components/product-details.tsx"
 import React from "react";
 import Product from "types/product";
@@ -292,11 +267,7 @@ interface Props {
   handleFavorite: (productId: number) => void;
 }
 
-const ProductDetails: React.FC<Props> = ({
-  product,
-  handleFavorite,
-  favorites,
-}) => {
+const ProductDetails: React.FC<Props> = ({ product, handleFavorite, favorites }) => {
   const isFavorite = favorites.includes(product.id);
   return (
     <div className="product-details-container">
@@ -304,11 +275,7 @@ const ProductDetails: React.FC<Props> = ({
         <div className="product-image">{product.title}</div>
       </div>
       <div className="add-to-cart">
-        <button
-          type="button"
-          className="button"
-          onClick={() => handleFavorite(product.id)}
-        >
+        <button type="button" className="button" onClick={() => handleFavorite(product.id)}>
           <span>{isFavorite ? "❤️" : "❤︎"}</span>
         </button>
       </div>
@@ -316,13 +283,10 @@ const ProductDetails: React.FC<Props> = ({
   );
 };
 export default ProductDetails;
-
 ```
 
  </p>
 </details>
-
-
 
 - Update the index.tsx file in the `pages` directory with the following code.
 
@@ -348,48 +312,32 @@ const Home: NextPage = () => {
     <div className="container">
       <main className="main-content">
         <Favorites products={products} favorites={favorites} />
-        <ProductList
-          products={products}
-          favorites={favorites}
-          handleFavorite={handleFavorite}
-        />
+        <ProductList products={products} favorites={favorites} handleFavorite={handleFavorite} />
       </main>
     </div>
   );
 };
 
 export default Home;
-
 ```
-
 
 If you click the favorite icon for each product, you should see it listed under the list of my favorite products.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-23-react-context/favorite-product-list.png"  alt="React context API favouriteProduct" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-23-react-context/favorite-product-list.png"  alt="React context API favoriteProduct" />
 
 <br />
 
-
-
-
-
-
 ## Why and When Do we need the context API?
 
-If we look at the `Home` component, we see it has  `favorites` state that keeps track of the user's favorite products. This data is shared across several components.
+If we look at the `Home` component, we see it has `favorites` state that keeps track of the user's favorite products. This data is shared across several components.
 
 The `ProductDetails` component calls the `handleFavorite` function to update the state in the `Home` component and the `Favorites` component reacts to each update of the `favorites` data.
 
 To add a product as a favorite, we need to pass the `favorites` state and `handleFavorite` function as prop down to the `ProductDetails` component.
 
-
-
-
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-23-react-context/prop-drill-favorite.png"  alt="React context API propDrillingFav" />
 </div>
-
 
 <br />
 
@@ -399,9 +347,7 @@ How can we manage data across components that are far apart in the component tre
 
 The React Context API allows share data across multiple components without using the prop drilling approach.
 
-
 <br />
-
 
 ## Creating a Context
 
@@ -411,6 +357,7 @@ Creating a context is as easy as calling `createContext` function with a default
 import { createContext } from "react";
 const ExampleContext = createContext({} as any);
 ```
+
 - create a folder named `context` in the `src` directory.
 - create a file a named `example.context.tsx` inside the `context` folder and copy the code below.
 
@@ -425,11 +372,7 @@ interface Props {
 }
 
 export const ExampleProvider: React.FC<Props> = ({ children }) => {
-  return (
-    <ExampleContext.Provider value={{ username: "Chibuzor" }}>
-      {children}
-    </ExampleContext.Provider>
-  );
+  return <ExampleContext.Provider value={{ username: "Chibuzor" }}>{children}</ExampleContext.Provider>;
 };
 ```
 
@@ -442,10 +385,10 @@ export const ExampleProvider: React.FC<Props> = ({ children }) => {
 <br />
 
 ## Consuming the Context
+
 We are going to use the `useContext` hook to consume the data from our `ExampleContext`.
 
-- Update the `example.context.tsx` 
-
+- Update the `example.context.tsx`
 
 ```tsx title="src/context/example.context.tsx"
 import React, { createContext, useContext } from "react";
@@ -458,18 +401,13 @@ interface Props {
 }
 
 export const ExampleProvider: React.FC<Props> = ({ children }) => {
-  return (
-    <ExampleContext.Provider value={{ username: "Chibuzor" }}>
-      {children}
-    </ExampleContext.Provider>
-  );
+  return <ExampleContext.Provider value={{ username: "Chibuzor" }}>{children}</ExampleContext.Provider>;
 };
 
 export const Greet = () => {
   const data = useContext(ExampleContext);
   return <h1>Hello, {data.username}</h1>;
 };
-
 ```
 
 - Update the `index.tsx` in the page directory.
@@ -501,16 +439,11 @@ export default Home;
 
 ```
 
-
 Reloading the browser should print "Hello Chibuzor" on the screen.
-
 
 In the `example.context.tsx`, we called the `useContext` hook and passed the `ExampleContext` whose data we want to consume. The `useContext` hook returns the data from the `ExampleContext` and the `Greet` component renders the data without receiving the data via props from the `ExampleProvider` component.
 
 <br />
-
-
-
 
 ## Share Data across components
 
@@ -538,26 +471,21 @@ type ProductAction =
       favorites: number;
     };
 
-const productReducer = (
-  state: ProductData,
-  action: ProductAction
-): ProductData => {
-
+const productReducer = (state: ProductData, action: ProductAction): ProductData => {
   switch (action.type) {
     case "PRODUCTS":
       return { ...state, products: action.products };
-case "FAVORITES":
-
+    case "FAVORITES":
       let favorites = state.favorites;
 
-if (state.favorites.includes(action.favorites)) {
+      if (state.favorites.includes(action.favorites)) {
         favorites = favorites.filter((fav) => fav !== action.favorites);
       } else {
         favorites = [...state.favorites, action.favorites];
       }
 
-return { ...state, favorites };
-default:
+      return { ...state, favorites };
+    default:
       return state;
   }
 };
@@ -584,24 +512,16 @@ interface Props {
 export const ProductProvider: React.FC<Props> = ({ children }) => {
   const [product, setProduct] = useReducer(productReducer, defaultValues);
 
-return (
-    <ProductContext.Provider value={{ product, setProduct }}>
-      {children}
-    </ProductContext.Provider>
-  );
+  return <ProductContext.Provider value={{ product, setProduct }}>{children}</ProductContext.Provider>;
 };
 
 export const useProduct = () => useContext(ProductContext);
-
 ```
-
-
-
 
 - We moved the logic for handling favorites inside the `productReducer`.
 - We initialized the `ProductContext` with a default value.
 - We export a `useProduct` function that exports the value of the `ProductContext`. If we don't export the `useProduct` function, we would have to call the `useContext` and pass `ProductContext` as its argument each time we want to consume the `ProductContext` data in any component.
-- We need to update our components (*index.tsx*, *favorites.tsx*, *product-list.tsx*, *product-item.tsx* and *product-details.tsx*) to consume the data in the `ProductContext`.
+- We need to update our components (_index.tsx_, _favorites.tsx_, _product-list.tsx_, _product-item.tsx_ and _product-details.tsx_) to consume the data in the `ProductContext`.
 
 ```tsx title="src/pages/index.tsx"
 import type { NextPage } from "next";
@@ -628,7 +548,6 @@ export default Home;
 <details><summary>Show the favorites.tsx</summary>
 <p>
 
-
 ```tsx title="src/components/favorites.tsx"
 import Product from "types/product";
 import { useProduct } from "context/product.context";
@@ -643,7 +562,7 @@ const Favorites: React.FC = () => {
       myFavorites.push(favorite);
     }
   });
- 
+
   return (
     <section className="favorites">
       <h2>My Favorite products</h2>
@@ -687,6 +606,7 @@ const ProductList: React.FC = () => {
 
 export default ProductList;
 ```
+
  </p>
 </details>
 
@@ -718,7 +638,6 @@ export default ProductItem;
 <details><summary>Show the product-details.tsx</summary>
 <p>
 
-
 ```tsx title="src/components/product-details.tsx"
 import React from "react";
 import Product from "types/product";
@@ -743,11 +662,7 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
         <div className="product-image">{product.title}</div>
       </div>
       <div className="add-to-cart">
-        <button
-          type="button"
-          className="button"
-          onClick={() => handleFavorite(product.id)}
-        >
+        <button type="button" className="button" onClick={() => handleFavorite(product.id)}>
           <span>{isFavorite ? "❤️" : "❤︎"}</span>
         </button>
       </div>
@@ -757,16 +672,15 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
 
 export default ProductDetails;
 ```
+
  </p>
 </details>
-
 
 - If we reload our browser, our app should work as expected.
 
 Our web application works as before, only this time the data is shared via the React Context API. The React context has some performance benefits when used properly.
 
 <br />
-
 
 ## Conclusion
 
@@ -779,6 +693,7 @@ In summary, to use a context.
 - Call the `useContext` hook and pass the context as an argument.
 
 Here is the link to the github repo.
+
 ```
 https://github.com/pseudoeazy/react-context-tutorial
 ```

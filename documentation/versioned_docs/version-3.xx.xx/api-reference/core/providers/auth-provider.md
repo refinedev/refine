@@ -4,7 +4,7 @@ title: Auth Provider
 sidebar_label: Auth Provider
 ---
 
-import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples-links.md";
+import AuthProviderExamplesLinks from "@site/src/partials/auth-provider/auth-provider-examples-links.md";
 
 Auth provider is an object which contains methods to handle authentication and authorization in your app. It provides a way to authenticate users and authorize them to access resources. **refine** consumes these methods via auth hooks.
 
@@ -29,14 +29,14 @@ import authProvider from "./auth-provider";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App = () => {
-    return (
-        <Refine
-            // highlight-next-line
-            authProvider={authProvider}
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-        />
-    );
+  return (
+    <Refine
+      // highlight-next-line
+      authProvider={authProvider}
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+    />
+  );
 };
 ```
 
@@ -54,17 +54,17 @@ An `authProvider` includes the following methods:
 import { AuthProvider } from "@pankod/refine-core";
 
 const authProvider: AuthProvider = {
-    // required methods
-    login: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    // optional methods
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
+  // required methods
+  login: () => Promise.resolve(),
+  checkAuth: () => Promise.resolve(),
+  logout: () => Promise.resolve(),
+  checkError: () => Promise.resolve(),
+  // optional methods
+  register: () => Promise.resolve(),
+  forgotPassword: () => Promise.resolve(),
+  updatePassword: () => Promise.resolve(),
+  getPermissions: () => Promise.resolve(),
+  getUserIdentity: () => Promise.resolve(),
 };
 ```
 
@@ -83,9 +83,9 @@ Authorization hooks are used to manage authentication and authorization operatio
 
 `login` method is used to authenticate users. It expects to return a Promise.
 
--   If the Promise resolves, the user is authenticated and pages that require authentication will be accessible.
+- If the Promise resolves, the user is authenticated and pages that require authentication will be accessible.
 
--   If the Promise rejects, the user is not authenticated and stays on the login page.
+- If the Promise rejects, the user is not authenticated and stays on the login page.
 
 You can use [`useLogin`][use-login] hook to call `login` method.
 
@@ -95,9 +95,9 @@ You can use [`useLogin`][use-login] hook to call `login` method.
 
 `checkAuth` method expects to return a Promise.
 
--   If the Promise resolves, the user is authenticated and pages that require authentication will be accessible.
+- If the Promise resolves, the user is authenticated and pages that require authentication will be accessible.
 
--   If the Promise rejects, the user is not authenticated and pages that require authentication will not be accessible and by default, the user will be redirected to the `/login` page.
+- If the Promise rejects, the user is not authenticated and pages that require authentication will not be accessible and by default, the user will be redirected to the `/login` page.
 
 You can use [`useAuthenticated`][use-authenticated] hook to call `checkAuth` method.
 
@@ -105,9 +105,9 @@ You can use [`useAuthenticated`][use-authenticated] hook to call `checkAuth` met
 
 `logout` method is used to log out users. It expects to return a Promise.
 
--   If the Promise resolves, the user is logged out and pages that require authentication will not be accessible and by default, the user will be redirected to the `/login` page.
+- If the Promise resolves, the user is logged out and pages that require authentication will not be accessible and by default, the user will be redirected to the `/login` page.
 
--   If the Promise rejects, the user is not logged out and stays on the page.
+- If the Promise rejects, the user is not logged out and stays on the page.
 
 You can use [`useLogout`][use-logout] hook to call `logout` method.
 
@@ -117,9 +117,9 @@ You can use [`useLogout`][use-logout] hook to call `logout` method.
 
 `checkError` method expects to return a Promise.
 
--   If the Promise resolves, the user is not logged out and stays on the page.
+- If the Promise resolves, the user is not logged out and stays on the page.
 
--   If the Promise rejects, the `logout` method is called to log out the user and by default, the user is redirected to the `/login` route.
+- If the Promise rejects, the `logout` method is called to log out the user and by default, the user is redirected to the `/login` route.
 
 You can use [`useCheckError`][use-check-error] hook to call `checkError` method.
 
@@ -129,9 +129,9 @@ You can use [`useCheckError`][use-check-error] hook to call `checkError` method.
 
 `getPermissions` method is used to get the user's permissions. It expects to return a Promise.
 
--   If the Promise resolves with data, the user's permissions will be available in the `usePermissions` hook's `data` property.
+- If the Promise resolves with data, the user's permissions will be available in the `usePermissions` hook's `data` property.
 
--   If the Promise rejects, the user's permissions will not be available and `usePermissions` hook throw an error.
+- If the Promise rejects, the user's permissions will not be available and `usePermissions` hook throw an error.
 
 You can use [`usePermissions`][use-permissions] hook to call `getPermissions` method.
 
@@ -139,9 +139,9 @@ You can use [`usePermissions`][use-permissions] hook to call `getPermissions` me
 
 `getUserIdentity` method is used to get the user's identity. It expects to return a Promise.
 
--   If the Promise resolves with a data, the user's identity will be available in the `useGetIdentity` hook's `data` property.
+- If the Promise resolves with a data, the user's identity will be available in the `useGetIdentity` hook's `data` property.
 
--   If the Promise rejects, the user's identity will not be available and `useGetIdentity` hook throw an error.
+- If the Promise rejects, the user's identity will not be available and `useGetIdentity` hook throw an error.
 
 You can use [`useGetIdentity`][use-get-identity] hook to call `getUserIdentity` method.
 
@@ -149,9 +149,9 @@ You can use [`useGetIdentity`][use-get-identity] hook to call `getUserIdentity` 
 
 `register` method is used to register a new user. It is similar to the `login` method. It expects to return a Promise.
 
--   If the Promise resolves, by default, the user will be redirected to the `/` page.
+- If the Promise resolves, by default, the user will be redirected to the `/` page.
 
--   If the Promise rejects, the `useRegister` hook will throw an error.
+- If the Promise rejects, the `useRegister` hook will throw an error.
 
 You can use [`useRegister`][use-register] hook to call `register` method.
 
@@ -171,16 +171,16 @@ You can use [`useUpdatePassword`][use-update-password] hook to call `updatePassw
 
 These hooks can be used with the `authProvider` authentication and authorization operations.
 
--   [useAuthenticated][use-authenticated]
--   [useCheckError][use-check-error]
--   [useGetIdentity][use-get-identity]
--   [useLogin][use-login]
--   [useLogout][use-logout]
--   [usePermissions][use-permissions]
--   [`<Authenticated />`][authenticated]
--   [useRegister][use-register]
--   [useForgotPassword][use-forgot-password]
--   [useUpdatePassword][use-update-password]
+- [useAuthenticated][use-authenticated]
+- [useCheckError][use-check-error]
+- [useGetIdentity][use-get-identity]
+- [useLogin][use-login]
+- [useLogout][use-logout]
+- [usePermissions][use-permissions]
+- [`<Authenticated />`][authenticated]
+- [useRegister][use-register]
+- [useForgotPassword][use-forgot-password]
+- [useUpdatePassword][use-update-password]
 
 ## FAQ
 

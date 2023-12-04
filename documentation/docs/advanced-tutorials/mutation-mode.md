@@ -13,243 +13,212 @@ import dataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
+import { useMany as CoreUseMany, useShow as RefineCoreUseShow, useOne as RefineCoreUseOne } from "@refinedev/core";
 import {
-    useMany as CoreUseMany,
-    useShow as RefineCoreUseShow,
-    useOne as RefineCoreUseOne,
-} from "@refinedev/core";
-import {
-    List as RefineAntdList,
-    TextField as RefineAntdTextField,
-    useTable as RefineAntdUseTable,
-    EditButton as RefineAntdEditButton,
-    ShowButton as RefineAntdShowButton,
-    useForm as RefineAntdUseForm,
-    useSelect as RefineAntdUseSelect,
-    Create as RefineAntdCreate,
-    Edit as RefineAntdEdit,
-    Show as RefineAntdShow,
+  List as RefineAntdList,
+  TextField as RefineAntdTextField,
+  useTable as RefineAntdUseTable,
+  EditButton as RefineAntdEditButton,
+  ShowButton as RefineAntdShowButton,
+  useForm as RefineAntdUseForm,
+  useSelect as RefineAntdUseSelect,
+  Create as RefineAntdCreate,
+  Edit as RefineAntdEdit,
+  Show as RefineAntdShow,
 } from "@refinedev/antd";
 import {
-    Table as AntdTable,
-    Space as AntdSpace,
-    Form as AntdForm,
-    Select as AntdSelect,
-    Input as AntdInput,
-    Typography as AntdTypography,
+  Table as AntdTable,
+  Space as AntdSpace,
+  Form as AntdForm,
+  Select as AntdSelect,
+  Input as AntdInput,
+  Typography as AntdTypography,
 } from "antd";
 
 const PostList: React.FC = () => {
-    const { tableProps, sorter } = RefineAntdUseTable<IPost>({
-        sorters: {
-            initial: [
-                {
-                    field: "$id",
-                    order: "asc",
-                },
-            ],
+  const { tableProps, sorter } = RefineAntdUseTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "$id",
+          order: "asc",
         },
-    });
+      ],
+    },
+  });
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = CoreUseMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const { data, isLoading } = CoreUseMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-    return (
-        <RefineAntdList>
-            <AntdTable {...tableProps} rowKey="id">
-                <AntdTable.Column
-                    dataIndex="id"
-                    title="ID"
-                />
-                <AntdTable.Column dataIndex="title" title="Title" />
-                <AntdTable.Column
-                    dataIndex={["category", "id"]}
-                    title="Category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <RefineAntdTextField value="Loading..." />;
-                        }
+  return (
+    <RefineAntdList>
+      <AntdTable {...tableProps} rowKey="id">
+        <AntdTable.Column dataIndex="id" title="ID" />
+        <AntdTable.Column dataIndex="title" title="Title" />
+        <AntdTable.Column
+          dataIndex={["category", "id"]}
+          title="Category"
+          render={(value) => {
+            if (isLoading) {
+              return <RefineAntdTextField value="Loading..." />;
+            }
 
-                        return (
-                            <RefineAntdTextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
-                    }}
-                />
-                <AntdTable.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <AntdSpace>
-                            <RefineAntdEditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <RefineAntdShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </AntdSpace>
-                    )}
-                />
-            </AntdTable>
-        </RefineAntdList>
-    );
+            return <RefineAntdTextField value={data?.data.find((item) => item.id === value)?.title} />;
+          }}
+        />
+        <AntdTable.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <AntdSpace>
+              <RefineAntdEditButton hideText size="small" recordItemId={record.id} />
+              <RefineAntdShowButton hideText size="small" recordItemId={record.id} />
+            </AntdSpace>
+          )}
+        />
+      </AntdTable>
+    </RefineAntdList>
+  );
 };
 
 const PostCreate: React.FC = () => {
-    const { formProps, saveButtonProps } = RefineAntdUseForm<IPost>();
+  const { formProps, saveButtonProps } = RefineAntdUseForm<IPost>();
 
-    const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>(
-        {
-            resource: "categories",
-        },
-    );
+  const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>({
+    resource: "categories",
+  });
 
-    return (
-        <RefineAntdCreate saveButtonProps={saveButtonProps}>
-            <AntdForm {...formProps} layout="vertical">
-                <AntdForm.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput />
-                </AntdForm.Item>
-                <AntdForm.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdSelect {...categorySelectProps} />
-                </AntdForm.Item>
-                <AntdForm.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput.TextArea />
-                </AntdForm.Item>
-            </AntdForm>
-        </RefineAntdCreate>
-    );
+  return (
+    <RefineAntdCreate saveButtonProps={saveButtonProps}>
+      <AntdForm {...formProps} layout="vertical">
+        <AntdForm.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput />
+        </AntdForm.Item>
+        <AntdForm.Item
+          label="Category"
+          name={["category", "id"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdSelect {...categorySelectProps} />
+        </AntdForm.Item>
+        <AntdForm.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput.TextArea />
+        </AntdForm.Item>
+      </AntdForm>
+    </RefineAntdCreate>
+  );
 };
 
 const PostEdit: React.FC = () => {
-    const { formProps, saveButtonProps, queryResult } =
-        RefineAntdUseForm<IPost>();
+  const { formProps, saveButtonProps, queryResult } = RefineAntdUseForm<IPost>();
 
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.category.id,
-    });
+  const postData = queryResult?.data?.data;
+  const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>({
+    resource: "categories",
+    defaultValue: postData?.category.id,
+  });
 
-    return (
-        <RefineAntdEdit saveButtonProps={saveButtonProps}>
-            <AntdForm {...formProps} layout="vertical">
-                <AntdForm.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput />
-                </AntdForm.Item>
-                <AntdForm.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdSelect {...categorySelectProps} />
-                </AntdForm.Item>
-                <AntdForm.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput.TextArea />
-                </AntdForm.Item>
-            </AntdForm>
-        </RefineAntdEdit>
-    );
+  return (
+    <RefineAntdEdit saveButtonProps={saveButtonProps}>
+      <AntdForm {...formProps} layout="vertical">
+        <AntdForm.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput />
+        </AntdForm.Item>
+        <AntdForm.Item
+          label="Category"
+          name={["category", "id"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdSelect {...categorySelectProps} />
+        </AntdForm.Item>
+        <AntdForm.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput.TextArea />
+        </AntdForm.Item>
+      </AntdForm>
+    </RefineAntdEdit>
+  );
 };
 
 const PostShow: React.FC = () => {
-    const { queryResult } = RefineCoreUseShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = RefineCoreUseShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        RefineCoreUseOne<ICategory>({
-            resource: "categories",
-            id: record?.category?.id || "",
-            queryOptions: {
-                enabled: !!record,
-            },
-        });
+  const { data: categoryData, isLoading: categoryIsLoading } = RefineCoreUseOne<ICategory>({
+    resource: "categories",
+    id: record?.category?.id || "",
+    queryOptions: {
+      enabled: !!record,
+    },
+  });
 
-    return (
-        <RefineAntdShow isLoading={isLoading}>
-            <AntdTypography.Title level={5}>Id</AntdTypography.Title>
-            <AntdTypography.Text>{record?.id}</AntdTypography.Text>
+  return (
+    <RefineAntdShow isLoading={isLoading}>
+      <AntdTypography.Title level={5}>Id</AntdTypography.Title>
+      <AntdTypography.Text>{record?.id}</AntdTypography.Text>
 
-            <AntdTypography.Title level={5}>
-                AntdTypography.Title
-            </AntdTypography.Title>
-            <AntdTypography.Text>{record?.title}</AntdTypography.Text>
+      <AntdTypography.Title level={5}>AntdTypography.Title</AntdTypography.Title>
+      <AntdTypography.Text>{record?.title}</AntdTypography.Text>
 
-            <AntdTypography.Title level={5}>Category</AntdTypography.Title>
-            <AntdTypography.Text>
-                {categoryIsLoading ? "Loading..." : categoryData?.data.title}
-            </AntdTypography.Text>
+      <AntdTypography.Title level={5}>Category</AntdTypography.Title>
+      <AntdTypography.Text>{categoryIsLoading ? "Loading..." : categoryData?.data.title}</AntdTypography.Text>
 
-            <AntdTypography.Title level={5}>Content</AntdTypography.Title>
-            <AntdTypography.Text>{record?.content}</AntdTypography.Text>
-        </RefineAntdShow>
-    );
+      <AntdTypography.Title level={5}>Content</AntdTypography.Title>
+      <AntdTypography.Text>{record?.content}</AntdTypography.Text>
+    </RefineAntdShow>
+  );
 };
 ```
 
 ## Overview
 
-Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`.  
+Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`.
 Each mode corresponds to a different type of user experience.
 
 ## Modes
@@ -258,7 +227,7 @@ We'll show usages of modes with editing a record examples.
 
 ### `pessimistic`
 
-The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly.  
+The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfully.
 
 You can experience an example of this below using the edit page.
 
@@ -266,46 +235,46 @@ You can experience an example of this below using the edit page.
 setInitialRoutes(["/posts"]);
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                            edit: "/posts/edit/:id",
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route index element={<NavigateToResource />} />
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+              show: "/posts/show/:id",
+              edit: "/posts/edit/:id",
+            },
+          ]}
+          notificationProvider={notificationProvider}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route index element={<NavigateToResource />} />
 
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
+              <Route path="/posts">
+                <Route index element={<PostList />} />
+                <Route path="create" element={<PostCreate />} />
+                <Route path="edit/:id" element={<PostEdit />} />
+                <Route path="show/:id" element={<PostShow />} />
+              </Route>
 
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -317,53 +286,53 @@ render(<App />);
 
 ### `optimistic`
 
-The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. If mutation returns with error, UI updates to show data prior to the mutation.
+The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is successful. If mutation returns with error, UI updates to show data prior to the mutation.
 
 ```tsx live previewOnly url=http://localhost:5173/posts previewHeight=600px
 setInitialRoutes(["/posts"]);
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                            edit: "/posts/edit/:id",
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    options={{ mutationMode: "optimistic" }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route index element={<NavigateToResource />} />
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+              show: "/posts/show/:id",
+              edit: "/posts/edit/:id",
+            },
+          ]}
+          notificationProvider={notificationProvider}
+          options={{ mutationMode: "optimistic" }}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route index element={<NavigateToResource />} />
 
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
+              <Route path="/posts">
+                <Route index element={<PostList />} />
+                <Route path="create" element={<PostCreate />} />
+                <Route path="edit/:id" element={<PostEdit />} />
+                <Route path="show/:id" element={<PostShow />} />
+              </Route>
 
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -375,53 +344,53 @@ render(<App />);
 
 ### `undoable`
 
-The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. Waits for a customizable amount of timeout period before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
+The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is successful. Waits for a customizable amount of timeout period before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
 
 ```tsx live previewOnly url=http://localhost:5173/posts previewHeight=600px
 setInitialRoutes(["/posts"]);
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                            edit: "/posts/edit/:id",
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    options={{ mutationMode: "undoable" }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route index element={<NavigateToResource />} />
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+              show: "/posts/show/:id",
+              edit: "/posts/edit/:id",
+            },
+          ]}
+          notificationProvider={notificationProvider}
+          options={{ mutationMode: "undoable" }}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route index element={<NavigateToResource />} />
 
-                            <Route path="/posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                                <Route path="show/:id" element={<PostShow />} />
-                            </Route>
+              <Route path="/posts">
+                <Route index element={<PostList />} />
+                <Route path="create" element={<PostCreate />} />
+                <Route path="edit/:id" element={<PostEdit />} />
+                <Route path="show/:id" element={<PostShow />} />
+              </Route>
 
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -431,7 +400,7 @@ render(<App />);
 
 ## Usage
 
-Mutation mode can be set application-wide in [`<Refine>`](/api-reference/core/components/refine-config.md#mutationmode) component.
+Mutation mode can be set application-wide in [`<Refine>`](/docs/api-reference/core/components/refine-config.md#mutationmode) component.
 
 ```tsx title="App.tsx"
 <Refine
@@ -444,7 +413,7 @@ Mutation mode can be set application-wide in [`<Refine>`](/api-reference/core/co
 
 <br />
 
-It can also be set in supported [data hooks](/docs/api-reference/core/hooks/data/useUpdate#mutation-mode) and [form hooks](/docs/api-reference/core/hooks/useForm.md#properties) for fine-grained configuration.
+It can also be set in supported [data hooks](/docs/api-reference/core/hooks/data/useUpdate#mutation-mode) and [form hooks](/docs/api-reference/core/hooks/useForm/#properties) for fine-grained configuration.
 
 ```tsx
 import { useUpdate } from "@refinedev/core";
@@ -452,22 +421,22 @@ import { useUpdate } from "@refinedev/core";
 const { mutate } = useUpdate();
 
 mutate({
-    resource: "categories",
-    id: "2",
-    values: { title: "New Category Title" },
-    // highlight-next-line
-    mutationMode: "optimistic",
+  resource: "categories",
+  id: "2",
+  values: { title: "New Category Title" },
+  // highlight-next-line
+  mutationMode: "optimistic",
 });
 ```
 
-> Mutation mode passed to `<Refine>` will be overriden by the mutation mode passed to data or form hooks and components.
+> Mutation mode passed to `<Refine>` will be overridden by the mutation mode passed to data or form hooks and components.
 
 ### Supported data hooks
 
--   [`useUpdate` &#8594](/docs/api-reference/core/hooks/data/useUpdate/)
--   [`useUpdateMany` &#8594](/docs/api-reference/core/hooks/data/useUpdateMany/)
--   [`useDelete` &#8594](/docs/api-reference/core/hooks/data/useDelete/)
--   [`useDeleteMany` &#8594](/docs/api-reference/core/hooks/data/useDeleteMany/)
+- [`useUpdate` &#8594](/docs/api-reference/core/hooks/data/useUpdate/)
+- [`useUpdateMany` &#8594](/docs/api-reference/core/hooks/data/useUpdateMany/)
+- [`useDelete` &#8594](/docs/api-reference/core/hooks/data/useDelete/)
+- [`useDeleteMany` &#8594](/docs/api-reference/core/hooks/data/useDeleteMany/)
 
 <br />
 

@@ -51,44 +51,44 @@ import { PostList, PostCreate } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider}
-                // highlight-next-line
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        // highlight-start
-                        list: "/posts",
-                        create: "/posts/create",
-                        // highlight-end
-                    },
-                    {
-                        name: "categories",
-                        // highlight-start
-                        list: "/categories",
-                        show: "/categories/show/:id",
-                        // highlight-end
-                    },
-                ]}
-            >
-                <Routes>
-                    {/* highlight-start */}
-                    <Route path="posts">
-                        <Route index element={<PostList />} />
-                        <Route path="create" element={<PostCreate />} />
-                    </Route>
-                    <Route path="categories">
-                        <Route index element={<CategoryList />} />
-                        <Route path="show/:id" element={<CategoryShow />} />
-                    </Route>
-                    {/* highlight-end */}
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider}
+        // highlight-next-line
+        routerProvider={routerProvider}
+        resources={[
+          {
+            name: "posts",
+            // highlight-start
+            list: "/posts",
+            create: "/posts/create",
+            // highlight-end
+          },
+          {
+            name: "categories",
+            // highlight-start
+            list: "/categories",
+            show: "/categories/show/:id",
+            // highlight-end
+          },
+        ]}
+      >
+        <Routes>
+          {/* highlight-start */}
+          <Route path="posts">
+            <Route index element={<PostList />} />
+            <Route path="create" element={<PostCreate />} />
+          </Route>
+          <Route path="categories">
+            <Route index element={<CategoryList />} />
+            <Route path="show/:id" element={<CategoryShow />} />
+          </Route>
+          {/* highlight-end */}
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -118,64 +118,61 @@ import { PostList, PostCreate } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider}
-                routerProvider={routerProvider}
-                // highlight-next-line
-                authProvider={authProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                    },
-                    {
-                        name: "categories",
-                        list: "/categories",
-                        show: "/categories/show/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        // highlight-start
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
-                            </Authenticated>
-                        }
-                        // highlight-end
-                    >
-                        {/* highlight-next-line */}
-                        <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
-                    </Route>
-                    <Route
-                        // highlight-start
-                        element={
-                            <Authenticated redirectOnFail="/login">
-                                <Outlet />
-                            </Authenticated>
-                        }
-                        // highlight-end
-                    >
-                        <Route path="posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                        </Route>
-                        <Route path="categories">
-                            <Route index element={<CategoryList />} />
-                            <Route path="show/:id" element={<CategoryShow />} />
-                        </Route>
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider}
+        routerProvider={routerProvider}
+        // highlight-next-line
+        authProvider={authProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+            create: "/posts/create",
+          },
+          {
+            name: "categories",
+            list: "/categories",
+            show: "/categories/show/:id",
+          },
+        ]}
+      >
+        <Routes>
+          <Route
+            // highlight-start
+            element={
+              <Authenticated fallback={<Outlet />}>
+                <NavigateToResource resource="posts" />
+              </Authenticated>
+            }
+            // highlight-end
+          >
+            {/* highlight-next-line */}
+            <Route path="/login" element={<AuthPage type="login" />} />
+          </Route>
+          <Route
+            // highlight-start
+            element={
+              <Authenticated redirectOnFail="/login">
+                <Outlet />
+              </Authenticated>
+            }
+            // highlight-end
+          >
+            <Route path="posts">
+              <Route index element={<PostList />} />
+              <Route path="create" element={<PostCreate />} />
+            </Route>
+            <Route path="categories">
+              <Route index element={<CategoryList />} />
+              <Route path="show/:id" element={<CategoryShow />} />
+            </Route>
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -204,62 +201,59 @@ import { PostList, PostCreate } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                    },
-                    {
-                        name: "categories",
-                        list: "/categories",
-                        show: "/categories/show/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated redirectOnFail="/login">
-                                {/* highlight-start */}
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                                {/* highlight-end */}
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                        </Route>
-                        <Route path="categories">
-                            <Route index element={<CategoryList />} />
-                            <Route path="show/:id" element={<CategoryShow />} />
-                        </Route>
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider}
+        routerProvider={routerProvider}
+        authProvider={authProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+            create: "/posts/create",
+          },
+          {
+            name: "categories",
+            list: "/categories",
+            show: "/categories/show/:id",
+          },
+        ]}
+      >
+        <Routes>
+          <Route
+            element={
+              <Authenticated fallback={<Outlet />}>
+                <NavigateToResource resource="posts" />
+              </Authenticated>
+            }
+          >
+            <Route path="/login" element={<AuthPage type="login" />} />
+          </Route>
+          <Route
+            element={
+              <Authenticated redirectOnFail="/login">
+                {/* highlight-start */}
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+                {/* highlight-end */}
+              </Authenticated>
+            }
+          >
+            <Route path="posts">
+              <Route index element={<PostList />} />
+              <Route path="create" element={<PostCreate />} />
+            </Route>
+            <Route path="categories">
+              <Route index element={<CategoryList />} />
+              <Route path="show/:id" element={<CategoryShow />} />
+            </Route>
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -267,10 +261,12 @@ Notice that we've wrapped the `<Outlet>` with `<ThemedLayoutV2>` component. This
 
 ### Usage with Access Control providers
 
-If you want to protect your routes with [Access Control Provider](/docs/api-reference/core/providers/accessControl-provider), all you have to do is to wrap `Outlet` with `CanAccess` component.
+If you want to protect your routes with [Access Control Provider](/docs/api-reference/core/providers/access-control-provider), all you have to do is to wrap `Outlet` with `CanAccess` component.
 
 :::info
+
 `CanAccess` component will infer resource name and action based on the current route and handle the **access control** from your Access Control Provider for you.
+
 :::
 
 ```tsx title=App.tsx
@@ -288,66 +284,61 @@ import { PostList, PostCreate } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                    },
-                    {
-                        name: "categories",
-                        list: "/categories",
-                        show: "/categories/show/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated redirectOnFail="/login">
-                                <ThemedLayoutV2>
-                                    {/* highlight-start */}
-                                    <CanAccess
-                                        fallback={<div>Unauthorized!</div>}
-                                    >
-                                        <Outlet />
-                                    </CanAccess>
-                                    {/* highlight-end */}
-                                </ThemedLayoutV2>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                        </Route>
-                        <Route path="categories">
-                            <Route index element={<CategoryList />} />
-                            <Route path="show/:id" element={<CategoryShow />} />
-                        </Route>
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider}
+        routerProvider={routerProvider}
+        authProvider={authProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+            create: "/posts/create",
+          },
+          {
+            name: "categories",
+            list: "/categories",
+            show: "/categories/show/:id",
+          },
+        ]}
+      >
+        <Routes>
+          <Route
+            element={
+              <Authenticated fallback={<Outlet />}>
+                <NavigateToResource resource="posts" />
+              </Authenticated>
+            }
+          >
+            <Route path="/login" element={<AuthPage type="login" />} />
+          </Route>
+          <Route
+            element={
+              <Authenticated redirectOnFail="/login">
+                <ThemedLayoutV2>
+                  {/* highlight-start */}
+                  <CanAccess fallback={<div>Unauthorized!</div>}>
+                    <Outlet />
+                  </CanAccess>
+                  {/* highlight-end */}
+                </ThemedLayoutV2>
+              </Authenticated>
+            }
+          >
+            <Route path="posts">
+              <Route index element={<PostList />} />
+              <Route path="create" element={<PostCreate />} />
+            </Route>
+            <Route path="categories">
+              <Route index element={<CategoryList />} />
+              <Route path="show/:id" element={<CategoryShow />} />
+            </Route>
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -357,42 +348,42 @@ If you don't want to wrap your whole application with `CanAccess`, it's also pos
 
 ```tsx title=App.tsx
 <Routes>
-    <Route
+  <Route
+    element={
+      <Authenticated fallback={<Outlet />}>
+        <NavigateToResource resource="posts" />
+      </Authenticated>
+    }
+  >
+    <Route path="/login" element={<AuthPage type="login" />} />
+  </Route>
+  <Route
+    element={
+      <Authenticated redirectOnFail="/login">
+        <ThemedLayoutV2>
+          <Outlet />
+        </ThemedLayoutV2>
+      </Authenticated>
+    }
+  >
+    <Route path="posts">
+      <Route index element={<PostList />} />
+      <Route
+        path="create"
         element={
-            <Authenticated fallback={<Outlet />}>
-                <NavigateToResource resource="posts" />
-            </Authenticated>
+          // highlight-start
+          <CanAccess fallback={<div>Unauthorized!</div>}>
+            <PostCreate />
+          </CanAccess>
+          // highlight-end
         }
-    >
-        <Route path="/login" element={<AuthPage type="login" />} />
+      />
     </Route>
-    <Route
-        element={
-            <Authenticated redirectOnFail="/login">
-                <ThemedLayoutV2>
-                    <Outlet />
-                </ThemedLayoutV2>
-            </Authenticated>
-        }
-    >
-        <Route path="posts">
-            <Route index element={<PostList />} />
-            <Route
-                path="create"
-                element={
-                    // highlight-start
-                    <CanAccess fallback={<div>Unauthorized!</div>}>
-                        <PostCreate />
-                    </CanAccess>
-                    // highlight-end
-                }
-            />
-        </Route>
-        <Route path="categories">
-            <Route index element={<CategoryList />} />
-            <Route path="show/:id" element={<CategoryShow />} />
-        </Route>
+    <Route path="categories">
+      <Route index element={<CategoryList />} />
+      <Route path="show/:id" element={<CategoryShow />} />
     </Route>
+  </Route>
 </Routes>
 ```
 
@@ -419,62 +410,59 @@ import { PostList, PostCreate } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                    },
-                    {
-                        name: "categories",
-                        list: "/categories",
-                        show: "/categories/show/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated redirectOnFail="/login">
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                        </Route>
-                        <Route path="categories">
-                            <Route index element={<CategoryList />} />
-                            <Route path="show/:id" element={<CategoryShow />} />
-                        </Route>
-                        {/* highlight-next-line */}
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider}
+        routerProvider={routerProvider}
+        authProvider={authProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+            create: "/posts/create",
+          },
+          {
+            name: "categories",
+            list: "/categories",
+            show: "/categories/show/:id",
+          },
+        ]}
+      >
+        <Routes>
+          <Route
+            element={
+              <Authenticated fallback={<Outlet />}>
+                <NavigateToResource resource="posts" />
+              </Authenticated>
+            }
+          >
+            <Route path="/login" element={<AuthPage type="login" />} />
+          </Route>
+          <Route
+            element={
+              <Authenticated redirectOnFail="/login">
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              </Authenticated>
+            }
+          >
+            <Route path="posts">
+              <Route index element={<PostList />} />
+              <Route path="create" element={<PostCreate />} />
+            </Route>
+            <Route path="categories">
+              <Route index element={<CategoryList />} />
+              <Route path="show/:id" element={<CategoryShow />} />
+            </Route>
+            {/* highlight-next-line */}
+            <Route path="*" element={<ErrorComponent />} />
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -501,66 +489,60 @@ import { PostList, PostCreate } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                    },
-                    {
-                        name: "categories",
-                        list: "/categories",
-                        show: "/categories/show/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="posts" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            path="/login"
-                            element={<AuthPage type="login" />}
-                        />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated redirectOnFail="/login">
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            </Authenticated>
-                        }
-                    >
-                        {/* highlight-next-line */}
-                        <Route
-                            index
-                            element={<NavigateToResource resource="posts" />}
-                        />
-                        <Route path="posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                        </Route>
-                        <Route path="categories">
-                            <Route index element={<CategoryList />} />
-                            <Route path="show/:id" element={<CategoryShow />} />
-                        </Route>
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider}
+        routerProvider={routerProvider}
+        authProvider={authProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+            create: "/posts/create",
+          },
+          {
+            name: "categories",
+            list: "/categories",
+            show: "/categories/show/:id",
+          },
+        ]}
+      >
+        <Routes>
+          <Route
+            element={
+              <Authenticated fallback={<Outlet />}>
+                <NavigateToResource resource="posts" />
+              </Authenticated>
+            }
+          >
+            <Route path="/login" element={<AuthPage type="login" />} />
+          </Route>
+          <Route
+            element={
+              <Authenticated redirectOnFail="/login">
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              </Authenticated>
+            }
+          >
+            {/* highlight-next-line */}
+            <Route index element={<NavigateToResource resource="posts" />} />
+            <Route path="posts">
+              <Route index element={<PostList />} />
+              <Route path="create" element={<PostCreate />} />
+            </Route>
+            <Route path="categories">
+              <Route index element={<CategoryList />} />
+              <Route path="show/:id" element={<CategoryShow />} />
+            </Route>
+            <Route path="*" element={<ErrorComponent />} />
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -620,21 +602,21 @@ Place this component inside the `<Refine>` components children to enable this fe
 
 ```tsx
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                /* ... */
-                options={{
-                    /* ... */
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                {/* ... */}
-                {/* highlight-next-line */}
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        /* ... */
+        options={{
+          /* ... */
+          warnWhenUnsavedChanges: true,
+        }}
+      >
+        {/* ... */}
+        {/* highlight-next-line */}
+        <UnsavedChangesNotifier />
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -658,30 +640,27 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import authProvider from "src/authProvider";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route path="/login" element={<AuthPage type="login" />} />
-                    {/* ... */}
-                    {/* highlight-next-line */}
-                    <Route
-                        path="*"
-                        element={<CatchAllNavigate to="/login" />}
-                    />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        authProvider={authProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+        ]}
+      >
+        <Routes>
+          <Route path="/login" element={<AuthPage type="login" />} />
+          {/* ... */}
+          {/* highlight-next-line */}
+          <Route path="*" element={<CatchAllNavigate to="/login" />} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -694,27 +673,26 @@ const App = () => {
 This component will generate the document title for the current page.By default, it follows a set of predefined rules to generate titles based on the provided props. However, it also offers the flexibility to customize the title generation process by providing a custom `handler` function.
 The default title generation rules are as follows:
 
--   list    : `Posts | refine`
--   edit    : `#{id} Edit Post | refine`
--   show    : `#{id} Show Post | refine`
--   create  : `Create new Post | refine`
--   clone   : `#{id} Clone Post | refine`
--   default : `refine`
-
+- list : `Posts | refine`
+- edit : `#{id} Edit Post | refine`
+- show : `#{id} Show Post | refine`
+- create : `Create new Post | refine`
+- clone : `#{id} Clone Post | refine`
+- default : `refine`
 
 ```tsx
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                /* ... */
-            >
-                {/* ... */}
-                {/* highlight-next-line */}
-                <DocumentTitleHandler />
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+      /* ... */
+      >
+        {/* ... */}
+        {/* highlight-next-line */}
+        <DocumentTitleHandler />
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -732,52 +710,46 @@ Inside the handler function, you can dynamically generate the document title bas
 
 ```tsx
 const customTitleHandler = ({ resource, action, params }) => {
-    let title = "Custom default"; // Default title
+  let title = "Custom default"; // Default title
 
-    if(resource && action) {
-        title = `${resource} ${action} ${params.id}`;
-    }
+  if (resource && action) {
+    title = `${resource} ${action} ${params.id}`;
+  }
 
-    return title;
+  return title;
 };
 
 // Usage
-<DocumentTitleHandler handler={customTitleHandler} />
-
+<DocumentTitleHandler handler={customTitleHandler} />;
 ```
+
 ## Hooks
 
 ### `useDocumentTitle`
+
 This hook allows you to set the document title for the current page. It can be used in any component that is a child of the `<Refine>` component.
 
 ```tsx
 import { useDocumentTitle } from "@refinedev/react-router-v6";
 
 const PostList = () => {
-    // highlight-next-line
-    useDocumentTitle("Posts | refine");
+  // highlight-next-line
+  useDocumentTitle("Posts | refine");
 
-    return (
-        <List>
-            {/* ... */}
-        </List>
-    );
+  return <List>{/* ... */}</List>;
 };
 ```
+
 This hook can take an object as an argument with `i18nKey`. This key will be used to translate the title using the i18n provider.
 
 ```tsx
 import { useDocumentTitle } from "@refinedev/react-router-v6";
 
 const PostList = () => {
-    // highlight-next-line
-    useDocumentTitle({ i18nKey: "documentTitle.posts.list" });
+  // highlight-next-line
+  useDocumentTitle({ i18nKey: "documentTitle.posts.list" });
 
-    return (
-        <List>
-            {/* ... */}
-        </List>
-    );
+  return <List>{/* ... */}</List>;
 };
 ```
 
@@ -787,17 +759,13 @@ This hook also returns a function that can be used to set the document title dyn
 import { useDocumentTitle } from "@refinedev/react-router-v6";
 
 const PostList = () => {
-    const setTitle = useDocumentTitle();
+  const setTitle = useDocumentTitle();
 
-    useEffect(() => {
-        setTitle("Posts | refine");
-    }, []);
+  useEffect(() => {
+    setTitle("Posts | refine");
+  }, []);
 
-    return (
-        <List>
-            {/* ... */}
-        </List>
-    );
+  return <List>{/* ... */}</List>;
 };
 ```
 
@@ -813,16 +781,16 @@ For optional authentication, in our `authProvider` implementation's `check` meth
 import { AuthBindings } from "@refinedev/core";
 
 export const authProvider: AuthBindings = {
-    check: async () => {
-        const isAuthenticated = await yourMethodToCheckIfUserIsAuthenticated();
+  check: async () => {
+    const isAuthenticated = await yourMethodToCheckIfUserIsAuthenticated();
 
-        return {
-            // highlight-next-line
-            authentication: isAuthenticated,
-            // notice that we omit the `redirectTo` property
-        };
-    },
-    // ...
+    return {
+      // highlight-next-line
+      authentication: isAuthenticated,
+      // notice that we omit the `redirectTo` property
+    };
+  },
+  // ...
 };
 ```
 
@@ -842,24 +810,24 @@ import { BrowserRouter, Routes } from "react-router-dom";
 import { authProvider } from "src/authProvider";
 
 export const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                    },
-                ]}
-            >
-                {/* ... */}
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider}
+        routerProvider={routerProvider}
+        authProvider={authProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+            create: "/posts/create",
+          },
+        ]}
+      >
+        {/* ... */}
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -1127,27 +1095,27 @@ import { PostList, CategoryList } from "pages/posts";
 import { Layout } from "components/Layout";
 
 export const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                authProvider={authProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                    },
-                    {
-                        name: "categories",
-                        list: "/categories",
-                    },
-                ]}
-            >
-                <Routes>{/* ... */}</Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        authProvider={authProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+          {
+            name: "categories",
+            list: "/categories",
+          },
+        ]}
+      >
+        <Routes>{/* ... */}</Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -1155,16 +1123,16 @@ Now, we can add the routes with authentication control. We should place them ins
 
 ```tsx
 <Route
-    element={
-        <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-            <Layout>
-                <Outlet />
-            </Layout>
-        </Authenticated>
-    }
+  element={
+    <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </Authenticated>
+  }
 >
-    <Route path="/posts" element={<PostList />} />
-    <Route path="/categories" element={<CategoryList />} />
+  <Route path="/posts" element={<PostList />} />
+  <Route path="/categories" element={<CategoryList />} />
 </Route>
 ```
 
@@ -1174,13 +1142,13 @@ Let's add the `/login` route.
 
 ```tsx
 <Route
-    element={
-        <Authenticated fallback={<Outlet />}>
-            <NavigateToResource />
-        </Authenticated>
-    }
+  element={
+    <Authenticated fallback={<Outlet />}>
+      <NavigateToResource />
+    </Authenticated>
+  }
 >
-    <Route path="/login" element={<AuthPage type="login" />} />
+  <Route path="/login" element={<AuthPage type="login" />} />
 </Route>
 ```
 
@@ -1190,15 +1158,15 @@ And finally, we will add a catch-all route (`*`) and render the `ErrorPage` comp
 
 ```tsx
 <Route
-    element={
-        <Authenticated fallback={<Outlet />}>
-            <Layout>
-                <Outlet />
-            </Layout>
-        </Authenticated>
-    }
+  element={
+    <Authenticated fallback={<Outlet />}>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </Authenticated>
+  }
 >
-    <Route path="*" element={<ErrorPage />} />
+  <Route path="*" element={<ErrorPage />} />
 </Route>
 ```
 
@@ -1210,15 +1178,15 @@ The difference from the previous example is in the wrapper of the `*` route. Now
 
 ```tsx
 <Route
-    element={
-        <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-            <Layout>
-                <Outlet />
-            </Layout>
-        </Authenticated>
-    }
+  element={
+    <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </Authenticated>
+  }
 >
-    <Route path="*" element={<ErrorPage />} />
+  <Route path="*" element={<ErrorPage />} />
 </Route>
 ```
 
@@ -1226,15 +1194,15 @@ We can also omit the `fallback` property and let the default redirect flow handl
 
 ```tsx
 <Route
-    element={
-        <Authenticated>
-            <Layout>
-                <Outlet />
-            </Layout>
-        </Authenticated>
-    }
+  element={
+    <Authenticated>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </Authenticated>
+  }
 >
-    <Route path="*" element={<ErrorPage />} />
+  <Route path="*" element={<ErrorPage />} />
 </Route>
 ```
 
@@ -1328,14 +1296,15 @@ The `index` route is defined with the `NavigateToResource` component which will 
 We also added a catch-all route which will render the `ErrorComponent` for the routes that are not defined.
 
 :::info
+
 When components are used to define the resource actions, default paths will be used. You can override the default paths by assigning an object with `component` and `path` properties to the action properties.
 
 Default paths are:
 
--   `list`: `/resources`
--   `create`: `/resources/create`
--   `edit`: `/resources/edit/:id`
--   `show`: `/resources/show/:id`
+- `list`: `/resources`
+- `create`: `/resources/create`
+- `edit`: `/resources/edit/:id`
+- `show`: `/resources/show/:id`
 
 :::
 

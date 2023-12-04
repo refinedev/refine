@@ -11,20 +11,20 @@ We will demonstrate how to get data at `/languages` endpoint from the `https://a
 
 ```ts title="https://api.fake-rest.refine.dev/languages"
 {
-    [
-        {
-            id: 1,
-            title: "Turkish",
-        },
-        {
-            id: 2,
-            title: "English",
-        },
-        {
-            id: 3,
-            title: "German",
-        },
-    ];
+  [
+    {
+      id: 1,
+      title: "Turkish",
+    },
+    {
+      id: 2,
+      title: "English",
+    },
+    {
+      id: 3,
+      title: "German",
+    },
+  ];
 }
 ```
 
@@ -33,25 +33,25 @@ import { useRadioGroup } from "@refinedev/antd";
 import { Form, Radio } from "antd";
 
 export const PostCreate = () => {
-    // highlight-start
-    const { radioGroupProps } = useRadioGroup<ILanguage>({
-        resource: "languages",
-    });
-    // highlight-end
+  // highlight-start
+  const { radioGroupProps } = useRadioGroup<ILanguage>({
+    resource: "languages",
+  });
+  // highlight-end
 
-    return (
-        <Form>
-            <Form.Item label="Languages" name="languages">
-                // highlight-next-line
-                <Radio.Group {...radioGroupProps} />
-            </Form.Item>
-        </Form>
-    );
+  return (
+    <Form>
+      <Form.Item label="Languages" name="languages">
+        // highlight-next-line
+        <Radio.Group {...radioGroupProps} />
+      </Form.Item>
+    </Form>
+  );
 };
 
 interface ILanguage {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 ```
 
@@ -62,7 +62,7 @@ All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>
 
 `useRadioGroup` uses the `useList` hook for fetching data.
 
-> For more information, refer to the [Ant Design's `useList` hook documentation &#8594](/docs/api-reference/core/hooks/data/useList)
+> For more information, refer to the [Refine Core's `useList` hook documentation &#8594](/docs/api-reference/core/hooks/data/useList)
 
 ## Options
 
@@ -70,11 +70,11 @@ All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
-    resource: "languages",
+  resource: "languages",
 });
 ```
 
-`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/api-reference/core/providers/data-provider.md). It returns properly configured `options` values for radio buttons.
+`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/docs/api-reference/core/providers/data-provider.md). It returns properly configured `options` values for radio buttons.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
@@ -86,9 +86,9 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ```tsx
 const { selectProps } = useRadioGroup({
-    resource: "languages",
-    // highlight-next-line
-    defaultValue: 1,
+  resource: "languages",
+  // highlight-next-line
+  defaultValue: 1,
 });
 ```
 
@@ -98,11 +98,11 @@ The easiest way to selecting a default value for an radio button field is by pas
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
-    resource: "languages",
-    // highlight-start
-    optionLabel: "title",
-    optionValue: "id",
-    // highlight-end
+  resource: "languages",
+  // highlight-start
+  optionLabel: "title",
+  optionValue: "id",
+  // highlight-end
 });
 ```
 
@@ -114,11 +114,11 @@ Supports use with `optionLabel` and `optionValue` [Object path](https://lodash.c
 
 ```tsx
 const { options } = useSelect({
-    resource: "categories",
-    // highlight-start
-    optionLabel: "nested.title",
-    optionValue: "nested.id",
-    // highlight-end
+  resource: "categories",
+  // highlight-start
+  optionLabel: "nested.title",
+  optionValue: "nested.id",
+  // highlight-end
 });
 ```
 
@@ -130,16 +130,16 @@ const { options } = useSelect({
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
-    resource: "languages",
-    // highlight-start
-    filters: [
-        {
-            field: "title",
-            operator: "eq",
-            value: "German",
-        },
-    ],
-    // highlight-end
+  resource: "languages",
+  // highlight-start
+  filters: [
+    {
+      field: "title",
+      operator: "eq",
+      value: "German",
+    },
+  ],
+  // highlight-end
 });
 ```
 
@@ -149,15 +149,15 @@ const { radioGroupProps } = useRadioGroup({
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
-    resource: "languages",
-    // highlight-start
-    sorters: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
-    // highlight-end
+  resource: "languages",
+  // highlight-start
+  sorters: [
+    {
+      field: "title",
+      order: "asc",
+    },
+  ],
+  // highlight-end
 });
 ```
 
@@ -167,9 +167,9 @@ const { radioGroupProps } = useRadioGroup({
 
 ```tsx
 const { selectProps } = useRadioGroup({
-    resource: "languages",
-    // highlight-next-line
-    fetchSize: 20,
+  resource: "languages",
+  // highlight-next-line
+  fetchSize: 20,
 });
 ```
 
@@ -179,14 +179,14 @@ Passing the `queryOptions` property allows us to set the [useQuery](https://reac
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
-    resource: "languages",
-    // highlight-start
-    queryOptions: {
-        onError: () => {
-            console.log("triggers when on query return Error");
-        },
+  resource: "languages",
+  // highlight-start
+  queryOptions: {
+    onError: () => {
+      console.log("triggers when on query return Error");
     },
-    // highlight-end
+  },
+  // highlight-end
 });
 ```
 
@@ -198,9 +198,9 @@ For example, lets say that we have 1000 post records:
 
 ```ts
 const { selectProps } = useSelect({
-    resource: "categories",
-    // highlight-next-line
-    pagination: { current: 3, pageSize: 8 },
+  resource: "categories",
+  // highlight-next-line
+  pagination: { current: 3, pageSize: 8 },
 });
 ```
 
@@ -209,7 +209,9 @@ The listing will start from page 3, showing 8 records per page.
 ### ~~`sort`~~
 
 :::caution Deprecated
+
 Use `sorters` instead.
+
 :::
 
 ## API Reference
@@ -220,7 +222,7 @@ Use `sorters` instead.
 
 ### Type Parameters
 
-| Property     | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property     | Description                                                                                                                                                         | Type                       | Default                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

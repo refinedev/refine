@@ -87,15 +87,15 @@ import { createClient } from "@pankod/refine-supabase";
 
 const SUPABASE_URL = "https://iwdfzvfqbtokqetmbmbp.supabase.co";
 const SUPABASE_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU2NzAxMCwiZXhwIjoxOTQ2MTQzMDEwfQ._gr6kXGkQBi9BM9dx5vKaNKYj_DJN1xlkarprGpM_fU";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU2NzAxMCwiZXhwIjoxOTQ2MTQzMDEwfQ._gr6kXGkQBi9BM9dx5vKaNKYj_DJN1xlkarprGpM_fU";
 
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
-    db: {
-        schema: "public",
-    },
-    auth: {
-        persistSession: true,
-    },
+  db: {
+    schema: "public",
+  },
+  auth: {
+    persistSession: true,
+  },
 });
 ```
 
@@ -160,119 +160,119 @@ import { AuthProvider } from "@pankod/refine-core";
 import { supabaseClient } from "utility";
 
 const authProvider: AuthProvider = {
-    login: async ({ email, password, providerName }) => {
-        // sign in with oauth
-        if (providerName) {
-            const { data, error } = await supabaseClient.auth.signInWithOAuth({
-                provider: providerName,
-            });
+  login: async ({ email, password, providerName }) => {
+    // sign in with oauth
+    if (providerName) {
+      const { data, error } = await supabaseClient.auth.signInWithOAuth({
+        provider: providerName,
+      });
 
-            if (error) {
-                return Promise.reject(error);
-            }
+      if (error) {
+        return Promise.reject(error);
+      }
 
-            if (data?.url) {
-                return Promise.resolve(false);
-            }
-        }
-
-        // sign in with email and password
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
-            email,
-            password,
-        });
-
-        if (error) {
-            return Promise.reject(error);
-        }
-
-        if (data?.user) {
-            return Promise.resolve();
-        }
-
-        // for third-party login
+      if (data?.url) {
         return Promise.resolve(false);
-    },
-    register: async ({ email, password }) => {
-        const { data, error } = await supabaseClient.auth.signUp({
-            email,
-            password,
-        });
+      }
+    }
 
-        if (error) {
-            return Promise.reject(error);
-        }
+    // sign in with email and password
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-        if (data) {
-            return Promise.resolve();
-        }
-    },
-    forgotPassword: async ({ email }) => {
-        const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
-            email,
-            {
-                redirectTo: `${window.location.origin}/update-password`,
-            },
-        );
+    if (error) {
+      return Promise.reject(error);
+    }
 
-        if (error) {
-            return Promise.reject(error);
-        }
+    if (data?.user) {
+      return Promise.resolve();
+    }
 
-        if (data) {
-            return Promise.resolve();
-        }
-    },
-    updatePassword: async ({ password }) => {
-        const { data, error } = await supabaseClient.auth.updateUser({
-            password,
-        });
+    // for third-party login
+    return Promise.resolve(false);
+  },
+  register: async ({ email, password }) => {
+    const { data, error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+    });
 
-        if (error) {
-            return Promise.reject(error);
-        }
+    if (error) {
+      return Promise.reject(error);
+    }
 
-        if (data) {
-            return Promise.resolve("/");
-        }
-    },
-    logout: async () => {
-        const { error } = await supabaseClient.auth.signOut();
+    if (data) {
+      return Promise.resolve();
+    }
+  },
+  forgotPassword: async ({ email }) => {
+    const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
+      email,
+      {
+        redirectTo: `${window.location.origin}/update-password`,
+      },
+    );
 
-        if (error) {
-            return Promise.reject(error);
-        }
+    if (error) {
+      return Promise.reject(error);
+    }
 
-        return Promise.resolve("/");
-    },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        const { data } = await supabaseClient.auth.getSession();
-        const { session } = data;
+    if (data) {
+      return Promise.resolve();
+    }
+  },
+  updatePassword: async ({ password }) => {
+    const { data, error } = await supabaseClient.auth.updateUser({
+      password,
+    });
 
-        if (!session) {
-            return Promise.reject();
-        }
+    if (error) {
+      return Promise.reject(error);
+    }
 
-        return Promise.resolve();
-    },
-    getPermissions: async () => {
-        const user = await supabaseClient.auth.getUser();
+    if (data) {
+      return Promise.resolve("/");
+    }
+  },
+  logout: async () => {
+    const { error } = await supabaseClient.auth.signOut();
 
-        if (user) {
-            return Promise.resolve(user.data.user?.role);
-        }
-    },
-    getUserIdentity: async () => {
-        const { data } = await supabaseClient.auth.getUser();
+    if (error) {
+      return Promise.reject(error);
+    }
 
-        if (data?.user) {
-            return Promise.resolve({
-                ...data.user,
-                name: data.user.email,
-            });
-        }
-    },
+    return Promise.resolve("/");
+  },
+  checkError: () => Promise.resolve(),
+  checkAuth: async () => {
+    const { data } = await supabaseClient.auth.getSession();
+    const { session } = data;
+
+    if (!session) {
+      return Promise.reject();
+    }
+
+    return Promise.resolve();
+  },
+  getPermissions: async () => {
+    const user = await supabaseClient.auth.getUser();
+
+    if (user) {
+      return Promise.resolve(user.data.user?.role);
+    }
+  },
+  getUserIdentity: async () => {
+    const { data } = await supabaseClient.auth.getUser();
+
+    if (data?.user) {
+      return Promise.resolve({
+        ...data.user,
+        name: data.user.email,
+      });
+    }
+  },
 };
 
 export default authProvider;
@@ -341,93 +341,77 @@ Let's add a listing page to show data retrieved from Supabase API in the table. 
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
-    List,
-    Table,
-    useTable,
-    Space,
-    EditButton,
-    ShowButton,
-    getDefaultSortOrder,
-    FilterDropdown,
-    Select,
-    useSelect,
+  List,
+  Table,
+  useTable,
+  Space,
+  EditButton,
+  ShowButton,
+  getDefaultSortOrder,
+  FilterDropdown,
+  Select,
+  useSelect,
 } from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-        metaData: {
-            select: "*, categories(title)",
-        },
-    });
+  const { tableProps, sorter } = useTable<IPost>({
+    initialSorter: [
+      {
+        field: "id",
+        order: "asc",
+      },
+    ],
+    metaData: {
+      select: "*, categories(title)",
+    },
+  });
 
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
+  const { selectProps } = useSelect<ICategory>({
+    resource: "categories",
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    key="id"
-                    dataIndex="id"
-                    title="ID"
-                    sorter
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                />
-                <Table.Column
-                    key="title"
-                    dataIndex="title"
-                    title="Title"
-                    sorter
-                />
-                <Table.Column
-                    key="categoryId"
-                    dataIndex={["categories", "title"]}
-                    title="Category"
-                    defaultSortOrder={getDefaultSortOrder(
-                        "categories.title",
-                        sorter,
-                    )}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column
+          key="id"
+          dataIndex="id"
+          title="ID"
+          sorter
+          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+        />
+        <Table.Column key="title" dataIndex="title" title="Title" sorter />
+        <Table.Column
+          key="categoryId"
+          dataIndex={["categories", "title"]}
+          title="Category"
+          defaultSortOrder={getDefaultSortOrder("categories.title", sorter)}
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select
+                style={{ minWidth: 200 }}
+                mode="multiple"
+                placeholder="Select Category"
+                {...selectProps}
+              />
+            </FilterDropdown>
+          )}
+        />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -446,14 +430,14 @@ import { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
-    Create,
-    Form,
-    Input,
-    Select,
-    Upload,
-    useForm,
-    useSelect,
-    RcFile,
+  Create,
+  Form,
+  Input,
+  Select,
+  Upload,
+  useForm,
+  useSelect,
+  RcFile,
 } from "@pankod/refine-antd";
 
 import MDEditor from "@uiw/react-md-editor";
@@ -462,101 +446,87 @@ import { IPost, ICategory } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name="categoryId"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <MDEditor data-color-mode="light" />
-                </Form.Item>
-                <Form.Item label="Images">
-                    <Form.Item
-                        name="images"
-                        valuePropName="fileList"
-                        normalize={normalizeFile}
-                        noStyle
-                    >
-                        <Upload.Dragger
-                            name="file"
-                            listType="picture"
-                            multiple
-                            customRequest={async ({
-                                file,
-                                onError,
-                                onSuccess,
-                            }) => {
-                                try {
-                                    const rcFile = file as RcFile;
-                                    await supabaseClient.storage
-                                        .from("refine")
-                                        .upload(`public/${rcFile.name}`, file, {
-                                            cacheControl: "3600",
-                                            upsert: true,
-                                        });
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name="categoryId"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <MDEditor data-color-mode="light" />
+        </Form.Item>
+        <Form.Item label="Images">
+          <Form.Item
+            name="images"
+            valuePropName="fileList"
+            normalize={normalizeFile}
+            noStyle
+          >
+            <Upload.Dragger
+              name="file"
+              listType="picture"
+              multiple
+              customRequest={async ({ file, onError, onSuccess }) => {
+                try {
+                  const rcFile = file as RcFile;
+                  await supabaseClient.storage
+                    .from("refine")
+                    .upload(`public/${rcFile.name}`, file, {
+                      cacheControl: "3600",
+                      upsert: true,
+                    });
 
-                                    const { data } =
-                                        await supabaseClient.storage
-                                            .from("refine")
-                                            .getPublicUrl(
-                                                `public/${rcFile.name}`,
-                                            );
+                  const { data } = await supabaseClient.storage
+                    .from("refine")
+                    .getPublicUrl(`public/${rcFile.name}`);
 
-                                    const xhr = new XMLHttpRequest();
-                                    onSuccess &&
-                                        onSuccess(
-                                            { url: data?.publicUrl },
-                                            xhr,
-                                        );
-                                } catch (error) {
-                                    onError &&
-                                        onError(new Error("Upload Error"));
-                                }
-                            }}
-                        >
-                            <p className="ant-upload-text">
-                                Drag & drop a file in this area
-                            </p>
-                        </Upload.Dragger>
-                    </Form.Item>
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+                  const xhr = new XMLHttpRequest();
+                  onSuccess && onSuccess({ url: data?.publicUrl }, xhr);
+                } catch (error) {
+                  onError && onError(new Error("Upload Error"));
+                }
+              }}
+            >
+              <p className="ant-upload-text">Drag & drop a file in this area</p>
+            </Upload.Dragger>
+          </Form.Item>
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 ```
 
@@ -575,18 +545,18 @@ import React, { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
-    Alert,
-    Button,
-    Edit,
-    Form,
-    Input,
-    ListButton,
-    RcFile,
-    RefreshButton,
-    Select,
-    Upload,
-    useForm,
-    useSelect,
+  Alert,
+  Button,
+  Edit,
+  Form,
+  Input,
+  ListButton,
+  RcFile,
+  RefreshButton,
+  Select,
+  Upload,
+  useForm,
+  useSelect,
 } from "@pankod/refine-antd";
 
 import MDEditor from "@uiw/react-md-editor";
@@ -595,143 +565,129 @@ import { IPost, ICategory } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const [isDeprecated, setIsDeprecated] = useState(false);
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        liveMode: "manual",
-        onLiveEvent: () => {
-            setIsDeprecated(true);
-        },
-    });
+  const [isDeprecated, setIsDeprecated] = useState(false);
+  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+    liveMode: "manual",
+    onLiveEvent: () => {
+      setIsDeprecated(true);
+    },
+  });
 
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.categoryId,
-    });
+  const postData = queryResult?.data?.data;
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+    defaultValue: postData?.categoryId,
+  });
 
-    const handleRefresh = () => {
-        queryResult?.refetch();
-        setIsDeprecated(false);
-    };
+  const handleRefresh = () => {
+    queryResult?.refetch();
+    setIsDeprecated(false);
+  };
 
-    return (
-        <Edit
-            saveButtonProps={saveButtonProps}
-            pageHeaderProps={{
-                extra: (
-                    <>
-                        <ListButton />
-                        <RefreshButton onClick={handleRefresh} />
-                    </>
-                ),
-            }}
+  return (
+    <Edit
+      saveButtonProps={saveButtonProps}
+      pageHeaderProps={{
+        extra: (
+          <>
+            <ListButton />
+            <RefreshButton onClick={handleRefresh} />
+          </>
+        ),
+      }}
+    >
+      {isDeprecated && (
+        <Alert
+          message="This post is changed. Reload to see it's latest version."
+          type="warning"
+          style={{
+            marginBottom: 20,
+          }}
+          action={
+            <Button onClick={handleRefresh} size="small" type="ghost">
+              Refresh
+            </Button>
+          }
+        />
+      )}
+
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
         >
-            {isDeprecated && (
-                <Alert
-                    message="This post is changed. Reload to see it's latest version."
-                    type="warning"
-                    style={{
-                        marginBottom: 20,
-                    }}
-                    action={
-                        <Button
-                            onClick={handleRefresh}
-                            size="small"
-                            type="ghost"
-                        >
-                            Refresh
-                        </Button>
-                    }
-                />
-            )}
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name="categoryId"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <MDEditor data-color-mode="light" />
+        </Form.Item>
+        <Form.Item label="Images">
+          <Form.Item
+            name="images"
+            valuePropName="fileList"
+            normalize={normalizeFile}
+            noStyle
+          >
+            <Upload.Dragger
+              name="file"
+              listType="picture"
+              multiple
+              customRequest={async ({ file, onError, onSuccess }) => {
+                const rcFile = file as RcFile;
+                const fileUrl = `public/${rcFile.name}`;
 
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name="categoryId"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <MDEditor data-color-mode="light" />
-                </Form.Item>
-                <Form.Item label="Images">
-                    <Form.Item
-                        name="images"
-                        valuePropName="fileList"
-                        normalize={normalizeFile}
-                        noStyle
-                    >
-                        <Upload.Dragger
-                            name="file"
-                            listType="picture"
-                            multiple
-                            customRequest={async ({
-                                file,
-                                onError,
-                                onSuccess,
-                            }) => {
-                                const rcFile = file as RcFile;
-                                const fileUrl = `public/${rcFile.name}`;
+                const { error } = await supabaseClient.storage
+                  .from("refine")
+                  .upload(fileUrl, file, {
+                    cacheControl: "3600",
+                    upsert: true,
+                  });
 
-                                const { error } = await supabaseClient.storage
-                                    .from("refine")
-                                    .upload(fileUrl, file, {
-                                        cacheControl: "3600",
-                                        upsert: true,
-                                    });
+                if (error) {
+                  return onError?.(error);
+                }
+                const { data, error: urlError } = await supabaseClient.storage
+                  .from("refine")
+                  .getPublicUrl(fileUrl);
 
-                                if (error) {
-                                    return onError?.(error);
-                                }
-                                const { data, error: urlError } =
-                                    await supabaseClient.storage
-                                        .from("refine")
-                                        .getPublicUrl(fileUrl);
+                if (urlError) {
+                  return onError?.(urlError);
+                }
 
-                                if (urlError) {
-                                    return onError?.(urlError);
-                                }
-
-                                onSuccess?.(
-                                    { url: data?.publicUrl },
-                                    new XMLHttpRequest(),
-                                );
-                            }}
-                        >
-                            <p className="ant-upload-text">
-                                Drag & drop a file in this area
-                            </p>
-                        </Upload.Dragger>
-                    </Form.Item>
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+                onSuccess?.({ url: data?.publicUrl }, new XMLHttpRequest());
+              }}
+            >
+              <p className="ant-upload-text">Drag & drop a file in this area</p>
+            </Upload.Dragger>
+          </Form.Item>
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 ```
 
@@ -747,26 +703,26 @@ We need to add interfaces for `Post` and `Create` pages to `src/interfaces/index
 
 ```tsx title="src/interfaces/index.d.ts"
 export interface ICategory {
-    id: string;
-    title: string;
+  id: string;
+  title: string;
 }
 
 export interface IFile {
-    name: string;
-    percent: number;
-    size: number;
-    status: "error" | "success" | "done" | "uploading" | "removed";
-    type: string;
-    uid: string;
-    url: string;
+  name: string;
+  percent: number;
+  size: number;
+  status: "error" | "success" | "done" | "uploading" | "removed";
+  type: string;
+  uid: string;
+  url: string;
 }
 
 export interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    categoryId: string;
-    images: IFile[];
+  id: string;
+  title: string;
+  content: string;
+  categoryId: string;
+  images: IFile[];
 }
 ```
 
@@ -782,29 +738,29 @@ Also, the `normalizeFile` function needed to be added to the `src/utility/normal
 import { UploadFile } from "@pankod/refine-antd";
 
 interface UploadResponse {
-    url: string;
+  url: string;
 }
 interface EventArgs<T = UploadResponse> {
-    file: UploadFile<T>;
-    fileList: Array<UploadFile<T>>;
+  file: UploadFile<T>;
+  fileList: Array<UploadFile<T>>;
 }
 
 export const normalizeFile = (event: EventArgs) => {
-    const { fileList } = event;
+  const { fileList } = event;
 
-    return fileList.map((item) => {
-        const { uid, name, type, size, response, percent, status } = item;
+  return fileList.map((item) => {
+    const { uid, name, type, size, response, percent, status } = item;
 
-        return {
-            uid,
-            name,
-            url: item.url || response?.url,
-            type,
-            size,
-            percent,
-            status,
-        };
-    });
+    return {
+      uid,
+      name,
+      url: item.url || response?.url,
+      type,
+      size,
+      percent,
+      status,
+    };
+  });
 };
 ```
 
@@ -855,11 +811,11 @@ The resources property activates the connection between CRUD pages and Supabase 
 
 **refine** automatically matches the Supabase API endpoint with CRUD pages for us. In this way, the pages can interact with data from the API.
 
--   The `name` property refers to the name of the table in the Supabase database.
+- The `name` property refers to the name of the table in the Supabase database.
 
--   The `list` property registers `/posts` endpoint to the `PostList` component.
+- The `list` property registers `/posts` endpoint to the `PostList` component.
 
--   The `create` property registers `/posts/create` endpoint to the `PostCreate` component. Thereby, when you head over to `yourdomain.com/posts/create`, you will see the `PostCreate` page you just created.
+- The `create` property registers `/posts/create` endpoint to the `PostCreate` component. Thereby, when you head over to `yourdomain.com/posts/create`, you will see the `PostCreate` page you just created.
 
 [Refer to resources docs for more information &#8594](/docs/api-reference/core/components/refine-config.md/#resources)
 
@@ -948,8 +904,8 @@ We'll show how to implement third party logins in the next sections.
 
 Sign in the app with followings credentials:
 
--   email: info@refine.dev
--   password: refine-supabase
+- email: info@refine.dev
+- password: refine-supabase
 
 We have successfully logged in to the app and `ListPage` renders table of data at the `/post` route.
 
@@ -1033,11 +989,11 @@ Here is the result:
 
 So far, we have implemented the followings:
 
--   We have reviewed Supabase Client and data provider concepts. We've seen benefits of using **refine** and how it can handle complex setups for us.
--   We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of **refine**'s built-in authentication support.
--   We have added CRUD pages to make the app interact with Supabase API. We've seen how the `resources` property works and how it connects the pages with the API.
--   We have seen how the `LoginPage` property works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
--   We have seen how authorization handling in **refine** app by understanding the logic behind of `LoginPage` property, `authProvider`, and `<AuthPage>` component.
+- We have reviewed Supabase Client and data provider concepts. We've seen benefits of using **refine** and how it can handle complex setups for us.
+- We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of **refine**'s built-in authentication support.
+- We have added CRUD pages to make the app interact with Supabase API. We've seen how the `resources` property works and how it connects the pages with the API.
+- We have seen how the `LoginPage` property works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
+- We have seen how authorization handling in **refine** app by understanding the logic behind of `LoginPage` property, `authProvider`, and `<AuthPage>` component.
 
 **refine provides solutions for critical parts of the complete CRUD app requirements. It saves development time and effort by providing ready-to-use components and features.**
 
@@ -1095,16 +1051,16 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 :::tip
 **refine** offers out-of-the-box live provider support:
 
--   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/v3/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
--   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/supabase/src/index.ts#L187)
--   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/appwrite/src/index.ts#L252)
--   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/hasura/src/liveProvider/index.ts#L16)
--   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/nhost/src/liveProvider/index.ts#L16)
-:::
+- **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/v3/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
+- **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/supabase/src/index.ts#L187)
+- **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/appwrite/src/index.ts#L252)
+- **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/hasura/src/liveProvider/index.ts#L16)
+- **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/nhost/src/liveProvider/index.ts#L16)
+  :::
 
 ## Using `metaData` to pass values to data provider
 
-The [`metaData`](/docs/api-reference/general-concepts.md/#metadata) property is used to pass additional information that can be read by data provider methods.
+The [`metaData`](/docs/guides-concepts/general-concepts/#meta-conceptdata) property is used to pass additional information that can be read by data provider methods.
 
 We'll show an example of getting relational data from different tables on Supabase API using `metaData` property.
 
@@ -1120,12 +1076,12 @@ For example, for `posts -> categories` relationship, we can get the `title` data
 
 ```tsx title="src/pages/posts/list.tsx"
 const { tableProps, sorter } = useTable<IPost>({
-    //highlight-start
-    resource: "posts",
-    metaData: {
-        select: "*, categories(title)",
-    },
-    // highlight-end
+  //highlight-start
+  resource: "posts",
+  metaData: {
+    select: "*, categories(title)",
+  },
+  // highlight-end
 });
 ```
 
@@ -1137,12 +1093,12 @@ For example, for `movies <-> categories_movies <-> categories` many-to-many rela
 
 ```tsx title="src/pages/users/list.tsx"
 const { tableProps, sorter } = useTable<IUser>({
-    //highlight-start
-    resource: "movies",
-    metaData: {
-        select: "*, categories!inner(name)",
-    },
-    // highlight-end
+  //highlight-start
+  resource: "movies",
+  metaData: {
+    select: "*, categories!inner(name)",
+  },
+  // highlight-end
 });
 ```
 
@@ -1154,8 +1110,8 @@ refine's [useMany](/docs/api-reference/core/hooks/data/useMany/) hook accepts `m
 
 ```tsx
 useMany({
-    resource: "posts",
-    ids: [1, 2],
+  resource: "posts",
+  ids: [1, 2],
 });
 ```
 
@@ -1165,13 +1121,13 @@ With passing `id` parameter to the `metaData` property, we can change the column
 
 ```tsx
 useMany({
-    resource: "posts",
-    ids: [1, 2],
-    //highlight-start
-    metaData: {
-        id: "post_id",
-    },
-    // highlight-end
+  resource: "posts",
+  ids: [1, 2],
+  //highlight-start
+  metaData: {
+    id: "post_id",
+  },
+  // highlight-end
 });
 ```
 
@@ -1185,15 +1141,15 @@ It gets the posts where the `title` of the `categories` is "Beginning". Also the
 
 ```tsx
 const { tableProps, sorter } = useTable({
-    resource: "posts",
-    //highlight-start
-    initialFilter: [
-        { field: "categories.title", operator: "eq", value: "Beginning" },
-    ],
-    metaData: {
-        select: "*, categories!inner(title)",
-    },
-    //highlight-end
+  resource: "posts",
+  //highlight-start
+  initialFilter: [
+    { field: "categories.title", operator: "eq", value: "Beginning" },
+  ],
+  metaData: {
+    select: "*, categories!inner(title)",
+  },
+  //highlight-end
 });
 ```
 

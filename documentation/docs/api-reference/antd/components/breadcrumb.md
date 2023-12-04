@@ -5,123 +5,117 @@ sidebar_label: Breadcrumb
 swizzle: true
 ---
 
-A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. The `<Breadcrumb>` component was built with Ant Design's [Breadcrumb][antd-breadcrumb] components using the [`useBreadcrumb`](/api-reference/core/hooks/useBreadcrumb.md) hook.
+A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. The `<Breadcrumb>` component was built with Ant Design's [Breadcrumb][antd-breadcrumb] components using the [`useBreadcrumb`](/docs/api-reference/core/hooks/useBreadcrumb.md) hook.
 
 :::info-tip Swizzle
+
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+
 :::
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px disableScroll
 // visible-block-start
 import { BrowserRouter } from "react-router-dom";
 import {
-    ConfigProvider,
-    RefineThemes,
-    Show,
-    // highlight-next-line
-    Breadcrumb,
+  ConfigProvider,
+  RefineThemes,
+  Show,
+  // highlight-next-line
+  Breadcrumb,
 } from "@refinedev/antd";
 
 //highlight-start
 const PostIcon = (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="icon icon-tabler icon-tabler-list"
-        width={18}
-        height={18}
-        viewBox="0 0 24 24"
-        strokeWidth="2"
-        stroke="currentColor"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <line x1={9} y1={6} x2={20} y2={6}></line>
-        <line x1={9} y1={12} x2={20} y2={12}></line>
-        <line x1={9} y1={18} x2={20} y2={18}></line>
-        <line x1={5} y1={6} x2={5} y2="6.01"></line>
-        <line x1={5} y1={12} x2={5} y2="12.01"></line>
-        <line x1={5} y1={18} x2={5} y2="18.01"></line>
-    </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="icon icon-tabler icon-tabler-list"
+    width={18}
+    height={18}
+    viewBox="0 0 24 24"
+    strokeWidth="2"
+    stroke="currentColor"
+    fill="none"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+    <line x1={9} y1={6} x2={20} y2={6}></line>
+    <line x1={9} y1={12} x2={20} y2={12}></line>
+    <line x1={9} y1={18} x2={20} y2={18}></line>
+    <line x1={5} y1={6} x2={5} y2="6.01"></line>
+    <line x1={5} y1={12} x2={5} y2="12.01"></line>
+    <line x1={5} y1={18} x2={5} y2="18.01"></line>
+  </svg>
 );
 //highlight-end
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-next-line
-            breadcrumb={<Breadcrumb />}
-        >
-            <p>Content of your show page...</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-next-line
+      breadcrumb={<Breadcrumb />}
+    >
+      <p>Content of your show page...</p>
+    </Show>
+  );
 };
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    //...
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            show: "/posts/show/:id",
-                            // highlight-next-line
-                            meta: { icon: PostIcon },
-                        },
-                    ]}
-                >
-                    //...
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          //...
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+              show: "/posts/show/:id",
+              // highlight-next-line
+              meta: { icon: PostIcon },
+            },
+          ]}
+        >
+          //...
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 // visible-block-end
 
 const PostList = () => {
-    return (
-        <RefineAntd.List>
-            <p>Content of your list page...</p>
-        </RefineAntd.List>
-    );
+  return (
+    <RefineAntd.List>
+      <p>Content of your list page...</p>
+    </RefineAntd.List>
+  );
 };
 
 setInitialRoutes(["/posts/show/123"]);
 
 render(
-    <ReactRouterDom.BrowserRouter>
-        <RefineCore.Refine
-            dataProvider={RefineSimpleRest.default(
-                "https://api.fake-rest.refine.dev",
-            )}
-            routerProvider={RefineReactRouterV6.default}
-            resources={[
-                {
-                    name: "posts",
-                    meta: { icon: PostIcon },
-                    show: "/posts/show/:id",
-                    list: "/posts",
-                },
-            ]}
-        >
-            <RefineAntd.Layout>
-                <ReactRouterDom.Routes>
-                    <ReactRouterDom.Route
-                        path="/posts"
-                        element={<PostList />}
-                    />
-                    <ReactRouterDom.Route
-                        path="/posts/show/:id"
-                        element={<PostShow />}
-                    />
-                </ReactRouterDom.Routes>
-            </RefineAntd.Layout>
-        </RefineCore.Refine>
-    </ReactRouterDom.BrowserRouter>,
+  <ReactRouterDom.BrowserRouter>
+    <RefineCore.Refine
+      dataProvider={RefineSimpleRest.default("https://api.fake-rest.refine.dev")}
+      routerProvider={RefineReactRouterV6.default}
+      resources={[
+        {
+          name: "posts",
+          meta: { icon: PostIcon },
+          show: "/posts/show/:id",
+          list: "/posts",
+        },
+      ]}
+    >
+      <RefineAntd.Layout>
+        <ReactRouterDom.Routes>
+          <ReactRouterDom.Route path="/posts" element={<PostList />} />
+          <ReactRouterDom.Route path="/posts/show/:id" element={<PostShow />} />
+        </ReactRouterDom.Routes>
+      </RefineAntd.Layout>
+    </RefineCore.Refine>
+  </ReactRouterDom.BrowserRouter>,
 );
 ```
 
@@ -143,14 +137,14 @@ The `<Breadcrumb>` component uses the Ant Design [Breadcrumb][antd-breadcrumb] c
 import { List, Breadcrumb } from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-next-line
-            breadcrumb={<Breadcrumb breadcrumbProps={{ separator: "-" }} />}
-        >
-            ...
-        </List>
-    );
+  return (
+    <List
+      // highlight-next-line
+      breadcrumb={<Breadcrumb breadcrumbProps={{ separator: "-" }} />}
+    >
+      ...
+    </List>
+  );
 };
 ```
 
@@ -162,14 +156,14 @@ If you have a page with route `/`, it will be used as the root of the hierarchy 
 import { List, Breadcrumb } from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-next-line
-            breadcrumb={<Breadcrumb showHome={true} />}
-        >
-            ...
-        </List>
-    );
+  return (
+    <List
+      // highlight-next-line
+      breadcrumb={<Breadcrumb showHome={true} />}
+    >
+      ...
+    </List>
+  );
 };
 ```
 
@@ -181,14 +175,14 @@ If your routes has additional parameters in their paths, you can pass the `meta`
 import { List, Breadcrumb } from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-next-line
-            breadcrumb={<Breadcrumb meta={{ authorId: "123" }} />}
-        >
-            ...
-        </List>
-    );
+  return (
+    <List
+      // highlight-next-line
+      breadcrumb={<Breadcrumb meta={{ authorId: "123" }} />}
+    >
+      ...
+    </List>
+  );
 };
 ```
 
@@ -200,14 +194,14 @@ If you don't want to show the resource icons on the breadcrumb, you can set `hid
 import { List, Breadcrumb } from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-next-line
-            breadcrumb={<Breadcrumb hideIcons />}
-        >
-            ...
-        </List>
-    );
+  return (
+    <List
+      // highlight-next-line
+      breadcrumb={<Breadcrumb hideIcons />}
+    >
+      ...
+    </List>
+  );
 };
 ```
 

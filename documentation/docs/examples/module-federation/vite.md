@@ -11,9 +11,9 @@ This example demonstrates how to integrate **refine** with Vite's module federat
 
 In this example, we have 3 apps:
 
--   `host`: The host application which puts all other remote components and auth logic together.
--   `blog-posts`: Application which exports pages related to blog posts.
--   `categories`: Application which exports pages related to categories.
+- `host`: The host application which puts all other remote components and auth logic together.
+- `blog-posts`: Application which exports pages related to blog posts.
+- `categories`: Application which exports pages related to categories.
 
 Usage:
 
@@ -38,11 +38,13 @@ npm run build && npm run preview
 ```
 
 :::caution
+
 `dev` mode is only supported for `host` app, but not for sub apps. This is because Vite does not support module federation in dev mode yet.
 
 So when you made changes in sub apps, you need to rebuild and restart the app(s).
 
 https://github.com/originjs/vite-plugin-federation#vite-dev-mode
+
 :::
 
 If you are using a library which requires shared context (ie: ColorContextProvider for antd), make sure you are updating `vite.config.ts` by adding relevant package(s) to `shared` array.
@@ -55,5 +57,5 @@ https://github.com/refinedev/refine/blob/master/examples/monorepo-module-federat
 
 References:
 
--   https://originjs.org/en/guide/plugins/vite-plugin-federation/#installation
--   https://nipunamarcus.medium.com/micro-frontend-module-federation-with-vite-for-react-d2a8edad7f14
+- https://originjs.org/en/guide/plugins/vite-plugin-federation/#installation
+- https://nipunamarcus.medium.com/micro-frontend-module-federation-with-vite-for-react-d2a8edad7f14

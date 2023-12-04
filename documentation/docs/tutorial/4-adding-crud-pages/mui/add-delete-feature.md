@@ -2,9 +2,9 @@
 id: add-delete-feature
 title: 5. Adding Delete Feature
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-create-page
-    next: tutorial/adding-crud-pages/{preferredUI}/adding-sort-and-filters
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-create-page
+  next: tutorial/adding-crud-pages/{preferredUI}/adding-sort-and-filters
 ---
 
 ## Adding Delete Feature to List Page
@@ -51,13 +51,7 @@ We can enable the delete feature on both show and edit pages while we are defini
 
 ```tsx src="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import {
-    Layout,
-    ErrorComponent,
-    LightTheme,
-    RefineSnackbarProvider,
-    notificationProvider,
-} from "@refinedev/mui";
+import { Layout, ErrorComponent, LightTheme, RefineSnackbarProvider, notificationProvider } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -70,39 +64,37 @@ import { BlogPostShow } from "pages/blog-posts/show";
 import { BlogPostCreate } from "pages/blog-posts/create";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                                // highlight-start
-                                meta: {
-                                    canDelete: true,
-                                },
-                                // highlight-end
-                            },
-                        ]}
-                    >
-                        {/* ... */}
-                    </Refine>
-                </BrowserRouter>
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+                // highlight-start
+                meta: {
+                  canDelete: true,
+                },
+                // highlight-end
+              },
+            ]}
+          >
+            {/* ... */}
+          </Refine>
+        </BrowserRouter>
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 export default App;
 ```

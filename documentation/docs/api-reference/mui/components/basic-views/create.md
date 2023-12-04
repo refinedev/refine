@@ -17,112 +17,101 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 
 const SampleCreate = () => {
-    const {
-        saveButtonProps,
-        refineCore: { formLoading },
-        register,
-        control,
-        formState: { errors },
-    } = useForm();
+  const {
+    saveButtonProps,
+    refineCore: { formLoading },
+    register,
+    control,
+    formState: { errors },
+  } = useForm();
 
-    const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
-        resource: "categories",
-    });
+  const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
+    resource: "categories",
+  });
 
-    return (
-        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <Box
-                component="form"
-                sx={{ display: "flex", flexDirection: "column" }}
-                autoComplete="off"
-            >
+  return (
+    <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+      <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+        <TextField
+          {...register("title", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.title}
+          helperText={(errors as any)?.title?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="text"
+          label="Title"
+          name="title"
+        />
+        <TextField
+          {...register("content", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.content}
+          helperText={(errors as any)?.content?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          multiline
+          label="Content"
+          name="content"
+        />
+        <Controller
+          control={control}
+          name="category"
+          rules={{ required: "This field is required" }}
+          // eslint-disable-next-line
+          defaultValue={null as any}
+          render={({ field }) => (
+            <Autocomplete
+              {...categoryAutocompleteProps}
+              {...field}
+              onChange={(_, value) => {
+                field.onChange(value);
+              }}
+              getOptionLabel={(item) => {
+                return (
+                  categoryAutocompleteProps?.options?.find((p) => p?.id?.toString() === item?.id?.toString())?.title ??
+                  ""
+                );
+              }}
+              isOptionEqualToValue={(option, value) =>
+                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+              }
+              renderInput={(params) => (
                 <TextField
-                    {...register("title", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.title}
-                    helperText={(errors as any)?.title?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="text"
-                    label="Title"
-                    name="title"
+                  {...params}
+                  label="Category"
+                  margin="normal"
+                  variant="outlined"
+                  error={!!(errors as any)?.category?.id}
+                  helperText={(errors as any)?.category?.id?.message}
+                  required
                 />
-                <TextField
-                    {...register("content", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.content}
-                    helperText={(errors as any)?.content?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    multiline
-                    label="Content"
-                    name="content"
-                />
-                <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "This field is required" }}
-                    // eslint-disable-next-line
-                    defaultValue={null as any}
-                    render={({ field }) => (
-                        <Autocomplete
-                            {...categoryAutocompleteProps}
-                            {...field}
-                            onChange={(_, value) => {
-                                field.onChange(value);
-                            }}
-                            getOptionLabel={(item) => {
-                                return (
-                                    categoryAutocompleteProps?.options?.find(
-                                        (p) =>
-                                            p?.id?.toString() ===
-                                            item?.id?.toString(),
-                                    )?.title ?? ""
-                                );
-                            }}
-                            isOptionEqualToValue={(option, value) =>
-                                value === undefined ||
-                                option?.id?.toString() ===
-                                    (value?.id ?? value)?.toString()
-                            }
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Category"
-                                    margin="normal"
-                                    variant="outlined"
-                                    error={!!(errors as any)?.category?.id}
-                                    helperText={
-                                        (errors as any)?.category?.id?.message
-                                    }
-                                    required
-                                />
-                            )}
-                        />
-                    )}
-                />
-            </Box>
-        </Create>
-    );
+              )}
+            />
+          )}
+        />
+      </Box>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/samples/create"]}
-        resources={[
-            { name: "samples", create: SampleCreate, list: SampleList },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/samples/create"]}
+    resources={[{ name: "samples", create: SampleCreate, list: SampleList }]}
+  />,
 );
 ```
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Properties
@@ -137,33 +126,33 @@ import { Create } from "@refinedev/mui";
 import { Typography } from "@mui/material";
 
 const CreatePage: React.FC = () => {
-    return (
-        <Create
-            // highlight-next-line
-            title={<Typography variant="h5">Custom Title</Typography>}
-        >
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-next-line
+      title={<Typography variant="h5">Custom Title</Typography>}
+    >
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.CreateButton />
-                    </div>
-                ),
-                create: CreatePage,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.CreateButton />
+          </div>
+        ),
+        create: CreatePage,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -183,40 +172,40 @@ import dataProvider from "@refinedev/simple-rest";
 import { Create } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create resource="posts">
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create resource="posts">
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            legacyRouterProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom",
-                    },
-                ],
-                // highlight-end
-            }}
-            Layout={Layout}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom",
+          },
+        ],
+        // highlight-end
+      }}
+      Layout={Layout}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -233,35 +222,35 @@ The `<Create>` component has a default button that submits the form. If you want
 import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create saveButtonProps={{ size: "small" }}>
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create saveButtonProps={{ size: "small" }}>
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/mui/components/buttons/save.md)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/api-reference/mui/components/buttons/save.md)
 
 ### `goBack`
 
@@ -271,20 +260,20 @@ To customize the back button or to disable it, you can use the `goBack` property
 import { useNavigation } from "@refinedev/core";
 
 const RealBackButton = () => {
-    const { goBack } = useNavigation();
+  const { goBack } = useNavigation();
 
-    return <Button onClick={goBack}>BACK!</Button>;
+  return <Button onClick={goBack}>BACK!</Button>;
 };
 
 const RealPostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-next-line
-            goBack={<RealBackButton />}
-        >
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-next-line
+      goBack={<RealBackButton />}
+    >
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 
 // visible-block-start
@@ -293,39 +282,39 @@ import { Button } from "@mui/material";
 import { useBack } from "@refinedev/core";
 
 const BackButton = () => {
-    const goBack = useBack();
+  const goBack = useBack();
 
-    return <Button onClick={goBack}>BACK!</Button>;
+  return <Button onClick={goBack}>BACK!</Button>;
 };
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-next-line
-            goBack={<BackButton />}
-        >
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-next-line
+      goBack={<BackButton />}
+    >
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.CreateButton />
-                    </div>
-                ),
-                create: RealPostCreate,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.CreateButton />
+          </div>
+        ),
+        create: RealPostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -338,35 +327,35 @@ To toggle the loading state of the `<Create/>` component, you can use the `isLoa
 import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Create
-            // highlight-next-line
-            isLoading={loading}
-        >
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-next-line
+      isLoading={loading}
+    >
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -375,7 +364,9 @@ render(
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
 
 :::tip
+
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+
 :::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
@@ -383,47 +374,47 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 import { Create, Breadcrumb } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            breadcrumb={
-                <div
-                    style={{
-                        padding: "3px 6px",
-                        border: "2px dashed cornflowerblue",
-                    }}
-                >
-                    <Breadcrumb />
-                </div>
-            }
-            // highlight-end
+  return (
+    <Create
+      // highlight-start
+      breadcrumb={
+        <div
+          style={{
+            padding: "3px 6px",
+            border: "2px dashed cornflowerblue",
+          }}
         >
-            <span>Rest of your page here</span>
-        </Create>
-    );
+          <Breadcrumb />
+        </div>
+      }
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mui/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/mui/components/breadcrumb.md)
 
 ### `wrapperProps`
 
@@ -434,40 +425,40 @@ If you want to customize the wrapper of the `<Create/>` component, you can use t
 import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Create
-            // highlight-start
-            wrapperProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      wrapperProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -482,40 +473,40 @@ If you want to customize the header of the `<Create/>` component, you can use th
 import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Create
-            // highlight-start
-            headerProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -530,40 +521,40 @@ If you want to customize the content of the `<Create/>` component, you can use t
 import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Create
-            // highlight-start
-            contentProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      contentProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -579,41 +570,41 @@ import { Create } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Create
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -627,46 +618,46 @@ import { Create } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Create
-            // highlight-start
-            headerButtonProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-        >
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerButtonProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+    >
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -684,41 +675,41 @@ import { Create } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Create
-            // highlight-start
-            footerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -730,47 +721,43 @@ import { Create, SaveButton } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Create
-            // highlight-start
-            footerButtons={({ saveButtonProps }) => (
-                <>
-                    <SaveButton
-                        {...saveButtonProps}
-                        type="primary"
-                        sx={{ marginRight: 8 }}
-                    >
-                        Save
-                    </SaveButton>
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtons={({ saveButtonProps }) => (
+        <>
+          <SaveButton {...saveButtonProps} type="primary" sx={{ marginRight: 8 }}>
+            Save
+          </SaveButton>
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -784,46 +771,46 @@ import { Create } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <Create
-            // highlight-start
-            footerButtonProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-            footerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-        >
-            <span>Rest of your page here</span>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtonProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+      footerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+    >
+      <span>Rest of your page here</span>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts", "/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <RefineMui.CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts", "/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -837,83 +824,69 @@ render(
 
 ```tsx live shared
 const SampleList = () => {
-    const { dataGridProps } = RefineMui.useDataGrid();
+  const { dataGridProps } = RefineMui.useDataGrid();
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        RefineCore.useMany({
-            resource: "categories",
-            ids:
-                dataGridProps?.rows?.map((item: any) => item?.category?.id) ??
-                [],
-            queryOptions: {
-                enabled: !!dataGridProps?.rows,
-            },
-        });
+  const { data: categoryData, isLoading: categoryIsLoading } = RefineCore.useMany({
+    resource: "categories",
+    ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
+    queryOptions: {
+      enabled: !!dataGridProps?.rows,
+    },
+  });
 
-    const columns = React.useMemo<GridColDef<any>[]>(
-        () => [
-            {
-                field: "id",
-                headerName: "Id",
-                type: "number",
-                minWidth: 50,
-            },
-            {
-                field: "title",
-                headerName: "Title",
-                minWidth: 200,
-            },
-            {
-                field: "category",
-                headerName: "Category",
-                valueGetter: ({ row }) => {
-                    const value = row?.category?.id;
+  const columns = React.useMemo<GridColDef<any>[]>(
+    () => [
+      {
+        field: "id",
+        headerName: "Id",
+        type: "number",
+        minWidth: 50,
+      },
+      {
+        field: "title",
+        headerName: "Title",
+        minWidth: 200,
+      },
+      {
+        field: "category",
+        headerName: "Category",
+        valueGetter: ({ row }) => {
+          const value = row?.category?.id;
 
-                    return value;
-                },
-                minWidth: 300,
-                renderCell: function render({ value }) {
-                    return categoryIsLoading ? (
-                        <>Loading...</>
-                    ) : (
-                        categoryData?.data?.find((item) => item.id === value)
-                            ?.title
-                    );
-                },
-            },
-            {
-                field: "createdAt",
-                headerName: "Created At",
-                minWidth: 250,
-                renderCell: function render({ value }) {
-                    return <RefineMui.DateField value={value} />;
-                },
-            },
-        ],
-        [categoryData?.data],
-    );
+          return value;
+        },
+        minWidth: 300,
+        renderCell: function render({ value }) {
+          return categoryIsLoading ? <>Loading...</> : categoryData?.data?.find((item) => item.id === value)?.title;
+        },
+      },
+      {
+        field: "createdAt",
+        headerName: "Created At",
+        minWidth: 250,
+        renderCell: function render({ value }) {
+          return <RefineMui.DateField value={value} />;
+        },
+      },
+    ],
+    [categoryData?.data],
+  );
 
-    return (
-        <RefineMui.List>
-            <MuiXDataGrid.DataGrid
-                {...dataGridProps}
-                columns={columns}
-                autoHeight
-            />
-        </RefineMui.List>
-    );
+  return (
+    <RefineMui.List>
+      <MuiXDataGrid.DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </RefineMui.List>
+  );
 };
 
 const Wrapper = ({ children }) => {
-    return (
-        <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
-            <MuiMaterial.CssBaseline />
-            <MuiMaterial.GlobalStyles
-                styles={{ html: { WebkitFontSmoothing: "auto" } }}
-            />
-            {children}
-        </MuiMaterial.ThemeProvider>
-    );
+  return (
+    <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
+      <MuiMaterial.CssBaseline />
+      <MuiMaterial.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      {children}
+    </MuiMaterial.ThemeProvider>
+  );
 };
 ```
 

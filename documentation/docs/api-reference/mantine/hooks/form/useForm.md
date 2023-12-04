@@ -11,213 +11,169 @@ import { ColumnDef, flexRender } from "@tanstack/react-table";
 import React from "react";
 
 import {
-    Box as MantineBox,
-    Group as MantineGroup,
-    Pagination as MantinePagination,
-    ScrollArea as MantineScrollArea,
-    Table as MantineTable,
-    Textarea as MantineTextarea,
-    TextInput as MantineTextInput,
+  Box as MantineBox,
+  Group as MantineGroup,
+  Pagination as MantinePagination,
+  ScrollArea as MantineScrollArea,
+  Table as MantineTable,
+  Textarea as MantineTextarea,
+  TextInput as MantineTextInput,
 } from "@mantine/core";
 import {
-    CloneButton as MantineCloneButton,
-    Create as MantineCreate,
-    Edit as MantineEdit,
-    EditButton as MantineEditButton,
-    List as MantineList,
+  CloneButton as MantineCloneButton,
+  Create as MantineCreate,
+  Edit as MantineEdit,
+  EditButton as MantineEditButton,
+  List as MantineList,
 } from "@refinedev/mantine";
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-                meta: {
-                    filterOperator: "contains",
-                },
-            },
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
+        meta: {
+          filterOperator: "contains",
+        },
+      },
 
-            {
-                id: "actions",
-                header: "Actions",
-                accessorKey: "id",
-                enableColumnFilter: false,
-                enableSorting: false,
-                cell: function render({ getValue }) {
-                    return (
+      {
+        id: "actions",
+        header: "Actions",
+        accessorKey: "id",
+        enableColumnFilter: false,
+        enableSorting: false,
+        cell: function render({ getValue }) {
+          return (
+            <MantineGroup spacing="xs" noWrap>
+              <MantineEditButton hideText recordItemId={getValue() as number} />
+              <MantineCloneButton hideText recordItemId={getValue() as number} />
+            </MantineGroup>
+          );
+        },
+      },
+    ],
+    [],
+  );
+
+  const {
+    getHeaderGroups,
+    getRowModel,
+    refineCore: { setCurrent, pageCount, current },
+  } = useTable({
+    columns,
+  });
+
+  return (
+    <MantineScrollArea>
+      <MantineList>
+        <MantineTable highlightOnHover>
+          <thead>
+            {getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <th key={header.id}>
+                      {!header.isPlaceholder && (
                         <MantineGroup spacing="xs" noWrap>
-                            <MantineEditButton
-                                hideText
-                                recordItemId={getValue() as number}
-                            />
-                            <MantineCloneButton
-                                hideText
-                                recordItemId={getValue() as number}
-                            />
+                          <MantineBox>{flexRender(header.column.columnDef.header, header.getContext())}</MantineBox>
                         </MantineGroup>
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { setCurrent, pageCount, current },
-    } = useTable({
-        columns,
-    });
-
-    return (
-        <MantineScrollArea>
-            <MantineList>
-                <MantineTable highlightOnHover>
-                    <thead>
-                        {getHeaderGroups().map((headerGroup) => (
-                            <tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => {
-                                    return (
-                                        <th key={header.id}>
-                                            {!header.isPlaceholder && (
-                                                <MantineGroup
-                                                    spacing="xs"
-                                                    noWrap
-                                                >
-                                                    <MantineBox>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </MantineBox>
-                                                </MantineGroup>
-                                            )}
-                                        </th>
-                                    );
-                                })}
-                            </tr>
-                        ))}
-                    </thead>
-                    <tbody>
-                        {getRowModel().rows.map((row) => {
-                            return (
-                                <tr key={row.id}>
-                                    {row.getVisibleCells().map((cell) => {
-                                        return (
-                                            <td key={cell.id}>
-                                                {flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext(),
-                                                )}
-                                            </td>
-                                        );
-                                    })}
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </MantineTable>
-                <br />
-                <MantinePagination
-                    position="right"
-                    total={pageCount}
-                    page={current}
-                    onChange={setCurrent}
-                />
-            </MantineList>
-        </MantineScrollArea>
-    );
+                      )}
+                    </th>
+                  );
+                })}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {getRowModel().rows.map((row) => {
+              return (
+                <tr key={row.id}>
+                  {row.getVisibleCells().map((cell) => {
+                    return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </MantineTable>
+        <br />
+        <MantinePagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+      </MantineList>
+    </MantineScrollArea>
+  );
 };
 
 const PostEdit: React.FC = () => {
-    const { saveButtonProps, getInputProps, errors } = useForm({
-        initialValues: {
-            title: "",
-            content: "",
-        },
-        validate: {
-            title: (value) =>
-                value.length < 3 && "Title must be at least 3 characters",
-            content: (value) =>
-                value.length < 10 && "Content must be at least 10 characters",
-        },
-    });
+  const { saveButtonProps, getInputProps, errors } = useForm({
+    initialValues: {
+      title: "",
+      content: "",
+    },
+    validate: {
+      title: (value) => value.length < 3 && "Title must be at least 3 characters",
+      content: (value) => value.length < 10 && "Content must be at least 10 characters",
+    },
+  });
 
-    return (
-        <MantineEdit saveButtonProps={saveButtonProps}>
-            <form>
-                <MantineTextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    withAsterisk
-                    {...getInputProps("title")}
-                />
+  return (
+    <MantineEdit saveButtonProps={saveButtonProps}>
+      <form>
+        <MantineTextInput mt={8} label="Title" placeholder="Title" withAsterisk {...getInputProps("title")} />
 
-                <MantineTextarea
-                    label="Content"
-                    placeholder="Content"
-                    minRows={4}
-                    maxRows={4}
-                    withAsterisk
-                    {...getInputProps("content")}
-                />
-            </form>
-        </MantineEdit>
-    );
+        <MantineTextarea
+          label="Content"
+          placeholder="Content"
+          minRows={4}
+          maxRows={4}
+          withAsterisk
+          {...getInputProps("content")}
+        />
+      </form>
+    </MantineEdit>
+  );
 };
 
 const PostCreate: React.FC = () => {
-    const { saveButtonProps, getInputProps, errors } = mantineUseForm({
-        initialValues: {
-            title: "",
-            content: "",
-        },
-        validate: {
-            title: (value) =>
-                value.length < 3 && "Title must be at least 3 characters",
-            content: (value) =>
-                value.length < 10 && "Content must be at least 10 characters",
-        },
-    });
+  const { saveButtonProps, getInputProps, errors } = mantineUseForm({
+    initialValues: {
+      title: "",
+      content: "",
+    },
+    validate: {
+      title: (value) => value.length < 3 && "Title must be at least 3 characters",
+      content: (value) => value.length < 10 && "Content must be at least 10 characters",
+    },
+  });
 
-    return (
-        <MantineCreate saveButtonProps={saveButtonProps}>
-            <form>
-                <MantineTextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    withAsterisk
-                    {...getInputProps("title")}
-                />
-                <MantineTextarea
-                    label="Content"
-                    placeholder="Content"
-                    minRows={4}
-                    maxRows={4}
-                    withAsterisk
-                    {...getInputProps("content")}
-                />
-            </form>
-        </MantineCreate>
-    );
+  return (
+    <MantineCreate saveButtonProps={saveButtonProps}>
+      <form>
+        <MantineTextInput mt={8} label="Title" placeholder="Title" withAsterisk {...getInputProps("title")} />
+        <MantineTextarea
+          label="Content"
+          placeholder="Content"
+          minRows={4}
+          maxRows={4}
+          withAsterisk
+          {...getInputProps("content")}
+        />
+      </form>
+    </MantineCreate>
+  );
 };
 ```
 
@@ -234,54 +190,49 @@ import { Select, TextInput } from "@mantine/core";
 import { Edit, useForm } from "@refinedev/mantine";
 
 const PostEdit: React.FC = () => {
-    const { saveButtonProps, getInputProps } = useForm({
-        initialValues: {
-            title: "",
-            status: "",
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-            status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
-        },
-    });
+  const { saveButtonProps, getInputProps } = useForm({
+    initialValues: {
+      title: "",
+      status: "",
+    },
+    validate: {
+      title: (value) => (value.length < 2 ? "Too short title" : null),
+      status: (value) => (value.length <= 0 ? "Status is required" : null),
+    },
+  });
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    withAsterisk
-                    {...getInputProps("title")}
-                />
-                <Select
-                    mt={8}
-                    label="Status"
-                    placeholder="Pick one"
-                    data={[
-                        { label: "Published", value: "published" },
-                        { label: "Draft", value: "draft" },
-                        { label: "Rejected", value: "rejected" },
-                    ]}
-                    withAsterisk
-                    {...getInputProps("status")}
-                />
-            </form>
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <form>
+        <TextInput mt={8} label="Title" placeholder="Title" withAsterisk {...getInputProps("title")} />
+        <Select
+          mt={8}
+          label="Status"
+          placeholder="Pick one"
+          data={[
+            { label: "Published", value: "published" },
+            { label: "Draft", value: "draft" },
+            { label: "Rejected", value: "rejected" },
+          ]}
+          withAsterisk
+          {...getInputProps("status")}
+        />
+      </form>
+    </Edit>
+  );
 };
 ```
 
-In the example if you navigate to `/posts/edit/1234` it will manage the data of the post with id of `1234` in an editing context. See [Actions](/api-reference/core/hooks/useForm.md/#actions) on how `useForm` determines this is an editing context.
+In the example if you navigate to `/posts/edit/1234` it will manage the data of the post with id of `1234` in an editing context. See [Actions](/docs/api-reference/core/hooks/useForm/#actions) on how `useForm` determines this is an editing context.
 
 Since this is an edit form it will fill the form with the data of the post with id of `1234` and then the form will be ready to edit further and submit the changes.
 
 Submit functionality is provided by `saveButtonProps` which includes all of the necessary props for a button to submit a form including automatically updating loading states.
 
 :::tip
+
 If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/docs/api-reference/mantine/hooks/form/useModalForm/) or the [useDrawerForm](/docs/api-reference/mantine/hooks/form/useDrawerForm/) hook.
+
 :::
 
 > For more detailed usage examples please refer to the [Mantine Form](https://mantine.dev/form/use-form/) documentation.
@@ -293,9 +244,11 @@ If you want to show a form in a modal or drawer where necessary route params mig
 `useForm` can handle the `edit`, `create` and `clone` actions.
 
 :::tip
+
 By default, `useForm` determines the `action` from route. The action is inferred by matching the resource's action path with the current route.
 
 It can be overridden by passing the `action` prop when it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
+
 :::
 
 <Tabs
@@ -323,52 +276,44 @@ import { Textarea, TextInput } from "@mantine/core";
 import { Create, useForm } from "@refinedev/mantine";
 
 const PostCreatePage: React.FC = () => {
-    const { saveButtonProps, getInputProps, errors } = useForm({
-        initialValues: {
-            title: "",
-            content: "",
-        },
-        validate: {
-            title: (value) =>
-                value.length < 3 && "Title must be at least 3 characters",
-            content: (value) =>
-                value.length < 10 && "Content must be at least 10 characters",
-        },
-    });
+  const { saveButtonProps, getInputProps, errors } = useForm({
+    initialValues: {
+      title: "",
+      content: "",
+    },
+    validate: {
+      title: (value) => value.length < 3 && "Title must be at least 3 characters",
+      content: (value) => value.length < 10 && "Content must be at least 10 characters",
+    },
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    withAsterisk
-                    {...getInputProps("title")}
-                />
-                <Textarea
-                    label="Content"
-                    placeholder="Content"
-                    minRows={4}
-                    maxRows={4}
-                    withAsterisk
-                    {...getInputProps("content")}
-                />
-            </form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <form>
+        <TextInput mt={8} label="Title" placeholder="Title" withAsterisk {...getInputProps("title")} />
+        <Textarea
+          label="Content"
+          placeholder="Content"
+          minRows={4}
+          maxRows={4}
+          withAsterisk
+          {...getInputProps("content")}
+        />
+      </form>
+    </Create>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreatePage,
-            edit: PostEdit,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreatePage,
+      edit: PostEdit,
+    },
+  ],
 });
 
 render(<RefineMantineDemo />);
@@ -394,52 +339,44 @@ import { Textarea, TextInput } from "@mantine/core";
 import { Edit, useForm } from "@refinedev/mantine";
 
 const PostEditPage: React.FC = () => {
-    const { saveButtonProps, getInputProps, errors } = useForm({
-        initialValues: {
-            title: "",
-            content: "",
-        },
-        validate: {
-            title: (value) =>
-                value.length < 3 && "Title must be at least 3 characters",
-            content: (value) =>
-                value.length < 10 && "Content must be at least 10 characters",
-        },
-    });
+  const { saveButtonProps, getInputProps, errors } = useForm({
+    initialValues: {
+      title: "",
+      content: "",
+    },
+    validate: {
+      title: (value) => value.length < 3 && "Title must be at least 3 characters",
+      content: (value) => value.length < 10 && "Content must be at least 10 characters",
+    },
+  });
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    withAsterisk
-                    {...getInputProps("title")}
-                />
-                <Textarea
-                    label="Content"
-                    placeholder="Content"
-                    minRows={4}
-                    maxRows={4}
-                    withAsterisk
-                    {...getInputProps("content")}
-                />
-            </form>
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <form>
+        <TextInput mt={8} label="Title" placeholder="Title" withAsterisk {...getInputProps("title")} />
+        <Textarea
+          label="Content"
+          placeholder="Content"
+          minRows={4}
+          maxRows={4}
+          withAsterisk
+          {...getInputProps("content")}
+        />
+      </form>
+    </Edit>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreate,
-            edit: PostEditPage,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreate,
+      edit: PostEditPage,
+    },
+  ],
 });
 
 render(<RefineMantineDemo />);
@@ -467,52 +404,44 @@ import { Textarea, TextInput } from "@mantine/core";
 import { Create, useForm } from "@refinedev/mantine";
 
 const PostCreatePage: React.FC = () => {
-    const { saveButtonProps, getInputProps, errors } = useForm({
-        initialValues: {
-            title: "",
-            content: "",
-        },
-        validate: {
-            title: (value) =>
-                value.length < 3 && "Title must be at least 3 characters",
-            content: (value) =>
-                value.length < 10 && "Content must be at least 10 characters",
-        },
-    });
+  const { saveButtonProps, getInputProps, errors } = useForm({
+    initialValues: {
+      title: "",
+      content: "",
+    },
+    validate: {
+      title: (value) => value.length < 3 && "Title must be at least 3 characters",
+      content: (value) => value.length < 10 && "Content must be at least 10 characters",
+    },
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    withAsterisk
-                    {...getInputProps("title")}
-                />
-                <Textarea
-                    label="Content"
-                    placeholder="Content"
-                    minRows={4}
-                    maxRows={4}
-                    withAsterisk
-                    {...getInputProps("content")}
-                />
-            </form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <form>
+        <TextInput mt={8} label="Title" placeholder="Title" withAsterisk {...getInputProps("title")} />
+        <Textarea
+          label="Content"
+          placeholder="Content"
+          minRows={4}
+          maxRows={4}
+          withAsterisk
+          {...getInputProps("content")}
+        />
+      </form>
+    </Create>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreatePage,
-            edit: PostEdit,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreatePage,
+      edit: PostEdit,
+    },
+  ],
 });
 
 render(<RefineMantineDemo />);
@@ -526,17 +455,17 @@ render(<RefineMantineDemo />);
 
 `resource`, read from the current URL by default, will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider].
 
-See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+See the [`creating a data provider`](/docs/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
 
--   When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
--   When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
--   When `action` is `"clone"`, it will be passed to the [`create`][create] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
+- When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
+- When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
+- When `action` is `"clone"`, it will be passed to the [`create`][create] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        resource: "categories",
-    },
+  refineCoreProps: {
+    resource: "categories",
+  },
 });
 ```
 
@@ -551,10 +480,10 @@ import { useForm } from "@refinedev/mantine";
 const { id } = useParsed();
 
 useForm({
-    refineCoreProps: {
-        resource: "custom-resource",
-        id,
-    },
+  refineCoreProps: {
+    resource: "custom-resource",
+    id,
+  },
 });
 ```
 
@@ -564,11 +493,11 @@ Or you can use the `setId` function to set the `id` value.
 import { useForm } from "@refinedev/mantine";
 
 const {
-    refineCore: { setId },
+  refineCore: { setId },
 } = useForm({
-    refineCoreProps: {
-        resource: "custom-resource",
-    },
+  refineCoreProps: {
+    resource: "custom-resource",
+  },
 });
 
 setId("123");
@@ -587,16 +516,18 @@ If you have multiple resources with the same name, you can pass the `identifier`
 It is useful when you want to `edit` or `clone` a `resource` from a different page.
 
 :::note
+
 `id` is required when `action: "edit"` or `action: "clone"`.
+
 :::
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        action: "edit", // or clone
-        resource: "categories",
-        id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
-    },
+  refineCoreProps: {
+    action: "edit", // or clone
+    resource: "categories",
+    id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
+  },
 });
 ```
 
@@ -608,9 +539,9 @@ It can be set to `"show" | "edit" | "list" | "create"` or `false` based on wheth
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        redirect: false,
-    },
+  refineCoreProps: {
+    redirect: false,
+  },
 });
 ```
 
@@ -620,18 +551,18 @@ useForm({
 
 It receives the following parameters:
 
--   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
--   `variables`: The variables passed to the mutation.
--   `context`: react-query context.
--   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
+- `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
+- `variables`: The variables passed to the mutation.
+- `context`: react-query context.
+- `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        onMutationSuccess: (data, variables, context, isAutoSave) => {
-            console.log({ data, variables, context, isAutoSave });
-        },
+  refineCoreProps: {
+    onMutationSuccess: (data, variables, context, isAutoSave) => {
+      console.log({ data, variables, context, isAutoSave });
     },
+  },
 });
 ```
 
@@ -641,18 +572,18 @@ useForm({
 
 It receives the following parameters:
 
--   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
--   `variables`: The variables passed to the mutation.
--   `context`: react-query context.
--   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
+- `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
+- `variables`: The variables passed to the mutation.
+- `context`: react-query context.
+- `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        onMutationError: (data, variables, context, isAutoSave) => {
-            console.log({ data, variables, context, isAutoSave });
-        },
+  refineCoreProps: {
+    onMutationError: (data, variables, context, isAutoSave) => {
+      console.log({ data, variables, context, isAutoSave });
     },
+  },
 });
 ```
 
@@ -662,14 +593,14 @@ You can use it to manage the invalidations that will occur at the end of the mut
 
 By default it invalidates following queries from the current `resource`:
 
--   on `create` or `clone` mode: `"list"` and `"many"`
--   on `"edit"` mode: `"list"`, `"many"` and `"detail"`
+- on `create` or `clone` mode: `"list"` and `"many"`
+- on `"edit"` mode: `"list"`, `"many"` and `"detail"`
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        invalidates: ["list", "many", "detail"],
-    },
+  refineCoreProps: {
+    invalidates: ["list", "many", "detail"],
+  },
 });
 ```
 
@@ -680,14 +611,16 @@ If there is more than one `dataProvider`, you should use pass the name of the `d
 It is useful when you want to use a different `dataProvider` for a specific resource.
 
 :::tip
+
 If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop](/docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
+
 :::
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        dataProviderName: "second-data-provider",
-    },
+  refineCoreProps: {
+    dataProviderName: "second-data-provider",
+  },
 });
 ```
 
@@ -700,55 +633,59 @@ Each mode corresponds to a different type of user experience.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
-    },
+  refineCoreProps: {
+    mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
+  },
 });
 ```
 
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 After form is submitted successfully, `useForm` will call the `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize that success notification.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        successNotification: (data, values, resource) => {
-            return {
-                message: `Post Successfully created with ${data.title}`,
-                description: "Success with no errors",
-                type: "success",
-            };
-        },
+  refineCoreProps: {
+    successNotification: (data, values, resource) => {
+      return {
+        message: `Post Successfully created with ${data.title}`,
+        description: "Success with no errors",
+        type: "success",
+      };
     },
+  },
 });
 ```
 
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 After the form submit has failed, `useForm` will call the `open` function from [`NotificationProvider`][notification-provider] to show a error notification. With this prop, you can customize that error notification.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        action: "create",
-        resource: "post",
-        errorNotification: (data, values, resource) => {
-            return {
-                message: `Something went wrong when deleting ${data.id}`,
-                description: "Error",
-                type: "error",
-            };
-        },
+  refineCoreProps: {
+    action: "create",
+    resource: "post",
+    errorNotification: (data, values, resource) => {
+      return {
+        message: `Something went wrong when deleting ${data.id}`,
+        description: "Error",
+        type: "error",
+      };
     },
+  },
 });
 ```
 
@@ -764,39 +701,39 @@ useForm({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
--   Providing additional parameters to the redirection path after the form is submitted.
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Providing additional parameters to the redirection path after the form is submitted.
 
-> For more information, please refer to the [`meta` section of the General Concepts documentation &#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, please refer to the [`meta` section of the General Concepts documentation &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        meta: {
-            headers: { "x-meta-data": "true" },
-        },
+  refineCoreProps: {
+    meta: {
+      headers: { "x-meta-data": "true" },
     },
+  },
 });
 
 const myDataProvider = {
-    //...
-    // highlight-start
-    create: async ({ resource, variables, meta }) => {
-        const headers = meta?.headers ?? {};
-        // highlight-end
-        const url = `${apiUrl}/${resource}`;
+  //...
+  // highlight-start
+  create: async ({ resource, variables, meta }) => {
+    const headers = meta?.headers ?? {};
+    // highlight-end
+    const url = `${apiUrl}/${resource}`;
 
-        // highlight-next-line
-        const { data } = await httpClient.post(url, variables, { headers });
+    // highlight-next-line
+    const { data } = await httpClient.post(url, variables, { headers });
 
-        return {
-            data,
-        };
-    },
-    //...
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -806,14 +743,16 @@ In addition to the [`meta`](#meta) property, you can also pass the `queryMeta` p
 
 ```tsx
 useForm({
-    queryMeta: {
-        querySpecificValue: "someValue",
-    },
+  queryMeta: {
+    querySpecificValue: "someValue",
+  },
 });
 ```
 
 :::tip
+
 If you have overlapping properties in both `meta` and `queryMeta`, the `queryMeta` property will be used.
+
 :::
 
 ### `mutationMeta`
@@ -822,66 +761,75 @@ In addition to the [`meta`](#meta) property, you can also pass the `mutationMeta
 
 ```tsx
 useForm({
-    mutationMeta: {
-        mutationSpecificValue: "someValue",
-    },
+  mutationMeta: {
+    mutationSpecificValue: "someValue",
+  },
 });
 ```
 
 :::tip
+
 If you have overlapping properties in both `meta` and `mutationMeta`, the `mutationMeta` property will be used.
+
 :::
 
 ### `queryOptions`
 
 :::caution
+
 Works only in the `action: "edit"` or `action: "clone"` modes.
+
 :::
 
 in `edit` or `clone` modes, **refine** uses [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        queryOptions: {
-            retry: 3,
-        },
+  refineCoreProps: {
+    queryOptions: {
+      retry: 3,
     },
+  },
 });
 ```
 
 ### `createMutationOptions`
 
 :::caution
+
 This option is only available when `action: "create"` or `action: "clone"`.
+
 :::
 
 In `create` or `clone` modes, **refine** uses [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) hook to create data. You can pass the [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        queryOptions: {
-            retry: 3,
-        },
+  refineCoreProps: {
+    queryOptions: {
+      retry: 3,
     },
+  },
 });
 ```
 
 ### `updateMutationOptions`
 
 :::caution
+
 This option is only available when `action: "edit"`.
+
 :::
+
 In `edit` mode, **refine** uses [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        queryOptions: {
-            retry: 3,
-        },
+  refineCoreProps: {
+    queryOptions: {
+      retry: 3,
     },
+  },
 });
 ```
 
@@ -893,9 +841,9 @@ It can be set globally in [`refine config`](/docs/api-reference/core/components/
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        warnWhenUnsavedChanges: true,
-    },
+  refineCoreProps: {
+    warnWhenUnsavedChanges: true,
+  },
 });
 ```
 
@@ -907,9 +855,9 @@ Whether to update data automatically ("auto") or not ("manual") if a related liv
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        liveMode: "auto",
-    },
+  refineCoreProps: {
+    liveMode: "auto",
+  },
 });
 ```
 
@@ -919,11 +867,11 @@ useForm({
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        onLiveEvent: (event) => {
-            console.log(event);
-        },
+  refineCoreProps: {
+    onLiveEvent: (event) => {
+      console.log(event);
     },
+  },
 });
 ```
 
@@ -940,20 +888,20 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useForm({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
 {
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
 }
 ```
 
@@ -966,7 +914,9 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 It also supports the [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use the `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
+
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -979,11 +929,11 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
     },
+  },
 });
 ```
 
@@ -995,13 +945,13 @@ useForm({
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            debounce: 2000,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      debounce: 2000,
     },
+  },
 });
 ```
 
@@ -1013,20 +963,22 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useForm({
-    refineCoreProps: {
-        autoSave: {
-            enabled: true,
-            // highlight-next-line
-            invalidateOnUnmount: true,
-        },
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      invalidateOnUnmount: true,
     },
+  },
 });
 ```
 
 ## Return Values
 
 :::tip
+
 All [`mantine useForm`][use-form-mantine] and [`core useForm`][use-form-core] return values also available in `useForm`.
+
 :::
 
 ### `queryResult`
@@ -1035,7 +987,7 @@ If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` 
 
 ```tsx
 const {
-    refineCore: { queryResult },
+  refineCore: { queryResult },
 } = useForm();
 
 const { data } = queryResult;
@@ -1047,7 +999,7 @@ When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/ap
 
 ```tsx
 const {
-    refineCore: { mutationResult },
+  refineCore: { mutationResult },
 } = useForm();
 
 const { data } = mutationResult;
@@ -1059,17 +1011,17 @@ const { data } = mutationResult;
 
 ```tsx
 const {
-    refineCore: { id, setId },
+  refineCore: { id, setId },
 } = useForm();
 
 const handleIdChange = (id: string) => {
-    setId(id);
+  setId(id);
 };
 
 return (
-    <div>
-        <input value={id} onChange={(e) => handleIdChange(e.target.value)} />
-    </div>
+  <div>
+    <input value={id} onChange={(e) => handleIdChange(e.target.value)} />
+  </div>
 );
 ```
 
@@ -1081,15 +1033,15 @@ In the following example we will redirect to the `"show"` page after a successfu
 
 ```tsx
 const {
-    refineCore: { onFinish, redirect },
+  refineCore: { onFinish, redirect },
 } = useForm();
 
 // --
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = await onFinish(formValues);
-    redirect("show", data?.data?.id);
+  e.preventDefault();
+  const data = await onFinish(formValues);
+  redirect("show", data?.data?.id);
 };
 
 // --
@@ -1129,20 +1081,20 @@ import { useInvalidate } from "@refinedev/core";
 import { useForm } from "@refinedev/mantine";
 
 const PostEdit = () => {
-    const invalidate = useInvalidate();
+  const invalidate = useInvalidate();
 
-    useForm({
-        refineCoreProps: {
-            onMutationSuccess: (data, variables, context) => {
-                invalidate({
-                    resource: "users",
-                    invalidates: ["resourceAll"],
-                });
-            },
-        },
-    });
+  useForm({
+    refineCoreProps: {
+      onMutationSuccess: (data, variables, context) => {
+        invalidate({
+          resource: "users",
+          invalidates: ["resourceAll"],
+        });
+      },
+    },
+  });
 
-    // ---
+  // ---
 };
 ```
 
@@ -1158,36 +1110,26 @@ import { Create, useForm } from "@refinedev/mantine";
 import React from "react";
 
 const UserCreate: React.FC = () => {
-    const { saveButtonProps, getInputProps } = useForm({
-        initialValues: {
-            name: "",
-            surname: "",
-        },
-        // highlight-start
-        transformValues: (values) => ({
-            fullName: `${values.name} ${values.surname}`,
-        }),
-        // highlight-end
-    });
+  const { saveButtonProps, getInputProps } = useForm({
+    initialValues: {
+      name: "",
+      surname: "",
+    },
+    // highlight-start
+    transformValues: (values) => ({
+      fullName: `${values.name} ${values.surname}`,
+    }),
+    // highlight-end
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Name"
-                    placeholder="Name"
-                    {...getInputProps("name")}
-                />
-                <TextInput
-                    mt={8}
-                    label="Surname"
-                    placeholder="Surname"
-                    {...getInputProps("surname")}
-                />
-            </form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <form>
+        <TextInput mt={8} label="Name" placeholder="Name" {...getInputProps("name")} />
+        <TextInput mt={8} label="Surname" placeholder="Surname" {...getInputProps("surname")} />
+      </form>
+    </Create>
+  );
 };
 ```
 
@@ -1206,7 +1148,7 @@ You can use `meta` property to pass common values to the mutation and the query.
 It supports all the features of the [`useForm`][use-form-mantine] hook provided by `@mantine/form`.
 Also, we added the following return values.
 
-`refineCoreProps`: You can define all properties provided by [`useForm`][use-form-core] here. You can see all of them in [here](/api-reference/core/hooks/useForm.md#properties).
+`refineCoreProps`: You can define all properties provided by [`useForm`][use-form-core] here. You can see all of them in [here](/docs/api-reference/core/hooks/useForm/#properties).
 
 For example, we can define the `refineCoreProps` property in the `useForm` hook as:
 
@@ -1227,7 +1169,7 @@ const { ... } = useForm({
 
 Returns all the return values of the [`useForm`][use-form-mantine] hook provided by `@mantine/form`. Also, we added the following return values.
 
-`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/api-reference/core/hooks/useForm.md##return-values).
+`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/docs/api-reference/core/hooks/useForm/#return-values).
 
 For example, we can access the `refineCore` return value in the `useForm` hook as:
 
@@ -1252,7 +1194,7 @@ const {
 
 ### Type Parameters
 
-| Property       | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                         | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
@@ -1266,7 +1208,7 @@ const {
 
 <CodeSandboxExample path="form-mantine-use-form" />
 
-[use-form-core]: /api-reference/core/hooks/useForm.md
+[use-form-core]: /docs/api-reference/core/hooks/useForm/
 [use-form-mantine]: https://mantine.dev/form/use-form
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror

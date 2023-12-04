@@ -23,19 +23,19 @@ In this article, we'll look at what refine is and demonstrate how to use it to b
 
 Steps we'll cover:
 
--   [What is a PWA?](#what-is-a-pwa)
--   [Project Setup](#project-setup)
--   [Adding Tailwind CSS for styling](#adding-tailwind-css-for-styling)
--   [Refine core setup](#refine-core-setup)
--   [Adding a Data provider](#adding-a-data-provider)
--   [Adding a Layout component](#adding-a-layout-component)
--   [Adding Resources](#adding-resources)
--   [Using Next.js SSR](#using-nextjs-ssr)
--   [Creating product cards](#creating-product-cards)
--   [Creating ProductList](#creating-productlist)
-    -   [Using the useTable hook](#using-the-usetable-hook)
--   [Generating PWA manifest](#generating-pwa-manifest)
--   [Configuring PWA](#configuring-pwa)
+- [What is a PWA?](#what-is-a-pwa)
+- [Project Setup](#project-setup)
+- [Adding Tailwind CSS for styling](#adding-tailwind-css-for-styling)
+- [Refine core setup](#refine-core-setup)
+- [Adding a Data provider](#adding-a-data-provider)
+- [Adding a Layout component](#adding-a-layout-component)
+- [Adding Resources](#adding-resources)
+- [Using Next.js SSR](#using-nextjs-ssr)
+- [Creating product cards](#creating-product-cards)
+- [Creating ProductList](#creating-productlist)
+  - [Using the useTable hook](#using-the-usetable-hook)
+- [Generating PWA manifest](#generating-pwa-manifest)
+- [Configuring PWA](#configuring-pwa)
 
 ## Prerequisites
 
@@ -43,9 +43,9 @@ Steps we'll cover:
 
 So to follow along with this tutorial, you should have a fundamental knowledge of TypeScript and its concepts and the following:
 
--   The LTS version of [Node.js](https://nodejs.org/en) installed on your machine
--   Fundamental knowledge of [Next.js](https://nextjs.org/) and [React](https://react.dev/)
--   Basic understanding of [tailwindcss](https://tailwindcss.com/)
+- The LTS version of [Node.js](https://nodejs.org/en) installed on your machine
+- Fundamental knowledge of [Next.js](https://nextjs.org/) and [React](https://react.dev/)
+- Basic understanding of [tailwindcss](https://tailwindcss.com/)
 
 ## What is refine?
 
@@ -103,8 +103,8 @@ npm i next-pwa
 
 This command will install Tailwind and other packages we’ll be using for this tutorial, such as:
 
--   tailwindcss
--   next-pwa
+- tailwindcss
+- next-pwa
 
 Next, we’ll configure Tailwind and start the development server. First, go back to your terminal and run the command below:
 
@@ -119,14 +119,11 @@ Next, open the tailwind.config.js file and add the path to all your template fil
 ```tsx title="tailwind.config.js"
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: [
-        "./pages/**/*.{js,ts,jsx,tsx}",
-        "./src/components/**/*.{js,ts,jsx,tsx}",
-    ],
-    theme: {
-        extend: {},
-    },
-    plugins: [],
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./src/components/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
 };
 ```
 
@@ -144,9 +141,9 @@ That’s it! Now we can use Tailwind utility classes in our project.
 
 `create refine-app` provides some components for us. We will be not using them in this project. You can delete them if you want.
 
--   src/components/breadcrumb
--   src/components/layout
--   src/components/menu
+- src/components/breadcrumb
+- src/components/layout
+- src/components/menu
 
 :::
 
@@ -163,10 +160,7 @@ As a first step, navigate to the `_app.tsx` file inside the pages folder. When y
 ```tsx title="pages/_app.tsx"
 import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerProvider, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/nextjs-router";
+import routerProvider, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/nextjs-router";
 import type { NextPage } from "next";
 import { AppProps } from "next/app";
 
@@ -177,46 +171,46 @@ import "@styles/global.css";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-    noLayout?: boolean;
+  noLayout?: boolean;
 };
 
 type AppPropsWithLayout = AppProps & {
-    Component: NextPageWithLayout;
+  Component: NextPageWithLayout;
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
-    const renderComponent = () => {
-        if (Component.noLayout) {
-            return <Component {...pageProps} />;
-        }
-
-        return (
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
-        );
-    };
+  const renderComponent = () => {
+    if (Component.noLayout) {
+      return <Component {...pageProps} />;
+    }
 
     return (
-        <>
-            <RefineKbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                        projectId: "Rc2I9l-qwhhIb-JvL8aZ",
-                    }}
-                >
-                    {renderComponent()}
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </RefineKbarProvider>
-        </>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     );
+  };
+
+  return (
+    <>
+      <RefineKbarProvider>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+            projectId: "Rc2I9l-qwhhIb-JvL8aZ",
+          }}
+        >
+          {renderComponent()}
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </RefineKbarProvider>
+    </>
+  );
 }
 
 export default MyApp;
@@ -284,19 +278,19 @@ import * as React from "react";
 import { LayoutProps } from "@refinedev/core";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
-    return (
-        <div className="bg-red">
-            <div className="py-8 px-24 sticky top-0 z-50 bg-[#fff] relative flex justify-between items-center">
-                <a href="https://refine.dev">
-                    <img src="./refine_logo.png" alt="refine logo" />
-                </a>
-                <button className="outline outline-[#D6D58E] outline-offset-2 py-2 px-8 bg-[#042940] w-fit text-white rounded mt-2 mb-2">
-                    Cart
-                </button>
-            </div>
-            <div className="grid-rows-3">{children}</div>
-        </div>
-    );
+  return (
+    <div className="bg-red">
+      <div className="py-8 px-24 sticky top-0 z-50 bg-[#fff] relative flex justify-between items-center">
+        <a href="https://refine.dev">
+          <img src="./refine_logo.png" alt="refine logo" />
+        </a>
+        <button className="outline outline-[#D6D58E] outline-offset-2 py-2 px-8 bg-[#042940] w-fit text-white rounded mt-2 mb-2">
+          Cart
+        </button>
+      </div>
+      <div className="grid-rows-3">{children}</div>
+    </div>
+  );
 };
 ```
 
@@ -312,15 +306,15 @@ Suppose we want to render the content of a list component to **refine**’s layo
 
 ```tsx
 const List: React.FC<Props> = () => {
-    return (
-        <Layout>
-            <ul>
-                <li>Groceries</li>
-                <li>Workout</li>
-                <li>Work</li>
-            </ul>
-        </Layout>
-    );
+  return (
+    <Layout>
+      <ul>
+        <li>Groceries</li>
+        <li>Workout</li>
+        <li>Work</li>
+      </ul>
+    </Layout>
+  );
 };
 
 export default List;
@@ -382,15 +376,15 @@ resources={[{ name: "products" }]}
 import { Refine } from "@refinedev/core";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    return (
-        <Refine
-            // ...
-            //highlight-next-line
-            resources={[{ name: "products", list: "/" }]}
-        >
-            {renderComponent()}
-        </Refine>
-    );
+  return (
+    <Refine
+      // ...
+      //highlight-next-line
+      resources={[{ name: "products", list: "/" }]}
+    >
+      {renderComponent()}
+    </Refine>
+  );
 }
 
 export default MyApp;
@@ -400,7 +394,7 @@ Go to `pages/index.ts` and add the following code:
 
 ```tsx title="pages/index.tsx"
 export default function Index() {
-    return null;
+  return null;
 }
 ```
 
@@ -425,27 +419,25 @@ import { GetServerSideProps } from "next";
 import dataProvider from "@refinedev/simple-rest";
 
 interface IProduct {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
 }
 
 export default function Index() {
-    return null;
+  return null;
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const data = await dataProvider(
-        "https://fakestoreapi.com",
-    ).getList<IProduct>({
-        resource: "products",
-    });
-    return {
-        props: { products: data },
-    };
+  const data = await dataProvider("https://fakestoreapi.com").getList<IProduct>({
+    resource: "products",
+  });
+  return {
+    props: { products: data },
+  };
 };
 ```
 
@@ -469,46 +461,38 @@ Navigate back to the components folder and create a `ProductCard.tsx` file, then
 import * as React from "react";
 
 export interface Props {
-    price: number;
-    category: string;
-    title: string;
-    description: string;
-    cardImage: string;
+  price: number;
+  category: string;
+  title: string;
+  description: string;
+  cardImage: string;
 }
 
-const ProductCards: React.FC<Props> = ({
-    price,
-    title,
-    category,
-    description,
-    cardImage,
-}) => {
-    return (
-        <div className="max-w-xs pb-2 outline outline-[#042940] relative">
-            <div className="bg-[#fff] flex justify-center items-center py-4 relative">
-                <img
-                    src={cardImage}
-                    alt={`${title}`}
-                    className="max-w-xs h-56 transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110 z-30"
-                />
-            </div>
-            <div className="px-4">
-                <p className="text-lg text-black font-semibold mb-1">{title}</p>
-                <div className="flex justify-between">
-                    <p className="outline outline-[#D6D58E] outline-offset-2 p-1 bg-[#042940] w-fit text-white rounded mt-2 mb-2">
-                        ${price}
-                    </p>
-                    <button className="outline outline-[#D6D58E] outline-offset-2 p-1 bg-[#042940] w-fit text-white rounded mt-2 mb-2">
-                        Add to cart
-                    </button>
-                </div>
-                <p>{`${(description || []).slice(0, 100)}`}...</p>
-                <p className=" px-2 py-0.5 py text-sm bg-[#D6D58E] w-fit text-gray-600 rounded-3xl mt-2">
-                    {category}
-                </p>
-            </div>
+const ProductCards: React.FC<Props> = ({ price, title, category, description, cardImage }) => {
+  return (
+    <div className="max-w-xs pb-2 outline outline-[#042940] relative">
+      <div className="bg-[#fff] flex justify-center items-center py-4 relative">
+        <img
+          src={cardImage}
+          alt={`${title}`}
+          className="max-w-xs h-56 transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110 z-30"
+        />
+      </div>
+      <div className="px-4">
+        <p className="text-lg text-black font-semibold mb-1">{title}</p>
+        <div className="flex justify-between">
+          <p className="outline outline-[#D6D58E] outline-offset-2 p-1 bg-[#042940] w-fit text-white rounded mt-2 mb-2">
+            ${price}
+          </p>
+          <button className="outline outline-[#D6D58E] outline-offset-2 p-1 bg-[#042940] w-fit text-white rounded mt-2 mb-2">
+            Add to cart
+          </button>
         </div>
-    );
+        <p>{`${(description || []).slice(0, 100)}`}...</p>
+        <p className=" px-2 py-0.5 py text-sm bg-[#D6D58E] w-fit text-gray-600 rounded-3xl mt-2">{category}</p>
+      </div>
+    </div>
+  );
 };
 
 export default ProductCards;
@@ -533,60 +517,58 @@ import ProductCards from "@components/ProductCards";
 //highlight-end
 
 interface IProduct {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
 }
 //highlight-start
 type ItemProp = {
-    products: GetListResponse<IProduct>;
+  products: GetListResponse<IProduct>;
 };
 //highlight-end
 
 const ProductList: React.FC<ItemProp> = ({ products }) => {
-    //highlight-start
-    const { tableQueryResult } = useTable<IProduct>({
-        resource: "products",
-        queryOptions: {
-            initialData: products,
-        },
-    });
-    //highlight-end
+  //highlight-start
+  const { tableQueryResult } = useTable<IProduct>({
+    resource: "products",
+    queryOptions: {
+      initialData: products,
+    },
+  });
+  //highlight-end
 
-    return (
-        //highlight-start
-        <div className="grid grid-cols-4 gap-6 px-24 my-8">
-            {tableQueryResult.data?.data.map((product) => {
-                return (
-                    <ProductCards
-                        key={product.id}
-                        title={product.title}
-                        category={product.category}
-                        description={product.description}
-                        cardImage={product.image}
-                        price={product.price}
-                    />
-                );
-            })}
-        </div>
-        //highlight-end
-    );
+  return (
+    //highlight-start
+    <div className="grid grid-cols-4 gap-6 px-24 my-8">
+      {tableQueryResult.data?.data.map((product) => {
+        return (
+          <ProductCards
+            key={product.id}
+            title={product.title}
+            category={product.category}
+            description={product.description}
+            cardImage={product.image}
+            price={product.price}
+          />
+        );
+      })}
+    </div>
+    //highlight-end
+  );
 };
 
 export default ProductList;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const data = await dataProvider(
-        "https://fakestoreapi.com",
-    ).getList<IProduct>({
-        resource: "products",
-    });
-    return {
-        props: { products: data },
-    };
+  const data = await dataProvider("https://fakestoreapi.com").getList<IProduct>({
+    resource: "products",
+  });
+  return {
+    props: { products: data },
+  };
 };
 ```
 
@@ -611,8 +593,6 @@ If you save your progress and go back to the browser, you should see a nicely re
 
 That’s it! We’ve successfully built a storefront using refine and Next.js SSR. Next, we’ll demonstrate how to generate a PWA manifest for our app, and how to turn it into a PWA.
 
-
-
 ## Generating PWA manifest
 
 The first thing we need to do is to create a manifest for our application. This is a JSON file that contains metadata such as the name of the app or the start URL, which defines the look and behavior of our **PWA** when installed as an application. You should be familiar with the concept if you've built a chrome extension before.
@@ -630,7 +610,9 @@ As you can see, you're required to upload a logo image. The generator will use t
 After filling the form in the appropriate order, click on the "Generate manifest" button, and you'll be prompted to download a manifest zip file.
 
 :::note
+
 Make sure to download the file with a chrome browser. Firefox doesn't seem to download the file correctly.
+
 :::
 
 After downloading the file, extract it and rename the manifest file from the `.webmanifest` format to a `.json` format.
@@ -659,21 +641,21 @@ First, open the `_document.tsx` file and add the following codes:
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
-    render() {
-        return (
-            <Html>
-                <Head>
-                    <link rel="manifest" href="/manifest.json" />
-                    <link rel="apple-touch-icon" href="/icon-192x192.png" />
-                    <meta name="theme-color" content="#042940" />
-                </Head>
-                <body>
-                    <Main />
-                    <NextScript />
-                </body>
-            </Html>
-        );
-    }
+  render() {
+    return (
+      <Html>
+        <Head>
+          <link rel="manifest" href="/manifest.json" />
+          <link rel="apple-touch-icon" href="/icon-192x192.png" />
+          <meta name="theme-color" content="#042940" />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }
 
 export default MyDocument;
@@ -685,15 +667,15 @@ Now for the final step, open the `next.config.js` in your project and add the fo
 
 ```tsx title="next.config.js"
 const withPWA = require("next-pwa")({
-    dest: "public",
-    register: true,
-    skipWaiting: true,
+  dest: "public",
+  register: true,
+  skipWaiting: true,
 });
 
 const nextConfig = withPWA({
-    experimental: {
-        newNextLinkBehavior: true,
-    },
+  experimental: {
+    newNextLinkBehavior: true,
+  },
 });
 
 module.exports = nextConfig;

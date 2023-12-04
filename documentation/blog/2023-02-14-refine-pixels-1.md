@@ -12,13 +12,13 @@ hide_table_of_contents: false
 
 ### refineWeek series
 
--   Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
--   Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
--   Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
--   Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
--   Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
--   Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
--   Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+- Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
+- Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
+- Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
+- Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+- Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
+- Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
 
 <br/>
 <br/>
@@ -94,29 +94,19 @@ For example, a `dataProvider` object has the following signature to which any de
 
 ```tsx title="dataProvider.ts"
 const dataProvider = {
-    create: ({ resource, variables, metaData }) => Promise,
-    createMany: ({ resource, variables, metaData }) => Promise,
-    deleteOne: ({ resource, id, variables, metaData }) => Promise,
-    deleteMany: ({ resource, ids, variables, metaData }) => Promise,
-    //highlight-start
-    getList: ({ resource, pagination, pagination, sort, filters, meta }) =>
-        Promise,
-    //highlight-end
-    getMany: ({ resource, ids, metaData }) => Promise,
-    getOne: ({ resource, id, metaData }) => Promise,
-    update: ({ resource, id, variables, metaData }) => Promise,
-    updateMany: ({ resource, ids, variables, metaData }) => Promise,
-    custom: ({
-        url,
-        method,
-        sort,
-        filters,
-        payload,
-        query,
-        headers,
-        metaData,
-    }) => Promise,
-    getApiUrl: () => "",
+  create: ({ resource, variables, metaData }) => Promise,
+  createMany: ({ resource, variables, metaData }) => Promise,
+  deleteOne: ({ resource, id, variables, metaData }) => Promise,
+  deleteMany: ({ resource, ids, variables, metaData }) => Promise,
+  //highlight-start
+  getList: ({ resource, pagination, pagination, sort, filters, meta }) => Promise,
+  //highlight-end
+  getMany: ({ resource, ids, metaData }) => Promise,
+  getOne: ({ resource, id, metaData }) => Promise,
+  update: ({ resource, id, variables, metaData }) => Promise,
+  updateMany: ({ resource, ids, variables, metaData }) => Promise,
+  custom: ({ url, method, sort, filters, payload, query, headers, metaData }) => Promise,
+  getApiUrl: () => "",
 };
 ```
 
@@ -129,18 +119,18 @@ An example hook usage looks like this:
 
 ```tsx title="Inside a UI component"
 const { data } = useList<Canvas>({
-    resource: "canvases",
-    pagination: {
-        mode: "off",
-    },
-    sorters: {
-        initial: [
-            {
-                field: "created_at",
-                order: "desc",
-            },
-        ],
-    },
+  resource: "canvases",
+  pagination: {
+    mode: "off",
+  },
+  sorters: {
+    initial: [
+      {
+        field: "created_at",
+        order: "desc",
+      },
+    ],
+  },
 });
 ```
 
@@ -152,56 +142,56 @@ The hooks, in turn, leverage [**React Query**](https://react-query-v3.tanstack.c
 
 ```tsx
 const queryResponse = useQuery<GetListResponse<TData>, TError>(
-    queryKey.list(config),
-    ({ queryKey, pagination, signal }) => {
-        const { pagination, meta, ...restConfig } = config || {};
-        return getList<TData>({
-            resource,
-            ...restConfig,
-            pagination,
-            meta: {
-                ...meta,
-                queryContext: {
-                    queryKey,
-                    pageParam,
-                    signal,
-                },
-            },
-        });
-    },
-    {
-        ...queryOptions,
-        onSuccess: (data) => {
-            queryOptions?.onSuccess?.(data);
-
-            const notificationConfig =
-                typeof successNotification === "function"
-                    ? successNotification(data, { metaData, config }, resource)
-                    : successNotification;
-
-            handleNotification(notificationConfig);
+  queryKey.list(config),
+  ({ queryKey, pagination, signal }) => {
+    const { pagination, meta, ...restConfig } = config || {};
+    return getList<TData>({
+      resource,
+      ...restConfig,
+      pagination,
+      meta: {
+        ...meta,
+        queryContext: {
+          queryKey,
+          pageParam,
+          signal,
         },
-        onError: (err: TError) => {
-            checkError(err);
-            queryOptions?.onError?.(err);
+      },
+    });
+  },
+  {
+    ...queryOptions,
+    onSuccess: (data) => {
+      queryOptions?.onSuccess?.(data);
 
-            const notificationConfig =
-                typeof errorNotification === "function"
-                    ? errorNotification(err, { metaData, config }, resource)
-                    : errorNotification;
+      const notificationConfig =
+        typeof successNotification === "function"
+          ? successNotification(data, { metaData, config }, resource)
+          : successNotification;
 
-            handleNotification(notificationConfig, {
-                key: `${resource}-useList-notification`,
-                message: translate(
-                    "common:notifications.error",
-                    { statusCode: err.statusCode },
-                    `Error (status code: ${err.statusCode})`,
-                ),
-                description: err.message,
-                type: "error",
-            });
-        },
+      handleNotification(notificationConfig);
     },
+    onError: (err: TError) => {
+      checkError(err);
+      queryOptions?.onError?.(err);
+
+      const notificationConfig =
+        typeof errorNotification === "function"
+          ? errorNotification(err, { metaData, config }, resource)
+          : errorNotification;
+
+      handleNotification(notificationConfig, {
+        key: `${resource}-useList-notification`,
+        message: translate(
+          "common:notifications.error",
+          { statusCode: err.statusCode },
+          `Error (status code: ${err.statusCode})`,
+        ),
+        description: err.message,
+        type: "error",
+      });
+    },
+  },
 );
 ```
 
@@ -222,12 +212,12 @@ The following diagram illustrates the interactions:
 
 Common providers include:
 
--   [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/) - for authentication and authorization.
--   [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/) - for CRUD operations.
--   [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/) - for defining routes, RESTful and non-RESTful.
--   [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/) - for implementing real time features.
--   [`accessControlProvider`](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/) - for access control management.
--   [`auditLogProvider`](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/) - for logging appwide activities.
+- [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/) - for authentication and authorization.
+- [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/) - for CRUD operations.
+- [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/) - for defining routes, RESTful and non-RESTful.
+- [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/) - for implementing real time features.
+- [`accessControlProvider`](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/) - for access control management.
+- [`auditLogProvider`](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/) - for logging appwide activities.
 
 For an exhaustive list of providers, please visit the **refine** providers documentation from [here](https://refine.dev/docs/api-reference/core/).
 
@@ -280,7 +270,7 @@ We start with setting up the **Pixels** client app using `create refine-app`. We
 
 On Day Three, we start adding features to our app. We activate the `resources` prop for `<Refine />` and using the `dataProvider` prop, we implement how to create a canvas, show a canvas and draw pixels on a canvas. We add a public gallery to show all canvases in a page and featured canvases in another. We also implement user authentication so that only signed in users can create and draw on a canvas - and while doing so we delve into the `authProvider` object.
 
-Here is a quick sum up of spcifications we cover on Day Three:
+Here is a quick sum up of specifications we cover on Day Three:
 
 1. The **Pixels** app has a public gallery.
 2. The public gallery has a home page of featured canvases.
@@ -331,7 +321,7 @@ We will display these logs inside a modal for each canvas both in the client **P
 
 In this post, we introduced the **refine** framework and the [refineWeek](https://refine.dev/week-of-refine/) series itself. We talked about **refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
 
-We layed out the plans for building a **Pixels** client app and an admin dashboard app in considerable depth.
+We laid out the plans for building a **Pixels** client app and an admin dashboard app in considerable depth.
 
 Tomorrow, on [Day Two](https://refine.dev/blog/refine-pixels-2/), we are ready to start "Setting Up the Client App". See you soon!
 

@@ -81,7 +81,7 @@ export const useImport = <
                                 percent={Math.floor(
                                     (processedAmount / totalAmount) * 100,
                                 )}
-                                width={50}
+                                size={50}
                                 strokeColor="#1890ff"
                                 status="normal"
                             />

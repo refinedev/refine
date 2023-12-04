@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 import axios from "axios";
 const axiosInstance = axios.create();
 axiosInstance.defaults.headers.common[
-    "Authorization"
+  "Authorization"
 ] = `Bearer 6ae3cf664d558bc67d21ddabd0cf5ba0716367cd74c2ceaedf86f0efa09b3fe1605c90ab051fd4961ba03db961273bb2b48b9213ae267013317977f737b4ac8765a2e0bc64e9f275791ccb881117553f589675f5e6ce84d3859511fa124d477209cf1cbbd4fd7f6ddacc77eb4520753e3636446f807629de911eac7afbf60fd4`;
 ```
 
@@ -19,10 +19,10 @@ axiosInstance.defaults.headers.common[
 
 A few of the Strapi-v4 API features are as follows:
 
--   Fields Selection
--   Relations Population
--   Publication State
--   Locale
+- Fields Selection
+- Relations Population
+- Publication State
+- Locale
 
 `meta` allows us to use the above features in hooks. Thus, we can fetch the data according to the parameters we want.
 
@@ -44,10 +44,13 @@ Hooks and components that support `meta`:
 |                                                                              | [`useRadioGroup` &#8594](/docs/api-reference/antd/hooks/field/useRadioGroup)       |                                                                                      |
 
 :::note
+
 There is no need to use `meta` for sorting, pagination, and, filters. Sorting, pagination, and, filters will be handled automatically by the strapi-v4 dataProvider.
+
 :::
 
 :::info
+
 Normally, strapi-v4 backend returns data in the following format:
 
 ```json
@@ -63,9 +66,9 @@ However, we can use [normalizeData](https://github.com/refinedev/refine/blob/27a
 
 ```json
 {
-    "id": 1,
-    "title": "My title",
-    "content": "Long content..."
+  "id": 1,
+  "title": "My title",
+  "content": "Long content..."
 }
 ```
 
@@ -78,7 +81,9 @@ npm i @refinedev/strapi-v4
 ```
 
 :::caution
+
 To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+
 :::
 
 ## Usage
@@ -89,15 +94,15 @@ import { Refine } from "@refinedev/core";
 import { DataProvider } from "@refinedev/strapi-v4";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            //highlight-next-line
-            dataProvider={DataProvider("API_URL")}
-            /* ... */
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      //highlight-next-line
+      dataProvider={DataProvider("API_URL")}
+      /* ... */
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
@@ -119,20 +124,20 @@ values={[
 
 **posts** has the following fields:
 
--   `id`
--   `title`
--   `content`
--   `category`
--   `createdAt`
--   `locale`
+- `id`
+- `title`
+- `content`
+- `category`
+- `createdAt`
+- `locale`
 
 </TabItem>
 <TabItem value="categories">
 
 **categories** has the following fields:
 
--   `id`
--   `title`
+- `id`
+- `title`
 
 </TabItem>
 </Tabs>
@@ -145,17 +150,17 @@ To select only some fields, we must specify these fields with `meta``.
 
 ```tsx title="Get only id and title of all posts"
 const { tableProps } = useTable<IPost>({
-    meta: {
-        fields: ["id", "title"],
-    },
+  meta: {
+    fields: ["id", "title"],
+  },
 });
 ```
 
 ```tsx title="Get all fields of all posts(id, title, category, content ...)"
 const { tableProps } = useTable<IPost>({
-    meta: {
-        fields: "*",
-    },
+  meta: {
+    fields: "*",
+  },
 });
 ```
 
@@ -178,74 +183,66 @@ import { List, EditButton, ShowButton, useTable } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
 const PostList = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        meta: {
-            // highlight-start
-            fields: ["id", "title"],
-            // highlight-end
-        },
-    });
+  const { tableProps, sorter } = useTable<IPost>({
+    meta: {
+      // highlight-start
+      fields: ["id", "title"],
+      // highlight-end
+    },
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+        <Table.Column
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="posts">
-                                <Route index element={<PostList />} />
-                            </Route>
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="posts">
+                <Route index element={<PostList />} />
+              </Route>
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -261,17 +258,17 @@ The `populate` parameter is used to define which fields will be populated.
 
 ```tsx title="Get all the posts and populate the selected relations"
 const { tableProps } = useTable<IPost>({
-    meta: {
-        populate: ["category", "cover"],
-    },
+  meta: {
+    populate: ["category", "cover"],
+  },
 });
 ```
 
 ```tsx title="Get all posts and populate all their first-level relations"
 const { tableProps } = useTable<IPost>({
-    meta: {
-        populate: "*",
-    },
+  meta: {
+    populate: "*",
+  },
 });
 ```
 
@@ -279,16 +276,16 @@ It should be noted that Strapi-V4 allows populating relations more than 1 level.
 
 ```tsx title="Get all posts and populate one second-level relation and first-level relation"
 const { tableProps } = useTable<IPost>({
-    meta: {
-        populate: {
-            category: {
-                populate: ["cover"],
-            },
-            cover: {
-                populate: [""],
-            },
-        },
+  meta: {
+    populate: {
+      category: {
+        populate: ["cover"],
+      },
+      cover: {
+        populate: [""],
+      },
     },
+  },
 });
 ```
 
@@ -308,115 +305,102 @@ const API_URL = "https://api.strapi-v4.refine.dev";
 // src/pages/posts/list.tsx
 
 import {
-    List,
-    EditButton,
-    ShowButton,
-    // highlight-start
-    useSelect,
-    FilterDropdown,
-    // highlight-end
-    useTable,
+  List,
+  EditButton,
+  ShowButton,
+  // highlight-start
+  useSelect,
+  FilterDropdown,
+  // highlight-end
+  useTable,
 } from "@refinedev/antd";
 import {
-    Table,
-    // highlight-next-line
-    Select,
-    Space,
+  Table,
+  // highlight-next-line
+  Select,
+  Space,
 } from "antd";
 
 const PostList = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        meta: {
-            fields: ["id", "title"],
-            // highlight-next-line
-            populate: ["category"],
-        },
-    });
+  const { tableProps, sorter } = useTable<IPost>({
+    meta: {
+      fields: ["id", "title"],
+      // highlight-next-line
+      populate: ["category"],
+    },
+  });
 
-    // highlight-start
-    const { selectProps } = useSelect({
-        resource: "categories",
-        optionLabel: "title",
-        optionValue: "id",
-    });
-    // highlight-end
+  // highlight-start
+  const { selectProps } = useSelect({
+    resource: "categories",
+    optionLabel: "title",
+    optionValue: "id",
+  });
+  // highlight-end
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                {/* highlight-start */}
-                <Table.Column
-                    dataIndex={["category", "title"]}
-                    title="Category"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
-                {/* highlight-end */}
-                <Table.Column
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+        {/* highlight-start */}
+        <Table.Column
+          dataIndex={["category", "title"]}
+          title="Category"
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Category" {...selectProps} />
+            </FilterDropdown>
+          )}
+        />
+        {/* highlight-end */}
+        <Table.Column
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="posts">
-                                <Route index element={<PostList />} />
-                            </Route>
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="posts">
+                <Route index element={<PostList />} />
+              </Route>
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -430,16 +414,18 @@ If you need to the population for the `/me` request you can use it like this in 
 const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
 strapiAuthHelper.me("token", {
-    meta: {
-        populate: ["role"],
-    },
+  meta: {
+    populate: ["role"],
+  },
 });
 ```
 
 ### Publication State
 
 :::note
+
 The Draft & Publish feature should be enabled on Strapi.
+
 :::
 
 [Refer to the Publication State documentation for detailed information. →](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest-api.html#publication-state)
@@ -450,9 +436,9 @@ The Draft & Publish feature should be enabled on Strapi.
 
 ```tsx
 const { tableProps } = useTable<IPost>({
-    meta: {
-        publicationState: "preview",
-    },
+  meta: {
+    publicationState: "preview",
+  },
 });
 ```
 
@@ -471,155 +457,127 @@ const API_URL = "https://api.strapi-v4.refine.dev";
 // visible-block-start
 // src/pages/posts/list.tsx
 
+import { List, EditButton, ShowButton, useSelect, FilterDropdown, useTable } from "@refinedev/antd";
 import {
-    List,
-    EditButton,
-    ShowButton,
-    useSelect,
-    FilterDropdown,
-    useTable,
-} from "@refinedev/antd";
-import {
-    Table,
-    Space,
-    Select,
-    // highlight-start
-    Form,
-    Radio,
-    Tag,
-    // highlight-end
+  Table,
+  Space,
+  Select,
+  // highlight-start
+  Form,
+  Radio,
+  Tag,
+  // highlight-end
 } from "antd";
 
 const PostList = () => {
-    // highlight-next-line
-    const [publicationState, setPublicationState] = React.useState("live");
+  // highlight-next-line
+  const [publicationState, setPublicationState] = React.useState("live");
 
-    const { tableProps, sorter } = useTable<IPost>({
-        meta: {
-            fields: ["id", "title", "publishedAt"],
-            populate: ["category"],
-            publicationState,
-        },
-    });
+  const { tableProps, sorter } = useTable<IPost>({
+    meta: {
+      fields: ["id", "title", "publishedAt"],
+      populate: ["category"],
+      publicationState,
+    },
+  });
 
-    const { selectProps } = useSelect({
-        resource: "categories",
-        optionLabel: "title",
-        optionValue: "id",
-    });
+  const { selectProps } = useSelect({
+    resource: "categories",
+    optionLabel: "title",
+    optionValue: "id",
+  });
 
-    return (
-        <List>
-            {/* highlight-start */}
-            <Form
-                style={{
-                    marginBottom: 16,
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: "16px",
-                }}
-                layout="inline"
-                initialValues={{
-                    publicationState,
-                }}
-            >
-                <Form.Item label="Publication State" name="publicationState">
-                    <Radio.Group
-                        onChange={(e) => setPublicationState(e.target.value)}
-                    >
-                        <Radio.Button value="live">Published</Radio.Button>
-                        <Radio.Button value="preview">
-                            Draft and Published
-                        </Radio.Button>
-                    </Radio.Group>
-                </Form.Item>
-            </Form>
-            {/* highlight-end */}
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column
-                    dataIndex={["category", "title"]}
-                    title="Category"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
-                {/* highlight-start */}
-                <Table.Column
-                    dataIndex="publishedAt"
-                    title="Status"
-                    render={(value) => {
-                        return (
-                            <Tag color={value ? "green" : "blue"}>
-                                {value ? "Published" : "Draft"}
-                            </Tag>
-                        );
-                    }}
-                />
-                {/* highlight-end */}
-                <Table.Column
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      {/* highlight-start */}
+      <Form
+        style={{
+          marginBottom: 16,
+          display: "flex",
+          justifyContent: "center",
+          gap: "16px",
+        }}
+        layout="inline"
+        initialValues={{
+          publicationState,
+        }}
+      >
+        <Form.Item label="Publication State" name="publicationState">
+          <Radio.Group onChange={(e) => setPublicationState(e.target.value)}>
+            <Radio.Button value="live">Published</Radio.Button>
+            <Radio.Button value="preview">Draft and Published</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+      </Form>
+      {/* highlight-end */}
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+        <Table.Column
+          dataIndex={["category", "title"]}
+          title="Category"
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Category" {...selectProps} />
+            </FilterDropdown>
+          )}
+        />
+        {/* highlight-start */}
+        <Table.Column
+          dataIndex="publishedAt"
+          title="Status"
+          render={(value) => {
+            return <Tag color={value ? "green" : "blue"}>{value ? "Published" : "Draft"}</Tag>;
+          }}
+        />
+        {/* highlight-end */}
+        <Table.Column
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="posts">
-                                <Route index element={<PostList />} />
-                            </Route>
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="posts">
+                <Route index element={<PostList />} />
+              </Route>
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -628,16 +586,18 @@ render(<App />);
 ### Locale
 
 :::tip
+
 To fetch content for a locale, make sure it has been already [added to Strapi in the admin panel](https://docs.strapi.io/user-docs/latest/settings/managing-global-settings.html#configuring-internationalization-locales)
+
 :::
 
 [Refer to the Locale documentation for detailed information. →](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest-api.html#locale)
 
 ```tsx
 const { tableProps } = useTable<IPost>({
-    meta: {
-        locale: "de",
-    },
+  meta: {
+    locale: "de",
+  },
 });
 ```
 
@@ -647,13 +607,13 @@ With the local parameter feature, we can fetch posts and categories created acco
 import { useState } from "react";
 
 import {
-    List,
-    useTable,
-    getDefaultSortOrder,
-    FilterDropdown,
-    useSelect,
-    EditButton,
-    DeleteButton,
+  List,
+  useTable,
+  getDefaultSortOrder,
+  FilterDropdown,
+  useSelect,
+  EditButton,
+  DeleteButton,
 } from "@refinedev/antd";
 import { Table, Select, Space, Form, Radio, Tag } from "antd";
 
@@ -662,129 +622,108 @@ import { IPost } from "interfaces";
 import { API_URL } from "../../constants";
 
 export const PostList: React.FC = () => {
+  //highlight-start
+  const [locale, setLocale] = useState("en");
+  //highlight-end
+  const [publicationState, setPublicationState] = useState("live");
+
+  const { tableProps, sorter } = useTable<IPost>({
+    meta: {
+      populate: ["category", "cover"],
+      //highlight-start
+      locale,
+      //highlight-end
+      publicationState,
+    },
+  });
+
+  const { selectProps } = useSelect({
+    resource: "categories",
+    optionLabel: "title",
+    optionValue: "id",
     //highlight-start
-    const [locale, setLocale] = useState("en");
+    meta: { locale },
     //highlight-end
-    const [publicationState, setPublicationState] = useState("live");
+  });
 
-    const { tableProps, sorter } = useTable<IPost>({
-        meta: {
-            populate: ["category", "cover"],
-            //highlight-start
-            locale,
-            //highlight-end
-            publicationState,
-        },
-    });
-
-    const { selectProps } = useSelect({
-        resource: "categories",
-        optionLabel: "title",
-        optionValue: "id",
+  return (
+    <List>
+      <Form
+        layout="inline"
         //highlight-start
-        meta: { locale },
+        initialValues={{
+          locale,
+          publicationState,
+        }}
         //highlight-end
-    });
-
-    return (
-        <List>
-            <Form
-                layout="inline"
-                //highlight-start
-                initialValues={{
-                    locale,
-                    publicationState,
-                }}
-                //highlight-end
-            >
-                //highlight-start
-                <Form.Item label="Locale" name="locale">
-                    <Radio.Group onChange={(e) => setLocale(e.target.value)}>
-                        <Radio.Button value="en">English</Radio.Button>
-                        <Radio.Button value="de">Deutsch</Radio.Button>
-                    </Radio.Group>
-                </Form.Item>
-                //highlight-end
-                <Form.Item label="Publication State" name="publicationState">
-                    <Radio.Group
-                        onChange={(e) => setPublicationState(e.target.value)}
-                    >
-                        <Radio.Button value="live">Published</Radio.Button>
-                        <Radio.Button value="preview">
-                            Draft and Published
-                        </Radio.Button>
-                    </Radio.Group>
-                </Form.Item>
-            </Form>
-            <br />
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    showSizeChanger: true,
-                }}
-            >
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                    sorter={{ multiple: 3 }}
-                />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
-                    sorter={{ multiple: 2 }}
-                />
-                <Table.Column
-                    dataIndex={["category", "title"]}
-                    title="Category"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
-                {/* highlight-start */}
-                <Table.Column dataIndex="locale" title="Locale" />
-                {/* highlight-end */}
-                <Table.Column
-                    dataIndex="publishedAt"
-                    title="Status"
-                    render={(value) => {
-                        return (
-                            <Tag color={value ? "green" : "blue"}>
-                                {value ? "Published" : "Draft"}
-                            </Tag>
-                        );
-                    }}
-                />
-                <Table.Column<{ id: string }>
-                    title="Actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+      >
+        //highlight-start
+        <Form.Item label="Locale" name="locale">
+          <Radio.Group onChange={(e) => setLocale(e.target.value)}>
+            <Radio.Button value="en">English</Radio.Button>
+            <Radio.Button value="de">Deutsch</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+        //highlight-end
+        <Form.Item label="Publication State" name="publicationState">
+          <Radio.Group onChange={(e) => setPublicationState(e.target.value)}>
+            <Radio.Button value="live">Published</Radio.Button>
+            <Radio.Button value="preview">Draft and Published</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+      </Form>
+      <br />
+      <Table
+        {...tableProps}
+        rowKey="id"
+        pagination={{
+          ...tableProps.pagination,
+          showSizeChanger: true,
+        }}
+      >
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+          sorter={{ multiple: 3 }}
+        />
+        <Table.Column
+          dataIndex="title"
+          title="Title"
+          defaultSortOrder={getDefaultSortOrder("title", sorter)}
+          sorter={{ multiple: 2 }}
+        />
+        <Table.Column
+          dataIndex={["category", "title"]}
+          title="Category"
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Category" {...selectProps} />
+            </FilterDropdown>
+          )}
+        />
+        {/* highlight-start */}
+        <Table.Column dataIndex="locale" title="Locale" />
+        {/* highlight-end */}
+        <Table.Column
+          dataIndex="publishedAt"
+          title="Status"
+          render={(value) => {
+            return <Tag color={value ? "green" : "blue"}>{value ? "Published" : "Draft"}</Tag>;
+          }}
+        />
+        <Table.Column<{ id: string }>
+          title="Actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <DeleteButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -801,158 +740,130 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 // visible-block-start
 // src/pages/posts/list.tsx
 
-import {
-    List,
-    EditButton,
-    ShowButton,
-    useSelect,
-    FilterDropdown,
-    useTable,
-} from "@refinedev/antd";
+import { List, EditButton, ShowButton, useSelect, FilterDropdown, useTable } from "@refinedev/antd";
 import { Table, Space, Select, Form, Radio, Tag } from "antd";
 
 const PostList = () => {
+  // highlight-next-line
+  const [locale, setLocale] = React.useState("en");
+  const [publicationState, setPublicationState] = React.useState("live");
+  const { tableProps, sorter } = useTable<IPost>({
+    meta: {
+      fields: ["id", "title", "publishedAt", "locale"],
+      populate: ["category"],
+      locale,
+      publicationState,
+    },
+  });
+
+  const { selectProps } = useSelect({
+    resource: "categories",
+    optionLabel: "title",
+    optionValue: "id",
     // highlight-next-line
-    const [locale, setLocale] = React.useState("en");
-    const [publicationState, setPublicationState] = React.useState("live");
-    const { tableProps, sorter } = useTable<IPost>({
-        meta: {
-            fields: ["id", "title", "publishedAt", "locale"],
-            populate: ["category"],
-            locale,
-            publicationState,
-        },
-    });
+    meta: { locale },
+  });
 
-    const { selectProps } = useSelect({
-        resource: "categories",
-        optionLabel: "title",
-        optionValue: "id",
-        // highlight-next-line
-        meta: { locale },
-    });
-
-    return (
-        <List>
-            <Form
-                style={{
-                    marginBottom: 16,
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: "16px",
-                }}
-                layout="inline"
-                initialValues={{
-                    // highlight-next-line
-                    locale,
-                    publicationState,
-                }}
-            >
-                {/* highlight-start */}
-                <Form.Item label="Locale" name="locale">
-                    <Radio.Group onChange={(e) => setLocale(e.target.value)}>
-                        <Radio.Button value="en">English</Radio.Button>
-                        <Radio.Button value="de">Deutsch</Radio.Button>
-                    </Radio.Group>
-                </Form.Item>
-                {/* highlight-end */}
-                <Form.Item label="Publication State" name="publicationState">
-                    <Radio.Group
-                        onChange={(e) => setPublicationState(e.target.value)}
-                    >
-                        <Radio.Button value="live">Published</Radio.Button>
-                        <Radio.Button value="preview">
-                            Draft and Published
-                        </Radio.Button>
-                    </Radio.Group>
-                </Form.Item>
-            </Form>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column
-                    dataIndex={["category", "title"]}
-                    title="Category"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
-                <Table.Column
-                    dataIndex="publishedAt"
-                    title="Status"
-                    render={(value) => {
-                        return (
-                            <Tag color={value ? "green" : "blue"}>
-                                {value ? "Published" : "Draft"}
-                            </Tag>
-                        );
-                    }}
-                />
-                {/* highlight-start */}
-                <Table.Column dataIndex="locale" title="Locale" />
-                {/* highlight-end */}
-                <Table.Column
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Form
+        style={{
+          marginBottom: 16,
+          display: "flex",
+          justifyContent: "center",
+          gap: "16px",
+        }}
+        layout="inline"
+        initialValues={{
+          // highlight-next-line
+          locale,
+          publicationState,
+        }}
+      >
+        {/* highlight-start */}
+        <Form.Item label="Locale" name="locale">
+          <Radio.Group onChange={(e) => setLocale(e.target.value)}>
+            <Radio.Button value="en">English</Radio.Button>
+            <Radio.Button value="de">Deutsch</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+        {/* highlight-end */}
+        <Form.Item label="Publication State" name="publicationState">
+          <Radio.Group onChange={(e) => setPublicationState(e.target.value)}>
+            <Radio.Button value="live">Published</Radio.Button>
+            <Radio.Button value="preview">Draft and Published</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+      </Form>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+        <Table.Column
+          dataIndex={["category", "title"]}
+          title="Category"
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Category" {...selectProps} />
+            </FilterDropdown>
+          )}
+        />
+        <Table.Column
+          dataIndex="publishedAt"
+          title="Status"
+          render={(value) => {
+            return <Tag color={value ? "green" : "blue"}>{value ? "Published" : "Draft"}</Tag>;
+          }}
+        />
+        {/* highlight-start */}
+        <Table.Column dataIndex="locale" title="Locale" />
+        {/* highlight-end */}
+        <Table.Column
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="posts">
-                                <Route index element={<PostList />} />
-                            </Route>
-                        </Route>
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="posts">
+                <Route index element={<PostList />} />
+              </Route>
+            </Route>
+          </Routes>
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -964,19 +875,19 @@ When creating and editing posts you can use these API parameters in `meta`:
 
 ```tsx
 const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-    meta: { publicationState: "preview" },
+  meta: { publicationState: "preview" },
 });
 ```
 
 ```tsx title="EditList.tsx"
 const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-    meta: { populate: ["category", "cover"] },
+  meta: { populate: ["category", "cover"] },
 });
 ```
 
 ```tsx title="CreateList.tsx"
 const { selectProps } = useSelect({
-    meta: { locale: "en" },
+  meta: { locale: "en" },
 });
 ```
 
@@ -1006,46 +917,42 @@ import { TOKEN_KEY, API_URL } from "../../constants";
 import { IPost } from "../interfaces";
 
 export const PostEdit: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>({
-        metaData: { populate: ["cover"] },
-    });
+  const { formProps, saveButtonProps } = useForm<IPost>({
+    metaData: { populate: ["cover"] },
+  });
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form
-                {...formProps}
-                layout="vertical"
-                onFinish={(values) => {
-                    formProps.onFinish?.(mediaUploadMapper(values));
-                }}
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form
+        {...formProps}
+        layout="vertical"
+        onFinish={(values) => {
+          formProps.onFinish?.(mediaUploadMapper(values));
+        }}
+      >
+        <Form.Item label="Cover">
+          <Form.Item
+            name="cover"
+            valuePropName="fileList"
+            getValueProps={(data) => getValueProps(data, API_URL)}
+            noStyle
+          >
+            <Upload.Dragger
+              name="files"
+              action={`${API_URL}/api/upload`}
+              headers={{
+                Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
+              }}
+              listType="picture"
+              multiple
             >
-                <Form.Item label="Cover">
-                    <Form.Item
-                        name="cover"
-                        valuePropName="fileList"
-                        getValueProps={(data) => getValueProps(data, API_URL)}
-                        noStyle
-                    >
-                        <Upload.Dragger
-                            name="files"
-                            action={`${API_URL}/api/upload`}
-                            headers={{
-                                Authorization: `Bearer ${localStorage.getItem(
-                                    TOKEN_KEY,
-                                )}`,
-                            }}
-                            listType="picture"
-                            multiple
-                        >
-                            <p className="ant-upload-text">
-                                Drag & drop a file in this area
-                            </p>
-                        </Upload.Dragger>
-                    </Form.Item>
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+              <p className="ant-upload-text">Drag & drop a file in this area</p>
+            </Upload.Dragger>
+          </Form.Item>
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 ```
 
@@ -1068,108 +975,88 @@ import { ICategory, IPost } from "interfaces";
 import { TOKEN_KEY, API_URL } from "../../constants";
 
 export const PostEdit: React.FC = () => {
-    const [isUploadLoading, setIsUploadLoading] = useState(false);
-    const [imageURL, setImageURL] = useState("");
+  const [isUploadLoading, setIsUploadLoading] = useState(false);
+  const [imageURL, setImageURL] = useState("");
 
-    const {
-        saveButtonProps,
-        register,
-        formState: { errors },
-        setValue,
-        setError,
-    } = useForm<
-        IPost,
-        HttpError,
-        IPost & { category: ICategory; cover: any }
-    >();
+  const {
+    saveButtonProps,
+    register,
+    formState: { errors },
+    setValue,
+    setError,
+  } = useForm<IPost, HttpError, IPost & { category: ICategory; cover: any }>();
 
-    const onChangeHandler = async (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
-        try {
-            setIsUploadLoading(true);
+  const onChangeHandler = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      setIsUploadLoading(true);
 
-            const formData = new FormData();
+      const formData = new FormData();
 
-            const target = event.target;
-            const file: File = (target.files as FileList)[0];
+      const target = event.target;
+      const file: File = (target.files as FileList)[0];
 
-            formData.append("files", file);
+      formData.append("files", file);
 
-            const res = await axios.post(`${API_URL}/api/upload`, formData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
-                },
-            });
+      const res = await axios.post(`${API_URL}/api/upload`, formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
+        },
+      });
 
-            setImageURL(`${API_URL}${res.data[0].url}`);
-            setValue("cover", res.data[0].id, { shouldValidate: true });
+      setImageURL(`${API_URL}${res.data[0].url}`);
+      setValue("cover", res.data[0].id, { shouldValidate: true });
 
-            setIsUploadLoading(false);
-        } catch (error) {
-            setError("cover", { message: "Upload failed. Please try again." });
-            setIsUploadLoading(false);
-        }
-    };
+      setIsUploadLoading(false);
+    } catch (error) {
+      setError("cover", { message: "Upload failed. Please try again." });
+      setIsUploadLoading(false);
+    }
+  };
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Box
-                component="form"
-                sx={{ display: "flex", flexDirection: "column" }}
-                autoComplete="off"
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+        <Stack direction="row" gap={4} flexWrap="wrap" sx={{ marginTop: "16px" }}>
+          <label htmlFor="images-input">
+            <Input id="images-input" type="file" sx={{ display: "none" }} onChange={onChangeHandler} />
+            <input
+              id="file"
+              {...register("cover", {
+                required: "This field is required",
+              })}
+              type="hidden"
+            />
+            <LoadingButton
+              loading={isUploadLoading}
+              loadingPosition="end"
+              endIcon={<FileUploadIcon />}
+              variant="contained"
+              component="span"
             >
-                <Stack
-                    direction="row"
-                    gap={4}
-                    flexWrap="wrap"
-                    sx={{ marginTop: "16px" }}
-                >
-                    <label htmlFor="images-input">
-                        <Input
-                            id="images-input"
-                            type="file"
-                            sx={{ display: "none" }}
-                            onChange={onChangeHandler}
-                        />
-                        <input
-                            id="file"
-                            {...register("cover", {
-                                required: "This field is required",
-                            })}
-                            type="hidden"
-                        />
-                        <LoadingButton
-                            loading={isUploadLoading}
-                            loadingPosition="end"
-                            endIcon={<FileUploadIcon />}
-                            variant="contained"
-                            component="span"
-                        >
-                            Upload
-                        </LoadingButton>
-                        <br />
-                        {errors.cover && (
-                            <Typography variant="caption" color="#fa541c">
-                                {errors.cover?.message?.toString()}
-                            </Typography>
-                        )}
-                    </label>
-                    {imageURL && (
-                        <Box
-                            component="img"
-                            sx={{
-                                maxWidth: 250,
-                                maxHeight: 250,
-                            }}
-                            src={imageURL}
-                            alt="Post image"
-                        />
-                    )}
-                </Stack>
-            </Box>
-        </Edit>
-    );
+              Upload
+            </LoadingButton>
+            <br />
+            {errors.cover && (
+              <Typography variant="caption" color="#fa541c">
+                {errors.cover?.message?.toString()}
+              </Typography>
+            )}
+          </label>
+          {imageURL && (
+            <Box
+              component="img"
+              sx={{
+                maxWidth: 250,
+                maxHeight: 250,
+              }}
+              src={imageURL}
+              alt="Post image"
+            />
+          )}
+        </Stack>
+      </Box>
+    </Edit>
+  );
 };
 ```
 
@@ -1188,55 +1075,51 @@ const API_URL = "http://localhost:1337";
 const TOKEN_KEY = "strapi-jwt-token";
 
 export const PostEdit: React.FC = () => {
-    const [isUploadLoading, setIsUploadLoading] = useState(false);
+  const [isUploadLoading, setIsUploadLoading] = useState(false);
 
-    const { saveButtonProps, setFieldValue } = useForm<any>({
-        initialValues: {
-            title: "",
-            cover: "",
+  const { saveButtonProps, setFieldValue } = useForm<any>({
+    initialValues: {
+      title: "",
+      cover: "",
+    },
+  });
+
+  const handleOnDrop = async (files: FileWithPath[]) => {
+    try {
+      setIsUploadLoading(true);
+
+      const formData = new FormData();
+
+      const file = files[0];
+
+      formData.append("files", file);
+
+      const res = await axios.post(`${API_URL}/api/upload`, formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
         },
-    });
+      });
 
-    const handleOnDrop = async (files: FileWithPath[]) => {
-        try {
-            setIsUploadLoading(true);
+      setFieldValue("cover", res.data[0].id);
 
-            const formData = new FormData();
+      setIsUploadLoading(false);
+    } catch (error) {
+      setIsUploadLoading(false);
+    }
+  };
 
-            const file = files[0];
-
-            formData.append("files", file);
-
-            const res = await axios.post(`${API_URL}/api/upload`, formData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
-                },
-            });
-
-            setFieldValue("cover", res.data[0].id);
-
-            setIsUploadLoading(false);
-        } catch (error) {
-            setIsUploadLoading(false);
-        }
-    };
-
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <form>
-                <Text mt={8} weight={500} size="sm" color="#212529">
-                    Cover
-                </Text>
-                <Dropzone
-                    accept={IMAGE_MIME_TYPE}
-                    onDrop={handleOnDrop}
-                    loading={isUploadLoading}
-                >
-                    <Text align="center">Drop images here</Text>
-                </Dropzone>
-            </form>
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <form>
+        <Text mt={8} weight={500} size="sm" color="#212529">
+          Cover
+        </Text>
+        <Dropzone accept={IMAGE_MIME_TYPE} onDrop={handleOnDrop} loading={isUploadLoading}>
+          <Text align="center">Drop images here</Text>
+        </Dropzone>
+      </form>
+    </Edit>
+  );
 };
 ```
 
@@ -1251,9 +1134,9 @@ Strapi provides a way to add validation rules to your models. So if you send a r
 
 By default, `@refinedev/strapi-v4` transforms the error response from Strapi into a [`HttpError`](/docs/api-reference/core/interfaceReferences/#httperror) object. This object contains the following properties:
 
--   `statusCode` - The status code of the response.
--   `message` - The error message.
--   `errors` - An object containing the validation errors for each field.
+- `statusCode` - The status code of the response.
+- `message` - The error message.
+- `errors` - An object containing the validation errors for each field.
 
 Thus, `useForm` will automatically set the error message for each field that has a validation error.
 
@@ -1262,9 +1145,11 @@ Thus, `useForm` will automatically set the error message for each field that has
 ## Example
 
 :::note Demo Credentials
+
 Username: demo@refine.dev
 
 Password: demodemo
+
 :::
 
 <CodeSandboxExample path="data-provider-strapi-v4" />

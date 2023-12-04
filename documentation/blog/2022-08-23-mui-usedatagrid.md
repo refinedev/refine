@@ -40,9 +40,9 @@ Steps we’ll cover:
 
 To follow along with this tutorial, we assume you have the following:
 
--   Basic knowledge of React and TypeScript
--   Node.js installed on your machine
--   A code editor of your choice (VSCode, Sublime Text, etc.)
+- Basic knowledge of React and TypeScript
+- Node.js installed on your machine
+- A code editor of your choice (VSCode, Sublime Text, etc.)
 
 If you don't familiar with refine, we recommend you to check out the [refine tutorial](https://refine.dev/docs/tutorial/introduction/index/) to get started.
 
@@ -97,11 +97,11 @@ The following example shows a basic usage of the `<DataGrid />` component:
 
 ```javascript
 <DataGrid
-    columns={[{ field: "name" }]}
-    rows={[
-        { id: 1, name: "React" },
-        { id: 2, name: "MUI X" },
-    ]}
+  columns={[{ field: "name" }]}
+  rows={[
+    { id: 1, name: "React" },
+    { id: 2, name: "MUI X" },
+  ]}
 />
 ```
 
@@ -133,18 +133,18 @@ import styled from "styled-components";
 import { Header } from "../header";
 
 const Wrapper = styled.div`
-    width: 80%;
-    margin: 50px auto;
-    height: 100%;
+  width: 80%;
+  margin: 50px auto;
+  height: 100%;
 `;
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-    return (
-        <>
-            <Header />
-            <Wrapper>{children}</Wrapper>
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <Wrapper>{children}</Wrapper>
+    </>
+  );
 };
 
 export default Layout;
@@ -164,23 +164,23 @@ import { useDataGrid } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const Table: React.FC = () => {
-    const { dataGridProps } = useDataGrid();
-    const columns: GridColDef[] = [
-        {
-            field: "id",
-            headerName: "ID",
-        },
-        {
-            field: "name",
-            headerName: "Name",
-        },
-        {
-            field: "Age",
-            headerName: "Age",
-        },
-    ];
+  const { dataGridProps } = useDataGrid();
+  const columns: GridColDef[] = [
+    {
+      field: "id",
+      headerName: "ID",
+    },
+    {
+      field: "name",
+      headerName: "Name",
+    },
+    {
+      field: "Age",
+      headerName: "Age",
+    },
+  ];
 
-    return <DataGrid {...dataGridProps} columns={columns} autoHeight />;
+  return <DataGrid {...dataGridProps} columns={columns} autoHeight />;
 };
 
 export default Table;
@@ -204,55 +204,47 @@ import { useDataGrid, List } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const EmployeeList: React.FC = () => {
-    const { dataGridProps } = useDataGrid();
+  const { dataGridProps } = useDataGrid();
 
-    const columns = React.useMemo<GridColDef[]>(
-        () => [
-            { field: "id", headerName: "ID", minWidth: 30 },
-            {
-                field: "full_name",
-                headerName: "Full Name",
-                minWidth: 150,
-                flex: 1,
-                valueGetter: (params) =>
-                    `${params.row.first_name || ""} ${
-                        params.row.last_name || ""
-                    }`,
-            },
-            {
-                field: "email",
-                headerName: "Email",
-                minWidth: 250,
-            },
-            {
-                field: "department",
-                headerName: "Department",
-                minWidth: 150,
-            },
-            {
-                field: "role",
-                headerName: "Role",
-                minWidth: 150,
-            },
-            {
-                field: "level",
-                headerName: "Level",
-                minWidth: 110,
-            },
-        ],
-        [],
-    );
+  const columns = React.useMemo<GridColDef[]>(
+    () => [
+      { field: "id", headerName: "ID", minWidth: 30 },
+      {
+        field: "full_name",
+        headerName: "Full Name",
+        minWidth: 150,
+        flex: 1,
+        valueGetter: (params) => `${params.row.first_name || ""} ${params.row.last_name || ""}`,
+      },
+      {
+        field: "email",
+        headerName: "Email",
+        minWidth: 250,
+      },
+      {
+        field: "department",
+        headerName: "Department",
+        minWidth: 150,
+      },
+      {
+        field: "role",
+        headerName: "Role",
+        minWidth: 150,
+      },
+      {
+        field: "level",
+        headerName: "Level",
+        minWidth: 110,
+      },
+    ],
+    [],
+  );
 
-    return (
-        <List>
-            <DataGrid
-                {...dataGridProps}
-                checkboxSelection
-                columns={columns}
-                autoHeight
-            />
-        </List>
-    );
+  return (
+    <List>
+      <DataGrid {...dataGridProps} checkboxSelection columns={columns} autoHeight />
+    </List>
+  );
 };
 
 export default EmployeeList;
@@ -273,9 +265,9 @@ import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { notificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
 import routerBindings, {
-    DocumentTitleHandler,
-    NavigateToResource,
-    UnsavedChangesNotifier,
+  DocumentTitleHandler,
+  NavigateToResource,
+  UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -287,62 +279,50 @@ import Layout from "./components/layout";
 import EmployeeList from "./pages/employees";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                <ColorModeContextProvider>
-                    <CssBaseline />
-                    <GlobalStyles
-                        styles={{ html: { WebkitFontSmoothing: "auto" } }}
-                    />
-                    <RefineSnackbarProvider>
-                        <Refine
-                            dataProvider={dataProvider(
-                                "https://my-json-server.typicode.com/Mich45/employee-data",
-                            )}
-                            notificationProvider={notificationProvider}
-                            routerProvider={routerBindings}
-                            resources={[
-                                {
-                                    name: "employees",
-                                    list: "/employees",
-                                },
-                            ]}
-                            options={{
-                                syncWithLocation: true,
-                                warnWhenUnsavedChanges: true,
-                            }}
-                        >
-                            <Routes>
-                                <Route
-                                    element={
-                                        <Layout>
-                                            <Outlet />
-                                        </Layout>
-                                    }
-                                >
-                                    <Route
-                                        index
-                                        element={
-                                            <NavigateToResource resource="employees" />
-                                        }
-                                    />
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        <ColorModeContextProvider>
+          <CssBaseline />
+          <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+          <RefineSnackbarProvider>
+            <Refine
+              dataProvider={dataProvider("https://my-json-server.typicode.com/Mich45/employee-data")}
+              notificationProvider={notificationProvider}
+              routerProvider={routerBindings}
+              resources={[
+                {
+                  name: "employees",
+                  list: "/employees",
+                },
+              ]}
+              options={{
+                syncWithLocation: true,
+                warnWhenUnsavedChanges: true,
+              }}
+            >
+              <Routes>
+                <Route
+                  element={
+                    <Layout>
+                      <Outlet />
+                    </Layout>
+                  }
+                >
+                  <Route index element={<NavigateToResource resource="employees" />} />
 
-                                    <Route
-                                        path="/employees"
-                                        element={<EmployeeList />}
-                                    />
-                                </Route>
-                            </Routes>
-                            <RefineKbar />
-                            <UnsavedChangesNotifier />
-                            <DocumentTitleHandler />
-                        </Refine>
-                    </RefineSnackbarProvider>
-                </ColorModeContextProvider>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+                  <Route path="/employees" element={<EmployeeList />} />
+                </Route>
+              </Routes>
+              <RefineKbar />
+              <UnsavedChangesNotifier />
+              <DocumentTitleHandler />
+            </Refine>
+          </RefineSnackbarProvider>
+        </ColorModeContextProvider>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -354,8 +334,8 @@ Here's a breakdown of what is going on in the code:
 
 The `<Refine />` component accepts a `dataProvider` prop which specifies the source of our data (the fake REST API we created earlier), and a `resources` prop which takes an array of object properties:
 
--   The `name` property is the name of the resource we are expecting from the REST API - this value must match the resource we created in the REST API. In our case, `employees`.
--   The `list` property takes a string value which is the path to render the `<EmployeeList />` component. In our case, `/employees`.
+- The `name` property is the name of the resource we are expecting from the REST API - this value must match the resource we created in the REST API. In our case, `employees`.
+- The `list` property takes a string value which is the path to render the `<EmployeeList />` component. In our case, `/employees`.
 
 You can refer to the [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) component documentation for more information on the available props.
 
@@ -393,25 +373,25 @@ import { useDataGrid, List } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const EmployeeList: React.FC = () => {
-    const { dataGridProps } = useDataGrid({
-        // highlight-next-line
-        pagination: { pageSize: 5 },
-    });
+  const { dataGridProps } = useDataGrid({
+    // highlight-next-line
+    pagination: { pageSize: 5 },
+  });
 
-    //...
+  //...
 
-    return (
-        <List>
-            <DataGrid
-                {...dataGridProps}
-                checkboxSelection
-                columns={columns}
-                autoHeight
-                //highlight-next-line
-                pageSizeOptions={[5, 10, 20]}
-            />
-        </List>
-    );
+  return (
+    <List>
+      <DataGrid
+        {...dataGridProps}
+        checkboxSelection
+        columns={columns}
+        autoHeight
+        //highlight-next-line
+        pageSizeOptions={[5, 10, 20]}
+      />
+    </List>
+  );
 };
 
 export default EmployeeList;
@@ -429,7 +409,6 @@ By default, `syncWithLocation` is set to `true` in the `<Refine />` component. T
 
 You can refer to the MU X DataGrid [documentation](https://mui.com/x/react-data-grid/pagination/) for more information on the pagination feature.
 
-
 ### Sorting
 
 The DataGrid component lets us sort the data in the rows based on one criterion at a time. Sorting is enabled for all columns by default in the MIT version and can also be disabled either for all columns or a single column.
@@ -446,9 +425,9 @@ We can initialize a sorting order for each or all fields in the grid using the `
 
 ```tsx title="src/pages/employees/employees.tsx"
 const { dataGridProps } = useDataGrid({
-    sorters: {
-        initial: [{ field: "level", order: "desc" }],
-    },
+  sorters: {
+    initial: [{ field: "level", order: "desc" }],
+  },
 });
 ```
 
@@ -472,81 +451,73 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 
 //highlight-start
 const ButtonsWrapper = styled.div`
-    width: 100%;
-    margin: 20px 0;
+  width: 100%;
+  margin: 20px 0;
 `;
 //highlight-end
 
 const EmployeeList: React.FC = () => {
-    //highlight-next-line
-    const { dataGridProps, setSorters } = useDataGrid();
+  //highlight-next-line
+  const { dataGridProps, setSorters } = useDataGrid();
 
-    const columns = React.useMemo<GridColDef[]>(
-        () => [
-            { field: "id", headerName: "ID", minWidth: 30 },
-            {
-                field: "full_name",
-                headerName: "Full Name",
-                minWidth: 150,
-                flex: 1,
-                valueGetter: (params) =>
-                    `${params.row.first_name || ""} ${
-                        params.row.last_name || ""
-                    }`,
-            },
-            {
-                field: "email",
-                headerName: "Email",
-                minWidth: 250,
-            },
-            {
-                field: "department",
-                headerName: "Department",
-                minWidth: 150,
-            },
-            {
-                field: "role",
-                headerName: "Role",
-                minWidth: 150,
-            },
-            {
-                field: "level",
-                headerName: "Level",
-                minWidth: 110,
-            },
-        ],
-        [],
-    );
+  const columns = React.useMemo<GridColDef[]>(
+    () => [
+      { field: "id", headerName: "ID", minWidth: 30 },
+      {
+        field: "full_name",
+        headerName: "Full Name",
+        minWidth: 150,
+        flex: 1,
+        valueGetter: (params) => `${params.row.first_name || ""} ${params.row.last_name || ""}`,
+      },
+      {
+        field: "email",
+        headerName: "Email",
+        minWidth: 250,
+      },
+      {
+        field: "department",
+        headerName: "Department",
+        minWidth: 150,
+      },
+      {
+        field: "role",
+        headerName: "Role",
+        minWidth: 150,
+      },
+      {
+        field: "level",
+        headerName: "Level",
+        minWidth: 110,
+      },
+    ],
+    [],
+  );
 
-    //highlight-start
-    const handleSorting = (order: "asc" | "desc") => {
-        setSorters([
-            {
-                field: "level",
-                order,
-            },
-        ]);
-    };
-    //highlight-end
+  //highlight-start
+  const handleSorting = (order: "asc" | "desc") => {
+    setSorters([
+      {
+        field: "level",
+        order,
+      },
+    ]);
+  };
+  //highlight-end
 
-    return (
-        <List>
-            //highlight-start
-            <ButtonsWrapper>
-                <ButtonGroup variant="outlined">
-                    <Button onClick={() => handleSorting("asc")}>Asc</Button>
-                    <Button onClick={() => handleSorting("desc")}>Desc</Button>
-                </ButtonGroup>
-            </ButtonsWrapper>
-            //highlight-end
-            <DataGrid
-                {...dataGridProps}
-                checkboxSelection
-                columns={columns}
-                autoHeight
-            />
-        </List>
-    );
+  return (
+    <List>
+      //highlight-start
+      <ButtonsWrapper>
+        <ButtonGroup variant="outlined">
+          <Button onClick={() => handleSorting("asc")}>Asc</Button>
+          <Button onClick={() => handleSorting("desc")}>Desc</Button>
+        </ButtonGroup>
+      </ButtonsWrapper>
+      //highlight-end
+      <DataGrid {...dataGridProps} checkboxSelection columns={columns} autoHeight />
+    </List>
+  );
 };
 
 export default EmployeeList;
@@ -581,13 +552,7 @@ You can import the `<GridToolbar />` component and use it like so:
 ```tsx title="src/pages/employees.tsx"
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
-<DataGrid
-    {...dataGridProps}
-    checkboxSelection
-    columns={columns}
-    slots={{ toolbar: GridToolbar }}
-    autoHeight
-/>;
+<DataGrid {...dataGridProps} checkboxSelection columns={columns} slots={{ toolbar: GridToolbar }} autoHeight />;
 ```
 
 The filter feature works by searching the rows for values that match a given filter operator. The list of operators which can be used in the _sortModel_ can be found [here](https://refine.dev/docs/core/interfaceReferences/#crudfilters).
@@ -607,21 +572,21 @@ import { useDataGrid, List } from "@refinedev/mui";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 
 const EmployeeList: React.FC = () => {
-    const { dataGridProps } = useDataGrid();
+  const { dataGridProps } = useDataGrid();
 
-    //...
+  //...
 
-    return (
-        <List>
-            <DataGrid
-                {...dataGridProps}
-                columns={columns}
-                //highlight-next-line
-                slots={{ toolbar: GridToolbar }}
-                autoHeight
-            />
-        </List>
-    );
+  return (
+    <List>
+      <DataGrid
+        {...dataGridProps}
+        columns={columns}
+        //highlight-next-line
+        slots={{ toolbar: GridToolbar }}
+        autoHeight
+      />
+    </List>
+  );
 };
 
 export default EmployeeList;
@@ -651,77 +616,63 @@ import Checkbox from "@mui/material/Checkbox";
 //highlight-end
 
 const EmployeeList: React.FC = () => {
-    //highlight-next-line
-    const { dataGridProps, setFilters } = useDataGrid();
+  //highlight-next-line
+  const { dataGridProps, setFilters } = useDataGrid();
 
-    const columns = React.useMemo<GridColDef[]>(
-        () => [
-            { field: "id", headerName: "ID", minWidth: 30 },
-            {
-                field: "full_name",
-                headerName: "Full Name",
-                minWidth: 150,
-                flex: 1,
-                valueGetter: (params) =>
-                    `${params.row.first_name || ""} ${
-                        params.row.last_name || ""
-                    }`,
-            },
-            {
-                field: "email",
-                headerName: "Email",
-                minWidth: 250,
-            },
-            {
-                field: "department",
-                headerName: "Department",
-                minWidth: 150,
-            },
-            {
-                field: "role",
-                headerName: "Role",
-                minWidth: 150,
-            },
-            {
-                field: "level",
-                headerName: "Level",
-                minWidth: 110,
-            },
-        ],
-        [],
-    );
+  const columns = React.useMemo<GridColDef[]>(
+    () => [
+      { field: "id", headerName: "ID", minWidth: 30 },
+      {
+        field: "full_name",
+        headerName: "Full Name",
+        minWidth: 150,
+        flex: 1,
+        valueGetter: (params) => `${params.row.first_name || ""} ${params.row.last_name || ""}`,
+      },
+      {
+        field: "email",
+        headerName: "Email",
+        minWidth: 250,
+      },
+      {
+        field: "department",
+        headerName: "Department",
+        minWidth: 150,
+      },
+      {
+        field: "role",
+        headerName: "Role",
+        minWidth: 150,
+      },
+      {
+        field: "level",
+        headerName: "Level",
+        minWidth: 110,
+      },
+    ],
+    [],
+  );
 
-    //highlight-start
-    const handleFilter = (
-        e: React.ChangeEvent<HTMLInputElement>,
-        checked: boolean,
-    ) => {
-        setFilters([
-            {
-                field: "role",
-                value: checked ? "Recruiter" : undefined,
-                operator: "eq",
-            },
-        ]);
-    };
-    //highlight-end
+  //highlight-start
+  const handleFilter = (e: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    setFilters([
+      {
+        field: "role",
+        value: checked ? "Recruiter" : undefined,
+        operator: "eq",
+      },
+    ]);
+  };
+  //highlight-end
 
-    return (
-        <List>
-            //highlight-start
-            <FormControlLabel
-                label="Filter Employees with Recruiter Role"
-                control={<Checkbox onChange={handleFilter} />}
-            />
-            //highlight-end
-            <DataGrid
-                {...dataGridProps}
-                columns={columns}
-                slots={{ toolbar: GridToolbar }}
-                autoHeight
-            />
-        </List>
-    );
+  return (
+    <List>
+      //highlight-start
+      <FormControlLabel label="Filter Employees with Recruiter Role" control={<Checkbox onChange={handleFilter} />} />
+      //highlight-end
+      <DataGrid {...dataGridProps} columns={columns} slots={{ toolbar: GridToolbar }} autoHeight />
+    </List>
+  );
 };
 export default EmployeeList;
 ```

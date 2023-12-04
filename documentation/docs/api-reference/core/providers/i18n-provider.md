@@ -19,9 +19,9 @@ First of all, **refine** expects the `i18nProvider` type as follows:
 import { I18nProvider } from "@refinedev/core";
 
 const i18nProvider: I18nProvider = {
-    translate: (key: string, options?: any, defaultMessage?: string) => string,
-    changeLocale: (lang: string, options?: any) => Promise,
-    getLocale: () => string,
+  translate: (key: string, options?: any, defaultMessage?: string) => string,
+  changeLocale: (lang: string, options?: any) => Promise,
+  getLocale: () => string,
 };
 ```
 
@@ -33,23 +33,23 @@ import { Refine } from "@refinedev/core";
 import i18nProvider from "./i18nProvider";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            // highlight-next-line
-            i18nProvider={i18nProvider}
-            /* ... */
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      // highlight-next-line
+      i18nProvider={i18nProvider}
+      /* ... */
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
 This will allow us to put translation features to the followings hooks:
 
--   [`useTranslate`][use-translate] shows translation between different languages.
--   [`useSetLocale`][use-setlocale] changes locale at runtime.
--   [`useGetLocale`][use-getlocale] getting current locale.
+- [`useTranslate`][use-translate] shows translation between different languages.
+- [`useSetLocale`][use-setlocale] changes locale at runtime.
+- [`useGetLocale`][use-getlocale] getting current locale.
 
 ## Example
 
@@ -58,15 +58,19 @@ Let's add multi-language support to our application using the `react-i18next` fr
 > For more information, refer to the [react-i18next documentation&#8594](https://react.i18next.com/getting-started)
 
 :::tip
+
 We recommend using [`create refine-app`][create-refine-app] to initialize your refine projects as it configures the project according to your needs, i18n support included if you choose it in the CLI
 
 If you choose to have
+
 :::
 
 ---
 
 :::caution
+
 The following parts of the document are for SPA react apps, for Next.js refer to [i18n Nextjs example&#8594][i18nnextjs]
+
 :::
 
 ### Installation
@@ -116,18 +120,19 @@ import { initReactI18next } from "react-i18next"; // https://react.i18next.com/l
 import Backend from "i18next-http-backend"; // For lazy loading for translations: https://github.com/i18next/i18next-http-backend
 import detector from "i18next-browser-languagedetector"; // For auto detecting the user language: https://github.com/i18next/i18next-browser-languageDetector
 
-i18n.use(Backend)
-    .use(detector)
-    .use(initReactI18next)
-    .init({
-        supportedLngs: ["en", "de"],
-        backend: {
-            loadPath: "/locales/{{lng}}/{{ns}}.json", // locale files path
-        },
-        ns: ["common"],
-        defaultNS: "common",
-        fallbackLng: ["en", "de"],
-    });
+i18n
+  .use(Backend)
+  .use(detector)
+  .use(initReactI18next)
+  .init({
+    supportedLngs: ["en", "de"],
+    backend: {
+      loadPath: "/locales/{{lng}}/{{ns}}.json", // locale files path
+    },
+    ns: ["common"],
+    defaultNS: "common",
+    fallbackLng: ["en", "de"],
+  });
 
 export default i18n;
 ```
@@ -147,18 +152,20 @@ import "./i18n";
 const container = document.getElementById("root");
 const root = createRoot(container!);
 root.render(
-    <React.StrictMode>
-        // highlight-start
-        <React.Suspense fallback="loading">
-            <App />
-        </React.Suspense>
-        // highlight-end
-    </React.StrictMode>,
+  <React.StrictMode>
+    // highlight-start
+    <React.Suspense fallback="loading">
+      <App />
+    </React.Suspense>
+    // highlight-end
+  </React.StrictMode>,
 );
 ```
 
 :::tip
+
 We use `React.Suspense` because it improves performance by preventing the app from rendering unnecessarily.
+
 :::
 
 ### Creating the i18n Provider
@@ -173,25 +180,25 @@ import { Refine } from "@refinedev/core";
 import { useTranslation } from "react-i18next";
 
 const App: React.FC = () => {
-    // highlight-start
-    const { t, i18n } = useTranslation();
+  // highlight-start
+  const { t, i18n } = useTranslation();
 
-    const i18nProvider: I18nProvider = {
-        translate: (key: string, options?: any) => t(key, options),
-        changeLocale: (lang: string) => i18n.changeLanguage(lang),
-        getLocale: () => i18n.language,
-    };
-    // highlight-end
+  const i18nProvider: I18nProvider = {
+    translate: (key: string, options?: any) => t(key, options),
+    changeLocale: (lang: string) => i18n.changeLanguage(lang),
+    getLocale: () => i18n.language,
+  };
+  // highlight-end
 
-    return (
-        <Refine
-            // highlight-next-line
-            i18nProvider={i18nProvider}
-            /* ... */
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      // highlight-next-line
+      i18nProvider={i18nProvider}
+      /* ... */
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
@@ -206,132 +213,132 @@ Before we get started, let's look at which parts are going to be translated:
 
 ```json
 {
-    "pages": {
-        "login": {
-            "title": "Sign in to your account",
-            "signin": "Sign in",
-            "signup": "Sign up",
-            "divider": "or",
-            "fields": {
-                "email": "Email",
-                "password": "Password"
-            },
-            "errors": {
-                "validEmail": "Invalid email address"
-            },
-            "buttons": {
-                "submit": "Login",
-                "forgotPassword": "Forgot password?",
-                "noAccount": "Don’t have an account?",
-                "rememberMe": "Remember me"
-            }
-        },
-        "forgotPassword": {
-            "title": "Forgot your password?",
-            "fields": {
-                "email": "Email"
-            },
-            "errors": {
-                "validEmail": "Invalid email address"
-            },
-            "buttons": {
-                "submit": "Send reset instructions"
-            }
-        },
-        "register": {
-            "title": "Sign up for your account",
-            "fields": {
-                "email": "Email",
-                "password": "Password"
-            },
-            "errors": {
-                "validEmail": "Invalid email address"
-            },
-            "buttons": {
-                "submit": "Register",
-                "haveAccount": "Have an account?"
-            }
-        },
-        "updatePassword": {
-            "title": "Update password",
-            "fields": {
-                "password": "New Password",
-                "confirmPassword": "Confirm new password"
-            },
-            "errors": {
-                "confirmPasswordNotMatch": "Passwords do not match"
-            },
-            "buttons": {
-                "submit": "Update"
-            }
-        },
-        "error": {
-            "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
-            "404": "Sorry, the page you visited does not exist.",
-            "resource404": "Are you sure you have created the {{resource}} resource.",
-            "backHome": "Back Home"
-        }
+  "pages": {
+    "login": {
+      "title": "Sign in to your account",
+      "signin": "Sign in",
+      "signup": "Sign up",
+      "divider": "or",
+      "fields": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "errors": {
+        "validEmail": "Invalid email address"
+      },
+      "buttons": {
+        "submit": "Login",
+        "forgotPassword": "Forgot password?",
+        "noAccount": "Don’t have an account?",
+        "rememberMe": "Remember me"
+      }
     },
-    "actions": {
-        "list": "List",
-        "create": "Create",
-        "edit": "Edit",
-        "show": "Show"
+    "forgotPassword": {
+      "title": "Forgot your password?",
+      "fields": {
+        "email": "Email"
+      },
+      "errors": {
+        "validEmail": "Invalid email address"
+      },
+      "buttons": {
+        "submit": "Send reset instructions"
+      }
     },
-    "buttons": {
-        "create": "Create",
-        "save": "Save",
-        "logout": "Logout",
-        "delete": "Delete",
-        "edit": "Edit",
-        "cancel": "Cancel",
-        "confirm": "Are you sure?",
-        "filter": "Filter",
-        "clear": "Clear",
-        "refresh": "Refresh",
-        "show": "Show",
-        "undo": "Undo",
-        "import": "Import",
-        "clone": "Clone",
-        "notAccessTitle": "You don't have permission to access"
+    "register": {
+      "title": "Sign up for your account",
+      "fields": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "errors": {
+        "validEmail": "Invalid email address"
+      },
+      "buttons": {
+        "submit": "Register",
+        "haveAccount": "Have an account?"
+      }
     },
-    "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
-    "notifications": {
-        "success": "Successful",
-        "error": "Error (status code: {{statusCode}})",
-        "undoable": "You have {{seconds}} seconds to undo",
-        "createSuccess": "Successfully created {{resource}}",
-        "createError": "There was an error creating {{resource}} (status code: {{statusCode}})",
-        "deleteSuccess": "Successfully deleted {{resource}}",
-        "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
-        "editSuccess": "Successfully edited {{resource}}",
-        "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
-        "importProgress": "Importing: {{processed}}/{{total}}"
+    "updatePassword": {
+      "title": "Update password",
+      "fields": {
+        "password": "New Password",
+        "confirmPassword": "Confirm new password"
+      },
+      "errors": {
+        "confirmPasswordNotMatch": "Passwords do not match"
+      },
+      "buttons": {
+        "submit": "Update"
+      }
     },
-    "loading": "Loading",
-    "tags": {
-        "clone": "Clone"
-    },
-    "dashboard": {
-        "title": "Dashboard"
-    },
-    "documentTitle": {
-        "default": "refine",
-        "suffix": " | refine",
-        "post": {
-            "list": "Posts | refine",
-            "show": "#{{id}} Show Post | refine",
-            "edit": "#{{id}} Edit Post | refine",
-            "create": "Create new Post | refine",
-            "clone": "#{{id}} Clone Post | refine"
-        }
-    },
-    "autoSave": {
-        "success": "saved",
-        "error": "auto save failure",
-        "loading": "saving...",
-        "idle": "waiting for changes"
+    "error": {
+      "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
+      "404": "Sorry, the page you visited does not exist.",
+      "resource404": "Are you sure you have created the {{resource}} resource.",
+      "backHome": "Back Home"
     }
+  },
+  "actions": {
+    "list": "List",
+    "create": "Create",
+    "edit": "Edit",
+    "show": "Show"
+  },
+  "buttons": {
+    "create": "Create",
+    "save": "Save",
+    "logout": "Logout",
+    "delete": "Delete",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "confirm": "Are you sure?",
+    "filter": "Filter",
+    "clear": "Clear",
+    "refresh": "Refresh",
+    "show": "Show",
+    "undo": "Undo",
+    "import": "Import",
+    "clone": "Clone",
+    "notAccessTitle": "You don't have permission to access"
+  },
+  "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
+  "notifications": {
+    "success": "Successful",
+    "error": "Error (status code: {{statusCode}})",
+    "undoable": "You have {{seconds}} seconds to undo",
+    "createSuccess": "Successfully created {{resource}}",
+    "createError": "There was an error creating {{resource}} (status code: {{statusCode}})",
+    "deleteSuccess": "Successfully deleted {{resource}}",
+    "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
+    "editSuccess": "Successfully edited {{resource}}",
+    "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
+    "importProgress": "Importing: {{processed}}/{{total}}"
+  },
+  "loading": "Loading",
+  "tags": {
+    "clone": "Clone"
+  },
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "documentTitle": {
+    "default": "refine",
+    "suffix": " | refine",
+    "post": {
+      "list": "Posts | refine",
+      "show": "#{{id}} Show Post | refine",
+      "edit": "#{{id}} Edit Post | refine",
+      "create": "Create new Post | refine",
+      "clone": "#{{id}} Clone Post | refine"
+    }
+  },
+  "autoSave": {
+    "success": "saved",
+    "error": "auto save failure",
+    "loading": "saving...",
+    "idle": "waiting for changes"
+  }
 }
 ```
 
@@ -361,157 +368,157 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
 
 ```json title="/locales/en/common.json"
 {
-    "pages": {
-        "login": {
-            "title": "Sign in to your account",
-            "signin": "Sign in",
-            "signup": "Sign up",
-            "divider": "or",
-            "fields": {
-                "email": "Email",
-                "password": "Password"
-            },
-            "errors": {
-                "validEmail": "Invalid email address"
-            },
-            "buttons": {
-                "submit": "Login",
-                "forgotPassword": "Forgot password?",
-                "noAccount": "Don’t have an account?",
-                "rememberMe": "Remember me"
-            }
-        },
-        "forgotPassword": {
-            "title": "Forgot your password?",
-            "fields": {
-                "email": "Email"
-            },
-            "errors": {
-                "validEmail": "Invalid email address"
-            },
-            "buttons": {
-                "submit": "Send reset instructions"
-            }
-        },
-        "register": {
-            "title": "Sign up for your account",
-            "fields": {
-                "email": "Email",
-                "password": "Password"
-            },
-            "errors": {
-                "validEmail": "Invalid email address"
-            },
-            "buttons": {
-                "submit": "Register",
-                "haveAccount": "Have an account?"
-            }
-        },
-        "updatePassword": {
-            "title": "Update password",
-            "fields": {
-                "password": "New Password",
-                "confirmPassword": "Confirm new password"
-            },
-            "errors": {
-                "confirmPasswordNotMatch": "Passwords do not match"
-            },
-            "buttons": {
-                "submit": "Update"
-            }
-        },
-        "error": {
-            "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
-            "404": "Sorry, the page you visited does not exist.",
-            "resource404": "Are you sure you have created the {{resource}} resource.",
-            "backHome": "Back Home"
-        }
+  "pages": {
+    "login": {
+      "title": "Sign in to your account",
+      "signin": "Sign in",
+      "signup": "Sign up",
+      "divider": "or",
+      "fields": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "errors": {
+        "validEmail": "Invalid email address"
+      },
+      "buttons": {
+        "submit": "Login",
+        "forgotPassword": "Forgot password?",
+        "noAccount": "Don’t have an account?",
+        "rememberMe": "Remember me"
+      }
     },
-    "actions": {
-        "list": "List",
-        "create": "Create",
-        "edit": "Edit",
-        "show": "Show"
+    "forgotPassword": {
+      "title": "Forgot your password?",
+      "fields": {
+        "email": "Email"
+      },
+      "errors": {
+        "validEmail": "Invalid email address"
+      },
+      "buttons": {
+        "submit": "Send reset instructions"
+      }
     },
-    "buttons": {
-        "create": "Create",
-        "save": "Save",
-        "logout": "Logout",
-        "delete": "Delete",
-        "edit": "Edit",
-        "cancel": "Cancel",
-        "confirm": "Are you sure?",
-        "filter": "Filter",
-        "clear": "Clear",
-        "refresh": "Refresh",
-        "show": "Show",
-        "undo": "Undo",
-        "import": "Import",
-        "clone": "Clone",
-        "notAccessTitle": "You don't have permission to access"
+    "register": {
+      "title": "Sign up for your account",
+      "fields": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "errors": {
+        "validEmail": "Invalid email address"
+      },
+      "buttons": {
+        "submit": "Register",
+        "haveAccount": "Have an account?"
+      }
     },
-    "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
-    "notifications": {
-        "success": "Successful",
-        "error": "Error (status code: {{statusCode}})",
-        "undoable": "You have {{seconds}} seconds to undo",
-        "createSuccess": "Successfully created {{resource}}",
-        "createError": "There was an error creating {{resource}} (status code: {{statusCode}})",
-        "deleteSuccess": "Successfully deleted {{resource}}",
-        "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
-        "editSuccess": "Successfully edited {{resource}}",
-        "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
-        "importProgress": "Importing: {{processed}}/{{total}}"
+    "updatePassword": {
+      "title": "Update password",
+      "fields": {
+        "password": "New Password",
+        "confirmPassword": "Confirm new password"
+      },
+      "errors": {
+        "confirmPasswordNotMatch": "Passwords do not match"
+      },
+      "buttons": {
+        "submit": "Update"
+      }
     },
-    "loading": "Loading",
-    "tags": {
-        "clone": "Clone"
-    },
-    "dashboard": {
-        "title": "Dashboard"
-    },
-    "posts": {
-        "posts": "Posts",
-        "fields": {
-            "id": "Id",
-            "title": "Title",
-            "category": "Category",
-            "status": {
-                "title": "Status",
-                "published": "Published",
-                "draft": "Draft",
-                "rejected": "Rejected"
-            },
-            "content": "Content",
-            "createdAt": "Created At"
-        },
-        "titles": {
-            "create": "Create Post",
-            "edit": "Edit Post",
-            "list": "Posts",
-            "show": "Show Post"
-        }
-    },
-    "table": {
-        "actions": "Actions"
-    },
-    "documentTitle": {
-        "default": "refine",
-        "suffix": " | refine",
-        "post": {
-            "list": "Posts | refine",
-            "show": "#{{id}} Show Post | refine",
-            "edit": "#{{id}} Edit Post | refine",
-            "create": "Create new Post | refine",
-            "clone": "#{{id}} Clone Post | refine"
-        }
-    },
-    "autoSave": {
-        "success": "saved",
-        "error": "auto save failure",
-        "loading": "saving...",
-        "idle": "waiting for changes"
+    "error": {
+      "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
+      "404": "Sorry, the page you visited does not exist.",
+      "resource404": "Are you sure you have created the {{resource}} resource.",
+      "backHome": "Back Home"
     }
+  },
+  "actions": {
+    "list": "List",
+    "create": "Create",
+    "edit": "Edit",
+    "show": "Show"
+  },
+  "buttons": {
+    "create": "Create",
+    "save": "Save",
+    "logout": "Logout",
+    "delete": "Delete",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "confirm": "Are you sure?",
+    "filter": "Filter",
+    "clear": "Clear",
+    "refresh": "Refresh",
+    "show": "Show",
+    "undo": "Undo",
+    "import": "Import",
+    "clone": "Clone",
+    "notAccessTitle": "You don't have permission to access"
+  },
+  "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
+  "notifications": {
+    "success": "Successful",
+    "error": "Error (status code: {{statusCode}})",
+    "undoable": "You have {{seconds}} seconds to undo",
+    "createSuccess": "Successfully created {{resource}}",
+    "createError": "There was an error creating {{resource}} (status code: {{statusCode}})",
+    "deleteSuccess": "Successfully deleted {{resource}}",
+    "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
+    "editSuccess": "Successfully edited {{resource}}",
+    "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
+    "importProgress": "Importing: {{processed}}/{{total}}"
+  },
+  "loading": "Loading",
+  "tags": {
+    "clone": "Clone"
+  },
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "posts": {
+    "posts": "Posts",
+    "fields": {
+      "id": "Id",
+      "title": "Title",
+      "category": "Category",
+      "status": {
+        "title": "Status",
+        "published": "Published",
+        "draft": "Draft",
+        "rejected": "Rejected"
+      },
+      "content": "Content",
+      "createdAt": "Created At"
+    },
+    "titles": {
+      "create": "Create Post",
+      "edit": "Edit Post",
+      "list": "Posts",
+      "show": "Show Post"
+    }
+  },
+  "table": {
+    "actions": "Actions"
+  },
+  "documentTitle": {
+    "default": "refine",
+    "suffix": " | refine",
+    "post": {
+      "list": "Posts | refine",
+      "show": "#{{id}} Show Post | refine",
+      "edit": "#{{id}} Edit Post | refine",
+      "create": "Create new Post | refine",
+      "clone": "#{{id}} Clone Post | refine"
+    }
+  },
+  "autoSave": {
+    "success": "saved",
+    "error": "auto save failure",
+    "loading": "saving...",
+    "idle": "waiting for changes"
+  }
 }
 ```
 
@@ -525,157 +532,157 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
 
 ```json title="/locales/de/common.json"
 {
-    "pages": {
-        "login": {
-            "title": "Melden Sie sich bei Ihrem Konto an",
-            "signin": "Einloggen",
-            "signup": "Anmelden",
-            "divider": "oder",
-            "fields": {
-                "email": "Email",
-                "password": "Passwort"
-            },
-            "errors": {
-                "validEmail": "Ungültige E-Mail-Adresse"
-            },
-            "buttons": {
-                "submit": "Anmeldung",
-                "forgotPassword": "Passwort vergessen?",
-                "noAccount": "Sie haben kein Konto?",
-                "rememberMe": "Erinnere dich an mich"
-            }
-        },
-        "forgotPassword": {
-            "title": "Haben Sie Ihr Passwort vergessen?",
-            "fields": {
-                "email": "Email"
-            },
-            "errors": {
-                "validEmail": "Ungültige E-Mail-Adresse"
-            },
-            "buttons": {
-                "submit": "Anweisungen zum Zurücksetzen senden"
-            }
-        },
-        "register": {
-            "title": "Registrieren Sie sich für Ihr Konto",
-            "fields": {
-                "email": "Email",
-                "password": "Passwort"
-            },
-            "errors": {
-                "validEmail": "Ungültige E-Mail-Adresse"
-            },
-            "buttons": {
-                "submit": "Registrieren",
-                "haveAccount": "Ein Konto haben?"
-            }
-        },
-        "updatePassword": {
-            "title": "Kennwort aktualisieren",
-            "fields": {
-                "password": "Neues Passwort",
-                "confirmPassword": "Bestätige neues Passwort"
-            },
-            "errors": {
-                "confirmPasswordNotMatch": "Passwörter stimmen nicht überein"
-            },
-            "buttons": {
-                "submit": "Aktualisieren"
-            }
-        },
-        "error": {
-            "info": "Sie haben vergessen, {{action}} component zu {{resource}} hinzufügen.",
-            "404": "Leider existiert diese Seite nicht.",
-            "resource404": "Haben Sie die {{resource}} resource erstellt?",
-            "backHome": "Zurück"
-        }
+  "pages": {
+    "login": {
+      "title": "Melden Sie sich bei Ihrem Konto an",
+      "signin": "Einloggen",
+      "signup": "Anmelden",
+      "divider": "oder",
+      "fields": {
+        "email": "Email",
+        "password": "Passwort"
+      },
+      "errors": {
+        "validEmail": "Ungültige E-Mail-Adresse"
+      },
+      "buttons": {
+        "submit": "Anmeldung",
+        "forgotPassword": "Passwort vergessen?",
+        "noAccount": "Sie haben kein Konto?",
+        "rememberMe": "Erinnere dich an mich"
+      }
     },
-    "actions": {
-        "list": "Aufführen",
-        "create": "Erstellen",
-        "edit": "Bearbeiten",
-        "show": "Zeigen"
+    "forgotPassword": {
+      "title": "Haben Sie Ihr Passwort vergessen?",
+      "fields": {
+        "email": "Email"
+      },
+      "errors": {
+        "validEmail": "Ungültige E-Mail-Adresse"
+      },
+      "buttons": {
+        "submit": "Anweisungen zum Zurücksetzen senden"
+      }
     },
-    "buttons": {
-        "create": "Erstellen",
-        "save": "Speichern",
-        "logout": "Abmelden",
-        "delete": "Löschen",
-        "edit": "Bearbeiten",
-        "cancel": "Abbrechen",
-        "confirm": "Sicher?",
-        "filter": "Filter",
-        "clear": "Löschen",
-        "refresh": "Erneuern",
-        "show": "Zeigen",
-        "undo": "Undo",
-        "import": "Importieren",
-        "clone": "Klon",
-        "notAccessTitle": "Sie haben keine zugriffsberechtigung"
+    "register": {
+      "title": "Registrieren Sie sich für Ihr Konto",
+      "fields": {
+        "email": "Email",
+        "password": "Passwort"
+      },
+      "errors": {
+        "validEmail": "Ungültige E-Mail-Adresse"
+      },
+      "buttons": {
+        "submit": "Registrieren",
+        "haveAccount": "Ein Konto haben?"
+      }
     },
-    "warnWhenUnsavedChanges": "Nicht gespeicherte Änderungen werden nicht übernommen.",
-    "notifications": {
-        "success": "Erfolg",
-        "error": "Fehler (status code: {{statusCode}})",
-        "undoable": "Sie haben {{seconds}} Sekunden Zeit für Undo.",
-        "createSuccess": "{{resource}} erfolgreich erstellt.",
-        "createError": "Fehler beim Erstellen {{resource}} (status code: {{statusCode}})",
-        "deleteSuccess": "{{resource}} erfolgreich gelöscht.",
-        "deleteError": "Fehler beim Löschen {{resource}} (status code: {{statusCode}})",
-        "editSuccess": "{{resource}} erfolgreich bearbeitet.",
-        "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})",
-        "importProgress": "{{processed}}/{{total}} importiert"
+    "updatePassword": {
+      "title": "Kennwort aktualisieren",
+      "fields": {
+        "password": "Neues Passwort",
+        "confirmPassword": "Bestätige neues Passwort"
+      },
+      "errors": {
+        "confirmPasswordNotMatch": "Passwörter stimmen nicht überein"
+      },
+      "buttons": {
+        "submit": "Aktualisieren"
+      }
     },
-    "loading": "Wird geladen",
-    "tags": {
-        "clone": "Klon"
-    },
-    "dashboard": {
-        "title": "Dashboard"
-    },
-    "posts": {
-        "posts": "Einträge",
-        "fields": {
-            "id": "Id",
-            "title": "Titel",
-            "category": "Kategorie",
-            "status": {
-                "title": "Status",
-                "published": "Veröffentlicht",
-                "draft": "Draft",
-                "rejected": "Abgelehnt"
-            },
-            "content": "Inhalh",
-            "createdAt": "Erstellt am"
-        },
-        "titles": {
-            "create": "Erstellen",
-            "edit": "Bearbeiten",
-            "list": "Einträge",
-            "show": "Eintrag zeigen"
-        }
-    },
-    "table": {
-        "actions": "Aktionen"
-    },
-    "documentTitle": {
-        "default": "refine",
-        "suffix": " | refine",
-        "post": {
-            "list": "Beiträge | refine",
-            "show": "#{{id}} Beitrag anzeigen | refine",
-            "edit": "#{{id}} Beitrag bearbeiten | refine",
-            "create": "Neuen Beitrag erstellen | refine",
-            "clone" : "#{{id}} Beitrag klonen | refine"
-        }
-    },
-    "autoSave": {
-        "success": "gespeichert",
-        "error": "fehler beim automatischen speichern",
-        "loading": "speichern...",
-        "idle": "warten auf anderungen"
+    "error": {
+      "info": "Sie haben vergessen, {{action}} component zu {{resource}} hinzufügen.",
+      "404": "Leider existiert diese Seite nicht.",
+      "resource404": "Haben Sie die {{resource}} resource erstellt?",
+      "backHome": "Zurück"
     }
+  },
+  "actions": {
+    "list": "Aufführen",
+    "create": "Erstellen",
+    "edit": "Bearbeiten",
+    "show": "Zeigen"
+  },
+  "buttons": {
+    "create": "Erstellen",
+    "save": "Speichern",
+    "logout": "Abmelden",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "cancel": "Abbrechen",
+    "confirm": "Sicher?",
+    "filter": "Filter",
+    "clear": "Löschen",
+    "refresh": "Erneuern",
+    "show": "Zeigen",
+    "undo": "Undo",
+    "import": "Importieren",
+    "clone": "Klon",
+    "notAccessTitle": "Sie haben keine zugriffsberechtigung"
+  },
+  "warnWhenUnsavedChanges": "Nicht gespeicherte Änderungen werden nicht übernommen.",
+  "notifications": {
+    "success": "Erfolg",
+    "error": "Fehler (status code: {{statusCode}})",
+    "undoable": "Sie haben {{seconds}} Sekunden Zeit für Undo.",
+    "createSuccess": "{{resource}} erfolgreich erstellt.",
+    "createError": "Fehler beim Erstellen {{resource}} (status code: {{statusCode}})",
+    "deleteSuccess": "{{resource}} erfolgreich gelöscht.",
+    "deleteError": "Fehler beim Löschen {{resource}} (status code: {{statusCode}})",
+    "editSuccess": "{{resource}} erfolgreich bearbeitet.",
+    "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})",
+    "importProgress": "{{processed}}/{{total}} importiert"
+  },
+  "loading": "Wird geladen",
+  "tags": {
+    "clone": "Klon"
+  },
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "posts": {
+    "posts": "Einträge",
+    "fields": {
+      "id": "Id",
+      "title": "Titel",
+      "category": "Kategorie",
+      "status": {
+        "title": "Status",
+        "published": "Veröffentlicht",
+        "draft": "Draft",
+        "rejected": "Abgelehnt"
+      },
+      "content": "Inhalh",
+      "createdAt": "Erstellt am"
+    },
+    "titles": {
+      "create": "Erstellen",
+      "edit": "Bearbeiten",
+      "list": "Einträge",
+      "show": "Eintrag zeigen"
+    }
+  },
+  "table": {
+    "actions": "Aktionen"
+  },
+  "documentTitle": {
+    "default": "refine",
+    "suffix": " | refine",
+    "post": {
+      "list": "Beiträge | refine",
+      "show": "#{{id}} Beitrag anzeigen | refine",
+      "edit": "#{{id}} Beitrag bearbeiten | refine",
+      "create": "Neuen Beitrag erstellen | refine",
+      "clone": "#{{id}} Beitrag klonen | refine"
+    }
+  },
+  "autoSave": {
+    "success": "gespeichert",
+    "error": "fehler beim automatischen speichern",
+    "loading": "speichern...",
+    "idle": "warten auf anderungen"
+  }
 }
 ```
 
@@ -685,13 +692,17 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
 </Tabs>
 
 :::tip
+
 We can override refine's default texts by changing the `common.json` files in the example above.
+
 :::
 
 ---
 
 :::tip
+
 All of **refine**'s components support i18n, meaning that if you want to change their text, you can create your own translation files with the reference to the keys above.
+
 :::
 
 ### Changing The Locale
@@ -705,58 +716,52 @@ import { Avatar, Button, Dropdown, Layout, Menu, Space } from "antd";
 import { useTranslation } from "react-i18next";
 
 export const Header: React.FC = () => {
-    const { i18n } = useTranslation();
-    const locale = useGetLocale();
-    const changeLanguage = useSetLocale();
+  const { i18n } = useTranslation();
+  const locale = useGetLocale();
+  const changeLanguage = useSetLocale();
 
-    const currentLocale = locale();
+  const currentLocale = locale();
 
-    const menu = (
-        <Menu selectedKeys={currentLocale ? [currentLocale] : []}>
-            {[...(i18n.languages || [])].sort().map((lang: string) => (
-                <Menu.Item
-                    key={lang}
-                    onClick={() => changeLanguage(lang)}
-                    icon={
-                        <span style={{ marginRight: 8 }}>
-                            <Avatar
-                                size={16}
-                                src={`/images/flags/${lang}.svg`}
-                            />
-                        </span>
-                    }
-                >
-                    {lang === "en" ? "English" : "German"}
-                </Menu.Item>
-            ))}
-        </Menu>
-    );
-
-    return (
-        <Layout.Header
-            style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
-                padding: "0px 24px",
-                height: "48px",
-                backgroundColor: "#FFF",
-            }}
+  const menu = (
+    <Menu selectedKeys={currentLocale ? [currentLocale] : []}>
+      {[...(i18n.languages || [])].sort().map((lang: string) => (
+        <Menu.Item
+          key={lang}
+          onClick={() => changeLanguage(lang)}
+          icon={
+            <span style={{ marginRight: 8 }}>
+              <Avatar size={16} src={`/images/flags/${lang}.svg`} />
+            </span>
+          }
         >
-            <Dropdown overlay={menu}>
-                <Button type="link">
-                    <Space>
-                        <Avatar
-                            size={16}
-                            src={`/images/flags/${currentLocale}.svg`}
-                        />
-                        {currentLocale === "en" ? "English" : "German"}
-                        <DownOutlined />
-                    </Space>
-                </Button>
-            </Dropdown>
-        </Layout.Header>
-    );
+          {lang === "en" ? "English" : "German"}
+        </Menu.Item>
+      ))}
+    </Menu>
+  );
+
+  return (
+    <Layout.Header
+      style={{
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        padding: "0px 24px",
+        height: "48px",
+        backgroundColor: "#FFF",
+      }}
+    >
+      <Dropdown overlay={menu}>
+        <Button type="link">
+          <Space>
+            <Avatar size={16} src={`/images/flags/${currentLocale}.svg`} />
+            {currentLocale === "en" ? "English" : "German"}
+            <DownOutlined />
+          </Space>
+        </Button>
+      </Dropdown>
+    </Layout.Header>
+  );
 };
 ```
 
@@ -806,94 +811,80 @@ Finally, we will create the `<PostList>` page and then we will translate texts u
 
 ```tsx title="src/App.tsx"
 import {
-    // highlight-next-line
-    useTranslate,
-    useMany,
+  // highlight-next-line
+  useTranslate,
+  useMany,
 } from "@refinedev/core";
-import {
-    List,
-    useTable,
-    TextField,
-    EditButton,
-    ShowButton,
-} from "@refinedev/antd";
+import { List, useTable, TextField, EditButton, ShowButton } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-    // highlight-next-line
-    const translate = useTranslate();
-    const { tableProps } = useTable<IPost>();
+  // highlight-next-line
+  const translate = useTranslate();
+  const { tableProps } = useTable<IPost>();
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const { data, isLoading } = useMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column
-                    dataIndex="title"
-                    // highlight-next-line
-                    title={translate("posts.fields.title")}
-                />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    // highlight-next-line
-                    title={translate("posts.fields.category")}
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column
+          dataIndex="title"
+          // highlight-next-line
+          title={translate("posts.fields.title")}
+        />
+        <Table.Column
+          dataIndex={["category", "id"]}
+          // highlight-next-line
+          title={translate("posts.fields.category")}
+          render={(value) => {
+            if (isLoading) {
+              return <TextField value="Loading..." />;
+            }
 
-                        return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
-                    }}
-                />
-                <Table.Column<IPost>
-                    // highlight-next-line
-                    title={translate("table.actions")}
-                    dataIndex="actions"
-                    key="actions"
-                    render={(_value, record) => (
-                        <Space>
-                            <EditButton size="small" recordItemId={record.id} />
-                            <ShowButton size="small" recordItemId={record.id} />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+          }}
+        />
+        <Table.Column<IPost>
+          // highlight-next-line
+          title={translate("table.actions")}
+          dataIndex="actions"
+          key="actions"
+          render={(_value, record) => (
+            <Space>
+              <EditButton size="small" recordItemId={record.id} />
+              <ShowButton size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
 ```ts title="interfaces/index.d.ts"
 export interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 export interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
@@ -916,7 +907,7 @@ function translate(key: string, defaultMessage?: string): string;
 
 It means that you can use it in two different ways. The first one is to pass the `key`, `options`, and, `defaultMessage` as parameters. The second one is to pass the `key` and `defaultMessage` parameters. The `options` parameter is optional.
 
--   Example of the `key` and `defaultMessage` function signature
+- Example of the `key` and `defaultMessage` function signature
 
 ```tsx
 import { I18nProvider } from "@refinedev/core";
@@ -927,8 +918,8 @@ import { useTranslation } from "react-i18next";
 const { t } = useTranslation();
 
 const i18nProvider: I18nProvider = {
-    translate: (key: string, defaultMessage?: string) => t(key, defaultMessage),
-    // ...
+  translate: (key: string, defaultMessage?: string) => t(key, defaultMessage),
+  // ...
 };
 
 // ...
@@ -948,7 +939,7 @@ translate("posts.fields.title", "Title");
 // ...
 ```
 
--   Example of the `key`, `options` and, `defaultMessage` function signature
+- Example of the `key`, `options` and, `defaultMessage` function signature
 
 ```tsx
 import { I18nProvider } from "@refinedev/core";
@@ -959,9 +950,8 @@ import { useTranslation } from "react-i18next";
 const { t } = useTranslation();
 
 const i18nProvider: I18nProvider = {
-    translate: (key: string, options?: any, defaultMessage?: string) =>
-        t(key, defaultMessage, options),
-    // ...
+  translate: (key: string, options?: any, defaultMessage?: string) => t(key, defaultMessage, options),
+  // ...
 };
 
 // ...

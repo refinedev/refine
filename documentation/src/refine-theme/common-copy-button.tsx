@@ -1,5 +1,5 @@
-import React, { useCallback, useState, useRef, useEffect } from "react";
 import clsx from "clsx";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { SubtractIcon } from "./icons/subtract";
 
 export const CommonCopyButton = ({ code, className }) => {
@@ -27,11 +27,11 @@ export const CommonCopyButton = ({ code, className }) => {
             className={clsx(
                 "w-8 h-8",
                 "flex justify-center items-center",
-                "!bg-gray-900",
-                "bg-opacity-50",
+                "bg-gray-50",
+                "hover:bg-gray-100",
+                "dark:bg-gray-800",
+                "dark:hover:bg-gray-900",
                 "rounded",
-                "hover:!bg-gray-900 hover:bg-opacity-75",
-                isCopied && "bg-opacity-100",
                 "group",
                 "transition-[background-color] duration-200 ease-in-out",
             )}
@@ -40,10 +40,10 @@ export const CommonCopyButton = ({ code, className }) => {
             <SubtractIcon
                 className={clsx(
                     "w-4 h-4",
-                    "text-gray-500",
+                    "text-gray-400",
+                    "dark:text-gray-500",
                     isCopied && "rotate-[360deg]",
-                    "group-hover:scale-110",
-                    "transition-transform duration-200 ease-in-out",
+                    "transition-all duration-200 ease-in-out",
                 )}
             />
         </button>

@@ -7,40 +7,34 @@ swizzle: true
 ```tsx live shared
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
-    Sider: () => null,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  notificationProvider: RefineMantine.notificationProvider,
+  Layout: RefineMantine.Layout,
+  Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <MantineCore.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <MantineCore.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <MantineNotifications.NotificationsProvider position="top-right">
-                {children}
-            </MantineNotifications.NotificationsProvider>
-        </MantineCore.MantineProvider>
-    );
+  return (
+    <MantineCore.MantineProvider theme={RefineMantine.LightTheme} withNormalizeCSS withGlobalStyles>
+      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <MantineNotifications.NotificationsProvider position="top-right">
+        {children}
+      </MantineNotifications.NotificationsProvider>
+    </MantineCore.MantineProvider>
+  );
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
@@ -59,90 +53,79 @@ import { Create, useForm, useSelect } from "@refinedev/mantine";
 import { Select, TextInput } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
-    const { saveButtonProps, getInputProps } = useForm<IPost>({
-        initialValues: {
-            title: "",
-            status: "",
-            category: {
-                id: "",
-            },
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-            status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
-            category: {
-                id: (value) =>
-                    value.length <= 0 ? "Category is required" : null,
-            },
-        },
-    });
+  const { saveButtonProps, getInputProps } = useForm<IPost>({
+    initialValues: {
+      title: "",
+      status: "",
+      category: {
+        id: "",
+      },
+    },
+    validate: {
+      title: (value) => (value.length < 2 ? "Too short title" : null),
+      status: (value) => (value.length <= 0 ? "Status is required" : null),
+      category: {
+        id: (value) => (value.length <= 0 ? "Category is required" : null),
+      },
+    },
+  });
 
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
+  const { selectProps } = useSelect<ICategory>({
+    resource: "categories",
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
-                />
-                <Select
-                    mt={8}
-                    label="Status"
-                    placeholder="Pick one"
-                    {...getInputProps("status")}
-                    data={[
-                        { label: "Published", value: "published" },
-                        { label: "Draft", value: "draft" },
-                        { label: "Rejected", value: "rejected" },
-                    ]}
-                />
-                <Select
-                    mt={8}
-                    label="Category"
-                    placeholder="Pick one"
-                    {...getInputProps("category.id")}
-                    {...selectProps}
-                />
-            </form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <form>
+        <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+        <Select
+          mt={8}
+          label="Status"
+          placeholder="Pick one"
+          {...getInputProps("status")}
+          data={[
+            { label: "Published", value: "published" },
+            { label: "Draft", value: "draft" },
+            { label: "Rejected", value: "rejected" },
+          ]}
+        />
+        <Select mt={8} label="Category" placeholder="Pick one" {...getInputProps("category.id")} {...selectProps} />
+      </form>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Properties
@@ -162,38 +145,38 @@ import { Create } from "@refinedev/mantine";
 import { Title } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create title={<Title order={3}>Custom Title</Title>}>
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create title={<Title order={3}>Custom Title</Title>}>
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -211,42 +194,42 @@ import routerProvider from "@refinedev/react-router-v6/legacy";
 import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create saveButtonProps={{ size: "xs" }}>
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create saveButtonProps={{ size: "xs" }}>
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/mantine/components/buttons/save.md)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/api-reference/mantine/components/buttons/save.md)
 
 ### `resource`
 
@@ -263,40 +246,40 @@ import { Layout } from "@refinedev/mantine";
 import { Create } from "@refinedev/mantine";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create resource="categories">
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create resource="categories">
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            legacyRouterProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom",
-                    },
-                ],
-                // highlight-end
-            }}
-            Layout={Layout}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom",
+          },
+        ],
+        // highlight-end
+      }}
+      Layout={Layout}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -318,38 +301,38 @@ import routerProvider from "@refinedev/react-router-v6/legacy";
 import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create goBack="😊">
-            <p>Rest of your page here 2</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create goBack="😊">
+      <p>Rest of your page here 2</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -367,38 +350,38 @@ import routerProvider from "@refinedev/react-router-v6/legacy";
 import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create isLoading={true}>
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create isLoading={true}>
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -407,7 +390,9 @@ render(
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mantine` package.
 
 :::tip
+
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+
 :::
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
@@ -420,59 +405,58 @@ import routerProvider from "@refinedev/react-router-v6/legacy";
 import { Create, Breadcrumb } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            breadcrumb={
-                <div
-                    style={{
-                        padding: "3px 6px",
-                        border: "2px dashed cornflowerblue",
-                    }}
-                >
-                    <Breadcrumb />
-                </div>
-            }
-            // highlight-end
+  return (
+    <Create
+      // highlight-start
+      breadcrumb={
+        <div
+          style={{
+            padding: "3px 6px",
+            border: "2px dashed cornflowerblue",
+          }}
         >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+          <Breadcrumb />
+        </div>
+      }
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mantine/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/mantine/components/breadcrumb.md)
 
 ### `wrapperProps`
 
 If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@refinedev/mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
-
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
@@ -484,46 +468,46 @@ import routerProvider from "@refinedev/react-router-v6/legacy";
 import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            wrapperProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      wrapperProps={{
+        style: {
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -543,46 +527,46 @@ import routerProvider from "@refinedev/react-router-v6/legacy";
 import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            headerProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerProps={{
+        style: {
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -602,46 +586,46 @@ import routerProvider from "@refinedev/react-router-v6/legacy";
 import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            contentProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      contentProps={{
+        style: {
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -662,46 +646,46 @@ import { Create } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -720,47 +704,47 @@ import { Create } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            headerButtonProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-            headerButtons={<Button type="primary">Custom Button</Button>}
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerButtonProps={{
+        style: {
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+      headerButtons={<Button type="primary">Custom Button</Button>}
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -783,46 +767,46 @@ import { Create } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            footerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button variant="gradient">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button variant="gradient">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -839,46 +823,46 @@ import { Create, SaveButton } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            footerButtons={({ saveButtonProps }) => (
-                <>
-                    <SaveButton {...saveButtonProps} hideText />
-                    <Button variant="gradient">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtons={({ saveButtonProps }) => (
+        <>
+          <SaveButton {...saveButtonProps} hideText />
+          <Button variant="gradient">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -896,50 +880,50 @@ import routerProvider from "@refinedev/react-router-v6/legacy";
 import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            footerButtonProps={{
-                style: {
-                    // hide-start
-                    float: "right",
-                    marginRight: 24,
-                    // hide-end
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtonProps={{
+        style: {
+          // hide-start
+          float: "right",
+          marginRight: 24,
+          // hide-end
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          create: PostCreate,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 

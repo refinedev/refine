@@ -9,6 +9,7 @@ source: packages/core/src/hooks/data/useCreateMany.ts
 It uses the `createMany` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
 
 :::caution
+
 If your data provider does not have a `createMany` method, `useCreateMany` will use the `create` method instead. This is not recommended, since it will make requests one by one for each record.
 
 It is better to implement the `createMany` method in the data provider.
@@ -25,24 +26,26 @@ import { useCreateMany } from "@refinedev/core";
 const { mutate } = useCreateMany();
 
 mutate({
-    resource: "products",
-    values: [
-        {
-            name: "Product 1",
-            material: "Wood",
-        },
-        {
-            name: "Product 2",
-            material: "Metal",
-        },
-    ],
+  resource: "products",
+  values: [
+    {
+      name: "Product 1",
+      material: "Wood",
+    },
+    {
+      name: "Product 2",
+      material: "Metal",
+    },
+  ],
 });
 ```
 
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 :::
 
 When the `useCreateMany` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
@@ -58,7 +61,9 @@ When the `useCreateMany` mutation runs successfully, it will invalidate the foll
 ## Audit Logs
 
 :::caution
+
 This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
+
 :::
 
 When the `useCreateMany` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data` etc. It is useful when you want to log the changes to the database.
@@ -75,9 +80,9 @@ When the `useCreateMany` mutation runs successfully, it will call the `log` meth
 
 ```tsx
 useCreateMany({
-    mutationOptions: {
-        retry: 3,
-    },
+  mutationOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -89,27 +94,27 @@ useCreateMany({
 const { mutate } = useCreateMany();
 
 mutate(
-    {
-        resource: "products",
-        values: [
-            {
-                name: "Product 1",
-                material: "Wood",
-            },
-            {
-                name: "Product 2",
-                material: "Metal",
-            },
-        ],
+  {
+    resource: "products",
+    values: [
+      {
+        name: "Product 1",
+        material: "Wood",
+      },
+      {
+        name: "Product 2",
+        material: "Metal",
+      },
+    ],
+  },
+  {
+    onError: (error, variables, context) => {
+      // An error occurred!
     },
-    {
-        onError: (error, variables, context) => {
-            // An error occurred!
-        },
-        onSuccess: (data, variables, context) => {
-            // Let's celebrate!
-        },
+    onSuccess: (data, variables, context) => {
+      // Let's celebrate!
     },
+  },
 );
 ```
 
@@ -118,26 +123,29 @@ mutate(
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
 const { overtime } = useCreateMany({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
-    }
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
+    },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ## Mutation Parameters
 
 ### `resource` <PropTag required />
@@ -148,7 +156,7 @@ This parameter will be passed to the `create` method from the `dataProvider` as 
 const { mutate } = useCreateMany();
 
 mutate({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -166,23 +174,25 @@ This prop will be passed to the `create` method from the `dataProvider` as a par
 const { mutate } = useCreateMany();
 
 mutate({
-    values: [
-        {
-            name: "Product 1",
-            material: "Wood",
-        },
-        {
-            name: "Product 2",
-            material: "Metal",
-        },
-    ],
+  values: [
+    {
+      name: "Product 1",
+      material: "Wood",
+    },
+    {
+      name: "Product 2",
+      material: "Metal",
+    },
+  ],
 });
 ```
 
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCreateMany` calls the `open` function from `NotificationProvider`:
@@ -191,20 +201,22 @@ This prop allows you to customize the success notification that shows up when th
 const { mutate } = useCreateMany();
 
 mutate({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useCreateMany` calls the `open` function from `NotificationProvider`
@@ -213,13 +225,13 @@ This prop allows you to customize the error notification that shows up when the 
 const { mutate } = useCreateMany();
 
 mutate({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -227,8 +239,8 @@ mutate({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. You can pass any properties to specifically handle the data provider methods with similar logic,.
 
@@ -236,40 +248,40 @@ In the following example, we pass the `headers` property in the `meta` object to
 const { mutate } = useCreateMany();
 
 mutate({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  createMany: async ({
+    resource,
+    variables,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    createMany: async ({
-        resource,
-        variables,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data } = await httpClient.post(url, variables, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data } = await httpClient.post(url, variables, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### `dataProviderName`
 
@@ -279,7 +291,7 @@ This prop allows you to specify which `dataProvider` if you have more than one. 
 const { mutate } = useCreateMany();
 
 mutate({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -293,7 +305,7 @@ By default, it invalidates the following queries from the current `resource`: `"
 const { mutate } = useCreateMany();
 
 mutate({
-    invalidates: ["list", "many"],
+  invalidates: ["list", "many"],
 });
 ```
 
@@ -304,6 +316,7 @@ Returns an object with TanStack Query's `useMutation` return values.
 > For more information, refer to the [`useMutation` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
 ### Additional Values
+
 #### `overtime`
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
@@ -313,27 +326,28 @@ const { overtime } = useCreateMany();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
+
 ## API
 
 ### Mutation Parameters
 
-| Property                                                                                            | Description                                                                                        | Type                                                                                     | Default                                                              |
-| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                                 |                                                                      |
-| values <div className=" required">Required</div>                                                    | Values for mutation function                                                                       | `TVariables[]`                                                                           | [{}]                                                                 |
-| successNotification                                                                                 | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) | "Successfully created `resource`s"                                   |
-| errorNotification                                                                                   | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |
-| meta                                                                                                | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                       | {}                                                                   |
-| dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                 | `default`                                                            |
-| invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                  | `["list", "many"]`                                                   |
+| Property                                                                                            | Description                                                                                        | Type                                                                                          | Default                                                              |
+| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                                      |                                                                      |
+| values <div className=" required">Required</div>                                                    | Values for mutation function                                                                       | `TVariables[]`                                                                                | [{}]                                                                 |
+| successNotification                                                                                 | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/docs/api-reference/core/interfaces.md#successerrornotification) | "Successfully created `resource`s"                                   |
+| errorNotification                                                                                   | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/docs/api-reference/core/interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |
+| meta                                                                                                | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/api-reference/core/interfaces.md#metadataquery)                       | {}                                                                   |
+| dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                      | `default`                                                            |
+| invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                       | `["list", "many"]`                                                   |
 
 ### Type Parameters
 
-| Property   | Desription                                                                                        | Type                                                         | Default                                                      |
-| ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
-| TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
-| TVariables | Values for mutation function                                                                      | `{}`                                                         | `{}`                                                         |
+| Property   | Description                                                                                            | Type                                                              | Default                                                           |
+| ---------- | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](/docs/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/docs/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/docs/api-reference/core/interfaces.md#baserecord) |
+| TError     | Custom error object that extends [`HttpError`](/docs/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/docs/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/docs/api-reference/core/interfaces.md#httperror)   |
+| TVariables | Values for mutation function                                                                           | `{}`                                                              | `{}`                                                              |
 
 ### Return value
 

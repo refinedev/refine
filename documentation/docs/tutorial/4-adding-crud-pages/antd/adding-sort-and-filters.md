@@ -2,9 +2,9 @@
 id: adding-sort-and-filters
 title: 6. Adding Sort and Filters
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
-    next: tutorial/understanding-authprovider/index
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
+  next: tutorial/understanding-authprovider/index
 ---
 
 ## Adding Sorting
@@ -13,16 +13,17 @@ We will use `<Table.Column/>`'s `sorter` prop to add sorting to the table. You j
 
 ```tsx
 <Table.Column
-    dataIndex="id"
-    title="Id"
-    //highlight-next-line
-    sorter
+  dataIndex="id"
+  title="Id"
+  //highlight-next-line
+  sorter
 />
 ```
 
 Now, you can sort the data by `id` on the table.
 
 :::note
+
 If you want to add multiple sorting capabilities to the table, you can add the `sorter` prop by priority.
 For example, if you want to sort the data by `id` first and then by `name` on the table, you can add `sorter` prop as below:
 
@@ -72,34 +73,22 @@ Finally, follow the steps below:
 
 ```tsx
 <Table.Column
-    dataIndex={["category", "id"]}
-    title="category"
-    render={(value) => {
-        if (isLoading) {
-            return <TextField value="Loading..." />;
-        }
+  dataIndex={["category", "id"]}
+  title="category"
+  render={(value) => {
+    if (isLoading) {
+      return <TextField value="Loading..." />;
+    }
 
-        return (
-            <TextField
-                value={
-                    categoriesData?.data.find((item) => item.id === value)
-                        ?.title
-                }
-            />
-        );
-    }}
-    //highlight-start
-    filterDropdown={(props) => (
-        <FilterDropdown {...props}>
-            <Select
-                style={{ minWidth: 200 }}
-                mode="multiple"
-                placeholder="Select Category"
-                {...categorySelectProps}
-            />
-        </FilterDropdown>
-    )}
-    //highlight-end
+    return <TextField value={categoriesData?.data.find((item) => item.id === value)?.title} />;
+  }}
+  //highlight-start
+  filterDropdown={(props) => (
+    <FilterDropdown {...props}>
+      <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Category" {...categorySelectProps} />
+    </FilterDropdown>
+  )}
+  //highlight-end
 />
 ```
 
@@ -107,11 +96,11 @@ And now, you can search and filter the data by category on the table.
 
 For more information, check out the following documents:
 
--   > [**Ant Design** `<Select/>`](https://ant.design/components/select) and [`useSelect` documentations&#8594](/docs/api-reference/antd/hooks/field/useSelect/)
+- > [**Ant Design** `<Select/>`](https://ant.design/components/select) and [`useSelect` documentations&#8594](/docs/api-reference/antd/hooks/field/useSelect/)
 
--   > [**Ant Design** `<Table/>` documentation](https://ant.design/components/table#components-table-demo-custom-filter-panel) for the `filterDropdown` prop.
+- > [**Ant Design** `<Table/>` documentation](https://ant.design/components/table#components-table-demo-custom-filter-panel) for the `filterDropdown` prop.
 
--   > [`<FilterDropdown/>` documentation](/docs/api-reference/antd/components/filter-dropdown/) for the `<FilterDropdown/>` component.
+- > [`<FilterDropdown/>` documentation](/docs/api-reference/antd/components/filter-dropdown/) for the `<FilterDropdown/>` component.
 
 <br/>
 

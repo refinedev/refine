@@ -50,6 +50,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     renderContent,
     formProps,
     title,
+    hideForm,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
 
@@ -95,7 +96,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             </Button>
                         ))}
                     </VStack>
-                    <Divider my="6" />
+                    {!hideForm && <Divider my="6" />}
                 </>
             );
         }
@@ -136,110 +137,139 @@ export const LoginPage: React.FC<LoginProps> = ({
                 {translate("pages.login.title", "Sign in to your account")}
             </Heading>
             {renderProviders()}
-            <form
-                onSubmit={handleSubmit((data) => {
-                    if (onSubmit) {
-                        return onSubmit(data);
-                    }
+            {!hideForm && (
+                <form
+                    onSubmit={handleSubmit((data) => {
+                        if (onSubmit) {
+                            return onSubmit(data);
+                        }
 
-                    return login(data);
-                })}
-            >
-                <FormControl mt="6" isInvalid={!!errors?.email}>
-                    <FormLabel htmlFor="email">
-                        {translate("pages.login.fields.email", "Email")}
-                    </FormLabel>
-                    <Input
-                        id="email"
-                        placeholder="Email"
-                        type="text"
-                        {...register("email", {
-                            required: true,
-                            pattern: {
-                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                message: translate(
-                                    "pages.login.errors.validEmail",
-                                    "Invalid email address",
-                                ),
-                            },
-                        })}
-                        autoComplete="email"
-                    />
-                    <FormErrorMessage>
-                        {`${errors.email?.message}`}
-                    </FormErrorMessage>
-                </FormControl>
+                        return login(data);
+                    })}
+                >
+                    <FormControl mt="6" isInvalid={!!errors?.email}>
+                        <FormLabel htmlFor="email">
+                            {translate("pages.login.fields.email", "Email")}
+                        </FormLabel>
+                        <Input
+                            id="email"
+                            autoComplete="current-password"
+                            placeholder="Email"
+                            type="text"
+                            {...register("email", {
+                                required: true,
+                                pattern: {
+                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                    message: translate(
+                                        "pages.login.errors.validEmail",
+                                        "Invalid email address",
+                                    ),
+                                },
+                            })}
+                        />
+                        <FormErrorMessage>
+                            {`${errors.email?.message}`}
+                        </FormErrorMessage>
+                    </FormControl>
 
-                <FormControl mt="6" isInvalid={!!errors?.password}>
-                    <FormLabel htmlFor="password">
-                        {translate("pages.login.fields.password", "Password")}
-                    </FormLabel>
-                    <Input
-                        id="password"
-                        type="password"
-                        placeholder="Password"
-                        {...register("password", {
-                            required: true,
-                        })}
-                        autoComplete="current-password"
-                    />
-                    <FormErrorMessage>
-                        {`${errors.password?.message}`}
-                    </FormErrorMessage>
-                </FormControl>
+                    <FormControl mt="6" isInvalid={!!errors?.password}>
+                        <FormLabel htmlFor="password">
+                            {translate(
+                                "pages.login.fields.password",
+                                "Password",
+                            )}
+                        </FormLabel>
+                        <Input
+                            id="password"
+                            type="password"
+                            placeholder="Password"
+                            {...register("password", {
+                                required: true,
+                            })}
+                        />
+                        <FormErrorMessage>
+                            {`${errors.password?.message}`}
+                        </FormErrorMessage>
+                    </FormControl>
 
-                {rememberMe ?? (
-                    <Checkbox {...register("remember")} mt="6">
-                        {translate(
-                            "pages.login.buttons.rememberMe",
-                            "Remember me",
-                        )}
-                    </Checkbox>
-                )}
+                    {rememberMe ?? (
+                        <Checkbox {...register("remember")} mt="6">
+                            {translate(
+                                "pages.login.buttons.rememberMe",
+                                "Remember me",
+                            )}
+                        </Checkbox>
+                    )}
 
-                <Button mt="6" type="submit" width="full" colorScheme="brand">
-                    {translate("pages.login.signin", "Sign in")}
-                </Button>
+                    <Button
+                        mt="6"
+                        type="submit"
+                        width="full"
+                        colorScheme="brand"
+                    >
+                        {translate("pages.login.signin", "Sign in")}
+                    </Button>
 
-                <Box mt="6">
-                    <HStack justifyContent="space-between" fontSize="12px">
-                        {forgotPasswordLink ?? (
-                            <ChakraLink
-                                as={Link}
-                                color={importantTextColor}
-                                to="/forgot-password"
-                            >
-                                {translate(
-                                    "pages.login.buttons.forgotPassword",
-                                    "Forgot password?",
-                                )}
-                            </ChakraLink>
-                        )}
-                        {registerLink ?? (
-                            <Box>
-                                <span>
-                                    {translate(
-                                        "pages.login.buttons.noAccount",
-                                        "Don’t have an account?",
-                                    )}
-                                </span>
+                    <Box mt="6">
+                        <HStack justifyContent="space-between" fontSize="12px">
+                            {forgotPasswordLink ?? (
                                 <ChakraLink
-                                    color={importantTextColor}
-                                    ml="1"
                                     as={Link}
-                                    fontWeight="bold"
-                                    to="/register"
+                                    color={importantTextColor}
+                                    to="/forgot-password"
                                 >
                                     {translate(
-                                        "pages.login.register",
-                                        "Sign up",
+                                        "pages.login.buttons.forgotPassword",
+                                        "Forgot password?",
                                     )}
                                 </ChakraLink>
-                            </Box>
+                            )}
+                            {registerLink ?? (
+                                <Box>
+                                    <span>
+                                        {translate(
+                                            "pages.login.buttons.noAccount",
+                                            "Don’t have an account?",
+                                        )}
+                                    </span>
+                                    <ChakraLink
+                                        color={importantTextColor}
+                                        ml="1"
+                                        as={Link}
+                                        fontWeight="bold"
+                                        to="/register"
+                                    >
+                                        {translate(
+                                            "pages.login.register",
+                                            "Sign up",
+                                        )}
+                                    </ChakraLink>
+                                </Box>
+                            )}
+                        </HStack>
+                    </Box>
+                </form>
+            )}
+
+            {hideForm && registerLink !== false && (
+                <Box mt={6} textAlign="center">
+                    <span>
+                        {translate(
+                            "pages.login.buttons.noAccount",
+                            "Don’t have an account?",
                         )}
-                    </HStack>
+                    </span>
+                    <ChakraLink
+                        color={importantTextColor}
+                        ml="1"
+                        as={Link}
+                        fontWeight="bold"
+                        to="/register"
+                    >
+                        {translate("pages.login.register", "Sign up")}
+                    </ChakraLink>
                 </Box>
-            </form>
+            )}
         </Box>
     );
 

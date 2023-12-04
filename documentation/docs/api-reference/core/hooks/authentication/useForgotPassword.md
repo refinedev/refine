@@ -7,10 +7,12 @@ source: /packages/core/src/hooks/auth/useForgotPassword/index.ts
 ---
 
 :::caution
+
 This hook can only be used if `authProvider` is provided.
+
 :::
 
-`useForgotPassword` calls the `forgotPassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
+`useForgotPassword` calls the `forgotPassword` method from [`authProvider`](/docs/api-reference/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being `isSuccess` and `isError`.
 
@@ -18,18 +20,18 @@ Data that is resolved from `forgotPassword` will be returned as the `data` in th
 
 ```ts
 type AuthActionResponse = {
-    success: boolean;
-    redirectTo?: string;
-    error?: Error;
-    [key: string]: unknown;
+  success: boolean;
+  redirectTo?: string;
+  error?: Error;
+  [key: string]: unknown;
 };
 ```
 
--   `success`: A boolean indicating whether the operation was successful. If `success` is false, a notification will be shown.
-    -   If `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values: `{ name: "Forgot Password Error", message: "Invalid credentials" }`.
--   `redirectTo`: If it has a value, the app will be redirected to the given URL.
--   `error`: If it has a value, a notification will be shown with the error message and name.
--   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
+- `success`: A boolean indicating whether the operation was successful. If `success` is false, a notification will be shown.
+  - If `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values: `{ name: "Forgot Password Error", message: "Invalid credentials" }`.
+- `redirectTo`: If it has a value, the app will be redirected to the given URL.
+- `error`: If it has a value, a notification will be shown with the error message and name.
+- `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 ## Usage
 
@@ -41,34 +43,34 @@ If you want to use a custom 'forgot password' page however, you can use the `use
 import { useForgotPassword } from "@refinedev/core";
 
 type forgotPasswordVariables = {
-    email: string;
+  email: string;
 };
 
 export const ForgotPasswordPage = () => {
-    const { mutate: forgotPassword } =
-        useForgotPassword<forgotPasswordVariables>();
+  const { mutate: forgotPassword } = useForgotPassword<forgotPasswordVariables>();
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        const values = {
-            email: e.currentTarget.email.value,
-        };
-
-        forgotPassword(values);
+    const values = {
+      email: e.currentTarget.email.value,
     };
 
-    return (
-        <form onSubmit={onSubmit}>
-            <label>Email</label>
-            <input name="email" value="test@refine.com" />
-            <button type="submit">Submit</button>
-        </form>
-    );
+    forgotPassword(values);
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <label>Email</label>
+      <input name="email" value="test@refine.com" />
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 ```
 
 :::tip
+
 `mutate` acquired from the `useForgotPassword` hook can accept any kind of object for values because the `forgotPassword` method from `authProvider` doesn't have a restriction on its parameters.
 A type parameter for the values can be provided to `useForgotPassword`:
 
@@ -98,14 +100,14 @@ Then, you can handle this URL in your `forgotPassword` method of the `authProvid
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
+  // ---
+  forgotPassword: async ({ redirectPath }) => {
     // ---
-    forgotPassword: async ({ redirectPath }) => {
-        // ---
-        return {
-            success: true,
-            redirectTo: redirectPath,
-        };
-    },
+    return {
+      success: true,
+      redirectTo: redirectPath,
+    };
+  },
 };
 ```
 
@@ -119,18 +121,18 @@ import { useForgotPassword } from "@refinedev/core";
 const { mutate: forgotPassword } = useForgotPassword();
 
 forgotPassword(
-    {
-        email: "refine@example.com",
-    },
-    {
-        onSuccess: (data) => {
-            if (!data.success) {
-                // handle error
-            }
+  {
+    email: "refine@example.com",
+  },
+  {
+    onSuccess: (data) => {
+      if (!data.success) {
+        // handle error
+      }
 
-            // handle success
-        },
+      // handle success
     },
+  },
 );
 ```
 

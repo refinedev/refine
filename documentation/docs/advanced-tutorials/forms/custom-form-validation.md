@@ -7,23 +7,23 @@ In **refine**, we can use the form validation that comes with `Ant Design` with 
 
 ```tsx
 <Form>
-    <Form.Item
-        label="Title"
-        name="title"
-        // highlight-start
-        rules={[
-            {
-                required: true,
-            },
-            {
-                min: 5,
-            },
-        ]}
-        // highlight-end
-    >
-        <Input />
-    </Form.Item>
-    ...
+  <Form.Item
+    label="Title"
+    name="title"
+    // highlight-start
+    rules={[
+      {
+        required: true,
+      },
+      {
+        min: 5,
+      },
+    ]}
+    // highlight-end
+  >
+    <Input />
+  </Form.Item>
+  ...
 </Form>
 ```
 
@@ -35,7 +35,7 @@ Now let's prepare a rule that checks if the titles of the posts are unique. We h
 
 ```json title="https://api.fake-rest.refine.dev/posts-unique-check?title=Example"
 {
-    "isAvailable": true
+  "isAvailable": true
 }
 ```
 
@@ -48,106 +48,102 @@ import { useApiUrl, useCustom, HttpError } from "@refinedev/core";
 
 // highlight-start
 interface IPost {
-    title: string;
+  title: string;
 }
 
 interface PostUniqueCheckResponse {
-    isAvailable: boolean;
+  isAvailable: boolean;
 }
 
 interface PostUniqueCheckRequestQuery {
-    title: string;
+  title: string;
 }
 // highlight-end
 
 const PostCreate: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    // highlight-next-line
-    const [title, setTitle] = useState("");
+  // highlight-next-line
+  const [title, setTitle] = useState("");
 
-    // highlight-start
-    const apiUrl = useApiUrl();
-    const url = `${apiUrl}/posts-unique-check`;
-    const { refetch } = useCustom<
-        PostUniqueCheckResponse,
-        HttpError,
-        PostUniqueCheckRequestQuery
-    >({
-        url,
-        method: "get",
-        config: {
-            query: {
-                title,
+  // highlight-start
+  const apiUrl = useApiUrl();
+  const url = `${apiUrl}/posts-unique-check`;
+  const { refetch } = useCustom<PostUniqueCheckResponse, HttpError, PostUniqueCheckRequestQuery>({
+    url,
+    method: "get",
+    config: {
+      query: {
+        title,
+      },
+    },
+    queryOptions: {
+      enabled: false,
+    },
+  });
+  // highlight-end
+
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          // highlight-start
+          rules={[
+            {
+              required: true,
             },
-        },
-        queryOptions: {
-            enabled: false,
-        },
-    });
-    // highlight-end
-
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    // highlight-start
-                    rules={[
-                        {
-                            required: true,
-                        },
-                        {
-                            validator: async (_, value) => {
-                                if (!value) return;
-                                const { data } = await refetch();
-                                if (data && data.data.isAvailable) {
-                                    return Promise.resolve();
-                                }
-                                return Promise.reject(
-                                    new Error("'title' must be unique"),
-                                );
-                            },
-                        },
-                    ]}
-                    // highlight-end
-                >
-                    <Input 
-                        defaultValue="Test"
-                        // highlight-next-line
-                        onChange={(event) => setTitle(event.target.value)} 
-                    />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+            {
+              validator: async (_, value) => {
+                if (!value) return;
+                const { data } = await refetch();
+                if (data && data.data.isAvailable) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error("'title' must be unique"));
+              },
+            },
+          ]}
+          // highlight-end
+        >
+          <Input
+            defaultValue="Test"
+            // highlight-next-line
+            onChange={(event) => setTitle(event.target.value)}
+          />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
 :::danger important
+
 Value must be kept in the state.
 
 ```tsx
 <Input onChange={(event) => setTitle(event.target.value)} />
 ```
+
 :::

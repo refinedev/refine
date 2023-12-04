@@ -9,63 +9,65 @@ swizzle: true
 It uses Ant Design's [`<Button>`][button] and [`<Upload>`][upload] components. It wraps a [`<Button>`][button] component with an [`<Upload>`][upload] component and accepts properties for [`<Button>`][button] and [`<Upload>`][upload] components separately.
 
 :::info-tip Swizzle
+
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+
 :::
 
 ## Usage
 
 ```tsx live
 import {
-    List,
-    useTable,
-    // highlight-start
-    useImport,
-    ImportButton,
-    // highlight-end
+  List,
+  useTable,
+  // highlight-start
+  useImport,
+  ImportButton,
+  // highlight-end
 } from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    // highlight-next-line
-    const importProps = useImport<IPostFile>();
+  // highlight-next-line
+  const importProps = useImport<IPostFile>();
 
-    return (
-        <List
-            headerButtons={
-                // highlight-next-line
-                <ImportButton {...importProps} />
-            }
-        >
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-            </Table>
-        </List>
-    );
+  return (
+    <List
+      headerButtons={
+        // highlight-next-line
+        <ImportButton {...importProps} />
+      }
+    >
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+      </Table>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPostFile {
-    title: string;
-    categoryId: number;
+  title: string;
+  categoryId: number;
 }
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -82,29 +84,29 @@ const { useRouterContext } = RefineCore;
 import { ImportButton, useImport } from "@refinedev/antd";
 
 const MyImportComponent = () => {
-    const importProps = useImport();
+  const importProps = useImport();
 
-    return (
-        <ImportButton
-            {...importProps}
-            // highlight-next-line
-            hideText
-        />
-    );
+  return (
+    <ImportButton
+      {...importProps}
+      // highlight-next-line
+      hideText
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyImportComponent,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyImportComponent,
+      },
+    ]}
+  />,
 );
 ```
 

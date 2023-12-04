@@ -16,8 +16,6 @@ You should know that **refine** version 4.x.x is backward compatible with versio
 
 :::
 
-
-
 In this article, we will prepare a simple `job-posting` application. We will also use the [refine](https://github.com/refinedev/refine) framework for the **admin panel**. The project will consist of two parts, api and admin.
 
 <!--truncate-->
@@ -25,6 +23,7 @@ In this article, we will prepare a simple `job-posting` application. We will als
 All the steps described are in this [repo](https://github.com/refinedev/refine/tree/master/examples/blog-job-posting).
 
 ## Intro
+
 [NestJS](https://github.com/nestjs/nest) is a framework for building efficient, scalable Node.js server-side applications. With [nestjsx/crud](https://github.com/nestjsx/crud) we can add CRUD functions quickly and effortlessly on this framework.
 
 ## NestJS Rest Api
@@ -57,6 +56,7 @@ npm install --save @nestjs/typeorm @nestjs/config typeorm mysql2
 - Create and configured a [docker-compose](https://github.com/refinedev/refine-hackathon/tree/main/job-posting-app/blob/master/api/docker-compose.yml) file for MySQL.
 - Create a [ormconfig.ts](https://github.com/refinedev/refine-hackathon/tree/main/job-posting-app/blob/master/api/ormconfig.ts) file for migrations.
 - Add the following scripts to the `package.json` file for migrations.
+
 ```bash
 "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
 "db:migration:generate": "npm run typeorm -- migration:generate",
@@ -64,6 +64,7 @@ npm install --save @nestjs/typeorm @nestjs/config typeorm mysql2
 "db:migration:revert": "npm run typeorm -- migration:revert",
 "db:refresh": "npm run typeorm schema:drop && npm run db:migration:run"
 ```
+
 - Import the `TypeOrmModule` into the `app.module.ts`
 
 **Install nestjsx-crud**
@@ -73,7 +74,7 @@ I used [nestjsx-crud](https://github.com/nestjsx/crud) library because it makes 
 npm i @nestjsx/crud @nestjsx/crud-typeorm class-transformer class-validator
 ```
 
-*Since the steps to create Entities Controllers, and services are very long, I do not explain step by step. You can check the [repo](https://github.com/refinedev/refine-hackathon/tree/main/job-posting-app) for details.*
+_Since the steps to create Entities Controllers, and services are very long, I do not explain step by step. You can check the [repo](https://github.com/refinedev/refine-hackathon/tree/main/job-posting-app) for details._
 
 It created these end-points automatically with nestjsx/crud.
 
@@ -147,7 +148,7 @@ export const CompanyList: React.FC<IResourceComponentsProps> = () => {
           order: "desc",
         },
       ],
-    }
+    },
   });
 
   return (

@@ -17,77 +17,69 @@ import { List, useDataGrid, DateField } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const SampleList = () => {
-    const { dataGridProps } = useDataGrid();
+  const { dataGridProps } = useDataGrid();
 
-    const { data: categoryData, isLoading: categoryIsLoading } = useMany({
-        resource: "categories",
-        ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
-        queryOptions: {
-            enabled: !!dataGridProps?.rows,
+  const { data: categoryData, isLoading: categoryIsLoading } = useMany({
+    resource: "categories",
+    ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
+    queryOptions: {
+      enabled: !!dataGridProps?.rows,
+    },
+  });
+
+  const columns = React.useMemo<GridColDef<any>[]>(
+    () => [
+      {
+        field: "id",
+        headerName: "Id",
+        type: "number",
+        minWidth: 50,
+      },
+      {
+        field: "title",
+        headerName: "Title",
+        minWidth: 200,
+      },
+      {
+        field: "category",
+        headerName: "Category",
+        valueGetter: ({ row }) => {
+          const value = row?.category?.id;
+
+          return value;
         },
-    });
+        minWidth: 300,
+        renderCell: function render({ value }) {
+          return categoryIsLoading ? <>Loading...</> : categoryData?.data?.find((item) => item.id === value)?.title;
+        },
+      },
+      {
+        field: "createdAt",
+        headerName: "Created At",
+        minWidth: 250,
+        renderCell: function render({ value }) {
+          return <DateField value={value} />;
+        },
+      },
+    ],
+    [categoryData?.data],
+  );
 
-    const columns = React.useMemo<GridColDef<any>[]>(
-        () => [
-            {
-                field: "id",
-                headerName: "Id",
-                type: "number",
-                minWidth: 50,
-            },
-            {
-                field: "title",
-                headerName: "Title",
-                minWidth: 200,
-            },
-            {
-                field: "category",
-                headerName: "Category",
-                valueGetter: ({ row }) => {
-                    const value = row?.category?.id;
-
-                    return value;
-                },
-                minWidth: 300,
-                renderCell: function render({ value }) {
-                    return categoryIsLoading ? (
-                        <>Loading...</>
-                    ) : (
-                        categoryData?.data?.find((item) => item.id === value)
-                            ?.title
-                    );
-                },
-            },
-            {
-                field: "createdAt",
-                headerName: "Created At",
-                minWidth: 250,
-                renderCell: function render({ value }) {
-                    return <DateField value={value} />;
-                },
-            },
-        ],
-        [categoryData?.data],
-    );
-
-    return (
-        <List>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    <List>
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 // visible-block-end
 
-render(
-    <RefineMuiDemo
-        initialRoutes={["/samples"]}
-        resources={[{ name: "samples", list: SampleList }]}
-    />,
-);
+render(<RefineMuiDemo initialRoutes={["/samples"]} resources={[{ name: "samples", list: SampleList }]} />);
 ```
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Properties
@@ -102,27 +94,27 @@ import { List } from "@refinedev/mui";
 import { Typography } from "@mui/material";
 
 const ListPage: React.FC = () => {
-    return (
-        <List
-            // highlight-next-line
-            title={<Typography variant="h5">Custom Title</Typography>}
-        >
-            <span>Rest of your page here</span>
-        </List>
-    );
+  return (
+    <List
+      // highlight-next-line
+      title={<Typography variant="h5">Custom Title</Typography>}
+    >
+      <span>Rest of your page here</span>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: ListPage,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: ListPage,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -142,40 +134,40 @@ import dataProvider from "@refinedev/simple-rest";
 import { List } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <List resource="posts">
-            <span>Rest of your page here</span>
-        </List>
-    );
+  return (
+    /* highlight-next-line */
+    <List resource="posts">
+      <span>Rest of your page here</span>
+    </List>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            legacyRouterProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom",
-                    },
-                ],
-                // highlight-end
-            }}
-            Layout={Layout}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom",
+          },
+        ],
+        // highlight-end
+      }}
+      Layout={Layout}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -195,42 +187,42 @@ const { default: simpleRest } = RefineSimpleRest;
 const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
 
 const authProvider = {
-    login: async () => {
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    register: async () => {
-        return {
-            success: true,
-        };
-    },
-    forgotPassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    updatePassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    logout: async () => {
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    check: async () => ({
-        authenticated: true,
-    }),
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    getPermissions: async () => ["admin"],
-    getIdentity: async () => null,
+  login: async () => {
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  register: async () => {
+    return {
+      success: true,
+    };
+  },
+  forgotPassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  updatePassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  logout: async () => {
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  check: async () => ({
+    authenticated: true,
+  }),
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  getPermissions: async () => ["admin"],
+  getIdentity: async () => null,
 };
 
 // visible-block-start
@@ -238,44 +230,46 @@ import { List } from "@refinedev/mui";
 import { usePermissions } from "@refinedev/core";
 
 const PostList: React.FC = () => {
-    const { data: permissionsData } = usePermissions();
-    return (
-        <List
-            /* highlight-start */
-            canCreate={permissionsData?.includes("admin")}
-            createButtonProps={{ size: "small" }}
-            /* highlight-end */
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  const { data: permissionsData } = usePermissions();
+  return (
+    <List
+      /* highlight-start */
+      canCreate={permissionsData?.includes("admin")}
+      createButtonProps={{ size: "small" }}
+      /* highlight-end */
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        authProvider={authProvider}
-        dataProvider={dataProvider}
-        initialRoutes={["/posts"]}
-        Layout={RefineMui.Layout}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    authProvider={authProvider}
+    dataProvider={dataProvider}
+    initialRoutes={["/posts"]}
+    Layout={RefineMui.Layout}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/api-reference/core/hooks/authentication/usePermissions.md)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/api-reference/core/hooks/authentication/usePermissions.md)
 
 ### `breadcrumb`
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
 
 :::tip
+
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+
 :::
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
@@ -283,49 +277,49 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 import { List, Breadcrumb } from "@refinedev/mui";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            breadcrumb={
-                <div
-                    style={{
-                        padding: "3px 6px",
-                        border: "2px dashed cornflowerblue",
-                    }}
-                >
-                    <Breadcrumb />
-                </div>
-            }
-            // highlight-end
+  return (
+    <List
+      // highlight-start
+      breadcrumb={
+        <div
+          style={{
+            padding: "3px 6px",
+            border: "2px dashed cornflowerblue",
+          }}
         >
-            <span>Rest of your page here</span>
-        </List>
-    );
+          <Breadcrumb />
+        </div>
+      }
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-        DashboardPage={() => {
-            return (
-                <div>
-                    <p>This page is empty.</p>
-                    <RefineMui.ListButton resource="posts" />
-                </div>
-            );
-        }}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+    DashboardPage={() => {
+      return (
+        <div>
+          <p>This page is empty.</p>
+          <RefineMui.ListButton resource="posts" />
+        </div>
+      );
+    }}
+  />,
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mui/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/mui/components/breadcrumb.md)
 
 ### `wrapperProps`
 
@@ -336,34 +330,34 @@ If you want to customize the wrapper of the `<List/>` component, you can use the
 import { List } from "@refinedev/mui";
 
 const PostList: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <List
-            // highlight-start
-            wrapperProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      wrapperProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -378,34 +372,34 @@ If you want to customize the header of the `<List/>` component, you can use the 
 import { List } from "@refinedev/mui";
 
 const PostList: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <List
-            // highlight-start
-            headerProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -420,34 +414,34 @@ If you want to customize the content of the `<List/>` component, you can use the
 import { List } from "@refinedev/mui";
 
 const PostList: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <List
-            // highlight-start
-            contentProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      contentProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -471,35 +465,35 @@ import { List } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostList: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <List
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -511,40 +505,35 @@ import { List, CreateButton } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostList: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <List
-            // highlight-start
-            headerButtons={({ createButtonProps }) => (
-                <>
-                    {createButtonProps && (
-                        <CreateButton
-                            {...createButtonProps}
-                            meta={{ foo: "bar" }}
-                        />
-                    )}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <span>Rest of your page here</span>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtons={({ createButtonProps }) => (
+        <>
+          {createButtonProps && <CreateButton {...createButtonProps} meta={{ foo: "bar" }} />}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <span>Rest of your page here</span>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -558,40 +547,40 @@ import { List } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostList: React.FC = () => {
-    const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-    return (
-        <List
-            // highlight-start
-            headerButtonProps={{
-                sx: {
-                    backgroundColor: "lightsteelblue",
-                },
-            }}
-            // highlight-end
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-        >
-            <span>Rest of your page here</span>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtonProps={{
+        sx: {
+          backgroundColor: "lightsteelblue",
+        },
+      }}
+      // highlight-end
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+    >
+      <span>Rest of your page here</span>
+    </List>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts"]}
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -601,7 +590,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@refinedev/mui/List" 
+<PropsTable module="@refinedev/mui/List"
 wrapperProps-type="[`CardProps`](https://mui.com/material-ui/api/card/#props)"
 contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)"
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"
@@ -613,15 +602,13 @@ createButtonProps-type="[`CreateButtonProps`](https://refine.dev/docs/api-refere
 
 ```tsx live shared
 const Wrapper = ({ children }) => {
-    return (
-        <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
-            <MuiMaterial.CssBaseline />
-            <MuiMaterial.GlobalStyles
-                styles={{ html: { WebkitFontSmoothing: "auto" } }}
-            />
-            {children}
-        </MuiMaterial.ThemeProvider>
-    );
+  return (
+    <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
+      <MuiMaterial.CssBaseline />
+      <MuiMaterial.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      {children}
+    </MuiMaterial.ThemeProvider>
+  );
 };
 ```
 

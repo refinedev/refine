@@ -14,22 +14,22 @@ Next.js is an open source React framework for building single-page web applicati
 
 Combining **Next.js and TypeScript** gives us superpowers to rapidly create applications with a good developer and user experiences. Every developer hates bugs. Especially pesky ones such as typos or trying to use or access undeclared variables. **TypeScript** helps catch these types of bugs early during development, and this is one of the many features that make integrating it with a tool like Next.js fantastic.
 
-In this article, we'll look at how you can integrate TypeScript in your Next.js apps. We'll also explore reasons why you should consider using this tool in your Next.js projects and also talk about its benefits. 
-
-
+In this article, we'll look at how you can integrate TypeScript in your Next.js apps. We'll also explore reasons why you should consider using this tool in your Next.js projects and also talk about its benefits.
 
 Steps we'll cover:
+
 - [What is TypeScript?](#what-is-typescript)
 - [How to add TypeScript to your Next.js app](#how-to-add-typescript-to-your-nextjs-app)
-    - [`create-next-app`](#create-next-app)
-    - [Adding TypeScript to an existing project](#adding-typescript-to-an-existing-project)
+  - [`create-next-app`](#create-next-app)
+  - [Adding TypeScript to an existing project](#adding-typescript-to-an-existing-project)
 - [How to use Typescript with Next.js data fetching methods](#how-to-use-typescript-with-nextjs-data-fetching-methods)
 - [How to use Typescript in Next.js API routes](#how-to-use-typescript-in-nextjs-api-routes)
 - [How to configure absolute imports and module path aliases in tsconfig.json](#how-to-configure-absolute-imports-and-module-path-aliases-in-tsconfigjson)
 - [Disabling Typescript Errors in Production](#disabling-typescript-errors-in-production)
 
 ## What is TypeScript?
- It's a strict JavaScript superset used for large enterprise projects and writing programs that scale. In the end, TypeScript transpiles to plain JavaScript and can be used for developing applications on the client-side and server-side.
+
+It's a strict JavaScript superset used for large enterprise projects and writing programs that scale. In the end, TypeScript transpiles to plain JavaScript and can be used for developing applications on the client-side and server-side.
 
 TypeScript is an object-oriented programming language that provides all JavaScript features and extra useful capabilities. These capabilities include static or dynamic type checking, error checking during compilation, type inference, and so on.
 
@@ -37,7 +37,7 @@ TypeScript is an object-oriented programming language that provides all JavaScri
 
 Next.js provides integrated support for TypeScript with built-in types for pages, API routes, the three data fetching methods, etc.
 
-Basically, there are two ways in which we can add TypeScript to our project. The first is with `create-next-app`, and the second is by adding TypeSript manually to an existing project.
+Basically, there are two ways in which we can add TypeScript to our project. The first is with `create-next-app`, and the second is by adding TypeScript manually to an existing project.
 
 #### `create-next-app`
 
@@ -51,7 +51,7 @@ npx create-next-app@latest --typescript
 
 #### Adding TypeScript to an existing project
 
-Alternatively, we can also add TypeScript manually to an existing Next.js project. 
+Alternatively, we can also add TypeScript manually to an existing Next.js project.
 
 First, you'll need to create a `tsconfig.json` file in your project root folder. This file specifies the root files and the compiler options required to compile the project and is populated automatically by Next.js with default values.
 
@@ -59,11 +59,9 @@ First, you'll need to create a `tsconfig.json` file in your project root folder.
 touch tsconfig.json
 ```
 
-Next, run `npm run dev` or `yarn dev` (if you use Yarn) to start the application development server. 
+Next, run `npm run dev` or `yarn dev` (if you use Yarn) to start the application development server.
 
 Next.js will emit a message in the terminal with the following content and try to install the necessary TypeScript related packages:
-
-
 
 ```
 It looks like you're trying to use TypeScript but do not have the required package(s) installed.
@@ -82,7 +80,7 @@ Installing devDependencies (yarn):
 
 ```
 
-When the installation is complete, open `tsconfig.json` and you'll see it populated with values like below: 
+When the installation is complete, open `tsconfig.json` and you'll see it populated with values like below:
 
  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-12-next-typescript/tsconfig.png" alt="tsconfig" />
 
@@ -95,78 +93,74 @@ With this, you can now start creating files with `.ts` and `.tsx` extensions in 
 **Usage example**
 
 ```tsx
-import React from 'react'
+import React from "react";
 
 type ProfileProps = {
-    profile: {
-    firstName: string,
-    lastName: string,
-    age: number,
-    }
-}
+  profile: {
+    firstName: string;
+    lastName: string;
+    age: number;
+  };
+};
 
 const Profile: React.FunctionComponent<ProfileProps> = ({ profile }): JSX.Element => {
-    return (
-        <>
-          <p>Profile</p>
-          <div>Welcome, {profile.firstName}</div> 
-        </>
-    )
-}
+  return (
+    <>
+      <p>Profile</p>
+      <div>Welcome, {profile.firstName}</div>
+    </>
+  );
+};
 
 export default Profile;
 ```
 
-
-
-
 ## How to use Typescript with Next.js data fetching methods
 
-Next.js comes with built-in types for all its three data fetching methods (`getStaticProps`, `getServerSideProps`, and `getStaticPaths`). 
+Next.js comes with built-in types for all its three data fetching methods (`getStaticProps`, `getServerSideProps`, and `getStaticPaths`).
 
 Here's how to use them in your code:
 
 ```tsx
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 
-export const getStaticProps: GetStaticProps = async (context) => {}
+export const getStaticProps: GetStaticProps = async (context) => {};
 
-export const getStaticPaths: GetStaticPaths = async () => {}
+export const getStaticPaths: GetStaticPaths = async () => {};
 
-export const getServerSideProps: GetServerSideProps = async (context) => {}
+export const getServerSideProps: GetServerSideProps = async (context) => {};
 ```
 
 Next.js also provides built-in types to infer the types for props from `getServerSideProps` and `getStaticProps`.
 
-If you want to get inferred typings for your props, you can use `InferGetStaticPropsType<typeof getStaticProps>` or `InferGetServerSidePropsType<typeof getServerSideProps>` in a page component. 
+If you want to get inferred typings for your props, you can use `InferGetStaticPropsType<typeof getStaticProps>` or `InferGetServerSidePropsType<typeof getServerSideProps>` in a page component.
 
 Let's say we're expecting some data from an API that we need to pre-render at build time.
 Instead of writing repetitive code like the below:
 
-
-```tsx  title="index.tsx"
+```tsx title="index.tsx"
 type PostProps= {
     userId: number,
     id: number,
     title: string,
     body: string
   }
-  
+
 export const getStaticProps = async () => {
       const response = await fetch('https://jsonplaceholder.typicode.com/posts');
       const posts: PostProps[] = await response.json();
-  
+
     return {
       props: {
         posts,
       },
     }
   }
-  
+
 function PostPage({ posts }: { posts: PostProps }) {
     ...
   }
-  
+
 export default PostPage;
 ```
 
@@ -178,38 +172,38 @@ import { InferGetStaticPropsType } from 'next'
 
 ...
 
- //highlight-next-line 
+ //highlight-next-line
 function PostPage({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {}
-  
+
 export default PostPage
 ```
-You can also use this same method when using `getServerSideProps`.
 
+You can also use this same method when using `getServerSideProps`.
 
 ## How to use Typescript in Next.js API routes
 
-Next.js also comes with built-in types for API routes. which we can access like below: 
+Next.js also comes with built-in types for API routes. which we can access like below:
 
 ```tsx
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
-  res.status(200).json({ age: '25' })
-}
+  res.status(200).json({ age: "25" });
+};
 ```
 
 We can also specify custom types for the response data:
 
 ```typescript
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
-  name: string
-}
+  name: string;
+};
 
 export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  res.status(200).json({ age: '25' })
-}
+  res.status(200).json({ age: "25" });
+};
 ```
 
 ## How to configure absolute imports and module path aliases in tsconfig.json
@@ -220,6 +214,7 @@ Do you relate with the pain of having to do something like this?
 Import { fetchUserProfile } from '../../../../utils'
 Import UserProfile from '../../../UserProfile'
 ```
+
 How about if you could do something like?
 
 ```typescript
@@ -227,11 +222,9 @@ Import { fetchUserProfile } from '/@utils'
 Import UserProfile from '@components/UserProfile'
 ```
 
-
-Well, to achieve this, we can configure path aliases in `tsconfig.json` so we can conveniently import modules across our application. TypeScript path aliases allow us to create aliases or shortcuts for absolute paths in the application, which we can resolve to. Next.js also automatically supports path aliases, so we don't have to do many configurations. 
+Well, to achieve this, we can configure path aliases in `tsconfig.json` so we can conveniently import modules across our application. TypeScript path aliases allow us to create aliases or shortcuts for absolute paths in the application, which we can resolve to. Next.js also automatically supports path aliases, so we don't have to do many configurations.
 
 For example, if you have a file in your project importing a module with a path structure like `/components/MUIComponents/ButtonGroup/`, instead of trying to write an ugly code such as this:
-
 
 ```tsx
 import React from "react";
@@ -265,7 +258,9 @@ We can create a path alias for all files in the `MUIComponents` folder for easy 
 `baseUrl` lets us specify a root URL to use for our imports and `paths` lets us configure path aliases. You can read more about module path aliases [here](https://nextjs.org/docs/advanced-features/module-path-aliases).
 
 :::note
+
 You can use a `jsconfig.json` file instead if you're not using TypeScript in your project.
+
 :::
 
 Now we can use the alias in our application like so:
@@ -289,7 +284,6 @@ export default User;
 
 This looks way better and straightforward.
 
-
 <br/>
 <div>
 <a href="https://discord.gg/refine">
@@ -297,10 +291,9 @@ This looks way better and straightforward.
 </a>
 </div>
 
-
 ## Disabling Typescript Errors in Production
 
-If you happen to have TypeScript errors while running `next build`, Next.js will fail the build but you can disable the type checks if you wish. 
+If you happen to have TypeScript errors while running `next build`, Next.js will fail the build but you can disable the type checks if you wish.
 
 To disable the type checking step, enable the `ignoreBuildErrors` option in `next.config.js` like so:
 
@@ -313,16 +306,15 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-}
+};
 ```
 
+:::note
 
-:::note 
 Make sure you really know what you're doing before using this option.
+
 :::
 
 ## Conclusion
-We covered how to get started with **TypeScript in your Next.js** applications. We also talked about the importance and benefits associated with combining TypeScript capabilities with Next.js for a faster and easier application development experience. We hope this article helps you consider integrating **TypeScript and Next.js** in your next applications.  
 
-
-
+We covered how to get started with **TypeScript in your Next.js** applications. We also talked about the importance and benefits associated with combining TypeScript capabilities with Next.js for a faster and easier application development experience. We hope this article helps you consider integrating **TypeScript and Next.js** in your next applications.

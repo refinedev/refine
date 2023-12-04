@@ -126,7 +126,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                           aria-label="Menu"
                           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
                           data-mui-internal-clone-element="true"
-                          id=":r4:"
+                          id=":r5:"
                           tabindex="-1"
                           type="button"
                         >
@@ -230,7 +230,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                           aria-label="Menu"
                           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
                           data-mui-internal-clone-element="true"
-                          id=":ra:"
+                          id=":rb:"
                           tabindex="-1"
                           type="button"
                         >
@@ -334,7 +334,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                           aria-label="Menu"
                           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
                           data-mui-internal-clone-element="true"
-                          id=":rg:"
+                          id=":rh:"
                           tabindex="-1"
                           type="button"
                         >
@@ -560,6 +560,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                     aria-hidden="true"
                     aria-invalid="false"
                     class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                    name=":r3:"
                     tabindex="-1"
                     value="25"
                   />
@@ -9986,8 +9987,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rl:"
-              id=":rl:-label"
+              for=":rm:"
+              id=":rm:-label"
             >
               Title
             </label>
@@ -9997,7 +9998,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rl:"
+                id=":rm:"
                 name="title"
                 type="text"
                 value=""
@@ -10022,8 +10023,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rm:"
-              id=":rm:-label"
+              for=":rn:"
+              id=":rn:-label"
             >
               Slug
             </label>
@@ -10033,7 +10034,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rm:"
+                id=":rn:"
                 name="slug"
                 type="text"
                 value=""
@@ -10058,8 +10059,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rn:"
-              id=":rn:-label"
+              for=":ro:"
+              id=":ro:-label"
             >
               Content
             </label>
@@ -10069,7 +10070,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <textarea
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rn:"
+                id=":ro:"
                 name="content"
                 style="height: 0px; overflow: hidden;"
               />
@@ -10100,8 +10101,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":ro:"
-              id=":ro:-label"
+              for=":rp:"
+              id=":rp:-label"
             >
               Hit
             </label>
@@ -10111,7 +10112,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":ro:"
+                id=":rp:"
                 name="hit"
                 type="number"
                 value=""
@@ -10140,8 +10141,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
-                for=":rp:"
-                id=":rp:-label"
+                for=":rq:"
+                id=":rq:-label"
               >
                 Category
                 <span
@@ -10161,7 +10162,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":rp:"
+                  id=":rq:"
                   required=""
                   role="combobox"
                   spellcheck="false"
@@ -10219,8 +10220,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
-                for=":rr:"
-                id=":rr:-label"
+                for=":rs:"
+                id=":rs:-label"
               >
                 User
                 <span
@@ -10240,7 +10241,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":rr:"
+                  id=":rs:"
                   required=""
                   role="combobox"
                   spellcheck="false"
@@ -10294,8 +10295,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rt:"
-              id=":rt:-label"
+              for=":ru:"
+              id=":ru:-label"
             >
               Status
             </label>
@@ -10305,7 +10306,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rt:"
+                id=":ru:"
                 name="status"
                 type="text"
                 value=""
@@ -10330,8 +10331,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":ru:"
-              id=":ru:-label"
+              for=":rv:"
+              id=":rv:-label"
             >
               Status Color
             </label>
@@ -10341,7 +10342,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":ru:"
+                id=":rv:"
                 name="status_color"
                 type="text"
                 value=""
@@ -10366,8 +10367,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":rv:"
-              id=":rv:-label"
+              for=":r10:"
+              id=":r10:-label"
             >
               Created At
             </label>
@@ -10377,7 +10378,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":rv:"
+                id=":r10:"
                 name="createdAt"
                 type="text"
                 value=""
@@ -10402,8 +10403,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r10:"
-              id=":r10:-label"
+              for=":r11:"
+              id=":r11:-label"
             >
               Published At
             </label>
@@ -10413,7 +10414,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r10:"
+                id=":r11:"
                 name="publishedAt"
                 type="text"
                 value=""
@@ -10442,8 +10443,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
-                for=":r11:"
-                id=":r11:-label"
+                for=":r12:"
+                id=":r12:-label"
               >
                 Tags
                 <span
@@ -10463,7 +10464,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":r11:"
+                  id=":r12:"
                   required=""
                   role="combobox"
                   spellcheck="false"
@@ -10517,8 +10518,8 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r13:"
-              id=":r13:-label"
+              for=":r14:"
+              id=":r14:-label"
             >
               Language
             </label>
@@ -10528,7 +10529,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r13:"
+                id=":r14:"
                 name="language"
                 type="number"
                 value=""
@@ -10554,7 +10555,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
       >
         <button
           class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium refine-save-button css-1jmqb42-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
-          id=":r14:"
+          id=":r15:"
           tabindex="0"
           type="button"
         >
@@ -25008,7 +25009,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             >
               <button
                 class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium refine-refresh-button css-1xanul-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
-                id=":r15:"
+                id=":r16:"
                 tabindex="0"
                 type="button"
               >
@@ -25049,8 +25050,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-disabled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r16:"
-              id=":r16:-label"
+              for=":r17:"
+              id=":r17:-label"
             >
               Id
             </label>
@@ -25061,7 +25062,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input Mui-disabled css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
                 disabled=""
-                id=":r16:"
+                id=":r17:"
                 name="id"
                 type="number"
                 value=""
@@ -25086,8 +25087,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r17:"
-              id=":r17:-label"
+              for=":r18:"
+              id=":r18:-label"
             >
               Title
             </label>
@@ -25097,7 +25098,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r17:"
+                id=":r18:"
                 name="title"
                 type="text"
                 value=""
@@ -25122,8 +25123,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r18:"
-              id=":r18:-label"
+              for=":r19:"
+              id=":r19:-label"
             >
               Slug
             </label>
@@ -25133,7 +25134,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r18:"
+                id=":r19:"
                 name="slug"
                 type="text"
                 value=""
@@ -25158,8 +25159,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r19:"
-              id=":r19:-label"
+              for=":r1a:"
+              id=":r1a:-label"
             >
               Content
             </label>
@@ -25169,7 +25170,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <textarea
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r19:"
+                id=":r1a:"
                 name="content"
                 style="height: 0px; overflow: hidden;"
               />
@@ -25200,8 +25201,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r1a:"
-              id=":r1a:-label"
+              for=":r1b:"
+              id=":r1b:-label"
             >
               Hit
             </label>
@@ -25211,7 +25212,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r1a:"
+                id=":r1b:"
                 name="hit"
                 type="number"
                 value=""
@@ -25240,8 +25241,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for=":r1b:"
-                id=":r1b:-label"
+                for=":r1c:"
+                id=":r1c:-label"
               >
                 Category
                 <span
@@ -25261,7 +25262,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":r1b:"
+                  id=":r1c:"
                   required=""
                   role="combobox"
                   spellcheck="false"
@@ -25341,8 +25342,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for=":r1d:"
-                id=":r1d:-label"
+                for=":r1e:"
+                id=":r1e:-label"
               >
                 User
                 <span
@@ -25362,7 +25363,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":r1d:"
+                  id=":r1e:"
                   required=""
                   role="combobox"
                   spellcheck="false"
@@ -25438,8 +25439,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r1f:"
-              id=":r1f:-label"
+              for=":r1g:"
+              id=":r1g:-label"
             >
               Status
             </label>
@@ -25449,7 +25450,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r1f:"
+                id=":r1g:"
                 name="status"
                 type="text"
                 value=""
@@ -25474,8 +25475,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r1g:"
-              id=":r1g:-label"
+              for=":r1h:"
+              id=":r1h:-label"
             >
               Status Color
             </label>
@@ -25485,7 +25486,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r1g:"
+                id=":r1h:"
                 name="status_color"
                 type="text"
                 value=""
@@ -25510,8 +25511,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r1h:"
-              id=":r1h:-label"
+              for=":r1i:"
+              id=":r1i:-label"
             >
               Created At
             </label>
@@ -25521,7 +25522,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r1h:"
+                id=":r1i:"
                 name="createdAt"
                 type="text"
                 value=""
@@ -25546,8 +25547,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r1i:"
-              id=":r1i:-label"
+              for=":r1j:"
+              id=":r1j:-label"
             >
               Published At
             </label>
@@ -25557,7 +25558,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r1i:"
+                id=":r1j:"
                 name="publishedAt"
                 type="text"
                 value=""
@@ -25586,8 +25587,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for=":r1j:"
-                id=":r1j:-label"
+                for=":r1k:"
+                id=":r1k:-label"
               >
                 Tags
                 <span
@@ -25630,7 +25631,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-152mnda-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":r1j:"
+                  id=":r1k:"
                   required=""
                   role="combobox"
                   spellcheck="false"
@@ -25706,8 +25707,8 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for=":r1l:"
-              id=":r1l:-label"
+              for=":r1m:"
+              id=":r1m:-label"
             >
               Language
             </label>
@@ -25717,7 +25718,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r1l:"
+                id=":r1m:"
                 name="language"
                 type="number"
                 value=""
@@ -25743,7 +25744,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
       >
         <button
           class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium refine-save-button css-1jmqb42-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
-          id=":r1m:"
+          id=":r1n:"
           tabindex="0"
           type="button"
         >
@@ -41135,7 +41136,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
           >
             <button
               class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium refine-refresh-button css-1xanul-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
-              id=":r1n:"
+              id=":r1o:"
               tabindex="0"
               type="button"
             >

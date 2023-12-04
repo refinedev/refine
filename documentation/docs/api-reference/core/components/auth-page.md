@@ -8,11 +8,11 @@ source: packages/core/src/components/pages/auth/index.tsx
 
 `<AuthPage>` component from **refine** contains authentication pages that can be used to login, register, forgot password, and update password.
 
-Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
+Before using `<AuthPage>` component you need to add [authProvider](/docs/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
 ```css live shared
 body {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 ```
 
@@ -22,80 +22,80 @@ const { useLogout: useLogoutShared } = RefineCore;
 window.__refineAuthStatus = false;
 
 const authProvider = {
-    login: async () => {
-        window.__refineAuthStatus = true;
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    register: async () => {
-        return {
-            success: true,
-        };
-    },
-    forgotPassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    updatePassword: async () => {
-        return {
-            success: true,
-        };
-    },
-    logout: async () => {
-        window.__refineAuthStatus = false;
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
-    },
-    check: async () => ({
-        authenticated: window.__refineAuthStatus,
-    }),
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    getPermissions: async () => ["admin"],
-    getIdentity: async () => null,
+  login: async () => {
+    window.__refineAuthStatus = true;
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  register: async () => {
+    return {
+      success: true,
+    };
+  },
+  forgotPassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  updatePassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  logout: async () => {
+    window.__refineAuthStatus = false;
+    return {
+      success: true,
+      redirectTo: "/login",
+    };
+  },
+  check: async () => ({
+    authenticated: window.__refineAuthStatus,
+  }),
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  getPermissions: async () => ["admin"],
+  getIdentity: async () => null,
 };
 
 const DashboardPage = () => {
-    const { mutate: logout } = useLogoutShared();
+  const { mutate: logout } = useLogoutShared();
 
-    return (
-        <div>
-            <h1>Dashboard Page</h1>
-            <button
-                onClick={() => {
-                    logout();
-                }}
-            >
-                Logout
-            </button>
-        </div>
-    );
+  return (
+    <div>
+      <h1>Dashboard Page</h1>
+      <button
+        onClick={() => {
+          logout();
+        }}
+      >
+        Logout
+      </button>
+    </div>
+  );
 };
 
 const Wrapper = (children) => {
-    return (
-        <div
-            style={{
-                display: "flex",
-                justifyContent: "center",
-            }}
-        >
-            <div
-                style={{
-                    width: "400px",
-                }}
-            >
-                {children}
-            </div>
-        </div>
-    );
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <div
+        style={{
+          width: "400px",
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -118,33 +118,31 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet />
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route element={<Authenticated fallback={<Outlet />} />}>
-                        {/* highlight-next-line */}
-                        <Route path="/login" element={<AuthPage />} />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        routerProvider={routerProvider}
+        authProvider={authProvider}
+      >
+        <Routes>
+          <Route
+            element={
+              <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                <Outlet />
+              </Authenticated>
+            }
+          >
+            <Route index element={<DashboardPage />} />
+          </Route>
+          <Route element={<Authenticated fallback={<Outlet />} />}>
+            {/* highlight-next-line */}
+            <Route path="/login" element={<AuthPage />} />
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 // visible-block-end
 render(<App />);
@@ -154,10 +152,10 @@ render(<App />);
 
 The `<AuthPage>` component has the following types:
 
--   [`login`](#login) - a type of login page and default type.
--   [`register`](#register) - a type of registration page.
--   [`forgotPassword`](#forgotpassword) - a type of forgot password page.
--   [`updatePassword`](#updatepassword) - a type of update password page.
+- [`login`](#login) - a type of login page and default type.
+- [`register`](#register) - a type of registration page.
+- [`forgotPassword`](#forgotpassword) - a type of forgot password page.
+- [`updatePassword`](#updatepassword) - a type of update password page.
 
 ### Login
 
@@ -178,33 +176,31 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet />
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route element={<Authenticated fallback={<Outlet />} />}>
-                        {/* highlight-next-line */}
-                        <Route path="/login" element={<AuthPage />} />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        routerProvider={routerProvider}
+        authProvider={authProvider}
+      >
+        <Routes>
+          <Route
+            element={
+              <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                <Outlet />
+              </Authenticated>
+            }
+          >
+            <Route index element={<DashboardPage />} />
+          </Route>
+          <Route element={<Authenticated fallback={<Outlet />} />}>
+            {/* highlight-next-line */}
+            <Route path="/login" element={<AuthPage />} />
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 // visible-block-end
 render(<App />);
@@ -216,24 +212,24 @@ After form submission, the [`login`][login] method of the [`authProvider`][auth-
 import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-    // --
-    login: async ({ email, password, remember, providerName }) => {
-        // You can handle the login process according to your needs.
+  // --
+  login: async ({ email, password, remember, providerName }) => {
+    // You can handle the login process according to your needs.
 
-        // If the process is successful.
-        return {
-            success: true,
-        };
+    // If the process is successful.
+    return {
+      success: true,
+    };
 
-        return {
-            success: false,
-            error: {
-                name: "Login Error",
-                message: "Invalid email or password",
-            },
-        };
-    },
-    // --
+    return {
+      success: false,
+      error: {
+        name: "Login Error",
+        message: "Invalid email or password",
+      },
+    };
+  },
+  // --
 };
 ```
 
@@ -256,37 +252,32 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet />
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route element={<Authenticated fallback={<Outlet />} />}>
-                        <Route path="/login" element={<AuthPage />} />
-                        {/* highlight-next-line */}
-                        <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        routerProvider={routerProvider}
+        authProvider={authProvider}
+      >
+        <Routes>
+          <Route
+            element={
+              <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                <Outlet />
+              </Authenticated>
+            }
+          >
+            <Route index element={<DashboardPage />} />
+          </Route>
+          <Route element={<Authenticated fallback={<Outlet />} />}>
+            <Route path="/login" element={<AuthPage />} />
+            {/* highlight-next-line */}
+            <Route path="/register" element={<AuthPage type="register" />} />
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 // visible-block-end
 render(<App />);
@@ -298,24 +289,24 @@ After form submission, the [`register`][register] method of the [`authProvider`]
 import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-    // --
-    register: async ({ email, password, providerName }) => {
-        // You can handle the register process according to your needs.
+  // --
+  register: async ({ email, password, providerName }) => {
+    // You can handle the register process according to your needs.
 
-        // If the process is successful.
-        return {
-            success: true,
-        };
+    // If the process is successful.
+    return {
+      success: true,
+    };
 
-        return {
-            success: false,
-            error: {
-                name: "Register Error",
-                message: "Invalid email or password",
-            },
-        };
-    },
-    // --
+    return {
+      success: false,
+      error: {
+        name: "Register Error",
+        message: "Invalid email or password",
+      },
+    };
+  },
+  // --
 };
 ```
 
@@ -339,41 +330,33 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet />
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route element={<Authenticated fallback={<Outlet />} />}>
-                        <Route path="/login" element={<AuthPage />} />
-                        <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        {/* highlight-next-line */}
-                        <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        routerProvider={routerProvider}
+        authProvider={authProvider}
+      >
+        <Routes>
+          <Route
+            element={
+              <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                <Outlet />
+              </Authenticated>
+            }
+          >
+            <Route index element={<DashboardPage />} />
+          </Route>
+          <Route element={<Authenticated fallback={<Outlet />} />}>
+            <Route path="/login" element={<AuthPage />} />
+            <Route path="/register" element={<AuthPage type="register" />} />
+            {/* highlight-next-line */}
+            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 // visible-block-end
 render(<App />);
@@ -385,24 +368,24 @@ After form submission, the [`forgotPassword`][forgot-password] method of the [`a
 import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-    // --
-    forgotPassword: async ({ email }) => {
-        // You can handle the reset password process according to your needs.
+  // --
+  forgotPassword: async ({ email }) => {
+    // You can handle the reset password process according to your needs.
 
-        // If process is successful.
-        return {
-            success: true,
-        };
+    // If process is successful.
+    return {
+      success: true,
+    };
 
-        return {
-            success: false,
-            error: {
-                name: "Forgot Password Error",
-                message: "Invalid email or password",
-            },
-        };
-    },
-    // --
+    return {
+      success: false,
+      error: {
+        name: "Forgot Password Error",
+        message: "Invalid email or password",
+      },
+    };
+  },
+  // --
 };
 ```
 
@@ -426,45 +409,34 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet />
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route element={<Authenticated fallback={<Outlet />} />}>
-                        <Route path="/login" element={<AuthPage />} />
-                        <Route
-                            path="/register"
-                            element={<AuthPage type="register" />}
-                        />
-                        <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                        {/* highlight-next-line */}
-                        <Route
-                            path="/update-password"
-                            element={<AuthPage type="updatePassword" />}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        routerProvider={routerProvider}
+        authProvider={authProvider}
+      >
+        <Routes>
+          <Route
+            element={
+              <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                <Outlet />
+              </Authenticated>
+            }
+          >
+            <Route index element={<DashboardPage />} />
+          </Route>
+          <Route element={<Authenticated fallback={<Outlet />} />}>
+            <Route path="/login" element={<AuthPage />} />
+            <Route path="/register" element={<AuthPage type="register" />} />
+            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+            {/* highlight-next-line */}
+            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 // visible-block-end
 render(<App />);
@@ -476,55 +448,84 @@ After form submission, the [`updatePassword`][update-password] method of the [`a
 import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-    // --
-    updatePassword: async ({ password, confirmPassword }) => {
-        // You can handle the update password process according to your needs.
+  // --
+  updatePassword: async ({ password, confirmPassword }) => {
+    // You can handle the update password process according to your needs.
 
-        // If the process is successful.
-        return {
-            success: true,
-        };
+    // If the process is successful.
+    return {
+      success: true,
+    };
 
-        return {
-            success: false,
-            error: {
-                name: "Update Password Error",
-                message: "Invalid email or password",
-            },
-        };
-    },
-    // --
+    return {
+      success: false,
+      error: {
+        name: "Update Password Error",
+        message: "Invalid email or password",
+      },
+    };
+  },
+  // --
 };
 ```
 
 ## Props
 
+### `hideForm`
+
+When you set `hideForm` to `true`, the form will be hidden. You can use this property to show only providers.
+
+```tsx
+const MyLoginPage = () => {
+  return (
+    <AuthPage
+      type="login" // or "register"
+      hideForm={true}
+      providers={[
+        {
+          name: "google",
+          icon: GoogleIcon,
+          label: "Sign in with Google",
+        },
+        {
+          name: "github",
+          icon: GithubIcon,
+          label: "Sign in with GitHub",
+        },
+      ]}
+    />
+  );
+};
+```
+
 ### `providers`
 
 :::info
+
 `providers` property is only available for `login` and `register` types.
+
 :::
 
 `providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type.
 
 ```tsx
 const LoginPage = () => {
-    return (
-        <AuthPage
-            providers={[
-                {
-                    name: "github",
-                    icon: <svg>{/* ... */}</svg>,
-                    label: "Sign in with GitHub",
-                },
-                {
-                    name: "google",
-                    icon: <svg>{/* ... */}</svg>,
-                    label: "Sign in with Google",
-                },
-            ]}
-        />
-    );
+  return (
+    <AuthPage
+      providers={[
+        {
+          name: "github",
+          icon: <svg>{/* ... */}</svg>,
+          label: "Sign in with GitHub",
+        },
+        {
+          name: "google",
+          icon: <svg>{/* ... */}</svg>,
+          label: "Sign in with Google",
+        },
+      ]}
+    />
+  );
 };
 ```
 
@@ -533,123 +534,130 @@ const LoginPage = () => {
 ### `rememberMe`
 
 :::info
+
 `rememberMe` property is only available for type `login`.
+
 :::
 
 `rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it.
 
 ```tsx
 const LoginPage = () => {
-    return (
-        <AuthPage
-            type="login"
-            // highlight-start
-            rememberMe={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        padding: 3,
-                    }}
-                >
-                    <input name="CustomRememberMe" type="checkbox" /> Custom
-                    remember me
-                </div>
-            }
-            // highlight-end
-        />
-    );
+  return (
+    <AuthPage
+      type="login"
+      // highlight-start
+      rememberMe={
+        <div
+          style={{
+            border: "1px dashed cornflowerblue",
+            padding: 3,
+          }}
+        >
+          <input name="CustomRememberMe" type="checkbox" /> Custom remember me
+        </div>
+      }
+      // highlight-end
+    />
+  );
 };
 ```
 
 ### `loginLink`
 
 :::info
+
 `loginLink` property is only available for types `register` and `forgotPassword`.
+
 :::
 
 `loginLink` property defines the link to the login page and also you can give a node to render. The default value is `"/login"`.
 
 ```tsx
 const MyRegisterPage = () => {
-    return (
-        <AuthPage
-            type="register"
-            // highlight-start
-            loginLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        padding: 3,
-                    }}
-                >
-                    <Link to="/login">Login</Link>
-                </div>
-            }
-            // highlight-end
-        />
-    );
+  return (
+    <AuthPage
+      type="register"
+      // highlight-start
+      loginLink={
+        <div
+          style={{
+            border: "1px dashed cornflowerblue",
+            padding: 3,
+          }}
+        >
+          <Link to="/login">Login</Link>
+        </div>
+      }
+      // highlight-end
+    />
+  );
 };
 ```
 
 ### `registerLink`
 
 :::info
+
 `registerLink` property is only available for type `login`.
+
 :::
 
 `registerLink` property defines the link to the registration page and also you can give a node to render. The default value is `"/register"`.
 
 ```tsx
 const MyLoginPage = () => {
-    return (
-        <AuthPage
-            type="login"
-            // highlight-start
-            registerLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        marginTop: 5,
-                        padding: 5,
-                    }}
-                >
-                    <Link to="/register">Register</Link>
-                </div>
-            }
-            // highlight-end
-        />
-    );
+  return (
+    <AuthPage
+      type="login"
+      // highlight-start
+      registerLink={
+        <div
+          style={{
+            border: "1px dashed cornflowerblue",
+            marginTop: 5,
+            padding: 5,
+          }}
+        >
+          <Link to="/register">Register</Link>
+        </div>
+      }
+      // highlight-end
+    />
+  );
 };
 ```
 
 ### `forgotPasswordLink`
 
 :::info
+
 `forgotPasswordLink` property is only available for type `login`.
+
 :::
 
 `forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. The default value is `"/forgot-password"`.
 
 ```tsx
 const MyLoginPage = () => {
-    return (
-        <AuthPage
-            type="login"
-            // highlight-start
-            forgotPasswordLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        marginTop: 5,
-                        padding: 5,
-                    }}
-                >
-                    <Link to="/forgot-password">Forgot Password</Link>
-                </div>
-            }
-            // highlight-end
-        />
-    );
+  return (
+    <AuthPage
+      type="login"
+      // highlight-start
+      forgotPasswordLink={
+        <div
+          style={{
+            border: "1px dashed cornflowerblue",
+            marginTop: 5,
+            padding: 5,
+          }}
+        >
+          <Link to="/forgot-password">Forgot Password</Link>
+        </div>
+      }
+      // highlight-end
+    />
+  );
 };
 ```
 
@@ -659,24 +667,23 @@ const MyLoginPage = () => {
 
 ```tsx
 const MyLoginPage = () => {
-    return (
-        <AuthPage
-            type="login"
-            // highlight-start
-            wrapperProps={{
-                style: {
-                    background:
-                        "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-                    position: "absolute",
-                    top: "0px",
-                    right: "0px",
-                    bottom: "0px",
-                    left: "0px",
-                },
-            }}
-            // highlight-end
-        />
-    );
+  return (
+    <AuthPage
+      type="login"
+      // highlight-start
+      wrapperProps={{
+        style: {
+          background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+          position: "absolute",
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+        },
+      }}
+      // highlight-end
+    />
+  );
 };
 ```
 
@@ -686,19 +693,18 @@ const MyLoginPage = () => {
 
 ```tsx
 const MyLoginPage = () => {
-    return (
-        <AuthPage
-            type="login"
-            // highlight-start
-            contentProps={{
-                style: {
-                    background:
-                        "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-                },
-            }}
-            // highlight-end
-        />
-    );
+  return (
+    <AuthPage
+      type="login"
+      // highlight-start
+      contentProps={{
+        style: {
+          background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+        },
+      }}
+      // highlight-end
+    />
+  );
 };
 ```
 
@@ -708,28 +714,28 @@ const MyLoginPage = () => {
 
 ```tsx
 const MyLoginPage = () => {
-    return (
-        <AuthPage
-            type="login"
-            // highlight-start
-            formProps={{
-                onSubmit: (e: any) => {
-                    e.preventDefault();
+  return (
+    <AuthPage
+      type="login"
+      // highlight-start
+      formProps={{
+        onSubmit: (e: any) => {
+          e.preventDefault();
 
-                    const email = e.target.email.value;
-                    const password = e.target.password.value;
+          const email = e.target.email.value;
+          const password = e.target.password.value;
 
-                    alert(
-                        JSON.stringify({
-                            email,
-                            password,
-                        }),
-                    );
-                },
-            }}
-            // highlight-end
-        />
-    );
+          alert(
+            JSON.stringify({
+              email,
+              password,
+            }),
+          );
+        },
+      }}
+      // highlight-end
+    />
+  );
 };
 ```
 
@@ -739,29 +745,29 @@ const MyLoginPage = () => {
 
 ```tsx
 const MyLoginPage = () => {
-    return (
-        <AuthPage
-            type="login"
-            // highlight-start
-            renderContent={(content: React.ReactNode) => {
-                return (
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "center",
-                            alignItems: "center",
-                        }}
-                    >
-                        <h1>Extra Header</h1>
-                        {content}
-                        <h2>Extra Footer</h2>
-                    </div>
-                );
+  return (
+    <AuthPage
+      type="login"
+      // highlight-start
+      renderContent={(content: React.ReactNode) => {
+        return (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
             }}
-            // highlight-end
-        />
-    );
+          >
+            <h1>Extra Header</h1>
+            {content}
+            <h2>Extra Footer</h2>
+          </div>
+        );
+      }}
+      // highlight-end
+    />
+  );
 };
 ```
 
@@ -775,9 +781,9 @@ const MyLoginPage = () => {
 
 ```tsx
 interface OAuthProvider {
-    name: string;
-    icon?: React.ReactNode;
-    label?: string;
+  name: string;
+  icon?: React.ReactNode;
+  label?: string;
 }
 ```
 

@@ -12,22 +12,22 @@ This post is the first part of an admin dashboard app built using [**refine**](h
 
 This is Day 5, and **refineWeek** is a seven-part tutorial series that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities within a week.
 
--   You can find the complete source code for the **Pixels Admin** app on [GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels-admin)
--   Also **Pixel Client** app source code from previous days can be found [here](https://github.com/refinedev/refine/tree/master/examples/pixels)
+- You can find the complete source code for the **Pixels Admin** app on [GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels-admin)
+- Also **Pixel Client** app source code from previous days can be found [here](https://github.com/refinedev/refine/tree/master/examples/pixels)
 
 ### refineWeek series
 
--   Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
--   Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
--   Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
--   Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
--   Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
--   Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
--   Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+- Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
+- Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
+- Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
+- Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+- Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
+- Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
 
 ## Overview
 
-In this episode, we implement user authentication and CRUD functionalities of the dashboard. As it was in the case of the **Pixels** client app, for this app also, we implement an email-based authenticaiton along with social logins with Google and GitHub.
+In this episode, we implement user authentication and CRUD functionalities of the dashboard. As it was in the case of the **Pixels** client app, for this app also, we implement an email-based authentication along with social logins with Google and GitHub.
 
 We use the same **Supabase** client for connecting to the database we already have in place for the **Pixels** app.
 
@@ -84,10 +84,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { notificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
@@ -95,33 +92,33 @@ import { ColorModeContextProvider } from "./contexts/color-mode";
 import { supabaseClient } from "./utility";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                <ColorModeContextProvider>
-                    <Refine
-                        dataProvider={dataProvider(supabaseClient)}
-                        liveProvider={liveProvider(supabaseClient)}
-                        authProvider={authProvider}
-                        routerProvider={routerBindings}
-                        notificationProvider={notificationProvider}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route index element={<WelcomePage />} />
-                        </Routes>
-                        <RefineKbar />
-                        <UnsavedChangesNotifier />
-                        <DocumentTitleHandler />
-                    </Refine>
-                </ColorModeContextProvider>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <RefineKbarProvider>
+        <ColorModeContextProvider>
+          <Refine
+            dataProvider={dataProvider(supabaseClient)}
+            liveProvider={liveProvider(supabaseClient)}
+            authProvider={authProvider}
+            routerProvider={routerBindings}
+            notificationProvider={notificationProvider}
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route index element={<WelcomePage />} />
+            </Routes>
+            <RefineKbar />
+            <UnsavedChangesNotifier />
+            <DocumentTitleHandler />
+          </Refine>
+        </ColorModeContextProvider>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -154,13 +151,13 @@ Now we have enabled `authProvider` and `dataProvider` methods to connect to our 
 
 Before we move on, you need to add required page and components to the project if you want build the app by following the article . Please add the following components and files into src folder in the project:
 
--   pages: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/pages
--   components: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/components
--   providers: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/providers
--   utility: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/utility
--   casbin: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/casbin
--   types: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/types
--   assets: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/public
+- pages: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/pages
+- components: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/components
+- providers: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/providers
+- utility: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/utility
+- casbin: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/casbin
+- types: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/types
+- assets: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/public
 
 :::danger Important
 
@@ -175,23 +172,14 @@ After creating files above you need to add some imports and [routes](/docs/packa
 <p>
 
 ```tsx title="App.tsx"
-import {
-    Authenticated,
-    CanAccess,
-    GitHubBanner,
-    Refine,
-} from "@refinedev/core";
-import {
-    ErrorComponent,
-    ThemedLayoutV2,
-    notificationProvider,
-} from "@refinedev/antd";
+import { Authenticated, CanAccess, GitHubBanner, Refine } from "@refinedev/core";
+import { ErrorComponent, ThemedLayoutV2, notificationProvider } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
+  NavigateToResource,
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -199,114 +187,96 @@ import "@refinedev/antd/dist/reset.css";
 
 import { Title } from "./components/layout";
 import { supabaseClient } from "./utility";
-import {
-    auditLogProvider,
-    authProvider,
-    accessControlProvider,
-} from "./providers";
+import { auditLogProvider, authProvider, accessControlProvider } from "./providers";
 import { CanvasList, UserList } from "./pages";
 import { AuthPage } from "./pages/auth";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ConfigProvider
-                theme={{
-                    token: {
-                        colorPrimary: "#3ecf8e",
-                        colorText: "#80808a",
-                        colorError: "#fa541c",
-                        colorBgLayout: "#f0f2f5",
-                        colorLink: "#3ecf8e",
-                        colorLinkActive: "#3ecf8e",
-                        colorLinkHover: "#3ecf8e",
-                    },
-                }}
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#3ecf8e",
+            colorText: "#80808a",
+            colorError: "#fa541c",
+            colorBgLayout: "#f0f2f5",
+            colorLink: "#3ecf8e",
+            colorLinkActive: "#3ecf8e",
+            colorLinkHover: "#3ecf8e",
+          },
+        }}
+      >
+        <Refine
+          auditLogProvider={auditLogProvider}
+          dataProvider={dataProvider(supabaseClient)}
+          liveProvider={liveProvider(supabaseClient)}
+          authProvider={authProvider}
+          accessControlProvider={accessControlProvider}
+          routerProvider={routerBindings}
+          notificationProvider={notificationProvider}
+          resources={[
+            {
+              name: "users",
+              list: "/users",
+            },
+            {
+              name: "canvases",
+              list: "/canvases",
+            },
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <Authenticated>
+                  <ThemedLayoutV2 Title={Title}>
+                    <CanAccess>
+                      <Outlet />
+                    </CanAccess>
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
             >
-                <Refine
-                    auditLogProvider={auditLogProvider}
-                    dataProvider={dataProvider(supabaseClient)}
-                    liveProvider={liveProvider(supabaseClient)}
-                    authProvider={authProvider}
-                    accessControlProvider={accessControlProvider}
-                    routerProvider={routerBindings}
-                    notificationProvider={notificationProvider}
-                    resources={[
-                        {
-                            name: "users",
-                            list: "/users",
-                        },
-                        {
-                            name: "canvases",
-                            list: "/canvases",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2 Title={Title}>
-                                        <CanAccess>
-                                            <Outlet />
-                                        </CanAccess>
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route index element={<NavigateToResource />} />
-                            <Route path="/users" element={<UserList />} />
-                            <Route path="/canvases" element={<CanvasList />} />
-                        </Route>
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="users" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        type="login"
-                                        registerLink={false}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/forgot-password"
-                                element={<AuthPage type="forgotPassword" />}
-                            />
-                            <Route
-                                path="/update-password"
-                                element={<AuthPage type="updatePassword" />}
-                            />
-                        </Route>
+              <Route index element={<NavigateToResource />} />
+              <Route path="/users" element={<UserList />} />
+              <Route path="/canvases" element={<CanvasList />} />
+            </Route>
+            <Route
+              element={
+                <Authenticated fallback={<Outlet />}>
+                  <NavigateToResource resource="users" />
+                </Authenticated>
+              }
+            >
+              <Route path="/login" element={<AuthPage type="login" registerLink={false} />} />
+              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            </Route>
 
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+            <Route
+              element={
+                <Authenticated>
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
+            >
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -339,108 +309,80 @@ import { UserOutlined } from "@ant-design/icons";
 import { TUser } from "../../types/user";
 
 export const UserList = () => {
-    const { tableProps } = useTable<TUser>();
+  const { tableProps } = useTable<TUser>();
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey={"id"}>
-                <Table.Column
-                    dataIndex="avatar_url"
-                    title={
-                        <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
-                            Avatar
-                        </h4>
-                    }
-                    render={(_, record: TUser) => (
-                        <Avatar
-                            icon={<UserOutlined />}
-                            src={record.avatar_url}
-                            size={{ xs: 24, sm: 32, md: 40 }}
-                        />
-                    )}
-                />
-                <Table.Column
-                    dataIndex="id"
-                    title={
-                        <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
-                            ID
-                        </h4>
-                    }
-                    render={(_, record: TUser) => (
-                        <p style={{ textAlign: "center" }}>{record?.id}</p>
-                    )}
-                />
-                <Table.Column
-                    dataIndex="email"
-                    title={
-                        <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
-                            Email
-                        </h4>
-                    }
-                    render={() => (
-                        <p style={{ textAlign: "center" }}>Not listed</p>
-                    )}
-                />
-                <Table.Column
-                    dataIndex="full_name"
-                    title={
-                        <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
-                            Full Name
-                        </h4>
-                    }
-                    render={(_, record: TUser) =>
-                        record.full_name ? (
-                            <p
-                                style={{
-                                    textAlign: "center",
-                                }}
-                            >
-                                {record.full_name}
-                            </p>
-                        ) : (
-                            <p
-                                style={{
-                                    textAlign: "center",
-                                    fontWeight: "bold",
-                                }}
-                            >
-                                --
-                            </p>
-                        )
-                    }
-                />
-                <Table.Column
-                    dataIndex="username"
-                    title={
-                        <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
-                            Username
-                        </h4>
-                    }
-                    render={(_, record: TUser) =>
-                        record.username ? (
-                            <p
-                                style={{
-                                    textAlign: "center",
-                                    fontWeight: "bold",
-                                }}
-                            >
-                                {record.username}
-                            </p>
-                        ) : (
-                            <p
-                                style={{
-                                    textAlign: "center",
-                                    fontWeight: "bold",
-                                }}
-                            >
-                                --
-                            </p>
-                        )
-                    }
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey={"id"}>
+        <Table.Column
+          dataIndex="avatar_url"
+          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Avatar</h4>}
+          render={(_, record: TUser) => (
+            <Avatar icon={<UserOutlined />} src={record.avatar_url} size={{ xs: 24, sm: 32, md: 40 }} />
+          )}
+        />
+        <Table.Column
+          dataIndex="id"
+          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>ID</h4>}
+          render={(_, record: TUser) => <p style={{ textAlign: "center" }}>{record?.id}</p>}
+        />
+        <Table.Column
+          dataIndex="email"
+          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Email</h4>}
+          render={() => <p style={{ textAlign: "center" }}>Not listed</p>}
+        />
+        <Table.Column
+          dataIndex="full_name"
+          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Full Name</h4>}
+          render={(_, record: TUser) =>
+            record.full_name ? (
+              <p
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                {record.full_name}
+              </p>
+            ) : (
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                --
+              </p>
+            )
+          }
+        />
+        <Table.Column
+          dataIndex="username"
+          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Username</h4>}
+          render={(_, record: TUser) =>
+            record.username ? (
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                {record.username}
+              </p>
+            ) : (
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                --
+              </p>
+            )
+          }
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -473,7 +415,7 @@ In our case, we don't have to pass in any prop because **refine** figures the `r
 
 ```tsx
 <List resource="users" title="Users">
-    // Content here...
+  // Content here...
 </List>
 ```
 
@@ -487,7 +429,7 @@ Besides passing in the `tableProps` object to `<Table />`, we are required to pr
 
 ```tsx
 <Table {...tableProps} rowKey="id">
-    // React nodes here...
+  // React nodes here...
 </Table>
 ```
 
@@ -513,21 +455,21 @@ import { Refine } from "@refinedev/core";
 import { UserList } from "pages";
 
 return (
-    <Refine
-        // ...
-        //highlight-start
-        resources={[
-            {
-                name: "users",
-                list: "/users",
-            },
-            {
-                name: "canvases",
-                list: "/canvases",
-            },
-        ]}
-        //highlight-end
-    />
+  <Refine
+    // ...
+    //highlight-start
+    resources={[
+      {
+        name: "users",
+        list: "/users",
+      },
+      {
+        name: "canvases",
+        list: "/canvases",
+      },
+    ]}
+    //highlight-end
+  />
 );
 ```
 
@@ -549,68 +491,57 @@ import { CanvasList, UserList } from "./pages";
 import { AuthPage } from "./pages/auth";
 
 function App() {
-    return (
-        <BrowserRouter>
-            {/* ... */}
-            <Refine
-                // ...
-                routerProvider={routerBindings}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Authenticated>
-                                <ThemedLayoutV2 Title={Title}>
-                                    <CanAccess>
-                                        <Outlet />
-                                    </CanAccess>
-                                </ThemedLayoutV2>
-                            </Authenticated>
-                        }
-                    >
-                        <Route index element={<NavigateToResource />} />
-                        <Route path="/users" element={<UserList />} />
-                        <Route path="/canvases" element={<CanvasList />} />
-                    </Route>
-                    <Route
-                        element={
-                            <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="users" />
-                            </Authenticated>
-                        }
-                    >
-                        <Route
-                            path="/login"
-                            element={
-                                <AuthPage type="login" registerLink={false} />
-                            }
-                        />
-                        <Route
-                            path="/forgot-password"
-                            element={<AuthPage type="forgotPassword" />}
-                        />
-                        <Route
-                            path="/update-password"
-                            element={<AuthPage type="updatePassword" />}
-                        />
-                    </Route>
+  return (
+    <BrowserRouter>
+      {/* ... */}
+      <Refine
+        // ...
+        routerProvider={routerBindings}
+      >
+        <Routes>
+          <Route
+            element={
+              <Authenticated>
+                <ThemedLayoutV2 Title={Title}>
+                  <CanAccess>
+                    <Outlet />
+                  </CanAccess>
+                </ThemedLayoutV2>
+              </Authenticated>
+            }
+          >
+            <Route index element={<NavigateToResource />} />
+            <Route path="/users" element={<UserList />} />
+            <Route path="/canvases" element={<CanvasList />} />
+          </Route>
+          <Route
+            element={
+              <Authenticated fallback={<Outlet />}>
+                <NavigateToResource resource="users" />
+              </Authenticated>
+            }
+          >
+            <Route path="/login" element={<AuthPage type="login" registerLink={false} />} />
+            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+          </Route>
 
-                    <Route
-                        element={
-                            <Authenticated>
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            </Authenticated>
-                        }
-                    >
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                {/* ... */}
-            </Refine>
-        </BrowserRouter>
-    );
+          <Route
+            element={
+              <Authenticated>
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              </Authenticated>
+            }
+          >
+            <Route path="*" element={<ErrorComponent />} />
+          </Route>
+        </Routes>
+        {/* ... */}
+      </Refine>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -627,23 +558,14 @@ Remember, we've already replaced `App.tx` code with the following:
 <p>
 
 ```tsx title="App.tsx"
-import {
-    Authenticated,
-    CanAccess,
-    GitHubBanner,
-    Refine,
-} from "@refinedev/core";
-import {
-    ErrorComponent,
-    ThemedLayoutV2,
-    notificationProvider,
-} from "@refinedev/antd";
+import { Authenticated, CanAccess, GitHubBanner, Refine } from "@refinedev/core";
+import { ErrorComponent, ThemedLayoutV2, notificationProvider } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
+  NavigateToResource,
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -651,114 +573,96 @@ import "@refinedev/antd/dist/reset.css";
 
 import { Title } from "./components/layout";
 import { supabaseClient } from "./utility";
-import {
-    auditLogProvider,
-    authProvider,
-    accessControlProvider,
-} from "./providers";
+import { auditLogProvider, authProvider, accessControlProvider } from "./providers";
 import { CanvasList, UserList } from "./pages";
 import { AuthPage } from "./pages/auth";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ConfigProvider
-                theme={{
-                    token: {
-                        colorPrimary: "#3ecf8e",
-                        colorText: "#80808a",
-                        colorError: "#fa541c",
-                        colorBgLayout: "#f0f2f5",
-                        colorLink: "#3ecf8e",
-                        colorLinkActive: "#3ecf8e",
-                        colorLinkHover: "#3ecf8e",
-                    },
-                }}
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#3ecf8e",
+            colorText: "#80808a",
+            colorError: "#fa541c",
+            colorBgLayout: "#f0f2f5",
+            colorLink: "#3ecf8e",
+            colorLinkActive: "#3ecf8e",
+            colorLinkHover: "#3ecf8e",
+          },
+        }}
+      >
+        <Refine
+          auditLogProvider={auditLogProvider}
+          dataProvider={dataProvider(supabaseClient)}
+          liveProvider={liveProvider(supabaseClient)}
+          authProvider={authProvider}
+          accessControlProvider={accessControlProvider}
+          routerProvider={routerBindings}
+          notificationProvider={notificationProvider}
+          resources={[
+            {
+              name: "users",
+              list: "/users",
+            },
+            {
+              name: "canvases",
+              list: "/canvases",
+            },
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <Authenticated>
+                  <ThemedLayoutV2 Title={Title}>
+                    <CanAccess>
+                      <Outlet />
+                    </CanAccess>
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
             >
-                <Refine
-                    auditLogProvider={auditLogProvider}
-                    dataProvider={dataProvider(supabaseClient)}
-                    liveProvider={liveProvider(supabaseClient)}
-                    authProvider={authProvider}
-                    accessControlProvider={accessControlProvider}
-                    routerProvider={routerBindings}
-                    notificationProvider={notificationProvider}
-                    resources={[
-                        {
-                            name: "users",
-                            list: "/users",
-                        },
-                        {
-                            name: "canvases",
-                            list: "/canvases",
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2 Title={Title}>
-                                        <CanAccess>
-                                            <Outlet />
-                                        </CanAccess>
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route index element={<NavigateToResource />} />
-                            <Route path="/users" element={<UserList />} />
-                            <Route path="/canvases" element={<CanvasList />} />
-                        </Route>
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource resource="users" />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        type="login"
-                                        registerLink={false}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/forgot-password"
-                                element={<AuthPage type="forgotPassword" />}
-                            />
-                            <Route
-                                path="/update-password"
-                                element={<AuthPage type="updatePassword" />}
-                            />
-                        </Route>
+              <Route index element={<NavigateToResource />} />
+              <Route path="/users" element={<UserList />} />
+              <Route path="/canvases" element={<CanvasList />} />
+            </Route>
+            <Route
+              element={
+                <Authenticated fallback={<Outlet />}>
+                  <NavigateToResource resource="users" />
+                </Authenticated>
+              }
+            >
+              <Route path="/login" element={<AuthPage type="login" registerLink={false} />} />
+              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            </Route>
 
-                        <Route
-                            element={
-                                <Authenticated>
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+            <Route
+              element={
+                <Authenticated>
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
+            >
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -809,12 +713,7 @@ We have a `useEditableTable()` hook in action inside our `<CanvasList />` compon
 ```tsx title="pages/canvases/list.tsx"
 import { useState } from "react";
 import { useUpdate } from "@refinedev/core";
-import {
-    List,
-    useEditableTable,
-    useModal,
-    DeleteButton,
-} from "@refinedev/antd";
+import { List, useEditableTable, useModal, DeleteButton } from "@refinedev/antd";
 import { Table, Form, Button, Space, Tag, Modal, Avatar } from "antd";
 
 import { TCanvas } from "../../types/canvas";
@@ -822,204 +721,196 @@ import { LogList } from "../../components/logs";
 import { CanvasItem } from "../../components/canvas";
 
 type TCanvasPromoteResult = {
-    id: number;
-    featured: boolean;
+  id: number;
+  featured: boolean;
 };
 
 export const CanvasList = () => {
-    const [currentCanvas, setCurrentCanvas] = useState({});
-    const { modalProps, show, close } = useModal();
-    const { tableProps, formProps } = useEditableTable<TCanvas>({
-        liveMode: "auto",
-        sorters: {
-            initial: [
-                {
-                    field: "created_at",
-                    order: "desc",
-                },
-            ],
+  const [currentCanvas, setCurrentCanvas] = useState({});
+  const { modalProps, show, close } = useModal();
+  const { tableProps, formProps } = useEditableTable<TCanvas>({
+    liveMode: "auto",
+    sorters: {
+      initial: [
+        {
+          field: "created_at",
+          order: "desc",
         },
-        meta: {
-            select: "*, pixels(id, canvas_id, user_id, x, y, color)",
-        },
-    });
-    const { mutate } = useUpdate<TCanvasPromoteResult>();
+      ],
+    },
+    meta: {
+      select: "*, pixels(id, canvas_id, user_id, x, y, color)",
+    },
+  });
+  const { mutate } = useUpdate<TCanvasPromoteResult>();
 
-    return (
-        <List>
-            <Form {...formProps}>
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column<TCanvas>
-                        key="id"
-                        dataIndex="id"
-                        title={
-                            <h4
-                                style={{
-                                    textAlign: "center",
-                                    fontWeight: "bold",
-                                }}
-                            >
-                                Canvas
-                            </h4>
-                        }
-                        render={(_, record) => (
-                            <Avatar
-                                shape="square"
-                                size={64}
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                }}
-                                icon={
-                                    <CanvasItem
-                                        canvas={record}
-                                        pixels={record?.pixels}
-                                        border={true}
-                                        scale={5 / record?.width}
-                                        active={false}
-                                    />
-                                }
-                            />
-                        )}
-                    />
-                    <Table.Column<TCanvas>
-                        key="name"
-                        dataIndex="name"
-                        title={
-                            <h4
-                                style={{
-                                    textAlign: "center",
-                                    fontWeight: "bold",
-                                }}
-                            >
-                                Name
-                            </h4>
-                        }
-                    />
-                    <Table.Column<TCanvas>
-                        key="is_featured"
-                        dataIndex="is_featured"
-                        title={
-                            <h4
-                                style={{
-                                    textAlign: "center",
-                                    fontWeight: "bold",
-                                }}
-                            >
-                                Featured
-                            </h4>
-                        }
-                        render={(_, record) =>
-                            record.is_featured ? (
-                                <Tag
-                                    color="success"
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                    }}
-                                >
-                                    Yes
-                                </Tag>
-                            ) : (
-                                <Tag
-                                    color="warning"
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                    }}
-                                >
-                                    No
-                                </Tag>
-                            )
-                        }
-                    />
-                    <Table.Column<TCanvas>
-                        title={
-                            <h4
-                                style={{
-                                    textAlign: "center",
-                                    fontWeight: "bold",
-                                }}
-                            >
-                                Actions
-                            </h4>
-                        }
-                        dataIndex="actions"
-                        render={(_, record) => (
-                            <Space
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                }}
-                            >
-                                <Button
-                                    size="small"
-                                    style={{ width: "100px" }}
-                                    type={
-                                        record.is_featured ? "ghost" : "primary"
-                                    }
-                                    onClick={() =>
-                                        mutate({
-                                            resource: "canvases",
-                                            id: record.id,
-                                            values: {
-                                                is_featured:
-                                                    !record.is_featured,
-                                            },
-                                            meta: {
-                                                canvas: record,
-                                            },
-                                        })
-                                    }
-                                >
-                                    {record.is_featured
-                                        ? "Unpromote"
-                                        : "Promote"}
-                                </Button>
-                                <>
-                                    <Button
-                                        size="small"
-                                        type="primary"
-                                        onClick={() => {
-                                            setCurrentCanvas(record);
-                                            show();
-                                        }}
-                                    >
-                                        View Changes
-                                    </Button>
-                                </>
-                                <DeleteButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                            </Space>
-                        )}
-                    />
-                </Table>
-            </Form>
-            <Modal
-                title={<h3 style={{ fontWeight: "bold" }}>Canvas Changes</h3>}
-                {...modalProps}
-                centered
-                destroyOnClose
-                onOk={close}
-                onCancel={() => {
-                    close();
-                    setCurrentCanvas({});
+  return (
+    <List>
+      <Form {...formProps}>
+        <Table {...tableProps} rowKey="id">
+          <Table.Column<TCanvas>
+            key="id"
+            dataIndex="id"
+            title={
+              <h4
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
                 }}
-                footer={[
-                    <Button type="primary" key="close" onClick={close}>
-                        Close
-                    </Button>,
-                ]}
-            >
-                <LogList currentCanvas={currentCanvas} />
-            </Modal>
-        </List>
-    );
+              >
+                Canvas
+              </h4>
+            }
+            render={(_, record) => (
+              <Avatar
+                shape="square"
+                size={64}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                icon={
+                  <CanvasItem
+                    canvas={record}
+                    pixels={record?.pixels}
+                    border={true}
+                    scale={5 / record?.width}
+                    active={false}
+                  />
+                }
+              />
+            )}
+          />
+          <Table.Column<TCanvas>
+            key="name"
+            dataIndex="name"
+            title={
+              <h4
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                Name
+              </h4>
+            }
+          />
+          <Table.Column<TCanvas>
+            key="is_featured"
+            dataIndex="is_featured"
+            title={
+              <h4
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                Featured
+              </h4>
+            }
+            render={(_, record) =>
+              record.is_featured ? (
+                <Tag
+                  color="success"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  Yes
+                </Tag>
+              ) : (
+                <Tag
+                  color="warning"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  No
+                </Tag>
+              )
+            }
+          />
+          <Table.Column<TCanvas>
+            title={
+              <h4
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                Actions
+              </h4>
+            }
+            dataIndex="actions"
+            render={(_, record) => (
+              <Space
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Button
+                  size="small"
+                  style={{ width: "100px" }}
+                  type={record.is_featured ? "ghost" : "primary"}
+                  onClick={() =>
+                    mutate({
+                      resource: "canvases",
+                      id: record.id,
+                      values: {
+                        is_featured: !record.is_featured,
+                      },
+                      meta: {
+                        canvas: record,
+                      },
+                    })
+                  }
+                >
+                  {record.is_featured ? "Unpromote" : "Promote"}
+                </Button>
+                <>
+                  <Button
+                    size="small"
+                    type="primary"
+                    onClick={() => {
+                      setCurrentCanvas(record);
+                      show();
+                    }}
+                  >
+                    View Changes
+                  </Button>
+                </>
+                <DeleteButton size="small" recordItemId={record.id} />
+              </Space>
+            )}
+          />
+        </Table>
+      </Form>
+      <Modal
+        title={<h3 style={{ fontWeight: "bold" }}>Canvas Changes</h3>}
+        {...modalProps}
+        centered
+        destroyOnClose
+        onOk={close}
+        onCancel={() => {
+          close();
+          setCurrentCanvas({});
+        }}
+        footer={[
+          <Button type="primary" key="close" onClick={close}>
+            Close
+          </Button>,
+        ]}
+      >
+        <LogList currentCanvas={currentCanvas} />
+      </Modal>
+    </List>
+  );
 };
 ```
 
@@ -1062,69 +953,67 @@ We can customize the content inside our table cell by passing a function to the 
 
 ```tsx
 <Table.Column<TCanvas>
-    key="is_featured"
-    dataIndex="is_featured"
-    title={
-        <h4 style={{ textAlign: "center", fontWeight: "bold" }}>Featured</h4>
-    }
-    render={(_, record) =>
-        record.is_featured ? (
-            <Tag
-                color="success"
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                Yes
-            </Tag>
-        ) : (
-            <Tag
-                color="warning"
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                No
-            </Tag>
-        )
-    }
+  key="is_featured"
+  dataIndex="is_featured"
+  title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Featured</h4>}
+  render={(_, record) =>
+    record.is_featured ? (
+      <Tag
+        color="success"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        Yes
+      </Tag>
+    ) : (
+      <Tag
+        color="warning"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        No
+      </Tag>
+    )
+  }
 />
 ```
 
-We also grouped content inside a cell, with `<Buttom />` and `<DeleteButton />` being sibling flex items:
+We also grouped content inside a cell, with `<Button />` and `<DeleteButton />` being sibling flex items:
 
 ```tsx
 <Table.Column<TCanvas>
-    title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Actions</h4>}
-    dataIndex="actions"
-    render={(_, record) => (
-        <Space style={{ display: "flex", justifyContent: "center" }}>
-            <Button
-                size="small"
-                style={{ width: "100px" }}
-                type={record.is_featured ? "ghost" : "primary"}
-                onClick={() =>
-                    mutate({
-                        resource: "canvases",
-                        id: record.id,
-                        values: {
-                            is_featured: !record.is_featured,
-                        },
-                        metaData: {
-                            canvas: record,
-                        },
-                    })
-                }
-            >
-                {record.is_featured ? "Unpromote" : "Promote"}
-            </Button>
-            <DeleteButton size="small" recordItemId={record.id} />
-        </Space>
-    )}
+  title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Actions</h4>}
+  dataIndex="actions"
+  render={(_, record) => (
+    <Space style={{ display: "flex", justifyContent: "center" }}>
+      <Button
+        size="small"
+        style={{ width: "100px" }}
+        type={record.is_featured ? "ghost" : "primary"}
+        onClick={() =>
+          mutate({
+            resource: "canvases",
+            id: record.id,
+            values: {
+              is_featured: !record.is_featured,
+            },
+            metaData: {
+              canvas: record,
+            },
+          })
+        }
+      >
+        {record.is_featured ? "Unpromote" : "Promote"}
+      </Button>
+      <DeleteButton size="small" recordItemId={record.id} />
+    </Space>
+  )}
 />
 ```
 

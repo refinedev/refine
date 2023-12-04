@@ -8,36 +8,32 @@ swizzle: true
 const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    legacyRouterProvider: routerProvider,
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
-    Sider: () => null,
-    catchAll: <RefineMantine.ErrorComponent />,
+  legacyRouterProvider: routerProvider,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  notificationProvider: RefineMantine.notificationProvider,
+  Layout: RefineMantine.Layout,
+  Sider: () => null,
+  catchAll: <RefineMantine.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <MantineCore.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <MantineCore.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <MantineNotifications.NotificationsProvider position="top-right">
-                {children}
-            </MantineNotifications.NotificationsProvider>
-        </MantineCore.MantineProvider>
-    );
+  return (
+    <MantineCore.MantineProvider theme={RefineMantine.LightTheme} withNormalizeCSS withGlobalStyles>
+      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <MantineNotifications.NotificationsProvider position="top-right">
+        {children}
+      </MantineNotifications.NotificationsProvider>
+    </MantineCore.MantineProvider>
+  );
 };
 ```
 
-`<ListButton>` is uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
+`<ListButton>` is uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `list` method from [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Usage
@@ -50,67 +46,67 @@ import { ShowButton } from "@refinedev/mantine";
 // visible-block-start
 import { useShow } from "@refinedev/core";
 import {
-    Show,
-    MarkdownField,
-    //highlight-next-line
-    ListButton,
+  Show,
+  MarkdownField,
+  //highlight-next-line
+  ListButton,
 } from "@refinedev/mantine";
 import { Title, Text } from "@mantine/core";
 
 const PostShow: React.FC = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        // highlight-next-line
-        <Show headerButtons={<ListButton />} isLoading={isLoading}>
-            <Title order={5}>Id</Title>
-            <Text mt="sm">{record?.id}</Text>
+  return (
+    // highlight-next-line
+    <Show headerButtons={<ListButton />} isLoading={isLoading}>
+      <Title order={5}>Id</Title>
+      <Text mt="sm">{record?.id}</Text>
 
-            <Title mt="sm" order={5}>
-                Title
-            </Title>
-            <Text mt="sm">{record?.title}</Text>
+      <Title mt="sm" order={5}>
+        Title
+      </Title>
+      <Text mt="sm">{record?.title}</Text>
 
-            <Title mt="sm" order={5}>
-                Content
-            </Title>
-            <MarkdownField value={record?.content} />
-        </Show>
-    );
+      <Title mt="sm" order={5}>
+        Content
+      </Title>
+      <MarkdownField value={record?.content} />
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 :::note
+
 The button text is defined automatically by **refine** based on _resource_ object name property.
+
 :::
 
 ## Properties
@@ -129,53 +125,53 @@ import { Button, Code, Space, Text } from "@mantine/core";
 import { ListButton } from "@refinedev/mantine";
 
 const MyListComponent = () => {
-    return <ListButton resource="categories" />;
+  return <ListButton resource="categories" />;
 };
 // visible-block-end
 
 const ListPage = () => {
-    const { list } = useNavigation();
-    const params = useRouterContext().useParams();
+  const { list } = useNavigation();
+  const params = useRouterContext().useParams();
 
-    return (
-        <div>
-            <Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </Text>
-            <Code>{JSON.stringify(params)}</Code>
-            <Space h="md" />
-            <Button size="xs" variant="outline" onClick={() => list("posts")}>
-                Go back
-            </Button>
-        </div>
-    );
+  return (
+    <div>
+      <Text italic color="dimmed" size="sm">
+        URL Parameters:
+      </Text>
+      <Code>{JSON.stringify(params)}</Code>
+      <Space h="md" />
+      <Button size="xs" variant="outline" onClick={() => list("posts")}>
+        Go back
+      </Button>
+    </div>
+  );
 };
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyListComponent,
-                },
-                {
-                    name: "categories",
-                    list: ListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyListComponent,
+        },
+        {
+          name: "categories",
+          list: ListPage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
-Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `list` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `list` method of [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `list` action path of the resource, filling the necessary parameters in the route.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
@@ -194,43 +190,39 @@ import { Refine } from "@refinedev/core";
 import { ListButton } from "@refinedev/mantine";
 
 const MyListComponent = () => {
-    return <ListButton hideText />;
+  return <ListButton hideText />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyListComponent,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyListComponent,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 ### `accessControl`
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/api-reference/core/providers/access-control-provider.md) is provided to [`<Refine/>`](/docs/api-reference/core/components/refine-config.md)
 
 ```tsx
 import { ListButton } from "@refinedev/mantine";
 
 export const MyListComponent = () => {
-    return (
-        <ListButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -250,53 +242,53 @@ import { Button, Code, Space, Text } from "@mantine/core";
 import { ListButton } from "@refinedev/mantine";
 
 const MyListComponent = () => {
-    return <ListButton resourceNameOrRouteName="categories" />;
+  return <ListButton resourceNameOrRouteName="categories" />;
 };
 // visible-block-end
 
 const ListPage = () => {
-    const { list } = useNavigation();
-    const params = useRouterContext().useParams();
+  const { list } = useNavigation();
+  const params = useRouterContext().useParams();
 
-    return (
-        <div>
-            <Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </Text>
-            <Code>{JSON.stringify(params)}</Code>
-            <Space h="md" />
-            <Button size="xs" variant="outline" onClick={() => list("posts")}>
-                Go back
-            </Button>
-        </div>
-    );
+  return (
+    <div>
+      <Text italic color="dimmed" size="sm">
+        URL Parameters:
+      </Text>
+      <Code>{JSON.stringify(params)}</Code>
+      <Space h="md" />
+      <Button size="xs" variant="outline" onClick={() => list("posts")}>
+        Go back
+      </Button>
+    </div>
+  );
 };
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyListComponent,
-                },
-                {
-                    name: "categories",
-                    list: ListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyListComponent,
+        },
+        {
+          name: "categories",
+          list: ListPage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
-Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
+Clicking the button will trigger the `list` method of [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
 ## API Reference
 

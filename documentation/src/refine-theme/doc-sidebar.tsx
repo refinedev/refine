@@ -1,17 +1,15 @@
-import React from "react";
-import { useDocsSidebar } from "@docusaurus/theme-common/internal";
+import Link from "@docusaurus/Link";
 import { useLocation } from "@docusaurus/router";
 import {
     isActiveSidebarItem,
-    // findFirstCategoryLink,
-    // useDocSidebarItemsExpandedState,
     isSamePath,
+    useDocsSidebar,
 } from "@docusaurus/theme-common/internal";
 import clsx from "clsx";
-import Link from "@docusaurus/Link";
-import { DashIcon } from "./icons/dash";
-import { ChevronDownIcon } from "./icons/chevron-down";
+import React from "react";
 import { HEADER_HEIGHT } from "./doc-header";
+import { ChevronDownIcon } from "./icons/chevron-down";
+import { DashIcon } from "./icons/dash";
 import { NewBadgeShiny } from "./icons/new-badge-shiny";
 import { RefineLogoShiny } from "./icons/refine-logo-shiny";
 
@@ -25,6 +23,7 @@ type SidebarCategoryItem = {
     label: string;
     items: SidebarItem[];
     className?: string;
+    customProps?: Record<string, unknown>;
 };
 
 type SidebarLinkItem = {
@@ -33,11 +32,15 @@ type SidebarLinkItem = {
     href: string;
     docId: string;
     className?: string;
+    customProps?: Record<string, unknown>;
 };
 
 type SidebarHtmlItem = {
     type: "html";
     content: string;
+    value: string;
+    className?: string;
+    customProps?: Record<string, unknown>;
 };
 
 type SidebarItem = SidebarCategoryItem | SidebarLinkItem | SidebarHtmlItem;
@@ -62,12 +65,16 @@ const SidebarCategory = ({
     onLinkClick?: () => void;
     deferred?: boolean;
 }) => {
-    const isHeader = item.className === "category-as-header";
+    const isHeader = item.className?.includes("category-as-header");
     const isActive = isActiveSidebarItem(item, path);
 
     const isSame = isSamePath(item.href, path);
 
-    const [collapsed, setCollapsed] = React.useState(!(isHeader || isActive));
+    const { collapsible } = item;
+
+    const [collapsed, setCollapsed] = React.useState(
+        collapsible === false ? false : !(isHeader || isActive),
+    );
 
     const [settled, setSettled] = React.useState(false);
 
@@ -78,8 +85,10 @@ const SidebarCategory = ({
     }, [collapsed]);
 
     const toggle = () => {
-        setCollapsed(!collapsed);
-        setSettled(false);
+        if (collapsible !== false) {
+            setCollapsed(!collapsed);
+            setSettled(false);
+        }
     };
 
     const Comp = !isHeader && item.href && !isSame ? Link : "button";
@@ -96,13 +105,17 @@ const SidebarCategory = ({
             <Comp
                 type="button"
                 onClick={isHeader ? () => 0 : toggle}
-                isNavLink
+                {...(Comp === "button"
+                    ? {}
+                    : {
+                          isNavLink: true,
+                      })}
                 href={item.href}
                 className={clsx(
                     isHeader && item.label !== "Getting Started" && "mt-6",
                     isHeader && "cursor-default",
                     "w-full",
-                    "min-h-[40px]",
+                    "min-h-[28px]",
                     "border-0",
                     "appearance-none",
                     "focus:outline-none",
@@ -112,8 +125,8 @@ const SidebarCategory = ({
                     isHeader ? "uppercase" : "",
                     "font-normal",
                     "flex items-center",
-                    "py-2",
-                    "pr-2",
+                    "py-1",
+                    "pr-0.5",
                     isHeader
                         ? "text-xs leading-4 tracking-widest"
                         : "text-sm leading-6",
@@ -216,6 +229,7 @@ const SidebarLink = ({
     line,
     variant,
     onClick,
+    code,
 }: {
     item: SidebarLinkItem;
     path: string;
@@ -223,6 +237,7 @@ const SidebarLink = ({
     line?: boolean;
     variant: Variant;
     onClick?: () => void;
+    code?: boolean;
 }) => {
     const ref = React.useRef<HTMLAnchorElement>(null);
     const isActive = isActiveSidebarItem(item, path);
@@ -246,7 +261,7 @@ const SidebarLink = ({
             onClick={onClick}
             className={clsx(
                 "relative",
-                "min-h-[40px]",
+                "min-h-[28px]",
                 isShiny &&
                     "bg-sidebar-item-shiny-light dark:bg-sidebar-item-shiny-dark rounded-xl",
                 isShiny
@@ -255,7 +270,7 @@ const SidebarLink = ({
                     ? "dark:text-gray-0 text-gray-900"
                     : "text-gray-500 dark:text-gray-400",
                 !isShiny && "hover:dark:text-gray-0 hover:text-gray-900",
-                isShiny ? "px-4 py-3" : "p-2",
+                isShiny ? "px-4 py-3" : "px-0.5 py-1",
                 "text-sm font-normal leading-6",
                 "flex items-start justify-start",
                 dashed && !line && "pl-0",
@@ -266,6 +281,7 @@ const SidebarLink = ({
                 "group",
                 "transition-colors duration-200 ease-in-out",
                 "no-underline",
+                code && "font-mono",
                 item.className,
             )}
         >
@@ -304,16 +320,55 @@ const SidebarLink = ({
 
 const SidebarHtml = ({
     item,
-    path,
     line,
-    variant,
 }: {
     item: SidebarHtmlItem;
     path: string;
     line?: boolean;
     variant: Variant;
+    dashed?: boolean;
+    code?: boolean;
 }) => {
-    return null;
+    return (
+        <div
+            className={clsx(
+                "relative",
+                "text-[10px]",
+                "font-normal leading-4",
+                "uppercase",
+                "tracking-widest",
+                "flex items-start justify-start",
+                "px-0.5 py-1",
+                line && "pl-5",
+                line && "ml-[11px]",
+                line && "border-l-2 border-l-gray-200 dark:border-l-gray-600",
+                "group",
+                "transition-colors duration-200 ease-in-out",
+                "no-underline",
+                "text-gray-500 dark:text-gray-400",
+                "after:content-['']",
+                "after:w-[calc(100%-9px)]",
+                "after:h-0.5",
+                "after:bg-gray-200",
+                "dark:after:bg-gray-600",
+                "after:absolute",
+                "after:left-0",
+                "after:top-1/2",
+                "after:-translate-y-1/2",
+            )}
+        >
+            <span
+                className={clsx(
+                    "z-[1]",
+                    "-ml-1",
+                    "px-1",
+                    "bg-gray-0",
+                    "dark:bg-gray-900",
+                )}
+                dangerouslySetInnerHTML={{ __html: item.value }}
+            />
+        </div>
+    );
 };
 
 type RenderItemConfig = {
@@ -341,6 +396,9 @@ const renderItems = ({
 }: RenderItemConfig) => {
     const hasCategory = items?.some((item) => item.type === "category");
     const isDashed = !root && hasCategory;
+
+    const componentRegex = /^<.*>/;
+    const hookRegex = /^use\w+/;
 
     return (
         items?.map((item, index) => {
@@ -377,6 +435,11 @@ const renderItems = ({
                             line={!!line}
                             variant={variant}
                             onClick={onLinkClick}
+                            code={
+                                item.className?.includes("font-mono") ||
+                                componentRegex.test(item.label) ||
+                                hookRegex.test(item.label)
+                            }
                         />
                     );
                 default:

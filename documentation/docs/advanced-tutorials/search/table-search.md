@@ -9,21 +9,21 @@ First, we create a form by extracting `searchFormProps` from `useTable`. We will
 
 ```tsx title="pages/list.tsx"
 import {
-    // highlight-next-line
-    useTable,
-    List,
+  // highlight-next-line
+  useTable,
+  List,
 } from "@refinedev/antd";
 import {
-    // highlight-start
-    Form,
-    Table,
-    // highlight-end
-    Row,
-    Col,
-    Button,
-    DatePicker,
-    Space,
-    Input,
+  // highlight-start
+  Form,
+  Table,
+  // highlight-end
+  Row,
+  Col,
+  Button,
+  DatePicker,
+  Space,
+  Input,
 } from "antd";
 // highlight-next-line
 import { SearchOutlined } from "@ant-design/icons";
@@ -31,44 +31,41 @@ import { SearchOutlined } from "@ant-design/icons";
 const { RangePicker } = DatePicker;
 
 export const ListPage: React.FC = () => {
-    // highlight-next-line
-    const { searchFormProps } = useTable<IPost>();
+  // highlight-next-line
+  const { searchFormProps } = useTable<IPost>();
 
-    return (
-        // highlight-start
-        <Row gutter={[16, 16]}>
-            <Col lg={6} xs={24}>
-                <Form layout="vertical" {...searchFormProps}>
-                    <Form.Item label="Search" name="q">
-                        <Input
-                            placeholder="ID, Title, Content, etc."
-                            prefix={<SearchOutlined />}
-                        />
-                    </Form.Item>
-                    <Form.Item label="Created At" name="createdAt">
-                        <RangePicker />
-                    </Form.Item>
-                    <Form.Item>
-                        <Button htmlType="submit" type="primary">
-                            Filter
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </Col>
-            <Col lg={18} xs={24}>
-                <List>
-                    <Table>...</Table>
-                </List>
-            </Col>
-        </Row>
-        // highlight-end
-    );
+  return (
+    // highlight-start
+    <Row gutter={[16, 16]}>
+      <Col lg={6} xs={24}>
+        <Form layout="vertical" {...searchFormProps}>
+          <Form.Item label="Search" name="q">
+            <Input placeholder="ID, Title, Content, etc." prefix={<SearchOutlined />} />
+          </Form.Item>
+          <Form.Item label="Created At" name="createdAt">
+            <RangePicker />
+          </Form.Item>
+          <Form.Item>
+            <Button htmlType="submit" type="primary">
+              Filter
+            </Button>
+          </Form.Item>
+        </Form>
+      </Col>
+      <Col lg={18} xs={24}>
+        <List>
+          <Table>...</Table>
+        </List>
+      </Col>
+    </Row>
+    // highlight-end
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
-    createdAt: string;
+  id: number;
+  title: string;
+  createdAt: string;
 }
 ```
 
@@ -76,7 +73,7 @@ interface IPost {
 
 <br />
 
-When the form is submitted, the `onSearch` method runs and we get the search form values. We have to return an object of type [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters) for this method.
+When the form is submitted, the `onSearch` method runs and we get the search form values. We have to return an object of type [`CrudFilters`](/docs/api-reference/core/interfaces.md#crudfilters) for this method.
 
 ```tsx title="pages/list.tsx"
 ...
@@ -113,7 +110,9 @@ const { searchFormProps } = useTable<IPost, HttpError, { title: string; createdA
 ```
 
 :::caution
+
 `CrudFilters` types object has `field`, `operator`, and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
+
 :::
 
 ## Example

@@ -2,9 +2,10 @@
 
 <div align="center" style="margin: 30px;">
     <a href="https://refine.dev">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/refine_logo.png"  align="center" />
+    <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
     </a>
 </div>
+
 <br/>
 
 This [refine](https://github.com/refinedev/refine) project was generated with [superplate](https://github.com/refinedev/refine).
@@ -42,7 +43,6 @@ To learn more about **refine**, please check out the [Documentation](https://ref
 - **Material UI** [Docs](https://refine.dev/docs/tutorial/introduction/index/)
 - **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
 - **REST Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
-
 
 ## License
 

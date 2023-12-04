@@ -33,24 +33,24 @@ import { BrowserRouter } from "react-router-dom";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "samples",
-                        list: "/posts",
-                    },
-                ]}
-            >
-                <Routes>
-                    {/* highlight-next-line */}
-                    <Route path="/posts" element={<HeadlessInferencer />} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        resources={[
+          {
+            name: "samples",
+            list: "/posts",
+          },
+        ]}
+      >
+        <Routes>
+          {/* highlight-next-line */}
+          <Route path="/posts" element={<HeadlessInferencer />} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
@@ -62,31 +62,31 @@ const App = () => {
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const SampleList = () => {
-    return (
-        // highlight-next-line
-        <HeadlessInferencer resource="samples" action="list" />
-    );
+  return (
+    // highlight-next-line
+    <HeadlessInferencer resource="samples" action="list" />
+  );
 };
 
 const SampleShow = () => {
-    return (
-        // highlight-next-line
-        <HeadlessInferencer resource="samples" action="show" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <HeadlessInferencer resource="samples" action="show" id="1" />
+  );
 };
 
 const SampleCreate = () => {
-    return (
-        // highlight-next-line
-        <HeadlessInferencer resource="samples" action="create" />
-    );
+  return (
+    // highlight-next-line
+    <HeadlessInferencer resource="samples" action="create" />
+  );
 };
 
 const SampleEdit = () => {
-    return (
-        // highlight-next-line
-        <HeadlessInferencer resource="samples" action="edit" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <HeadlessInferencer resource="samples" action="edit" id="1" />
+  );
 };
 ```
 
@@ -94,7 +94,9 @@ const SampleEdit = () => {
 </Tabs>
 
 :::info
+
 To learn more about the `@refinedev/inferencer` package, please check out [Docs](/docs/packages/documentation/inferencer)
+
 :::
 
 ## Views
@@ -119,42 +121,33 @@ import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                resources={[
-                    {
-                        // highlight-next-line
-                        name: "samples",
-                        list: "/samples",
-                        show: "/samples/show/:id",
-                        create: "/samples/create",
-                        edit: "/samples/edit/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    {/** highlight-next-line */}
-                    <Route path="/samples" element={<HeadlessInferencer />} />
-                    <Route
-                        path="/samples/create"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route
-                        path="/samples/show/:id"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route
-                        path="/samples/edit/:id"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route path="*" element={<div>Not Found</div>} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        resources={[
+          {
+            // highlight-next-line
+            name: "samples",
+            list: "/samples",
+            show: "/samples/show/:id",
+            create: "/samples/create",
+            edit: "/samples/edit/:id",
+          },
+        ]}
+      >
+        <Routes>
+          {/** highlight-next-line */}
+          <Route path="/samples" element={<HeadlessInferencer />} />
+          <Route path="/samples/create" element={<HeadlessInferencer />} />
+          <Route path="/samples/show/:id" element={<HeadlessInferencer />} />
+          <Route path="/samples/edit/:id" element={<HeadlessInferencer />} />
+          <Route path="*" element={<div>Not Found</div>} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 // visible-block-end
@@ -182,42 +175,33 @@ import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                resources={[
-                    {
-                        name: "samples",
-                        list: "/samples",
-                        // highlight-next-line
-                        show: "/samples/show/:id",
-                        create: "/samples/create",
-                        edit: "/samples/edit/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route path="/samples" element={<HeadlessInferencer />} />
-                    <Route
-                        path="/samples/create"
-                        element={<HeadlessInferencer />}
-                    />
-                    {/** highlight-next-line */}
-                    <Route
-                        path="/samples/show/:id"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route
-                        path="/samples/edit/:id"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route path="*" element={<div>Not Found</div>} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        resources={[
+          {
+            name: "samples",
+            list: "/samples",
+            // highlight-next-line
+            show: "/samples/show/:id",
+            create: "/samples/create",
+            edit: "/samples/edit/:id",
+          },
+        ]}
+      >
+        <Routes>
+          <Route path="/samples" element={<HeadlessInferencer />} />
+          <Route path="/samples/create" element={<HeadlessInferencer />} />
+          {/** highlight-next-line */}
+          <Route path="/samples/show/:id" element={<HeadlessInferencer />} />
+          <Route path="/samples/edit/:id" element={<HeadlessInferencer />} />
+          <Route path="*" element={<div>Not Found</div>} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 // visible-block-end
@@ -245,42 +229,33 @@ import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                resources={[
-                    {
-                        name: "samples",
-                        list: "/samples",
-                        // highlight-next-line
-                        create: "/samples/create",
-                        show: "/samples/show/:id",
-                        edit: "/samples/edit/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route path="/samples" element={<HeadlessInferencer />} />
-                    {/** highlight-next-line */}
-                    <Route
-                        path="/samples/create"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route
-                        path="/samples/show/:id"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route
-                        path="/samples/edit/:id"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route path="*" element={<div>Not Found</div>} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        resources={[
+          {
+            name: "samples",
+            list: "/samples",
+            // highlight-next-line
+            create: "/samples/create",
+            show: "/samples/show/:id",
+            edit: "/samples/edit/:id",
+          },
+        ]}
+      >
+        <Routes>
+          <Route path="/samples" element={<HeadlessInferencer />} />
+          {/** highlight-next-line */}
+          <Route path="/samples/create" element={<HeadlessInferencer />} />
+          <Route path="/samples/show/:id" element={<HeadlessInferencer />} />
+          <Route path="/samples/edit/:id" element={<HeadlessInferencer />} />
+          <Route path="*" element={<div>Not Found</div>} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 // visible-block-end
@@ -308,42 +283,33 @@ import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                resources={[
-                    {
-                        name: "samples",
-                        list: "/samples",
-                        show: "/samples/show/:id",
-                        create: "/samples/create",
-                        // highlight-next-line
-                        edit: "/samples/edit/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route path="/samples" element={<HeadlessInferencer />} />
-                    <Route
-                        path="/samples/create"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route
-                        path="/samples/show/:id"
-                        element={<HeadlessInferencer />}
-                    />
-                    {/** highlight-next-line */}
-                    <Route
-                        path="/samples/edit/:id"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route path="*" element={<div>Not Found</div>} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        resources={[
+          {
+            name: "samples",
+            list: "/samples",
+            show: "/samples/show/:id",
+            create: "/samples/create",
+            // highlight-next-line
+            edit: "/samples/edit/:id",
+          },
+        ]}
+      >
+        <Routes>
+          <Route path="/samples" element={<HeadlessInferencer />} />
+          <Route path="/samples/create" element={<HeadlessInferencer />} />
+          <Route path="/samples/show/:id" element={<HeadlessInferencer />} />
+          {/** highlight-next-line */}
+          <Route path="/samples/edit/:id" element={<HeadlessInferencer />} />
+          <Route path="*" element={<div>Not Found</div>} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 // visible-block-end

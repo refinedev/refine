@@ -1,8 +1,8 @@
-import React from "react";
-import clsx from "clsx";
 import { useDoc } from "@docusaurus/theme-common/internal";
+import clsx from "clsx";
+import React from "react";
 // import { useDocTOCwithTutorial } from "../components/tutorial-toc/index";
-import { useLocation } from "@docusaurus/router";
+import { useHistory, useLocation } from "@docusaurus/router";
 
 export const TOCItem = ({
     id,
@@ -25,17 +25,7 @@ export const TOCItem = ({
                 (entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            const hash = `#${id}`;
-                            if (hash !== window.location.hash) {
-                                onIdChange(id);
-                                if (typeof window !== "undefined") {
-                                    window.history.replaceState(
-                                        undefined,
-                                        undefined,
-                                        hash,
-                                    );
-                                }
-                            }
+                            onIdChange(id);
                         }
                     });
                 },
@@ -60,7 +50,8 @@ export const TOCItem = ({
                 level === 2 && "pl-3",
                 level === 3 && "pl-7",
                 level === 4 && "pl-11",
-                "py-2 pr-3",
+                level === 5 && "pl-11",
+                "py-1 pr-3",
                 "hover:bg-gray-200/40 dark:hover:bg-gray-700/80",
                 activeId === id &&
                     `dark:text-gray-0 text-gray-900 hover:text-gray-900 
@@ -86,8 +77,21 @@ export const TOCItem = ({
 };
 
 export const DocTOC = () => {
-    // const docTOC = useDocTOCwithTutorial();
+    const location = useLocation();
+    const history = useHistory();
+
     const { toc, hasTOC, activeId, setActiveId } = useTOC();
+
+    const onIdChange = (id) => {
+        if (id !== `${location.hash ?? ""}`.replace("#", "")) {
+            setActiveId(id);
+            // history.replace({
+            //     ...location,
+            //     hash: `#${id}`,
+            // });
+            window.history.replaceState({}, "", `#${id}`);
+        }
+    };
 
     return (
         <div
@@ -106,21 +110,21 @@ export const DocTOC = () => {
             )}
         >
             <ul>
-                {toc.map((item) => {
-                    return (
-                        <li key={item.id}>
-                            <TOCItem
-                                id={item.id}
-                                value={item.value}
-                                activeId={activeId}
-                                level={item.level}
-                                onIdChange={(id) => {
-                                    setActiveId(id);
-                                }}
-                            />
-                        </li>
-                    );
-                })}
+                {toc
+                    .filter((item) => item.level < 5)
+                    .map((item) => {
+                        return (
+                            <li key={item.id}>
+                                <TOCItem
+                                    id={item.id}
+                                    value={item.value}
+                                    activeId={activeId}
+                                    level={item.level}
+                                    onIdChange={onIdChange}
+                                />
+                            </li>
+                        );
+                    })}
             </ul>
         </div>
     );

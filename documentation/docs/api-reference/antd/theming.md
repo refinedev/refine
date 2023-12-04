@@ -24,15 +24,15 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 
 const App: React.FC = () => {
-    return (
-        <ConfigProvider theme={RefineThemes.Blue}>
-            <Refine
-            /* ... */
-            >
-                <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
-            </Refine>
-        </ConfigProvider>
-    );
+  return (
+    <ConfigProvider theme={RefineThemes.Blue}>
+      <Refine
+      /* ... */
+      >
+        <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+      </Refine>
+    </ConfigProvider>
+  );
 };
 ```
 
@@ -59,32 +59,32 @@ import { ConfigProvider } from "antd";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        // highlight-start
-        <ConfigProvider
-            theme={{
-                components: {
-                    Button: {
-                        borderRadius: 0,
-                    },
-                    Typography: {
-                        colorTextHeading: "#1890ff",
-                    },
-                },
-                token: {
-                    colorPrimary: "#f0f",
-                },
-            }}
-        >
-            {/* highlight-end */}
-            <Refine
-            /* ... */
-            >
-                <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
-            </Refine>
-            // highlight-next-line
-        </ConfigProvider>
-    );
+  return (
+    // highlight-start
+    <ConfigProvider
+      theme={{
+        components: {
+          Button: {
+            borderRadius: 0,
+          },
+          Typography: {
+            colorTextHeading: "#1890ff",
+          },
+        },
+        token: {
+          colorPrimary: "#f0f",
+        },
+      }}
+    >
+      {/* highlight-end */}
+      <Refine
+      /* ... */
+      >
+        <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+      </Refine>
+      // highlight-next-line
+    </ConfigProvider>
+  );
 };
 ```
 
@@ -104,27 +104,27 @@ Let's start with adding a switch to the `Header` component:
 import { Space, Button } from "antd";
 
 interface HeaderProps {
-    theme: "light" | "dark";
-    setTheme: (theme: "light" | "dark") => void;
+  theme: "light" | "dark";
+  setTheme: (theme: "light" | "dark") => void;
 }
 
 const Header: FC<HeaderProps> = (props) => {
-    return (
-        <Space
-            direction="vertical"
-            align="end"
-            style={{
-                padding: "1rem",
-            }}
-        >
-            <Button
-                onClick={() => {
-                    props.setTheme(props.theme === "light" ? "dark" : "light");
-                }}
-                icon={props.theme === "light" ? <IconMoonStars /> : <IconSun />}
-            />
-        </Space>
-    );
+  return (
+    <Space
+      direction="vertical"
+      align="end"
+      style={{
+        padding: "1rem",
+      }}
+    >
+      <Button
+        onClick={() => {
+          props.setTheme(props.theme === "light" ? "dark" : "light");
+        }}
+        icon={props.theme === "light" ? <IconMoonStars /> : <IconSun />}
+      />
+    </Space>
+  );
 };
 ```
 
@@ -138,27 +138,24 @@ import { ConfigProvider, theme } from "antd";
 import { Header } from "./Header";
 
 const App: React.FC = () => {
-    // highlight-next-line
-    const [currentTheme, setCurrentTheme] = useState<"light" | "dark">("dark");
+  // highlight-next-line
+  const [currentTheme, setCurrentTheme] = useState<"light" | "dark">("dark");
 
-    return (
-        <ConfigProvider
-            // highlight-start
-            theme={{
-                algorithm:
-                    currentTheme === "light"
-                        ? theme.defaultAlgorithm
-                        : theme.darkAlgorithm,
-            }}
-            // highlight-end
-        >
-            <Refine
-            /* ... */
-            >
-                <ThemedLayoutV2 Header={Header}>{/* ... */}</ThemedLayoutV2>
-            </Refine>
-        </ConfigProvider>
-    );
+  return (
+    <ConfigProvider
+      // highlight-start
+      theme={{
+        algorithm: currentTheme === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm,
+      }}
+      // highlight-end
+    >
+      <Refine
+      /* ... */
+      >
+        <ThemedLayoutV2 Header={Header}>{/* ... */}</ThemedLayoutV2>
+      </Refine>
+    </ConfigProvider>
+  );
 };
 ```
 

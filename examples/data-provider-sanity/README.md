@@ -49,20 +49,20 @@ import dataProvider from "refine-sanity";
 import { createClient } from "@sanity/client";
 
 const client = createClient({
-    token: "EDITOR_SANITY_ACCESS_TOKEN",
-    projectId: "SANITY_PROJECT_ID",
-    dataset: "SANITY_DATASET",
+  token: "EDITOR_SANITY_ACCESS_TOKEN",
+  projectId: "SANITY_PROJECT_ID",
+  dataset: "SANITY_DATASET",
 });
 
 const App = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider(client)}
-            /* ... */
-        >
-            {/* ... */}
-        </Refine>
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(client)}
+      /* ... */
+    >
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
@@ -76,7 +76,7 @@ const { tableProps, filters, sorters } = useTable<IPost>({
 });
 ```
 
-## Try it out on your local
+## Try this example on your local
 
 Run the following command to get this example app.
 
@@ -84,7 +84,7 @@ Run the following command to get this example app.
 npm create refine-app@latest -- --example data-provider-sanity
 ```
 
-## Try it out on CodeSandbox
+## Try this example on CodeSandbox
 
 <br/>
 
@@ -92,6 +92,6 @@ npm create refine-app@latest -- --example data-provider-sanity
 
 ## Resources
 
--   [Refer to Sanity docs](https://www.sanity.io/docs/getting-started-with-sanity).
--   [Refer to refine tutorial](https://refine.dev/docs/tutorial/introduction/index/).
--   [Refer to refine-sanity data provider package](https://www.npmjs.com/package/refine-sanity).
+- [Refer to Sanity docs](https://www.sanity.io/docs/getting-started-with-sanity).
+- [Refer to refine tutorial](https://refine.dev/docs/tutorial/introduction/index/).
+- [Refer to refine-sanity data provider package](https://www.npmjs.com/package/refine-sanity).

@@ -3,13 +3,7 @@ title: Develop your Own Customizable Invoice Generator with Refine and Strapi | 
 description: Looking for an invoice generator? Try out Refine. With our custom interface, you can build your own invoice in minutes! Learn more here.
 slug: refine-react-admin-invoice-genarator
 authors: melih
-tags:
-    [
-        refine,
-        tutorial,
-        react,
-        strapi,
-    ]
+tags: [refine, tutorial, react, strapi]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
@@ -84,84 +78,77 @@ export const axiosInstance = axios.create();
 const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
 export const authProvider: AuthBindings = {
-    login: async ({ username, password }) => {
-        const { data, status, statusText } = await strapiAuthHelper.login(
-            username,
-            password,
-        );
-        if (status === 200) {
-            localStorage.setItem(TOKEN_KEY, data.jwt);
+  login: async ({ username, password }) => {
+    const { data, status, statusText } = await strapiAuthHelper.login(username, password);
+    if (status === 200) {
+      localStorage.setItem(TOKEN_KEY, data.jwt);
 
-            // set header axios instance
-            axiosInstance.defaults.headers.common[
-                "Authorization"
-            ] = `Bearer ${data.jwt}`;
+      // set header axios instance
+      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
 
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        }
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    }
 
-        return {
-            success: false,
-            error: {
-                message: "Login failed",
-                name: statusText,
-            },
-        };
-    },
-    logout: async () => {
-        localStorage.removeItem(TOKEN_KEY);
-        return {
-            success: true,
-            redirectTo: "/",
-        };
-    },
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    check: async () => {
-        const token = localStorage.getItem(TOKEN_KEY);
-        if (token) {
-            axiosInstance.defaults.headers.common[
-                "Authorization"
-            ] = `Bearer ${token}`;
-            return {
-                authenticated: true,
-            };
-        }
+    return {
+      success: false,
+      error: {
+        message: "Login failed",
+        name: statusText,
+      },
+    };
+  },
+  logout: async () => {
+    localStorage.removeItem(TOKEN_KEY);
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  check: async () => {
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (token) {
+      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      return {
+        authenticated: true,
+      };
+    }
 
-        return {
-            authenticated: false,
-            logout: true,
-            error: {
-                message: "Check failed",
-                name: "Token not found",
-            },
-            redirectTo: "/",
-        };
-    },
-    getPermissions: async () => ({}),
-    getIdentity: async () => {
-        const token = localStorage.getItem(TOKEN_KEY);
-        if (!token) {
-            return null;
-        }
+    return {
+      authenticated: false,
+      logout: true,
+      error: {
+        message: "Check failed",
+        name: "Token not found",
+      },
+      redirectTo: "/",
+    };
+  },
+  getPermissions: async () => ({}),
+  getIdentity: async () => {
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (!token) {
+      return null;
+    }
 
-        const { data, status } = await strapiAuthHelper.me(token);
-        if (status === 200) {
-            const { id, username, email } = data;
-            return {
-                id,
-                username,
-                email,
-            };
-        }
+    const { data, status } = await strapiAuthHelper.me(token);
+    if (status === 200) {
+      const { id, username, email } = data;
+      return {
+        id,
+        username,
+        email,
+      };
+    }
 
-        return null;
-    },
+    return null;
+  },
 };
 ```
 
@@ -182,22 +169,22 @@ import { authProvider, axiosInstance } from "./authProvider";
 import "@refinedev/antd/dist/reset.css";
 
 function App() {
-    const API_URL = "Your_Strapi_Url";
-    //highlight-next-line
-    const dataProvider = DataProvider(API_URL + "/api", axiosInstance);
+  const API_URL = "Your_Strapi_Url";
+  //highlight-next-line
+  const dataProvider = DataProvider(API_URL + "/api", axiosInstance);
 
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            //highlight-start
-            dataProvider={dataProvider}
-            authProvider={authProvider}
-            //highlight-end
-            LoginPage={LoginPage}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      notificationProvider={notificationProvider}
+      Layout={Layout}
+      //highlight-start
+      dataProvider={dataProvider}
+      authProvider={authProvider}
+      //highlight-end
+      LoginPage={LoginPage}
+    />
+  );
 }
 ```
 
@@ -207,33 +194,33 @@ We created three collections on Strapi as `company`, `client` and `contact` and 
 
 `Company:`
 
--   Logo: Media
--   Name: Text
--   Address: Text
--   Country: Text
--   City: Text
--   email: Email
--   Website: Text
+- Logo: Media
+- Name: Text
+- Address: Text
+- Country: Text
+- City: Text
+- email: Email
+- Website: Text
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/company.png" alt="Strapi Company Collection" />
 <br />
 
 `Client:`
 
--   Name: Text
--   Contacts: Relation with Contact
+- Name: Text
+- Contacts: Relation with Contact
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/client.png" alt="Strapi Client Collection" />
 <br />
 
 `Contact:`
 
--   First_name: Text
--   Last_name: Text
--   Phone_number Text
--   Email: email
--   Job: Text
--   Client: Relation with Client
+- First_name: Text
+- Last_name: Text
+- Phone_number Text
+- Email: email
+- Job: Text
+- Client: Relation with Client
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/contact.png" alt="Strapi Contact Collection" />
 <br />
@@ -253,14 +240,7 @@ Let's design a component that includes the details of our company. Then let's sh
 <p>
 
 ```tsx title="src/components/company/CompanyItem.tsx"
-import {
-    Card,
-    DeleteButton,
-    UrlField,
-    EmailField,
-    EditButton,
-    Typography,
-} from "@refinedev/antd";
+import { Card, DeleteButton, UrlField, EmailField, EditButton, Typography } from "@refinedev/antd";
 
 import { ICompany } from "interfaces";
 import { API_URL } from "../../constants";
@@ -269,55 +249,50 @@ const { Title, Text } = Typography;
 
 //highlight-start
 type CompanyItemProps = {
-    item: ICompany;
+  item: ICompany;
 };
 //highlight-end
 
 export const CompanyItem: React.FC<CompanyItemProps> = ({ item }) => {
-    const image = item.logo ? API_URL + item.logo.url : "./error.png";
+  const image = item.logo ? API_URL + item.logo.url : "./error.png";
 
-    return (
-        //highlight-start
-        <Card
-            style={{ width: "300px" }}
-            cover={
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                    <img
-                        style={{
-                            width: 220,
-                            height: 100,
-                            padding: 24,
-                        }}
-                        src={image}
-                        alt="logo"
-                    />
-                </div>
-            }
-            actions={[
-                <EditButton key="edit" size="small" hideText />,
-                <DeleteButton
-                    key="delete"
-                    size="small"
-                    hideText
-                    recordItemId={item.id}
-                />,
-            ]}
-        >
-            <Title level={5}>Company Name:</Title>
-            <Text>{item.name}</Text>
-            <Title level={5}>Company Address:</Title>
-            <Text>{item.address}</Text>
-            <Title level={5}>County:</Title>
-            <Text>{item.country}</Text>
-            <Title level={5}>City:</Title>
-            <Text>{item.city}</Text>
-            <Title level={5}>Email:</Title>
-            <EmailField value={item.email} />
-            <Title level={5}>Website:</Title>
-            <UrlField value={item.website} />
-        </Card>
-        //highlight-end
-    );
+  return (
+    //highlight-start
+    <Card
+      style={{ width: "300px" }}
+      cover={
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <img
+            style={{
+              width: 220,
+              height: 100,
+              padding: 24,
+            }}
+            src={image}
+            alt="logo"
+          />
+        </div>
+      }
+      actions={[
+        <EditButton key="edit" size="small" hideText />,
+        <DeleteButton key="delete" size="small" hideText recordItemId={item.id} />,
+      ]}
+    >
+      <Title level={5}>Company Name:</Title>
+      <Text>{item.name}</Text>
+      <Title level={5}>Company Address:</Title>
+      <Text>{item.address}</Text>
+      <Title level={5}>County:</Title>
+      <Text>{item.country}</Text>
+      <Title level={5}>City:</Title>
+      <Text>{item.city}</Text>
+      <Title level={5}>Email:</Title>
+      <EmailField value={item.email} />
+      <Title level={5}>Website:</Title>
+      <UrlField value={item.website} />
+    </Card>
+    //highlight-end
+  );
 };
 ```
 
@@ -337,26 +312,26 @@ import { useSimpleList, AntdList, List } from "@refinedev/antd";
 import { CompanyItem } from "components/company";
 
 export const CompanyList: React.FC<IResourceComponentsProps> = () => {
-    const { listProps } = useSimpleList<ICompany>({
-        meta: { populate: ["logo"] },
-    });
+  const { listProps } = useSimpleList<ICompany>({
+    meta: { populate: ["logo"] },
+  });
 
-    return (
-        //highlight-start
-        <List title={"Your Companies"}>
-            <AntdList
-                grid={{ gutter: 16 }}
-                {...listProps}
-                renderItem={(item) => (
-                    <AntdList.Item>
-                        //highlight-next-line
-                        <CompanyItem item={item} />
-                    </AntdList.Item>
-                )}
-            />
-        </List>
-        //highlight-end
-    );
+  return (
+    //highlight-start
+    <List title={"Your Companies"}>
+      <AntdList
+        grid={{ gutter: 16 }}
+        {...listProps}
+        renderItem={(item) => (
+          <AntdList.Item>
+            //highlight-next-line
+            <CompanyItem item={item} />
+          </AntdList.Item>
+        )}
+      />
+    </List>
+    //highlight-end
+  );
 };
 ```
 
@@ -402,90 +377,65 @@ We fetch the data of the `Company` collection that we created by Strapi, thanks 
 Our `Contact Page` is a page related to `Clients`. Communication with client companies will be through the contacts we create here. The Contact Page will contain the information of the people we will contact. Let's create our list using **refine** [useTable](https://refine.dev/docs/ui-frameworks/antd/hooks/table/useTable/) hook.
 
 ```tsx title="src/pages/contact/ContactList.tsx"
-import {
-    List,
-    Table,
-    TagField,
-    useTable,
-    Space,
-    EditButton,
-    DeleteButton,
-    useModalForm,
-} from "@refinedev/antd";
+import { List, Table, TagField, useTable, Space, EditButton, DeleteButton, useModalForm } from "@refinedev/antd";
 
 import { IContact } from "interfaces";
 import { CreateContact } from "components/contacts";
 
 export const ContactsList: React.FC = () => {
-    //highlight-start
-    const { tableProps } = useTable<IContact>({
-        meta: { populate: ["client"] },
-    });
-    //highlight-end
+  //highlight-start
+  const { tableProps } = useTable<IContact>({
+    meta: { populate: ["client"] },
+  });
+  //highlight-end
 
-    const {
-        formProps: createContactFormProps,
-        modalProps,
-        show,
-    } = useModalForm({
-        resource: "contacts",
-        action: "create",
-        redirect: false,
-    });
+  const {
+    formProps: createContactFormProps,
+    modalProps,
+    show,
+  } = useModalForm({
+    resource: "contacts",
+    action: "create",
+    redirect: false,
+  });
 
-    return (
-        <>
-            <List
-                createButtonProps={{
-                    onClick: () => {
-                        show();
-                    },
-                }}
-            >
-                //highlight-start
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column dataIndex="first_name" title="First Name" />
-                    <Table.Column dataIndex="last_name" title="Last Name" />
-                    <Table.Column
-                        dataIndex="phone_number"
-                        title="Phone Number"
-                    />
-                    <Table.Column dataIndex="email" title="Email" />
-                    <Table.Column
-                        dataIndex="job"
-                        title="Job"
-                        render={(value: string) => (
-                            <TagField color={"blue"} value={value} />
-                        )}
-                    />
-                    <Table.Column<{ id: string }>
-                        title="Actions"
-                        dataIndex="actions"
-                        render={(_, record) => (
-                            <Space>
-                                <EditButton
-                                    hideText
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                                <DeleteButton
-                                    hideText
-                                    size="small"
-                                    recordItemId={record.id}
-                                />
-                            </Space>
-                        )}
-                    />
-                </Table>
-                //highlight-end
-            </List>
-            <CreateContact
-                modalProps={modalProps}
-                formProps={createContactFormProps}
-            />
-        </>
-    );
+  return (
+    <>
+      <List
+        createButtonProps={{
+          onClick: () => {
+            show();
+          },
+        }}
+      >
+        //highlight-start
+        <Table {...tableProps} rowKey="id">
+          <Table.Column dataIndex="id" title="ID" />
+          <Table.Column dataIndex="first_name" title="First Name" />
+          <Table.Column dataIndex="last_name" title="Last Name" />
+          <Table.Column dataIndex="phone_number" title="Phone Number" />
+          <Table.Column dataIndex="email" title="Email" />
+          <Table.Column
+            dataIndex="job"
+            title="Job"
+            render={(value: string) => <TagField color={"blue"} value={value} />}
+          />
+          <Table.Column<{ id: string }>
+            title="Actions"
+            dataIndex="actions"
+            render={(_, record) => (
+              <Space>
+                <EditButton hideText size="small" recordItemId={record.id} />
+                <DeleteButton hideText size="small" recordItemId={record.id} />
+              </Space>
+            )}
+          />
+        </Table>
+        //highlight-end
+      </List>
+      <CreateContact modalProps={modalProps} formProps={createContactFormProps} />
+    </>
+  );
 };
 ```
 
@@ -506,14 +456,7 @@ Let's design the cards that will appear in our Client List.
 
 ```tsx title="src/components/client/ClientItem.tsx"
 import { useDelete } from "@refinedev/core";
-import {
-    Card,
-    TagField,
-    Typography,
-    Dropdown,
-    Menu,
-    Icons,
-} from "@refinedev/antd";
+import { Card, TagField, Typography, Dropdown, Menu, Icons } from "@refinedev/antd";
 
 import { IClient } from "interfaces";
 
@@ -521,85 +464,80 @@ const { FormOutlined, DeleteOutlined } = Icons;
 const { Title, Text } = Typography;
 
 type ClientItemProps = {
-    item: IClient;
-    editShow: (id?: string | undefined) => void;
+  item: IClient;
+  editShow: (id?: string | undefined) => void;
 };
 
 export const ClientItem: React.FC<ClientItemProps> = ({ item, editShow }) => {
-    const { mutate } = useDelete();
+  const { mutate } = useDelete();
 
-    return (
-        <Card style={{ width: 300, height: 300, borderColor: "black" }}>
-            <div style={{ position: "absolute", top: "10px", right: "5px" }}>
-                <Dropdown
-                    overlay={
-                        <Menu mode="vertical">
-                            <Menu.Item
-                                key="1"
-                                style={{
-                                    fontWeight: 500,
-                                }}
-                                icon={
-                                    <FormOutlined
-                                        style={{
-                                            color: "green",
-                                        }}
-                                    />
-                                }
-                                onClick={() => editShow(item.id)}
-                            >
-                                Edit Client
-                            </Menu.Item>
-                            <Menu.Item
-                                key="2"
-                                style={{
-                                    fontWeight: 500,
-                                }}
-                                icon={
-                                    <DeleteOutlined
-                                        style={{
-                                            color: "red",
-                                        }}
-                                    />
-                                }
-                                onClick={() =>
-                                    mutate({
-                                        resource: "clients",
-                                        id: item.id,
-                                        mutationMode: "undoable",
-                                        undoableTimeout: 5000,
-                                    })
-                                }
-                            >
-                                Delete Client
-                            </Menu.Item>
-                        </Menu>
-                    }
-                    trigger={["click"]}
-                >
-                    <Icons.MoreOutlined
-                        style={{
-                            fontSize: 24,
-                        }}
-                    />
-                </Dropdown>
-            </div>
+  return (
+    <Card style={{ width: 300, height: 300, borderColor: "black" }}>
+      <div style={{ position: "absolute", top: "10px", right: "5px" }}>
+        <Dropdown
+          overlay={
+            <Menu mode="vertical">
+              <Menu.Item
+                key="1"
+                style={{
+                  fontWeight: 500,
+                }}
+                icon={
+                  <FormOutlined
+                    style={{
+                      color: "green",
+                    }}
+                  />
+                }
+                onClick={() => editShow(item.id)}
+              >
+                Edit Client
+              </Menu.Item>
+              <Menu.Item
+                key="2"
+                style={{
+                  fontWeight: 500,
+                }}
+                icon={
+                  <DeleteOutlined
+                    style={{
+                      color: "red",
+                    }}
+                  />
+                }
+                onClick={() =>
+                  mutate({
+                    resource: "clients",
+                    id: item.id,
+                    mutationMode: "undoable",
+                    undoableTimeout: 5000,
+                  })
+                }
+              >
+                Delete Client
+              </Menu.Item>
+            </Menu>
+          }
+          trigger={["click"]}
+        >
+          <Icons.MoreOutlined
+            style={{
+              fontSize: 24,
+            }}
+          />
+        </Dropdown>
+      </div>
 
-            <Title level={4}>{item.name}</Title>
-            <Title level={5}>Client Id:</Title>
-            <Text>{item.id}</Text>
-            <Title level={5}>Contacts:</Title>
+      <Title level={4}>{item.name}</Title>
+      <Title level={5}>Client Id:</Title>
+      <Text>{item.id}</Text>
+      <Title level={5}>Contacts:</Title>
 
-            {item.contacts.map((item) => {
-                return (
-                    <TagField
-                        color={"#d1c4e9"}
-                        value={`${item.first_name} ${item.last_name}`}
-                    />
-                );
-            })}
-        </Card>
-    );
+      {item.contacts.map((item) => {
+        return <TagField color={"#d1c4e9"} value={`${item.first_name} ${item.last_name}`} />;
+      })}
+    </Card>
+  );
 };
 ```
 
@@ -610,7 +548,7 @@ export const ClientItem: React.FC<ClientItemProps> = ({ item, editShow }) => {
 
 The client page is a place where you can update your client info and add new clients. Let's create the Create and Edit pages to create new customers and update existing customers.
 
--   Create Client
+- Create Client
 
 <details>
 <summary>Show Create Component</summary>
@@ -618,104 +556,93 @@ The client page is a place where you can update your client info and add new cli
 
 ```tsx title="src/components/client/CreateClient.tsx"
 import {
-    Create,
-    Drawer,
-    DrawerProps,
-    Form,
-    FormProps,
-    Input,
-    ButtonProps,
-    Grid,
-    Select,
-    useSelect,
-    useModalForm,
-    Button,
+  Create,
+  Drawer,
+  DrawerProps,
+  Form,
+  FormProps,
+  Input,
+  ButtonProps,
+  Grid,
+  Select,
+  useSelect,
+  useModalForm,
+  Button,
 } from "@refinedev/antd";
 
 import { IContact } from "interfaces";
 import { CreateContact } from "components/contacts";
 
 type CreateClientProps = {
-    drawerProps: DrawerProps;
-    formProps: FormProps;
-    saveButtonProps: ButtonProps;
+  drawerProps: DrawerProps;
+  formProps: FormProps;
+  saveButtonProps: ButtonProps;
 };
 
-export const CreateClient: React.FC<CreateClientProps> = ({
-    drawerProps,
-    formProps,
-    saveButtonProps,
-}) => {
-    const breakpoint = Grid.useBreakpoint();
+export const CreateClient: React.FC<CreateClientProps> = ({ drawerProps, formProps, saveButtonProps }) => {
+  const breakpoint = Grid.useBreakpoint();
 
-    const { selectProps } = useSelect<IContact>({
-        resource: "contacts",
-        optionLabel: "first_name",
-    });
+  const { selectProps } = useSelect<IContact>({
+    resource: "contacts",
+    optionLabel: "first_name",
+  });
 
-    const {
-        formProps: createContactFormProps,
-        modalProps,
-        show,
-    } = useModalForm({
-        resource: "contacts",
-        action: "create",
-        redirect: false,
-    });
+  const {
+    formProps: createContactFormProps,
+    modalProps,
+    show,
+  } = useModalForm({
+    resource: "contacts",
+    action: "create",
+    redirect: false,
+  });
 
-    return (
-        <>
-            <Drawer
-                {...drawerProps}
-                width={breakpoint.sm ? "500px" : "100%"}
-                bodyStyle={{ padding: 0 }}
+  return (
+    <>
+      <Drawer {...drawerProps} width={breakpoint.sm ? "500px" : "100%"} bodyStyle={{ padding: 0 }}>
+        <Create saveButtonProps={saveButtonProps}>
+          <Form
+            {...formProps}
+            layout="vertical"
+            initialValues={{
+              isActive: true,
+            }}
+          >
+            <Form.Item
+              label="Client Company Name"
+              name="name"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
             >
-                <Create saveButtonProps={saveButtonProps}>
-                    <Form
-                        {...formProps}
-                        layout="vertical"
-                        initialValues={{
-                            isActive: true,
-                        }}
-                    >
-                        <Form.Item
-                            label="Client Company Name"
-                            name="name"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item label="Select Contact">
-                            <div style={{ display: "flex" }}>
-                                <Form.Item name={"contacts"} noStyle>
-                                    <Select {...selectProps} mode="multiple" />
-                                </Form.Item>
-                                <Button type="link" onClick={() => show()}>
-                                    Create Contact
-                                </Button>
-                            </div>
-                        </Form.Item>
-                    </Form>
-                </Create>
-            </Drawer>
+              <Input />
+            </Form.Item>
+            <Form.Item label="Select Contact">
+              <div style={{ display: "flex" }}>
+                <Form.Item name={"contacts"} noStyle>
+                  <Select {...selectProps} mode="multiple" />
+                </Form.Item>
+                <Button type="link" onClick={() => show()}>
+                  Create Contact
+                </Button>
+              </div>
+            </Form.Item>
+          </Form>
+        </Create>
+      </Drawer>
 
-            <CreateContact
-                modalProps={modalProps}
-                formProps={createContactFormProps}
-            />
-        </>
-    );
+      <CreateContact modalProps={modalProps} formProps={createContactFormProps} />
+    </>
+  );
 };
 ```
 
 </p>
 </details>
 
--   Edit Client
+- Edit Client
 
 <details>
 <summary>Show Edit Component</summary>
@@ -723,68 +650,60 @@ export const CreateClient: React.FC<CreateClientProps> = ({
 
 ```tsx title="src/components/client/EditClient.tsx"
 import {
-    Edit,
-    Drawer,
-    DrawerProps,
-    Form,
-    FormProps,
-    Input,
-    ButtonProps,
-    Grid,
-    Select,
-    useSelect,
+  Edit,
+  Drawer,
+  DrawerProps,
+  Form,
+  FormProps,
+  Input,
+  ButtonProps,
+  Grid,
+  Select,
+  useSelect,
 } from "@refinedev/antd";
 
 type EditClientProps = {
-    drawerProps: DrawerProps;
-    formProps: FormProps;
-    saveButtonProps: ButtonProps;
+  drawerProps: DrawerProps;
+  formProps: FormProps;
+  saveButtonProps: ButtonProps;
 };
 
-export const EditClient: React.FC<EditClientProps> = ({
-    drawerProps,
-    formProps,
-    saveButtonProps,
-}) => {
-    const breakpoint = Grid.useBreakpoint();
+export const EditClient: React.FC<EditClientProps> = ({ drawerProps, formProps, saveButtonProps }) => {
+  const breakpoint = Grid.useBreakpoint();
 
-    const { selectProps } = useSelect({
-        resource: "contacts",
-        optionLabel: "first_name",
-    });
+  const { selectProps } = useSelect({
+    resource: "contacts",
+    optionLabel: "first_name",
+  });
 
-    return (
-        <Drawer
-            {...drawerProps}
-            width={breakpoint.sm ? "500px" : "100%"}
-            bodyStyle={{ padding: 0 }}
+  return (
+    <Drawer {...drawerProps} width={breakpoint.sm ? "500px" : "100%"} bodyStyle={{ padding: 0 }}>
+      <Edit saveButtonProps={saveButtonProps}>
+        <Form
+          {...formProps}
+          layout="vertical"
+          initialValues={{
+            isActive: true,
+          }}
         >
-            <Edit saveButtonProps={saveButtonProps}>
-                <Form
-                    {...formProps}
-                    layout="vertical"
-                    initialValues={{
-                        isActive: true,
-                    }}
-                >
-                    <Form.Item
-                        label="Client Company Name"
-                        name="name"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item label="Select Contact" name="contacts">
-                        <Select {...selectProps} mode="multiple" />
-                    </Form.Item>
-                </Form>
-            </Edit>
-        </Drawer>
-    );
+          <Form.Item
+            label="Client Company Name"
+            name="name"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item label="Select Contact" name="contacts">
+            <Select {...selectProps} mode="multiple" />
+          </Form.Item>
+        </Form>
+      </Edit>
+    </Drawer>
+  );
 };
 ```
 
@@ -798,77 +717,67 @@ Above, we created Card, Create and Edit components. Let's define and use these c
 ```tsx title="src/pages/client/ClientList.tsx"
 import { IResourceComponentsProps, HttpError } from "@refinedev/core";
 
-import {
-    useSimpleList,
-    AntdList,
-    List,
-    useDrawerForm,
-    CreateButton,
-} from "@refinedev/antd";
+import { useSimpleList, AntdList, List, useDrawerForm, CreateButton } from "@refinedev/antd";
 
 import { IClient } from "interfaces";
 //highlight-next-line
 import { ClientItem, CreateClient, EditClient } from "components/client";
 
 export const ClientList: React.FC<IResourceComponentsProps> = () => {
-    const { listProps } = useSimpleList<IClient>({
-        meta: { populate: ["contacts"] },
-    });
+  const { listProps } = useSimpleList<IClient>({
+    meta: { populate: ["contacts"] },
+  });
 
-    const {
-        drawerProps: createDrawerProps,
-        formProps: createFormProps,
-        saveButtonProps: createSaveButtonProps,
-        show: createShow,
-    } = useDrawerForm<IClient, HttpError, IClient>({
-        action: "create",
-        resource: "clients",
-        redirect: false,
-    });
+  const {
+    drawerProps: createDrawerProps,
+    formProps: createFormProps,
+    saveButtonProps: createSaveButtonProps,
+    show: createShow,
+  } = useDrawerForm<IClient, HttpError, IClient>({
+    action: "create",
+    resource: "clients",
+    redirect: false,
+  });
 
-    const {
-        drawerProps: editDrawerProps,
-        formProps: editFormProps,
-        saveButtonProps: editSaveButtonProps,
-        show: editShow,
-    } = useDrawerForm<IClient, HttpError, IClient>({
-        action: "edit",
-        resource: "clients",
-        redirect: false,
-    });
+  const {
+    drawerProps: editDrawerProps,
+    formProps: editFormProps,
+    saveButtonProps: editSaveButtonProps,
+    show: editShow,
+  } = useDrawerForm<IClient, HttpError, IClient>({
+    action: "edit",
+    resource: "clients",
+    redirect: false,
+  });
 
-    return (
-        <>
-            <List
-                pageHeaderProps={{
-                    extra: <CreateButton onClick={() => createShow()} />,
-                }}
-            >
-                <AntdList
-                    grid={{ gutter: 24, xs: 1 }}
-                    {...listProps}
-                    renderItem={(item) => (
-                        <AntdList.Item>
-                            //highlight-next-line
-                            <ClientItem item={item} editShow={editShow} />
-                        </AntdList.Item>
-                    )}
-                />
-            </List>
-            //highlight-start
-            <CreateClient
-                drawerProps={createDrawerProps}
-                formProps={createFormProps}
-                saveButtonProps={createSaveButtonProps}
-            />
-            <EditClient
-                drawerProps={editDrawerProps}
-                formProps={editFormProps}
-                saveButtonProps={editSaveButtonProps}
-            />
-            //highlight-end
-        </>
-    );
+  return (
+    <>
+      <List
+        pageHeaderProps={{
+          extra: <CreateButton onClick={() => createShow()} />,
+        }}
+      >
+        <AntdList
+          grid={{ gutter: 24, xs: 1 }}
+          {...listProps}
+          renderItem={(item) => (
+            <AntdList.Item>
+              //highlight-next-line
+              <ClientItem item={item} editShow={editShow} />
+            </AntdList.Item>
+          )}
+        />
+      </List>
+      //highlight-start
+      <CreateClient
+        drawerProps={createDrawerProps}
+        formProps={createFormProps}
+        saveButtonProps={createSaveButtonProps}
+      />
+      <EditClient drawerProps={editDrawerProps} formProps={editFormProps} saveButtonProps={editSaveButtonProps} />
+      //highlight-end
+    </>
+  );
 };
 ```
 
@@ -880,9 +789,11 @@ We created our `Client` and `Contact` pages. Now, let's create a Client with **r
 ## Example
 
 :::note Demo Credentials
+
 `Username`: demo
 
 `Password`: demodemo
+
 :::
 
 <CodeSandboxExample path="blog-invoice-generator" />

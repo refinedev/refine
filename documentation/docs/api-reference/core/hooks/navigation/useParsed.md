@@ -12,21 +12,21 @@ sidebar_label: useParsed 🆕
 import { useParsed } from "@refinedev/core";
 
 const MyComponent = () => {
-    const {
-        resource,
-        action,
-        id,
-        pathname,
-        params: {
-            filters,
-            sorters,
-            current,
-            pageSize,
-            ...restParams // Any other parameters are also parsed and available in `params`
-        },
-    } = useParsed();
+  const {
+    resource,
+    action,
+    id,
+    pathname,
+    params: {
+      filters,
+      sorters,
+      current,
+      pageSize,
+      ...restParams // Any other parameters are also parsed and available in `params`
+    },
+  } = useParsed();
 
-    /* ... */
+  /* ... */
 };
 ```
 
@@ -72,6 +72,6 @@ This is the object that contains all the parameters that are parsed from the URL
 
 ## Type Parameters
 
-| Property | Desription            | Default               |
+| Property | Description           | Default               |
 | -------- | --------------------- | --------------------- |
 | TParams  | Query parameters type | `Record<string, any>` |

@@ -8,7 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-24-typescript
 hide_table_of_contents: false
 ---
 
-
 ## Introduction
 
 TypeScript decorators are an extension that allows adding annotation and metaprogramming to class declarations and their members in TypeScript. TypeScript supports decorators syntax as an experimental feature which is distinct from JavaScript decorators that is currently a Stage 3 ECMAScript proposal. This post provides a brief walk through into the use of TypeScript decorators with examples from decorating a `User` class, its properties, accessors and methods.
@@ -21,6 +20,18 @@ In this post, we explore four main types of TypeScript Decorators with examples 
 Applying the decorators is done with `@`, which exposes several parameters such as the **class constructor** or **prototype** and where applicable, the **member key**, the **member descriptor** and the parameter index of a method argument. These exposed parameters are utilized to define necessary decorator functions that observe, modify or replace the construct subject to decoration.
 
 In the sections ahead, we work with an existing `User` class that we seek to decorate. However, below let's first talk about the environment we need to get started.
+
+Steps we'll cover:
+
+- [TypeScript and Runtime](#typescript-and-runtime)
+- [Enabling Decorators Support](#enabling-decorators-support)
+- [Decorating a Class with TypeScript Decorators](#decorating-a-class-with-typescript-decorators)
+- [TypeScript Decorators Syntax](#typescript-decorators-syntax)
+- [Class Decoration in TypeScript](#class-decoration-in-typescript)
+- [Property Decorators in TypeScript](#property-decorators-in-typescript)
+- [Accessor Decorators in TypeScript](#accessor-decorators-in-typescript)
+- [TypeScript Decorator Factories](#typescript-decorator-factories)
+- [Method Decorators in TypeScript](#method-decorators-in-typescript)
 
 ## Prerequisites
 
@@ -88,7 +99,7 @@ class User {
   }
 }
 
-const p = new User("exmapleUser", "example@exmaple.com");
+const p = new User("exampleUser", "example@exmaple.com");
 p.addressLine1 = "1, New Avenue";
 p.addressLine2 = "Bahcelievler, Istanbul";
 ```
@@ -157,10 +168,6 @@ itemToBeDecorated
 Here, `@` invokes the `decoratorName` function on the `itemToBeDecorated` subject. And it exposes appropriate parameters for the `decoratorName` to observe, modify and replace. These parameters vary according to whether the item is a class, property, method or a parameter. For example, when we want to decorate a class, the class `constructor` or the `prototype` is made available to the decorator function invoked by `@`. It then falls on the class decorator function to make use of this parameter for decorating the class.
 
 Let's explicate the idea by focusing on the `@frozen` decorator call which is a class decorator.
-
-
-
-
 
 ## Class Decoration in TypeScript
 
@@ -236,10 +243,7 @@ The `enumerable` wrapper below returns a function that takes the member `descrip
 function enumerable(isEnumerable: boolean) {
   return (target: any, key: string, descriptor: PropertyDescriptor) => {
     descriptor.enumerable = isEnumerable;
-    console.log(
-      "The enumerable property of this member is set to: " +
-        descriptor.enumerable
-    );
+    console.log("The enumerable property of this member is set to: " + descriptor.enumerable);
   };
 }
 ```
@@ -282,7 +286,7 @@ With the `@deprecated` decorator applied to `address()`, the following warning i
 // Warning: address() is deprecated. Use other methods instead.
 ```
 
-These are pretty much the major examples of decorators in TypeScript which can help us decorate a class and its members. Using parameter decorators give us more insight into how arguments act out in runtime. It is very useful to leverage the `reflect-metadata` library with parameter decorators. For a few exmaples, please check out [this section of the TypeScript decorators documentation](https://www.typescriptlang.org/docs/handbook/decorators.html#parameter-decorators).
+These are pretty much the major examples of decorators in TypeScript which can help us decorate a class and its members. Using parameter decorators give us more insight into how arguments act out in runtime. It is very useful to leverage the `reflect-metadata` library with parameter decorators. For a few examples, please check out [this section of the TypeScript decorators documentation](https://www.typescriptlang.org/docs/handbook/decorators.html#parameter-decorators).
 
 ## Summary
 

@@ -6,17 +6,17 @@ sidebar_label: Contributing
 
 We follow a [code of conduct][code_of_conduct] when participating in the community. Please read it before you make any contributions.
 
--   If you plan to work on an issue, mention so in the issue page before you start working on it.
--   If you plan to work on a new feature, create an issue and discuss it with other community members/maintainers.
--   Ask for help in our [community room][discord channel].
+- If you plan to work on an issue, mention so in the issue page before you start working on it.
+- If you plan to work on a new feature, create an issue and discuss it with other community members/maintainers.
+- Ask for help in our [community room][discord channel].
 
 ## Ways to contribute
 
--   **Stars on GitHub**: If you're a refine user and enjoy using our platform, don't forget to star it on [GitHub](https://github.com/refinedev/refine)! 🌟
--   **Improve documentation**: Good documentation is imperative to the success of any project. You can make our documents the best they need to be by improving their quality or adding new ones.
--   **Give feedback**: We're always looking for ways to make refine better, please share how you use refine, what features are missing and what is done good via [GitHub Discussions](https://github.com/refinedev/refine/discussions) or [Discord](http://discord.gg/refine).
--   **Share refine**: Help us reach people. Share [refine repository](https://github.com/refinedev/refine) with everyone who can be interested.
--   **Contribute to codebase**: your help is needed to make this project the best it can be! You could develop new features or fix [existing issues](https://github.com/refinedev/refine/issues) - every contribution will be welcomed with great pleasure!
+- **Stars on GitHub**: If you're a refine user and enjoy using our platform, don't forget to star it on [GitHub](https://github.com/refinedev/refine)! 🌟
+- **Improve documentation**: Good documentation is imperative to the success of any project. You can make our documents the best they need to be by improving their quality or adding new ones.
+- **Give feedback**: We're always looking for ways to make refine better, please share how you use refine, what features are missing and what is done good via [GitHub Discussions](https://github.com/refinedev/refine/discussions) or [Discord](http://discord.gg/refine).
+- **Share refine**: Help us reach people. Share [refine repository](https://github.com/refinedev/refine) with everyone who can be interested.
+- **Contribute to codebase**: your help is needed to make this project the best it can be! You could develop new features or fix [existing issues](https://github.com/refinedev/refine/issues) - every contribution will be welcomed with great pleasure!
 
 ## Commit convention
 
@@ -28,9 +28,9 @@ refine is a monorepo. For a monorepo, commit messages are essential to keep ever
 
 Examples:
 
--   `feat: allow provided config object to extend other configs`
--   `fix: array parsing issue when multiple spaces were contained in string`
--   `docs: correct spelling of CHANGELOG`
+- `feat: allow provided config object to extend other configs`
+- `fix: array parsing issue when multiple spaces were contained in string`
+- `docs: correct spelling of CHANGELOG`
 
 ## Changeset
 
@@ -44,9 +44,9 @@ npm run changeset
 
 After that you need to,
 
--   select the package(s) you are modifying
--   choose one of `major/patch/minor` according to your change
--   add explanation about the changes
+- select the package(s) you are modifying
+- choose one of `major/patch/minor` according to your change
+- add explanation about the changes
 
 explanation should follow the same format with commit convention with some extra description:
 
@@ -129,10 +129,13 @@ npm run dev:docs
 ```
 
 :::tip
+
 `dev:docs` and `dev:blog` scripts start a portion of the documentation and skips the unnecessary parts to speed up the development process such as type and props table generation, checklist generation, etc. If you want to start the documentation with all the features, you can use `npm run start` command.
+
 :::
 
 :::note Docgen plugin and Props Table
+
 If you are working on type generation and props tables for specific packages, you can use `INCLUDED_PACKAGES` environment variable to run the scripts for only the packages you are working on by providing comma delimited list of package directories.
 
 For example, if you are working on `@refinedev/antd` and `@refinedev/core` packages, which are located under `packages/antd` and `packages/core` directories, you can run the following command to generate type documentation for only these packages:
@@ -185,11 +188,15 @@ Please make sure you contribute well tested code.
 We're using live previews powered with [`react-live`](https://github.com/FormidableLabs/react-live) to demonstrate our components and logic with `refine` running at full functionality. To create a live preview, you should add `live` property to your code blocks in markdown files.
 
 :::tip
+
 You can use `import` statements to show them in the code block but they will be ignored when running the code. Instead all import statements related to **refine** will be converted into object destructures and prepended into code. This will allow you to do the import in the visible part of the code and also use them before the import statements. Check out [Defined Scope](#defined-scope) section to learn more about the available packages and variables.
+
 :::
 
 :::info
+
 refine Live Previews has an independent package apart from the documentation and the previews are rendered through this package via iframe. `@refinedev/live-previews` runs on `3030` port by default and the fallback value for `LIVE_PREVIEW_URL` is set to `http://localhost:3030` for development purposes. If you want to run both the previews package and the documentation at the same time, use `npm run start:doc` command.
+
 :::
 
 ### Properties
@@ -366,16 +373,16 @@ const { CreateButton } = RefineAntd;
 // highlight-end
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 
 // visible-block-start
@@ -386,66 +393,66 @@ import { Form, Input, Select } from "antd";
 // highlight-end
 
 const PostCreate: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name={["category", "id"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Status"
+          name="status"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select
+            options={[
+              {
+                label: "Published",
+                value: "published",
+              },
+              {
+                label: "Draft",
+                value: "draft",
+              },
+              {
+                label: "Rejected",
+                value: "rejected",
+              },
+            ]}
+          />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 // visible-block-end
 
@@ -457,34 +464,31 @@ setInitialRoutes(["/posts/create"]);
 // This part is required to render the preview.
 // highlight-start
 render(
-    <ReactRouterDom.BrowserRouter>
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                    create: "/posts/create",
-                },
-            ]}
-        >
-            <ReactRouterDom.Routes>
-                <ReactRouterDom.Route
-                    path="/posts"
-                    element={
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    }
-                />
-                <ReactRouterDom.Route
-                    path="/posts/create"
-                    element={<PostCreate />}
-                />
-            </ReactRouterDom.Routes>
-        </Refine>
-    </ReactRouterDom.BrowserRouter>,
+  <ReactRouterDom.BrowserRouter>
+    <Refine
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouterDom.Routes>
+        <ReactRouterDom.Route
+          path="/posts"
+          element={
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          }
+        />
+        <ReactRouterDom.Route path="/posts/create" element={<PostCreate />} />
+      </ReactRouterDom.Routes>
+    </Refine>
+  </ReactRouterDom.BrowserRouter>,
 );
 // highlight-end
 ```
@@ -530,23 +534,33 @@ render(
 | `setRefineProps`            | For live previews, you may need to set some props to `<Refine />` component that are unrelated to the code block you're writing. In those cases, you can use `setRefinProps` outside of the visible code block to set props or override the existing props. |
 
 :::tip
+
 Demo components are recommended to be used whenever possible to avoid unnecessary configuration at every code block. They are equipped with the `refine-react-router-v6` setup with `MemoryRouter`, `refine-simple-rest` data provider and the preferred UI Integration.
+
 :::
 
 :::info
+
 `Refine` component from `RefineCore` has the default prop `reactQueryDevtoolConfig` set to `false` to disable the React Query Dev Tools since it doesn't work with the production version of the React.
+
 :::
 
 :::info
+
 `setInitialRoutes` is a function to set the initial routes of the preview for `@refinedev/react-router-v6` using `MemoryRouter`. This function takes one argument `initialRoutes` which is an array of routes to be rendered initially. For example, if your component is rendered at `/posts/create`, you can pass `["/posts/create"]` as the argument.
+
 :::
 
 :::tip
+
 Make sure you use `setInitialRoutes` function before rendering the `<Refine/>` component. Otherwise, `MemoryRouter` will not be able to set the initial routes. For some cases, you might find setting `initialRoutes` prop of demo `<Refine/>` (`RefineHeadlessDemo`, `RefineMuiDemo` and `RefineAntdDemo`) components easier. There's no difference between the two approaches.
+
 :::
 
 :::tip
+
 `setRefineProps` is a function to set additional props to `<Refine />` or override existing props of `<Refine />`. Make sure you don't conflict with the props you set in the visible block while overriding; which may cause unwanted results.
+
 :::
 
 [lerna]: https://github.com/lerna/lerna

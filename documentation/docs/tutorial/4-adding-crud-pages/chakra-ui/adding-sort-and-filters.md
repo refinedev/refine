@@ -2,9 +2,9 @@
 id: adding-sort-and-filters
 title: 6. Adding Sort and Filters
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
-    next: tutorial/understanding-authprovider/index
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
+  next: tutorial/understanding-authprovider/index
 ---
 
 ## Sort and Filters
@@ -14,7 +14,9 @@ The `@refinedev/react-table` package is based on the [**TanStack Table**](https:
 **Tanstack Table** keeps the `sorting` and `filters` states in the `useTable` hook. When these states are changed, the `useTable` hook will automatically fetch the data and update the table with the new data.
 
 :::info
+
 Under the hood, `sorting` and `filters` states of **Tanstack Table** are converted to the `CrudSorting` and `CrudFilter` types of **refine**. So, when you change the **Tanstack Table**'s `sorting` or `filters` state, `useTable` hook will pass the converted params to the `getList` method of the `dataProvider`.
+
 :::
 
 Since `@refinedev/react-table` provides a headless solution, there are many ways to handle filtering and sorting. In this tutorial, we will show a basic way of adding sorting and filtering to the table.
@@ -28,29 +30,27 @@ import { IconButton } from "@chakra-ui/react";
 import { IconChevronDown, IconSelector, IconChevronUp } from "@tabler/icons";
 import type { Column, SortDirection } from "@tanstack/react-table";
 
-export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
-    column,
-}) => {
-    if (!column.getCanSort()) {
-        return null;
-    }
+export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({ column }) => {
+  if (!column.getCanSort()) {
+    return null;
+  }
 
-    const sorted = column.getIsSorted();
+  const sorted = column.getIsSorted();
 
-    return (
-        <IconButton
-            aria-label="Sort"
-            size="xs"
-            icon={<ColumnSorterIcon sorted={sorted} />}
-            onClick={column.getToggleSortingHandler()}
-        />
-    );
+  return (
+    <IconButton
+      aria-label="Sort"
+      size="xs"
+      icon={<ColumnSorterIcon sorted={sorted} />}
+      onClick={column.getToggleSortingHandler()}
+    />
+  );
 };
 
 const ColumnSorterIcon = ({ sorted }: { sorted: false | SortDirection }) => {
-    if (sorted === "asc") return <IconChevronDown size={18} />;
-    if (sorted === "desc") return <IconChevronUp size={18} />;
-    return <IconSelector size={18} />;
+  if (sorted === "asc") return <IconChevronDown size={18} />;
+  if (sorted === "desc") return <IconChevronUp size={18} />;
+  return <IconSelector size={18} />;
 };
 ```
 
@@ -61,7 +61,9 @@ In addition, we are using the `column.getCanSort()` method to check if the colum
 Lastly, if the column is not sorted, the `IconSelector` component is displayed; otherwise, either the `IconChevronDown` or `IconChevronUp` component is displayed based on the current sorting state.
 
 :::tip
+
 In this example, we are using the `@tabler/icons` package for icons but you can use any icon library you want.
+
 :::
 
 Now, we can finally use `<ColumnSorter/>` in our table header.
@@ -109,6 +111,7 @@ Finally, disable sorting for the `actions` column by setting the `enableSorting`
 Now, we can sort the table by clicking on the sort button in the table header.
 
 :::tip
+
 If you want to disable sorting for a specific column, you can set the `enableSorting` property of the column to `false` in the column definition:
 
 ```tsx
@@ -129,107 +132,82 @@ Create a `<ColumnFilter/>` component to use in our table header which will be re
 
 ```tsx title="src/components/table/ColumnFilter.tsx"
 import React, { useState } from "react";
-import {
-    Input,
-    Menu,
-    IconButton,
-    MenuButton,
-    MenuList,
-    VStack,
-    HStack,
-} from "@chakra-ui/react";
+import { Input, Menu, IconButton, MenuButton, MenuList, VStack, HStack } from "@chakra-ui/react";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
 import type { Column } from "@tanstack/react-table";
 
-export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
-    column,
-}) => {
-    const [state, setState] = useState(null as null | { value: any });
+export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({ column }) => {
+  const [state, setState] = useState(null as null | { value: any });
 
-    if (!column.getCanFilter()) {
-        return null;
+  if (!column.getCanFilter()) {
+    return null;
+  }
+
+  const open = () =>
+    setState({
+      value: column.getFilterValue(),
+    });
+
+  const close = () => setState(null);
+
+  const change = (value: any) => setState({ value });
+
+  const clear = () => {
+    column.setFilterValue(undefined);
+    close();
+  };
+
+  const save = () => {
+    if (!state) return;
+    column.setFilterValue(state.value);
+    close();
+  };
+
+  const renderFilterElement = () => {
+    const FilterComponent = (column.columnDef?.meta as any)?.filterElement;
+
+    if (!FilterComponent && !!state) {
+      return (
+        <Input
+          borderRadius="md"
+          size="sm"
+          autoComplete="off"
+          value={state.value}
+          onChange={(e) => change(e.target.value)}
+        />
+      );
     }
 
-    const open = () =>
-        setState({
-            value: column.getFilterValue(),
-        });
+    return <FilterComponent value={state?.value} onChange={(e: any) => change(e.target.value)} />;
+  };
 
-    const close = () => setState(null);
-
-    const change = (value: any) => setState({ value });
-
-    const clear = () => {
-        column.setFilterValue(undefined);
-        close();
-    };
-
-    const save = () => {
-        if (!state) return;
-        column.setFilterValue(state.value);
-        close();
-    };
-
-    const renderFilterElement = () => {
-        const FilterComponent = (column.columnDef?.meta as any)?.filterElement;
-
-        if (!FilterComponent && !!state) {
-            return (
-                <Input
-                    borderRadius="md"
-                    size="sm"
-                    autoComplete="off"
-                    value={state.value}
-                    onChange={(e) => change(e.target.value)}
-                />
-            );
-        }
-
-        return (
-            <FilterComponent
-                value={state?.value}
-                onChange={(e: any) => change(e.target.value)}
-            />
-        );
-    };
-
-    return (
-        <Menu isOpen={!!state} onClose={close}>
-            <MenuButton
-                onClick={open}
-                as={IconButton}
-                aria-label="Options"
-                icon={<IconFilter size="16" />}
-                variant="ghost"
-                size="xs"
-            />
-            <MenuList p="2">
-                {!!state && (
-                    <VStack align="flex-start">
-                        {renderFilterElement()}
-                        <HStack spacing="1">
-                            <IconButton
-                                aria-label="Clear"
-                                size="sm"
-                                colorScheme="red"
-                                onClick={clear}
-                            >
-                                <IconX size={18} />
-                            </IconButton>
-                            <IconButton
-                                aria-label="Save"
-                                size="sm"
-                                onClick={save}
-                                colorScheme="green"
-                            >
-                                <IconCheck size={18} />
-                            </IconButton>
-                        </HStack>
-                    </VStack>
-                )}
-            </MenuList>
-        </Menu>
-    );
+  return (
+    <Menu isOpen={!!state} onClose={close}>
+      <MenuButton
+        onClick={open}
+        as={IconButton}
+        aria-label="Options"
+        icon={<IconFilter size="16" />}
+        variant="ghost"
+        size="xs"
+      />
+      <MenuList p="2">
+        {!!state && (
+          <VStack align="flex-start">
+            {renderFilterElement()}
+            <HStack spacing="1">
+              <IconButton aria-label="Clear" size="sm" colorScheme="red" onClick={clear}>
+                <IconX size={18} />
+              </IconButton>
+              <IconButton aria-label="Save" size="sm" onClick={save} colorScheme="green">
+                <IconCheck size={18} />
+              </IconButton>
+            </HStack>
+          </VStack>
+        )}
+      </MenuList>
+    </Menu>
+  );
 };
 ```
 
@@ -243,78 +221,78 @@ Now, we can use `<ColumnFilter/>` in our table header.
 
 1. Import the `<ColumnFilter/>` component:
 
-    ```tsx title="src/pages/blog-posts/list.tsx"
-    import { ColumnFilter } from "../../components/table/ColumnFilter";
-    ```
+   ```tsx title="src/pages/blog-posts/list.tsx"
+   import { ColumnFilter } from "../../components/table/ColumnFilter";
+   ```
 
 2. Add the `<ColumnFilter/>` component to the `<Th/>` as a child:
 
-    ```tsx title="src/pages/blog-posts/list.tsx"
-    <Thead>
-        {getHeaderGroups().map((headerGroup) => (
-            <Tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                    <Th key={header.id}>
-                        {!header.isPlaceholder &&
-                            flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                            )}
-                        <ColumnSorter column={header.column} />
-                        //highlight-next-line
-                        <ColumnFilter column={header.column} />
-                    </Th>
-                ))}
-            </Tr>
-        ))}
-    </Thead>
-    ```
+   ```tsx title="src/pages/blog-posts/list.tsx"
+   <Thead>
+     {getHeaderGroups().map((headerGroup) => (
+       <Tr key={headerGroup.id}>
+         {headerGroup.headers.map((header) => (
+           <Th key={header.id}>
+             {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+             <ColumnSorter column={header.column} />
+             //highlight-next-line
+             <ColumnFilter column={header.column} />
+           </Th>
+         ))}
+       </Tr>
+     ))}
+   </Thead>
+   ```
 
 3. Change the filter operator for columns to "contains" by changing the `meta` property of the column definition:
 
-    ```tsx
-    {
-         id: "title",
-        accessorKey: "title",
-        header: "Title",
-        //highlight-start
-        meta: {
-            filterOperator: "contains",
-        },
-        //highlight-end
-    },
-    {
-        id: "content",
-        accessorKey: "content",
-        header: "Content",
-        //highlight-start
-        meta: {
-            filterOperator: "contains",
-        },
-        //highlight-end
-    },
-    ```
+   ```tsx
+   {
+        id: "title",
+       accessorKey: "title",
+       header: "Title",
+       //highlight-start
+       meta: {
+           filterOperator: "contains",
+       },
+       //highlight-end
+   },
+   {
+       id: "content",
+       accessorKey: "content",
+       header: "Content",
+       //highlight-start
+       meta: {
+           filterOperator: "contains",
+       },
+       //highlight-end
+   },
+   ```
 
-    :::tip
-    There are many values that you can pass to the `filterOperator`, for more information about them, refer to the [Filtering section of the `useTable` documentation&#8594](/docs/packages/documentation/react-table/#filtering)
-    :::
+   :::tip
+
+   There are many values that you can pass to the `filterOperator`, for more information about them, refer to the [Filtering section of the `useTable` documentation&#8594](/docs/packages/documentation/react-table/#filtering)
+
+   :::
 
 4. Disable filtering for the "actions" column by setting the `enableColumnFilter` property of the column to `false` in the column definition like below:
 
-    ```tsx
-    {
-        id: "actions",
-        accessorKey: "id",
-        header: "Actions",
-        //highlight-next-line
-        enableColumnFilter: false,
-        ...
-    },
-    ```
+   ```tsx
+   {
+       id: "actions",
+       accessorKey: "id",
+       header: "Actions",
+       //highlight-next-line
+       enableColumnFilter: false,
+       ...
+   },
+   ```
 
-    :::tip
-    You can similarly disable filtering for specific columns by setting their `enableColumnFilter` property to `false`.
-    :::
+   :::tip
+
+   You can similarly disable filtering for specific columns by setting their `enableColumnFilter` property to `false`.
+
+   :::
 
 Now, we can filter the table by clicking on the filter button in the table header.
 

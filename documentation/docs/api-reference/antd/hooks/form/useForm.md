@@ -7,122 +7,108 @@ source: packages/antd/src/hooks/form/useForm.ts
 
 ```tsx live shared
 import {
-    CloneButton as AntdCloneButton,
-    Create as AntdCreate,
-    EditButton as AntdEditButton,
-    List as AntdList,
-    useForm as useAntdForm,
-    useTable as useAntdTable,
+  CloneButton as AntdCloneButton,
+  Create as AntdCreate,
+  EditButton as AntdEditButton,
+  List as AntdList,
+  useForm as useAntdForm,
+  useTable as useAntdTable,
 } from "@refinedev/antd";
-import {
-    Edit as AntdEdit,
-    Form as AntdForm,
-    Input as AntdInput,
-    Space as AntdSpace,
-    Table as AntdTable,
-} from "antd";
+import { Edit as AntdEdit, Form as AntdForm, Input as AntdInput, Space as AntdSpace, Table as AntdTable } from "antd";
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 const PostList = () => {
-    const { tableProps } = useAntdTable();
+  const { tableProps } = useAntdTable();
 
-    return (
-        <AntdList>
-            <AntdTable {...tableProps} rowKey="id">
-                <AntdTable.Column dataIndex="id" title="ID" />
-                <AntdTable.Column dataIndex="title" title="Title" />
-                <AntdTable.Column
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <AntdSpace>
-                            <AntdEditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <AntdCloneButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </AntdSpace>
-                    )}
-                />
-            </AntdTable>
-        </AntdList>
-    );
+  return (
+    <AntdList>
+      <AntdTable {...tableProps} rowKey="id">
+        <AntdTable.Column dataIndex="id" title="ID" />
+        <AntdTable.Column dataIndex="title" title="Title" />
+        <AntdTable.Column
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <AntdSpace>
+              <AntdEditButton hideText size="small" recordItemId={record.id} />
+              <AntdCloneButton hideText size="small" recordItemId={record.id} />
+            </AntdSpace>
+          )}
+        />
+      </AntdTable>
+    </AntdList>
+  );
 };
 
 const PostEdit = () => {
-    const { formProps, saveButtonProps } = useAntdForm();
+  const { formProps, saveButtonProps } = useAntdForm();
 
-    return (
-        <AntdEdit saveButtonProps={saveButtonProps}>
-            <AntdForm {...formProps} layout="vertical">
-                <AntdForm.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput />
-                </AntdForm.Item>
-                <AntdForm.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput.TextArea />
-                </AntdForm.Item>
-            </AntdForm>
-        </AntdEdit>
-    );
+  return (
+    <AntdEdit saveButtonProps={saveButtonProps}>
+      <AntdForm {...formProps} layout="vertical">
+        <AntdForm.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput />
+        </AntdForm.Item>
+        <AntdForm.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput.TextArea />
+        </AntdForm.Item>
+      </AntdForm>
+    </AntdEdit>
+  );
 };
 
 const PostCreate = () => {
-    const { formProps, saveButtonProps } = useAntdForm();
+  const { formProps, saveButtonProps } = useAntdForm();
 
-    return (
-        <AntdCreate saveButtonProps={saveButtonProps}>
-            <AntdForm {...formProps} layout="vertical">
-                <AntdForm.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput />
-                </AntdForm.Item>
-                <AntdForm.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput.TextArea />
-                </AntdForm.Item>
-            </AntdForm>
-        </AntdCreate>
-    );
+  return (
+    <AntdCreate saveButtonProps={saveButtonProps}>
+      <AntdForm {...formProps} layout="vertical">
+        <AntdForm.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput />
+        </AntdForm.Item>
+        <AntdForm.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput.TextArea />
+        </AntdForm.Item>
+      </AntdForm>
+    </AntdCreate>
+  );
 };
 ```
 
@@ -140,44 +126,44 @@ import { Edit, useForm } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
 export const PostEdit: React.FC = () => {
-    // highlight-next-line
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  // highlight-next-line
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    return (
-        // highlight-next-line
-        <Edit saveButtonProps={saveButtonProps}>
-            // highlight-next-line
-            <Form {...formProps} layout="vertical">
-                <Form.Item label="Title" name="title">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Status" name="status">
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+  return (
+    // highlight-next-line
+    <Edit saveButtonProps={saveButtonProps}>
+      // highlight-next-line
+      <Form {...formProps} layout="vertical">
+        <Form.Item label="Title" name="title">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Status" name="status">
+          <Select
+            options={[
+              {
+                label: "Published",
+                value: "published",
+              },
+              {
+                label: "Draft",
+                value: "draft",
+              },
+              {
+                label: "Rejected",
+                value: "rejected",
+              },
+            ]}
+          />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 ```
 
@@ -192,7 +178,9 @@ Submit functionality is provided by `saveButtonProps` which includes all of the 
 `useForm` accepts type parameters for the record in use and for the response type of the mutation. `IPost` in the example represents the record to edit. It is also used as the default type for mutation response.
 
 :::tip
-If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/api-reference/antd/hooks/form/useModalForm.md) or the [useDrawerForm](/api-reference/antd/hooks/form/useDrawerForm.md) hook.
+
+If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/docs/api-reference/antd/hooks/form/useModalForm.md) or the [useDrawerForm](/docs/api-reference/antd/hooks/form/useDrawerForm.md) hook.
+
 :::
 
 > For more detailed usage examples, refer to the [Ant Design Form](https://ant.design/components/form/) documentation.
@@ -204,9 +192,11 @@ If you want to show a form in a modal or drawer where necessary route params mig
 `useForm` can handle `edit`, `create` and `clone` actions.
 
 :::tip
+
 By default, it determines the `action` from route. The action is inferred by matching the resource's action path with the current route.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
+
 :::
 
 <Tabs
@@ -232,54 +222,54 @@ import { Create, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 const PostCreatePage: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input.TextArea />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input.TextArea />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreatePage,
-            edit: PostEdit,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreatePage,
+      edit: PostEdit,
+    },
+  ],
 });
 
 render(<RefineAntdDemo />);
@@ -305,54 +295,54 @@ import { Edit, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 const PostEditPage: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input.TextArea />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input.TextArea />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreate,
-            edit: PostEditPage,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreate,
+      edit: PostEditPage,
+    },
+  ],
 });
 
 render(<RefineAntdDemo />);
@@ -378,54 +368,54 @@ import { Create, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 const PostCreatePage: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input.TextArea />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input.TextArea />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreatePage,
-            edit: PostEdit,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreatePage,
+      edit: PostEdit,
+    },
+  ],
 });
 
 render(<RefineAntdDemo />);
@@ -441,15 +431,15 @@ render(<RefineAntdDemo />);
 
 `resource` will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path but it all depends on how to handle the `resource` in your [`dataProvider`][data-provider].
 
-> For more information on how `resource` is handled, refer to the [`creating a data provider` section](/api-reference/core/providers/data-provider.md#creating-a-data-provider)
+> For more information on how `resource` is handled, refer to the [`creating a data provider` section](/docs/api-reference/core/providers/data-provider.md#creating-a-data-provider)
 
--   When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
--   When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
--   When `action` is `"clone"`, it will be passed to the [`create`][create] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
+- When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
+- When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
+- When `action` is `"clone"`, it will be passed to the [`create`][create] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
 
 ```tsx
 useForm({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -464,8 +454,8 @@ import { useParsed } from "@refinedev/core";
 const { id } = useParsed();
 
 useForm({
-    resource: "custom-resource",
-    id,
+  resource: "custom-resource",
+  id,
 });
 ```
 
@@ -475,7 +465,7 @@ Or you can use the `setId` function to set the `id` value.
 import { useForm } from "@refinedev/antd";
 
 const { setId } = useForm({
-    resource: "custom-resource",
+  resource: "custom-resource",
 });
 
 setId("123");
@@ -494,14 +484,16 @@ If you have multiple resources with the same name, you can pass the `identifier`
 It is useful when you want to `edit` or `clone` a `resource` from a different page.
 
 :::caution
+
 `id` is required for `action: "edit"` and `action: "clone"`.
+
 :::
 
 ```tsx
 useForm({
-    action: "edit", // or clone
-    resource: "categories",
-    id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
+  action: "edit", // or clone
+  resource: "categories",
+  id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
 });
 ```
 
@@ -513,7 +505,7 @@ It can be set to `"show" | "edit" | "list" | "create"` or `false` to prevent the
 
 ```tsx
 useForm({
-    redirect: false,
+  redirect: false,
 });
 ```
 
@@ -523,16 +515,16 @@ useForm({
 
 It receives the following parameters:
 
--   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
--   `variables`: The variables passed to the mutation.
--   `context`: react-query context.
--   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
+- `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
+- `variables`: The variables passed to the mutation.
+- `context`: react-query context.
+- `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
-    onMutationSuccess: (data, variables, context, isAutoSave) => {
-        console.log({ data, variables, context, isAutoSave });
-    },
+  onMutationSuccess: (data, variables, context, isAutoSave) => {
+    console.log({ data, variables, context, isAutoSave });
+  },
 });
 ```
 
@@ -542,16 +534,16 @@ It's a callback function that will be called after a mutation fails.
 
 It receives the following parameters:
 
--   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
--   `variables`: The variables passed to the mutation.
--   `context`: react-query context.
--   `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
+- `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
+- `variables`: The variables passed to the mutation.
+- `context`: react-query context.
+- `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
 
 ```tsx
 useForm({
-    onMutationError: (data, variables, context, isAutoSave) => {
-        console.log({ data, variables, context, isAutoSave });
-    },
+  onMutationError: (data, variables, context, isAutoSave) => {
+    console.log({ data, variables, context, isAutoSave });
+  },
 });
 ```
 
@@ -561,12 +553,12 @@ You can use `invalidates` to manage the invalidations that will occur at the end
 
 By default it's invalidates following queries from the current `resource`:
 
--   on `create` or `clone` mode: `"list"` and `"many"`
--   on `edit` mode: `"list"`, `"many"` and `"detail"`
+- on `create` or `clone` mode: `"list"` and `"many"`
+- on `edit` mode: `"list"`, `"many"` and `"detail"`
 
 ```tsx
 useForm({
-    invalidates: ["list", "many", "detail"],
+  invalidates: ["list", "many", "detail"],
 });
 ```
 
@@ -575,12 +567,14 @@ useForm({
 If there is more than one `dataProvider`, you should pass the name of the `dataProvider` you are going to use to `dataProviderName`.
 
 :::tip
+
 If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop](/docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
+
 :::
 
 ```tsx
 useForm({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -591,7 +585,7 @@ Each mode corresponds to a different type of user experience.
 
 ```tsx
 useForm({
-    mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
+  mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
 });
 ```
 
@@ -600,42 +594,46 @@ useForm({
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 `successNotification` allows you to customize the success notification that pops up after the form is submitted, and `useForm` calls the `open` function from [`NotificationProvider`][notification-provider]:
 
 ```tsx
 useForm({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `Post Successfully created with ${data.title}`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `Post Successfully created with ${data.title}`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`][notification-provider] is required for this prop to work.
+
 :::
 
 `errorNotification` allows you to customize the error notification that pops up after the form submission fails, and `useForm` calls the `open` function from [`NotificationProvider`][notification-provider]:
 
 ```tsx
 useForm({
-    action: "create",
-    resource: "post",
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when deleting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  action: "create",
+  resource: "post",
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when deleting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -651,37 +649,37 @@ useForm({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
--   Providing additional parameters to the redirection path after the form is submitted.
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Providing additional parameters to the redirection path after the form is submitted.
 
-> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useForm({
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
 });
 
 const myDataProvider = {
-    //...
-    // highlight-start
-    create: async ({ resource, variables, meta }) => {
-        const headers = meta?.headers ?? {};
-        // highlight-end
-        const url = `${apiUrl}/${resource}`;
+  //...
+  // highlight-start
+  create: async ({ resource, variables, meta }) => {
+    const headers = meta?.headers ?? {};
+    // highlight-end
+    const url = `${apiUrl}/${resource}`;
 
-        // highlight-next-line
-        const { data } = await httpClient.post(url, variables, { headers });
+    // highlight-next-line
+    const { data } = await httpClient.post(url, variables, { headers });
 
-        return {
-            data,
-        };
-    },
-    //...
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -691,14 +689,16 @@ In addition to the [`meta`](#meta) property, you can also pass the `queryMeta` p
 
 ```tsx
 useForm({
-    queryMeta: {
-        querySpecificValue: "someValue",
-    },
+  queryMeta: {
+    querySpecificValue: "someValue",
+  },
 });
 ```
 
 :::tip
+
 If you have overlapping properties in both `meta` and `queryMeta`, the `queryMeta` property will be used.
+
 :::
 
 ### `mutationMeta`
@@ -707,61 +707,69 @@ In addition to the [`meta`](#meta) property, you can also pass the `mutationMeta
 
 ```tsx
 useForm({
-    mutationMeta: {
-        mutationSpecificValue: "someValue",
-    },
+  mutationMeta: {
+    mutationSpecificValue: "someValue",
+  },
 });
 ```
 
 :::tip
+
 If you have overlapping properties in both `meta` and `mutationMeta`, the `mutationMeta` property will be used.
+
 :::
 
 ### `queryOptions`
 
 :::caution
+
 This works only in the `action: "edit"` and the `action: "clone"` mode.
+
 :::
 
 In the `edit` and `clone` modes, **refine** uses [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property.
 
 ```tsx
 useForm({
-    queryOptions: {
-        retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
+  },
 });
 ```
 
 ### `createMutationOptions`
 
 :::caution
+
 This option is only available when `action: "create"` or `action: "clone"`.
+
 :::
 
 In the `create` and `clone` modes, **refine** uses the [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing the `createMutationOptions` property.
 
 ```tsx
 useForm({
-    createMutationOptions: {
-        retry: 3,
-    },
+  createMutationOptions: {
+    retry: 3,
+  },
 });
 ```
 
 ### `updateMutationOptions`
 
 :::caution
+
 This option is only available when `action: "edit"`.
+
 :::
 
 In the `edit` mode, **refine** uses [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
 
 ```tsx
 useForm({
-    updateMutationOptions: {
-        retry: 3,
-    },
+  updateMutationOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -773,7 +781,7 @@ It can be set globally in [`refine config`](/docs/api-reference/core/components/
 
 ```tsx
 useForm({
-    warnWhenUnsavedChanges: true,
+  warnWhenUnsavedChanges: true,
 });
 ```
 
@@ -785,7 +793,7 @@ When it's true, `submitOnEnter` will submit the form when the enter key is press
 
 ```tsx
 useForm({
-    submitOnEnter: true,
+  submitOnEnter: true,
 });
 ```
 
@@ -795,7 +803,7 @@ useForm({
 
 ```tsx
 useForm({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
@@ -807,9 +815,9 @@ useForm({
 
 ```tsx
 useForm({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
@@ -826,20 +834,20 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useForm({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
 {
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
 }
 ```
 
@@ -852,7 +860,9 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
+
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -865,9 +875,9 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useForm({
-    autoSave: {
-        enabled: true,
-    },
+  autoSave: {
+    enabled: true,
+  },
 });
 ```
 
@@ -879,11 +889,11 @@ Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useForm({
-    autoSave: {
-        enabled: true,
-        // highlight-next-line
-        debounce: 2000,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    debounce: 2000,
+  },
 });
 ```
 
@@ -893,17 +903,17 @@ If you want to modify the data before sending it to the server, you can use `onF
 
 ```tsx
 useForm({
-    autoSave: {
-        enabled: true,
-        // highlight-start
-        onFinish: (values) => {
-            return {
-                foo: "bar",
-                ...values,
-            };
-        },
-        // highlight-end
+  autoSave: {
+    enabled: true,
+    // highlight-start
+    onFinish: (values) => {
+      return {
+        foo: "bar",
+        ...values,
+      };
     },
+    // highlight-end
+  },
 });
 ```
 
@@ -915,18 +925,20 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useForm({
-    autoSave: {
-        enabled: true,
-        // highlight-next-line
-        invalidateOnUnmount: true,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    invalidateOnUnmount: true,
+  },
 });
 ```
 
 ## Return Values
 
 :::tip
+
 All [`core useForm`](/docs/api-reference/core/hooks/useForm/) return values also available in `useForm`.
+
 :::
 
 ### `form`
@@ -991,13 +1003,13 @@ const { data } = mutationResult;
 const { id, setId } = useForm();
 
 const handleIdChange = (id: string) => {
-    setId(id);
+  setId(id);
 };
 
 return (
-    <div>
-        <input value={id} onChange={(e) => handleIdChange(e.target.value)} />
-    </div>
+  <div>
+    <input value={id} onChange={(e) => handleIdChange(e.target.value)} />
+  </div>
 );
 ```
 
@@ -1013,9 +1025,9 @@ const { onFinish, redirect } = useForm();
 // --
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = await onFinish(formValues);
-    redirect("show", data?.data?.id);
+  e.preventDefault();
+  const data = await onFinish(formValues);
+  redirect("show", data?.data?.id);
 };
 
 // --
@@ -1054,20 +1066,20 @@ It is useful when you want to `invalidate` other resources don't have relation w
 import { useForm } from "@refinedev/antd";
 
 const PostEdit = () => {
-    const invalidate = useInvalidate();
+  const invalidate = useInvalidate();
 
-    useForm({
-        // highlight-start
-        onMutationSuccess: (data, variables, context) => {
-            invalidate({
-                resource: "users",
-                invalidates: ["resourceAll"],
-            });
-        },
-        // highlight-end
-    });
+  useForm({
+    // highlight-start
+    onMutationSuccess: (data, variables, context) => {
+      invalidate({
+        resource: "users",
+        invalidates: ["resourceAll"],
+      });
+    },
+    // highlight-end
+  });
 
-    // ---
+  // ---
 };
 ```
 
@@ -1083,30 +1095,30 @@ import { Form, Input } from "antd";
 import React from "react";
 
 export const UserCreate: React.FC = () => {
-    // highlight-next-line
-    const { formProps, saveButtonProps, onFinish } = useForm();
+  // highlight-next-line
+  const { formProps, saveButtonProps, onFinish } = useForm();
 
-    // highlight-start
-    const handleOnFinish = (values) => {
-        onFinish({
-            fullName: `${values.name} ${values.surname}`,
-        });
-    };
-    // highlight-end
+  // highlight-start
+  const handleOnFinish = (values) => {
+    onFinish({
+      fullName: `${values.name} ${values.surname}`,
+    });
+  };
+  // highlight-end
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            // highlight-next-line
-            <Form {...formProps} onFinish={handleOnFinish} layout="vertical">
-                <Form.Item label="Name" name="name">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Surname" name="surname">
-                    <Input />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      // highlight-next-line
+      <Form {...formProps} onFinish={handleOnFinish} layout="vertical">
+        <Form.Item label="Name" name="name">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Surname" name="surname">
+          <Input />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 ```
 
@@ -1120,13 +1132,13 @@ You can use the `meta` property to pass common values to the mutation and the qu
 
 <PropsTable module="@refinedev/antd/useForm"/>
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/api-reference/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>
 
 ### Type Parameters
 
-| Property       | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                         | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
@@ -1137,20 +1149,20 @@ You can use the `meta` property to pass common values to the mutation and the qu
 
 ### Return values
 
-| Property        | Description                                             | Type                                                                                                                                                               |
-| --------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                     |
-| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                                 |
-| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                            |
-| saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                                    |
-| redirect        | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/api-reference/core/interfaces.md#basekey)\|`undefined`) => `data` |
-| queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                    |
-| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                                   |
-| formLoading     | Loading state of form request                           | `boolean`                                                                                                                                                          |
-| id              | Record id for `clone` and `create` action               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                                             |
-| setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                   |
-| overtime        | Overtime loading props                                  | `{ elapsedTime?: number }`                                                                                                                                         |
-| autoSaveProps   | Auto save props                                         | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                            |
+| Property        | Description                                             | Type                                                                                                                                                                    |
+| --------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                          |
+| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                                      |
+| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                 |
+| saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                                         |
+| redirect        | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/docs/api-reference/core/interfaces.md#basekey)\|`undefined`) => `data` |
+| queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                         |
+| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                                        |
+| formLoading     | Loading state of form request                           | `boolean`                                                                                                                                                               |
+| id              | Record id for `clone` and `create` action               | [`BaseKey`](/docs/api-reference/core/interfaces.md#basekey)                                                                                                             |
+| setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                        |
+| overtime        | Overtime loading props                                  | `{ elapsedTime?: number }`                                                                                                                                              |
+| autoSaveProps   | Auto save props                                         | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                                 |
 
 ## Example
 

@@ -1,13 +1,7 @@
 <div align="center" style="margin: 30px;">
-<a href="https://refine.dev/">
-<picture  style="display: inline-block;" >
-  <source media="(prefers-color-scheme: dark)" srcset="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-white-logo.png">
-  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-dark-logo.png">
-</picture>
 
-<br />
-<br />
-</a>
+![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/daisyui.jpg "Cover Image")
+
 
 <br />
 <br />
@@ -35,7 +29,6 @@
 
 </div>
 
-![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/daisyui.jpg "Cover Image")
 
 ## About
 
@@ -45,9 +38,7 @@ This example provides a great starting point to learn how to build a full-fledge
 
 refine is a React-based powerful framework for building low-code applications. It is primarily focused on implementing data-heavy apps such as internal tools, dashboards, admin panels, and storefronts. It comes with a core package that segregates app concerns like data handling, authentication, access control, etc., into React contexts. It also supports integration with industry standard backend systems such and UI frameworks. It is highly customizable and extensible. In this example, you get an opportunity to learn how to integrate **daisyUI** with **refine** for building an admin panel app.
 
-
 Refer to the complete tutorial of this app [here.](https://refine.dev/blog/daisy-ui-react-admin-panel/)
-
 
 ## Quick Start
 
@@ -67,18 +58,11 @@ Your application will be accessible at http://localhost:5173
 
 ![Dashboard Page](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/dash-1.png "Dashboard Page")
 
-
 ![Product List Page](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/dash-2.png "Product List Page")
-
 
 ![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/dash-3.png "Product Edit Page")
 
-
-
-
 ### Resources
-
-
 
 Refer to [daisyUI docs](https://daisyui.com/docs/install/) for more information.
 

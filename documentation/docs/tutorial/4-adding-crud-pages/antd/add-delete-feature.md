@@ -2,9 +2,9 @@
 id: add-delete-feature
 title: 5. Adding Delete Feature
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-create-page
-    next: tutorial/adding-crud-pages/{preferredUI}/adding-sort-and-filters
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-create-page
+  next: tutorial/adding-crud-pages/{preferredUI}/adding-sort-and-filters
 ---
 
 ## Adding Delete Feature to List Page
@@ -23,17 +23,17 @@ tutorial:
 
     ```tsx
     <Table.Column
-        title="Actions"
-        dataIndex="actions"
-        render={(_, record: BaseRecord) => (
-            <Space>
-                <EditButton hideText size="small" recordItemId={record.id} />
-                <ShowButton hideText size="small" recordItemId={record.id} />
-                //highlight-start
-                <DeleteButton hideText size="small" recordItemId={record.id} />
-                //highlight-end
-            </Space>
-        )}
+      title="Actions"
+      dataIndex="actions"
+      render={(_, record: BaseRecord) => (
+        <Space>
+          <EditButton hideText size="small" recordItemId={record.id} />
+          <ShowButton hideText size="small" recordItemId={record.id} />
+          //highlight-start
+          <DeleteButton hideText size="small" recordItemId={record.id} />
+          //highlight-end
+        </Space>
+      )}
     />
     ```
 
@@ -48,9 +48,7 @@ We can enable the delete feature on both show and edit pages while we are defini
 ```tsx src="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
-import routerBindings, {
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter } from "react-router-dom";
@@ -63,32 +61,32 @@ import { BlogPostCreate } from "pages/blog-posts/create";
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        // highlight-start
-                        meta: {
-                            canDelete: true,
-                        },
-                        // highlight-end
-                    },
-                ]}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                {/* ... */}
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerBindings}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        notificationProvider={notificationProvider}
+        resources={[
+          {
+            name: "blog_posts",
+            // highlight-start
+            meta: {
+              canDelete: true,
+            },
+            // highlight-end
+          },
+        ]}
+        options={{
+          syncWithLocation: true,
+          warnWhenUnsavedChanges: true,
+        }}
+      >
+        {/* ... */}
+        <UnsavedChangesNotifier />
+      </Refine>
+    </BrowserRouter>
+  );
 };
 export default App;
 ```

@@ -17,7 +17,9 @@ The hook is used internally by **refine**. In most cases, you won't need this ho
 ---
 
 :::info-tip
+
 **refine** uses [TanStack Query](https://tanstack.com/query/latest) to fetch and manage the state of the data. For more information about invalidation, please read the TanStack Query's [invalidation](https://tanstack.com/query/v4/docs/react/guides/query-invalidation) docs.
+
 :::
 
 ## Basic Usage
@@ -28,8 +30,8 @@ import { useInvalidate } from "@refinedev/core";
 const invalidate = useInvalidate();
 
 invalidate({
-    resource: "posts",
-    invalidates: ["list"],
+  resource: "posts",
+  invalidates: ["list"],
 });
 ```
 
@@ -39,8 +41,8 @@ To invalidate the `"list"` and `"many"` states of the Posts `resource`.
 
 ```ts
 invalidate({
-    resource: "posts",
-    invalidates: ["list", "many"],
+  resource: "posts",
+  invalidates: ["list", "many"],
 });
 ```
 
@@ -48,9 +50,9 @@ To invalidate the state of a Posts with an id of `1`.
 
 ```ts
 invalidate({
-    resource: "posts",
-    invalidates: ["detail"],
-    id: 1,
+  resource: "posts",
+  invalidates: ["detail"],
+  id: 1,
 });
 ```
 
@@ -58,9 +60,9 @@ To invalidate the `"list"` and `"many"` states of the Posts `resource` of the [`
 
 ```ts
 invalidate({
-    resource: "posts",
-    dataProviderName: "second-data-provider",
-    invalidates: ["list"],
+  resource: "posts",
+  dataProviderName: "second-data-provider",
+  invalidates: ["list"],
 });
 ```
 
@@ -68,8 +70,8 @@ To invalidate all states of the [`dataProvider`][data-provider] named `"second-d
 
 ```ts
 invalidate({
-    dataProviderName: "second-data-provider",
-    invalidates: ["all"],
+  dataProviderName: "second-data-provider",
+  invalidates: ["all"],
 });
 ```
 
@@ -77,13 +79,15 @@ To invalidate all states of the Posts.
 
 ```ts
 invalidate({
-    resource: "posts",
-    invalidates: ["resourceAll"],
+  resource: "posts",
+  invalidates: ["resourceAll"],
 });
 ```
 
 :::info
+
 `invalidate` function returns a promise that resolves when the invalidation process is completed.
+
 :::
 
 ## Invalidation Parameters
@@ -106,11 +110,11 @@ If there is more than one [`dataProvider`][data-provider], you should specify wh
 
 The states you want to invalidate. You can use the following values:
 
--   `"all"`: Invalidates all states of the all resources.
--   `"resourceAll"`: Invalidates all states of the given `resource`.
--   `"list"`: Invalidates the `"list"` state of the given `resource`.
--   `"detail"`: Invalidates the `"detail"` state of the given `resource` and `id`.
--   `"many"`: Invalidates the `"many"` state of the given `resource`.
+- `"all"`: Invalidates all states of the all resources.
+- `"resourceAll"`: Invalidates all states of the given `resource`.
+- `"list"`: Invalidates the `"list"` state of the given `resource`.
+- `"detail"`: Invalidates the `"detail"` state of the given `resource` and `id`.
+- `"many"`: Invalidates the `"many"` state of the given `resource`.
 
 ### `invalidationFilters` and `invalidationOptions`
 
@@ -128,7 +132,7 @@ By default settings, all the targeted queries are invalidated and the active one
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | <div className="required-block"><div>invalidates</div> <div className="required">Required</div></div> | The states you want to invalidate.                                | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                                                     |                                          |
 | resource                                                                                              | Resource name for State invalidation.                             | `string`                                                                                                                    |                                          |
-| id                                                                                                    | The `id` to use when invalidating the "detail" state.             | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                      |                                          |
+| id                                                                                                    | The `id` to use when invalidating the "detail" state.             | [`BaseKey`](/docs/api-reference/core/interfaces.md#basekey)                                                                 |                                          |
 | dataProviderName                                                                                      | The name of the data provider whose state you want to invalidate. | `string`                                                                                                                    | `default`                                |
 | invalidationFilters                                                                                   | The filters to use when picking queries to invalidate             | [`InvalidateQueryFilters`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries) | `{ type: "all", refetchType: "active" }` |
 | invalidationOptions                                                                                   | The options to use in the invalidation process                    | [`InvalidateOptions`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries)      | `{ cancelRefetch: false }`               |

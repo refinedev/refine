@@ -18,17 +18,17 @@ You will often meet various implementations in e-commerce stores, human resource
 
 Steps we'll cover:
 
--   [Why refine framework?](#why-refine-framework)
--   [App wireframe](#app-wireframe)
--   [Setting up the refine](#setting-up-the-refine)
--   [Add global styling](#add-global-styling)
--   [Creating the components](#creating-the-components)
-    -   [Creating a filter box](#creating-a-filter-box)
-    -   [Creating a search bar](#creating-a-search-bar)
-    -   [Content card](#content-card)
--   [Implementing the logic](#implementing-the-logic)
--   [Testing the app](#testing-the-app)
--   [Conclusion](#conclusion)
+- [Why refine framework?](#why-refine-framework)
+- [App wireframe](#app-wireframe)
+- [Setting up the refine](#setting-up-the-refine)
+- [Add global styling](#add-global-styling)
+- [Creating the components](#creating-the-components)
+  - [Creating a filter box](#creating-a-filter-box)
+  - [Creating a search bar](#creating-a-search-bar)
+  - [Content card](#content-card)
+- [Implementing the logic](#implementing-the-logic)
+- [Testing the app](#testing-the-app)
+- [Conclusion](#conclusion)
 
 Today we will be building a filtering system that will let us sort the results through filter buttons and custom search queries.
 
@@ -98,17 +98,17 @@ In order to create the global styles, we will replace the `src/App.css` file wit
 
 ```css title="src/App.css"
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
-    padding: 20px;
-    height: 100vh;
-    background-color: #fee140;
-    background-image: linear-gradient(90deg, #fee140 0%, #fa709a 100%);
+  padding: 20px;
+  height: 100vh;
+  background-color: #fee140;
+  background-image: linear-gradient(90deg, #fee140 0%, #fa709a 100%);
 }
 ```
 
@@ -133,39 +133,28 @@ After creating the files, we will add the following code to the `src/components/
 ```typescript title="src/components/filter/index.tsx"
 import styles from "./index.module.css";
 
-const capitalize = (str: string) =>
-    str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
 export const Filter = ({
-    title,
-    isActive,
-    onClick,
+  title,
+  isActive,
+  onClick,
 }: {
-    title: string;
-    isActive: boolean;
-    onClick: React.MouseEventHandler;
+  title: string;
+  isActive: boolean;
+  onClick: React.MouseEventHandler;
 }) => {
-    return (
-        <div
-            className={styles.wrapper}
-            onClick={onClick}
-            style={{ backgroundColor: `${isActive ? "lavender" : "white"}` }}
-        >
-            <div
-                className={styles.circle}
-                style={{
-                    borderColor: `${
-                        title === "draft"
-                            ? "gold"
-                            : title === "rejected"
-                            ? "tomato"
-                            : "limegreen"
-                    }`,
-                }}
-            ></div>
-            <h3 className={styles.title}>{capitalize(title)}</h3>
-        </div>
-    );
+  return (
+    <div className={styles.wrapper} onClick={onClick} style={{ backgroundColor: `${isActive ? "lavender" : "white"}` }}>
+      <div
+        className={styles.circle}
+        style={{
+          borderColor: `${title === "draft" ? "gold" : title === "rejected" ? "tomato" : "limegreen"}`,
+        }}
+      ></div>
+      <h3 className={styles.title}>{capitalize(title)}</h3>
+    </div>
+  );
 };
 ```
 
@@ -183,32 +172,32 @@ To style the component, we will add the following code to the `src/components/fi
 
 ```css title="src/components/filter/index.module.css"
 .wrapper {
-    display: flex;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    background-color: white;
-    align-items: center;
-    border-radius: 10px;
-    transition: transform 0.2s;
+  display: flex;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  align-items: center;
+  border-radius: 10px;
+  transition: transform 0.2s;
 }
 
 .wrapper:hover {
-    cursor: pointer;
-    transform: scale(1.05);
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .title {
-    text-align: left;
+  text-align: left;
 }
 
 .circle {
-    display: flex;
-    width: 20px;
-    height: 20px;
-    margin-right: 30px;
-    border-radius: 50%;
-    border-style: solid;
-    border-width: 5px;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  margin-right: 30px;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 5px;
 }
 ```
 
@@ -240,19 +229,8 @@ After creating the files, we will add the following code to the `src/components/
 ```typescript title="src/components/search/index.tsx"
 import styles from "./index.module.css";
 
-export const Search = ({
-    onChange,
-}: {
-    onChange: React.ChangeEventHandler;
-}) => {
-    return (
-        <input
-            className={styles.search}
-            type="text"
-            onChange={onChange}
-            placeholder="Search by the title ..."
-        />
-    );
+export const Search = ({ onChange }: { onChange: React.ChangeEventHandler }) => {
+  return <input className={styles.search} type="text" onChange={onChange} placeholder="Search by the title ..." />;
 };
 ```
 
@@ -264,18 +242,16 @@ To style the component, we will add the following code to the `src/components/se
 
 ```css title="src/components/search/index.module.css"
 .search {
-    width: 100%;
-    margin-bottom: 50px;
-    padding: 20px;
-    border: none;
-    border-radius: 10px;
-    font-size: 20px;
+  width: 100%;
+  margin-bottom: 50px;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
 }
 ```
 
 To style the search bar, we made it use all the available width of the parent wrapper, added margin and padding, removed the default border, made the search box rounded, and defined a specific font size.
-
-
 
 ### Content card
 
@@ -295,28 +271,17 @@ import styles from "./index.module.css";
 import { motion } from "framer-motion";
 
 export const Card = ({ title, status }: { title: string; status: string }) => {
-    return (
-        <motion.div
-            className={styles.wrapper}
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            exit={{ opacity: 0 }}
-        >
-            <div
-                className={styles.circle}
-                style={{
-                    borderColor: `${
-                        status === "draft"
-                            ? "gold"
-                            : status === "rejected"
-                            ? "tomato"
-                            : "limegreen"
-                    }`,
-                }}
-            ></div>
-            <h3 className={styles.title}>{title}</h3>
-        </motion.div>
-    );
+  return (
+    <motion.div className={styles.wrapper} animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}>
+      <div
+        className={styles.circle}
+        style={{
+          borderColor: `${status === "draft" ? "gold" : status === "rejected" ? "tomato" : "limegreen"}`,
+        }}
+      ></div>
+      <h3 className={styles.title}>{title}</h3>
+    </motion.div>
+  );
 };
 ```
 
@@ -332,27 +297,27 @@ To style the component, we will add the following code to the `src/components/ca
 
 ```css title="src/components/card/index.module.css"
 .wrapper {
-    display: grid;
-    grid-template-columns: 50px auto;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: white;
-    font-weight: bold;
-    align-items: center;
-    border-radius: 10px;
+  display: grid;
+  grid-template-columns: 50px auto;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  font-weight: bold;
+  align-items: center;
+  border-radius: 10px;
 }
 
 .wrapper:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .circle {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border-style: solid;
-    border-width: 5px;
-    border-radius: 50%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 50%;
 }
 ```
 
@@ -386,69 +351,52 @@ import { Card } from "../../components/card";
 import styles from "./index.module.css";
 
 export const Posts = () => {
-    const [inputValue, setInputValue] = useState("");
-    const [activeFilter, setActiveFilter] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [activeFilter, setActiveFilter] = useState("");
 
-    const posts = useMany<{
-        id: number;
-        title: string;
-        status: string;
-    }>({
-        resource: "posts",
-        ids: Array.from(Array(8).keys()).slice(1),
-    }).data?.data;
+  const posts = useMany<{
+    id: number;
+    title: string;
+    status: string;
+  }>({
+    resource: "posts",
+    ids: Array.from(Array(8).keys()).slice(1),
+  }).data?.data;
 
-    const filters: string[] = ["published", "draft", "rejected"];
+  const filters: string[] = ["published", "draft", "rejected"];
 
-    return (
-        <motion.div>
-            <div className={styles.filters}>
-                {filters.map((filter, index) => {
-                    return (
-                        <Filter
-                            key={index}
-                            title={filter}
-                            isActive={filter === activeFilter}
-                            onClick={(e: React.MouseEvent) => {
-                                const el = e.target as HTMLElement;
-                                el.textContent?.toLowerCase() !== activeFilter
-                                    ? setActiveFilter(filter)
-                                    : setActiveFilter("");
-                            }}
-                        />
-                    );
-                })}
-            </div>
-            <Search
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    setInputValue(e.target.value);
-                }}
+  return (
+    <motion.div>
+      <div className={styles.filters}>
+        {filters.map((filter, index) => {
+          return (
+            <Filter
+              key={index}
+              title={filter}
+              isActive={filter === activeFilter}
+              onClick={(e: React.MouseEvent) => {
+                const el = e.target as HTMLElement;
+                el.textContent?.toLowerCase() !== activeFilter ? setActiveFilter(filter) : setActiveFilter("");
+              }}
             />
-            <AnimatePresence>
-                {posts
-                    ?.filter((el) =>
-                        el.title
-                            .toLowerCase()
-                            .includes(inputValue.toLowerCase()),
-                    )
-                    .filter((e) => e.status.includes(activeFilter))
-                    .map(
-                        (
-                            post: { title: string; status: string },
-                            index: number,
-                        ) => {
-                            return (
-                                <Card
-                                    key={index}
-                                    title={post.title}
-                                    status={post.status}
-                                />
-                            );
-                        },
-                    )}
-            </AnimatePresence>
-        </motion.div>
-    );
+          );
+        })}
+      </div>
+      <Search
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          setInputValue(e.target.value);
+        }}
+      />
+      <AnimatePresence>
+        {posts
+          ?.filter((el) => el.title.toLowerCase().includes(inputValue.toLowerCase()))
+          .filter((e) => e.status.includes(activeFilter))
+          .map((post: { title: string; status: string }, index: number) => {
+            return <Card key={index} title={post.title} status={post.status} />;
+          })}
+      </AnimatePresence>
+    </motion.div>
+  );
 };
 ```
 
@@ -472,16 +420,16 @@ And that's it! We have successfully implemented the logic of the app. Now let's 
 
 ```css title="src/pages/posts/index.module.css"
 .filters {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 @media only screen and (max-width: 650px) {
-    .filters {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
+  .filters {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 }
 ```
 
@@ -497,10 +445,7 @@ Now that we have implemented the logic and added some styles, let's add the `<Po
 import { Refine, ErrorComponent } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import dataProvider from "@refinedev/simple-rest";
-import routerBindings, {
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
+import routerBindings, { UnsavedChangesNotifier, DocumentTitleHandler } from "@refinedev/react-router-v6";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { Posts } from "./pages/posts";
@@ -508,44 +453,42 @@ import { Posts } from "./pages/posts";
 import "./App.css";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    resources={[{ name: "posts", list: "/" }]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          routerProvider={routerBindings}
+          resources={[{ name: "posts", list: "/" }]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <div
+                  style={{
+                    maxWidth: "1000px",
+                    margin: "0 auto",
+                  }}
                 >
-                    <Routes>
-                        <Route
-                            element={
-                                <div
-                                    style={{
-                                        maxWidth: "1000px",
-                                        margin: "0 auto",
-                                    }}
-                                >
-                                    <Outlet />
-                                </div>
-                            }
-                        >
-                            <Route index element={<Posts />} />
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+                  <Outlet />
+                </div>
+              }
+            >
+              <Route index element={<Posts />} />
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -554,9 +497,11 @@ export default App;
 This is the root file of the refine app, where we passed `routeProvider` for the routing, `dataProvider` to access the data API, and included the resources on the `/` route to use the `Posts` component we created in the previous step of the tutorial.
 
 :::tip
+
 Dataproviders are refine components making it possible to consume different API's and data services conveniently.
 
 [Refer to the dataProvider documentation for detailed usage. →](https://refine.dev/docs/core/providers/data-provider/)
+
 :::
 
 Finally, we used wrapped the routes with `div` tags to add some styles to the layout.

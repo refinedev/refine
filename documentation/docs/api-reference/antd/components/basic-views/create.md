@@ -10,16 +10,16 @@ We will show what `<Create>` does using properties with examples.
 
 ```tsx live hideCode url=http://localhost:3000/posts/create
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 
 // visible-block-start
@@ -27,90 +27,92 @@ import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
 const PostCreate: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name={["category", "id"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Status"
+          name="status"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select
+            options={[
+              {
+                label: "Published",
+                value: "published",
+              },
+              {
+                label: "Draft",
+                value: "draft",
+              },
+              {
+                label: "Rejected",
+                value: "rejected",
+              },
+            ]}
+          />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
 :::info-tip Swizzle
+
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+
 :::
 
 ## Properties
@@ -126,31 +128,31 @@ const { Form, Input, Select, useForm, useSelect, CreateButton } = RefineAntd;
 import { Create } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create title="Custom Title">
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create title="Custom Title">
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -165,35 +167,35 @@ const { Form, Input, Select, useForm, useSelect, CreateButton } = RefineAntd;
 import { Create } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create saveButtonProps={{ size: "small" }}>
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create saveButtonProps={{ size: "small" }}>
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/api-reference/antd/components/buttons/save.md)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/api-reference/antd/components/buttons/save.md)
 
 ### `resource`
 
@@ -211,33 +213,33 @@ import { Refine } from "@refinedev/core";
 import { Create } from "@refinedev/antd";
 
 const MyComponent: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create resource="posts">
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create resource="posts">
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 const App: React.FC = () => {
-    return (
-        <RefineAntdDemo
-            legacyRouterProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <MyComponent />,
-                        path: "/custom",
-                    },
-                ],
-                // highlight-end
-            }}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <RefineAntdDemo
+      legacyRouterProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <MyComponent />,
+            path: "/custom",
+          },
+        ],
+        // highlight-end
+      }}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 
 render(<App />);
@@ -259,32 +261,32 @@ import { Create } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
-    const BackButton = () => <Button>←</Button>;
-    return (
-        /* highlight-next-line */
-        <Create goBack={<BackButton />}>
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  const BackButton = () => <Button>←</Button>;
+  return (
+    /* highlight-next-line */
+    <Create goBack={<BackButton />}>
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts", "/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts", "/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -299,16 +301,16 @@ import { Create } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
-    /* highlight-next-line */
-    const back = useBack();
-    const BackButton = () => <Button>←</Button>;
+  /* highlight-next-line */
+  const back = useBack();
+  const BackButton = () => <Button>←</Button>;
 
-    return (
-        /* highlight-next-line */
-        <Create goBack={<BackButton />} headerProps={{ onBack: back }}>
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create goBack={<BackButton />} headerProps={{ onBack: back }}>
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 ```
 
@@ -325,31 +327,31 @@ const { CreateButton } = RefineAntd;
 import { Create } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Create isLoading={true}>
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    /* highlight-next-line */
+    <Create isLoading={true}>
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -364,51 +366,53 @@ const { CreateButton } = RefineAntd;
 import { Create, Breadcrumb } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            breadcrumb={
-                <div
-                    style={{
-                        padding: "3px 6px",
-                        border: "2px dashed cornflowerblue",
-                    }}
-                >
-                    <Breadcrumb />
-                </div>
-            }
-            // highlight-end
+  return (
+    <Create
+      // highlight-start
+      breadcrumb={
+        <div
+          style={{
+            padding: "3px 6px",
+            border: "2px dashed cornflowerblue",
+          }}
         >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+          <Breadcrumb />
+        </div>
+      }
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
 :::tip
+
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+
 :::
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/antd/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/antd/components/breadcrumb.md)
 
 ### `wrapperProps`
 
@@ -421,39 +425,39 @@ const { CreateButton } = RefineAntd;
 import { Create } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            wrapperProps={{
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      wrapperProps={{
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -468,40 +472,40 @@ const { CreateButton } = RefineAntd;
 import { Create } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            headerProps={{
-                subTitle: "This is a subtitle",
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerProps={{
+        subTitle: "This is a subtitle",
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -518,39 +522,39 @@ const { CreateButton } = RefineAntd;
 import { Create } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            contentProps={{
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      contentProps={{
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -568,45 +572,45 @@ import { Create } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
 ### `headerButtonProps`
 
-You can use the `headerButtonProps` proeprty to customize the wrapper element of the buttons at the header:
+You can use the `headerButtonProps` property to customize the wrapper element of the buttons at the header:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
@@ -616,40 +620,40 @@ import { Create } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            headerButtonProps={{
-                style: {
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-            headerButtons={<Button type="primary">Custom Button</Button>}
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      headerButtonProps={{
+        style: {
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+      headerButtons={<Button type="primary">Custom Button</Button>}
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -669,39 +673,39 @@ import { Create } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            footerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -712,46 +716,42 @@ Or, instead of using the `defaultButtons`, you can create your own buttons. If y
 import { Create, SaveButton } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            footerButtons={({ saveButtonProps }) => (
-                <>
-                    <SaveButton
-                        {...saveButtonProps}
-                        type="primary"
-                        style={{ marginRight: 8 }}
-                    >
-                        Save
-                    </SaveButton>
-                    <Button type="primary">Custom Button</Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtons={({ saveButtonProps }) => (
+        <>
+          <SaveButton {...saveButtonProps} type="primary" style={{ marginRight: 8 }}>
+            Save
+          </SaveButton>
+          <Button type="primary">Custom Button</Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -767,43 +767,43 @@ import { Create } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            footerButtonProps={{
-                style: {
-                    // hide-start
-                    float: "right",
-                    marginRight: 24,
-                    // hide-end
-                    backgroundColor: "cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Create>
-    );
+  return (
+    <Create
+      // highlight-start
+      footerButtonProps={{
+        style: {
+          // hide-start
+          float: "right",
+          marginRight: 24,
+          // hide-end
+          backgroundColor: "cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Create>
+  );
 };
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/create"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <CreateButton />
+          </div>
+        ),
+        create: PostCreate,
+      },
+    ]}
+  />,
 );
 ```
 

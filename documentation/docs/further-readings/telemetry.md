@@ -60,10 +60,12 @@ Lastly, we collect the contact information, **if provided** upon project creatio
 | Email Address | Developer's Email Address. [**OPTIONAL**] |
 
 :::note
+
 refine.new is the cloud-based alternative to CLI for creating refine projects.
 It requires users signing in with an GitHub account and a limited set of public profile information is collected for analytics purposes. The collected data can also be automatically linked to the created project.
 
 Projects created with refine.new still can opt-out from telemetry by simply adding `disableTelemetry` prop to the `<Refine>` component's `options` prop.
+
 :::
 
 ## How to opt-out?
@@ -95,10 +97,12 @@ Additionally, the following information is extracted and collected from the HTTP
 | IP Address | IP Address of the machine the request is coming from. |
 
 :::note
+
 refine.new is the cloud-based alternative to CLI for creating refine projects.
 It requires users signing in with an GitHub account and a limited set of public profile information is collected for analytics purposes. The collected data can also be automatically linked to the created project.
 
 Projects created with refine.new still can opt-out from telemetry by simply adding `disableTelemetry` prop to the `<Refine>` component's `options` prop.
+
 :::
 
 ## How to opt-out?

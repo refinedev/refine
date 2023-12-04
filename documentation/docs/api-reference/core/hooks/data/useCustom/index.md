@@ -6,14 +6,16 @@ source: packages/core/src/hooks/data/useCustom.ts
 
 `useCustom` is used to send custom query requests using the Tanstack Query advantages. It is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `custom` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
+It uses the `custom` method as the **query function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
 :::danger attention
+
 `useCustom` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useUpdate](/docs/api-reference/core/hooks/data/useUpdate/) or [useDelete](/docs/api-reference/core/hooks/data/useDelete/)
 
 This is because `useCustom`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
 If you need to customize the mutation request, use the [useCustomMutation](/docs/api-reference/core/hooks/data/useCustomMutation/) hook instead.
+
 :::
 
 ## Basic Usage
@@ -26,22 +28,22 @@ When properties are changed, the `useCustom` hook will trigger a new request.
 import { useCustom, useApiUrl } from "@refinedev/core";
 
 interface PostUniqueCheckResponse {
-    isAvailable: boolean;
+  isAvailable: boolean;
 }
 
 const apiUrl = useApiUrl();
 
 const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
-    url: `${apiUrl}/posts-unique-check`,
-    method: "get",
-    config: {
-        headers: {
-            "x-custom-header": "foo-bar",
-        },
-        query: {
-            title: "Foo bar",
-        },
+  url: `${apiUrl}/posts-unique-check`,
+  method: "get",
+  config: {
+    headers: {
+      "x-custom-header": "foo-bar",
     },
+    query: {
+      title: "Foo bar",
+    },
+  },
 });
 ```
 
@@ -53,7 +55,7 @@ This prop will be passed to the `custom` method from the `dataProvider` as a par
 
 ```tsx
 useCustom({
-    url: "www.example.com/api/get-products",
+  url: "www.example.com/api/get-products",
 });
 ```
 
@@ -63,7 +65,7 @@ It will be passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    method: "get",
+  method: "get",
 });
 ```
 
@@ -73,11 +75,11 @@ It will be passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    config: {
-        headers: {
-            "x-custom-header": "foo-bar",
-        },
+  config: {
+    headers: {
+      "x-custom-header": "foo-bar",
     },
+  },
 });
 ```
 
@@ -87,11 +89,11 @@ It will be passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    config: {
-        query: {
-            title: "Foo bar",
-        },
+  config: {
+    query: {
+      title: "Foo bar",
     },
+  },
 });
 ```
 
@@ -101,11 +103,11 @@ It will be passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    config: {
-        payload: {
-            title: "Foo bar",
-        },
+  config: {
+    payload: {
+      title: "Foo bar",
     },
+  },
 });
 ```
 
@@ -115,14 +117,14 @@ It will be passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    config: {
-        sorters: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
-    },
+  config: {
+    sorters: [
+      {
+        field: "title",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
@@ -132,22 +134,24 @@ It will be passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    config: {
-        filters: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  config: {
+    filters: [
+      {
+        field: "title",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
 ### ~~`config.sort`~~
 
 :::caution Deprecated
+
 Use `config.sorters` instead.
+
 :::
 
 ### `queryOptions`
@@ -158,10 +162,10 @@ Use `config.sorters` instead.
 
 ```tsx
 useCustom({
-    queryOptions: {
-        retry: 3,
-        enabled: false,
-    },
+  queryOptions: {
+    retry: 3,
+    enabled: false,
+  },
 });
 ```
 
@@ -169,41 +173,32 @@ useCustom({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
 In the following example, `meta` is passed to the `custom` method from the `dataProvider` as a parameter:
 
 ```tsx
 useCustom({
-    meta: {
-        foo: "bar",
-    },
+  meta: {
+    foo: "bar",
+  },
 });
 
 const myDataProvider = {
-    //...
-    custom: async ({
-        url,
-        method,
-        sort,
-        filters,
-        payload,
-        query,
-        headers,
-        meta,
-    }) => {
-        const foo = meta?.foo;
+  //...
+  custom: async ({ url, method, sort, filters, payload, query, headers, meta }) => {
+    const foo = meta?.foo;
 
-        console.log(foo); // "bar"
+    console.log(foo); // "bar"
 
-        //...
-    },
     //...
+  },
+  //...
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### `dataProviderName`
 
@@ -211,73 +206,80 @@ This prop allows you to specify which `dataProvider` if you have more than one. 
 
 ```tsx
 useCustom({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCustom` calls the `open` function from `NotificationProvider`:
 
 ```tsx
 useCustom({
-    successNotification: (data, values) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useCustom` calls the `open` function from `NotificationProvider`
 
 ```tsx
 useCustom({
-    errorNotification: (data, values) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
 ### `overtimeOptions`
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
-`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval. 
+`interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
 
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
 const { overtime } = useCustom({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
-    }
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
+    },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
+
 ## FAQ
 
 ### How to invalidate the custom query?
@@ -298,9 +300,9 @@ Note that you'll need to know the query key to invalidate the query. If you don'
 import { useCustom } from "@refinedev/core";
 
 useCustom({
-    queryOptions: {
-        queryKey: ["custom-key"],
-    },
+  queryOptions: {
+    queryKey: ["custom-key"],
+  },
 });
 ```
 
@@ -318,7 +320,7 @@ By default, the query key is generated based on the properties passed to `useCus
 
 ### Type Parameters
 
-| Property     | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property     | Description                                                                                                                                                         | Type                       | Default                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

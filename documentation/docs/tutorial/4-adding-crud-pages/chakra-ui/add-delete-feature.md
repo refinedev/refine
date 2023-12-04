@@ -2,9 +2,9 @@
 id: add-delete-feature
 title: 5. Adding Delete Feature
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-create-page
-    next: tutorial/adding-crud-pages/{preferredUI}/adding-sort-and-filters
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-create-page
+  next: tutorial/adding-crud-pages/{preferredUI}/adding-sort-and-filters
 ---
 
 ## Adding Delete Feature to List Page
@@ -59,16 +59,9 @@ We can enable the delete feature on both show and edit pages while we are defini
 
 ```tsx src="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import routerBindings, {
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import {
-    ErrorComponent,
-    Layout,
-    refineTheme,
-    notificationProvider,
-} from "@refinedev/chakra-ui";
+import { ErrorComponent, Layout, refineTheme, notificationProvider } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -79,36 +72,34 @@ import { BlogPostShow } from "pages/blog-posts/show";
 import { BlogPostCreate } from "pages/blog-posts/create";
 
 const App = () => {
-    return (
-        <ChakraProvider theme={refineTheme}>
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerBindings}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            // highlight-start
-                            meta: {
-                                canDelete: true,
-                            },
-                            // highlight-end
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    {/* ... */}
-                    <UnsavedChangesNotifier />
-                </Refine>
-            </BrowserRouter>
-        </ChakraProvider>
-    );
+  return (
+    <ChakraProvider theme={refineTheme}>
+      <BrowserRouter>
+        <Refine
+          routerProvider={routerBindings}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          resources={[
+            {
+              name: "blog_posts",
+              // highlight-start
+              meta: {
+                canDelete: true,
+              },
+              // highlight-end
+            },
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          {/* ... */}
+          <UnsavedChangesNotifier />
+        </Refine>
+      </BrowserRouter>
+    </ChakraProvider>
+  );
 };
 export default App;
 ```

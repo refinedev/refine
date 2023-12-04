@@ -17,8 +17,7 @@ If you don't want to use the default Mantine theme, [`RefineThemes`](https://git
 const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
 
 // dark themes
-const { BlueDark, PurpleDark, MagentaDark, RedDark, OrangeDark, YellowDark } =
-    RefineThemes;
+const { BlueDark, PurpleDark, MagentaDark, RedDark, OrangeDark, YellowDark } = RefineThemes;
 ```
 
 ```tsx
@@ -28,15 +27,15 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={RefineThemes.Blue}>
-            <Refine
-            /* ... */
-            >
-                <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
-            </Refine>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={RefineThemes.Blue}>
+      <Refine
+      /* ... */
+      >
+        <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+      </Refine>
+    </ThemeProvider>
+  );
 };
 ```
 
@@ -64,54 +63,54 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 
 const App: React.FC = () => {
-    return (
-        // highlight-next-line
-        <ThemeProvider theme={YOUR_THEME_OBJECT}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="posts">
-                                <Route index element={<PostList />} />
-                                <Route path="create" element={<PostCreate />} />
-                                <Route path="edit/:id" element={<PostEdit />} />
-                            </Route>
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-            // highlight-next-line
-        </ThemeProvider>
-    );
+  return (
+    // highlight-next-line
+    <ThemeProvider theme={YOUR_THEME_OBJECT}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+              create: "/posts/create",
+              edit: "/posts/edit/:id",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="posts">
+                <Route index element={<PostList />} />
+                <Route path="create" element={<PostCreate />} />
+                <Route path="edit/:id" element={<PostEdit />} />
+              </Route>
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+      // highlight-next-line
+    </ThemeProvider>
+  );
 };
 
 export default App;
 ```
 
 :::tip
+
 We recommend using [`create refine-app`][create-refine-app] to initialize your **refine** projects. It configures the project according to your needs including SSR and Theme with Next.js.
+
 :::
 
 ## Passing the Theme to ThemeProvider
@@ -132,52 +131,44 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { SampleList, SampleCreate, SampleEdit } from "pages/samples";
 
 const App: React.FC = () => {
-    return (
-        <>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                            create: "/samples/create",
-                            edit: "/samples/edit/:id",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route index element={<NavigateToResource />} />
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="samples">
-                                <Route index element={<SampleList />} />
-                                <Route
-                                    path="create"
-                                    element={<SampleCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<SampleEdit />}
-                                />
-                            </Route>
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </>
-    );
+  return (
+    <>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          resources={[
+            {
+              name: "samples",
+              list: "/samples",
+              create: "/samples/create",
+              edit: "/samples/edit/:id",
+            },
+          ]}
+        >
+          <Routes>
+            <Route index element={<NavigateToResource />} />
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="samples">
+                <Route index element={<SampleList />} />
+                <Route path="create" element={<SampleCreate />} />
+                <Route path="edit/:id" element={<SampleEdit />} />
+              </Route>
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </>
+  );
 };
 
 render(<App />);
@@ -192,10 +183,10 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayoutV2,
-    ErrorComponent,
-    // highlight-next-line
-    RefineThemes,
+  ThemedLayoutV2,
+  ErrorComponent,
+  // highlight-next-line
+  RefineThemes,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
@@ -206,57 +197,46 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { SampleList, SampleCreate, SampleEdit } from "pages/samples";
 
 const App: React.FC = () => {
-    return (
-        // highlight-next-line
-        <ThemeProvider theme={RefineThemes.Blue}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                            create: "/samples/create",
-                            edit: "/samples/edit/:id",
-                            show: "/samples/show/:id",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="samples">
-                                <Route index element={<SampleList />} />
-                                <Route
-                                    path="create"
-                                    element={<SampleCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<SampleEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<SampleShow />}
-                                />
-                            </Route>
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </ThemeProvider>
-    );
+  return (
+    // highlight-next-line
+    <ThemeProvider theme={RefineThemes.Blue}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          resources={[
+            {
+              name: "samples",
+              list: "/samples",
+              create: "/samples/create",
+              edit: "/samples/edit/:id",
+              show: "/samples/show/:id",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="samples">
+                <Route index element={<SampleList />} />
+                <Route path="create" element={<SampleCreate />} />
+                <Route path="edit/:id" element={<SampleEdit />} />
+                <Route path="show/:id" element={<SampleShow />} />
+              </Route>
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
 };
 // visible-block-end
 
@@ -271,24 +251,26 @@ The best way to customize your theme is by changing the configuration variables.
 import { RefineThemes } from "@refinedev/mui";
 import { createTheme } from "@mui/material/styles";
 
-const overridedLightTheme = createTheme({
-    ...RefineThemes.Blue,
-    // highlight-start
-    palette: {
-        ...RefineThemes.Blue.palette,
-        primary: {
-            main: "#44d0c7",
-        },
-        secondary: {
-            main: "#2f82f1",
-        },
+const overriddenLightTheme = createTheme({
+  ...RefineThemes.Blue,
+  // highlight-start
+  palette: {
+    ...RefineThemes.Blue.palette,
+    primary: {
+      main: "#44d0c7",
     },
-    // highlight-end
+    secondary: {
+      main: "#2f82f1",
+    },
+  },
+  // highlight-end
 });
 ```
 
 :::tip
+
 Get a designer's opinion anyway - you'll be happy with the end result!
+
 :::
 
 When we easy-override our `RefineThemes`, it's going to look like this:
@@ -298,10 +280,10 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayoutV2,
-    ErrorComponent,
-    // highlight-next-line
-    RefineThemes,
+  ThemedLayoutV2,
+  ErrorComponent,
+  // highlight-next-line
+  RefineThemes,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
@@ -311,58 +293,56 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { SampleList } from "./pages/samples";
 
-const overridedLightTheme = {
-    ...RefineThemes.Blue,
-    // highlight-start
-    palette: {
-        ...RefineThemes.Blue.palette,
-        primary: {
-            main: "#44d0c7",
-        },
-        secondary: {
-            main: "#2f82f1",
-        },
+const overriddenLightTheme = {
+  ...RefineThemes.Blue,
+  // highlight-start
+  palette: {
+    ...RefineThemes.Blue.palette,
+    primary: {
+      main: "#44d0c7",
     },
-    // highlight-end
+    secondary: {
+      main: "#2f82f1",
+    },
+  },
+  // highlight-end
 };
 
 const App: React.FC = () => {
-    return (
-        // highlight-next-line
-        <ThemeProvider theme={overridedLightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="samples">
-                                <Route index element={<SampleList />} />
-                            </Route>
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </ThemeProvider>
-    );
+  return (
+    // highlight-next-line
+    <ThemeProvider theme={overriddenLightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          resources={[
+            {
+              name: "samples",
+              list: "/samples",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="samples">
+                <Route index element={<SampleList />} />
+              </Route>
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
 };
 // visible-block-end
 
@@ -376,26 +356,26 @@ import { RefineThemes } from "@refinedev/mui";
 import { TypographyVariantsOptions, createTheme } from "@mui/material/styles";
 
 const typography: TypographyVariantsOptions = {
-    fontFamily: [
-        "Montserrat",
-        "-apple-system",
-        "BlinkMacSystemFont",
-        '"Segoe UI"',
-        "Roboto",
-        '"Helvetica Neue"',
-        "Arial",
-        "sans-serif",
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-    ].join(","),
+  fontFamily: [
+    "Montserrat",
+    "-apple-system",
+    "BlinkMacSystemFont",
+    '"Segoe UI"',
+    "Roboto",
+    '"Helvetica Neue"',
+    "Arial",
+    "sans-serif",
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(","),
 };
 
-const overridedLightTheme = createTheme({
-    ...RefineThemes.Blue,
-    typography: {
-        ...typographyOptions,
-    },
+const overriddenLightTheme = createTheme({
+  ...RefineThemes.Blue,
+  typography: {
+    ...typographyOptions,
+  },
 });
 ```
 
@@ -408,19 +388,19 @@ If you are overriding the `fontFamily` in typography, you can add the `<link>` t
 ```html title="index.html"
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        // highlight-start
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
-            rel="stylesheet"
-        />
-        // highlight-end
-        <title>refine adding font family example</title>
-    </head>
+  <head>
+    // highlight-start
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    // highlight-end
+    <title>refine adding font family example</title>
+  </head>
 
-    <body>
-        ...
-    </body>
+  <body>
+    ...
+  </body>
 </html>
 ```
 
@@ -431,9 +411,11 @@ If you are overriding the `fontFamily` in typography, you can add the `<link>` t
 With the help of **refine**'s themes, you can customize your site in a matter of minutes. Alternatively, there is also an option to create a custom theme with the [`createTheme()`](https://mui.com/material-ui/customization/theming/#createtheme-options-args-theme) method so you can create a custom theme with the configuration variables and use it in the whole application.
 
 :::tip
+
 You can use the `responsiveFontSizes()` helper to make Typography font sizes in your theme automated.
 
 For more information, you can review [`responsiveFontSizes()`](https://mui.com/material-ui/customization/typography/#responsive-font-sizes) in the mui document.
+
 :::
 
 ```tsx live
@@ -453,14 +435,14 @@ import { SampleList } from "./pages/samples";
 
 // highlight-start
 let customTheme = createTheme({
-    palette: {
-        primary: {
-            main: "#330f49",
-        },
-        secondary: {
-            main: "#45d0c8",
-        },
+  palette: {
+    primary: {
+      main: "#330f49",
     },
+    secondary: {
+      main: "#45d0c8",
+    },
+  },
 });
 // highlight-end
 
@@ -469,42 +451,40 @@ customTheme = responsiveFontSizes(customTheme);
 // highlight-end
 
 const App: React.FC = () => {
-    return (
-        // highlight-next-line
-        <ThemeProvider theme={customTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="samples">
-                                <Route index element={<SampleList />} />
-                            </Route>
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </ThemeProvider>
-    );
+  return (
+    // highlight-next-line
+    <ThemeProvider theme={customTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          resources={[
+            {
+              name: "samples",
+              list: "/samples",
+            },
+          ]}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="samples">
+                <Route index element={<SampleList />} />
+              </Route>
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
 };
 // visible-block-end
 
@@ -517,9 +497,9 @@ Creating a theme with default variables is easy and we can see it in the example
 
 ```tsx title="src/App.tsx"
 const customTheme = createTheme({
-    customVariable: {
-        custom: "#330f49",
-    },
+  customVariable: {
+    custom: "#330f49",
+  },
 });
 ```
 
@@ -529,16 +509,14 @@ You need to use [`module augmentation`](https://www.typescriptlang.org/docs/hand
 import "@refinedev/mui";
 
 export interface CustomTheme {
-    customVariable: {
-        custom: string;
-    };
+  customVariable: {
+    custom: string;
+  };
 }
 
 declare module "@mui/material/styles" {
-    interface Theme extends import("@mui/material/styles").Theme, CustomTheme {}
-    interface ThemeOptions
-        extends import("@mui/material/styles").ThemeOptions,
-            CustomTheme {}
+  interface Theme extends import("@mui/material/styles").Theme, CustomTheme {}
+  interface ThemeOptions extends import("@mui/material/styles").ThemeOptions, CustomTheme {}
 }
 ```
 
@@ -564,69 +542,51 @@ import routerProvider from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import {
-    SampleList,
-    SampleCreate,
-    SampleEdit,
-    SampleShow,
-} from "pages/samples";
+import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
 
 const App: React.FC = () => {
-    // highlight-next-line
-    const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  // highlight-next-line
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
-    return (
-        // highlight-next-line
-        <ThemeProvider
-            theme={prefersDarkMode ? RefineThemes.BlueDark : RefineThemes.Blue}
+  return (
+    // highlight-next-line
+    <ThemeProvider theme={prefersDarkMode ? RefineThemes.BlueDark : RefineThemes.Blue}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <BrowserRouter>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          resources={[
+            {
+              name: "samples",
+              list: "/samples",
+              create: "/samples/create",
+              edit: "/samples/edit/:id",
+            },
+          ]}
         >
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <BrowserRouter>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: "/samples",
-                            create: "/samples/create",
-                            edit: "/samples/edit/:id",
-                        },
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <ThemedLayoutV2>
-                                    <Outlet />
-                                </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="samples">
-                                <Route index element={<SampleList />} />
-                                <Route
-                                    path="create"
-                                    element={<SampleCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<SampleEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<SampleShow />}
-                                />
-                            </Route>
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </BrowserRouter>
-        </ThemeProvider>
-    );
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route path="samples">
+                <Route index element={<SampleList />} />
+                <Route path="create" element={<SampleCreate />} />
+                <Route path="edit/:id" element={<SampleEdit />} />
+                <Route path="show/:id" element={<SampleShow />} />
+              </Route>
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
 };
 
 export default App;
@@ -646,65 +606,46 @@ Control the Dark Mode with just one click! We prepared an example that shows how
            <p>
 
 ```tsx title="src/contexts/index.tsx"
-import React, {
-    PropsWithChildren,
-    createContext,
-    useEffect,
-    useState,
-} from "react";
+import React, { PropsWithChildren, createContext, useEffect, useState } from "react";
 import { ThemeProvider } from "@mui/material";
 import { RefineThemes } from "@refinedev/mui";
 
 type ColorModeContextType = {
-    mode: string;
-    setMode: () => void;
+  mode: string;
+  setMode: () => void;
 };
 
-export const ColorModeContext = createContext<ColorModeContextType>(
-    {} as ColorModeContextType,
-);
+export const ColorModeContext = createContext<ColorModeContextType>({} as ColorModeContextType);
 
-export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
-    children,
-}) => {
-    const colorModeFromLocalStorage = localStorage.getItem("colorMode");
-    const isSystemPreferenceDark = window?.matchMedia(
-        "(prefers-color-scheme: dark)",
-    ).matches;
+export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
+  const colorModeFromLocalStorage = localStorage.getItem("colorMode");
+  const isSystemPreferenceDark = window?.matchMedia("(prefers-color-scheme: dark)").matches;
 
-    const systemPreference = isSystemPreferenceDark ? "dark" : "light";
-    const [mode, setMode] = useState(
-        colorModeFromLocalStorage || systemPreference,
-    );
+  const systemPreference = isSystemPreferenceDark ? "dark" : "light";
+  const [mode, setMode] = useState(colorModeFromLocalStorage || systemPreference);
 
-    useEffect(() => {
-        window.localStorage.setItem("colorMode", mode);
-    }, [mode]);
+  useEffect(() => {
+    window.localStorage.setItem("colorMode", mode);
+  }, [mode]);
 
-    const setColorMode = () => {
-        if (mode === "light") {
-            setMode("dark");
-        } else {
-            setMode("light");
-        }
-    };
+  const setColorMode = () => {
+    if (mode === "light") {
+      setMode("dark");
+    } else {
+      setMode("light");
+    }
+  };
 
-    return (
-        <ColorModeContext.Provider
-            value={{
-                setMode: setColorMode,
-                mode,
-            }}
-        >
-            <ThemeProvider
-                theme={
-                    mode === "light" ? RefineThemes.Blue : RefineThemes.BlueDark
-                }
-            >
-                {children}
-            </ThemeProvider>
-        </ColorModeContext.Provider>
-    );
+  return (
+    <ColorModeContext.Provider
+      value={{
+        setMode: setColorMode,
+        mode,
+      }}
+    >
+      <ThemeProvider theme={mode === "light" ? RefineThemes.Blue : RefineThemes.BlueDark}>{children}</ThemeProvider>
+    </ColorModeContext.Provider>
+  );
 };
 ```
 
@@ -718,12 +659,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import {
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineSnackbarProvider,
-    notificationProvider,
-} from "@refinedev/mui";
+import { ThemedLayoutV2, ErrorComponent, RefineSnackbarProvider, notificationProvider } from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
@@ -732,91 +668,71 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 
-import {
-    SampleList,
-    SampleCreate,
-    SampleEdit,
-    SampleShow,
-} from "pages/samples";
+import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
 
 import { ColorModeContextProvider, ColorModeContext } from "./contexts";
 
 const Header = () => {
-    const { mode, setMode } = useContext(ColorModeContext);
-    return (
-        <AppBar color="default" position="sticky">
-            <Stack width="100%" direction="row" justifyContent="end">
-                <Box marginRight="20px">
-                    <IconButton
-                        onClick={() => {
-                            setMode();
-                        }}
-                    >
-                        {mode === "dark" ? (
-                            <LightModeOutlined />
-                        ) : (
-                            <DarkModeOutlined />
-                        )}
-                    </IconButton>
-                </Box>
-            </Stack>
-        </AppBar>
-    );
+  const { mode, setMode } = useContext(ColorModeContext);
+  return (
+    <AppBar color="default" position="sticky">
+      <Stack width="100%" direction="row" justifyContent="end">
+        <Box marginRight="20px">
+          <IconButton
+            onClick={() => {
+              setMode();
+            }}
+          >
+            {mode === "dark" ? <LightModeOutlined /> : <DarkModeOutlined />}
+          </IconButton>
+        </Box>
+      </Stack>
+    </AppBar>
+  );
 };
 
 const App: React.FC = () => {
-    return (
-        <ColorModeContextProvider>
-            <CssBaseline />
-            <RefineSnackbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        notificationProvider={notificationProvider}
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        resources={[
-                            {
-                                name: "samples",
-                                list: "/samples",
-                                create: "/samples/create",
-                                edit: "/samples/edit/:id",
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    // highlight-next-line
-                                    <ThemedLayoutV2 Header={Header}>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route path="samples">
-                                    <Route index element={<SampleList />} />
-                                    <Route
-                                        path="create"
-                                        element={<SampleCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<SampleEdit />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<SampleShow />}
-                                    />
-                                </Route>
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                    </Refine>
-                </BrowserRouter>
-            </RefineSnackbarProvider>
-        </ColorModeContextProvider>
-    );
+  return (
+    <ColorModeContextProvider>
+      <CssBaseline />
+      <RefineSnackbarProvider>
+        <BrowserRouter>
+          <Refine
+            notificationProvider={notificationProvider}
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+              {
+                name: "samples",
+                list: "/samples",
+                create: "/samples/create",
+                edit: "/samples/edit/:id",
+              },
+            ]}
+          >
+            <Routes>
+              <Route
+                element={
+                  // highlight-next-line
+                  <ThemedLayoutV2 Header={Header}>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route path="samples">
+                  <Route index element={<SampleList />} />
+                  <Route path="create" element={<SampleCreate />} />
+                  <Route path="edit/:id" element={<SampleEdit />} />
+                  <Route path="show/:id" element={<SampleShow />} />
+                </Route>
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+          </Refine>
+        </BrowserRouter>
+      </RefineSnackbarProvider>
+    </ColorModeContextProvider>
+  );
 };
 
 export default App;
@@ -833,12 +749,7 @@ export default App;
 setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import {
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineSnackbarProvider,
-    notificationProvider,
-} from "@refinedev/mui";
+import { ThemedLayoutV2, ErrorComponent, RefineSnackbarProvider, notificationProvider } from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
@@ -847,96 +758,71 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 
-import {
-    SampleList,
-    SampleCreate,
-    SampleEdit,
-    SampleShow,
-} from "pages/samples";
+import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
 
 import { ColorModeContextProvider, ColorModeContext } from "./contexts";
 
 const Header = () => {
-    const { mode, setMode } = useContext(ColorModeContext);
-    return (
-        <AppBar position="sticky">
-            <Stack width="100%" direction="row" justifyContent="end">
-                <Box
-                    marginRight="20px"
-                    sx={{ display: "flex", alignItems: "center" }}
-                >
-                    <div style={{ fontSize: "12px" }}>
-                        click to toggle the theme →
-                    </div>
-                    <IconButton
-                        onClick={() => {
-                            setMode();
-                        }}
-                    >
-                        {mode === "dark" ? (
-                            <LightModeOutlined />
-                        ) : (
-                            <DarkModeOutlined />
-                        )}
-                    </IconButton>
-                </Box>
-            </Stack>
-        </AppBar>
-    );
+  const { mode, setMode } = useContext(ColorModeContext);
+  return (
+    <AppBar position="sticky">
+      <Stack width="100%" direction="row" justifyContent="end">
+        <Box marginRight="20px" sx={{ display: "flex", alignItems: "center" }}>
+          <div style={{ fontSize: "12px" }}>click to toggle the theme →</div>
+          <IconButton
+            onClick={() => {
+              setMode();
+            }}
+          >
+            {mode === "dark" ? <LightModeOutlined /> : <DarkModeOutlined />}
+          </IconButton>
+        </Box>
+      </Stack>
+    </AppBar>
+  );
 };
 
 const App: React.FC = () => {
-    return (
-        <ColorModeContextProvider>
-            <CssBaseline />
-            <RefineSnackbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        notificationProvider={notificationProvider}
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        resources={[
-                            {
-                                name: "samples",
-                                list: "/samples",
-                                create: "/samples/create",
-                                edit: "/samples/edit/:id",
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2 Header={Header}>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route path="samples">
-                                    <Route index element={<SampleList />} />
-                                    <Route
-                                        path="create"
-                                        element={<SampleCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<SampleEdit />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<SampleShow />}
-                                    />
-                                </Route>
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                    </Refine>
-                </BrowserRouter>
-            </RefineSnackbarProvider>
-        </ColorModeContextProvider>
-    );
+  return (
+    <ColorModeContextProvider>
+      <CssBaseline />
+      <RefineSnackbarProvider>
+        <BrowserRouter>
+          <Refine
+            notificationProvider={notificationProvider}
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+              {
+                name: "samples",
+                list: "/samples",
+                create: "/samples/create",
+                edit: "/samples/edit/:id",
+              },
+            ]}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2 Header={Header}>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route path="samples">
+                  <Route index element={<SampleList />} />
+                  <Route path="create" element={<SampleCreate />} />
+                  <Route path="edit/:id" element={<SampleEdit />} />
+                  <Route path="show/:id" element={<SampleShow />} />
+                </Route>
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+          </Refine>
+        </BrowserRouter>
+      </RefineSnackbarProvider>
+    </ColorModeContextProvider>
+  );
 };
 // visible-block-end
 render(<App />);
@@ -954,13 +840,13 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineThemes,
-    // highlight-start
-    RefineSnackbarProvider,
-    notificationProvider,
-    // highlight-end
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineThemes,
+  // highlight-start
+  RefineSnackbarProvider,
+  notificationProvider,
+  // highlight-end
 } from "@refinedev/mui";
 import { ThemeProvider, CssBaseline, GlobalStyles } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
@@ -968,64 +854,51 @@ import routerProvider from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import {
-    SampleList,
-    SampleCreate,
-    SampleEdit,
-    SampleShow,
-} from "pages/samples";
+import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={RefineThemes.Blue}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            {/* highlight-next-line */}
-            <RefineSnackbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "samples",
-                                list: "/samples",
-                                create: "/samples/create",
-                                edit: "/samples/edit/:id",
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route path="samples">
-                                    <Route index element={<SampleList />} />
-                                    <Route
-                                        path="create"
-                                        element={<SampleCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<SampleEdit />}
-                                    />
-                                </Route>
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                    </Refine>
-                </BrowserRouter>
-                {/* highlight-next-line */}
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={RefineThemes.Blue}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      {/* highlight-next-line */}
+      <RefineSnackbarProvider>
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "samples",
+                list: "/samples",
+                create: "/samples/create",
+                edit: "/samples/edit/:id",
+              },
+            ]}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route path="samples">
+                  <Route index element={<SampleList />} />
+                  <Route path="create" element={<SampleCreate />} />
+                  <Route path="edit/:id" element={<SampleEdit />} />
+                </Route>
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+          </Refine>
+        </BrowserRouter>
+        {/* highlight-next-line */}
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 // visible-block-end
 
@@ -1033,7 +906,9 @@ render(<App />);
 ```
 
 :::tip
+
 If you want to use `notistack` snackbars with the default style, simply wrap `<Refine>` in `<SnackbarProvider>`.
+
 :::
 
 :::tip
@@ -1045,26 +920,21 @@ If you want to customize the default layout elements provided with `@refinedev/m
 [create-refine-app]: /docs/getting-started/quickstart.md
 
 ```tsx live shared
-import React, {
-    PropsWithChildren,
-    createContext,
-    useEffect,
-    useState,
-} from "react";
+import React, { PropsWithChildren, createContext, useEffect, useState } from "react";
 import {
-    Create,
-    useDataGrid,
-    EditButton,
-    ShowButton,
-    DeleteButton,
-    List,
-    MarkdownField,
-    Show,
-    DateField,
-    NumberField,
-    TextFieldComponent,
-    Edit,
-    useAutocomplete,
+  Create,
+  useDataGrid,
+  EditButton,
+  ShowButton,
+  DeleteButton,
+  List,
+  MarkdownField,
+  Show,
+  DateField,
+  NumberField,
+  TextFieldComponent,
+  Edit,
+  useAutocomplete,
 } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Typography, TextField, Autocomplete } from "@mui/material";
@@ -1074,383 +944,340 @@ import { Controller } from "react-hook-form";
 import { useMany, useShow, useOne } from "@refinedev/core";
 
 type ColorModeContextType = {
-    mode: string;
-    setMode: () => void;
+  mode: string;
+  setMode: () => void;
 };
 
-const ColorModeContext = createContext<ColorModeContextType>(
-    {} as ColorModeContextType,
-);
+const ColorModeContext = createContext<ColorModeContextType>({} as ColorModeContextType);
 
-const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
-    children,
-}) => {
-    const colorModeFromLocalStorage = localStorage.getItem("colorMode");
-    const isSystemPreferenceDark = window?.matchMedia(
-        "(prefers-color-scheme: dark)",
-    ).matches;
+const ColorModeContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
+  const colorModeFromLocalStorage = localStorage.getItem("colorMode");
+  const isSystemPreferenceDark = window?.matchMedia("(prefers-color-scheme: dark)").matches;
 
-    const systemPreference = isSystemPreferenceDark ? "dark" : "light";
-    const [mode, setMode] = useState(
-        colorModeFromLocalStorage || systemPreference,
-    );
+  const systemPreference = isSystemPreferenceDark ? "dark" : "light";
+  const [mode, setMode] = useState(colorModeFromLocalStorage || systemPreference);
 
-    useEffect(() => {
-        window.localStorage.setItem("colorMode", mode);
-    }, [mode]);
+  useEffect(() => {
+    window.localStorage.setItem("colorMode", mode);
+  }, [mode]);
 
-    const setColorMode = () => {
-        if (mode === "light") {
-            setMode("dark");
-        } else {
-            setMode("light");
-        }
-    };
+  const setColorMode = () => {
+    if (mode === "light") {
+      setMode("dark");
+    } else {
+      setMode("light");
+    }
+  };
 
-    return (
-        <ColorModeContext.Provider
-            value={{
-                setMode: setColorMode,
-                mode,
-            }}
-        >
-            <MuiMaterial.ThemeProvider
-                theme={
-                    mode === "light"
-                        ? RefineMui.RefineThemes.Blue
-                        : RefineMui.RefineThemes.BlueDark
-                }
-            >
-                {children}
-            </MuiMaterial.ThemeProvider>
-        </ColorModeContext.Provider>
-    );
+  return (
+    <ColorModeContext.Provider
+      value={{
+        setMode: setColorMode,
+        mode,
+      }}
+    >
+      <MuiMaterial.ThemeProvider
+        theme={mode === "light" ? RefineMui.RefineThemes.Blue : RefineMui.RefineThemes.BlueDark}
+      >
+        {children}
+      </MuiMaterial.ThemeProvider>
+    </ColorModeContext.Provider>
+  );
 };
 
 const SampleList = () => {
-    const { dataGridProps } = useDataGrid();
+  const { dataGridProps } = useDataGrid();
 
-    const { data: categoryData, isLoading: categoryIsLoading } = useMany({
-        resource: "categories",
-        ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
-        queryOptions: {
-            enabled: !!dataGridProps?.rows,
+  const { data: categoryData, isLoading: categoryIsLoading } = useMany({
+    resource: "categories",
+    ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
+    queryOptions: {
+      enabled: !!dataGridProps?.rows,
+    },
+  });
+
+  const columns = React.useMemo<GridColDef<any>[]>(
+    () => [
+      {
+        field: "id",
+        headerName: "Id",
+        type: "number",
+        minWidth: 50,
+      },
+      {
+        field: "title",
+        headerName: "Title",
+        minWidth: 200,
+      },
+      {
+        field: "category",
+        headerName: "Category",
+        valueGetter: ({ row }) => {
+          const value = row?.category?.id;
+
+          return value;
         },
-    });
+        minWidth: 300,
+        renderCell: function render({ value }) {
+          return categoryIsLoading ? <>Loading...</> : categoryData?.data?.find((item) => item.id === value)?.title;
+        },
+      },
+      {
+        field: "createdAt",
+        headerName: "Created At",
+        minWidth: 250,
+        renderCell: function render({ value }) {
+          return <DateField value={value} />;
+        },
+      },
+      {
+        field: "actions",
+        headerName: "Actions",
+        renderCell: function render({ row }) {
+          return (
+            <>
+              <EditButton hideText recordItemId={row.id} />
+              <ShowButton hideText recordItemId={row.id} />
+            </>
+          );
+        },
+        align: "center",
+        headerAlign: "center",
+        minWidth: 80,
+      },
+    ],
+    [categoryData?.data],
+  );
 
-    const columns = React.useMemo<GridColDef<any>[]>(
-        () => [
-            {
-                field: "id",
-                headerName: "Id",
-                type: "number",
-                minWidth: 50,
-            },
-            {
-                field: "title",
-                headerName: "Title",
-                minWidth: 200,
-            },
-            {
-                field: "category",
-                headerName: "Category",
-                valueGetter: ({ row }) => {
-                    const value = row?.category?.id;
-
-                    return value;
-                },
-                minWidth: 300,
-                renderCell: function render({ value }) {
-                    return categoryIsLoading ? (
-                        <>Loading...</>
-                    ) : (
-                        categoryData?.data?.find((item) => item.id === value)
-                            ?.title
-                    );
-                },
-            },
-            {
-                field: "createdAt",
-                headerName: "Created At",
-                minWidth: 250,
-                renderCell: function render({ value }) {
-                    return <DateField value={value} />;
-                },
-            },
-            {
-                field: "actions",
-                headerName: "Actions",
-                renderCell: function render({ row }) {
-                    return (
-                        <>
-                            <EditButton hideText recordItemId={row.id} />
-                            <ShowButton hideText recordItemId={row.id} />
-                        </>
-                    );
-                },
-                align: "center",
-                headerAlign: "center",
-                minWidth: 80,
-            },
-        ],
-        [categoryData?.data],
-    );
-
-    return (
-        <List>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    <List>
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 
 const SampleShow = () => {
-    const { queryResult } = useShow();
-    const { data, isLoading } = queryResult;
+  const { queryResult } = useShow();
+  const { data, isLoading } = queryResult;
 
-    const record = data?.data;
+  const record = data?.data;
 
-    const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-        resource: "categories",
-        id: record?.category?.id || "",
-        queryOptions: {
-            enabled: !!record,
-        },
-    });
+  const { data: categoryData, isLoading: categoryIsLoading } = useOne({
+    resource: "categories",
+    id: record?.category?.id || "",
+    queryOptions: {
+      enabled: !!record,
+    },
+  });
 
-    return (
-        <Show isLoading={isLoading}>
-            <MuiMaterial.Stack gap={1}>
-                <Typography variant="body1" fontWeight="bold">
-                    Id
-                </Typography>
-                <NumberField value={record?.id ?? ""} />
-                <Typography variant="body1" fontWeight="bold">
-                    Title
-                </Typography>
-                <TextFieldComponent value={record?.title} />
-                <Typography variant="body1" fontWeight="bold">
-                    Content
-                </Typography>
-                <MarkdownField value={record?.content} />
-                <Typography variant="body1" fontWeight="bold">
-                    Category
-                </Typography>
-                {categoryIsLoading ? (
-                    <>Loading...</>
-                ) : (
-                    <>{categoryData?.data?.title}</>
-                )}
-                <Typography variant="body1" fontWeight="bold">
-                    Created At
-                </Typography>
-                <DateField value={record?.createdAt} />
-            </MuiMaterial.Stack>
-        </Show>
-    );
+  return (
+    <Show isLoading={isLoading}>
+      <MuiMaterial.Stack gap={1}>
+        <Typography variant="body1" fontWeight="bold">
+          Id
+        </Typography>
+        <NumberField value={record?.id ?? ""} />
+        <Typography variant="body1" fontWeight="bold">
+          Title
+        </Typography>
+        <TextFieldComponent value={record?.title} />
+        <Typography variant="body1" fontWeight="bold">
+          Content
+        </Typography>
+        <MarkdownField value={record?.content} />
+        <Typography variant="body1" fontWeight="bold">
+          Category
+        </Typography>
+        {categoryIsLoading ? <>Loading...</> : <>{categoryData?.data?.title}</>}
+        <Typography variant="body1" fontWeight="bold">
+          Created At
+        </Typography>
+        <DateField value={record?.createdAt} />
+      </MuiMaterial.Stack>
+    </Show>
+  );
 };
 
 const SampleEdit = () => {
-    const {
-        saveButtonProps,
-        refineCore: { queryResult },
-        register,
-        control,
-        formState: { errors },
-    } = useForm();
+  const {
+    saveButtonProps,
+    refineCore: { queryResult },
+    register,
+    control,
+    formState: { errors },
+  } = useForm();
 
-    const samplesData = queryResult?.data?.data;
+  const samplesData = queryResult?.data?.data;
 
-    const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
-        resource: "categories",
-        defaultValue: samplesData?.category?.id,
-    });
+  const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
+    resource: "categories",
+    defaultValue: samplesData?.category?.id,
+  });
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <MuiMaterial.Box
-                component="form"
-                sx={{ display: "flex", flexDirection: "column" }}
-                autoComplete="off"
-            >
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <MuiMaterial.Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+        <TextField
+          {...register("id", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.id}
+          helperText={(errors as any)?.id?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="number"
+          label="Id"
+          name="id"
+          disabled
+        />
+        <TextField
+          {...register("title", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.title}
+          helperText={(errors as any)?.title?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="text"
+          label="Title"
+          name="title"
+        />
+        <TextField
+          {...register("content", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.content}
+          helperText={(errors as any)?.content?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          multiline
+          label="Content"
+          name="content"
+        />
+        <Controller
+          control={control}
+          name="category"
+          rules={{ required: "This field is required" }}
+          // eslint-disable-next-line
+          defaultValue={null as any}
+          render={({ field }) => (
+            <Autocomplete
+              {...categoryAutocompleteProps}
+              {...field}
+              onChange={(_, value) => {
+                field.onChange(value);
+              }}
+              getOptionLabel={(item) => {
+                return (
+                  categoryAutocompleteProps?.options?.find((p) => p?.id?.toString() === item?.id?.toString())?.title ??
+                  ""
+                );
+              }}
+              isOptionEqualToValue={(option, value) =>
+                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+              }
+              renderInput={(params) => (
                 <TextField
-                    {...register("id", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.id}
-                    helperText={(errors as any)?.id?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="number"
-                    label="Id"
-                    name="id"
-                    disabled
+                  {...params}
+                  label="Category"
+                  margin="normal"
+                  variant="outlined"
+                  error={!!(errors as any)?.category?.id}
+                  helperText={(errors as any)?.category?.id?.message}
+                  required
                 />
-                <TextField
-                    {...register("title", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.title}
-                    helperText={(errors as any)?.title?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="text"
-                    label="Title"
-                    name="title"
-                />
-                <TextField
-                    {...register("content", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.content}
-                    helperText={(errors as any)?.content?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    multiline
-                    label="Content"
-                    name="content"
-                />
-                <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "This field is required" }}
-                    // eslint-disable-next-line
-                    defaultValue={null as any}
-                    render={({ field }) => (
-                        <Autocomplete
-                            {...categoryAutocompleteProps}
-                            {...field}
-                            onChange={(_, value) => {
-                                field.onChange(value);
-                            }}
-                            getOptionLabel={(item) => {
-                                return (
-                                    categoryAutocompleteProps?.options?.find(
-                                        (p) =>
-                                            p?.id?.toString() ===
-                                            item?.id?.toString(),
-                                    )?.title ?? ""
-                                );
-                            }}
-                            isOptionEqualToValue={(option, value) =>
-                                value === undefined ||
-                                option?.id?.toString() ===
-                                    (value?.id ?? value)?.toString()
-                            }
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Category"
-                                    margin="normal"
-                                    variant="outlined"
-                                    error={!!(errors as any)?.category?.id}
-                                    helperText={
-                                        (errors as any)?.category?.id?.message
-                                    }
-                                    required
-                                />
-                            )}
-                        />
-                    )}
-                />
-            </MuiMaterial.Box>
-        </Edit>
-    );
+              )}
+            />
+          )}
+        />
+      </MuiMaterial.Box>
+    </Edit>
+  );
 };
 
 const SampleCreate = () => {
-    const {
-        saveButtonProps,
-        refineCore: { formLoading },
-        register,
-        control,
-        formState: { errors },
-    } = useForm();
+  const {
+    saveButtonProps,
+    refineCore: { formLoading },
+    register,
+    control,
+    formState: { errors },
+  } = useForm();
 
-    const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
-        resource: "categories",
-    });
+  const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
+    resource: "categories",
+  });
 
-    return (
-        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <MuiMaterial.Box
-                component="form"
-                sx={{ display: "flex", flexDirection: "column" }}
-                autoComplete="off"
-            >
+  return (
+    <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+      <MuiMaterial.Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+        <TextField
+          {...register("title", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.title}
+          helperText={(errors as any)?.title?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="text"
+          label="Title"
+          name="title"
+        />
+        <TextField
+          {...register("content", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.content}
+          helperText={(errors as any)?.content?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          multiline
+          label="Content"
+          name="content"
+        />
+        <Controller
+          control={control}
+          name="category"
+          rules={{ required: "This field is required" }}
+          // eslint-disable-next-line
+          defaultValue={null as any}
+          render={({ field }) => (
+            <Autocomplete
+              {...categoryAutocompleteProps}
+              {...field}
+              onChange={(_, value) => {
+                field.onChange(value);
+              }}
+              getOptionLabel={(item) => {
+                return (
+                  categoryAutocompleteProps?.options?.find((p) => p?.id?.toString() === item?.id?.toString())?.title ??
+                  ""
+                );
+              }}
+              isOptionEqualToValue={(option, value) =>
+                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+              }
+              renderInput={(params) => (
                 <TextField
-                    {...register("title", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.title}
-                    helperText={(errors as any)?.title?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="text"
-                    label="Title"
-                    name="title"
+                  {...params}
+                  label="Category"
+                  margin="normal"
+                  variant="outlined"
+                  error={!!(errors as any)?.category?.id}
+                  helperText={(errors as any)?.category?.id?.message}
+                  required
                 />
-                <TextField
-                    {...register("content", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.content}
-                    helperText={(errors as any)?.content?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    multiline
-                    label="Content"
-                    name="content"
-                />
-                <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "This field is required" }}
-                    // eslint-disable-next-line
-                    defaultValue={null as any}
-                    render={({ field }) => (
-                        <Autocomplete
-                            {...categoryAutocompleteProps}
-                            {...field}
-                            onChange={(_, value) => {
-                                field.onChange(value);
-                            }}
-                            getOptionLabel={(item) => {
-                                return (
-                                    categoryAutocompleteProps?.options?.find(
-                                        (p) =>
-                                            p?.id?.toString() ===
-                                            item?.id?.toString(),
-                                    )?.title ?? ""
-                                );
-                            }}
-                            isOptionEqualToValue={(option, value) =>
-                                value === undefined ||
-                                option?.id?.toString() ===
-                                    (value?.id ?? value)?.toString()
-                            }
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Category"
-                                    margin="normal"
-                                    variant="outlined"
-                                    error={!!(errors as any)?.category?.id}
-                                    helperText={
-                                        (errors as any)?.category?.id?.message
-                                    }
-                                    required
-                                />
-                            )}
-                        />
-                    )}
-                />
-            </MuiMaterial.Box>
-        </Create>
-    );
+              )}
+            />
+          )}
+        />
+      </MuiMaterial.Box>
+    </Create>
+  );
 };
 ```

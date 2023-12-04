@@ -15,11 +15,12 @@ import CrudLivePreview from "./crud-live-preview.md";
 This hook uses the `useList` hook for fetching data.
 
 :::info-tip DERIVATIVES
+
 If you're looking for a complete select library, refine has out-of-the-box support for the libraries below:
 
--   refine's `useSelect` (for Headless users) - [Documentation](/docs/api-reference/core/hooks/useSelect/) - [Example](/docs/examples/core/useSelect)
--   [Material UI Autocomplete](https://mui.com/material-ui/react-autocomplete) (for Material UI users) - [Documentation](/docs/api-reference/mui/hooks/useAutocomplete)
--   [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/api-reference/mantine/hooks/useSelect)
+- refine's `useSelect` (for Headless users) - [Documentation](/docs/api-reference/core/hooks/useSelect/) - [Example](/docs/examples/core/useSelect)
+- [Material UI Autocomplete](https://mui.com/material-ui/react-autocomplete) (for Material UI users) - [Documentation](/docs/api-reference/mui/hooks/useAutocomplete)
+- [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/api-reference/mantine/hooks/useSelect)
 
 :::
 
@@ -34,7 +35,9 @@ Here is a basic example that uses the `useSelect` hook.
 ## Realtime Updates
 
 :::caution
+
 This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider)
+
 :::
 
 When the `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider` that allow you to subscribe to live updates.
@@ -51,7 +54,7 @@ See the [creating a data provider documentation](/docs/tutorial/understanding-da
 
 ```tsx
 useSelect({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -78,9 +81,9 @@ You can put nested properties with the optional [Object path](https://lodash.com
 
 ```tsx
 const { options } = useSelect({
-    resource: "categories",
-    optionLabel: "nested.title",
-    optionValue: "nested.id",
+  resource: "categories",
+  optionLabel: "nested.title",
+  optionValue: "nested.id",
 });
 ```
 
@@ -92,12 +95,12 @@ const { options } = useSelect({
 
 ```tsx
 useSelect({
-    sorters: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
+  sorters: [
+    {
+      field: "title",
+      order: "asc",
+    },
+  ],
 });
 ```
 
@@ -111,13 +114,13 @@ useSelect({
 
 ```tsx
 useSelect({
-    filters: [
-        {
-            field: "isActive",
-            operator: "eq",
-            value: true,
-        },
-    ],
+  filters: [
+    {
+      field: "isActive",
+      operator: "eq",
+      value: true,
+    },
+  ],
 });
 ```
 
@@ -127,7 +130,7 @@ useSelect({
 
 The `defaultValue` is a property that can be used to not only set default options for a `<select>` component but also add extra options.
 
-However, issues may arise when the `<select>` component has many entries and    pagination is required. In such cases, the `defaultValue` might not be visible among the currently displayed options, which could cause the `<select>` component to malfunction.
+However, issues may arise when the `<select>` component has many entries and pagination is required. In such cases, the `defaultValue` might not be visible among the currently displayed options, which could cause the `<select>` component to malfunction.
 
 To prevent this, a separate `useMany` query is sent to the backend carrying the `defaultValue` and added to the options of the `<select>` component, ensuring that the default values are always present in the current array of options.
 
@@ -135,7 +138,7 @@ Since the `useMany` query is used to query the necessary data, the `defaultValue
 
 ```tsx
 useSelect({
-    defaultValue: 1, // or [1, 2]
+  defaultValue: 1, // or [1, 2]
 });
 ```
 
@@ -147,8 +150,8 @@ This prop allows us to `debounce` the `onSearch` function.
 
 ```tsx
 useSelect({
-    resource: "categories",
-    debounce: 500,
+  resource: "categories",
+  debounce: 500,
 });
 ```
 
@@ -158,9 +161,9 @@ useSelect({
 
 ```tsx
 useSelect({
-    queryOptions: {
-        retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -176,9 +179,9 @@ You can pass the `current` page number to the `pagination` property.
 
 ```tsx
 useSelect({
-    pagination: {
-        current: 2,
-    },
+  pagination: {
+    current: 2,
+  },
 });
 ```
 
@@ -188,9 +191,9 @@ You can pass the `pageSize` to the `pagination` property.
 
 ```tsx
 useSelect({
-    pagination: {
-        pageSize: 20,
-    },
+  pagination: {
+    pageSize: 20,
+  },
 });
 ```
 
@@ -200,9 +203,9 @@ It can be `"off"`, `"client"` or `"server"`. It is used to determine whether to 
 
 ```tsx
 useSelect({
-    pagination: {
-        mode: "off",
-    },
+  pagination: {
+    mode: "off",
+  },
 });
 ```
 
@@ -214,12 +217,12 @@ If `defaultValue` property is not given, the values given in the `queryOptions` 
 
 ```tsx
 const { options } = useSelect({
-    resource: "categories",
-    defaultValueQueryOptions: {
-        onSuccess: (data) => {
-            console.log("triggers when on query return on success");
-        },
+  resource: "categories",
+  defaultValueQueryOptions: {
+    onSuccess: (data) => {
+      console.log("triggers when on query return on success");
     },
+  },
 });
 ```
 
@@ -243,14 +246,14 @@ Sometimes, you may want to filter the options on the client-side. You can do thi
 
 ```tsx
 const { selectProps } = useSelect({
-    resource: "categories",
+  resource: "categories",
 });
 
 <Select
-    {...selectProps}
-    onSearch={undefined}
-    filterOption={true}
-    optionFilterProp="label" // or "value"
+  {...selectProps}
+  onSearch={undefined}
+  filterOption={true}
+  optionFilterProp="label" // or "value"
 />;
 ```
 
@@ -258,46 +261,46 @@ const { selectProps } = useSelect({
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
--   Customizing the data provider methods for specific use cases.
--   Generating GraphQL queries using plain JavaScript Objects (JSON).
+- Customizing the data provider methods for specific use cases.
+- Generating GraphQL queries using plain JavaScript Objects (JSON).
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useSelect({
-    // highlight-start
-    meta: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  meta: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  getList: async ({
+    resource,
+    pagination,
+    sorters,
+    filters,
+    // highlight-next-line
+    meta,
+  }) => {
+    // highlight-next-line
+    const headers = meta?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
     //...
-    getList: async ({
-        resource,
-        pagination,
-        sorters,
-        filters,
-        // highlight-next-line
-        meta,
-    }) => {
-        // highlight-next-line
-        const headers = meta?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-        //...
-        //...
-        // highlight-next-line
-        const { data, headers } = await httpClient.get(`${url}`, { headers });
-        return {
-            data,
-        };
-    },
     //...
+    // highlight-next-line
+    const { data, headers } = await httpClient.get(`${url}`, { headers });
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/api-reference/general-concepts/#meta)
+> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### `dataProviderName`
 
@@ -305,61 +308,67 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 
 ```tsx
 useSelect({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
 ### `successNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 After data is fetched successfully, `useSelect` can call the `open` function from `NotificationProvider` to show a success notification. This prop allows you to customize the success notification message
 
 ```tsx
 useSelect({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
 :::caution
+
 [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
 :::
 
 After data fetching is failed, `useSelect` will call the `open` function from `NotificationProvider` to show an error notification. This prop allows you to customize the error notification message
 
 ```tsx
 useSelect({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
 ### `liveMode`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 This property determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
 ```tsx
 useSelect({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
@@ -368,23 +377,27 @@ useSelect({
 ### `onLiveEvent`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 The callback function that is executed when new events from a subscription are arrived.
 
 ```tsx
 useSelect({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
 ### `liveParams`
 
 :::caution
+
 [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
 :::
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
@@ -398,31 +411,37 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useSelect({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
-{elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>}
+{
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+}
 ```
 
 ### ~~`sort`~~
 
 :::caution Deprecated
+
 Use `sorters` instead.
+
 :::
 
 ### ~~`hasPagination`~~
 
 :::caution Deprecated
+
 Use `pagination.mode` instead.
+
 :::
 
 > Default: `false`
@@ -431,7 +450,7 @@ Use `pagination.mode` instead.
 
 ```tsx
 useSelect({
-    hasPagination: true,
+  hasPagination: true,
 });
 ```
 
@@ -445,7 +464,7 @@ useSelect({
 
 ### How to ensure `defaultValue` is included in the options?
 
-In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/api-reference/core/hooks/data/useMany/), gets the data and mark as seleted.
+In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/api-reference/core/hooks/data/useMany/), gets the data and mark as selected.
 
 <DefaultValueLivePreview />
 
@@ -458,8 +477,8 @@ To change to `name` and `categoryId`;
 
 ```tsx
 useSelect({
-    optionLabel: "name",
-    optionValue: "categoryId",
+  optionLabel: "name",
+  optionValue: "categoryId",
 });
 ```
 
@@ -471,8 +490,8 @@ Sometimes it may not be enough to create `optionLabel` and `optionValue` options
 const { queryResult } = useSelect();
 
 const options = queryResult.data?.data.map((item) => ({
-    label: item.title,
-    value: item.id,
+  label: item.title,
+  value: item.id,
 }));
 
 return <Select options={options} />;
@@ -490,7 +509,7 @@ return <Select options={options} />;
 
 ### Type Parameters
 
-| Property     | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property     | Description                                                                                                                                                         | Type                       | Default                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |

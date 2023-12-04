@@ -7,7 +7,9 @@ sidebar_label: useDrawerForm
 The `useDrawerForm` hook allows you to manage a form within a Drawer. It returns the Ant Design [`<Form>`](https://ant.design/components/form/) and [`<Drawer>`](https://ant.design/components/drawer/) components props.
 
 :::info
-The`useDrawerForm` hook is extended from [`useForm`](/api-reference/antd/hooks/form/useForm.md) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/master/packages/antd) package. This means that you can use all the features of [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook with it.
+
+The`useDrawerForm` hook is extended from [`useForm`](/docs/api-reference/antd/hooks/form/useForm.md) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/master/packages/antd) package. This means that you can use all the features of [`useForm`](/docs/api-reference/antd/hooks/form/useForm.md) hook with it.
+
 :::
 
 ## Basic Usage
@@ -36,98 +38,94 @@ import { Create, List, useDrawerForm, useTable } from "@refinedev/antd";
 import { Drawer, Form, Input, Select, Table } from "antd";
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost, HttpError>();
+  const { tableProps } = useTable<IPost, HttpError>();
 
-    // highlight-start
-    const { formProps, drawerProps, show, saveButtonProps } = useDrawerForm<
-        IPost,
-        HttpError,
-        IPost
-    >({
-        action: "create",
-    });
-    // highlight-end
+  // highlight-start
+  const { formProps, drawerProps, show, saveButtonProps } = useDrawerForm<IPost, HttpError, IPost>({
+    action: "create",
+  });
+  // highlight-end
 
-    return (
-        <>
-            <List
-                canCreate
-                // highlight-start
-                createButtonProps={{
-                    onClick: () => {
-                        show();
-                    },
-                }}
-                // highlight-end
+  return (
+    <>
+      <List
+        canCreate
+        // highlight-start
+        createButtonProps={{
+          onClick: () => {
+            show();
+          },
+        }}
+        // highlight-end
+      >
+        <Table {...tableProps} rowKey="id">
+          <Table.Column dataIndex="id" title="ID" />
+          <Table.Column dataIndex="title" title="Title" />
+        </Table>
+      </List>
+      {/* highlight-start */}
+      <Drawer {...drawerProps}>
+        <Create saveButtonProps={saveButtonProps}>
+          <Form {...formProps} layout="vertical">
+            <Form.Item
+              label="Title"
+              name="title"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
             >
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column dataIndex="title" title="Title" />
-                </Table>
-            </List>
-            {/* highlight-start */}
-            <Drawer {...drawerProps}>
-                <Create saveButtonProps={saveButtonProps}>
-                    <Form {...formProps} layout="vertical">
-                        <Form.Item
-                            label="Title"
-                            name="title"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            label="Status"
-                            name="status"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Select
-                                options={[
-                                    {
-                                        label: "Published",
-                                        value: "published",
-                                    },
-                                    {
-                                        label: "Draft",
-                                        value: "draft",
-                                    },
-                                    {
-                                        label: "Rejected",
-                                        value: "rejected",
-                                    },
-                                ]}
-                            />
-                        </Form.Item>
-                    </Form>
-                </Create>
-            </Drawer>
-            {/* highlight-end */}
-        </>
-    );
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Status"
+              name="status"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Select
+                options={[
+                  {
+                    label: "Published",
+                    value: "published",
+                  },
+                  {
+                    label: "Draft",
+                    value: "draft",
+                  },
+                  {
+                    label: "Rejected",
+                    value: "rejected",
+                  },
+                ]}
+              />
+            </Form.Item>
+          </Form>
+        </Create>
+      </Drawer>
+      {/* highlight-end */}
+    </>
+  );
 };
 
 // visible-block-end
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+    },
+  ],
 });
 
 render(<RefineAntdDemo />);
@@ -146,149 +144,137 @@ setInitialRoutes(["/posts"]);
 import { HttpError } from "@refinedev/core";
 import React from "react";
 
-import {
-    Edit,
-    EditButton,
-    List,
-    useDrawerForm,
-    useTable,
-} from "@refinedev/antd";
+import { Edit, EditButton, List, useDrawerForm, useTable } from "@refinedev/antd";
 import { Drawer, Form, Input, Select, Space, Table } from "antd";
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost, HttpError>();
+  const { tableProps } = useTable<IPost, HttpError>();
 
-    // highlight-start
-    const { formProps, drawerProps, show, saveButtonProps, id } = useDrawerForm<
-        IPost,
-        HttpError,
-        IPost
-    >({
-        action: "edit",
-        warnWhenUnsavedChanges: true,
-    });
-    // highlight-end
+  // highlight-start
+  const { formProps, drawerProps, show, saveButtonProps, id } = useDrawerForm<IPost, HttpError, IPost>({
+    action: "edit",
+    warnWhenUnsavedChanges: true,
+  });
+  // highlight-end
 
-    return (
-        <>
-            <List
-                canCreate
-                // highlight-start
-                createButtonProps={{
-                    onClick: () => {
-                        show();
-                    },
-                }}
-                // highlight-end
+  return (
+    <>
+      <List
+        canCreate
+        // highlight-start
+        createButtonProps={{
+          onClick: () => {
+            show();
+          },
+        }}
+        // highlight-end
+      >
+        <Table {...tableProps} rowKey="id">
+          <Table.Column dataIndex="id" title="ID" />
+          <Table.Column dataIndex="title" title="Title" />
+          <Table.Column<IPost>
+            title="Actions"
+            dataIndex="actions"
+            key="actions"
+            render={(_, record) => (
+              // highlight-start
+              <Space>
+                <EditButton hideText size="small" recordItemId={record.id} onClick={() => show(record.id)} />
+              </Space>
+              // highlight-end
+            )}
+          />
+        </Table>
+      </List>
+      {/* highlight-start */}
+      <Drawer {...drawerProps}>
+        <Edit saveButtonProps={saveButtonProps} recordItemId={id}>
+          <Form {...formProps} layout="vertical">
+            <Form.Item
+              label="Title"
+              name="title"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
             >
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column dataIndex="title" title="Title" />
-                    <Table.Column<IPost>
-                        title="Actions"
-                        dataIndex="actions"
-                        key="actions"
-                        render={(_, record) => (
-                            // highlight-start
-                            <Space>
-                                <EditButton
-                                    hideText
-                                    size="small"
-                                    recordItemId={record.id}
-                                    onClick={() => show(record.id)}
-                                />
-                            </Space>
-                            // highlight-end
-                        )}
-                    />
-                </Table>
-            </List>
-            {/* highlight-start */}
-            <Drawer {...drawerProps}>
-                <Edit saveButtonProps={saveButtonProps} recordItemId={id}>
-                    <Form {...formProps} layout="vertical">
-                        <Form.Item
-                            label="Title"
-                            name="title"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            label="Status"
-                            name="status"
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Select
-                                options={[
-                                    {
-                                        label: "Published",
-                                        value: "published",
-                                    },
-                                    {
-                                        label: "Draft",
-                                        value: "draft",
-                                    },
-                                    {
-                                        label: "Rejected",
-                                        value: "rejected",
-                                    },
-                                ]}
-                            />
-                        </Form.Item>
-                    </Form>
-                </Edit>
-            </Drawer>
-            {/* highlight-end */}
-        </>
-    );
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Status"
+              name="status"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Select
+                options={[
+                  {
+                    label: "Published",
+                    value: "published",
+                  },
+                  {
+                    label: "Draft",
+                    value: "draft",
+                  },
+                  {
+                    label: "Rejected",
+                    value: "rejected",
+                  },
+                ]}
+              />
+            </Form.Item>
+          </Form>
+        </Edit>
+      </Drawer>
+      {/* highlight-end */}
+    </>
+  );
 };
 
 // visible-block-end
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+    },
+  ],
 });
 
 render(<RefineAntdDemo />);
 ```
 
 :::caution
+
 **refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens the edit form in `<Drawer>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list manually. In that way, `<Edit>` form in `<Drawer>` can fetch data by the record `id`.
 
 ```tsx
 <Table.Column<IPost>
-    title="Actions"
-    dataIndex="actions"
-    key="actions"
-    render={(_value, record) => <EditButton onClick={() => show(record.id)} />}
+  title="Actions"
+  dataIndex="actions"
+  key="actions"
+  render={(_value, record) => <EditButton onClick={() => show(record.id)} />}
 />
 ```
 
 :::
 
 :::caution
+
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
+
 :::
 
 </TabItem>
@@ -298,7 +284,9 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 ## Properties
 
 :::tip
+
 All [`useForm`][antd-use-form] props are also available in `useDrawerForm`. You can find descriptions on the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) documentation.
+
 :::
 
 ### `syncWithLocation`
@@ -309,7 +297,7 @@ This property can also be set as an object `{ key: string; syncId?: boolean }` t
 
 ```tsx
 const drawerForm = useDrawerForm({
-    syncWithLocation: { key: "my-modal", syncId: true },
+  syncWithLocation: { key: "my-modal", syncId: true },
 });
 ```
 
@@ -322,20 +310,20 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useDrawerForm({
-    //...
-    overtimeOptions: {
-        interval: 1000,
-        onInterval(elapsedInterval) {
-            console.log(elapsedInterval);
-        },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
+  },
 });
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
 {
-    elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
 }
 ```
 
@@ -348,7 +336,9 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
 :::caution
+
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
+
 :::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
@@ -361,9 +351,9 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useDrawerForm({
-    autoSave: {
-        enabled: true,
-    },
+  autoSave: {
+    enabled: true,
+  },
 });
 ```
 
@@ -375,11 +365,11 @@ Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useDrawerForm({
-    autoSave: {
-        enabled: true,
-        // highlight-next-line
-        debounce: 2000,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    debounce: 2000,
+  },
 });
 ```
 
@@ -389,17 +379,17 @@ If you want to modify the data before sending it to the server, you can use `onF
 
 ```tsx
 useDrawerForm({
-    autoSave: {
-        enabled: true,
-        // highlight-start
-        onFinish: (values) => {
-            return {
-                foo: "bar",
-                ...values,
-            };
-        },
-        // highlight-end
+  autoSave: {
+    enabled: true,
+    // highlight-start
+    onFinish: (values) => {
+      return {
+        foo: "bar",
+        ...values,
+      };
     },
+    // highlight-end
+  },
 });
 ```
 
@@ -411,11 +401,11 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useDrawerForm({
-    autoSave: {
-        enabled: true,
-        // highlight-next-line
-        invalidateOnUnmount: true,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    invalidateOnUnmount: true,
+  },
 });
 ```
 
@@ -427,11 +417,11 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useDrawerForm({
-    autoSave: {
-        enabled: true,
-        // highlight-next-line
-        invalidateOnClose: true,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    invalidateOnClose: true,
+  },
 });
 ```
 
@@ -514,39 +504,35 @@ import { Form, Input } from "antd";
 import React from "react";
 
 export const UserCreate: React.FC = () => {
-    // highlight-start
-    const { formProps, drawerProps, saveButtonProps } = useDrawerForm({
-        action: "create",
+  // highlight-start
+  const { formProps, drawerProps, saveButtonProps } = useDrawerForm({
+    action: "create",
+  });
+  // highlight-end
+
+  // highlight-start
+  const handleOnFinish = (values) => {
+    formProps.onFinish?.({
+      fullName: `${values.name} ${values.surname}`,
     });
-    // highlight-end
+  };
+  // highlight-end
 
-    // highlight-start
-    const handleOnFinish = (values) => {
-        formProps.onFinish?.({
-            fullName: `${values.name} ${values.surname}`,
-        });
-    };
-    // highlight-end
-
-    return (
-        <Drawer {...drawerProps}>
-            <Create saveButtonProps={saveButtonProps}>
-                // highlight-next-line
-                <Form
-                    {...formProps}
-                    onFinish={handleOnFinish}
-                    layout="vertical"
-                >
-                    <Form.Item label="Name" name="name">
-                        <Input />
-                    </Form.Item>
-                    <Form.Item label="Surname" name="surname">
-                        <Input />
-                    </Form.Item>
-                </Form>
-            </Create>
-        </Drawer>
-    );
+  return (
+    <Drawer {...drawerProps}>
+      <Create saveButtonProps={saveButtonProps}>
+        // highlight-next-line
+        <Form {...formProps} onFinish={handleOnFinish} layout="vertical">
+          <Form.Item label="Name" name="name">
+            <Input />
+          </Form.Item>
+          <Form.Item label="Surname" name="surname">
+            <Input />
+          </Form.Item>
+        </Form>
+      </Create>
+    </Drawer>
+  );
 };
 ```
 
@@ -556,13 +542,13 @@ export const UserCreate: React.FC = () => {
 
 <PropsTable module="@refinedev/antd/useDrawerForm"/>
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useDrawerForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/api-reference/core/components/refine-config.md)>** component. `useDrawerForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 > `**`: If not explicitly configured, default value of `redirect` depends which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). Otherwise if `action` is `edit`, `redirect`s default value is `list`.
 
 ### Type Parameters
 
-| Property       | Desription                                                                                                                                                          | Type                       | Default                    |
+| Property       | Description                                                                                                                                                         | Type                       | Default                    |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
 | TQueryFnData   | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TError         | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
@@ -580,7 +566,7 @@ export const UserCreate: React.FC = () => {
 | formProps         | Ant Design form props                                        | [`FormProps`](/docs/api-reference/antd/hooks/form/useForm/#properties)                                                                  |
 | drawerProps       | Props for managed drawer                                     | [`DrawerProps`](#drawerprops)                                                                                                           |
 | saveButtonProps   | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                         |
-| deleteButtonProps | Adds props for delete button                                 | [`DeleteButtonProps`](/api-reference/core/interfaces.md#delete-button-props)                                                            |
+| deleteButtonProps | Adds props for delete button                                 | [`DeleteButtonProps`](/docs/api-reference/core/interfaces.md#delete-button-props)                                                       |
 | submit            | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                            |
 | open              | Whether the drawer is open or not                            | `boolean`                                                                                                                               |
 | close             | Specify a function that can close the drawer                 | `() => void`                                                                                                                            |

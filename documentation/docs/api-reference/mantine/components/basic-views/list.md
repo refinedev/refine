@@ -6,39 +6,33 @@ swizzle: true
 
 ```tsx live shared
 setRefineProps({
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
-    Sider: () => null,
+  notificationProvider: RefineMantine.notificationProvider,
+  Layout: RefineMantine.Layout,
+  Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <MantineCore.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <MantineCore.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <MantineNotifications.NotificationsProvider position="top-right">
-                {children}
-            </MantineNotifications.NotificationsProvider>
-        </MantineCore.MantineProvider>
-    );
+  return (
+    <MantineCore.MantineProvider theme={RefineMantine.LightTheme} withNormalizeCSS withGlobalStyles>
+      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <MantineNotifications.NotificationsProvider position="top-right">
+        {children}
+      </MantineNotifications.NotificationsProvider>
+    </MantineCore.MantineProvider>
+  );
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
@@ -59,114 +53,99 @@ import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-            },
-            {
-                id: "status",
-                header: "Status",
-                accessorKey: "status",
-            },
-            {
-                id: "createdAt",
-                header: "Created At",
-                accessorKey: "createdAt",
-                cell: function render({ getValue }) {
-                    return (
-                        <DateField value={getValue() as string} format="LLL" />
-                    );
-                },
-            },
-        ],
-        [],
-    );
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
+      },
+      {
+        id: "status",
+        header: "Status",
+        accessorKey: "status",
+      },
+      {
+        id: "createdAt",
+        header: "Created At",
+        accessorKey: "createdAt",
+        cell: function render({ getValue }) {
+          return <DateField value={getValue() as string} format="LLL" />;
+        },
+      },
+    ],
+    [],
+  );
 
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { setCurrent, pageCount, current },
-    } = useTable({
-        columns,
-    });
+  const {
+    getHeaderGroups,
+    getRowModel,
+    refineCore: { setCurrent, pageCount, current },
+  } = useTable({
+    columns,
+  });
 
-    return (
-        <List>
-            <Table>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                              header.column.columnDef.header,
-                                              header.getContext(),
-                                          )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext(),
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <br />
-            <Pagination
-                position="right"
-                total={pageCount}
-                page={current}
-                onChange={setCurrent}
-            />
-        </List>
-    );
+  return (
+    <List>
+      <Table>
+        <thead>
+          {getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th key={header.id}>
+                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {getRowModel().rows.map((row) => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      <br />
+      <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 :::info-tip Swizzle
+
 You can swizzle this component with the [**refine CLI**](/docs/packages/documentation/cli) to customize it.
+
 :::
 
 ## Properties
@@ -186,33 +165,33 @@ import { List } from "@refinedev/mantine";
 import { Title } from "@mantine/core";
 
 const PostList: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <List title={<Title order={3}>Custom Title</Title>}>
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    /* highlight-next-line */
+    <List title={<Title order={3}>Custom Title</Title>}>
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -231,39 +210,39 @@ import dataProvider from "@refinedev/simple-rest";
 import { List } from "@refinedev/mantine";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <List resource="categories">
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    /* highlight-next-line */
+    <List resource="categories">
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom",
-                    },
-                ],
-                // highlight-end
-            }}
-            Layout={Layout}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom",
+          },
+        ],
+        // highlight-end
+      }}
+      Layout={Layout}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -288,91 +267,89 @@ import { List } from "@refinedev/mantine";
 import { usePermissions } from "@refinedev/core";
 
 const PostList: React.FC = () => {
-    const { data: permissionsData } = usePermissions();
-    return (
-        <List
-            /* highlight-start */
-            canCreate={permissionsData?.includes("admin")}
-            createButtonProps={{ variant: "subtle" }}
-            /* highlight-end */
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  const { data: permissionsData } = usePermissions();
+  return (
+    <List
+      /* highlight-start */
+      canCreate={permissionsData?.includes("admin")}
+      createButtonProps={{ variant: "subtle" }}
+      /* highlight-end */
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    const simpleRestDataProvider = dataProvider(
-        "https://api.fake-rest.refine.dev",
-    );
+  const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
-    const customDataProvider = {
-        ...simpleRestDataProvider,
-        deleteOne: async ({ resource, id, variables }) => {
-            return {
-                data: {},
-            };
-        },
-    };
+  const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+      return {
+        data: {},
+      };
+    },
+  };
 
-    const authProvider = {
-        login: async () => {
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        },
-        register: async () => {
-            return {
-                success: true,
-            };
-        },
-        forgotPassword: async () => {
-            return {
-                success: true,
-            };
-        },
-        updatePassword: async () => {
-            return {
-                success: true,
-            };
-        },
-        logout: async () => {
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        },
-        check: async () => ({
-            authenticated: true,
-        }),
-        onError: async (error) => {
-            console.error(error);
-            return { error };
-        },
-        getPermissions: async () => ["admin"],
-        getIdentity: async () => null,
-    };
+  const authProvider = {
+    login: async () => {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    },
+    register: async () => {
+      return {
+        success: true,
+      };
+    },
+    forgotPassword: async () => {
+      return {
+        success: true,
+      };
+    },
+    updatePassword: async () => {
+      return {
+        success: true,
+      };
+    },
+    logout: async () => {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    },
+    check: async () => ({
+      authenticated: true,
+    }),
+    onError: async (error) => {
+      console.error(error);
+      return { error };
+    },
+    getPermissions: async () => ["admin"],
+    getIdentity: async () => null,
+  };
 
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={customDataProvider}
-            authProvider={authProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={customDataProvider}
+      authProvider={authProvider}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -381,7 +358,9 @@ render(
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mantine` package.
 
 :::tip
+
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+
 :::
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
@@ -394,53 +373,53 @@ import dataProvider from "@refinedev/simple-rest";
 import { List } from "@refinedev/mantine";
 
 const CustomBreadcrumb: React.FC = () => {
-    return (
-        <p
-            style={{
-                padding: "3px 6px",
-                border: "2px dashed cornflowerblue",
-            }}
-        >
-            My Custom Breadcrumb
-        </p>
-    );
+  return (
+    <p
+      style={{
+        padding: "3px 6px",
+        border: "2px dashed cornflowerblue",
+      }}
+    >
+      My Custom Breadcrumb
+    </p>
+  );
 };
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            breadcrumb={<CustomBreadcrumb />}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      breadcrumb={<CustomBreadcrumb />}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/api-reference/mantine/components/breadcrumb.md)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/api-reference/mantine/components/breadcrumb.md)
 
 ### `wrapperProps`
 
@@ -456,41 +435,41 @@ import dataProvider from "@refinedev/simple-rest";
 import { List } from "@refinedev/mantine";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            wrapperProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      wrapperProps={{
+        style: {
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -510,41 +489,41 @@ import dataProvider from "@refinedev/simple-rest";
 import { List } from "@refinedev/mantine";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            headerProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerProps={{
+        style: {
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -564,41 +543,41 @@ import dataProvider from "@refinedev/simple-rest";
 import { List } from "@refinedev/mantine";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            contentProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      contentProps={{
+        style: {
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -627,43 +606,43 @@ import { List } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <>
-                    {defaultButtons}
-                    <Button variant="outline" type="primary">
-                        Custom Button
-                    </Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <>
+          {defaultButtons}
+          <Button variant="outline" type="primary">
+            Custom Button
+          </Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -680,48 +659,43 @@ import { List, CreateButton } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            headerButtons={({ createButtonProps }) => (
-                <>
-                    {createButtonProps && (
-                        <CreateButton
-                            {...createButtonProps}
-                            meta={{ foo: "bar" }}
-                        />
-                    )}
-                    <Button variant="outline" type="primary">
-                        Custom Button
-                    </Button>
-                </>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtons={({ createButtonProps }) => (
+        <>
+          {createButtonProps && <CreateButton {...createButtonProps} meta={{ foo: "bar" }} />}
+          <Button variant="outline" type="primary">
+            Custom Button
+          </Button>
+        </>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -740,46 +714,46 @@ import { List } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            headerButtonProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
-            }}
-            // highlight-end
-            headerButtons={
-                <Button variant="outline" type="primary">
-                    Custom Button
-                </Button>
-            }
-        >
-            <p>Rest of your page here</p>
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtonProps={{
+        style: {
+          border: "2px dashed cornflowerblue",
+          padding: "16px",
+        },
+      }}
+      // highlight-end
+      headerButtons={
+        <Button variant="outline" type="primary">
+          Custom Button
+        </Button>
+      }
+    >
+      <p>Rest of your page here</p>
+    </List>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
