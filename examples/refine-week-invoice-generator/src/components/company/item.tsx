@@ -26,8 +26,8 @@ export const CompanyItem: React.FC<CompanyItemProps> = ({ item, editShow }) => {
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <img
                         style={{
-                            width: 220,
-                            height: 100,
+                            width: "248px",
+                            height: "auto",
                             padding: 24,
                         }}
                         src={image}
