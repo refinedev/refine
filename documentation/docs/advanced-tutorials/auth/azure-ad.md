@@ -175,7 +175,7 @@ import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev
 import dataProvider from "@refinedev/simple-rest";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { AccountInfo, SilentRequest } from "@azure/msal-browser";
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -188,21 +188,16 @@ export const axiosInstance = axios.create();
 
 axiosInstance.interceptors.request.use(
   // Here we can perform any function we'd like on the request
-  (request: AxiosRequestConfig) => {
+  (config) => {
     // Retrieve the token from local storage
     const token = localStorage.getItem(TOKEN_KEY);
 
     // Check if the header property exists
-    if (request.headers) {
+    if (config.headers) {
       // Set the Authorization header if it exists
-      request.headers["Authorization"] = `Bearer ${token}`;
-    } else {
-      // Create the headers property if it does not exist
-      request.headers = {
-        Authorization: `Bearer ${token}`,
-      };
+      config.headers["Authorization"] = `Bearer ${token}`;
     }
-    return request;
+    return config;
   },
 );
 

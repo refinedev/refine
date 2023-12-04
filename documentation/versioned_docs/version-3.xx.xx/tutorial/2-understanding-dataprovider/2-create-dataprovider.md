@@ -2,8 +2,8 @@
 id: create-dataprovider
 title: 3. Create Data Provider From Scratch
 tutorial:
-    prev: tutorial/understanding-dataprovider/swizzle
-    next: tutorial/understanding-resources/index
+  prev: tutorial/understanding-dataprovider/swizzle
+  next: tutorial/understanding-resources/index
 ---
 
 ## Introduction
@@ -19,7 +19,7 @@ Using `axios` as our HTTP client will allow us to make efficient and reliable HT
 To get started, install the `axios` to our project.
 
 ```bash
-npm install axios@0.26
+npm install axios
 ```
 
 Using the `stringify` library will allow us to convert the query parameters into a string format. This can be useful when we need to pass query parameters as part of an HTTP request.
@@ -35,7 +35,7 @@ import { DataProvider } from "@pankod/refine-core";
 import { stringify } from "query-string";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // Methods
+  // Methods
 });
 ```
 
@@ -59,23 +59,23 @@ import { stringify } from "query-string";
 const axiosInstance = axios.create();
 
 axiosInstance.interceptors.response.use(
-    (response) => {
-        return response;
-    },
-    (error) => {
-        const customError: HttpError = {
-            ...error,
-            message: error.response?.data?.message,
-            statusCode: error.response?.status,
-        };
+  (response) => {
+    return response;
+  },
+  (error) => {
+    const customError: HttpError = {
+      ...error,
+      message: error.response?.data?.message,
+      statusCode: error.response?.status,
+    };
 
-        return Promise.reject(customError);
-    },
+    return Promise.reject(customError);
+  },
 );
 // highlight-end
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
-    // Methods
+  // Methods
 });
 ```
 
@@ -123,288 +123,290 @@ access-control-expose-headers: X-Total-Count
 
 1. In the first step, we'll return the data and the total number of records using the `resource` parameter.
 
-    `resource` parameter is the name of the resource that we want to get the data from. It passes by the `resource` parameter in hooks. In our case, it is `posts`.
+   `resource` parameter is the name of the resource that we want to get the data from. It passes by the `resource` parameter in hooks. In our case, it is `posts`.
 
-    ```ts title="src/data-provider.ts"
-    export const dataProvider = (apiUrl: string): DataProvider => ({
-      // ...
-      getList: async ({ resource }) => {
-        const url = `${apiUrl}/${resource}`;
+   ```ts title="src/data-provider.ts"
+   export const dataProvider = (apiUrl: string): DataProvider => ({
+     // ...
+     getList: async ({ resource }) => {
+       const url = `${apiUrl}/${resource}`;
 
-        const { data, headers } = await axiosInstance.get(url);
+       const { data, headers } = await axiosInstance.get(url);
 
-        const total = +headers["x-total-count"];
+       const total = +headers["x-total-count"];
 
-        return {
-          data,
-          total,
-        };
-      },
-      // ...
-    });
-    ```
+       return {
+         data,
+         total,
+       };
+     },
+     // ...
+   });
+   ```
 
 2. Now let's add the pagination feature. For this, the API takes the following parameters.
 
-    ```bash
-    [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2
-    ```
+   ```bash
+   [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2
+   ```
 
-    **refine** uses the `pagination` parameter for pagination.
-    For this parameter, `current` is refer to page number and `pageSize` refer to the number of records in the each page.
+   **refine** uses the `pagination` parameter for pagination.
+   For this parameter, `current` is refer to page number and `pageSize` refer to the number of records in the each page.
 
-    ```bash
-    [
-      {
-        current: 1,
-        pageSize: 10,
-      },
-    ]
-    ```
+   ```bash
+   [
+     {
+       current: 1,
+       pageSize: 10,
+     },
+   ]
+   ```
 
-    ```ts title="src/data-provider.ts"
-    export const dataProvider = (apiUrl: string): DataProvider => ({
-      // ...
-      getList: async ({ resource, pagination }) => {
-        const url = `${apiUrl}/${resource}`;
+   ```ts title="src/data-provider.ts"
+   export const dataProvider = (apiUrl: string): DataProvider => ({
+     // ...
+     getList: async ({ resource, pagination }) => {
+       const url = `${apiUrl}/${resource}`;
 
-        // highlight-start
-        const { current = 1, pageSize = 10 } = pagination ?? {};
+       // highlight-start
+       const { current = 1, pageSize = 10 } = pagination ?? {};
 
-        const query: {
-          _start?: number;
-          _end?: number;
-        } = {
-          _start: (current - 1) * pageSize,
-          _end: current * pageSize,
-        };
+       const query: {
+         _start?: number;
+         _end?: number;
+       } = {
+         _start: (current - 1) * pageSize,
+         _end: current * pageSize,
+       };
 
-        const { data, headers } = await axiosInstance.get(`${url}?${stringify(query)}`);
-        // highlight-end
+       const { data, headers } = await axiosInstance.get(
+         `${url}?${stringify(query)}`,
+       );
+       // highlight-end
 
-        const total = +headers["x-total-count"];
+       const total = +headers["x-total-count"];
 
-        return {
-          data,
-          total,
-        };
-      },
-      // ...
-    });
-    ```
+       return {
+         data,
+         total,
+       };
+     },
+     // ...
+   });
+   ```
 
 3. Now let's add the sorting feature. The API expects the following parameters for sorting.
 
-    ```bash
-    [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc
-    ```
+   ```bash
+   [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc
+   ```
 
-    **refine** uses the `sort` parameter for sorting. This parameter includes `field` and `order` values.
-    Supports multiple field sorting. [CrudSort[]](../../api-reference/core/interfaces.md#CrudSorting) type, it comes in the data provider as follows.
+   **refine** uses the `sort` parameter for sorting. This parameter includes `field` and `order` values.
+   Supports multiple field sorting. [CrudSort[]](../../api-reference/core/interfaces.md#CrudSorting) type, it comes in the data provider as follows.
 
-    ```bash
-    [
-      {
-        field: "id",
-        order: "desc",
-      },
-    ]
-    ```
+   ```bash
+   [
+     {
+       field: "id",
+       order: "desc",
+     },
+   ]
+   ```
 
-    :::tip
-    **refine** supports multi-field sorting.
-    :::
+   :::tip
+   **refine** supports multi-field sorting.
+   :::
 
-    ```ts title="src/data-provider.ts"
-    getList: async ({ resource, pagination, sort }) => {
-      const url = `${apiUrl}/${resource}`;
+   ```ts title="src/data-provider.ts"
+   getList: async ({ resource, pagination, sort }) => {
+     const url = `${apiUrl}/${resource}`;
 
-      const { current = 1, pageSize = 10 } = pagination ?? {};
+     const { current = 1, pageSize = 10 } = pagination ?? {};
 
-      const query: {
-        _start?: number;
-        _end?: number;
-        // highlight-start
-        _sort?: string;
-        _order?: string;
-        // highlight-end
-      } = {
-        _start: (current - 1) * pageSize,
-        _end: current * pageSize,
-      };
+     const query: {
+       _start?: number;
+       _end?: number;
+       // highlight-start
+       _sort?: string;
+       _order?: string;
+       // highlight-end
+     } = {
+       _start: (current - 1) * pageSize,
+       _end: current * pageSize,
+     };
 
-      // highlight-start
-      if (sort && sort.length > 0) {
-        query._sort = sort[0].field;
-        query._order = sort[0].order;
-      }
-      // highlight-end
+     // highlight-start
+     if (sort && sort.length > 0) {
+       query._sort = sort[0].field;
+       query._order = sort[0].order;
+     }
+     // highlight-end
 
-      // highlight-next-line
-      const { data, headers } = await axiosInstance.get(
-       `${url}?${stringify(query)}`,
-      );
+     // highlight-next-line
+     const { data, headers } = await axiosInstance.get(
+      `${url}?${stringify(query)}`,
+     );
 
-      const total = +headers["x-total-count"];
+     const total = +headers["x-total-count"];
 
-      return {
-        data,
-        total,
-      };
-    },
-    ```
+     return {
+       data,
+       total,
+     };
+   },
+   ```
 
 4. Now let's add the filtering feature. The API expects the following parameters for filtering.
 
-    ```bash
+   ```bash
 
-    [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc&title_like
-    ```
+   [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc&title_like
+   ```
 
-    **refine** uses the `filters` parameter for filtering. This parameter contains `field`, `operator` and `value` with type [CrudFilters []](../../api-reference/core/interfaces.md#crudfilters).
+   **refine** uses the `filters` parameter for filtering. This parameter contains `field`, `operator` and `value` with type [CrudFilters []](../../api-reference/core/interfaces.md#crudfilters).
 
-    ```bash
-    [
-      {
-        field: "status"
-        operator: "eq"
-        value: "published"
-      },
-      {
-        field: "title"
-        operator: "contain"
-        value: "Hello"
-      },
-    ]
-    ```
+   ```bash
+   [
+     {
+       field: "status"
+       operator: "eq"
+       value: "published"
+     },
+     {
+       field: "title"
+       operator: "contain"
+       value: "Hello"
+     },
+   ]
+   ```
 
-    The `operator` data comes with the [CrudOperators](../../api-reference/core/interfaces.md#crudoperators) type and needs to be mapped to the API. For this, the following `mapOperator` function is written.
+   The `operator` data comes with the [CrudOperators](../../api-reference/core/interfaces.md#crudoperators) type and needs to be mapped to the API. For this, the following `mapOperator` function is written.
 
-    ```ts
-    // Map refine operators to API operators
-    const mapOperator = (operator: CrudOperators): string => {
-      switch (operator) {
-        case "ne":
-        case "gte":
-        case "lte":
-          return `_${operator}`;
-        case "contains":
-          return "_like";
-        case "eq":
-        default:
-          return "";
-      }
-    };
-    ```
+   ```ts
+   // Map refine operators to API operators
+   const mapOperator = (operator: CrudOperators): string => {
+     switch (operator) {
+       case "ne":
+       case "gte":
+       case "lte":
+         return `_${operator}`;
+       case "contains":
+         return "_like";
+       case "eq":
+       default:
+         return "";
+     }
+   };
+   ```
 
-    ```ts title="src/data-provider.ts"
-    // highlight-start
-    const generateFilters = (filters?: CrudFilters) => {
-      const queryFilters: { [key: string]: string } = {};
+   ```ts title="src/data-provider.ts"
+   // highlight-start
+   const generateFilters = (filters?: CrudFilters) => {
+     const queryFilters: { [key: string]: string } = {};
 
-      filters?.map((filter): void => {
-        if ("field" in filter) {
-          const { field, operator, value } = filter;
-          const mappedOperator = mapOperator(operator);
-          queryFilters[`${field}${mappedOperator}`] = value;
-        }
-      });
+     filters?.map((filter): void => {
+       if ("field" in filter) {
+         const { field, operator, value } = filter;
+         const mappedOperator = mapOperator(operator);
+         queryFilters[`${field}${mappedOperator}`] = value;
+       }
+     });
 
-      return queryFilters;
-    };
-    // highlight-end
+     return queryFilters;
+   };
+   // highlight-end
 
-    getList: async ({ resource, pagination, sort, filters }) => {
-      const url = `${apiUrl}/${resource}`;
+   getList: async ({ resource, pagination, sort, filters }) => {
+     const url = `${apiUrl}/${resource}`;
 
-      const { current = 1, pageSize = 10 } = pagination ?? {};
+     const { current = 1, pageSize = 10 } = pagination ?? {};
 
-      const query: {
-        _start?: number;
-        _end?: number;
-        _sort?: string;
-        _order?: string;
-      } = {
-        _start: (current - 1) * pageSize,
-        _end: current * pageSize,
-      };
+     const query: {
+       _start?: number;
+       _end?: number;
+       _sort?: string;
+       _order?: string;
+     } = {
+       _start: (current - 1) * pageSize,
+       _end: current * pageSize,
+     };
 
-      if (sort && sort.length > 0) {
-        query._sort = sort[0].field;
-        query._order = sort[0].order;
-      }
+     if (sort && sort.length > 0) {
+       query._sort = sort[0].field;
+       query._order = sort[0].order;
+     }
 
-      // highlight-next-line
-      const queryFilters = generateFilters(filters);
+     // highlight-next-line
+     const queryFilters = generateFilters(filters);
 
-      const { data, headers } = await axiosInstance.get(
-        // highlight-next-line
-        `${url}?${stringify(query)}&${stringify(queryFilters)}`
-      );
+     const { data, headers } = await axiosInstance.get(
+       // highlight-next-line
+       `${url}?${stringify(query)}&${stringify(queryFilters)}`
+     );
 
-      const total = +headers["x-total-count"];
+     const total = +headers["x-total-count"];
 
-      return {
-        data,
-        total,
-      };
-    },
-    ```
+     return {
+       data,
+       total,
+     };
+   },
+   ```
 
-    :::info
-    Also, conditional filters can be made using `and` and `or`. For example:
+   :::info
+   Also, conditional filters can be made using `and` and `or`. For example:
 
-    ```bash
-    [
-      {
-        operator: "or",
-        value: [
-          {
-            operator: "and"
-            value: [
-              {
-                field: "title"
-                operator: "contain"
-                value: "Hello"
-              },
-              {
-                field: "age"
-                operator: "gte"
-                value: "18"
-              },
-            ]
-          },
-          {
-            operator: "and"
-            value: [
-              {
-                field: "title"
-                operator: "contain"
-                value: "Hello"
-              },
-              {
-                field: "age"
-                operator: "lte"
-                value: "18"
-              },
-            ]
-          }
-        ]
-      }
-    ]
-    ```
+   ```bash
+   [
+     {
+       operator: "or",
+       value: [
+         {
+           operator: "and"
+           value: [
+             {
+               field: "title"
+               operator: "contain"
+               value: "Hello"
+             },
+             {
+               field: "age"
+               operator: "gte"
+               value: "18"
+             },
+           ]
+         },
+         {
+           operator: "and"
+           value: [
+             {
+               field: "title"
+               operator: "contain"
+               value: "Hello"
+             },
+             {
+               field: "age"
+               operator: "lte"
+               value: "18"
+             },
+           ]
+         }
+       ]
+     }
+   ]
+   ```
 
-    :::
+   :::
 
-    **Parameter Types:**
+   **Parameter Types:**
 
-    | Name           | Type                                                                |
-    | -------------- | ------------------------------------------------------------------- |
-    | resource       | `string`                                                            |
-    | hasPagination? | `boolean` _(defaults to `true`)_                                    |
-    | pagination?    | [`Pagination`](../../api-reference/core/interfaces.md#pagination)   |
-    | sort?          | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting) |
-    | filters?       | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters) |
+   | Name           | Type                                                                |
+   | -------------- | ------------------------------------------------------------------- |
+   | resource       | `string`                                                            |
+   | hasPagination? | `boolean` _(defaults to `true`)_                                    |
+   | pagination?    | [`Pagination`](../../api-reference/core/interfaces.md#pagination)   |
+   | sort?          | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting) |
+   | filters?       | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters) |
 
 <br/>
 
@@ -442,7 +444,7 @@ The `create` method creates a new record with the `resource` and `variables` par
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
   // ...
-  create: async({ resource, variables }) => {
+  create: async ({ resource, variables }) => {
     const url = `${apiUrl}/${resource}`;
 
     const { data } = await axiosInstance.post(url, variables);
@@ -594,7 +596,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
     };
   },
   // ...
-})
+});
 ```
 
 **Parameter Types:**
@@ -650,55 +652,55 @@ It's useful if you have non-standard REST API endpoints or want to make a connec
 ```ts title="dataProvider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
   // ...
-  custom: async({ url, method, filters, sort, payload, query, headers }) => {
-  let requestUrl = `${url}?`;
+  custom: async ({ url, method, filters, sort, payload, query, headers }) => {
+    let requestUrl = `${url}?`;
 
-  if (sort && sort.length > 0) {
-    const sortQuery = {
-      _sort: sort[0].field,
-      _order: sort[0].order,
-    };
-    requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
-  }
+    if (sort && sort.length > 0) {
+      const sortQuery = {
+        _sort: sort[0].field,
+        _order: sort[0].order,
+      };
+      requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
+    }
 
-  if (filters) {
-    const filterQuery = generateFilters(filters);
-    requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
-  }
+    if (filters) {
+      const filterQuery = generateFilters(filters);
+      requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
+    }
 
-  if (query) {
-    requestUrl = `${requestUrl}&${stringify(query)}`;
-  }
+    if (query) {
+      requestUrl = `${requestUrl}&${stringify(query)}`;
+    }
 
-  if (headers) {
-    axiosInstance.defaults.headers = {
-      ...axiosInstance.defaults.headers,
-      ...headers,
-    };
-  }
+    if (headers) {
+      axiosInstance.defaults.headers = {
+        ...axiosInstance.defaults.headers,
+        ...headers,
+      };
+    }
 
-  let axiosResponse;
-  switch (method) {
-    case "put":
-    case "post":
-    case "patch":
-      axiosResponse = await axiosInstance[method](url, payload);
-      break;
-    case "delete":
-      axiosResponse = await axiosInstance.delete(url, {
-        data: payload,
-      });
-      break;
-    default:
-      axiosResponse = await axiosInstance.get(requestUrl);
-      break;
-  }
+    let axiosResponse;
+    switch (method) {
+      case "put":
+      case "post":
+      case "patch":
+        axiosResponse = await axiosInstance[method](url, payload);
+        break;
+      case "delete":
+        axiosResponse = await axiosInstance.delete(url, {
+          data: payload,
+        });
+        break;
+      default:
+        axiosResponse = await axiosInstance.get(requestUrl);
+        break;
+    }
 
-  const { data } = axiosResponse;
+    const { data } = axiosResponse;
 
-  return Promise.resolve({ data });
-},
-    // ...
+    return Promise.resolve({ data });
+  },
+  // ...
 });
 ```
 
@@ -845,7 +847,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
     const { data } = await axiosInstance.delete(url);
 
     return {
-      data
+      data,
     };
   },
   // ...

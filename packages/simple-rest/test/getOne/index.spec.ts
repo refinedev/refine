@@ -3,8 +3,6 @@ import axios from "axios";
 import JsonServer from "../../src/index";
 import "./index.mock";
 
-axios.defaults.adapter = require("axios/lib/adapters/http");
-
 describe("getOne", () => {
     it("correct response", async () => {
         const response = await JsonServer(

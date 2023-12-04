@@ -6,7 +6,7 @@ module.exports = {
             {
                 group: "Providers",
                 label: "Supabase",
-                requiredPackages: ["axios@0.26.1, qs@6.10.1"],
+                requiredPackages: ["axios@1.6.2, qs@6.10.1"],
                 files: [
                     {
                         src: "./src/index.ts",
@@ -67,7 +67,7 @@ module.exports = {
                   \`\`\`
                   // title: App.tsx
                   import { AuthHelper, DataProvider } from "providers/strapi-v4";
-        
+
                   const App = () => {
                       return (
                           <Refine

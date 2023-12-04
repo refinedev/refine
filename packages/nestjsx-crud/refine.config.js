@@ -27,7 +27,7 @@ module.exports = {
                 `,
                 requiredPackages: [
                     "query-string@7.1.1",
-                    "axios@0.26.1",
+                    "axios@1.6.2",
                     "@nestjsx/crud-request@5.0.0-alpha.3",
                 ],
                 files: [

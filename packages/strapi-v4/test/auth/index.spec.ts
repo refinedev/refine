@@ -3,8 +3,6 @@ import axios from "axios";
 import { AuthHelper } from "../../src/helpers/auth";
 import "./index.mock";
 
-axios.defaults.adapter = require("axios/lib/adapters/http");
-
 describe("auth", () => {
     describe("login", () => {
         it("correct response", async () => {
