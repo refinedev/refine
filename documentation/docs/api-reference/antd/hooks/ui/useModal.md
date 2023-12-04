@@ -22,19 +22,19 @@ import { Modal, Button } from "antd";
 // highlight-end
 
 export const PostList: React.FC = () => {
-  // highlight-next-line
-  const { show, modalProps } = useModal();
+    // highlight-next-line
+    const { show, modalProps } = useModal();
 
-  return (
-    <>
-      // highlight-start
-      <Button onClick={show}>Show Modal</Button>
-      <Modal {...modalProps}>
-        <p>Modal Content</p>
-      </Modal>
-      // highlight-end
-    </>
-  );
+    return (
+        <>
+            // highlight-start
+            <Button onClick={show}>Show Modal</Button>
+            <Modal {...modalProps}>
+                <p>Modal Content</p>
+            </Modal>
+            // highlight-end
+        </>
+    );
 };
 ```
 

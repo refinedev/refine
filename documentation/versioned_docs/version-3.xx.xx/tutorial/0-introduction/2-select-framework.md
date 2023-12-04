@@ -2,9 +2,9 @@
 id: select-framework
 title: 3. Selection of UI Framework
 tutorial:
-  order: 2
-  prev: tutorial/introduction/prerequisite
-  next: tutorial/getting-started/index
+    order: 2
+    prev: tutorial/introduction/prerequisite
+    next: tutorial/getting-started/index
 ---
 
 import { SelectTutorialFramework } from '@site/src/components/select-tutorial-framework';
@@ -47,7 +47,7 @@ The tutorial content will continue as if it were the **Mantine** selection.
 
 <UIConditional is="mui">
 
-The tutorial content will continue as if it were the **Material UI\*** selection.
+The tutorial content will continue as if it were the **Material UI*** selection.
 
 </UIConditional>
 

@@ -9,15 +9,14 @@ title: License
 
 ## Permissions
 
-- ✅ Commercial use
-- ✅ Modification
-- ✅ Distribution
-- ✅ Private use
+-    ✅ Commercial use 
+-    ✅ Modification
+-    ✅ Distribution
+-    ✅ Private use
 
 ## Limitations
-
-- ❌ Liability
-- ❌ Warranty
+-    ❌ Liability
+-    ❌ Warranty
 
 # License
 

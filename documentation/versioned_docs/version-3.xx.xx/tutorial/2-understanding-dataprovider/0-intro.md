@@ -2,9 +2,9 @@
 id: index
 title: 1. Data Provider
 tutorial:
-  order: 0
-  prev: false
-  next: tutorial/understanding-dataprovider/swizzle
+    order: 0
+    prev: false
+    next: tutorial/understanding-dataprovider/swizzle
 ---
 
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
@@ -85,22 +85,22 @@ To illustrate this internal connection, imagine we want to get all records from 
 import { useList } from "@pankod/refine-core";
 
 const postUseListResult = useList({
-  resource: "posts",
-  config: {
-    sort: [
-      {
-        field: "id",
-        order: "desc",
-      },
-    ],
-    filters: [
-      {
-        field: "title",
-        operator: "contains",
-        value: "hello",
-      },
-    ],
-  },
+    resource: "posts",
+    config: {
+        sort: [
+            {
+                field: "id",
+                order: "desc",
+            },
+        ],
+        filters: [
+            {
+                field: "title",
+                operator: "contains",
+                value: "hello",
+            },
+        ],
+    },
 });
 ```
 

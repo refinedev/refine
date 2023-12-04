@@ -10,13 +10,13 @@ hide_table_of_contents: false
 
 ### refineWeek series
 
-- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
-- Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
-- Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
-- Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
-- Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
-- Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
-- Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+-   Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+-   Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
+-   Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
+-   Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
+-   Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+-   Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
+-   Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
 
 In this post, we apply **refine**'s built-in audit logging functionality to our **Pixels Admin** app and to the **Pixels** client app that we built previously in this [**refineWeek**](http://localhost:3000/week-of-refine/) series. **refine**'s audit logging system comes already baked into its data hooks and inside supplemental data provider packages, like the [`@refinedev/supabase`](https://www.npmjs.com/package/@refinedev/supabase). Today we are going to get it to work by using the `auditLogProvider` prop.
 
@@ -79,11 +79,11 @@ It is possible to append useful data to the `meta` field by passing the data to 
 const { mutate } = useCreate();
 
 mutate({
-  resource: "pixels",
-  values: { x, y, color, canvas_id: canvas?.id, user_id: identity.id },
-  meta: {
-    canvas,
-  },
+    resource: "pixels",
+    values: { x, y, color, canvas_id: canvas?.id, user_id: identity.id },
+    meta: {
+        canvas,
+    },
 });
 ```
 
@@ -170,41 +170,41 @@ import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "../utility";
 
 export const auditLogProvider: AuditLogProvider = {
-  get: async ({ resource, meta }) => {
-    const { data } = await dataProvider(supabaseClient).getList({
-      resource: "logs",
-      filters: [
-        {
-          field: "resource",
-          operator: "eq",
-          value: resource,
-        },
-        {
-          field: "meta->canvas->id",
-          operator: "eq",
-          value: `"${meta?.canvas?.id}"`,
-        },
-      ],
-      sort: [{ order: "desc", field: "created_at" }],
-    });
+    get: async ({ resource, meta }) => {
+        const { data } = await dataProvider(supabaseClient).getList({
+            resource: "logs",
+            filters: [
+                {
+                    field: "resource",
+                    operator: "eq",
+                    value: resource,
+                },
+                {
+                    field: "meta->canvas->id",
+                    operator: "eq",
+                    value: `"${meta?.canvas?.id}"`,
+                },
+            ],
+            sort: [{ order: "desc", field: "created_at" }],
+        });
 
-    return data;
-  },
-  create: (params) => {
-    return dataProvider(supabaseClient).create({
-      resource: "logs",
-      variables: params,
-    });
-  },
-  update: async ({ id, name }) => {
-    const { data } = await dataProvider(supabaseClient).update({
-      resource: "logs",
-      id,
-      variables: { name },
-    });
+        return data;
+    },
+    create: (params) => {
+        return dataProvider(supabaseClient).create({
+            resource: "logs",
+            variables: params,
+        });
+    },
+    update: async ({ id, name }) => {
+        const { data } = await dataProvider(supabaseClient).update({
+            resource: "logs",
+            id,
+            variables: { name },
+        });
 
-    return data;
-  },
+        return data;
+    },
 };
 ```
 
@@ -255,7 +255,14 @@ In the **Pixels** app, `pixels` are created by the `onSubmit()` event handler de
 
 ```tsx title="pages/canvases/show.tsx"
 import { useState } from "react";
-import { useCreate, useGetIdentity, useNavigation, useShow, useParsed, useIsAuthenticated } from "@refinedev/core";
+import {
+    useCreate,
+    useGetIdentity,
+    useNavigation,
+    useShow,
+    useParsed,
+    useIsAuthenticated,
+} from "@refinedev/core";
 import { useModal } from "@refinedev/antd";
 
 import { LeftOutlined } from "@ant-design/icons";
@@ -273,116 +280,123 @@ const { Title } = Typography;
 type Colors = typeof colors;
 
 export const CanvasShow: React.FC = () => {
-  const { pathname } = useParsed();
-  const [color, setColor] = useState<Colors[number]>("black");
-  const { modalProps, show, close } = useModal();
-  const { data: identity } = useGetIdentity<any>();
-  const { data: { authenticated } = {} } = useIsAuthenticated();
+    const { pathname } = useParsed();
+    const [color, setColor] = useState<Colors[number]>("black");
+    const { modalProps, show, close } = useModal();
+    const { data: identity } = useGetIdentity<any>();
+    const { data: { authenticated } = {} } = useIsAuthenticated();
 
-  const {
-    queryResult: { data: { data: canvas } = {} },
-  } = useShow<Canvas>();
-  const { mutate } = useCreate();
-  const { list, push } = useNavigation();
+    const {
+        queryResult: { data: { data: canvas } = {} },
+    } = useShow<Canvas>();
+    const { mutate } = useCreate();
+    const { list, push } = useNavigation();
 
-  const onSubmit = (x: number, y: number) => {
-    if (!authenticated) {
-      if (pathname) {
-        return push(`/login?to=${encodeURIComponent(pathname)}`);
-      }
-
-      return push(`/login`);
-    }
-
-    if (typeof x === "number" && typeof y === "number" && canvas?.id) {
-      mutate({
-        resource: "pixels",
-        values: {
-          x,
-          y,
-          color,
-          canvas_id: canvas?.id,
-          user_id: identity.id,
-        },
-        meta: {
-          canvas,
-        },
-        successNotification: false,
-      });
-    }
-  };
-
-  return (
-    <div className="container">
-      <div className="paper">
-        <div className="paper-header">
-          <Button type="text" onClick={() => list("canvases")} style={{ textTransform: "uppercase" }}>
-            <LeftOutlined />
-            Back
-          </Button>
-          <Title level={3}>{canvas?.name ?? canvas?.id ?? ""}</Title>
-          <Button type="primary" onClick={show}>
-            View Changes
-          </Button>
-        </div>
-        <Modal
-          title="Canvas Changes"
-          {...modalProps}
-          centered
-          destroyOnClose
-          onOk={close}
-          onCancel={() => {
-            close();
-          }}
-          footer={[
-            <Button type="primary" key="close" onClick={close}>
-              Close
-            </Button>,
-          ]}
-        >
-          <LogList currentCanvas={canvas} />
-        </Modal>
-
-        {canvas ? (
-          <DisplayCanvas canvas={canvas}>
-            {(pixels) =>
-              pixels ? (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 48,
-                  }}
-                >
-                  <div>
-                    <ColorSelect selected={color} onChange={setColor} />
-                  </div>
-                  <CanvasItem
-                    canvas={canvas}
-                    pixels={pixels}
-                    onPixelClick={onSubmit}
-                    scale={(20 / (canvas?.width ?? 20)) * 2}
-                    active={true}
-                  />
-                  <div style={{ width: 120 }}>
-                    <AvatarPanel pixels={pixels} />
-                  </div>
-                </div>
-              ) : (
-                <div className="spin-wrapper">
-                  <Spin />
-                </div>
-              )
+    const onSubmit = (x: number, y: number) => {
+        if (!authenticated) {
+            if (pathname) {
+                return push(`/login?to=${encodeURIComponent(pathname)}`);
             }
-          </DisplayCanvas>
-        ) : (
-          <div className="spin-wrapper">
-            <Spin />
-          </div>
-        )}
-      </div>
-    </div>
-  );
+
+            return push(`/login`);
+        }
+
+        if (typeof x === "number" && typeof y === "number" && canvas?.id) {
+            mutate({
+                resource: "pixels",
+                values: {
+                    x,
+                    y,
+                    color,
+                    canvas_id: canvas?.id,
+                    user_id: identity.id,
+                },
+                meta: {
+                    canvas,
+                },
+                successNotification: false,
+            });
+        }
+    };
+
+    return (
+        <div className="container">
+            <div className="paper">
+                <div className="paper-header">
+                    <Button
+                        type="text"
+                        onClick={() => list("canvases")}
+                        style={{ textTransform: "uppercase" }}
+                    >
+                        <LeftOutlined />
+                        Back
+                    </Button>
+                    <Title level={3}>{canvas?.name ?? canvas?.id ?? ""}</Title>
+                    <Button type="primary" onClick={show}>
+                        View Changes
+                    </Button>
+                </div>
+                <Modal
+                    title="Canvas Changes"
+                    {...modalProps}
+                    centered
+                    destroyOnClose
+                    onOk={close}
+                    onCancel={() => {
+                        close();
+                    }}
+                    footer={[
+                        <Button type="primary" key="close" onClick={close}>
+                            Close
+                        </Button>,
+                    ]}
+                >
+                    <LogList currentCanvas={canvas} />
+                </Modal>
+
+                {canvas ? (
+                    <DisplayCanvas canvas={canvas}>
+                        {(pixels) =>
+                            pixels ? (
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        gap: 48,
+                                    }}
+                                >
+                                    <div>
+                                        <ColorSelect
+                                            selected={color}
+                                            onChange={setColor}
+                                        />
+                                    </div>
+                                    <CanvasItem
+                                        canvas={canvas}
+                                        pixels={pixels}
+                                        onPixelClick={onSubmit}
+                                        scale={(20 / (canvas?.width ?? 20)) * 2}
+                                        active={true}
+                                    />
+                                    <div style={{ width: 120 }}>
+                                        <AvatarPanel pixels={pixels} />
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="spin-wrapper">
+                                    <Spin />
+                                </div>
+                            )
+                        }
+                    </DisplayCanvas>
+                ) : (
+                    <div className="spin-wrapper">
+                        <Spin />
+                    </div>
+                )}
+            </div>
+        </div>
+    );
 };
 ```
 
@@ -404,36 +418,45 @@ import { Avatar, List, Typography } from "antd";
 import { formattedDate, timeFromNow } from "../../utility/time";
 
 type TLogListProps = {
-  currentCanvas: any;
+    currentCanvas: any;
 };
 
 export const LogList = ({ currentCanvas }: TLogListProps) => {
-  const { data } = useLogList({
-    resource: "pixels",
-    meta: {
-      canvas: currentCanvas,
-    },
-  });
+    const { data } = useLogList({
+        resource: "pixels",
+        meta: {
+            canvas: currentCanvas,
+        },
+    });
 
-  return (
-    <List
-      size="small"
-      dataSource={data}
-      renderItem={(item: any) => (
-        <List.Item>
-          <List.Item.Meta avatar={<Avatar src={item?.author?.user_metadata?.avatar_url} size={20} />} />
-          <Typography.Text style={{ fontSize: "12px" }}>
-            <strong>{item?.author?.user_metadata?.email}</strong>
-            {` ${item.action}d a pixel on canvas: `}
-            <strong>{`${item?.meta?.canvas?.name} `}</strong>
-            <span style={{ fontSize: "10px", color: "#9c9c9c" }}>
-              {`${formattedDate(item.created_at)} - ${timeFromNow(item.created_at)}`}
-            </span>
-          </Typography.Text>
-        </List.Item>
-      )}
-    />
-  );
+    return (
+        <List
+            size="small"
+            dataSource={data}
+            renderItem={(item: any) => (
+                <List.Item>
+                    <List.Item.Meta
+                        avatar={
+                            <Avatar
+                                src={item?.author?.user_metadata?.avatar_url}
+                                size={20}
+                            />
+                        }
+                    />
+                    <Typography.Text style={{ fontSize: "12px" }}>
+                        <strong>{item?.author?.user_metadata?.email}</strong>
+                        {` ${item.action}d a pixel on canvas: `}
+                        <strong>{`${item?.meta?.canvas?.name} `}</strong>
+                        <span style={{ fontSize: "10px", color: "#9c9c9c" }}>
+                            {`${formattedDate(item.created_at)} - ${timeFromNow(
+                                item.created_at,
+                            )}`}
+                        </span>
+                    </Typography.Text>
+                </List.Item>
+            )}
+        />
+    );
 };
 ```
 
@@ -474,24 +497,24 @@ The log `params` object is sent to the `auditLogProvider.create()` method from i
 ```tsx title="@refinedev/core/src/hooks/auditLog/useLog/index.ts"
 // v4.5.8
 const log = useMutation<TLogData, Error, LogParams, unknown>(async (params) => {
-  const resource = resources.find((p) => p.name === params.resource);
-  const logPermissions = resource?.options?.auditLog?.permissions;
+    const resource = resources.find((p) => p.name === params.resource);
+    const logPermissions = resource?.options?.auditLog?.permissions;
 
-  if (logPermissions) {
-    if (!hasPermission(logPermissions, params.action)) {
-      return;
+    if (logPermissions) {
+        if (!hasPermission(logPermissions, params.action)) {
+            return;
+        }
     }
-  }
 
-  let authorData;
-  if (isLoading) {
-    authorData = await refetch();
-  }
+    let authorData;
+    if (isLoading) {
+        authorData = await refetch();
+    }
 
-  return await auditLogContext.create?.({
-    ...params,
-    author: identityData ?? authorData?.data,
-  });
+    return await auditLogContext.create?.({
+        ...params,
+        author: identityData ?? authorData?.data,
+    });
 });
 ```
 
@@ -507,14 +530,18 @@ Inside mutation hooks, the `useLog()` hook is used to create a log automatically
 // v4.5.8
 
 log?.mutate({
-  action: "create",
-  resource,
-  data: values,
-  meta: {
-    dataProviderName: pickDataProvider(resource, dataProviderName, resources),
-    id: data?.data?.id ?? undefined,
-    ...rest,
-  },
+    action: "create",
+    resource,
+    data: values,
+    meta: {
+        dataProviderName: pickDataProvider(
+            resource,
+            dataProviderName,
+            resources,
+        ),
+        id: data?.data?.id ?? undefined,
+        ...rest,
+    },
 });
 ```
 
@@ -535,13 +562,13 @@ In this **refineWeek** series, built the following two apps with **refine**:
 
 While building these twp apps, we have covered core **refine** concepts like the providers and hooks in significant depth. We had the opportunity to use majority of the providers with the features we added to these apps. Below is the brief outline of the providers we learned about:
 
-- [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/): used to handling authentication. We used it to implement email / password based authentication as well as social logins with Google and GitHub.
-- [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/): used to fetch data to and from a backend API by sending HTTP requests. We used the supplementary **Supabase** package to build a gallery of canvases, a public dashboard and a private dashboard for role based managers.
-- [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/): used for routing. We briefly touched over how it handles routing and resources following RESTful conventions.
-- [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/): used to implement real time Publish Subscribe features. We used it for allowing users to draw pixels collaboratively on a canvas.
-- [`accessControlProvider`](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/): used to implement authorization. We implemented a Role Based Access Control authorization for `editor` and `admin` roles.
-- [`auditLogProvider`](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/): used for logging resource mutations. We used it to log and display pixels drawing activities on a canvas.
-- [`notificationProvider`](https://refine.dev/docs/api-reference/core/providers/notification-provider/): used for posting notifications for resource actions. We did not cover it, but used it inside our code.
+-   [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/): used to handling authentication. We used it to implement email / password based authentication as well as social logins with Google and GitHub.
+-   [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/): used to fetch data to and from a backend API by sending HTTP requests. We used the supplementary **Supabase** package to build a gallery of canvases, a public dashboard and a private dashboard for role based managers.
+-   [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/): used for routing. We briefly touched over how it handles routing and resources following RESTful conventions.
+-   [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/): used to implement real time Publish Subscribe features. We used it for allowing users to draw pixels collaboratively on a canvas.
+-   [`accessControlProvider`](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/): used to implement authorization. We implemented a Role Based Access Control authorization for `editor` and `admin` roles.
+-   [`auditLogProvider`](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/): used for logging resource mutations. We used it to log and display pixels drawing activities on a canvas.
+-   [`notificationProvider`](https://refine.dev/docs/api-reference/core/providers/notification-provider/): used for posting notifications for resource actions. We did not cover it, but used it inside our code.
 
 There are more to **refine** than what we have covered in this series. We have made great strides in covering these topics so far by going through the documentation, especially to understand the provider - hooks interactions.
 

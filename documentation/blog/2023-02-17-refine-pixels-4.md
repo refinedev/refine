@@ -19,13 +19,13 @@ This is Day 4 in the series titled [**refineWeek**](https://refine.dev/week-of-r
 
 ### refineWeek series
 
-- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
-- Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
-- Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
-- Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
-- Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
-- Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
-- Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+-   Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+-   Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
+-   Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
+-   Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
+-   Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+-   Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
+-   Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
 
 ## Overview
 
@@ -72,12 +72,12 @@ import { liveProvider } from "@refinedev/supabase";
 import { supabaseClient } from "./utility";
 
 function App() {
-  return (
-    <Refine
-      // ...
-      liveProvider={liveProvider(supabaseClient)}
-    />
-  );
+    return (
+        <Refine
+            // ...
+            liveProvider={liveProvider(supabaseClient)}
+        />
+    );
 }
 ```
 
@@ -113,75 +113,88 @@ Let's have a look.
 
 ```tsx title="@refinedev/supabase liveProvider"
 import { LiveProvider, CrudFilter, CrudFilters } from "@refinedev/core";
-import { RealtimeChannel, RealtimePostgresChangesPayload, SupabaseClient } from "@supabase/supabase-js";
+import {
+    RealtimeChannel,
+    RealtimePostgresChangesPayload,
+    SupabaseClient,
+} from "@supabase/supabase-js";
 import { liveTypes, supabaseTypes } from "../types";
 import { mapOperator } from "../utils";
 
 export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
-  return {
-    subscribe: ({ channel, types, params, callback }): RealtimeChannel => {
-      const resource = channel.replace("resources/", "");
+    return {
+        subscribe: ({ channel, types, params, callback }): RealtimeChannel => {
+            const resource = channel.replace("resources/", "");
 
-      const listener = (payload: RealtimePostgresChangesPayload<any>) => {
-        if (types.includes("*") || types.includes(liveTypes[payload.eventType])) {
-          if (
-            liveTypes[payload.eventType] !== "created" &&
-            params?.ids !== undefined &&
-            payload.new?.id !== undefined
-          ) {
-            if (params.ids.map(String).includes(payload.new.id.toString())) {
-              callback({
-                channel,
-                type: liveTypes[payload.eventType],
-                date: new Date(payload.commit_timestamp),
-                payload: payload.new,
-              });
-            }
-          } else {
-            callback({
-              channel,
-              type: liveTypes[payload.eventType],
-              date: new Date(payload.commit_timestamp),
-              payload: payload.new,
-            });
-          }
-        }
-      };
+            const listener = (payload: RealtimePostgresChangesPayload<any>) => {
+                if (
+                    types.includes("*") ||
+                    types.includes(liveTypes[payload.eventType])
+                ) {
+                    if (
+                        liveTypes[payload.eventType] !== "created" &&
+                        params?.ids !== undefined &&
+                        payload.new?.id !== undefined
+                    ) {
+                        if (
+                            params.ids
+                                .map(String)
+                                .includes(payload.new.id.toString())
+                        ) {
+                            callback({
+                                channel,
+                                type: liveTypes[payload.eventType],
+                                date: new Date(payload.commit_timestamp),
+                                payload: payload.new,
+                            });
+                        }
+                    } else {
+                        callback({
+                            channel,
+                            type: liveTypes[payload.eventType],
+                            date: new Date(payload.commit_timestamp),
+                            payload: payload.new,
+                        });
+                    }
+                }
+            };
 
-      const mapFilter = (filters?: CrudFilters): string | undefined => {
-        if (!filters || filters?.length === 0) {
-          return;
-        }
+            const mapFilter = (filters?: CrudFilters): string | undefined => {
+                if (!filters || filters?.length === 0) {
+                    return;
+                }
 
-        return filters
-          .map((filter: CrudFilter): string | undefined => {
-            if ("field" in filter) {
-              return `${filter.field}=${mapOperator(filter.operator)}.${filter.value}`;
-            }
-            return;
-          })
-          .filter(Boolean)
-          .join(",");
-      };
+                return filters
+                    .map((filter: CrudFilter): string | undefined => {
+                        if ("field" in filter) {
+                            return `${filter.field}=${mapOperator(
+                                filter.operator,
+                            )}.${filter.value}`;
+                        }
+                        return;
+                    })
+                    .filter(Boolean)
+                    .join(",");
+            };
 
-      const client = supabaseClient.channel("any").on(
-        "postgres_changes",
-        {
-          event: supabaseTypes[types[0]] as any,
-          schema: "public",
-          table: resource,
-          filter: mapFilter(params?.filters),
+            const client = supabaseClient.channel("any").on(
+                "postgres_changes",
+                {
+                    event: supabaseTypes[types[0]] as any,
+                    schema: "public",
+                    table: resource,
+                    filter: mapFilter(params?.filters),
+                },
+                listener,
+            );
+
+            return client.subscribe();
         },
-        listener,
-      );
 
-      return client.subscribe();
-    },
-
-    unsubscribe: async (channel: RealtimeChannel) => {
-      supabaseClient.removeChannel(channel);
-    },
-  };
+        unsubscribe: async (channel: RealtimeChannel) => {
+            supabaseClient.removeChannel(channel);
+        },
+    };
 };
 ```
 
@@ -204,49 +217,54 @@ import { DEFAULT_SCALE, PIXEL_SIZE } from "../../utility/constants";
 const { Text } = Typography;
 
 type CanvasItemProps = {
-  canvas: Canvas;
-  pixels: Pixel[] | undefined;
-  scale?: number;
-  border?: boolean;
-  active?: boolean;
-  onPixelClick?: (x: number, y: number) => void;
+    canvas: Canvas;
+    pixels: Pixel[] | undefined;
+    scale?: number;
+    border?: boolean;
+    active?: boolean;
+    onPixelClick?: (x: number, y: number) => void;
 };
 
 export const CanvasItem: React.FC<CanvasItemProps> = ({
-  canvas: { id, name, width, height },
-  pixels,
-  scale = DEFAULT_SCALE,
-  border = true,
-  active = true,
-  onPixelClick,
+    canvas: { id, name, width, height },
+    pixels,
+    scale = DEFAULT_SCALE,
+    border = true,
+    active = true,
+    onPixelClick,
 }) => {
-  return (
-    <div>
-      {Array.from({ length: height }).map((_, i) => (
-        <div key={`row-${i}`} style={{ display: "flex" }}>
-          {Array.from({ length: width }).map((_, j) => (
-            <div key={`row-${i}-col-${j}`}>
-              <div
-                onClick={() => {
-                  if (onPixelClick && active) {
-                    onPixelClick(j, i);
-                  }
-                }}
-                style={{
-                  cursor: active ? "pointer" : undefined,
-                  width: PIXEL_SIZE * scale,
-                  height: PIXEL_SIZE * scale,
-                  border: border ? "0.5px solid rgba(0,0,0,0.05)" : undefined,
-                  background: pixels?.find((el) => el.x === j && el.y === i)?.color ?? "transparent",
-                }}
-              />
-            </div>
-          ))}
+    return (
+        <div>
+            {Array.from({ length: height }).map((_, i) => (
+                <div key={`row-${i}`} style={{ display: "flex" }}>
+                    {Array.from({ length: width }).map((_, j) => (
+                        <div key={`row-${i}-col-${j}`}>
+                            <div
+                                onClick={() => {
+                                    if (onPixelClick && active) {
+                                        onPixelClick(j, i);
+                                    }
+                                }}
+                                style={{
+                                    cursor: active ? "pointer" : undefined,
+                                    width: PIXEL_SIZE * scale,
+                                    height: PIXEL_SIZE * scale,
+                                    border: border
+                                        ? "0.5px solid rgba(0,0,0,0.05)"
+                                        : undefined,
+                                    background:
+                                        pixels?.find(
+                                            (el) => el.x === j && el.y === i,
+                                        )?.color ?? "transparent",
+                                }}
+                            />
+                        </div>
+                    ))}
+                </div>
+            ))}
+            {!active && <Text className="canvas-name-text">{name ?? id}</Text>}
         </div>
-      ))}
-      {!active && <Text className="canvas-name-text">{name ?? id}</Text>}
-    </div>
-  );
+    );
 };
 ```
 
@@ -258,39 +276,39 @@ We'd like to focus on this `onSubmit` event handler, because it is what facilita
 import { useCreate, useNavigation } from "@refinedev/core";
 
 export const CanvasShow: React.FC = () => {
-  // ...
+    // ...
 
-  const { push } = useNavigation();
-  const { mutate } = useCreate();
+    const { push } = useNavigation();
+    const { mutate } = useCreate();
 
-  const onSubmit = (x: number, y: number) => {
-    if (!authenticated) {
-      if (pathname) {
-        return push(`/login?to=${encodeURIComponent(pathname)}`);
-      }
+    const onSubmit = (x: number, y: number) => {
+        if (!authenticated) {
+            if (pathname) {
+                return push(`/login?to=${encodeURIComponent(pathname)}`);
+            }
 
-      return push(`/login`);
-    }
+            return push(`/login`);
+        }
 
-    if (typeof x === "number" && typeof y === "number" && canvas?.id) {
-      mutate({
-        resource: "pixels",
-        values: {
-          x,
-          y,
-          color,
-          canvas_id: canvas?.id,
-          user_id: identity.id,
-        },
-        meta: {
-          canvas,
-        },
-        successNotification: false,
-      });
-    }
-  };
+        if (typeof x === "number" && typeof y === "number" && canvas?.id) {
+            mutate({
+                resource: "pixels",
+                values: {
+                    x,
+                    y,
+                    color,
+                    canvas_id: canvas?.id,
+                    user_id: identity.id,
+                },
+                meta: {
+                    canvas,
+                },
+                successNotification: false,
+            });
+        }
+    };
 
-  return /* ... */;
+    return /* ... */;
 };
 ```
 
@@ -335,38 +353,41 @@ import { Canvas } from "../../types/canvas";
 import { Pixel } from "../../types/pixel";
 
 type DisplayCanvasProps = {
-  canvas: Canvas;
-  children: (pixels: Pixel[] | undefined) => ReactElement;
+    canvas: Canvas;
+    children: (pixels: Pixel[] | undefined) => ReactElement;
 };
 
-export const DisplayCanvas: React.FC<DisplayCanvasProps> = ({ canvas: { id }, children }) => {
-  const { data } = useList<Pixel>({
-    resource: "pixels",
-    liveMode: "auto",
-    meta: {
-      select: "*, users(id, full_name, avatar_url)",
-    },
-    filters: [
-      {
-        field: "canvas_id",
-        operator: "eq",
-        value: id,
-      },
-    ],
-    sorters: [
-      {
-        field: "created_at",
-        order: "desc",
-      },
-    ],
-    pagination: {
-      mode: "off",
-    },
-  });
+export const DisplayCanvas: React.FC<DisplayCanvasProps> = ({
+    canvas: { id },
+    children,
+}) => {
+    const { data } = useList<Pixel>({
+        resource: "pixels",
+        liveMode: "auto",
+        meta: {
+            select: "*, users(id, full_name, avatar_url)",
+        },
+        filters: [
+            {
+                field: "canvas_id",
+                operator: "eq",
+                value: id,
+            },
+        ],
+        sorters: [
+            {
+                field: "created_at",
+                order: "desc",
+            },
+        ],
+        pagination: {
+            mode: "off",
+        },
+    });
 
-  const pixels = data?.data;
+    const pixels = data?.data;
 
-  return <>{children(pixels)}</>;
+    return <>{children(pixels)}</>;
 };
 ```
 

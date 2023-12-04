@@ -8,11 +8,14 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-25-docker-vs-
 hide_table_of_contents: false
 ---
 
+
+
 ## Brief introduction to Docker and Kubernetes
 
 Containerization is one of the core aspects of application modernization, and almost all new application development uses containers to package their applications. Enterprise applications even use container orchestration platforms like Kubernetes. Today we will discuss both Docker and Kubernetes in detail.
 
 We will compare both in terms of features, pros, and cons and in which scenario you should prefer one over another. Note that Docker is just a container runtime, whereas Kubernetes is a container orchestration platform, so both complement each other. Let’s start with a brief introduction of both technologies.
+
 
 Steps we'll cover:
 
@@ -25,9 +28,12 @@ Steps we'll cover:
 - [Use cases and benefits of Kubernetes](#use-cases-and-benefits-of-kubernetes)
 - [Docker vs Kubernetes](#docker-vs-kubernetes)
 
+
 ## What is Docker?
 
+
 [Docker](https://www.docker.com/) is a platform designed to provide an environment for developers to develop, run and deploy applications. It's technology is based on containerization; we must first understand the containers to understand this conceptWhatever you need for an application, Docker can provide you with a separate isolated environment to have it all. Think of docker as a capsule that has packaged all your application dependencies inside the capsule. You can deploy that capsule anywhere to run your application anywhere.
+
 
 ### What are the Containers?
 
@@ -41,7 +47,8 @@ Technically, the container comprises of Images, and we have layers of stacked im
 
 <br/>
 
-​ _Docker Architecture_ _Diagram_
+
+​																		*Docker Architecture* *Diagram*
 
 The base of most of the containers is a Linux-based image, which is either Alpine with a specific version or could be some other Linux distribution. It is important for those base images to be small; that is why most of them are alpine because it will ensure that containers will stay small in size, which is one of the advantages of using containers.
 
@@ -71,17 +78,19 @@ While setting up the docker environment, you do not have to pay anything, and it
 
 ## Use cases and benefits of Docker
 
-### _Use case 1-_ Application development with PostgreSQL for database and Redis as a message broker for consistent and streamlined setup across the development team.
+### *Use case 1-* Application development with PostgreSQL for database and Redis as a message broker for consistent and streamlined setup across the development team.
 
 #### The benefit of Docker Container for this use case:
 
 Using Docker Containers, developers don’t need to install any service directly on their operating system because the container has its own isolated operating system layer with Linux Base Image. They have everything packaged in one isolated environment. So, they have PostgresSQL with a specific version packaged with the configuration inside the container. Instead of Downloading Binaries and going through all steps, the developer needs to check the container repository, download the specific container with just a single command, and start it at the same time regardless of which operating system they are using.
 
-### _Use case 2_- Application deployment with installation and configuration on the server through artifacts provided by the development team to the operations team.
+### *Use case 2*- Application deployment with installation and configuration on the server through artifacts provided by the development team to the operations team.
 
 #### The benefit of Docker Container for this use case:
 
 The process in the above use case will be simplified using docker containers. Because of docker containers, the development and operations teams use one packaged container containing all configurations and dependencies encapsulated in one environment. The operations team doesn’t need to configure or install anything directly on the server. The only thing that the operations team needs to do is run a single docker command that pulls the container that the development team has stored in the container repository and then runs it. This way, the docker containers make the traditional deployment process simplified.
+
+
 
 ## What is Kubernetes?
 
@@ -107,7 +116,8 @@ Each worker node/machine has multiple application pods with containers running o
 
 <br/>
 
-​ _Kubernetes Worker Nodes Processes Diagram_
+
+​										*Kubernetes Worker Nodes Processes Diagram*
 
 #### **Another main component that manages processes is the master node/Control Plane:**
 
@@ -151,7 +161,7 @@ If any container fails, Kubernetes will take care of it and restart it. Even if 
 
 Kubernetes has simplified the analysis process and efficiently distributes computing resources across microservices along with many automated features such as auto-scaling, auto-load balancing, auto-rolling updates, auto-self-healing, and automated backup.
 
-_Use case 2–_ The team of developers must deploy a large-scale application with mission-critical processes and zero downtime.
+*Use case 2–* The team of developers must deploy a large-scale application with mission-critical processes and zero downtime.
 
 ### The benefit of Kubernetes for this use case:
 
@@ -175,6 +185,8 @@ As we had discussed earlier while understanding worker node processes in Kuberne
 
 Docker can also attach storage volume with each container on a single node, but it depends on container runtime technologies. In Kubernetes, docker ensures that each container has access to the resources and storage infrastructure. For managing the docker container storage, Docker and Kubernetes use to communicate with each other via CSI (Container Storage Interface).
 
+
+
 ## Comparing Docker and Kubernetes
 
 ### Feature by Feature Comparison of Docker and Kubernetes
@@ -191,19 +203,19 @@ Docker can also attach storage volume with each container on a single node, but 
 
 ### Choosing Docker over Kubernetes:
 
-_Small-Scale Applications:_ Docker excels at single-host, lightweight apps. A container orchestration platform is unnecessary as you manage a few containers without Kubernetes.
+*Small-Scale Applications:* Docker excels at single-host, lightweight apps. A container orchestration platform is unnecessary as you manage a few containers without Kubernetes.
 
-_Focused on Distribution:_ Docker technology is focused on distribution, not orchestration. Docker can deliver builds smoothly across several environments.
+*Focused on Distribution:* Docker technology is focused on distribution, not orchestration. Docker can deliver builds smoothly across several environments.
 
-_Learning Curve of Kubernetes:_ Kubernetes is more complex and difficult to set up and maintain as compared to Dockers. If your team does not have the skills, you should defer the decision to use Kubernetes until the team gets trained on Kubernetes.
+*Learning Curve of Kubernetes:* Kubernetes is more complex and difficult to set up and maintain as compared to Dockers. If your team does not have the skills, you should defer the decision to use Kubernetes until the team gets trained on Kubernetes.
 
 ### Choosing Kubernetes over Docker:
 
-_Large-Scale Applications:_ Kubernetes automatically installs containers, has a built-in load balancer for container traffic, and efficiently allocates cluster resources.
+*Large-Scale Applications:* Kubernetes automatically installs containers, has a built-in load balancer for container traffic, and efficiently allocates cluster resources.
 
-_High Availability:_ Kubernetes outperforms Docker for enterprise applications with millions of transactions per minute and no downtime. Kubernetes handles failovers, pod replicas, and container restarts, making your app highly available.
+*High Availability:* Kubernetes outperforms Docker for enterprise applications with millions of transactions per minute and no downtime. Kubernetes handles failovers, pod replicas, and container restarts, making your app highly available.
 
-_Efficient Resource Management or Utilization:_ Kubernetes is great for effective resource management and application performance if you have limited physical resources (CPU/RAM/Storage).
+*Efficient Resource Management or Utilization:* Kubernetes is great for effective resource management and application performance if you have limited physical resources (CPU/RAM/Storage).
 
 <br/>
 <div>

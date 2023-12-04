@@ -409,6 +409,7 @@ export default App;
 
 <br/>
 
+
 ```tsx
 import { Pagination } from "@mantine/core";
 

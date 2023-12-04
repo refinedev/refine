@@ -8,9 +8,11 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-21-typescript
 hide_table_of_contents: false
 ---
 
+
+
 ## Introduction
 
-**Enum**s are constants based data structures that store a set of named constants grouped around a central theme or intent. In TypeScript, Enums are a feature that injects runtime JavaScript objects to an application in addition to providing usual type-level extensions.
+**Enum**s are constants based data structures that store a set of named constants grouped around a central theme or intent. In TypeScript,  Enums are a feature that injects runtime JavaScript objects to an application in addition to providing usual type-level extensions.
 
 This post explores **enums** in TypeScript with examples from a tiers based Subscription model where subscription entities differ according to account types and billing schedules.
 
@@ -19,7 +21,6 @@ While examining the examples, we discuss underlying **enums** concepts including
 In the sections ahead, we relate to examples for the tiers based Subscription model and analyze them to discuss underlying concepts and behaviors.
 
 Steps well'll cover:
-
 - [TypeScript Enums Examples](#typescript-enums-examples)
 - [`enum` Types in TypeScript](#enum-types-in-typescript)
 - [Enum Member Initialization in TypeScript](#enum-member-initialization-in-typescript)
@@ -32,6 +33,7 @@ Steps well'll cover:
 
 In order to properly follow this post and test out the examples, you need to have a JavaScript engine. It could be **Node.js** in your local machine with TypeScript supported or you could use the [TypeScript Playground](https://www.typescriptlang.org/play#code).
 
+
 ## TypeScript Enums Examples
 
 In order to illustrate `enum`s concepts in TypeScript, we are using a tiers based Subscription model. Let's say, we have a subscription entity stored in a `subscriptions` table. And it has `accountType` and `billingSchedule` attributes.
@@ -42,10 +44,10 @@ So, to start the proceedings let's define a couple of enums. We can declare the 
 
 ```tsx
 enum AccountType {
-  PERSONAL = "Personal",
-  STARTUP = "Startup",
-  ENTERPRISE = "Enterprise",
-  CUSTOM = "Custom",
+    PERSONAL = "Personal",
+    STARTUP = "Startup",
+    ENTERPRISE = "Enterprise",
+    CUSTOM = "Custom"
 }
 ```
 
@@ -55,16 +57,17 @@ One way of defining an `enum` for `billingSchedule` looks like this:
 
 ```tsx
 enum BillingSchedule {
-  FREE = 0,
-  MONTHLY,
-  QUARTERLY,
-  YEARLY,
+    FREE = 0,
+    MONTHLY,
+    QUARTERLY,
+    YEARLY
 }
 ```
 
 Here, we are using a numeric literal to initialize the first member of `BillingSchedule`. This is an example of **numeric enum**s. More on this in [a later section](#numerical-enums-in-typescript).
 
 Let's quickly test out the runtime role of enums as we start discussing underlying `enum`s concepts.
+
 
 ### `enum`s Produce Runtime JavaScript Objects
 
@@ -80,9 +83,11 @@ console.log(billingSchedule); // 0
 
 With `AccountType.PERSONAL` and `BillingSchedule.FREE`, we are calling actual objects at runtime and getting appropriate responses. These indicate that TypeScript `enum` definitions are not just simple type definitions, but also introduce JS objects to our application. We revisit this in [a later part of this post](#typescript-enums-at-compile-time-and-runtime).
 
+
 ## `enum` Types in TypeScript
 
 Enum members are typically used to store constants. Members can have string constants, numerical constants or mix of both. Homogeneity of member values determines whether the enum is a **string enum** or a **numerical enum**.
+
 
 ### String Enums in TypeScript
 
@@ -90,12 +95,13 @@ When all members of an enum have string values, it is a string enum. As in `Acco
 
 ```tsx
 enum AccountType {
-  PERSONAL = "Personal",
-  STARTUP = "Startup",
-  ENTERPRISE = "Enterprise",
-  CUSTOM = "Custom",
+    PERSONAL = "Personal",
+    STARTUP = "Startup",
+    ENTERPRISE = "Enterprise",
+    CUSTOM = "Custom"
 }
 ```
+
 
 ### Numerical Enums in TypeScript
 
@@ -103,19 +109,23 @@ Similarly, when all members have numerical values, the enum itself becomes numer
 
 ```tsx
 enum BillingSchedule {
-  // highlight-next-line
-  FREE = 0,
-  MONTHLY,
-  QUARTERLY,
-  YEARLY,
+    // highlight-next-line
+    FREE = 0,
+    MONTHLY,
+    QUARTERLY,
+    YEARLY
 }
 ```
 
 Here, `BillingSchedule` has the first member initialized to a number, and the subsequent ones are uninitialized but TypeScript's enum defaults auto-increment them by `1`. So, all members here are numerical and ` BillingSchedule` is a numerical enum. We discuss this more in the next section on enum member initialization.
 
+
+
+
 ## Enum Member Initialization in TypeScript
 
 String enum members must be initialized explicitly with string values. In numerical enums, they may remain uninitialized and the value is then assigned implicitly by TypeScript.
+
 
 ### Member Initialization in TypeScript String Enums
 
@@ -123,10 +133,10 @@ For string enums, as we can see in our `AccountType` example, we are explicitly 
 
 ```tsx
 enum AccountType {
-  PERSONAL = "Personal",
-  STARTUP = "Startup",
-  ENTERPRISE = "Enterprise",
-  CUSTOM = "Custom",
+    PERSONAL = "Personal",
+    STARTUP = "Startup",
+    ENTERPRISE = "Enterprise",
+    CUSTOM = "Custom"
 }
 ```
 
@@ -136,10 +146,10 @@ An uninitialized member coming after a string member is invalid:
 
 ```tsx
 enum AccountType {
-  PERSONAL = "Personal",
-  STARTUP = "Startup",
-  ENTERPRISE = "Enterprise",
-  CUSTOM,
+    PERSONAL = "Personal",
+    STARTUP = "Startup",
+    ENTERPRISE = "Enterprise",
+    CUSTOM
 }
 
 /*
@@ -154,19 +164,21 @@ If `CUSTOM` is uninitialized as the first member, it is assigned `0` by default,
 // Heterogenous enum
 
 enum AccountType {
-  CUSTOM,
-  PERSONAL = "Personal",
-  STARTUP = "Startup",
-  ENTERPRISE = "Enterprise",
+    CUSTOM,
+    PERSONAL = "Personal",
+    STARTUP = "Startup",
+    ENTERPRISE = "Enterprise"
 }
 
 const accountTypeCustom = AccountType.CUSTOM;
 console.log(accountTypeCustom); // 0
 ```
 
+
 ### Member Initialization in TypeScript Numerical Enums
 
 Members in a numerical enum may or may not be initialized explicitly. Uninitialized members are assigned implicit default values.
+
 
 **Explicitly Initialized Numerical Members**
 
@@ -176,11 +188,11 @@ In our `BillingSchedule` enum, we explicitly assigned `0` to the first member:
 // First member initialized, subsequent members auto-increment
 
 enum BillingSchedule {
-  // highlight-next-line
-  FREE = 0,
-  MONTHLY,
-  QUARTERLY,
-  YEARLY,
+    // highlight-next-line
+    FREE = 0,
+    MONTHLY,
+    QUARTERLY,
+    YEARLY
 }
 ```
 
@@ -198,13 +210,14 @@ As we can see, initializing a member with a number represents an offset value ba
 // No initialization
 
 enum BillingSchedule {
-  // highlight-next-line
+    // highlight-next-line
 
-  FREE,
-  MONTHLY,
-  QUARTERLY,
-  YEARLY,
+    FREE,
+    MONTHLY,
+    QUARTERLY,
+    YEARLY
 }
+
 
 console.log(BillingSchedule.FREE); // 0
 ```
@@ -215,10 +228,10 @@ We can assign an offset anywhere and it would reflect in subsequent implicitly i
 
 ```tsx
 enum BillingSchedule {
-  FREE,
-  MONTHLY,
-  QUARTERLY = 5,
-  YEARLY,
+    FREE,
+    MONTHLY,
+    QUARTERLY = 5,
+    YEARLY
 }
 
 console.log(BillingSchedule.MONTHLY); // 1
@@ -226,15 +239,18 @@ console.log(BillingSchedule.QUARTERLY); // 5
 console.log(BillingSchedule.YEARLY); // 6
 ```
 
+
 ## TypeScript Enums at Compile Time and Runtime
 
 At compile time, TypeScript translates an enum to a corresponding IIFE which then introduces into runtime a JavaScript object representation of the enum.
 
 String members and numeric members behave differently at compilation. A string member gets mapped **unidirectionally** to its corresponding JavaScript object property. In contrast, a numeric member gets mapped **bi-directionally** to its runtime object property. So, as we see in the sections below, string enums are limited to unidirectional navigation, but numeric members offer us the convenience of bidirectional access to constants.
 
-### TypeScript String Enums Have Unidirectional Mapping
+
+###  TypeScript String Enums Have Unidirectional Mapping
 
 The `AccountType` enum we declared in the beginning compiles to the following JS code:
+
 
 ```tsx
 /*
@@ -249,10 +265,10 @@ enum AccountType {
 "use strict";
 var AccountType;
 (function (AccountType) {
-  AccountType.PERSONAL = "Personal";
-  AccountType["STARTUP"] = "Startup";
-  AccountType["ENTERPRISE"] = "Enterprise";
-  AccountType["CUSTOM"] = "Custom";
+    AccountType.PERSONAL = "Personal";
+    AccountType["STARTUP"] = "Startup";
+    AccountType["ENTERPRISE"] = "Enterprise";
+    AccountType["CUSTOM"] = "Custom";
 })(AccountType || (AccountType = {}));
 ```
 
@@ -276,6 +292,7 @@ console.log(AccountType.Personal); // Property 'Personal' does not exist on type
 
 Accessing the enum via member values is possible in numeric enums, as we'll see next.
 
+
 ### TypeScript Numerical Enums Have Bidirectional Mapping
 
 In contrast to unidirectional mapping of string enums, numerical enums compile to bidirectional JS objects. Our `BillingSchedule` object translates to the following IIFE:
@@ -293,10 +310,10 @@ enum BillingSchedule {
 "use strict";
 var BillingSchedule;
 (function (BillingSchedule) {
-  BillingSchedule[(BillingSchedule["FREE"] = 0)] = "FREE";
-  BillingSchedule[(BillingSchedule["MONTHLY"] = 0)] = "MONTHLY";
-  BillingSchedule[(BillingSchedule["QUARTERLY"] = 0)] = "QUARTERLY";
-  BillingSchedule[(BillingSchedule["YEARLY"] = 0)] = "YEARLY";
+    BillingSchedule[BillingSchedule["FREE"] = 0] = "FREE";
+    BillingSchedule[BillingSchedule["MONTHLY"] = 0] = "MONTHLY";
+    BillingSchedule[BillingSchedule["QUARTERLY"] = 0] = "QUARTERLY";
+    BillingSchedule[BillingSchedule["YEARLY"] = 0] = "YEARLY";
 })(BillingSchedule || (BillingSchedule = {}));
 ```
 
@@ -334,10 +351,10 @@ In both our examples, the value of enums are constant. However, there are subtle
 
 ```tsx
 enum AccountType {
-  PERSONAL = "Personal",
-  STARTUP = "Startup",
-  ENTERPRISE = "Enterprise",
-  CUSTOM = "Custom",
+    PERSONAL = "Personal",
+    STARTUP = "Startup",
+    ENTERPRISE = "Enterprise",
+    CUSTOM = "Custom"
 }
 ```
 
@@ -345,10 +362,10 @@ Similarly, in the following `BillingSchedule` enum, the numeric literal `0` is a
 
 ```tsx
 enum BillingSchedule {
-  FREE = 0,
-  MONTHLY,
-  QUARTERLY,
-  YEARLY,
+    FREE = 0,
+    MONTHLY,
+    QUARTERLY,
+    YEARLY
 }
 ```
 
@@ -356,14 +373,15 @@ Uninitialized members which implicitly get assigned numeric literals are also co
 
 ```tsx
 enum BillingSchedule {
-  FREE,
-  MONTHLY,
-  QUARTERLY,
-  YEARLY,
+    FREE,
+    MONTHLY,
+    QUARTERLY,
+    YEARLY
 }
 ```
 
 There are other nuanced forms of literal enum expressions, such as a value referenced from another enum member. For the rest of the possible cases, please look up the [TypeScript **Enums** docs](https://www.typescriptlang.org/docs/handbook/enums.html).
+
 
 ### Computed Values of Enum Members
 
@@ -375,11 +393,13 @@ enum ABasicExample {
 }
 ```
 
+
 ## Types from TypeScript Enums
 
 So far, we have explored only the object aspects of TypeScript enums. Let's now consider types act out in enums.
 
 When all members of an enum are literal enum expressions, types for each member are generated from their member names. And the enum itself effectively becomes a union of all the subtypes.
+
 
 ### Individual Types
 
@@ -387,17 +407,17 @@ Individual types are generated from each member when all members of the enum are
 
 ```tsx
 type TPersonalAccount = {
-  // highlight-next-line
-  tier: AccountType.PERSONAL;
-  postsQuota: number;
-  verified: boolean;
-};
+    // highlight-next-line
+    tier: AccountType.PERSONAL;
+    postsQuota: number;
+    verified: boolean;
+}
 
 interface IStartupAccount {
-  // highlight-next-line
-  tier: AccountType.STARTUP;
-  postsQuota: number;
-  verified: boolean;
+    // highlight-next-line
+    tier: AccountType.STARTUP;
+    postsQuota: number;
+    verified: boolean;
 }
 ```
 
@@ -407,11 +427,12 @@ In a similar vein, let's look at a subtype derived from a `BillingSchedule` memb
 
 ```tsx
 interface IFreeBilling {
-  tier: BillingSchedule.FREE;
-  startDate: string | boolean;
-  expiryDate: string | boolean;
+    tier: BillingSchedule.FREE;
+    startDate: string | boolean;
+    expiryDate: string | boolean;
 }
 ```
+
 
 ### Union of Member Keys
 
@@ -440,61 +461,60 @@ The code above first accesses the enum object with `typeof` and then grabs the m
 
 With these essential concepts covered, let's now see how to use enums and its generated types inside TypeScript classes.
 
+
 ## Using TypeScript Enums in Classes
 
 We can now refactor some of the enums and type definitions and implement a rudimentary `PersonalSubscription` class which uses them:
 
 ```tsx
 enum AccountType {
-  PERSONAL = "Personal",
-  STARTUP = "Startup",
-  ENTERPRISE = "Enterprise",
-  CUSTOM = "Custom",
+    PERSONAL = "Personal",
+    STARTUP = "Startup",
+    ENTERPRISE = "Enterprise",
+    CUSTOM = "Custom"
 }
 
 enum BillingSchedule {
-  FREE,
-  MONTHLY,
-  QUARTERLY,
-  YEARLY,
+    FREE,
+    MONTHLY,
+    QUARTERLY,
+    YEARLY
 }
 
 type TAccount<AccountType> = {
-  tier: AccountType;
-  postsQuota: number;
-  verified: boolean;
-};
+    tier: AccountType;
+    postsQuota: number;
+    verified: boolean;
+}
 
 interface IBilling<BillingSchedule> {
-  tier: BillingSchedule;
-  startDate: string | boolean;
-  expiryDate: string | boolean;
+    tier: BillingSchedule;
+    startDate: string | boolean;
+    expiryDate: string | boolean;
 }
 
 class PersonalAccount implements TAccount<AccountType.PERSONAL> {
-  tier: AccountType.PERSONAL = AccountType.PERSONAL;
-  postsQuota = 2;
-  verified = false;
+    tier: AccountType.PERSONAL = AccountType.PERSONAL;
+    postsQuota = 2;
+    verified = false;
 }
 
 class FreeBilling implements IBilling<BillingSchedule.FREE> {
-  tier: BillingSchedule.FREE = BillingSchedule.FREE;
-  startDate = false;
-  expiryDate = false;
+    tier: BillingSchedule.FREE = BillingSchedule.FREE;
+    startDate = false;
+    expiryDate = false;
 }
 
 interface IPersonalSubscription<TAccount, IBilling> {
-  accountType: TAccount;
-  billingSchedule: IBilling;
-  creditCard: string;
+    accountType: TAccount;
+    billingSchedule: IBilling;
+    creditCard: string;
 }
 
-class PersonalSubscription
-  implements IPersonalSubscription<TAccount<AccountType.PERSONAL>, IBilling<BillingSchedule.FREE>>
-{
-  accountType = new PersonalAccount();
-  billingSchedule = new FreeBilling();
-  creditCard: string = "XXXXXXXXXXXXXXXX";
+class PersonalSubscription implements IPersonalSubscription<TAccount<AccountType.PERSONAL>, IBilling<BillingSchedule.FREE>> {
+    accountType = new PersonalAccount();
+    billingSchedule = new FreeBilling();
+    creditCard: string = "XXXXXXXXXXXXXXXX";
 }
 ```
 
