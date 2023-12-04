@@ -194,6 +194,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     >
                         <Input
                             type="password"
+                            autoComplete="current-password"
                             placeholder="●●●●●●●●"
                             size="large"
                         />

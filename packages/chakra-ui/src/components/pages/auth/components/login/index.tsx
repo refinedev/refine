@@ -153,6 +153,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         </FormLabel>
                         <Input
                             id="email"
+                            autoComplete="current-password"
                             placeholder="Email"
                             type="text"
                             {...register("email", {

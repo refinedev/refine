@@ -166,6 +166,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         />
                         <PasswordInput
                             name="password"
+                            autoComplete="current-password"
                             mt="md"
                             label={translate(
                                 "pages.login.fields.password",
