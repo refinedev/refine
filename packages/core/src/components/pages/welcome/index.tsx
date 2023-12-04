@@ -184,11 +184,13 @@ export const WelcomePage: React.FC = () => {
                     <div
                         style={{
                             backgroundRepeat: "no-repeat",
-                            backgroundSize: "contain",
+                            backgroundSize: isMobile
+                                ? "112px 58px"
+                                : "224px 116px",
                             backgroundImage:
                                 "url(https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-logo.svg)",
-                            width: isMobile ? 100 : 200,
-                            height: isMobile ? 30 : 60,
+                            width: isMobile ? 112 : 224,
+                            height: isMobile ? 58 : 116,
                         }}
                     />
                 </div>
