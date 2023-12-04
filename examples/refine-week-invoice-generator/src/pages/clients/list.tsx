@@ -34,8 +34,8 @@ export const ClientList: React.FC<IResourceComponentsProps> = () => {
         show: editShow,
     } = useDrawerForm<IClient, HttpError, IClient>({
         action: "edit",
-        resource: "clients",
         redirect: false,
+        meta: { populate: { contacts: { populate: ["*"] } } },
     });
 
     return (

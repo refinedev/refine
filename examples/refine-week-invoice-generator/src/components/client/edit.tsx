@@ -9,6 +9,7 @@ import {
     Grid,
     Select,
 } from "antd";
+import { IContact } from "../../interfaces";
 
 type EditClientProps = {
     drawerProps: DrawerProps;
@@ -23,10 +24,9 @@ export const EditClient: React.FC<EditClientProps> = ({
 }) => {
     const breakpoint = Grid.useBreakpoint();
 
-    const { selectProps } = useSelect({
+    const { selectProps } = useSelect<IContact>({
         resource: "contacts",
         optionLabel: "first_name",
-
         pagination: {
             mode: "server",
         },
@@ -36,7 +36,7 @@ export const EditClient: React.FC<EditClientProps> = ({
         <Drawer
             {...drawerProps}
             width={breakpoint.sm ? "500px" : "100%"}
-            bodyStyle={{ padding: 0 }}
+            styles={{ body: { padding: 0 } }}
         >
             <Edit
                 saveButtonProps={saveButtonProps}
@@ -51,12 +51,12 @@ export const EditClient: React.FC<EditClientProps> = ({
                     layout="vertical"
                     initialValues={{
                         isActive: true,
-                        ...formProps.initialValues,
                     }}
                 >
                     <Form.Item
                         label="Client Company Name"
                         name="name"
+                        initialValue={formProps.initialValues?.name}
                         rules={[
                             {
                                 required: true,
@@ -65,7 +65,16 @@ export const EditClient: React.FC<EditClientProps> = ({
                     >
                         <Input />
                     </Form.Item>
-                    <Form.Item label="Select Contact" name="contacts">
+                    <Form.Item
+                        initialValue={formProps?.initialValues?.contacts?.map(
+                            (c: IContact) => ({
+                                label: c.first_name,
+                                value: c.id,
+                            }),
+                        )}
+                        label="Select Contact"
+                        name="contacts"
+                    >
                         <Select {...selectProps} mode="multiple" />
                     </Form.Item>
                 </Form>
