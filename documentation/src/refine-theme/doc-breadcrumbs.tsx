@@ -89,15 +89,13 @@ export const DocBreadcrumbs = () => {
                         <>
                             <li
                                 key={idx}
-                                className={clsx("flex-row flex-nowrap")}
+                                className={clsx(
+                                    "flex-row flex-nowrap",
+                                    item.hideOnMobile ? "none" : "flex",
+                                )}
                                 itemScope={true}
                                 itemProp="itemListElement"
                                 itemType="https://schema.org/ListItem"
-                                style={{
-                                    display: item.hideOnMobile
-                                        ? "none"
-                                        : "flex",
-                                }}
                             >
                                 <ChevronRightIcon className="text-gray-300" />
                                 {item.href && !isLast ? (
