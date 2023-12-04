@@ -9,7 +9,7 @@ swizzle: true
 [Refer to the for more detailed information about `useExport`. &#8594][useexport]
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -20,55 +20,52 @@ Use it like any other Ant Design [`<Button>`][button]. You can use it with [useE
 // visible-block-start
 import { useExport } from "@pankod/refine-core";
 import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    // highlight-next-line
-    ExportButton,
+  useDataGrid,
+  DataGrid,
+  GridColumns,
+  List,
+  // highlight-next-line
+  ExportButton,
 } from "@pankod/refine-mui";
 
 const columns: GridColumns = [
-    { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+  { field: "id", headerName: "ID", type: "number" },
+  { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
 ];
 
 const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+  const { dataGridProps } = useDataGrid<IPost>();
 
-    const { triggerExport, isLoading: exportLoading } = useExport<IPost>();
+  const { triggerExport, isLoading: exportLoading } = useExport<IPost>();
 
-    return (
-        <List
-            // highlight-start
-            headerButtons={(
-                <ExportButton
-                    onClick={triggerExport}
-                    loading={exportLoading}
-                />
-            )}
-            // highlight-end
-        >
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtons={
+        <ExportButton onClick={triggerExport} loading={exportLoading} />
+      }
+      // highlight-end
+    >
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostsList,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostsList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -85,26 +82,26 @@ const { useRouterContext } = RefineCore;
 import { ExportButton } from "@pankod/refine-mui";
 
 const MyExportComponent = () => {
-    return (
-        <ExportButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <ExportButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyExportComponent,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyExportComponent,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -116,7 +113,7 @@ render(
 
 :::tip External Props
 It also accepts all props of Material UI [LoadingButton](https://mui.com/material-ui/api/loading-button/#main-content).
-:::                             
+:::
 
 [button]: https://mui.com/material-ui/api/loading-button/#main-content
 [useexport]: /api-reference/core/hooks/import-export/useExport.md

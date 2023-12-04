@@ -65,15 +65,15 @@ import { createClient } from "@refinedev/supabase";
 // use env variables in production
 const SUPABASE_URL = "https://iwdfzvfqbtokqetmbmbp.supabase.co";
 const SUPABASE_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU2NzAxMCwiZXhwIjoxOTQ2MTQzMDEwfQ._gr6kXGkQBi9BM9dx5vKaNKYj_DJN1xlkarprGpM_fU";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU2NzAxMCwiZXhwIjoxOTQ2MTQzMDEwfQ._gr6kXGkQBi9BM9dx5vKaNKYj_DJN1xlkarprGpM_fU";
 
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
-    db: {
-        schema: "public",
-    },
-    auth: {
-        persistSession: true,
-    },
+  db: {
+    schema: "public",
+  },
+  auth: {
+    persistSession: true,
+  },
 });
 ```
 
@@ -81,7 +81,7 @@ export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
 
 The `supabaseClient` will be used by the `@refinedev/supabase` package to create a `dataProvider` for us.
 
-You can learn more about the it in the [Data Provider](/docs/api-reference/core/providers/data-provider) section.
+You can learn more about the it in the [Data Provider](/docs/core/providers/data-provider) section.
 
 ### AuthProvider
 
@@ -96,239 +96,236 @@ import { AuthBindings } from "@refinedev/core";
 import { supabaseClient } from "utility";
 
 const authProvider: AuthBindings = {
-    login: async ({ email, password, providerName }) => {
-        // sign in with oauth
-        try {
-            if (providerName) {
-                const { data, error } =
-                    await supabaseClient.auth.signInWithOAuth({
-                        provider: providerName,
-                    });
-
-                if (error) {
-                    return {
-                        success: false,
-                        error,
-                    };
-                }
-
-                if (data?.url) {
-                    return {
-                        success: true,
-                        redirectTo: "/",
-                    };
-                }
-            }
-
-            // sign in with email and password
-            const { data, error } =
-                await supabaseClient.auth.signInWithPassword({
-                    email,
-                    password,
-                });
-
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data?.user) {
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
-
-        return {
-            success: false,
-            error: {
-                message: "Login failed",
-                name: "Invalid email or password",
-            },
-        };
-    },
-    register: async ({ email, password }) => {
-        try {
-            const { data, error } = await supabaseClient.auth.signUp({
-                email,
-                password,
-            });
-
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data) {
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
-
-        return {
-            success: false,
-            error: {
-                message: "Register failed",
-                name: "Invalid email or password",
-            },
-        };
-    },
-    forgotPassword: async ({ email }) => {
-        try {
-            const { data, error } =
-                await supabaseClient.auth.resetPasswordForEmail(email, {
-                    redirectTo: `${window.location.origin}/update-password`,
-                });
-
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data) {
-                return {
-                    success: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
-
-        return {
-            success: false,
-            error: {
-                message: "Forgot password failed",
-                name: "Invalid email",
-            },
-        };
-    },
-    updatePassword: async ({ password }) => {
-        try {
-            const { data, error } = await supabaseClient.auth.updateUser({
-                password,
-            });
-
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data) {
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
-        return {
-            success: false,
-            error: {
-                message: "Update password failed",
-                name: "Invalid password",
-            },
-        };
-    },
-    logout: async () => {
-        const { error } = await supabaseClient.auth.signOut();
+  login: async ({ email, password, providerName }) => {
+    // sign in with oauth
+    try {
+      if (providerName) {
+        const { data, error } = await supabaseClient.auth.signInWithOAuth({
+          provider: providerName,
+        });
 
         if (error) {
-            return {
-                success: false,
-                error,
-            };
+          return {
+            success: false,
+            error,
+          };
         }
 
-        return {
+        if (data?.url) {
+          return {
             success: true,
             redirectTo: "/",
-        };
-    },
-    onError: async (error) => {
-        console.error(error);
-        return { error };
-    },
-    check: async () => {
-        try {
-            const { data } = await supabaseClient.auth.getSession();
-            const { session } = data;
-
-            if (!session) {
-                return {
-                    authenticated: false,
-                    error: {
-                        message: "Check failed",
-                        name: "Session not found",
-                    },
-                    logout: true,
-                    redirectTo: "/login",
-                };
-            }
-        } catch (error: any) {
-            return {
-                authenticated: false,
-                error: error || {
-                    message: "Check failed",
-                    name: "Not authenticated",
-                },
-                logout: true,
-                redirectTo: "/login",
-            };
+          };
         }
+      }
 
+      // sign in with email and password
+      const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
         return {
-            authenticated: true,
+          success: false,
+          error,
         };
-    },
-    getPermissions: async () => {
-        const user = await supabaseClient.auth.getUser();
+      }
 
-        if (user) {
-            return user.data.user?.role;
-        }
+      if (data?.user) {
+        return {
+          success: true,
+          redirectTo: "/",
+        };
+      }
+    } catch (error: any) {
+      return {
+        success: false,
+        error,
+      };
+    }
 
-        return null;
-    },
-    getIdentity: async () => {
-        const { data } = await supabaseClient.auth.getUser();
+    return {
+      success: false,
+      error: {
+        message: "Login failed",
+        name: "Invalid email or password",
+      },
+    };
+  },
+  register: async ({ email, password }) => {
+    try {
+      const { data, error } = await supabaseClient.auth.signUp({
+        email,
+        password,
+      });
 
-        if (data?.user) {
-            return {
-                ...data.user,
-                name: data.user.email,
-            };
-        }
+      if (error) {
+        return {
+          success: false,
+          error,
+        };
+      }
 
-        return null;
-    },
+      if (data) {
+        return {
+          success: true,
+          redirectTo: "/",
+        };
+      }
+    } catch (error: any) {
+      return {
+        success: false,
+        error,
+      };
+    }
+
+    return {
+      success: false,
+      error: {
+        message: "Register failed",
+        name: "Invalid email or password",
+      },
+    };
+  },
+  forgotPassword: async ({ email }) => {
+    try {
+      const { data, error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/update-password`,
+      });
+
+      if (error) {
+        return {
+          success: false,
+          error,
+        };
+      }
+
+      if (data) {
+        return {
+          success: true,
+        };
+      }
+    } catch (error: any) {
+      return {
+        success: false,
+        error,
+      };
+    }
+
+    return {
+      success: false,
+      error: {
+        message: "Forgot password failed",
+        name: "Invalid email",
+      },
+    };
+  },
+  updatePassword: async ({ password }) => {
+    try {
+      const { data, error } = await supabaseClient.auth.updateUser({
+        password,
+      });
+
+      if (error) {
+        return {
+          success: false,
+          error,
+        };
+      }
+
+      if (data) {
+        return {
+          success: true,
+          redirectTo: "/",
+        };
+      }
+    } catch (error: any) {
+      return {
+        success: false,
+        error,
+      };
+    }
+    return {
+      success: false,
+      error: {
+        message: "Update password failed",
+        name: "Invalid password",
+      },
+    };
+  },
+  logout: async () => {
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+      return {
+        success: false,
+        error,
+      };
+    }
+
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  check: async () => {
+    try {
+      const { data } = await supabaseClient.auth.getSession();
+      const { session } = data;
+
+      if (!session) {
+        return {
+          authenticated: false,
+          error: {
+            message: "Check failed",
+            name: "Session not found",
+          },
+          logout: true,
+          redirectTo: "/login",
+        };
+      }
+    } catch (error: any) {
+      return {
+        authenticated: false,
+        error: error || {
+          message: "Check failed",
+          name: "Not authenticated",
+        },
+        logout: true,
+        redirectTo: "/login",
+      };
+    }
+
+    return {
+      authenticated: true,
+    };
+  },
+  getPermissions: async () => {
+    const user = await supabaseClient.auth.getUser();
+
+    if (user) {
+      return user.data.user?.role;
+    }
+
+    return null;
+  },
+  getIdentity: async () => {
+    const { data } = await supabaseClient.auth.getUser();
+
+    if (data?.user) {
+      return {
+        ...data.user,
+        name: data.user.email,
+      };
+    }
+
+    return null;
+  },
 };
 
 export default authProvider;
@@ -338,11 +335,11 @@ export default authProvider;
 
 The `authProvider` is a simple object that contains all the functions that are used to handle authentication.
 
-You can learn more about the it in the [Auth Provider](/docs/api-reference/core/providers/auth-provider/) section.
+You can learn more about the it in the [Auth Provider](/docs/core/providers/auth-provider) section.
 
 ### Root component: `App.tsx`
 
-Before we start, let's take a look at the `App.tsx` file. This is the root component of our application. It contains the [`<Refine />`](/docs/api-reference/core/components/refine-config/) component. This component is the main component of **refine**. It is used to configure the application and to provide the context to all the other components.
+Before we start, let's take a look at the `App.tsx` file. This is the root component of our application. It contains the [`<Refine />`](/docs/core/refine-component) component. This component is the main component of **refine**. It is used to configure the application and to provide the context to all the other components.
 
 <details>
 
@@ -352,10 +349,7 @@ Before we start, let's take a look at the `App.tsx` file. This is the root compo
 import { Refine, WelcomePage } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, {
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
+import routerBindings, { UnsavedChangesNotifier, DocumentTitleHandler } from "@refinedev/react-router-v6";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { supabaseClient } from "./utility";
@@ -364,29 +358,29 @@ import authProvider from "./authProvider";
 import "./App.css";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(supabaseClient)}
-                    liveProvider={liveProvider(supabaseClient)}
-                    authProvider={authProvider}
-                    routerProvider={routerBindings}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                >
-                    <Routes>
-                        <Route index element={<WelcomePage />} />
-                    </Routes>
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider(supabaseClient)}
+          liveProvider={liveProvider(supabaseClient)}
+          authProvider={authProvider}
+          routerProvider={routerBindings}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route index element={<WelcomePage />} />
+          </Routes>
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -413,21 +407,21 @@ import { ThemeProvider } from "styled-components";
 //highlight-end
 
 function App() {
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                {/*highlight-next-line*/}
-                <ThemeProvider theme={original}>
-                    <Refine
-                    // ...
-                    >
-                        {/* ... */}
-                    </Refine>
-                </ThemeProvider>
-                {/*highlight-next-line*/}
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        {/*highlight-next-line*/}
+        <ThemeProvider theme={original}>
+          <Refine
+          // ...
+          >
+            {/* ... */}
+          </Refine>
+        </ThemeProvider>
+        {/*highlight-next-line*/}
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -450,86 +444,76 @@ Let's create a `<LoginPage />` component in the `src/pages/login/index.tsx` dire
 import { useState } from "react";
 import { useLogin } from "@refinedev/core";
 
-import {
-    Window,
-    WindowHeader,
-    WindowContent,
-    TextInput,
-    Button,
-} from "react95";
+import { Window, WindowHeader, WindowContent, TextInput, Button } from "react95";
 
 interface ILoginForm {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
 
 export const LoginPage = () => {
-    const [email, setemail] = useState("info@refine.dev");
-    const [password, setPassword] = useState("refine-supabase");
+  const [email, setemail] = useState("info@refine.dev");
+  const [password, setPassword] = useState("refine-supabase");
 
-    const { mutate: login } = useLogin<ILoginForm>();
+  const { mutate: login } = useLogin<ILoginForm>();
 
-    return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-                minHeight: "100vh",
-                backgroundColor: "rgb(0, 128, 128)",
-            }}
-        >
-            <Window>
-                <WindowHeader active={true} className="window-header">
-                    <span> Refine Login</span>
-                </WindowHeader>
-                <div style={{ marginTop: 8 }}>
-                    <img
-                        src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"
-                        alt="refine-logo"
-                        width={100}
-                    />
-                </div>
-                <WindowContent>
-                    <form
-                        onSubmit={(e) => {
-                            e.preventDefault();
-                            login({ email, password });
-                        }}
-                    >
-                        <div style={{ width: 500 }}>
-                            <div style={{ display: "flex" }}>
-                                <TextInput
-                                    placeholder="User Name"
-                                    fullWidth
-                                    value={email}
-                                    onChange={(e) => {
-                                        setemail(e.target.value);
-                                    }}
-                                />
-                            </div>
-                            <br />
-                            <TextInput
-                                placeholder="Password"
-                                fullWidth
-                                type="password"
-                                value={password}
-                                onChange={(e) => {
-                                    setPassword(e.target.value);
-                                }}
-                            />
-                            <br />
-                            <Button type="submit" value="login">
-                                Sign in
-                            </Button>
-                        </div>
-                    </form>
-                </WindowContent>
-            </Window>
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        minHeight: "100vh",
+        backgroundColor: "rgb(0, 128, 128)",
+      }}
+    >
+      <Window>
+        <WindowHeader active={true} className="window-header">
+          <span> Refine Login</span>
+        </WindowHeader>
+        <div style={{ marginTop: 8 }}>
+          <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png" alt="refine-logo" width={100} />
         </div>
-    );
+        <WindowContent>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              login({ email, password });
+            }}
+          >
+            <div style={{ width: 500 }}>
+              <div style={{ display: "flex" }}>
+                <TextInput
+                  placeholder="User Name"
+                  fullWidth
+                  value={email}
+                  onChange={(e) => {
+                    setemail(e.target.value);
+                  }}
+                />
+              </div>
+              <br />
+              <TextInput
+                placeholder="Password"
+                fullWidth
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+              <br />
+              <Button type="submit" value="login">
+                Sign in
+              </Button>
+            </div>
+          </form>
+        </WindowContent>
+      </Window>
+    </div>
+  );
 };
 ```
 
@@ -602,58 +586,54 @@ import { useLogout, useNavigation } from "@refinedev/core";
 import { AppBar, Toolbar, Button, MenuList, MenuListItem } from "react95";
 
 export const Footer: React.FC = () => {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
-    const { mutate: logout } = useLogout();
-    const { push } = useNavigation();
+  const { mutate: logout } = useLogout();
+  const { push } = useNavigation();
 
-    return (
-        <AppBar style={{ top: "unset", bottom: 0 }}>
-            <Toolbar style={{ justifyContent: "space-between" }}>
-                <div style={{ position: "relative", display: "inline-block" }}>
-                    <Button
-                        onClick={() => setOpen(!open)}
-                        active={open}
-                        style={{ fontWeight: "bold" }}
-                    >
-                        <img
-                            src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"
-                            alt="refine logo"
-                            style={{ height: "20px", marginRight: 4 }}
-                        />
-                    </Button>
-                    {open && (
-                        <MenuList
-                            style={{
-                                position: "absolute",
-                                left: "0",
-                                bottom: "100%",
-                            }}
-                            onClick={() => setOpen(false)}
-                        >
-                            <MenuListItem
-                                onClick={() => {
-                                    push("posts");
-                                }}
-                            >
-                                Posts
-                            </MenuListItem>
-                            <MenuListItem
-                                onClick={() => {
-                                    logout();
-                                }}
-                            >
-                                <span role="img" aria-label="🔙">
-                                    🔙
-                                </span>
-                                Logout
-                            </MenuListItem>
-                        </MenuList>
-                    )}
-                </div>
-            </Toolbar>
-        </AppBar>
-    );
+  return (
+    <AppBar style={{ top: "unset", bottom: 0 }}>
+      <Toolbar style={{ justifyContent: "space-between" }}>
+        <div style={{ position: "relative", display: "inline-block" }}>
+          <Button onClick={() => setOpen(!open)} active={open} style={{ fontWeight: "bold" }}>
+            <img
+              src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"
+              alt="refine logo"
+              style={{ height: "20px", marginRight: 4 }}
+            />
+          </Button>
+          {open && (
+            <MenuList
+              style={{
+                position: "absolute",
+                left: "0",
+                bottom: "100%",
+              }}
+              onClick={() => setOpen(false)}
+            >
+              <MenuListItem
+                onClick={() => {
+                  push("posts");
+                }}
+              >
+                Posts
+              </MenuListItem>
+              <MenuListItem
+                onClick={() => {
+                  logout();
+                }}
+              >
+                <span role="img" aria-label="🔙">
+                  🔙
+                </span>
+                Logout
+              </MenuListItem>
+            </MenuList>
+          )}
+        </div>
+      </Toolbar>
+    </AppBar>
+  );
 };
 ```
 
@@ -756,21 +736,21 @@ import { Footer } from "../footer";
 import { Header } from "../header";
 
 export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
-    return (
-        <div>
-            <Header />
-            <div
-                style={{
-                    padding: "72px 24px 24px 24px",
-                    backgroundColor: "rgb(0, 128, 128)",
-                    minHeight: "calc(100vh - 48px - 72px - 24px)",
-                }}
-            >
-                {children}
-            </div>
-            <Footer />
-        </div>
-    );
+  return (
+    <div>
+      <Header />
+      <div
+        style={{
+          padding: "72px 24px 24px 24px",
+          backgroundColor: "rgb(0, 128, 128)",
+          minHeight: "calc(100vh - 48px - 72px - 24px)",
+        }}
+      >
+        {children}
+      </div>
+      <Footer />
+    </div>
+  );
 };
 ```
 
@@ -798,12 +778,12 @@ post;
 import { Window, WindowHeader, WindowContent } from "react95";
 
 export const PostCreate = () => {
-    return (
-        <Window style={{ width: "100%" }}>
-            <WindowHeader>Posts</WindowHeader>
-            <WindowContent>Create Page</WindowContent>
-        </Window>
-    );
+  return (
+    <Window style={{ width: "100%" }}>
+      <WindowHeader>Posts</WindowHeader>
+      <WindowContent>Create Page</WindowContent>
+    </Window>
+  );
 };
 ```
 
@@ -817,12 +797,12 @@ export const PostCreate = () => {
 import { Window, WindowHeader, WindowContent } from "react95";
 
 export const PostEdit = () => {
-    return (
-        <Window style={{ width: "100%" }}>
-            <WindowHeader>Posts</WindowHeader>
-            <WindowContent>Edit Page</WindowContent>
-        </Window>
-    );
+  return (
+    <Window style={{ width: "100%" }}>
+      <WindowHeader>Posts</WindowHeader>
+      <WindowContent>Edit Page</WindowContent>
+    </Window>
+  );
 };
 ```
 
@@ -847,73 +827,58 @@ import { PostEdit } from "./pages/posts/edit";
 // highlight-end
 
 function App() {
-    return (
-        <BrowserRouter>
-            <RefineKbarProvider>
-                <ThemeProvider theme={original}>
-                    <Refine
-                        // ...
-                        // highlight-start
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                create: "/posts/create",
-                                edit: "/posts/edit/:id",
-                            },
-                        ]}
-                        // highlight-end
-                    >
-                        <Routes>
-                            {/* highlight-start */}
-                            <Route
-                                element={
-                                    <Authenticated
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <Layout>
-                                            <Outlet />
-                                        </Layout>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="posts" />
-                                    }
-                                />
+  return (
+    <BrowserRouter>
+      <RefineKbarProvider>
+        <ThemeProvider theme={original}>
+          <Refine
+            // ...
+            // highlight-start
+            resources={[
+              {
+                name: "posts",
+                list: "/posts",
+                create: "/posts/create",
+                edit: "/posts/edit/:id",
+              },
+            ]}
+            // highlight-end
+          >
+            <Routes>
+              {/* highlight-start */}
+              <Route
+                element={
+                  <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                    <Layout>
+                      <Outlet />
+                    </Layout>
+                  </Authenticated>
+                }
+              >
+                <Route index element={<NavigateToResource resource="posts" />} />
 
-                                <Route path="/posts">
-                                    <Route index element={<PostList />} />
-                                    <Route
-                                        path="create"
-                                        element={<PostCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<PostEdit />}
-                                    />
-                                </Route>
-                            </Route>
-                            {/* highlight-end */}
-                            <Route
-                                element={
-                                    <Authenticated fallback={<Outlet />}>
-                                        <NavigateToResource />
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="/login" element={<LoginPage />} />
-                            </Route>
-                        </Routes>
-                    </Refine>
-                </ThemeProvider>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+                <Route path="/posts">
+                  <Route index element={<PostList />} />
+                  <Route path="create" element={<PostCreate />} />
+                  <Route path="edit/:id" element={<PostEdit />} />
+                </Route>
+              </Route>
+              {/* highlight-end */}
+              <Route
+                element={
+                  <Authenticated fallback={<Outlet />}>
+                    <NavigateToResource />
+                  </Authenticated>
+                }
+              >
+                <Route path="/login" element={<LoginPage />} />
+              </Route>
+            </Routes>
+          </Refine>
+        </ThemeProvider>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -927,7 +892,7 @@ export default App;
 
 ### List Page
 
-After our login process, we'll get the posts from our supabase and display them in the table. We will use React95 components for the UI portion of our table, as well as [`@refinedev/react-table`](/docs/packages/documentation/react-table/) package to handle pagination, sorting, and filtering. You can use all the features of [TanStack Table](https://react-table.tanstack.com/) with the `@refinedev/react-table` adapter.
+After our login process, we'll get the posts from our supabase and display them in the table. We will use React95 components for the UI portion of our table, as well as [`@refinedev/react-table`](/docs/packages/list-of-packages) package to handle pagination, sorting, and filtering. You can use all the features of [TanStack Table](https://react-table.tanstack.com/) with the `@refinedev/react-table` adapter.
 
 So, let's install the `@refinedev/react-table` and dependencies.
 
@@ -943,20 +908,20 @@ npm i @refinedev/react-table @tanstack/react-table
 
 ```tsx title="src/interfaces/index.d.ts"
 export interface IPost {
-    id: string;
-    title: string;
-    categories: ICategory[];
+  id: string;
+  title: string;
+  categories: ICategory[];
 }
 
 export interface ICategory {
-    id: string;
-    title: string;
+  id: string;
+  title: string;
 }
 
 export interface ICsvPost {
-    title: string;
-    content: string;
-    categoryId: string;
+  title: string;
+  content: string;
+  categoryId: string;
 }
 ```
 
@@ -973,228 +938,206 @@ import { useTable } from "@refinedev/react-table";
 import { useDelete, useNavigation } from "@refinedev/core";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import {
-    Table,
-    TableBody,
-    TableHead,
-    TableRow,
-    TableHeadCell,
-    TableDataCell,
-    Window,
-    WindowHeader,
-    WindowContent,
-    Button,
-    Select,
-    NumberInput,
-    Hourglass,
-    ScrollView,
+  Table,
+  TableBody,
+  TableHead,
+  TableRow,
+  TableHeadCell,
+  TableDataCell,
+  Window,
+  WindowHeader,
+  WindowContent,
+  Button,
+  Select,
+  NumberInput,
+  Hourglass,
+  ScrollView,
 } from "react95";
 
 import { IPost } from "../../interfaces";
 
 export const PostList = () => {
-    const { edit } = useNavigation();
+  const { edit } = useNavigation();
 
-    const { mutate: deletePost } = useDelete<IPost>();
+  const { mutate: deletePost } = useDelete<IPost>();
 
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-            },
-            {
-                id: "categoryId",
-                header: "Category",
-                accessorKey: "categories.title",
-            },
-            {
-                id: "action",
-                header: "Action",
-                accessorKey: "id",
-                cell: function render({ getValue }) {
-                    return (
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                gap: 16,
-                            }}
-                        >
-                            <Button
-                                size="sm"
-                                onClick={() =>
-                                    edit("posts", getValue() as number)
-                                }
-                            >
-                                Edit
-                            </Button>
-                            <Button
-                                size="sm"
-                                onClick={() => {
-                                    const id = getValue() as number;
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
+      },
+      {
+        id: "categoryId",
+        header: "Category",
+        accessorKey: "categories.title",
+      },
+      {
+        id: "action",
+        header: "Action",
+        accessorKey: "id",
+        cell: function render({ getValue }) {
+          return (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: 16,
+              }}
+            >
+              <Button size="sm" onClick={() => edit("posts", getValue() as number)}>
+                Edit
+              </Button>
+              <Button
+                size="sm"
+                onClick={() => {
+                  const id = getValue() as number;
 
-                                    const result = window.confirm(
-                                        "Are you sure you want to delete this post?",
-                                    );
+                  const result = window.confirm("Are you sure you want to delete this post?");
 
-                                    if (result) {
-                                        deletePost({
-                                            resource: "posts",
-                                            id,
-                                        });
-                                    }
-                                }}
-                            >
-                                Delete
-                            </Button>
-                        </div>
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        options: { pageCount },
-        getState,
-        setPageIndex,
-        setPageSize,
-        refineCore: {
-            tableQueryResult: { isLoading },
+                  if (result) {
+                    deletePost({
+                      resource: "posts",
+                      id,
+                    });
+                  }
+                }}
+              >
+                Delete
+              </Button>
+            </div>
+          );
         },
-    } = useTable<IPost>({
-        columns,
-        refineCoreProps: {
-            meta: {
-                select: "*, categories(*)",
-            },
-        },
-    });
+      },
+    ],
+    [],
+  );
 
-    return (
-        <>
-            <Window style={{ width: "100%" }}>
-                <WindowHeader>Posts</WindowHeader>
-                <WindowContent>
-                    <ScrollView style={{ width: "100%", height: "410px" }}>
-                        <Table>
-                            <TableHead>
-                                {getHeaderGroups().map((headerGroup) => (
-                                    <TableRow key={headerGroup.id}>
-                                        {headerGroup.headers.map((header) => (
-                                            <TableHeadCell
-                                                key={header.id}
-                                                colSpan={header.colSpan}
-                                                onClick={header.column.getToggleSortingHandler()}
-                                            >
-                                                {flexRender(
-                                                    header.column.columnDef
-                                                        .header,
-                                                    header.getContext(),
-                                                )}
-                                            </TableHeadCell>
-                                        ))}
-                                    </TableRow>
-                                ))}
-                            </TableHead>
-                            <TableBody>
-                                {getRowModel().rows.map((row) => {
-                                    return (
-                                        <TableRow key={row.id}>
-                                            {row
-                                                .getVisibleCells()
-                                                .map((cell) => {
-                                                    return (
-                                                        <TableDataCell
-                                                            key={cell.id}
-                                                        >
-                                                            {flexRender(
-                                                                cell.column
-                                                                    .columnDef
-                                                                    .cell,
-                                                                cell.getContext(),
-                                                            )}
-                                                        </TableDataCell>
-                                                    );
-                                                })}
-                                        </TableRow>
-                                    );
-                                })}
-                            </TableBody>
-                        </Table>
-                        {isLoading && (
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    height: "350px",
-                                }}
-                            >
-                                <Hourglass size={32} />
-                            </div>
-                        )}
-                    </ScrollView>
-                </WindowContent>
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        marginBottom: 8,
-                        marginTop: 8,
-                        alignItems: "flex-end",
-                    }}
-                >
-                    <Select<number>
-                        style={{ marginLeft: 8 }}
-                        value={getState().pagination.pageSize}
-                        onChange={(option) => {
-                            setPageSize(option.value);
-                        }}
-                        options={pageSizeOptions}
-                        defaultValue={10}
-                    ></Select>
-                    <span style={{ marginLeft: 8 }}>
-                        Page{" "}
-                        <strong>
-                            {getState().pagination.pageIndex + 1} of {pageCount}
-                        </strong>
-                        <span style={{ marginLeft: 8 }}>
-                            Go to page:
-                            <NumberInput
-                                style={{ marginLeft: 8 }}
-                                min={1}
-                                defaultValue={
-                                    getState().pagination.pageIndex + 1
-                                }
-                                width={130}
-                                onChange={(value) => {
-                                    const page = value ? Number(value) - 1 : 0;
-                                    setPageIndex(page);
-                                }}
-                            />
-                        </span>
-                    </span>
-                </div>
-            </Window>
-        </>
-    );
+  const {
+    getHeaderGroups,
+    getRowModel,
+    options: { pageCount },
+    getState,
+    setPageIndex,
+    setPageSize,
+    refineCore: {
+      tableQueryResult: { isLoading },
+    },
+  } = useTable<IPost>({
+    columns,
+    refineCoreProps: {
+      meta: {
+        select: "*, categories(*)",
+      },
+    },
+  });
+
+  return (
+    <>
+      <Window style={{ width: "100%" }}>
+        <WindowHeader>Posts</WindowHeader>
+        <WindowContent>
+          <ScrollView style={{ width: "100%", height: "410px" }}>
+            <Table>
+              <TableHead>
+                {getHeaderGroups().map((headerGroup) => (
+                  <TableRow key={headerGroup.id}>
+                    {headerGroup.headers.map((header) => (
+                      <TableHeadCell
+                        key={header.id}
+                        colSpan={header.colSpan}
+                        onClick={header.column.getToggleSortingHandler()}
+                      >
+                        {flexRender(header.column.columnDef.header, header.getContext())}
+                      </TableHeadCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableHead>
+              <TableBody>
+                {getRowModel().rows.map((row) => {
+                  return (
+                    <TableRow key={row.id}>
+                      {row.getVisibleCells().map((cell) => {
+                        return (
+                          <TableDataCell key={cell.id}>
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          </TableDataCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+            {isLoading && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "350px",
+                }}
+              >
+                <Hourglass size={32} />
+              </div>
+            )}
+          </ScrollView>
+        </WindowContent>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            marginBottom: 8,
+            marginTop: 8,
+            alignItems: "flex-end",
+          }}
+        >
+          <Select<number>
+            style={{ marginLeft: 8 }}
+            value={getState().pagination.pageSize}
+            onChange={(option) => {
+              setPageSize(option.value);
+            }}
+            options={pageSizeOptions}
+            defaultValue={10}
+          ></Select>
+          <span style={{ marginLeft: 8 }}>
+            Page{" "}
+            <strong>
+              {getState().pagination.pageIndex + 1} of {pageCount}
+            </strong>
+            <span style={{ marginLeft: 8 }}>
+              Go to page:
+              <NumberInput
+                style={{ marginLeft: 8 }}
+                min={1}
+                defaultValue={getState().pagination.pageIndex + 1}
+                width={130}
+                onChange={(value) => {
+                  const page = value ? Number(value) - 1 : 0;
+                  setPageIndex(page);
+                }}
+              />
+            </span>
+          </span>
+        </div>
+      </Window>
+    </>
+  );
 };
 
 const pageSizeOptions = [
-    { value: 10, label: "10" },
-    { value: 20, label: "20" },
-    { value: 30, label: "30" },
-    { value: 40, label: "40" },
+  { value: 10, label: "10" },
+  { value: 20, label: "20" },
+  { value: 30, label: "30" },
+  { value: 40, label: "40" },
 ];
 ```
 
@@ -1202,13 +1145,13 @@ const pageSizeOptions = [
 
 We used the `useTable` hook to fetch the data for the table. It makes a request to the `/posts` endpoint with the query parameters. The query parameters are used to filter, sort, and paginate the posts. Since we defined the posts resource in `src/App.tsx`, the `useTable` hook knows which endpoint to use for fetching the data.
 
-After fetching the data, we used the React95 table components to render the data. We also added delete button and edit button to each row. When the user clicks the delete button, we call the `deletePost` function with the `resource` and `id` parameters. The `deletePost` function is provided by the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) hook. When the user clicks the edit button, we call the `edit` function with the "posts" resource and the post id to navigate to the edit page.
+After fetching the data, we used the React95 table components to render the data. We also added delete button and edit button to each row. When the user clicks the delete button, we call the `deletePost` function with the `resource` and `id` parameters. The `deletePost` function is provided by the [`useDelete`](/docs/core/hooks/data/use-delete) hook. When the user clicks the edit button, we call the `edit` function with the "posts" resource and the post id to navigate to the edit page.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/list-page.gif" alt="Refine List Page" className="border border-gray-200 rounded" />
 
 ### Create Page and Edit Page
 
-We have created our post list page. Now we will create page where we can create posts. **refine** provides a [`@refinedev/react-hook-form`](/docs/packages/documentation/react-hook-form/useForm/) adapter that you can use all the features of [React Hook Form](https://react-hook-form.com/) with **refine**. We will use this to manage our form state.
+We have created our post list page. Now we will create page where we can create posts. **refine** provides a [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) adapter that you can use all the features of [React Hook Form](https://react-hook-form.com/) with **refine**. We will use this to manage our form state.
 
 So, let's install the `@refinedev/react-hook-form` and dependencies.
 
@@ -1224,87 +1167,69 @@ Let's update a `<PostCreate />` component in `src/pages/posts/create.tsx` direct
 ```tsx title="src/pages/posts/create.tsx"
 import { useForm } from "@refinedev/react-hook-form";
 import { useSelect } from "@refinedev/core";
-import {
-    Select,
-    GroupBox,
-    Button,
-    TextInput,
-    Window,
-    WindowHeader,
-    WindowContent,
-} from "react95";
+import { Select, GroupBox, Button, TextInput, Window, WindowHeader, WindowContent } from "react95";
 import { Controller } from "react-hook-form";
 
 export const PostCreate: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        control,
-        formState: { errors },
-    } = useForm();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
-    const { options } = useSelect({
-        resource: "categories",
-    });
+  const { options } = useSelect({
+    resource: "categories",
+  });
 
-    return (
-        <Window style={{ width: "100%", height: "100%" }}>
-            <WindowHeader>
-                <span>Create Post</span>
-            </WindowHeader>
-            <WindowContent>
-                <form onSubmit={handleSubmit(onFinish)}>
-                    <label>Title: </label>
-                    <br />
-                    <br />
-                    <TextInput
-                        {...register("title", { required: true })}
-                        placeholder="Type here..."
-                    />
-                    {errors.title && <span>This field is required</span>}
-                    <br />
-                    <br />
+  return (
+    <Window style={{ width: "100%", height: "100%" }}>
+      <WindowHeader>
+        <span>Create Post</span>
+      </WindowHeader>
+      <WindowContent>
+        <form onSubmit={handleSubmit(onFinish)}>
+          <label>Title: </label>
+          <br />
+          <br />
+          <TextInput {...register("title", { required: true })} placeholder="Type here..." />
+          {errors.title && <span>This field is required</span>}
+          <br />
+          <br />
 
-                    <Controller
-                        name="categoryId"
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                            <GroupBox label={"Category"}>
-                                <Select
-                                    options={options}
-                                    menuMaxHeight={160}
-                                    width={160}
-                                    variant="flat"
-                                    onChange={(option) =>
-                                        onChange(option.value)
-                                    }
-                                    value={value}
-                                />
-                            </GroupBox>
-                        )}
-                    />
-                    {errors.category && <span>This field is required</span>}
-                    <br />
-                    <label>Content: </label>
-                    <br />
-                    <TextInput
-                        {...register("content", { required: true })}
-                        multiline
-                        rows={10}
-                        cols={50}
-                    />
+          <Controller
+            name="categoryId"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <GroupBox label={"Category"}>
+                <Select
+                  options={options}
+                  menuMaxHeight={160}
+                  width={160}
+                  variant="flat"
+                  onChange={(option) => onChange(option.value)}
+                  value={value}
+                />
+              </GroupBox>
+            )}
+          />
+          {errors.category && <span>This field is required</span>}
+          <br />
+          <label>Content: </label>
+          <br />
+          <TextInput {...register("content", { required: true })} multiline rows={10} cols={50} />
 
-                    {errors.content && <span>This field is required</span>}
-                    <br />
-                    <Button type="submit" value="Submit">
-                        Submit
-                    </Button>
-                    {formLoading && <p>Loading</p>}
-                </form>
-            </WindowContent>
-        </Window>
-    );
+          {errors.content && <span>This field is required</span>}
+          <br />
+          <Button type="submit" value="Submit">
+            Submit
+          </Button>
+          {formLoading && <p>Loading</p>}
+        </form>
+      </WindowContent>
+    </Window>
+  );
 };
 ```
 
@@ -1320,92 +1245,74 @@ Now, let's update a `<PostEdit />` component in `src/pages/posts/edit.tsx` direc
 ```tsx title="src/pages/posts/edit.tsx"
 import { useForm } from "@refinedev/react-hook-form";
 import { useSelect } from "@refinedev/core";
-import {
-    Select,
-    GroupBox,
-    Button,
-    TextInput,
-    Window,
-    WindowHeader,
-    WindowContent,
-} from "react95";
+import { Select, GroupBox, Button, TextInput, Window, WindowHeader, WindowContent } from "react95";
 import { Controller } from "react-hook-form";
 
 export const PostEdit: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        control,
-        formState: { errors },
-    } = useForm();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
-    const { options } = useSelect({
-        resource: "categories",
-    });
+  const { options } = useSelect({
+    resource: "categories",
+  });
 
-    return (
-        <Window style={{ width: "100%", height: "100%" }}>
-            <WindowHeader active={true} className="window-header">
-                <span>Edit Post</span>
-            </WindowHeader>
-            <WindowContent>
-                <form onSubmit={handleSubmit(onFinish)}>
-                    <label>Title: </label>
-                    <br />
-                    <TextInput
-                        {...register("title", { required: true })}
-                        placeholder="Type here..."
-                    />
-                    {errors.title && <span>This field is required</span>}
-                    <br />
-                    <br />
+  return (
+    <Window style={{ width: "100%", height: "100%" }}>
+      <WindowHeader active={true} className="window-header">
+        <span>Edit Post</span>
+      </WindowHeader>
+      <WindowContent>
+        <form onSubmit={handleSubmit(onFinish)}>
+          <label>Title: </label>
+          <br />
+          <TextInput {...register("title", { required: true })} placeholder="Type here..." />
+          {errors.title && <span>This field is required</span>}
+          <br />
+          <br />
 
-                    <Controller
-                        name="categoryId"
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                            <GroupBox label={"Category"}>
-                                <Select
-                                    options={options}
-                                    menuMaxHeight={160}
-                                    width={160}
-                                    variant="flat"
-                                    onChange={(option) =>
-                                        onChange(option.value)
-                                    }
-                                    value={value}
-                                />
-                            </GroupBox>
-                        )}
-                    />
-                    {errors.category && <span>This field is required</span>}
-                    <br />
-                    <label>Content: </label>
-                    <br />
-                    <TextInput
-                        {...register("content", { required: true })}
-                        multiline
-                        rows={10}
-                        cols={50}
-                    />
+          <Controller
+            name="categoryId"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <GroupBox label={"Category"}>
+                <Select
+                  options={options}
+                  menuMaxHeight={160}
+                  width={160}
+                  variant="flat"
+                  onChange={(option) => onChange(option.value)}
+                  value={value}
+                />
+              </GroupBox>
+            )}
+          />
+          {errors.category && <span>This field is required</span>}
+          <br />
+          <label>Content: </label>
+          <br />
+          <TextInput {...register("content", { required: true })} multiline rows={10} cols={50} />
 
-                    {errors.content && <span>This field is required</span>}
-                    <br />
-                    <Button type="submit" value="Submit">
-                        Submit
-                    </Button>
-                    {formLoading && <p>Loading</p>}
-                </form>
-            </WindowContent>
-        </Window>
-    );
+          {errors.content && <span>This field is required</span>}
+          <br />
+          <Button type="submit" value="Submit">
+            Submit
+          </Button>
+          {formLoading && <p>Loading</p>}
+        </form>
+      </WindowContent>
+    </Window>
+  );
 };
 ```
 
 </details>
 
-Edit and create pages almost look the same. We can use the same form for both pages. [`useForm`](/docs/packages/documentation/react-hook-form/useForm/) hook knows which action we are performing. For example, if we are on the edit page, it will automatically fetch the post data and fill the form with it.
+Edit and create pages almost look the same. We can use the same form for both pages. [`useForm`](/docs/packages/list-of-packages) hook knows which action we are performing. For example, if we are on the edit page, it will automatically fetch the post data and fill the form with it.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/edit-page.gif" alt="Refine Edit Page" className="border border-gray-200 rounded"/>
 

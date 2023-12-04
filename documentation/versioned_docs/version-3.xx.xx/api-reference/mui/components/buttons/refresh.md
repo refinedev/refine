@@ -4,11 +4,10 @@ title: Refresh
 swizzle: true
 ---
 
-
-`<RefreshButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component to update the data shown on the page via the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+`<RefreshButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component to update the data shown on the page via the [`useOne`](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -20,44 +19,48 @@ import { useShow } from "@pankod/refine-core";
 import { Show, Typography, Stack, RefreshButton } from "@pankod/refine-mui";
 
 const PostShow: React.FC = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        <Show
-            isLoading={isLoading}
-            headerButtons={(
-                    // highlight-start
-                    <RefreshButton />
-                    // highlight-end
-            )}
-        >
-            <Typography fontWeight="bold">Id</Typography>
-            <Typography>{record?.id}</Typography>
-            <Typography fontWeight="bold">Title</Typography>
-            <Typography>{record?.title}</Typography>
-        </Show>
-    );
+  return (
+    <Show
+      isLoading={isLoading}
+      headerButtons={
+        // highlight-start
+        <RefreshButton />
+        // highlight-end
+      }
+    >
+      <Typography fontWeight="bold">Id</Typography>
+      <Typography>{record?.id}</Typography>
+      <Typography fontWeight="bold">Title</Typography>
+      <Typography>{record?.title}</Typography>
+    </Show>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts/show/123"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => <RefineMui.List><p>Rest of the page here...</p></RefineMui.List>,
-                show: PostShow,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts/show/123"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <RefineMui.List>
+            <p>Rest of the page here...</p>
+          </RefineMui.List>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -73,30 +76,30 @@ const { useRouterContext } = RefineCore;
 import { RefreshButton } from "@pankod/refine-mui";
 
 const MyRefreshComponent = () => {
-    return (
-        <RefreshButton
-            resourceNameOrRouteName="posts"
-            // highlight-next-line
-            recordItemId="1"
-        />
-    );
+  return (
+    <RefreshButton
+      resourceNameOrRouteName="posts"
+      // highlight-next-line
+      recordItemId="1"
+    />
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-        ]}
-        DashboardPage={MyRefreshComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+    ]}
+    DashboardPage={MyRefreshComponent}
+  />,
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "post" and whose id is "1".
+Clicking the button will trigger the [`useOne`](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "post" and whose id is "1".
 
 :::note
 `<RefreshButton>` component reads the id information from the route by default.
@@ -112,30 +115,30 @@ const { useRouterContext } = RefineCore;
 import { RefreshButton } from "@pankod/refine-mui";
 
 const MyRefreshComponent = () => {
-    return (
-        <RefreshButton
-            recordItemId="1"
-            // highlight-next-line
-            resourceNameOrRouteName="posts"
-        />
-    );
+  return (
+    <RefreshButton
+      recordItemId="1"
+      // highlight-next-line
+      resourceNameOrRouteName="posts"
+    />
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-        ]}
-        DashboardPage={MyRefreshComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+    ]}
+    DashboardPage={MyRefreshComponent}
+  />,
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+Clicking the button will trigger the [`useOne`](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
@@ -151,27 +154,27 @@ const { useRouterContext } = RefineCore;
 import { RefreshButton } from "@pankod/refine-mui";
 
 const MyRefreshComponent = () => {
-    return (
-        <RefreshButton
-            // highlight-next-line
-            hideText
-            resourceNameOrRouteName="posts"
-            recordItemId="1"
-        />
-    );
+  return (
+    <RefreshButton
+      // highlight-next-line
+      hideText
+      resourceNameOrRouteName="posts"
+      recordItemId="1"
+    />
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-        ]}
-        DashboardPage={MyRefreshComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+    ]}
+    DashboardPage={MyRefreshComponent}
+  />,
 );
 ```
 
@@ -183,4 +186,4 @@ render(
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
-:::         
+:::

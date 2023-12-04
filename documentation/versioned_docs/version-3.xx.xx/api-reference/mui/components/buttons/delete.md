@@ -4,12 +4,11 @@ title: Delete
 swizzle: true
 ---
 
-
 `<DeleteButton>` uses Material UI [`<LoadingButton>`](https://mui.com/material-ui/api/loading-button/#main-content) and [`<Dialog>`](https://mui.com/material-ui/react-dialog/) components.
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -19,71 +18,69 @@ const { Create } = RefineMui;
 import dataProvider from "@pankod/refine-simple-rest";
 // visible-block-start
 import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    // highlight-next-line
-    DeleteButton,
+  useDataGrid,
+  DataGrid,
+  GridColumns,
+  List,
+  // highlight-next-line
+  DeleteButton,
 } from "@pankod/refine-mui";
 
 const columns: GridColumns = [
-    { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
-    {
-        field: "actions",
-        headerName: "Actions",
-        renderCell: function render({ row }) {
-            // highlight-next-line
-            return <DeleteButton size="small" recordItemId={row.id} />;
-        },
-        align: "center",
-        headerAlign: "center",
-        minWidth: 80,
+  { field: "id", headerName: "ID", type: "number" },
+  { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+  {
+    field: "actions",
+    headerName: "Actions",
+    renderCell: function render({ row }) {
+      // highlight-next-line
+      return <DeleteButton size="small" recordItemId={row.id} />;
     },
+    align: "center",
+    headerAlign: "center",
+    minWidth: 80,
+  },
 ];
 
 const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+  const { dataGridProps } = useDataGrid<IPost>();
 
-    return (
-        <List>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    <List>
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
-const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-);
+const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
-    ...simpleRestDataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+  ...simpleRestDataProvider,
+  deleteOne: async ({ resource, id, variables }) => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
-        return {
-            message: "You have successfully deleted the record",
-        };
-    },
+    return {
+      message: "You have successfully deleted the record",
+    };
+  },
 };
 
 render(
-    <RefineMuiDemo
-        dataProvider={customDataProvider}
-        resources={[
-            {
-                name: "posts",
-                list: PostsList,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    dataProvider={customDataProvider}
+    resources={[
+      {
+        name: "posts",
+        list: PostsList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -102,41 +99,39 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { DeleteButton } from "@pankod/refine-mui";
 
 const MyDeleteComponent = () => {
-    return <DeleteButton resourceNameOrRouteName="posts" recordItemId="1" />;
+  return <DeleteButton resourceNameOrRouteName="posts" recordItemId="1" />;
 };
 
 // visible-block-end
 
-const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-);
+const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
-    ...simpleRestDataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+  ...simpleRestDataProvider,
+  deleteOne: async ({ resource, id, variables }) => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
-        return {
-            message: "You have successfully deleted the record",
-        };
-    },
+    return {
+      message: "You have successfully deleted the record",
+    };
+  },
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        dataProvider={customDataProvider}
-        resources={[
-            {
-                name: "posts",
-            },
-        ]}
-        DashboardPage={MyDeleteComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    dataProvider={customDataProvider}
+    resources={[
+      {
+        name: "posts",
+      },
+    ]}
+    DashboardPage={MyDeleteComponent}
+  />,
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is `post` and whose id is `1` gets deleted.
+Clicking the button will trigger the [`useDelete`](/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is `post` and whose id is `1` gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the id information from the route by default.
@@ -154,40 +149,36 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { DeleteButton } from "@pankod/refine-mui";
 
 const MyDeleteComponent = () => {
-    return (
-        <DeleteButton resourceNameOrRouteName="categories" recordItemId="2" />
-    );
+  return <DeleteButton resourceNameOrRouteName="categories" recordItemId="2" />;
 };
 // visible-block-end
-const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-);
+const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
-    ...simpleRestDataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+  ...simpleRestDataProvider,
+  deleteOne: async ({ resource, id, variables }) => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
-        return {
-            message: "You have successfully deleted the record",
-        };
-    },
+    return {
+      message: "You have successfully deleted the record",
+    };
+  },
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        dataProvider={customDataProvider}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-            },
-        ]}
-        DashboardPage={MyDeleteComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    dataProvider={customDataProvider}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+      },
+    ]}
+    DashboardPage={MyDeleteComponent}
+  />,
 );
 ```
 
@@ -205,43 +196,41 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { DeleteButton } from "@pankod/refine-mui";
 
 const MyDeleteComponent = () => {
-    return (
-        <DeleteButton
-            resourceNameOrRouteName="posts" 
-            recordItemId="1"
-            onSuccess={(value) => {
-                console.log(value);
-            }}
-        />
-    );
+  return (
+    <DeleteButton
+      resourceNameOrRouteName="posts"
+      recordItemId="1"
+      onSuccess={(value) => {
+        console.log(value);
+      }}
+    />
+  );
 };
 // visible-block-end
-const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-);
+const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
-    ...simpleRestDataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+  ...simpleRestDataProvider,
+  deleteOne: async ({ resource, id, variables }) => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
-        return {
-            message: "You have successfully deleted the record",
-        };
-    },
+    return {
+      message: "You have successfully deleted the record",
+    };
+  },
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        dataProvider={customDataProvider}
-        resources={[
-            {
-                name: "posts",
-            }
-        ]}
-        DashboardPage={MyDeleteComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    dataProvider={customDataProvider}
+    resources={[
+      {
+        name: "posts",
+      },
+    ]}
+    DashboardPage={MyDeleteComponent}
+  />,
 );
 ```
 
@@ -255,56 +244,56 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 import { useTable } from "@pankod/refine-core";
 
 import {
-    List,
-    Table,
-    // highlight-next-line
-    DeleteButton,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody,
+  List,
+  Table,
+  // highlight-next-line
+  DeleteButton,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
 } from "@pankod/refine-mui";
 
 export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>();
+  const { tableQueryResult } = useTable<IPost>();
 
-    const { data } = tableQueryResult;
+  const { data } = tableQueryResult;
 
-    return (
-        <List>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell>Title</TableCell>
-                        <TableCell align="center">Action</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data?.data.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell>{row.id}</TableCell>
-                            <TableCell component="th" scope="row">
-                                {row.title}
-                            </TableCell>
-                            <TableCell align="center">
-                                <DeleteButton
-                                    recordItemId={row.id}
-                                    // highlight-next-line
-                                    mutationMode="undoable"
-                                />
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>ID</TableCell>
+            <TableCell>Title</TableCell>
+            <TableCell align="center">Action</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data?.data.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>{row.id}</TableCell>
+              <TableCell component="th" scope="row">
+                {row.title}
+              </TableCell>
+              <TableCell align="center">
+                <DeleteButton
+                  recordItemId={row.id}
+                  // highlight-next-line
+                  mutationMode="undoable"
+                />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 ```
 
@@ -320,40 +309,38 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { DeleteButton } from "@pankod/refine-mui";
 
 const MyDeleteComponent = () => {
-    return (
-        <DeleteButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <DeleteButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 // visible-block-end
-const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-);
+const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
-    ...simpleRestDataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+  ...simpleRestDataProvider,
+  deleteOne: async ({ resource, id, variables }) => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
-        return {
-            message: "You have successfully deleted the record",
-        };
-    },
+    return {
+      message: "You have successfully deleted the record",
+    };
+  },
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        dataProvider={customDataProvider}
-        resources={[
-            {
-                name: "posts",
-                list: MyDeleteComponent,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    dataProvider={customDataProvider}
+    resources={[
+      {
+        name: "posts",
+        list: MyDeleteComponent,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -365,7 +352,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { DeleteButton } from "@pankod/refine-mui";
 
 export const MyListComponent = () => {
-    return <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 
@@ -381,44 +370,42 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { DeleteButton } from "@pankod/refine-mui";
 
 const MyDeleteComponent = () => {
-    return (
-        <DeleteButton
-            // highlight-start
-            confirmTitle="Title"
-            confirmOkText="Ok Text"
-            confirmCancelText="Delete Text"
-            // highlight-end
-        />
-    );
+  return (
+    <DeleteButton
+      // highlight-start
+      confirmTitle="Title"
+      confirmOkText="Ok Text"
+      confirmCancelText="Delete Text"
+      // highlight-end
+    />
+  );
 };
 // visible-block-end
 
-const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-);
+const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
-    ...simpleRestDataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+  ...simpleRestDataProvider,
+  deleteOne: async ({ resource, id, variables }) => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
-        return {
-            message: "You have successfully deleted the record",
-        };
-    },
+    return {
+      message: "You have successfully deleted the record",
+    };
+  },
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        dataProvider={customDataProvider}
-        resources={[
-            {
-                name: "posts",
-                list: MyDeleteComponent,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    dataProvider={customDataProvider}
+    resources={[
+      {
+        name: "posts",
+        list: MyDeleteComponent,
+      },
+    ]}
+  />,
 );
 ```
 

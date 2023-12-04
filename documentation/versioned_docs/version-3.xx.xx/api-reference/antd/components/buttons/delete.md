@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 `<DeleteButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) and [`<Popconfirm>`](https://ant.design/components/popconfirm/) components.
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -16,51 +16,51 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live
 // visible-block-start
 import {
-    Table,
-    List,
-    useTable,
-    // highlight-next-line
-    DeleteButton,
+  Table,
+  List,
+  useTable,
+  // highlight-next-line
+  DeleteButton,
 } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" width="50%" />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    key="actions"
-                    render={(_, record) => (
-                        // highlight-next-line
-                        <DeleteButton size="small" recordItemId={record.id} />
-                    )}
-                    width="50%"
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" width="50%" />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          key="actions"
+          render={(_, record) => (
+            // highlight-next-line
+            <DeleteButton size="small" recordItemId={record.id} />
+          )}
+          width="50%"
+        />
+      </Table>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -76,38 +76,34 @@ const { useRouterContext } = RefineCore;
 import { DeleteButton } from "@pankod/refine-antd";
 
 const MyEditComponent = () => {
-    return (
-        <DeleteButton
-            resourceNameOrRouteName="posts"
-            // highlight-next-line
-            recordItemId="123"
-        />
-    );
+  return (
+    <DeleteButton
+      resourceNameOrRouteName="posts"
+      // highlight-next-line
+      recordItemId="123"
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                }
-            },
-        ]}
-        DashboardPage={MyEditComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+      },
+    ]}
+    DashboardPage={MyEditComponent}
+  />,
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "post" and whose id is "1" gets deleted.
+Clicking the button will trigger the [`useDelete`](/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "post" and whose id is "1" gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the id information from the route by default.
@@ -124,44 +120,36 @@ const { useRouterContext } = RefineCore;
 import { DeleteButton } from "@pankod/refine-antd";
 
 const MyDeleteComponent = () => {
-    return (
-        <DeleteButton resourceNameOrRouteName="categories" recordItemId="123" />
-    );
+  return (
+    <DeleteButton resourceNameOrRouteName="categories" recordItemId="123" />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                }
-            },
-            {
-                name: "categories",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                }
-            },
-        ]}
-        DashboardPage={MyDeleteComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+      },
+      {
+        name: "categories",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+      },
+    ]}
+    DashboardPage={MyDeleteComponent}
+  />,
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
+Clicking the button will trigger the [`useDelete`](/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the resource name from the route by default.
@@ -182,50 +170,48 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { DeleteButton } from "@pankod/refine-antd";
 
 const MyDeleteComponent = () => {
-    return (
-        <DeleteButton
-            resourceNameOrRouteName="posts"
-            recordItemId="1"
-            onSuccess={(value) => {
-                console.log(value);
-            }}
-        />
-    );
+  return (
+    <DeleteButton
+      resourceNameOrRouteName="posts"
+      recordItemId="1"
+      onSuccess={(value) => {
+        console.log(value);
+      }}
+    />
+  );
 };
 // visible-block-end
 
 const App = () => {
-    const simpleRestDataProvider = dataProvider(
-        "https://api.fake-rest.refine.dev",
-    );
+  const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+  );
 
-    const customDataProvider = {
-        ...simpleRestDataProvider,
-        deleteOne: async ({ resource, id, variables }) => {
-            await new Promise((resolve) => setTimeout(resolve, 500));
+  const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
-            return {
-                message: "You have successfully deleted the record",
-            };
+      return {
+        message: "You have successfully deleted the record",
+      };
+    },
+  };
+
+  return (
+    <RefineAntdDemo
+      dataProvider={customDataProvider}
+      resources={[
+        {
+          name: "posts",
+          list: MyDeleteComponent,
         },
-    };
-
-    return (
-        <RefineAntdDemo
-            dataProvider={customDataProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: MyDeleteComponent,
-                },
-            ]}
-        />
-    );
+      ]}
+    />
+  );
 };
 
-render(
-    <App />
-);
+render(<App />);
 ```
 
 ### `mutationMode`
@@ -238,28 +224,28 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 import { List, Table, DeleteButton, useTable } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <DeleteButton
-                            size="small"
-                            recordItemId={record.id}
-                            // highlight-next-line
-                            mutationMode="undoable"
-                        />
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <DeleteButton
+              size="small"
+              recordItemId={record.id}
+              // highlight-next-line
+              mutationMode="undoable"
+            />
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -274,27 +260,27 @@ const { useRouterContext } = RefineCore;
 import { DeleteButton } from "@pankod/refine-antd";
 
 const MyDeleteComponent = () => {
-    return (
-        <DeleteButton
-            recordItemId="123"
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <DeleteButton
+      recordItemId="123"
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyDeleteComponent,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyDeleteComponent,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -306,11 +292,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { DeleteButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
-    return (
-        <DeleteButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return (
+    <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 
@@ -325,30 +309,30 @@ const { useRouterContext } = RefineCore;
 import { DeleteButton } from "@pankod/refine-antd";
 
 const MyDeleteComponent = () => {
-    return (
-        <DeleteButton
-            recordItemId="123"
-            // highlight-start
-            confirmTitle="Title"
-            confirmOkText="Ok Text"
-            confirmCancelText="Delete Text"
-            // highlight-end
-        />
-    );
+  return (
+    <DeleteButton
+      recordItemId="123"
+      // highlight-start
+      confirmTitle="Title"
+      confirmOkText="Ok Text"
+      confirmCancelText="Delete Text"
+      // highlight-end
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyDeleteComponent,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyDeleteComponent,
+      },
+    ]}
+  />,
 );
 ```
 

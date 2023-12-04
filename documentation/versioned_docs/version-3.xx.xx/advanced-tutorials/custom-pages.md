@@ -24,12 +24,12 @@ When you create a custom page, it will not be visible in the `<Sider />` compone
 
 ```tsx title="Example"
 const App = () => (
-    <Refine
-        resources={[
-            // This will add an item to `<Sider/>` with route `/my-custom-item`
-            { name: "my-custom-item", list: () => null },
-        ]}
-    />
+  <Refine
+    resources={[
+      // This will add an item to `<Sider/>` with route `/my-custom-item`
+      { name: "my-custom-item", list: () => null },
+    ]}
+  />
 );
 ```
 
@@ -453,29 +453,29 @@ Before starting the example, let's assume that our [`dataProvider`](/api-referen
 
 ```ts title="https://api.fake-rest.refine.dev/posts"
 {
-    [
-        {
-            id: 1,
-            title: "Dolorem suscipit assumenda laborum id facilis maiores.",
-            content:
-                "Non et asperiores dolores. Vero quas natus sed ut iste omnis sequi. Enim veniam soluta vel. Est soluta suscipit velit architecto et. Tenetur ea impedit alias rerum in tenetur. Aut tempore consequatur ipsa neque aspernatur sit. Ut ea aspernatur aut voluptatem. Nulla quos laboriosam molestiae impedit eius. Dicta est maxime fuga debitis. Dicta necessitatibus odit quis qui animi.",
-            category: {
-                id: 32,
-            },
-            status: "draft",
-        },
-        {
-            id: 2,
-            title: "Voluptatibus laboriosam dignissimos non.",
-            content:
-                "Dolor cumque blanditiis aspernatur earum quo autem voluptatem vel consequuntur. Consequatur et sed dolores rerum ipsam aut et sed. Nostrum provident voluptas facere distinctio voluptates in et. Magni asperiores quod unde tempore veritatis beatae qui cum officia. Omnis quia cumque et qui. Quis et explicabo et similique voluptatum. Culpa assumenda autem laborum impedit perspiciatis ducimus perferendis. Quo doloribus magnam perferendis doloremque voluptas libero autem. Nihil enim aliquam molestias aspernatur impedit. Ad eius qui sit et.",
-            category: {
-                id: 22,
-            },
-            status: "draft",
-        },
-        // ...
-    ];
+  [
+    {
+      id: 1,
+      title: "Dolorem suscipit assumenda laborum id facilis maiores.",
+      content:
+        "Non et asperiores dolores. Vero quas natus sed ut iste omnis sequi. Enim veniam soluta vel. Est soluta suscipit velit architecto et. Tenetur ea impedit alias rerum in tenetur. Aut tempore consequatur ipsa neque aspernatur sit. Ut ea aspernatur aut voluptatem. Nulla quos laboriosam molestiae impedit eius. Dicta est maxime fuga debitis. Dicta necessitatibus odit quis qui animi.",
+      category: {
+        id: 32,
+      },
+      status: "draft",
+    },
+    {
+      id: 2,
+      title: "Voluptatibus laboriosam dignissimos non.",
+      content:
+        "Dolor cumque blanditiis aspernatur earum quo autem voluptatem vel consequuntur. Consequatur et sed dolores rerum ipsam aut et sed. Nostrum provident voluptas facere distinctio voluptates in et. Magni asperiores quod unde tempore veritatis beatae qui cum officia. Omnis quia cumque et qui. Quis et explicabo et similique voluptatum. Culpa assumenda autem laborum impedit perspiciatis ducimus perferendis. Quo doloribus magnam perferendis doloremque voluptas libero autem. Nihil enim aliquam molestias aspernatur impedit. Ad eius qui sit et.",
+      category: {
+        id: 22,
+      },
+      status: "draft",
+    },
+    // ...
+  ];
 }
 ```
 
@@ -491,21 +491,21 @@ import "@pankod/refine-antd/dist/reset.css";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: PostCreate,
+          edit: PostEdit,
+          show: PostShow,
+        },
+      ]}
+    />
+  );
 };
 
 export default App;
@@ -513,38 +513,38 @@ export default App;
 
 Now, let's create the custom page with the name `<PostReview>`. We will use the properties of `useList`, `filter`, and `pagination` to fetch a post with "draft" status.
 
-[Refer to the `useList` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/data/useList/)
+[Refer to the `useList` documentation for detailed usage. &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useList/)
 
 ```tsx title="src/pages/post-review.tsx"
 import { useList } from "@pankod/refine-core";
 
 const PostReview = () => {
-    const { data, isLoading } = useList<IPost>({
-        resource: "posts",
-        config: {
-            filters: [
-                {
-                    field: "status",
-                    operator: "eq",
-                    value: "draft",
-                },
-            ],
-            pagination: { pageSize: 1 },
+  const { data, isLoading } = useList<IPost>({
+    resource: "posts",
+    config: {
+      filters: [
+        {
+          field: "status",
+          operator: "eq",
+          value: "draft",
         },
-    });
+      ],
+      pagination: { pageSize: 1 },
+    },
+  });
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
@@ -559,31 +559,31 @@ Post's category is relational. So we will use the post's category "id" to get th
 import { useList, useOne } from "@pankod/refine-core";
 
 export const PostReview = () => {
-    const { data, isLoading } = useList<IPost>({
-        resource: "posts",
-        config: {
-            filters: [
-                {
-                    field: "status",
-                    operator: "eq",
-                    value: "draft",
-                },
-            ],
-            pagination: { pageSize: 1 },
+  const { data, isLoading } = useList<IPost>({
+    resource: "posts",
+    config: {
+      filters: [
+        {
+          field: "status",
+          operator: "eq",
+          value: "draft",
         },
+      ],
+      pagination: { pageSize: 1 },
+    },
+  });
+
+  // highlight-start
+  const post = data?.data[0];
+
+  const { data: categoryData, isLoading: categoryIsLoading } =
+    useOne<ICategory>({
+      resource: "categories",
+      id: post!.category.id,
+      queryOptions: {
+        enabled: !!post,
+      },
     });
-
-    // highlight-start
-    const post = data?.data[0];
-
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>({
-            resource: "categories",
-            id: post!.category.id,
-            queryOptions: {
-                enabled: !!post,
-            },
-        });
 };
 // highlight-end
 ```
@@ -597,63 +597,63 @@ Now we have the data to display the post as we want. Let's use the `<Show>` comp
 ```tsx title="src/pages/post-review.tsx"
 import { useOne, useList } from "@pankod/refine-core";
 import {
-    // highlight-start
-    Typography,
-    Show,
-    MarkdownField,
-    // highlight-end
+  // highlight-start
+  Typography,
+  Show,
+  MarkdownField,
+  // highlight-end
 } from "@pankod/refine-antd";
 
 // highlight-next-line
 const { Title, Text } = Typography;
 
 export const PostReview = () => {
-    const { data, isLoading } = useList<IPost>({
-        resource: "posts",
-        config: {
-            filters: [
-                {
-                    field: "status",
-                    operator: "eq",
-                    value: "draft",
-                },
-            ],
-            pagination: { pageSize: 1 },
+  const { data, isLoading } = useList<IPost>({
+    resource: "posts",
+    config: {
+      filters: [
+        {
+          field: "status",
+          operator: "eq",
+          value: "draft",
         },
+      ],
+      pagination: { pageSize: 1 },
+    },
+  });
+  const record = data?.data[0];
+
+  const { data: categoryData, isLoading: categoryIsLoading } =
+    useOne<ICategory>({
+      resource: "categories",
+      id: record!.category.id,
+      queryOptions: {
+        enabled: !!record,
+      },
     });
-    const record = data?.data[0];
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>({
-            resource: "categories",
-            id: record!.category.id,
-            queryOptions: {
-                enabled: !!record,
-            },
-        });
-
-    return (
-        // highlight-start
-        <Show
-            title="Review Posts"
-            resource="posts"
-            recordItemId={record?.id}
-            isLoading={isLoading || categoryIsLoading}
-            headerProps={{
-                backIcon: false,
-            }}
-        >
-            <Title level={5}>Status</Title>
-            <Text>{record?.status}</Text>
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
-            <Title level={5}>Category</Title>
-            <Text>{categoryData?.data.title}</Text>
-            <Title level={5}>Content</Title>
-            <MarkdownField value={record?.content} />
-        </Show>
-        // highlight-end
-    );
+  return (
+    // highlight-start
+    <Show
+      title="Review Posts"
+      resource="posts"
+      recordItemId={record?.id}
+      isLoading={isLoading || categoryIsLoading}
+      headerProps={{
+        backIcon: false,
+      }}
+    >
+      <Title level={5}>Status</Title>
+      <Text>{record?.status}</Text>
+      <Title level={5}>Title</Title>
+      <Text>{record?.title}</Text>
+      <Title level={5}>Category</Title>
+      <Text>{categoryData?.data.title}</Text>
+      <Title level={5}>Content</Title>
+      <MarkdownField value={record?.content} />
+    </Show>
+    // highlight-end
+  );
 };
 ```
 
@@ -672,32 +672,32 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { PostReview } from "pages/post-review";
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            // highlight-start
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        element: <PostReview />,
-                        path: "/post-review",
-                    },
-                ],
-            }}
-            // highlight-end
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      // highlight-start
+      routerProvider={{
+        ...routerProvider,
+        routes: [
+          {
+            element: <PostReview />,
+            path: "/post-review",
+          },
+        ],
+      }}
+      // highlight-end
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: PostCreate,
+          edit: PostEdit,
+          show: PostShow,
+        },
+      ]}
+    />
+  );
 };
 
 export default App;
@@ -710,113 +710,106 @@ Now our page looks like this:
 
 Now let's put in approve and reject buttons to change the status of the post shown on the page. When these buttons are clicked, we will change the status of the post using `useUpdate`.
 
-[Refer to the `useUpdate` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/data/useUpdate/)
+[Refer to the `useUpdate` documentation for detailed usage. &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/)
 
 ```tsx title="src/pages/post-review.tsx"
 import {
-    useList,
-    useOne,
-    //highlight-next-line
-    useUpdate,
+  useList,
+  useOne,
+  //highlight-next-line
+  useUpdate,
 } from "@pankod/refine-core";
 import {
-    Typography,
-    Show,
-    MarkdownField,
-    // highlight-start
-    Space,
-    Button,
-    // highlight-end
+  Typography,
+  Show,
+  MarkdownField,
+  // highlight-start
+  Space,
+  Button,
+  // highlight-end
 } from "@pankod/refine-antd";
 
 const { Title, Text } = Typography;
 
 export const PostReview = () => {
-    const { data, isLoading } = useList<IPost>({
-        resource: "posts",
-        config: {
-            filters: [
-                {
-                    field: "status",
-                    operator: "eq",
-                    value: "draft",
-                },
-            ],
-            pagination: { pageSize: 1 },
+  const { data, isLoading } = useList<IPost>({
+    resource: "posts",
+    config: {
+      filters: [
+        {
+          field: "status",
+          operator: "eq",
+          value: "draft",
         },
+      ],
+      pagination: { pageSize: 1 },
+    },
+  });
+  const record = data?.data[0];
+
+  const { data: categoryData, isLoading: categoryIsLoading } =
+    useOne<ICategory>({
+      resource: "categories",
+      id: record!.category.id,
+      queryOptions: {
+        enabled: !!record,
+      },
     });
-    const record = data?.data[0];
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>({
-            resource: "categories",
-            id: record!.category.id,
-            queryOptions: {
-                enabled: !!record,
-            },
-        });
+  // highlight-next-line
+  const mutationResult = useUpdate<IPost>();
 
-    // highlight-next-line
-    const mutationResult = useUpdate<IPost>();
+  // highlight-next-line
+  const { mutate, isLoading: mutateIsLoading } = mutationResult;
 
-    // highlight-next-line
-    const { mutate, isLoading: mutateIsLoading } = mutationResult;
+  // highlight-start
+  const handleUpdate = (item: IPost, status: string) => {
+    mutate({ resource: "posts", id: item.id, values: { ...item, status } });
+  };
+  // highlight-end
 
-    // highlight-start
-    const handleUpdate = (item: IPost, status: string) => {
-        mutate({ resource: "posts", id: item.id, values: { ...item, status } });
-    };
-    // highlight-end
+  const buttonDisabled = isLoading || categoryIsLoading || mutateIsLoading;
 
-    const buttonDisabled = isLoading || categoryIsLoading || mutateIsLoading;
-
-    return (
-        <Show
-            title="Review Posts"
-            resource="posts"
-            recordItemId={record?.id}
-            isLoading={isLoading || categoryIsLoading}
-            headerProps={{
-                backIcon: false,
-            }}
-            // highlight-start
-            headerButtons={
-                <Space
-                    key="action-buttons"
-                    style={{ float: "right", marginRight: 24 }}
-                >
-                    <Button
-                        danger
-                        disabled={buttonDisabled}
-                        onClick={() =>
-                            record && handleUpdate(record, "rejected")
-                        }
-                    >
-                        Reject
-                    </Button>
-                    <Button
-                        type="primary"
-                        disabled={buttonDisabled}
-                        onClick={() =>
-                            record && handleUpdate(record, "published")
-                        }
-                    >
-                        Approve
-                    </Button>
-                </Space>
-            }
-            // highlight-end
-        >
-            <Title level={5}>Status</Title>
-            <Text>{record?.status}</Text>
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
-            <Title level={5}>Category</Title>
-            <Text>{categoryData?.data.title}</Text>
-            <Title level={5}>Content</Title>
-            <MarkdownField value={record?.content} />
-        </Show>
-    );
+  return (
+    <Show
+      title="Review Posts"
+      resource="posts"
+      recordItemId={record?.id}
+      isLoading={isLoading || categoryIsLoading}
+      headerProps={{
+        backIcon: false,
+      }}
+      // highlight-start
+      headerButtons={
+        <Space key="action-buttons" style={{ float: "right", marginRight: 24 }}>
+          <Button
+            danger
+            disabled={buttonDisabled}
+            onClick={() => record && handleUpdate(record, "rejected")}
+          >
+            Reject
+          </Button>
+          <Button
+            type="primary"
+            disabled={buttonDisabled}
+            onClick={() => record && handleUpdate(record, "published")}
+          >
+            Approve
+          </Button>
+        </Space>
+      }
+      // highlight-end
+    >
+      <Title level={5}>Status</Title>
+      <Text>{record?.status}</Text>
+      <Title level={5}>Title</Title>
+      <Text>{record?.title}</Text>
+      <Title level={5}>Category</Title>
+      <Text>{categoryData?.data.title}</Text>
+      <Title level={5}>Content</Title>
+      <MarkdownField value={record?.content} />
+    </Show>
+  );
 };
 ```
 

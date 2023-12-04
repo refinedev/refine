@@ -4,13 +4,12 @@ title: Import
 swizzle: true
 ---
 
-
 `<ImportButton>` is compatible with the `useImport` hook and is meant to be used as it's upload button. It uses Material UI [`<LoadingButton>`][button] component and native html [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element. It wraps a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) with a [`<LoadingButton>`][button] component and [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element and accepts it's own properties for separately.
 
 [Refer to the for more detailed information about `useImport`. &#8594][useimport]
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -21,55 +20,52 @@ Use it like any other Material UI [`<LoadingButton>`][button]. You can use it wi
 // visible-block-start
 import { useImport } from "@pankod/refine-core";
 import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    // highlight-next-line
-    ImportButton,
+  useDataGrid,
+  DataGrid,
+  GridColumns,
+  List,
+  // highlight-next-line
+  ImportButton,
 } from "@pankod/refine-mui";
 
 const columns: GridColumns = [
-    { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+  { field: "id", headerName: "ID", type: "number" },
+  { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
 ];
 
 const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+  const { dataGridProps } = useDataGrid<IPost>();
 
-    const { inputProps, isLoading } = useImport<IPost>();
+  const { inputProps, isLoading } = useImport<IPost>();
 
-    return (
-        <List
-            // highlight-start
-            headerButtons={(
-                <ImportButton
-                    inputProps={inputProps}
-                    loading={isLoading}
-                />
-            )}
-            // highlight-end
-        >
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    <List
+      // highlight-start
+      headerButtons={
+        <ImportButton inputProps={inputProps} loading={isLoading} />
+      }
+      // highlight-end
+    >
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostsList,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostsList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -86,25 +82,25 @@ const { useRouterContext } = RefineCore;
 import { ImportButton } from "@pankod/refine-mui";
 
 const MyImportComponent = () => {
-    return (
-        <ImportButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <ImportButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyImportComponent,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyImportComponent,
+      },
+    ]}
+  />,
 );
 ```
 

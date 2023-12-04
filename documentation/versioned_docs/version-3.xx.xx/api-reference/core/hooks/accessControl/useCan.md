@@ -12,9 +12,9 @@ siderbar_label: useCan
 import { useCan } from "@pankod/refine-core";
 
 const { data } = useCan({
-    resource: "resource-you-ask-for-access",
-    action: "action-type-on-resource",
-    params: { foo: "optional-params" },
+  resource: "resource-you-ask-for-access",
+  action: "action-type-on-resource",
+  params: { foo: "optional-params" },
 });
 ```
 
@@ -45,7 +45,7 @@ Passes to [Access Control Provider's][access-control-provider] `can` function's 
 
 ```ts
 useCan({
-    resource: "resource-you-ask-for-access",
+  resource: "resource-you-ask-for-access",
 });
 ```
 
@@ -55,7 +55,7 @@ Passes to [Access Control Provider's][access-control-provider] `can` function's 
 
 ```ts
 useCan({
-    action: "resource-you-ask-for-access",
+  action: "resource-you-ask-for-access",
 });
 ```
 
@@ -65,7 +65,7 @@ Passes to [Access Control Provider's][access-control-provider] `can` function's 
 
 ```ts
 useCan({
-    params: { foo: "optional-params" },
+  params: { foo: "optional-params" },
 });
 ```
 
@@ -75,9 +75,9 @@ Query options for [TanStack Query's][tanstack-query] [`useQuery`][use-query].
 
 ```ts
 useCan({
-    queryOptions: {
-        staleTime: 5 * 60 * 1000, // 5 minutes
-    },
+  queryOptions: {
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  },
 });
 ```
 
@@ -89,26 +89,26 @@ For example if you want to check if the user can create a post return value will
 
 ```tsx
 <Refine
-    accessControlProvider={{
-        can: async ({ resource, action }) => {
-            if (resource === "post" && action === "create") {
-                return Promise.resolve({
-                    can: false,
-                    reason: "Unauthorized",
-                });
-            }
+  accessControlProvider={{
+    can: async ({ resource, action }) => {
+      if (resource === "post" && action === "create") {
+        return Promise.resolve({
+          can: false,
+          reason: "Unauthorized",
+        });
+      }
 
-            return Promise.resolve({ can: true });
-        },
-    }}
+      return Promise.resolve({ can: true });
+    },
+  }}
 
-    // ...
+  // ...
 />;
 
 // inside your component
 const { data: canCreatePost } = useCan({
-    action: "create",
-    resource: "post",
+  action: "create",
+  resource: "post",
 });
 
 console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
@@ -132,8 +132,8 @@ console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
 | ------------------------------------------------------------------------ | ---------------------------------------------------------------- |
 | Result of the [TanStack Query's][tanstack-query] [`useQuery`][use-query] | [`QueryObserverResult<{ data: CanReturnType; }>`][query-options] |
 
-[access-control-provider]: /docs/api-reference/core/providers/accessControl-provider/
+[access-control-provider]: /docs/3.xx.xx/api-reference/core/providers/accessControl-provider/
 [use-query]: https://tanstack.com/query/latest/docs/react/guides/queries
 [tanstack-query]: https://tanstack.com/query/latest
 [query-options]: https://tanstack.com/query/v4/docs/react/reference/useQuery
-[can-params]: /docs/api-reference/core/interfaceReferences/#canparams
+[can-params]: /docs/3.xx.xx/api-reference/core/interfaceReferences/#canparams

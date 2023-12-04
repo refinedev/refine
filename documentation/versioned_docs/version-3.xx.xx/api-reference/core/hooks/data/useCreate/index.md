@@ -6,7 +6,7 @@ source: packages/core/src/hooks/data/useCreate.ts
 
 `useCreate` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.
 
--   It uses the `create` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
+- It uses the `create` method as the **mutation function** from the [`dataProvider`](/docs/3.xx.xx/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
 
 It is useful when you want to create a new record.
 
@@ -20,21 +20,21 @@ import { useCreate } from "@pankod/refine-core";
 const { mutate } = useCreate();
 
 mutate({
-    resource: "products",
-    values: {
-        name: "New Product",
-        material: "Wood",
-    },
+  resource: "products",
+  values: {
+    name: "New Product",
+    material: "Wood",
+  },
 });
 ```
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+> This feature is only available if you use a [Live Provider](/docs/3.xx.xx/api-reference/core/providers/live-provider).
 
 When the `useCreate` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/providers/live-provider)
 
 ## Invalidating Queries
 
@@ -44,11 +44,11 @@ When the `useCreate` mutation runs successfully, by default it will invalidate t
 
 ## Audit Logs
 
-> This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
+> This feature is only available if you use a [Audit Log Provider](/docs/3.xx.xx/api-reference/core/providers/audit-log-provider/).
 
 When the `useCreate` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data` etc. It is useful when you want to log the changes to the database.
 
-[Refer to the `auditLogProvider` documentation for more information &#8594](/docs/api-reference/core/providers/audit-log-provider/)
+[Refer to the `auditLogProvider` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/providers/audit-log-provider/)
 
 ## Properties
 
@@ -60,9 +60,9 @@ When the `useCreate` mutation runs successfully, it will call the `log` method f
 
 ```tsx
 useCreate({
-    mutationOptions: {
-        retry: 3,
-    },
+  mutationOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -74,21 +74,21 @@ useCreate({
 const { mutate } = useCreate();
 
 mutate(
-    {
-        resource: "products",
-        values: {
-            name: "New Product",
-            material: "Wood",
-        },
+  {
+    resource: "products",
+    values: {
+      name: "New Product",
+      material: "Wood",
     },
-    {
-        onError: (error, variables, context) => {
-            // An error occurred!
-        },
-        onSuccess: (data, variables, context) => {
-            // Let's celebrate!
-        },
+  },
+  {
+    onError: (error, variables, context) => {
+      // An error occurred!
     },
+    onSuccess: (data, variables, context) => {
+      // Let's celebrate!
+    },
+  },
 );
 ```
 
@@ -98,13 +98,13 @@ mutate(
 
 ### `resource` <PropTag required />
 
-It will be passed to the `create` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `create` method. See the [creating a data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how resource are handled.
+It will be passed to the `create` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `create` method. See the [creating a data provider](/docs/3.xx.xx/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how resource are handled.
 
 ```tsx
 const { mutate } = useCreate();
 
 mutate({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -116,16 +116,16 @@ It will be passed to the `create` method from the `dataProvider` as a parameter.
 const { mutate } = useCreate();
 
 mutate({
-    values: {
-        name: "New Category",
-        description: "New Category Description",
-    },
+  values: {
+    name: "New Category",
+    description: "New Category Description",
+  },
 });
 ```
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+> [`NotificationProvider`](/docs/3.xx.xx/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data is fetched successfully, `useCreate` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -133,19 +133,19 @@ After data is fetched successfully, `useCreate` can call `open` function from `N
 const { mutate } = useCreate();
 
 mutate({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+> [`NotificationProvider`](/docs/3.xx.xx/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data fetching is failed, `useCreate` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -153,22 +153,22 @@ After data fetching is failed, `useCreate` will call `open` function from `Notif
 const { mutate } = useCreate();
 
 mutate({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
 ### `metaData`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`metaData`](/docs/3.xx.xx/api-reference/general-concepts/#metadata) is used following two purposes:
 
--   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+- To pass additional information to data provider methods.
+- Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/3.xx.xx/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -176,36 +176,36 @@ In the following example, we pass the `headers` property in the `metaData` objec
 const { mutate } = useCreate();
 
 mutate({
-    // highlight-start
-    metaData: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  metaData: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  create: async ({
+    resource,
+    variables,
+    // highlight-next-line
+    metaData,
+  }) => {
+    // highlight-next-line
+    const headers = metaData?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    create: async ({
-        resource,
-        variables,
-        // highlight-next-line
-        metaData,
-    }) => {
-        // highlight-next-line
-        const headers = metaData?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data } = await httpClient.post(url, variables, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data } = await httpClient.post(url, variables, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -217,7 +217,7 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 const { mutate } = useCreate();
 
 mutate({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -231,7 +231,7 @@ By default, it invalidates the following queries from the current `resource`: `"
 const { mutate } = useCreate();
 
 mutate({
-    invalidates: ["list", "many"],
+  invalidates: ["list", "many"],
 });
 ```
 

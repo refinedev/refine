@@ -8,48 +8,48 @@ swizzle: true
 const { default: routerProvider } = RefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    Layout: RefineChakra.Layout,
-    Sider: () => null,
-    catchAll: <RefineChakra.ErrorComponent />,
+  routerProvider,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  Layout: RefineChakra.Layout,
+  Sider: () => null,
+  catchAll: <RefineChakra.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
-            {children}
-        </RefineChakra.ChakraProvider>
-    );
+  return (
+    <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+      {children}
+    </RefineChakra.ChakraProvider>
+  );
 };
 
 const CreatePage = () => {
-    const { list } = RefineCore.useNavigation();
-    const params = RefineCore.useRouterContext().useParams();
+  const { list } = RefineCore.useNavigation();
+  const params = RefineCore.useRouterContext().useParams();
 
-    return (
-        <RefineChakra.VStack alignItems="flex-start">
-            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
-                URL Parameters:
-            </RefineChakra.Text>
-            <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
+  return (
+    <RefineChakra.VStack alignItems="flex-start">
+      <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
+        URL Parameters:
+      </RefineChakra.Text>
+      <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
 
-            <RefineChakra.Button
-                size="sm"
-                onClick={() => list("posts")}
-                colorScheme="green"
-            >
-                Go back
-            </RefineChakra.Button>
-        </RefineChakra.VStack>
-    );
+      <RefineChakra.Button
+        size="sm"
+        onClick={() => list("posts")}
+        colorScheme="green"
+      >
+        Go back
+      </RefineChakra.Button>
+    </RefineChakra.VStack>
+  );
 };
 ```
 
 `<CreateButton>` uses UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -60,111 +60,110 @@ import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
 import {
-    List,
-    TableContainer,
-    Table,
-    Thead,
-    Tr,
-    Th,
-    Tbody,
-    Td,
-    // highlight-next-line
-    CreateButton,
+  List,
+  TableContainer,
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
+  // highlight-next-line
+  CreateButton,
 } from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-            },
-        ],
-        [],
-    );
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
+      },
+    ],
+    [],
+  );
 
-    const { getHeaderGroups, getRowModel } = useTable({
-        columns,
-    });
+  const { getHeaderGroups, getRowModel } = useTable({
+    columns,
+  });
 
-    return (
-        // highlight-next-line
-        <List headerButtons={<CreateButton />}>
-            <TableContainer>
-                <Table variant="simple" whiteSpace="pre-line">
-                    <Thead>
-                        {getHeaderGroups().map((headerGroup) => (
-                            <Tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => {
-                                    return (
-                                        <Th key={header.id}>
-                                            {!header.isPlaceholder &&
-                                                flexRender(
-                                                    header.column.columnDef
-                                                        .header,
-                                                    header.getContext(),
-                                                )}
-                                        </Th>
-                                    );
-                                })}
-                            </Tr>
-                        ))}
-                    </Thead>
-                    <Tbody>
-                        {getRowModel().rows.map((row) => {
-                            return (
-                                <Tr key={row.id}>
-                                    {row.getVisibleCells().map((cell) => {
-                                        return (
-                                            <Td key={cell.id}>
-                                                {flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext(),
-                                                )}
-                                            </Td>
-                                        );
-                                    })}
-                                </Tr>
-                            );
-                        })}
-                    </Tbody>
-                </Table>
-            </TableContainer>
-        </List>
-    );
+  return (
+    // highlight-next-line
+    <List headerButtons={<CreateButton />}>
+      <TableContainer>
+        <Table variant="simple" whiteSpace="pre-line">
+          <Thead>
+            {getHeaderGroups().map((headerGroup) => (
+              <Tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <Th key={header.id}>
+                      {!header.isPlaceholder &&
+                        flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                    </Th>
+                  );
+                })}
+              </Tr>
+            ))}
+          </Thead>
+          <Tbody>
+            {getRowModel().rows.map((row) => {
+              return (
+                <Tr key={row.id}>
+                  {row.getVisibleCells().map((cell) => {
+                    return (
+                      <Td key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </Td>
+                    );
+                  })}
+                </Tr>
+              );
+            })}
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            notificationProvider={RefineChakra.notificationProvider()}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: CreatePage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      notificationProvider={RefineChakra.notificationProvider()}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: CreatePage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -183,37 +182,34 @@ import { Refine } from "@pankod/refine-core";
 import { CreateButton } from "@pankod/refine-chakra-ui";
 
 const MyCreateComponent = () => {
-    return (
-        <CreateButton
-            colorScheme="black"
-            resourceNameOrRouteName="categories"
-        />
-    );
+  return (
+    <CreateButton colorScheme="black" resourceNameOrRouteName="categories" />
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: MyCreateComponent,
-                },
-                {
-                    name: "categories",
-                    create: CreatePage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          list: MyCreateComponent,
+        },
+        {
+          name: "categories",
+          create: CreatePage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -232,29 +228,29 @@ import { Refine } from "@pankod/refine-core";
 import { CreateButton } from "@pankod/refine-chakra-ui";
 
 const MyCreateComponent = () => {
-    return <CreateButton colorScheme="black" hideText />;
+  return <CreateButton colorScheme="black" hideText />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: MyCreateComponent,
-                    create: CreatePage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          list: MyCreateComponent,
+          create: CreatePage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -266,11 +262,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CreateButton } from "@pankod/refine-chakra-ui";
 
 export const MyListComponent = () => {
-    return (
-        <CreateButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return (
+    <CreateButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

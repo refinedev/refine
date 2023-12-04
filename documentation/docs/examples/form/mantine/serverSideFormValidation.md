@@ -12,4 +12,4 @@ When `dataProvider` returns rejected promise with `errors` field, [`useForm`][re
 
 <CodeSandboxExample path="server-side-form-validation-mantine" />
 
-[mantine-use-form]: /docs/api-reference/mantine/hooks/form/useForm/
+[mantine-use-form]: /docs/ui-integrations/mantine/hooks/use-form

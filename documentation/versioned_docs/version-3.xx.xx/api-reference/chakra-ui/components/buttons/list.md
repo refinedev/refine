@@ -8,26 +8,26 @@ swizzle: true
 const { default: routerProvider } = RefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    Layout: RefineChakra.Layout,
-    Sider: () => null,
-    catchAll: <RefineChakra.ErrorComponent />,
+  routerProvider,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  Layout: RefineChakra.Layout,
+  Sider: () => null,
+  catchAll: <RefineChakra.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
-            {children}
-        </RefineChakra.ChakraProvider>
-    );
+  return (
+    <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+      {children}
+    </RefineChakra.ChakraProvider>
+  );
 };
 ```
 
 `<ListButton>` is using Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -40,70 +40,68 @@ import { ShowButton } from "@pankod/refine-chakra-ui";
 // visible-block-start
 import { useShow } from "@pankod/refine-core";
 import {
-    Show,
-    Heading,
-    Text,
-    Spacer,
-    MarkdownField,
-    //highlight-next-line
-    ListButton,
+  Show,
+  Heading,
+  Text,
+  Spacer,
+  MarkdownField,
+  //highlight-next-line
+  ListButton,
 } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        // highlight-next-line
-        <Show headerButtons={<ListButton />} isLoading={isLoading}>
-            <Heading as="h5" size="sm">
-                Id
-            </Heading>
-            <Text mt={2}>{record?.id}</Text>
+  return (
+    // highlight-next-line
+    <Show headerButtons={<ListButton />} isLoading={isLoading}>
+      <Heading as="h5" size="sm">
+        Id
+      </Heading>
+      <Text mt={2}>{record?.id}</Text>
 
-            <Heading as="h5" size="sm" mt={4}>
-                Title
-            </Heading>
-            <Text mt={2}>{record?.title}</Text>
+      <Heading as="h5" size="sm" mt={4}>
+        Title
+      </Heading>
+      <Text mt={2}>{record?.title}</Text>
 
-            <Heading as="h5" size="sm" mt={4}>
-                Content
-            </Heading>
-            <Spacer mt={2} />
-            <MarkdownField value={record?.content} />
-        </Show>
-    );
+      <Heading as="h5" size="sm" mt={4}>
+        Content
+      </Heading>
+      <Spacer mt={2} />
+      <MarkdownField value={record?.content} />
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            notificationProvider={RefineChakra.notificationProvider()}
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <RefineChakra.VStack alignItems="flex-start">
-                            <RefineChakra.Text>
-                                This page is empty.
-                            </RefineChakra.Text>
-                            <ShowButton colorScheme="black" recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </RefineChakra.VStack>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      notificationProvider={RefineChakra.notificationProvider()}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <RefineChakra.VStack alignItems="flex-start">
+              <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+              <ShowButton colorScheme="black" recordItemId="123">
+                Show Item 123
+              </ShowButton>
+            </RefineChakra.VStack>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -125,55 +123,55 @@ import { Refine } from "@pankod/refine-core";
 import { ListButton } from "@pankod/refine-chakra-ui";
 
 const MyListComponent = () => {
-    return (
-        <ListButton colorScheme="black" resourceNameOrRouteName="categories" />
-    );
+  return (
+    <ListButton colorScheme="black" resourceNameOrRouteName="categories" />
+  );
 };
 // visible-block-end
 
 const ListPage = () => {
-    const { list } = RefineCore.useNavigation();
-    const params = RefineCore.useRouterContext().useParams();
+  const { list } = RefineCore.useNavigation();
+  const params = RefineCore.useRouterContext().useParams();
 
-    return (
-        <RefineChakra.VStack alignItems="flex-start">
-            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
-                URL Parameters:
-            </RefineChakra.Text>
-            <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
+  return (
+    <RefineChakra.VStack alignItems="flex-start">
+      <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
+        URL Parameters:
+      </RefineChakra.Text>
+      <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
 
-            <RefineChakra.Button
-                size="sm"
-                onClick={() => list("posts")}
-                colorScheme="green"
-            >
-                Go back
-            </RefineChakra.Button>
-        </RefineChakra.VStack>
-    );
+      <RefineChakra.Button
+        size="sm"
+        onClick={() => list("posts")}
+        colorScheme="green"
+      >
+        Go back
+      </RefineChakra.Button>
+    </RefineChakra.VStack>
+  );
 };
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyListComponent,
-                },
-                {
-                    name: "categories",
-                    list: ListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyListComponent,
+        },
+        {
+          name: "categories",
+          list: ListPage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -192,27 +190,27 @@ import { Refine } from "@pankod/refine-core";
 import { ListButton } from "@pankod/refine-chakra-ui";
 
 const MyListComponent = () => {
-    return <ListButton colorScheme="black" hideText />;
+  return <ListButton colorScheme="black" hideText />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyListComponent,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyListComponent,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -224,11 +222,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ListButton } from "@pankod/refine-chakra-ui";
 
 export const MyListComponent = () => {
-    return (
-        <ListButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return (
+    <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

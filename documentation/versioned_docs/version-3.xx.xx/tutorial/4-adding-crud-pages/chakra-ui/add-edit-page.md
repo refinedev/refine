@@ -2,9 +2,9 @@
 id: add-edit-page
 title: 2. Adding Edit Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/index
-    next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/index
+  next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
 ---
 
 Edit page is the page where you can edit the record. In this tutorial, we will create the edit page for the `blog_posts` resource.
@@ -34,37 +34,37 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    ChakraProvider,
-    ErrorComponent,
-    Layout,
-    refineTheme,
-    ReadyPage,
-    notificationProvider,
+  ChakraProvider,
+  ErrorComponent,
+  Layout,
+  refineTheme,
+  ReadyPage,
+  notificationProvider,
 } from "@pankod/refine-chakra-ui";
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const App = () => {
-    return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                    },
-                ]}
-            />
-        </ChakraProvider>
-    );
+  return (
+    <ChakraProvider theme={refineTheme}>
+      <Refine
+        notificationProvider={notificationProvider()}
+        routerProvider={routerProvider}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        Layout={Layout}
+        ReadyPage={ReadyPage}
+        catchAll={<ErrorComponent />}
+        resources={[
+          {
+            name: "blog_posts",
+            list: ChakraUIInferencer,
+            show: ChakraUIInferencer,
+            create: ChakraUIInferencer,
+            edit: ChakraUIInferencer,
+          },
+        ]}
+      />
+    </ChakraProvider>
+  );
 };
 
 render(<App />);
@@ -76,31 +76,31 @@ Instead of coding the edit page component from scratch, Inferencer created the r
 
 We will go through the edit page components and hooks one by one.
 
--   `<Edit/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button, refresh button etc.
+- `<Edit/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button, refresh button etc.
 
-    [Refer to the `<Edit/>` documentation for more information &#8594](/docs/api-reference/chakra-ui/components/basic-views/edit)
+  [Refer to the `<Edit/>` documentation for more information &#8594](/docs/3.xx.xx/api-reference/chakra-ui/components/basic-views/edit)
 
--   `useForm` hook, imported from `@pankod/refine-react-hook-form` package, has been developed by using the **React Hook Form** and `useForm` hook imported from `@pankod/refine-core` package.
+- `useForm` hook, imported from `@pankod/refine-react-hook-form` package, has been developed by using the **React Hook Form** and `useForm` hook imported from `@pankod/refine-core` package.
 
-    It provides all the features of the `useForm` hook from `@pankod/refine-core` package as well as the `useForm` hook from **React Hook Form**.
+  It provides all the features of the `useForm` hook from `@pankod/refine-core` package as well as the `useForm` hook from **React Hook Form**.
 
-    It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
+  It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
 
-    When you use `useForm` in the edit page, it automatically fetches the data of the record by using the `id` in the URL, then fills the form with the data. It sends the form data to `dataProvider`'s `update` method when the form is submitted.
+  When you use `useForm` in the edit page, it automatically fetches the data of the record by using the `id` in the URL, then fills the form with the data. It sends the form data to `dataProvider`'s `update` method when the form is submitted.
 
-    [Refer to the **@pankod/refine-react-hook-form** `useForm` documentation for more information &#8594](/docs/packages/documentation/react-hook-form/useForm/)
+  [Refer to the **@pankod/refine-react-hook-form** `useForm` documentation for more information &#8594](/docs/3.xx.xx/packages/documentation/react-hook-form/useForm/)
 
-    [Refer to the **React Hook Form** documentation for more information &#8594](https://react-hook-form.com/)
+  [Refer to the **React Hook Form** documentation for more information &#8594](https://react-hook-form.com/)
 
--   All other components provided by **Chakra UI** are used to display the form fields.
+- All other components provided by **Chakra UI** are used to display the form fields.
 
-    [Refer to the **Chakra UI** documentation for more information &#8594](https://chakra-ui.com/)
+  [Refer to the **Chakra UI** documentation for more information &#8594](https://chakra-ui.com/)
 
 ### Handling Relationships
 
 In the edit page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the blog post to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method. Then, it returns the `options` to be used in the `<Select/>` component.
 
-[Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/core/hooks/useSelect/)
+[Refer to the `useSelect` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/useSelect/)
 
 [Refer to the **Chakra UI** `<Select/>` documentation for more information &#8594](https://chakra-ui.com/docs/components/select/usage)
 
@@ -108,7 +108,7 @@ In the auto-generated edit page code, Inferencer used the `useSelect` hook to se
 
 ```tsx
 const { options: categoryOptions } = useSelect({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -116,8 +116,8 @@ const { options: categoryOptions } = useSelect({
 
 ```tsx
 const { options: categoryOptions } = useSelect({
-    resource: "categories",
-    defaultValue: blogPostsData?.category?.id,
+  resource: "categories",
+  defaultValue: blogPostsData?.category?.id,
 });
 ```
 
@@ -136,12 +136,12 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    ChakraProvider,
-    ErrorComponent,
-    Layout,
-    refineTheme,
-    ReadyPage,
-    notificationProvider,
+  ChakraProvider,
+  ErrorComponent,
+  Layout,
+  refineTheme,
+  ReadyPage,
+  notificationProvider,
 } from "@pankod/refine-chakra-ui";
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
@@ -150,28 +150,28 @@ import { BlogPostList } from "pages/blog-posts/list";
 import { BlogPostEdit } from "pages/blog-posts/edit";
 
 const App = () => {
-    return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: BlogPostList,
-                        //highlight-next-line
-                        edit: BlogPostEdit,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                    },
-                ]}
-            />
-        </ChakraProvider>
-    );
+  return (
+    <ChakraProvider theme={refineTheme}>
+      <Refine
+        notificationProvider={notificationProvider()}
+        routerProvider={routerProvider}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        Layout={Layout}
+        ReadyPage={ReadyPage}
+        catchAll={<ErrorComponent />}
+        resources={[
+          {
+            name: "blog_posts",
+            list: BlogPostList,
+            //highlight-next-line
+            edit: BlogPostEdit,
+            show: ChakraUIInferencer,
+            create: ChakraUIInferencer,
+          },
+        ]}
+      />
+    </ChakraProvider>
+  );
 };
 export default App;
 ```

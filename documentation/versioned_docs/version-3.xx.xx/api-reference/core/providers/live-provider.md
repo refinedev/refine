@@ -24,11 +24,11 @@ const liveProvider = {
 :::tip
 **refine** includes out-of-the-box live providers to use in your projects like:
 
--   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/v3/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
--   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/supabase/src/index.ts#L187)
--   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/appwrite/src/index.ts#L252)
--   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/hasura/src/liveProvider/index.ts#L16)
--   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/nhost/src/liveProvider/index.ts#L16)
+- **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/v3/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
+- **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/supabase/src/index.ts#L187)
+- **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/appwrite/src/index.ts#L252)
+- **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/hasura/src/liveProvider/index.ts#L16)
+- **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/v3/packages/nhost/src/liveProvider/index.ts#L16)
 
 :::
 
@@ -42,7 +42,7 @@ import { Refine } from "@pankod/refine-core";
 import liveProvider from "./liveProvider";
 
 const App: React.FC = () => {
-    return <Refine liveProvider={liveProvider} />;
+  return <Refine liveProvider={liveProvider} />;
 };
 ```
 
@@ -60,40 +60,40 @@ import Ably from "ably/promises";
 import { Types } from "ably";
 
 interface MessageType extends Types.Message {
-    data: LiveEvent;
+  data: LiveEvent;
 }
 
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
-    return {
-        // highlight-start
-        subscribe: ({ channel, types, params, callback }) => {
-            const channelInstance = client.channels.get(channel);
+  return {
+    // highlight-start
+    subscribe: ({ channel, types, params, callback }) => {
+      const channelInstance = client.channels.get(channel);
 
-            const listener = function (message: MessageType) {
-                if (types.includes("*") || types.includes(message.data.type)) {
-                    if (
-                        message.data.type !== "created" &&
-                        params?.ids !== undefined &&
-                        message.data?.payload?.ids !== undefined
-                    ) {
-                        if (
-                            params.ids.filter((value) =>
-                                message.data.payload.ids!.includes(value),
-                            ).length > 0
-                        ) {
-                            callback(message.data as LiveEvent);
-                        }
-                    } else {
-                        callback(message.data);
-                    }
-                }
-            };
-            channelInstance.subscribe(listener);
+      const listener = function (message: MessageType) {
+        if (types.includes("*") || types.includes(message.data.type)) {
+          if (
+            message.data.type !== "created" &&
+            params?.ids !== undefined &&
+            message.data?.payload?.ids !== undefined
+          ) {
+            if (
+              params.ids.filter((value) =>
+                message.data.payload.ids!.includes(value),
+              ).length > 0
+            ) {
+              callback(message.data as LiveEvent);
+            }
+          } else {
+            callback(message.data);
+          }
+        }
+      };
+      channelInstance.subscribe(listener);
 
-            return { channelInstance, listener };
-        },
-        // highlight-end
-    };
+      return { channelInstance, listener };
+    },
+    // highlight-end
+  };
 };
 ```
 
@@ -126,8 +126,8 @@ The values returned from the `subscribe` method are passed to the `unsubscribe` 
 import { useSubscription } from "@pankod/refine-core";
 
 useSubscription({
-    channel: "channel-name",
-    onLiveEvent: (event) => {},
+  channel: "channel-name",
+  onLiveEvent: (event) => {},
 });
 ```
 
@@ -141,17 +141,17 @@ This method is used to unsubscribe from a channel. The values returned from the 
 
 ```ts title="liveProvider.ts"
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
-    return {
-        // highlight-start
-        unsubscribe: (payload: {
-            channelInstance: Types.RealtimeChannelPromise;
-            listener: () => void;
-        }) => {
-            const { channelInstance, listener } = payload;
-            channelInstance.unsubscribe(listener);
-        },
-        // highlight-end
-    };
+  return {
+    // highlight-start
+    unsubscribe: (payload: {
+      channelInstance: Types.RealtimeChannelPromise;
+      listener: () => void;
+    }) => {
+      const { channelInstance, listener } = payload;
+      channelInstance.unsubscribe(listener);
+    },
+    // highlight-end
+  };
 };
 ```
 
@@ -181,15 +181,15 @@ This `publish` is used in [realated hooks](#publish-events-from-hooks). When `pu
 
 ```ts title="liveProvider.ts"
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
-    return {
-        // highlight-start
-        publish: (event: LiveEvent) => {
-            const channelInstance = client.channels.get(event.channel);
+  return {
+    // highlight-start
+    publish: (event: LiveEvent) => {
+      const channelInstance = client.channels.get(event.channel);
 
-            channelInstance.publish(event.type, event);
-        },
-        // highlight-end
-    };
+      channelInstance.publish(event.type, event);
+    },
+    // highlight-end
+  };
 };
 ```
 
@@ -233,9 +233,7 @@ const publish = usePublish();
 // ...
 
 const App: React.FC = () => {
-    return (
-        <Refine liveProvider={liveProvider} options={{ liveMode: "auto" }} />
-    );
+  return <Refine liveProvider={liveProvider} options={{ liveMode: "auto" }} />;
 };
 ```
 
@@ -272,15 +270,15 @@ Callback that is run when new events from subscription arrive. It can be passed 
 // ...
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            liveProvider={liveProvider}
-            options={{ liveMode: "auto" }}
-            onLiveEvent={(event) => {
-                // Put your own logic based on event
-            }}
-        />
-    );
+  return (
+    <Refine
+      liveProvider={liveProvider}
+      options={{ liveMode: "auto" }}
+      onLiveEvent={(event) => {
+        // Put your own logic based on event
+      }}
+    />
+  );
 };
 ```
 
@@ -290,24 +288,24 @@ const App: React.FC = () => {
 
 ```tsx
 const { data } = useList({
-    liveMode: "manual",
-    onLiveEvent: (event) => {
-        // Put your own logic based on event
-    },
+  liveMode: "manual",
+  onLiveEvent: (event) => {
+    // Put your own logic based on event
+  },
 });
 ```
 
 ## Supported Hooks
 
-| Supported data hooks                                             | Supported form hooks                                                      | Supported other hooks                                                            |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [`useList` &#8594](/docs/api-reference/core/hooks/data/useList/) | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                  | [`useTable` &#8594](/docs/api-reference/core/hooks/useTable)                     |
-| [`useOne` &#8594](/docs/api-reference/core/hooks/data/useOne/)   | [`useModalForm` &#8594](/api-reference/antd/hooks/form/useModalForm.md)   | [`useEditableTable` &#8594](/api-reference/antd/hooks/table/useEditableTable.md) |
-| [`useMany` &#8594](/docs/api-reference/core/hooks/data/useMany/) | [`useDrawerForm` &#8594](/api-reference/antd/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](/api-reference/antd/hooks/list/useSimpleList.md)        |
-|                                                                  | [`useStepsForm` &#8594](/api-reference/antd/hooks/form/useStepsForm.md)   | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                    |
-|                                                                  |                                                                           | [`useCheckboxGroup` &#8594](/api-reference/antd/hooks/field/useCheckboxGroup.md) |
-|                                                                  |                                                                           | [`useSelect` &#8594](/docs/api-reference/core/hooks/useSelect/)                  |
-|                                                                  |                                                                           | [`useRadioGroup` &#8594](/api-reference/antd/hooks/field/useRadioGroup.md)       |
+| Supported data hooks                                                     | Supported form hooks                                                      | Supported other hooks                                                            |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| [`useList` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useList/) | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                  | [`useTable` &#8594](/docs/3.xx.xx/api-reference/core/hooks/useTable)             |
+| [`useOne` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/)   | [`useModalForm` &#8594](/api-reference/antd/hooks/form/useModalForm.md)   | [`useEditableTable` &#8594](/api-reference/antd/hooks/table/useEditableTable.md) |
+| [`useMany` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useMany/) | [`useDrawerForm` &#8594](/api-reference/antd/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](/api-reference/antd/hooks/list/useSimpleList.md)        |
+|                                                                          | [`useStepsForm` &#8594](/api-reference/antd/hooks/form/useStepsForm.md)   | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                    |
+|                                                                          |                                                                           | [`useCheckboxGroup` &#8594](/api-reference/antd/hooks/field/useCheckboxGroup.md) |
+|                                                                          |                                                                           | [`useSelect` &#8594](/docs/3.xx.xx/api-reference/core/hooks/useSelect/)          |
+|                                                                          |                                                                           | [`useRadioGroup` &#8594](/api-reference/antd/hooks/field/useRadioGroup.md)       |
 
 ## Supported Hooks Subscriptions
 
@@ -329,12 +327,12 @@ useList({ resource: "posts" });
 :::tip
 Following hooks uses `useList` under the hood and subscribe to same event.
 
--   [`useTable`](/docs/api-reference/core/hooks/useTable)
--   [`useEditableTable`](/api-reference/antd/hooks/table/useEditableTable.md)
--   [`useSimpleList`](/api-reference/antd/hooks/list/useSimpleList.md)
--   [`useCheckboxGroup`](/api-reference/antd/hooks/field/useCheckboxGroup.md)
--   [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
--   [`useRadioGroup`](/api-reference/antd/hooks/field/useRadioGroup.md)
+- [`useTable`](/docs/3.xx.xx/api-reference/core/hooks/useTable)
+- [`useEditableTable`](/api-reference/antd/hooks/table/useEditableTable.md)
+- [`useSimpleList`](/api-reference/antd/hooks/list/useSimpleList.md)
+- [`useCheckboxGroup`](/api-reference/antd/hooks/field/useCheckboxGroup.md)
+- [`useSelect`](/docs/3.xx.xx/api-reference/core/hooks/useSelect/)
+- [`useRadioGroup`](/api-reference/antd/hooks/field/useRadioGroup.md)
 
 :::
 
@@ -355,11 +353,11 @@ useOne({ resource: "posts", id: "1" });
 :::tip
 Following hooks uses `useOne` under the hood and subscribe to same event.
 
--   [`useForm`](/api-reference/core/hooks/useForm.md)
--   [`useModalForm`](/api-reference/antd/hooks/form/useModalForm.md)
--   [`useDrawerForm`](/api-reference/antd/hooks/form/useDrawerForm.md)
--   [`useStepsForm`](/api-reference/antd/hooks/form/useStepsForm.md)
--   [`useShow`](/api-reference/core/hooks/show/useShow.md)
+- [`useForm`](/api-reference/core/hooks/useForm.md)
+- [`useModalForm`](/api-reference/antd/hooks/form/useModalForm.md)
+- [`useDrawerForm`](/api-reference/antd/hooks/form/useDrawerForm.md)
+- [`useStepsForm`](/api-reference/antd/hooks/form/useStepsForm.md)
+- [`useShow`](/api-reference/core/hooks/show/useShow.md)
 
 :::
 
@@ -380,7 +378,7 @@ useMany({ resource: "posts", ids: ["1", "2"] });
 :::tip
 Following hooks uses `useMany` under the hood and subscribe to same event.
 
--   [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
+- [`useSelect`](/docs/3.xx.xx/api-reference/core/hooks/useSelect/)
 
 :::
 
@@ -394,10 +392,10 @@ Following hooks uses `useMany` under the hood and subscribe to same event.
 const { mutate } = useCreate();
 
 mutate({
-    resource: "posts",
-    values: {
-        title: "New Post",
-    },
+  resource: "posts",
+  values: {
+    title: "New Post",
+  },
 });
 ```
 
@@ -418,15 +416,15 @@ mutate({
 const { mutate } = useCreateMany();
 
 mutate({
-    resource: "posts",
-    values: [
-        {
-            title: "New Post",
-        },
-        {
-            title: "Another New Post",
-        },
-    ],
+  resource: "posts",
+  values: [
+    {
+      title: "New Post",
+    },
+    {
+      title: "Another New Post",
+    },
+  ],
 });
 ```
 
@@ -447,8 +445,8 @@ mutate({
 const { mutate } = useDelete();
 
 mutate({
-    resource: "posts",
-    id: "1",
+  resource: "posts",
+  id: "1",
 });
 ```
 
@@ -469,8 +467,8 @@ mutate({
 const { mutate } = useDeleteMany();
 
 mutate({
-    resource: "posts",
-    ids: ["1", "2"],
+  resource: "posts",
+  ids: ["1", "2"],
 });
 ```
 
@@ -491,9 +489,9 @@ mutate({
 const { mutate } = useUpdate();
 
 mutate({
-    resource: "posts",
-    id: "2",
-    values: { title: "New Post Title" },
+  resource: "posts",
+  id: "2",
+  values: { title: "New Post Title" },
 });
 ```
 
@@ -514,9 +512,9 @@ mutate({
 const { mutate } = useUpdateMany();
 
 mutate({
-    resource: "posts",
-    ids: ["1", "2"],
-    values: { title: "New Post Title" },
+  resource: "posts",
+  ids: ["1", "2"],
+  values: { title: "New Post Title" },
 });
 ```
 
@@ -535,7 +533,7 @@ mutate({
 
 Publishing in client side must be avoided generally. It's recommended to handle it in server side. Events published from the server must be in the following ways:
 
--   When creating a record:
+- When creating a record:
 
 ```ts
 {
@@ -548,7 +546,7 @@ Publishing in client side must be avoided generally. It's recommended to handle 
 }
 ```
 
--   When deleting a record:
+- When deleting a record:
 
 ```ts
 {
@@ -561,7 +559,7 @@ Publishing in client side must be avoided generally. It's recommended to handle 
 }
 ```
 
--   When updating a record:
+- When updating a record:
 
 ```ts
 {

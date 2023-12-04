@@ -26,28 +26,28 @@ import React, { useState } from "react";
 import { useForm } from "@pankod/refine-core";
 
 export const UserCreate: React.FC = () => {
-    const [name, setName] = useState();
-    const [surname, setSurname] = useState();
+  const [name, setName] = useState();
+  const [surname, setSurname] = useState();
 
-    const { onFinish } = useForm();
+  const { onFinish } = useForm();
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        const fullName = `${name} ${surname}`;
-        onFinish({
-            fullName: fullName,
-            name,
-            surname,
-        });
-    };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const fullName = `${name} ${surname}`;
+    onFinish({
+      fullName: fullName,
+      name,
+      surname,
+    });
+  };
 
-    return (
-        <form onSubmit={onSubmit}>
-            <input onChange={(e) => setName(e.target.value)} />
-            <input onChange={(e) => setSurname(e.target.value)} />
-            <button type="submit">Submit</button>
-        </form>
-    );
+  return (
+    <form onSubmit={onSubmit}>
+      <input onChange={(e) => setName(e.target.value)} />
+      <input onChange={(e) => setSurname(e.target.value)} />
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 ```
 
@@ -59,32 +59,32 @@ import React from "react";
 import { useForm, Form, Input } from "@pankod/refine-antd";
 
 export const UserCreate: React.FC = () => {
-    const { formProps } = useForm();
+  const { formProps } = useForm();
 
-    return (
-        <Form
-            {...formProps}
-            onFinish={(values) => {
-                const { name, surname } = values;
-                const fullName = `${name} ${surname}`;
+  return (
+    <Form
+      {...formProps}
+      onFinish={(values) => {
+        const { name, surname } = values;
+        const fullName = `${name} ${surname}`;
 
-                return (
-                    formProps.onFinish &&
-                    formProps.onFinish({
-                        ...values,
-                        fullName,
-                    })
-                );
-            }}
-        >
-            <Form.Item label="Name" name="name">
-                <Input />
-            </Form.Item>
-            <Form.Item label="Surname" name="surname">
-                <Input />
-            </Form.Item>
-        </Form>
-    );
+        return (
+          formProps.onFinish &&
+          formProps.onFinish({
+            ...values,
+            fullName,
+          })
+        );
+      }}
+    >
+      <Form.Item label="Name" name="name">
+        <Input />
+      </Form.Item>
+      <Form.Item label="Surname" name="surname">
+        <Input />
+      </Form.Item>
+    </Form>
+  );
 };
 ```
 
@@ -96,27 +96,27 @@ import React from "react";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 export const UserCreate: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-    } = useForm();
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+  } = useForm();
 
-    const handleSubmitPostCreate = (values) => {
-        const { name, surname } = values;
-        const fullName = `${name} ${surname}`;
-        onFinish({
-            ...value,
-            fullName,
-        });
-    };
+  const handleSubmitPostCreate = (values) => {
+    const { name, surname } = values;
+    const fullName = `${name} ${surname}`;
+    onFinish({
+      ...value,
+      fullName,
+    });
+  };
 
-    return (
-        <form onSubmit={handleSubmit(handleSubmitPostCreate)}>
-            <input {...register("name")} />
-            <input {...register("surname")} />
-        </form>
-    );
+  return (
+    <form onSubmit={handleSubmit(handleSubmitPostCreate)}>
+      <input {...register("name")} />
+      <input {...register("surname")} />
+    </form>
+  );
 };
 ```
 
@@ -158,32 +158,32 @@ const invalidate = useInvalidate();
 
 // To invalidate the list and many states of the Posts resource
 invalidate({
-    resource: "posts",
-    invalidates: ["list", "many"],
+  resource: "posts",
+  invalidates: ["list", "many"],
 });
 
 // To invalidate the state of a Posts with an id of 1
 invalidate({
-    resource: "posts",
-    invalidates: ["detail"],
-    id: 1,
+  resource: "posts",
+  invalidates: ["detail"],
+  id: 1,
 });
 
 // To invalidate the list and many states of the Posts resource of the dataProvider named "second-data-provider"
 invalidate({
-    resource: "posts",
-    dataProviderName: "second-data-provider",
-    invalidates: ["list"],
+  resource: "posts",
+  dataProviderName: "second-data-provider",
+  invalidates: ["list"],
 });
 
 // To invalidate all states of dataprovider named "second-data-provider"
 invalidate({
-    dataProviderName: "second-data-provider",
-    invalidates: ["all"],
+  dataProviderName: "second-data-provider",
+  invalidates: ["all"],
 });
 ```
 
-[Refer to the **refine** useInvalidate hook documentation for more information. →](/docs/api-reference/core/hooks/invalidate/useInvalidate)
+[Refer to the **refine** useInvalidate hook documentation for more information. →](/docs/3.xx.xx/api-reference/core/hooks/invalidate/useInvalidate)
 
 </TabItem>
 </Tabs>
@@ -198,7 +198,7 @@ For example, If you want to make a request of the URL `/user/1/posts`.
 import { useTable, useOne } from "@pankod/refine-core";
 
 useTable({
-    resource: "/users/1/posts",
+  resource: "/users/1/posts",
 });
 ```
 
@@ -208,14 +208,14 @@ Note that `data` related hooks (`useMany`, `useOne`, etc.) can also accept all `
 
 [Refer to react-query docs on **dependent queries** for more information → ](https://react-query.tanstack.com/guides/dependent-queries)
 
--   Suppose you want this query to run after `categoryIds` is fetched by a preceding query, you can set `enabled` to `categoryIds.length > 0`. This will ensure that `useMany` is only run after `categoryIds` is fetched.
+- Suppose you want this query to run after `categoryIds` is fetched by a preceding query, you can set `enabled` to `categoryIds.length > 0`. This will ensure that `useMany` is only run after `categoryIds` is fetched.
 
 ```tsx
 useMany({
-    resource: "categories",
-    ids: categoryIds,
-    // highlight-next-line
-    queryOptions: { enabled: categoryIds.length > 0 },
+  resource: "categories",
+  ids: categoryIds,
+  // highlight-next-line
+  queryOptions: { enabled: categoryIds.length > 0 },
 });
 ```
 
@@ -236,16 +236,16 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 const simpleRestProvider = dataProvider("API_URL");
 const myDataProvider = {
-    ...simpleRestProvider,
-    update: async ({ resource, id, variables }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
+  ...simpleRestProvider,
+  update: async ({ resource, id, variables }) => {
+    const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.put(url, variables);
+    const { data } = await httpClient.put(url, variables);
 
-        return {
-            data,
-        };
-    },
+    return {
+      data,
+    };
+  },
 };
 
 <Refine dataProvider={myDataProvider} />;
@@ -258,42 +258,42 @@ What if we want to select `PUT` or `PATCH` on a request basis?
 ```tsx
 // PATCH Request
 useUpdate({
-    resource: "this-is-patch",
-    id: 1,
-    variables: {
-        foo: "bar",
-    },
-    metaData: {
-        httpMethod: "patch",
-    },
+  resource: "this-is-patch",
+  id: 1,
+  variables: {
+    foo: "bar",
+  },
+  metaData: {
+    httpMethod: "patch",
+  },
 });
 
 // PUT Request
 useUpdate({
-    resource: "this-is-put",
-    id: 1,
-    variables: {
-        foo: "bar",
-    },
-    metaData: {
-        httpMethod: "put",
-    },
+  resource: "this-is-put",
+  id: 1,
+  variables: {
+    foo: "bar",
+  },
+  metaData: {
+    httpMethod: "put",
+  },
 });
 
 const simpleRestProvider = dataProvider("API_URL");
 const myDataProvider = {
-    ...simpleRestProvider,
-    update: async ({ resource, id, variables, metaData }) => {
-        const method = metaData.httpMethod ?? "patch";
+  ...simpleRestProvider,
+  update: async ({ resource, id, variables, metaData }) => {
+    const method = metaData.httpMethod ?? "patch";
 
-        const url = `${apiUrl}/${resource}/${id}`;
+    const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient[method](url, variables);
+    const { data } = await httpClient[method](url, variables);
 
-        return {
-            data,
-        };
-    },
+    return {
+      data,
+    };
+  },
 };
 ```
 

@@ -12,59 +12,59 @@ source: packages/antd/src/components/pages/auth/index.tsx
 Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ```tsx live  shared
 const { useNavigation: useNavigationShared, useLogout: useLogoutShared } =
-    RefineCore;
+  RefineCore;
 const {
-    Typography: { Title: SharedTitle },
-    Button,
+  Typography: { Title: SharedTitle },
+  Button,
 } = RefineAntd;
 
 window.__refineAuthStatus = false;
 
 const authProvider = {
-    login: () => {
-        window.__refineAuthStatus = true;
-    },
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => {
-        window.__refineAuthStatus = false;
-    },
-    checkAuth: () =>
-        window.__refineAuthStatus ? Promise.resolve() : Promise.reject(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
+  login: () => {
+    window.__refineAuthStatus = true;
+  },
+  register: () => Promise.resolve(),
+  forgotPassword: () => Promise.resolve(),
+  updatePassword: () => Promise.resolve(),
+  logout: () => {
+    window.__refineAuthStatus = false;
+  },
+  checkAuth: () =>
+    window.__refineAuthStatus ? Promise.resolve() : Promise.reject(),
+  checkError: () => Promise.resolve(),
+  getPermissions: () => Promise.resolve(),
+  getUserIdentity: () => Promise.resolve(),
 };
 
 const DashboardPage = () => {
-    const { mutate } = useLogoutShared();
+  const { mutate } = useLogoutShared();
 
-    return (
-        <div
-            style={{
-                width: "100%",
-                maxWidth: "400px",
-                margin: "0 auto",
-                textAlign: "center",
-            }}
-        >
-            <SharedTitle level={2}>Home Page</SharedTitle>
-            <br />
-            <button
-                onClick={() => {
-                    mutate();
-                }}
-            >
-                Logout
-            </button>
-        </div>
-    );
+  return (
+    <div
+      style={{
+        width: "100%",
+        maxWidth: "400px",
+        margin: "0 auto",
+        textAlign: "center",
+      }}
+    >
+      <SharedTitle level={2}>Home Page</SharedTitle>
+      <br />
+      <button
+        onClick={() => {
+          mutate();
+        }}
+      >
+        Logout
+      </button>
+    </div>
+  );
 };
 ```
 
@@ -84,31 +84,31 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    // highlight-start
-                    {
-                        path: "/register",
-                        element: <AuthPage type="register" />,
-                    },
-                    {
-                        path: "/forgot-password",
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                    // highlight-end
-                ],
-            }}
-            authProvider={authProvider}
-            // highlight-next-line
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={{
+        ...routerProvider,
+        routes: [
+          // highlight-start
+          {
+            path: "/register",
+            element: <AuthPage type="register" />,
+          },
+          {
+            path: "/forgot-password",
+            element: <AuthPage type="forgotPassword" />,
+          },
+          // highlight-end
+        ],
+      }}
+      authProvider={authProvider}
+      // highlight-next-line
+      LoginPage={AuthPage}
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -118,10 +118,10 @@ render(<App />);
 
 `<AuthPage>` component has the following types:
 
--   [`login`](#login) - a type of login page and default type.
--   [`register`](#register) - a type of registration page.
--   [`forgotPassword`](#forgotpassword) - a type of forgot password page.
--   [`updatePassword`](#updatepassword) - a type of update password page.
+- [`login`](#login) - a type of login page and default type.
+- [`register`](#register) - a type of registration page.
+- [`forgotPassword`](#forgotpassword) - a type of forgot password page.
+- [`updatePassword`](#updatepassword) - a type of update password page.
 
 ### Login
 
@@ -140,17 +140,17 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            // highlight-next-line
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      authProvider={authProvider}
+      // highlight-next-line
+      LoginPage={AuthPage}
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -162,16 +162,16 @@ After form submission, the [`login`][login] method of the [`authProvider`][auth-
 import { AuthProvider } from "@pankod/refine-core";
 
 const authProvider: AuthProvider = {
-    // --
-    login: async ({ email, password, remember, providerName }) => {
-        // You can handle the login process according to your needs.
+  // --
+  login: async ({ email, password, remember, providerName }) => {
+    // You can handle the login process according to your needs.
 
-        // If the process is successful.
-        return Promise.resolve();
+    // If the process is successful.
+    return Promise.resolve();
 
-        return Promise.reject();
-    },
-    // --
+    return Promise.reject();
+  },
+  // --
 };
 ```
 
@@ -192,26 +192,26 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    // highlight-start
-                    {
-                        path: "/register",
-                        element: <AuthPage type="register" />,
-                    },
-                    // highlight-end
-                ],
-            }}
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      authProvider={authProvider}
+      routerProvider={{
+        ...routerProvider,
+        routes: [
+          // highlight-start
+          {
+            path: "/register",
+            element: <AuthPage type="register" />,
+          },
+          // highlight-end
+        ],
+      }}
+      LoginPage={AuthPage}
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -223,16 +223,16 @@ After form submission, the [`register`][register] method of the [`authProvider`]
 import { AuthProvider } from "@pankod/refine-core";
 
 const authProvider: AuthProvider = {
-    // --
-    register: async ({ email, password, providerName }) => {
-        // You can handle the register process according to your needs.
+  // --
+  register: async ({ email, password, providerName }) => {
+    // You can handle the register process according to your needs.
 
-        // If the process is successful.
-        return Promise.resolve();
+    // If the process is successful.
+    return Promise.resolve();
 
-        return Promise.reject();
-    },
-    // --
+    return Promise.reject();
+  },
+  // --
 };
 ```
 
@@ -253,26 +253,26 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    // highlight-start
-                    {
-                        path: "/forgot-password",
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                    // highlight-end
-                ],
-            }}
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      authProvider={authProvider}
+      routerProvider={{
+        ...routerProvider,
+        routes: [
+          // highlight-start
+          {
+            path: "/forgot-password",
+            element: <AuthPage type="forgotPassword" />,
+          },
+          // highlight-end
+        ],
+      }}
+      LoginPage={AuthPage}
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -284,16 +284,16 @@ After form submission, the [`forgotPassword`][forgot-password] method of the [`a
 import { AuthProvider } from "@pankod/refine-core";
 
 const authProvider: AuthProvider = {
-    // --
-    forgotPassword: async ({ email }) => {
-        // You can handle the reset password process according to your needs.
+  // --
+  forgotPassword: async ({ email }) => {
+    // You can handle the reset password process according to your needs.
 
-        // If process is successful.
-        return Promise.resolve();
+    // If process is successful.
+    return Promise.resolve();
 
-        return Promise.reject();
-    },
-    // --
+    return Promise.reject();
+  },
+  // --
 };
 ```
 
@@ -314,26 +314,26 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    // highlight-start
-                    {
-                        path: "/update-password",
-                        element: <AuthPage type="updatePassword" />,
-                    },
-                    // highlight-end
-                ],
-            }}
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      authProvider={authProvider}
+      routerProvider={{
+        ...routerProvider,
+        routes: [
+          // highlight-start
+          {
+            path: "/update-password",
+            element: <AuthPage type="updatePassword" />,
+          },
+          // highlight-end
+        ],
+      }}
+      LoginPage={AuthPage}
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -345,16 +345,16 @@ After form submission, the [`updatePassword`][update-password] method of the [`a
 import { AuthProvider } from "@pankod/refine-core";
 
 const authProvider: AuthProvider = {
-    // --
-    updatePassword: async ({ password, confirmPassword }) => {
-        // You can handle the update password process according to your needs.
+  // --
+  updatePassword: async ({ password, confirmPassword }) => {
+    // You can handle the update password process according to your needs.
 
-        // If the process is successful.
-        return Promise.resolve();
+    // If the process is successful.
+    return Promise.resolve();
 
-        return Promise.reject();
-    },
-    // --
+    return Promise.reject();
+  },
+  // --
 };
 ```
 
@@ -383,33 +383,33 @@ import { DashboardPage } from "./pages/dashboard";
 const { GoogleOutlined, GithubOutlined } = Icons;
 
 const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={routerProvider}
-            // highlight-start
-            LoginPage={() => (
-                <AuthPage
-                    providers={[
-                        {
-                            name: "google",
-                            icon: <GoogleOutlined />,
-                            label: "Sign in with Google",
-                        },
-                        {
-                            name: "github",
-                            icon: <GithubOutlined />,
-                            label: "Sign in with GitHub",
-                        },
-                    ]}
-                />
-            )}
-            // highlight-end
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
+  return (
+    <Refine
+      authProvider={authProvider}
+      routerProvider={routerProvider}
+      // highlight-start
+      LoginPage={() => (
+        <AuthPage
+          providers={[
+            {
+              name: "google",
+              icon: <GoogleOutlined />,
+              label: "Sign in with Google",
+            },
+            {
+              name: "github",
+              icon: <GithubOutlined />,
+              label: "Sign in with GitHub",
+            },
+          ]}
         />
-    );
+      )}
+      // highlight-end
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -440,37 +440,33 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            // highlight-start
-            LoginPage={() => (
-                <AuthPage
-                    rememberMe={
-                        <div
-                            style={{
-                                border: "1px dashed cornflowerblue",
-                                padding: 3,
-                            }}
-                        >
-                            <Form.Item
-                                name="remember"
-                                valuePropName="checked"
-                                noStyle
-                            >
-                                <Checkbox>Custom remember me</Checkbox>
-                            </Form.Item>
-                        </div>
-                    }
-                />
-            )}
-            // highlight-end
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      authProvider={authProvider}
+      // highlight-start
+      LoginPage={() => (
+        <AuthPage
+          rememberMe={
+            <div
+              style={{
+                border: "1px dashed cornflowerblue",
+                padding: 3,
+              }}
+            >
+              <Form.Item name="remember" valuePropName="checked" noStyle>
+                <Checkbox>Custom remember me</Checkbox>
+              </Form.Item>
+            </div>
+          }
         />
-    );
+      )}
+      // highlight-end
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -497,48 +493,48 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const Auth = (props) => {
-    const { Link } = useRouterContext();
+  const { Link } = useRouterContext();
 
-    return (
-        <AuthPage
-            {...props}
-            // highlight-start
-            loginLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        padding: 3,
-                    }}
-                >
-                    <Link to="/login">Login</Link>
-                </div>
-            }
-            // highlight-end
-        />
-    );
+  return (
+    <AuthPage
+      {...props}
+      // highlight-start
+      loginLink={
+        <div
+          style={{
+            border: "1px dashed cornflowerblue",
+            padding: 3,
+          }}
+        >
+          <Link to="/login">Login</Link>
+        </div>
+      }
+      // highlight-end
+    />
+  );
 };
 
 const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            // highlight-start
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/register",
-                        element: <Auth type="register" />,
-                    },
-                ],
-            }}
-            // highlight-end
-            LoginPage={Auth}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      authProvider={authProvider}
+      // highlight-start
+      routerProvider={{
+        ...routerProvider,
+        routes: [
+          {
+            path: "/register",
+            element: <Auth type="register" />,
+          },
+        ],
+      }}
+      // highlight-end
+      LoginPage={Auth}
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -565,45 +561,43 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const Auth = (props) => {
-    const { Link } = useRouterContext();
+  const { Link } = useRouterContext();
 
-    return (
-        <AuthPage
-            {...props}
-            // highlight-start
-            registerLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        marginTop: 5,
-                        padding: 5,
-                    }}
-                >
-                    <Link to="/register">Register</Link>
-                </div>
-            }
-            // highlight-end
-        />
-    );
+  return (
+    <AuthPage
+      {...props}
+      // highlight-start
+      registerLink={
+        <div
+          style={{
+            border: "1px dashed cornflowerblue",
+            marginTop: 5,
+            padding: 5,
+          }}
+        >
+          <Link to="/register">Register</Link>
+        </div>
+      }
+      // highlight-end
+    />
+  );
 };
 
 const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    { path: "/register", element: <Auth type="register" /> },
-                ],
-            }}
-            // highlight-next-line
-            LoginPage={Auth}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      authProvider={authProvider}
+      routerProvider={{
+        ...routerProvider,
+        routes: [{ path: "/register", element: <Auth type="register" /> }],
+      }}
+      // highlight-next-line
+      LoginPage={Auth}
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -630,48 +624,48 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const Auth = (props) => {
-    const { Link } = useRouterContext();
+  const { Link } = useRouterContext();
 
-    return (
-        <AuthPage
-            {...props}
-            // highlight-start
-            forgotPasswordLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        marginTop: 5,
-                        padding: 5,
-                    }}
-                >
-                    <Link to="/register">Forgot Password</Link>
-                </div>
-            }
-            // highlight-end
-        />
-    );
+  return (
+    <AuthPage
+      {...props}
+      // highlight-start
+      forgotPasswordLink={
+        <div
+          style={{
+            border: "1px dashed cornflowerblue",
+            marginTop: 5,
+            padding: 5,
+          }}
+        >
+          <Link to="/register">Forgot Password</Link>
+        </div>
+      }
+      // highlight-end
+    />
+  );
 };
 
 const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/forgot-password",
-                        element: <Auth type="forgotPassword" />,
-                    },
-                ],
-            }}
-            // highlight-next-line
-            LoginPage={Auth}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      authProvider={authProvider}
+      routerProvider={{
+        ...routerProvider,
+        routes: [
+          {
+            path: "/forgot-password",
+            element: <Auth type="forgotPassword" />,
+          },
+        ],
+      }}
+      // highlight-next-line
+      LoginPage={Auth}
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -694,26 +688,26 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={routerProvider}
-            LoginPage={() => (
-                <AuthPage
-                    // highlight-start
-                    wrapperProps={{
-                        style: {
-                            background: "#331049",
-                        },
-                    }}
-                    // highlight-end
-                />
-            )}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
+  return (
+    <Refine
+      authProvider={authProvider}
+      routerProvider={routerProvider}
+      LoginPage={() => (
+        <AuthPage
+          // highlight-start
+          wrapperProps={{
+            style: {
+              background: "#331049",
+            },
+          }}
+          // highlight-end
         />
-    );
+      )}
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -736,31 +730,31 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    // highlight-start
-                    contentProps={{
-                        title: "Login",
-                        headStyle: {
-                            background: "cornflowerblue",
-                            color: "white",
-                        },
-                        bodyStyle: {
-                            background: "#673ab742",
-                        },
-                    }}
-                    // highlight-end
-                />
-            )}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      authProvider={authProvider}
+      LoginPage={() => (
+        <AuthPage
+          // highlight-start
+          contentProps={{
+            title: "Login",
+            headStyle: {
+              background: "cornflowerblue",
+              color: "white",
+            },
+            bodyStyle: {
+              background: "#673ab742",
+            },
+          }}
+          // highlight-end
         />
-    );
+      )}
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -783,29 +777,29 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    // highlight-start
-                    formProps={{
-                        initialValues: {
-                            email: "demo@refine.dev",
-                            password: "demo",
-                        },
-                        onFinish: (formValues) =>
-                            alert(JSON.stringify(formValues, null, 2)),
-                    }}
-                    // highlight-end
-                />
-            )}
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      authProvider={authProvider}
+      LoginPage={() => (
+        <AuthPage
+          // highlight-start
+          formProps={{
+            initialValues: {
+              email: "demo@refine.dev",
+              password: "demo",
+            },
+            onFinish: (formValues) =>
+              alert(JSON.stringify(formValues, null, 2)),
+          }}
+          // highlight-end
         />
-    );
+      )}
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -828,42 +822,42 @@ import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            // highlight-start
-            LoginPage={() => (
-                <AuthPage
-                    contentProps={{
-                        style: {
-                            width: "400px",
-                        },
-                    }}
-                    renderContent={(content: React.ReactNode) => {
-                        return (
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                }}
-                            >
-                                <h1 style={{ color: "white" }}>Extra Header</h1>
-                                {content}
-                                <h1 style={{ color: "white" }}>Extra Footer</h1>
-                            </div>
-                        );
-                    }}
-                />
-            )}
-            // highlight-end
-            DashboardPage={DashboardPage}
-            Layout={Layout}
-            resources={[{ name: "posts" }]}
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      authProvider={authProvider}
+      // highlight-start
+      LoginPage={() => (
+        <AuthPage
+          contentProps={{
+            style: {
+              width: "400px",
+            },
+          }}
+          renderContent={(content: React.ReactNode) => {
+            return (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <h1 style={{ color: "white" }}>Extra Header</h1>
+                {content}
+                <h1 style={{ color: "white" }}>Extra Footer</h1>
+              </div>
+            );
+          }}
         />
-    );
+      )}
+      // highlight-end
+      DashboardPage={DashboardPage}
+      Layout={Layout}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 render(<App />);
@@ -877,24 +871,24 @@ render(<App />);
 formProps-type="[`FormProps`](https://ant.design/components/form/#API)"
 wrapperProps-type="[`WrapperProps`](https://ant.design/components/layout/#API)"
 contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
-rememberMe-default="[`<Checkbox>Remember me</Checkbox>`](/docs/api-reference/antd/components/antd-auth-page/#rememberme)"
+rememberMe-default="[`<Checkbox>Remember me</Checkbox>`](/docs/3.xx.xx/api-reference/antd/components/antd-auth-page/#rememberme)"
 />
 
 ### Interface
 
 ```tsx
 interface OAuthProvider {
-    name: string;
-    icon?: React.ReactNode;
-    label?: string;
+  name: string;
+  icon?: React.ReactNode;
+  label?: string;
 }
 ```
 
-[auth-provider]: /docs/api-reference/core/providers/auth-provider/
-[login]: /docs/api-reference/core/providers/auth-provider/#login-
-[register]: /docs/api-reference/core/providers/auth-provider/#register
-[forgot-password]: /docs/api-reference/core/providers/auth-provider/#forgotpassword
-[update-password]: /docs/api-reference/core/providers/auth-provider/#updatepassword
-[get-permissions]: /docs/api-reference/core/providers/auth-provider/#getpermissions-
-[check-auth]: /docs/api-reference/core/providers/auth-provider/#checkauth-
-[logout]: /docs/api-reference/core/providers/auth-provider/#logout-
+[auth-provider]: /docs/3.xx.xx/api-reference/core/providers/auth-provider/
+[login]: /docs/3.xx.xx/api-reference/core/providers/auth-provider/#login-
+[register]: /docs/3.xx.xx/api-reference/core/providers/auth-provider/#register
+[forgot-password]: /docs/3.xx.xx/api-reference/core/providers/auth-provider/#forgotpassword
+[update-password]: /docs/3.xx.xx/api-reference/core/providers/auth-provider/#updatepassword
+[get-permissions]: /docs/3.xx.xx/api-reference/core/providers/auth-provider/#getpermissions-
+[check-auth]: /docs/3.xx.xx/api-reference/core/providers/auth-provider/#checkauth-
+[logout]: /docs/3.xx.xx/api-reference/core/providers/auth-provider/#logout-

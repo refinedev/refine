@@ -2,8 +2,8 @@
 id: create-project
 title: 3. Create your refine project
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/prepare-env
-    next: tutorial/getting-started/{preferredUI}/generate-crud-pages
+  prev: tutorial/getting-started/{preferredUI}/prepare-env
+  next: tutorial/getting-started/{preferredUI}/generate-crud-pages
 ---
 
 import Tabs from '@theme/Tabs';
@@ -15,42 +15,43 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
 
 1. Launch your terminal and type the following command using your preferred package manager:
 
-    <Tabs
-    defaultValue="npm"
-    values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+   <Tabs
+   defaultValue="npm"
+   values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
 
-    <TabItem value="npm">
+   <TabItem value="npm">
 
-    ```bash
-    npm create refine-app@latest -- -o refine-antd tutorial
-    ```
+   ```bash
+   npm create refine-app@latest -- -o refine-antd tutorial
+   ```
 
-    </TabItem>
+   </TabItem>
 
-    <TabItem value="pnpm">
+   <TabItem value="pnpm">
 
-    ```bash
-    pnpm create refine-app@latest -- -o refine-antd tutorial
-    ```
+   ```bash
+   pnpm create refine-app@latest -- -o refine-antd tutorial
+   ```
 
-    </TabItem>
+   </TabItem>
 
-    <TabItem value="yarn">
+   <TabItem value="yarn">
 
-    ```bash
-    yarn create refine-app -- -o refine-antd tutorial
-    ```
-    > Only support yarn@1 version.
+   ```bash
+   yarn create refine-app -- -o refine-antd tutorial
+   ```
 
-    </TabItem>
+   > Only support yarn@1 version.
 
-    </Tabs>
+   </TabItem>
+
+   </Tabs>
 
 2. Confirm `y` to installation of `create-refine-app`
 
 3. We are using `-o refine-antd` flag to bootstrap the app with pre-selected CLI options. The tutorial will proceed according to these selections.
 
-    > We use a preset here to sync the tutorial content with the code. Outside of the tutorial, you can skip this flag and select your own options.
+   > We use a preset here to sync the tutorial content with the code. Outside of the tutorial, you can skip this flag and select your own options.
 
 4. The CLI will ask if you agree to share your choices anonymously with the **refine** team. This is for measuring community preferences. You are free to share or not.
 
@@ -112,7 +113,7 @@ Your project files contain all the code you need to run your app. To see a previ
 
 2. You will be redirected to the welcome page as we have not added any pages yet.
 
-    ([Next section](/docs/tutorial/getting-started/antd/generate-crud-pages) will guide you through adding pages to your app.)
+   ([Next section](/docs/3.xx.xx/tutorial/getting-started/antd/generate-crud-pages) will guide you through adding pages to your app.)
 
 Here's what you should see:
 
@@ -121,10 +122,10 @@ setInitialRoutes(["/"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -132,16 +133,16 @@ import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+    />
+  );
 };
 
 render(<App />);

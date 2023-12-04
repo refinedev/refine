@@ -19,29 +19,29 @@ title: Interface References
 
 ```ts
 "eq" |
-    "ne" |
-    "lt" |
-    "gt" |
-    "lte" |
-    "gte" |
-    "in" |
-    "nin" |
-    "contains" |
-    "ncontains" |
-    "containss" |
-    "ncontainss" |
-    "between" |
-    "nbetween" |
-    "null" |
-    "nnull" |
-    "startswith" |
-    "nstartswith" |
-    "startswiths" |
-    "nstartswiths" |
-    "endswith" |
-    "nendswith" |
-    "endswiths" |
-    "nendswiths";
+  "ne" |
+  "lt" |
+  "gt" |
+  "lte" |
+  "gte" |
+  "in" |
+  "nin" |
+  "contains" |
+  "ncontains" |
+  "containss" |
+  "ncontainss" |
+  "between" |
+  "nbetween" |
+  "null" |
+  "nnull" |
+  "startswith" |
+  "nstartswith" |
+  "startswiths" |
+  "nstartswiths" |
+  "endswith" |
+  "nendswith" |
+  "endswiths" |
+  "nendswiths";
 ```
 
 | Type             | Description                        |
@@ -212,11 +212,11 @@ ButtonProps
 
 ## CanParams
 
-| Key      | Type                                                                                                                                                                               |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| resource | `string`                                                                                                                                                                           |
-| action   | `string`                                                                                                                                                                           |
-| params?  | { `resource`?: [IResourceItem](/docs/api-reference/core/interfaces.md#resourceitemprops), `id`?: [BaseKey](/docs/api-reference/core/interfaces.md#basekey), `[key: string]: any` } |
+| Key      | Type                                                                                                   |
+| -------- | ------------------------------------------------------------------------------------------------------ |
+| resource | `string`                                                                                               |
+| action   | `string`                                                                                               |
+| params?  | { `resource`?: [IResourceItem](#resourceitemprops), `id`?: [BaseKey](#basekey), `[key: string]: any` } |
 
 ## CanReturnType
 

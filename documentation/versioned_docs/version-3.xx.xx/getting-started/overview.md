@@ -55,13 +55,13 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 **refine** has a very friendly community and we are always happy to help you get started:
 
--   [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
--   [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback.
--   [Contributing](/docs/contributing/) – learn how to contribute refine project.
--   [Guest Technical Writer Program](https://refine.dev/blog/refine-writer-program/) – join the program and become a blog writer for refine.
+- [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
+- [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback.
+- [Contributing](/docs/3.xx.xx/contributing/) – learn how to contribute refine project.
+- [Guest Technical Writer Program](https://refine.dev/blog/refine-writer-program/) – join the program and become a blog writer for refine.
 
 ## Next Steps
 
-👉 Continue with [Quickstart guide](/docs/getting-started/quickstart/) to setup and run your first **refine** project.
+👉 Continue with [Quickstart guide](/docs/3.xx.xx/getting-started/quickstart/) to setup and run your first **refine** project.
 
-👉 Or jump directly to [Tutorial](/docs/tutorial/introduction/index/) to learn refine by building a full-blown CRUD application.
+👉 Or jump directly to [Tutorial](/docs/3.xx.xx/tutorial/introduction/index/) to learn refine by building a full-blown CRUD application.

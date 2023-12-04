@@ -2,9 +2,9 @@
 id: add-create-page
 title: 4. Adding Create Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-show-page
-    next: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+  next: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
 ---
 
 Create page is the page where you can create the record. In this tutorial, we will create the create page for the `blog_posts` resource.
@@ -34,44 +34,42 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
-    notificationProvider,
-    LightTheme,
-    Layout,
-    ReadyPage,
-    ErrorComponent,
+  MantineProvider,
+  Global,
+  NotificationsProvider,
+  notificationProvider,
+  LightTheme,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
 } from "@pankod/refine-mantine";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          Layout={Layout}
+          resources={[
+            {
+              name: "blog_posts",
+              list: MantineInferencer,
+              show: MantineInferencer,
+              create: MantineInferencer,
+              edit: MantineInferencer,
+            },
+          ]}
+        />
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 render(<App />);
@@ -83,29 +81,29 @@ Instead of coding the create page component from scratch, Inferencer've created 
 
 We will go through the create page components and hooks one by one.
 
--   `<Create/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button etc.
+- `<Create/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button etc.
 
-    [Refer to the `<Create/>` documentation for more information &#8594](/docs/api-reference/mantine/components/basic-views/create)
+  [Refer to the `<Create/>` documentation for more information &#8594](/docs/3.xx.xx/api-reference/mantine/components/basic-views/create)
 
--   `useForm` hook, imported from `@pankod/refine-mantine` package, has been developed by using the **Mantine** `useForm` hook and `@pankod/refine-core` `useForm` hook. It is used to handle the form state and form submission.
+- `useForm` hook, imported from `@pankod/refine-mantine` package, has been developed by using the **Mantine** `useForm` hook and `@pankod/refine-core` `useForm` hook. It is used to handle the form state and form submission.
 
-    It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
+  It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
 
-    When you use `useForm` in the edit page,it sends the form data to `dataProvider`'s `create` method when the form is submitted.
+  When you use `useForm` in the edit page,it sends the form data to `dataProvider`'s `create` method when the form is submitted.
 
-    [Refer to the `useForm` documentation for more information &#8594](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/)
+  [Refer to the `useForm` documentation for more information &#8594](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/)
 
-    [Refer to the **Mantine** documentation for more information &#8594](https://mantine.dev/form/use-form/)
+  [Refer to the **Mantine** documentation for more information &#8594](https://mantine.dev/form/use-form/)
 
--   All other components provided by **Mantine** are used to display the form fields.
+- All other components provided by **Mantine** are used to display the form fields.
 
-    [Refer to the Mantine documentation for more information &#8594](https://mantine.dev/)
+  [Refer to the Mantine documentation for more information &#8594](https://mantine.dev/)
 
 ### Handling Relationships
 
 In the create page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the blog post to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the resource name to the `dataProvider`'s `getList` method. Then, it returns the `options` to be used in the `<Select/>` component.
 
-[Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/mantine/hooks/useSelect/)
+[Refer to the `useSelect` documentation for more information &#8594](/docs/3.xx.xx/api-reference/mantine/hooks/useSelect/)
 
 [Refer to the **Mantine** `<Select/>` documentation for more information &#8594](https://mantine.dev/core/select/)
 
@@ -113,7 +111,7 @@ In the auto-generated create page code, Inferencer used the `useSelect` hook to 
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 

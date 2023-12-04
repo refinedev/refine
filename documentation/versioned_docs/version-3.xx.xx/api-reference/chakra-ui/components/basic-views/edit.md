@@ -7,39 +7,39 @@ swizzle: true
 ```tsx live shared
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    Layout: RefineChakra.Layout,
-    Sider: () => null,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  Layout: RefineChakra.Layout,
+  Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
-            {children}
-        </RefineChakra.ChakraProvider>
-    );
+  return (
+    <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+      {children}
+    </RefineChakra.ChakraProvider>
+  );
 };
 
 const DummyListPage = () => (
-    <RefineChakra.VStack alignItems="flex-start">
-        <RefineChakra.Text>This page is empty.</RefineChakra.Text>
-        <EditButton colorScheme="black" recordItemId="123">
-            Edit Item 123
-        </EditButton>
-    </RefineChakra.VStack>
+  <RefineChakra.VStack alignItems="flex-start">
+    <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+    <EditButton colorScheme="black" recordItemId="123">
+      Edit Item 123
+    </EditButton>
+  </RefineChakra.VStack>
 );
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
@@ -56,115 +56,109 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
 import {
-    Edit,
-    FormControl,
-    FormErrorMessage,
-    FormLabel,
-    Input,
-    Select,
+  Edit,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  Select,
 } from "@pankod/refine-chakra-ui";
 import { useSelect } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 const PostEdit: React.FC = () => {
-    const {
-        refineCore: { formLoading, queryResult },
-        saveButtonProps,
-        register,
-        formState: { errors },
-        resetField,
-    } = useForm<IPost>();
+  const {
+    refineCore: { formLoading, queryResult },
+    saveButtonProps,
+    register,
+    formState: { errors },
+    resetField,
+  } = useForm<IPost>();
 
-    const { options } = useSelect({
-        resource: "categories",
+  const { options } = useSelect({
+    resource: "categories",
 
-        defaultValue: queryResult?.data?.data.category.id,
-        queryOptions: { enabled: !!queryResult?.data?.data.category.id },
-    });
+    defaultValue: queryResult?.data?.data.category.id,
+    queryOptions: { enabled: !!queryResult?.data?.data.category.id },
+  });
 
-    useEffect(() => {
-        resetField("category.id");
-    }, [options]);
+  useEffect(() => {
+    resetField("category.id");
+  }, [options]);
 
-    return (
-        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <FormControl mb="3" isInvalid={!!errors?.title}>
-                <FormLabel>Title</FormLabel>
-                <Input
-                    id="title"
-                    type="text"
-                    {...register("title", { required: "Title is required" })}
-                />
-                <FormErrorMessage>
-                    {`${errors.title?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.status}>
-                <FormLabel>Status</FormLabel>
-                <Select
-                    id="content"
-                    placeholder="Select Post Status"
-                    {...register("status", {
-                        required: "Status is required",
-                    })}
-                >
-                    <option>published</option>
-                    <option>draft</option>
-                    <option>rejected</option>
-                </Select>
-                <FormErrorMessage>
-                    {`${errors.status?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.categoryId}>
-                <FormLabel>Category</FormLabel>
-                <Select
-                    id="ca"
-                    placeholder="Select Category"
-                    {...register("category.id", {
-                        required: true,
-                    })}
-                >
-                    {options?.map((option) => (
-                        <option value={option.value} key={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </Select>
-                <FormErrorMessage>
-                    {`${errors.categoryId?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-        </Edit>
-    );
+  return (
+    <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
+      <FormControl mb="3" isInvalid={!!errors?.title}>
+        <FormLabel>Title</FormLabel>
+        <Input
+          id="title"
+          type="text"
+          {...register("title", { required: "Title is required" })}
+        />
+        <FormErrorMessage>{`${errors.title?.message}`}</FormErrorMessage>
+      </FormControl>
+      <FormControl mb="3" isInvalid={!!errors?.status}>
+        <FormLabel>Status</FormLabel>
+        <Select
+          id="content"
+          placeholder="Select Post Status"
+          {...register("status", {
+            required: "Status is required",
+          })}
+        >
+          <option>published</option>
+          <option>draft</option>
+          <option>rejected</option>
+        </Select>
+        <FormErrorMessage>{`${errors.status?.message}`}</FormErrorMessage>
+      </FormControl>
+      <FormControl mb="3" isInvalid={!!errors?.categoryId}>
+        <FormLabel>Category</FormLabel>
+        <Select
+          id="ca"
+          placeholder="Select Category"
+          {...register("category.id", {
+            required: true,
+          })}
+        >
+          {options?.map((option) => (
+            <option value={option.value} key={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </Select>
+        <FormErrorMessage>{`${errors.categoryId?.message}`}</FormErrorMessage>
+      </FormControl>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={RefineChakra.notificationProvider()}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      notificationProvider={RefineChakra.notificationProvider()}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Properties
@@ -184,34 +178,34 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Edit, Heading } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Edit title={<Heading size="lg">Custom Title</Heading>}>
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    /* highlight-next-line */
+    <Edit title={<Heading size="lg">Custom Title</Heading>}>
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -234,34 +228,34 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Edit } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Edit saveButtonProps={{ colorScheme: "red" }}>
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    /* highlight-next-line */
+    <Edit saveButtonProps={{ colorScheme: "red" }}>
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -285,62 +279,62 @@ import { Edit } from "@pankod/refine-chakra-ui";
 import { usePermissions } from "@pankod/refine-core";
 
 const PostEdit: React.FC = () => {
-    const { data: permissionsData } = usePermissions();
-    return (
-        <Edit
-            /* highlight-start */
-            canDelete={permissionsData?.includes("admin")}
-            deleteButtonProps={{ colorScheme: "orange" }}
-            /* highlight-end */
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  const { data: permissionsData } = usePermissions();
+  return (
+    <Edit
+      /* highlight-start */
+      canDelete={permissionsData?.includes("admin")}
+      deleteButtonProps={{ colorScheme: "orange" }}
+      /* highlight-end */
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    const simpleRestDataProvider = dataProvider(
-        "https://api.fake-rest.refine.dev",
-    );
+  const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+  );
 
-    const customDataProvider = {
-        ...simpleRestDataProvider,
-        deleteOne: async ({ resource, id, variables }) => {
-            return {
-                data: {},
-            };
+  const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+      return {
+        data: {},
+      };
+    },
+  };
+
+  const authProvider = {
+    login: () => Promise.resolve(),
+    logout: () => Promise.resolve(),
+    checkAuth: () => Promise.resolve(),
+    checkError: () => Promise.resolve(),
+    getPermissions: () => Promise.resolve("admin"),
+    getUserIdentity: () => Promise.resolve(),
+  };
+
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={customDataProvider}
+      authProvider={authProvider}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
         },
-    };
-
-    const authProvider = {
-        login: () => Promise.resolve(),
-        logout: () => Promise.resolve(),
-        checkAuth: () => Promise.resolve(),
-        checkError: () => Promise.resolve(),
-        getPermissions: () => Promise.resolve("admin"),
-        getUserIdentity: () => Promise.resolve(),
-    };
-
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={customDataProvider}
-            authProvider={authProvider}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -362,40 +356,40 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const CustomPage: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Edit resource="categories">
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    /* highlight-next-line */
+    <Edit resource="categories">
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom/:id",
-                    },
-                ],
-                // highlight-end
-            }}
-            Layout={Layout}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts" }]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={{
+        ...routerProvider,
+        // highlight-start
+        routes: [
+          {
+            element: <CustomPage />,
+            path: "/custom/:id",
+          },
+        ],
+        // highlight-end
+      }}
+      Layout={Layout}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[{ name: "posts" }]}
+    />
+  );
 };
 // visible-block-end
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -413,72 +407,70 @@ import dataProvider from "@pankod/refine-simple-rest";
 // visible-block-start
 import { useModalForm } from "@pankod/refine-react-hook-form";
 import {
-    Edit,
-    Modal,
-    Button,
-    ModalOverlay,
-    ModalContent,
-    ModalCloseButton,
-    ModalHeader,
-    ModalBody,
+  Edit,
+  Modal,
+  Button,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+  ModalHeader,
+  ModalBody,
 } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
-    const {
-        modal: { visible, close, show },
-        id,
-    } = useModalForm({
-        refineCoreProps: { action: "edit" },
-    });
+  const {
+    modal: { visible, close, show },
+    id,
+  } = useModalForm({
+    refineCoreProps: { action: "edit" },
+  });
 
-    return (
-        <div>
-            <Button onClick={() => show()}>Edit Button</Button>
-            <Modal isOpen={visible} onClose={close} size="xl">
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalCloseButton />
-                    <ModalHeader>Edit</ModalHeader>
+  return (
+    <div>
+      <Button onClick={() => show()}>Edit Button</Button>
+      <Modal isOpen={visible} onClose={close} size="xl">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalHeader>Edit</ModalHeader>
 
-                    <ModalBody>
-                        {/* highlight-next-line */}
-                        <Edit recordItemId={id}>
-                            <p>Rest of your page here</p>
-                        </Edit>
-                    </ModalBody>
-                </ModalContent>
-            </Modal>
-        </div>
-    );
+          <ModalBody>
+            {/* highlight-next-line */}
+            <Edit recordItemId={id}>
+              <p>Rest of your page here</p>
+            </Edit>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </div>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
-                            </EditButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <EditButton recordItemId="23">Edit Item 23</EditButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -501,65 +493,63 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
 import {
-    Edit,
-    Input,
-    FormControl,
-    FormLabel,
-    FormErrorMessage,
+  Edit,
+  Input,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
 } from "@pankod/refine-chakra-ui";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 const PostEdit: React.FC = () => {
-    const {
-        saveButtonProps,
-        register,
-        formState: { errors },
-    } = useForm<IPost>();
+  const {
+    saveButtonProps,
+    register,
+    formState: { errors },
+  } = useForm<IPost>();
 
-    return (
-        <Edit
-            //highlight-next-line
-            mutationMode="undoable"
-            canDelete
-            saveButtonProps={saveButtonProps}
-        >
-            <FormControl mb="3" isInvalid={!!errors?.title}>
-                <FormLabel>Title</FormLabel>
-                <Input
-                    id="title"
-                    type="text"
-                    {...register("title", { required: "Title is required" })}
-                />
-                <FormErrorMessage>
-                    {`${errors.title?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-        </Edit>
-    );
+  return (
+    <Edit
+      //highlight-next-line
+      mutationMode="undoable"
+      canDelete
+      saveButtonProps={saveButtonProps}
+    >
+      <FormControl mb="3" isInvalid={!!errors?.title}>
+        <FormLabel>Title</FormLabel>
+        <Input
+          id="title"
+          type="text"
+          {...register("title", { required: "Title is required" })}
+        />
+        <FormErrorMessage>{`${errors.title?.message}`}</FormErrorMessage>
+      </FormControl>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={RefineChakra.notificationProvider()}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      notificationProvider={RefineChakra.notificationProvider()}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -575,23 +565,23 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-start
 const PostEdit = () => {
-    return <Edit dataProviderName="other">...</Edit>;
+  return <Edit dataProviderName="other">...</Edit>;
 };
 // highlight-end
 
 export const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            // highlight-start
-            dataProvider={{
-                default: dataProvider("https://api.fake-rest.refine.dev/"),
-                other: dataProvider("https://other-api.fake-rest.refine.dev/"),
-            }}
-            // highlight-end
-            resources={[{ name: "posts", edit: PostEdit }]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      // highlight-start
+      dataProvider={{
+        default: dataProvider("https://api.fake-rest.refine.dev/"),
+        other: dataProvider("https://other-api.fake-rest.refine.dev/"),
+      }}
+      // highlight-end
+      resources={[{ name: "posts", edit: PostEdit }]}
+    />
+  );
 };
 ```
 
@@ -607,24 +597,24 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const IconMoodSmile = (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="icon icon-tabler icon-tabler-mood-smile"
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
-        strokeWidth="2"
-        stroke="currentColor"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <circle cx={12} cy={12} r={9}></circle>
-        <line x1={9} y1={10} x2="9.01" y2={10}></line>
-        <line x1={15} y1={10} x2="15.01" y2={10}></line>
-        <path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path>
-    </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="icon icon-tabler icon-tabler-mood-smile"
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    strokeWidth="2"
+    stroke="currentColor"
+    fill="none"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+    <circle cx={12} cy={12} r={9}></circle>
+    <line x1={9} y1={10} x2="9.01" y2={10}></line>
+    <line x1={15} y1={10} x2="15.01" y2={10}></line>
+    <path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path>
+  </svg>
 );
 
 // visible-block-start
@@ -633,34 +623,34 @@ import { Edit } from "@pankod/refine-chakra-ui";
 import { IconMoodSmile } from "@tabler/icons";
 
 const PostEdit: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Edit goBack={IconMoodSmile}>
-            <p>Rest of your page here 2</p>
-        </Edit>
-    );
+  return (
+    /* highlight-next-line */
+    <Edit goBack={IconMoodSmile}>
+      <p>Rest of your page here 2</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -679,34 +669,34 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Edit } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
-    return (
-        /* highlight-next-line */
-        <Edit isLoading={true}>
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    /* highlight-next-line */
+    <Edit isLoading={true}>
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -717,7 +707,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
 
 :::tip
-This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+This feature can be managed globally via the `<Refine>` component's [options](/docs/3.xx.xx/api-reference/core/components/refine-config/#breadcrumb)
 :::
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
@@ -731,41 +721,41 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Edit, Breadcrumb, Box } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            breadcrumb={
-                <Box borderColor="blue" borderStyle="dashed" borderWidth="2px">
-                    <Breadcrumb />
-                </Box>
-            }
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      breadcrumb={
+        <Box borderColor="blue" borderStyle="dashed" borderWidth="2px">
+          <Breadcrumb />
+        </Box>
+      }
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -786,42 +776,42 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Edit } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            wrapperProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-                p: "2",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      wrapperProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+        p: "2",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -842,41 +832,41 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Edit } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            headerProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      headerProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -897,42 +887,42 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Edit } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            contentProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-                p: "2",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      contentProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+        p: "2",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -951,42 +941,42 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Edit, Button, HStack, Box } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            headerButtons={({ defaultButtons }) => (
-                <HStack>
-                    {defaultButtons}
-                    <Button colorScheme="red">Custom Button</Button>
-                </HStack>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      headerButtons={({ defaultButtons }) => (
+        <HStack>
+          {defaultButtons}
+          <Button colorScheme="red">Custom Button</Button>
+        </HStack>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -1007,47 +997,47 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Edit, Button } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            headerButtonProps={{
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-                p: "2",
-            }}
-            // highlight-end
-            headerButtons={
-                <Button variant="outline" colorScheme="green">
-                    Custom Button
-                </Button>
-            }
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      headerButtonProps={{
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+        p: "2",
+      }}
+      // highlight-end
+      headerButtons={
+        <Button variant="outline" colorScheme="green">
+          Custom Button
+        </Button>
+      }
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -1066,49 +1056,44 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Edit, Button, HStack } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            footerButtons={({ defaultButtons }) => (
-                <HStack
-                    borderColor="blue"
-                    borderStyle="dashed"
-                    borderWidth="2px"
-                    p="2"
-                >
-                    {defaultButtons}
-                    <Button colorScheme="red" variant="solid">
-                        Custom Button
-                    </Button>
-                </HStack>
-            )}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      footerButtons={({ defaultButtons }) => (
+        <HStack borderColor="blue" borderStyle="dashed" borderWidth="2px" p="2">
+          {defaultButtons}
+          <Button colorScheme="red" variant="solid">
+            Custom Button
+          </Button>
+        </HStack>
+      )}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -1129,43 +1114,43 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { Edit } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
-    return (
-        <Edit
-            // highlight-start
-            footerButtonProps={{
-                float: "right",
-                borderColor: "blue",
-                borderStyle: "dashed",
-                borderWidth: "2px",
-                p: "2",
-            }}
-            // highlight-end
-        >
-            <p>Rest of your page here</p>
-        </Edit>
-    );
+  return (
+    <Edit
+      // highlight-start
+      footerButtonProps={{
+        float: "right",
+        borderColor: "blue",
+        borderStyle: "dashed",
+        borderWidth: "2px",
+        p: "2",
+      }}
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: DummyListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: DummyListPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 

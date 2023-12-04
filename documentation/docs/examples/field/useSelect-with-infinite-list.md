@@ -7,6 +7,6 @@ example-tags: [antd]
 
 This example shows how to use the **useSelect** hook with an infinite list.
 
-[Refer to the **refine** useSelect hook documentation for more information. →](/docs/api-reference/antd/hooks/field/useSelect/)
+[Refer to the **refine** useSelect hook documentation for more information. →](/docs/ui-integrations/ant-design/hooks/use-select)
 
 <CodeSandboxExample path="field-antd-use-select-infinite" />

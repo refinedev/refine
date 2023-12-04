@@ -2,8 +2,8 @@
 id: create-project
 title: 3. Create your refine project
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/prepare-env
-    next: tutorial/getting-started/{preferredUI}/generate-crud-pages
+  prev: tutorial/getting-started/{preferredUI}/prepare-env
+  next: tutorial/getting-started/{preferredUI}/generate-crud-pages
 ---
 
 import Tabs from '@theme/Tabs';
@@ -15,42 +15,43 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
 
 1. Launch your terminal and type the following command using your preferred package manager:
 
-    <Tabs
-    defaultValue="npm"
-    values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+   <Tabs
+   defaultValue="npm"
+   values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
 
-    <TabItem value="npm">
+   <TabItem value="npm">
 
-    ```bash
-    npm create refine-app@latest -- -o refine-mui tutorial
-    ```
+   ```bash
+   npm create refine-app@latest -- -o refine-mui tutorial
+   ```
 
-    </TabItem>
+   </TabItem>
 
-    <TabItem value="pnpm">
+   <TabItem value="pnpm">
 
-    ```bash
-    pnpm create refine-app@latest -- -o refine-mui tutorial
-    ```
+   ```bash
+   pnpm create refine-app@latest -- -o refine-mui tutorial
+   ```
 
-    </TabItem>
+   </TabItem>
 
-    <TabItem value="yarn">
+   <TabItem value="yarn">
 
-    ```bash
-    yarn create refine-app -- -o refine-mui tutorial
-    ```
-    > Only support yarn@1 version.
+   ```bash
+   yarn create refine-app -- -o refine-mui tutorial
+   ```
 
-    </TabItem>
+   > Only support yarn@1 version.
 
-    </Tabs>
+   </TabItem>
+
+   </Tabs>
 
 2. Confirm `y` to installation of `create-refine-app`
 
 3. The `-o refine-mui` flag in the command above tells the CLI to install the project with the `refine-mui` preset. This preset selects some options for you in accordance with this tutorial.
 
-    > We use a preset here to sync the tutorial content with the code. Outside of the tutorial, you can skip this flag and select your own options.
+   > We use a preset here to sync the tutorial content with the code. Outside of the tutorial, you can skip this flag and select your own options.
 
 4. The CLI will ask if you agree to share your selection anonymously with the **refine** team. You can choose whatever you prefer.
 
@@ -112,7 +113,7 @@ Your project files contain all the code you need to run your website. To see a p
 
 2. You will be redirected to the welcome page as we have not added any pages yet.
 
-    ([Next section](/docs/tutorial/getting-started/mui/generate-crud-pages) will guide you through adding pages to your app.)
+   ([Next section](/docs/3.xx.xx/tutorial/getting-started/mui/generate-crud-pages) will guide you through adding pages to your app.)
 
 Here's what you should see:
 
@@ -121,38 +122,36 @@ setInitialRoutes(["/"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
-    RefineSnackbarProvider,
-    notificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
+  ThemeProvider,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          Layout={Layout}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+        />
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);

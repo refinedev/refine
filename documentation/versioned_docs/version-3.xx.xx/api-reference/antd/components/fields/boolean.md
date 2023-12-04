@@ -4,11 +4,10 @@ title: Boolean
 swizzle: true
 ---
 
-
 This field is used to display boolean values. It uses the [`<Tooltip>`](https://ant.design/components/tooltip/#header) values from Ant Design.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -18,63 +17,63 @@ Let's see how we can use `<BooleanField>` with the example in the post list.
 ```tsx live
 // visible-block-start
 import {
-    List,
-    Table,
-    useTable,
-    // highlight-start
-    BooleanField,
-    Icons
-    // highlight-end
+  List,
+  Table,
+  useTable,
+  // highlight-start
+  BooleanField,
+  Icons,
+  // highlight-end
 } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    // highlight-next-line
-    const { CloseCircleOutlined, CheckCircleOutlined } = Icons;
+  // highlight-next-line
+  const { CloseCircleOutlined, CheckCircleOutlined } = Icons;
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" width="50%" />
-                <Table.Column
-                    dataIndex="status"
-                    title="Published"
-                    render={(value) => (
-                        // highlight-start
-                        <BooleanField
-                            value={value === "published"}
-                            trueIcon={<CheckCircleOutlined />}
-                            falseIcon={<CloseCircleOutlined />}
-                            valueLabelTrue="published"
-                            valueLabelFalse="unpublished"
-                        />
-                        // highlight-end
-                    )}
-                    width="50%"
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" width="50%" />
+        <Table.Column
+          dataIndex="status"
+          title="Published"
+          render={(value) => (
+            // highlight-start
+            <BooleanField
+              value={value === "published"}
+              trueIcon={<CheckCircleOutlined />}
+              falseIcon={<CloseCircleOutlined />}
+              valueLabelTrue="published"
+              valueLabelFalse="unpublished"
+            />
+            // highlight-end
+          )}
+          width="50%"
+        />
+      </Table>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostList
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 

@@ -7,7 +7,7 @@ swizzle: true
 A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. `<Breadcrumb>` component built with Ant Design's [Breadcrumb][antd-breadcrumb] components using the [`useBreadcrumb`](/api-reference/core/hooks/useBreadcrumb.md) hook.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px disableScroll
@@ -15,37 +15,41 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 import { Show, Breadcrumb } from "@pankod/refine-antd";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-next-line
-            breadcrumb={<Breadcrumb />}
-        >
-            <p>Content of your show page...</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-next-line
+      breadcrumb={<Breadcrumb />}
+    >
+      <p>Content of your show page...</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const PostList = () => {
-    return (
-        <RefineAntd.List>
-            <p>Content of your list page...</p>
-        </RefineAntd.List>
-    )
+  return (
+    <RefineAntd.List>
+      <p>Content of your list page...</p>
+    </RefineAntd.List>
+  );
 };
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show/123"]}
-        resources={[
-            {
-                name: "posts",
-                icon: <RefineAntd.Icons.ProfileOutlined style={{ width: "18px", height: "18px" }} />,
-                show: PostShow,
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show/123"]}
+    resources={[
+      {
+        name: "posts",
+        icon: (
+          <RefineAntd.Icons.ProfileOutlined
+            style={{ width: "18px", height: "18px" }}
+          />
+        ),
+        show: PostShow,
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -59,14 +63,14 @@ render(
 import { List, Breadcrumb } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-next-line
-            breadcrumb={<Breadcrumb breadcrumbProps={{ separator: "-" }} />}
-        >
-            ...
-        </List>
-    );
+  return (
+    <List
+      // highlight-next-line
+      breadcrumb={<Breadcrumb breadcrumbProps={{ separator: "-" }} />}
+    >
+      ...
+    </List>
+  );
 };
 ```
 
@@ -78,14 +82,14 @@ If your application has a [DashboardPage](/api-reference/core/components/refine-
 import { List, Breadcrumb } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-next-line
-            breadcrumb={<Breadcrumb showHome={false} />}
-        >
-            ...
-        </List>
-    );
+  return (
+    <List
+      // highlight-next-line
+      breadcrumb={<Breadcrumb showHome={false} />}
+    >
+      ...
+    </List>
+  );
 };
 ```
 
@@ -97,14 +101,14 @@ If you don't want to show the resource icons on the breadcrumb, you can set `hid
 import { List, Breadcrumb } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-    return (
-        <List
-            // highlight-next-line
-            breadcrumb={<Breadcrumb hideIcons />}
-        >
-            ...
-        </List>
-    );
+  return (
+    <List
+      // highlight-next-line
+      breadcrumb={<Breadcrumb hideIcons />}
+    >
+      ...
+    </List>
+  );
 };
 ```
 
@@ -116,7 +120,6 @@ export const PostList: React.FC = () => {
 breadcrumbProps-type="[BreadcrumbProps](https://ant.design/components/breadcrumb/#API)"
 breadcrumbProps-description="Passes properties for [`<Breadcrumb>`](https://ant.design/components/breadcrumb/#Breadcrumb)"
 />
-
 
 [antd-breadcrumb]: https://ant.design/components/breadcrumb
 [antd-breadcrumb-props]: https://ant.design/components/breadcrumb/#Breadcrumb

@@ -27,12 +27,12 @@ npm create refine-app@latest -- -o refine-remix my-refine-remix-app
 ```tsx title="app/root.tsx"
 import type { MetaFunction } from "@remix-run/node";
 import {
-    Links,
-    LiveReload,
-    Meta,
-    Outlet,
-    Scripts,
-    ScrollRestoration,
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
 } from "@remix-run/react";
 // highlight-start
 import { Refine } from "@pankod/refine-core";
@@ -41,36 +41,36 @@ import routerProvider from "@pankod/refine-remix-router";
 // highlight-end
 
 export const meta: MetaFunction = () => ({
-    charset: "utf-8",
-    title: "New Remix + Refine App",
-    viewport: "width=device-width,initial-scale=1",
+  charset: "utf-8",
+  title: "New Remix + Refine App",
+  viewport: "width=device-width,initial-scale=1",
 });
 
 // highlight-next-line
 const API_URL = "https://api.fake-rest.refine.dev";
 
 export default function App() {
-    return (
-        <html lang="en">
-            <head>
-                <Meta />
-                <Links />
-            </head>
-            <body>
-                // highlight-start
-                <Refine
-                    dataProvider={dataProvider(API_URL)}
-                    routerProvider={routerProvider}
-                >
-                    <Outlet />
-                </Refine>
-                // highlight-end
-                <ScrollRestoration />
-                <Scripts />
-                <LiveReload />
-            </body>
-        </html>
-    );
+  return (
+    <html lang="en">
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        // highlight-start
+        <Refine
+          dataProvider={dataProvider(API_URL)}
+          routerProvider={routerProvider}
+        >
+          <Outlet />
+        </Refine>
+        // highlight-end
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+      </body>
+    </html>
+  );
 }
 ```
 
@@ -82,38 +82,38 @@ Let's say we want to show a list of users in `/posts`. After creating `posts.tsx
 import { LayoutWrapper, useTable } from "@pankod/refine-core";
 
 export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>({
-        resource: "posts",
-    });
+  const { tableQueryResult } = useTable<IPost>({
+    resource: "posts",
+  });
 
-    return (
-        <LayoutWrapper>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableQueryResult.data?.data.map((post) => (
-                        <tr key={post.id}>
-                            <td>{post.id}</td>
-                            <td>{post.title}</td>
-                            <td>{post.status}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </LayoutWrapper>
-    );
+  return (
+    <LayoutWrapper>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tableQueryResult.data?.data.map((post) => (
+            <tr key={post.id}>
+              <td>{post.id}</td>
+              <td>{post.title}</td>
+              <td>{post.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </LayoutWrapper>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
-    status: string;
+  id: number;
+  title: string;
+  status: string;
 }
 
 export default PostList;
@@ -124,12 +124,12 @@ If you want to handle your `resource` with a custom route or create a custom rou
 
 ```tsx title="Example"
 const App = () => (
-    <Refine
-        resources={[
-            // This will add an item to `<Sider/>` with route `/my-custom-item`
-            { name: "my-custom-item", list: () => null },
-        ]}
-    />
+  <Refine
+    resources={[
+      // This will add an item to `<Sider/>` with route `/my-custom-item`
+      { name: "my-custom-item", list: () => null },
+    ]}
+  />
 );
 ```
 
@@ -159,60 +159,60 @@ import { LayoutWrapper, useTable } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 export const PostList: React.FC = () => {
-    // highlight-next-line
-    const { initialData } = useLoaderData();
+  // highlight-next-line
+  const { initialData } = useLoaderData();
 
-    const { tableQueryResult } = useTable<IPost>({
-        resource: "posts",
-        // highlight-start
-        queryOptions: {
-            initialData,
-        },
-        // highlight-end
-    });
+  const { tableQueryResult } = useTable<IPost>({
+    resource: "posts",
+    // highlight-start
+    queryOptions: {
+      initialData,
+    },
+    // highlight-end
+  });
 
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {tableQueryResult.data?.data.map((post) => (
-                    <tr key={post.id}>
-                        <td>{post.id}</td>
-                        <td>{post.title}</td>
-                        <td>{post.status}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    );
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {tableQueryResult.data?.data.map((post) => (
+          <tr key={post.id}>
+            <td>{post.id}</td>
+            <td>{post.title}</td>
+            <td>{post.status}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
 };
 
 // highlight-start
 export const loader: LoaderFunction = async ({ params, request, context }) => {
-    const API_URL = "https://api.fake-rest.refine.dev";
+  const API_URL = "https://api.fake-rest.refine.dev";
 
-    try {
-        const data = await dataProvider(API_URL).getList({
-            resource: "posts",
-        });
+  try {
+    const data = await dataProvider(API_URL).getList({
+      resource: "posts",
+    });
 
-        return json({ initialData: data });
-    } catch (error) {
-        return json({});
-    }
+    return json({ initialData: data });
+  } catch (error) {
+    return json({});
+  }
 };
 // highlight-end
 
 interface IPost {
-    id: number;
-    title: string;
-    status: string;
+  id: number;
+  title: string;
+  status: string;
 }
 
 export default PostList;
@@ -244,16 +244,16 @@ You can also define routes without using `$.tsx` file like below, but a splat ro
 
 Export `RemixRouteComponent` as default in the following pages:
 
--   `routes/$resource/index.tsx`
--   `routes/$resource/$action/index.tsx`
--   `routes/$resource/$action/$id/index.tsx`
--   `routes/index.tsx`
+- `routes/$resource/index.tsx`
+- `routes/$resource/$action/index.tsx`
+- `routes/$resource/$action/$id/index.tsx`
+- `routes/index.tsx`
 
 `RemixRouteComponent` will use route parameters `resource` and `action` and render the associated component defined in [`resources`][refine].
 
--   `list` component will be rendered for `/$resource` route
--   `create`, `edit` and `show` will be rendered for `/$resource/$action` and `/$resource/$action/$id` routes
--   For the root `/` route, it will render `DashboardPage` if it's defined and if not will navigate to the first resource in `resources`.
+- `list` component will be rendered for `/$resource` route
+- `create`, `edit` and `show` will be rendered for `/$resource/$action` and `/$resource/$action/$id` routes
+- For the root `/` route, it will render `DashboardPage` if it's defined and if not will navigate to the first resource in `resources`.
 
 :::
 
@@ -267,7 +267,7 @@ Export `RemixRouteComponent` as default in the following pages:
 
 ```ts
 type RemixRouteComponentProps = {
-    initialData?: any;
+  initialData?: any;
 };
 ```
 
@@ -284,42 +284,38 @@ export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 export const loader: LoaderFunction = async ({ params, request }) => {
-    const { resource } = params;
+  const { resource } = params;
 
-    const refineSplatParams = handleRefineParams(params["*"]);
+  const refineSplatParams = handleRefineParams(params["*"]);
 
-    const {
-        resource = undefined,
-        action = undefined,
-        id = undefined,
-    } = { ...refineSplatParams, ...params };
+  const {
+    resource = undefined,
+    action = undefined,
+    id = undefined,
+  } = { ...refineSplatParams, ...params };
 
-    try {
-        if (resource && action === "show" && id) {
-            const data = await dataProvider(API_URL).getOne({
-                // we're slicing the resource param to get the resource name from the last part
-                resource: `${resource}`.slice(
-                    `${resource}`.lastIndexOf("/") + 1,
-                ),
-                id,
-            });
+  try {
+    if (resource && action === "show" && id) {
+      const data = await dataProvider(API_URL).getOne({
+        // we're slicing the resource param to get the resource name from the last part
+        resource: `${resource}`.slice(`${resource}`.lastIndexOf("/") + 1),
+        id,
+      });
 
-            return json({ initialData: data });
-        } else if (resource && !action && !id) {
-            const data = await dataProvider(API_URL).getList({
-                // we're slicing the resource param to get the resource name from the last part
-                resource: `${resource}`.slice(
-                    `${resource}`.lastIndexOf("/") + 1,
-                ),
-            });
+      return json({ initialData: data });
+    } else if (resource && !action && !id) {
+      const data = await dataProvider(API_URL).getList({
+        // we're slicing the resource param to get the resource name from the last part
+        resource: `${resource}`.slice(`${resource}`.lastIndexOf("/") + 1),
+      });
 
-            return json({ initialData: data });
-        }
-
-        return null;
-    } catch (error) {
-        return json({});
+      return json({ initialData: data });
     }
+
+    return null;
+  } catch (error) {
+    return json({});
+  }
 };
 ```
 
@@ -329,51 +325,51 @@ And in the `list` component for a `resource` e.g. "posts":
 // highlight-next-line
 import { useLoaderData } from "@remix-run/react";
 import {
-    useTable,
-    GetListResponse,
-    IResourceComponentsProps,
+  useTable,
+  GetListResponse,
+  IResourceComponentsProps,
 } from "@pankod/refine-core";
 
 export const PostList: React.FC<
-    IResourceComponentsProps<GetListResponse<IPost>>
+  IResourceComponentsProps<GetListResponse<IPost>>
 > = () => {
-    // highlight-next-line
-    const { initialData } = useLoaderData();
+  // highlight-next-line
+  const { initialData } = useLoaderData();
 
-    const { tableQueryResult } = useTable<IPost>({
-        // highlight-start
-        queryOptions: {
-            initialData,
-        },
-        // highlight-end
-    });
+  const { tableQueryResult } = useTable<IPost>({
+    // highlight-start
+    queryOptions: {
+      initialData,
+    },
+    // highlight-end
+  });
 
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {tableQueryResult?.data?.data.map((post) => (
-                    <tr key={post.id}>
-                        <td>{post.id}</td>
-                        <td>{post.title}</td>
-                        <td>{post.status}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    );
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {tableQueryResult?.data?.data.map((post) => (
+          <tr key={post.id}>
+            <td>{post.id}</td>
+            <td>{post.title}</td>
+            <td>{post.status}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
-    status: string;
+  id: number;
+  title: string;
+  status: string;
 }
 ```
 
@@ -382,12 +378,12 @@ Finally, let's give our `PostList` page as a `resource` to `<Refine>`
 ```tsx title="app/root.tsx"
 import type { MetaFunction } from "@remix-run/node";
 import {
-    Links,
-    LiveReload,
-    Meta,
-    Outlet,
-    Scripts,
-    ScrollRestoration,
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
 } from "@remix-run/react";
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -396,39 +392,39 @@ import routerProvider from "@pankod/refine-remix-router";
 import { PostList } from "./pages/posts/list";
 
 export const meta: MetaFunction = () => ({
-    charset: "utf-8",
-    title: "New Remix + Refine App",
-    viewport: "width=device-width,initial-scale=1",
+  charset: "utf-8",
+  title: "New Remix + Refine App",
+  viewport: "width=device-width,initial-scale=1",
 });
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 export default function App() {
-    return (
-        <html lang="en">
-            <head>
-                <Meta />
-                <Links />
-            </head>
-            <body>
-                <Refine
-                    dataProvider={dataProvider(API_URL)}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: PostList,
-                        },
-                    ]}
-                >
-                    <Outlet />
-                </Refine>
-                <ScrollRestoration />
-                <Scripts />
-                <LiveReload />
-            </body>
-        </html>
-    );
+  return (
+    <html lang="en">
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <Refine
+          dataProvider={dataProvider(API_URL)}
+          routerProvider={routerProvider}
+          resources={[
+            {
+              name: "posts",
+              list: PostList,
+            },
+          ]}
+        >
+          <Outlet />
+        </Refine>
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+      </body>
+    </html>
+  );
 }
 ```
 
@@ -447,53 +443,53 @@ First, let's create our `AuthProvider`. For more information on `AuthProvider`, 
 import { AuthProvider } from "@pankod/refine-core";
 
 const mockUsers = [
-    {
-        username: "admin",
-        roles: ["admin"],
-    },
-    {
-        username: "editor",
-        roles: ["editor"],
-    },
+  {
+    username: "admin",
+    roles: ["admin"],
+  },
+  {
+    username: "editor",
+    roles: ["editor"],
+  },
 ];
 
 export const authProvider: AuthProvider = {
-    login: ({ username, password, remember }) => {
-        // Suppose we actually send a request to the back end here.
-        const user = mockUsers.find((item) => item.username === username);
+  login: ({ username, password, remember }) => {
+    // Suppose we actually send a request to the back end here.
+    const user = mockUsers.find((item) => item.username === username);
 
-        if (user) {
-            return Promise.resolve(user);
-        }
+    if (user) {
+      return Promise.resolve(user);
+    }
 
-        return Promise.reject();
-    },
-    logout: () => {
-        return Promise.resolve("/logout");
-    },
-    checkError: (error) => {
-        if (error && error.statusCode === 401) {
-            return Promise.reject();
-        }
+    return Promise.reject();
+  },
+  logout: () => {
+    return Promise.resolve("/logout");
+  },
+  checkError: (error) => {
+    if (error && error.statusCode === 401) {
+      return Promise.reject();
+    }
 
-        return Promise.resolve();
-    },
-    checkAuth: async ({ request, storage }) => {
-        const session = await storage.getSession(request.headers.get("Cookie"));
+    return Promise.resolve();
+  },
+  checkAuth: async ({ request, storage }) => {
+    const session = await storage.getSession(request.headers.get("Cookie"));
 
-        const user = session.get("user");
+    const user = session.get("user");
 
-        if (!user) {
-            return Promise.reject();
-        }
-        return Promise.resolve();
-    },
-    getPermissions: async () => {
-        return Promise.resolve();
-    },
-    getUserIdentity: async () => {
-        return Promise.resolve();
-    },
+    if (!user) {
+      return Promise.reject();
+    }
+    return Promise.resolve();
+  },
+  getPermissions: async () => {
+    return Promise.resolve();
+  },
+  getUserIdentity: async () => {
+    return Promise.resolve();
+  },
 };
 ```
 
@@ -504,72 +500,72 @@ import { createCookieSessionStorage, redirect } from "@remix-run/node";
 import { authProvider } from "./authProvider";
 
 type LoginForm = {
-    username: string;
-    password: string;
+  username: string;
+  password: string;
 };
 
 // normally you want this to be env variable
 const sessionSecret = "SUPER_SECRET_SESSION"; //process.env.SESSION_SECRET;
 if (!sessionSecret) {
-    throw new Error("SESSION_SECRET must be set");
+  throw new Error("SESSION_SECRET must be set");
 }
 
 const storage = createCookieSessionStorage({
-    cookie: {
-        name: "RJ_session",
-        // normally you want this to be `secure: true`
-        // but that doesn't work on localhost for Safari
-        // https://web.dev/when-to-use-local-https/
-        secure: process.env.NODE_ENV === "production",
-        secrets: [sessionSecret],
-        sameSite: "lax",
-        path: "/",
-        maxAge: 60 * 60 * 24 * 30,
-        httpOnly: true,
-    },
+  cookie: {
+    name: "RJ_session",
+    // normally you want this to be `secure: true`
+    // but that doesn't work on localhost for Safari
+    // https://web.dev/when-to-use-local-https/
+    secure: process.env.NODE_ENV === "production",
+    secrets: [sessionSecret],
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 30,
+    httpOnly: true,
+  },
 });
 
 export async function login({ username, password }: LoginForm) {
-    try {
-        const user = await authProvider.login({ username, password });
-        if (user) {
-            return { user };
-        }
-    } catch (error) {
-        return error;
+  try {
+    const user = await authProvider.login({ username, password });
+    if (user) {
+      return { user };
     }
+  } catch (error) {
+    return error;
+  }
 }
 
 export async function requireUserId(
-    request: Request,
-    redirectTo: string = new URL(request.url).pathname,
+  request: Request,
+  redirectTo: string = new URL(request.url).pathname,
 ) {
-    try {
-        const user = await authProvider.checkAuth?.({ request, storage });
-        return user;
-    } catch (error) {
-        const searchParams = new URLSearchParams([["to", redirectTo]]);
-        throw redirect(`/login?${searchParams}`);
-    }
+  try {
+    const user = await authProvider.checkAuth?.({ request, storage });
+    return user;
+  } catch (error) {
+    const searchParams = new URLSearchParams([["to", redirectTo]]);
+    throw redirect(`/login?${searchParams}`);
+  }
 }
 
 export async function createUserSession(user: object, redirectTo: string) {
-    const session = await storage.getSession();
-    session.set("user", { ...user });
-    return redirect(redirectTo, {
-        headers: {
-            "Set-Cookie": await storage.commitSession(session),
-        },
-    });
+  const session = await storage.getSession();
+  session.set("user", { ...user });
+  return redirect(redirectTo, {
+    headers: {
+      "Set-Cookie": await storage.commitSession(session),
+    },
+  });
 }
 
 export async function logout(request: Request) {
-    const session = await storage.getSession(request.headers.get("Cookie"));
-    return redirect("/login", {
-        headers: {
-            "Set-Cookie": await storage.destroySession(session),
-        },
-    });
+  const session = await storage.getSession(request.headers.get("Cookie"));
+  return redirect("/login", {
+    headers: {
+      "Set-Cookie": await storage.destroySession(session),
+    },
+  });
 }
 ```
 
@@ -586,87 +582,72 @@ import { ActionFunction } from "@remix-run/node";
 import { useSearchParams } from "@remix-run/react";
 
 export interface ILoginForm {
-    username: string;
-    password: string;
+  username: string;
+  password: string;
 }
 
 const LoginPage: React.FC = () => {
-    const translate = useTranslate();
-    const [searchParams] = useSearchParams();
+  const translate = useTranslate();
+  const [searchParams] = useSearchParams();
 
-    return (
-        <>
-            <h1>{translate("pages.login.title", "Sign in your account")}</h1>
-            <form method="post">
+  return (
+    <>
+      <h1>{translate("pages.login.title", "Sign in your account")}</h1>
+      <form method="post">
+        <input
+          type="hidden"
+          name="redirectTo"
+          value={searchParams.get("to") ?? undefined}
+        />
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                {translate("pages.login.username", undefined, "username")}:
+              </td>
+              <td>
                 <input
-                    type="hidden"
-                    name="redirectTo"
-                    value={searchParams.get("to") ?? undefined}
+                  name="username"
+                  type="text"
+                  size={20}
+                  autoCorrect="off"
+                  spellCheck={false}
+                  autoCapitalize="off"
+                  autoFocus
+                  required
                 />
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                {translate(
-                                    "pages.login.username",
-                                    undefined,
-                                    "username",
-                                )}
-                                :
-                            </td>
-                            <td>
-                                <input
-                                    name="username"
-                                    type="text"
-                                    size={20}
-                                    autoCorrect="off"
-                                    spellCheck={false}
-                                    autoCapitalize="off"
-                                    autoFocus
-                                    required
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                {translate(
-                                    "pages.login.password",
-                                    undefined,
-                                    "password",
-                                )}
-                                :
-                            </td>
-                            <td>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    required
-                                    size={20}
-                                />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br />
-                <input type="submit" value="login" />
-            </form>
-        </>
-    );
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {translate("pages.login.password", undefined, "password")}:
+              </td>
+              <td>
+                <input type="password" name="password" required size={20} />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <input type="submit" value="login" />
+      </form>
+    </>
+  );
 };
 
 export const action: ActionFunction = async ({ request }) => {
-    const form = await request.formData();
-    const username = form.get("username") as string;
-    const password = form.get("password") as string;
-    const redirectTo = form.get("redirectTo") || "/";
-    // highlight-start
-    const user = await login({ username, password });
-    if (!user) {
-        return null;
-    }
+  const form = await request.formData();
+  const username = form.get("username") as string;
+  const password = form.get("password") as string;
+  const redirectTo = form.get("redirectTo") || "/";
+  // highlight-start
+  const user = await login({ username, password });
+  if (!user) {
+    return null;
+  }
 
-    return createUserSession(user as any, redirectTo as string);
-    // highlight-end
+  return createUserSession(user as any, redirectTo as string);
+  // highlight-end
 };
 
 export default LoginPage;
@@ -686,10 +667,10 @@ import { json, LoaderFunction } from "@remix-run/node";
 import { requireUserId } from "~/session.server";
 
 export const loader: LoaderFunction = async ({ params, request, context }) => {
-    //highlight-next-line
-    await requireUserId(request);
+  //highlight-next-line
+  await requireUserId(request);
 
-    return json({});
+  return json({});
 };
 ```
 
@@ -701,7 +682,7 @@ import type { LoaderFunction } from "@remix-run/node";
 import { logout } from "~/session.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
-    return await logout(request);
+  return await logout(request);
 };
 ```
 
@@ -726,71 +707,71 @@ import * as cookie from "cookie";
 // highlight-end
 
 const mockUsers = [
-    {
-        username: "admin",
-        roles: ["admin"],
-    },
-    {
-        username: "editor",
-        roles: ["editor"],
-    },
+  {
+    username: "admin",
+    roles: ["admin"],
+  },
+  {
+    username: "editor",
+    roles: ["editor"],
+  },
 ];
 
 // highlight-next-line
 const COOKIE_NAME = "user";
 
 export const authProvider: AuthProvider = {
-    login: ({ username, password, remember }) => {
-        // Suppose we actually send a request to the back end here.
-        const user = mockUsers.find((item) => item.username === username);
+  login: ({ username, password, remember }) => {
+    // Suppose we actually send a request to the back end here.
+    const user = mockUsers.find((item) => item.username === username);
 
-        if (user) {
-            // highlight-next-line
-            Cookies.set(COOKIE_NAME, JSON.stringify(user));
-            return Promise.resolve();
-        }
+    if (user) {
+      // highlight-next-line
+      Cookies.set(COOKIE_NAME, JSON.stringify(user));
+      return Promise.resolve();
+    }
 
-        return Promise.reject();
-    },
-    logout: () => {
-        // highlight-next-line
-        Cookies.remove(COOKIE_NAME);
+    return Promise.reject();
+  },
+  logout: () => {
+    // highlight-next-line
+    Cookies.remove(COOKIE_NAME);
 
-        return Promise.resolve();
-    },
-    checkError: (error) => {
-        if (error && error.statusCode === 401) {
-            return Promise.reject();
-        }
+    return Promise.resolve();
+  },
+  checkError: (error) => {
+    if (error && error.statusCode === 401) {
+      return Promise.reject();
+    }
 
-        return Promise.resolve();
-    },
-    checkAuth: async (context) => {
-        // highlight-start
-        let user = undefined;
-        if (context) {
-            // for SSR
-            const { request } = context;
-            const parsedCookie = cookie.parse(request.headers.get("Cookie"));
-            user = parsedCookie[COOKIE_NAME];
-        } else {
-            // for CSR
-            const parsedCookie = Cookies.get(COOKIE_NAME);
-            user = parsedCookie ? JSON.parse(parsedCookie) : undefined;
-        }
-        // highlight-end
+    return Promise.resolve();
+  },
+  checkAuth: async (context) => {
+    // highlight-start
+    let user = undefined;
+    if (context) {
+      // for SSR
+      const { request } = context;
+      const parsedCookie = cookie.parse(request.headers.get("Cookie"));
+      user = parsedCookie[COOKIE_NAME];
+    } else {
+      // for CSR
+      const parsedCookie = Cookies.get(COOKIE_NAME);
+      user = parsedCookie ? JSON.parse(parsedCookie) : undefined;
+    }
+    // highlight-end
 
-        if (!user) {
-            return Promise.reject();
-        }
-        return Promise.resolve();
-    },
-    getPermissions: async () => {
-        return Promise.resolve();
-    },
-    getUserIdentity: async () => {
-        return Promise.resolve();
-    },
+    if (!user) {
+      return Promise.reject();
+    }
+    return Promise.resolve();
+  },
+  getPermissions: async () => {
+    return Promise.resolve();
+  },
+  getUserIdentity: async () => {
+    return Promise.resolve();
+  },
 };
 ```
 
@@ -807,17 +788,17 @@ import { checkAuthentication } from "@pankod/refine-remix-router";
 export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
 
 export const loader: LoaderFunction = async ({ params, request, context }) => {
-    //highlight-next-line
-    await checkAuthentication(authProvider, request);
-    return null;
+  //highlight-next-line
+  await checkAuthentication(authProvider, request);
+  return null;
 };
 ```
 
 You can also add the authentication check to the routes below
 
--   `app/routes/$resource/index.tsx`
--   `app/routes/$resource/$action/index.tsx`
--   `app/routes/$resource/$action/$id/index.tsx`
+- `app/routes/$resource/index.tsx`
+- `app/routes/$resource/$action/index.tsx`
+- `app/routes/$resource/$action/$id/index.tsx`
 
 ## `syncWithLocation` and Query Parameters in SSR
 
@@ -833,28 +814,28 @@ export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 export const loader: LoaderFunction = async ({ params, request }) => {
-    const { resource } = params;
-    const url = new URL(request.url);
+  const { resource } = params;
+  const url = new URL(request.url);
 
-    // highligt-next-line
-    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-        parseTableParams(url.search);
+  // highligt-next-line
+  const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+    parseTableParams(url.search);
 
-    try {
-        const data = await dataProvider(API_URL).getList({
-            resource: resource as string,
-            filters: parsedFilters,
-            pagination: {
-                current: parsedCurrent || 1,
-                pageSize: parsedPageSize || 10,
-            },
-            sort: parsedSorter,
-        });
+  try {
+    const data = await dataProvider(API_URL).getList({
+      resource: resource as string,
+      filters: parsedFilters,
+      pagination: {
+        current: parsedCurrent || 1,
+        pageSize: parsedPageSize || 10,
+      },
+      sort: parsedSorter,
+    });
 
-        return json({ initialData: data });
-    } catch (error) {
-        return json({});
-    }
+    return json({ initialData: data });
+  } catch (error) {
+    return json({});
+  }
 };
 ```
 
@@ -862,20 +843,20 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 ## Examples
 
--   [Ant Design](https://ant.design/) CRUD app example ([source code](https://github.com/refinedev/refine/tree/v3/examples/remix/antd))
--   Headless CRUD app example ([source code](https://github.com/refinedev/refine/tree/v3/examples/remix/headless))
+- [Ant Design](https://ant.design/) CRUD app example ([source code](https://github.com/refinedev/refine/tree/v3/examples/remix/antd))
+- Headless CRUD app example ([source code](https://github.com/refinedev/refine/tree/v3/examples/remix/headless))
 
 [remix]: https://remix.run/
 [remixrouter]: https://www.npmjs.com/package/@pankod/remix-router
 [routerprovider]: /api-reference/core/providers/router-provider.md
 [refine]: /api-reference/core/components/refine-config.md
 [remixroutes]: https://remix.run/docs/en/v1/api/conventions#routes
-[usetable]: /docs/api-reference/core/hooks/useTable
+[usetable]: /docs/3.xx.xx/api-reference/core/hooks/useTable
 [reactqueryssr]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [reactquery]: https://react-query.tanstack.com/
-[getlist]: /docs/api-reference/core/providers/data-provider/#getlist-
+[getlist]: /docs/3.xx.xx/api-reference/core/providers/data-provider/#getlist-
 [dataprovider]: /api-reference/core/providers/data-provider.md
-[usetable]: /docs/api-reference/core/hooks/useTable
+[usetable]: /docs/3.xx.xx/api-reference/core/hooks/useTable
 [interfaces]: /api-reference/core/interfaces.md/#crudfilters
 [loaderfunction]: https://remix.run/docs/en/v1/api/conventions#loader
 [jokesapp]: https://remix.run/docs/en/v1/tutorials/jokes#authentication

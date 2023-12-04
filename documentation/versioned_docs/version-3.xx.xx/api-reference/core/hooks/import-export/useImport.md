@@ -16,14 +16,14 @@ Here is a basic usage example of `useImport` hook:
 import { useImport } from "@pankod/refine-core";
 
 interface IPostFile {
-    title: string;
-    categoryId: string;
+  title: string;
+  categoryId: string;
 }
 
 export const PostList: React.FC = () => {
-    const { inputProps } = useImport<IPostFile>();
+  const { inputProps } = useImport<IPostFile>();
 
-    return <input {...inputProps} />;
+  return <input {...inputProps} />;
 };
 ```
 
@@ -37,7 +37,7 @@ Determines which resource is passed to the `create` or `createMany` method of yo
 
 ```ts
 useImport({
-    resourceName: "posts",
+  resourceName: "posts",
 });
 ```
 
@@ -47,12 +47,12 @@ If you want to map the data before sending it to a data provider method, you can
 
 ```ts
 useImport({
-    mapData: (data) => ({
-        ...data,
-        category: {
-            id: data.categoryId,
-        },
-    }),
+  mapData: (data) => ({
+    ...data,
+    category: {
+      id: data.categoryId,
+    },
+  }),
 });
 ```
 
@@ -62,9 +62,9 @@ You can pass any Papa Parse [options](https://www.papaparse.com/docs#config) to 
 
 ```ts
 useImport({
-    paparseOptions: {
-        header: true,
-    },
+  paparseOptions: {
+    header: true,
+  },
 });
 ```
 
@@ -76,7 +76,7 @@ If you want to send the data in batches, you can use the `batchSize` property. W
 
 ```ts
 useImport({
-    batchSize: 1,
+  batchSize: 1,
 });
 ```
 
@@ -86,17 +86,17 @@ If you want to do something after the import is finished, you can use the `onFin
 
 ```ts
 useImport({
-    onFinish: (result) => {
-        // success requests response
-        result.succeeded.forEach((item) => {
-            console.log(item);
-        });
+  onFinish: (result) => {
+    // success requests response
+    result.succeeded.forEach((item) => {
+      console.log(item);
+    });
 
-        // failed requests response
-        result.errored.forEach((item) => {
-            console.log(item);
-        });
-    },
+    // failed requests response
+    result.errored.forEach((item) => {
+      console.log(item);
+    });
+  },
 });
 ```
 
@@ -106,9 +106,9 @@ If you want to send additional data to the `create` or `createMany` method of yo
 
 ```ts
 useImport({
-    metaData: {
-        foo: "bar",
-    },
+  metaData: {
+    foo: "bar",
+  },
 });
 ```
 
@@ -118,10 +118,10 @@ A callback function that is called when the import progress changes. It returns 
 
 ```ts
 useImport({
-    onProgress: ({ totalAmount, processedAmount }) => {
-        // progress percentage
-        console.log((processedAmount / totalAmount) * 100);
-    },
+  onProgress: ({ totalAmount, processedAmount }) => {
+    // progress percentage
+    console.log((processedAmount / totalAmount) * 100);
+  },
 });
 ```
 
@@ -131,7 +131,7 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 
 ```tsx
 useImport({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -167,16 +167,16 @@ It handles the file change event. If the file exists, it will call the [`handleC
 const { handleChange } = useImport();
 
 return (
-    <input
-        type="file"
-        onChange={(event) => {
-            if (event.target.files) {
-                handleChange({
-                    file: event.target.files[0],
-                });
-            }
-        }}
-    />
+  <input
+    type="file"
+    onChange={(event) => {
+      if (event.target.files) {
+        handleChange({
+          file: event.target.files[0],
+        });
+      }
+    }}
+  />
 );
 ```
 
@@ -186,7 +186,7 @@ return (
 
 ### `mutationResult`
 
-Returns the result of the [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useCreateMany`](/docs/api-reference/core/hooks/data/useCreateMany/) hook.
+Returns the result of the [`useCreate`](/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/) or [`useCreateMany`](/docs/3.xx.xx/api-reference/core/hooks/data/useCreateMany/) hook.
 
 ## FAQ
 
@@ -209,27 +209,27 @@ When creating these resources back, we should map it back to our backend API's r
 
 ```ts
 useImport<IPostFile>({
-    mapData: (item) => {
-        return {
-            title: item.title,
-            content: item.content,
-            status: item.status,
-            category: {
-                id: item.categoryId,
-            },
-            user: {
-                id: item.userId,
-            },
-        };
-    },
+  mapData: (item) => {
+    return {
+      title: item.title,
+      content: item.content,
+      status: item.status,
+      category: {
+        id: item.categoryId,
+      },
+      user: {
+        id: item.userId,
+      },
+    };
+  },
 });
 
 interface IPostFile {
-    title: string;
-    status: string;
-    content: string;
-    categoryId: string;
-    userId: string;
+  title: string;
+  status: string;
+  content: string;
+  categoryId: string;
+  userId: string;
 }
 ```
 

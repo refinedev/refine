@@ -2,9 +2,9 @@
 id: add-edit-page
 title: 2. Adding Edit Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/index
-    next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/index
+  next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
 ---
 
 Edit page is the page where you can edit the record. In this tutorial, we will create the edit page for the `blog_posts` resource.
@@ -32,48 +32,46 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
-    RefineSnackbarProvider,
-    notificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
+  ThemeProvider,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MuiInferencer,
-                            show: MuiInferencer,
-                            create: MuiInferencer,
-                            edit: MuiInferencer,
-                        },
-                    ]}
-                />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          Layout={Layout}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          resources={[
+            {
+              name: "blog_posts",
+              list: MuiInferencer,
+              show: MuiInferencer,
+              create: MuiInferencer,
+              edit: MuiInferencer,
+            },
+          ]}
+        />
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);
@@ -85,31 +83,31 @@ Instead of coding the edit page component from scratch, Inferencer created the r
 
 We will go through the edit page components and hooks one by one.
 
--   `<Edit/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button, refresh button etc.
+- `<Edit/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button, refresh button etc.
 
-    [Refer to the `<Edit/>` documentation for more information &#8594](/docs/api-reference/mui/components/basic-views/edit)
+  [Refer to the `<Edit/>` documentation for more information &#8594](/docs/3.xx.xx/api-reference/mui/components/basic-views/edit)
 
--   `useForm` hook, imported from `@pankod/refine-react-hook-form` package, has been developed by using the **React Hook Form** and `useForm` hook imported from `@pankod/refine-core` package.
+- `useForm` hook, imported from `@pankod/refine-react-hook-form` package, has been developed by using the **React Hook Form** and `useForm` hook imported from `@pankod/refine-core` package.
 
-    It provides all the features of the `useForm` hook from `@pankod/refine-core` package as well as the `useForm` hook from **React Hook Form**.
+  It provides all the features of the `useForm` hook from `@pankod/refine-core` package as well as the `useForm` hook from **React Hook Form**.
 
-    It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
+  It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
 
-    When you use `useForm` in the edit page, it automatically fetches the data of the record by using the `id` in the URL, then fills the form with the data. It sends the form data to `dataProvider`'s `update` method when the form is submitted.
+  When you use `useForm` in the edit page, it automatically fetches the data of the record by using the `id` in the URL, then fills the form with the data. It sends the form data to `dataProvider`'s `update` method when the form is submitted.
 
-    [Refer to the **@pankod/refine-react-hook-form** `useForm` documentation for more information &#8594](/docs/packages/documentation/react-hook-form/useForm/)
+  [Refer to the **@pankod/refine-react-hook-form** `useForm` documentation for more information &#8594](/docs/3.xx.xx/packages/documentation/react-hook-form/useForm/)
 
-    [Refer to the **React Hook Form** documentation for more information &#8594](https://react-hook-form.com/)
+  [Refer to the **React Hook Form** documentation for more information &#8594](https://react-hook-form.com/)
 
--   All other components provided by **Material UI** are used to display the form fields.
+- All other components provided by **Material UI** are used to display the form fields.
 
-    [Refer to the **Material UI** documentation for more information &#8594](https://mui.com/material-ui/getting-started/overview/)
+  [Refer to the **Material UI** documentation for more information &#8594](https://mui.com/material-ui/getting-started/overview/)
 
 ### Handling Relationships
 
 In the edit page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the blog post to the category. In this case, we can use the `useAutocomplete` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method. Then, it returns the necessary props for the `<Autocomplete/>` component.
 
-[Refer to the `useAutocomplete` documentation for more information &#8594](/docs/api-reference/mui/hooks/useAutocomplete/)
+[Refer to the `useAutocomplete` documentation for more information &#8594](/docs/3.xx.xx/api-reference/mui/hooks/useAutocomplete/)
 
 [Refer to the **Material UI** `<Autocomplete/>` documentation for more information &#8594](https://mui.com/material-ui/react-autocomplete/)
 
@@ -117,7 +115,7 @@ In the auto-generated edit page code, Inferencer used the `useAutocomplete` hook
 
 ```tsx
 const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -125,8 +123,8 @@ const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
 
 ```tsx
 const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
-    resource: "categories",
-    defaultValue: blogPostsData?.category?.id,
+  resource: "categories",
+  defaultValue: blogPostsData?.category?.id,
 });
 ```
 
@@ -143,15 +141,15 @@ Now that we have created the edit page, we need to add it to the `App.tsx` file.
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
-    RefineSnackbarProvider,
-    notificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
+  ThemeProvider,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -162,34 +160,32 @@ import { BlogPostList } from "pages/blog-posts/list";
 import { BlogPostEdit } from "pages/blog-posts/edit";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: BlogPostList,
-                            //highlight-next-line
-                            edit: BlogPostEdit,
-                            show: MuiInferencer,
-                            create: MuiInferencer,
-                        },
-                    ]}
-                />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          Layout={Layout}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          resources={[
+            {
+              name: "blog_posts",
+              list: BlogPostList,
+              //highlight-next-line
+              edit: BlogPostEdit,
+              show: MuiInferencer,
+              create: MuiInferencer,
+            },
+          ]}
+        />
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 export default App;
 ```

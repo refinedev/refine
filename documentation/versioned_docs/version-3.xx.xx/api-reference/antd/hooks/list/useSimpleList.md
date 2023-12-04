@@ -9,7 +9,7 @@ import SortingLivePreview from "./sorting-live-preview.md";
 import FilteringLivePreview from "./filtering-live-preview.md";
 import SearchLivePreview from "./search-live-preview.md";
 
-By using `useSimpleList`, you can get properties that are compatible with Ant Design [`<List>`](https://ant.design/components/list/) component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useTable`](/docs/api-reference/core/hooks/useTable/) for the fetch.
+By using `useSimpleList`, you can get properties that are compatible with Ant Design [`<List>`](https://ant.design/components/list/) component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useTable`](/docs/3.xx.xx/api-reference/core/hooks/useTable/) for the fetch.
 
 For all the other features, you can refer to the Ant Design [`<List>`](https://ant.design/components/list/) documentation.
 
@@ -36,17 +36,17 @@ const { listProps } = useSimpleList<IProduct>();
 // ...
 
 return (
-    <AntdList
-        {...listProps}
-        renderItem={renderItem}
-        // highlight-start
-        pagination={{
-            ...listProps.pagination,
-            position: "top",
-            size: "small",
-        }}
-        // highlight-end
-    />
+  <AntdList
+    {...listProps}
+    renderItem={renderItem}
+    // highlight-start
+    pagination={{
+      ...listProps.pagination,
+      position: "top",
+      size: "small",
+    }}
+    // highlight-end
+  />
 );
 ```
 
@@ -78,11 +78,11 @@ We can use [`onSearch`](#onsearch) property and [`searchFormProps`](#searchformp
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+> This feature is only available if you use a [Live Provider](/docs/3.xx.xx/api-reference/core/providers/live-provider).
 
 When the `useSimpleList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/providers/live-provider)
 
 ## Properties
 
@@ -94,7 +94,7 @@ The `resource` value is inferred from the current route where the component or t
 
 The use case for overriding the `resource` prop:
 
--   We can list a `category` from the `<ProductList>` page.
+- We can list a `category` from the `<ProductList>` page.
 
 ```tsx
 import React from "react";
@@ -102,31 +102,31 @@ import { HttpError } from "@pankod/refine-core";
 import { useSimpleList } from "@pankod/refine-antd";
 
 interface IProduct {
-    id: number;
-    name: string;
-    description: string;
-    price: string;
+  id: number;
+  name: string;
+  description: string;
+  price: string;
 }
 
 interface ICategory {
-    id: number;
-    name: string;
+  id: number;
+  name: string;
 }
 
 export const ProductList: React.FC = () => {
-    const { tableQueryResult: productsQueryResult } = useSimpleList<
-        IProduct,
-        HttpError
-    >();
+  const { tableQueryResult: productsQueryResult } = useSimpleList<
+    IProduct,
+    HttpError
+  >();
 
-    const { tableQueryResult: categoriesQueryResult } = useSimpleList<
-        ICategory,
-        HttpError
-    >({
-        resource: "categories",
-    });
+  const { tableQueryResult: categoriesQueryResult } = useSimpleList<
+    ICategory,
+    HttpError
+  >({
+    resource: "categories",
+  });
 
-    return <div>{/* ... */}</div>;
+  return <div>{/* ... */}</div>;
 };
 ```
 
@@ -134,7 +134,7 @@ Also, you can give a URL path to the `resource` prop.
 
 ```tsx
 useSimpleList({
-    resource: "categories/subcategory", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory
+  resource: "categories/subcategory", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory
 });
 ```
 
@@ -146,7 +146,7 @@ Sets the initial value of the page index.
 
 ```tsx
 useSimpleList({
-    initialCurrent: 2, // This will cause the list to initially display the data for page 2, rather than the default of page 1
+  initialCurrent: 2, // This will cause the list to initially display the data for page 2, rather than the default of page 1
 });
 ```
 
@@ -158,7 +158,7 @@ Sets the initial value of the page size. By default, the page size is 10.
 
 ```tsx
 useSimpleList({
-    initialPageSize: 20, // This will cause the list to initially display 20 rows per page, rather than the default of 10
+  initialPageSize: 20, // This will cause the list to initially display 20 rows per page, rather than the default of 10
 });
 ```
 
@@ -166,16 +166,16 @@ useSimpleList({
 
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
+[Refer to the `CrudSorting` interface for more information &#8594](/docs/3.xx.xx/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useSimpleList({
-    initialSorter: [
-        {
-            field: "name",
-            order: "asc",
-        },
-    ],
+  initialSorter: [
+    {
+      field: "name",
+      order: "asc",
+    },
+  ],
 });
 ```
 
@@ -183,16 +183,16 @@ useSimpleList({
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
 
-[Refer to the `CrudSorting` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
+[Refer to the `CrudSorting` interface for more information &#8594](/docs/3.xx.xx/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useSimpleList({
-    permanentSorter: [
-        {
-            field: "name",
-            order: "asc",
-        },
-    ],
+  permanentSorter: [
+    {
+      field: "name",
+      order: "asc",
+    },
+  ],
 });
 ```
 
@@ -200,17 +200,17 @@ useSimpleList({
 
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/3.xx.xx/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useSimpleList({
-    initialFilter: [
-        {
-            field: "name",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+  initialFilter: [
+    {
+      field: "name",
+      operator: "contains",
+      value: "Foo",
+    },
+  ],
 });
 ```
 
@@ -218,17 +218,17 @@ useSimpleList({
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/3.xx.xx/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useSimpleList({
-    permanentFilter: [
-        {
-            field: "name",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+  permanentFilter: [
+    {
+      field: "name",
+      operator: "contains",
+      value: "Foo",
+    },
+  ],
 });
 ```
 
@@ -238,15 +238,15 @@ useSimpleList({
 
 The filter behavior can be set to either `"merge"` or `"replace"`.
 
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 useSimpleList({
-    defaultSetFilterBehavior: "replace",
+  defaultSetFilterBehavior: "replace",
 });
 ```
 
@@ -258,7 +258,7 @@ Determines whether to use server-side pagination or not.
 
 ```tsx
 useSimpleList({
-    hasPagination: false,
+  hasPagination: false,
 });
 ```
 
@@ -272,66 +272,66 @@ Also, you can set this value globally on the [`<Refine>`][refine swl] component.
 
 ```tsx
 useSimpleList({
-    syncWithLocation: true,
+  syncWithLocation: true,
 });
 ```
 
 ### `queryOptions`
 
-`useSimpleList` uses [`useTable`](/docs/api-reference/core/hooks/useTable/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useSimpleList` uses [`useTable`](/docs/3.xx.xx/api-reference/core/hooks/useTable/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 useSimpleList({
-    queryOptions: {
-        retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
+  },
 });
 ```
 
 ### `metaData`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`metaData`](/docs/3.xx.xx/api-reference/general-concepts/#metadata) is used following two purposes:
 
--   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+- To pass additional information to data provider methods.
+- Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/3.xx.xx/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useSimpleList({
-    // highlight-start
-    metaData: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  metaData: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  getList: async ({
+    resource,
+    pagination,
+    hasPagination,
+    sort,
+    filters,
+    // highlight-next-line
+    metaData,
+  }) => {
+    // highlight-next-line
+    const headers = metaData?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    getList: async ({
-        resource,
-        pagination,
-        hasPagination,
-        sort,
-        filters,
-        // highlight-next-line
-        metaData,
-    }) => {
-        // highlight-next-line
-        const headers = metaData?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data, headers } = await httpClient.get(`${url}`, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data, headers } = await httpClient.get(`${url}`, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -341,78 +341,78 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 
 ```tsx
 useSimpleList({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+> [`NotificationProvider`](/docs/3.xx.xx/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data is fetched successfully, `useSimpleList` can call the `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx
 useSimpleList({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+> [`NotificationProvider`](/docs/3.xx.xx/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data fetching is failed, `useSimpleList` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useSimpleList({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+> [`LiveProvider`](/docs/3.xx.xx/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check the [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+For more information about live mode, please check the [Live / Realtime](/docs/3.xx.xx/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useSimpleList({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+> [`LiveProvider`](/docs/3.xx.xx/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useSimpleList({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+> [`LiveProvider`](/docs/3.xx.xx/api-reference/core/providers/live-provider/) is required for this prop to work.
 
-Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/3.xx.xx/api-reference/core/providers/live-provider/#subscribe) method.
 
 ### `onSearch`
 
@@ -424,39 +424,39 @@ It's useful when you want to filter the data with multiple fields by using the `
 // ...
 
 const { searchFormProps, listProps } = useSimpleList({
-    onSearch: (values) => {
-        return [
-            {
-                field: "name",
-                operator: "contains",
-                value: values.name,
-            },
-            {
-                field: "description",
-                operator: "contains",
-                value: values.description,
-            },
-        ];
-    },
+  onSearch: (values) => {
+    return [
+      {
+        field: "name",
+        operator: "contains",
+        value: values.name,
+      },
+      {
+        field: "description",
+        operator: "contains",
+        value: values.description,
+      },
+    ];
+  },
 });
 
 // ...
 
 return (
-    <div>
-        <Form {...searchFormProps} layout="inline">
-            <Form.Item name="name">
-                <Input placeholder="Search by name" />
-            </Form.Item>
-            <Form.Item name="description">
-                <Input placeholder="Search by description" />
-            </Form.Item>
-            <Button type="primary" onClick={searchFormProps.form?.submit}>
-                Search
-            </Button>
-        </Form>
-        <AntdList {...listProps} renderItem={renderItem} />
-    </div>
+  <div>
+    <Form {...searchFormProps} layout="inline">
+      <Form.Item name="name">
+        <Input placeholder="Search by name" />
+      </Form.Item>
+      <Form.Item name="description">
+        <Input placeholder="Search by description" />
+      </Form.Item>
+      <Button type="primary" onClick={searchFormProps.form?.submit}>
+        Search
+      </Button>
+    </Form>
+    <AntdList {...listProps} renderItem={renderItem} />
+  </div>
 );
 ```
 
@@ -464,7 +464,7 @@ return (
 
 ### `queryResult`
 
-Returned values from [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
+Returned values from [`useList`](/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 ### `searchFormProps`
 
@@ -477,39 +477,39 @@ It's useful when you want to create a filter form for your `<List>`.
 // ...
 
 const { searchFormProps, listProps } = useSimpleList({
-    onSearch: (values) => {
-        return [
-            {
-                field: "name",
-                operator: "contains",
-                value: values.name,
-            },
-            {
-                field: "description",
-                operator: "contains",
-                value: values.description,
-            },
-        ];
-    },
+  onSearch: (values) => {
+    return [
+      {
+        field: "name",
+        operator: "contains",
+        value: values.name,
+      },
+      {
+        field: "description",
+        operator: "contains",
+        value: values.description,
+      },
+    ];
+  },
 });
 
 // ...
 
 return (
-    <div>
-        <Form {...searchFormProps} layout="inline">
-            <Form.Item name="name">
-                <Input placeholder="Search by name" />
-            </Form.Item>
-            <Form.Item name="description">
-                <Input placeholder="Search by description" />
-            </Form.Item>
-            <Button type="primary" onClick={searchFormProps.form?.submit}>
-                Search
-            </Button>
-        </Form>
-        <AntdList {...listProps} renderItem={renderItem} />
-    </div>
+  <div>
+    <Form {...searchFormProps} layout="inline">
+      <Form.Item name="name">
+        <Input placeholder="Search by name" />
+      </Form.Item>
+      <Form.Item name="description">
+        <Input placeholder="Search by description" />
+      </Form.Item>
+      <Button type="primary" onClick={searchFormProps.form?.submit}>
+        Search
+      </Button>
+    </Form>
+    <AntdList {...listProps} renderItem={renderItem} />
+  </div>
 );
 ```
 
@@ -519,7 +519,7 @@ return (
 
 #### `dataSource`
 
-Contains the data to be displayed in the list. Values fetched with [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
+Contains the data to be displayed in the list. Values fetched with [`useList`](/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 #### `loading`
 

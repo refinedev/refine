@@ -2,9 +2,9 @@
 id: add-edit-page
 title: 2. Adding Edit Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/index
-    next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/index
+  next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
 ---
 
 Edit page is the page where you can edit the record. In this tutorial, we will create the edit page for the `blog_posts` resource.
@@ -32,10 +32,10 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -44,25 +44,25 @@ import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "blog_posts",
+          list: AntdInferencer,
+          show: AntdInferencer,
+          create: AntdInferencer,
+          edit: AntdInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 render(<App />);
@@ -74,19 +74,19 @@ Instead of coding the edit page component from scratch, Inferencer created the r
 
 We will go through the edit page components and hooks one by one.
 
--   `<Edit/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button, refresh button etc.
+- `<Edit/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button, refresh button etc.
 
-    [Refer to the `<Edit/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/edit)
+  [Refer to the `<Edit/>` documentation for more information &#8594](/docs/3.xx.xx/api-reference/antd/components/basic-views/edit)
 
--   `<Form/>` and `<Form.Item/>` are **Ant Design** components that are used to build the form.
+- `<Form/>` and `<Form.Item/>` are **Ant Design** components that are used to build the form.
 
-    [Refer to the **Ant Design** `<Form/>` documentation for more information &#8594](https://ant.design/components/form/)
+  [Refer to the **Ant Design** `<Form/>` documentation for more information &#8594](https://ant.design/components/form/)
 
--   `useForm` is a **refine** hook that provides the necessary props for the form. It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
+- `useForm` is a **refine** hook that provides the necessary props for the form. It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
 
-    When you use `useForm` in the edit page, it automatically fetches the data of the record by using the `id` in the URL, then fills the form with the data. It sends the form data to `dataProvider`'s `update` method when the form is submitted.
+  When you use `useForm` in the edit page, it automatically fetches the data of the record by using the `id` in the URL, then fills the form with the data. It sends the form data to `dataProvider`'s `update` method when the form is submitted.
 
-    [Refer to the `useForm` documentation for more information &#8594](/docs/api-reference/antd/hooks/form/useForm/)
+  [Refer to the `useForm` documentation for more information &#8594](/docs/3.xx.xx/api-reference/antd/hooks/form/useForm/)
 
 ### Handling Relationships
 
@@ -94,7 +94,7 @@ In the edit page, we may need to select a record from another resource.
 
 For example, we may need to select a category from the `categories` resource to assign the blog post to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method. Then, it returns the necessary props for the `<Select/>` component.
 
-[Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
+[Refer to the `useSelect` documentation for more information &#8594](/docs/3.xx.xx/api-reference/antd/hooks/field/useSelect/)
 
 [Refer to the **Ant Design** `<Select/>` documentation for more information &#8594](https://ant.design/components/select)
 
@@ -102,7 +102,7 @@ In the auto-generated edit page code, Inferencer used the `useSelect` hook to se
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -110,8 +110,8 @@ const { selectProps: categorySelectProps } = useSelect({
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect({
-    resource: "categories",
-    defaultValue: blogPostsData?.category?.id,
+  resource: "categories",
+  defaultValue: blogPostsData?.category?.id,
 });
 ```
 
@@ -128,10 +128,10 @@ Now that we have created the edit page, we need to add it to the `App.tsx` file.
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -144,26 +144,26 @@ import { BlogPostEdit } from "pages/blog-posts/edit";
 import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: BlogPostList,
-                    //highlight-next-line
-                    edit: BlogPostEdit,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "blog_posts",
+          list: BlogPostList,
+          //highlight-next-line
+          edit: BlogPostEdit,
+          show: AntdInferencer,
+          create: AntdInferencer,
+        },
+      ]}
+    />
+  );
 };
 export default App;
 ```

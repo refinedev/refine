@@ -39,10 +39,10 @@ The app will have three resources: **posts**, **users**, and **categories** with
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -52,49 +52,49 @@ import "@pankod/refine-antd/dist/reset.css";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
 import {
-    CategoryList,
-    CategoryCreate,
-    CategoryEdit,
-    CategoryShow,
+  CategoryList,
+  CategoryCreate,
+  CategoryEdit,
+  CategoryShow,
 } from "pages/categories";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-                {
-                    name: "users",
-                    list: UserList,
-                    create: UserCreate,
-                    edit: UserEdit,
-                    show: UserShow,
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                    show: CategoryShow,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: PostCreate,
+          edit: PostEdit,
+          show: PostShow,
+          canDelete: true,
+        },
+        {
+          name: "users",
+          list: UserList,
+          create: UserCreate,
+          edit: UserEdit,
+          show: UserShow,
+        },
+        {
+          name: "categories",
+          list: CategoryList,
+          create: CategoryCreate,
+          edit: CategoryEdit,
+          show: CategoryShow,
+        },
+      ]}
+    />
+  );
 };
 
 export default App;
@@ -148,26 +148,22 @@ import { newEnforcer } from "casbin";
 import { model, adapter } from "./accessControl";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            // ...
-            // highlight-start
-            accessControlProvider={{
-                can: async ({ resource, action }) => {
-                    const enforcer = await newEnforcer(model, adapter);
-                    const can = await enforcer.enforce(
-                        "editor",
-                        resource,
-                        action,
-                    );
+  return (
+    <Refine
+      // ...
+      // highlight-start
+      accessControlProvider={{
+        can: async ({ resource, action }) => {
+          const enforcer = await newEnforcer(model, adapter);
+          const can = await enforcer.enforce("editor", resource, action);
 
-                    return Promise.resolve({ can });
-                },
-            }}
-            // highlight-end
-            // ...
-        />
-    );
+          return Promise.resolve({ can });
+        },
+      }}
+      // highlight-end
+      // ...
+    />
+  );
 };
 
 export default App;
@@ -195,10 +191,10 @@ p, editor, categories, list
 `);
 ```
 
--   **admin** will have access to **list** and **create** for every resource
--   **editor** will have access to **list** and **create** for **posts**
--   **editor** won't have any access for **users**
--   **editor** will have only **list** access for **categories**
+- **admin** will have access to **list** and **create** for every resource
+- **editor** will have access to **list** and **create** for **posts**
+- **editor** won't have any access for **users**
+- **editor** will have only **list** access for **categories**
 
 We can demonstrate the effect of different roles by changing the `role` dynamically. Let's implement a switch in the header for selecting either **admin** or **editor** role to see the effect on the app.
 
@@ -208,28 +204,28 @@ We can demonstrate the effect of different roles by changing the `role` dynamica
 import { Header } from "components/header";
 
 const App: React.FC = () => {
-    // highlight-next-line
-    const [role, setRole] = useState("admin");
+  // highlight-next-line
+  const [role, setRole] = useState("admin");
 
-    return (
-        <Refine
-            // ...
-            accessControlProvider={{
-                can: async ({ resource, action }) => {
-                    const enforcer = await newEnforcer(model, adapter);
-                    // highlight-next-line
-                    const can = await enforcer.enforce(role, resource, action);
+  return (
+    <Refine
+      // ...
+      accessControlProvider={{
+        can: async ({ resource, action }) => {
+          const enforcer = await newEnforcer(model, adapter);
+          // highlight-next-line
+          const can = await enforcer.enforce(role, resource, action);
 
-                    return Promise.resolve({
-                        can,
-                    });
-                },
-            }}
-            // highlight-next-line
-            Header={() => <Header role={role} setRole={setRole} />}
-            // ...
-        />
-    );
+          return Promise.resolve({
+            can,
+          });
+        },
+      }}
+      // highlight-next-line
+      Header={() => <Header role={role} setRole={setRole} />}
+      // ...
+    />
+  );
 };
 
 export default App;
@@ -242,30 +238,30 @@ export default App;
 import { AntdLayout, Radio } from "@pankod/refine-antd";
 
 interface HeaderProps {
-    role: string;
-    setRole: React.Dispatch<React.SetStateAction<string>>;
+  role: string;
+  setRole: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
-    return (
-        <AntdLayout.Header
-            style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "48px",
-                backgroundColor: "#FFF",
-            }}
-        >
-            <Radio.Group
-                value={role}
-                onChange={(event) => setRole(event.target.value)}
-            >
-                <Radio.Button value="admin">Admin</Radio.Button>
-                <Radio.Button value="editor">Editor</Radio.Button>
-            </Radio.Group>
-        </AntdLayout.Header>
-    );
+  return (
+    <AntdLayout.Header
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "48px",
+        backgroundColor: "#FFF",
+      }}
+    >
+      <Radio.Group
+        value={role}
+        onChange={(event) => setRole(event.target.value)}
+      >
+        <Radio.Button value="admin">Admin</Radio.Button>
+        <Radio.Button value="editor">Editor</Radio.Button>
+      </Radio.Group>
+    </AntdLayout.Header>
+  );
 };
 ```
 
@@ -302,8 +298,8 @@ p, editor, categories, list
 `);
 ```
 
--   **admin** will have **edit**, **show** and **delete** access for every resource
--   **editor** will have **edit** and **show** access for **posts**
+- **admin** will have **edit**, **show** and **delete** access for every resource
+- **editor** will have **edit** and **show** access for **posts**
 
 :::tip
 `*` is a wildcard. Specific ids can be targeted too. For example If you want **editor** role to have **delete** access for **post** with **id** `5`, you can add this policy:
@@ -322,36 +318,32 @@ We must handle id based access controls in the `can` method. **id** parameter wi
 // ...
 
 const App: React.FC = () => {
-    // ...
+  // ...
 
-    return (
-        <Refine
-            // ...
-            accessControlProvider={{
-                // highlight-start
-                can: async ({ resource, action, params }) => {
-                    const enforcer = await newEnforcer(model, adapter);
-                    if (
-                        action === "delete" ||
-                        action === "edit" ||
-                        action === "show"
-                    ) {
-                        const can = await enforcer.enforce(
-                            role,
-                            `${resource}/${params?.id}`,
-                            action,
-                        );
-                        return Promise.resolve({ can });
-                    }
-                    // highlight-end
+  return (
+    <Refine
+      // ...
+      accessControlProvider={{
+        // highlight-start
+        can: async ({ resource, action, params }) => {
+          const enforcer = await newEnforcer(model, adapter);
+          if (action === "delete" || action === "edit" || action === "show") {
+            const can = await enforcer.enforce(
+              role,
+              `${resource}/${params?.id}`,
+              action,
+            );
+            return Promise.resolve({ can });
+          }
+          // highlight-end
 
-                    const can = await enforcer.enforce(role, resource, action);
-                    return Promise.resolve({ can });
-                },
-            }}
-            // ...
-        />
-    );
+          const can = await enforcer.enforce(role, resource, action);
+          return Promise.resolve({ can });
+        },
+      }}
+      // ...
+    />
+  );
 };
 
 export default App;
@@ -404,8 +396,8 @@ p, editor, categories, list
 `);
 ```
 
--   **admin** have **field** access for every field of **posts**
--   **editor** won't have **field** access for **hit** field of **posts**
+- **admin** have **field** access for every field of **posts**
+- **editor** won't have **field** access for **hit** field of **posts**
 
 Then we must handle the **field** action in the `can` method:
 
@@ -413,45 +405,41 @@ Then we must handle the **field** action in the `can` method:
 // ...
 
 const App: React.FC = () => {
-    // ...
+  // ...
 
-    return (
-        <Refine
-            // ...
-            accessControlProvider={{
-                can: async ({ resource, action, params }) => {
-                    const enforcer = await newEnforcer(model, adapter);
-                    if (
-                        action === "delete" ||
-                        action === "edit" ||
-                        action === "show"
-                    ) {
-                        const can = await enforcer.enforce(
-                            role,
-                            `${resource}/${params?.id}`,
-                            action,
-                        );
-                        return Promise.resolve({ can });
-                    }
+  return (
+    <Refine
+      // ...
+      accessControlProvider={{
+        can: async ({ resource, action, params }) => {
+          const enforcer = await newEnforcer(model, adapter);
+          if (action === "delete" || action === "edit" || action === "show") {
+            const can = await enforcer.enforce(
+              role,
+              `${resource}/${params?.id}`,
+              action,
+            );
+            return Promise.resolve({ can });
+          }
 
-                    // highlight-start
-                    if (action === "field") {
-                        const can = await enforcer.enforce(
-                            role,
-                            `${resource}/${params?.field}`,
-                            action,
-                        );
-                        return Promise.resolve({ can });
-                    }
-                    // highlight-end
+          // highlight-start
+          if (action === "field") {
+            const can = await enforcer.enforce(
+              role,
+              `${resource}/${params?.field}`,
+              action,
+            );
+            return Promise.resolve({ can });
+          }
+          // highlight-end
 
-                    const can = await enforcer.enforce(role, resource, action);
-                    return Promise.resolve({ can });
-                },
-            }}
-            // ...
-        />
-    );
+          const can = await enforcer.enforce(role, resource, action);
+          return Promise.resolve({ can });
+        },
+      }}
+      // ...
+    />
+  );
 };
 
 export default App;
@@ -461,46 +449,43 @@ Then it can be used with [`useCan`](/api-reference/core/hooks/accessControl/useC
 
 ```tsx title="src/pages/posts/list.tsx"
 import {
-    // ...
-    useCan,
+  // ...
+  useCan,
 } from "@pankod/refine-core";
 
 export const PostList: React.FC = () => {
-    // ...
+  // ...
 
-    // highlight-start
-    const { data: canAccess } = useCan({
-        resource: "posts",
-        action: "field",
-        params: { field: "hit" },
-    });
-    // highlight-end
+  // highlight-start
+  const { data: canAccess } = useCan({
+    resource: "posts",
+    action: "field",
+    params: { field: "hit" },
+  });
+  // highlight-end
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                // ... // highlight-start
-                {canAccess?.can && (
-                    <Table.Column
-                        dataIndex="hit"
-                        title="Hit"
-                        render={(value: number) => (
-                            <NumberField
-                                value={value}
-                                options={{ notation: "compact" }}
-                            />
-                        )}
-                    />
-                )}
-                // highlight-end // ...
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        // ... // highlight-start
+        {canAccess?.can && (
+          <Table.Column
+            dataIndex="hit"
+            title="Hit"
+            render={(value: number) => (
+              <NumberField value={value} options={{ notation: "compact" }} />
+            )}
+          />
+        )}
+        // highlight-end // ...
+      </Table>
+    </List>
+  );
 };
 ```
 
 :::tip
-[`<CanAccess />`](/docs/api-reference/core/components/accessControl/can-access) can be used too to check access control in custom places in your app.
+[`<CanAccess />`](/docs/3.xx.xx/api-reference/core/components/accessControl/can-access) can be used too to check access control in custom places in your app.
 :::
 
 <br/>

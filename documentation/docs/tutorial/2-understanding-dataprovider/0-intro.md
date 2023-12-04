@@ -69,7 +69,7 @@ import dataProvider from "@refinedev/simple-rest";
 />;
 ```
 
-> For more information, refer to **refine's** [dataProvider prop component documentation&#8594](/docs/api-reference/core/components/refine-config/#dataprovider)
+> For more information, refer to **refine's** [dataProvider prop component documentation&#8594](/docs/core/refine-component#dataprovider)
 
 ## How are data provider methods used in the app?
 

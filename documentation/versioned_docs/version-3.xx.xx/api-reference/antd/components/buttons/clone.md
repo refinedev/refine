@@ -8,7 +8,7 @@ swizzle: true
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -16,50 +16,50 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live
 // visible-block-start
 import {
-    Table,
-    List,
-    useTable,
-    // highlight-next-line
-    CloneButton,
+  Table,
+  List,
+  useTable,
+  // highlight-next-line
+  CloneButton,
 } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" width="100%" />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    key="actions"
-                    render={(_, record) => (
-                        // highlight-next-line
-                        <CloneButton size="small" recordItemId={record.id} />
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" width="100%" />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          key="actions"
+          render={(_, record) => (
+            // highlight-next-line
+            <CloneButton size="small" recordItemId={record.id} />
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -75,27 +75,27 @@ const { useRouterContext } = RefineCore;
 import { CloneButton } from "@pankod/refine-antd";
 
 const MyCloneComponent = () => {
-    return <CloneButton resourceNameOrRouteName="posts" recordItemId="1" />;
+  return <CloneButton resourceNameOrRouteName="posts" recordItemId="1" />;
 };
 
 // visible-block-end
 
 const ClonedPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                create: ClonedPage,
-            },
-        ]}
-        DashboardPage={MyCloneComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        create: ClonedPage,
+      },
+    ]}
+    DashboardPage={MyCloneComponent}
+  />,
 );
 ```
 
@@ -116,32 +116,30 @@ const { useRouterContext } = RefineCore;
 import { CloneButton } from "@pankod/refine-antd";
 
 const MyCloneComponent = () => {
-    return (
-        <CloneButton resourceNameOrRouteName="categories" recordItemId="1" />
-    );
+  return <CloneButton resourceNameOrRouteName="categories" recordItemId="1" />;
 };
 
 // visible-block-end
 
 const ClonedPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                create: ClonedPage,
-            },
-        ]}
-        DashboardPage={MyCloneComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        create: ClonedPage,
+      },
+    ]}
+    DashboardPage={MyCloneComponent}
+  />,
 );
 ```
 
@@ -158,32 +156,32 @@ const { useRouterContext } = RefineCore;
 import { CloneButton } from "@pankod/refine-antd";
 
 const MyCloneComponent = () => {
-    return (
-        <CloneButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <CloneButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 const ClonedPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyCloneComponent,
-                create: ClonedPage,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyCloneComponent,
+        create: ClonedPage,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -195,14 +193,14 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CloneButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
-    return (
-        <CloneButton
-            accessControl={{
-                enabled: true,
-                hideIfUnauthorized: true
-            }}
-        />
-    );
+  return (
+    <CloneButton
+      accessControl={{
+        enabled: true,
+        hideIfUnauthorized: true,
+      }}
+    />
+  );
 };
 ```
 

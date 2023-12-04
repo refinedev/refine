@@ -21,13 +21,13 @@ Here is a basic usage example of `useImport` hook:
 import { useImport, ImportButton } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-    const importProps = useImport();
+  const importProps = useImport();
 
-    return <ImportButton {...importProps}>Import</ImportButton>;
+  return <ImportButton {...importProps}>Import</ImportButton>;
 };
 ```
 
-[Refer to the `<ImportButton>` interface for more information &#8594](/docs/api-reference/antd/components/buttons/import-button/)
+[Refer to the `<ImportButton>` interface for more information &#8594](/docs/3.xx.xx/api-reference/antd/components/buttons/import-button/)
 
 Also, you can use the `inputProps` and `uploadProps` properties without the `<ImportButton>` component for more customization:
 
@@ -35,13 +35,13 @@ Also, you can use the `inputProps` and `uploadProps` properties without the `<Im
 import { useImport, Upload, Button } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-    const { buttonProps, uploadProps } = useImport();
+  const { buttonProps, uploadProps } = useImport();
 
-    return (
-        <Upload {...uploadProps}>
-            <Button {...buttonProps}>Import</Button>
-        </Upload>
-    );
+  return (
+    <Upload {...uploadProps}>
+      <Button {...buttonProps}>Import</Button>
+    </Upload>
+  );
 };
 ```
 
@@ -55,7 +55,7 @@ Determines which resource is passed to the `create` or `createMany` method of yo
 
 ```ts
 useImport({
-    resourceName: "posts",
+  resourceName: "posts",
 });
 ```
 
@@ -65,12 +65,12 @@ If you want to map the data before sending it to a data provider method, you can
 
 ```ts
 useImport({
-    mapData: (data) => ({
-        ...data,
-        category: {
-            id: data.categoryId,
-        },
-    }),
+  mapData: (data) => ({
+    ...data,
+    category: {
+      id: data.categoryId,
+    },
+  }),
 });
 ```
 
@@ -80,9 +80,9 @@ You can pass any Papa Parse [options](https://www.papaparse.com/docs#config) to 
 
 ```ts
 useImport({
-    paparseOptions: {
-        header: true,
-    },
+  paparseOptions: {
+    header: true,
+  },
 });
 ```
 
@@ -94,7 +94,7 @@ If you want to send the data in batches, you can use the `batchSize` property. W
 
 ```ts
 useImport({
-    batchSize: 1,
+  batchSize: 1,
 });
 ```
 
@@ -104,17 +104,17 @@ If you want to do something after the import is finished, you can use the `onFin
 
 ```ts
 useImport({
-    onFinish: (result) => {
-        // success requests response
-        result.succeeded.forEach((item) => {
-            console.log(item);
-        });
+  onFinish: (result) => {
+    // success requests response
+    result.succeeded.forEach((item) => {
+      console.log(item);
+    });
 
-        // failed requests response
-        result.errored.forEach((item) => {
-            console.log(item);
-        });
-    },
+    // failed requests response
+    result.errored.forEach((item) => {
+      console.log(item);
+    });
+  },
 });
 ```
 
@@ -124,9 +124,9 @@ If you want to send additional data to the `create` or `createMany` method of yo
 
 ```ts
 useImport({
-    metaData: {
-        foo: "bar",
-    },
+  metaData: {
+    foo: "bar",
+  },
 });
 ```
 
@@ -136,10 +136,10 @@ A callback function that is called when the import progress changes. It returns 
 
 ```ts
 useImport({
-    onProgress: ({ totalAmount, processedAmount }) => {
-        // progress percentage
-        console.log((processedAmount / totalAmount) * 100);
-    },
+  onProgress: ({ totalAmount, processedAmount }) => {
+    // progress percentage
+    console.log((processedAmount / totalAmount) * 100);
+  },
 });
 ```
 
@@ -151,7 +151,7 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 
 ```tsx
 useImport({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -165,9 +165,9 @@ Button properties that are compatible with Ant Design [`<Button>`](https://ant.d
 import { useImport, Button } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-    const { buttonProps } = useImport();
+  const { buttonProps } = useImport();
 
-    return <Button {...buttonProps}>Import</Button>;
+  return <Button {...buttonProps}>Import</Button>;
 };
 ```
 
@@ -187,9 +187,9 @@ Upload properties that are compatible with Ant Design [`<Upload>`](https://ant.d
 import { useImport, Upload } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-    const { uploadProps } = useImport();
+  const { uploadProps } = useImport();
 
-    return <Upload {...uploadProps}>Import</Upload>;
+  return <Upload {...uploadProps}>Import</Upload>;
 };
 ```
 
@@ -215,7 +215,7 @@ It is a boolean value that indicates whether the import is in progress.
 
 ### `mutationResult`
 
-Result of the [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useCreateMany`](/docs/api-reference/core/hooks/data/useCreateMany/) method of your data provider.
+Result of the [`useCreate`](/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/) or [`useCreateMany`](/docs/3.xx.xx/api-reference/core/hooks/data/useCreateMany/) method of your data provider.
 
 ## FAQ
 
@@ -238,27 +238,27 @@ When creating these resources back, we should map it back to our backend API's r
 
 ```ts
 useImport<IPostFile>({
-    mapData: (item) => {
-        return {
-            title: item.title,
-            content: item.content,
-            status: item.status,
-            category: {
-                id: item.categoryId,
-            },
-            user: {
-                id: item.userId,
-            },
-        };
-    },
+  mapData: (item) => {
+    return {
+      title: item.title,
+      content: item.content,
+      status: item.status,
+      category: {
+        id: item.categoryId,
+      },
+      user: {
+        id: item.userId,
+      },
+    };
+  },
 });
 
 interface IPostFile {
-    title: string;
-    status: string;
-    content: string;
-    categoryId: string;
-    userId: string;
+  title: string;
+  status: string;
+  content: string;
+  categoryId: string;
+  userId: string;
 }
 ```
 
@@ -291,8 +291,8 @@ With this code, the parsed data will be mapped to conform to the API requirement
 [button]: https://ant.design/components/button/
 [upload]: https://ant.design/components/upload/
 [importbutton]: /api-reference/antd/components/buttons/import.md
-[usecreate]: /docs/api-reference/core/hooks/data/useCreate/
-[usecreatemany]: /docs/api-reference/core/hooks/data/useCreateMany/
+[usecreate]: /docs/3.xx.xx/api-reference/core/hooks/data/useCreate/
+[usecreatemany]: /docs/3.xx.xx/api-reference/core/hooks/data/useCreateMany/
 [dataprovider]: /api-reference/core/providers/data-provider.md
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
@@ -300,4 +300,4 @@ With this code, the parsed data will be mapped to conform to the API requirement
 [usemutation]: https://react-query.tanstack.com/reference/useMutation
 [number.max_safe_integer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
 [successerrornotification]: /api-reference/core/interfaces.md#successerrornotification
-[use-import-core]: /docs/api-reference/core/hooks/import-export/useImport/
+[use-import-core]: /docs/3.xx.xx/api-reference/core/hooks/import-export/useImport/
