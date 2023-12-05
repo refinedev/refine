@@ -1,21 +1,23 @@
 import { IResourceComponentsProps, HttpError } from "@refinedev/core";
 import {
-    useSimpleList,
     List,
     useDrawerForm,
     CreateButton,
+    useTable,
+    TagField,
+    EditButton,
+    DeleteButton,
 } from "@refinedev/antd";
-import { List as AntdList } from "antd";
+import { Space, Table } from "antd";
 
-import { IClient } from "../../interfaces";
-import { ClientItem, CreateClient, EditClient } from "../../components/client";
+import { IClient, IContact } from "../../interfaces";
+import { CreateClient, EditClient } from "../../components/client";
 
 export const ClientList: React.FC<IResourceComponentsProps> = () => {
-    const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
-        { listProps } = useSimpleList<IClient>({
-            sorters: { initial: [{ field: "id", order: "desc" }] },
-            meta: { populate: ["contacts"] },
-        });
+    const { tableProps } = useTable<IClient>({
+        sorters: { initial: [{ field: "id", order: "desc" }] },
+        meta: { populate: ["contacts"] },
+    });
 
     const {
         drawerProps: createDrawerProps,
@@ -46,26 +48,62 @@ export const ClientList: React.FC<IResourceComponentsProps> = () => {
                     extra: <CreateButton onClick={() => createShow()} />,
                 }}
             >
-                <AntdList
-                    grid={{ gutter: 24, xs: 1 }}
-                    {...listProps}
-                    renderItem={(item) => (
-                        <AntdList.Item>
-                            <ClientItem item={item} editShow={editShow} />
-                        </AntdList.Item>
-                    )}
-                />
+                <Table {...tableProps} rowKey="id">
+                    <Table.Column dataIndex="id" title="ID" sorter />
+                    <Table.Column<IClient>
+                        dataIndex="name"
+                        title="Name"
+                        sorter
+                    />
+                    <Table.Column<IContact[]>
+                        dataIndex={["contacts"]}
+                        title="Contacts"
+                        render={(values) =>
+                            values.map((item: any) => (
+                                <TagField
+                                    key={item.id}
+                                    color={"#673ab7"}
+                                    value={`${item.first_name} ${item.last_name}`}
+                                />
+                            ))
+                        }
+                    />
+                    <Table.Column<IClient>
+                        title="Actions"
+                        dataIndex="actions"
+                        render={(_, record) => (
+                            <Space>
+                                <EditButton
+                                    hideText
+                                    size="small"
+                                    onClick={() => editShow(record.id)}
+                                />
+                                <DeleteButton
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                    mutationMode="undoable"
+                                />
+                            </Space>
+                        )}
+                    />
+                </Table>
             </List>
-            <CreateClient
-                drawerProps={createDrawerProps}
-                formProps={createFormProps}
-                saveButtonProps={createSaveButtonProps}
-            />
-            <EditClient
-                drawerProps={editDrawerProps}
-                formProps={editFormProps}
-                saveButtonProps={editSaveButtonProps}
-            />
+            {createDrawerProps.open ? (
+                <CreateClient
+                    drawerProps={createDrawerProps}
+                    formProps={createFormProps}
+                    saveButtonProps={createSaveButtonProps}
+                />
+            ) : null}
+
+            {editDrawerProps.open ? (
+                <EditClient
+                    drawerProps={editDrawerProps}
+                    formProps={editFormProps}
+                    saveButtonProps={editSaveButtonProps}
+                />
+            ) : null}
         </>
     );
 };

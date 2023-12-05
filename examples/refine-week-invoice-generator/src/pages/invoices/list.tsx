@@ -39,7 +39,7 @@ export const InvoiceList: React.FC = () => {
         <>
             <List>
                 <Table {...tableProps} rowKey="id">
-                    <Table.Column key={"asd"} dataIndex="id" title="ID" />
+                    <Table.Column dataIndex="id" title="ID" />
                     <Table.Column<IInvoice>
                         dataIndex="name"
                         title="Invoice Name"

@@ -9,11 +9,11 @@ import {
     Grid,
     Select,
 } from "antd";
-import { IContact } from "../../interfaces";
+import { IClient, IContact } from "../../interfaces";
 
 type EditClientProps = {
     drawerProps: DrawerProps;
-    formProps: FormProps;
+    formProps: FormProps<IClient>;
     saveButtonProps: ButtonProps;
 };
 
@@ -24,9 +24,14 @@ export const EditClient: React.FC<EditClientProps> = ({
 }) => {
     const breakpoint = Grid.useBreakpoint();
 
+    const contactIds = formProps.initialValues?.contacts.map(
+        (c: IClient) => c.id,
+    );
+
     const { selectProps } = useSelect<IContact>({
         resource: "contacts",
         optionLabel: "first_name",
+        defaultValue: contactIds,
         pagination: {
             mode: "server",
         },
@@ -52,12 +57,7 @@ export const EditClient: React.FC<EditClientProps> = ({
                     initialValues={{
                         isActive: true,
                         ...formProps.initialValues,
-                        contacts: formProps.initialValues?.contacts?.map(
-                            (c: IContact) => ({
-                                label: c.first_name,
-                                value: c.id,
-                            }),
-                        ),
+                        contacts: contactIds,
                     }}
                 >
                     <Form.Item
