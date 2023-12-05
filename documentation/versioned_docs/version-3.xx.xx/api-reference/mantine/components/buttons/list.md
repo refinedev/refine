@@ -8,36 +8,36 @@ swizzle: true
 const { default: routerProvider } = RefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
-    Sider: () => null,
-    catchAll: <RefineMantine.ErrorComponent />,
+  routerProvider,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  notificationProvider: RefineMantine.notificationProvider,
+  Layout: RefineMantine.Layout,
+  Sider: () => null,
+  catchAll: <RefineMantine.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
-    );
+  return (
+    <RefineMantine.MantineProvider
+      theme={RefineMantine.LightTheme}
+      withNormalizeCSS
+      withGlobalStyles
+    >
+      <RefineMantine.Global
+        styles={{ body: { WebkitFontSmoothing: "auto" } }}
+      />
+      <RefineMantine.NotificationsProvider position="top-right">
+        {children}
+      </RefineMantine.NotificationsProvider>
+    </RefineMantine.MantineProvider>
+  );
 };
 ```
 
 `<ListButton>` is using Mantine [`<Button>`](https://mantine.dev/core/button) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -50,63 +50,61 @@ import { ShowButton } from "@pankod/refine-mantine";
 // visible-block-start
 import { useShow } from "@pankod/refine-core";
 import {
-    Show,
-    Title,
-    Text,
-    MarkdownField,
-    //highlight-next-line
-    ListButton,
+  Show,
+  Title,
+  Text,
+  MarkdownField,
+  //highlight-next-line
+  ListButton,
 } from "@pankod/refine-mantine";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        // highlight-next-line
-        <Show headerButtons={<ListButton />} isLoading={isLoading}>
-            <Title order={5}>Id</Title>
-            <Text mt="sm">{record?.id}</Text>
+  return (
+    // highlight-next-line
+    <Show headerButtons={<ListButton />} isLoading={isLoading}>
+      <Title order={5}>Id</Title>
+      <Text mt="sm">{record?.id}</Text>
 
-            <Title mt="sm" order={5}>
-                Title
-            </Title>
-            <Text mt="sm">{record?.title}</Text>
+      <Title mt="sm" order={5}>
+        Title
+      </Title>
+      <Text mt="sm">{record?.title}</Text>
 
-            <Title mt="sm" order={5}>
-                Content
-            </Title>
-            <MarkdownField value={record?.content} />
-        </Show>
-    );
+      <Title mt="sm" order={5}>
+        Content
+      </Title>
+      <MarkdownField value={record?.content} />
+    </Show>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -130,49 +128,49 @@ import { Button, Code, Space, Text } from "@pankod/refine-mantine";
 import { ListButton } from "@pankod/refine-mantine";
 
 const MyListComponent = () => {
-    return <ListButton resourceNameOrRouteName="categories" />;
+  return <ListButton resourceNameOrRouteName="categories" />;
 };
 // visible-block-end
 
 const ListPage = () => {
-    const { list } = useNavigation();
-    const params = useRouterContext().useParams();
+  const { list } = useNavigation();
+  const params = useRouterContext().useParams();
 
-    return (
-        <div>
-            <Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </Text>
-            <Code>{JSON.stringify(params)}</Code>
-            <Space h="md" />
-            <Button size="xs" variant="outline" onClick={() => list("posts")}>
-                Go back
-            </Button>
-        </div>
-    );
+  return (
+    <div>
+      <Text italic color="dimmed" size="sm">
+        URL Parameters:
+      </Text>
+      <Code>{JSON.stringify(params)}</Code>
+      <Space h="md" />
+      <Button size="xs" variant="outline" onClick={() => list("posts")}>
+        Go back
+      </Button>
+    </div>
+  );
 };
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyListComponent,
-                },
-                {
-                    name: "categories",
-                    list: ListPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyListComponent,
+        },
+        {
+          name: "categories",
+          list: ListPage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -191,27 +189,27 @@ import { Refine } from "@pankod/refine-core";
 import { ListButton } from "@pankod/refine-mantine";
 
 const MyListComponent = () => {
-    return <ListButton hideText />;
+  return <ListButton hideText />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyListComponent,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyListComponent,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -223,11 +221,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ListButton } from "@pankod/refine-mantine";
 
 export const MyListComponent = () => {
-    return (
-        <ListButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return (
+    <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

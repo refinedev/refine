@@ -2,9 +2,9 @@
 id: add-edit-page
 title: 2. Adding Edit Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/index
-    next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/index
+  next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
 ---
 
 import SharedComponents from "../../../partials/tutorial/headless-layout.md";
@@ -32,72 +32,55 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 
 import { Refine } from "@refinedev/core";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route
-                            index
-                            element={
-                                <NavigateToResource resource="blog_posts" />
-                            }
-                        />
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerBindings}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "blog_posts",
+            list: "/blog-posts",
+            show: "/blog-posts/show/:id",
+            create: "/blog-posts/create",
+            edit: "/blog-posts/edit/:id",
+          },
+        ]}
+        options={{
+          syncWithLocation: true,
+          warnWhenUnsavedChanges: true,
+        }}
+      >
+        <Routes>
+          <Route
+            element={
+              <Layout>
+                <Outlet />
+              </Layout>
+            }
+          >
+            <Route index element={<NavigateToResource resource="blog_posts" />} />
 
-                        <Route path="/blog-posts">
-                            <Route index element={<HeadlessInferencer />} />
-                            <Route
-                                path="show/:id"
-                                element={<HeadlessInferencer />}
-                            />
-                            <Route
-                                path="edit/:id"
-                                element={<HeadlessInferencer />}
-                            />
-                            <Route
-                                path="create"
-                                element={<HeadlessInferencer />}
-                            />
-                        </Route>
+            <Route path="/blog-posts">
+              <Route index element={<HeadlessInferencer />} />
+              <Route path="show/:id" element={<HeadlessInferencer />} />
+              <Route path="edit/:id" element={<HeadlessInferencer />} />
+              <Route path="create" element={<HeadlessInferencer />} />
+            </Route>
 
-                        <Route path="*" element={<div>Error!</div>} />
-                    </Route>
-                </Routes>
+            <Route path="*" element={<div>Error!</div>} />
+          </Route>
+        </Routes>
 
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
-    );
+        <UnsavedChangesNotifier />
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);
@@ -107,13 +90,13 @@ render(<App />);
 
 ### Hooks and Components in Edit Page
 
--   The `useForm` hook is imported from `@refinedev/react-hook-form`, which combines the features of `useForm` hook from both **React Hook Form** and `@refinedev/core`. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
+- The `useForm` hook is imported from `@refinedev/react-hook-form`, which combines the features of `useForm` hook from both **React Hook Form** and `@refinedev/core`. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
 
-    > For more information, refer to the [`useForm` documentation](/docs/packages/documentation/react-hook-form/useForm/) and the [**React Hook Form** documentation&#8594](https://react-hook-form.com/)
+  > For more information, refer to the [`useForm` documentation](/docs/packages/list-of-packages) and the [**React Hook Form** documentation&#8594](https://react-hook-form.com/)
 
--   The `useNavigation` hook is used for navigating between pages. In this case, we are using it to navigate to the `list` pages when the user clicks on the "Blog Posts List" buttons.
+- The `useNavigation` hook is used for navigating between pages. In this case, we are using it to navigate to the `list` pages when the user clicks on the "Blog Posts List" buttons.
 
-    > For more information, refer to the [`useNavigation` documentation &#8594](/docs/api-reference/core/hooks/navigation/useNavigation/)
+  > For more information, refer to the [`useNavigation` documentation &#8594](/docs/core/hooks/navigation/use-navigation)
 
 ### Handling Relationships
 
@@ -121,13 +104,13 @@ On the edit page, we may need to select a record from another resource.
 
 For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the `options` to be used in the `<select/>` component.
 
-> For more information, refer to the [`useSelect` documentation&#8594](/docs/api-reference/core/hooks/useSelect/)
+> For more information, refer to the [`useSelect` documentation&#8594](/docs/core/hooks/use-select)
 
 In the auto-generated edit page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 
 ```tsx
 const { options: categoryOptions } = useSelect({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -135,8 +118,8 @@ The `useSelect` hook returns 10 records by default, but the category of the blog
 
 ```tsx
 const { options: categoryOptions } = useSelect({
-    resource: "categories",
-    defaultValue: blogPostsData?.category?.id,
+  resource: "categories",
+  defaultValue: blogPostsData?.category?.id,
 });
 ```
 
@@ -153,10 +136,7 @@ Now that we have created the edit page, we can add it to the `App.tsx` file:
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 
@@ -169,62 +149,51 @@ import { Layout } from "components/layout";
 import "./App.css";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: "/blog-posts",
-                        show: "/blog-posts/show/:id",
-                        create: "/blog-posts/create",
-                        // highlight-next-line
-                        edit: "/blog-posts/edit/:id",
-                    },
-                ]}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route
-                            index
-                            element={
-                                <NavigateToResource resource="blog_posts" />
-                            }
-                        />
+  return (
+    <BrowserRouter>
+      <Refine
+        routerProvider={routerBindings}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "blog_posts",
+            list: "/blog-posts",
+            show: "/blog-posts/show/:id",
+            create: "/blog-posts/create",
+            // highlight-next-line
+            edit: "/blog-posts/edit/:id",
+          },
+        ]}
+        options={{
+          syncWithLocation: true,
+          warnWhenUnsavedChanges: true,
+        }}
+      >
+        <Routes>
+          <Route
+            element={
+              <Layout>
+                <Outlet />
+              </Layout>
+            }
+          >
+            <Route index element={<NavigateToResource resource="blog_posts" />} />
 
-                        <Route path="blog-posts">
-                            <Route index element={<BlogPostList />} />
-                            <Route
-                                path="show/:id"
-                                element={<HeadlessInferencer />}
-                            />
-                            {/* highlight-next-line */}
-                            <Route path="edit/:id" element={<BlogPostEdit />} />
-                            <Route
-                                path="create"
-                                element={<HeadlessInferencer />}
-                            />
-                        </Route>
+            <Route path="blog-posts">
+              <Route index element={<BlogPostList />} />
+              <Route path="show/:id" element={<HeadlessInferencer />} />
+              {/* highlight-next-line */}
+              <Route path="edit/:id" element={<BlogPostEdit />} />
+              <Route path="create" element={<HeadlessInferencer />} />
+            </Route>
 
-                        <Route path="*" element={<div>Error!</div>} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-            </Refine>
-        </BrowserRouter>
-    );
+            <Route path="*" element={<div>Error!</div>} />
+          </Route>
+        </Routes>
+        <UnsavedChangesNotifier />
+      </Refine>
+    </BrowserRouter>
+  );
 };
 export default App;
 ```

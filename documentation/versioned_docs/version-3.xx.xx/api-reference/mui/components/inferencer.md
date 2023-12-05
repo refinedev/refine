@@ -19,35 +19,35 @@ values={[
 
 ```tsx
 import {
-    ThemeProvider,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
+  ThemeProvider,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
 } from "@pankod/refine-mui";
 
 // highlight-next-line
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const App = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                resources={[
-                    {
-                        name: "samples",
-                        // highlight-start
-                        list: MuiInferencer,
-                        show: MuiInferencer,
-                        create: MuiInferencer,
-                        edit: MuiInferencer,
-                        // highlight-end
-                    },
-                ]}
-            />
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <Refine
+        resources={[
+          {
+            name: "samples",
+            // highlight-start
+            list: MuiInferencer,
+            show: MuiInferencer,
+            create: MuiInferencer,
+            edit: MuiInferencer,
+            // highlight-end
+          },
+        ]}
+      />
+    </ThemeProvider>
+  );
 };
 ```
 
@@ -59,31 +59,31 @@ const App = () => {
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const SampleList = () => {
-    return (
-        // highlight-next-line
-        <MuiInferencer resource="samples" action="list" />
-    );
+  return (
+    // highlight-next-line
+    <MuiInferencer resource="samples" action="list" />
+  );
 };
 
 const SampleShow = () => {
-    return (
-        // highlight-next-line
-        <MuiInferencer resource="samples" action="show" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <MuiInferencer resource="samples" action="show" id="1" />
+  );
 };
 
 const SampleCreate = () => {
-    return (
-        // highlight-next-line
-        <MuiInferencer resource="samples" action="create" />
-    );
+  return (
+    // highlight-next-line
+    <MuiInferencer resource="samples" action="create" />
+  );
 };
 
 const SampleEdit = () => {
-    return (
-        // highlight-next-line
-        <MuiInferencer resource="samples" action="edit" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <MuiInferencer resource="samples" action="edit" id="1" />
+  );
 };
 ```
 
@@ -91,7 +91,7 @@ const SampleEdit = () => {
 </Tabs>
 
 :::info
-To learn more about `@pankod/refine-inferencer` package, please check out [Docs](/docs/packages/documentation/inferencer)
+To learn more about `@pankod/refine-inferencer` package, please check out [Docs](/docs/3.xx.xx/packages/documentation/inferencer)
 :::
 
 ## Views
@@ -106,11 +106,11 @@ setInitialRoutes(["/"]);
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ThemeProvider,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
+  Layout,
+  ThemeProvider,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -121,40 +121,40 @@ import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        // highlight-next-line
-                        list: MuiInferencer,
-                        show: MuiInferencer,
-                        create: MuiInferencer,
-                        edit: MuiInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        // highlight-next-line
-                        list: MuiInferencer,
-                        show: MuiInferencer,
-                    },
-                    {
-                        name: "tags",
-                        // highlight-next-line
-                        list: MuiInferencer,
-                        show: MuiInferencer,
-                    },
-                ]}
-            />
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        Layout={Layout}
+        resources={[
+          {
+            name: "samples",
+            // highlight-next-line
+            list: MuiInferencer,
+            show: MuiInferencer,
+            create: MuiInferencer,
+            edit: MuiInferencer,
+            canDelete: true,
+          },
+          {
+            name: "categories",
+            // highlight-next-line
+            list: MuiInferencer,
+            show: MuiInferencer,
+          },
+          {
+            name: "tags",
+            // highlight-next-line
+            list: MuiInferencer,
+            show: MuiInferencer,
+          },
+        ]}
+      />
+    </ThemeProvider>
+  );
 };
 
 // visible-block-end
@@ -172,11 +172,11 @@ setInitialRoutes(["/samples/show/123"]);
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ThemeProvider,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
+  Layout,
+  ThemeProvider,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -187,40 +187,40 @@ import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: MuiInferencer,
-                        // highlight-next-line
-                        show: MuiInferencer,
-                        create: MuiInferencer,
-                        edit: MuiInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: MuiInferencer,
-                        // highlight-next-line
-                        show: MuiInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: MuiInferencer,
-                        // highlight-next-line
-                        show: MuiInferencer,
-                    },
-                ]}
-            />
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        Layout={Layout}
+        resources={[
+          {
+            name: "samples",
+            list: MuiInferencer,
+            // highlight-next-line
+            show: MuiInferencer,
+            create: MuiInferencer,
+            edit: MuiInferencer,
+            canDelete: true,
+          },
+          {
+            name: "categories",
+            list: MuiInferencer,
+            // highlight-next-line
+            show: MuiInferencer,
+          },
+          {
+            name: "tags",
+            list: MuiInferencer,
+            // highlight-next-line
+            show: MuiInferencer,
+          },
+        ]}
+      />
+    </ThemeProvider>
+  );
 };
 
 // visible-block-end
@@ -238,11 +238,11 @@ setInitialRoutes(["/samples/create"]);
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ThemeProvider,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
+  Layout,
+  ThemeProvider,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -253,38 +253,38 @@ import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: MuiInferencer,
-                        show: MuiInferencer,
-                        // highlight-next-line
-                        create: MuiInferencer,
-                        edit: MuiInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: MuiInferencer,
-                        show: MuiInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: MuiInferencer,
-                        show: MuiInferencer,
-                    },
-                ]}
-            />
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        Layout={Layout}
+        resources={[
+          {
+            name: "samples",
+            list: MuiInferencer,
+            show: MuiInferencer,
+            // highlight-next-line
+            create: MuiInferencer,
+            edit: MuiInferencer,
+            canDelete: true,
+          },
+          {
+            name: "categories",
+            list: MuiInferencer,
+            show: MuiInferencer,
+          },
+          {
+            name: "tags",
+            list: MuiInferencer,
+            show: MuiInferencer,
+          },
+        ]}
+      />
+    </ThemeProvider>
+  );
 };
 
 // visible-block-end
@@ -302,11 +302,11 @@ setInitialRoutes(["/samples/edit/123"]);
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ThemeProvider,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
+  Layout,
+  ThemeProvider,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -317,38 +317,38 @@ import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: MuiInferencer,
-                        show: MuiInferencer,
-                        create: MuiInferencer,
-                        // highlight-next-line
-                        edit: MuiInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: MuiInferencer,
-                        show: MuiInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: MuiInferencer,
-                        show: MuiInferencer,
-                    },
-                ]}
-            />
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        Layout={Layout}
+        resources={[
+          {
+            name: "samples",
+            list: MuiInferencer,
+            show: MuiInferencer,
+            create: MuiInferencer,
+            // highlight-next-line
+            edit: MuiInferencer,
+            canDelete: true,
+          },
+          {
+            name: "categories",
+            list: MuiInferencer,
+            show: MuiInferencer,
+          },
+          {
+            name: "tags",
+            list: MuiInferencer,
+            show: MuiInferencer,
+          },
+        ]}
+      />
+    </ThemeProvider>
+  );
 };
 
 // visible-block-end

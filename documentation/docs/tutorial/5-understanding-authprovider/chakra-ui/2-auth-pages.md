@@ -134,7 +134,7 @@ In this section, we will learn how to create auth pages such as login, signup, f
 
 It will allow us to easily create and customize them with various props. Though we do need to have an auth provider to use it, since we already created one in the previous section, we will just use that.
 
-> For more information, refer to the [`<AuthPage/>` documentation &#8594](/docs/api-reference/chakra-ui/components/chakra-auth-page)
+> For more information, refer to the [`<AuthPage/>` documentation &#8594](/docs/ui-integrations/chakra-ui/components/auth-page)
 
 ## Login Page
 
@@ -601,7 +601,7 @@ render(<App />);
 
 ## Customizing Auth Pages
 
-You can use [`refine-cli`](/docs/packages/documentation/cli/) to [swizzle](/docs/packages/documentation/cli.md#swizzle) the auth pages and customize them:
+You can use [`refine-cli`](/docs/packages/list-of-packages) to [swizzle](/docs/packages/list-of-packages#swizzle) the auth pages and customize them:
 
 1. Run the following command in the project directory:
 
@@ -648,7 +648,7 @@ Now, you can customize the auth pages by editing the files in the `src/component
 
 You can also customize the auth pages by using the `<AuthPage>` component's props.
 
-For more information, refer to the [component props section of the `<AuthPage/>` documentation &#8594](/docs/api-reference/chakra-ui/components/auth-page.md#props)
+For more information, refer to the [component props section of the `<AuthPage/>` documentation &#8594](/docs/ui-integrations/chakra-ui/components/auth-page#props)
 
 :::
 

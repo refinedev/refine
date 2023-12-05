@@ -1,5 +1,11 @@
 # @refinedev/devtools-ui
 
+## 1.1.15
+
+### Patch Changes
+
+-   [#5303](https://github.com/refinedev/refine/pull/5303) [`00ac812347`](https://github.com/refinedev/refine/commit/00ac8123475748875df513a829684002677b5f43) Thanks [@aliemir](https://github.com/aliemir)! - Removed unused `use-is-in-viewport` dependency
+
 ## 1.1.14
 
 ### Patch Changes

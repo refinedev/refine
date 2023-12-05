@@ -1,5 +1,14 @@
 # @refinedev/cli
 
+## 2.16.20
+
+### Patch Changes
+
+-   [#5296](https://github.com/refinedev/refine/pull/5296) [`1b031a2c19`](https://github.com/refinedev/refine/commit/1b031a2c19126ec1c01a85ecfbc794dc82480776) Thanks [@aliemir](https://github.com/aliemir)! - Updated `--devtools` flag in dev command to allow disabling devtools by `--devtools=false`. (Issue: #5215)
+
+-   Updated dependencies [[`1b031a2c19`](https://github.com/refinedev/refine/commit/1b031a2c19126ec1c01a85ecfbc794dc82480776)]:
+    -   @refinedev/devtools-server@1.1.22
+
 ## 2.16.19
 
 ### Patch Changes

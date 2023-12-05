@@ -4,7 +4,6 @@ title: <Refine>
 sidebar_label: <Refine>
 ---
 
-
 `<Refine>` component is the entry point of a **refine** app. It is where the highest level of configuration of the app occurs.
 
 [`dataProvider`](/api-reference/core/providers/data-provider.md) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
@@ -18,17 +17,17 @@ import { PostList } from "pages/posts";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(API_URL)}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+    />
+  );
 };
 
 export default App;
@@ -58,14 +57,14 @@ import defaultDataProvider from "./dataProvider";
 import exampleDataProvider from "./dataProvider";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            dataProvider={{
-                default: defaultDataProvider,
-                example: exampleDataProvider,
-            }}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={{
+        default: defaultDataProvider,
+        example: exampleDataProvider,
+      }}
+    />
+  );
 };
 ```
 
@@ -100,22 +99,22 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            // highlight-start
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-            // highlight-end
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(API_URL)}
+      // highlight-start
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: PostCreate,
+          edit: PostEdit,
+          show: PostShow,
+        },
+      ]}
+      // highlight-end
+    />
+  );
 };
 
 export default App;
@@ -172,11 +171,11 @@ https://api.fake-rest.refine.dev/posts/1
 
 `name` also determines the routes of the pages of a resource:
 
--   List page -> `/posts`
--   Create page -> `/posts/create`
--   Edit page -> `/posts/edit/:id`
--   Show page -> `/posts/show/:id`
--   Clone page -> `/posts/clone/:id`
+- List page -> `/posts`
+- Create page -> `/posts/create`
+- Edit page -> `/posts/edit/:id`
+- Show page -> `/posts/show/:id`
+- Clone page -> `/posts/clone/:id`
 
 <br />
 
@@ -331,9 +330,9 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 Customize or disable the breadcrumb. By default it uses the Breadcrumb component from respective package.
 
-The value set in individual CRUD components ([ANTD](/docs/api-reference/antd/components/basic-views/create/#breadcrumb), [Mantine](/docs/api-reference/mantine/components/basic-views/create/#breadcrumb), [Material UI](/docs/api-reference/mui/components/basic-views/create/#breadcrumb)) will override the value set with `breadcrumb`.
+The value set in individual CRUD components ([ANTD](/docs/3.xx.xx/api-reference/antd/components/basic-views/create/#breadcrumb), [Mantine](/docs/3.xx.xx/api-reference/mantine/components/basic-views/create/#breadcrumb), [Material UI](/docs/3.xx.xx/api-reference/mui/components/basic-views/create/#breadcrumb)) will override the value set with `breadcrumb`.
 
-[Refer to the Breadcrumb docs for further information. &#8594](/docs/api-reference/antd/components/breadcrumb/)
+[Refer to the Breadcrumb docs for further information. &#8594](/docs/3.xx.xx/api-reference/antd/components/breadcrumb/)
 
 ```tsx title="App.tsx"
 import { Breadcrumb } from "@pankod/refine-antd";
@@ -368,6 +367,7 @@ const App: React.FC = () => {
 ```
 
 To disable the breadcrumb
+
 ```tsx title="App.tsx"
 const App: React.FC = () => {
     return (

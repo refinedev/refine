@@ -10,7 +10,7 @@ import SortingLivePreview from "./\_partial-sorting-live-preview.md";
 import RelationalLivePreview from "./\_partial-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-**refine** offers a [TanStack Table][tanstack-table] adapter with [@pankod/refine-react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
+**refine** offers a [TanStack Table][tanstack-table] adapter with [@pankod/refine-react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/3.xx.xx/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
 
 All of [TanStack Table's][tanstack-table] features are supported and you can use all of the [TanStack Table's][tanstack-table] examples with no changes just copy and paste them into your project.
 
@@ -94,11 +94,11 @@ You can specify which field will be filtered with which filter operator with the
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+> This feature is only available if you use a [Live Provider](/docs/3.xx.xx/api-reference/core/providers/live-provider).
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/providers/live-provider)
 
 ## Properties
 
@@ -121,7 +121,7 @@ method={{
 
 ```tsx
 useTable({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -131,9 +131,9 @@ If there is more than one `dataProvider`, you should use the `dataProviderName` 
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        dataProviderName: "second-data-provider",
-    },
+  refineCoreProps: {
+    dataProviderName: "second-data-provider",
+  },
 });
 ```
 
@@ -145,9 +145,9 @@ Sets the initial value of the page index.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        initialCurrent: 2, // This will cause the table to initially display the second page, rather than the default of the first page
-    },
+  refineCoreProps: {
+    initialCurrent: 2, // This will cause the table to initially display the second page, rather than the default of the first page
+  },
 });
 ```
 
@@ -159,9 +159,9 @@ Sets the initial value of the page size.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
-    },
+  refineCoreProps: {
+    initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
+  },
 });
 ```
 
@@ -171,14 +171,14 @@ Sets the initial value of the sorter. The `initialSorter` is not permanent. It w
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        initialSorter: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
-    },
+  refineCoreProps: {
+    initialSorter: [
+      {
+        field: "title",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
@@ -188,14 +188,14 @@ Sets the permanent value of the sorter. The `permanentSorter` is permanent and u
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        permanentSorter: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
-    },
+  refineCoreProps: {
+    permanentSorter: [
+      {
+        field: "title",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
@@ -205,15 +205,15 @@ Sets the initial value of the filter. The `initialFilter` is not permanent. It w
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        initialFilter: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  refineCoreProps: {
+    initialFilter: [
+      {
+        field: "title",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
@@ -223,15 +223,15 @@ Sets the permanent value of the filter. The `permanentFilter` is permanent and u
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        permanentFilter: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  refineCoreProps: {
+    permanentFilter: [
+      {
+        field: "title",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
@@ -241,17 +241,17 @@ useTable({
 
 The filtering behavior can be set to either `"merge"` or `"replace"`.
 
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        defaultSetFilterBehavior: "replace",
-    },
+  refineCoreProps: {
+    defaultSetFilterBehavior: "replace",
+  },
 });
 ```
 
@@ -263,9 +263,9 @@ Determines whether to use server-side pagination or not.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        hasPagination: false,
-    },
+  refineCoreProps: {
+    hasPagination: false,
+  },
 });
 ```
 
@@ -279,70 +279,70 @@ Also you can set this value globally on [`<Refine>`][refine swl] component.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        syncWithLocation: true,
-    },
+  refineCoreProps: {
+    syncWithLocation: true,
+  },
 });
 ```
 
 ### `queryOptions`
 
-`useTable` uses [`useList`](/docs/api-reference/core/hooks/data/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useTable` uses [`useList`](/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        queryOptions: {
-            retry: 3,
-        },
+  refineCoreProps: {
+    queryOptions: {
+      retry: 3,
     },
+  },
 });
 ```
 
 ### `metaData`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`metaData`](/docs/3.xx.xx/api-reference/general-concepts/#metadata) is used following two purposes:
 
--   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+- To pass additional information to data provider methods.
+- Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/3.xx.xx/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        metaData: {
-            headers: { "x-meta-data": "true" },
-        },
+  refineCoreProps: {
+    metaData: {
+      headers: { "x-meta-data": "true" },
     },
+  },
 });
 
 const myDataProvider = {
+  //...
+  getList: async ({
+    resource,
+    pagination,
+    hasPagination,
+    sort,
+    filters,
+    // highlight-next-line
+    metaData,
+  }) => {
+    // highlight-next-line
+    const headers = metaData?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    getList: async ({
-        resource,
-        pagination,
-        hasPagination,
-        sort,
-        filters,
-        // highlight-next-line
-        metaData,
-    }) => {
-        // highlight-next-line
-        const headers = metaData?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data, headers } = await httpClient.get(`${url}`, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data, headers } = await httpClient.get(`${url}`, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -354,15 +354,15 @@ After data is fetched successfully, `useTable` can call `open` function from [`N
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        successNotification: (data, values, resource) => {
-            return {
-                message: `${data.title} Successfully fetched.`,
-                description: "Success with no errors",
-                type: "success",
-            };
-        },
+  refineCoreProps: {
+    successNotification: (data, values, resource) => {
+      return {
+        message: `${data.title} Successfully fetched.`,
+        description: "Success with no errors",
+        type: "success",
+      };
     },
+  },
 });
 ```
 
@@ -374,54 +374,54 @@ After data fetching is failed, `useTable` will call `open` function from [`Notif
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        errorNotification: (data, values, resource) => {
-            return {
-                message: `Something went wrong when getting ${data.id}`,
-                description: "Error",
-                type: "error",
-            };
-        },
+  refineCoreProps: {
+    errorNotification: (data, values, resource) => {
+      return {
+        message: `Something went wrong when getting ${data.id}`,
+        description: "Error",
+        type: "error",
+      };
     },
+  },
 });
 ```
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider) is required.
+> [`LiveProvider`](/docs/3.xx.xx/api-reference/core/providers/live-provider) is required.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+For more information about live mode, please check [Live / Realtime](/docs/3.xx.xx/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        liveMode: "auto",
-    },
+  refineCoreProps: {
+    liveMode: "auto",
+  },
 });
 ```
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider) is required.
+> [`LiveProvider`](/docs/3.xx.xx/api-reference/core/providers/live-provider) is required.
 
 The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        onLiveEvent: (event) => {
-            console.log(event);
-        },
+  refineCoreProps: {
+    onLiveEvent: (event) => {
+      console.log(event);
     },
+  },
 });
 ```
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider) is required.
+> [`LiveProvider`](/docs/3.xx.xx/api-reference/core/providers/live-provider) is required.
 
-Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/3.xx.xx/api-reference/core/providers/live-provider/#subscribe) method.
 
 ## Return Values
 
@@ -433,7 +433,7 @@ It also have all return values of [TanStack Table](https://tanstack.com/table/v8
 
 #### `tableQueryResult`
 
-Returned values from [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
+Returned values from [`useList`](/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 #### `sorter`
 
@@ -466,7 +466,7 @@ Current page index state. If pagination is disabled, it will be `undefined`.
 #### `setCurrent`
 
 ```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined
+React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
 A function to set the current page index state. If pagination is disabled, it will be `undefined`.
@@ -478,7 +478,7 @@ Current page size state. If pagination is disabled, it will be `undefined`.
 #### `setPageSize`
 
 ```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined
+React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
 A function to set the current page size state. If pagination is disabled, it will be `undefined`.
@@ -499,7 +499,7 @@ A function creates accessible links for `syncWithLocation`. It takes [SyncWithLo
 
 ### How can I handle relational data?
 
-You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data.
+You can use [`useMany`](/docs/3.xx.xx/api-reference/core/hooks/data/useMany/) hook to fetch relational data.
 
 <RelationalLivePreview/>
 
@@ -518,9 +518,9 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 
 ### Return values
 
-| Property                     | Description                                                                                     | Type                                                                            |
-| ---------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| refineCore                   | The return values of the [`useTable`][use-table-core] in the core                               | [`UseTableReturnValues`](/docs/api-reference/core/hooks/useTable#return-values) |
+| Property                     | Description                                                                                     | Type                                                                                    |
+| ---------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| refineCore                   | The return values of the [`useTable`][use-table-core] in the core                               | [`UseTableReturnValues`](/docs/3.xx.xx/api-reference/core/hooks/useTable#return-values) |
 | Tanstack Table Return Values | See [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#table-api) documentation |
 
 ## Example
@@ -529,7 +529,7 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 
 [tanstack-table]: https://tanstack.com/table/v8
 [refine-react-table]: https://github.com/refinedev/refine/tree/v3/packages/react-table
-[use-table-core]: /docs/api-reference/core/hooks/useTable
+[use-table-core]: /docs/3.xx.xx/api-reference/core/hooks/useTable
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
 [syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams

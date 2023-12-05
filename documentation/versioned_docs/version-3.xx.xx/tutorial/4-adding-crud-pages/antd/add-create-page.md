@@ -2,9 +2,9 @@
 id: add-create-page
 title: 4. Adding Create Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-show-page
-    next: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+  next: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
 ---
 
 Create page is the page where you can create the record. In this tutorial, we will create the create page for the `blog_posts` resource.
@@ -32,10 +32,10 @@ setInitialRoutes(["/blog-posts/create"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -44,25 +44,25 @@ import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "blog_posts",
+          list: AntdInferencer,
+          show: AntdInferencer,
+          create: AntdInferencer,
+          edit: AntdInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 render(<App />);
@@ -74,25 +74,25 @@ Instead of coding the create page component from scratch, Inferencer've created 
 
 We will go through the create page components and hooks one by one.
 
--   `<Create/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button etc.
+- `<Create/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button etc.
 
-    [Refer to the `<Create/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/create)
+  [Refer to the `<Create/>` documentation for more information &#8594](/docs/3.xx.xx/api-reference/antd/components/basic-views/create)
 
--   `<Form/>` and `<Form.Item/>` are **Ant Design** components that are used to build the form.
+- `<Form/>` and `<Form.Item/>` are **Ant Design** components that are used to build the form.
 
-    [Refer to the **Ant Design** `<Form/>` documentation for more information &#8594](https://ant.design/components/form/)
+  [Refer to the **Ant Design** `<Form/>` documentation for more information &#8594](https://ant.design/components/form/)
 
--   `useForm` is a **refine** hook that provides the necessary props for the form. It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
+- `useForm` is a **refine** hook that provides the necessary props for the form. It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
 
-    When you use `useForm` in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted.
+  When you use `useForm` in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted.
 
-    [Refer to the `useForm` documentation for more information &#8594](/docs/api-reference/antd/hooks/form/useForm/)
+  [Refer to the `useForm` documentation for more information &#8594](/docs/3.xx.xx/api-reference/antd/hooks/form/useForm/)
 
 ### Handling Relationships
 
 In the create page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the blog post to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the resource name to the `dataProvider`'s `getList` method. Then, it returns the necessary props for the `<Select/>` component.
 
-[Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
+[Refer to the `useSelect` documentation for more information &#8594](/docs/3.xx.xx/api-reference/antd/hooks/field/useSelect/)
 
 [Refer to the **Ant Design** `<Select/>` documentation for more information &#8594](https://ant.design/components/select)
 
@@ -100,7 +100,7 @@ In the auto-generated create page code, Inferencer used the `useSelect` hook to 
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -117,10 +117,10 @@ Now that we have created the create page, we need to add it to the `App.tsx` fil
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -134,26 +134,26 @@ import { BlogPostCreate } from "pages/blog-posts/create";
 import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: BlogPostList,
-                    edit: BlogPostEdit,
-                    show: BlogPostShow,
-                    //highlight-next-line
-                    create: BlogPostCreate,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "blog_posts",
+          list: BlogPostList,
+          edit: BlogPostEdit,
+          show: BlogPostShow,
+          //highlight-next-line
+          create: BlogPostCreate,
+        },
+      ]}
+    />
+  );
 };
 export default App;
 ```

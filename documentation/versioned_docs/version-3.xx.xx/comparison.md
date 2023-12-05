@@ -7,10 +7,10 @@ title: Comparison | Refine vs React-Admin vs AdminBro vs Retool vs Redwood
 This comparison table strives to be as accurate and as unbiased as possible. If you use any of these libraries and feel the information could be improved, feel free to suggest changes (with notes or evidence of claims) using the "Edit this page" link at the bottom of this page.
 :::
 
--   ✅ &nbsp;1st-class, built-in, and ready to use with no added configuration or code
--   🟡 &nbsp;Supported, but as an unofficial 3rd party or community library/contribution
--   🔶 &nbsp;Supported and documented, but requires extra user-code to implement
--   🛑 &nbsp;Not officially supported or documented.
+- ✅ &nbsp;1st-class, built-in, and ready to use with no added configuration or code
+- 🟡 &nbsp;Supported, but as an unofficial 3rd party or community library/contribution
+- 🔶 &nbsp;Supported and documented, but requires extra user-code to implement
+- 🛑 &nbsp;Not officially supported or documented.
 
 | Features                             | Refine                                                                   | React-Admin [_(Website)_][react-admin]     | AdminBro[_(Website)_][adminjs]   | Retool[_(Website)_][retool] | Redwood[_(Website)_][redwood]                         |
 | ------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------ | -------------------------------- | --------------------------- | ----------------------------------------------------- |
@@ -20,7 +20,7 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 | Platform Requirements                | React                                                                    | React                                      | Node.js - React                  | Cloud / Self-hosted         | React - Node                                          |
 | Supported UI Frameworks              | **Ant Design, Material UI, Tailwind, Mantine, Chakra UI, anything...**🚀 | Material UI                                | Own UIs                          | Own UIs                     | Tailwind, Chakra, Mantine, WindiCSS and custom styles |
 | Headless                             | **Yes**🚀                                                                | No                                         | No                               | No                          | No                                                    |
-| Access Control                       | **RBAC, ACL, ABAC, etc.**🚀                                        | RBAC                                       | RBAC                             | RBAC                        | RBAC                                                  |
+| Access Control                       | **RBAC, ACL, ABAC, etc.**🚀                                              | RBAC                                       | RBAC                             | RBAC                        | RBAC                                                  |
 | SSR Support                          | **Yes** 🚀 Next.js & Remix                                               | No                                         | No                               | No                          | No                                                    |
 | Live/Realtime                        | Yes with two mode `auto` and `manual` 🚀                                 | Yes - just Immediately(Enterprise Edition) | No                               | No                          | Yes, with api/webhooks                                |
 | Audit Log                            | ✅                                                                       | ✅ &nbsp;Enterprise Edition                | No                               | Yes                         | Yes                                                   |
@@ -61,7 +61,7 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 [gh-refine]: https://github.com/refinedev/refine
 [bpl-refine]: https://bundlephobia.com/result?p=@pankod/refine-core
 [bp-refine]: https://badgen.net/bundlephobia/minzip/@pankod/refine-core?label=💾
-[command-palette]: /docs/examples/command-palette.md
+[command-palette]: /docs/3.xx.xx/examples/command-palette/
 
 <!-- -->
 

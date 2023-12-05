@@ -4,11 +4,10 @@ title: Create
 swizzle: true
 ---
 
-
 `<CreateButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -17,46 +16,46 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 const { Create } = RefineMui;
 // visible-block-start
 import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    // highlight-next-line
-    CreateButton,
+  useDataGrid,
+  DataGrid,
+  GridColumns,
+  List,
+  // highlight-next-line
+  CreateButton,
 } from "@pankod/refine-mui";
 
 const columns: GridColumns = [
-    { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+  { field: "id", headerName: "ID", type: "number" },
+  { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
 ];
 
 const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+  const { dataGridProps } = useDataGrid<IPost>();
 
-    return (
-        // highlight-next-line
-        <List headerButtons={<CreateButton />}>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    // highlight-next-line
+    <List headerButtons={<CreateButton />}>
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostsList,
-                create: () => <Create>Rest of the page here...</Create>,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostsList,
+        create: () => <Create>Rest of the page here...</Create>,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -73,35 +72,35 @@ const { useRouterContext } = RefineCore;
 import { CreateButton } from "@pankod/refine-mui";
 
 const MyCreateComponent = () => {
-    return (
-        <CreateButton
-            // highlight-next-line
-            resourceNameOrRouteName="categories" 
-        />
-    );
+  return (
+    <CreateButton
+      // highlight-next-line
+      resourceNameOrRouteName="categories"
+    />
+  );
 };
 
 // visible-block-end
 
 const CreatePage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                create: CreatePage,
-            },
-        ]}
-        DashboardPage={MyCreateComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        create: CreatePage,
+      },
+    ]}
+    DashboardPage={MyCreateComponent}
+  />,
 );
 ```
 
@@ -118,32 +117,32 @@ const { useRouterContext } = RefineCore;
 import { CreateButton } from "@pankod/refine-mui";
 
 const MyCreateComponent = () => {
-    return (
-        <CreateButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <CreateButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 const CreatePage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyCreateComponent,
-                create: CreatePage,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyCreateComponent,
+        create: CreatePage,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -155,7 +154,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CreateButton } from "@pankod/refine-mui";
 
 export const MyListComponent = () => {
-    return <CreateButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <CreateButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

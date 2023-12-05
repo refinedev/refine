@@ -1,5 +1,79 @@
 # @refinedev/core
 
+## 4.46.0
+
+### Minor Changes
+
+-   [#5343](https://github.com/refinedev/refine/pull/5343) [`dd8f1270f6`](https://github.com/refinedev/refine/commit/dd8f1270f692d1eec279973e53fcc5a7e650b983) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `hideForm` should remove all form fields. (submit button, form fields, rememberMe checkbox, forgot password link, etc.) but the `/register` link should be visible.
+
+-   [#5307](https://github.com/refinedev/refine/pull/5307) [`f8e407f850`](https://github.com/refinedev/refine/commit/f8e407f85054bccf1e6ff45c84928bc01db7f5eb) Thanks [@jackprogramsjp](https://github.com/jackprogramsjp)! - feat: added `hideForm` props for `LoginPage` and `RegisterPage` for `AuthPage` feature.
+
+    Now with the `hideForm` props feature, you can be able to hide the forms (like email/password)
+    to only show the OAuth providers. This avoids having to make your own entire AuthPage.
+
+### Patch Changes
+
+-   [#5323](https://github.com/refinedev/refine/pull/5323) [`17aa8c1cd6`](https://github.com/refinedev/refine/commit/17aa8c1cd6858c5a2b0c996c97230047e049bf3b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - ### Breaking changes
+
+    fix: added required `key` prop to `<Auhtenticated />` component to resolve issues of rendering of the unwanted content and wrongful redirections. #4782
+
+    #### Why is it required?
+
+    Due to the [nature of React](https://react.dev/learn/rendering-lists#why-does-react-need-keys), components are not unmounted and remounted again if props are changed. While this is mostly a good practice for performance, in some cases you'll want your component to re-mount instead of updating; for example, if you don't want to use any of the previous states and effects initiated with the old props.
+
+    The `<Authenticated />` component has this kind of scenario when it's used for page-level authentication checks. If the previous check results were used for the rendering of the content (`fallback` or `children`) this may lead to unexpected behaviors and flashing of the unwanted content.
+
+    To avoid this, a key property must be set with different values for each use of the `<Authenticated />` components. This will make sure that React will unmount and remount the component instead of updating the props.
+
+    ```tsx
+    import { Refine, Authenticated, AuthPage } from "@refinedev/core";
+    import {
+      CatchAllNavigate,
+    } from "@refinedev/react-router-v6";
+    import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
+
+    const App = () => {
+      return (
+        <BrowserRouter>
+          <Refine {/* ... */}>
+            <Routes>
+              <Route
+                element={
+                  <Authenticated
+                    key="authenticated-routes"
+                    fallback={<CatchAllNavigate to="/login" />}
+                  >
+                    <Outlet />
+                  </Authenticated>
+                }
+              >
+                <Route index element={<h1>Dashboard Page</h1>} />
+              </Route>
+
+              <Route
+                element={
+                  <Authenticated key="unauthenticated-routes" fallback={<Outlet />}>
+                     <Navigate to="/" replace />
+                  </Authenticated>
+                }
+              >
+                <Route path="/login" element={<AuthPage type="login" />} />
+              </Route>
+            </Routes>
+          </Refine>
+        </BrowserRouter>
+      );
+    };
+    ```
+
+    In the example above, the `<Authenticated />` is rendered as the wrapper of both the `index` route and `/login` route. Without a `key` property, `<Authenticated />` will not be re-mounted and can result in rendering the content depending on the previous authentication check. This will lead to redirecting to `/login` when trying to access the `index` route instead of rendering the content of the `index` or navigating to `index` route instead of `/login` if the user just logged out.
+
+-   [#5339](https://github.com/refinedev/refine/pull/5339) [`4c49ef0a06`](https://github.com/refinedev/refine/commit/4c49ef0a0660c2941c983025a187d45b521aa27c) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `<WelcomePage />` component redesigned.
+
+-   [#5316](https://github.com/refinedev/refine/pull/5316) [`3bdb9cb1cb`](https://github.com/refinedev/refine/commit/3bdb9cb1cb4cdcfaf363e7e9938737ed6f8e634e) Thanks [@ksankeerth](https://github.com/ksankeerth)! - fix: Return type is not mentioned correctly in useOne, useSelect, useForm, useMany and useShow hooks
+
+    This fix has improved type safety of return type of useOne, useSelect, useForm, useMany and useShow hooks.
+
 ## 4.45.1
 
 ### Patch Changes

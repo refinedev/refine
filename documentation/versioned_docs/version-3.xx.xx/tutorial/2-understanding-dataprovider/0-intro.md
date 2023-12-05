@@ -2,15 +2,15 @@
 id: index
 title: 1. Data Provider
 tutorial:
-    order: 0
-    prev: false
-    next: tutorial/understanding-dataprovider/swizzle
+  order: 0
+  prev: false
+  next: tutorial/understanding-dataprovider/swizzle
 ---
 
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
 
 :::info
-The data provider unit is optional for the tutorial and can be skipped to next unit - <UIConditional is="headless">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/headless/index)</UIConditional><UIConditional is="antd">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/antd/index)</UIConditional><UIConditional is="mantine">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/mantine/index)</UIConditional><UIConditional is="chakra-ui">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/chakra-ui/index)</UIConditional><UIConditional is="mui">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/mui/index)</UIConditional>
+The data provider unit is optional for the tutorial and can be skipped to next unit - <UIConditional is="headless">[Adding CRUD Pages](/docs/3.xx.xx/tutorial/adding-crud-pages/headless/index)</UIConditional><UIConditional is="antd">[Adding CRUD Pages](/docs/3.xx.xx/tutorial/adding-crud-pages/antd/index)</UIConditional><UIConditional is="mantine">[Adding CRUD Pages](/docs/3.xx.xx/tutorial/adding-crud-pages/mantine/index)</UIConditional><UIConditional is="chakra-ui">[Adding CRUD Pages](/docs/3.xx.xx/tutorial/adding-crud-pages/chakra-ui/index)</UIConditional><UIConditional is="mui">[Adding CRUD Pages](/docs/3.xx.xx/tutorial/adding-crud-pages/mui/index)</UIConditional>
 if desired.
 :::
 
@@ -73,7 +73,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 />;
 ```
 
-You can refer to the **refine** component [dataProvider](/docs/api-reference/core/components/refine-config/#dataprovider) prop documentation for more detailed information.
+You can refer to the **refine** component [dataProvider](/docs/3.xx.xx/api-reference/core/components/refine-config/#dataprovider) prop documentation for more detailed information.
 
 ## How are data provider methods used in the app?
 
@@ -85,22 +85,22 @@ To illustrate this internal connection, imagine we want to get all records from 
 import { useList } from "@pankod/refine-core";
 
 const postUseListResult = useList({
-    resource: "posts",
-    config: {
-        sort: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-        filters: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "hello",
-            },
-        ],
-    },
+  resource: "posts",
+  config: {
+    sort: [
+      {
+        field: "id",
+        order: "desc",
+      },
+    ],
+    filters: [
+      {
+        field: "title",
+        operator: "contains",
+        value: "hello",
+      },
+    ],
+  },
 });
 ```
 

@@ -2,9 +2,9 @@
 id: add-edit-page
 title: 2. Adding Edit Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/index
-    next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/index
+  next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
 ---
 
 Edit page is the page where you can edit the record. In this tutorial, we will create the edit page for the `blog_posts` resource.
@@ -34,44 +34,42 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
-    notificationProvider,
-    LightTheme,
-    Layout,
-    ReadyPage,
-    ErrorComponent,
+  MantineProvider,
+  Global,
+  NotificationsProvider,
+  notificationProvider,
+  LightTheme,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
 } from "@pankod/refine-mantine";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          Layout={Layout}
+          resources={[
+            {
+              name: "blog_posts",
+              list: MantineInferencer,
+              show: MantineInferencer,
+              create: MantineInferencer,
+              edit: MantineInferencer,
+            },
+          ]}
+        />
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 render(<App />);
@@ -83,29 +81,29 @@ Instead of coding the edit page component from scratch, Inferencer created the r
 
 We will go through the edit page components and hooks one by one.
 
--   `<Edit/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button, refresh button etc.
+- `<Edit/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button, refresh button etc.
 
-    [Refer to the `<Edit/>` documentation for more information &#8594](/docs/api-reference/mantine/components/basic-views/edit)
+  [Refer to the `<Edit/>` documentation for more information &#8594](/docs/3.xx.xx/api-reference/mantine/components/basic-views/edit)
 
--   `useForm` hook, imported from `@pankod/refine-mantine` package, has been developed by using the **Mantine** `useForm` hook and `@pankod/refine-core` `useForm` hook. It is used to handle the form state and form submission.
+- `useForm` hook, imported from `@pankod/refine-mantine` package, has been developed by using the **Mantine** `useForm` hook and `@pankod/refine-core` `useForm` hook. It is used to handle the form state and form submission.
 
-    It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
+  It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
 
-    When you use `useForm` in the edit page, it automatically fetches the data of the record by using the `id` in the URL, then fills the form with the data. It sends the form data to `dataProvider`'s `update` method when the form is submitted.
+  When you use `useForm` in the edit page, it automatically fetches the data of the record by using the `id` in the URL, then fills the form with the data. It sends the form data to `dataProvider`'s `update` method when the form is submitted.
 
-    [Refer to the `useForm` documentation for more information &#8594](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/)
+  [Refer to the `useForm` documentation for more information &#8594](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/)
 
-    [Refer to the **Mantine** documentation for more information &#8594](https://mantine.dev/form/use-form/)
+  [Refer to the **Mantine** documentation for more information &#8594](https://mantine.dev/form/use-form/)
 
--   All other components provided by **Mantine** are used to display the form fields.
+- All other components provided by **Mantine** are used to display the form fields.
 
-    [Refer to the Mantine documentation for more information &#8594](https://mantine.dev/)
+  [Refer to the Mantine documentation for more information &#8594](https://mantine.dev/)
 
 ### Handling Relationships
 
 In the edit page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the blog post to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method. Then, it returns the necessary props for the `<Select/>` component.
 
-[Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/mantine/hooks/useSelect/)
+[Refer to the `useSelect` documentation for more information &#8594](/docs/3.xx.xx/api-reference/mantine/hooks/useSelect/)
 
 [Refer to the **Mantine** `<Select/>` documentation for more information &#8594](https://mantine.dev/core/select/)
 
@@ -113,7 +111,7 @@ In the auto-generated edit page code, Inferencer used the `useSelect` hook to se
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -121,8 +119,8 @@ const { selectProps: categorySelectProps } = useSelect({
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect({
-    resource: "categories",
-    defaultValue: blogPostsData?.category?.id,
+  resource: "categories",
+  defaultValue: blogPostsData?.category?.id,
 });
 ```
 
@@ -141,14 +139,14 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
-    notificationProvider,
-    LightTheme,
-    Layout,
-    ReadyPage,
-    ErrorComponent,
+  MantineProvider,
+  Global,
+  NotificationsProvider,
+  notificationProvider,
+  LightTheme,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
 } from "@pankod/refine-mantine";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
@@ -157,34 +155,32 @@ import { BlogPostList } from "pages/blog-posts/list";
 import { BlogPostEdit } from "pages/blog-posts/edit";
 
 const App = () => {
-    return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: BlogPostList,
-                            //highlight-next-line
-                            edit: BlogPostEdit,
-                            edit: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                        },
-                    ]}
-                />
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          Layout={Layout}
+          resources={[
+            {
+              name: "blog_posts",
+              list: BlogPostList,
+              //highlight-next-line
+              edit: BlogPostEdit,
+              edit: MantineInferencer,
+              show: MantineInferencer,
+              create: MantineInferencer,
+            },
+          ]}
+        />
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 export default App;
 ```

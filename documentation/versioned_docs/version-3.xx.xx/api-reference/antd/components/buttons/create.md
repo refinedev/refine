@@ -7,7 +7,7 @@ swizzle: true
 `<CreateButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -16,50 +16,50 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 const { useRouterContext } = RefineCore;
 // visible-block-start
 import {
-    Table,
-    List,
-    useTable,
-    // highlight-next-line
-    CreateButton,
+  Table,
+  List,
+  useTable,
+  // highlight-next-line
+  CreateButton,
 } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    return (
-        <List 
-            // highlight-next-line
-            headerButtons={<CreateButton />}
-        >
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" width="100%" />
-            </Table>
-        </List>
-    );
+  return (
+    <List
+      // highlight-next-line
+      headerButtons={<CreateButton />}
+    >
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" width="100%" />
+      </Table>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 const CreatePage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineAntdDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-                create: CreatePage,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+        create: CreatePage,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -76,35 +76,35 @@ const { useRouterContext } = RefineCore;
 import { CreateButton } from "@pankod/refine-antd";
 
 const MyCreateComponent = () => {
-    return (
-        <CreateButton
-            // highlight-next-line
-            resourceNameOrRouteName="categories"
-        />
-    );
+  return (
+    <CreateButton
+      // highlight-next-line
+      resourceNameOrRouteName="categories"
+    />
+  );
 };
 
 // visible-block-end
 
 const CreatePage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                create: CreatePage,
-            },
-        ]}
-        DashboardPage={MyCreateComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        create: CreatePage,
+      },
+    ]}
+    DashboardPage={MyCreateComponent}
+  />,
 );
 ```
 
@@ -121,32 +121,32 @@ const { useRouterContext } = RefineCore;
 import { CreateButton } from "@pankod/refine-antd";
 
 const MyCreateComponent = () => {
-    return (
-        <CreateButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <CreateButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 const CreatePage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyCreateComponent,
-                create: CreatePage,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyCreateComponent,
+        create: CreatePage,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -158,11 +158,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CreateButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
-    return (
-        <CreateButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return (
+    <CreateButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

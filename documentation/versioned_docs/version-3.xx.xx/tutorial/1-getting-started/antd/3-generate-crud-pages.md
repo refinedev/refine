@@ -2,8 +2,8 @@
 id: generate-crud-pages
 title: 4. Generate CRUD pages automatically with Inferencer
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/create-project
-    next: tutorial/getting-started/store-your-repository
+  prev: tutorial/getting-started/{preferredUI}/create-project
+  next: tutorial/getting-started/store-your-repository
 ---
 
 ## Inferencer
@@ -24,8 +24,8 @@ Overall, using Inferencer can greatly speed up development time and reduce the a
 
 #### Learn Inferencer
 
--   Learn about [how Inferencer works](/docs/packages/documentation/inferencer).
--   Learn about [how to use Inferencer with Ant Design](/docs/api-reference/antd/components/inferencer/).
+- Learn about [how Inferencer works](/docs/3.xx.xx/packages/documentation/inferencer).
+- Learn about [how to use Inferencer with Ant Design](/docs/3.xx.xx/api-reference/antd/components/inferencer/).
 
 ## How to use Inferencer
 
@@ -35,17 +35,17 @@ The `<AntdInferencer/>` component is used by passing to appropriate values in th
 
 :::info
 
-In [Unit 4](/docs/tutorial/understanding-resources/index), the resources concept will be explained in detail. For now, you can assume that the resource is a collection of data on your API used in the app.
+In [Unit 4](/docs/3.xx.xx/tutorial/understanding-resources/index), the resources concept will be explained in detail. For now, you can assume that the resource is a collection of data on your API used in the app.
 
 :::
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -55,27 +55,27 @@ import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            //highlight-start
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                },
-            ]}
-            //highlight-end
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      //highlight-start
+      resources={[
+        {
+          name: "blog_posts",
+          list: AntdInferencer,
+          show: AntdInferencer,
+          create: AntdInferencer,
+          edit: AntdInferencer,
+        },
+      ]}
+      //highlight-end
+    />
+  );
 };
 
 export default App;
@@ -91,7 +91,7 @@ Before we start, let's understand the API that we will be using in this tutorial
 
 :::info
 
-In [Unit 3](/docs/tutorial/understanding-dataprovider/index), it will be explained in detail how **refine** apps communicate with the API via the `dataProvider`.
+In [Unit 3](/docs/3.xx.xx/tutorial/understanding-dataprovider/index), it will be explained in detail how **refine** apps communicate with the API via the `dataProvider`.
 
 :::
 
@@ -112,10 +112,10 @@ setInitialRoutes(["/blog-posts"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -124,25 +124,25 @@ import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "blog_posts",
+          list: AntdInferencer,
+          show: AntdInferencer,
+          create: AntdInferencer,
+          edit: AntdInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 render(<App />);
@@ -159,10 +159,10 @@ setInitialRoutes(["/blog-posts/create"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -171,25 +171,25 @@ import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "blog_posts",
+          list: AntdInferencer,
+          show: AntdInferencer,
+          create: AntdInferencer,
+          edit: AntdInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 render(<App />);
@@ -206,10 +206,10 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -218,25 +218,25 @@ import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "blog_posts",
+          list: AntdInferencer,
+          show: AntdInferencer,
+          create: AntdInferencer,
+          edit: AntdInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 render(<App />);
@@ -253,10 +253,10 @@ setInitialRoutes(["/blog-posts/show/123"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -265,25 +265,25 @@ import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "blog_posts",
+          list: AntdInferencer,
+          show: AntdInferencer,
+          create: AntdInferencer,
+          edit: AntdInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 render(<App />);
@@ -292,7 +292,7 @@ render(<App />);
 <br/>
 <br/>
 
-In [Unit 5](/docs/tutorial/adding-crud-pages/antd/index), you will learn how to create CRUD pages manually using the code generated by Inferencer as a reference.
+In [Unit 5](/docs/3.xx.xx/tutorial/adding-crud-pages/antd/index), you will learn how to create CRUD pages manually using the code generated by Inferencer as a reference.
 
 <Checklist>
 

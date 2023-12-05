@@ -32,10 +32,10 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 ```tsx
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import { dataProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -46,19 +46,19 @@ import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            //highlight-start
-            dataProvider={dataProvider(appwriteClient)}
-            authProvider={authProvider}
-            //highlight-end
-            routerProvider={routerProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
-    );
+  return (
+    <Refine
+      //highlight-start
+      dataProvider={dataProvider(appwriteClient)}
+      authProvider={authProvider}
+      //highlight-end
+      routerProvider={routerProvider}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+    />
+  );
 };
 ```
 
@@ -67,7 +67,7 @@ const App: React.FC = () => {
 We need three collections for our Cake House application. Let's create these collections in the appwrite database.
 
 :::info
-[Check out how you can create collections with refine Appwrite guide →](/docs/packages/documentation/data-providers/appwrite/#create-collections)
+[Check out how you can create collections with refine Appwrite guide →](#)
 :::
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/appwrite/collections.png" alt="Collections" />
@@ -75,23 +75,23 @@ We need three collections for our Cake House application. Let's create these col
 
 `stores`
 
--   Title: text
+- Title: text
 
 `products`
 
--   Title: text
--   Description: text
--   Image: text
--   StoreId: text
+- Title: text
+- Description: text
+- Image: text
+- StoreId: text
 
 `orders`
 
--   ProductId: text
--   Customer Name: text
--   Customer Address: text
--   Status: text
--   Quantitiy: numeric
--   StoreId: text
+- ProductId: text
+- Customer Name: text
+- Customer Address: text
+- Status: text
+- Quantitiy: numeric
+- StoreId: text
 
 Now that we have completed the setup and our collections, we can now log in with the **refine** and start the listing processes.
 
@@ -107,9 +107,9 @@ import { createContext, useState } from "react";
 export const StoreContext = createContext<any[]>([]);
 
 export const StoreProvider = (props: any) => {
-    const [store, setStore] = useState("61cdb05132609");
+  const [store, setStore] = useState("61cdb05132609");
 
-    return <StoreContext.Provider value={[store, setStore]} {...props} />;
+  return <StoreContext.Provider value={[store, setStore]} {...props} />;
 };
 ```
 
@@ -204,11 +204,11 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 ```tsx title="src/components/sider/CustomSider.tsx"
 import React, { useState } from "react";
 import {
-    useTitle,
-    useMenu,
-    ITreeMenu,
-    CanAccess,
-    useRouterContext,
+  useTitle,
+  useMenu,
+  ITreeMenu,
+  CanAccess,
+  useRouterContext,
 } from "@pankod/refine-core";
 import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
@@ -216,88 +216,80 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 import { StoreSelect } from "components/select";
 
 export const CustomSider: React.FC = () => {
-    const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { Link } = useRouterContext();
-    const Title = useTitle();
-    const { SubMenu } = Menu;
-    const { menuItems, selectedKey } = useMenu();
-    const breakpoint = Grid.useBreakpoint();
+  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const { Link } = useRouterContext();
+  const Title = useTitle();
+  const { SubMenu } = Menu;
+  const { menuItems, selectedKey } = useMenu();
+  const breakpoint = Grid.useBreakpoint();
 
-    const isMobile =
-        typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
+  const isMobile =
+    typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
-        return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
+  const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+    return tree.map((item: ITreeMenu) => {
+      const { icon, label, route, name, children, parentName } = item;
 
-            if (children.length > 0) {
-                return (
-                    <SubMenu
-                        key={name}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
-                        title={label}
-                    >
-                        {renderTreeView(children, selectedKey)}
-                    </SubMenu>
-                );
-            }
-            const isSelected = route === selectedKey;
-            const isRoute = !(
-                parentName !== undefined && children.length === 0
-            );
-            return (
-                <CanAccess
-                    key={route}
-                    resource={name.toLowerCase()}
-                    action="list"
-                >
-                    <Menu.Item
-                        key={route}
-                        style={{
-                            fontWeight: isSelected ? "bold" : "normal",
-                        }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
-                    >
-                        <Link to={route}>{label}</Link>
-                        {!collapsed && isSelected && (
-                            <div className="ant-menu-tree-arrow" />
-                        )}
-                    </Menu.Item>
-                </CanAccess>
-            );
-        });
-    };
+      if (children.length > 0) {
+        return (
+          <SubMenu
+            key={name}
+            icon={icon ?? <Icons.UnorderedListOutlined />}
+            title={label}
+          >
+            {renderTreeView(children, selectedKey)}
+          </SubMenu>
+        );
+      }
+      const isSelected = route === selectedKey;
+      const isRoute = !(parentName !== undefined && children.length === 0);
+      return (
+        <CanAccess key={route} resource={name.toLowerCase()} action="list">
+          <Menu.Item
+            key={route}
+            style={{
+              fontWeight: isSelected ? "bold" : "normal",
+            }}
+            icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+          >
+            <Link to={route}>{label}</Link>
+            {!collapsed && isSelected && (
+              <div className="ant-menu-tree-arrow" />
+            )}
+          </Menu.Item>
+        </CanAccess>
+      );
+    });
+  };
 
-    return (
-        <AntdLayout.Sider
-            collapsible
-            collapsedWidth={isMobile ? 0 : 80}
-            collapsed={collapsed}
-            breakpoint="lg"
-            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
-            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
-        >
-            <Title collapsed={collapsed} />
-            <Menu
-                selectedKeys={[selectedKey]}
-                mode="inline"
-                onClick={() => {
-                    if (!breakpoint.lg) {
-                        setCollapsed(true);
-                    }
-                }}
-            >
-                //highlight-start
-                <Menu.Item key={"/"} icon={<Icons.AppstoreAddOutlined />}>
-                    <StoreSelect />
-                </Menu.Item>
-                //highlight-end
-                {renderTreeView(menuItems, selectedKey)}
-            </Menu>
-        </AntdLayout.Sider>
-    );
+  return (
+    <AntdLayout.Sider
+      collapsible
+      collapsedWidth={isMobile ? 0 : 80}
+      collapsed={collapsed}
+      breakpoint="lg"
+      onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+      style={isMobile ? antLayoutSiderMobile : antLayoutSider}
+    >
+      <Title collapsed={collapsed} />
+      <Menu
+        selectedKeys={[selectedKey]}
+        mode="inline"
+        onClick={() => {
+          if (!breakpoint.lg) {
+            setCollapsed(true);
+          }
+        }}
+      >
+        //highlight-start
+        <Menu.Item key={"/"} icon={<Icons.AppstoreAddOutlined />}>
+          <StoreSelect />
+        </Menu.Item>
+        //highlight-end
+        {renderTreeView(menuItems, selectedKey)}
+      </Menu>
+    </AntdLayout.Sider>
+  );
 };
 ```
 
@@ -319,9 +311,9 @@ We separate the products of different stores by using the `permanentFilter` with
 const [store] = useContext(StoreContext);
 //highlight-end
 const { listProps } = useSimpleList<IProduct>({
-    //highlight-start
-    permanentFilter: [{ field: "storeId", operator: "eq", value: store }],
-    //highlight-end
+  //highlight-start
+  permanentFilter: [{ field: "storeId", operator: "eq", value: store }],
+  //highlight-end
 });
 ```
 
@@ -333,12 +325,12 @@ const { listProps } = useSimpleList<IProduct>({
 import { useContext } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
-    useSimpleList,
-    AntdList,
-    useModalForm,
-    useDrawerForm,
-    CreateButton,
-    List,
+  useSimpleList,
+  AntdList,
+  useModalForm,
+  useDrawerForm,
+  CreateButton,
+  List,
 } from "@pankod/refine";
 
 import { IProduct } from "interfaces";
@@ -346,35 +338,35 @@ import { ProductItem } from "components/product";
 import { StoreContext } from "context/store";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-    //highlight-start
-    const [store] = useContext(StoreContext);
-    const { listProps } = useSimpleList<IProduct>({
-        permanentFilter: [{ field: "storeId", operator: "eq", value: store }],
-    });
-    //highlight-end
+  //highlight-start
+  const [store] = useContext(StoreContext);
+  const { listProps } = useSimpleList<IProduct>({
+    permanentFilter: [{ field: "storeId", operator: "eq", value: store }],
+  });
+  //highlight-end
 
-    return (
-        <>
-            <List
-                headerProps={{
-                    extra: <CreateButton onClick={() => createShow()} />,
-                }}
-            >
-                <AntdList
-                    grid={{ gutter: 16, xs: 1 }}
-                    style={{
-                        justifyContent: "center",
-                    }}
-                    {...listProps}
-                    renderItem={(item) => (
-                        <AntdList.Item>
-                            <ProductItem item={item} editShow={editShow} />
-                        </AntdList.Item>
-                    )}
-                />
-            </List>
-        </>
-    );
+  return (
+    <>
+      <List
+        headerProps={{
+          extra: <CreateButton onClick={() => createShow()} />,
+        }}
+      >
+        <AntdList
+          grid={{ gutter: 16, xs: 1 }}
+          style={{
+            justifyContent: "center",
+          }}
+          {...listProps}
+          renderItem={(item) => (
+            <AntdList.Item>
+              <ProductItem item={item} editShow={editShow} />
+            </AntdList.Item>
+          )}
+        />
+      </List>
+    </>
+  );
 };
 ```
 
@@ -419,133 +411,124 @@ const [store] = useContext(StoreContext);
 ```tsx title="CreateProduct"
 import { useContext } from "react";
 import {
-    Create,
-    Drawer,
-    DrawerProps,
-    Form,
-    FormProps,
-    Input,
-    ButtonProps,
-    Upload,
-    Grid,
-    RcFile,
+  Create,
+  Drawer,
+  DrawerProps,
+  Form,
+  FormProps,
+  Input,
+  ButtonProps,
+  Upload,
+  Grid,
+  RcFile,
 } from "@pankod/refine-antd";
 
 import { appwriteClient, normalizeFile } from "utility";
 import { StoreContext } from "context/store";
 
 type CreateProductProps = {
-    drawerProps: DrawerProps;
-    formProps: FormProps;
-    saveButtonProps: ButtonProps;
+  drawerProps: DrawerProps;
+  formProps: FormProps;
+  saveButtonProps: ButtonProps;
 };
 
 export const CreateProduct: React.FC<CreateProductProps> = ({
-    drawerProps,
-    formProps,
-    saveButtonProps,
+  drawerProps,
+  formProps,
+  saveButtonProps,
 }) => {
-    const breakpoint = Grid.useBreakpoint();
-    //highlight-start
-    const [store, setStore] = useContext(StoreContext);
-    // highlight-end
+  const breakpoint = Grid.useBreakpoint();
+  //highlight-start
+  const [store, setStore] = useContext(StoreContext);
+  // highlight-end
 
-    return (
-        <Drawer
-            {...drawerProps}
-            width={breakpoint.sm ? "500px" : "100%"}
-            bodyStyle={{ padding: 0 }}
+  return (
+    <Drawer
+      {...drawerProps}
+      width={breakpoint.sm ? "500px" : "100%"}
+      bodyStyle={{ padding: 0 }}
+    >
+      <Create saveButtonProps={saveButtonProps}>
+        <Form
+          {...formProps}
+          layout="vertical"
+          initialValues={{
+            isActive: true,
+          }}
+          //highlight-start
+          onFinish={(values) => {
+            return formProps.onFinish?.({
+              ...values,
+              storeId: store,
+              image: JSON.stringify(values.image),
+            });
+          }}
+          //highlight-end
         >
-            <Create saveButtonProps={saveButtonProps}>
-                <Form
-                    {...formProps}
-                    layout="vertical"
-                    initialValues={{
-                        isActive: true,
-                    }}
-                    //highlight-start
-                    onFinish={(values) => {
-                        return formProps.onFinish?.({
-                            ...values,
-                            storeId: store,
-                            image: JSON.stringify(values.image),
-                        });
-                    }}
-                    //highlight-end
-                >
-                    <Form.Item
-                        label="Title"
-                        name="title"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item label="Description" name="description">
-                        <Input />
-                    </Form.Item>
+          <Form.Item
+            label="Title"
+            name="title"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item label="Description" name="description">
+            <Input />
+          </Form.Item>
 
-                    <Form.Item label="Images">
-                        <Form.Item
-                            name="image"
-                            valuePropName="fileList"
-                            normalize={normalizeFile}
-                            noStyle
-                            rules={[
-                                {
-                                    required: true,
-                                },
-                            ]}
-                        >
-                            <Upload.Dragger
-                                name="file"
-                                listType="picture"
-                                multiple
-                                customRequest={async ({
-                                    file,
-                                    onError,
-                                    onSuccess,
-                                }) => {
-                                    try {
-                                        const rcFile = file as RcFile;
+          <Form.Item label="Images">
+            <Form.Item
+              name="image"
+              valuePropName="fileList"
+              normalize={normalizeFile}
+              noStyle
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Upload.Dragger
+                name="file"
+                listType="picture"
+                multiple
+                customRequest={async ({ file, onError, onSuccess }) => {
+                  try {
+                    const rcFile = file as RcFile;
 
-                                        const { $id } =
-                                            await appwriteClient.storage.createFile(
-                                                "default",
-                                                rcFile.name,
-                                                rcFile,
-                                                ["role:all"],
-                                                ["role:all"],
-                                            );
+                    const { $id } = await appwriteClient.storage.createFile(
+                      "default",
+                      rcFile.name,
+                      rcFile,
+                      ["role:all"],
+                      ["role:all"],
+                    );
 
-                                        const url =
-                                            appwriteClient.storage.getFileView(
-                                                "default",
-                                                $id,
-                                            );
+                    const url = appwriteClient.storage.getFileView(
+                      "default",
+                      $id,
+                    );
 
-                                        onSuccess?.(
-                                            { url },
-                                            new XMLHttpRequest(),
-                                        );
-                                    } catch (error) {
-                                        onError?.(new Error("Upload Error"));
-                                    }
-                                }}
-                            >
-                                <p className="ant-upload-text">
-                                    Drag &amp; drop a file in this area
-                                </p>
-                            </Upload.Dragger>
-                        </Form.Item>
-                    </Form.Item>
-                </Form>
-            </Create>
-        </Drawer>
-    );
+                    onSuccess?.({ url }, new XMLHttpRequest());
+                  } catch (error) {
+                    onError?.(new Error("Upload Error"));
+                  }
+                }}
+              >
+                <p className="ant-upload-text">
+                  Drag &amp; drop a file in this area
+                </p>
+              </Upload.Dragger>
+            </Form.Item>
+          </Form.Item>
+        </Form>
+      </Create>
+    </Drawer>
+  );
 };
 ```
 
@@ -566,10 +549,10 @@ Appwrite Realtime API support is out-of-the-box supported by **refine**, just ad
 ```tsx
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -586,36 +569,36 @@ import { ProductShow } from "components/product";
 import { StoreProvider } from "context/store";
 
 function App() {
-    return (
-        <StoreProvider>
-            <Refine
-                routerProvider={routerProvider}
-                //highlight-start
-                liveProvider={liveProvider(appwriteClient)}
-                options={{ liveMode: "auto" }}
-                //highlight-end
-                dataProvider={dataProvider(appwriteClient)}
-                authProvider={authProvider}
-                LoginPage={Login}
-                Sider={CustomSider}
-                resources={[
-                    {
-                        name: "61cb01b17ef57",
-                        list: ProductList,
-                        show: ProductShow,
-                        options: {
-                            label: "Products",
-                            route: "products",
-                        },
-                    },
-                ]}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                notificationProvider={notificationProvider}
-                catchAll={<ErrorComponent />}
-            />
-        </StoreProvider>
-    );
+  return (
+    <StoreProvider>
+      <Refine
+        routerProvider={routerProvider}
+        //highlight-start
+        liveProvider={liveProvider(appwriteClient)}
+        options={{ liveMode: "auto" }}
+        //highlight-end
+        dataProvider={dataProvider(appwriteClient)}
+        authProvider={authProvider}
+        LoginPage={Login}
+        Sider={CustomSider}
+        resources={[
+          {
+            name: "61cb01b17ef57",
+            list: ProductList,
+            show: ProductShow,
+            options: {
+              label: "Products",
+              route: "products",
+            },
+          },
+        ]}
+        Layout={Layout}
+        ReadyPage={ReadyPage}
+        notificationProvider={notificationProvider}
+        catchAll={<ErrorComponent />}
+      />
+    </StoreProvider>
+  );
 }
 
 export default App;

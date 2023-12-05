@@ -11,7 +11,7 @@ import SearchPreview from "./\_partial-use-table-search-live-preview.md";
 import RelationalLivePreview from "./\_partial-use-table-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-By using `useTable`, you can get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch.
+By using `useTable`, you can get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/3.xx.xx/api-reference/core/hooks/data/useList/) for the fetch.
 
 For all the other features, you can refer to the Ant Design [`<Table>`][table] documentation.
 
@@ -37,17 +37,17 @@ If you want to make a change in the pagination of the `<Table>`. You should pass
 const { tableProps } = useTable<IPost>();
 
 <Table
-    {...tableProps}
-    rowKey="id"
-    // highlight-start
-    pagination={{
-        ...tableProps.pagination,
-        position: ["bottomCenter"],
-        size: "small",
-    }}
-    // highlight-end
+  {...tableProps}
+  rowKey="id"
+  // highlight-start
+  pagination={{
+    ...tableProps.pagination,
+    position: ["bottomCenter"],
+    size: "small",
+  }}
+  // highlight-end
 >
-    // ---
+  // ---
 </Table>;
 ```
 
@@ -141,11 +141,11 @@ We can use [`onSearch`](#onsearch) and [`searchFormProps`](#searchformprops) pro
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+> This feature is only available if you use a [Live Provider](/docs/3.xx.xx/api-reference/core/providers/live-provider).
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/providers/live-provider)
 
 ## Properties
 
@@ -164,7 +164,7 @@ method={{
 
 ```tsx
 useTable({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -177,30 +177,30 @@ It's useful when you want to filter the data with any query.
 
 ```tsx
 const { searchFormProps, tableProps } = useTable({
-    onSearch: (values) => {
-        return [
-            {
-                field: "title",
-                operator: "contains",
-                value: values.title,
-            },
-        ];
-    },
+  onSearch: (values) => {
+    return [
+      {
+        field: "title",
+        operator: "contains",
+        value: values.title,
+      },
+    ];
+  },
 });
 
 // --
 <List>
-    <Form {...searchFormProps}>
-        <Space>
-            <Form.Item name="title">
-                <Input placeholder="Search by title" />
-            </Form.Item>
-            <SaveButton onClick={searchFormProps.form?.submit} />
-        </Space>
-    </Form>
-    <Table {...tableProps} rowKey="id">
-        <Table.Column title="Title" dataIndex="title" />
-    </Table>
+  <Form {...searchFormProps}>
+    <Space>
+      <Form.Item name="title">
+        <Input placeholder="Search by title" />
+      </Form.Item>
+      <SaveButton onClick={searchFormProps.form?.submit} />
+    </Space>
+  </Form>
+  <Table {...tableProps} rowKey="id">
+    <Table.Column title="Title" dataIndex="title" />
+  </Table>
 </List>;
 // ---
 ```
@@ -211,7 +211,7 @@ If there is more than one `dataProvider`, you should use the `dataProviderName` 
 
 ```tsx
 useTable({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -223,7 +223,7 @@ Sets the initial value of the page index.
 
 ```tsx
 useTable({
-    initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
+  initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
 });
 ```
 
@@ -235,7 +235,7 @@ Sets the initial value of the page size.
 
 ```tsx
 useTable({
-    initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
+  initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
 });
 ```
 
@@ -245,12 +245,12 @@ Sets the initial value of the sorter. The `initialSorter` is not permanent. It w
 
 ```tsx
 useTable({
-    initialSorter: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
+  initialSorter: [
+    {
+      field: "title",
+      order: "asc",
+    },
+  ],
 });
 ```
 
@@ -260,12 +260,12 @@ Sets the permanent value of the sorter. The `permanentSorter` is permanent and u
 
 ```tsx
 useTable({
-    permanentSorter: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
+  permanentSorter: [
+    {
+      field: "title",
+      order: "asc",
+    },
+  ],
 });
 ```
 
@@ -275,13 +275,13 @@ Sets the initial value of the filter. The `initialFilter` is not permanent. It w
 
 ```tsx
 useTable({
-    initialFilter: [
-        {
-            field: "title",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+  initialFilter: [
+    {
+      field: "title",
+      operator: "contains",
+      value: "Foo",
+    },
+  ],
 });
 ```
 
@@ -291,13 +291,13 @@ Sets the permanent value of the filter. The `permanentFilter` is permanent and u
 
 ```tsx
 useTable({
-    permanentFilter: [
-        {
-            field: "title",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+  permanentFilter: [
+    {
+      field: "title",
+      operator: "contains",
+      value: "Foo",
+    },
+  ],
 });
 ```
 
@@ -307,15 +307,15 @@ useTable({
 
 The filtering behavior can be set to either `"merge"` or `"replace"`.
 
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
 
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 useTable({
-    defaultSetFilterBehavior: "replace",
+  defaultSetFilterBehavior: "replace",
 });
 ```
 
@@ -327,7 +327,7 @@ Determines whether to use server-side pagination or not.
 
 ```tsx
 useTable({
-    hasPagination: false,
+  hasPagination: false,
 });
 ```
 
@@ -341,66 +341,66 @@ Also, you can set this value globally on [`<Refine>`][refine swl] component.
 
 ```tsx
 useTable({
-    syncWithLocation: true,
+  syncWithLocation: true,
 });
 ```
 
 ### `queryOptions`
 
-`useTable` uses [`useList`](/docs/api-reference/core/hooks/data/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useTable` uses [`useList`](/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 useTable({
-    queryOptions: {
-        retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
+  },
 });
 ```
 
 ### `metaData`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`metaData`](/docs/3.xx.xx/api-reference/general-concepts/#metadata) is used following two purposes:
 
--   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+- To pass additional information to data provider methods.
+- Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/3.xx.xx/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useTable({
-    // highlight-start
-    metaData: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  metaData: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  getList: async ({
+    resource,
+    pagination,
+    hasPagination,
+    sort,
+    filters,
+    // highlight-next-line
+    metaData,
+  }) => {
+    // highlight-next-line
+    const headers = metaData?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    getList: async ({
-        resource,
-        pagination,
-        hasPagination,
-        sort,
-        filters,
-        // highlight-next-line
-        metaData,
-    }) => {
-        // highlight-next-line
-        const headers = metaData?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data, headers } = await httpClient.get(`${url}`, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data, headers } = await httpClient.get(`${url}`, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -412,13 +412,13 @@ After data is fetched successfully, `useTable` can call `open` function from [`N
 
 ```tsx
 useTable({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
@@ -430,48 +430,48 @@ After data fetching is failed, `useTable` will call `open` function from [`Notif
 
 ```tsx
 useTable({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+> [`LiveProvider`](/docs/3.xx.xx/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+For more information about live mode, please check [Live / Realtime](/docs/3.xx.xx/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useTable({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+> [`LiveProvider`](/docs/3.xx.xx/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useTable({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+> [`LiveProvider`](/docs/3.xx.xx/api-reference/core/providers/live-provider/) is required for this prop to work.
 
-Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/3.xx.xx/api-reference/core/providers/live-provider/#subscribe) method.
 
 ## Return Values
 
@@ -495,7 +495,7 @@ const { tableProps } = useTable()
 
 #### `dataSource`
 
-Contains the data to be displayed in the table. Values fetched with [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
+Contains the data to be displayed in the table. Values fetched with [`useList`](/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 #### `loading`
 
@@ -521,59 +521,57 @@ It's useful when you want to create a filter form for your `<Table>`.
 ```tsx
 import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 import {
-    List,
-    Table,
-    useTable,
-    Form,
-    SaveButton,
-    Input,
+  List,
+  Table,
+  useTable,
+  Form,
+  SaveButton,
+  Input,
 } from "@pankod/refine-antd";
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface ISearch {
-    title: string;
+  title: string;
 }
 
 const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { searchFormProps, tableProps } = useTable<IPost, HttpError, ISearch>(
+  const { searchFormProps, tableProps } = useTable<IPost, HttpError, ISearch>({
+    onSearch: (values) => {
+      return [
         {
-            onSearch: (values) => {
-                return [
-                    {
-                        field: "title",
-                        operator: "contains",
-                        value: values.title,
-                    },
-                ];
-            },
+          field: "title",
+          operator: "contains",
+          value: values.title,
         },
-    );
+      ];
+    },
+  });
 
-    return (
-        <List>
-            <Form {...searchFormProps} layout="inline">
-                <Form.Item name="title">
-                    <Input placeholder="Search by title" />
-                </Form.Item>
-                {/* highlight-next-line */}
-                <SaveButton onClick={searchFormProps.form?.submit} />
-            </Form>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column title="Title" dataIndex="title" />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Form {...searchFormProps} layout="inline">
+        <Form.Item name="title">
+          <Input placeholder="Search by title" />
+        </Form.Item>
+        {/* highlight-next-line */}
+        <SaveButton onClick={searchFormProps.form?.submit} />
+      </Form>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column title="Title" dataIndex="title" />
+      </Table>
+    </List>
+  );
 };
 ```
 
 ### `tableQueryResult`
 
-Returned values from [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
+Returned values from [`useList`](/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 ### `sorter`
 
@@ -606,7 +604,7 @@ Current page index state. If pagination is disabled, it will be `undefined`.
 ### `setCurrent`
 
 ```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined
+React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
 A function to set the current page index state. If pagination is disabled, it will be `undefined`.
@@ -618,7 +616,7 @@ Current page size state. If pagination is disabled, it will be `undefined`.
 ### `setPageSize`
 
 ```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined
+React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
 A function to set the current page size state. If pagination is disabled, it will be `undefined`.
@@ -639,7 +637,7 @@ A function creates accessible links for `syncWithLocation`. It takes an [SyncWit
 
 ### How can I handle relational data?
 
-You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data and filter `<Table>` by categories with help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
+You can use [`useMany`](/docs/3.xx.xx/api-reference/core/hooks/data/useMany/) hook to fetch relational data and filter `<Table>` by categories with help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
 
 <RelationalLivePreview/>
 
@@ -680,7 +678,7 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 
 <CodeSandboxExample path="table-antd-use-table" />
 
-[use-table-core]: /docs/api-reference/core/hooks/useTable/
+[use-table-core]: /docs/3.xx.xx/api-reference/core/hooks/useTable/
 [table]: https://ant.design/components/table/#API
 [table-column]: https://ant.design/components/table#column
 [form]: https://ant.design/components/form/#API
@@ -691,6 +689,6 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 [httperror]: /api-reference/core/interfaces.md#httperror
 [table search]: /advanced-tutorials/search/table-search.md
 [refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation
-[filter-dropdown]: /docs/api-reference/antd/components/filter-dropdown/
+[filter-dropdown]: /docs/3.xx.xx/api-reference/antd/components/filter-dropdown/
 [syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams
 [notification-provider]: /api-reference/core/providers/notification-provider.md

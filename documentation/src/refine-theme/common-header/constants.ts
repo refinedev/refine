@@ -98,7 +98,7 @@ export const MENU_ITEMS: MenuItemType[] = [
             {
                 label: "Contributing",
                 description: "Join open-source contributors.",
-                link: "/docs/contributing/",
+                link: "/docs/further-readings/contributing/",
                 icon: ContributeIcon,
             },
             {

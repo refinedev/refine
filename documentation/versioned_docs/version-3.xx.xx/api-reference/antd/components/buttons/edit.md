@@ -4,11 +4,10 @@ title: Edit
 swizzle: true
 ---
 
-
 `<EditButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -16,50 +15,50 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live
 // visible-block-start
 import {
-    Table,
-    List,
-    useTable,
-    // highlight-next-line
-    EditButton,
+  Table,
+  List,
+  useTable,
+  // highlight-next-line
+  EditButton,
 } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" width="100%" />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    key="actions"
-                    render={(_, record) => (
-                        // highlight-next-line
-                        <EditButton size="small" recordItemId={record.id} />
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" width="100%" />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          key="actions"
+          render={(_, record) => (
+            // highlight-next-line
+            <EditButton size="small" recordItemId={record.id} />
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -75,41 +74,33 @@ const { useRouterContext } = RefineCore;
 import { EditButton } from "@pankod/refine-antd";
 
 const MyEditComponent = () => {
-    return (
-        <EditButton
-            resourceNameOrRouteName="posts"
-            // highlight-next-line
-            recordItemId="123"
-        />
-    );
+  return (
+    <EditButton
+      resourceNameOrRouteName="posts"
+      // highlight-next-line
+      recordItemId="123"
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                },
-                edit: () => {
-                    return (
-                        <RefineAntd.Edit>
-                            Edit page here...
-                        </RefineAntd.Edit>
-                    )
-                }
-            },
-        ]}
-        DashboardPage={MyEditComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+        edit: () => {
+          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+        },
+      },
+    ]}
+    DashboardPage={MyEditComponent}
+  />,
 );
 ```
 
@@ -130,58 +121,42 @@ const { useRouterContext } = RefineCore;
 import { EditButton } from "@pankod/refine-antd";
 
 const MyEditComponent = () => {
-    return (
-        <EditButton
-            // highlight-next-line
-            resourceNameOrRouteName="categories"
-            recordItemId="123"
-        />
-    );
+  return (
+    <EditButton
+      // highlight-next-line
+      resourceNameOrRouteName="categories"
+      recordItemId="123"
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                },
-                edit: () => {
-                    return (
-                        <RefineAntd.Edit>
-                            Edit page here...
-                        </RefineAntd.Edit>
-                    )
-                }
-            },
-            {
-                name: "categories",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                },
-                edit: () => {
-                    return (
-                        <RefineAntd.Edit>
-                            Edit page here...
-                        </RefineAntd.Edit>
-                    )
-                }
-            },
-        ]}
-        DashboardPage={MyEditComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+        edit: () => {
+          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+        },
+      },
+      {
+        name: "categories",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+        edit: () => {
+          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+        },
+      },
+    ]}
+    DashboardPage={MyEditComponent}
+  />,
 );
 ```
 
@@ -198,34 +173,30 @@ const { useRouterContext } = RefineCore;
 import { EditButton } from "@pankod/refine-antd";
 
 const MyEditComponent = () => {
-    return (
-        <EditButton
-            recordItemId="123"
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <EditButton
+      recordItemId="123"
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyEditComponent,
-                edit: () => {
-                    return (
-                        <RefineAntd.Edit>
-                            Edit page here...
-                        </RefineAntd.Edit>
-                    )
-                }
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyEditComponent,
+        edit: () => {
+          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+        },
+      },
+    ]}
+  />,
 );
 ```
 
@@ -237,16 +208,16 @@ This prop can be used to skip access control check with its `enabled` property o
 import { EditButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
-    return (
-        <EditButton
-            // highlight-start
-            accessControl={{
-                enabled: true,
-                hideIfUnauthorized: true
-            }}
-            // highlight-end
-        />
-    );
+  return (
+    <EditButton
+      // highlight-start
+      accessControl={{
+        enabled: true,
+        hideIfUnauthorized: true,
+      }}
+      // highlight-end
+    />
+  );
 };
 ```
 

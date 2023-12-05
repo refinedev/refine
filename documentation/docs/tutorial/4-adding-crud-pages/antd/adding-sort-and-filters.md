@@ -96,11 +96,11 @@ And now, you can search and filter the data by category on the table.
 
 For more information, check out the following documents:
 
-- > [**Ant Design** `<Select/>`](https://ant.design/components/select) and [`useSelect` documentations&#8594](/docs/api-reference/antd/hooks/field/useSelect/)
+- > [**Ant Design** `<Select/>`](https://ant.design/components/select) and [`useSelect` documentations&#8594](/docs/ui-integrations/ant-design/hooks/use-select)
 
 - > [**Ant Design** `<Table/>` documentation](https://ant.design/components/table#components-table-demo-custom-filter-panel) for the `filterDropdown` prop.
 
-- > [`<FilterDropdown/>` documentation](/docs/api-reference/antd/components/filter-dropdown/) for the `<FilterDropdown/>` component.
+- > [`<FilterDropdown/>` documentation](/docs/ui-integrations/ant-design/components/filter-dropdown) for the `<FilterDropdown/>` component.
 
 <br/>
 

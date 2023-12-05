@@ -17,25 +17,25 @@ import { AntdLayout, AutoComplete, Input, Icons } from "@pankod/refine-antd";
 const { SearchOutlined } = Icons;
 
 export const Header: React.FC = () => {
-    return (
-        <AntdLayout.Header
-            style={{
-                padding: "0px 24px",
-                backgroundColor: "#FFF",
-            }}
-        >
-            <AutoComplete
-                style={{ width: "100%", maxWidth: "550px" }}
-                filterOption={false}
-            >
-                <Input
-                    size="large"
-                    placeholder="Search posts or categories"
-                    suffix={<SearchOutlined />}
-                />
-            </AutoComplete>
-        </AntdLayout.Header>
-    );
+  return (
+    <AntdLayout.Header
+      style={{
+        padding: "0px 24px",
+        backgroundColor: "#FFF",
+      }}
+    >
+      <AutoComplete
+        style={{ width: "100%", maxWidth: "550px" }}
+        filterOption={false}
+      >
+        <Input
+          size="large"
+          placeholder="Search posts or categories"
+          suffix={<SearchOutlined />}
+        />
+      </AutoComplete>
+    </AntdLayout.Header>
+  );
 };
 ```
 
@@ -49,10 +49,10 @@ Let's not forget to pass the `<Header>` component to the `<Refine>` component in
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -65,18 +65,18 @@ import { Header } from "components";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            // highlight-next-line
-            Header={Header}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      // highlight-next-line
+      Header={Header}
+    />
+  );
 };
 
 export default App;
@@ -86,29 +86,29 @@ export default App;
 
 Now let's get our [`<AutoComplete>`](https://ant.design/components/auto-complete) input ready to search. So, let's fetch our posts according to the value entered in our input.
 
-To fetch more than one record, we will use the [`useList`](/docs/api-reference/core/hooks/data/useList) data hook, and we will filter and fetch this data according to the search value.
+To fetch more than one record, we will use the [`useList`](/docs/3.xx.xx/api-reference/core/hooks/data/useList) data hook, and we will filter and fetch this data according to the search value.
 
 Before we start, let's create the interfaces of our [`<AutoComplete>`](https://ant.design/components/auto-complete)'s `options` property and the post source.
 
 ```ts title="src/interfaces/index.d.ts"
 export interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 export interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 export interface IOptionGroup {
-    value: string;
-    label: string | React.ReactNode;
+  value: string;
+  label: string | React.ReactNode;
 }
 
 export interface IOptions {
-    label: string | React.ReactNode;
-    options: IOptionGroup[];
+  label: string | React.ReactNode;
+  options: IOptionGroup[];
 }
 ```
 
@@ -116,11 +116,11 @@ export interface IOptions {
 import { useState, useEffect } from "react";
 import { useList } from "@pankod/refine-core";
 import {
-    AntdLayout,
-    AutoComplete,
-    Input,
-    Icons,
-    Typography,
+  AntdLayout,
+  AutoComplete,
+  Input,
+  Icons,
+  Typography,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -132,82 +132,82 @@ import { IOptions, IPost } from "interfaces";
 
 // To be able to customize the option title
 const renderTitle = (title: string) => {
-    return (
-        <Text strong style={{ fontSize: "16px" }}>
-            {title}
-        </Text>
-    );
+  return (
+    <Text strong style={{ fontSize: "16px" }}>
+      {title}
+    </Text>
+  );
 };
 
 // To be able to customize the option item
 const renderItem = (title: string, resource: string, id: number) => {
-    return {
-        value: title,
-        label: (
-            <Link to={`/${resource}/show/${id}`}>
-                <Text>{title}</Text>
-            </Link>
-        ),
-    };
+  return {
+    value: title,
+    label: (
+      <Link to={`/${resource}/show/${id}`}>
+        <Text>{title}</Text>
+      </Link>
+    ),
+  };
 };
 
 export const Header: React.FC = () => {
-    const [value, setValue] = useState<string>("");
-    const [options, setOptions] = useState<IOptions[]>([]);
+  const [value, setValue] = useState<string>("");
+  const [options, setOptions] = useState<IOptions[]>([]);
 
-    const { refetch: refetchPosts } = useList<IPost>({
-        resource: "posts",
-        config: {
-            filters: [{ field: "title", operator: "contains", value }],
-        },
-        queryOptions: {
-            enabled: false,
-            onSuccess: (data) => {
-                const postOptionGroup = data.data.map((item) =>
-                    renderItem(item.title, "posts", item.id),
-                );
-                if (postOptionGroup.length > 0) {
-                    setOptions([
-                        {
-                            label: renderTitle("Posts"),
-                            options: postOptionGroup,
-                        },
-                    ]);
-                }
+  const { refetch: refetchPosts } = useList<IPost>({
+    resource: "posts",
+    config: {
+      filters: [{ field: "title", operator: "contains", value }],
+    },
+    queryOptions: {
+      enabled: false,
+      onSuccess: (data) => {
+        const postOptionGroup = data.data.map((item) =>
+          renderItem(item.title, "posts", item.id),
+        );
+        if (postOptionGroup.length > 0) {
+          setOptions([
+            {
+              label: renderTitle("Posts"),
+              options: postOptionGroup,
             },
-        },
-    });
+          ]);
+        }
+      },
+    },
+  });
 
-    useEffect(() => {
-        setOptions([]);
-        refetchPosts();
-    }, [value]);
+  useEffect(() => {
+    setOptions([]);
+    refetchPosts();
+  }, [value]);
 
-    return (
-        <AntdLayout.Header
-            style={{
-                padding: "0px 24px",
-                backgroundColor: "#FFF",
-            }}
-        >
-            <AutoComplete
-                style={{ width: "100%", maxWidth: "550px" }}
-                filterOption={false}
-                options={options}
-                onSearch={(value: string) => setValue(value)}
-            >
-                <Input
-                    size="large"
-                    placeholder="Search posts or categories"
-                    suffix={<SearchOutlined />}
-                />
-            </AutoComplete>
-        </AntdLayout.Header>
-    );
+  return (
+    <AntdLayout.Header
+      style={{
+        padding: "0px 24px",
+        backgroundColor: "#FFF",
+      }}
+    >
+      <AutoComplete
+        style={{ width: "100%", maxWidth: "550px" }}
+        filterOption={false}
+        options={options}
+        onSearch={(value: string) => setValue(value)}
+      >
+        <Input
+          size="large"
+          placeholder="Search posts or categories"
+          suffix={<SearchOutlined />}
+        />
+      </AutoComplete>
+    </AntdLayout.Header>
+  );
 };
 ```
 
-We created states to dynamically manage the `value` and `options` properties of the [`<AutoComplete>`](https://ant.design/components/auto-complete) component. The [`useList`](/docs/api-reference/core/hooks/data/useList) hook is triggered whenever the value changes. Likewise, the filter used to fetch the data is updated each time the value changes.
+We created states to dynamically manage the `value` and `options` properties of the [`<AutoComplete>`](https://ant.design/components/auto-complete) component. The [`useList`](/docs/3.xx.xx/api-reference/core/hooks/data/useList) hook is triggered whenever the value changes. Likewise, the filter used to fetch the data is updated each time the value changes.
 
 <br />
 

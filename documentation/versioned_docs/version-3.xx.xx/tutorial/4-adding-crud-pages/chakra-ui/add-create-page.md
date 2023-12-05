@@ -2,9 +2,9 @@
 id: add-create-page
 title: 4. Adding Create Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-show-page
-    next: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+  next: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
 ---
 
 Create page is the page where you can create the record. In this tutorial, we will create the create page for the `blog_posts` resource.
@@ -34,37 +34,37 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    ChakraProvider,
-    ErrorComponent,
-    Layout,
-    refineTheme,
-    ReadyPage,
-    notificationProvider,
+  ChakraProvider,
+  ErrorComponent,
+  Layout,
+  refineTheme,
+  ReadyPage,
+  notificationProvider,
 } from "@pankod/refine-chakra-ui";
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const App = () => {
-    return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                    },
-                ]}
-            />
-        </ChakraProvider>
-    );
+  return (
+    <ChakraProvider theme={refineTheme}>
+      <Refine
+        notificationProvider={notificationProvider()}
+        routerProvider={routerProvider}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        Layout={Layout}
+        ReadyPage={ReadyPage}
+        catchAll={<ErrorComponent />}
+        resources={[
+          {
+            name: "blog_posts",
+            list: ChakraUIInferencer,
+            show: ChakraUIInferencer,
+            create: ChakraUIInferencer,
+            edit: ChakraUIInferencer,
+          },
+        ]}
+      />
+    </ChakraProvider>
+  );
 };
 
 render(<App />);
@@ -76,31 +76,31 @@ Instead of coding the create page component from scratch, Inferencer've created 
 
 We will go through the create page components and hooks one by one.
 
--   `<Create/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button etc.
+- `<Create/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button etc.
 
-    [Refer to the `<Create/>` documentation for more information &#8594](/docs/api-reference/chakra-ui/components/basic-views/create)
+  [Refer to the `<Create/>` documentation for more information &#8594](/docs/3.xx.xx/api-reference/chakra-ui/components/basic-views/create)
 
--   `useForm` hook, imported from `@pankod/refine-react-hook-form` package, has been developed by using the **React Hook Form** and `useForm` hook imported from `@pankod/refine-core` package.
+- `useForm` hook, imported from `@pankod/refine-react-hook-form` package, has been developed by using the **React Hook Form** and `useForm` hook imported from `@pankod/refine-core` package.
 
-    It provides all the features of the `useForm` hook from `@pankod/refine-core` package as well as the `useForm` hook from **React Hook Form**.
+  It provides all the features of the `useForm` hook from `@pankod/refine-core` package as well as the `useForm` hook from **React Hook Form**.
 
-    It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
+  It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
 
-    When you use `useForm` in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted.
+  When you use `useForm` in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted.
 
-    [Refer to the **@pankod/refine-react-hook-form** `useForm` documentation for more information &#8594](/docs/packages/documentation/react-hook-form/useForm/)
+  [Refer to the **@pankod/refine-react-hook-form** `useForm` documentation for more information &#8594](/docs/3.xx.xx/packages/documentation/react-hook-form/useForm/)
 
-    [Refer to the **React Hook Form** documentation for more information &#8594](https://react-hook-form.com/)
+  [Refer to the **React Hook Form** documentation for more information &#8594](https://react-hook-form.com/)
 
--   All other components provided by **Chakra UI** are used to display the form fields.
+- All other components provided by **Chakra UI** are used to display the form fields.
 
-    [Refer to the **Chakra UI** documentation for more information &#8594](https://chakra-ui.com/)
+  [Refer to the **Chakra UI** documentation for more information &#8594](https://chakra-ui.com/)
 
 ### Handling Relationships
 
 In the create page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the blog post to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the resource name to the `dataProvider`'s `getList` method. Then, it returns the `options` to be used in the `<Select/>` component.
 
-[Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/core/hooks/useSelect/)
+[Refer to the `useSelect` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/useSelect/)
 
 [Refer to the **Chakra UI** `<Select/>` documentation for more information &#8594](https://chakra-ui.com/docs/components/select/usage)
 
@@ -108,7 +108,7 @@ In the auto-generated create page code, Inferencer used the `useSelect` hook to 
 
 ```tsx
 const { options: categoryOptions } = useSelect({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -127,12 +127,12 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    ChakraProvider,
-    ErrorComponent,
-    Layout,
-    refineTheme,
-    ReadyPage,
-    notificationProvider,
+  ChakraProvider,
+  ErrorComponent,
+  Layout,
+  refineTheme,
+  ReadyPage,
+  notificationProvider,
 } from "@pankod/refine-chakra-ui";
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
@@ -143,28 +143,28 @@ import { BlogPostShow } from "pages/blog-posts/show";
 import { BlogPostCreate } from "pages/blog-posts/create";
 
 const App = () => {
-    return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "blog_posts",
-                        list: BlogPostList,
-                        edit: BlogPostEdit,
-                        show: BlogPostShow,
-                        //highlight-next-line
-                        create: BlogPostCreate,
-                    },
-                ]}
-            />
-        </ChakraProvider>
-    );
+  return (
+    <ChakraProvider theme={refineTheme}>
+      <Refine
+        notificationProvider={notificationProvider()}
+        routerProvider={routerProvider}
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        Layout={Layout}
+        ReadyPage={ReadyPage}
+        catchAll={<ErrorComponent />}
+        resources={[
+          {
+            name: "blog_posts",
+            list: BlogPostList,
+            edit: BlogPostEdit,
+            show: BlogPostShow,
+            //highlight-next-line
+            create: BlogPostCreate,
+          },
+        ]}
+      />
+    </ChakraProvider>
+  );
 };
 export default App;
 ```

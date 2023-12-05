@@ -8,10 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook
 hide_table_of_contents: false
 ---
 
-
-
-
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/overview.gif" alt="Refine Example Overview" />
 <br />
 
@@ -45,9 +41,9 @@ import cors from "cors";
 const app = express();
 
 app.use(
-    fileupload({
-        createParentPath: true,
-    }),
+  fileupload({
+    createParentPath: true,
+  }),
 );
 
 app.use(cors());
@@ -55,32 +51,32 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/upload-file", async (req, res) => {
-    try {
-        if (!req.files) {
-            res.send({
-                status: "failed",
-                message: "No file uploaded",
-            });
-        } else {
-            let file = req.files.file;
+  try {
+    if (!req.files) {
+      res.send({
+        status: "failed",
+        message: "No file uploaded",
+      });
+    } else {
+      let file = req.files.file;
 
-            console.log(req.files);
+      console.log(req.files);
 
-            file.mv("./uploads/" + file.name);
+      file.mv("./uploads/" + file.name);
 
-            res.send({
-                status: "success",
-                message: "File is uploaded",
-                data: {
-                    name: file.name,
-                    mimetype: file.mimetype,
-                    size: file.size,
-                },
-            });
-        }
-    } catch (err) {
-        res.status(500).send(err);
+      res.send({
+        status: "success",
+        message: "File is uploaded",
+        data: {
+          name: file.name,
+          mimetype: file.mimetype,
+          size: file.size,
+        },
+      });
     }
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 const port = process.env.PORT || 5000;
@@ -110,20 +106,14 @@ npm install react-hook-form
 npm run start
 ```
 
-
-
 ---
 
 <div className="banner-container">
 <div className="banner-header" >Stop wasting your time copy/pasting your table code all over your application!</div >
 
-
-
 Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
 
 Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
-
-    
 
 <div>
 <a href="https://github.com/pankod/refine">
@@ -132,7 +122,6 @@ Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD
 </div>
 
 <br/>
-
 
 **refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design, Material UI and Mantine UI**.
 
@@ -143,6 +132,7 @@ Visit [refine GitHub repository](https://github.com/pankod/refine) for more info
 </div>
 
 ---
+
 ## Multipart File Upload with React Hook Form
 
 We created our React project and installed our react hook form package. Now let's create a form and manage it with the react hook form.
@@ -153,22 +143,22 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 function App() {
-    //highlight-next-line
-    const { register, handleSubmit } = useForm();
+  //highlight-next-line
+  const { register, handleSubmit } = useForm();
 
-    const onSubmit = () => {};
+  const onSubmit = () => {};
 
-    return (
-        //highlight-start
-        <div className="App">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="file" {...register("file")} />
+  return (
+    //highlight-start
+    <div className="App">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input type="file" {...register("file")} />
 
-                <input type="submit" />
-            </form>
-        </div>
-        //highlight-end
-    );
+        <input type="submit" />
+      </form>
+    </div>
+    //highlight-end
+  );
 }
 
 export default App;
@@ -181,30 +171,30 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 function App() {
-    const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();
 
-    const onSubmit = async (data) => {
-        //highlight-start
-        const formData = new FormData();
-        formData.append("file", data.file[0]);
+  const onSubmit = async (data) => {
+    //highlight-start
+    const formData = new FormData();
+    formData.append("file", data.file[0]);
 
-        const res = await fetch("http://localhost:5000/upload-file", {
-            method: "POST",
-            body: formData,
-        }).then((res) => res.json());
-        alert(JSON.stringify(`${res.message}, status: ${res.status}`));
-        //highlight-end
-    };
+    const res = await fetch("http://localhost:5000/upload-file", {
+      method: "POST",
+      body: formData,
+    }).then((res) => res.json());
+    alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+    //highlight-end
+  };
 
-    return (
-        <div className="App">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="file" {...register("file")} />
+  return (
+    <div className="App">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input type="file" {...register("file")} />
 
-                <input type="submit" />
-            </form>
-        </div>
-    );
+        <input type="submit" />
+      </form>
+    </div>
+  );
 }
 
 export default App;
@@ -215,15 +205,12 @@ Our project is ready! With React Hook Form, we can now send the selected file to
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/image_upload.gif" alt="multipart/form-data file upload" />
 <br />
 
-
 <br/>
 <div>
 <a href="https://discord.gg/refine">
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
-
-
 
 ## Are You Looking React Web Framework?
 
@@ -247,9 +234,9 @@ A React-based framework for building internal tools, rapidly. **refine** offers 
 
 ## How to Multipart File Upload with Refine and React Hook Form?
 
-It allows you to manage your forms and send data to your server with the [refine-react-hook-form adapter](/docs/packages/documentation/react-hook-form/useForm/) it publishes with its **refine** **headless** feature. With this adapter, you can use all the features of the React Hook Form in harmony with **refine**. You can also perform `Multipart File Upload(multipart/form-data)` operation very easily using this adapter.
+It allows you to manage your forms and send data to your server with the [refine-react-hook-form adapter](/docs/packages/list-of-packages) it publishes with its **refine** **headless** feature. With this adapter, you can use all the features of the React Hook Form in harmony with **refine**. You can also perform `Multipart File Upload(multipart/form-data)` operation very easily using this adapter.
 
-[Refer to the refine-react-hook-form adapter documentation for detailed information. →](/docs/packages/documentation/react-hook-form/useForm/)
+[Refer to the refine-react-hook-form adapter documentation for detailed information. →](/docs/packages/list-of-packages)
 
 [View Source](https://github.com/refinedev/refine/tree/master/examples/reactHookForm/useForm)
 
@@ -266,106 +253,90 @@ import { useSelect, useApiUrl } from "@refinedev/core";
 import axios from "axios";
 
 export const PostCreate: React.FC = () => {
-    const [isUploading, setIsUploading] = useState<boolean>(false);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
 
-    //highlight-start
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        formState: { errors },
-        setValue,
-    } = useForm();
-    //highlight-end
+  //highlight-start
+  const {
+    refineCore: { onFinish, formLoading },
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm();
+  //highlight-end
 
-    //highlight-next-line
-    const apiURL = useApiUrl();
+  //highlight-next-line
+  const apiURL = useApiUrl();
 
-    const { options } = useSelect({
-        resource: "categories",
+  const { options } = useSelect({
+    resource: "categories",
+  });
+
+  //highlight-start
+  const onSubmitFile = async () => {
+    setIsUploading(true);
+    const inputFile = document.getElementById("fileInput") as HTMLInputElement;
+
+    const formData = new FormData();
+    formData.append("file", inputFile?.files?.item(0) as File);
+
+    const res = await axios.post<{ url: string }>(`${apiURL}/media/upload`, formData, {
+      withCredentials: false,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
     });
 
-    //highlight-start
-    const onSubmitFile = async () => {
-        setIsUploading(true);
-        const inputFile = document.getElementById(
-            "fileInput",
-        ) as HTMLInputElement;
+    setValue("thumbnail", res.data.url);
+    setIsUploading(false);
+  };
+  //highlight-end
 
-        const formData = new FormData();
-        formData.append("file", inputFile?.files?.item(0) as File);
-
-        const res = await axios.post<{ url: string }>(
-            `${apiURL}/media/upload`,
-            formData,
-            {
-                withCredentials: false,
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                },
-            },
-        );
-
-        setValue("thumbnail", res.data.url);
-        setIsUploading(false);
-    };
-    //highlight-end
-
-    return (
-        //highlight-next-line
-        <form onSubmit={handleSubmit(onFinish)}>
-            <label>Title: </label>
-            <input {...register("title", { required: true })} />
-            {errors.title && <span>This field is required</span>}
-            <br />
-            <label>Status: </label>
-            <select {...register("status")}>
-                <option value="published">published</option>
-                <option value="draft">draft</option>
-                <option value="rejected">rejected</option>
-            </select>
-            <br />
-            <label>Category: </label>
-            <select
-                defaultValue={""}
-                {...register("category.id", { required: true })}
-            >
-                <option value={""} disabled>
-                    Please select
-                </option>
-                {options?.map((category) => (
-                    <option key={category.value} value={category.value}>
-                        {category.label}
-                    </option>
-                ))}
-            </select>
-            {errors.category && <span>This field is required</span>}
-            <br />
-            <label>Content: </label>
-            <br />
-            <textarea
-                {...register("content", { required: true })}
-                rows={10}
-                cols={50}
-            />
-            {errors.content && <span>This field is required</span>}
-            <br />
-            <br />
-            //highlight-start
-            <label>Image: </label>
-            <input id="fileInput" type="file" onChange={onSubmitFile} />
-            <input
-                type="hidden"
-                {...register("thumbnail", { required: true })}
-            />
-            {errors.thumbnail && <span>This field is required</span>}
-            //highlight-end
-            <br />
-            <br />
-            <input type="submit" disabled={isUploading} value="Submit" />
-            {formLoading && <p>Loading</p>}
-        </form>
-    );
+  return (
+    //highlight-next-line
+    <form onSubmit={handleSubmit(onFinish)}>
+      <label>Title: </label>
+      <input {...register("title", { required: true })} />
+      {errors.title && <span>This field is required</span>}
+      <br />
+      <label>Status: </label>
+      <select {...register("status")}>
+        <option value="published">published</option>
+        <option value="draft">draft</option>
+        <option value="rejected">rejected</option>
+      </select>
+      <br />
+      <label>Category: </label>
+      <select defaultValue={""} {...register("category.id", { required: true })}>
+        <option value={""} disabled>
+          Please select
+        </option>
+        {options?.map((category) => (
+          <option key={category.value} value={category.value}>
+            {category.label}
+          </option>
+        ))}
+      </select>
+      {errors.category && <span>This field is required</span>}
+      <br />
+      <label>Content: </label>
+      <br />
+      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      {errors.content && <span>This field is required</span>}
+      <br />
+      <br />
+      //highlight-start
+      <label>Image: </label>
+      <input id="fileInput" type="file" onChange={onSubmitFile} />
+      <input type="hidden" {...register("thumbnail", { required: true })} />
+      {errors.thumbnail && <span>This field is required</span>}
+      //highlight-end
+      <br />
+      <br />
+      <input type="submit" disabled={isUploading} value="Submit" />
+      {formLoading && <p>Loading</p>}
+    </form>
+  );
 };
 ```
 

@@ -8,7 +8,7 @@ swizzle: true
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -16,56 +16,58 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
 import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    // highlight-next-line
-    CloneButton,
+  useDataGrid,
+  DataGrid,
+  GridColumns,
+  List,
+  // highlight-next-line
+  CloneButton,
 } from "@pankod/refine-mui";
 
 const columns: GridColumns = [
-    { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
-    {
-        field: "actions",
-        headerName: "Actions",
-        renderCell: function render({ row }) {
-            // highlight-next-line
-            return <CloneButton size="small" recordItemId={row.id} />;
-        },
-        align: "center",
-        headerAlign: "center",
-        minWidth: 80,
+  { field: "id", headerName: "ID", type: "number" },
+  { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+  {
+    field: "actions",
+    headerName: "Actions",
+    renderCell: function render({ row }) {
+      // highlight-next-line
+      return <CloneButton size="small" recordItemId={row.id} />;
     },
+    align: "center",
+    headerAlign: "center",
+    minWidth: 80,
+  },
 ];
 
 const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+  const { dataGridProps } = useDataGrid<IPost>();
 
-    return (
-        <List>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
-        </List>
-    );
+  return (
+    <List>
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineMuiDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostsList,
-                create: () => <RefineMui.Create>Rest of the page here...</RefineMui.Create>,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostsList,
+        create: () => (
+          <RefineMui.Create>Rest of the page here...</RefineMui.Create>
+        ),
+      },
+    ]}
+  />,
 );
 ```
 
@@ -81,27 +83,27 @@ const { useRouterContext } = RefineCore;
 import { CloneButton } from "@pankod/refine-mui";
 
 const MyCloneComponent = () => {
-    return <CloneButton resourceNameOrRouteName="posts" recordItemId="1" />;
+  return <CloneButton resourceNameOrRouteName="posts" recordItemId="1" />;
 };
 
 // visible-block-end
 
 const ClonedPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                create: ClonedPage,
-            },
-        ]}
-        DashboardPage={MyCloneComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        create: ClonedPage,
+      },
+    ]}
+    DashboardPage={MyCloneComponent}
+  />,
 );
 ```
 
@@ -122,32 +124,30 @@ const { useRouterContext } = RefineCore;
 import { CloneButton } from "@pankod/refine-mui";
 
 const MyCloneComponent = () => {
-    return (
-        <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />
-    );
+  return <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />;
 };
 
 // visible-block-end
 
 const ClonedPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                create: ClonedPage,
-            },
-        ]}
-        DashboardPage={MyCloneComponent}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        create: ClonedPage,
+      },
+    ]}
+    DashboardPage={MyCloneComponent}
+  />,
 );
 ```
 
@@ -164,32 +164,32 @@ const { useRouterContext } = RefineCore;
 import { CloneButton } from "@pankod/refine-mui";
 
 const MyCloneComponent = () => {
-    return (
-        <CloneButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <CloneButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 const ClonedPage = () => {
-    const params = useRouterContext().useParams();
-    return <div>{JSON.stringify(params)}</div>;
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
 };
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyCloneComponent,
-                create: ClonedPage,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyCloneComponent,
+        create: ClonedPage,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -201,11 +201,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CloneButton } from "@pankod/refine-mui";
 
 export const MyCloneComponent = () => {
-    return (
-        <CloneButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return (
+    <CloneButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

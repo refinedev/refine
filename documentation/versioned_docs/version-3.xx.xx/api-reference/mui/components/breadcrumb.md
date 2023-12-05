@@ -7,7 +7,7 @@ swizzle: true
 A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. `<Breadcrumb>` component built with Material UI [Breadcrumb][mui-breadcrumb] components using the [`useBreadcrumb`](/api-reference/core/hooks/useBreadcrumb.md) hook.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px disableScroll
@@ -15,60 +15,60 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 import { Show, Breadcrumb } from "@pankod/refine-mui";
 
 const PostShow: React.FC = () => {
-    return (
-        <Show
-            // highlight-next-line
-            breadcrumb={<Breadcrumb />}
-        >
-            <p>Content of your show page...</p>
-        </Show>
-    );
+  return (
+    <Show
+      // highlight-next-line
+      breadcrumb={<Breadcrumb />}
+    >
+      <p>Content of your show page...</p>
+    </Show>
+  );
 };
 // visible-block-end
 
 const PostList = () => {
-    return (
-        <RefineMui.List>
-            <p>Content of your list page...</p>
-        </RefineMui.List>
-    )
+  return (
+    <RefineMui.List>
+      <p>Content of your list page...</p>
+    </RefineMui.List>
+  );
 };
 
 const PostIcon = (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="icon icon-tabler icon-tabler-list"
-        width={18}
-        height={18}
-        viewBox="0 0 24 24"
-        strokeWidth="2"
-        stroke="currentColor"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <line x1={9} y1={6} x2={20} y2={6}></line>
-        <line x1={9} y1={12} x2={20} y2={12}></line>
-        <line x1={9} y1={18} x2={20} y2={18}></line>
-        <line x1={5} y1={6} x2={5} y2="6.01"></line>
-        <line x1={5} y1={12} x2={5} y2="12.01"></line>
-        <line x1={5} y1={18} x2={5} y2="18.01"></line>
-    </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="icon icon-tabler icon-tabler-list"
+    width={18}
+    height={18}
+    viewBox="0 0 24 24"
+    strokeWidth="2"
+    stroke="currentColor"
+    fill="none"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+    <line x1={9} y1={6} x2={20} y2={6}></line>
+    <line x1={9} y1={12} x2={20} y2={12}></line>
+    <line x1={9} y1={18} x2={20} y2={18}></line>
+    <line x1={5} y1={6} x2={5} y2="6.01"></line>
+    <line x1={5} y1={12} x2={5} y2="12.01"></line>
+    <line x1={5} y1={18} x2={5} y2="18.01"></line>
+  </svg>
 );
 
 render(
-    <RefineMuiDemo
-        initialRoutes={["/posts/show/123"]}
-        resources={[
-            {
-                name: "posts",
-                icon: PostIcon,
-                show: PostShow,
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineMuiDemo
+    initialRoutes={["/posts/show/123"]}
+    resources={[
+      {
+        name: "posts",
+        icon: PostIcon,
+        show: PostShow,
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -82,11 +82,11 @@ render(
 import { List, Breadcrumb } from "@pankod/refine-mui";
 
 export const PostList: React.FC = () => {
-    return (
-        <List breadcrumb={<Breadcrumb breadcrumbProps={{ separator: "-" }} />}>
-            ...
-        </List>
-    );
+  return (
+    <List breadcrumb={<Breadcrumb breadcrumbProps={{ separator: "-" }} />}>
+      ...
+    </List>
+  );
 };
 ```
 
@@ -98,7 +98,7 @@ If your application has a [DashboardPage](/api-reference/core/components/refine-
 import { List, Breadcrumb } from "@pankod/refine-mui";
 
 export const PostList: React.FC = () => {
-    return <List breadcrumb={<Breadcrumb showHome={false} />}>...</List>;
+  return <List breadcrumb={<Breadcrumb showHome={false} />}>...</List>;
 };
 ```
 
@@ -117,6 +117,7 @@ export const PostList: React.FC = () => {
 ```
 
 ## API Reference
+
 ### Properties
 
 <PropsTable module="@pankod/refine-mui/Breadcrumb"

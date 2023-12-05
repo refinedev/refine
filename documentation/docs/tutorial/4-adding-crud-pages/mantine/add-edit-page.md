@@ -2,9 +2,9 @@
 id: add-edit-page
 title: 2. Adding Edit Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/index
-    next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/index
+  next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
 ---
 
 ## Creating Edit Page
@@ -29,16 +29,8 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 import { Global, MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { Refine } from "@refinedev/core";
-import {
-    ErrorComponent,
-    ThemedLayoutV2,
-    RefineThemes,
-    notificationProvider,
-} from "@refinedev/mantine";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes, notificationProvider } from "@refinedev/mantine";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
@@ -46,74 +38,51 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="blog_posts" />
-                                    }
-                                />
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
 
-                                <Route path="/blog-posts">
-                                    <Route
-                                        index
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MantineInferencer />}
-                                    />
-                                </Route>
+                <Route path="/blog-posts">
+                  <Route index element={<MantineInferencer />} />
+                  <Route path="show/:id" element={<MantineInferencer />} />
+                  <Route path="edit/:id" element={<MantineInferencer />} />
+                  <Route path="create" element={<MantineInferencer />} />
+                </Route>
 
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 
 render(<App />);
@@ -123,17 +92,17 @@ render(<App />);
 
 ### Hooks and Components in Edit Page
 
--   `<Edit/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
+- `<Edit/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
 
-    > For more information, refer to the [`<Edit/>` documentation&#8594](/docs/api-reference/mantine/components/basic-views/edit)
+  > For more information, refer to the [`<Edit/>` documentation&#8594](/docs/ui-integrations/mantine/components/basic-views/edit)
 
--   The `useForm` hook is imported from `@refinedev/mantine` package and has been developed by using the **Mantine** `useForm` hook and `@refinedev/core` `useForm` hook. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
+- The `useForm` hook is imported from `@refinedev/mantine` package and has been developed by using the **Mantine** `useForm` hook and `@refinedev/core` `useForm` hook. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
 
-    > For more information, refer to the [`useForm`&#8594](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/) and [**Mantine** documentations&#8594](https://mantine.dev/form/use-form/)
+  > For more information, refer to the [`useForm`&#8594](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/) and [**Mantine** documentations&#8594](https://mantine.dev/form/use-form/)
 
--   All other components provided by **Mantine** are used to display the form fields.
+- All other components provided by **Mantine** are used to display the form fields.
 
-    > For more information, refer to the [Mantine documentation&#8594](https://mantine.dev/)
+  > For more information, refer to the [Mantine documentation&#8594](https://mantine.dev/)
 
 ### Handling Relationships
 
@@ -145,7 +114,7 @@ In the auto-generated edit page code, Inferencer used the `useSelect` hook to se
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -153,12 +122,12 @@ const { selectProps: categorySelectProps } = useSelect({
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect({
-    resource: "categories",
-    defaultValue: blogPostsData?.category?.id,
+  resource: "categories",
+  defaultValue: blogPostsData?.category?.id,
 });
 ```
 
-> For more information, refer to the [`useSelect`](/docs/api-reference/mantine/hooks/useSelect/) and [**Mantine** `<Select/>` documentations&#8594](https://mantine.dev/core/select/)
+> For more information, refer to the [`useSelect`](/docs/ui-integrations/mantine/hooks/use-select) and [**Mantine** `<Select/>` documentations&#8594](https://mantine.dev/core/select/)
 
 ## Adding the Edit Page to the App
 
@@ -175,16 +144,11 @@ import { Global, MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { Refine } from "@refinedev/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
-import {
-    ErrorComponent,
-    ThemedLayoutV2,
-    RefineThemes,
-    notificationProvider,
-} from "@refinedev/mantine";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes, notificationProvider } from "@refinedev/mantine";
 import routerBindings, {
-    NavigateToResource,
-    // highlight-next-line
-    UnsavedChangesNotifier,
+  NavigateToResource,
+  // highlight-next-line
+  UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
@@ -194,81 +158,61 @@ import { BlogPostList } from "pages/blog-posts/list";
 import { BlogPostEdit } from "pages/blog-posts/edit";
 
 const App = () => {
-    return (
-        <MantineProvider
-            theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                // highlight-next-line
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        // highlight-start
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                        // highlight-end
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="blog_posts" />
-                                    }
-                                />
+  return (
+    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+      <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <NotificationsProvider position="top-right">
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                // highlight-next-line
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            // highlight-start
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+            // highlight-end
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
 
-                                <Route path="blog-posts">
-                                    <Route index element={<BlogPostList />} />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MantineInferencer />}
-                                    />
-                                    {/* highlight-start */}
-                                    <Route
-                                        path="edit/:id"
-                                        element={<BlogPostEdit />}
-                                    />
-                                    {/* highlight-end */}
-                                    <Route
-                                        path="create"
-                                        element={<MantineInferencer />}
-                                    />
-                                </Route>
+                <Route path="blog-posts">
+                  <Route index element={<BlogPostList />} />
+                  <Route path="show/:id" element={<MantineInferencer />} />
+                  {/* highlight-start */}
+                  <Route path="edit/:id" element={<BlogPostEdit />} />
+                  {/* highlight-end */}
+                  <Route path="create" element={<MantineInferencer />} />
+                </Route>
 
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        {/* highlight-next-line */}
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </NotificationsProvider>
-        </MantineProvider>
-    );
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            {/* highlight-next-line */}
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </NotificationsProvider>
+    </MantineProvider>
+  );
 };
 export default App;
 ```

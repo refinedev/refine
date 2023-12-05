@@ -15,35 +15,35 @@ We'll use the `useImport` hook and add the `<ImportButton>` with properties retu
 import { List, useImport, ImportButton } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-    const importProps = useImport<IPostFile>();
+  const importProps = useImport<IPostFile>();
 
-    return (
-        <List
-            headerProps={{
-                extra: <ImportButton {...importProps} />,
-            }}
-        >
-            ...
-        </List>
-    );
+  return (
+    <List
+      headerProps={{
+        extra: <ImportButton {...importProps} />,
+      }}
+    >
+      ...
+    </List>
+  );
 };
 
 interface IPostFile {
-    id: number;
-    title: string;
-    content: string;
-    userId: number;
-    categoryId: number;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  content: string;
+  userId: number;
+  categoryId: number;
+  status: "published" | "draft" | "rejected";
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
-    user: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
+  user: { id: number };
 }
 ```
 
@@ -62,51 +62,51 @@ We need to map the CSV data to the API's data. In our case, we have a `categoryI
 import { List, useImport, ImportButton } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-    const importProps = useImport<IPostFile>({
-        // highlight-start
-        mapData: (item) => {
-            return {
-                title: item.title,
-                content: item.content,
-                status: item.status,
-                category: {
-                    id: item.categoryId,
-                },
-                user: {
-                    id: item.userId,
-                },
-            };
+  const importProps = useImport<IPostFile>({
+    // highlight-start
+    mapData: (item) => {
+      return {
+        title: item.title,
+        content: item.content,
+        status: item.status,
+        category: {
+          id: item.categoryId,
         },
-        // highlight-end
-    });
+        user: {
+          id: item.userId,
+        },
+      };
+    },
+    // highlight-end
+  });
 
-    return (
-        <List
-            headerProps={{
-                extra: <ImportButton {...importProps} />,
-            }}
-        >
-            ...
-        </List>
-    );
+  return (
+    <List
+      headerProps={{
+        extra: <ImportButton {...importProps} />,
+      }}
+    >
+      ...
+    </List>
+  );
 };
 
 interface IPostFile {
-    id: number;
-    title: string;
-    content: string;
-    userId: number;
-    categoryId: number;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  content: string;
+  userId: number;
+  categoryId: number;
+  status: "published" | "draft" | "rejected";
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
-    user: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
+  user: { id: number };
 }
 ```
 
@@ -114,15 +114,15 @@ And it's done. When you click on the button and provide a CSV file of the header
 
 ```json title="POST https://api.fake-rest.refine.dev/posts"
 {
-    "title": "dummy title 1",
-    "content": "dummy content 1",
-    "status": "rejected",
-    "category": {
-        "id": "3"
-    },
-    "user": {
-        "id": "8"
-    }
+  "title": "dummy title 1",
+  "content": "dummy content 1",
+  "status": "rejected",
+  "category": {
+    "id": "3"
+  },
+  "user": {
+    "id": "8"
+  }
 }
 ```
 
@@ -133,7 +133,7 @@ Depending on the [`batchSize`][batchsize] option, posts can get sent one by one 
 <CodeSandboxExample path="import-export-antd" />
 
 [papa parse]: https://www.papaparse.com/
-[batchsize]: /docs/api-reference/core/hooks/import-export/useImport/#batchsize
+[batchsize]: /docs/3.xx.xx/api-reference/core/hooks/import-export/useImport/#batchsize
 [dataprovider]: /api-reference/core/providers/data-provider.md
 [create]: /api-reference/core/providers/data-provider.md#create
 [createmany]: /api-reference/core/providers/data-provider.md#createmany

@@ -6,124 +6,116 @@ source: packages/antd/src/hooks/form/useForm.ts
 
 ```tsx live shared
 import {
-    Table as AntdTable,
-    Edit as AntdEdit,
-    Create as AntdCreate,
-    List as AntdList,
-    Form as AntdForm,
-    Input as AntdInput,
-    useForm as useAntdForm,
-    useTable as useAntdTable,
-    Space as AntdSpace,
-    EditButton as AntdEditButton,
-    CloneButton as AntdCloneButton,
+  Table as AntdTable,
+  Edit as AntdEdit,
+  Create as AntdCreate,
+  List as AntdList,
+  Form as AntdForm,
+  Input as AntdInput,
+  useForm as useAntdForm,
+  useTable as useAntdTable,
+  Space as AntdSpace,
+  EditButton as AntdEditButton,
+  CloneButton as AntdCloneButton,
 } from "@pankod/refine-antd";
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 const PostList = () => {
-    const { tableProps } = useAntdTable();
+  const { tableProps } = useAntdTable();
 
-    return (
-        <AntdList>
-            <AntdTable {...tableProps} rowKey="id">
-                <AntdTable.Column dataIndex="id" title="ID" />
-                <AntdTable.Column dataIndex="title" title="Title" />
-                <AntdTable.Column
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <AntdSpace>
-                            <AntdEditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <AntdCloneButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </AntdSpace>
-                    )}
-                />
-            </AntdTable>
-        </AntdList>
-    );
+  return (
+    <AntdList>
+      <AntdTable {...tableProps} rowKey="id">
+        <AntdTable.Column dataIndex="id" title="ID" />
+        <AntdTable.Column dataIndex="title" title="Title" />
+        <AntdTable.Column
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <AntdSpace>
+              <AntdEditButton hideText size="small" recordItemId={record.id} />
+              <AntdCloneButton hideText size="small" recordItemId={record.id} />
+            </AntdSpace>
+          )}
+        />
+      </AntdTable>
+    </AntdList>
+  );
 };
 
 const PostEdit = () => {
-    const { formProps, saveButtonProps } = useAntdForm();
+  const { formProps, saveButtonProps } = useAntdForm();
 
-    return (
-        <AntdEdit saveButtonProps={saveButtonProps}>
-            <AntdForm {...formProps} layout="vertical">
-                <AntdForm.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput />
-                </AntdForm.Item>
-                <AntdForm.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput.TextArea />
-                </AntdForm.Item>
-            </AntdForm>
-        </AntdEdit>
-    );
+  return (
+    <AntdEdit saveButtonProps={saveButtonProps}>
+      <AntdForm {...formProps} layout="vertical">
+        <AntdForm.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput />
+        </AntdForm.Item>
+        <AntdForm.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput.TextArea />
+        </AntdForm.Item>
+      </AntdForm>
+    </AntdEdit>
+  );
 };
 
 const PostCreate = () => {
-    const { formProps, saveButtonProps } = useAntdForm();
+  const { formProps, saveButtonProps } = useAntdForm();
 
-    return (
-        <AntdCreate saveButtonProps={saveButtonProps}>
-            <AntdForm {...formProps} layout="vertical">
-                <AntdForm.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput />
-                </AntdForm.Item>
-                <AntdForm.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <AntdInput.TextArea />
-                </AntdForm.Item>
-            </AntdForm>
-        </AntdCreate>
-    );
+  return (
+    <AntdCreate saveButtonProps={saveButtonProps}>
+      <AntdForm {...formProps} layout="vertical">
+        <AntdForm.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput />
+        </AntdForm.Item>
+        <AntdForm.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <AntdInput.TextArea />
+        </AntdForm.Item>
+      </AntdForm>
+    </AntdCreate>
+  );
 };
 ```
 
-`useForm` is used to manage forms. It returns the necessary properties and methods to control the [Antd Form](https://ant.design/components/form/). Also, it has been developed by using [`useForm`](/docs/api-reference/core/hooks/useForm/) imported from [@pankod/refine-core](https://github.com/refinedev/refine/tree/v3/packages/core) package.
+`useForm` is used to manage forms. It returns the necessary properties and methods to control the [Antd Form](https://ant.design/components/form/). Also, it has been developed by using [`useForm`](/docs/3.xx.xx/api-reference/core/hooks/useForm/) imported from [@pankod/refine-core](https://github.com/refinedev/refine/tree/v3/packages/core) package.
 
 <GeneralConceptsLink />
 
@@ -138,44 +130,44 @@ We'll show the basic usage of `useForm` by adding an editing form.
 import { Edit, Form, Input, useForm, Select } from "@pankod/refine-antd";
 
 export const PostEdit: React.FC = () => {
-    // highlight-next-line
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  // highlight-next-line
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    return (
-        // highlight-next-line
-        <Edit saveButtonProps={saveButtonProps}>
-            // highlight-next-line
-            <Form {...formProps} layout="vertical">
-                <Form.Item label="Title" name="title">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Status" name="status">
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+  return (
+    // highlight-next-line
+    <Edit saveButtonProps={saveButtonProps}>
+      // highlight-next-line
+      <Form {...formProps} layout="vertical">
+        <Form.Item label="Title" name="title">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Status" name="status">
+          <Select
+            options={[
+              {
+                label: "Published",
+                value: "published",
+              },
+              {
+                label: "Draft",
+                value: "draft",
+              },
+              {
+                label: "Rejected",
+                value: "rejected",
+              },
+            ]}
+          />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
 }
 ```
 
@@ -202,9 +194,9 @@ If you want to show a form in a modal or drawer where necessary route params mig
 :::tip
 By default, it determines the `action` from route.
 
--   If the route is `/posts/create` thus the hook will be called with `action: "create"`.
--   If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
--   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`. To display form, uses `create` component from resource.
+- If the route is `/posts/create` thus the hook will be called with `action: "create"`.
+- If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
+- If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`. To display form, uses `create` component from resource.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
 :::
@@ -220,7 +212,7 @@ values={[
 
 `action: "create"` is used for creating a new record that didn't exist before.
 
-`useForm` uses [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) under the hood for mutations on create mode.
+`useForm` uses [`useCreate`](/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/) under the hood for mutations on create mode.
 
 In the following example, we'll show how to use `useForm` with `action: "create"`.
 
@@ -234,54 +226,54 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 import { Create, Form, Input, useForm } from "@pankod/refine-antd";
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 const PostCreatePage: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input.TextArea />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input.TextArea />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreatePage,
-            edit: PostEdit,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreatePage,
+      edit: PostEdit,
+    },
+  ],
 });
 
 render(<RefineAntdDemo />);
@@ -293,7 +285,7 @@ render(<RefineAntdDemo />);
 
 `action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/).
+It fetches the record data according to the `id` with [`useOne`](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/).
 
 In the following example, we'll show how to use `useForm` with `action: "edit"`.
 
@@ -307,54 +299,54 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 import { Edit, Form, Input, useForm } from "@pankod/refine-antd";
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 const PostEditPage: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input.TextArea />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input.TextArea />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreate,
-            edit: PostEditPage,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreate,
+      edit: PostEditPage,
+    },
+  ],
 });
 
 render(<RefineAntdDemo />);
@@ -368,7 +360,7 @@ render(<RefineAntdDemo />);
 
 You can think `action:clone` like save as. It's similar to `action:edit` but it creates a new record instead of updating the existing one.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/).
+It fetches the record data according to the `id` with [`useOne`](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/).
 
 ```tsx live url=http://localhost:3000/clone/123 previewHeight=420px
 setInitialRoutes(["/posts/clone/123"]);
@@ -378,63 +370,63 @@ import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
-    Create,
-    Form,
-    Input,
-    useForm,
-    Space,
-    Switch,
+  Create,
+  Form,
+  Input,
+  useForm,
+  Space,
+  Switch,
 } from "@pankod/refine-antd";
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
 const PostCreatePage: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input.TextArea />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input.TextArea />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 // visible-block-end
 
 setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreatePage,
-            edit: PostEdit,
-        },
-    ],
+  resources: [
+    {
+      name: "posts",
+      list: PostList,
+      create: PostCreatePage,
+      edit: PostEdit,
+    },
+  ],
 });
 
 render(<RefineAntdDemo />);
@@ -450,13 +442,13 @@ render(<RefineAntdDemo />);
 
 It will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
 
--   When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
--   When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
--   When `action` is `"clone"`, it will be passed to the [`create`][create] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
+- When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
+- When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
+- When `action` is `"clone"`, it will be passed to the [`create`][create] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
 
 ```tsx
 useForm({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -470,9 +462,9 @@ It is useful when you want to `edit` or `clone` a `resource` from a different pa
 
 ```tsx
 useForm({
-    action: "edit", // or clone
-    resource: "categories",
-    id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
+  action: "edit", // or clone
+  resource: "categories",
+  id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
 });
 ```
 
@@ -484,7 +476,7 @@ It can be set to `"show" | "edit" | "list" | "create"` or `false` to prevent the
 
 ```tsx
 useForm({
-    redirect: false,
+  redirect: false,
 });
 ```
 
@@ -494,15 +486,15 @@ It's a callback function that will be called after the mutation is successful.
 
 It receives the following parameters:
 
--   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
--   `variables`: The variables passed to the mutation.
--   `context`: react-query context.
+- `data`: Returned value from [`useCreate`](/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
+- `variables`: The variables passed to the mutation.
+- `context`: react-query context.
 
 ```tsx
 useForm({
-    onMutationSuccess: (data, variables, context) => {
-        console.log({ data, variables, context });
-    },
+  onMutationSuccess: (data, variables, context) => {
+    console.log({ data, variables, context });
+  },
 });
 ```
 
@@ -512,15 +504,15 @@ It's a callback function that will be called after the mutation is failed.
 
 It receives the following parameters:
 
--   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
--   `variables`: The variables passed to the mutation.
--   `context`: react-query context.
+- `data`: Returned value from [`useCreate`](/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
+- `variables`: The variables passed to the mutation.
+- `context`: react-query context.
 
 ```tsx
 useForm({
-    onMutationError: (data, variables, context) => {
-        console.log({ data, variables, context });
-    },
+  onMutationError: (data, variables, context) => {
+    console.log({ data, variables, context });
+  },
 });
 ```
 
@@ -530,12 +522,12 @@ You can use it to manage the invalidations that will occur at the end of the mut
 
 By default it's invalidates following queries from the current `resource`:
 
--   on `create` or `clone` mode: `"list"` and `"many"`
--   on `edit` mode: `"list"`, `"many"` and `"detail"`
+- on `create` or `clone` mode: `"list"` and `"many"`
+- on `edit` mode: `"list"`, `"many"` and `"detail"`
 
 ```tsx
 useForm({
-    invalidates: ["list", "many", "detail"],
+  invalidates: ["list", "many", "detail"],
 });
 ```
 
@@ -545,12 +537,12 @@ If there is more than one `dataProvider`, you should use the `dataProviderName` 
 It is useful when you want to use a different `dataProvider` for a specific resource.
 
 :::tip
-If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop ](/docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
+If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop ](/docs/3.xx.xx/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
 :::
 
 ```tsx
 useForm({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -559,11 +551,11 @@ useForm({
 Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`. Default mode is `pessimistic`.
 Each mode corresponds to a different type of user experience.
 
-> For more information about mutation modes, please check [Mutation Mode documentation](/docs/advanced-tutorials/mutation-mode) page.
+> For more information about mutation modes, please check [Mutation Mode documentation](/docs/3.xx.xx/advanced-tutorials/mutation-mode) page.
 
 ```tsx
 useForm({
-    mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
+  mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
 });
 ```
 
@@ -575,13 +567,13 @@ After form is submitted successfully, `useForm` will call `open` function from [
 
 ```tsx
 useForm({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `Post Successfully created with ${data.title}`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `Post Successfully created with ${data.title}`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
@@ -593,15 +585,15 @@ After form is submit is failed, `useForm` will call `open` function from [`Notif
 
 ```tsx
 useForm({
-    action: "create",
-    resource: "post",
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when deleting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  action: "create",
+  resource: "post",
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when deleting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
@@ -615,36 +607,36 @@ useForm({
 
 ### `metaData`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`metaData`](/docs/3.xx.xx/api-reference/general-concepts/#metadata) is used following two purposes:
 
--   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+- To pass additional information to data provider methods.
+- Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/3.xx.xx/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useForm({
-    metaData: {
-        headers: { "x-meta-data": "true" },
-    },
+  metaData: {
+    headers: { "x-meta-data": "true" },
+  },
 });
 
 const myDataProvider = {
-    //...
-    // highlight-start
-    create: async ({ resource, variables, metaData }) => {
-        const headers = metaData?.headers ?? {};
-        // highlight-end
-        const url = `${apiUrl}/${resource}`;
+  //...
+  // highlight-start
+  create: async ({ resource, variables, metaData }) => {
+    const headers = metaData?.headers ?? {};
+    // highlight-end
+    const url = `${apiUrl}/${resource}`;
 
-        // highlight-next-line
-        const { data } = await httpClient.post(url, variables, { headers });
+    // highlight-next-line
+    const { data } = await httpClient.post(url, variables, { headers });
 
-        return {
-            data,
-        };
-    },
-    //...
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
@@ -652,13 +644,13 @@ const myDataProvider = {
 
 > Works only in `action: "edit"` or `action: "clone"` mode.
 
-in `edit` or `clone` mode, **refine** uses [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
+in `edit` or `clone` mode, **refine** uses [`useOne`](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
 
 ```tsx
 useForm({
-    queryOptions: {
-        retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -666,13 +658,13 @@ useForm({
 
 > This option is only available when `action: "create"` or `action: "clone"`.
 
-In `create` or `clone` mode, **refine** uses [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
+In `create` or `clone` mode, **refine** uses [`useCreate`](/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
 
 ```tsx
 useForm({
-    createMutationOptions: {
-        retry: 3,
-    },
+  createMutationOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -680,13 +672,13 @@ useForm({
 
 > This option is only available when `action: "edit"`.
 
-In `edit` mode, **refine** uses [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
+In `edit` mode, **refine** uses [`useUpdate`](/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
 
 ```tsx
 useForm({
-    updateMutationOptions: {
-        retry: 3,
-    },
+  updateMutationOptions: {
+    retry: 3,
+  },
 });
 ```
 
@@ -696,11 +688,11 @@ useForm({
 
 When it's true, Shows a warning when the user tries to leave the page with unsaved changes. It can be used to prevent the user from accidentally leaving the page.
 
-It can be set globally in [`refine config`](/docs/api-reference/core/components/refine-config/#warnwhenunsavedchanges).
+It can be set globally in [`refine config`](/docs/3.xx.xx/api-reference/core/components/refine-config/#warnwhenunsavedchanges).
 
 ```tsx
 useForm({
-    warnWhenUnsavedChanges: true,
+  warnWhenUnsavedChanges: true,
 });
 ```
 
@@ -712,18 +704,18 @@ When it's true, pressing the Enter key will submit the form. It can be used to p
 
 ```tsx
 useForm({
-    submitOnEnter: true,
+  submitOnEnter: true,
 });
 ```
 
 ### `liveMode`
 
 Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+For more information about live mode, please check [Live / Realtime](/docs/3.xx.xx/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useForm({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
@@ -733,20 +725,20 @@ The callback function that is executed when new events from a subscription are a
 
 ```tsx
 useForm({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
 ### `liveParams`
 
-Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provider/#subscribe) subscribe method.
+Params to pass to [liveProvider's](/docs/3.xx.xx/api-reference/core/providers/live-provider/#subscribe) subscribe method.
 
 ## Return Values
 
 :::tip
-All [`core useForm`](/docs/api-reference/core/hooks/useForm/) return values also available in `useForm`.
+All [`core useForm`](/docs/3.xx.xx/api-reference/core/hooks/useForm/) return values also available in `useForm`.
 :::
 
 ### `form`
@@ -773,7 +765,7 @@ It's a function that will be called when a key is pressed. By default, it will c
 
 #### `initialValues`
 
-When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook.
+When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/) hook.
 
 ### `saveButtonProps`
 
@@ -785,7 +777,7 @@ Loading state of a modal. It's `true` when `useForm` is currently being submitte
 
 ### `queryResult`
 
-If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and set the returned values as the `queryResult` property.
+If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/) and set the returned values as the `queryResult` property.
 
 ```tsx
 const { queryResult } = useForm();
@@ -795,7 +787,7 @@ const { data } = queryResult;
 
 ### `mutationResult`
 
-When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/). When in `"edit"` mode, it will call [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) and set the resulting values as the `mutationResult` property."
+When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/). When in `"edit"` mode, it will call [`useUpdate`](/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/) and set the resulting values as the `mutationResult` property."
 
 ```tsx
 const { mutationResult } = useForm();
@@ -811,19 +803,19 @@ const { data } = mutationResult;
 const { id, setId } = useForm();
 
 const handleIdChange = (id: string) => {
-    setId(id);
+  setId(id);
 };
 
 return (
-    <div>
-        <input value={id} onChange={(e) => handleIdChange(e.target.value)} />
-    </div>
+  <div>
+    <input value={id} onChange={(e) => handleIdChange(e.target.value)} />
+  </div>
 );
 ```
 
 ### `redirect`
 
-"By default, after a successful mutation, `useForm` will `redirect` to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the redirect [property](/docs/api-reference/core/hooks/useForm/#redirect) in the hook's options.
+"By default, after a successful mutation, `useForm` will `redirect` to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the redirect [property](/docs/3.xx.xx/api-reference/core/hooks/useForm/#redirect) in the hook's options.
 
 In the following example we will redirect to the `"show"` page after a successful mutation.
 
@@ -833,9 +825,9 @@ const { onFinish, redirect } = useForm();
 // --
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = await onFinish(formValues);
-    redirect("show", data?.data?.id);
+  e.preventDefault();
+  const data = await onFinish(formValues);
+  redirect("show", data?.data?.id);
 };
 
 // --
@@ -846,13 +838,13 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 `onFinish` is a function that is called when the form is submitted. It will call the appropriate mutation based on the `action` property.
 You can override the default behavior by passing an `onFinish` function in the hook's options.
 
-For example you can [change values before sending to the API](/docs/api-reference/antd/hooks/form/useForm/#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
+For example you can [change values before sending to the API](/docs/3.xx.xx/api-reference/antd/hooks/form/useForm/#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
 
 ## FAQ
 
 ### How can Invalidate other resources?
 
-You can invalidate other resources with help of [`useInvalidate`](/docs/api-reference/core/hooks/invalidate/useInvalidate/) hook.
+You can invalidate other resources with help of [`useInvalidate`](/docs/3.xx.xx/api-reference/core/hooks/invalidate/useInvalidate/) hook.
 
 It is useful when you want to `invalidate` other resources don't have relation with the current resource.
 
@@ -861,20 +853,20 @@ import React from "react";
 import { Create, Form, Input, useForm } from "@pankod/refine-antd";
 
 const PostEdit = () => {
-    const invalidate = useInvalidate();
+  const invalidate = useInvalidate();
 
-    useForm({
-        // highlight-start
-        onMutationSuccess: (data, variables, context) => {
-            invalidate({
-                resource: "users",
-                invalidates: ["resourceAll"],
-            });
-        },
-        // highlight-end
-    });
+  useForm({
+    // highlight-start
+    onMutationSuccess: (data, variables, context) => {
+      invalidate({
+        resource: "users",
+        invalidates: ["resourceAll"],
+      });
+    },
+    // highlight-end
+  });
 
-    // ---
+  // ---
 };
 ```
 
@@ -889,30 +881,30 @@ import React from "react";
 import { Create, Form, Input, useForm } from "@pankod/refine-antd";
 
 export const UserCreate: React.FC = () => {
-    // highlight-next-line
-    const { formProps, saveButtonProps, onFinish } = useForm();
+  // highlight-next-line
+  const { formProps, saveButtonProps, onFinish } = useForm();
 
-    // highlight-start
-    const handleOnFinish = (values) => {
-        onFinish({
-            fullName: `${values.name} ${values.surname}`,
-        });
-    };
-    // highlight-end
+  // highlight-start
+  const handleOnFinish = (values) => {
+    onFinish({
+      fullName: `${values.name} ${values.surname}`,
+    });
+  };
+  // highlight-end
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            // highlight-next-line
-            <Form {...formProps} onFinish={handleOnFinish} layout="vertical">
-                <Form.Item label="Name" name="name">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Surname" name="surname">
-                    <Input />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      // highlight-next-line
+      <Form {...formProps} onFinish={handleOnFinish} layout="vertical">
+        <Form.Item label="Name" name="name">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Surname" name="surname">
+          <Input />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 ```
 
@@ -955,8 +947,8 @@ export const UserCreate: React.FC = () => {
 
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
-[notification-provider]: /docs/api-reference/core/providers/notification-provider/
-[get-one]: /docs/api-reference/core/providers/data-provider/#getone-
-[create]: /docs/api-reference/core/providers/data-provider/#create-
-[update]: /docs/api-reference/core/providers/data-provider/#update-
-[data-provider]: /docs/api-reference/core/providers/data-provider
+[notification-provider]: /docs/3.xx.xx/api-reference/core/providers/notification-provider/
+[get-one]: /docs/3.xx.xx/api-reference/core/providers/data-provider/#getone-
+[create]: /docs/3.xx.xx/api-reference/core/providers/data-provider/#create-
+[update]: /docs/3.xx.xx/api-reference/core/providers/data-provider/#update-
+[data-provider]: /docs/3.xx.xx/api-reference/core/providers/data-provider

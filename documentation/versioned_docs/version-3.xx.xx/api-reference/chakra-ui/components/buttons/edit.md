@@ -8,48 +8,48 @@ swizzle: true
 const { default: routerProvider } = RefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    Layout: RefineChakra.Layout,
-    Sider: () => null,
-    catchAll: <RefineChakra.ErrorComponent />,
+  routerProvider,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  Layout: RefineChakra.Layout,
+  Sider: () => null,
+  catchAll: <RefineChakra.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
-            {children}
-        </RefineChakra.ChakraProvider>
-    );
+  return (
+    <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+      {children}
+    </RefineChakra.ChakraProvider>
+  );
 };
 
 const EditPage = () => {
-    const { list } = RefineCore.useNavigation();
-    const params = RefineCore.useRouterContext().useParams();
+  const { list } = RefineCore.useNavigation();
+  const params = RefineCore.useRouterContext().useParams();
 
-    return (
-        <RefineChakra.VStack alignItems="flex-start">
-            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
-                URL Parameters:
-            </RefineChakra.Text>
-            <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
+  return (
+    <RefineChakra.VStack alignItems="flex-start">
+      <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
+        URL Parameters:
+      </RefineChakra.Text>
+      <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
 
-            <RefineChakra.Button
-                size="sm"
-                onClick={() => list("posts")}
-                colorScheme="green"
-            >
-                Go back
-            </RefineChakra.Button>
-        </RefineChakra.VStack>
-    );
+      <RefineChakra.Button
+        size="sm"
+        onClick={() => list("posts")}
+        colorScheme="green"
+      >
+        Go back
+      </RefineChakra.Button>
+    </RefineChakra.VStack>
+  );
 };
 ```
 
 `<EditButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -60,126 +60,125 @@ import { Refine, useNavigation, useRouterContext } from "@pankod/refine-core";
 
 // visible-block-start
 import {
-    List,
-    TableContainer,
-    Table,
-    Thead,
-    Tr,
-    Th,
-    Tbody,
-    Td,
-    // highlight-next-line
-    EditButton,
+  List,
+  TableContainer,
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
+  // highlight-next-line
+  EditButton,
 } from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-            },
-            {
-                id: "actions",
-                header: "Actions",
-                accessorKey: "id",
-                cell: function render({ getValue }) {
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        accessorKey: "id",
+        cell: function render({ getValue }) {
+          return (
+            // highlight-start
+            <EditButton recordItemId={getValue() as number} />
+            // highlight-end
+          );
+        },
+      },
+    ],
+    [],
+  );
+
+  const {
+    getHeaderGroups,
+    getRowModel,
+    refineCore: { setCurrent, pageCount, current },
+  } = useTable({
+    columns,
+  });
+
+  return (
+    <List>
+      <TableContainer>
+        <Table variant="simple" whiteSpace="pre-line">
+          <Thead>
+            {getHeaderGroups().map((headerGroup) => (
+              <Tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <Th key={header.id}>
+                      {!header.isPlaceholder &&
+                        flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                    </Th>
+                  );
+                })}
+              </Tr>
+            ))}
+          </Thead>
+          <Tbody>
+            {getRowModel().rows.map((row) => {
+              return (
+                <Tr key={row.id}>
+                  {row.getVisibleCells().map((cell) => {
                     return (
-                        // highlight-start
-                        <EditButton recordItemId={getValue() as number} />
-                        // highlight-end
+                      <Td key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </Td>
                     );
-                },
-            },
-        ],
-        [],
-    );
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { setCurrent, pageCount, current },
-    } = useTable({
-        columns,
-    });
-
-    return (
-        <List>
-            <TableContainer>
-                <Table variant="simple" whiteSpace="pre-line">
-                    <Thead>
-                        {getHeaderGroups().map((headerGroup) => (
-                            <Tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => {
-                                    return (
-                                        <Th key={header.id}>
-                                            {!header.isPlaceholder &&
-                                                flexRender(
-                                                    header.column.columnDef
-                                                        .header,
-                                                    header.getContext(),
-                                                )}
-                                        </Th>
-                                    );
-                                })}
-                            </Tr>
-                        ))}
-                    </Thead>
-                    <Tbody>
-                        {getRowModel().rows.map((row) => {
-                            return (
-                                <Tr key={row.id}>
-                                    {row.getVisibleCells().map((cell) => {
-                                        return (
-                                            <Td key={cell.id}>
-                                                {flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext(),
-                                                )}
-                                            </Td>
-                                        );
-                                    })}
-                                </Tr>
-                            );
-                        })}
-                    </Tbody>
-                </Table>
-            </TableContainer>
-        </List>
-    );
+                  })}
+                </Tr>
+              );
+            })}
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            notificationProvider={RefineChakra.notificationProvider()}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    edit: EditPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      notificationProvider={RefineChakra.notificationProvider()}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          edit: EditPage,
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -198,28 +197,28 @@ import { Refine } from "@pankod/refine-core";
 import { EditButton } from "@pankod/refine-chakra-ui";
 
 const MyEditComponent = () => {
-    return <EditButton colorScheme="black" recordItemId="123" />;
+  return <EditButton colorScheme="black" recordItemId="123" />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyEditComponent,
-                    edit: EditPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyEditComponent,
+          edit: EditPage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -236,37 +235,37 @@ import { Refine } from "@pankod/refine-core";
 import { EditButton } from "@pankod/refine-chakra-ui";
 
 const MyEditComponent = () => {
-    return (
-        <EditButton
-            colorScheme="black"
-            resourceNameOrRouteName="categories"
-            recordItemId="2"
-        />
-    );
+  return (
+    <EditButton
+      colorScheme="black"
+      resourceNameOrRouteName="categories"
+      recordItemId="2"
+    />
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyEditComponent,
-                },
-                {
-                    name: "categories",
-                    edit: EditPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyEditComponent,
+        },
+        {
+          name: "categories",
+          edit: EditPage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -285,28 +284,28 @@ import { Refine } from "@pankod/refine-core";
 import { EditButton } from "@pankod/refine-chakra-ui";
 
 const MyEditComponent = () => {
-    return <EditButton colorScheme="black" recordItemId="123" hideText />;
+  return <EditButton colorScheme="black" recordItemId="123" hideText />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyEditComponent,
-                    edit: EditPage,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MyEditComponent,
+          edit: EditPage,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 
@@ -318,11 +317,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { EditButton } from "@pankod/refine-chakra-ui";
 
 export const MyListComponent = () => {
-    return (
-        <EditButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
+  return (
+    <EditButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

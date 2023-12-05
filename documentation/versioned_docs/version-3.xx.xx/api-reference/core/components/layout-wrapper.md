@@ -29,35 +29,35 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 // highlight-start
 const AuthenticatedPostReview = () => {
-    return (
-        <Authenticated>
-            <LayoutWrapper Sider={() => <></>}>
-                <PostReview />
-            </LayoutWrapper>
-        </Authenticated>
-    );
+  return (
+    <Authenticated>
+      <LayoutWrapper Sider={() => <></>}>
+        <PostReview />
+      </LayoutWrapper>
+    </Authenticated>
+  );
 };
 // highlight-end
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            // highlight-start
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        exact: true,
-                        component: AuthenticatedPostReview,
-                        path: "/authenticated-page",
-                    },
-                ] as typeof routerProvider.routes,
-            }}
-            // highlight-end
-            dataProvider={dataProvider(API_URL)}
-            resources={[{ name: "posts", list: PostList }]}
-        />
-    );
+  return (
+    <Refine
+      // highlight-start
+      routerProvider={{
+        ...routerProvider,
+        routes: [
+          {
+            exact: true,
+            component: AuthenticatedPostReview,
+            path: "/authenticated-page",
+          },
+        ] as typeof routerProvider.routes,
+      }}
+      // highlight-end
+      dataProvider={dataProvider(API_URL)}
+      resources={[{ name: "posts", list: PostList }]}
+    />
+  );
 };
 
 export default App;
@@ -71,11 +71,11 @@ In this example, we hide the left sider only for this page. The rest should look
 
 <PropsTable
     module="@pankod/refine-core/LayoutWrapper"
-    Sider-description="[Custom sider to use](/docs/api-reference/core/components/refine-config#sider)"
-    Header-description="[Custom header to use](/docs/api-reference/core/components/refine-config#header)"
-    Title-description="[Custom title to use](/docs/api-reference/core/components/refine-config#title)"
-    Footer-description="[Custom footer to use](/docs/api-reference/core/components/refine-config#footer)"
-    OffLayoutArea-description="[Custom off layout area to use](/docs/api-reference/core/components/refine-config#offlayoutarea)"
+    Sider-description="[Custom sider to use](/docs/3.xx.xx/api-reference/core/components/refine-config#sider)"
+    Header-description="[Custom header to use](/docs/3.xx.xx/api-reference/core/components/refine-config#header)"
+    Title-description="[Custom title to use](/docs/3.xx.xx/api-reference/core/components/refine-config#title)"
+    Footer-description="[Custom footer to use](/docs/3.xx.xx/api-reference/core/components/refine-config#footer)"
+    OffLayoutArea-description="[Custom off layout area to use](/docs/3.xx.xx/api-reference/core/components/refine-config#offlayoutarea)"
 />
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine][refine]>** component.

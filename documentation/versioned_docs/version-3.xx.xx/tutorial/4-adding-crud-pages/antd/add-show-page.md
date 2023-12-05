@@ -2,9 +2,9 @@
 id: add-show-page
 title: 3. Adding Show Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
-    next: tutorial/adding-crud-pages/{preferredUI}/add-create-page
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
+  next: tutorial/adding-crud-pages/{preferredUI}/add-create-page
 ---
 
 Show page is the page where you can see the record. In this tutorial, we will create the show page for the `blog_posts` resource.
@@ -32,10 +32,10 @@ setInitialRoutes(["/blog-posts/show/123"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -44,25 +44,25 @@ import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "blog_posts",
+          list: AntdInferencer,
+          show: AntdInferencer,
+          create: AntdInferencer,
+          edit: AntdInferencer,
+        },
+      ]}
+    />
+  );
 };
 
 render(<App />);
@@ -74,13 +74,13 @@ Instead of coding the show page component from scratch, Inferencer created the r
 
 We will go through the show page components and hooks one by one.
 
--   `<Show/>` is a **refine** component that is used to presentation purposes like showing the title of the page, list button, etc.
+- `<Show/>` is a **refine** component that is used to presentation purposes like showing the title of the page, list button, etc.
 
-    [Refer to the `<Show/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/show/)
+  [Refer to the `<Show/>` documentation for more information &#8594](/docs/3.xx.xx/api-reference/antd/components/basic-views/show/)
 
--   `useShow` is a **refine** hook that is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
+- `useShow` is a **refine** hook that is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
 
-    [Refer to the `useShow` documentation for more information &#8594](/docs/api-reference/core/hooks/show/useShow/)
+  [Refer to the `useShow` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/show/useShow/)
 
 ### Handling Relationships
 
@@ -88,14 +88,14 @@ In the show page, we have a single record. The record may have relationships wit
 
 For example, the `blog_posts` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **refine**. This hook allows us to fetch single record data by using the `id` and `resource` parameters.
 
-[Refer to the `useOne` documentation for more information &#8594](/docs/api-reference/core/hooks/data/useOne/)
+[Refer to the `useOne` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/)
 
 In the auto-generated show page code, Inferencer used the `useOne` hook to fetch the category data of the blog post record.
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-    resource: "categories",
-    id: record?.category?.id || "",
+  resource: "categories",
+  id: record?.category?.id || "",
 });
 ```
 
@@ -103,11 +103,11 @@ To ensure that the related data is only fetched after the blog post record has b
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-    resource: "categories",
-    id: record?.category?.id || "",
-    queryOptions: {
-        enabled: !!record,
-    },
+  resource: "categories",
+  id: record?.category?.id || "",
+  queryOptions: {
+    enabled: !!record,
+  },
 });
 ```
 
@@ -124,10 +124,10 @@ Now that we have created the show page, we need to add it to the `App.tsx` file.
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -141,26 +141,26 @@ import { BlogPostShow } from "pages/blog-posts/show";
 import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: BlogPostList,
-                    edit: BlogPostEdit,
-                    //highlight-next-line
-                    show: BlogPostShow,
-                    create: AntdInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "blog_posts",
+          list: BlogPostList,
+          edit: BlogPostEdit,
+          //highlight-next-line
+          show: BlogPostShow,
+          create: AntdInferencer,
+        },
+      ]}
+    />
+  );
 };
 export default App;
 ```

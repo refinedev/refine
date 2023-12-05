@@ -4,11 +4,10 @@ title: List
 swizzle: true
 ---
 
-
 `<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -17,54 +16,54 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 // visible-block-start
 import { useShow } from "@pankod/refine-core";
 import {
-    Show,
-    Typography,
-    // highlight-next-line
-    ListButton,
+  Show,
+  Typography,
+  // highlight-next-line
+  ListButton,
 } from "@pankod/refine-antd";
 
 const { Title, Text } = Typography;
 
 const PostShow: React.FC = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        // highlight-next-line
-        <Show headerButtons={<ListButton />} isLoading={isLoading}>
-            <Title level={5}>Id</Title>
-            <Text>{record?.id}</Text>
+  return (
+    // highlight-next-line
+    <Show headerButtons={<ListButton />} isLoading={isLoading}>
+      <Title level={5}>Id</Title>
+      <Text>{record?.id}</Text>
 
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
-        </Show>
-    );
+      <Title level={5}>Title</Title>
+      <Text>{record?.title}</Text>
+    </Show>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/show/123"]}
-        resources={[
-            {
-                name: "posts",
-                show: PostShow,
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            <p>Your list page here</p>
-                        </RefineAntd.List>
-                    );
-                }
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/posts/show/123"]}
+    resources={[
+      {
+        name: "posts",
+        show: PostShow,
+        list: () => {
+          return (
+            <RefineAntd.List>
+              <p>Your list page here</p>
+            </RefineAntd.List>
+          );
+        },
+      },
+    ]}
+  />,
 );
 ```
 
@@ -85,36 +84,33 @@ const { useRouterContext } = RefineCore;
 import { ListButton } from "@pankod/refine-antd";
 
 const MyListComponent = () => {
-    return (
-        <ListButton resourceNameOrRouteName="categories" />
-    );
+  return <ListButton resourceNameOrRouteName="categories" />;
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-            {
-                name: "categories",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            <p>Your list page here</p>
-                        </RefineAntd.List>
-                    );
-                }
-            },
-        ]}
-        DashboardPage={MyListComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+      },
+      {
+        name: "categories",
+        list: () => {
+          return (
+            <RefineAntd.List>
+              <p>Your list page here</p>
+            </RefineAntd.List>
+          );
+        },
+      },
+    ]}
+    DashboardPage={MyListComponent}
+  />,
 );
 ```
-
 
 Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
@@ -127,33 +123,33 @@ It is used to show and not show the text of the button. When `true`, only the bu
 import { ListButton } from "@pankod/refine-antd";
 
 const MyListComponent = () => {
-    return (
-        <ListButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <ListButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            <p>Your list page here</p>
-                        </RefineAntd.List>
-                    );
-                }
-            },
-        ]}
-        DashboardPage={MyListComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => {
+          return (
+            <RefineAntd.List>
+              <p>Your list page here</p>
+            </RefineAntd.List>
+          );
+        },
+      },
+    ]}
+    DashboardPage={MyListComponent}
+  />,
 );
 ```
 
@@ -165,7 +161,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ListButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
-    return <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

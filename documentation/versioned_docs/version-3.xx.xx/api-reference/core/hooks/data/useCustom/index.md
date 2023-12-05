@@ -6,16 +6,16 @@ source: packages/core/src/hooks/data/useCustom.ts
 
 `useCustom` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It supports all the features of `useQuery` and adds some extra features.
 
--   It uses the `custom` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
+- It uses the `custom` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
 It is useful when you want to send a custom query request using the TanStack Query advantages.
 
 :::danger attention
-`useCustom` should **not** be used when creating, updating, or deleting a resource. To do these; [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useUpdate](/docs/api-reference/core/hooks/data/useUpdate/) or [useDelete](/docs/api-reference/core/hooks/data/useDelete/) hooks should be used instead.
+`useCustom` should **not** be used when creating, updating, or deleting a resource. To do these; [useCreate](/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/), [useUpdate](/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/) or [useDelete](/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/) hooks should be used instead.
 
 This is because `useCustom`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
-If you need to custom mutation request, use the [useCustomMutation](/docs/api-reference/core/hooks/data/useCustomMutation/) hook.
+If you need to custom mutation request, use the [useCustomMutation](/docs/3.xx.xx/api-reference/core/hooks/data/useCustomMutation/) hook.
 :::
 
 ## Basic Usage
@@ -28,22 +28,22 @@ When properties are changed, the `useCustom` hook will trigger a new request.
 import { useCustom, useApiUrl } from "@pankod/refine-core";
 
 interface PostUniqueCheckResponse {
-    isAvailable: boolean;
+  isAvailable: boolean;
 }
 
 const apiUrl = useApiUrl();
 
 const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
-    url: `${apiUrl}/posts-unique-check`,
-    method: "get",
-    config: {
-        headers: {
-            "x-custom-header": "foo-bar",
-        },
-        query: {
-            title: "Foo bar",
-        },
+  url: `${apiUrl}/posts-unique-check`,
+  method: "get",
+  config: {
+    headers: {
+      "x-custom-header": "foo-bar",
     },
+    query: {
+      title: "Foo bar",
+    },
+  },
 });
 ```
 
@@ -55,7 +55,7 @@ It will be passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    url: "www.example.com/api/get-products",
+  url: "www.example.com/api/get-products",
 });
 ```
 
@@ -65,7 +65,7 @@ It will be passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    method: "get",
+  method: "get",
 });
 ```
 
@@ -75,11 +75,11 @@ It will be passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    config: {
-        headers: {
-            "x-custom-header": "foo-bar",
-        },
+  config: {
+    headers: {
+      "x-custom-header": "foo-bar",
     },
+  },
 });
 ```
 
@@ -89,11 +89,11 @@ It will be passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    config: {
-        query: {
-            title: "Foo bar",
-        },
+  config: {
+    query: {
+      title: "Foo bar",
     },
+  },
 });
 ```
 
@@ -103,11 +103,11 @@ It will be passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    config: {
-        payload: {
-            title: "Foo bar",
-        },
+  config: {
+    payload: {
+      title: "Foo bar",
     },
+  },
 });
 ```
 
@@ -117,14 +117,14 @@ It will be passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    config: {
-        sort: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
-    },
+  config: {
+    sort: [
+      {
+        field: "title",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
@@ -134,15 +134,15 @@ It will be passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    config: {
-        filters: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  config: {
+    filters: [
+      {
+        field: "title",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
@@ -154,48 +154,48 @@ useCustom({
 
 ```tsx
 useCustom({
-    queryOptions: {
-        retry: 3,
-        enabled: false,
-    },
+  queryOptions: {
+    retry: 3,
+    enabled: false,
+  },
 });
 ```
 
 ### `metaData`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`metaData`](/docs/3.xx.xx/api-reference/general-concepts/#metadata) is used following two purposes:
 
--   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+- To pass additional information to data provider methods.
+- Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/3.xx.xx/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
 In the following example, `metaData` is passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    metaData: {
-        foo: "bar",
-    },
+  metaData: {
+    foo: "bar",
+  },
 });
 
 const myDataProvider = {
-    //...
-    custom: async ({
-        url,
-        method,
-        sort,
-        filters,
-        payload,
-        query,
-        headers,
-        metaData,
-    }) => {
-        const foo = metaData?.foo;
+  //...
+  custom: async ({
+    url,
+    method,
+    sort,
+    filters,
+    payload,
+    query,
+    headers,
+    metaData,
+  }) => {
+    const foo = metaData?.foo;
 
-        console.log(foo); // "bar"
+    console.log(foo); // "bar"
 
-        //...
-    },
     //...
+  },
+  //...
 };
 ```
 
@@ -205,43 +205,43 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 
 ```tsx
 useCustom({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+> [`NotificationProvider`](/docs/3.xx.xx/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data is fetched successfully, `useCustom` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx
 useCustom({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+> [`NotificationProvider`](/docs/3.xx.xx/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data fetching is failed, `useCustom` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useCustom({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 

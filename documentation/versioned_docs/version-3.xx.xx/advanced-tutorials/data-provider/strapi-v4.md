@@ -10,29 +10,29 @@ import TabItem from '@theme/TabItem';
 
 A few of the Strapi-v4 API features are as follows:
 
--   Fields Selection
--   Relations Population
--   Publication State
--   Locale
+- Fields Selection
+- Relations Population
+- Publication State
+- Locale
 
 `metaData` allows us to use the above features in hooks. Thus, we can fetch the data according to the parameters we want.
 
 Hooks and components that support `metaData`:
 
-| Supported data hooks                                                         | Supported other hooks                                                              | Supported components                                                                 |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| [`useUpdate` &#8594](/docs/api-reference/core/hooks/data/useUpdate/)         | [`useForm` &#8594](/docs/api-reference/core/hooks/useForm)                         | [`DeleteButton` &#8594](/docs/api-reference/antd/components/buttons/delete-button)   |
-| [`useUpdateMany` &#8594](/docs/api-reference/core/hooks/data/useUpdateMany/) | [`useModalForm` &#8594](/docs/api-reference/antd/hooks/form/useModalForm)          | [`RefreshButton` &#8594](/docs/api-reference/antd/components/buttons/refresh-button) |
-| [`useDelete` &#8594](/docs/api-reference/core/hooks/data/useDelete/)         | [`useDrawerForm` &#8594](/docs/api-reference/antd/hooks/form/useDrawerForm)        |                                                                                      |
-| [`useDeleteMany` &#8594](/docs/api-reference/core/hooks/data/useDeleteMany/) | [`useStepsForm` &#8594](/docs/api-reference/antd/hooks/form/useStepsForm)          |                                                                                      |
-| [`useCreate` &#8594](/docs/api-reference/core/hooks/data/useCreate/)         | [`useTable` &#8594](/docs/api-reference/core/hooks/useTable)                       |                                                                                      |
-| [`useCreateMany` &#8594](/docs/api-reference/core/hooks/data/useCreateMany/) | [`useEditableTable` &#8594](/docs/api-reference/antd/hooks/table/useEditableTable) |                                                                                      |
-| [`useList` &#8594](/docs/api-reference/core/hooks/data/useList/)             | [`useSimpleList` &#8594](/docs/api-reference/antd/hooks/list/useSimpleList)        |                                                                                      |
-| [`useOne` &#8594](/docs/api-reference/core/hooks/data/useOne/)               | [`useShow` &#8594](/docs/api-reference/core/hooks/show/useShow)                    |                                                                                      |
-| [`useMany` &#8594](/docs/api-reference/core/hooks/data/useMany/)             | [`useExport` &#8594](/docs/api-reference/core/hooks/import-export/useExport)       |                                                                                      |
-| [`useCustom` &#8594](/docs/api-reference/core/hooks/data/useCustom/)         | [`useCheckboxGroup` &#8594](/docs/api-reference/antd/hooks/field/useCheckboxGroup) |                                                                                      |
-|                                                                              | [`useSelect` &#8594](/docs/api-reference/core/hooks/useSelect/)                    |                                                                                      |
-|                                                                              | [`useRadioGroup` &#8594](/docs/api-reference/antd/hooks/field/useRadioGroup)       |                                                                                      |
+| Supported data hooks                                                                 | Supported other hooks                                                                      | Supported components                                                                         |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| [`useUpdate` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/)         | [`useForm` &#8594](/docs/3.xx.xx/api-reference/core/hooks/useForm)                         | [`DeleteButton` &#8594](/docs/3.xx.xx/api-reference/antd/components/buttons/delete-button)   |
+| [`useUpdateMany` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useUpdateMany/) | [`useModalForm` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/form/useModalForm)          | [`RefreshButton` &#8594](/docs/3.xx.xx/api-reference/antd/components/buttons/refresh-button) |
+| [`useDelete` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/)         | [`useDrawerForm` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/form/useDrawerForm)        |                                                                                              |
+| [`useDeleteMany` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useDeleteMany/) | [`useStepsForm` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/form/useStepsForm)          |                                                                                              |
+| [`useCreate` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/)         | [`useTable` &#8594](/docs/3.xx.xx/api-reference/core/hooks/useTable)                       |                                                                                              |
+| [`useCreateMany` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useCreateMany/) | [`useEditableTable` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/table/useEditableTable) |                                                                                              |
+| [`useList` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useList/)             | [`useSimpleList` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/list/useSimpleList)        |                                                                                              |
+| [`useOne` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/)               | [`useShow` &#8594](/docs/3.xx.xx/api-reference/core/hooks/show/useShow)                    |                                                                                              |
+| [`useMany` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useMany/)             | [`useExport` &#8594](/docs/3.xx.xx/api-reference/core/hooks/import-export/useExport)       |                                                                                              |
+| [`useCustom` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useCustom/)         | [`useCheckboxGroup` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/field/useCheckboxGroup) |                                                                                              |
+|                                                                                      | [`useSelect` &#8594](/docs/3.xx.xx/api-reference/core/hooks/useSelect/)                    |                                                                                              |
+|                                                                                      | [`useRadioGroup` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/field/useRadioGroup)       |                                                                                              |
 
 :::note
 There is no need to use `metaData` for sorting, pagination, and, filters. Sorting, pagination, and, filters will be handled automatically by the strapi-v4 dataProvider.
@@ -54,9 +54,9 @@ However, we can use [normalizeData](https://github.com/refinedev/refine/blob/27a
 
 ```json
 {
-    "id": 1,
-    "title": "My title",
-    "content": "Long content..."
+  "id": 1,
+  "title": "My title",
+  "content": "Long content..."
 }
 ```
 
@@ -82,18 +82,18 @@ import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            //highlight-next-line
-            dataProvider={DataProvider("API_URL")}
-            routerProvider={routerProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
-    );
+  return (
+    <Refine
+      authProvider={authProvider}
+      //highlight-next-line
+      dataProvider={DataProvider("API_URL")}
+      routerProvider={routerProvider}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+    />
+  );
 };
 ```
 
@@ -115,20 +115,20 @@ values={[
 
 **posts** has the following fields:
 
--   `id`
--   `title`
--   `content`
--   `category`
--   `createdAt`
--   `locale`
+- `id`
+- `title`
+- `content`
+- `category`
+- `createdAt`
+- `locale`
 
 </TabItem>
 <TabItem value="categories">
 
 **categories** has the following fields:
 
--   `id`
--   `title`
+- `id`
+- `title`
 
 </TabItem>
 </Tabs>
@@ -141,17 +141,17 @@ To select only some fields, we must specify these fields with `metaData``.
 
 ```tsx title="Get only id and title of all posts"
 const { tableProps } = useTable<IPost>({
-    metaData: {
-        fields: ["id", "title"],
-    },
+  metaData: {
+    fields: ["id", "title"],
+  },
 });
 ```
 
 ```tsx title="Get all fields of all posts(id, title, category, content ...)"
 const { tableProps } = useTable<IPost>({
-    metaData: {
-        fields: "*",
-    },
+  metaData: {
+    fields: "*",
+  },
 });
 ```
 
@@ -161,16 +161,16 @@ When sending the request, we can specify which fields will come, so we send `fie
 import { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/core";
 import {
-    List,
-    Table,
-    useTable,
-    getDefaultSortOrder,
-    FilterDropdown,
-    Select,
-    useSelect,
-    Space,
-    EditButton,
-    DeleteButton,
+  List,
+  Table,
+  useTable,
+  getDefaultSortOrder,
+  FilterDropdown,
+  Select,
+  useSelect,
+  Space,
+  EditButton,
+  DeleteButton,
 } from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
@@ -178,57 +178,49 @@ import { IPost } from "interfaces";
 import { API_URL } from "../../constants";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        metaData: {
-            // highlight-start
-            fields: ["id", "title"],
-            // highlight-end
-        },
-    });
+  const { tableProps, sorter } = useTable<IPost>({
+    metaData: {
+      // highlight-start
+      fields: ["id", "title"],
+      // highlight-end
+    },
+  });
 
-    return (
-        <List>
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    showSizeChanger: true,
-                }}
-            >
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                    sorter={{ multiple: 3 }}
-                />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
-                    sorter={{ multiple: 2 }}
-                />
+  return (
+    <List>
+      <Table
+        {...tableProps}
+        rowKey="id"
+        pagination={{
+          ...tableProps.pagination,
+          showSizeChanger: true,
+        }}
+      >
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+          sorter={{ multiple: 3 }}
+        />
+        <Table.Column
+          dataIndex="title"
+          title="Title"
+          defaultSortOrder={getDefaultSortOrder("title", sorter)}
+          sorter={{ multiple: 2 }}
+        />
 
-                <Table.Column<{ id: string }>
-                    title="Actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+        <Table.Column<{ id: string }>
+          title="Actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <DeleteButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -244,17 +236,17 @@ The `populate` parameter is used to define which fields will be populated.
 
 ```tsx title="Get all the posts and populate the selected relations"
 const { tableProps } = useTable<IPost>({
-    metaData: {
-        populate: ["category", "cover"],
-    },
+  metaData: {
+    populate: ["category", "cover"],
+  },
 });
 ```
 
 ```tsx title="Get all posts and populate all their first-level relations"
 const { tableProps } = useTable<IPost>({
-    metaData: {
-        populate: "*",
-    },
+  metaData: {
+    populate: "*",
+  },
 });
 ```
 
@@ -262,16 +254,16 @@ It should be noted that Strapi-V4 allows populating relations more than 1 level.
 
 ```tsx title="Get all posts and populate one second-level relation and first-level relation"
 const { tableProps } = useTable<IPost>({
-    metaData: {
-        populate: {
-            category: {
-                populate: ["cover"],
-            },
-            cover: {
-                populate: [""],
-            },
-        },
+  metaData: {
+    populate: {
+      category: {
+        populate: ["cover"],
+      },
+      cover: {
+        populate: [""],
+      },
     },
+  },
 });
 ```
 
@@ -280,16 +272,16 @@ In order to pull the `categories` related to the posts, we can now show the cate
 ```tsx title="PostList.tsx"
 import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
-    List,
-    Table,
-    useTable,
-    getDefaultSortOrder,
-    FilterDropdown,
-    Select,
-    useSelect,
-    Space,
-    EditButton,
-    DeleteButton,
+  List,
+  Table,
+  useTable,
+  getDefaultSortOrder,
+  FilterDropdown,
+  Select,
+  useSelect,
+  Space,
+  EditButton,
+  DeleteButton,
 } from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
@@ -297,81 +289,73 @@ import { IPost } from "interfaces";
 import { API_URL } from "../../constants";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        metaData: {
-            fields: ["id", "title"],
-            // highlight-start
-            populate: ["category"],
-            // highlight-end
-        },
-    });
+  const { tableProps, sorter } = useTable<IPost>({
+    metaData: {
+      fields: ["id", "title"],
+      // highlight-start
+      populate: ["category"],
+      // highlight-end
+    },
+  });
 
-    // highlight-start
-    const { selectProps } = useSelect({
-        resource: "categories",
-        optionLabel: "title",
-        optionValue: "id",
-    });
-    // highlight-end
+  // highlight-start
+  const { selectProps } = useSelect({
+    resource: "categories",
+    optionLabel: "title",
+    optionValue: "id",
+  });
+  // highlight-end
 
-    return (
-        <List>
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    showSizeChanger: true,
-                }}
-            >
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                    sorter={{ multiple: 3 }}
-                />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
-                    sorter={{ multiple: 2 }}
-                />
-                //highlight-start
-                <Table.Column
-                    dataIndex={["category", "title"]}
-                    title="Category"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
-                //highlight-end
-                <Table.Column<{ id: string }>
-                    title="Actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table
+        {...tableProps}
+        rowKey="id"
+        pagination={{
+          ...tableProps.pagination,
+          showSizeChanger: true,
+        }}
+      >
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+          sorter={{ multiple: 3 }}
+        />
+        <Table.Column
+          dataIndex="title"
+          title="Title"
+          defaultSortOrder={getDefaultSortOrder("title", sorter)}
+          sorter={{ multiple: 2 }}
+        />
+        //highlight-start
+        <Table.Column
+          dataIndex={["category", "title"]}
+          title="Category"
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select
+                style={{ minWidth: 200 }}
+                mode="multiple"
+                placeholder="Select Category"
+                {...selectProps}
+              />
+            </FilterDropdown>
+          )}
+        />
+        //highlight-end
+        <Table.Column<{ id: string }>
+          title="Actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <DeleteButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -385,9 +369,9 @@ If you need to the population for the `/me` request you can use it like this in 
 const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
 strapiAuthHelper.me("token", {
-    metaData: {
-        populate: ["role"],
-    },
+  metaData: {
+    populate: ["role"],
+  },
 });
 ```
 
@@ -405,9 +389,9 @@ The Draft & Publish feature should be enabled on Strapi.
 
 ```tsx
 const { tableProps } = useTable<IPost>({
-    metaData: {
-        publicationState: "preview",
-    },
+  metaData: {
+    publicationState: "preview",
+  },
 });
 ```
 
@@ -419,22 +403,22 @@ import { useState } from "react";
 
 import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
-    List,
-    Table,
-    useTable,
-    getDefaultSortOrder,
-    FilterDropdown,
-    Select,
-    useSelect,
-    DateField,
-    Space,
-    EditButton,
-    DeleteButton,
-    // highlight-start
-    Form,
-    Radio,
-    Tag,
-    // highlight-end
+  List,
+  Table,
+  useTable,
+  getDefaultSortOrder,
+  FilterDropdown,
+  Select,
+  useSelect,
+  DateField,
+  Space,
+  EditButton,
+  DeleteButton,
+  // highlight-start
+  Form,
+  Radio,
+  Tag,
+  // highlight-end
 } from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
@@ -442,115 +426,103 @@ import { IPost } from "interfaces";
 import { API_URL } from "../../constants";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    // highlight-start
-    const [publicationState, setPublicationState] = useState("live");
-    // highlight-end
+  // highlight-start
+  const [publicationState, setPublicationState] = useState("live");
+  // highlight-end
 
-    const { tableProps, sorter } = useTable<IPost>({
-        metaData: {
-            fields: ["id", "title"],
-            populate: ["category"],
-            // highlight-start
-            publicationState,
-            // highlight-end
-        },
-    });
+  const { tableProps, sorter } = useTable<IPost>({
+    metaData: {
+      fields: ["id", "title"],
+      populate: ["category"],
+      // highlight-start
+      publicationState,
+      // highlight-end
+    },
+  });
 
-    const { selectProps } = useSelect({
-        resource: "categories",
-        optionLabel: "title",
-        optionValue: "id",
-    });
+  const { selectProps } = useSelect({
+    resource: "categories",
+    optionLabel: "title",
+    optionValue: "id",
+  });
 
-    return (
-        <List>
-            //highlight-start
-            <Form
-                layout="inline"
-                initialValues={{
-                    publicationState,
-                }}
-            >
-                <Form.Item label="Publication State" name="publicationState">
-                    <Radio.Group
-                        onChange={(e) => setPublicationState(e.target.value)}
-                    >
-                        <Radio.Button value="live">Published</Radio.Button>
-                        <Radio.Button value="preview">
-                            Draft and Published
-                        </Radio.Button>
-                    </Radio.Group>
-                </Form.Item>
-            </Form>
-            //highlight-end
-            <br />
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    showSizeChanger: true,
-                }}
-            >
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                    sorter={{ multiple: 3 }}
-                />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
-                    sorter={{ multiple: 2 }}
-                />
-                <Table.Column
-                    dataIndex={["category", "title"]}
-                    title="Category"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
-                //highlight-start
-                <Table.Column
-                    dataIndex="publishedAt"
-                    title="Status"
-                    render={(value) => {
-                        return (
-                            <Tag color={value ? "green" : "blue"}>
-                                {value ? "Published" : "Draft"}
-                            </Tag>
-                        );
-                    }}
-                />
-                //highlight-end
-                <Table.Column<{ id: string }>
-                    title="Actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      //highlight-start
+      <Form
+        layout="inline"
+        initialValues={{
+          publicationState,
+        }}
+      >
+        <Form.Item label="Publication State" name="publicationState">
+          <Radio.Group onChange={(e) => setPublicationState(e.target.value)}>
+            <Radio.Button value="live">Published</Radio.Button>
+            <Radio.Button value="preview">Draft and Published</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+      </Form>
+      //highlight-end
+      <br />
+      <Table
+        {...tableProps}
+        rowKey="id"
+        pagination={{
+          ...tableProps.pagination,
+          showSizeChanger: true,
+        }}
+      >
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+          sorter={{ multiple: 3 }}
+        />
+        <Table.Column
+          dataIndex="title"
+          title="Title"
+          defaultSortOrder={getDefaultSortOrder("title", sorter)}
+          sorter={{ multiple: 2 }}
+        />
+        <Table.Column
+          dataIndex={["category", "title"]}
+          title="Category"
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select
+                style={{ minWidth: 200 }}
+                mode="multiple"
+                placeholder="Select Category"
+                {...selectProps}
+              />
+            </FilterDropdown>
+          )}
+        />
+        //highlight-start
+        <Table.Column
+          dataIndex="publishedAt"
+          title="Status"
+          render={(value) => {
+            return (
+              <Tag color={value ? "green" : "blue"}>
+                {value ? "Published" : "Draft"}
+              </Tag>
+            );
+          }}
+        />
+        //highlight-end
+        <Table.Column<{ id: string }>
+          title="Actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <DeleteButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -568,9 +540,9 @@ To fetch content for a locale, make sure it has been already [added to Strapi in
 
 ```tsx
 const { tableProps } = useTable<IPost>({
-    metaData: {
-        locale: "de",
-    },
+  metaData: {
+    locale: "de",
+  },
 });
 ```
 
@@ -581,19 +553,19 @@ import { useState } from "react";
 
 import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
-    List,
-    Table,
-    useTable,
-    getDefaultSortOrder,
-    FilterDropdown,
-    Select,
-    useSelect,
-    Space,
-    EditButton,
-    DeleteButton,
-    Form,
-    Radio,
-    Tag,
+  List,
+  Table,
+  useTable,
+  getDefaultSortOrder,
+  FilterDropdown,
+  Select,
+  useSelect,
+  Space,
+  EditButton,
+  DeleteButton,
+  Form,
+  Radio,
+  Tag,
 } from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
@@ -601,126 +573,114 @@ import { IPost } from "interfaces";
 import { API_URL } from "../../constants";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
+  //highlight-start
+  const [locale, setLocale] = useState("en");
+  //highlight-end
+  const [publicationState, setPublicationState] = useState("live");
+
+  const { tableProps, sorter } = useTable<IPost>({
+    metaData: {
+      populate: ["category", "cover"],
+      //highlight-start
+      locale,
+      //highlight-end
+      publicationState,
+    },
+  });
+
+  const { selectProps } = useSelect({
+    resource: "categories",
+    optionLabel: "title",
+    optionValue: "id",
     //highlight-start
-    const [locale, setLocale] = useState("en");
+    metaData: { locale },
     //highlight-end
-    const [publicationState, setPublicationState] = useState("live");
+  });
 
-    const { tableProps, sorter } = useTable<IPost>({
-        metaData: {
-            populate: ["category", "cover"],
-            //highlight-start
-            locale,
-            //highlight-end
-            publicationState,
-        },
-    });
-
-    const { selectProps } = useSelect({
-        resource: "categories",
-        optionLabel: "title",
-        optionValue: "id",
+  return (
+    <List>
+      <Form
+        layout="inline"
         //highlight-start
-        metaData: { locale },
+        initialValues={{
+          locale,
+          publicationState,
+        }}
         //highlight-end
-    });
-
-    return (
-        <List>
-            <Form
-                layout="inline"
-                //highlight-start
-                initialValues={{
-                    locale,
-                    publicationState,
-                }}
-                //highlight-end
-            >
-                //highlight-start
-                <Form.Item label="Locale" name="locale">
-                    <Radio.Group onChange={(e) => setLocale(e.target.value)}>
-                        <Radio.Button value="en">English</Radio.Button>
-                        <Radio.Button value="de">Deutsch</Radio.Button>
-                    </Radio.Group>
-                </Form.Item>
-                //highlight-end
-                <Form.Item label="Publication State" name="publicationState">
-                    <Radio.Group
-                        onChange={(e) => setPublicationState(e.target.value)}
-                    >
-                        <Radio.Button value="live">Published</Radio.Button>
-                        <Radio.Button value="preview">
-                            Draft and Published
-                        </Radio.Button>
-                    </Radio.Group>
-                </Form.Item>
-            </Form>
-            <br />
-            <Table
-                {...tableProps}
-                rowKey="id"
-                pagination={{
-                    ...tableProps.pagination,
-                    showSizeChanger: true,
-                }}
-            >
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                    sorter={{ multiple: 3 }}
-                />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
-                    sorter={{ multiple: 2 }}
-                />
-                <Table.Column
-                    dataIndex={["category", "title"]}
-                    title="Category"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
-                <Table.Column
-                    dataIndex="publishedAt"
-                    title="Status"
-                    render={(value) => {
-                        return (
-                            <Tag color={value ? "green" : "blue"}>
-                                {value ? "Published" : "Draft"}
-                            </Tag>
-                        );
-                    }}
-                />
-                <Table.Column<{ id: string }>
-                    title="Actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+      >
+        //highlight-start
+        <Form.Item label="Locale" name="locale">
+          <Radio.Group onChange={(e) => setLocale(e.target.value)}>
+            <Radio.Button value="en">English</Radio.Button>
+            <Radio.Button value="de">Deutsch</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+        //highlight-end
+        <Form.Item label="Publication State" name="publicationState">
+          <Radio.Group onChange={(e) => setPublicationState(e.target.value)}>
+            <Radio.Button value="live">Published</Radio.Button>
+            <Radio.Button value="preview">Draft and Published</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+      </Form>
+      <br />
+      <Table
+        {...tableProps}
+        rowKey="id"
+        pagination={{
+          ...tableProps.pagination,
+          showSizeChanger: true,
+        }}
+      >
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+          sorter={{ multiple: 3 }}
+        />
+        <Table.Column
+          dataIndex="title"
+          title="Title"
+          defaultSortOrder={getDefaultSortOrder("title", sorter)}
+          sorter={{ multiple: 2 }}
+        />
+        <Table.Column
+          dataIndex={["category", "title"]}
+          title="Category"
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select
+                style={{ minWidth: 200 }}
+                mode="multiple"
+                placeholder="Select Category"
+                {...selectProps}
+              />
+            </FilterDropdown>
+          )}
+        />
+        <Table.Column
+          dataIndex="publishedAt"
+          title="Status"
+          render={(value) => {
+            return (
+              <Tag color={value ? "green" : "blue"}>
+                {value ? "Published" : "Draft"}
+              </Tag>
+            );
+          }}
+        />
+        <Table.Column<{ id: string }>
+          title="Actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <DeleteButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -733,19 +693,19 @@ When creating and editing posts you can use these API parameters in `metaData`:
 
 ```tsx
 const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-    metaData: { publicationState: "preview" },
+  metaData: { publicationState: "preview" },
 });
 ```
 
 ```tsx title="EditList.tsx"
 const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-    metaData: { populate: ["category", "cover"] },
+  metaData: { populate: ["category", "cover"] },
 });
 ```
 
 ```tsx title="CreateList.tsx"
 const { selectProps } = useSelect({
-    metaData: { locale: "en" },
+  metaData: { locale: "en" },
 });
 ```
 

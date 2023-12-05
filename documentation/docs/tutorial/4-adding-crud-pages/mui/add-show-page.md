@@ -2,9 +2,9 @@
 id: add-show-page
 title: 3. Adding Show Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
-    next: tutorial/adding-crud-pages/{preferredUI}/add-create-page
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/add-edit-page
+  next: tutorial/adding-crud-pages/{preferredUI}/add-create-page
 ---
 
 ## Creating the Show Page
@@ -30,87 +30,68 @@ import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import { Refine } from "@refinedev/core";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 import {
-    ErrorComponent,
-    ThemedLayoutV2,
-    RefineThemes,
-    notificationProvider,
-    RefineSnackbarProvider,
+  ErrorComponent,
+  ThemedLayoutV2,
+  RefineThemes,
+  notificationProvider,
+  RefineSnackbarProvider,
 } from "@refinedev/mui";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={RefineThemes.Blue}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="blog_posts" />
-                                    }
-                                />
+  return (
+    <ThemeProvider theme={RefineThemes.Blue}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
 
-                                <Route path="blog-posts">
-                                    <Route index element={<MuiInferencer />} />
-                                    <Route
-                                        path="show/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<MuiInferencer />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MuiInferencer />}
-                                    />
-                                </Route>
+                <Route path="blog-posts">
+                  <Route index element={<MuiInferencer />} />
+                  <Route path="show/:id" element={<MuiInferencer />} />
+                  <Route path="edit/:id" element={<MuiInferencer />} />
+                  <Route path="create" element={<MuiInferencer />} />
+                </Route>
 
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);
@@ -120,17 +101,17 @@ render(<App />);
 
 ### Hooks and Components in Show Page
 
--   `<Show/>` is a **refine** component that is used for presentation purposes like showing the title of the page, list button, etc.
+- `<Show/>` is a **refine** component that is used for presentation purposes like showing the title of the page, list button, etc.
 
-    > For more information, refer to the [`<Show/>` documentation&#8594](/docs/api-reference/mui/components/basic-views/show/)
+  > For more information, refer to the [`<Show/>` documentation&#8594](/docs/ui-integrations/material-ui/components/basic-views/show)
 
--   The `useShow` hook is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
+- The `useShow` hook is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
 
-    > For more information, refer to the [`useShow` documentation&#8594](/docs/api-reference/core/hooks/show/useShow/)
+  > For more information, refer to the [`useShow` documentation&#8594](/docs/core/hooks/use-show)
 
--   All other components are **Material UI** components that are used to show the record data.
+- All other components are **Material UI** components that are used to show the record data.
 
-    > For more information, refer to the [**Material UI** documentation&#8594](https://mui.com/material-ui/getting-started/overview/)
+  > For more information, refer to the [**Material UI** documentation&#8594](https://mui.com/material-ui/getting-started/overview/)
 
 ### Handling Relationships
 
@@ -142,8 +123,8 @@ In the auto-generated show page code, Inferencer used the `useOne` hook to fetch
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-    resource: "categories",
-    id: record?.category?.id || "",
+  resource: "categories",
+  id: record?.category?.id || "",
 });
 ```
 
@@ -151,15 +132,15 @@ To ensure that the related data is fetched only after the blog post record has b
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-    resource: "categories",
-    id: record?.category?.id || "",
-    queryOptions: {
-        enabled: !!record,
-    },
+  resource: "categories",
+  id: record?.category?.id || "",
+  queryOptions: {
+    enabled: !!record,
+  },
 });
 ```
 
-> For more information, refer to the [`useOne` documentation&#8594](/docs/api-reference/core/hooks/data/useOne/)
+> For more information, refer to the [`useOne` documentation&#8594](/docs/core/hooks/data/use-one)
 
 ## Adding the Show Page to the App
 
@@ -176,16 +157,13 @@ import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import { Refine } from "@refinedev/core";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 import {
-    ErrorComponent,
-    ThemedLayoutV2,
-    RefineThemes,
-    notificationProvider,
-    RefineSnackbarProvider,
+  ErrorComponent,
+  ThemedLayoutV2,
+  RefineThemes,
+  notificationProvider,
+  RefineSnackbarProvider,
 } from "@refinedev/mui";
-import routerBindings, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
@@ -195,74 +173,58 @@ import { BlogPostList } from "pages/blog-posts/list";
 import { BlogPostShow } from "pages/blog-posts/show";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={RefineThemes.Blue}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        routerProvider={routerBindings}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <ThemedLayoutV2>
-                                        <Outlet />
-                                    </ThemedLayoutV2>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="blog_posts" />
-                                    }
-                                />
+  return (
+    <ThemeProvider theme={RefineThemes.Blue}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <BrowserRouter>
+          <Refine
+            routerProvider={routerBindings}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            resources={[
+              {
+                name: "blog_posts",
+                list: "/blog-posts",
+                show: "/blog-posts/show/:id",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+              },
+            ]}
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                }
+              >
+                <Route index element={<NavigateToResource resource="blog_posts" />} />
 
-                                <Route path="blog-posts">
-                                    <Route index element={<BlogPostList />} />
-                                    {/* highlight-start */}
-                                    <Route
-                                        path="show/:id"
-                                        element={<BlogPostShow />}
-                                    />
-                                    {/* highlight-end */}
-                                    <Route
-                                        path="edit/:id"
-                                        element={<BlogPostEdit />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<MuiInferencer />}
-                                    />
-                                </Route>
+                <Route path="blog-posts">
+                  <Route index element={<BlogPostList />} />
+                  {/* highlight-start */}
+                  <Route path="show/:id" element={<BlogPostShow />} />
+                  {/* highlight-end */}
+                  <Route path="edit/:id" element={<BlogPostEdit />} />
+                  <Route path="create" element={<MuiInferencer />} />
+                </Route>
 
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                    </Refine>
-                </BrowserRouter>
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+          </Refine>
+        </BrowserRouter>
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 export default App;
 ```

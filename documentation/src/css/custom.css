@@ -206,6 +206,10 @@ html[data-active-page="index"] {
     scroll-behavior: smooth;
 }
 
+html.docs-wrapper {
+    scroll-behavior: initial !important;
+}
+
 [data-theme="dark"] {
     --tutorial-card-bg: #252527;
     --tutorial-card-bg-hover: #2c2e33;

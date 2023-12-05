@@ -1,5 +1,4 @@
 ---
-id: auth-provider
 title: Migrating Auth Provider from 3.x.x to 4.x.x
 sidebar_label: Migrating Auth Provider
 ---
@@ -428,7 +427,7 @@ export const Authenticated: React.FC = ({ children }) => {
 
 Though auth hooks should be familiar, they need to updated according to the new system.
 
-[Please refer to the hooks documentation for more information.](/docs/api-reference/core/providers/auth-provider.md/#hooks-and-components)
+[Please refer to the hooks documentation for more information.](/docs/core/providers/auth-provider#hooks-and-components)
 
 ## Backward compatibility
 

@@ -2,7 +2,7 @@
 locale = "en-us"
 
 [files]
-extend-exclude = ["i18n-provider.md", "documentation/versioned_docs", "documentation/versioned_sidebars", "*.ts", "*.tsx"]
+extend-exclude = ["documentation/docs/core/providers/i18n-provider/index.md", "documentation/versioned_docs", "documentation/versioned_sidebars", "*.ts", "*.tsx"]
 
 [default.extend-words]
 nin = "nin"

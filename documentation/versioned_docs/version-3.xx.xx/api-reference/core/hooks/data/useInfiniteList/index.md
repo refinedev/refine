@@ -11,9 +11,9 @@ import FilteringLivePreview from "./filtering-live-preview.md";
 
 `useInfiniteList` is an extended version of TanStack Query's [`useInfiniteQuery`](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) used for retrieving items from a `resource` with pagination, sort, and filter configurations. It is ideal for lists where the total number of records is unknown and the user loads the next pages with a button.
 
--   It uses the `getList` method as the query function from the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
+- It uses the `getList` method as the query function from the [`dataProvider`](/docs/3.xx.xx/api-reference/core/providers/data-provider) which is passed to `<Refine>`.
 
--   It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
+- It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 
 ## Basic Usage
 
@@ -23,7 +23,7 @@ Here is a basic example of how to use the `useInfiniteList` hook.
 
 ## Pagination
 
-`useInfiniteList` hook supports pagination properties just like [`useList`](/docs/api-reference/core/hooks/data/useList/). To handle pagination, the `useInfiniteList` hook passes the `pagination` property to the `getList` method from the `dataProvider`.
+`useInfiniteList` hook supports pagination properties just like [`useList`](/docs/3.xx.xx/api-reference/core/hooks/data/useList/). To handle pagination, the `useInfiniteList` hook passes the `pagination` property to the `getList` method from the `dataProvider`.
 
 Dynamically changing the `pagination` properties will trigger a new request. Also, the `fetchNextPage` method will increase the `pagination.current` property by one and trigger a new request.
 
@@ -31,10 +31,10 @@ Dynamically changing the `pagination` properties will trigger a new request. Als
 import { useInfiniteList } from "@pankod/refine-core";
 
 const postListQueryResult = useInfiniteList({
-    resource: "posts",
-    config: {
-        pagination: { current: 3, pageSize: 8 },
-    },
+  resource: "posts",
+  config: {
+    pagination: { current: 3, pageSize: 8 },
+  },
 });
 ```
 
@@ -56,21 +56,21 @@ Dynamically changing the `filters` property will trigger a new request.
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+> This feature is only available if you use a [Live Provider](/docs/3.xx.xx/api-reference/core/providers/live-provider).
 
 When the `useInfiniteList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/providers/live-provider)
 
 ## Properties
 
 ### `resource` <PropTag required />
 
-It will be passed to the `getList` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how resources are handled.
+It will be passed to the `getList` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/3.xx.xx/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how resources are handled.
 
 ```tsx
 useInfiniteList({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -80,7 +80,7 @@ If there is more than one `dataProvider`, you can specify which one to use by pa
 
 ```tsx
 useInfiniteList({
-    dataProviderName: "second-data-provider",
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -88,19 +88,19 @@ useInfiniteList({
 
 `filters` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send filter query parameters to the API.
 
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/3.xx.xx/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useInfiniteList({
-    config: {
-        filters: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+  config: {
+    filters: [
+      {
+        field: "title",
+        operator: "contains",
+        value: "Foo",
+      },
+    ],
+  },
 });
 ```
 
@@ -108,18 +108,18 @@ useInfiniteList({
 
 `sort` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send sort query parameters to the API.
 
-[Refer to the `CrudSorting` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudsorting)
+[Refer to the `CrudSorting` interface for more information &#8594](/docs/3.xx.xx/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useInfiniteList({
-    config: {
-        sort: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
-    },
+  config: {
+    sort: [
+      {
+        field: "title",
+        order: "asc",
+      },
+    ],
+  },
 });
 ```
 
@@ -133,11 +133,11 @@ You can pass the `current` page number to the `pagination` property.
 
 ```tsx
 useInfiniteList({
-    config: {
-        pagination: {
-            current: 2,
-        },
+  config: {
+    pagination: {
+      current: 2,
     },
+  },
 });
 ```
 
@@ -147,11 +147,11 @@ You can pass the `pageSize` to the `pagination` property.
 
 ```tsx
 useInfiniteList({
-    config: {
-        pagination: {
-            pageSize: 20,
-        },
+  config: {
+    pagination: {
+      pageSize: 20,
     },
+  },
 });
 ```
 
@@ -161,9 +161,9 @@ useInfiniteList({
 
 ```tsx
 useInfiniteList({
-    config: {
-        hasPagination: false,
-    },
+  config: {
+    hasPagination: false,
+  },
 });
 ```
 
@@ -175,127 +175,127 @@ useInfiniteList({
 
 ```tsx
 useInfiniteList({
-    queryOptions: {
-        retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
+  },
 });
 ```
 
 ### `metaData`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`metaData`](/docs/3.xx.xx/api-reference/general-concepts/#metadata) is used following two purposes:
 
--   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+- To pass additional information to data provider methods.
+- Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/3.xx.xx/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useInfiniteList({
-    // highlight-start
-    metaData: {
-        headers: { "x-meta-data": "true" },
-    },
-    // highlight-end
+  // highlight-start
+  metaData: {
+    headers: { "x-meta-data": "true" },
+  },
+  // highlight-end
 });
 
 const myDataProvider = {
+  //...
+  getList: async ({
+    resource,
+    pagination,
+    hasPagination,
+    sort,
+    filters,
+    // highlight-next-line
+    metaData,
+  }) => {
+    // highlight-next-line
+    const headers = metaData?.headers ?? {};
+    const url = `${apiUrl}/${resource}`;
+
     //...
-    getList: async ({
-        resource,
-        pagination,
-        hasPagination,
-        sort,
-        filters,
-        // highlight-next-line
-        metaData,
-    }) => {
-        // highlight-next-line
-        const headers = metaData?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
-
-        //...
-        //...
-
-        // highlight-next-line
-        const { data } = await httpClient.get(`${url}`, { headers });
-
-        return {
-            data,
-        };
-    },
     //...
+
+    // highlight-next-line
+    const { data } = await httpClient.get(`${url}`, { headers });
+
+    return {
+      data,
+    };
+  },
+  //...
 };
 ```
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+> [`NotificationProvider`](/docs/3.xx.xx/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data is fetched successfully, `useInfiniteList` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx
 useInfiniteList({
-    successNotification: (data, values, resource) => {
-        return {
-            message: `${data.title} Successfully fetched.`,
-            description: "Success with no errors",
-            type: "success",
-        };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `${data.title} Successfully fetched.`,
+      description: "Success with no errors",
+      type: "success",
+    };
+  },
 });
 ```
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+> [`NotificationProvider`](/docs/3.xx.xx/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data fetching is failed, `useInfiniteList` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useInfiniteList({
-    errorNotification: (data, values, resource) => {
-        return {
-            message: `Something went wrong when getting ${data.id}`,
-            description: "Error",
-            type: "error",
-        };
-    },
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when getting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
+  },
 });
 ```
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+> [`LiveProvider`](/docs/3.xx.xx/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check the [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+For more information about live mode, please check the [Live / Realtime](/docs/3.xx.xx/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useInfiniteList({
-    liveMode: "auto",
+  liveMode: "auto",
 });
 ```
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+> [`LiveProvider`](/docs/3.xx.xx/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useInfiniteList({
-    onLiveEvent: (event) => {
-        console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
+  },
 });
 ```
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+> [`LiveProvider`](/docs/3.xx.xx/api-reference/core/providers/live-provider/) is required for this prop to work.
 
-Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/3.xx.xx/api-reference/core/providers/live-provider/#subscribe) method.
 
 ## Return Values
 
@@ -361,24 +361,24 @@ By default, `refine` expects you to return the `cursor` object, but is not requi
 import { useInfiniteList } from "@pankod/refine-core";
 
 const {
-    data,
-    error,
-    hasNextPage,
-    isLoading,
-    fetchNextPage,
-    isFetchingNextPage,
+  data,
+  error,
+  hasNextPage,
+  isLoading,
+  fetchNextPage,
+  isFetchingNextPage,
 } = useInfiniteList({
-    resource: "posts",
-    // highlight-start
-    queryOptions: {
-        getNextPageParam: (lastPage, allPages) => {
-            // return the last post's id
-            const { data } = lastPage;
-            const lastPost = data[data.length - 1];
-            return lastPost.id;
-        },
+  resource: "posts",
+  // highlight-start
+  queryOptions: {
+    getNextPageParam: (lastPage, allPages) => {
+      // return the last post's id
+      const { data } = lastPage;
+      const lastPost = data[data.length - 1];
+      return lastPost.id;
     },
-    // highlight-end
+  },
+  // highlight-end
 });
 ```
 
@@ -399,20 +399,20 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 ```ts
 interface UseInfiniteListConfig {
-    hasPagination?: boolean;
-    pagination?: {
-        current?: number;
-        pageSize?: number;
-    };
-    sort?: Array<{
-        field: string;
-        order: "asc" | "desc";
-    }>;
-    filters?: Array<{
-        field: string;
-        operator: CrudOperators;
-        value: any;
-    }>;
+  hasPagination?: boolean;
+  pagination?: {
+    current?: number;
+    pageSize?: number;
+  };
+  sort?: Array<{
+    field: string;
+    order: "asc" | "desc";
+  }>;
+  filters?: Array<{
+    field: string;
+    operator: CrudOperators;
+    value: any;
+  }>;
 }
 ```
 

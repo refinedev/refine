@@ -4,13 +4,12 @@ title: Export
 swizzle: true
 ---
 
-
 `<ExportButton>` is an Ant Design [`<Button>`][button] with a default export icon and a default text with "Export". It only has presentational value.
 
 [Refer to the for more detailed information about `useExport`. &#8594][useexport]
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -21,52 +20,49 @@ Use it like any other Ant Design [`<Button>`][button]. You can use it with [useE
 // visible-block-start
 import { useExport } from "@pankod/refine-core";
 import {
-    List,
-    Table,
-    useTable,
-    // highlight-next-line
-    ExportButton,
+  List,
+  Table,
+  useTable,
+  // highlight-next-line
+  ExportButton,
 } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    const { triggerExport, isLoading: exportLoading } = useExport<IPost>();
+  const { triggerExport, isLoading: exportLoading } = useExport<IPost>();
 
-    return (
-        <List
-            headerButtons={(
-                // highlight-start
-                <ExportButton
-                    onClick={triggerExport}
-                    loading={exportLoading}
-                />
-                // highlight-end
-            )}
-        >
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-            </Table>
-        </List>
-    );
+  return (
+    <List
+      headerButtons={
+        // highlight-start
+        <ExportButton onClick={triggerExport} loading={exportLoading} />
+        // highlight-end
+      }
+    >
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+      </Table>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -83,26 +79,26 @@ const { useRouterContext } = RefineCore;
 import { ExportButton } from "@pankod/refine-antd";
 
 const MyExportComponent = () => {
-    return (
-        <ExportButton
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <ExportButton
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyExportComponent,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyExportComponent,
+      },
+    ]}
+  />,
 );
 ```
 

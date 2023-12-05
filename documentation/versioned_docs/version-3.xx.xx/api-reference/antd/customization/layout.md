@@ -8,15 +8,15 @@ You can create custom layouts using [`<Refine>`][refine] and [`<LayoutWrapper>`]
 
 Both of these components can accept the listed props for customization. [`<Refine>`][refine] being for global customization and the [`<LayoutWrapper>`][layoutwrapper] being for local.
 
--   [`Layout`][layout]
--   [`Sider`][sider]
--   [`Footer`][footer]
--   [`Header`][header]
--   [`OffLayoutArea`][offlayoutarea]
--   [`Title`][title]
+- [`Layout`][layout]
+- [`Sider`][sider]
+- [`Footer`][footer]
+- [`Header`][header]
+- [`OffLayoutArea`][offlayoutarea]
+- [`Title`][title]
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Creating a Custom Layout
@@ -26,10 +26,10 @@ Let's look at an example of modifying the default layout to have a top menu layo
 ```tsx title="/src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-    AntdLayout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  AntdLayout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -45,38 +45,36 @@ const { Link } = routerProvider;
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            // highlight-start
-            Layout={({ children, Footer, OffLayoutArea }) => (
-                <AntdLayout>
-                    <AntdLayout.Header>
-                        <CustomSider />
-                    </AntdLayout.Header>
-                    <AntdLayout.Content>
-                        <AntdLayout.Content>
-                            <div style={{ padding: 24, minHeight: 360 }}>
-                                {children}
-                            </div>
-                        </AntdLayout.Content>
-                        {Footer && <Footer />}
-                    </AntdLayout.Content>
-                    {OffLayoutArea && <OffLayoutArea />}
-                </AntdLayout>
-            )}
-            // highlight-end
-            Title={() => (
-                <Link to="/" style={{ float: "left", marginRight: "10px" }}>
-                    <img src="/refine.svg" alt="Refine" />
-                </Link>
-            )}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      // highlight-start
+      Layout={({ children, Footer, OffLayoutArea }) => (
+        <AntdLayout>
+          <AntdLayout.Header>
+            <CustomSider />
+          </AntdLayout.Header>
+          <AntdLayout.Content>
+            <AntdLayout.Content>
+              <div style={{ padding: 24, minHeight: 360 }}>{children}</div>
+            </AntdLayout.Content>
+            {Footer && <Footer />}
+          </AntdLayout.Content>
+          {OffLayoutArea && <OffLayoutArea />}
+        </AntdLayout>
+      )}
+      // highlight-end
+      Title={() => (
+        <Link to="/" style={{ float: "left", marginRight: "10px" }}>
+          <img src="/refine.svg" alt="Refine" />
+        </Link>
+      )}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+    />
+  );
 };
 
 export default App;
@@ -94,25 +92,25 @@ import routerProvider from "@pankod/refine-react-router-v6";
 const { Link } = routerProvider;
 
 export const CustomSider: React.FC = () => {
-    // highlight-start
-    const Title = useTitle();
-    const { menuItems, selectedKey } = useMenu();
-    // highlight-end
+  // highlight-start
+  const Title = useTitle();
+  const { menuItems, selectedKey } = useMenu();
+  // highlight-end
 
-    return (
-        <>
-            // highlight-start
-            {Title && <Title collapsed={false} />}
-            <Menu selectedKeys={[selectedKey]} mode="horizontal">
-                {menuItems.map(({ icon, route, label }) => (
-                    <Menu.Item key={route} icon={icon}>
-                        <Link to={route ?? ""}>{label}</Link>
-                    </Menu.Item>
-                ))}
-            </Menu>
-            // highlight-end
-        </>
-    );
+  return (
+    <>
+      // highlight-start
+      {Title && <Title collapsed={false} />}
+      <Menu selectedKeys={[selectedKey]} mode="horizontal">
+        {menuItems.map(({ icon, route, label }) => (
+          <Menu.Item key={route} icon={icon}>
+            <Link to={route ?? ""}>{label}</Link>
+          </Menu.Item>
+        ))}
+      </Menu>
+      // highlight-end
+    </>
+  );
 };
 ```
 

@@ -2,9 +2,9 @@
 id: add-edit-page
 title: 2. Adding Edit Page
 tutorial:
-    order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/index
-    next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+  order: 0
+  prev: tutorial/adding-crud-pages/{preferredUI}/index
+  next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
 ---
 
 Edit page is the page where you can edit the record. In this tutorial, we will create the edit page for the `blog_posts` resource.
@@ -36,21 +36,21 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: HeadlessInferencer,
-                    show: HeadlessInferencer,
-                    create: HeadlessInferencer,
-                    edit: HeadlessInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "blog_posts",
+          list: HeadlessInferencer,
+          show: HeadlessInferencer,
+          create: HeadlessInferencer,
+          edit: HeadlessInferencer,
+        },
+      ]}
+    />
+  );
 };
 render(<App />);
 ```
@@ -61,33 +61,33 @@ Instead of coding the edit page component from scratch, Inferencer created the r
 
 We will go through the list page hooks one by one.
 
--   `useForm` hook, imported from `@pankod/refine-react-hook-form` package, has been developed by using the **React Hook Form** and `useForm` hook imported from `@pankod/refine-core` package.
+- `useForm` hook, imported from `@pankod/refine-react-hook-form` package, has been developed by using the **React Hook Form** and `useForm` hook imported from `@pankod/refine-core` package.
 
-    It provides all the features of the `useForm` hook from `@pankod/refine-core` package as well as the `useForm` hook from **React Hook Form**.
+  It provides all the features of the `useForm` hook from `@pankod/refine-core` package as well as the `useForm` hook from **React Hook Form**.
 
-    It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
+  It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
 
-    When you use `useForm` in the edit page, it automatically fetches the data of the record by using the `id` in the URL, then fills the form with the data. It sends the form data to `dataProvider`'s `update` method when the form is submitted.
+  When you use `useForm` in the edit page, it automatically fetches the data of the record by using the `id` in the URL, then fills the form with the data. It sends the form data to `dataProvider`'s `update` method when the form is submitted.
 
-    [Refer to the **@pankod/refine-react-hook-form** `useForm` documentation for more information &#8594](/docs/packages/documentation/react-hook-form/useForm/)
+  [Refer to the **@pankod/refine-react-hook-form** `useForm` documentation for more information &#8594](/docs/3.xx.xx/packages/documentation/react-hook-form/useForm/)
 
-    [Refer to the **React Hook Form** documentation for more information &#8594](https://react-hook-form.com/)
+  [Refer to the **React Hook Form** documentation for more information &#8594](https://react-hook-form.com/)
 
--   `useNavigation` is a **refine** hook that is used to navigate between pages. In this case, we are using it to navigate to the `list` page when user clicks the "Blog Posts List" button.
+- `useNavigation` is a **refine** hook that is used to navigate between pages. In this case, we are using it to navigate to the `list` page when user clicks the "Blog Posts List" button.
 
-    [Refer to the `useNavigation` documentation for more information &#8594](/docs/api-reference/core/hooks/navigation/useNavigation/)
+  [Refer to the `useNavigation` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/navigation/useNavigation/)
 
 ### Handling Relationships
 
 In the edit page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the blog post to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method. Then, it returns the `options` to be used in the `<select/>` component.
 
-[Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/core/hooks/useSelect/)
+[Refer to the `useSelect` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/useSelect/)
 
 In the auto-generated edit page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 
 ```tsx
 const { options: categoryOptions } = useSelect({
-    resource: "categories",
+  resource: "categories",
 });
 ```
 
@@ -95,8 +95,8 @@ const { options: categoryOptions } = useSelect({
 
 ```tsx
 const { options: categoryOptions } = useSelect({
-    resource: "categories",
-    defaultValue: blogPostsData?.category?.id,
+  resource: "categories",
+  defaultValue: blogPostsData?.category?.id,
 });
 ```
 
@@ -121,22 +121,22 @@ import { BlogPostList } from "pages/blog-posts/list";
 import { BlogPostEdit } from "pages/blog-posts/edit";
 
 const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "blog_posts",
-                    list: BlogPostList,
-                    //highlight-next-line
-                    edit: BlogPostEdit,
-                    show: HeadlessInferencer,
-                    create: HeadlessInferencer,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "blog_posts",
+          list: BlogPostList,
+          //highlight-next-line
+          edit: BlogPostEdit,
+          show: HeadlessInferencer,
+          create: HeadlessInferencer,
+        },
+      ]}
+    />
+  );
 };
 export default App;
 ```

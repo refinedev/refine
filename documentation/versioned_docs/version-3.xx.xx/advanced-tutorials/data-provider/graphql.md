@@ -18,20 +18,20 @@ In order to create a GraphQL query, our [`dataProvider`][data-provider] has to t
 
 Hooks and components that support `MetaDataQuery`:
 
-| Supported data hooks                                                         | Supported other hooks                                                              | Supported components                                                                 |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| [`useUpdate` &#8594](/docs/api-reference/core/hooks/data/useUpdate/)         | [`useForm` &#8594](/docs/api-reference/core/hooks/useForm)                         | [`DeleteButton` &#8594](/docs/api-reference/antd/components/buttons/delete-button)   |
-| [`useUpdateMany` &#8594](/docs/api-reference/core/hooks/data/useUpdateMany/) | [`useModalForm` &#8594](/docs/api-reference/antd/hooks/form/useModalForm)          | [`RefreshButton` &#8594](/docs/api-reference/antd/components/buttons/refresh-button) |
-| [`useDelete` &#8594](/docs/api-reference/core/hooks/data/useDelete/)         | [`useDrawerForm` &#8594](/docs/api-reference/antd/hooks/form/useDrawerForm)        |                                                                                      |
-| [`useDeleteMany` &#8594](/docs/api-reference/core/hooks/data/useDeleteMany/) | [`useStepsForm` &#8594](/docs/api-reference/antd/hooks/form/useStepsForm)          |                                                                                      |
-| [`useCreate` &#8594](/docs/api-reference/core/hooks/data/useCreate/)         | [`useTable` &#8594](/docs/api-reference/core/hooks/useTable)                       |                                                                                      |
-| [`useCreateMany` &#8594](/docs/api-reference/core/hooks/data/useCreateMany/) | [`useEditableTable` &#8594](/docs/api-reference/antd/hooks/table/useEditableTable) |                                                                                      |
-| [`useList` &#8594](/docs/api-reference/core/hooks/data/useList/)             | [`useSimpleList` &#8594](/docs/api-reference/antd/hooks/list/useSimpleList)        |                                                                                      |
-| [`useOne` &#8594](/docs/api-reference/core/hooks/data/useOne/)               | [`useShow` &#8594](/docs/api-reference/core/hooks/show/useShow)                    |                                                                                      |
-| [`useMany` &#8594](/docs/api-reference/core/hooks/data/useMany/)             | [`useExport` &#8594](/docs/api-reference/core/hooks/import-export/useExport)       |                                                                                      |
-| [`useCustom` &#8594](/docs/api-reference/core/hooks/data/useCustom/)         | [`useCheckboxGroup` &#8594](/docs/api-reference/antd/hooks/field/useCheckboxGroup) |                                                                                      |
-|                                                                              | [`useSelect` &#8594](/docs/api-reference/core/hooks/useSelect/)                    |                                                                                      |
-|                                                                              | [`useRadioGroup` &#8594](/docs/api-reference/antd/hooks/field/useRadioGroup)       |                                                                                      |
+| Supported data hooks                                                                 | Supported other hooks                                                                      | Supported components                                                                         |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| [`useUpdate` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/)         | [`useForm` &#8594](/docs/3.xx.xx/api-reference/core/hooks/useForm)                         | [`DeleteButton` &#8594](/docs/3.xx.xx/api-reference/antd/components/buttons/delete-button)   |
+| [`useUpdateMany` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useUpdateMany/) | [`useModalForm` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/form/useModalForm)          | [`RefreshButton` &#8594](/docs/3.xx.xx/api-reference/antd/components/buttons/refresh-button) |
+| [`useDelete` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/)         | [`useDrawerForm` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/form/useDrawerForm)        |                                                                                              |
+| [`useDeleteMany` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useDeleteMany/) | [`useStepsForm` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/form/useStepsForm)          |                                                                                              |
+| [`useCreate` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/)         | [`useTable` &#8594](/docs/3.xx.xx/api-reference/core/hooks/useTable)                       |                                                                                              |
+| [`useCreateMany` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useCreateMany/) | [`useEditableTable` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/table/useEditableTable) |                                                                                              |
+| [`useList` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useList/)             | [`useSimpleList` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/list/useSimpleList)        |                                                                                              |
+| [`useOne` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useOne/)               | [`useShow` &#8594](/docs/3.xx.xx/api-reference/core/hooks/show/useShow)                    |                                                                                              |
+| [`useMany` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useMany/)             | [`useExport` &#8594](/docs/3.xx.xx/api-reference/core/hooks/import-export/useExport)       |                                                                                              |
+| [`useCustom` &#8594](/docs/3.xx.xx/api-reference/core/hooks/data/useCustom/)         | [`useCheckboxGroup` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/field/useCheckboxGroup) |                                                                                              |
+|                                                                                      | [`useSelect` &#8594](/docs/3.xx.xx/api-reference/core/hooks/useSelect/)                    |                                                                                              |
+|                                                                                      | [`useRadioGroup` &#8594](/docs/3.xx.xx/api-reference/antd/hooks/field/useRadioGroup)       |                                                                                              |
 
 ## Setup
 
@@ -54,10 +54,10 @@ To activate the data provider in `@pankod/refine-strapi-graphql`, we have to pas
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 // highlight-next-line
@@ -66,17 +66,17 @@ import dataProvider, { GraphQLClient } from "@pankod/refine-strapi-graphql";
 const client = new GraphQLClient("API_URL");
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            // highlight-next-line
-            dataProvider={dataProvider(client)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      // highlight-next-line
+      dataProvider={dataProvider(client)}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+    />
+  );
 };
 ```
 
@@ -92,13 +92,13 @@ You can see the fields of the collections we created as below.
 
 ```json title="post"
 {
-    "id": 1,
-    "title": "Eius ea autem.",
-    "content": "Explicabo nihil delectus. Nam aliquid sunt numquam...",
-    "category": {
-        "id": 24,
-        "title": "Placeat fuga"
-    }
+  "id": 1,
+  "title": "Eius ea autem.",
+  "content": "Explicabo nihil delectus. Nam aliquid sunt numquam...",
+  "category": {
+    "id": 24,
+    "title": "Placeat fuga"
+  }
 }
 ```
 
@@ -116,91 +116,79 @@ values={[
 
 ```tsx
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-        // highlight-start
-        metaData: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["title"],
-                },
-            ],
+  const { tableProps, sorter } = useTable<IPost>({
+    initialSorter: [
+      {
+        field: "id",
+        order: "asc",
+      },
+    ],
+    // highlight-start
+    metaData: {
+      fields: [
+        "id",
+        "title",
+        {
+          category: ["title"],
         },
-        // highlight-end
-    });
+      ],
+    },
+    // highlight-end
+  });
 
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-        // highlight-start
-        metaData: {
-            fields: ["id", "title"],
-        },
-        // highlight-end
-    });
+  const { selectProps } = useSelect<ICategory>({
+    resource: "categories",
+    // highlight-start
+    metaData: {
+      fields: ["id", "title"],
+    },
+    // highlight-end
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    sorter={{ multiple: 2 }}
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                />
-                <Table.Column
-                    key="title"
-                    dataIndex="title"
-                    title="Title"
-                    sorter={{ multiple: 1 }}
-                />
-                <Table.Column<IPost>
-                    dataIndex="category"
-                    title="Category"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                    render={(_, record) => record.category.title}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          sorter={{ multiple: 2 }}
+          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+        />
+        <Table.Column
+          key="title"
+          dataIndex="title"
+          title="Title"
+          sorter={{ multiple: 1 }}
+        />
+        <Table.Column<IPost>
+          dataIndex="category"
+          title="Category"
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select
+                style={{ minWidth: 200 }}
+                mode="multiple"
+                placeholder="Select Category"
+                {...selectProps}
+              />
+            </FilterDropdown>
+          )}
+          render={(_, record) => record.category.title}
+        />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+              <DeleteButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -239,89 +227,89 @@ values={[
 
 ```tsx
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<
-        IPost,
-        HttpError,
-        IPost
-    >({
-        // highlight-start
-        metaData: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["id", "title"],
-                },
-                "content",
-            ],
+  const { formProps, saveButtonProps, queryResult } = useForm<
+    IPost,
+    HttpError,
+    IPost
+  >({
+    // highlight-start
+    metaData: {
+      fields: [
+        "id",
+        "title",
+        {
+          category: ["id", "title"],
         },
-        // highlight-end
-    });
+        "content",
+      ],
+    },
+    // highlight-end
+  });
 
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.category.id,
-        // highlight-start
-        metaData: {
-            fields: ["id", "title"],
-        },
-        // highlight-end
-    });
+  const postData = queryResult?.data?.data;
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+    defaultValue: postData?.category.id,
+    // highlight-start
+    metaData: {
+      fields: ["id", "title"],
+    },
+    // highlight-end
+  });
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form
-                {...formProps}
-                layout="vertical"
-                onFinish={(values) =>
-                    formProps.onFinish?.({
-                        ...values,
-                        category: values.category.id,
-                    } as any)
-                }
-            >
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <MDEditor data-color-mode="light" />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form
+        {...formProps}
+        layout="vertical"
+        onFinish={(values) =>
+          formProps.onFinish?.({
+            ...values,
+            category: values.category.id,
+          } as any)
+        }
+      >
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name={["category", "id"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <MDEditor data-color-mode="light" />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 ```
 
 :::info
-The create page is largely the same as the edit page, there is no need to pass `metaData` to [`useForm`](/docs/api-reference/core/hooks/useForm) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `metaData`.
+The create page is largely the same as the edit page, there is no need to pass `metaData` to [`useForm`](/docs/3.xx.xx/api-reference/core/hooks/useForm) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `metaData`.
 :::
 
 </TabItem>
@@ -344,7 +332,7 @@ mutation ($input: updatePostInput) {
 
 ## Show Page
 
-`<Show>` component includes the [`<RefreshButton>`](/docs/api-reference/antd/components/buttons/refresh-button) by default. We can pass `refetch` method of `queryResult` to its `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
+`<Show>` component includes the [`<RefreshButton>`](/docs/3.xx.xx/api-reference/antd/components/buttons/refresh-button) by default. We can pass `refetch` method of `queryResult` to its `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
 
 <Tabs
 defaultValue="usage"
@@ -356,45 +344,45 @@ values={[
 
 ```tsx
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const { queryResult } = useShow<IPost>({
-        resource: "posts",
-        // highlight-start
-        metaData: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["title"],
-                },
-                "content",
-            ],
+  const { queryResult } = useShow<IPost>({
+    resource: "posts",
+    // highlight-start
+    metaData: {
+      fields: [
+        "id",
+        "title",
+        {
+          category: ["title"],
         },
-        // highlight-end
-    });
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+        "content",
+      ],
+    },
+    // highlight-end
+  });
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        <Show
-            isLoading={isLoading}
-            // highlight-next-line
-            headerProps={{
-                extra: <RefreshButton onClick={() => queryResult.refetch()} />,
-            }}
-        >
-            <Title level={5}>Id</Title>
-            <Text>{record?.id}</Text>
+  return (
+    <Show
+      isLoading={isLoading}
+      // highlight-next-line
+      headerProps={{
+        extra: <RefreshButton onClick={() => queryResult.refetch()} />,
+      }}
+    >
+      <Title level={5}>Id</Title>
+      <Text>{record?.id}</Text>
 
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
+      <Title level={5}>Title</Title>
+      <Text>{record?.title}</Text>
 
-            <Title level={5}>Category</Title>
-            <Text>{record?.category.title}</Text>
+      <Title level={5}>Category</Title>
+      <Text>{record?.category.title}</Text>
 
-            <Title level={5}>Content</Title>
-            <MarkdownField value={record?.content} />
-        </Show>
-    );
+      <Title level={5}>Content</Title>
+      <MarkdownField value={record?.content} />
+    </Show>
+  );
 };
 ```
 
@@ -420,4 +408,4 @@ mutation ($input: updatePostInput) {
 
 <CodeSandboxExample path="data-provider-strapi-graphql" />
 
-[data-provider]: /docs/api-reference/core/providers/data-provider/
+[data-provider]: /docs/3.xx.xx/api-reference/core/providers/data-provider/

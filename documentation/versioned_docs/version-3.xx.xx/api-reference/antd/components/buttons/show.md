@@ -4,11 +4,10 @@ title: Show
 swizzle: true
 ---
 
-
 `<ShowButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -16,50 +15,50 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live
 // visible-block-start
 import {
-    Table,
-    List,
-    useTable,
-    // highlight-next-line
-    ShowButton,
+  Table,
+  List,
+  useTable,
+  // highlight-next-line
+  ShowButton,
 } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" width="100%" />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    key="actions"
-                    render={(_, record) => (
-                        // highlight-next-line
-                        <ShowButton size="small" recordItemId={record.id} />
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" width="100%" />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          key="actions"
+          render={(_, record) => (
+            // highlight-next-line
+            <ShowButton size="small" recordItemId={record.id} />
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 
 interface IPost {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    resources={[
+      {
+        name: "posts",
+        list: PostList,
+      },
+    ]}
+  />,
 );
 ```
 
@@ -75,41 +74,33 @@ const { useRouterContext } = RefineCore;
 import { ShowButton } from "@pankod/refine-antd";
 
 const MyShowComponent = () => {
-    return (
-        <ShowButton
-            resourceNameOrRouteName="posts"
-            // highlight-next-line
-            recordItemId="123"
-        />
-    );
+  return (
+    <ShowButton
+      resourceNameOrRouteName="posts"
+      // highlight-next-line
+      recordItemId="123"
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                },
-                show: () => {
-                    return (
-                        <RefineAntd.Show>
-                            Show page here...
-                        </RefineAntd.Show>
-                    )
-                }
-            },
-        ]}
-        DashboardPage={MyShowComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+        show: () => {
+          return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
+        },
+      },
+    ]}
+    DashboardPage={MyShowComponent}
+  />,
 );
 ```
 
@@ -130,60 +121,45 @@ const { useRouterContext } = RefineCore;
 import { ShowButton } from "@pankod/refine-antd";
 
 const MyShowComponent = () => {
-    return (
-        <ShowButton
-            // highlight-next-line
-            resourceNameOrRouteName="categories"
-            recordItemId="123"
-        />
-    );
+  return (
+    <ShowButton
+      // highlight-next-line
+      resourceNameOrRouteName="categories"
+      recordItemId="123"
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                },
-                show: () => {
-                    return (
-                        <RefineAntd.Show>
-                            Show page here...
-                        </RefineAntd.Show>
-                    )
-                }
-            },
-            {
-                name: "categories",
-                list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                },
-                show: () => {
-                    return (
-                        <RefineAntd.Show>
-                            Show page here...
-                        </RefineAntd.Show>
-                    )
-                }
-            },
-        ]}
-        DashboardPage={MyShowComponent}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+        show: () => {
+          return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
+        },
+      },
+      {
+        name: "categories",
+        list: () => {
+          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        },
+        show: () => {
+          return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
+        },
+      },
+    ]}
+    DashboardPage={MyShowComponent}
+  />,
 );
 ```
+
 Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/2`.
 
 ### `hideText`
@@ -197,34 +173,30 @@ const { useRouterContext } = RefineCore;
 import { ShowButton } from "@pankod/refine-antd";
 
 const MyShowComponent = () => {
-    return (
-        <ShowButton
-            recordItemId="123"
-            // highlight-next-line
-            hideText={true}
-        />
-    );
+  return (
+    <ShowButton
+      recordItemId="123"
+      // highlight-next-line
+      hideText={true}
+    />
+  );
 };
 
 // visible-block-end
 
 render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: MyShowComponent,
-                show: () => {
-                    return (
-                        <RefineAntd.Show>
-                            Show page here...
-                        </RefineAntd.Show>
-                    )
-                }
-            },
-        ]}
-    />,
+  <RefineAntdDemo
+    initialRoutes={["/"]}
+    resources={[
+      {
+        name: "posts",
+        list: MyShowComponent,
+        show: () => {
+          return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
+        },
+      },
+    ]}
+  />,
 );
 ```
 
@@ -236,16 +208,16 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ShowButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
-    return (
-        <ShowButton
-            // highlight-start
-            accessControl={{
-                enabled: true,
-                hideIfUnauthorized: true
-            }}
-            // highlight-end
-        />
-    );
+  return (
+    <ShowButton
+      // highlight-start
+      accessControl={{
+        enabled: true,
+        hideIfUnauthorized: true,
+      }}
+      // highlight-end
+    />
+  );
 };
 ```
 

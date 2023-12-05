@@ -24,23 +24,23 @@ import { Layout, ChakraProvider, refineTheme } from "@pankod/refine-chakra-ui";
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const App = () => {
-    return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                resources={[
-                    {
-                        name: "samples",
-                        // highlight-start
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                        // highlight-end
-                    },
-                ]}
-            />
-        </ChakraProvider>
-    );
+  return (
+    <ChakraProvider theme={refineTheme}>
+      <Refine
+        resources={[
+          {
+            name: "samples",
+            // highlight-start
+            list: ChakraUIInferencer,
+            show: ChakraUIInferencer,
+            create: ChakraUIInferencer,
+            edit: ChakraUIInferencer,
+            // highlight-end
+          },
+        ]}
+      />
+    </ChakraProvider>
+  );
 };
 ```
 
@@ -52,31 +52,31 @@ const App = () => {
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const SampleList = () => {
-    return (
-        // highlight-next-line
-        <ChakraUIInferencer resource="samples" action="list" />
-    );
+  return (
+    // highlight-next-line
+    <ChakraUIInferencer resource="samples" action="list" />
+  );
 };
 
 const SampleShow = () => {
-    return (
-        // highlight-next-line
-        <ChakraUIInferencer resource="samples" action="show" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <ChakraUIInferencer resource="samples" action="show" id="1" />
+  );
 };
 
 const SampleCreate = () => {
-    return (
-        // highlight-next-line
-        <ChakraUIInferencer resource="samples" action="create" />
-    );
+  return (
+    // highlight-next-line
+    <ChakraUIInferencer resource="samples" action="create" />
+  );
 };
 
 const SampleEdit = () => {
-    return (
-        // highlight-next-line
-        <ChakraUIInferencer resource="samples" action="edit" id="1" />
-    );
+  return (
+    // highlight-next-line
+    <ChakraUIInferencer resource="samples" action="edit" id="1" />
+  );
 };
 ```
 
@@ -84,7 +84,7 @@ const SampleEdit = () => {
 </Tabs>
 
 :::info
-To learn more about `@pankod/refine-inferencer` package, please check out [Docs](/docs/packages/documentation/inferencer)
+To learn more about `@pankod/refine-inferencer` package, please check out [Docs](/docs/3.xx.xx/packages/documentation/inferencer)
 :::
 
 ## Views
@@ -108,38 +108,38 @@ import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        // highlight-next-line
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        // highlight-next-line
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                    },
-                    {
-                        name: "tags",
-                        // highlight-next-line
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                    },
-                ]}
-            />
-        </ChakraProvider>
-    );
+  return (
+    <ChakraProvider theme={refineTheme}>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        Layout={Layout}
+        resources={[
+          {
+            name: "samples",
+            // highlight-next-line
+            list: ChakraUIInferencer,
+            show: ChakraUIInferencer,
+            create: ChakraUIInferencer,
+            edit: ChakraUIInferencer,
+            canDelete: true,
+          },
+          {
+            name: "categories",
+            // highlight-next-line
+            list: ChakraUIInferencer,
+            show: ChakraUIInferencer,
+          },
+          {
+            name: "tags",
+            // highlight-next-line
+            list: ChakraUIInferencer,
+            show: ChakraUIInferencer,
+          },
+        ]}
+      />
+    </ChakraProvider>
+  );
 };
 
 // visible-block-end
@@ -166,38 +166,38 @@ import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: ChakraUIInferencer,
-                        // highlight-next-line
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: ChakraUIInferencer,
-                        // highlight-next-line
-                        show: ChakraUIInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: ChakraUIInferencer,
-                        // highlight-next-line
-                        show: ChakraUIInferencer,
-                    },
-                ]}
-            />
-        </ChakraProvider>
-    );
+  return (
+    <ChakraProvider theme={refineTheme}>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        Layout={Layout}
+        resources={[
+          {
+            name: "samples",
+            list: ChakraUIInferencer,
+            // highlight-next-line
+            show: ChakraUIInferencer,
+            create: ChakraUIInferencer,
+            edit: ChakraUIInferencer,
+            canDelete: true,
+          },
+          {
+            name: "categories",
+            list: ChakraUIInferencer,
+            // highlight-next-line
+            show: ChakraUIInferencer,
+          },
+          {
+            name: "tags",
+            list: ChakraUIInferencer,
+            // highlight-next-line
+            show: ChakraUIInferencer,
+          },
+        ]}
+      />
+    </ChakraProvider>
+  );
 };
 
 // visible-block-end
@@ -224,36 +224,36 @@ import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        // highlight-next-line
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                    },
-                ]}
-            />
-        </ChakraProvider>
-    );
+  return (
+    <ChakraProvider theme={refineTheme}>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        Layout={Layout}
+        resources={[
+          {
+            name: "samples",
+            list: ChakraUIInferencer,
+            show: ChakraUIInferencer,
+            // highlight-next-line
+            create: ChakraUIInferencer,
+            edit: ChakraUIInferencer,
+            canDelete: true,
+          },
+          {
+            name: "categories",
+            list: ChakraUIInferencer,
+            show: ChakraUIInferencer,
+          },
+          {
+            name: "tags",
+            list: ChakraUIInferencer,
+            show: ChakraUIInferencer,
+          },
+        ]}
+      />
+    </ChakraProvider>
+  );
 };
 
 // visible-block-end
@@ -280,36 +280,36 @@ import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        // highlight-next-line
-                        edit: ChakraUIInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                    },
-                ]}
-            />
-        </ChakraProvider>
-    );
+  return (
+    <ChakraProvider theme={refineTheme}>
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+        Layout={Layout}
+        resources={[
+          {
+            name: "samples",
+            list: ChakraUIInferencer,
+            show: ChakraUIInferencer,
+            create: ChakraUIInferencer,
+            // highlight-next-line
+            edit: ChakraUIInferencer,
+            canDelete: true,
+          },
+          {
+            name: "categories",
+            list: ChakraUIInferencer,
+            show: ChakraUIInferencer,
+          },
+          {
+            name: "tags",
+            list: ChakraUIInferencer,
+            show: ChakraUIInferencer,
+          },
+        ]}
+      />
+    </ChakraProvider>
+  );
 };
 
 // visible-block-end

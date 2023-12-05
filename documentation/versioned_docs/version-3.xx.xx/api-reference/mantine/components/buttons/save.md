@@ -8,36 +8,36 @@ swizzle: true
 const { default: routerProvider } = RefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
-    Sider: () => null,
-    catchAll: <RefineMantine.ErrorComponent />,
+  routerProvider,
+  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+  notificationProvider: RefineMantine.notificationProvider,
+  Layout: RefineMantine.Layout,
+  Sider: () => null,
+  catchAll: <RefineMantine.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
-    return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
-    );
+  return (
+    <RefineMantine.MantineProvider
+      theme={RefineMantine.LightTheme}
+      withNormalizeCSS
+      withGlobalStyles
+    >
+      <RefineMantine.Global
+        styles={{ body: { WebkitFontSmoothing: "auto" } }}
+      />
+      <RefineMantine.NotificationsProvider position="top-right">
+        {children}
+      </RefineMantine.NotificationsProvider>
+    </RefineMantine.MantineProvider>
+  );
 };
 ```
 
 `<SaveButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
 
 :::info-tip Swizzle
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 ## Usage
@@ -51,117 +51,113 @@ import { EditButton } from "@pankod/refine-mantine";
 
 // visible-block-start
 import {
-    Edit,
-    Select,
-    TextInput,
-    useForm,
-    useSelect,
+  Edit,
+  Select,
+  TextInput,
+  useForm,
+  useSelect,
 } from "@pankod/refine-mantine";
 
 const PostEdit: React.FC = () => {
-    const {
-        // highlight-next-line
-        saveButtonProps,
-        getInputProps,
-        refineCore: { queryResult },
-    } = useForm<IPost>({
-        initialValues: {
-            title: "",
-            status: "",
-            category: {
-                id: "",
-            },
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-            status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
-            category: {
-                id: (value) =>
-                    value.length <= 0 ? "Category is required" : null,
-            },
-        },
-        refineCoreProps: {
-            warnWhenUnsavedChanges: true,
-        },
-    });
+  const {
+    // highlight-next-line
+    saveButtonProps,
+    getInputProps,
+    refineCore: { queryResult },
+  } = useForm<IPost>({
+    initialValues: {
+      title: "",
+      status: "",
+      category: {
+        id: "",
+      },
+    },
+    validate: {
+      title: (value) => (value.length < 2 ? "Too short title" : null),
+      status: (value) => (value.length <= 0 ? "Status is required" : null),
+      category: {
+        id: (value) => (value.length <= 0 ? "Category is required" : null),
+      },
+    },
+    refineCoreProps: {
+      warnWhenUnsavedChanges: true,
+    },
+  });
 
-    const postData = queryResult?.data?.data;
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.category.id,
-    });
+  const postData = queryResult?.data?.data;
+  const { selectProps } = useSelect<ICategory>({
+    resource: "categories",
+    defaultValue: postData?.category.id,
+  });
 
-    return (
-        // highlight-next-line
-        <Edit saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
-                />
-                <Select
-                    mt={8}
-                    label="Status"
-                    placeholder="Pick one"
-                    {...getInputProps("status")}
-                    data={[
-                        { label: "Published", value: "published" },
-                        { label: "Draft", value: "draft" },
-                        { label: "Rejected", value: "rejected" },
-                    ]}
-                />
-                <Select
-                    mt={8}
-                    label="Category"
-                    placeholder="Pick one"
-                    {...getInputProps("category.id")}
-                    {...selectProps}
-                />
-            </form>
-        </Edit>
-    );
+  return (
+    // highlight-next-line
+    <Edit saveButtonProps={saveButtonProps}>
+      <form>
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          {...getInputProps("title")}
+        />
+        <Select
+          mt={8}
+          label="Status"
+          placeholder="Pick one"
+          {...getInputProps("status")}
+          data={[
+            { label: "Published", value: "published" },
+            { label: "Draft", value: "draft" },
+            { label: "Rejected", value: "rejected" },
+          ]}
+        />
+        <Select
+          mt={8}
+          label="Category"
+          placeholder="Pick one"
+          {...getInputProps("category.id")}
+          {...selectProps}
+        />
+      </form>
+    </Edit>
+  );
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          edit: PostEdit,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <EditButton recordItemId="123">Edit Item 123</EditButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
 };
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
+  id: number;
+  title: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
 }
 ```
 
@@ -180,27 +176,27 @@ import { Refine } from "@pankod/refine-core";
 import { SaveButton } from "@pankod/refine-mantine";
 
 const MySaveComponent = () => {
-    return <SaveButton hideText />;
+  return <SaveButton hideText />;
 };
 // visible-block-end
 
 const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MySaveComponent,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      resources={[
+        {
+          name: "posts",
+          list: MySaveComponent,
+        },
+      ]}
+    />
+  );
 };
 
 render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
+  <Wrapper>
+    <App />
+  </Wrapper>,
 );
 ```
 

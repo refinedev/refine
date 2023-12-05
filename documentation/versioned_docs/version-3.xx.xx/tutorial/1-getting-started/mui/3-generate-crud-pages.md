@@ -2,8 +2,8 @@
 id: generate-crud-pages
 title: 4. Generate CRUD pages automatically with Inferencer
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/create-project
-    next: tutorial/getting-started/store-your-repository
+  prev: tutorial/getting-started/{preferredUI}/create-project
+  next: tutorial/getting-started/store-your-repository
 ---
 
 ## Inferencer
@@ -24,8 +24,8 @@ Overall, using Inferencer can greatly speed up development time and reduce the a
 
 #### Learn Inferencer
 
--   Learn about [how Inferencer works](/docs/packages/documentation/inferencer).
--   Learn about [how to use Inferencer with Material UI](/docs/api-reference/mui/components/inferencer/).
+- Learn about [how Inferencer works](/docs/3.xx.xx/packages/documentation/inferencer).
+- Learn about [how to use Inferencer with Material UI](/docs/3.xx.xx/api-reference/mui/components/inferencer/).
 
 ## How to use Inferencer
 
@@ -35,22 +35,22 @@ The `<MuiInferencer/>` component is used by passing to appropriate values in the
 
 :::info
 
-In [Unit 4](/docs/tutorial/understanding-resources/index), the resources concept will be explained in detail. For now, you can assume that the resource is a collection of data on your API used in the app.
+In [Unit 4](/docs/3.xx.xx/tutorial/understanding-resources/index), the resources concept will be explained in detail. For now, you can assume that the resource is a collection of data on your API used in the app.
 
 :::
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
-    RefineSnackbarProvider,
-    notificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
+  ThemeProvider,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -58,35 +58,33 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    //highlight-start
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MuiInferencer,
-                            show: MuiInferencer,
-                            create: MuiInferencer,
-                            edit: MuiInferencer,
-                        },
-                    ]}
-                    //highlight-end
-                />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          Layout={Layout}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          //highlight-start
+          resources={[
+            {
+              name: "blog_posts",
+              list: MuiInferencer,
+              show: MuiInferencer,
+              create: MuiInferencer,
+              edit: MuiInferencer,
+            },
+          ]}
+          //highlight-end
+        />
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 export default App;
@@ -102,7 +100,7 @@ Before we start, let's understand the API that we will be using in this tutorial
 
 :::info
 
-In [Unit 3](/docs/tutorial/understanding-dataprovider/index), it will be explained in detail how **refine** apps communicate with the API via the `dataProvider`.
+In [Unit 3](/docs/3.xx.xx/tutorial/understanding-dataprovider/index), it will be explained in detail how **refine** apps communicate with the API via the `dataProvider`.
 
 :::
 
@@ -123,48 +121,46 @@ setInitialRoutes(["/blog-posts"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
-    RefineSnackbarProvider,
-    notificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
+  ThemeProvider,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MuiInferencer,
-                            show: MuiInferencer,
-                            create: MuiInferencer,
-                            edit: MuiInferencer,
-                        },
-                    ]}
-                />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          Layout={Layout}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          resources={[
+            {
+              name: "blog_posts",
+              list: MuiInferencer,
+              show: MuiInferencer,
+              create: MuiInferencer,
+              edit: MuiInferencer,
+            },
+          ]}
+        />
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);
@@ -181,48 +177,46 @@ setInitialRoutes(["/blog-posts/create"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
-    RefineSnackbarProvider,
-    notificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
+  ThemeProvider,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MuiInferencer,
-                            show: MuiInferencer,
-                            create: MuiInferencer,
-                            edit: MuiInferencer,
-                        },
-                    ]}
-                />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          Layout={Layout}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          resources={[
+            {
+              name: "blog_posts",
+              list: MuiInferencer,
+              show: MuiInferencer,
+              create: MuiInferencer,
+              edit: MuiInferencer,
+            },
+          ]}
+        />
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);
@@ -239,48 +233,46 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
-    RefineSnackbarProvider,
-    notificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
+  ThemeProvider,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MuiInferencer,
-                            show: MuiInferencer,
-                            create: MuiInferencer,
-                            edit: MuiInferencer,
-                        },
-                    ]}
-                />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          Layout={Layout}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          resources={[
+            {
+              name: "blog_posts",
+              list: MuiInferencer,
+              show: MuiInferencer,
+              create: MuiInferencer,
+              edit: MuiInferencer,
+            },
+          ]}
+        />
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);
@@ -297,48 +289,46 @@ setInitialRoutes(["/blog-posts/show/123"]);
 
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
-    RefineSnackbarProvider,
-    notificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+  LightTheme,
+  CssBaseline,
+  GlobalStyles,
+  ThemeProvider,
+  RefineSnackbarProvider,
+  notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const App: React.FC = () => {
-    return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "blog_posts",
-                            list: MuiInferencer,
-                            show: MuiInferencer,
-                            create: MuiInferencer,
-                            edit: MuiInferencer,
-                        },
-                    ]}
-                />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <CssBaseline />
+      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <RefineSnackbarProvider>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          notificationProvider={notificationProvider}
+          Layout={Layout}
+          ReadyPage={ReadyPage}
+          catchAll={<ErrorComponent />}
+          resources={[
+            {
+              name: "blog_posts",
+              list: MuiInferencer,
+              show: MuiInferencer,
+              create: MuiInferencer,
+              edit: MuiInferencer,
+            },
+          ]}
+        />
+      </RefineSnackbarProvider>
+    </ThemeProvider>
+  );
 };
 
 render(<App />);
@@ -347,7 +337,7 @@ render(<App />);
 <br/>
 <br/>
 
-In [Unit 5](/docs/tutorial/adding-crud-pages/mui/index), you will learn how to create CRUD pages manually using the code generated by Inferencer as a reference.
+In [Unit 5](/docs/3.xx.xx/tutorial/adding-crud-pages/mui/index), you will learn how to create CRUD pages manually using the code generated by Inferencer as a reference.
 
 <Checklist>
 

@@ -5,14 +5,14 @@ title: Notification Provider
 
 **refine** let's you set a notification API by providing the `notificationProvider` property to the `<Refine>` component.
 
-`notificationProvider` is an object with close and open methods. **refine** uses these methods to show and hide notifications. These methods can be called from anywhere in the application with [`useNotification`](/docs/api-reference/core/hooks/useNotification/) hook.
+`notificationProvider` is an object with close and open methods. **refine** uses these methods to show and hide notifications. These methods can be called from anywhere in the application with [`useNotification`](/docs/3.xx.xx/api-reference/core/hooks/useNotification/) hook.
 
 An `notificationProvider` must include following methods:
 
 ```tsx
 const notificationProvider = {
-    show: () => {},
-    close: () => {},
+  show: () => {},
+  close: () => {},
 };
 ```
 
@@ -20,17 +20,17 @@ And these methods types like this:
 
 ```tsx
 interface NotificationProvider {
-    open: (params: OpenNotificationParams) => void;
-    close: (key: string) => void;
+  open: (params: OpenNotificationParams) => void;
+  close: (key: string) => void;
 }
 
 interface OpenNotificationParams {
-    key?: string;
-    message: string;
-    type: "success" | "error" | "progress";
-    description?: string;
-    cancelMutation?: () => void;
-    undoableTimeout?: number;
+  key?: string;
+  message: string;
+  type: "success" | "error" | "progress";
+  description?: string;
+  cancelMutation?: () => void;
+  undoableTimeout?: number;
 }
 ```
 
@@ -45,20 +45,20 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 //highlight-start
 const notificationProvider: NotificationProvider = {
-    open: () => {},
-    close: () => {},
+  open: () => {},
+  close: () => {},
 };
 //highlight-end
 
 const App = () => {
-    return (
-        <Refine
-            //highlight-next-line
-            notificationProvider={notificationProvider}
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        />
-    );
+  return (
+    <Refine
+      //highlight-next-line
+      notificationProvider={notificationProvider}
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+    />
+  );
 };
 ```
 
@@ -72,79 +72,89 @@ If your app doesn't require `notification`, no further setup is necessary for th
 If you're looking for a complete notification infrastructure, **refine** has out-of-the-box support for the libraries below:
 
 <Tabs
-  defaultValue="antd"
-  values={[ 
-    {label: 'Ant Design', value: 'antd'}, 
-    {label: 'Material UI', value: 'mui'},
-    {label: 'Mantine', value: 'mantine'},
-    {label: 'Chakra UI', value: 'chakra'},
-    {label: 'Custom', value: 'custom'}, 
-  ]}>
+defaultValue="antd"
+values={[
+{label: 'Ant Design', value: 'antd'},
+{label: 'Material UI', value: 'mui'},
+{label: 'Mantine', value: 'mantine'},
+{label: 'Chakra UI', value: 'chakra'},
+{label: 'Custom', value: 'custom'},
+]}>
 
   <TabItem value="custom">
 
-  Create a custom notification provider by following the [guide](/docs/api-reference/core/providers/notification-provider/#creating-an-notificationprovider).
+Create a custom notification provider by following the [guide](/docs/3.xx.xx/api-reference/core/providers/notification-provider/#creating-an-notificationprovider).
 
   </TabItem>
 
   <TabItem value="antd">
 
-  ```tsx
-  import { notificationProvider} from "@pankod/refine-antd";
+```tsx
+import { notificationProvider } from "@pankod/refine-antd";
 
-  return (
-    <Refine
-      //...
-      notificationProvider={notificationProvider}
-    />
-  );
-  ```
+return (
+  <Refine
+    //...
+    notificationProvider={notificationProvider}
+  />
+);
+```
+
   </TabItem>
 
   <TabItem value="mui">
 
-  ```tsx
-  import { notificationProvider, RefineSnackbarProvider } from "@pankod/refine-mui";
+```tsx
+import {
+  notificationProvider,
+  RefineSnackbarProvider,
+} from "@pankod/refine-mui";
 
-  return (
-    <RefineSnackbarProvider>
-      <Refine
-        //...
-        notificationProvider={notificationProvider}
-      />
-    </RefineSnackbarProvider>
-  );
-  ```
+return (
+  <RefineSnackbarProvider>
+    <Refine
+      //...
+      notificationProvider={notificationProvider}
+    />
+  </RefineSnackbarProvider>
+);
+```
+
   </TabItem>
 
   <TabItem value="mantine">
 
-  ```tsx
-  import { notificationProvider, NotificationsProvider } from "@pankod/refine-mantine";
+```tsx
+import {
+  notificationProvider,
+  NotificationsProvider,
+} from "@pankod/refine-mantine";
 
-  return (
-    <NotificationsProvider position="top-right">
-      <Refine
-        //...
-        notificationProvider={notificationProvider}
-      />
-    </NotificationsProvider>
-  );
-  ```
+return (
+  <NotificationsProvider position="top-right">
+    <Refine
+      //...
+      notificationProvider={notificationProvider}
+    />
+  </NotificationsProvider>
+);
+```
+
   </TabItem>
 
   <TabItem value="chakra">
 
-  ```tsx
-  import { notificationProvider } from "@pankod/refine-chakra";
+```tsx
+import { notificationProvider } from "@pankod/refine-chakra";
 
-  return (
-    <Refine
-      //...
-      notificationProvider={notificationProvider()}
-    />
-  );
-  ```
+return (
+  <Refine
+    //...
+    notificationProvider={notificationProvider()}
+  />
+);
+```
+
   </TabItem>
 </Tabs>
 
@@ -192,12 +202,12 @@ Here we open a **notification** with [`react-toastify`](https://github.com/fkhad
 import { toast } from "react-toastify";
 
 const notificationProvider: NotificationProvider = {
-    open: ({ message, key, type }) => {
-        toast(message, {
-            toastId: key,
-            type,
-        });
-    },
+  open: ({ message, key, type }) => {
+    toast(message, {
+      toastId: key,
+      type,
+    });
+  },
 };
 ```
 
@@ -209,21 +219,21 @@ In case the notification is called repeatedly with the same `key`, let's update 
 import { toast } from "react-toastify";
 
 const notificationProvider: NotificationProvider = {
-    open: ({ message, key, type }) => {
-        //highlight-start
-        if (toast.isActive(key)) {
-            toast.update(key, {
-                render: message,
-                type,
-            });
-        } else {
-            //highlight-end
-            toast(message, {
-                toastId: key,
-                type,
-            });
-        }
-    },
+  open: ({ message, key, type }) => {
+    //highlight-start
+    if (toast.isActive(key)) {
+      toast.update(key, {
+        render: message,
+        type,
+      });
+    } else {
+      //highlight-end
+      toast(message, {
+        toastId: key,
+        type,
+      });
+    }
+  },
 };
 ```
 
@@ -235,55 +245,55 @@ Now, let's create a custom notification when the mutation mode is `undoable`. In
 import { toast } from "react-toastify";
 
 const notificationProvider: NotificationProvider = {
-    open: ({ message, key, type }) => {
-        //highlight-start
-        if (type === "progress") {
-            if (toast.isActive(key)) {
-                toast.update(key, {
-                    progress: undoableTimeout && (undoableTimeout / 10) * 2,
-                    render: (
-                        <UndoableNotification
-                            message={message}
-                            cancelMutation={cancelMutation}
-                        />
-                    ),
-                    type: "default",
-                });
-            } else {
-                toast(
-                    <UndoableNotification
-                        message={message}
-                        cancelMutation={cancelMutation}
-                    />,
-                    {
-                        toastId: key,
-                        updateId: key,
-                        closeOnClick: false,
-                        closeButton: false,
-                        autoClose: false,
-                        progress: undoableTimeout && (undoableTimeout / 10) * 2,
-                    },
-                );
-            }
-        } else {
-            //highlight-end
-            if (toast.isActive(key)) {
-                toast.update(key, {
-                    render: message,
-                    //highlight-start
-                    closeButton: true,
-                    autoClose: 5000,
-                    //highlight-end
-                    type,
-                });
-            } else {
-                toast(message, {
-                    toastId: key,
-                    type,
-                });
-            }
-        }
-    },
+  open: ({ message, key, type }) => {
+    //highlight-start
+    if (type === "progress") {
+      if (toast.isActive(key)) {
+        toast.update(key, {
+          progress: undoableTimeout && (undoableTimeout / 10) * 2,
+          render: (
+            <UndoableNotification
+              message={message}
+              cancelMutation={cancelMutation}
+            />
+          ),
+          type: "default",
+        });
+      } else {
+        toast(
+          <UndoableNotification
+            message={message}
+            cancelMutation={cancelMutation}
+          />,
+          {
+            toastId: key,
+            updateId: key,
+            closeOnClick: false,
+            closeButton: false,
+            autoClose: false,
+            progress: undoableTimeout && (undoableTimeout / 10) * 2,
+          },
+        );
+      }
+    } else {
+      //highlight-end
+      if (toast.isActive(key)) {
+        toast.update(key, {
+          render: message,
+          //highlight-start
+          closeButton: true,
+          autoClose: 5000,
+          //highlight-end
+          type,
+        });
+      } else {
+        toast(message, {
+          toastId: key,
+          type,
+        });
+      }
+    }
+  },
 };
 ```
 
@@ -294,29 +304,29 @@ const notificationProvider: NotificationProvider = {
 
 ```tsx
 type UndoableNotification = {
-    message: string;
-    cancelMutation?: () => void;
-    closeToast?: () => void;
+  message: string;
+  cancelMutation?: () => void;
+  closeToast?: () => void;
 };
 
 export const UndoableNotification: React.FC<UndoableNotification> = ({
-    closeToast,
-    cancelMutation,
-    message,
+  closeToast,
+  cancelMutation,
+  message,
 }) => {
-    return (
-        <div>
-            <p>{message}</p>
-            <button
-                onClick={() => {
-                    cancelMutation?.();
-                    closeToast?.();
-                }}
-            >
-                Undo
-            </button>
-        </div>
-    );
+  return (
+    <div>
+      <p>{message}</p>
+      <button
+        onClick={() => {
+          cancelMutation?.();
+          closeToast?.();
+        }}
+      >
+        Undo
+      </button>
+    </div>
+  );
 };
 ```
 
@@ -324,7 +334,7 @@ export const UndoableNotification: React.FC<UndoableNotification> = ({
 </details>
 
 :::tip
-`open` method will be accessible via [`useNotification`](/docs/api-reference/core/hooks/useNotification/) hook.
+`open` method will be accessible via [`useNotification`](/docs/3.xx.xx/api-reference/core/hooks/useNotification/) hook.
 
 ```tsx
 import { useNotification } from "@pankod/refine-core";
@@ -332,10 +342,10 @@ import { useNotification } from "@pankod/refine-core";
 const { open } = useNotification();
 
 open?.({
-    type: "success",
-    message: "Hey",
-    description: "I <3 Refine",
-    key: "unique-id",
+  type: "success",
+  message: "Hey",
+  description: "I <3 Refine",
+  key: "unique-id",
 });
 ```
 
@@ -349,13 +359,13 @@ open?.({
 import { toast } from "react-toastify";
 
 const notificationProvider: NotificationProvider = {
-    //...
-    close: (key) => toast.dismiss(key),
+  //...
+  close: (key) => toast.dismiss(key),
 };
 ```
 
 :::tip
-`close` method will be accessible via [`useNotification`](/docs/api-reference/core/hooks/useNotification/) hook.
+`close` method will be accessible via [`useNotification`](/docs/3.xx.xx/api-reference/core/hooks/useNotification/) hook.
 
 ```tsx
 import { useNotification } from "@pankod/refine-core";
