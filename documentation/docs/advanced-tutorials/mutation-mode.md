@@ -445,7 +445,7 @@ mutate({
 <Tabs
 defaultValue="antd"
 values={[
-{label: 'Antd Design', value: 'antd'},
+{label: 'Ant Design', value: 'antd'},
 {label: 'Chakra UI', value: 'chakra-ui'},
 {label: 'Mantine', value: 'mantine'},
 {label: 'Material UI', value: 'material-ui'}
