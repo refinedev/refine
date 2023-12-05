@@ -511,7 +511,6 @@ module.exports = {
                     type: "doc",
                     id: "core/refine-component/index",
                     label: "<Refine>",
-                    className: "font-mono",
                 },
                 "core/interface-references/index",
                 {
