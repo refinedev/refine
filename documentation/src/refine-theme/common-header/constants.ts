@@ -79,6 +79,11 @@ export const MENU_ITEMS: MenuItemType[] = [
             },
         ],
     },
+    {
+        isPopover: false,
+        label: "Enterprise",
+        href: "/enterprise",
+    },
     // {
     //     isPopover: false,
     //     label: "Cloud",
@@ -139,11 +144,11 @@ export const MENU_ITEMS: MenuItemType[] = [
             },
         ],
     },
-    {
-        isPopover: false,
-        label: "Pricing",
-        href: "/pricing",
-    },
+    // {
+    //     isPopover: false,
+    //     label: "Pricing",
+    //     href: "/pricing",
+    // },
     /*    {
         isPopover: false,
         label: "Hackathon",
