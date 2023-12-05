@@ -1,20 +1,22 @@
 import { IResourceComponentsProps, HttpError } from "@refinedev/core";
-import { useSimpleList, List, useModalForm } from "@refinedev/antd";
-import { List as AntdList } from "antd";
+import {
+    List,
+    useModalForm,
+    useTable,
+    DeleteButton,
+    EditButton,
+} from "@refinedev/antd";
+import { Space, Table } from "antd";
 
 import { ICompany } from "../../interfaces";
-import {
-    CompanyItem,
-    CreateCompany,
-    EditCompany,
-} from "../../components/company";
+import { CreateCompany, EditCompany } from "../../components/company";
+import { API_URL } from "../../constants";
 
 export const CompanyList: React.FC<IResourceComponentsProps> = () => {
-    const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
-        { listProps } = useSimpleList<ICompany>({
-            sorters: { initial: [{ field: "id", order: "desc" }] },
-            meta: { populate: ["logo"] },
-        });
+    const { tableProps } = useTable<ICompany>({
+        sorters: { initial: [{ field: "id", order: "desc" }] },
+        meta: { populate: ["logo"] },
+    });
 
     const {
         modalProps: createModalProps,
@@ -43,24 +45,84 @@ export const CompanyList: React.FC<IResourceComponentsProps> = () => {
                     },
                 }}
             >
-                <AntdList
-                    grid={{ gutter: 16 }}
-                    {...listProps}
-                    renderItem={(item) => (
-                        <AntdList.Item>
-                            <CompanyItem item={item} editShow={editShow} />
-                        </AntdList.Item>
-                    )}
-                />
+                <Table {...tableProps} rowKey="id">
+                    <Table.Column dataIndex="id" title="ID" sorter />
+                    <Table.Column<ICompany>
+                        dataIndex="logo"
+                        title="Logo"
+                        render={(_, record) => {
+                            const image = record.logo
+                                ? API_URL + record.logo.url
+                                : "./error.png";
+
+                            return (
+                                <img
+                                    src={image}
+                                    alt="logo"
+                                    style={{ width: 50 }}
+                                />
+                            );
+                        }}
+                    />
+                    <Table.Column<ICompany>
+                        dataIndex="name"
+                        title="Name"
+                        sorter
+                    />
+                    <Table.Column<ICompany>
+                        dataIndex="address"
+                        title="Address"
+                        sorter
+                    />
+                    <Table.Column<ICompany>
+                        dataIndex="country"
+                        title="Country"
+                        sorter
+                    />
+                    <Table.Column<ICompany>
+                        dataIndex="city"
+                        title="City"
+                        sorter
+                    />
+                    <Table.Column<ICompany>
+                        dataIndex="email"
+                        title="Email"
+                        sorter
+                    />
+
+                    <Table.Column<ICompany>
+                        title="Actions"
+                        dataIndex="actions"
+                        render={(_, record) => (
+                            <Space>
+                                <EditButton
+                                    hideText
+                                    size="small"
+                                    onClick={() => editShow(record.id)}
+                                />
+                                <DeleteButton
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            </Space>
+                        )}
+                    />
+                </Table>
             </List>
-            <CreateCompany
-                modalProps={createModalProps}
-                formProps={createFormProps}
-            />
-            <EditCompany
-                modalProps={editModalProps}
-                formProps={editFormProps}
-            />
+            {createModalProps.open ? (
+                <CreateCompany
+                    modalProps={createModalProps}
+                    formProps={createFormProps}
+                />
+            ) : null}
+
+            {editModalProps.open ? (
+                <EditCompany
+                    modalProps={editModalProps}
+                    formProps={editFormProps}
+                />
+            ) : null}
         </>
     );
 };
