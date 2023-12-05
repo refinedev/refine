@@ -3,6 +3,7 @@ import clsx from "clsx";
 import React from "react";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
+import { EnterpriseHeroSection } from "@site/src/refine-theme/enterprise-hero-section";
 
 const Enterprise: React.FC = () => {
     const title = "refine | Open-source Retool for Enterprise";
@@ -31,10 +32,19 @@ const Enterprise: React.FC = () => {
                             "mx-auto",
                         )}
                     >
+                        <EnterpriseHeroSection
+                            className={clsx(
+                                "h-auto landing-md:h-[432px]",
+                                "mt-8",
+                                "px-4 landing-sm:px-0",
+                                "landing-lg:pr-12",
+                            )}
+                        />
                     </div>
                 </div>
             </CommonLayout>
         </>
     );
 };
+
 export default Enterprise;
