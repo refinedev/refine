@@ -101,7 +101,7 @@ function App() {
                                             Title={({ collapsed }: any) => (
                                                 <ThemedTitleV2
                                                     collapsed={collapsed}
-                                                    text="refine Invoicer"
+                                                    text="Refine Invoicer"
                                                 />
                                             )}
                                         >
@@ -162,7 +162,7 @@ function App() {
                                             title={
                                                 <ThemedTitleV2
                                                     collapsed={false}
-                                                    text="refine Invoicer"
+                                                    text="Refine Invoicer"
                                                 />
                                             }
                                             forgotPasswordLink={false}
@@ -185,7 +185,7 @@ function App() {
                                             Title={({ collapsed }: any) => (
                                                 <ThemedTitleV2
                                                     collapsed={collapsed}
-                                                    text="refine Invoicer"
+                                                    text="Refine Invoicer"
                                                 />
                                             )}
                                         >

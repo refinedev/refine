@@ -25,9 +25,14 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
+    const missionIds = formProps.initialValues?.missions?.map(
+        (m: IMission) => m.id,
+    );
+
     const { selectProps: missionSelectProps } = useSelect({
         resource: "missions",
         optionLabel: "mission",
+        defaultValue: missionIds,
         pagination: {
             mode: "server",
         },
@@ -39,12 +44,7 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
                 {...formProps}
                 initialValues={{
                     ...formProps.initialValues,
-                    missions: formProps.initialValues?.missions?.map(
-                        (m: IMission) => ({
-                            label: m.mission,
-                            value: m.id,
-                        }),
-                    ),
+                    missions: missionIds,
                 }}
                 layout="vertical"
                 wrapperCol={{ md: 18, lg: 16 }}
@@ -75,10 +75,18 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
                 >
                     <Select {...missionSelectProps} mode="multiple" />
                 </Form.Item>
-                <Form.Item label="Discount(%)" name="discount">
+                <Form.Item
+                    label="Discount(%)"
+                    name="discount"
+                    rules={[{ type: "number", transform: (value) => +value }]}
+                >
                     <Input />
                 </Form.Item>
-                <Form.Item label="Tax(%)" name="tax">
+                <Form.Item
+                    label="Tax(%)"
+                    name="tax"
+                    rules={[{ type: "number", transform: (value) => +value }]}
+                >
                     <Input />
                 </Form.Item>
                 <Form.Item label="Custom ID" name="custom_id">
