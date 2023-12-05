@@ -84,7 +84,7 @@ export const EnterpriseHeroSection = ({
                         to="docs"
                         className={clsx(
                             "self-start",
-                            "rounded-3xl",
+                            "rounded-2xl landing-sm:rounded-3xl",
                             "!text-gray-0 dark:!text-gray-900",
                             "bg-refine-blue dark:bg-refine-cyan-alt",
                             "transition-[filter]",

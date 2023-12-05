@@ -53,11 +53,11 @@ export const EnterpriseGetSupport = ({ className }: { className?: string }) => {
                         "flex flex-col",
                         "dark:bg-landing-noise",
                         "dark:bg-gray-800 bg-gray-50",
-                        "rounded-3xl",
+                        "rounded-2xl landing-sm:rounded-3xl",
                     )}
                 >
                     <img
-                        className={clsx("rounded-3xl")}
+                        className={clsx("rounded-2xl landing-sm:rounded-3xl")}
                         src={`https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/priority-support-${colorMode}.png`}
                     />
                     <div
@@ -87,7 +87,10 @@ export const EnterpriseGetSupport = ({ className }: { className?: string }) => {
                             Refine core team members.
                         </p>
                         <div
-                            className={clsx("flex items-center gap-4", "mt-4")}
+                            className={clsx(
+                                "flex items-center flex-wrap gap-4",
+                                "mt-4",
+                            )}
                         >
                             <div
                                 style={{
@@ -134,11 +137,11 @@ export const EnterpriseGetSupport = ({ className }: { className?: string }) => {
                         "flex flex-col",
                         "dark:bg-landing-noise",
                         "dark:bg-gray-800 bg-gray-50",
-                        "rounded-3xl",
+                        "rounded-2xl landing-sm:rounded-3xl",
                     )}
                 >
                     <img
-                        className={clsx("rounded-3xl")}
+                        className={clsx("rounded-2xl landing-sm:rounded-3xl")}
                         src={`https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/onboarding-${colorMode}.png`}
                     />
                     <div

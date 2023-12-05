@@ -5,6 +5,9 @@ import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
 import { EnterpriseHeroSection } from "@site/src/refine-theme/enterprise-hero-section";
 import { EnterpriseGetSupport } from "@site/src/refine-theme/enterprise-get-support";
+import { EnterpriseSSOMultifactorAuth } from "@site/src/refine-theme/enterprise-sso-mutlifactor-auth";
+import { EnterpriseIAMServices } from "@site/src/refine-theme/enterprise-iam-services";
+import { EnterpriseSecurity } from "@site/src/refine-theme/enterprise-secuity";
 
 const Enterprise: React.FC = () => {
     const title = "refine | Open-source Retool for Enterprise";
@@ -44,6 +47,12 @@ const Enterprise: React.FC = () => {
                         <EnterpriseGetSupport
                             className={clsx(
                                 "mt-12 landing-sm:mt-16 landing-md:mt-24",
+                                "px-4 landing-sm:px-0",
+                            )}
+                        />
+                        <EnterpriseSecurity
+                            className={clsx(
+                                "mt-16 landing-sm:mt-24 landing-md:mt-40",
                                 "px-4 landing-sm:px-0",
                             )}
                         />
