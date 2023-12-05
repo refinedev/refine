@@ -4,6 +4,7 @@ import React from "react";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
 import { EnterpriseHeroSection } from "@site/src/refine-theme/enterprise-hero-section";
+import { EnterpriseGetSupport } from "@site/src/refine-theme/enterprise-get-support";
 
 const Enterprise: React.FC = () => {
     const title = "refine | Open-source Retool for Enterprise";
@@ -38,6 +39,12 @@ const Enterprise: React.FC = () => {
                                 "mt-8",
                                 "px-4 landing-sm:px-0",
                                 "landing-lg:pr-12",
+                            )}
+                        />
+                        <EnterpriseGetSupport
+                            className={clsx(
+                                "mt-12 landing-sm:mt-16 landing-md:mt-24",
+                                "px-4 landing-sm:px-0",
                             )}
                         />
                     </div>

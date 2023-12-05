@@ -36,3 +36,4 @@ export { default as Supabase } from "./supabase";
 export { default as SupabaseWithText } from "./supabase-with-text";
 export { default as TailwindCss } from "./tailwindcss";
 export { default as UseGenerated } from "./usegenerated";
+export { default as SlackIcon } from "./slack";
