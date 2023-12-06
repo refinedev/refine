@@ -1,6 +1,6 @@
 ---
 title: GraphQL
-sidebar_label: GraphQL
+source: https://github.com/refinedev/refine/tree/master/packages/graphql
 ---
 
 import Tabs from '@theme/Tabs';

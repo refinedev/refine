@@ -1,6 +1,6 @@
 ---
-title: Strapi-v4
-sidebar_label: Strapi-v4
+title: Strapi v4
+source: https://github.com/refinedev/refine/tree/master/packages/strapi-v4
 ---
 
 import Tabs from '@theme/Tabs';

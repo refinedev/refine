@@ -1,6 +1,6 @@
 ---
 title: Appwrite
-sidebar_label: Appwrite
+source: https://github.com/refinedev/refine/tree/master/packages/appwrite
 ---
 
 ```tsx live shared
