@@ -27,7 +27,7 @@ export const EnterpriseSSOMultifactorAuth = ({
                     )}
                 >
                     <img
-                        className={clsx("rounded-3xl")}
+                        className={clsx("rounded-2xl landing-sm:rounded-3xl")}
                         src={`https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/sign-in-${colorMode}.png`}
                     />
                     <div
