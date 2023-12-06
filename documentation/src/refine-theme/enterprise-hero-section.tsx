@@ -1,6 +1,5 @@
-import React, { SVGProps } from "react";
+import React from "react";
 import clsx from "clsx";
-import Link from "@docusaurus/Link";
 import { useColorMode } from "@docusaurus/theme-common";
 import { EnterpriseGetInTouchButton } from "./enterprise-get-in-touch-button";
 
@@ -54,7 +53,7 @@ export const EnterpriseHeroSection = ({
                 >
                     Our solution for larger organizations with extensive{" "}
                     <span className={clsx("dark:text-gray-0 text-gray-900")}>
-                        security
+                        security{" "}
                     </span>
                     and{" "}
                     <span className={clsx("dark:text-gray-0 text-gray-900")}>
@@ -64,7 +63,7 @@ export const EnterpriseHeroSection = ({
                     <span className={clsx("dark:text-gray-0 text-gray-900")}>
                         identity providers
                     </span>{" "}
-                    and
+                    and{" "}
                     <span className={clsx("dark:text-gray-0 text-gray-900")}>
                         relational databases
                     </span>
