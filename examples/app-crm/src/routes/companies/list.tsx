@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import { Form, Grid, Input, Radio, Space, Spin } from "antd";
 import debounce from "lodash/debounce";
+import gql from "graphql-tag";
 
 import { ListTitleButton } from "@/components";
 import { Company } from "@/interfaces";
@@ -17,6 +18,40 @@ import { Company } from "@/interfaces";
 import { CompaniesCardView, CompaniesTableView } from "./components";
 
 type View = "card" | "table";
+
+const COMPANIES_QUERY = gql`
+    query Companies(
+        $filter: CompanyFilter!
+        $sorting: [CompanySort!]!
+        $paging: OffsetPaging!
+    ) {
+        companies(filter: $filter, sorting: $sorting, paging: $paging) {
+            nodes {
+                id
+                name
+                avatarUrl
+                dealsAggregate {
+                    sum {
+                        value
+                    }
+                }
+                salesOwner {
+                    id
+                    name
+                    avatarUrl
+                }
+                contacts {
+                    nodes {
+                        id
+                        name
+                        avatarUrl
+                    }
+                }
+            }
+            totalCount
+        }
+    }
+`;
 
 export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
     const [view, setView] = useState<View>("card");
@@ -68,7 +103,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
             pageSize: 12,
         },
         meta: {
-            to: "undefined",
+            gqlQuery: COMPANIES_QUERY,
             fields: [
                 "id",
                 "name",
