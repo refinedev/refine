@@ -5,9 +5,8 @@ import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
 import { EnterpriseHeroSection } from "@site/src/refine-theme/enterprise-hero-section";
 import { EnterpriseGetSupport } from "@site/src/refine-theme/enterprise-get-support";
-import { EnterpriseSSOMultifactorAuth } from "@site/src/refine-theme/enterprise-sso-mutlifactor-auth";
-import { EnterpriseIAMServices } from "@site/src/refine-theme/enterprise-iam-services";
 import { EnterpriseSecurity } from "@site/src/refine-theme/enterprise-secuity";
+import { EnterpriseGetInTouchCta } from "@site/src/refine-theme/enterprise-get-in-touch-cta";
 
 const Enterprise: React.FC = () => {
     const title = "refine | Open-source Retool for Enterprise";
@@ -32,7 +31,6 @@ const Enterprise: React.FC = () => {
                             "flex flex-col",
                             "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
                             "pb-12 landing-sm:pb-16 landing-md:pb-20 landing-lg:pb-40",
-                            "px-2 landing-sm:px-0",
                             "mx-auto",
                         )}
                     >
@@ -47,13 +45,19 @@ const Enterprise: React.FC = () => {
                         <EnterpriseGetSupport
                             className={clsx(
                                 "mt-12 landing-sm:mt-16 landing-md:mt-24",
-                                "px-4 landing-sm:px-0",
+                                "px-2 landing-sm:px-0",
                             )}
                         />
                         <EnterpriseSecurity
                             className={clsx(
                                 "mt-16 landing-sm:mt-24 landing-md:mt-40",
-                                "px-4 landing-sm:px-0",
+                                "px-2 landing-sm:px-0",
+                            )}
+                        />
+                        <EnterpriseGetInTouchCta
+                            className={clsx(
+                                "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
+                                "px-2 landing-sm:px-0",
                             )}
                         />
                     </div>

@@ -11,7 +11,7 @@ export const EnterpriseGetSupport = ({ className }: { className?: string }) => {
         <div className={clsx("flex flex-col", "not-prose", className)}>
             <div
                 className={clsx(
-                    "pl-0 landing-sm:pl-6 landing-md:pl-10",
+                    "pl-4 landing-sm:pl-6 landing-md:pl-10",
                     "text-2xl landing-sm:text-[32px] landing-sm:leading-[40px]",
                 )}
             >

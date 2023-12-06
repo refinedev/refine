@@ -383,6 +383,18 @@ module.exports = {
                 "landing-copy-command-hover-bg-light": [
                     "radial-gradient(transparent 30%, rgba(0, 128, 255, 0.1))",
                 ],
+                "enterprise-cta-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(45% 80% at 50% 50%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%)",
+                ],
+                "enterprise-cta-dark-md": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(30% 100% at 100% 50%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%)",
+                ],
+                "enterprise-cta-light":
+                    "radial-gradient(100% 100% at 50% 50%, rgba(0, 128, 255, 0.15) 0%, rgba(0, 128, 255, 0.00) 100%)",
+                "enterprise-cta-light-md":
+                    "radial-gradient(60% 100% at 100% 50%, rgba(0, 128, 255, 0.15) 0%, rgba(0, 128, 255, 0.00) 100%)",
             },
             backgroundPosition: {
                 "landing-wizard-option-right":
@@ -451,6 +463,8 @@ module.exports = {
                     "github-stars-border 10s linear infinite alternate",
                 "github-stars-glow":
                     "github-stars-glow 10s linear infinite alternate",
+                "enterprise-iam-services-right":
+                    "enterprise-iam-services-right 40s linear infinite",
             },
             keyframes: {
                 "code-scroll": {
@@ -703,6 +717,10 @@ module.exports = {
                     "100%": {
                         transform: "translateX(156px) scale(0.5)",
                     },
+                },
+                "enterprise-iam-services-right": {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(50%)" },
                 },
             },
         },

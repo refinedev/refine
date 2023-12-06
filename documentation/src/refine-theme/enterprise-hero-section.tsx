@@ -2,6 +2,7 @@ import React, { SVGProps } from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import { useColorMode } from "@docusaurus/theme-common";
+import { EnterpriseGetInTouchButton } from "./enterprise-get-in-touch-button";
 
 export const EnterpriseHeroSection = ({
     className,
@@ -27,7 +28,7 @@ export const EnterpriseHeroSection = ({
                         "text-[32px] leading-[40px] landing-sm:text-[56px] landing-sm:leading-[72px]",
                         "tracking-tight",
                         "text-start",
-                        "pl-0 landing-sm:pl-6 landing-md:pl-10",
+                        "pl-4 landing-sm:pl-6 landing-md:pl-10",
                         "dark:text-gray-0 text-gray-900",
                     )}
                 >
@@ -47,7 +48,7 @@ export const EnterpriseHeroSection = ({
                     className={clsx(
                         "max-w-[446px]",
                         "mt-6",
-                        "pl-0 landing-sm:pl-6 landing-md:pl-10",
+                        "pl-4 landing-sm:pl-6 landing-md:pl-10",
                         "dark:text-gray-400 text-gray-600",
                     )}
                 >
@@ -69,45 +70,12 @@ export const EnterpriseHeroSection = ({
                     </span>
                     .
                 </p>
-                <div
+                <EnterpriseGetInTouchButton
                     className={clsx(
-                        "pl-0 landing-sm:pl-6 landing-md:pl-10",
+                        "pl-4 landing-sm:pl-6 landing-md:pl-10",
                         "mt-6 landing-lg:mt-16",
-                        "flex",
-                        "items-center",
-                        "justify-start",
-                        "gap-4",
-                        "landing-lg:gap-6",
                     )}
-                >
-                    <Link
-                        to="docs"
-                        className={clsx(
-                            "self-start",
-                            "rounded-2xl landing-sm:rounded-3xl",
-                            "!text-gray-0 dark:!text-gray-900",
-                            "bg-refine-blue dark:bg-refine-cyan-alt",
-                            "transition-[filter]",
-                            "duration-150",
-                            "ease-in-out",
-                            "hover:brightness-110",
-                            "py-3",
-                            "pl-7 pr-8",
-                            "landing-md:px-8",
-                            "landing-lg:pl-7 landing-lg:pr-8",
-                            "flex",
-                            "items-center",
-                            "justify-center",
-                            "gap-2",
-                            "hover:!no-underline",
-                        )}
-                    >
-                        <GetInTouchIcon />
-                        <span className={clsx("text-base", "font-semibold")}>
-                            Get in touch
-                        </span>
-                    </Link>
-                </div>
+                />
             </div>
             <div
                 className={clsx(
@@ -130,21 +98,3 @@ export const EnterpriseHeroSection = ({
         </div>
     );
 };
-
-const GetInTouchIcon = (props: SVGProps<SVGSVGElement>) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width={16}
-        height={16}
-        fill="none"
-        {...props}
-        className={clsx("text-gray-0 dark:text-gray-900", props.className)}
-    >
-        <path
-            fill="currentColor"
-            fillRule="evenodd"
-            d="M3.604 1.004a2.58 2.58 0 0 0-2.864.588A2.65 2.65 0 0 0 .217 4.48l1.519 3.517-1.52 3.524a2.65 2.65 0 0 0 .525 2.888 2.58 2.58 0 0 0 2.863.587l10.8-4.571A2.63 2.63 0 0 0 16 8a2.63 2.63 0 0 0-1.596-2.425l-10.8-4.571Zm-1.713 1.7a.98.98 0 0 1 1.09-.227l10.8 4.572c.37.156.619.528.619.951 0 .423-.25.795-.62.951l-10.8 4.572a.98.98 0 0 1-1.089-.226l-.558.54.558-.54a1.05 1.05 0 0 1-.205-1.142L3.132 8.8H6a.8.8 0 0 0 0-1.6H3.134L1.686 3.846a1.05 1.05 0 0 1 .205-1.142Z"
-            clipRule="evenodd"
-        />
-    </svg>
-);

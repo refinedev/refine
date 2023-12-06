@@ -1,22 +1,15 @@
 import React, { DetailedHTMLProps, ReactNode, SVGProps, useRef } from "react";
 import clsx from "clsx";
 import {
-    Ably,
-    Airtable,
-    Antd,
-    Appwrite,
-    Chakra,
-    Directus,
-    Elide,
-    ElideGraphql,
-    Firebase,
-    Hasura,
-    Headless,
-    HookForm,
-    Mantine,
-    Mui,
-    ShadCnUI,
-    TailwindCss,
+    Atlassian,
+    AuthJs,
+    Auth0,
+    AwsCognito,
+    AzureActiveDirectory,
+    Clerk,
+    Expo,
+    Google,
+    Okta,
 } from "../assets/integration-icons";
 import { useInView } from "framer-motion";
 
@@ -76,6 +69,7 @@ export const EnterpriseIAMServices = ({
                 className={clsx(
                     "landing-packages-mask",
                     "mt-4 landing-md:mt-10",
+                    "overflow-hidden",
                 )}
             >
                 <PackagesContainer animDirection="right">
@@ -122,8 +116,8 @@ const PackagesContainer = ({
                     "hover:animation-paused",
                     inView
                         ? animDirection === "left"
-                            ? "animate-landing-packages-left"
-                            : "animate-landing-packages-right"
+                            ? "animate-enterprise-iam-services-left"
+                            : "animate-enterprise-iam-services-right"
                         : "",
                     "absolute",
                     "left-0",
@@ -147,7 +141,7 @@ const PackagesContainer = ({
 const PackageItem = (props: {
     icon: ReactNode;
     label: string;
-    tooltip: string;
+    tooltip: string | null;
 }) => {
     const { tooltip, icon, label } = props;
 
@@ -181,138 +175,107 @@ const PackageItem = (props: {
                 {label}
             </div>
 
-            <div
-                className={clsx(
-                    "absolute",
-                    "z-20",
-                    "top-[-48px]",
-                    "scale-0",
-                    "group-hover:scale-100",
-                    "transition-transform",
-                    "origin-top",
-                )}
-            >
+            {tooltip && (
                 <div
                     className={clsx(
-                        "relative",
-                        "text-sm",
-                        "dark:bg-gray-0 bg-gray-900",
-                        "dark:text-gray-700 text-gray-300",
-                        "rounded-full",
-                        "px-6",
-                        "py-3",
-                        "whitespace-nowrap",
-                    )}
-                >
-                    {tooltip}
-                </div>
-
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={40}
-                    height={15}
-                    fill="none"
-                    className={clsx(
                         "absolute",
+                        "z-20",
+                        "top-[-48px]",
                         "scale-0",
-                        "-bottom-2",
-                        "left-1/2",
-                        "-translate-x-1/2",
                         "group-hover:scale-100",
                         "transition-transform",
-                        "origin-bottom",
-                        "dark:text-gray-0 text-gray-900",
+                        "origin-top",
                     )}
                 >
-                    <path
-                        fill="currentColor"
-                        d="M17.73 13.664C18.238 14.5 19.089 15 20 15c.912 0 1.763-.501 2.27-1.336l3.025-4.992C26.306 7.002 28.01 7 29.833 7H40V0H0v7h10.167c1.823 0 3.527.003 4.538 1.672l3.026 4.992Z"
-                    />
-                </svg>
-            </div>
+                    <div
+                        className={clsx(
+                            "relative",
+                            "text-sm",
+                            "dark:bg-gray-0 bg-gray-900",
+                            "dark:text-gray-700 text-gray-300",
+                            "rounded-full",
+                            "px-6",
+                            "py-3",
+                            "whitespace-nowrap",
+                        )}
+                    >
+                        {tooltip}
+                    </div>
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={40}
+                        height={15}
+                        fill="none"
+                        className={clsx(
+                            "absolute",
+                            "scale-0",
+                            "-bottom-2",
+                            "left-1/2",
+                            "-translate-x-1/2",
+                            "group-hover:scale-100",
+                            "transition-transform",
+                            "origin-bottom",
+                            "dark:text-gray-0 text-gray-900",
+                        )}
+                    >
+                        <path
+                            fill="currentColor"
+                            d="M17.73 13.664C18.238 14.5 19.089 15 20 15c.912 0 1.763-.501 2.27-1.336l3.025-4.992C26.306 7.002 28.01 7 29.833 7H40V0H0v7h10.167c1.823 0 3.527.003 4.538 1.672l3.026 4.992Z"
+                        />
+                    </svg>
+                </div>
+            )}
         </div>
     );
 };
 
 const list = [
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <Firebase {...props} />,
-        label: "Firebase",
-        tooltip: "npm i refine-firebase",
+        icon: (props: SVGProps<SVGSVGElement>) => <AwsCognito {...props} />,
+        label: "AWS Cognito",
+        tooltip: null,
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <Ably {...props} />,
-        label: "Ably",
-        tooltip: "npm i @refinedev/ably",
+        icon: (props: SVGProps<SVGSVGElement>) => <Auth0 {...props} />,
+        label: "Auth0",
+        tooltip: null,
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <Airtable {...props} />,
-        label: "Airtable",
-        tooltip: "npm i @refinedev/airtable",
+        icon: (props: SVGProps<SVGSVGElement>) => (
+            <AzureActiveDirectory {...props} />
+        ),
+        label: "Azure Active Directory",
+        tooltip: null,
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <Appwrite {...props} />,
-        label: "Appwrite",
-        tooltip: "npm i @refinedev/appwrite",
+        icon: (props: SVGProps<SVGSVGElement>) => <Okta {...props} />,
+        label: "Okta",
+        tooltip: null,
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <Directus {...props} />,
-        label: "Directus",
-        tooltip: "npm i @tspvivek/refine-directus",
+        icon: (props: SVGProps<SVGSVGElement>) => <Clerk {...props} />,
+        label: "Clerk",
+        tooltip: null,
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <Elide {...props} />,
-        label: "Elide",
-        tooltip: "npm i elide-simple-rest",
+        icon: (props: SVGProps<SVGSVGElement>) => <Atlassian {...props} />,
+        label: "Atlassian",
+        tooltip: null,
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <ElideGraphql {...props} />,
-        label: "Elide GraphQL",
-        tooltip: "npm i elide-simple-graphql",
+        icon: (props: SVGProps<SVGSVGElement>) => <Google {...props} />,
+        label: "Google Auth",
+        tooltip: null,
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <Hasura {...props} />,
-        label: "Hasura",
-        tooltip: "npm i @refinedev/hasura",
+        icon: (props: SVGProps<SVGSVGElement>) => <AuthJs {...props} />,
+        label: "Auth.js",
+        tooltip: null,
     },
     {
-        icon: (props: SVGProps<SVGSVGElement>) => <HookForm {...props} />,
-        label: "Hook Form",
-        tooltip: "npm i @refinedev/react-hook-form",
+        icon: (props: SVGProps<SVGSVGElement>) => <Expo {...props} />,
+        label: "Expo",
+        tooltip: null,
     },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <Antd {...props} />,
-        label: "Ant Design",
-        tooltip: "npm i @refinedev/antd",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <Mui {...props} />,
-        label: "Material UI",
-        tooltip: "npm i @refinedev/mui",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <Mantine {...props} />,
-        label: "Mantine",
-        tooltip: "npm i @refinedev/mantine",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <Chakra {...props} />,
-        label: "Chakra UI",
-        tooltip: "npm i @refinedev/chakra-ui",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <ShadCnUI {...props} />,
-        label: "shadcn/ui",
-        tooltip: "npx shadcn-ui init",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <TailwindCss {...props} />,
-        label: "Tailwind CSS",
-        tooltip: "npx tailwindcss init",
-    },
-    {
-        icon: (props: SVGProps<SVGSVGElement>) => <Headless {...props} />,
-        label: "Headless UI",
-        tooltip: "npm i @headlessui/react",
-    },
-];
+] as const;
