@@ -130,6 +130,17 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         },
 
         create: async ({ resource, variables, meta }) => {
+            if (meta?.gqlQuery) {
+                const response = await client.request<BaseRecord>(
+                    meta.gqlQuery,
+                    { input: { [camelcase(singular(resource))]: variables } },
+                );
+
+                return {
+                    data: response,
+                };
+            }
+
             const operation = `createOne${camelcase(singular(resource), {
                 pascalCase: true,
             })}`;

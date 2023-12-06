@@ -30,6 +30,7 @@ import {
 
 import { SelectOptionWithAvatar } from "@/components";
 import { Company, User } from "@/interfaces";
+import gql from "graphql-tag";
 
 type Props = {
     isOverModal?: boolean;
@@ -43,6 +44,20 @@ type FormValues = {
         email?: string;
     }[];
 };
+
+const COMPANY_CREATE_MUTATION = gql`
+    mutation CreateCompany($input: CreateOneCompanyInput!) {
+        createOneCompany(input: $input) {
+            id
+            name
+            salesOwner {
+                id
+                name
+                avatarUrl
+            }
+        }
+    }
+`;
 
 export const CompanyCreatePage = ({ isOverModal }: Props) => {
     const getToPath = useGetToPath();
@@ -62,7 +77,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
         warnWhenUnsavedChanges: !isOverModal,
         mutationMode: "pessimistic",
         meta: {
-            fields: ["id", { salesOwner: ["id"] }],
+            gqlQuery: COMPANY_CREATE_MUTATION,
         },
     });
 
