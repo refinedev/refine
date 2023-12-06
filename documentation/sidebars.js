@@ -511,7 +511,6 @@ module.exports = {
                     type: "doc",
                     id: "core/refine-component/index",
                     label: "<Refine>",
-                    className: "font-mono",
                 },
                 "core/interface-references/index",
                 {
@@ -973,6 +972,13 @@ module.exports = {
                     ],
                 },
             ],
+        },
+        // Enterprise Edition
+        {
+            type: "category",
+            label: "Enterprise Edition",
+            className: "category-as-header",
+            items: ["enterprise-edition/okta/index"],
         },
         // Migration Guide
         {

@@ -33,6 +33,10 @@ const App = () => {
 
 :::
 
+## Examples
+
+<AuthProviderExamplesLinks/>
+
 ## Methods
 
 An `authProvider` can contain the following methods:
@@ -1188,10 +1192,6 @@ const App = () => {
 ### How can I implement refresh token mechanism?
 
 [Refer to the "Implementing Refresh Token Mechanism" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/#implementing-refresh-token-mechanism)
-
-## Examples
-
-<AuthProviderExamplesLinks/>
 
 [use-login]: /docs/core/hooks/auth/use-login
 [use-logout]: /docs/core/hooks/auth/use-logout

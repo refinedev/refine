@@ -233,7 +233,6 @@ const SidebarLink = ({
     line,
     variant,
     onClick,
-    code,
 }: {
     item: SidebarLinkItem;
     path: string;
@@ -285,7 +284,6 @@ const SidebarLink = ({
                 "group",
                 "transition-colors duration-200 ease-in-out",
                 "no-underline",
-                code && "font-mono",
                 item.className,
             )}
         >
@@ -392,17 +390,12 @@ const renderItems = ({
     path,
     root,
     line,
-    fromHeader,
     variant,
     onLinkClick,
     deferred,
-    level = 0,
 }: RenderItemConfig) => {
     const hasCategory = items?.some((item) => item.type === "category");
     const isDashed = !root && hasCategory;
-
-    const componentRegex = /^<.*>/;
-    const hookRegex = /^use\w+/;
 
     return (
         items?.map((item, index) => {
@@ -439,11 +432,6 @@ const renderItems = ({
                             line={!!line}
                             variant={variant}
                             onClick={onLinkClick}
-                            code={
-                                item.className?.includes("font-mono") ||
-                                componentRegex.test(item.label) ||
-                                hookRegex.test(item.label)
-                            }
                         />
                     );
                 default:
