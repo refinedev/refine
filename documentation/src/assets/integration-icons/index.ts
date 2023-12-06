@@ -46,3 +46,8 @@ export { default as Clerk } from "./clerk";
 export { default as Expo } from "./expo";
 export { default as Google } from "./google";
 export { default as Okta } from "./okta";
+export { default as MongoDB } from "./mongodb";
+export { default as MsSqlServer } from "./ms-sql-server";
+export { default as MySql } from "./mysql";
+export { default as PostgreSql } from "./postgresql";
+export { default as Oracle } from "./oracle";

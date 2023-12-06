@@ -8,6 +8,7 @@ import { EnterpriseGetSupport } from "@site/src/refine-theme/enterprise-get-supp
 import { EnterpriseSecurity } from "@site/src/refine-theme/enterprise-secuity";
 import { EnterpriseGetInTouchCta } from "@site/src/refine-theme/enterprise-get-in-touch-cta";
 import { EnterpriseFlexibility } from "@site/src/refine-theme/enterprise-flexibility";
+import { EnterpriseDataSource } from "@site/src/refine-theme/enterprise-data-source";
 
 const Enterprise: React.FC = () => {
     const title = "refine | Open-source Retool for Enterprise";
@@ -64,6 +65,12 @@ const Enterprise: React.FC = () => {
                         <EnterpriseFlexibility
                             className={clsx(
                                 "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
+                                "px-2 landing-sm:px-0",
+                            )}
+                        />
+                        <EnterpriseDataSource
+                            className={clsx(
+                                "mt-16 landing-sm:mt-24 landing-md:mt-40",
                                 "px-2 landing-sm:px-0",
                             )}
                         />
