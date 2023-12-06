@@ -12,6 +12,7 @@ import VariableOptions from "gql-query-builder/build/VariableOptions";
 import { GraphQLClient } from "graphql-request";
 import { singular } from "pluralize";
 import { generatePaging, generateFilters, generateSorting } from "../utils";
+import gqlTag from "graphql-tag";
 
 const handleGetMany = async <TData>(
     client: GraphQLClient,
@@ -84,11 +85,37 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 };
             }
 
-            const { query, variables } = gql.query({
-                operation,
-                fields: [{ nodes: meta?.fields }, "totalCount"],
-                variables: queryVariables,
-            });
+            let query;
+            let variables;
+
+            if (meta?.gqlQuery) {
+                console.log("[Raw Variables]", queryVariables);
+
+                query = meta?.gqlQuery;
+
+                console.log("[GQL Query]", query);
+
+                variables = {
+                    filter: filters
+                        ? generateFilters(filters as LogicalFilter[])
+                        : {},
+                    sorting: sorters ? generateSorting(sorters) : [],
+                    paging,
+                };
+            } else {
+                const gqlQuery = gql.query({
+                    operation,
+                    fields: [{ nodes: meta?.fields }, "totalCount"],
+                    variables: queryVariables,
+                });
+
+                query = gqlQuery.query;
+                variables = gqlQuery.variables;
+
+                console.log("[GraphQL Query Operation]", operation);
+                console.log("[GraphQL Query Query]", query);
+                console.log("[GraphQL Query Variables]", variables);
+            }
 
             const response = await client.request<BaseRecord>(query, variables);
 

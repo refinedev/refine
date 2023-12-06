@@ -39,6 +39,7 @@
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",
     "graphql-request": "^5.2.0",
+    "graphql-tag": "^2.12.6",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "pluralize": "^8.0.0",
@@ -48,7 +49,8 @@
     "@refinedev/core": "^4.0.0",
     "graphql-request": "^5.2.0",
     "gql-query-builder": "^3.5.5",
-    "graphql-ws": "^5.9.1"
+    "graphql-ws": "^5.9.1",
+    "graphql-tag": "^2.12.6"
   },
   "repository": {
     "type": "git",
