@@ -102,7 +102,7 @@ const { mutate } = useUpdate();
 mutate({
   resource: "posts",
   id: 1,
-  variables: {
+  values: {
     title: "New title",
   },
   //highlight-start
