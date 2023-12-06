@@ -9,9 +9,19 @@ import { LandingSectionCtaButton } from "./landing-section-cta-button";
 import { useInView } from "framer-motion";
 type Props = {
     className?: string;
+    title?: string;
+    description?: string;
+    cta?: boolean;
 };
 
-export const LandingPureReactCode: FC<Props> = ({ className }) => {
+export const LandingPureReactCode: FC<Props> = ({
+    className,
+    title = "100% Pure React code",
+    description = `Don’t get locked-in to proprietary, black-box
+    solutions. With Refine you have always 100% control
+    over your project.`,
+    cta = true,
+}) => {
     return (
         <div className={clsx(className)}>
             <div
@@ -58,7 +68,7 @@ export const LandingPureReactCode: FC<Props> = ({ className }) => {
                             "dark:text-gray-300 text-gray-900",
                         )}
                     >
-                        100% Pure React code
+                        {title}
                     </h6>
                     <div
                         className={clsx(
@@ -79,13 +89,13 @@ export const LandingPureReactCode: FC<Props> = ({ className }) => {
                                 "dark:text-gray-400 text-gray-600",
                             )}
                         >
-                            Don’t get locked-in to proprietary, black-box
-                            solutions. With Refine you have always 100% control
-                            over your project.
+                            {description}
                         </p>
-                        <LandingSectionCtaButton to="https://github.com/refinedev/refine">
-                            Refine on GitHub
-                        </LandingSectionCtaButton>
+                        {cta && (
+                            <LandingSectionCtaButton to="https://github.com/refinedev/refine">
+                                Refine on GitHub
+                            </LandingSectionCtaButton>
+                        )}
                     </div>
                 </div>
             </div>
