@@ -59,8 +59,17 @@ export const CreateContact: React.FC<CreateContactProps> = ({
                 >
                     <Select {...selectProps} />
                 </Form.Item>
-                <Form.Item label="Phone Number" name="phone_number">
-                    <Input />
+                <Form.Item
+                    label="Phone Number"
+                    name="phone_number"
+                    rules={[
+                        {
+                            transform: (value) => Number(value),
+                            type: "number",
+                        },
+                    ]}
+                >
+                    <Input type="number" />
                 </Form.Item>
                 <Form.Item
                     label="Email"

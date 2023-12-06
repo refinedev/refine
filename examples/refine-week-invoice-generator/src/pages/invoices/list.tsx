@@ -23,6 +23,7 @@ export const InvoiceList: React.FC = () => {
     const [record, setRecord] = useState<IInvoice>();
 
     const { tableProps } = useTable<IInvoice>({
+        sorters: { initial: [{ field: "id", order: "desc" }] },
         meta: {
             populate: {
                 contact: { populate: ["client"] },
@@ -37,7 +38,7 @@ export const InvoiceList: React.FC = () => {
     return (
         <>
             <List>
-                <Table {...tableProps}>
+                <Table {...tableProps} rowKey="id">
                     <Table.Column dataIndex="id" title="ID" />
                     <Table.Column<IInvoice>
                         dataIndex="name"
