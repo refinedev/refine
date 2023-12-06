@@ -503,10 +503,12 @@ What if we want to select `PUT` or `PATCH` on a request basis?
 
 ```tsx
 // PATCH Request
-useUpdate({
+const { mutate } = useUpdate();
+
+mutate({
   resource: "this-is-patch",
   id: 1,
-  variables: {
+  values: {
     foo: "bar",
   },
   meta: {
@@ -515,10 +517,12 @@ useUpdate({
 });
 
 // PUT Request
-useUpdate({
+const { mutate } = useUpdate();
+
+mutate({
   resource: "this-is-put",
   id: 1,
-  variables: {
+  values: {
     foo: "bar",
   },
   meta: {
