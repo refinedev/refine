@@ -251,6 +251,18 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             return await handleGetMany(client, { resource, ids, meta });
         },
         getOne: async ({ resource, id, meta }) => {
+            console.log("GET ONE", resource, id, meta);
+            if (meta?.gqlQuery) {
+                const response = await client.request<BaseRecord>(
+                    meta.gqlQuery,
+                    id ? { id } : {},
+                );
+
+                return {
+                    data: response,
+                };
+            }
+
             const operation = camelcase(singular(resource));
 
             const { query, variables } = gql.query({

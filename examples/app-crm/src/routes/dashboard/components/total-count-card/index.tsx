@@ -17,21 +17,9 @@ type Type = "companies" | "contacts" | "deals";
 
 export const DashboardTotalCountCard: React.FC<{
     resource: Type;
-}> = ({ resource }) => {
-    const { data, isLoading, isError, error } = useList<
-        Company | Contact | Deal
-    >({
-        resource,
-        meta: {
-            fields: ["id"],
-        },
-    });
-
-    if (isError) {
-        console.error("Error fetching dashboard data", error);
-        return null;
-    }
-
+    isLoading: boolean;
+    totalCount: number;
+}> = ({ resource, isLoading, totalCount }) => {
     const { primaryColor, secondaryColor, icon, title } = variants[resource];
 
     const config: AreaConfig = {
@@ -120,7 +108,7 @@ export const DashboardTotalCountCard: React.FC<{
                             }}
                         />
                     ) : (
-                        data?.total
+                        totalCount
                     )}
                 </Text>
                 <Suspense>
