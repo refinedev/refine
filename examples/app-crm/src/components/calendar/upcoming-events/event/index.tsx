@@ -12,7 +12,7 @@ import { Text } from "../../../text";
 import styles from "../index.module.css";
 
 type CalendarUpcomingEventProps = {
-    item: Event;
+    item: Partial<Event>;
 };
 
 export const CalendarUpcomingEvent: React.FC<CalendarUpcomingEventProps> = ({

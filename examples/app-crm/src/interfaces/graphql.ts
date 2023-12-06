@@ -4967,6 +4967,25 @@ export type UserUpdateInput = {
     timezone?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type UpcomingEventsQueryVariables = Exact<{
+    filter: EventFilter;
+    sorting?: InputMaybe<Array<EventSort> | EventSort>;
+    paging: OffsetPaging;
+}>;
+
+export type UpcomingEventsQuery = {
+    events: {
+        totalCount: number;
+        nodes: Array<{
+            id: string;
+            title: string;
+            color: string;
+            startDate: any;
+            endDate: any;
+        }>;
+    };
+};
+
 export type CreateCompanyMutationVariables = Exact<{
     input: CreateOneCompanyInput;
 }>;

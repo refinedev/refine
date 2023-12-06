@@ -1,18 +1,20 @@
 import React from "react";
 
-import { useList, useNavigation } from "@refinedev/core";
+import { useNavigation } from "@refinedev/core";
+import { useList } from "@refinedev/nestjs-query";
 
 import { CalendarOutlined, RightCircleOutlined } from "@ant-design/icons";
 import type { CardProps } from "antd";
 import { Button, Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
-import { Event } from "@/interfaces";
+import { Event, UpcomingEventsQuery } from "@/interfaces";
 
 import { Text } from "../../text";
 import { CalendarUpcomingEvent } from "./event";
 
 import styles from "./index.module.css";
+import gql from "graphql-tag";
 
 type CalendarUpcomingEventsProps = {
     limit?: number;
@@ -64,6 +66,25 @@ const Skeleton: React.FC = () => {
     );
 };
 
+const CALENDAR_UPCOMING_EVENTS_QUERY = gql`
+    query UpcomingEvents(
+        $filter: EventFilter!
+        $sorting: [EventSort!]
+        $paging: OffsetPaging!
+    ) {
+        events(filter: $filter, sorting: $sorting, paging: $paging) {
+            nodes {
+                id
+                title
+                color
+                startDate
+                endDate
+            }
+            totalCount
+        }
+    }
+`;
+
 export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
     limit = 5,
     cardProps,
@@ -71,7 +92,7 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
 }) => {
     const { list } = useNavigation();
 
-    const { data, isLoading } = useList<Event>({
+    const { data, isLoading } = useList<UpcomingEventsQuery>({
         resource: "events",
         pagination: {
             pageSize: limit,
@@ -90,6 +111,7 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             },
         ],
         meta: {
+            gqlQuery: CALENDAR_UPCOMING_EVENTS_QUERY,
             fields: ["id", "title", "color", "startDate", "endDate"],
         },
     });
