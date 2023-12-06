@@ -4966,3 +4966,51 @@ export type UserUpdateInput = {
     role?: InputMaybe<Role>;
     timezone?: InputMaybe<Scalars["String"]["input"]>;
 };
+
+export type CreateCompanyMutationVariables = Exact<{
+    input: CreateOneCompanyInput;
+}>;
+
+export type CreateCompanyMutation = {
+    createOneCompany: {
+        id: string;
+        name: string;
+        salesOwner: { id: string; name: string; avatarUrl?: string | null };
+    };
+};
+
+export type CompaniesTableQueryVariables = Exact<{
+    filter: CompanyFilter;
+    sorting: Array<CompanySort> | CompanySort;
+    paging: OffsetPaging;
+}>;
+
+export type CompaniesTableQuery = {
+    companies: {
+        totalCount: number;
+        nodes: Array<{
+            id: string;
+            name: string;
+            avatarUrl?: string | null;
+            dealsAggregate: Array<{ sum?: { value?: number | null } | null }>;
+            salesOwner: { id: string; name: string; avatarUrl?: string | null };
+            contacts: {
+                nodes: Array<{
+                    id: string;
+                    name: string;
+                    avatarUrl?: string | null;
+                }>;
+            };
+        }>;
+    };
+};
+
+export type DashboardTotalCountsQueryVariables = Exact<{
+    [key: string]: never;
+}>;
+
+export type DashboardTotalCountsQuery = {
+    companies: { totalCount: number };
+    contacts: { totalCount: number };
+    deals: { totalCount: number };
+};

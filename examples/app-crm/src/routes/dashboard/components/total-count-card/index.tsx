@@ -1,11 +1,8 @@
 import React, { FC, PropsWithChildren, Suspense } from "react";
 
-import { useList } from "@refinedev/core";
-
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
 import { AreaConfig } from "@ant-design/plots";
 import { Card, Skeleton } from "antd";
-import { Company, Contact, Deal } from "interfaces/graphql";
 
 import { Text } from "@/components";
 
@@ -18,7 +15,7 @@ type Type = "companies" | "contacts" | "deals";
 export const DashboardTotalCountCard: React.FC<{
     resource: Type;
     isLoading: boolean;
-    totalCount: number;
+    totalCount?: number;
 }> = ({ resource, isLoading, totalCount }) => {
     const { primaryColor, secondaryColor, icon, title } = variants[resource];
 

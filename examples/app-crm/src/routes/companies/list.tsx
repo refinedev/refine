@@ -20,7 +20,7 @@ import { CompaniesCardView, CompaniesTableView } from "./components";
 type View = "card" | "table";
 
 const COMPANIES_QUERY = gql`
-    query Companies(
+    query CompaniesTable(
         $filter: CompanyFilter!
         $sorting: [CompanySort!]!
         $paging: OffsetPaging!

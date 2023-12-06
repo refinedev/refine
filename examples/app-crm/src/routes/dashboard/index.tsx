@@ -14,9 +14,10 @@ import {
 } from "./components";
 import { useOne } from "@refinedev/core";
 import gql from "graphql-tag";
+import { DashboardTotalCountsQuery } from "@/interfaces";
 
 const DASHBOARD_QUERY = gql`
-    query DashboardQuery {
+    query DashboardTotalCounts {
         companies {
             totalCount
         }
@@ -30,7 +31,7 @@ const DASHBOARD_QUERY = gql`
 `;
 
 export const DashboardPage: React.FC = () => {
-    const { data, isLoading } = useOne({
+    const { data, isLoading } = useOne<DashboardTotalCountsQuery>({
         queryOptions: {
             enabled: true,
         },
