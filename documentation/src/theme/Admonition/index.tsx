@@ -112,6 +112,7 @@ export default function AdmonitionWrapper(props) {
             </AdmonitionBase>
         );
     }
+    console.log({ props });
     return (
         <>
             <AdmonitionBase {...props} />
