@@ -1,6 +1,7 @@
 ---
 title: Appwrite
 source: https://github.com/refinedev/refine/tree/master/packages/appwrite
+swizzle: true
 ---
 
 ```tsx live shared

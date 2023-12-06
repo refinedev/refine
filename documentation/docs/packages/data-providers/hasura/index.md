@@ -1,6 +1,7 @@
 ---
 title: Hasura
 source: https://github.com/refinedev/refine/tree/master/packages/hasura
+swizzle: true
 ---
 
 Refine provides a data provider for APIs powered with [Hasura](https://hasura.io), a platform to build and deploy GraphQL APIs.

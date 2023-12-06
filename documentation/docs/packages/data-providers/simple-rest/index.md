@@ -1,6 +1,7 @@
 ---
 title: Simple REST
 source: https://github.com/refinedev/refine/tree/master/packages/simple-rest
+swizzle: true
 ---
 
 The Simple REST data provider is a package that provides an implementation for working with REST APIs that conform to a standard API design. It is built on the foundation of the [json-server](https://github.com/typicode/json-server) package.

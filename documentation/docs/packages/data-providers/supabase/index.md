@@ -1,6 +1,7 @@
 ---
 title: Supabase
 source: https://github.com/refinedev/refine/tree/master/packages/supabase
+swizzle: true
 ---
 
 import Tabs from '@theme/Tabs';

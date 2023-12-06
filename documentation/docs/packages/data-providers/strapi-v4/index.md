@@ -1,6 +1,7 @@
 ---
 title: Strapi v4
 source: https://github.com/refinedev/refine/tree/master/packages/strapi-v4
+swizzle: true
 ---
 
 import Tabs from '@theme/Tabs';
