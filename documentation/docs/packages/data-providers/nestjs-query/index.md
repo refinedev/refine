@@ -9,6 +9,7 @@ Refine provides a data provider for APIs powered with [Nest.js Query](https://do
 
 - This library uses [`graphql-request@5`](https://github.com/jasonkuhrt/graphql-request) to handle the requests.
 - To learn more about data fetching in Refine, check out the [Data Fetching](/docs/guides-concepts/data-fetching) guide.
+- To learn more about realtime features of Refine, check out the [Realtime](/docs/guides-concepts/realtime) guide.
 
 :::
 
