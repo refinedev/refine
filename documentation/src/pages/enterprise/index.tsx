@@ -34,8 +34,10 @@ const Enterprise: React.FC = () => {
                     <div
                         className={clsx(
                             "flex flex-col",
+                            "gap-12 landing-sm:gap-20 landing-md:gap-28 landing-lg:gap-40",
                             "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
                             "pb-12 landing-sm:pb-16 landing-md:pb-20 landing-lg:pb-40",
+                            "px-2 landing-sm:px-0",
                             "mx-auto",
                         )}
                     >
@@ -47,68 +49,34 @@ const Enterprise: React.FC = () => {
                                 "landing-lg:pr-12",
                             )}
                         />
-                        <EnterpriseGetSupport
-                            className={clsx(
-                                "mt-12 landing-sm:mt-16 landing-md:mt-24",
-                                "px-2 landing-sm:px-0",
-                            )}
-                        />
-                        <EnterpriseSecurity
-                            className={clsx(
-                                "mt-16 landing-sm:mt-24 landing-md:mt-40",
-                                "px-2 landing-sm:px-0",
-                            )}
-                        />
+                        <EnterpriseGetSupport />
+                        <EnterpriseSecurity />
                         <EnterpriseGetInTouchCta
                             className={clsx(
-                                "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
-                                "px-2 landing-sm:px-0",
                                 "w-full landing-lg:max-w-[792px] mx-auto",
                             )}
                         />
-                        <EnterpriseFlexibility
-                            className={clsx(
-                                "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
-                                "px-2 landing-sm:px-0",
-                            )}
-                        />
+                        <EnterpriseFlexibility />
                         <EnterpriseDataSource
                             className={clsx(
                                 "mt-16 landing-sm:mt-24 landing-md:mt-40",
-                                "px-2 landing-sm:px-0",
                             )}
                         />
                         <EnterpriseGetInTouchCta
                             className={clsx(
-                                "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
-                                "px-2 landing-sm:px-0",
                                 "w-full landing-lg:max-w-[792px] mx-auto",
                             )}
                         />
-                        <EnterpriseFrequentUpdates
-                            className={clsx(
-                                "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
-                                "px-2 landing-sm:px-0",
-                            )}
-                        />
-                        <LandingTrustedByDevelopers
-                            className={clsx(
-                                "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
-                                "px-2 landing-sm:px-0",
-                            )}
-                        />
+                        <EnterpriseFrequentUpdates />
+                        <LandingTrustedByDevelopers />
                         <EnterpriseFaq
                             className={clsx(
-                                "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
                                 "px-4 landing-sm:px-10 landing-lg:px-0",
-                                "px-2 landing-sm:px-0",
                                 "w-full landing-lg:max-w-[792px] mx-auto",
                             )}
                         />
                         <EnterpriseGetInTouchCta
                             className={clsx(
-                                "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
-                                "px-2 landing-sm:px-0",
                                 "w-full landing-lg:max-w-[792px] mx-auto",
                             )}
                         />
