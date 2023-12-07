@@ -397,6 +397,18 @@ module.exports = {
                     "radial-gradient(60% 100% at 100% 50%, rgba(0, 128, 255, 0.15) 0%, rgba(0, 128, 255, 0.00) 100%)",
                 "enterprise-data-source-dark":
                     "radial-gradient(100% 90% at 120% -12%, rgba(255, 255, 255, 0.50) 45%, rgba(255, 255, 255, 0.00) 100%)",
+                "enterprise-frequent-updates-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(70% 90% at 50% 100%, rgba(38, 217, 127, 0.10) 0%, rgba(38, 217, 127, 0.00) 100%)",
+                ],
+                "enterprise-frequent-updates-light":
+                    "radial-gradient(100% 100% at 50% 100%, rgba(0, 128, 255, 0.25) 0%, rgba(0, 128, 255, 0.00) 100%)",
+                "enterprise-frequent-updates-dark-md": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(50% 100% at 100% 50%, rgba(38, 217, 127, 0.15) 0%, rgba(38, 217, 127, 0.00) 100%)",
+                ],
+                "enterprise-frequent-updates-light-md":
+                    "radial-gradient(120% 100% at 100% 50%, rgba(0, 128, 255, 0.25) 0%, rgba(0, 128, 255, 0.00) 100%)",
             },
             backgroundPosition: {
                 "landing-wizard-option-right":
