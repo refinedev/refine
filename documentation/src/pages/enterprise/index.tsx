@@ -10,6 +10,8 @@ import { EnterpriseGetInTouchCta } from "@site/src/refine-theme/enterprise-get-i
 import { EnterpriseFlexibility } from "@site/src/refine-theme/enterprise-flexibility";
 import { EnterpriseDataSource } from "@site/src/refine-theme/enterprise-data-source";
 import { EnterpriseFrequentUpdates } from "@site/src/refine-theme/enterprise-frequent-updates";
+import { LandingTrustedByDevelopers } from "@site/src/refine-theme/landing-trusted-by-developers";
+import { EnterpriseFaq } from "@site/src/refine-theme/enterprise-faq";
 
 const Enterprise: React.FC = () => {
     const title = "refine | Open-source Retool for Enterprise";
@@ -87,6 +89,27 @@ const Enterprise: React.FC = () => {
                             className={clsx(
                                 "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
                                 "px-2 landing-sm:px-0",
+                            )}
+                        />
+                        <LandingTrustedByDevelopers
+                            className={clsx(
+                                "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
+                                "px-2 landing-sm:px-0",
+                            )}
+                        />
+                        <EnterpriseFaq
+                            className={clsx(
+                                "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
+                                "px-4 landing-sm:px-10 landing-lg:px-0",
+                                "px-2 landing-sm:px-0",
+                                "w-full landing-lg:max-w-[792px] mx-auto",
+                            )}
+                        />
+                        <EnterpriseGetInTouchCta
+                            className={clsx(
+                                "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
+                                "px-2 landing-sm:px-0",
+                                "w-full landing-lg:max-w-[792px] mx-auto",
                             )}
                         />
                     </div>
