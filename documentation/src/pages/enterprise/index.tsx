@@ -60,6 +60,7 @@ const Enterprise: React.FC = () => {
                             className={clsx(
                                 "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
                                 "px-2 landing-sm:px-0",
+                                "w-full landing-lg:max-w-[792px] mx-auto",
                             )}
                         />
                         <EnterpriseFlexibility
@@ -72,6 +73,13 @@ const Enterprise: React.FC = () => {
                             className={clsx(
                                 "mt-16 landing-sm:mt-24 landing-md:mt-40",
                                 "px-2 landing-sm:px-0",
+                            )}
+                        />
+                        <EnterpriseGetInTouchCta
+                            className={clsx(
+                                "mt-12 landing-sm:mt-20 landing-md:mt-28 landing-lg:mt-40",
+                                "px-2 landing-sm:px-0",
+                                "w-full landing-lg:max-w-[792px] mx-auto",
                             )}
                         />
                     </div>
