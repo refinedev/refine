@@ -16,10 +16,13 @@ In this article, we will explore the key differences between GraphQL and REST, a
 
 Steps we'll cover:
 
+- [Introduction](#introduction)
 - [Architectural Style](#architectural-style)
+- [Data Fetching](#data-fetching)
 - [Flexibility and Efficiency](#flexibility-and-efficiency)
 - [Performance](#performance)
 - [Use Cases](#use-cases)
+- [Summary of differences: REST vs. GraphQL](#summary-of-differences-rest-vs-graphql)
 
 ## Architectural Style
 
@@ -56,9 +59,10 @@ In REST, we have resources, and each resource is mapped to an HTTP verb; it can 
 
 So, we can say that GraphQL merged PUT, DELETE, GET, and POST requests into one entity. The data contained in the POST body describing how to fetch the data is actually in a query language that GraphQL understands. The GraphQL server receives these requests, interprets the POST body, and goes on to fetch and structure the data as instructed.
 
-We can see with the architectural design of GraphQL, there is no need to perform multiple requests to fetch data. GraphQL does it in one fell swoop.
+One of the key benefits of GraphQL compared to a traditional REST API is its ability to support declarative data fetching. This means that each component can (and ideally should) request precisely the fields it needs to render, avoiding any unnecessary data transmission over the network.
 
-## Data Fetching
+## Data Fetching
+
 In this section, we will discuss the differences between GraphQL and REST in terms of data fetching. How do both approaches handle data fetching, and what are the advantages and disadvantages of each approach?
 
 ### REST
@@ -310,19 +314,19 @@ So, in the world of data performance, GraphQL takes the lead because of these po
 
 Let's look at different use cases where REST and GraphQL will play out their best roles.
 
-### REST
+### REST
 
 In the use case of REST, it is more suitable for CRUD applications. For example, applications like blogs, e-commerce, and other applications that require basic data retrieval and modifications. Applications that do not require complex data handling and manipulation.
 
 Also, REST caching capability makes it ideal for applications where performance and scalability are critical.
 
-### GraphQL
+### GraphQL
 
 GraphQL takes its game to the higher levels. If you are building an application that requires complex and dynamic data handling and manipulation, GraphQL is the way to go. For example, if you are building a social media that has a target of a billion users, then you are better off using GraphQL. This is because it will help you identify and manage the data you need to handle. Social media requires a lot of data, for instance, a single User model can have a lot of data, like name, email, address, posts, comments, likes, and so on. GraphQL will help you manage all these data in a single request.
 
 Also, GraphQL is best suited for real-time applications. Your social media application will indeed have a chat section. GraphQL's subscription feature is unparalleled and powerful. It will help you manage the real-time data in your application with ease.
 
-## Summary of differences: REST vs. GraphQL
+## Summary of differences: REST vs. GraphQL
 
 |                                | REST                                                                                | GraphQL                                                                    |
 | ------------------------------ | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
