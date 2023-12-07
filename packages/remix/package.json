@@ -46,9 +46,9 @@
   "author": "refine",
   "devDependencies": {
     "@refinedev/core": "^4.32.0",
-    "remix": "^1.6.7",
-    "@remix-run/react": "^1.6.7",
-    "@remix-run/node": "^1.6.7",
+    "remix": "^2.3.1",
+    "@remix-run/react": "^2.3.1",
+    "@remix-run/node": "^2.3.1",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/qs": "^6.9.7",
     "@types/jest": "^29.2.4",

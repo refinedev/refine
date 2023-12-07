@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslate, useWarnAboutChange } from "@refinedev/core";
-import { unstable_useBlocker as useBlocker } from "@remix-run/react";
+import {  useBlocker } from "@remix-run/react";
 
 type UnsavedChangesNotifierProps = {
     translationKey?: string;
