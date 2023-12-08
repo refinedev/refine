@@ -4,6 +4,7 @@ import React, { FC, SVGProps } from "react";
 
 type Props = {
     className?: string;
+    linkClassName?: string;
 };
 
 export const EnterpriseGetInTouchButton: FC<Props> = (props) => {
@@ -40,6 +41,7 @@ export const EnterpriseGetInTouchButton: FC<Props> = (props) => {
                     "justify-center",
                     "gap-2",
                     "hover:!no-underline",
+                    props.linkClassName,
                 )}
             >
                 <GetInTouchIcon />

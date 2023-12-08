@@ -44,6 +44,8 @@ module.exports = {
                     "walkthrough-button-alt-bg": "#474E6B",
                     "pricing-table-alt-dark": "#181927",
                     "pricing-table-alt": "#F4F8FB",
+                    "enterprise-table-alt-dark": "#1D1E30",
+                    "enterprise-table-alt": "#F4F8FB",
                 },
                 gray: {
                     0: "#FFFFFF",

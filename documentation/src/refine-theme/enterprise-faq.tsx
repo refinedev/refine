@@ -11,7 +11,12 @@ export const EnterpriseFaq = ({ className }: { className?: string }) => {
                     "text-2xl landing-sm:text-[32px] landing-sm:leading-[40px]",
                 )}
             >
-                <h2 className={clsx("dark:text-gray-400 text-gray-600")}>
+                <h2
+                    className={clsx(
+                        "font-semibold",
+                        "dark:text-gray-400 text-gray-600",
+                    )}
+                >
                     Frequently Asked Questions
                 </h2>
             </div>

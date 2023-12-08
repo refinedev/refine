@@ -12,6 +12,7 @@ import { EnterpriseDataSource } from "@site/src/refine-theme/enterprise-data-sou
 import { EnterpriseFrequentUpdates } from "@site/src/refine-theme/enterprise-frequent-updates";
 import { LandingTrustedByDevelopers } from "@site/src/refine-theme/landing-trusted-by-developers";
 import { EnterpriseFaq } from "@site/src/refine-theme/enterprise-faq";
+import { EnterpriseTable } from "@site/src/refine-theme/enterprise-table";
 
 const Enterprise: React.FC = () => {
     const title = "refine | Open-source Retool for Enterprise";
@@ -68,6 +69,7 @@ const Enterprise: React.FC = () => {
                             )}
                         />
                         <EnterpriseFrequentUpdates />
+                        <EnterpriseTable />
                         <LandingTrustedByDevelopers />
                         <EnterpriseFaq
                             className={clsx(
