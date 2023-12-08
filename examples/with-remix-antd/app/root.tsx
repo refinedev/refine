@@ -20,11 +20,11 @@ import resetStyle from "@refinedev/antd/dist/reset.css";
 import { authProvider } from "./authProvider";
 import { API_URL } from "./constants";
 
-export const meta: MetaFunction = () => ({
+export const meta: MetaFunction = () => ([{
     charset: "utf-8",
     title: "New Remix + Refine App",
     viewport: "width=device-width,initial-scale=1",
-});
+}]);
 
 export default function App(): JSX.Element {
     return (
