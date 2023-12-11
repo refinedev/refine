@@ -10,6 +10,47 @@ import VariableOptions from "gql-query-builder/build/VariableOptions";
 import * as gql from "gql-query-builder";
 import { singular } from "pluralize";
 import set from "lodash/set";
+import { Client } from "graphql-ws";
+
+export const generateSubscription = (
+    client: Client,
+    { callback, params, meta }: any,
+    type: string,
+) => {
+    const generatorMap: any = {
+        created: generateCreatedSubscription,
+        updated: generateUpdatedSubscription,
+        deleted: generateDeletedSubscription,
+    };
+
+    const { resource, filters, subscriptionType, id, ids } = params ?? {};
+
+    const generator = generatorMap[type];
+
+    const { operation, query, variables, operationName } = generator({
+        ids,
+        id,
+        resource,
+        filters,
+        meta,
+        subscriptionType,
+    });
+
+    const onNext = (payload: any) => {
+        callback(payload.data[operation]);
+    };
+
+    const unsubscribe = client.subscribe(
+        { query, variables, operationName },
+        {
+            next: onNext,
+            error: console.error,
+            complete: () => null,
+        },
+    );
+
+    return unsubscribe;
+};
 
 const operatorMap: { [key: string]: string } = {
     eq: "eq",

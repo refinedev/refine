@@ -1,50 +1,6 @@
 import { LiveProvider } from "@refinedev/core";
 import { Client } from "graphql-ws";
-import {
-    generateCreatedSubscription,
-    generateDeletedSubscription,
-    generateUpdatedSubscription,
-} from "../utils";
-
-const generateSubscription = (
-    client: Client,
-    { callback, params, meta }: any,
-    type: string,
-) => {
-    const generatorMap: any = {
-        created: generateCreatedSubscription,
-        updated: generateUpdatedSubscription,
-        deleted: generateDeletedSubscription,
-    };
-
-    const { resource, filters, subscriptionType, id, ids } = params ?? {};
-
-    const generator = generatorMap[type];
-
-    const { operation, query, variables, operationName } = generator({
-        ids,
-        id,
-        resource,
-        filters,
-        meta,
-        subscriptionType,
-    });
-
-    const onNext = (payload: any) => {
-        callback(payload.data[operation]);
-    };
-
-    const unsubscribe = client.subscribe(
-        { query, variables, operationName },
-        {
-            next: onNext,
-            error: console.error,
-            complete: () => null,
-        },
-    );
-
-    return unsubscribe;
-};
+import { generateSubscription } from "../utils";
 
 export const liveProvider = (client: Client): LiveProvider => {
     return {
