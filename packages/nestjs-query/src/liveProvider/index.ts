@@ -78,11 +78,11 @@ export const liveProvider = (client: Client): LiveProvider => {
                     "created",
                 );
 
-                // const updatedUnsubscribe = generateSubscription(
-                //     client,
-                //     { callback, params },
-                //     "updated",
-                // );
+                const updatedUnsubscribe = generateSubscription(
+                    client,
+                    { callback, params, meta },
+                    "updated",
+                );
 
                 // const deletedUnsubscribe = generateSubscription(
                 //     client,
@@ -91,7 +91,7 @@ export const liveProvider = (client: Client): LiveProvider => {
                 // );
 
                 unsubscribes.push(createdUnsubscribe);
-                // unsubscribes.push(updatedUnsubscribe);
+                unsubscribes.push(updatedUnsubscribe);
                 // unsubscribes.push(deletedUnsubscribe);
             }
 

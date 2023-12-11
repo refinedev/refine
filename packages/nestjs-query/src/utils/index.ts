@@ -203,6 +203,37 @@ export const generateUpdatedSubscription = ({
     meta,
 }: any) => {
     if (meta?.gqlQuery) {
+        const singularResourceName = camelcase(singular(resource), {
+            pascalCase: true,
+        });
+
+        console.log(meta.gqlQuery);
+
+        const operationName = `Updated${singularResourceName}`;
+
+        const operation = `updatedOne${singularResourceName}`;
+
+        const query = `
+            subscription ${operationName}($input: UpdateOne${singularResourceName}SubscriptionFilterInput) {
+                ${operation}(input: $input) {
+                    id
+                }
+            }
+        `;
+
+        const variables: VariableOptions = {};
+
+        if (filters) {
+            variables["input"] = {
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
+            };
+        }
+
+        return { query, variables, operation, operationName };
     }
 
     const operation = `updatedOne${camelcase(singular(resource), {
