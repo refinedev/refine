@@ -84,15 +84,15 @@ export const liveProvider = (client: Client): LiveProvider => {
                     "updated",
                 );
 
-                // const deletedUnsubscribe = generateSubscription(
-                //     client,
-                //     { callback, params },
-                //     "deleted",
-                // );
+                const deletedUnsubscribe = generateSubscription(
+                    client,
+                    { callback, params, meta },
+                    "deleted",
+                );
 
                 unsubscribes.push(createdUnsubscribe);
                 unsubscribes.push(updatedUnsubscribe);
-                // unsubscribes.push(deletedUnsubscribe);
+                unsubscribes.push(deletedUnsubscribe);
             }
 
             if (params?.subscriptionType === "useOne") {

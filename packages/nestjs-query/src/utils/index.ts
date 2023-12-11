@@ -275,6 +275,38 @@ export const generateDeletedSubscription = ({
     filters,
     meta,
 }: any) => {
+    if (meta?.gqlQuery) {
+        const singularResourceName = camelcase(singular(resource), {
+            pascalCase: true,
+        });
+
+        const operationName = `Deleted${singularResourceName}`;
+
+        const operation = `deletedOne${singularResourceName}`;
+
+        const query = `
+            subscription ${operationName}($input: DeleteOne${singularResourceName}SubscriptionFilterInput) {
+                ${operation}(input: $input) {
+                    id
+                }
+            }
+        `;
+
+        const variables: VariableOptions = {};
+
+        if (filters) {
+            variables["input"] = {
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
+            };
+        }
+
+        return { query, variables, operation, operationName };
+    }
+
     const operation = `deletedOne${camelcase(singular(resource), {
         pascalCase: true,
     })}`;
