@@ -12,20 +12,20 @@ export const EnterpriseTable = ({ className }: { className?: string }) => {
     );
     const intervalRef = React.useRef<NodeJS.Timer>(null);
 
-    React.useEffect(() => {
-        const interval = setInterval(() => {
-            setActiveTab((prev) =>
-                prev === "community" ? "enterprise" : "community",
-            );
-        }, 5000);
+    // React.useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         setActiveTab((prev) =>
+    //             prev === "community" ? "enterprise" : "community",
+    //         );
+    //     }, 5000);
 
-        intervalRef.current = interval;
+    //     intervalRef.current = interval;
 
-        return () => {
-            clearInterval(intervalRef.current);
-            intervalRef.current = null;
-        };
-    }, []);
+    //     return () => {
+    //         clearInterval(intervalRef.current);
+    //         intervalRef.current = null;
+    //     };
+    // }, []);
 
     return (
         <div className={clsx("flex flex-col", "not-prose", className)}>
@@ -89,7 +89,7 @@ export const EnterpriseTable = ({ className }: { className?: string }) => {
                 </div>
             </div>
             <EnterpriseGetInTouchButton
-                className={clsx("block landing-md:hidden", "mx-auto")}
+                className={clsx("block landing-sm:hidden", "mx-auto")}
                 linkClassName={clsx("w-[344px]", "mx-auto")}
             />
         </div>
@@ -100,7 +100,7 @@ const TableItemHeading = ({ children }) => {
     return (
         <div
             className={clsx(
-                "pl-4 landing-md:pl-10 pb-4 pt-4 pr-4",
+                "pl-4 landing-sm:pl-10 pb-4 pt-4 pr-4",
                 "bg-refine-enterprise-table-alt",
                 "dark:bg-refine-enterprise-table-alt-dark",
                 "border-b",
@@ -125,10 +125,11 @@ const TableItemContent = ({ children, valueType, activeTab, className }) => {
             className={clsx(
                 isIcon && "w-auto",
                 !isIcon && "w-[560px]",
+                "landing-sm:w-[360px]",
                 "landing-md:w-[296px]",
                 "landing-lg:w-[396px]",
-                "landing-md:py-4",
-                "landing-md:px-6",
+                "landing-sm:py-4",
+                "landing-sm:px-6",
                 "flex",
                 "items-start",
                 "justify-start",
@@ -151,10 +152,10 @@ const TableItemDescription = ({ children, isLast }) => {
                 "flex",
                 "text-gray-700",
                 "dark:text-gray-400",
-                "landing-md:pl-10 landing-md:pb-4 landing-md:pt-4 landing-md:pr-4",
-                !isLast && "landing-md:border-r",
-                !isLast && "landing-md:border-gray-200",
-                !isLast && "landing-md:dark:border-gray-700",
+                "landing-sm:pl-10 landing-sm:pb-4 landing-sm:pt-4 landing-sm:pr-4",
+                !isLast && "landing-sm:border-r",
+                !isLast && "landing-sm:border-gray-200",
+                !isLast && "landing-sm:dark:border-gray-700",
             )}
         >
             {children}
@@ -178,12 +179,12 @@ const TableItemContentGroup = ({
                 "flex",
                 "w-auto",
                 isIcon && "ml-auto",
-                isLast && "landing-md:border-b",
-                isLast && "landing-md:border-l",
-                isLast && "landing-md:border-gray-200",
-                isLast && "landing-md:dark:border-gray-700",
-                isLast && "landing-md:rounded-bl-3xl",
-                isLast && "landing-md:rounded-br-3xl",
+                isLast && "landing-sm:border-b",
+                isLast && "landing-sm:border-l",
+                isLast && "landing-sm:border-gray-200",
+                isLast && "landing-sm:dark:border-gray-700",
+                isLast && "landing-sm:rounded-bl-3xl",
+                isLast && "landing-sm:rounded-br-3xl",
                 "overflow-hidden",
             )}
         >
@@ -242,9 +243,8 @@ const TableItem = ({
                 !isLast && "border-b-gray-200",
                 !isLast && "dark:border-b-gray-700",
                 "w-full",
-                "p-4 landing-md:p-0",
-                "min-h-[90px] landing-md:min-h-min",
-                "overflow-hidden landing-md:overflow-visible",
+                "p-4 landing-sm:p-0",
+                "overflow-hidden",
             )}
         >
             <div
@@ -253,8 +253,8 @@ const TableItem = ({
                     "flex",
                     valueType[activeTab] === "icon" && "flex-row",
                     valueType[activeTab] !== "icon" &&
-                        "flex-col landing-md:flex-row",
-                    "gap-2 landing-md:gap-0",
+                        "flex-col landing-sm:flex-row",
+                    "gap-2 landing-sm:gap-0",
                 )}
             >
                 <TableItemDescription isLast={isLast}>
@@ -298,7 +298,7 @@ const TableTabs = ({ activeTab, setActiveTab }) => {
                 "border-b-0",
                 "bg-gray-0",
                 "dark:bg-gray-900",
-                "w-full landing-md:w-[360px]",
+                "w-full landing-sm:w-[360px]",
                 "overflow-hidden",
                 "landing-md:w-auto",
                 "relative",
@@ -349,10 +349,10 @@ const TableTabs = ({ activeTab, setActiveTab }) => {
                         activeTab !== "community" && "hidden landing-md:flex",
                         activeTab === "community" && "flex",
                         "items-center",
-                        "justify-start landing-md:justify-center",
+                        "justify-start",
                         "text-center",
                         "text-base",
-                        "pricing-content:text-2xl",
+                        "landing-sm:text-2xl",
                     )}
                 >
                     <div
@@ -391,10 +391,10 @@ const TableTabs = ({ activeTab, setActiveTab }) => {
                         activeTab !== "enterprise" && "hidden landing-md:flex",
                         activeTab === "enterprise" && "flex",
                         "items-center",
-                        "justify-start landing-md:justify-center",
+                        "justify-start",
                         "text-center",
                         "text-base",
-                        "pricing-content:text-2xl",
+                        "landing-sm:text-2xl",
                     )}
                 >
                     <div
@@ -451,8 +451,8 @@ const TableSectionWrapper = ({ children, className }) => {
                 "flex",
                 "flex-col",
                 "border-r",
-                "border-b landing-md:border-b-0",
-                "border-l landing-md:border-l-0",
+                "border-b landing-sm:border-b-0",
+                "border-l landing-sm:border-l-0",
                 "rounded-br-2xl landing-md:rounded-br-3xl",
                 "rounded-bl-2xl",
                 "border-gray-200",
@@ -470,7 +470,7 @@ const CheckIcon = () => {
         <CheckCircle
             className={clsx(
                 "dark:text-refine-green-alt text-refine-green",
-                "landing-md:mx-auto",
+                "landing-sm:mx-auto",
             )}
         />
     );
@@ -478,7 +478,7 @@ const CheckIcon = () => {
 
 const CrossIcon = () => {
     return (
-        <CrossCircle className={clsx("text-gray-500", "landing-md:mx-auto")} />
+        <CrossCircle className={clsx("text-gray-500", "landing-sm:mx-auto")} />
     );
 };
 
@@ -663,7 +663,7 @@ const tableData = [
                     <div className={clsx("flex flex-col", "gap-6", "w-full")}>
                         <TableText>Refine commercial license</TableText>
                         <EnterpriseGetInTouchButton
-                            className={clsx("hidden landing-md:block")}
+                            className={clsx("hidden landing-sm:block")}
                             linkClassName={clsx("w-full")}
                         />
                     </div>
