@@ -359,7 +359,19 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             if (url) {
                 client.setEndpoint(url);
             }
-            client.setHeaders(headers);
+
+            if (headers) {
+                client.setHeaders(headers);
+            }
+
+            if (meta?.gqlQuery) {
+                const response: any = await client.request(
+                    meta.gqlQuery,
+                    meta.variables,
+                );
+
+                return { data: response };
+            }
 
             if (meta?.rawQuery) {
                 const response = await client.request<BaseRecord>(
@@ -372,37 +384,36 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
             if (meta) {
                 if (meta.operation) {
+                    let query, variables;
+
                     if (method === "get") {
-                        const { query, variables } = gql.query({
+                        const gqlQuery = gql.query({
                             operation: meta.operation,
                             fields: meta.fields,
                             variables: meta.variables,
                         });
 
-                        const response = await client.request<BaseRecord>(
-                            query,
-                            variables,
-                        );
-
-                        return {
-                            data: response[meta.operation],
-                        };
+                        query = gqlQuery.query;
+                        variables = gqlQuery.variables;
                     } else {
-                        const { query, variables } = gql.mutation({
+                        const gqlMutation = gql.mutation({
                             operation: meta.operation,
                             fields: meta.fields,
                             variables: meta.variables,
                         });
 
-                        const response = await client.request<BaseRecord>(
-                            query,
-                            variables,
-                        );
-
-                        return {
-                            data: response[meta.operation],
-                        };
+                        query = gqlMutation.query;
+                        variables = gqlMutation.variables;
                     }
+
+                    const response = await client.request<BaseRecord>(
+                        query,
+                        variables,
+                    );
+
+                    return {
+                        data: response[meta.operation],
+                    };
                 } else {
                     throw Error("GraphQL operation name required.");
                 }

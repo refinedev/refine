@@ -12,7 +12,7 @@ import {
     DashboardTotalCountCard,
     DashboardTotalRevenueChart,
 } from "./components";
-import { useOne } from "@refinedev/core";
+import { useCustom } from "@refinedev/core";
 import gql from "graphql-tag";
 import { DashboardTotalCountsQuery } from "@/interfaces";
 
@@ -31,11 +31,9 @@ const DASHBOARD_QUERY = gql`
 `;
 
 export const DashboardPage: React.FC = () => {
-    const { data, isLoading } = useOne<DashboardTotalCountsQuery>({
-        queryOptions: {
-            enabled: true,
-        },
-        liveMode: "off",
+    const { data, isLoading } = useCustom<DashboardTotalCountsQuery>({
+        url: "",
+        method: "get",
         meta: { gqlQuery: DASHBOARD_QUERY },
     });
 
