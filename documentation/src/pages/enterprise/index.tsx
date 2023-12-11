@@ -13,6 +13,7 @@ import { EnterpriseFrequentUpdates } from "@site/src/refine-theme/enterprise-fre
 import { LandingTrustedByDevelopers } from "@site/src/refine-theme/landing-trusted-by-developers";
 import { EnterpriseFaq } from "@site/src/refine-theme/enterprise-faq";
 import { EnterpriseTable } from "@site/src/refine-theme/enterprise-table";
+import { LandingFooter } from "@site/src/refine-theme/landing-footer";
 
 const Enterprise: React.FC = () => {
     const title = "refine | Open-source Retool for Enterprise";
@@ -83,6 +84,7 @@ const Enterprise: React.FC = () => {
                             )}
                         />
                     </div>
+                    <LandingFooter />
                 </div>
             </CommonLayout>
         </>
