@@ -8,7 +8,7 @@ import {
 
 const generateSubscription = (
     client: Client,
-    { callback, params }: any,
+    { callback, params, meta }: any,
     type: string,
 ) => {
     const generatorMap: any = {
@@ -17,11 +17,11 @@ const generateSubscription = (
         deleted: generateDeletedSubscription,
     };
 
-    const { resource, meta, filters, subscriptionType, id, ids } = params ?? {};
+    const { resource, filters, subscriptionType, id, ids } = params ?? {};
 
     const generator = generatorMap[type];
 
-    const { operation, query, variables } = generator({
+    const { operation, query, variables, operationName } = generator({
         ids,
         id,
         resource,
@@ -35,7 +35,7 @@ const generateSubscription = (
     };
 
     const unsubscribe = client.subscribe(
-        { query, variables },
+        { query, variables, operationName },
         {
             next: onNext,
             error: console.error,
@@ -48,9 +48,8 @@ const generateSubscription = (
 
 export const liveProvider = (client: Client): LiveProvider => {
     return {
-        subscribe({ callback, params }) {
-            const { resource, meta, filters, subscriptionType, id, ids } =
-                params ?? {};
+        subscribe({ callback, params, meta }) {
+            const { resource, subscriptionType } = params ?? {};
 
             if (!meta) {
                 throw new Error(
@@ -75,31 +74,31 @@ export const liveProvider = (client: Client): LiveProvider => {
             if (params?.subscriptionType === "useList") {
                 const createdUnsubscribe = generateSubscription(
                     client,
-                    { callback, params },
+                    { callback, params, meta },
                     "created",
                 );
 
-                const updatedUnsubscribe = generateSubscription(
-                    client,
-                    { callback, params },
-                    "updated",
-                );
+                // const updatedUnsubscribe = generateSubscription(
+                //     client,
+                //     { callback, params },
+                //     "updated",
+                // );
 
-                const deletedUnsubscribe = generateSubscription(
-                    client,
-                    { callback, params },
-                    "deleted",
-                );
+                // const deletedUnsubscribe = generateSubscription(
+                //     client,
+                //     { callback, params },
+                //     "deleted",
+                // );
 
                 unsubscribes.push(createdUnsubscribe);
-                unsubscribes.push(updatedUnsubscribe);
-                unsubscribes.push(deletedUnsubscribe);
+                // unsubscribes.push(updatedUnsubscribe);
+                // unsubscribes.push(deletedUnsubscribe);
             }
 
             if (params?.subscriptionType === "useOne") {
                 const updatedUnsubscribe = generateSubscription(
                     client,
-                    { callback, params },
+                    { callback, params, meta },
                     "updated",
                 );
 

@@ -109,20 +109,6 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
         },
         meta: {
             gqlQuery: COMPANIES_TABLE_QUERY,
-            fields: [
-                "id",
-                "name",
-                "avatarUrl",
-                {
-                    dealsAggregate: [
-                        {
-                            sum: ["value"],
-                        },
-                    ],
-                },
-                { salesOwner: ["id", "name", "avatarUrl"] },
-                { contacts: [{ nodes: ["id", "name", "avatarUrl"] }] },
-            ],
         },
     });
 

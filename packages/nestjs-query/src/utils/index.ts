@@ -131,6 +131,38 @@ export const generateCreatedSubscription = ({
     filters,
     meta,
 }: any) => {
+    if (meta?.gqlQuery) {
+        const singularResourceName = camelcase(singular(resource), {
+            pascalCase: true,
+        });
+
+        const operationName = `Created${singularResourceName}`;
+
+        const operation = `created${singularResourceName}`;
+
+        const query = `
+            subscription ${operationName}($input: Create${singularResourceName}SubscriptionFilterInput) {
+                ${operation}(input: $input) {
+                    id
+                }
+            }
+        `;
+
+        const variables: VariableOptions = {};
+
+        if (filters) {
+            variables["input"] = {
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
+            };
+        }
+
+        return { query, variables, operation, operationName };
+    }
+
     const operation = `created${camelcase(singular(resource), {
         pascalCase: true,
     })}`;
@@ -170,6 +202,9 @@ export const generateUpdatedSubscription = ({
     filters,
     meta,
 }: any) => {
+    if (meta?.gqlQuery) {
+    }
+
     const operation = `updatedOne${camelcase(singular(resource), {
         pascalCase: true,
     })}`;
