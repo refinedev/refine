@@ -1,12 +1,9 @@
-// import { CloudIcon } from "../icons/cloud";
-import { HackathonAltIcon } from "../icons/hackathon-alt";
 import {
     DocumentsIcon,
     IntegrationsIcon,
     TutorialIcon,
     ExamplesIcon,
     AwesomeIcon,
-    // UseCasesIcon,
     ContributeIcon,
     RefineWeekIcon,
     HackathonsIcon,
@@ -14,6 +11,7 @@ import {
     StoreIcon,
     MeetIcon,
     BlogIcon,
+    NewBadgeIcon,
 } from "../icons/popover";
 
 export type NavbarPopoverItemType = {
@@ -83,6 +81,7 @@ export const MENU_ITEMS: MenuItemType[] = [
         isPopover: false,
         label: "Enterprise",
         href: "/enterprise",
+        icon: NewBadgeIcon,
     },
     // {
     //     isPopover: false,

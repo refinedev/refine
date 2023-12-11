@@ -411,6 +411,8 @@ module.exports = {
                 ],
                 "enterprise-frequent-updates-light-md":
                     "radial-gradient(120% 100% at 100% 50%, rgba(0, 128, 255, 0.25) 0%, rgba(0, 128, 255, 0.00) 100%)",
+                "header-menu-new-badge-dark": `linear-gradient(45deg, #26D97F80, #26D97F00, #26D97F00, #26D97F00, #26D97F, #26D97F00, #26D97F00, #26D97F00)`,
+                "header-menu-new-badge-light": `linear-gradient(45deg, #0080FF00, #0080FF80, #0080FF00, #0080FF00, #0080FF00, #0080FF, #0080FF00, #0080FF00, #0080FF00)`,
             },
             backgroundPosition: {
                 "landing-wizard-option-right":
@@ -487,6 +489,8 @@ module.exports = {
                     "enterprise-data-source-left 25s linear infinite",
                 "enterprise-data-source-right":
                     "enterprise-data-source-right 25s linear infinite",
+                "header-menu-new-badge":
+                    "header-menu-new-badge 4s ease-in-out infinite",
             },
             keyframes: {
                 "code-scroll": {
@@ -755,6 +759,17 @@ module.exports = {
                 "enterprise-data-source-right": {
                     "0%": { transform: "translateX(0)" },
                     "100%": { transform: "translateX(50%)" },
+                },
+                "header-menu-new-badge": {
+                    "0%": {
+                        "background-position": "0% 50%",
+                    },
+                    "50%": {
+                        "background-position": "100% 50%",
+                    },
+                    "100%": {
+                        "background-position": "0% 50%",
+                    },
                 },
             },
         },

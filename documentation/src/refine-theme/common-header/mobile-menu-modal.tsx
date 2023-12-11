@@ -137,6 +137,7 @@ const Tablet = (props: { className?: string }) => {
     return (
         <div className={clsx(props.className)}>
             {MENU_ITEMS.map((item, i) => {
+                const Icon = "icon" in item && item.icon;
                 return (
                     <div
                         key={i}
@@ -154,9 +155,11 @@ const Tablet = (props: { className?: string }) => {
                                 "no-underline",
                                 "dark:text-gray-0 text-gray-900",
                                 "font-bold",
+                                "flex items-center gap-2",
                             )}
                         >
                             {item.label}
+                            {Icon && <Icon />}
                         </Link>
                         {"items" in item && (
                             <div
@@ -218,6 +221,7 @@ const Phone = (props: { className?: string }) => {
                             key={`modal-${item.label}`}
                             label={item.label}
                             href={(item as NavbarItemType).href}
+                            icon={(item as NavbarItemType).icon}
                         />
                     );
                 })}
