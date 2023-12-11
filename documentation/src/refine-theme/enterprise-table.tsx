@@ -62,7 +62,15 @@ export const EnterpriseTable = ({ className }: { className?: string }) => {
                             clearInterval(intervalRef.current);
                         }}
                     />
-                    <TableSectionWrapper>
+                    <TableSectionWrapper
+                        className={clsx(
+                            activeTab === "enterprise" &&
+                                "animate-enterprise-table-right-to-left",
+                            activeTab === "community" &&
+                                "animate-enterprise-table-left-to-right",
+                            "landing-md:animate-none landing-md:translate-x-0",
+                        )}
+                    >
                         {tableData.map((section) => {
                             const isLast =
                                 section.title === tableData.at(-1).title;
@@ -247,10 +255,6 @@ const TableItem = ({
                     valueType[activeTab] !== "icon" &&
                         "flex-col landing-md:flex-row",
                     "gap-2 landing-md:gap-0",
-                    activeTab === "enterprise" &&
-                        "animate-enterprise-table-right-to-left",
-                    activeTab === "community" &&
-                        "animate-enterprise-table-left-to-right",
                 )}
             >
                 <TableItemDescription isLast={isLast}>
@@ -334,17 +338,7 @@ const TableTabs = ({ activeTab, setActiveTab }) => {
                 />
             </button>
             <div
-                className={clsx(
-                    "relative",
-                    "w-full",
-                    "flex",
-                    "flex-shrink-0",
-                    "transition-transform",
-                    "ease-in-out",
-                    "duration-300",
-                    activeTab === "enterprise" && "-translate-x-1/2",
-                    "landing-md:translate-x-0",
-                )}
+                className={clsx("relative", "w-full", "flex", "flex-shrink-0")}
             >
                 <div
                     className={clsx(
@@ -352,7 +346,8 @@ const TableTabs = ({ activeTab, setActiveTab }) => {
                         "landing-md:w-[296px]",
                         "landing-lg:w-[396px]",
                         "p-4 landing-md:p-6",
-                        "flex",
+                        activeTab !== "community" && "hidden landing-md:flex",
+                        activeTab === "community" && "flex",
                         "items-center",
                         "justify-start landing-md:justify-center",
                         "text-center",
@@ -393,7 +388,8 @@ const TableTabs = ({ activeTab, setActiveTab }) => {
                         "landing-md:w-[296px]",
                         "landing-lg:w-[396px]",
                         "p-4 landing-md:p-6",
-                        "flex",
+                        activeTab !== "enterprise" && "hidden landing-md:flex",
+                        activeTab === "enterprise" && "flex",
                         "items-center",
                         "justify-start landing-md:justify-center",
                         "text-center",
@@ -448,7 +444,7 @@ const TableStickyHeader = ({ activeTab, setActiveTab }) => {
     );
 };
 
-const TableSectionWrapper = ({ children }) => {
+const TableSectionWrapper = ({ children, className }) => {
     return (
         <div
             className={clsx(
@@ -461,6 +457,7 @@ const TableSectionWrapper = ({ children }) => {
                 "rounded-bl-2xl",
                 "border-gray-200",
                 "dark:border-gray-700",
+                className,
             )}
         >
             {children}
