@@ -2,6 +2,25 @@ import { LiveProvider } from "@refinedev/core";
 import { Client } from "graphql-ws";
 import { generateSubscription } from "../utils";
 
+const subscriptions: any = {
+    create: {},
+    update: {},
+    delete: {},
+};
+
+const alreadySubscribed = (
+    action: "create" | "update" | "delete",
+    resource: string,
+) => {
+    return !!subscriptions[action][resource];
+};
+
+const resetSubscriptions = () => {
+    subscriptions.create = {};
+    subscriptions.update = {};
+    subscriptions.delete = {};
+};
+
 export const liveProvider = (client: Client): LiveProvider => {
     return {
         subscribe({ callback, params, meta }) {
@@ -28,40 +47,58 @@ export const liveProvider = (client: Client): LiveProvider => {
             const unsubscribes: any[] = [];
 
             if (params?.subscriptionType === "useList") {
-                const createdUnsubscribe = generateSubscription(
-                    client,
-                    { callback, params, meta },
-                    "created",
-                );
+                if (!alreadySubscribed("create", resource)) {
+                    const createdUnsubscribe = generateSubscription(
+                        client,
+                        { callback, params, meta },
+                        "created",
+                    );
+                    subscriptions["create"][resource] = true;
 
-                const updatedUnsubscribe = generateSubscription(
-                    client,
-                    { callback, params, meta },
-                    "updated",
-                );
+                    unsubscribes.push(createdUnsubscribe);
+                }
 
-                const deletedUnsubscribe = generateSubscription(
-                    client,
-                    { callback, params, meta },
-                    "deleted",
-                );
+                if (!alreadySubscribed("update", resource)) {
+                    const updatedUnsubscribe = generateSubscription(
+                        client,
+                        { callback, params, meta },
+                        "updated",
+                    );
 
-                unsubscribes.push(createdUnsubscribe);
-                unsubscribes.push(updatedUnsubscribe);
-                unsubscribes.push(deletedUnsubscribe);
+                    subscriptions["update"][resource] = true;
+
+                    unsubscribes.push(updatedUnsubscribe);
+                }
+
+                if (!alreadySubscribed("delete", resource)) {
+                    const deletedUnsubscribe = generateSubscription(
+                        client,
+                        { callback, params, meta },
+                        "deleted",
+                    );
+                    subscriptions["delete"][resource] = true;
+
+                    unsubscribes.push(deletedUnsubscribe);
+                }
             }
 
             if (params?.subscriptionType === "useOne") {
-                const updatedUnsubscribe = generateSubscription(
-                    client,
-                    { callback, params, meta },
-                    "updated",
-                );
+                if (!alreadySubscribed("update", resource)) {
+                    const updatedUnsubscribe = generateSubscription(
+                        client,
+                        { callback, params, meta },
+                        "updated",
+                    );
 
-                unsubscribes.push(updatedUnsubscribe);
+                    subscriptions["update"][resource] = true;
+
+                    unsubscribes.push(updatedUnsubscribe);
+                }
             }
 
             const unsubscribe = () => {
+                resetSubscriptions();
+
                 unsubscribes.forEach((unsubscribe) => unsubscribe());
             };
 
