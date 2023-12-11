@@ -198,6 +198,7 @@ export const generateCreatedSubscription = ({
 };
 
 export const generateUpdatedSubscription = ({
+    id,
     resource,
     filters,
     meta,
@@ -257,6 +258,23 @@ export const generateUpdatedSubscription = ({
                         (filter: LogicalFilter) => !filter.field.includes("."),
                     ),
                 ),
+            },
+        };
+    }
+
+    if (id) {
+        queryVariables["input"] = {
+            type: camelcase(
+                `update_one_${singular(resource)}_subscription_filter_input`,
+                {
+                    pascalCase: true,
+                },
+            ),
+            required: true,
+            value: {
+                filter: {
+                    id: { eq: id },
+                },
             },
         };
     }
