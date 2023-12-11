@@ -76,10 +76,7 @@ export const BlogTOC = (props) => {
     const onIdChange = (id) => {
         if (id !== `${location.hash ?? ""}`.replace("#", "")) {
             setActiveId(id);
-            history.replace({
-                ...location,
-                hash: `#${id}`,
-            });
+            window.history.replaceState({}, "", `#${id}`);
         }
     };
 

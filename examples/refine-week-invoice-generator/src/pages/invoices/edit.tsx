@@ -2,20 +2,16 @@ import { IResourceComponentsProps } from "@refinedev/core";
 import { useForm, useSelect, Edit } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
-import { IInvoice } from "../../interfaces";
+import { IInvoice, IMission } from "../../interfaces";
 
 export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IInvoice>({
+    const { formProps, saveButtonProps } = useForm<IInvoice>({
         meta: { populate: ["company", "contact", "missions"] },
     });
 
-    const defaultValue = queryResult?.data?.data;
-
     const { selectProps: companySelectProps } = useSelect({
         resource: "companies",
-        defaultValue: defaultValue?.company.id,
         optionLabel: "name",
-
         pagination: {
             mode: "server",
         },
@@ -23,18 +19,20 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: contactSelectProps } = useSelect({
         resource: "contacts",
-        defaultValue: defaultValue?.contact?.id,
         optionLabel: "first_name",
-
         pagination: {
             mode: "server",
         },
     });
 
+    const missionIds = formProps.initialValues?.missions?.map(
+        (m: IMission) => m.id,
+    );
+
     const { selectProps: missionSelectProps } = useSelect({
         resource: "missions",
         optionLabel: "mission",
-
+        defaultValue: missionIds,
         pagination: {
             mode: "server",
         },
@@ -44,6 +42,10 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
         <Edit saveButtonProps={saveButtonProps}>
             <Form
                 {...formProps}
+                initialValues={{
+                    ...formProps.initialValues,
+                    missions: missionIds,
+                }}
                 layout="vertical"
                 wrapperCol={{ md: 18, lg: 16 }}
             >
@@ -73,10 +75,18 @@ export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
                 >
                     <Select {...missionSelectProps} mode="multiple" />
                 </Form.Item>
-                <Form.Item label="Discount(%)" name="discount">
+                <Form.Item
+                    label="Discount(%)"
+                    name="discount"
+                    rules={[{ type: "number", transform: (value) => +value }]}
+                >
                     <Input />
                 </Form.Item>
-                <Form.Item label="Tax(%)" name="tax">
+                <Form.Item
+                    label="Tax(%)"
+                    name="tax"
+                    rules={[{ type: "number", transform: (value) => +value }]}
+                >
                     <Input />
                 </Form.Item>
                 <Form.Item label="Custom ID" name="custom_id">

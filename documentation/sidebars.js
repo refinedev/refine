@@ -511,7 +511,6 @@ module.exports = {
                     type: "doc",
                     id: "core/refine-component/index",
                     label: "<Refine>",
-                    className: "font-mono",
                 },
                 "core/interface-references/index",
                 {
@@ -963,16 +962,21 @@ module.exports = {
                         "packages/data-providers/simple-rest/index",
                         "packages/data-providers/strapi-v4/index",
                         "packages/data-providers/supabase/index",
-                        // "packages/data-providers/nestjs-query/index",
-                        // "packages/data-providers/nestjsx-crud/index",
-                        // "packages/data-providers/airtable/index",
-                        // "packages/data-providers/hasura/index",
-                        // "packages/data-providers/multiple-data-providers/index",
-                        // "packages/data-providers/community-data-providers/index",
-                        // "packages/data-providers/custom-data-provider/index",
+                        "packages/data-providers/nestjs-query/index",
+                        "packages/data-providers/nestjsx-crud/index",
+                        "packages/data-providers/airtable/index",
+                        "packages/data-providers/hasura/index",
+                        "packages/data-providers/community-data-providers/index",
                     ],
                 },
             ],
+        },
+        // Enterprise Edition
+        {
+            type: "category",
+            label: "Enterprise Edition",
+            className: "category-as-header",
+            items: ["enterprise-edition/okta/index"],
         },
         // Migration Guide
         {

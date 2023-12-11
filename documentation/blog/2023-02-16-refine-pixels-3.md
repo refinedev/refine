@@ -527,7 +527,7 @@ We will use the **Ant Design** [`<List />`](https://ant.design/components/list#l
 
 [`<List />`](https://ant.design/components/list#list) component takes in the props inside `listProps` object that `useSimpleList()` hook prepares for us from the fetched canvases array and shows each canvas data inside the `<CanvasTile />` component. All the props and presentation logic are being handled inside the **Ant Design** `<List />` component.
 
-[Refer to Antd Design documentation for more information About <List />. →](https://refine.dev/docs/tutorial/introduction/select-framework/)
+[Refer to Ant Design documentation for more information About <List />. →](https://refine.dev/docs/tutorial/introduction/select-framework/)
 
 [Refer to complete refine CRUD app with Ant Design tutorial here. →](https://refine.dev/docs/tutorial/introduction/select-framework/)
 

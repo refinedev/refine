@@ -1,6 +1,7 @@
 ---
 title: Supabase
-sidebar_label: Supabase
+source: https://github.com/refinedev/refine/tree/master/packages/supabase
+swizzle: true
 ---
 
 import Tabs from '@theme/Tabs';
@@ -1398,9 +1399,11 @@ useList({
 Also, since mutation methods do not use the `select` property by default, you can pass the `select` property in the `meta` object to get the selected fields.
 
 ```tsx
-useCreate({
+const { mutate } = useCreate();
+
+mutate({
   resource: "posts",
-  variables: {
+  values: {
     title: "Hello World",
     content: "Lorem ipsum dolor sit amet",
   },

@@ -31,7 +31,7 @@ const authProvider = {
 };
 ```
 
-`<ThemedLayoutV2>` component uses the [`<Layout>`][antd-layout] and [`<Sider>`][antd-sider] components from the Antd Design library to define the layout and structure of a web page. It includes customizable components for the header, sidebar, title, footer, and off-layout area, which can be replaced or customized as needed.
+`<ThemedLayoutV2>` component uses the [`<Layout>`][antd-layout] and [`<Sider>`][antd-sider] components from the Ant Design library to define the layout and structure of a web page. It includes customizable components for the header, sidebar, title, footer, and off-layout area, which can be replaced or customized as needed.
 
 By using `<ThemedLayoutV2>`, developers can create a consistent look and feel across multiple pages or sections of a website, while also improving code maintainability and reusability. The customizable sections of `<ThemedLayoutV2>` include:
 
