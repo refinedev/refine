@@ -59,11 +59,7 @@ const Enterprise: React.FC = () => {
                             )}
                         />
                         <EnterpriseFlexibility />
-                        <EnterpriseDataSource
-                            className={clsx(
-                                "mt-16 landing-sm:mt-24 landing-md:mt-40",
-                            )}
-                        />
+                        <EnterpriseDataSource />
                         <EnterpriseGetInTouchCta
                             className={clsx(
                                 "w-full landing-lg:max-w-[792px] mx-auto",
