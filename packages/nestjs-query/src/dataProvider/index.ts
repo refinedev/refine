@@ -12,7 +12,6 @@ import VariableOptions from "gql-query-builder/build/VariableOptions";
 import { GraphQLClient } from "graphql-request";
 import { singular } from "pluralize";
 import { generatePaging, generateFilters, generateSorting } from "../utils";
-import gqlTag from "graphql-tag";
 
 const handleGetMany = async <TData>(
     client: GraphQLClient,
