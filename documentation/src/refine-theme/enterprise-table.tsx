@@ -4,11 +4,11 @@ import clsx from "clsx";
 import { CheckCircle } from "@site/src/refine-theme/icons/check-circle";
 import { CrossCircle } from "@site/src/refine-theme/icons/cross-circle";
 import { EnterpriseGetInTouchButton } from "./enterprise-get-in-touch-button";
-import { ArrowLeftIcon } from "./icons/arrow-left";
+import { ArrowLeftLongIcon } from "./icons/arrow-left-long";
 
 export const EnterpriseTable = ({ className }: { className?: string }) => {
     const [activeTab, setActiveTab] = useState<"community" | "enterprise">(
-        "community",
+        "enterprise",
     );
     const intervalRef = React.useRef<NodeJS.Timer>(null);
 
@@ -109,11 +109,14 @@ const TableItemHeading = ({ children }) => {
     );
 };
 
-const TableItemContent = ({ children, className }: any) => {
+const TableItemContent = ({ children, valueType, activeTab, className }) => {
+    const isIcon = valueType[activeTab] === "icon";
+
     return (
         <div
             className={clsx(
-                "w-[560px]",
+                isIcon && "w-auto",
+                !isIcon && "w-[560px]",
                 "landing-md:w-[296px]",
                 "landing-lg:w-[396px]",
                 "landing-md:py-4",
@@ -134,10 +137,10 @@ const TableItemDescription = ({ children, isLast }) => {
     return (
         <div
             className={clsx(
-                "flex-1",
+                "min-w-[296px] landing-md:min-w-auto",
+                "landing-md:flex-1",
                 "text-base",
                 "flex",
-                "items-start",
                 "text-gray-700",
                 "dark:text-gray-400",
                 "landing-md:pl-10 landing-md:pb-4 landing-md:pt-4 landing-md:pr-4",
@@ -156,13 +159,17 @@ const TableItemContentGroup = ({
     enterprise,
     activeTab,
     isLast,
+    valueType,
 }) => {
+    const isIcon = valueType[activeTab] === "icon";
+
     return (
         <div
             className={clsx(
                 "flex-shrink-0",
                 "flex",
                 "w-auto",
+                isIcon && "ml-auto",
                 isLast && "landing-md:border-b",
                 isLast && "landing-md:border-l",
                 isLast && "landing-md:border-gray-200",
@@ -172,19 +179,12 @@ const TableItemContentGroup = ({
                 "overflow-hidden",
             )}
         >
-            <div
-                className={clsx(
-                    "flex",
-                    "flex-shrink-0",
-                    "transition-transform",
-                    "ease-in-out",
-                    "duration-300",
-                    activeTab === "enterprise" && "-translate-x-1/2",
-                    "landing-md:translate-x-0",
-                )}
-            >
+            <div className={clsx("flex", "flex-shrink-0")}>
                 <TableItemContent
+                    activeTab={activeTab}
+                    valueType={valueType}
                     className={clsx(
+                        activeTab !== "community" && "hidden landing-md:flex",
                         activeTab !== "community" &&
                             "opacity-0 landing-md:opacity-100",
                         activeTab === "community" && "opacity-100",
@@ -203,7 +203,10 @@ const TableItemContentGroup = ({
                     )}
                 />
                 <TableItemContent
+                    activeTab={activeTab}
+                    valueType={valueType}
                     className={clsx(
+                        activeTab !== "enterprise" && "hidden landing-md:flex",
                         activeTab !== "enterprise" &&
                             "opacity-0 landing-md:opacity-100",
                         activeTab === "enterprise" && "opacity-100",
@@ -222,27 +225,41 @@ const TableItem = ({
     enterprise,
     activeTab,
     isLast,
+    valueType,
 }) => {
     return (
         <div
             className={clsx(
-                "w-full",
-                "flex",
-                "flex-col landing-md:flex-row",
-                "gap-2 landing-md:gap-0",
-                "p-4 landing-md:p-0",
-                "overflow-hidden landing-md:overflow-visible",
                 !isLast && "border-b",
                 !isLast && "border-b-gray-200",
                 !isLast && "dark:border-b-gray-700",
+                "w-full",
+                "p-4 landing-md:p-0",
+                "min-h-[90px] landing-md:min-h-min",
+                "overflow-hidden landing-md:overflow-visible",
             )}
         >
-            <TableItemDescription isLast={isLast}>
-                {description}
-            </TableItemDescription>
-            <TableItemContentGroup
-                {...{ community, enterprise, activeTab, isLast }}
-            />
+            <div
+                key={activeTab}
+                className={clsx(
+                    "flex",
+                    valueType[activeTab] === "icon" && "flex-row",
+                    valueType[activeTab] !== "icon" &&
+                        "flex-col landing-md:flex-row",
+                    "gap-2 landing-md:gap-0",
+                    activeTab === "enterprise" &&
+                        "animate-enterprise-table-right-to-left",
+                    activeTab === "community" &&
+                        "animate-enterprise-table-left-to-right",
+                )}
+            >
+                <TableItemDescription isLast={isLast}>
+                    {description}
+                </TableItemDescription>
+                <TableItemContentGroup
+                    {...{ community, enterprise, activeTab, isLast, valueType }}
+                />
+            </div>
         </div>
     );
 };
@@ -302,15 +319,17 @@ const TableTabs = ({ activeTab, setActiveTab }) => {
                     "rounded-full",
                     "w-12 h-6",
                     "items-center justify-center",
-                    "bg-gray-200 dark:bg-gray-700",
-                    "text-gray-700 dark:text-gray-500",
+                    activeTab === "enterprise" &&
+                        "bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500",
+                    activeTab === "community" &&
+                        "bg-refine-blue dark:bg-refine-cyan-alt text-gray-0 dark:text-gray-900",
                 )}
             >
-                <ArrowLeftIcon
+                <ArrowLeftLongIcon
                     className={clsx(
                         "transition-transform duration-200 ease-in-out",
                         activeTab === "community" && "rotate-360",
-                        activeTab === "enterprise" && "-rotate-180",
+                        activeTab === "enterprise" && "rotate-180",
                     )}
                 />
             </button>
@@ -488,11 +507,19 @@ const tableData = [
                 description: "Support Level",
                 community: <TableText>Community Support</TableText>,
                 enterprise: <TableText>Priority Support</TableText>,
+                valueType: {
+                    community: "text",
+                    enterprise: "text",
+                },
             },
             {
                 description: "Support Channels",
                 community: <TableText>Community Channels</TableText>,
                 enterprise: <TableText>Private Support Channel</TableText>,
+                valueType: {
+                    community: "text",
+                    enterprise: "text",
+                },
             },
             {
                 description: "SLA",
@@ -500,6 +527,10 @@ const tableData = [
                 enterprise: (
                     <TableText>Response time within one business day</TableText>
                 ),
+                valueType: {
+                    community: "icon",
+                    enterprise: "text",
+                },
             },
         ],
     },
@@ -514,21 +545,37 @@ const tableData = [
                         Okta, Azure AD, Amazon Cognito & Google Cloud Identity
                     </TableText>
                 ),
+                valueType: {
+                    community: "icon",
+                    enterprise: "text",
+                },
             },
             {
                 description: "Single Sign-On",
                 community: <CrossIcon />,
                 enterprise: <CheckIcon />,
+                valueType: {
+                    community: "icon",
+                    enterprise: "icon",
+                },
             },
             {
                 description: "Multi Factor Authentication",
                 community: <CrossIcon />,
                 enterprise: <CheckIcon />,
+                valueType: {
+                    community: "icon",
+                    enterprise: "icon",
+                },
             },
             {
                 description: "Support for Authorization Services",
                 community: <CrossIcon />,
                 enterprise: <TableText>ACL, RBAC & ABAC models</TableText>,
+                valueType: {
+                    community: "icon",
+                    enterprise: "text",
+                },
             },
         ],
     },
@@ -539,6 +586,10 @@ const tableData = [
                 description: "Direct Database Access",
                 community: <CheckIcon />,
                 enterprise: <TableText>via API Generator</TableText>,
+                valueType: {
+                    community: "icon",
+                    enterprise: "text",
+                },
             },
             {
                 description: "Supported Databases",
@@ -548,6 +599,10 @@ const tableData = [
                         Oracle, MSSQL, PostgreSQL, MySQL, MongoDB
                     </TableText>
                 ),
+                valueType: {
+                    community: "icon",
+                    enterprise: "text",
+                },
             },
         ],
     },
@@ -558,11 +613,19 @@ const tableData = [
                 description: "Release Frequency",
                 community: <TableText>Monthly</TableText>,
                 enterprise: <TableText>Continuous</TableText>,
+                valueType: {
+                    community: "text",
+                    enterprise: "text",
+                },
             },
             {
                 description: "Codemod Updates",
                 community: <CrossIcon />,
                 enterprise: <CheckIcon />,
+                valueType: {
+                    community: "icon",
+                    enterprise: "icon",
+                },
             },
         ],
     },
@@ -573,11 +636,19 @@ const tableData = [
                 description: "Trainings",
                 community: <CrossIcon />,
                 enterprise: <CheckIcon />,
+                valueType: {
+                    community: "icon",
+                    enterprise: "icon",
+                },
             },
             {
                 description: "Code Reviews",
                 community: <CrossIcon />,
                 enterprise: <CheckIcon />,
+                valueType: {
+                    community: "icon",
+                    enterprise: "icon",
+                },
             },
         ],
     },
@@ -600,6 +671,10 @@ const tableData = [
                         />
                     </div>
                 ),
+                valueType: {
+                    community: "text",
+                    enterprise: "text",
+                },
             },
         ],
     },

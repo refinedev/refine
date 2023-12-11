@@ -491,6 +491,10 @@ module.exports = {
                     "enterprise-data-source-right 25s linear infinite",
                 "header-menu-new-badge":
                     "header-menu-new-badge 4s ease-in-out infinite",
+                "enterprise-table-left-to-right":
+                    "enterprise-table-left-to-right 0.3s ease-in-out forwards",
+                "enterprise-table-right-to-left":
+                    "enterprise-table-right-to-left 0.3s ease-in-out forwards",
             },
             keyframes: {
                 "code-scroll": {
@@ -759,6 +763,14 @@ module.exports = {
                 "enterprise-data-source-right": {
                     "0%": { transform: "translateX(0)" },
                     "100%": { transform: "translateX(50%)" },
+                },
+                "enterprise-table-left-to-right": {
+                    "0%": { transform: "translateX(-100%)" },
+                    "100%": { transform: "translateX(0)" },
+                },
+                "enterprise-table-right-to-left": {
+                    "0%": { transform: "translateX(100%)" },
+                    "100%": { transform: "translateX(0)" },
                 },
                 "header-menu-new-badge": {
                     "0%": {
