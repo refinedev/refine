@@ -109,7 +109,7 @@ const TableItemHeading = ({ children }) => {
     );
 };
 
-const TableItemContent = ({ children }) => {
+const TableItemContent = ({ children, className }: any) => {
     return (
         <div
             className={clsx(
@@ -119,9 +119,10 @@ const TableItemContent = ({ children }) => {
                 "landing-md:py-4",
                 "landing-md:px-6",
                 "flex",
-                "items-center",
+                "items-start",
                 "justify-start",
                 "gap-2",
+                className,
             )}
         >
             {children}
@@ -136,7 +137,7 @@ const TableItemDescription = ({ children, isLast }) => {
                 "flex-1",
                 "text-base",
                 "flex",
-                "items-center",
+                "items-start",
                 "text-gray-700",
                 "dark:text-gray-400",
                 "landing-md:pl-10 landing-md:pb-4 landing-md:pt-4 landing-md:pr-4",
@@ -161,14 +162,13 @@ const TableItemContentGroup = ({
             className={clsx(
                 "flex-shrink-0",
                 "flex",
-                "w-[560px]",
+                "w-auto",
                 isLast && "landing-md:border-b",
                 isLast && "landing-md:border-l",
                 isLast && "landing-md:border-gray-200",
                 isLast && "landing-md:dark:border-gray-700",
                 isLast && "landing-md:rounded-bl-3xl",
                 isLast && "landing-md:rounded-br-3xl",
-                "landing-md:w-auto",
                 "overflow-hidden",
             )}
         >
@@ -183,7 +183,15 @@ const TableItemContentGroup = ({
                     "landing-md:translate-x-0",
                 )}
             >
-                <TableItemContent>{community}</TableItemContent>
+                <TableItemContent
+                    className={clsx(
+                        activeTab !== "community" &&
+                            "opacity-0 landing-md:opacity-100",
+                        activeTab === "community" && "opacity-100",
+                    )}
+                >
+                    {community}
+                </TableItemContent>
                 <div
                     className={clsx(
                         "w-px h-full",
@@ -194,7 +202,15 @@ const TableItemContentGroup = ({
                         "landing-md:block",
                     )}
                 />
-                <TableItemContent>{enterprise}</TableItemContent>
+                <TableItemContent
+                    className={clsx(
+                        activeTab !== "enterprise" &&
+                            "opacity-0 landing-md:opacity-100",
+                        activeTab === "enterprise" && "opacity-100",
+                    )}
+                >
+                    {enterprise}
+                </TableItemContent>
             </div>
         </div>
     );
@@ -212,10 +228,10 @@ const TableItem = ({
             className={clsx(
                 "w-full",
                 "flex",
-                "flex-col landing-sm:flex-row",
+                "flex-col landing-md:flex-row",
                 "gap-2 landing-md:gap-0",
                 "p-4 landing-md:p-0",
-                "overflow-hidden landing-sm:overflow-visible",
+                "overflow-hidden landing-md:overflow-visible",
                 !isLast && "border-b",
                 !isLast && "border-b-gray-200",
                 !isLast && "dark:border-b-gray-700",
@@ -438,7 +454,7 @@ const CheckIcon = () => {
         <CheckCircle
             className={clsx(
                 "dark:text-refine-green-alt text-refine-green",
-                "landing-sm:mx-auto",
+                "landing-md:mx-auto",
             )}
         />
     );
@@ -446,7 +462,7 @@ const CheckIcon = () => {
 
 const CrossIcon = () => {
     return (
-        <CrossCircle className={clsx("text-gray-500", "landing-sm:mx-auto")} />
+        <CrossCircle className={clsx("text-gray-500", "landing-md:mx-auto")} />
     );
 };
 
