@@ -14,7 +14,7 @@ import {
 } from "./components";
 import { useCustom } from "@refinedev/core";
 import gql from "graphql-tag";
-import { DashboardTotalCountsQuery } from "@/interfaces";
+import { DashboardTotalCountsQuery } from "./gqlTypes";
 
 const DASHBOARD_QUERY = gql`
     query DashboardTotalCounts {

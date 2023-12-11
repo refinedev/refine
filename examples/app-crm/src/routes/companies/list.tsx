@@ -14,9 +14,9 @@ import debounce from "lodash/debounce";
 import gql from "graphql-tag";
 
 import { ListTitleButton } from "@/components";
-import { CompaniesTableQuery } from "@/interfaces";
 
 import { CompaniesCardView, CompaniesTableView } from "./components";
+import { CompaniesTableQuery } from "./gqlTypes";
 
 type View = "card" | "table";
 
