@@ -2,6 +2,7 @@ import { FC, PropsWithChildren, useState } from "react";
 
 import { List, useTable } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
     AppstoreOutlined,
@@ -13,13 +14,13 @@ import debounce from "lodash/debounce";
 import gql from "graphql-tag";
 
 import { ListTitleButton } from "@/components";
-import { Company } from "@/interfaces";
+import { CompaniesTableQuery } from "@/interfaces";
 
 import { CompaniesCardView, CompaniesTableView } from "./components";
 
 type View = "card" | "table";
 
-const COMPANIES_QUERY = gql`
+const COMPANIES_TABLE_QUERY = gql`
     query CompaniesTable(
         $filter: CompanyFilter!
         $sorting: [CompanySort!]!
@@ -66,7 +67,11 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
         setCurrent,
         setPageSize,
         setFilters,
-    } = useTable<Company, HttpError, { name: string }>({
+    } = useTable<
+        GetFieldsFromList<CompaniesTableQuery>,
+        HttpError,
+        { name: string }
+    >({
         resource: "companies",
         onSearch: (values) => {
             return [
@@ -103,7 +108,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
             pageSize: 12,
         },
         meta: {
-            gqlQuery: COMPANIES_QUERY,
+            gqlQuery: COMPANIES_TABLE_QUERY,
             fields: [
                 "id",
                 "name",

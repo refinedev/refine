@@ -1,14 +1,14 @@
 import React from "react";
 
-import { useNavigation } from "@refinedev/core";
-import { useList } from "@refinedev/nestjs-query";
+import { useList, useNavigation } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { CalendarOutlined, RightCircleOutlined } from "@ant-design/icons";
 import type { CardProps } from "antd";
 import { Button, Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
-import { Event, UpcomingEventsQuery } from "@/interfaces";
+import { UpcomingEventsQuery } from "@/interfaces";
 
 import { Text } from "../../text";
 import { CalendarUpcomingEvent } from "./event";
@@ -92,29 +92,31 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
 }) => {
     const { list } = useNavigation();
 
-    const { data, isLoading } = useList<UpcomingEventsQuery>({
-        resource: "events",
-        pagination: {
-            pageSize: limit,
-        },
-        sorters: [
-            {
-                field: "startDate",
-                order: "asc",
+    const { data, isLoading } = useList<GetFieldsFromList<UpcomingEventsQuery>>(
+        {
+            resource: "events",
+            pagination: {
+                pageSize: limit,
             },
-        ],
-        filters: [
-            {
-                field: "startDate",
-                operator: "gte",
-                value: dayjs().format("YYYY-MM-DD"),
+            sorters: [
+                {
+                    field: "startDate",
+                    order: "asc",
+                },
+            ],
+            filters: [
+                {
+                    field: "startDate",
+                    operator: "gte",
+                    value: dayjs().format("YYYY-MM-DD"),
+                },
+            ],
+            meta: {
+                gqlQuery: CALENDAR_UPCOMING_EVENTS_QUERY,
+                fields: ["id", "title", "color", "startDate", "endDate"],
             },
-        ],
-        meta: {
-            gqlQuery: CALENDAR_UPCOMING_EVENTS_QUERY,
-            fields: ["id", "title", "color", "startDate", "endDate"],
         },
-    });
+    );
 
     return (
         <Card

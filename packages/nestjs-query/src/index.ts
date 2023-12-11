@@ -26,5 +26,4 @@ export type {
 export * as graphqlWS from "graphql-ws";
 export * from "./dataProvider";
 export * from "./liveProvider";
-
-export { useList } from "./hooks/useList";
+export { GetFieldsFromList } from "./interfaces";

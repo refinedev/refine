@@ -7,18 +7,19 @@ import {
     useSelect,
 } from "@refinedev/antd";
 import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { Input, Select, Space, Table, TableProps } from "antd";
 
 import { CustomAvatar, PaginationTotal, Text } from "@/components";
-import { Company } from "@/interfaces";
+import { CompaniesTableQuery, Company } from "@/interfaces";
 import { currencyNumber } from "@/utilities";
 
 import { AvatarGroup } from "./avatar-group";
 
 type Props = {
-    tableProps: TableProps<Company>;
+    tableProps: TableProps<GetFieldsFromList<CompaniesTableQuery>>;
     filters: CrudFilters;
     sorters: CrudSorting;
 };

@@ -1,14 +1,15 @@
 import { FC, useMemo } from "react";
 
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { List, ListProps, TableProps } from "antd";
 
 import { PaginationTotal } from "@/components";
-import { Company } from "@/interfaces";
+import { CompaniesTableQuery, Company } from "@/interfaces";
 
 import { CompanyCard, CompanyCardSkeleton } from "./card";
 
 type Props = {
-    tableProps: TableProps<Company>;
+    tableProps: TableProps<GetFieldsFromList<CompaniesTableQuery>>;
     setCurrent: (current: number) => void;
     setPageSize: (pageSize: number) => void;
 };
