@@ -234,6 +234,14 @@ export const generateUpdatedSubscription = ({
             };
         }
 
+        if (id) {
+            variables["input"] = {
+                filter: {
+                    id: { eq: id },
+                },
+            };
+        }
+
         return { query, variables, operation, operationName };
     }
 
