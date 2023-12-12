@@ -46,12 +46,14 @@ const Enterprise: React.FC = () => {
                         <EnterpriseHeroSection
                             className={clsx(
                                 "h-auto landing-md:h-[432px]",
-                                "mt-4 landing-sm:mt-8 landing-lg:mt-5",
+                                "mt-4 landing-sm:mt-8 landing-lg:mt-8",
                                 "px-4 landing-sm:px-0",
                                 "landing-lg:pr-12",
                             )}
                         />
-                        <EnterpriseGetSupport />
+                        <EnterpriseGetSupport
+                            className={clsx("landing-lg:-mt-40")}
+                        />
                         <EnterpriseSecurity />
                         <EnterpriseGetInTouchCta
                             className={clsx(

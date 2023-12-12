@@ -15,7 +15,6 @@ export const EnterpriseHeroSection = ({
             className={clsx(
                 "flex flex-col",
                 "landing-md:grid landing-md:grid-cols-12",
-                "landing-md:items-center",
                 "not-prose",
                 className,
             )}
@@ -29,6 +28,7 @@ export const EnterpriseHeroSection = ({
                         "text-start",
                         "pl-4 landing-sm:pl-6 landing-md:pl-10",
                         "dark:text-gray-0 text-gray-900",
+                        "landing-lg:pt-8",
                     )}
                 >
                     Refine{" "}
