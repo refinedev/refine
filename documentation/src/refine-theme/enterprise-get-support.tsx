@@ -57,7 +57,10 @@ export const EnterpriseGetSupport = ({ className }: { className?: string }) => {
                     )}
                 >
                     <img
-                        className={clsx("rounded-2xl landing-sm:rounded-3xl")}
+                        className={clsx(
+                            "rounded-2xl landing-sm:rounded-3xl",
+                            "landing-lg:h-[360px]",
+                        )}
                         src={`https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/priority-support-${colorMode}.png`}
                     />
                     <div
@@ -141,7 +144,10 @@ export const EnterpriseGetSupport = ({ className }: { className?: string }) => {
                     )}
                 >
                     <img
-                        className={clsx("rounded-2xl landing-sm:rounded-3xl")}
+                        className={clsx(
+                            "rounded-2xl landing-sm:rounded-3xl",
+                            "landing-lg:h-[360px]",
+                        )}
                         src={`https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/onboarding-${colorMode}.png`}
                     />
                     <div

@@ -35,10 +35,17 @@ export const EnterpriseTable = ({ className }: { className?: string }) => {
             clearInterval(intervalRef.current);
             intervalRef.current = null;
         };
-    }, [breakpoints]);
+    }, [breakpoints.lg]);
 
     return (
-        <div className={clsx("flex flex-col", "not-prose", className)}>
+        <div
+            className={clsx(
+                "flex flex-col",
+                "not-prose",
+                "h-[1556px] landing-sm:h-[1444px] landing-md:h-min ",
+                className,
+            )}
+        >
             <div
                 className={clsx(
                     "pl-4 landing-sm:pl-6 landing-md:pl-10",
