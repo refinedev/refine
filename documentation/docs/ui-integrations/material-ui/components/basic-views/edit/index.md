@@ -18,7 +18,7 @@ import { Controller } from "react-hook-form";
 const SampleEdit = () => {
   const {
     saveButtonProps,
-    RefineCore: { queryResult },
+    refineCore: { queryResult },
     register,
     control,
     formState: { errors },
@@ -431,7 +431,7 @@ import { Controller } from "react-hook-form";
 const SampleEdit = () => {
   const {
     saveButtonProps,
-    RefineCore: { queryResult },
+    refineCore: { queryResult },
     register,
     control,
     formState: { errors },
@@ -1202,7 +1202,7 @@ import { Controller } from "react-hook-form";
 const SampleEdit = () => {
   const {
     saveButtonProps,
-    RefineCore: {
+    refineCore: {
       queryResult,
       // highlight-next-line
       autoSaveProps,
@@ -1212,7 +1212,7 @@ const SampleEdit = () => {
     formState: { errors },
   } = useForm({
     // highlight-start
-    RefineCoreProps: {
+    refineCoreProps: {
       autoSave: {
         enabled: true,
       },

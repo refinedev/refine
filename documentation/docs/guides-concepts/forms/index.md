@@ -65,13 +65,13 @@ import { useForm } from "@refinedev/react-hook-form";
 
 const EditPage = () => {
   const {
-    RefineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     formState: { errors },
     saveButtonProps,
   } = useForm<IProduct, HttpError, FormValues>({
-    RefineCoreProps: {
+    refineCoreProps: {
       resource: "products",
       action: "edit",
       id: 123,
@@ -136,13 +136,13 @@ import { TextInput } from "@mantine/core";
 
 const EditPage = () => {
   const {
-    RefineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     formState: { errors },
     saveButtonProps,
   } = useForm<IProduct, HttpError, FormValues>({
-    RefineCoreProps: {
+    refineCoreProps: {
       resource: "products",
       action: "edit",
       id: 123,
@@ -177,12 +177,12 @@ import { Button, Box, TextField } from "@mui/material";
 
 const EditPage = () => {
   const {
-    RefineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     saveButtonProps,
   } = useForm<IProduct, HttpError, FormValues>({
-    RefineCoreProps: {
+    refineCoreProps: {
       resource: "products",
       action: "edit",
       id: 123,
@@ -225,12 +225,12 @@ import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
 
 const EditPage = () => {
   const {
-    RefineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     saveButtonProps,
   } = useForm<IProduct, HttpError, FormValues>({
-    RefineCoreProps: {
+    refineCoreProps: {
       resource: "products",
       action: "edit",
       id: 123,
@@ -732,7 +732,7 @@ import { FieldValues } from "react-hook-form";
 
 const EditPage = () => {
   const {
-    RefineCore: { onFinish },
+    refineCore: { onFinish },
     register,
     handleSubmit,
   } = useForm();
@@ -779,7 +779,7 @@ type FormValues = {
 export const UserCreate: React.FC = () => {
   const {
     saveButtonProps,
-    RefineCore: { onFinish },
+    refineCore: { onFinish },
     handleSubmit,
   } = useForm<FormValues, HttpError, FormValues>();
 
@@ -843,7 +843,7 @@ type FormValues = {
 export const UserCreate: React.FC = () => {
   const {
     saveButtonProps,
-    RefineCore: { onFinish },
+    refineCore: { onFinish },
     handleSubmit,
   } = useForm<FormValues, HttpError, FormValues>();
 

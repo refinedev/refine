@@ -53,7 +53,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 const PostCreate: React.FC = () => {
   const {
-    RefineCore: { formLoading },
+    refineCore: { formLoading },
     saveButtonProps,
     register,
     formState: { errors },

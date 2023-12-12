@@ -44,7 +44,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 const PostEdit: React.FC = () => {
   const {
-    RefineCore: { formLoading, queryResult },
+    refineCore: { formLoading, queryResult },
     // highlight-next-line
     saveButtonProps,
     register,

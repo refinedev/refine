@@ -14,9 +14,9 @@ import { AutoSaveIndicator, useForm } from "@refinedev/mantine";
 
 const MyComponent = () => {
   const {
-    RefineCore: { autoSaveProps },
+    refineCore: { autoSaveProps },
   } = useForm({
-    RefineCoreProps: {
+    refineCoreProps: {
       autoSave: {
         enabled: true,
       },

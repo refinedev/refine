@@ -18,7 +18,7 @@ import { Controller } from "react-hook-form";
 const SampleCreate = () => {
   const {
     saveButtonProps,
-    RefineCore: { formLoading },
+    refineCore: { formLoading },
     register,
     control,
     formState: { errors },

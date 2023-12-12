@@ -359,7 +359,7 @@ const PostShow: React.FC = () => {
     modal: { visible, close, show },
     id,
   } = useModalForm({
-    RefineCoreProps: { action: "show" },
+    refineCoreProps: { action: "show" },
   });
 
   return (

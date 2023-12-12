@@ -94,7 +94,7 @@ import Box from "@mui/material/Box";
 export const ProductCreate: FC = () => {
   const {
     saveButtonProps,
-    RefineCore: { queryResult, autoSaveProps },
+    refineCore: { queryResult, autoSaveProps },
     register,
     control,
     formState: { errors },

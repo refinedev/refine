@@ -53,7 +53,7 @@ const PostEdit: React.FC = () => {
     // highlight-next-line
     saveButtonProps,
     getInputProps,
-    RefineCore: { queryResult },
+    refineCore: { queryResult },
   } = useForm<IPost>({
     initialValues: {
       title: "",

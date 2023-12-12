@@ -105,7 +105,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 export const UserCreate: React.FC = () => {
   const {
-    RefineCore: { onFinish, formLoading },
+    refineCore: { onFinish, formLoading },
     register,
     handleSubmit,
   } = useForm();
@@ -147,7 +147,7 @@ type FormValues = {
 
 export const UserCreate: React.FC = () => {
   const {
-    RefineCore: { onFinish },
+    refineCore: { onFinish },
     register,
     handleSubmit,
   } = useForm<FormValues, HttpError, FormValues>();
@@ -204,7 +204,7 @@ type FormValues = {
 export const UserCreate: React.FC = () => {
   const {
     saveButtonProps,
-    RefineCore: { onFinish },
+    refineCore: { onFinish },
     handleSubmit,
   } = useForm<FormValues, HttpError, FormValues>();
 
@@ -268,7 +268,7 @@ type FormValues = {
 
 export const UserCreate: React.FC = () => {
   const {
-    RefineCore: { onFinish },
+    refineCore: { onFinish },
     register,
     handleSubmit,
   } = useForm<FormValues, HttpError, FormValues>();
@@ -323,7 +323,7 @@ type FormValues = {
 export const UserCreate: React.FC = () => {
   const {
     saveButtonProps,
-    RefineCore: { onFinish },
+    refineCore: { onFinish },
     handleSubmit,
   } = useForm<FormValues, HttpError, FormValues>();
 

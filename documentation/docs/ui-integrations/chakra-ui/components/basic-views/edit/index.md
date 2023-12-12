@@ -56,7 +56,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 const PostEdit: React.FC = () => {
   const {
-    RefineCore: { formLoading, queryResult },
+    refineCore: { formLoading, queryResult },
     saveButtonProps,
     register,
     formState: { errors },
@@ -420,7 +420,7 @@ const PostEdit: React.FC = () => {
     modal: { visible, close, show },
     id,
   } = useModalForm({
-    RefineCoreProps: { action: "edit" },
+    refineCoreProps: { action: "edit" },
   });
 
   return (
@@ -1257,7 +1257,7 @@ import { useForm } from "@refinedev/react-hook-form";
 // visible-block-start
 const PostEdit: React.FC = () => {
   const {
-    RefineCore: {
+    refineCore: {
       formLoading,
       queryResult,
       // highlight-next-line
@@ -1269,7 +1269,7 @@ const PostEdit: React.FC = () => {
     resetField,
   } = useForm<IPost>({
     // highlight-start
-    RefineCoreProps: {
+    refineCoreProps: {
       autoSave: {
         enabled: true,
       },

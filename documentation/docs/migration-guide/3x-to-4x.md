@@ -1356,7 +1356,7 @@ After that, you can import them from `@tanstack/react-table` package directly.
 
   ```diff
   useTable({
-      RefineCoreProps: {
+      refineCoreProps: {
   -      initialCurrent,
   -      initialPageSize,
   +      pagination: {
@@ -1371,7 +1371,7 @@ After that, you can import them from `@tanstack/react-table` package directly.
 
   ```diff
   useTable({
-      RefineCoreProps: {
+      refineCoreProps: {
   -      hasPagination,
          pagination: {
   +           mode: "off" | "server" | "client",
@@ -1384,7 +1384,7 @@ After that, you can import them from `@tanstack/react-table` package directly.
 
   ```diff
   useTable({
-      RefineCoreProps: {
+      refineCoreProps: {
   -      initialSorter,
   -      permanentSorter,
   +      sorters: {
@@ -1399,7 +1399,7 @@ After that, you can import them from `@tanstack/react-table` package directly.
 
   ```diff
   useTable({
-      RefineCoreProps: {
+      refineCoreProps: {
   -      initialFilter,
   -      permanentFilter,
   -      defaultSetFilterBehavior,
@@ -1416,7 +1416,7 @@ After that, you can import them from `@tanstack/react-table` package directly.
 
   ```diff
   const {
-      RefineCore: {
+      refineCore: {
   -        sorter,
   -        setSorter,
   +        sorters,

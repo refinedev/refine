@@ -126,7 +126,7 @@ const PostList: React.FC = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    RefineCore: {
+    refineCore: {
       setCurrent,
       pageCount,
       current,
@@ -739,13 +739,13 @@ const PostCreatePage: React.FC = () => {
 
 ## Properties
 
-### `RefineCoreProps`
+### `refineCoreProps`
 
 All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#properties) docs.
 
 ```tsx
 const stepsForm = useStepsForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     action: "edit",
     resource: "posts",
     id: "1",
@@ -830,7 +830,7 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useStepsForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     autoSave: {
       enabled: true,
     },
@@ -846,7 +846,7 @@ useStepsForm({
 
 ```tsx
 useStepsForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-next-line
@@ -864,7 +864,7 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useStepsForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-next-line
@@ -928,7 +928,7 @@ const UserCreate: React.FC = () => {
     values,
     steps: { currentStep, gotoStep },
   } = useStepsForm({
-    RefineCoreProps: { action: "create" },
+    refineCoreProps: { action: "create" },
     initialValues: {
       name: "",
       surname: "",
@@ -949,8 +949,8 @@ const UserCreate: React.FC = () => {
 ### Properties
 
 <PropsTable module="@refinedev/mantine/useStepsForm"
-RefineCoreProps-type="[`UseFormCoreProps<TData, TError, TVariables>`](/docs/core/hooks/use-form/#properties)"
-RefineCoreProps-description="Configuration object for the core of the [useForm](/docs/core/hooks/use-form/)"
+refineCoreProps-type="[`UseFormCoreProps<TData, TError, TVariables>`](/docs/core/hooks/use-form/#properties)"
+refineCoreProps-description="Configuration object for the core of the [useForm](/docs/core/hooks/use-form/)"
 stepsProps-description="Configuration object for the steps. `defaultStep`: Allows you to set the initial step. `isBackValidate`: Whether to validation the current step when going back."
 stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
  />
@@ -972,7 +972,7 @@ stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
 | Property                                  | Description                                                     | Type                                                                                                                                    |
 | ----------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | steps                                     | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                                                                                           |
-| RefineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values)                                                                       |
+| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values)                                                                       |
 | `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |
 | overtime                                  | Overtime loading props                                          | `{ elapsedTime?: number }`                                                                                                              |
 | autoSaveProps                             | Auto save props                                                 | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }` |

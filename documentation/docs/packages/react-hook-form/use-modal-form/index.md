@@ -137,13 +137,13 @@ const PostList = () => {
   // highlight-start
   const {
     formState: { errors },
-    RefineCore: { onFinish, formLoading },
+    refineCore: { onFinish, formLoading },
     modal: { visible, close, show },
     register,
     handleSubmit,
     saveButtonProps,
   } = useModalForm<IPost, HttpError, IPost>({
-    RefineCoreProps: { action: "create" },
+    refineCoreProps: { action: "create" },
   });
   // highlight-end
 
@@ -251,13 +251,13 @@ const PostList = () => {
   // highlight-start
   const {
     formState: { errors },
-    RefineCore: { onFinish, formLoading },
+    refineCore: { onFinish, formLoading },
     modal: { visible, close, show },
     register,
     handleSubmit,
     saveButtonProps,
   } = useModalForm<IPost, HttpError, IPost>({
-    RefineCoreProps: { action: "edit" },
+    refineCoreProps: { action: "edit" },
   });
   // highlight-end
 
@@ -390,13 +390,13 @@ const PostList = () => {
   // highlight-start
   const {
     formState: { errors },
-    RefineCore: { onFinish, formLoading },
+    refineCore: { onFinish, formLoading },
     modal: { visible, close, show },
     register,
     handleSubmit,
     saveButtonProps,
   } = useModalForm<IPost, HttpError, IPost>({
-    RefineCoreProps: { action: "clone" },
+    refineCoreProps: { action: "clone" },
   });
   // highlight-end
 
@@ -722,7 +722,7 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useModalForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     autoSave: {
       enabled: true,
     },
@@ -738,7 +738,7 @@ Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useModalForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-next-line
@@ -754,7 +754,7 @@ If you want to modify the data before sending it to the server, you can use `onF
 
 ```tsx
 useModalForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-start
@@ -778,7 +778,7 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useDrawerForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-next-line
@@ -796,7 +796,7 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useDrawerForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-next-line
@@ -836,7 +836,7 @@ Title of the modal. Based on resource and action values
 const {
   modal: { title },
 } = useModalForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     resource: "posts",
     action: "create",
   },
@@ -855,7 +855,7 @@ const {
   handleSubmit,
   register,
   modal,
-  RefineCore: { onFinish },
+  refineCore: { onFinish },
 } = useModalForm();
 
 return (
@@ -891,7 +891,7 @@ const {
   handleSubmit,
   register,
   modal,
-  RefineCore: { onFinish },
+  refineCore: { onFinish },
 } = useModalForm();
 
 // ---
@@ -926,7 +926,7 @@ const {
   handleSubmit,
   register,
   modal,
-  RefineCore: { onFinish, formLoading },
+  refineCore: { onFinish, formLoading },
 } = useModalForm();
 
 return (
@@ -959,7 +959,7 @@ const {
   handleSubmit,
   register,
   modal,
-  RefineCore: { onFinish, formLoading },
+  refineCore: { onFinish, formLoading },
 } = useModalForm();
 
 return (
@@ -1020,7 +1020,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 | Property                      | Description                                                     | Type                                                              |
 | ----------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- |
 | modal                         | Relevant states and methods to control the modal                | [`ModalReturnValues`](#modalreturnvalues)                         |
-| RefineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values) |
+| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values) |
 | React Hook Form Return Values | See [React Hook Form][react-hook-form-use-form] documentation   |
 
 <br />

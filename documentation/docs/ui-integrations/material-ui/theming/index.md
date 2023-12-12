@@ -1100,7 +1100,7 @@ const SampleShow = () => {
 const SampleEdit = () => {
   const {
     saveButtonProps,
-    RefineCore: { queryResult },
+    refineCore: { queryResult },
     register,
     control,
     formState: { errors },
@@ -1200,7 +1200,7 @@ const SampleEdit = () => {
 const SampleCreate = () => {
   const {
     saveButtonProps,
-    RefineCore: { formLoading },
+    refineCore: { formLoading },
     register,
     control,
     formState: { errors },

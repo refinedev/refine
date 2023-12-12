@@ -87,7 +87,7 @@ export const ProductList = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    RefineCore: {
+    refineCore: {
       setCurrent,
       pageCount,
       current,

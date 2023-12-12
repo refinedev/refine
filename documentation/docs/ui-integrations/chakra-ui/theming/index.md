@@ -50,7 +50,7 @@ const PostList: React.FC = () => {
 
   const { getHeaderGroups, getRowModel } = useTable({
     columns,
-    RefineCoreProps: {
+    refineCoreProps: {
       initialPageSize: 5,
     },
   });
@@ -89,7 +89,7 @@ const PostList: React.FC = () => {
 
 const PostEdit: React.FC = () => {
   const {
-    RefineCore: { formLoading },
+    refineCore: { formLoading },
     saveButtonProps,
     register,
     formState: { errors },
@@ -108,7 +108,7 @@ const PostEdit: React.FC = () => {
 
 const PostCreate = () => {
   const {
-    RefineCore: { formLoading },
+    refineCore: { formLoading },
     saveButtonProps,
     register,
     formState: { errors },

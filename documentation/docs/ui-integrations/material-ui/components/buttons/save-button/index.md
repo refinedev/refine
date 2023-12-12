@@ -23,7 +23,7 @@ import { Box, TextField } from "@mui/material";
 
 const PostEdit: React.FC = () => {
   const {
-    RefineCore: { onFinish, formLoading },
+    refineCore: { onFinish, formLoading },
     register,
     handleSubmit,
     formState: { errors },

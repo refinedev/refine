@@ -56,7 +56,7 @@ const PostEdit: React.FC = () => {
   const {
     saveButtonProps,
     getInputProps,
-    RefineCore: { queryResult },
+    refineCore: { queryResult },
   } = useForm<IPost>({
     initialValues: {
       title: "",
@@ -1359,7 +1359,7 @@ const PostEdit: React.FC = () => {
   const {
     saveButtonProps,
     getInputProps,
-    RefineCore: {
+    refineCore: {
       queryResult,
       // highlight-next-line
       autoSaveProps,
@@ -1380,7 +1380,7 @@ const PostEdit: React.FC = () => {
       },
     },
     // highlight-start
-    RefineCoreProps: {
+    refineCoreProps: {
       autoSave: {
         enabled: true,
       },

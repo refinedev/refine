@@ -106,7 +106,7 @@ const PostList: React.FC = () => {
 
 const PostEdit: React.FC = () => {
   const {
-    RefineCore: { onFinish, formLoading },
+    refineCore: { onFinish, formLoading },
     register,
     handleSubmit,
     formState: { errors },
@@ -139,7 +139,7 @@ const PostEdit: React.FC = () => {
 
 const PostCreate: React.FC = () => {
   const {
-    RefineCore: { onFinish, formLoading },
+    refineCore: { onFinish, formLoading },
     register,
     handleSubmit,
     formState: { errors },
@@ -195,7 +195,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 export const PostEdit: React.FC = () => {
   const {
-    RefineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     resetField,
@@ -307,7 +307,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 const PostCreatePage: React.FC = () => {
   const {
-    RefineCore: { onFinish, formLoading },
+    refineCore: { onFinish, formLoading },
     register,
     handleSubmit,
     formState: { errors },
@@ -372,7 +372,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 const PostEditPage: React.FC = () => {
   const {
-    RefineCore: { onFinish, formLoading },
+    refineCore: { onFinish, formLoading },
     register,
     handleSubmit,
     formState: { errors },
@@ -438,7 +438,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 const PostCreatePage: React.FC = () => {
   const {
-    RefineCore: { onFinish, formLoading },
+    refineCore: { onFinish, formLoading },
     register,
     handleSubmit,
     formState: { errors },
@@ -501,7 +501,7 @@ It will be passed to the [`dataProvider`][data-provider]'s method as a params. T
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     resource: "categories",
   },
 });
@@ -518,7 +518,7 @@ import { useForm } from "@refinedev/react-hook-form";
 const { id } = useParsed();
 
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     resource: "custom-resource",
     id,
   },
@@ -531,9 +531,9 @@ Or you can use the `setId` function to set the `id` value.
 import { useForm } from "@refinedev/react-hook-form";
 
 const {
-  RefineCore: { setId },
+  refineCore: { setId },
 } = useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     resource: "custom-resource",
   },
 });
@@ -557,7 +557,7 @@ It is useful when you want to `edit` or `clone` a `resource` from a different pa
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     action: "edit", // or clone
     resource: "categories",
     id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
@@ -573,7 +573,7 @@ It can be set to `"show" | "edit" | "list" | "create"` or `false` to prevent the
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     redirect: false,
   },
 });
@@ -592,7 +592,7 @@ It receives the following parameters:
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     onMutationSuccess: (data, variables, context, isAutoSave) => {
       console.log({ data, variables, context, isAutoSave });
     },
@@ -613,7 +613,7 @@ It receives the following parameters:
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     onMutationError: (data, variables, context, isAutoSave) => {
       console.log({ data, variables, context, isAutoSave });
     },
@@ -632,7 +632,7 @@ By default it's invalidates following queries from the current `resource`:
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     invalidates: ["list", "many", "detail"],
   },
 });
@@ -651,7 +651,7 @@ If you want to use a different `dataProvider` on all resource pages, you can use
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     dataProviderName: "second-data-provider",
   },
 });
@@ -666,7 +666,7 @@ Each mode corresponds to a different type of user experience.
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
   },
 });
@@ -680,7 +680,7 @@ After form is submitted successfully, `useForm` will call `open` function from [
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     successNotification: (data, values, resource) => {
       return {
         message: `Post Successfully created with ${data.title}`,
@@ -700,7 +700,7 @@ After form is submit is failed, `Refine` will show a error notification. With th
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     action: "create",
     resource: "post",
     errorNotification: (data, values, resource) => {
@@ -736,7 +736,7 @@ In the following example, we pass the `headers` property in the `meta` object to
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     meta: {
       headers: { "x-meta-data": "true" },
     },
@@ -806,7 +806,7 @@ in `edit` or `clone` mode, **Refine** uses [`useOne`](/docs/core/hooks/data/use-
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     queryOptions: {
       retry: 3,
     },
@@ -822,7 +822,7 @@ In `create` or `clone` mode, **Refine** uses [`useCreate`](/docs/core/hooks/data
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     queryOptions: {
       retry: 3,
     },
@@ -838,7 +838,7 @@ In `edit` mode, **Refine** uses [`useUpdate`](/docs/core/hooks/data/use-update) 
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     queryOptions: {
       retry: 3,
     },
@@ -856,7 +856,7 @@ It can be set globally in [`Refine config`](/docs/core/refine-component#warnwhen
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     warnWhenUnsavedChanges: true,
   },
 });
@@ -869,7 +869,7 @@ For more information about live mode, please check [Live / Realtime](/docs/core/
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     liveMode: "auto",
   },
 });
@@ -881,7 +881,7 @@ The callback function that is executed when new events from a subscription are a
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     onLiveEvent: (event) => {
       console.log(event);
     },
@@ -917,7 +917,7 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     autoSave: {
       enabled: true,
     },
@@ -933,7 +933,7 @@ Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-next-line
@@ -949,7 +949,7 @@ If you want to modify the data before sending it to the server, you can use `onF
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-start
@@ -973,7 +973,7 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useForm({
-  RefineCoreProps: {
+  refineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-next-line
@@ -991,7 +991,7 @@ If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` 
 
 ```tsx
 const {
-  RefineCore: { queryResult },
+  refineCore: { queryResult },
 } = useForm();
 
 const { data } = queryResult;
@@ -1003,7 +1003,7 @@ When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/co
 
 ```tsx
 const {
-  RefineCore: { mutationResult },
+  refineCore: { mutationResult },
 } = useForm();
 
 const { data } = mutationResult;
@@ -1015,7 +1015,7 @@ const { data } = mutationResult;
 
 ```tsx
 const {
-  RefineCore: { id, setId },
+  refineCore: { id, setId },
 } = useForm();
 
 const handleIdChange = (id: string) => {
@@ -1037,7 +1037,7 @@ In the following example we will redirect to the `"show"` page after a successfu
 
 ```tsx
 const {
-  RefineCore: { onFinish, redirect },
+  refineCore: { onFinish, redirect },
 } = useForm();
 
 // --
@@ -1086,7 +1086,7 @@ const PostEdit = () => {
   const invalidate = useInvalidate();
 
   useForm({
-    RefineCoreProps: {
+    refineCoreProps: {
       onMutationSuccess: (data, variables, context) => {
         invalidate({
           resource: "users",
@@ -1113,7 +1113,7 @@ import { FieldValues } from "react-hook-form";
 
 export const UserCreate: React.FC = () => {
   const {
-    RefineCore: { onFinish },
+    refineCore: { onFinish },
     register,
     handleSubmit,
   } = useForm();
@@ -1160,14 +1160,14 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 
 <br/>
 
-> For example, we can define the `RefineCoreProps` property in the `useForm` hook as:
+> For example, we can define the `refineCoreProps` property in the `useForm` hook as:
 
 ```tsx
 import { useForm } from "@refinedev/react-hook-form";
 
 const { ... } = useForm({
     ...,
-    RefineCoreProps: {
+    refineCoreProps: {
         resource: "posts",
         redirect: false,
         // You can define all properties provided by Refine useForm
@@ -1179,15 +1179,15 @@ const { ... } = useForm({
 
 Returns all the properties returned by [React Hook Form][react-hook-form] of the `useForm` hook. Also, we added the following return values:
 
-`RefineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/docs/core/hooks/use-form/##return-values).
+`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/docs/core/hooks/use-form/##return-values).
 
-> For example, we can access the `RefineCore` return value in the `useForm` hook as:
+> For example, we can access the `refineCore` return value in the `useForm` hook as:
 
 ```tsx
 import { useForm } from "@refinedev/react-hook-form";
 
 const {
-    RefineCore: { queryResult, ... },
+    refineCore: { queryResult, ... },
 } = useForm({ ... });
 ```
 

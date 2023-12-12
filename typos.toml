@@ -7,6 +7,7 @@ extend-ignore-re = [
     "refine\\.",
     "-refine",
     "run refine",
+    "refineCore",
     "refine-",
     "-refine-",
     "_refine",
