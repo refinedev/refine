@@ -236,7 +236,7 @@ const PackageItem = (props: {
                 "justify-center",
                 "gap-3",
                 "pl-4 pt-4 pb-4 pr-6",
-                "dark:bg-gray-800 bg-gray-0",
+                "dark:bg-gray-800 bg-gray-50",
                 "rounded-full",
                 "cursor-pointer",
             )}
