@@ -155,11 +155,12 @@ const Tablet = (props: { className?: string }) => {
                                 "no-underline",
                                 "dark:text-gray-0 text-gray-900",
                                 "font-bold",
-                                "flex items-center gap-2",
                             )}
                         >
-                            {item.label}
-                            {Icon && <Icon />}
+                            <div className={clsx("flex items-center gap-2")}>
+                                <div>{item.label}</div>
+                                {Icon && <Icon />}
+                            </div>
                         </Link>
                         {"items" in item && (
                             <div

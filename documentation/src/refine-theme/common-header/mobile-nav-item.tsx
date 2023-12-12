@@ -49,16 +49,16 @@ export const MobileNavItem: React.FC<MobileNavItemProps> = ({
             {...(href ? { to: href } : {})}
         >
             <div
-                className={clsx(
-                    "text-gray-800 dark:text-white font-semibold",
-                    "flex items-center gap-2",
-                )}
+                className={clsx("text-gray-800 dark:text-white font-semibold")}
             >
                 {label === "Hackathon" && (
                     <HackathonAltIcon className="inline text-[#F93] -mt-1 mr-1.5" />
                 )}
-                {label}
-                {Icon && <Icon />}
+
+                <div className={clsx("flex items-center gap-2")}>
+                    <div>{label}</div>
+                    {Icon && <Icon />}
+                </div>
             </div>
             {isCollapseble && (
                 <div
