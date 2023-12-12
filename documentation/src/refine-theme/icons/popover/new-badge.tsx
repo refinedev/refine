@@ -16,19 +16,29 @@ export const NewBadgeDark = (props: SVGProps<SVGSVGElement>) => {
     return (
         <div
             className={clsx(
+                "relative",
                 "flex",
                 "items-center",
                 "justify-center",
-                "w-[32px]",
-                "h-[15px]",
+                "overflow-hidden",
+                "w-[31px]",
+                "h-[14px]",
                 "rounded-full",
-                "bg-header-menu-new-badge-dark",
-                "animate-header-menu-new-badge",
             )}
-            style={{
-                backgroundSize: "400% 400%",
-            }}
         >
+            <div
+                className={clsx(
+                    "absolute",
+                    "z-[1]",
+                    "inset-0",
+                    "bg-header-menu-new-badge-dark",
+                    "animate-header-menu-new-badge",
+                    "w-[42px]",
+                    "h-[16px]",
+                    "rounded-full",
+                    "translate-x-0",
+                )}
+            />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={31}
@@ -121,19 +131,29 @@ const NewBadgeLight = (props: SVGProps<SVGSVGElement>) => {
     return (
         <div
             className={clsx(
+                "relative",
                 "flex",
                 "items-center",
                 "justify-center",
-                "w-[32px]",
-                "h-[15px]",
+                "overflow-hidden",
+                "w-[31px]",
+                "h-[14px]",
                 "rounded-full",
-                "bg-header-menu-new-badge-light",
-                "animate-header-menu-new-badge",
             )}
-            style={{
-                backgroundSize: "400% 400%",
-            }}
         >
+            <div
+                className={clsx(
+                    "absolute",
+                    "z-[1]",
+                    "inset-0",
+                    "bg-header-menu-new-badge-light",
+                    "animate-header-menu-new-badge",
+                    "w-[42px]",
+                    "h-[16px]",
+                    "rounded-full",
+                    "translate-x-0",
+                )}
+            />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={31}
