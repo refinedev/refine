@@ -8,6 +8,7 @@ extend-ignore-re = [
     "-refine",
     "refine-",
     "-refine-",
+    "_refine",
     "/refine",
     "/refine/",
     "refine/",
