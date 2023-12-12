@@ -56,7 +56,7 @@ const authProvider = {
 import { Refine, Authenticated } from "@refinedev/core";
 import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { ErrorComponent, ThemedLayoutV2, RefineTheme, notificationProvider, AuthPage } from "@refinedev/chakra-ui";
+import { ErrorComponent, ThemedLayoutV2, refineTheme, notificationProvider, AuthPage } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
@@ -64,7 +64,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const App = () => {
   return (
-    <ChakraProvider theme={RefineTheme}>
+    <ChakraProvider theme={refineTheme}>
       <BrowserRouter>
         <Refine
           authProvider={authProvider}
@@ -155,7 +155,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
   ThemedLayoutV2,
-  RefineTheme,
+  refineTheme,
   notificationProvider,
   //highlight-next-line
   AuthPage,
@@ -171,7 +171,7 @@ import { authProvider } from "./authProvider";
 
 const App = () => {
   return (
-    <ChakraProvider theme={RefineTheme}>
+    <ChakraProvider theme={refineTheme}>
       <BrowserRouter>
         <Refine
           authProvider={authProvider}
@@ -268,7 +268,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
   ThemedLayoutV2,
-  RefineTheme,
+  refineTheme,
   notificationProvider,
   //highlight-next-line
   AuthPage,
@@ -284,7 +284,7 @@ import { authProvider } from "./authProvider";
 
 const App = () => {
   return (
-    <ChakraProvider theme={RefineTheme}>
+    <ChakraProvider theme={refineTheme}>
       <BrowserRouter>
         <Refine
           authProvider={authProvider}
@@ -382,7 +382,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
   ThemedLayoutV2,
-  RefineTheme,
+  refineTheme,
   notificationProvider,
   //highlight-next-line
   AuthPage,
@@ -396,7 +396,7 @@ import { authProvider } from "./authProvider";
 
 const App = () => {
   return (
-    <ChakraProvider theme={RefineTheme}>
+    <ChakraProvider theme={refineTheme}>
       <BrowserRouter>
         <Refine
           authProvider={authProvider}
@@ -496,7 +496,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
   ThemedLayoutV2,
-  RefineTheme,
+  refineTheme,
   notificationProvider,
   //highlight-next-line
   AuthPage,
@@ -512,7 +512,7 @@ import { authProvider } from "./authProvider";
 
 const App = () => {
   return (
-    <ChakraProvider theme={RefineTheme}>
+    <ChakraProvider theme={refineTheme}>
       <BrowserRouter>
         <Refine
           authProvider={authProvider}

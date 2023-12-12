@@ -117,7 +117,7 @@ Here's what you should see:
 setInitialRoutes(["/"]);
 
 import { ChakraProvider } from "@chakra-ui/react";
-import { notificationProvider, RefineTheme, WelcomePage } from "@refinedev/chakra-ui";
+import { notificationProvider, refineTheme, WelcomePage } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -126,7 +126,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 const App = () => {
   return (
     <BrowserRouter>
-      <ChakraProvider theme={RefineTheme}>
+      <ChakraProvider theme={refineTheme}>
         <Refine
           notificationProvider={notificationProvider()}
           routerProvider={routerBindings}

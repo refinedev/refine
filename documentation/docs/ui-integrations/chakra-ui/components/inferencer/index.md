@@ -18,7 +18,7 @@ values={[
 <TabItem value="resources">
 
 ```tsx
-import { Layout, RefineTheme } from "@refinedev/chakra-ui";
+import { Layout, refineTheme } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -28,7 +28,7 @@ import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
 const App = () => {
   return (
-    <ChakraProvider theme={RefineTheme}>
+    <ChakraProvider theme={refineTheme}>
       <BrowserRouter>
         <Refine
           routerProvider={routerProvider}
