@@ -481,7 +481,7 @@ yarn add @refinedev/cli
 </TabItem>
 </Tabs>
 
-Then add the `Refine` command to your scripts in your `package.json` file
+Then add the `refine` command to your scripts in your `package.json` file
 
 ```diff title="package.json"
 {
