@@ -22,7 +22,7 @@ The [`@refinedev/codemod`][refine-codemod] package handles the breaking changes 
 Simply `cd` into the root folder of your project (where the `package.json` is located) and run this command:
 
 ```sh
-npx @refinedev/codemod@latest Refine3-to-refine4
+npx @refinedev/codemod@latest refine3-to-refine4
 ```
 
 And that’s it! You have successfully migrated your project to `refine@4.x.x`.
