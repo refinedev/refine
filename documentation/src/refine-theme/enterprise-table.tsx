@@ -12,20 +12,20 @@ export const EnterpriseTable = ({ className }: { className?: string }) => {
     );
     const intervalRef = React.useRef<NodeJS.Timer>(null);
 
-    // React.useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         setActiveTab((prev) =>
-    //             prev === "community" ? "enterprise" : "community",
-    //         );
-    //     }, 5000);
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveTab((prev) =>
+                prev === "community" ? "enterprise" : "community",
+            );
+        }, 5000);
 
-    //     intervalRef.current = interval;
+        intervalRef.current = interval;
 
-    //     return () => {
-    //         clearInterval(intervalRef.current);
-    //         intervalRef.current = null;
-    //     };
-    // }, []);
+        return () => {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        };
+    }, []);
 
     return (
         <div className={clsx("flex flex-col", "not-prose", className)}>
