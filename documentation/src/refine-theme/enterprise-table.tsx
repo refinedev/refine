@@ -445,8 +445,7 @@ const TableStickyHeader = ({ activeTab, setActiveTab }) => {
             className={clsx(
                 "sticky",
                 "z-[1]",
-                "top-[56px]",
-                "blog-lg:top-[64px]",
+                "top-[64px]",
                 "pt-4",
                 "flex",
                 "justify-end",
