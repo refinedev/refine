@@ -1,0 +1,130 @@
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@-webkit-keyframes rotate {
+    0% {
+        --angle: 0deg;
+    }
+    100% {
+        --angle: 360deg;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        --angle: 0deg;
+    }
+    100% {
+        --angle: 360deg;
+    }
+}
+
+.badge {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 100px;
+    border: none;
+    background: none;
+    position: relative;
+    padding: 1px;
+    text-decoration: none;
+    -webkit-transition: all 0.18s ease-in-out;
+    -o-transition: all 0.18s ease-in-out;
+    transition: all 0.18s ease-in-out;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+
+    &:after,
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: calc(100px + 1.5px);
+        background-size: 100% 100%;
+        background-position: 0px 0px;
+        -webkit-animation: rotate 2s infinite linear;
+        animation: rotate 2s infinite linear;
+    }
+
+    &:before {
+        -webkit-animation: rotate 2s infinite linear;
+        animation: rotate 2s infinite linear;
+        -webkit-filter: blur(20px);
+        filter: blur(20px);
+    }
+
+    .badgeInner {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        width: 100%;
+        z-index: 1;
+        -webkit-backdrop-filter: blur(40px);
+        backdrop-filter: blur(40px);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+}
+
+.dark {
+    &:after,
+    &:before {
+        background-image: conic-gradient(
+            from var(--angle) at 50% 50%,
+            #194b3a,
+            #26d97f,
+            #194b3a,
+            #194b3a,
+            #194b3a,
+            #26d97f,
+            #194b3a,
+            #194b3a,
+            #194b3a
+        );
+    }
+
+    .badgeInner {
+        color: #26d97f;
+    }
+}
+
+.light {
+    &:after,
+    &:before {
+        background-image: conic-gradient(
+            from var(--angle) at 50% 50%,
+            #b7dbff,
+            #0080ff,
+            #b7dbff,
+            #b7dbff,
+            #b7dbff,
+            #0080ff,
+            #b7dbff,
+            #b7dbff,
+            #b7dbff
+        );
+    }
+
+    .badgeInner {
+        color: #26d97f;
+    }
+}
