@@ -59,15 +59,18 @@ export const EnterpriseFaq = ({ className }: { className?: string }) => {
                                     </Disclosure.Button>
                                     <Transition
                                         unmount={false}
-                                        enter="transition duration-100 ease-out"
-                                        enterFrom="transform scale-95 opacity-0"
-                                        enterTo="transform scale-100 opacity-100"
-                                        leave="transition duration-75 ease-out"
-                                        leaveFrom="transform scale-100 opacity-100"
-                                        leaveTo="transform scale-95 opacity-0"
+                                        enter="transition-all duration-300 ease-in-out"
+                                        enterFrom="transform opacity-0 max-h-0"
+                                        enterTo="transform opacity-100 max-h-[152px]"
+                                        leave="transition-all duration-300 ease-in-out"
+                                        leaveFrom="transform opacity-100 max-h-[152px]"
+                                        leaveTo="transform opacity-0 max-h-0"
                                     >
                                         <Disclosure.Panel
                                             unmount={false}
+                                            style={{
+                                                display: "block",
+                                            }}
                                             className={clsx(
                                                 "mt-2 mb-6",
                                                 "text-base",
