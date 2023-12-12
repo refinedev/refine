@@ -5,14 +5,24 @@ import { CheckCircle } from "@site/src/refine-theme/icons/check-circle";
 import { CrossCircle } from "@site/src/refine-theme/icons/cross-circle";
 import { EnterpriseGetInTouchButton } from "./enterprise-get-in-touch-button";
 import { ArrowLeftLongIcon } from "./icons/arrow-left-long";
+import { useTWBreakpoints } from "../hooks/use-tw-breakpoints";
 
 export const EnterpriseTable = ({ className }: { className?: string }) => {
+    const breakpoints = useTWBreakpoints({ variant: "landing" });
     const [activeTab, setActiveTab] = useState<"community" | "enterprise">(
         "enterprise",
     );
     const intervalRef = React.useRef<NodeJS.Timer>(null);
 
     React.useEffect(() => {
+        if (breakpoints.lg) {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+            intervalRef.current = null;
+            return;
+        }
+
         const interval = setInterval(() => {
             setActiveTab((prev) =>
                 prev === "community" ? "enterprise" : "community",
@@ -25,7 +35,7 @@ export const EnterpriseTable = ({ className }: { className?: string }) => {
             clearInterval(intervalRef.current);
             intervalRef.current = null;
         };
-    }, []);
+    }, [breakpoints]);
 
     return (
         <div className={clsx("flex flex-col", "not-prose", className)}>
@@ -54,7 +64,18 @@ export const EnterpriseTable = ({ className }: { className?: string }) => {
                     "pb-8",
                 )}
             >
-                <div className={clsx("relative", "w-full", "pt-4")}>
+                <div
+                    className={clsx(
+                        "relative",
+                        "w-full",
+                        "pt-4",
+                        activeTab === "enterprise" &&
+                            "animate-enterprise-table-right-to-left",
+                        activeTab === "community" &&
+                            "animate-enterprise-table-left-to-right",
+                        "landing-md:animate-none landing-md:translate-x-0",
+                    )}
+                >
                     <TableStickyHeader
                         activeTab={activeTab}
                         setActiveTab={(tab: "community" | "enterprise") => {
@@ -62,15 +83,7 @@ export const EnterpriseTable = ({ className }: { className?: string }) => {
                             clearInterval(intervalRef.current);
                         }}
                     />
-                    <TableSectionWrapper
-                        className={clsx(
-                            activeTab === "enterprise" &&
-                                "animate-enterprise-table-right-to-left",
-                            activeTab === "community" &&
-                                "animate-enterprise-table-left-to-right",
-                            "landing-md:animate-none landing-md:translate-x-0",
-                        )}
-                    >
+                    <TableSectionWrapper>
                         {tableData.map((section) => {
                             const isLast =
                                 section.title === tableData.at(-1).title;
@@ -444,7 +457,7 @@ const TableStickyHeader = ({ activeTab, setActiveTab }) => {
     );
 };
 
-const TableSectionWrapper = ({ children, className }) => {
+const TableSectionWrapper = ({ children }) => {
     return (
         <div
             className={clsx(
@@ -457,7 +470,6 @@ const TableSectionWrapper = ({ children, className }) => {
                 "rounded-bl-2xl",
                 "border-gray-200",
                 "dark:border-gray-700",
-                className,
             )}
         >
             {children}
