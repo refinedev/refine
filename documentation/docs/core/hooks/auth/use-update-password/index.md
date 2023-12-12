@@ -60,7 +60,7 @@ export const UpdatePasswordPage = () => {
   return (
     <form onSubmit={onSubmit}>
       <label>Password</label>
-      <input name="password" value="Refine" />
+      <input name="password" value="refine" />
       <button type="submit">Submit</button>
     </form>
   );
@@ -146,7 +146,7 @@ const { mutate: updatePassword } = useUpdatePassword();
 
 updatePassword(
   {
-    newPassword: "Refine",
+    newPassword: "refine",
   },
   {
     onSuccess: (data) => {

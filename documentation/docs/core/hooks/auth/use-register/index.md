@@ -64,7 +64,7 @@ export const RegisterPage = () => {
       <label>Email</label>
       <input name="email" value="test@refine.com" />
       <label>Password</label>
-      <input name="password" value="Refine" />
+      <input name="password" value="refine" />
       <button type="submit">Submit</button>
     </form>
   );
@@ -120,7 +120,7 @@ export const RegisterPage = () => {
       <label>Email</label>
       <input name="email" value="test@refine.com" />
       <label>Password</label>
-      <input name="password" value="Refine" />
+      <input name="password" value="refine" />
       <button type="submit">Submit</button>
     </form>
   );
@@ -166,7 +166,7 @@ const { mutate: register } = useRegister();
 register(
   {
     email: "refine@example.com",
-    password: "Refine",
+    password: "refine",
   },
   {
     onSuccess: (data) => {

@@ -486,7 +486,7 @@ Then add the `refine` command to your scripts in your `package.json` file
 ```diff title="package.json"
 {
     "scripts": {
-+       "Refine": "Refine"
++       "refine": "refine"
     }
 }
 ```

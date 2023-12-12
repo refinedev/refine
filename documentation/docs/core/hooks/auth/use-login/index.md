@@ -117,7 +117,7 @@ const { mutate: login } = useLogin();
 login(
   {
     email: "refine@example.com",
-    password: "Refine",
+    password: "refine",
   },
   {
     onSuccess: (data) => {

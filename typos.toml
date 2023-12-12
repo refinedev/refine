@@ -20,7 +20,8 @@ extend-ignore-re = [
     "REFINE",
     "refine3",
     "\\: refine",
-    "\\`refine"
+    "\\`refine",
+    "\"refine\"",
 ]
 
 [files]
