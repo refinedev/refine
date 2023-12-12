@@ -16,13 +16,8 @@ import { GetFields } from "@refinedev/nestjs-query/dist/interfaces";
 import { CompanyTitleFormMutation } from "./gqlTypes";
 
 const COMPANY_TITLE_FORM_MUTATION = gql`
-    mutation CompanyTitleForm($id: ID!, $name: String, $salesOwnerId: ID) {
-        updateOneCompany(
-            input: {
-                id: $id
-                update: { name: $name, salesOwnerId: $salesOwnerId }
-            }
-        ) {
+    mutation CompanyTitleForm($input: UpdateOneCompanyInput!) {
+        updateOneCompany(input: $input) {
             id
             name
             avatarUrl

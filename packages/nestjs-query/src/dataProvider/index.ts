@@ -136,6 +136,10 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         },
 
         create: async ({ resource, variables, meta }) => {
+            const operation = `createOne${camelcase(singular(resource), {
+                pascalCase: true,
+            })}`;
+
             if (meta?.gqlQuery) {
                 const response = await client.request<BaseRecord>(
                     meta.gqlQuery,
@@ -143,13 +147,9 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 );
 
                 return {
-                    data: response,
+                    data: response[operation],
                 };
             }
-
-            const operation = `createOne${camelcase(singular(resource), {
-                pascalCase: true,
-            })}`;
 
             const { query, variables: queryVariables } = gql.mutation({
                 operation,
@@ -212,6 +212,22 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 pascalCase: true,
             })}`;
 
+            if (meta?.gqlQuery) {
+                const response = await client.request<BaseRecord>(
+                    meta.gqlQuery,
+                    {
+                        input: {
+                            id,
+                            update: variables,
+                        },
+                    },
+                );
+
+                return {
+                    data: response[operation],
+                };
+            }
+
             const { query, variables: queryVariables } = gql.mutation({
                 operation,
                 fields: meta?.fields || ["id"],
@@ -238,7 +254,6 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 data: response[operation],
             };
         },
-
         updateMany: async ({ resource, ids, variables, meta }) => {
             const operation = `updateMany${camelcase(resource, {
                 pascalCase: true,
@@ -317,27 +332,23 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
         deleteOne: async ({ resource, id, meta }) => {
-            const operation = `deleteOne${camelcase(singular(resource), {
+            const pascalResource = camelcase(singular(resource), {
                 pascalCase: true,
-            })}`;
-
-            const { query, variables } = gql.mutation({
-                operation,
-                fields: meta?.fields || ["id"],
-                variables: {
-                    input: {
-                        type: `DeleteOne${camelcase(singular(resource), {
-                            pascalCase: true,
-                        })}Input`,
-                        required: true,
-                        value: {
-                            id,
-                        },
-                    },
-                },
             });
 
-            const response = await client.request<BaseRecord>(query, variables);
+            const operation = `deleteOne${pascalResource}`;
+
+            const query = gqlTag`
+                    mutation DeleteOne${pascalResource}($input: DeleteOne${pascalResource}Input!) {
+                        ${operation}(input: $input) {
+                            id
+                        }
+                    }
+                `;
+
+            const response = await client.request<BaseRecord>(query, {
+                input: { id },
+            });
 
             return {
                 data: response[operation],
