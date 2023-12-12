@@ -11,7 +11,14 @@ import * as gql from "gql-query-builder";
 import VariableOptions from "gql-query-builder/build/VariableOptions";
 import { GraphQLClient } from "graphql-request";
 import { singular } from "pluralize";
-import { generatePaging, generateFilters, generateSorting } from "../utils";
+import {
+    generatePaging,
+    generateFilters,
+    generateSorting,
+    fieldsToString,
+    isMutation,
+} from "../utils";
+import gqlTag from "graphql-tag";
 
 const handleGetMany = async <TData>(
     client: GraphQLClient,
@@ -261,18 +268,35 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             return await handleGetMany(client, { resource, ids, meta });
         },
         getOne: async ({ resource, id, meta }) => {
+            const operation = camelcase(singular(resource));
+
             if (meta?.gqlQuery) {
+                let query = meta.gqlQuery;
+                const variables = { id };
+
+                if (isMutation(meta.gqlQuery)) {
+                    const stringFields = fieldsToString(meta?.gqlQuery);
+
+                    query = gqlTag`
+                        query Get${camelcase(singular(resource), {
+                            pascalCase: true,
+                        })}($id: ID!) {
+                            ${operation}(id: $id) {
+                            ${stringFields}
+                            }
+                        }
+                    `;
+                }
+
                 const response = await client.request<BaseRecord>(
-                    meta.gqlQuery,
-                    id ? { id } : {},
+                    query,
+                    variables,
                 );
 
                 return {
-                    data: response,
+                    data: response[operation],
                 };
             }
-
-            const operation = camelcase(singular(resource));
 
             const { query, variables } = gql.query({
                 operation,
