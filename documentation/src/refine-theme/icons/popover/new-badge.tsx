@@ -1,7 +1,6 @@
 import React from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import clsx from "clsx";
-import styles from "./new-badge.module.css";
 
 export const NewBadgeIcon = (props: React.SVGProps<SVGSVGElement>) => {
     const { colorMode } = useColorMode();
@@ -15,10 +14,19 @@ export const NewBadgeIcon = (props: React.SVGProps<SVGSVGElement>) => {
                 "justify-center",
                 "rounded-full",
                 "overflow-hidden",
-                styles.badge,
-                styles[colorMode],
+                "p-[1px]",
+                "dark:bg-[#194b3a] bg-[#b7dbff]",
             )}
         >
+            <div
+                className={clsx(
+                    "z-[1]",
+                    "absolute",
+                    "inset-0",
+                    "dark:bg-new-badge-border-dark bg-new-badge-border-light",
+                    "animate-new-badge-border",
+                )}
+            />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={31}
@@ -26,7 +34,7 @@ export const NewBadgeIcon = (props: React.SVGProps<SVGSVGElement>) => {
                 viewBox="0 0 31 14"
                 fill="none"
                 className={clsx(
-                    styles.badgeInner,
+                    "z-[2]",
                     "dark:bg-gray-900 bg-gray-0",
                     "rounded-full",
                 )}

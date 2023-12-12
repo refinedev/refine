@@ -411,6 +411,30 @@ module.exports = {
                 ],
                 "enterprise-frequent-updates-light-md":
                     "radial-gradient(120% 100% at 100% 50%, rgba(0, 128, 255, 0.25) 0%, rgba(0, 128, 255, 0.00) 100%)",
+                "new-badge-border-dark": `conic-gradient(
+                    from 45deg at 50% 50%,
+                    #194b3a,
+                    #26d97f,
+                    #194b3a,
+                    #194b3a,
+                    #194b3a,
+                    #26d97f,
+                    #194b3a,
+                    #194b3a,
+                    #194b3a
+                )`,
+                "new-badge-border-light": `conic-gradient(
+                    from 45deg at 50% 50%,
+                    #b7dbff,
+                    #0080ff,
+                    #b7dbff,
+                    #b7dbff,
+                    #b7dbff,
+                    #0080ff,
+                    #b7dbff,
+                    #b7dbff,
+                    #b7dbff
+                )`,
             },
             backgroundPosition: {
                 "landing-wizard-option-right":
@@ -491,6 +515,7 @@ module.exports = {
                     "enterprise-table-left-to-right 0.3s ease-in-out forwards",
                 "enterprise-table-right-to-left":
                     "enterprise-table-right-to-left 0.3s ease-in-out forwards",
+                "new-badge-border": "new-badge-border 2s linear infinite",
             },
             keyframes: {
                 "code-scroll": {
@@ -767,6 +792,10 @@ module.exports = {
                 "enterprise-table-right-to-left": {
                     "0%": { transform: "translateX(100%)", opacity: 0 },
                     "100%": { transform: "translateX(0)", opacity: 1 },
+                },
+                "new-badge-border": {
+                    "0%": { transform: "rotate(0deg)" },
+                    "100%": { transform: "rotate(360deg)" },
                 },
             },
         },
