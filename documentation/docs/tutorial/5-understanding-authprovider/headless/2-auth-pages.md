@@ -7,11 +7,11 @@ tutorial:
 ---
 
 ```tsx live shared
-window.__RefineAuthStatus = false;
+window.__refineAuthStatus = false;
 
 const authProvider = {
   login: async () => {
-    window.__RefineAuthStatus = true;
+    window.__refineAuthStatus = true;
     return {
       success: true,
       redirectTo: "/",
@@ -33,7 +33,7 @@ const authProvider = {
     };
   },
   logout: async () => {
-    window.__RefineAuthStatus = false;
+    window.__refineAuthStatus = false;
     return {
       success: true,
       redirectTo: "/",
@@ -41,8 +41,8 @@ const authProvider = {
   },
   check: async () => {
     return {
-      authenticated: window.__RefineAuthStatus ? true : false,
-      redirectTo: window.__RefineAuthStatus ? undefined : "/login",
+      authenticated: window.__refineAuthStatus ? true : false,
+      redirectTo: window.__refineAuthStatus ? undefined : "/login",
     };
   },
   onError: async (error) => {
@@ -486,7 +486,7 @@ You can use [`refine-cli`](/docs/packages/list-of-packages) to [swizzle](/docs/p
 1. Run the following command in the project directory:
 
    ```bash
-   npm run Refine swizzle
+   npm run refine swizzle
    ```
 
 2. Select the `@refinedev/core` package.

@@ -148,7 +148,7 @@ The `swizzle` command is only available in the `@refinedev/cli` package. If you 
 1. Run the `swizzle` command in the project directory:
 
    ```bash
-   npm run Refine swizzle
+   npm run refine swizzle
    ```
 
 2. Select `@refinedev/simple-rest` from the list of available data providers.

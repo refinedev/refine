@@ -18,11 +18,11 @@ body {
 ```tsx live shared
 const { useLogout: useLogoutShared } = RefineCore;
 
-window.__RefineAuthStatus = false;
+window.__refineAuthStatus = false;
 
 const authProvider = {
   login: async () => {
-    window.__RefineAuthStatus = true;
+    window.__refineAuthStatus = true;
     return {
       success: true,
       redirectTo: "/",
@@ -44,14 +44,14 @@ const authProvider = {
     };
   },
   logout: async () => {
-    window.__RefineAuthStatus = false;
+    window.__refineAuthStatus = false;
     return {
       success: true,
       redirectTo: "/login",
     };
   },
   check: async () => ({
-    authenticated: window.__RefineAuthStatus,
+    authenticated: window.__refineAuthStatus,
   }),
   onError: async (error) => {
     console.error(error);

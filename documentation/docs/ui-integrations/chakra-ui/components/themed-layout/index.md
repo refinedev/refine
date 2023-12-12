@@ -552,7 +552,7 @@ const App: React.FC = () => {
 Let's create a new component by swizzling the `<ThemedLayoutV2>` components.
 
 ```bash
-> npm run Refine swizzle
+> npm run refine swizzle
 
 ? Which package do you want to swizzle? (Use arrow keys or type to search)
 

@@ -4,7 +4,7 @@ swizzle: true
 ---
 
 ```tsx live shared
-window.__RefineAuthStatus = false;
+window.__refineAuthStatus = false;
 
 setRefineProps({
   notificationProvider: RefineMantine.notificationProvider,
@@ -287,7 +287,7 @@ const App = () => {
     },
   };
 
-  window.__RefineAuthStatus = true;
+  window.__refineAuthStatus = true;
 
   const authProvider = {
     login: async () => {
@@ -312,15 +312,15 @@ const App = () => {
       };
     },
     logout: async () => {
-      window.__RefineAuthStatus = false;
+      window.__refineAuthStatus = false;
       return {
         success: true,
         redirectTo: "/",
       };
     },
     check: async () => ({
-      authenticated: window.__RefineAuthStatus ? true : false,
-      redirectTo: window.__RefineAuthStatus ? undefined : "/login",
+      authenticated: window.__refineAuthStatus ? true : false,
+      redirectTo: window.__refineAuthStatus ? undefined : "/login",
     }),
     onError: async (error) => {
       console.error(error);

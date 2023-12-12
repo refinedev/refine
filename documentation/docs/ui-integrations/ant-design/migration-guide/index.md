@@ -42,7 +42,7 @@ values={[
 ⚡️ You can easily update **Refine** packages with the **Refine** CLI [`update`](https://refine.dev/docs/packages/documentation/cli/#update) command.
 
 ```bash
-npm run Refine update
+npm run refine update
 ```
 
 > [How to add Refine CLI to an existing project?](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project)

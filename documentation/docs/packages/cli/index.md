@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 Refine CLI is a command line application that allows you to interact with your **Refine** project and perform some tasks. This includes [creating a new resource](#create-resource), [managing updates](#update), [swizzle](#swizzle) components, and [runs your project](#dev--start--build) (build, start, dev).
 
 ```bash
-> npm run Refine
+> npm run refine
 Usage: Refine <command> [options]
 
       ___           ___           ___                       ___           ___
@@ -79,7 +79,7 @@ You can think of it as [Monkey Patching](https://en.wikipedia.org/wiki/Monkey_pa
 Let's create a new component by swizzling the `Layout` components.
 
 ```bash
-> npm run Refine swizzle
+> npm run refine swizzle
 
 ? Which package do you want to swizzle? (Use arrow keys or type to search)
 
@@ -169,7 +169,7 @@ Use this command to add a new `resource` or `provider` to your project.
 CRUD components are created for the selected actions. These components are put on the specified path. The folder name here becomes plural.
 
 ```bash
-> npm run Refine add resource
+> npm run refine add resource
 ```
 
 | Argument                | Description                               |
@@ -181,13 +181,13 @@ CRUD components are created for the selected actions. These components are put o
 Empty Provider methods are created for to easily implement and connect to your data source from your **Refine** project. These components are put on the specified path.
 
 ```bash
-> npm run Refine add auth
-> npm run Refine add data
-> npm run Refine add live
-> npm run Refine add access-control
-> npm run Refine add audit-log
-> npm run Refine add i18n
-> npm run Refine add notification
+> npm run refine add auth
+> npm run refine add data
+> npm run refine add live
+> npm run refine add access-control
+> npm run refine add audit-log
+> npm run refine add i18n
+> npm run refine add notification
 ```
 
 | Argument                                                                                                               | Description                               |
@@ -208,7 +208,7 @@ Empty Provider methods are created for to easily implement and connect to your d
 Use this command to add a new resource to your project. CRUD components are created for the selected actions. These components are put on the specified path. The folder name here becomes plural.
 
 ```bash
-> npm run Refine create-resource
+> npm run refine create-resource
 ```
 
 | Argument                | Description                               |
@@ -228,7 +228,7 @@ Use this command to add a new resource to your project. CRUD components are crea
 Let's create a `Category` resource with all the actions.
 
 ```bash
-> npm run Refine create-resource category
+> npm run refine create-resource category
 
 src/pages/
 └── categories
@@ -242,7 +242,7 @@ src/pages/
 If we only want to use list and create actions, it should be like this.
 
 ```bash
-> npm run Refine create-resource category -- --actions list,create
+> npm run refine create-resource category -- --actions list,create
 
 src/pages/
 └── categories
@@ -254,7 +254,7 @@ src/pages/
 If we want to create these files in another path, use the `--path` option.
 
 ```bash
-> npm run Refine create-resource category -- --path src/resources --actions list,create
+> npm run refine create-resource category -- --path src/resources --actions list,create
 
 src/resources/
 └── categories
@@ -266,7 +266,7 @@ src/resources/
 You can also create multiple resources at the same time. For this, you can write the sources by separating them with a space.
 
 ```bash
-> npm run Refine create-resource category user -- --actions list,create
+> npm run refine create-resource category user -- --actions list,create
 
 src/pages/
 ├── categories
@@ -284,7 +284,7 @@ src/pages/
 Interactively update your outdated **Refine** packages. To skip interactive mode, use the `--all` flag to update all outdated **Refine** packages to selected tag.
 
 ```bash
-> npm run Refine update
+> npm run refine update
 
 ? Choose packages to update (Press <space> to select, <a> to toggle all, <i> to invert selection, and <enter> to proceed)
 
@@ -318,7 +318,7 @@ Major Updates
 Show the running versions of the installed **Refine** packages.
 
 ```bash
-> npm run Refine check-updates
+> npm run refine check-updates
                                     Update Available
                 ┌────────────────────────────────┬─────────┬────────┬────────┐
                 │ name                           │ current │ wanted │ latest │
@@ -336,14 +336,14 @@ Show the running versions of the installed **Refine** packages.
                 │ @refinedev/strapi          │ 3.18.0  │ 3.37.0 │ 3.37.0 │
                 └────────────────────────────────┴─────────┴────────┴────────┘
                     To update `Refine` packages with the wanted version
-                        Run the following command npm run Refine update
+                        Run the following command npm run refine update
 ```
 
 ### dev, start, build
 
-When you run `npm run Refine [dev | start | build]` It will detect the framework you are using and run the commands accordingly.
+When you run `npm run refine [dev | start | build]` It will detect the framework you are using and run the commands accordingly.
 
-Also you can pass environment variables, and all the options that are available in the framework. For example, you can run `npm run Refine dev --port 3001` to run the app on port `3001`.
+Also you can pass environment variables, and all the options that are available in the framework. For example, you can run `npm run refine dev --port 3001` to run the app on port `3001`.
 
 <Tabs
 defaultValue="cra"
@@ -357,12 +357,12 @@ values={[
 
 ```bash
  # Starts application in development mode. Equivalent to `react-scripts start` or `vite`.
-npm run Refine dev
+npm run refine dev
 ```
 
 ```bash
 # Creates a production build of your app. Equivalent to `react-scripts build` or `vite build`.
-npm run Refine build
+npm run refine build
 ```
 
 [Refer to the Create React App documentation for detailed usage. &#8594](https://create-react-app.dev/docs/available-scripts)
@@ -375,17 +375,17 @@ npm run Refine build
 
 ```bash
 # Starts application in development mode. Equivalent to `next dev`.
-npm run Refine dev
+npm run refine dev
 ```
 
 ```bash
 # Starts application in production mode. Equivalent to `next start`.
-npm run Refine start
+npm run refine start
 ```
 
 ```bash
 # Creates a production build of your app. Equivalent to `next build`.
-npm run Refine build
+npm run refine build
 ```
 
 [Refer to the Next.js documentation for detailed usage. &#8594](https://nextjs.org/docs/api-reference/cli)
@@ -396,17 +396,17 @@ npm run Refine build
 
 ```bash
 # Starts application in development mode. Equivalent to `remix dev`.
-npm run Refine dev
+npm run refine dev
 ```
 
 ```bash
 # Starts application in production mode. Equivalent to `remix-serve start`.
-npm run Refine start
+npm run refine start
 ```
 
 ```bash
 # Creates a production build of your app. Equivalent to `next build`.
-npm run Refine build
+npm run refine build
 ```
 
 [Refer to the Remix documentation for detailed usage. &#8594](https://remix.run/docs/en/v1/other-api/dev)
@@ -422,7 +422,7 @@ First it will check `package.json` to see if there is a script with the given na
 With this way you can run unsupported commands via **Refine**.
 
 ```bash
-npm run Refine run react-app-rewired start
+npm run refine run react-app-rewired start
 ```
 
 ### whoami
@@ -430,7 +430,7 @@ npm run Refine run react-app-rewired start
 View the details of the development environment.
 
 ```bash
-> npm run Refine whoami
+> npm run refine whoami
 
 ## System:
  - OS: macOS 13.0
@@ -494,7 +494,7 @@ Then add the `Refine` command to your scripts in your `package.json` file
 Hooray!
 
 ```bash
-> npm run Refine
+> npm run refine
 Usage: Refine <command> [options]
 
       ___           ___           ___                       ___           ___

@@ -133,7 +133,7 @@ import { Refine } from "@refinedev/core";
 Refine's CLI has this command called `swizzle` which lets you export the components of the UI integrations and use them in your application. This will let you to change the components in a granular level and use them in your application. You can also use this command to export the `<EditButton />` and change its logic to hide instead of disabling it.
 
 ```bash
-> npm run Refine swizzle
+> npm run refine swizzle
 
 Which package do you want to swizzle? (Use arrow keys or type to search)
 

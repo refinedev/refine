@@ -136,7 +136,7 @@ Component name is determined by the active `resource` element and the active act
 
 ### Usage with GraphQL backends and `meta` values
 
-\*_Refine_ handles the GraphQL backends by using the `meta` properties in its data hooks. Inferencer lets you define meta values for your resources and methods in a single prop and uses it when generating the code and inferring the fields. Unlike the `meta` property of the data hooks, Inferencer components uses the `meta` property with a nested structure, letting you define the `meta` values per resource and action.
+\*_refine_ handles the GraphQL backends by using the `meta` properties in its data hooks. Inferencer lets you define meta values for your resources and methods in a single prop and uses it when generating the code and inferring the fields. Unlike the `meta` property of the data hooks, Inferencer components uses the `meta` property with a nested structure, letting you define the `meta` values per resource and action.
 
 Here's the syntax for defining the `meta` values in Inferencer components:
 

@@ -20,7 +20,7 @@ This also allows you to use the ejected file code logic as a starting point for 
 1. Run the `swizzle` command in the project directory:
 
    ```bash
-   npm run Refine swizzle
+   npm run refine swizzle
    ```
 
 2. Select the data provider package of your choice from the list. We are using `@refinedev/simple-rest` in this tutorial so we will choose that.
