@@ -543,8 +543,8 @@ values={[
     "scripts": {
 -       "dev": "react-scripts start",
 -       "build": "react-scripts build",
-+       "dev": "Refine start",
-+       "build": "Refine build",
++       "dev": "refine start",
++       "build": "refine build",
     }
 }
 ```
@@ -558,9 +558,9 @@ values={[
 -       "dev": "next dev",
 -       "build": "next build",
 -       "start": "next start",
-+       "dev": "Refine dev",
-+       "build": "Refine build",
-+       "start": "Refine start",
++       "dev": "refine dev",
++       "build": "refine build",
++       "start": "refine start",
     }
 }
 ```
@@ -574,9 +574,9 @@ values={[
 -       "dev": "remix dev",
 -       "build": "remix build",
 -       "start": "remix-serve build"
-+       "dev": "Refine dev",
-+       "build": "Refine build",
-+       "start": "Refine start",
++       "dev": "refine dev",
++       "build": "refine build",
++       "start": "refine start",
     }
 }
 ```
