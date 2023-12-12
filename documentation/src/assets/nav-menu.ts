@@ -26,13 +26,13 @@ export const POPOVERMENUS: NavMenu[] = [
             },
             {
                 label: "Integrations",
-                description: "Discover the refine ecosystem",
+                description: "Discover the Refine ecosystem",
                 link: "/integrations",
                 icon: IntegrationsIcon,
             },
             {
                 label: "Tutorial",
-                description: "Your first refine application",
+                description: "Your first Refine application",
                 link: "/docs/tutorial/introduction/index/",
                 icon: TutorialIcon,
             },
@@ -49,7 +49,7 @@ export const POPOVERMENUS: NavMenu[] = [
                 icon: ExamplesIcon,
             },
             {
-                label: "Awesome refine",
+                label: "Awesome Refine",
                 description: "Repo of awesome things",
                 link: "https://github.com/refinedev/awesome-refine",
                 icon: AwesomeIcon,
@@ -76,19 +76,19 @@ export const POPOVERMENUS: NavMenu[] = [
             },
             {
                 label: "Use cases",
-                description: "Inspiring projects built with refine",
+                description: "Inspiring projects built with Refine",
                 link: "/use-cases",
                 icon: UseCasesIcon,
             },
             {
                 label: "refineweek ft. Supabase",
-                description: "The official refine event",
+                description: "The official Refine event",
                 link: "/week-of-refine",
                 icon: RefineWeekIcon,
             },
             {
                 label: "refineweek ft. Strapi",
-                description: "The official refine event",
+                description: "The official Refine event",
                 link: "/week-of-refine-strapi",
                 icon: RefineWeekIcon,
             },
@@ -113,7 +113,7 @@ export const POPOVERMENUS: NavMenu[] = [
                 icon: RefineStoreIcon,
             },
             {
-                label: "Meet refine",
+                label: "Meet Refine",
                 description: "Call us for any questions",
                 link: "https://refinedev.typeform.com/to/Z9wS06kE",
                 icon: RefineIcon,

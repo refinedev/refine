@@ -87,7 +87,7 @@ const About: React.FC = () => {
                             <div className={clsx("max-w-[642px]")}>
                                 <p className="text-xs sm:text-base">
                                     Shortly after its initial release on
-                                    September 2021, refine has gained attraction
+                                    September 2021, Refine has gained attraction
                                     of open-source community and has become
                                     increasingly popular among web application
                                     frameworks.
