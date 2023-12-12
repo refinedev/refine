@@ -10,7 +10,7 @@ Refine CLI is a command line application that allows you to interact with your *
 
 ```bash
 > npm run refine
-Usage: Refine <command> [options]
+Usage: refine <command> [options]
 
       ___           ___           ___                       ___           ___
      /\  \         /\  \         /\  \          ___        /\__\         /\  \
@@ -495,7 +495,7 @@ Hooray!
 
 ```bash
 > npm run refine
-Usage: Refine <command> [options]
+Usage: refine <command> [options]
 
       ___           ___           ___                       ___           ___
      /\  \         /\  \         /\  \          ___        /\__\         /\  \

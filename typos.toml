@@ -18,7 +18,8 @@ extend-ignore-re = [
     "Refine",
     "refine-themes",
     "REFINE",
-    "refine3"
+    "refine3",
+    "\\: refine"
 ]
 
 [files]
