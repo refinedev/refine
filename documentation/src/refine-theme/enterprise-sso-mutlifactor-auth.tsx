@@ -15,7 +15,7 @@ export const EnterpriseSSOMultifactorAuth = ({
                 className={clsx(
                     "grid",
                     "grid-cols-1 landing-md:grid-cols-2",
-                    "gap-8 landing-md:gap-12 landing-lg:gap-4",
+                    "gap-8 landing-md:gap-12 landing-lg:gap-6",
                 )}
             >
                 <div

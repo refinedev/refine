@@ -29,7 +29,7 @@ export const EnterpriseSecurity = ({ className }: { className?: string }) => (
         <div
             className={clsx(
                 "flex flex-col",
-                "gap-8 landing-md:gap-12 landing-lg:gap-4",
+                "gap-8 landing-md:gap-12 landing-lg:gap-6",
                 "mt-8 landing-md:mt-20",
                 "not-prose",
             )}

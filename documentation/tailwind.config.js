@@ -765,12 +765,12 @@ module.exports = {
                     "100%": { transform: "translateX(50%)" },
                 },
                 "enterprise-table-left-to-right": {
-                    "0%": { transform: "translateX(-100%)" },
-                    "100%": { transform: "translateX(0)" },
+                    "0%": { transform: "translateX(-100%)", opacity: 0 },
+                    "100%": { transform: "translateX(0)", opacity: 1 },
                 },
                 "enterprise-table-right-to-left": {
-                    "0%": { transform: "translateX(100%)" },
-                    "100%": { transform: "translateX(0)" },
+                    "0%": { transform: "translateX(100%)", opacity: 0 },
+                    "100%": { transform: "translateX(0)", opacity: 1 },
                 },
                 "header-menu-new-badge": {
                     "0%": {

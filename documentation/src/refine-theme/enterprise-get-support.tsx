@@ -45,7 +45,7 @@ export const EnterpriseGetSupport = ({ className }: { className?: string }) => {
                     "mt-8 landing-md:mt-20",
                     "grid",
                     "grid-cols-1 landing-md:grid-cols-2",
-                    "gap-6",
+                    "gap-8 landing-sm:gap-12 landing-lg:gap-6",
                 )}
             >
                 <div

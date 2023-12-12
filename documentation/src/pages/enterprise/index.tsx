@@ -46,7 +46,7 @@ const Enterprise: React.FC = () => {
                         <EnterpriseHeroSection
                             className={clsx(
                                 "h-auto landing-md:h-[432px]",
-                                "mt-8",
+                                "mt-4 landing-sm:mt-8 landing-lg:mt-5",
                                 "px-4 landing-sm:px-0",
                                 "landing-lg:pr-12",
                             )}
