@@ -313,7 +313,7 @@ useTable({
 
 When you use the `syncWithLocation` feature, the `useTable`'s state (e.g., sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
 
-Also, you can set this value globally on [`<Refine>`][refine swl] component.
+Also, you can set this value globally on [`<Refine>`][Refine swl] component.
 
 ```tsx
 import { useTable } from "@refinedev/core";
@@ -945,6 +945,6 @@ errorNotification-default='"There was an error creating resource (status code: `
 [crudsorting]: /docs/core/interface-references#crudsorting
 [crudfilters]: /docs/core/interface-references#crudfilters
 [httperror]: /docs/core/interface-references#httperror
-[refine swl]: /docs/core/refine-component#syncwithlocation
+[Refine swl]: /docs/core/refine-component#syncwithlocation
 [syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
 [notification-provider]: /docs/core/providers/notification-provider

@@ -64,7 +64,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 export const PostEdit = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    RefineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     formState: { errors },
@@ -220,12 +220,12 @@ import { FormControl, FormErrorMessage, FormLabel, Input, Select, Textarea } fro
 
 export const PostEdit = () => {
   const {
-    refineCore: { formLoading },
+    RefineCore: { formLoading },
     saveButtonProps,
     register,
     formState: { errors },
   } = useForm<IPost, HttpError>({
-    refineCoreProps: {
+    RefineCoreProps: {
       resource: "posts",
       action: "edit",
       id: 1,

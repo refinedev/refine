@@ -86,7 +86,7 @@ export const ProductList = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    refineCore: {
+    RefineCore: {
       setCurrent,
       pageCount,
       current,
@@ -94,7 +94,7 @@ export const ProductList = () => {
     },
   } = useTable<IProduct>({
     columns,
-    refineCoreProps: {
+    RefineCoreProps: {
       initialSorter: [
         {
           field: "id",
@@ -223,7 +223,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 export const ProductCreate = () => {
     const {
-        refineCore: { formLoading },
+        RefineCore: { formLoading },
         saveButtonProps,
         register,
         formState: { errors },

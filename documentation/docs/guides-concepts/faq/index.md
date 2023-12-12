@@ -105,7 +105,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 export const UserCreate: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading },
+    RefineCore: { onFinish, formLoading },
     register,
     handleSubmit,
   } = useForm();
@@ -147,7 +147,7 @@ type FormValues = {
 
 export const UserCreate: React.FC = () => {
   const {
-    refineCore: { onFinish },
+    RefineCore: { onFinish },
     register,
     handleSubmit,
   } = useForm<FormValues, HttpError, FormValues>();
@@ -204,7 +204,7 @@ type FormValues = {
 export const UserCreate: React.FC = () => {
   const {
     saveButtonProps,
-    refineCore: { onFinish },
+    RefineCore: { onFinish },
     handleSubmit,
   } = useForm<FormValues, HttpError, FormValues>();
 
@@ -268,7 +268,7 @@ type FormValues = {
 
 export const UserCreate: React.FC = () => {
   const {
-    refineCore: { onFinish },
+    RefineCore: { onFinish },
     register,
     handleSubmit,
   } = useForm<FormValues, HttpError, FormValues>();
@@ -323,7 +323,7 @@ type FormValues = {
 export const UserCreate: React.FC = () => {
   const {
     saveButtonProps,
-    refineCore: { onFinish },
+    RefineCore: { onFinish },
     handleSubmit,
   } = useForm<FormValues, HttpError, FormValues>();
 
@@ -371,7 +371,7 @@ export const UserCreate: React.FC = () => {
 
 ## How can I refetch data?
 
-**refine** automatically invalidates the affected resources after mutations. However, in some cases you may want to refetch manually.
+**Refine** automatically invalidates the affected resources after mutations. However, in some cases you may want to refetch manually.
 
 <Tabs
 defaultValue="refetch"
@@ -384,7 +384,7 @@ values={[
 ```tsx
 import { useTable, useForm, useShow } from "@refinedev/core";
 
-// All "data" related hooks provided by refine can use queryResult' refetch function
+// All "data" related hooks provided by Refine can use queryResult' refetch function
 const { tableQueryResult: { refetch } } = useTable();
 const { queryResult: { refetch } } = useForm();
 ...
@@ -429,14 +429,14 @@ invalidate({
 });
 ```
 
-[Refer to the **refine** useInvalidate hook documentation for more information. →](/docs/core/hooks/data/use-invalidate)
+[Refer to the **Refine** useInvalidate hook documentation for more information. →](/docs/core/hooks/data/use-invalidate)
 
 </TabItem>
 </Tabs>
 
 ## How can I request an API with nested route?
 
-**refine**'s way of doing this is with the `resource` property on all data hooks. You can think of the `resource` property as the URL.
+**Refine**'s way of doing this is with the `resource` property on all data hooks. You can think of the `resource` property as the URL.
 
 For example, If you want to make a request of the URL `/user/1/posts`.
 
@@ -469,11 +469,11 @@ useMany({
 
 **Yes!** You can work with JavaScript!
 
-[Refer to **refine JavaScript** example → ](https://github.com/refinedev/refine/tree/master/examples/with-javascript)
+[Refer to **Refine JavaScript** example → ](https://github.com/refinedev/refine/tree/master/examples/with-javascript)
 
 ## How I can override specific function of Data Providers?
 
-In some cases, you may need to override functions of refine data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+In some cases, you may need to override functions of Refine data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
 For example, Let's override the `update` function of the [`@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/master/packages/simple-rest). `@refinedev/simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
 
@@ -742,9 +742,9 @@ Here are a couple of examples of reported errors and their corresponding fix:
 
 By following these steps and updating to the latest module versions, you should be able to resolve the "not exported" error.
 
-## How to use React Query DevTools with refine?
+## How to use React Query DevTools with Refine?
 
-Until `@refinedev/core`'s version `4.28.2`, refine had the `@tanstack/react-query-devtools` package available by default. However, this package has been removed from the core package and is no longer available by default. If you want to use the dev tools, you can install the package (`@tanstack/react-query-devtools`) and use it in your app directly.
+Until `@refinedev/core`'s version `4.28.2`, Refine had the `@tanstack/react-query-devtools` package available by default. However, this package has been removed from the core package and is no longer available by default. If you want to use the dev tools, you can install the package (`@tanstack/react-query-devtools`) and use it in your app directly.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -763,13 +763,13 @@ const App = () => {
 
 ## How do invalidation works in queries?
 
-**refine** invalidates for the specific scope of queries after a successful mutation. The scope of the invalidation can be customized by the `invalidates` prop in the mutation hooks.
+**Refine** invalidates for the specific scope of queries after a successful mutation. The scope of the invalidation can be customized by the `invalidates` prop in the mutation hooks.
 
-By default, **refine** invalidates all the queries that are in the defined scope and only triggers a refetch for the active queries (mounted and enabled). This is done to prevent unnecessary refetches and for more precise invalidation.
+By default, **Refine** invalidates all the queries that are in the defined scope and only triggers a refetch for the active queries (mounted and enabled). This is done to prevent unnecessary refetches and for more precise invalidation.
 
-In realtime updates, **refine** will invalidate and refetch all the active queries that are in the defined scope.
+In realtime updates, **Refine** will invalidate and refetch all the active queries that are in the defined scope.
 
-In both cases, if there are any ongoing queries, **refine** will keep them as they are and will not invalidate or refetch them.
+In both cases, if there are any ongoing queries, **Refine** will keep them as they are and will not invalidate or refetch them.
 
 ## Handling client side pagination along with client side filtering and sorting
 

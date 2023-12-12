@@ -101,7 +101,7 @@ render(<App />);
 
 ### Hooks and Components in Edit Page
 
-- `<Edit/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
+- `<Edit/>` is a **Refine** component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
 
   > For more information, refer to the [`<Edit/>` documentation&#8594](/docs/ui-integrations/material-ui/components/basic-views/edit)
 
@@ -117,7 +117,7 @@ render(<App />);
 
 On the edit page, we may need to select a record from another resource.
 
-For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the necessary props to be used in the `<Autocomplete/>` component.
+For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by **Refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the necessary props to be used in the `<Autocomplete/>` component.
 
 In the auto-generated edit page code, Inferencer used the `useAutocomplete` hook to select a category from the `categories` resource like below:
 

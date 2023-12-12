@@ -9,7 +9,7 @@ tutorial:
 
 ## Adding Delete Feature to List Page
 
-`<DeleteButton/>` is a **refine** component that is used for deleting records. When you click on the delete button, it will show a confirmation modal and delete the record upon confirmation. To add it to the "blog_posts" table:
+`<DeleteButton/>` is a **Refine** component that is used for deleting records. When you click on the delete button, it will show a confirmation modal and delete the record upon confirmation. To add it to the "blog_posts" table:
 
 1.  Open the `src/pages/blog-posts/list.tsx` file on your editor.
 
@@ -61,7 +61,7 @@ We can enable the delete feature on both show and edit pages while we are defini
 import { Refine } from "@refinedev/core";
 import routerBindings, { UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { ErrorComponent, Layout, refineTheme, notificationProvider } from "@refinedev/chakra-ui";
+import { ErrorComponent, Layout, RefineTheme, notificationProvider } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -73,7 +73,7 @@ import { BlogPostCreate } from "pages/blog-posts/create";
 
 const App = () => {
   return (
-    <ChakraProvider theme={refineTheme}>
+    <ChakraProvider theme={RefineTheme}>
       <BrowserRouter>
         <Refine
           routerProvider={routerBindings}
@@ -112,7 +112,7 @@ After setting the `canDelete` property in `meta` to `true`, you will see a delet
 
 :::tip
 
-You can also use `useDelete` hook provided by **refine** to delete a record.
+You can also use `useDelete` hook provided by **Refine** to delete a record.
 
 For more information, refer to the [`useDelete` documentation&#8594](/docs/core/hooks/data/use-delete)
 

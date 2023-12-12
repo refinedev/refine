@@ -1,7 +1,7 @@
 ---
 title: <ThemedLayout>
 sidebar_label: <ThemedLayout>
-description: <ThemedLayoutV2> component from refine, defines the overall structure and layout of a web page.
+description: <ThemedLayoutV2> component from Refine, defines the overall structure and layout of a web page.
 swizzle: true
 source: packages/antd/src/components/themedLayoutV2/index.tsx
 ---
@@ -343,7 +343,7 @@ const App: React.FC = () => {
 
 ### `Footer`
 
-The footer section of the layout is displayed at the bottom of the page. **refine** doesn't provide a default footer component. However, you can pass a custom component to the `Footer` prop to display a footer section.
+The footer section of the layout is displayed at the bottom of the page. **Refine** doesn't provide a default footer component. However, you can pass a custom component to the `Footer` prop to display a footer section.
 
 Here is an example of how to display a footer section:
 
@@ -452,7 +452,7 @@ const App: React.FC = () => {
 
 ### `OffLayoutArea`
 
-Used to component is rendered outside of the main layout component, allowing it to be placed anywhere on the page while still being part of the overall layout .**refine** doesn't provide a default off-layout area component. However, you can pass a custom component to the `OffLayoutArea` prop to display a custom off-layout area.
+Used to component is rendered outside of the main layout component, allowing it to be placed anywhere on the page while still being part of the overall layout .**Refine** doesn't provide a default off-layout area component. However, you can pass a custom component to the `OffLayoutArea` prop to display a custom off-layout area.
 
 Here is an example of how to display a custom off-layout area:
 
@@ -577,7 +577,7 @@ const App: React.FC = () => {
 Let's create a new component by swizzling the `<ThemedLayoutV2>` components.
 
 ```bash
-> npm run refine swizzle
+> npm run Refine swizzle
 
 ? Which package do you want to swizzle? (Use arrow keys or type to search)
 
@@ -591,7 +591,7 @@ First, you need to select the package you want to swizzle. In this example, we w
 
 :::info
 
-**refine** CLI will only show the packages that are installed in your project.
+**Refine** CLI will only show the packages that are installed in your project.
 
 :::
 
@@ -676,7 +676,7 @@ const App = () => {
 
 :::info
 
-**refine** CLI determines the path to create a new folder according to the framework you are using. For example, if you are using the `remix`, the path will be `app/components/layout`.
+**Refine** CLI determines the path to create a new folder according to the framework you are using. For example, if you are using the `remix`, the path will be `app/components/layout`.
 
 :::
 

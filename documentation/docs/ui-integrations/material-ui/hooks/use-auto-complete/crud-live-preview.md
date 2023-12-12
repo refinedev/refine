@@ -14,7 +14,7 @@ interface ICategory {
 const PostCreate: React.FC = () => {
   const {
     saveButtonProps,
-    refineCore: { formLoading, queryResult },
+    RefineCore: { formLoading, queryResult },
     register,
     control,
     formState: { errors },

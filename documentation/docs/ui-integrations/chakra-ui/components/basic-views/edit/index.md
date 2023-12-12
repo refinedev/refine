@@ -56,7 +56,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 const PostEdit: React.FC = () => {
   const {
-    refineCore: { formLoading, queryResult },
+    RefineCore: { formLoading, queryResult },
     saveButtonProps,
     register,
     formState: { errors },
@@ -142,7 +142,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -243,7 +243,7 @@ render(
 
 `canDelete` allows us to add the delete button inside the `<Edit>` component that executes the `useDelete` method provided by the `dataProvider` when clicked on.
 
-If the resource has the `canDelete` property, **refine** adds the delete button by default. If you want to customize this button, you can use the `deleteButtonProps` property like the code below.
+If the resource has the `canDelete` property, **Refine** adds the delete button by default. If you want to customize this button, you can use the `deleteButtonProps` property like the code below.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -420,7 +420,7 @@ const PostEdit: React.FC = () => {
     modal: { visible, close, show },
     id,
   } = useModalForm({
-    refineCoreProps: { action: "edit" },
+    RefineCoreProps: { action: "edit" },
   });
 
   return (
@@ -542,7 +542,7 @@ render(
 
 ### `dataProviderName`
 
-If not specified, **refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
+If not specified, **Refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -1257,7 +1257,7 @@ import { useForm } from "@refinedev/react-hook-form";
 // visible-block-start
 const PostEdit: React.FC = () => {
   const {
-    refineCore: {
+    RefineCore: {
       formLoading,
       queryResult,
       // highlight-next-line
@@ -1269,7 +1269,7 @@ const PostEdit: React.FC = () => {
     resetField,
   } = useForm<IPost>({
     // highlight-start
-    refineCoreProps: {
+    RefineCoreProps: {
       autoSave: {
         enabled: true,
       },

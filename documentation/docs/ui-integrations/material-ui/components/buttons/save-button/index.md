@@ -3,11 +3,11 @@ title: Save
 swizzle: true
 ---
 
-`<SaveButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
+`<SaveButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses it for presantation purposes only. Some of the hooks that **Refine** has adds features to this button.
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -23,7 +23,7 @@ import { Box, TextField } from "@mui/material";
 
 const PostEdit: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading },
+    RefineCore: { onFinish, formLoading },
     register,
     handleSubmit,
     formState: { errors },

@@ -21,7 +21,7 @@ const liveProvider = {
 
 We have the following built-in integrations which you can use out-of-the-box.
 
-**refine** includes some out-of-the-box live providers to use in your projects such as:
+**Refine** includes some out-of-the-box live providers to use in your projects such as:
 
 - **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
 - **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
@@ -190,7 +190,7 @@ Since the following hooks are using `useMany` hook, they will subscribe to the s
 
 ## Publish Events from Hooks
 
-**refine** publishes these events in the hooks. Let's see the usage of hooks and what kind of events are published:
+**Refine** publishes these events in the hooks. Let's see the usage of hooks and what kind of events are published:
 
 ### `useCreate`
 

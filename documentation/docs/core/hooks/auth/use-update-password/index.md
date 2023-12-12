@@ -1,7 +1,7 @@
 ---
 title: useUpdatePassword
 siderbar_label: useUpdatePassword
-description: useUpdatePassword data hook from refine is a modified version of react-query's useMutation for registration.
+description: useUpdatePassword data hook from Refine is a modified version of react-query's useMutation for registration.
 source: /packages/core/src/hooks/auth/useUpdatePassword/index.ts
 ---
 
@@ -34,7 +34,7 @@ type AuthActionResponse = {
 
 ## Usage
 
-**refine** provides a default 'update password' page, page which handles the update password flow manually.
+**Refine** provides a default 'update password' page, page which handles the update password flow manually.
 If you want to use a custom 'update password' however, you can use the `useUpdatePassword` hook like this:
 
 ```tsx title="pages/customupdatePasswordPage"
@@ -60,7 +60,7 @@ export const UpdatePasswordPage = () => {
   return (
     <form onSubmit={onSubmit}>
       <label>Password</label>
-      <input name="password" value="refine" />
+      <input name="password" value="Refine" />
       <button type="submit">Submit</button>
     </form>
   );
@@ -146,7 +146,7 @@ const { mutate: updatePassword } = useUpdatePassword();
 
 updatePassword(
   {
-    newPassword: "refine",
+    newPassword: "Refine",
   },
   {
     onSuccess: (data) => {

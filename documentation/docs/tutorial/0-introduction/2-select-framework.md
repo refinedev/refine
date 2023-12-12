@@ -9,7 +9,7 @@ tutorial:
 
 import { SelectTutorialFramework } from '@site/src/components/select-tutorial-framework';
 
-**refine** is a headless framework by default, which means that you can build your app without any UI frameworks. If you want to use one, however, **refine** offers built-in support for the most popular UI frameworks such as **Material UI**, **Ant Design**, **Mantine** and **Chakra UI**. Using one of these frameworks can significantly speed up your app's UI development process.
+**Refine** is a headless framework by default, which means that you can build your app without any UI frameworks. If you want to use one, however, **Refine** offers built-in support for the most popular UI frameworks such as **Material UI**, **Ant Design**, **Mantine** and **Chakra UI**. Using one of these frameworks can significantly speed up your app's UI development process.
 
 Before you start, you can read the [API references](/docs/guides-concepts/general-concepts/) of the UI frameworks to get more information about them.
 
@@ -53,10 +53,10 @@ The tutorial content from now on will be according to your UI selection, which i
 <Checklist>
 
 <ChecklistItem id="select-framework">
-I understood that refine is a headless framework.
+I understood that Refine is a headless framework.
 </ChecklistItem>
 <ChecklistItem id="select-framework-2">
-I understood that refine has built-in support for the most popular UI frameworks.
+I understood that Refine has built-in support for the most popular UI frameworks.
 </ChecklistItem>
 <ChecklistItem id="select-framework-3">
 I have selected a UI framework.

@@ -76,7 +76,7 @@ const PostList: React.FC = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    refineCore: {
+    RefineCore: {
       tableQueryResult: { data: tableData },
     },
   } = useTable<IPost, HttpError>({

@@ -1,7 +1,7 @@
 ---
 title: useIsAuthenticated
 siderbar_label: useIsAuthenticated
-description: useIsAuthenticated data hook from refine is a modified version of react-query's useMutation for create mutations
+description: useIsAuthenticated data hook from Refine is a modified version of react-query's useMutation for create mutations
 source: /packages/core/src/hooks/auth/useIsAuthenticated/index.ts
 ---
 
@@ -35,7 +35,7 @@ type CheckResponse = {
 
 `useIsAuthenticated` can be useful when you want to check for authentication and handle the result manually.
 
-We have used this hook in refine's [`<Authenticated>`](/docs/core/components/authenticated) component, which allows only authenticated users to access the page or any part of the code.
+We have used this hook in Refine's [`<Authenticated>`](/docs/core/components/authenticated) component, which allows only authenticated users to access the page or any part of the code.
 
 We will demonstrate a similar basic implementation below. Imagine that you have a public page, but you want to make some specific fields private.
 

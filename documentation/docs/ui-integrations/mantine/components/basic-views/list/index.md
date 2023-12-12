@@ -84,7 +84,7 @@ const PostList: React.FC = () => {
   const {
     getHeaderGroups,
     getRowModel,
-    refineCore: { setCurrent, pageCount, current },
+    RefineCore: { setCurrent, pageCount, current },
   } = useTable({
     columns,
   });
@@ -143,7 +143,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -251,7 +251,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `canCreate` and `createButtonProps`
 
-`canCreate` allows us to add the create button inside the `<List>` component. If resource is passed a create component, **refine** adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
+`canCreate` allows us to add the create button inside the `<List>` component. If resource is passed a create component, **Refine** adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
 
 Create button redirects to the create page of the resource according to the value it reads from the URL.
 

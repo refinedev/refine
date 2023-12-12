@@ -44,7 +44,7 @@ const PostList: React.FC = () => {
     saveButtonProps,
     modal: { show, close, title, visible },
   } = useModalForm({
-    refineCoreProps: { action: "create" },
+    RefineCoreProps: { action: "create" },
     initialValues: {
       title: "",
       status: "",
@@ -101,7 +101,7 @@ const PostList: React.FC = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    refineCore: {
+    RefineCore: {
       setCurrent,
       pageCount,
       current,
@@ -215,7 +215,7 @@ const PostList: React.FC = () => {
     saveButtonProps,
     modal: { show, close, title, visible },
   } = useModalForm({
-    refineCoreProps: { action: "edit" },
+    RefineCoreProps: { action: "edit" },
     initialValues: {
       title: "",
       status: "",
@@ -288,7 +288,7 @@ const PostList: React.FC = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    refineCore: {
+    RefineCore: {
       setCurrent,
       pageCount,
       current,
@@ -380,7 +380,7 @@ render(<RefineMantineDemo />);
 
 :::caution
 
-**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Modal>` when clicked.
+**Refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Modal>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list for `"edit"` form in `<Modal>` to be able to fetch data by the record `id`.
 
@@ -442,7 +442,7 @@ const PostList: React.FC = () => {
     saveButtonProps,
     modal: { show, close, title, visible },
   } = useModalForm({
-    refineCoreProps: { action: "clone" },
+    RefineCoreProps: { action: "clone" },
     initialValues: {
       title: "",
       status: "",
@@ -514,7 +514,7 @@ const PostList: React.FC = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    refineCore: {
+    RefineCore: {
       setCurrent,
       pageCount,
       current,
@@ -606,7 +606,7 @@ render(<RefineMantineDemo />);
 
 :::caution
 
-**refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens `"clone"` form in `<Modal>` when clicked.
+**Refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens `"clone"` form in `<Modal>` when clicked.
 
 So, we have to put the `<CloneButton/>` on our list for `"clone"` form in `<Modal>` to be able to fetch data by the record `id`.
 
@@ -651,13 +651,13 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 
 ## Properties
 
-### `refineCoreProps`
+### `RefineCoreProps`
 
 All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) properties are also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#properties) documentation.
 
 ```tsx
 const modalForm = useModalForm({
-  refineCoreProps: {
+  RefineCoreProps: {
     action: "edit",
     resource: "posts",
     id: "1",
@@ -781,7 +781,7 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useModalForm({
-  refineCoreProps: {
+  RefineCoreProps: {
     autoSave: {
       enabled: true,
     },
@@ -797,7 +797,7 @@ Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useModalForm({
-  refineCoreProps: {
+  RefineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-next-line
@@ -815,7 +815,7 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useModalForm({
-  refineCoreProps: {
+  RefineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-next-line
@@ -833,7 +833,7 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useModalForm({
-  refineCoreProps: {
+  RefineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-next-line
@@ -873,7 +873,7 @@ Title of the modal. Based on resource and action values
 const {
   modal: { title },
 } = useModalForm({
-  refineCoreProps: {
+  RefineCoreProps: {
     resource: "posts",
     action: "create",
   },
@@ -1008,7 +1008,7 @@ const UserCreate: React.FC = () => {
         saveButtonProps,
         modal: { show, close, title, visible },
     } = useModalForm({
-        refineCoreProps: { action: "create" },
+        RefineCoreProps: { action: "create" },
         initialValues: {
             name: "",
             surname: "",
@@ -1055,7 +1055,7 @@ const UserCreate: React.FC = () => {
 | Property                               | Description                                                         | Type                                                    |
 | -------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
 | modalProps                             | Configuration object for the modal or drawer                        | [`ModalPropsType`](#modalpropstype)                     |
-| refineCoreProps                        | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/docs/core/hooks/use-form/#properties) |
+| RefineCoreProps                        | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/docs/core/hooks/use-form/#properties) |
 | `@mantine/form`'s `useForm` properties | See [useForm][use-form-refine-mantine] documentation                |
 
 <br />
@@ -1085,7 +1085,7 @@ const UserCreate: React.FC = () => {
 | Property                                  | Description                                                     | Type                                                                                                                                    |
 | ----------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | modal                                     | Relevant states and methods to control the modal or drawer      | [`ModalReturnValues`](#modalreturnvalues)                                                                                               |
-| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values)                                                                       |
+| RefineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values)                                                                       |
 | `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |                                                                                                                                         |
 | overtime                                  | Overtime loading props                                          | `{ elapsedTime?: number }`                                                                                                              |
 | autoSaveProps                             | Auto save props                                                 | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }` |

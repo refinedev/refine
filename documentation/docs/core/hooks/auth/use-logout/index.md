@@ -1,7 +1,7 @@
 ---
 title: useLogout
 siderbar_label: useLogout
-description: useLogout data hook from refine is a modified version of react-query's useMutation for unauthentication.
+description: useLogout data hook from Refine is a modified version of react-query's useMutation for unauthentication.
 source: /packages/core/src/hooks/auth/useLogout/index.ts
 ---
 
@@ -34,7 +34,7 @@ type AuthActionResponse = {
 
 ## Usage
 
-**refine** provides a default logout page which handles the logout flow manually.
+**Refine** provides a default logout page which handles the logout flow manually.
 
 If you want to use a custom logout page however, you can use the `useLogout` hook like this:
 

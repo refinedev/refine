@@ -5,7 +5,7 @@ sidebar_label: Migrating Auth Provider
 
 ## Motivation behind the changes
 
-Our motivation for modifying the `authProvider` prop in **refine v4** was to improve its flexibility and customization options, allowing it to handle a wider range of use cases without becoming overly complicated.
+Our motivation for modifying the `authProvider` prop in **Refine v4** was to improve its flexibility and customization options, allowing it to handle a wider range of use cases without becoming overly complicated.
 
 We aimed to create a more standardized interface for the `authProvider` methods that would improve transparency and enable easier debugging for developers.
 
@@ -431,7 +431,7 @@ Though auth hooks should be familiar, they need to updated according to the new 
 
 ## Backward compatibility
 
-**refine** still supports the `authProvider@v3` for backward compatibility. We changed its name to `legacyAuthProvider` and it will be removed in the next major version. If you want to continue using the `authProvider@v3` you can use it as `legacyAuthProvider` in your project.
+**Refine** still supports the `authProvider@v3` for backward compatibility. We changed its name to `legacyAuthProvider` and it will be removed in the next major version. If you want to continue using the `authProvider@v3` you can use it as `legacyAuthProvider` in your project.
 
 ```diff
 - import { AuthProvider } from "@refinedev/core";

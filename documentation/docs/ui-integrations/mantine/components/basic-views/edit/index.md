@@ -4,7 +4,7 @@ swizzle: true
 ---
 
 ```tsx live shared
-window.__refineAuthStatus = false;
+window.__RefineAuthStatus = false;
 
 setRefineProps({
   notificationProvider: RefineMantine.notificationProvider,
@@ -56,7 +56,7 @@ const PostEdit: React.FC = () => {
   const {
     saveButtonProps,
     getInputProps,
-    refineCore: { queryResult },
+    RefineCore: { queryResult },
   } = useForm<IPost>({
     initialValues: {
       title: "",
@@ -131,7 +131,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -244,7 +244,7 @@ render(
 
 ### `canDelete` and `deleteButtonProps`
 
-`canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property,refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
+`canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property,Refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
 When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
 
@@ -287,7 +287,7 @@ const App = () => {
     },
   };
 
-  window.__refineAuthStatus = true;
+  window.__RefineAuthStatus = true;
 
   const authProvider = {
     login: async () => {
@@ -312,15 +312,15 @@ const App = () => {
       };
     },
     logout: async () => {
-      window.__refineAuthStatus = false;
+      window.__RefineAuthStatus = false;
       return {
         success: true,
         redirectTo: "/",
       };
     },
     check: async () => ({
-      authenticated: window.__refineAuthStatus ? true : false,
-      redirectTo: window.__refineAuthStatus ? undefined : "/login",
+      authenticated: window.__RefineAuthStatus ? true : false,
+      redirectTo: window.__RefineAuthStatus ? undefined : "/login",
     }),
     onError: async (error) => {
       console.error(error);
@@ -564,7 +564,7 @@ render(
 
 ### `dataProviderName`
 
-If not specified, **refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
+If not specified, **Refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -1359,7 +1359,7 @@ const PostEdit: React.FC = () => {
   const {
     saveButtonProps,
     getInputProps,
-    refineCore: {
+    RefineCore: {
       queryResult,
       // highlight-next-line
       autoSaveProps,
@@ -1380,7 +1380,7 @@ const PostEdit: React.FC = () => {
       },
     },
     // highlight-start
-    refineCoreProps: {
+    RefineCoreProps: {
       autoSave: {
         enabled: true,
       },

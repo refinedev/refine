@@ -1,18 +1,18 @@
 ---
 title: <AuthPage>
 sidebar_label: <AuthPage>
-description: <AuthPage> component from refine is an authentication page that can be used to login, register, forgot password, and update password.
+description: <AuthPage> component from Refine is an authentication page that can be used to login, register, forgot password, and update password.
 swizzle: true
 source: packages/antd/src/components/pages/auth/index.tsx
 ---
 
-`<AuthPage>` component from **refine** for **Ant Design** contains authentication pages that can be used for the login, register, forgot password, and update password actions.
+`<AuthPage>` component from **Refine** for **Ant Design** contains authentication pages that can be used for the login, register, forgot password, and update password actions.
 
 Before using `<AuthPage>` component you need to add [authProvider](/docs/core/providers/auth-provider) that will be used to handle authentication.
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -23,11 +23,11 @@ const {
   Button,
 } = AntdCore;
 
-window.__refineAuthStatus = false;
+window.__RefineAuthStatus = false;
 
 const authProvider = {
   login: () => {
-    window.__refineAuthStatus = true;
+    window.__RefineAuthStatus = true;
     return {
       success: true,
       redirectTo: "/",
@@ -49,7 +49,7 @@ const authProvider = {
     };
   },
   logout: async () => {
-    window.__refineAuthStatus = false;
+    window.__RefineAuthStatus = false;
     return {
       success: true,
       redirectTo: "/",
@@ -57,8 +57,8 @@ const authProvider = {
   },
   check: async () => {
     return {
-      authenticated: window.__refineAuthStatus ? true : false,
-      redirectTo: window.__refineAuthStatus ? undefined : "/login",
+      authenticated: window.__RefineAuthStatus ? true : false,
+      redirectTo: window.__RefineAuthStatus ? undefined : "/login",
     };
   },
   onError: async (error) => {
@@ -826,8 +826,8 @@ const MyLoginPage = () => {
 
 By default, `AuthPage` uses text with icon on top of page. You can use this property to change the default title.
 
-- Default text is: refine Project
-- Default icon is: refine Logo
+- Default text is: Refine Project
+- Default icon is: Refine Logo
 
 ```tsx
 import { AuthPage, ThemedTitle } from "@refinedev/antd";

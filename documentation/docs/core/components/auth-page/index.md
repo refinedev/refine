@@ -1,11 +1,11 @@
 ---
 title: <AuthPage>
 sidebar_label: <AuthPage>
-description: <AuthPage> component from refine is an authentication page that can be used to login, register, forgot password, and update password.
+description: <AuthPage> component from Refine is an authentication page that can be used to login, register, forgot password, and update password.
 source: packages/core/src/components/pages/auth/index.tsx
 ---
 
-`<AuthPage>` component from **refine** contains authentication pages that can be used to login, register, forgot password, and update password.
+`<AuthPage>` component from **Refine** contains authentication pages that can be used to login, register, forgot password, and update password.
 
 Before using `<AuthPage>` component you need to add [authProvider](/docs/core/providers/auth-provider) that will be used to handle authentication.
 
@@ -18,11 +18,11 @@ body {
 ```tsx live shared
 const { useLogout: useLogoutShared } = RefineCore;
 
-window.__refineAuthStatus = false;
+window.__RefineAuthStatus = false;
 
 const authProvider = {
   login: async () => {
-    window.__refineAuthStatus = true;
+    window.__RefineAuthStatus = true;
     return {
       success: true,
       redirectTo: "/",
@@ -44,14 +44,14 @@ const authProvider = {
     };
   },
   logout: async () => {
-    window.__refineAuthStatus = false;
+    window.__RefineAuthStatus = false;
     return {
       success: true,
       redirectTo: "/login",
     };
   },
   check: async () => ({
-    authenticated: window.__refineAuthStatus,
+    authenticated: window.__RefineAuthStatus,
   }),
   onError: async (error) => {
     console.error(error);

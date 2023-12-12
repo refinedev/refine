@@ -1,7 +1,7 @@
 ---
 title: useRegister
 siderbar_label: useRegister
-description: useRegister data hook from refine is a modified version of react-query's useMutation for registration.
+description: useRegister data hook from Refine is a modified version of react-query's useMutation for registration.
 source: /packages/core/src/hooks/auth/useRegister/index.ts
 ---
 
@@ -34,7 +34,7 @@ type AuthActionResponse = {
 
 ## Usage
 
-**refine** provides a default registration page, page which handles the registration flow manually.
+**Refine** provides a default registration page, page which handles the registration flow manually.
 If you want to use a custom registration page however, you can use the `useRegister` hook like this:
 
 ```tsx title="pages/customRegisterPage"
@@ -64,7 +64,7 @@ export const RegisterPage = () => {
       <label>Email</label>
       <input name="email" value="test@refine.com" />
       <label>Password</label>
-      <input name="password" value="refine" />
+      <input name="password" value="Refine" />
       <button type="submit">Submit</button>
     </form>
   );
@@ -120,7 +120,7 @@ export const RegisterPage = () => {
       <label>Email</label>
       <input name="email" value="test@refine.com" />
       <label>Password</label>
-      <input name="password" value="refine" />
+      <input name="password" value="Refine" />
       <button type="submit">Submit</button>
     </form>
   );
@@ -166,7 +166,7 @@ const { mutate: register } = useRegister();
 register(
   {
     email: "refine@example.com",
-    password: "refine",
+    password: "Refine",
   },
   {
     onSuccess: (data) => {

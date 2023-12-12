@@ -15,7 +15,7 @@ axiosInstance.defaults.headers.common[
 ] = `Bearer 6ae3cf664d558bc67d21ddabd0cf5ba0716367cd74c2ceaedf86f0efa09b3fe1605c90ab051fd4961ba03db961273bb2b48b9213ae267013317977f737b4ac8765a2e0bc64e9f275791ccb881117553f589675f5e6ce84d3859511fa124d477209cf1cbbd4fd7f6ddacc77eb4520753e3636446f807629de911eac7afbf60fd4`;
 ```
 
-**refine** supports the features that come with [Strapi-v4](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html).
+**Refine** supports the features that come with [Strapi-v4](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html).
 
 A few of the Strapi-v4 API features are as follows:
 

@@ -1,10 +1,10 @@
 ---
 id: hasura
 title: Hasura
-example-tags: [data-provider,live-provider]
+example-tags: [data-provider, live-provider]
 ---
 
-Any REST or GraphQL custom backend work integrated with **refine**. **refine** [Hasura](https://hasura.io/) GraphQL Data Provider comes out-of-the-box. Thanks to **refine**, you can connect to your Hasura database and create special queries and use your data easily. This example shows in detail how you can use the data in your Hasura database with **refine** project.
+Any REST or GraphQL custom backend work integrated with **Refine**. **Refine** [Hasura](https://hasura.io/) GraphQL Data Provider comes out-of-the-box. Thanks to **Refine**, you can connect to your Hasura database and create special queries and use your data easily. This example shows in detail how you can use the data in your Hasura database with **Refine** project.
 
 ## ID Data Type
 
@@ -16,7 +16,7 @@ This will allow you to determine the `idType` for all resources.
 
 ```tsx
 const myDataProvider = dataProvider(client, {
-    idType: "Int",
+  idType: "Int",
 });
 ```
 
@@ -26,12 +26,12 @@ This will allow you to determine the `idType` based on the resource name.
 
 ```tsx
 const idTypeMap: Record<string, "Int" | "uuid"> = {
-    users: "Int",
-    posts: "uuid",
+  users: "Int",
+  posts: "uuid",
 };
 
 const myDataProvider = dataProvider(client, {
-    idType: (resource) => idTypeMap[resource] ?? "uuid",
+  idType: (resource) => idTypeMap[resource] ?? "uuid",
 });
 ```
 

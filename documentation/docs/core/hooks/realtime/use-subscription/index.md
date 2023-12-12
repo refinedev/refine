@@ -7,7 +7,7 @@ source: packages/core/src/hooks/live/useSubscription/index.ts
 
 :::info-tip
 
-**refine** use this hook internally in data hooks to `subscribe` Realtime data. You can refer liveProvider's [Integrated Hooks][integrated-hooks] section for more information.
+**Refine** use this hook internally in data hooks to `subscribe` Realtime data. You can refer liveProvider's [Integrated Hooks][integrated-hooks] section for more information.
 
 :::
 

@@ -41,7 +41,7 @@ This is the active action that is matched by the current route and the action de
 
 ### `id`
 
-This is the main parameter used by the **refine** in API interactions. It will also be available in the `params` object but it is also available as a separate value for convenience. It will be `undefined` if there is no `id` parameter in the URL.
+This is the main parameter used by the **Refine** in API interactions. It will also be available in the `params` object but it is also available as a separate value for convenience. It will be `undefined` if there is no `id` parameter in the URL.
 
 ### `pathname`
 

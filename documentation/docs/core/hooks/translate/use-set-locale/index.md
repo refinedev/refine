@@ -2,7 +2,7 @@
 title: useSetLocale
 ---
 
-If you need to change the locale at runtime, refine provides the `useSetLocale` hook, It returns the changeLocale method from `i18nProvider` under the hood.
+If you need to change the locale at runtime, Refine provides the `useSetLocale` hook, It returns the changeLocale method from `i18nProvider` under the hood.
 
 ## Usage
 

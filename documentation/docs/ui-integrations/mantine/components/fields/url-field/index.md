@@ -30,7 +30,7 @@ This field lets you embed a link. It uses Mantine [`<Anchor>`](https://mantine.d
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -79,7 +79,7 @@ const PostList: React.FC = () => {
   const {
     getHeaderGroups,
     getRowModel,
-    refineCore: { setCurrent, pageCount, current },
+    RefineCore: { setCurrent, pageCount, current },
   } = useTable({
     columns,
   });

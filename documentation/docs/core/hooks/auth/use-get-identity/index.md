@@ -1,7 +1,7 @@
 ---
 title: useGetIdentity
 siderbar_label: useGetIdentity
-description: useGetIdentity data hook from refine is a modified version of react-query's useQuery for retrieving user data
+description: useGetIdentity data hook from Refine is a modified version of react-query's useQuery for retrieving user data
 source: /packages/core/src/hooks/auth/useGetIdentity/index.ts
 ---
 

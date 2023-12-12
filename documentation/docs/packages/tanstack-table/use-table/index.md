@@ -11,7 +11,7 @@ import FilteringLivePreview from "../examples/\_partial-filtering-live-preview.m
 import RelationalLivePreview from "../examples/\_partial-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-Refine offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch. Since it is designed as headless, It expects you to handle the UI.
+Refine offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-table][refine-react-table] that allows you to use the TanStack Table library with **Refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch. Since it is designed as headless, It expects you to handle the UI.
 
 All of [TanStack Table's][tanstack-table] features are supported and you can use all of the [TanStack Table's][tanstack-table] examples with no changes just copy and paste them into your project.
 
@@ -128,7 +128,7 @@ method={{
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     resource: "categories",
   },
 });
@@ -144,7 +144,7 @@ If there is more than one `dataProvider`, you should use the `dataProviderName` 
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     dataProviderName: "second-data-provider",
   },
 });
@@ -158,7 +158,7 @@ Sets the initial value of the page index.
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     pagination: {
       current: 2,
     },
@@ -174,7 +174,7 @@ Sets the initial value of the page size.
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     pagination: {
       pageSize: 10,
     },
@@ -194,7 +194,7 @@ It can be `"off"`, `"server"` or `"client"`.
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     pagination: {
       mode: "client",
     },
@@ -210,7 +210,7 @@ Sets the initial value of the sorter. The `initial` is not permanent. It will be
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     sorters: {
       initial: [
         {
@@ -231,7 +231,7 @@ Sets the permanent value of the sorter. The `permanent` is permanent and unchang
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     sorters: {
       permanent: [
         {
@@ -255,7 +255,7 @@ It can be `"off"` or `"server"`.
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     sorters: {
       mode: "off",
     },
@@ -271,7 +271,7 @@ Sets the initial value of the filter. The `initial` is not permanent. It will be
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     filters: {
       initial: [
         {
@@ -293,7 +293,7 @@ Sets the permanent value of the filter. The `permanent` is permanent and unchang
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     filters: {
       permanent: [
         {
@@ -321,7 +321,7 @@ You can also override the default value by using the second parameter of the [`s
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     filters: {
       defaultBehavior: "merge",
     },
@@ -340,7 +340,7 @@ It can be `"off"` or `"server"`.
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     filters: {
       mode: "off",
     },
@@ -354,11 +354,11 @@ useTable({
 
 When you use the syncWithLocation feature, the `useTable`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages and to allow users to bookmark or share links to specific table views.
 
-Also you can set this value globally on [`<Refine>`][refine swl] component.
+Also you can set this value globally on [`<Refine>`][Refine swl] component.
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     syncWithLocation: true,
   },
 });
@@ -370,7 +370,7 @@ useTable({
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     queryOptions: {
       retry: 3,
     },
@@ -391,7 +391,7 @@ In the following example, we pass the `headers` property in the `meta` object to
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     metaData: {
       headers: { "x-meta-data": "true" },
     },
@@ -434,7 +434,7 @@ After data is fetched successfully, `useTable` can call `open` function from [`N
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     successNotification: (data, values, resource) => {
       return {
         message: `${data.title} Successfully fetched.`,
@@ -454,7 +454,7 @@ After data fetching is failed, `useTable` will call `open` function from [`Notif
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     errorNotification: (data, values, resource) => {
       return {
         message: `Something went wrong when getting ${data.id}`,
@@ -475,7 +475,7 @@ For more information about live mode, please check [Live / Realtime](/docs/core/
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     liveMode: "auto",
   },
 });
@@ -489,7 +489,7 @@ The callback function is executed when new events from a subscription have arriv
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     onLiveEvent: (event) => {
       console.log(event);
     },
@@ -517,7 +517,7 @@ Sets the initial value of the page index.
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     initialCurrent: 2,
   },
 });
@@ -537,7 +537,7 @@ Sets the initial value of the page size.
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     initialPageSize: 20,
   },
 });
@@ -557,7 +557,7 @@ Determines whether to use server-side pagination or not.
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     hasPagination: false,
   },
 });
@@ -577,7 +577,7 @@ Sets the initial value of the sorter. The `initialSorter` is not permanent. It w
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     initialSorter: [
       {
         field: "name",
@@ -602,7 +602,7 @@ Sets the permanent value of the sorter. The `permanentSorter` is permanent and u
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     permanentSorter: [
       {
         field: "name",
@@ -627,7 +627,7 @@ Sets the initial value of the filter. The `initialFilter` is not permanent. It w
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     initialFilter: [
       {
         field: "name",
@@ -653,7 +653,7 @@ Sets the permanent value of the filter. The `permanentFilter` is permanent and u
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     permanentFilter: [
       {
         field: "name",
@@ -685,7 +685,7 @@ You can also override the default value by using the second parameter of the [`s
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     defaultSetFilterBehavior: "merge",
   },
 });
@@ -699,7 +699,7 @@ It also have all return values of [TanStack Table](https://tanstack.com/table/v8
 
 :::
 
-### `refineCore`
+### `RefineCore`
 
 #### `tableQueryResult`
 
@@ -805,7 +805,7 @@ You can set the [`filters.mode: "off"`](#filtersmode) in order to disable server
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     filters: {
       mode: "off",
     },
@@ -819,7 +819,7 @@ You can set the [`sorters.mode: "off"`](#sortersmode) in order to disable server
 
 ```tsx
 useTable({
-  refineCoreProps: {
+  RefineCoreProps: {
     sorters: {
       mode: "off",
     },
@@ -845,7 +845,7 @@ useTable({
 
 | Property                     | Description                                                                                     | Type                                                               |
 | ---------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| refineCore                   | The return values of the [`useTable`][use-table-core] in the core                               | [`UseTableReturnValues`](/docs/core/hooks/use-table#return-values) |
+| RefineCore                   | The return values of the [`useTable`][use-table-core] in the core                               | [`UseTableReturnValues`](/docs/core/hooks/use-table#return-values) |
 | Tanstack Table Return Values | See [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#table-api) documentation |
 
 ## Example
@@ -861,4 +861,4 @@ useTable({
 [notification-provider]: /docs/core/providers/notification-provider
 [crudsorting]: /docs/core/interface-references#crudsorting
 [crudfilters]: /docs/core/interface-references#crudfilters
-[refine swl]: /docs/core/refine-component#syncwithlocation
+[Refine swl]: /docs/core/refine-component#syncwithlocation

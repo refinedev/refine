@@ -18,7 +18,7 @@ import { Controller } from "react-hook-form";
 const SampleCreate = () => {
   const {
     saveButtonProps,
-    refineCore: { formLoading },
+    RefineCore: { formLoading },
     register,
     control,
     formState: { errors },
@@ -109,7 +109,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 

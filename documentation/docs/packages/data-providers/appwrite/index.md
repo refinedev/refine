@@ -11,11 +11,11 @@ const APPWRITE_PROJECT = "61c4368b4e349";
 const appwriteClient = new Appwrite();
 appwriteClient.setEndpoint(APPWRITE_URL).setProject(APPWRITE_PROJECT);
 
-window.__refineAuthStatus = false;
+window.__RefineAuthStatus = false;
 
 const authProvider = {
   login: () => {
-    window.__refineAuthStatus = true;
+    window.__RefineAuthStatus = true;
     return {
       success: true,
       redirectTo: "/",
@@ -37,7 +37,7 @@ const authProvider = {
     };
   },
   logout: async () => {
-    window.__refineAuthStatus = false;
+    window.__RefineAuthStatus = false;
     return {
       success: true,
       redirectTo: "/",
@@ -45,8 +45,8 @@ const authProvider = {
   },
   check: async () => {
     return {
-      authenticated: window.__refineAuthStatus ? true : false,
-      redirectTo: window.__refineAuthStatus ? undefined : "/login",
+      authenticated: window.__RefineAuthStatus ? true : false,
+      redirectTo: window.__RefineAuthStatus ? undefined : "/login",
     };
   },
   onError: async (error) => {
@@ -271,7 +271,12 @@ const PostShow: React.FC = () => {
 
 Refine provides a data provider for [Appwrite](https://appwrite.io/), a backend as a service platform, to build CRUD applications.
 
+<<<<<<< Updated upstream
 :::simple Good to know
+=======
+**Refine** and [Appwrite](https://appwrite.io/) work in harmony, offering you quick development options. You can use your data (API, Database) very simply by using **Refine**'s Appwrite data provider.
+
+> > > > > > > Stashed changes
 
 - `@refinedev/appwrite` requires Appwrite version >= 1.0
 - To learn more about data fetching in Refine, check out the [Data Fetching](/docs/guides-concepts/data-fetching) guide.
@@ -280,7 +285,22 @@ Refine provides a data provider for [Appwrite](https://appwrite.io/), a backend 
 
 :::
 
+<<<<<<< Updated upstream
+
 ## Installation
+
+=======
+You can only focus on your UI as we can handle your data quickly and simply.
+
+:::caution
+
+This guide has been prepared assuming you know the basics of **Refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
+
+:::
+
+## Setup
+
+> > > > > > > Stashed changes
 
 ```bash
 npm i @refinedev/appwrite
@@ -325,7 +345,7 @@ We created two collections on Appwrite Database as `posts` and `categories` and 
 
 <TabItem value="auth" label="Authentication">
 
-Then we need to create an appwrite user to be able to login with **refine**.
+Then we need to create an appwrite user to be able to login with **Refine**.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/user.png" alt="user" />
 
@@ -346,10 +366,16 @@ We indicate that the read and write permission is open to everyone by giving the
 
 :::simple Related resources
 
+<<<<<<< Updated upstream
+
 - Check out Appwrite's [Permissions](https://appwrite.io/docs/permissions) documentation for detailed information.
 - Check out how you can use permissions when [creating posts](#create-page) with Refine
 
-:::
+# :::
+
+[Check out how you can use permissions when creating posts with **Refine** →](#create-page)
+
+> > > > > > > Stashed changes
 
 ## Login page​
 
@@ -483,7 +509,12 @@ Now we can login with the user we created by Appwrite. We can then list, create 
 
 :::tip
 
+<<<<<<< Updated upstream
 When defining your resources, `name` must match the Appwrite Collection ID. You can change the label with the resource meta.
+=======
+**Refine** resource name must be the same as Appwrite Collection ID. You can change your label with resource meta.
+
+> > > > > > > Stashed changes
 
 ```tsx
 export const App = () => (
@@ -507,7 +538,15 @@ export const App = () => (
 
 :::
 
+<<<<<<< Updated upstream
 Now that we've created our collections, we can create and list documents. Let's list the posts and categories that we have created by Appwrite with **refine**.
+=======
+
+## List Page
+
+Now that we've created our collections, we can create and list documents. Let's list the posts and categories that we have created by Appwrite with **Refine**.
+
+> > > > > > > Stashed changes
 
 <details>
 <summary>Show Code</summary>
@@ -698,7 +737,7 @@ render(<App />);
 
 ## Create Page
 
-We can now create posts and set categories from our **refine** UI.
+We can now create posts and set categories from our **Refine** UI.
 
 <details>
 <summary>Show Code</summary>
@@ -916,7 +955,12 @@ render(<App />);
 
 :::tip
 
+<<<<<<< Updated upstream
 By default, Read Access and Write Access are public when creating documents via Refine. If you want to restrict [permissions](https://appwrite.io/docs/permissions#permission-types) and only allow specific users, you need to specify it in meta.
+=======
+As we mentioned above, we need permissions to list or create documents in Appwrite. By default, Read Access and Write Access are public when creating documents from **Refine** UI.
+
+> > > > > > > Stashed changes
 
 ```tsx title="edit.tsx"
 import { Permission, Role } from "@refinedev/appwrite";

@@ -53,7 +53,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 const PostCreate: React.FC = () => {
   const {
-    refineCore: { formLoading },
+    RefineCore: { formLoading },
     saveButtonProps,
     register,
     formState: { errors },
@@ -129,7 +129,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 

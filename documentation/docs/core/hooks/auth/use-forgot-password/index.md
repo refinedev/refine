@@ -1,7 +1,7 @@
 ---
 title: useForgotPassword
 siderbar_label: useForgotPassword
-description: useForgotPassword data hook from refine is a modified version of react-query's useMutation for registration.
+description: useForgotPassword data hook from Refine is a modified version of react-query's useMutation for registration.
 source: /packages/core/src/hooks/auth/useForgotPassword/index.ts
 ---
 
@@ -34,7 +34,7 @@ type AuthActionResponse = {
 
 ## Usage
 
-**refine** provides a default 'forgot password' page which handles the forgot password flow manually.
+**Refine** provides a default 'forgot password' page which handles the forgot password flow manually.
 
 If you want to use a custom 'forgot password' page however, you can use the `useForgotPassword` hook like this:
 

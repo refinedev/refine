@@ -7,11 +7,11 @@ tutorial:
 ---
 
 ```tsx live shared
-window.__refineAuthStatus = false;
+window.__RefineAuthStatus = false;
 
 const authProvider = {
   login: async () => {
-    window.__refineAuthStatus = true;
+    window.__RefineAuthStatus = true;
     return {
       success: true,
       redirectTo: "/",
@@ -33,7 +33,7 @@ const authProvider = {
     };
   },
   logout: async () => {
-    window.__refineAuthStatus = false;
+    window.__RefineAuthStatus = false;
     return {
       success: true,
       redirectTo: "/",
@@ -41,8 +41,8 @@ const authProvider = {
   },
   check: async () => {
     return {
-      authenticated: window.__refineAuthStatus ? true : false,
-      redirectTo: window.__refineAuthStatus ? undefined : "/login",
+      authenticated: window.__RefineAuthStatus ? true : false,
+      redirectTo: window.__RefineAuthStatus ? undefined : "/login",
     };
   },
   onError: async (error) => {
@@ -56,7 +56,7 @@ const authProvider = {
 import { Refine, Authenticated } from "@refinedev/core";
 import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { ErrorComponent, ThemedLayoutV2, refineTheme, notificationProvider, AuthPage } from "@refinedev/chakra-ui";
+import { ErrorComponent, ThemedLayoutV2, RefineTheme, notificationProvider, AuthPage } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
@@ -64,7 +64,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const App = () => {
   return (
-    <ChakraProvider theme={refineTheme}>
+    <ChakraProvider theme={RefineTheme}>
       <BrowserRouter>
         <Refine
           authProvider={authProvider}
@@ -155,7 +155,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
   ThemedLayoutV2,
-  refineTheme,
+  RefineTheme,
   notificationProvider,
   //highlight-next-line
   AuthPage,
@@ -171,7 +171,7 @@ import { authProvider } from "./authProvider";
 
 const App = () => {
   return (
-    <ChakraProvider theme={refineTheme}>
+    <ChakraProvider theme={RefineTheme}>
       <BrowserRouter>
         <Refine
           authProvider={authProvider}
@@ -268,7 +268,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
   ThemedLayoutV2,
-  refineTheme,
+  RefineTheme,
   notificationProvider,
   //highlight-next-line
   AuthPage,
@@ -284,7 +284,7 @@ import { authProvider } from "./authProvider";
 
 const App = () => {
   return (
-    <ChakraProvider theme={refineTheme}>
+    <ChakraProvider theme={RefineTheme}>
       <BrowserRouter>
         <Refine
           authProvider={authProvider}
@@ -382,7 +382,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
   ThemedLayoutV2,
-  refineTheme,
+  RefineTheme,
   notificationProvider,
   //highlight-next-line
   AuthPage,
@@ -396,7 +396,7 @@ import { authProvider } from "./authProvider";
 
 const App = () => {
   return (
-    <ChakraProvider theme={refineTheme}>
+    <ChakraProvider theme={RefineTheme}>
       <BrowserRouter>
         <Refine
           authProvider={authProvider}
@@ -496,7 +496,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
   ThemedLayoutV2,
-  refineTheme,
+  RefineTheme,
   notificationProvider,
   //highlight-next-line
   AuthPage,
@@ -512,7 +512,7 @@ import { authProvider } from "./authProvider";
 
 const App = () => {
   return (
-    <ChakraProvider theme={refineTheme}>
+    <ChakraProvider theme={RefineTheme}>
       <BrowserRouter>
         <Refine
           authProvider={authProvider}
@@ -606,7 +606,7 @@ You can use [`refine-cli`](/docs/packages/list-of-packages) to [swizzle](/docs/p
 1. Run the following command in the project directory:
 
    ```bash
-       npm run refine swizzle
+       npm run Refine swizzle
    ```
 
 2. Select the `@refinedev/chakra-ui` package:

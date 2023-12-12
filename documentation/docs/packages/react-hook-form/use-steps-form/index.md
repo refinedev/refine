@@ -85,7 +85,7 @@ const PostList: React.FC = () => {
 
 const PostCreate: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading },
+    RefineCore: { onFinish, formLoading },
     register,
     handleSubmit,
     formState: { errors },
@@ -200,7 +200,7 @@ const PostCreate: React.FC = () => {
 
 const PostEdit: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    RefineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     formState: { errors },
@@ -350,7 +350,7 @@ const stepTitles = ["Title", "Status", "Category and content"];
 
 const PostCreatePage: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading },
+    RefineCore: { onFinish, formLoading },
     register,
     handleSubmit,
     formState: { errors },
@@ -510,7 +510,7 @@ const stepTitles = ["Title", "Status", "Category and content"];
 
 const PostEditPage: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    RefineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     formState: { errors },
@@ -669,7 +669,7 @@ import { useStepsForm } from "@refinedev/react-hook-form";
 
 const PostCreate = () => {
   const {
-    refineCore: { onFinish, formLoading },
+    RefineCore: { onFinish, formLoading },
     register,
     handleSubmit,
     formState: { errors },
@@ -707,7 +707,7 @@ import { useStepsForm } from "@refinedev/react-hook-form";
 
 const PostCreate = () => {
   const {
-    refineCore: { onFinish, formLoading },
+    RefineCore: { onFinish, formLoading },
     register,
     handleSubmit,
     formState: { errors },
@@ -812,7 +812,7 @@ import { useStepsForm } from "@refinedev/react-hook-form";
 
 const PostCreate = () => {
   const {
-    refineCore: { onFinish, formLoading },
+    RefineCore: { onFinish, formLoading },
     register,
     handleSubmit,
     formState: { errors },
@@ -945,13 +945,13 @@ interface IPost {
 
 ## Properties
 
-### `refineCoreProps`
+### `RefineCoreProps`
 
 All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) docs.
 
 ```tsx
 const stepsForm = useStepsForm({
-  refineCoreProps: {
+  RefineCoreProps: {
     action: "edit",
     resource: "posts",
     id: "1",
@@ -1015,7 +1015,7 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`.
 
 ```tsx
 useStepsForm({
-  refineCoreProps: {
+  RefineCoreProps: {
     autoSave: {
       enabled: true,
     },
@@ -1031,7 +1031,7 @@ Set the debounce time for the `autoSave` prop.
 
 ```tsx
 useStepsForm({
-  refineCoreProps: {
+  RefineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-next-line
@@ -1047,7 +1047,7 @@ If you want to modify the data before sending it to the server, you can use `onF
 
 ```tsx
 useStepsForm({
-  refineCoreProps: {
+  RefineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-start
@@ -1071,7 +1071,7 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useStepsForm({
-  refineCoreProps: {
+  RefineCoreProps: {
     autoSave: {
       enabled: true,
       // highlight-next-line
@@ -1133,7 +1133,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 | Property                      | Description                                                     | Type                                                              |
 | ----------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- |
 | steps                         | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                     |
-| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values) |
+| RefineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values) |
 | React Hook Form Return Values | See [React Hook Form][react-hook-form-use-form] documentation   |
 
 ## Example

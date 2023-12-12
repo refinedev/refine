@@ -2,9 +2,9 @@
 title: Benchmarks
 ---
 
-Many **refine** projects involve migrating an existing vanilla React application to the **refine** framework. By collecting data from various migration projects, we were able to do some benchmarking by comparing codebases.
+Many **Refine** projects involve migrating an existing vanilla React application to the **Refine** framework. By collecting data from various migration projects, we were able to do some benchmarking by comparing codebases.
 
-**refine** makes your codebase significantly smaller, by eliminating redundant code such as _reducers_, _actions_, and _unit tests_. We've measured a significant reduction in project size in terms of _"lines of code"_ and _"number of files"_:
+**Refine** makes your codebase significantly smaller, by eliminating redundant code such as _reducers_, _actions_, and _unit tests_. We've measured a significant reduction in project size in terms of _"lines of code"_ and _"number of files"_:
 
 <div align="center">
 

@@ -2,7 +2,7 @@
 title: Forms
 ---
 
-In almost every user facing application, forms are a necessity. They are the primary way for users to interact with your application and provide data to your backend. They are also one of the most complex parts of an application to build and maintain with many cases and features to consider. refine's form integration aims to make this process as simple as possible while providing as many real world features as possible out of the box. This guide will cover the basics of forms in refine and how to use them.
+In almost every user facing application, forms are a necessity. They are the primary way for users to interact with your application and provide data to your backend. They are also one of the most complex parts of an application to build and maintain with many cases and features to consider. Refine's form integration aims to make this process as simple as possible while providing as many real world features as possible out of the box. This guide will cover the basics of forms in Refine and how to use them.
 
 ## Handling Data
 
@@ -65,13 +65,13 @@ import { useForm } from "@refinedev/react-hook-form";
 
 const EditPage = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    RefineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     formState: { errors },
     saveButtonProps,
   } = useForm<IProduct, HttpError, FormValues>({
-    refineCoreProps: {
+    RefineCoreProps: {
       resource: "products",
       action: "edit",
       id: 123,
@@ -136,13 +136,13 @@ import { TextInput } from "@mantine/core";
 
 const EditPage = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    RefineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     formState: { errors },
     saveButtonProps,
   } = useForm<IProduct, HttpError, FormValues>({
-    refineCoreProps: {
+    RefineCoreProps: {
       resource: "products",
       action: "edit",
       id: 123,
@@ -177,12 +177,12 @@ import { Button, Box, TextField } from "@mui/material";
 
 const EditPage = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    RefineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     saveButtonProps,
   } = useForm<IProduct, HttpError, FormValues>({
-    refineCoreProps: {
+    RefineCoreProps: {
       resource: "products",
       action: "edit",
       id: 123,
@@ -225,12 +225,12 @@ import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
 
 const EditPage = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    RefineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     saveButtonProps,
   } = useForm<IProduct, HttpError, FormValues>({
-    refineCoreProps: {
+    RefineCoreProps: {
       resource: "products",
       action: "edit",
       id: 123,
@@ -467,7 +467,7 @@ If the mutation fails, the optimistic updates will be reverted and the error wil
 
 ## Invalidation <GuideBadge id="guides-concepts/general-concepts#caching" description="To learn more about caching, refer to General Concepts guide" />
 
-All the queries made by refine's data hooks and their derivatives are cached for a certain amount of time. This means that if you perform a query for a resource, the result will be cached and the next time you perform the same query, the results will be returned immediately from the cache and then if the data is considered stale, the query will be refetched in the background.
+All the queries made by Refine's data hooks and their derivatives are cached for a certain amount of time. This means that if you perform a query for a resource, the result will be cached and the next time you perform the same query, the results will be returned immediately from the cache and then if the data is considered stale, the query will be refetched in the background.
 
 When you perform a mutation, the query cache will be invalidated by default after a successful mutation. This means that if you perform a mutation that affects the data of a query, the query will be refetched in the background and the UI will be updated accordingly.
 
@@ -528,7 +528,7 @@ Optimistic updates are only available in `optimistic` and `undoable` mutation mo
 
 ### Default Behavior
 
-By default, refine's mutations will use the provided form data/values to update the existing records in the query cache. This update process includes the `list`, `many` and `detail` queries related to the record and the resource.
+By default, Refine's mutations will use the provided form data/values to update the existing records in the query cache. This update process includes the `list`, `many` and `detail` queries related to the record and the resource.
 
 ### Custom Optimistic Updates
 
@@ -570,7 +570,7 @@ useForm({
 
 Server-side form validation is a technique used to validate form data on the server before processing it. Unlike client-side validation, which is performed in the user's browser using JavaScript, server-side validation occurs on the server-side code, typically in the backend of the application.
 
-**refine** supports server-side validation out-of-the-box in all `useForm` derivatives. To handle server-side validation, the data providers needs to be correctly set up to return the errors in form submissions with a specific format. After this, **refine**'s `useForm` will propagate the errors to the respective form fields.
+**Refine** supports server-side validation out-of-the-box in all `useForm` derivatives. To handle server-side validation, the data providers needs to be correctly set up to return the errors in form submissions with a specific format. After this, **Refine**'s `useForm` will propagate the errors to the respective form fields.
 
 ```ts
 import { HttpError } from "@refinedev/core";
@@ -714,7 +714,7 @@ return (
 
 ## Modifying Data Before Submission
 
-In some cases, you might want to change the data before submitting it to the backend. For example, you might want to add a `full_name` field to the form data of a user resource by combining the `first_name` and `last_name` fields. While the `useForm` from the `@refinedev/core` has the natural support for this, the `useForm` derivatives from the other libraries of refine has a different approach.
+In some cases, you might want to change the data before submitting it to the backend. For example, you might want to add a `full_name` field to the form data of a user resource by combining the `first_name` and `last_name` fields. While the `useForm` from the `@refinedev/core` has the natural support for this, the `useForm` derivatives from the other libraries of Refine has a different approach.
 
 Each of these form implementations have a way to modify the data before submission with a slightly different approach. To learn more about how to modify the data before submission, check out the usage examples of each library:
 
@@ -732,7 +732,7 @@ import { FieldValues } from "react-hook-form";
 
 const EditPage = () => {
   const {
-    refineCore: { onFinish },
+    RefineCore: { onFinish },
     register,
     handleSubmit,
   } = useForm();
@@ -779,7 +779,7 @@ type FormValues = {
 export const UserCreate: React.FC = () => {
   const {
     saveButtonProps,
-    refineCore: { onFinish },
+    RefineCore: { onFinish },
     handleSubmit,
   } = useForm<FormValues, HttpError, FormValues>();
 
@@ -843,7 +843,7 @@ type FormValues = {
 export const UserCreate: React.FC = () => {
   const {
     saveButtonProps,
-    refineCore: { onFinish },
+    RefineCore: { onFinish },
     handleSubmit,
   } = useForm<FormValues, HttpError, FormValues>();
 

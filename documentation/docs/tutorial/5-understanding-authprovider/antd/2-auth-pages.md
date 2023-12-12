@@ -7,11 +7,11 @@ tutorial:
 ---
 
 ```tsx live shared
-window.__refineAuthStatus = false;
+window.__RefineAuthStatus = false;
 
 const authProvider = {
   login: async () => {
-    window.__refineAuthStatus = true;
+    window.__RefineAuthStatus = true;
     return {
       success: true,
       redirectTo: "/",
@@ -33,7 +33,7 @@ const authProvider = {
     };
   },
   logout: async () => {
-    window.__refineAuthStatus = false;
+    window.__RefineAuthStatus = false;
     return {
       success: true,
       redirectTo: "/",
@@ -41,8 +41,8 @@ const authProvider = {
   },
   check: async () => {
     return {
-      authenticated: window.__refineAuthStatus ? true : false,
-      redirectTo: window.__refineAuthStatus ? undefined : "/login",
+      authenticated: window.__RefineAuthStatus ? true : false,
+      redirectTo: window.__RefineAuthStatus ? undefined : "/login",
     };
   },
   onError: async (error) => {
@@ -613,7 +613,7 @@ You can use [`refine-cli`](/docs/packages/list-of-packages) to [swizzle](/docs/p
 1. Run the following command in the project directory:
 
    ```bash
-       npm run refine swizzle
+       npm run Refine swizzle
    ```
 
 2. Select the `@refinedev/antd` package:

@@ -405,7 +405,7 @@ useTable({
 
 When you use the `syncWithLocation` feature, the `useTable`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views. It is set to `false` by default.
 
-Also, you can set this value globally on [`<Refine>`][refine swl] component.
+Also, you can set this value globally on [`<Refine>`][Refine swl] component.
 
 ```tsx
 useTable({
@@ -1061,7 +1061,7 @@ const ListPage = () => {
 [crudfilters]: /docs/core/interface-references#crudfilters
 [httperror]: /docs/core/interface-references#httperror
 [table search]: /advanced-tutorials/search/table-search.md
-[refine swl]: /docs/core/refine-component#syncwithlocation
+[Refine swl]: /docs/core/refine-component#syncwithlocation
 [filter-dropdown]: /docs/ui-integrations/ant-design/components/filter-dropdown
 [syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
 [notification-provider]: /docs/core/providers/notification-provider
