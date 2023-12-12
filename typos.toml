@@ -1,8 +1,23 @@
 [default]
 locale = "en-us"
 
+extend-ignore-re = [
+    "\\.refine",
+    "\\.refine\\.",
+    "refine\\.",
+    "-refine",
+    "refine-",
+    "-refine-",
+    "/refine",
+    "/refine/",
+    "refine/",
+    "refinedev",
+    "Refine"
+]
+
 [files]
 extend-exclude = ["documentation/docs/core/providers/i18n-provider/index.md", "documentation/versioned_docs", "documentation/versioned_sidebars", "*.ts", "*.tsx"]
+ignore-vcs = true
 
 [default.extend-words]
 nin = "nin"
@@ -19,3 +34,6 @@ nd = "nd"
 DAA = "DAA"
 bare = "bare"
 inovice = "invoice"
+refine = "Refine"
+
+
