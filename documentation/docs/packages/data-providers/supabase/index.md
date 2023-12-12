@@ -680,12 +680,12 @@ export const PostCreate: React.FC = () => {
               customRequest={async ({ file, onError, onSuccess }) => {
                 try {
                   const rcFile = file as RcFile;
-                  await supabaseClient.storage.from("Refine").upload(`public/${rcFile.name}`, file, {
+                  await supabaseClient.storage.from("refine").upload(`public/${rcFile.name}`, file, {
                     cacheControl: "3600",
                     upsert: true,
                   });
 
-                  const { data } = await supabaseClient.storage.from("Refine").getPublicUrl(`public/${rcFile.name}`);
+                  const { data } = await supabaseClient.storage.from("refine").getPublicUrl(`public/${rcFile.name}`);
 
                   const xhr = new XMLHttpRequest();
                   onSuccess && onSuccess({ url: data?.publicUrl }, xhr);
@@ -817,7 +817,7 @@ export const PostEdit: React.FC = () => {
                 const rcFile = file as RcFile;
                 const fileUrl = `public/${rcFile.name}`;
 
-                const { error } = await supabaseClient.storage.from("Refine").upload(fileUrl, file, {
+                const { error } = await supabaseClient.storage.from("refine").upload(fileUrl, file, {
                   cacheControl: "3600",
                   upsert: true,
                 });
@@ -825,7 +825,7 @@ export const PostEdit: React.FC = () => {
                 if (error) {
                   return onError?.(error);
                 }
-                const { data, error: urlError } = await supabaseClient.storage.from("Refine").getPublicUrl(fileUrl);
+                const { data, error: urlError } = await supabaseClient.storage.from("refine").getPublicUrl(fileUrl);
 
                 if (urlError) {
                   return onError?.(urlError);
