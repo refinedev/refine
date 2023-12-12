@@ -7,7 +7,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { Button, Form, Select, Skeleton, Space } from "antd";
 
 import { CustomAvatar, SelectOptionWithAvatar, Text } from "@/components";
-import { Company, User } from "@/interfaces";
+import { User } from "@/interfaces";
 import { getNameInitials } from "@/utilities";
 
 import styles from "./title-form.module.css";
@@ -42,14 +42,7 @@ export const CompanyTitleForm = () => {
     >({
         redirect: false,
         meta: {
-            fields: [
-                "id",
-                "name",
-                "avatarUrl",
-                {
-                    salesOwner: ["id", "name", "avatarUrl"],
-                },
-            ],
+            gqlQuery: COMPANY_TITLE_FORM_MUTATION,
         },
     });
 
@@ -136,7 +129,7 @@ const SalesOwnerInput = ({
     loading,
 }: {
     onChange?: (value: string) => void;
-    salesOwner?: Company["salesOwner"];
+    salesOwner?: Partial<User>;
     loading?: boolean;
 }) => {
     const [isEdit, setIsEdit] = useState(false);
