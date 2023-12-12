@@ -11,6 +11,7 @@ import * as gql from "gql-query-builder";
 import { singular } from "pluralize";
 import set from "lodash/set";
 import { Client } from "graphql-ws";
+import { DocumentNode, SelectionNode, visit } from "graphql";
 
 export const generateSubscription = (
     client: Client,
@@ -409,3 +410,321 @@ export const generateDeletedSubscription = ({
 
     return { query, variables, operation };
 };
+
+//  const extractFields = (selections: SelectionNode[]) => {
+//     const fields: string[] = [];
+
+//     selections.forEach((selection) => {
+//         if (
+//             selection.kind === "Field" &&
+//             typeof selection.selectionSet === "undefined"
+//         ) {
+//             fields.push(selection.name.value);
+//         }
+//     });
+// };
+
+// function fieldsToString(documentNode: DocumentNode) {
+//     let fieldString = "{";
+
+//     visit(documentNode, {
+//         Field: {
+//             enter(node, key, parent, path, ancestors) {
+//                 if (!node.selectionSet) {
+//                     // Leaf node
+//                     const prefix = ancestors.some(
+//                         (a) => (a as any).kind === "Field",
+//                     )
+//                         ? "  "
+//                         : "";
+//                     fieldString += `${prefix}${node.name.value}\n`;
+//                 }
+//             },
+//             leave(node) {
+//                 if (
+//                     node.selectionSet &&
+//                     node.selectionSet.selections[0].kind === "Field" &&
+//                     node.selectionSet.selections[0].name.value !== "company"
+//                 ) {
+//                     // Nested object, wrap it with its field name
+//                     const lines = fieldString.split("\n");
+//                     const nestedFields = lines
+//                         .splice(-node.selectionSet.selections.length)
+//                         .join("\n");
+//                     fieldString = `${lines.join("\n")}${
+//                         node.name.value
+//                     } {\n${nestedFields}}\n`;
+//                 }
+//             },
+//         },
+//     });
+
+//     return fieldString.trim();
+// }
+
+// function fieldsToString(documentNode: DocumentNode) {
+//     let fieldString = "";
+//     let depth = 0;
+
+//     visit(documentNode, {
+//         Field: {
+//             enter(node) {
+//                 if (node.selectionSet) {
+//                     // Increase depth for nested fields
+//                     depth++;
+//                 } else {
+//                     // Add fields with proper indentation
+//                     fieldString += `${"  ".repeat(depth)}${node.name.value}\n`;
+//                 }
+//             },
+//             leave(node) {
+//                 if (node.selectionSet) {
+//                     // Decrease depth and wrap nested fields
+//                     const nestedFields = fieldString
+//                         .split("\n")
+//                         .slice(-node.selectionSet.selections.length)
+//                         .join("\n");
+//                     fieldString = `${fieldString
+//                         .split("\n")
+//                         .slice(0, -node.selectionSet.selections.length)
+//                         .join("\n")}${"  ".repeat(depth - 1)}${
+//                         node.name.value
+//                     } {\n${nestedFields}\n${"  ".repeat(depth - 1)}}\n`;
+//                     depth--;
+//                 }
+//             },
+//         },
+//     });
+
+//     return fieldString.trim();
+// }
+
+// function fieldsToString(documentNode: DocumentNode) {
+//     let fieldString = "";
+//     let depth = 0;
+//     let startExtracting = false;
+
+//     visit(documentNode, {
+//         Field: {
+//             enter(node) {
+//                 if (startExtracting) {
+//                     if (node.selectionSet) {
+//                         // Increase depth for nested fields
+//                         depth++;
+//                     } else {
+//                         // Add fields with proper indentation
+//                         fieldString += `${"  ".repeat(depth)}${
+//                             node.name.value
+//                         }\n`;
+//                     }
+//                 } else if (node.selectionSet) {
+//                     // Start extracting from the first nested selection set
+//                     startExtracting = true;
+//                 }
+//             },
+//             leave(node) {
+//                 if (startExtracting && node.selectionSet) {
+//                     // Decrease depth and wrap nested fields
+//                     const nestedFields = fieldString
+//                         .split("\n")
+//                         .slice(-node.selectionSet.selections.length)
+//                         .join("\n");
+//                     fieldString = `${fieldString
+//                         .split("\n")
+//                         .slice(0, -node.selectionSet.selections.length)
+//                         .join("\n")}${"  ".repeat(depth)}${
+//                         node.name.value
+//                     } {\n${nestedFields}${"  ".repeat(depth)}}\n`;
+//                     depth--;
+//                     if (depth === 0) {
+//                         // Stop extracting after the first nested selection set
+//                         startExtracting = false;
+//                     }
+//                 }
+//             },
+//         },
+//     });
+
+//     return fieldString.trim();
+// }
+
+// function fieldsToString(documentNode: DocumentNode) {
+//     let fieldString = "";
+//     let depth = 0;
+//     let startExtracting = false;
+
+//     visit(documentNode, {
+//         Field: {
+//             enter(node) {
+//                 if (startExtracting) {
+//                     if (node.selectionSet) {
+//                         // Increase depth for nested fields
+//                         depth++;
+//                     } else {
+//                         // Add fields with proper indentation
+//                         fieldString += `${"  ".repeat(depth)}${
+//                             node.name.value
+//                         }\n`;
+//                     }
+//                 } else if (node.selectionSet) {
+//                     // Start extracting from the first nested selection set
+//                     startExtracting = true;
+//                 }
+//             },
+//             leave(node) {
+//                 if (startExtracting && node.selectionSet) {
+//                     // Prepare the nested fields string
+//                     const nestedFields = fieldString
+//                         .split("\n")
+//                         .slice(-node.selectionSet.selections.length)
+//                         .join("\n");
+//                     fieldString = `${fieldString
+//                         .split("\n")
+//                         .slice(0, -node.selectionSet.selections.length)
+//                         .join("\n")}${"  ".repeat(depth - 1)}${
+//                         node.name.value
+//                     } {\n${nestedFields}\n${"  ".repeat(depth - 1)}}\n`;
+//                     depth--;
+
+//                     if (depth === 0) {
+//                         // Stop extracting after processing the first nested selection set
+//                         startExtracting = false;
+//                     }
+//                 }
+//             },
+//         },
+//     });
+
+//     return fieldString.trim();
+// }
+
+// function fieldsToString(documentNode: DocumentNode) {
+//     const fieldLines: any[] = [];
+//     let depth = 0;
+
+//     visit(documentNode, {
+//         Field: {
+//             enter(node) {
+//                 if (node.selectionSet) {
+//                     depth++;
+//                 } else {
+//                     // Add leaf fields with proper indentation
+//                     fieldLines.push(`${"  ".repeat(depth)}${node.name.value}`);
+//                 }
+//             },
+//             leave(node) {
+//                 if (node.selectionSet) {
+//                     // Construct and add nested field strings
+//                     const nestedFieldLines = fieldLines.splice(
+//                         -node.selectionSet.selections.length,
+//                     );
+//                     fieldLines.push(
+//                         `${"  ".repeat(depth - 1)}${
+//                             node.name.value
+//                         } {\n${nestedFieldLines.join("\n")}\n${"  ".repeat(
+//                             depth - 1,
+//                         )}}`,
+//                     );
+//                     depth--;
+//                 }
+//             },
+//         },
+//     });
+
+//     // Join all field lines into a single string
+//     return fieldLines.join("\n");
+// }
+
+// function fieldsToString(documentNode: DocumentNode) {
+//     const fieldLines: any[] = [];
+//     let depth = 1;
+//     let skipFirstField = true;
+
+//     visit(documentNode, {
+//         Field: {
+//             enter(node) {
+//                 if (skipFirstField) {
+//                     // Skip the first field (outermost field)
+//                     skipFirstField = false;
+//                     return;
+//                 }
+
+//                 if (node.selectionSet) {
+//                     depth++;
+//                 } else {
+//                     // Add leaf fields with proper indentation
+//                     fieldLines.push(`${"  ".repeat(depth)}${node.name.value}`);
+//                 }
+//             },
+//             leave(node) {
+//                 if (!skipFirstField && node.selectionSet) {
+//                     // Construct and add nested field strings
+//                     const nestedFieldLines = fieldLines.splice(
+//                         -node.selectionSet.selections.length,
+//                     );
+//                     fieldLines.push(
+//                         `${"  ".repeat(depth - 1)}${
+//                             node.name.value
+//                         } {\n${nestedFieldLines.join("\n")}\n${"  ".repeat(
+//                             depth - 1,
+//                         )}}`,
+//                     );
+//                     depth--;
+//                 }
+//             },
+//         },
+//     });
+
+//     // Join all field lines into a single string
+//     return fieldLines.join("\n").trim();
+// }
+
+export function fieldsToString(documentNode: DocumentNode) {
+    const fieldLines: any[] = [];
+    let depth = 0;
+    let isNestedField = false;
+
+    visit(documentNode, {
+        Field: {
+            enter(node) {
+                if (node.selectionSet && !isNestedField) {
+                    // Start extraction from the first nested field
+                    isNestedField = true;
+                    return;
+                }
+
+                if (node.selectionSet) {
+                    depth++;
+                } else {
+                    // Add leaf fields with proper indentation
+                    fieldLines.push(`${"  ".repeat(depth)}${node.name.value}`);
+                }
+            },
+            leave(node) {
+                if (node.selectionSet && isNestedField) {
+                    // Construct and add nested field strings
+                    const nestedFieldLines = fieldLines.splice(
+                        -node.selectionSet.selections.length,
+                    );
+                    if (depth > 0) {
+                        fieldLines.push(
+                            `${"  ".repeat(depth - 1)}${
+                                node.name.value
+                            } {\n${nestedFieldLines.join("\n")}\n${"  ".repeat(
+                                depth - 1,
+                            )}}`,
+                        );
+                    }
+                    depth--;
+                    if (depth === 0) {
+                        // Reset isNestedField after leaving the first nested field
+                        isNestedField = false;
+                    }
+                }
+            },
+        },
+    });
+
+    // Join all field lines into a single string
+    return fieldLines.join("\n").trim();
+}
