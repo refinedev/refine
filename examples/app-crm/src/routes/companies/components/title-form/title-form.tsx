@@ -12,7 +12,7 @@ import { getNameInitials } from "@/utilities";
 
 import styles from "./title-form.module.css";
 import gql from "graphql-tag";
-import { GetFieldsFromMutation } from "@refinedev/nestjs-query/dist/interfaces";
+import { GetFields } from "@refinedev/nestjs-query/dist/interfaces";
 import { CompanyTitleFormMutation } from "./gqlTypes";
 
 const COMPANY_TITLE_FORM_MUTATION = gql`
@@ -37,7 +37,7 @@ const COMPANY_TITLE_FORM_MUTATION = gql`
 
 export const CompanyTitleForm = () => {
     const { formProps, queryResult, onFinish } = useForm<
-        GetFieldsFromMutation<CompanyTitleFormMutation>,
+        GetFields<CompanyTitleFormMutation>,
         HttpError
     >({
         redirect: false,

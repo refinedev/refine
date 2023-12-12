@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 
 import { useSelect } from "@refinedev/antd";
-import { useDelete, useNavigation, useShow, useUpdate } from "@refinedev/core";
+import {
+    useDataProvider,
+    useDelete,
+    useNavigation,
+    useShow,
+    useUpdate,
+} from "@refinedev/core";
 
 import {
     CloseOutlined,
@@ -35,16 +41,48 @@ import {
     TextIcon,
 } from "@/components";
 import { TimezoneEnum } from "@/enums";
-import type { Company, Contact, User } from "@/interfaces";
+import type { Contact } from "@/interfaces";
 
 import { ContactComment, ContactStatus } from "../components";
 
 import styles from "./index.module.css";
+import gql from "graphql-tag";
+import { COMPANIES_SELECT_QUERY, USERS_SELECT_QUERY } from "@/graphql/queries";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { CompaniesSelectQuery, UsersSelectQuery } from "@/graphql/gqlTypes";
+import { GetFields } from "@refinedev/nestjs-query/dist/interfaces";
+import { ContactShowQuery } from "./gqlTypes";
 
 const timezoneOptions = Object.keys(TimezoneEnum).map((key) => ({
     label: TimezoneEnum[key as keyof typeof TimezoneEnum],
     value: TimezoneEnum[key as keyof typeof TimezoneEnum],
 }));
+
+const CONTACT_SHOW_QUERY = gql`
+    query ContactShow($id: ID!) {
+        contact(id: $id) {
+            id
+            name
+            email
+            company {
+                id
+                name
+                avatarUrl
+            }
+            jobTitle
+            phone
+            timezone
+            stage
+            status
+            avatarUrl
+            salesOwner {
+                id
+                name
+                avatarUrl
+            }
+        }
+    }
+`;
 
 export const ContactShowPage: React.FC = () => {
     const [activeForm, setActiveForm] = useState<
@@ -53,44 +91,29 @@ export const ContactShowPage: React.FC = () => {
     const { list } = useNavigation();
     const { mutate } = useUpdate<Contact>();
     const { mutate: deleteMutation } = useDelete<Contact>();
-    const { queryResult } = useShow<Contact>({
+    const { queryResult } = useShow<GetFields<ContactShowQuery>>({
         meta: {
-            fields: [
-                "id",
-                "name",
-                "email",
-                {
-                    company: ["id", "name", "avatarUrl"],
-                },
-                "jobTitle",
-                "phone",
-                "timezone",
-                "stage",
-                "status",
-                "avatarUrl",
-                {
-                    salesOwner: ["id", "name", "avatarUrl"],
-                },
-            ],
+            gqlQuery: CONTACT_SHOW_QUERY,
         },
     });
     const {
         selectProps: companySelectProps,
         queryResult: companySelectQueryResult,
-    } = useSelect<Company>({
+    } = useSelect<GetFieldsFromList<CompaniesSelectQuery>>({
         resource: "companies",
         meta: {
-            fields: ["id", "name", "avatarUrl"],
+            gqlQuery: COMPANIES_SELECT_QUERY,
         },
+
         optionLabel: "name",
     });
     const {
         selectProps: usersSelectProps,
         queryResult: usersSelectQueryResult,
-    } = useSelect<User>({
+    } = useSelect<GetFieldsFromList<UsersSelectQuery>>({
         resource: "users",
         meta: {
-            fields: ["id", "name", "avatarUrl"],
+            gqlQuery: USERS_SELECT_QUERY,
         },
         optionLabel: "name",
     });

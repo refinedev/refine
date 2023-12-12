@@ -17,7 +17,7 @@ const config: IGraphQLConfig = {
                 },
                 "src/": {
                     preset: "near-operation-file",
-                    documents: ["src/**/*.tsx"],
+                    documents: ["src/**/*.{ts,tsx}"],
                     plugins: ["typescript-operations"],
                     config: {
                         skipTypename: true,

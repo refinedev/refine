@@ -1,11 +1,5 @@
 import * as Types from "@/interfaces";
 
-export type UserFragmentFragment = {
-    id: string;
-    name: string;
-    avatarUrl?: string | null;
-};
-
 export type CompanyTitleFormMutationVariables = Types.Exact<{
     id: Types.Scalars["ID"]["input"];
     name?: Types.InputMaybe<Types.Scalars["String"]["input"]>;
