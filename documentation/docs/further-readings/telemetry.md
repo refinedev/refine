@@ -106,7 +106,7 @@ Projects created with refine.new still can opt-out from telemetry by simply addi
 
 ## How to opt-out?
 
-You can opt out of telemetry by simply adding `Refine_NO_TELEMETRY=true` to environment variables.
+You can opt out of telemetry by simply adding `REFINE_NO_TELEMETRY=true` to environment variables.
 
 </TabItem>
 </Tabs>
