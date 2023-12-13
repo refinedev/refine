@@ -14,7 +14,98 @@ const client = new GraphQLClient(API_URL);
 const gqlDataProvider = dataProvider(client);
 ```
 
-**refine** [graphql](https://github.com/refinedev/refine/tree/master/packages/graphql) and [strapi-graphql](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql) data provider built with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and [graphql-request](https://github.com/prisma-labs/graphql-request) is made for GraphQL implementation. It aims to create a query dynamically with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and send requests with [graphql-request](https://github.com/prisma-labs/graphql-request).
+Refine provides a data provider for GraphQL APIs that has all the features of Refine without giving up the GraphQL features.
+
+:::simple Good to know
+
+- This library uses [`graphql-request@5`](https://github.com/jasonkuhrt/graphql-request) to handle the requests.
+- To build queries and mutations, [`gql-query-builder`](https://github.com/atulmy/gql-query-builder) is used.
+- To learn more about data fetching in Refine, check out the [Data Fetching](/docs/guides-concepts/data-fetching) guide.
+
+:::
+
+## Installation
+
+```bash
+npm i @refinedev/graphql
+```
+
+## Usage
+
+We'll create a GraphQL Client with our API url and pass it to the `dataProvider` function to create a data provider.
+
+```tsx title="app.tsx"
+import Refine from "@refinedev/core";
+import dataProvider, { GraphQLClient } from "@refinedev/graphql";
+
+// highlight-next-line
+const client = new GraphQLClient("https://api.example.com/graphql");
+
+const App = () => (
+  <Refine
+    // highlight-next-line
+    dataProvider={dataProvider(client)}
+  >
+    {/* ... */}
+  </Refine>
+);
+```
+
+### Realtime
+
+`@refinedev/graphql` also provides a `liveProvider` to enable realtime features of Refine. These features are powered by GraphQL subscriptions and uses [`graphql-ws`](https://the-guild.dev/graphql/ws) to handle the connections.
+
+```tsx title="app.tsx"
+import Refine from "@refinedev/core";
+// highlight-next-line
+import dataProvider, { GraphQLClient, liveProvider, graphqlWS } from "@refinedev/graphql";
+
+const client = new GraphQLClient("https://api.example.com/graphql");
+// highlight-next-line
+const wsClient = graphqlWS.createClient({ url: "wss://api.example.com/graphql" });
+
+const App = () => (
+  <Refine
+    dataProvider={dataProvider(client)}
+    // highlight-next-line
+    liveProvider={liveProvider(wsClient)}
+    options={{ liveMode: "auto" }}
+  >
+    {/* ... */}
+  </Refine>
+);
+```
+
+## Authentication
+
+If your API uses authentication, you can easily provide a custom fetcher for the requests and handle the authentication logic there. When creating a GraphQL Client, you can pass a `fetch` function to the client options. This function will be used to append the authentication headers to the requests.
+
+```tsx title="data-provider.tsx"
+import graphqlDataProvider, { GraphQLClient } from "@refinedev/graphql";
+
+const client = new GraphQLClient(API_URL, {
+  fetch: (url: string, options: RequestInit) => {
+    return fetch(url, {
+      ...options,
+      headers: {
+        ...options.headers,
+        /**
+         * For demo purposes, we're using `localStorage` to access the token.
+         * You can use your own authentication logic here.
+         * In real world applications, you'll need to handle it in sync with your `authProvider`.
+         */
+        // highlight-next-line
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+  },
+});
+
+/**
+ * Create the data provider with the custom client.
+ */
+const dataProvider = graphqlDataProvider(client);
+```
 
 ## GraphQL Query Builder
 
@@ -22,9 +113,9 @@ const gqlDataProvider = dataProvider(client);
 
 In order to create a GraphQL query, our [`dataProvider`][data-provider] has to take some options, such as specifying which fields will come in response, we pass these options to our [`dataProvider`][data-provider] methods with `MetaDataQuery`.
 
-[Refer to the `MetaDataQuery` properties for detailed usage. &#8594](https://github.com/atulmy/gql-query-builder#options)
+[Refer to the `meta` properties for detailed usage. &#8594](https://github.com/atulmy/gql-query-builder#options)
 
-Hooks and components that support `MetaDataQuery`:
+Hooks and components that support `meta`:
 
 | Supported data hooks                                       | Supported other hooks                                                                  | Supported components                                                                         |
 | ---------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
@@ -40,551 +131,6 @@ Hooks and components that support `MetaDataQuery`:
 | [`useCustom` &#8594](/docs/core/hooks/data/use-custom)     | [`useCheckboxGroup` &#8594](/docs/ui-integrations/ant-design/hooks/use-checkbox-group) |                                                                                              |
 |                                                            | [`useSelect` &#8594](/docs/core/hooks/use-select)                                      |                                                                                              |
 |                                                            | [`useRadioGroup` &#8594](/docs/ui-integrations/ant-design/hooks/use-radio-group)       |                                                                                              |
-
-## Setup
-
-```bash
-npm i @refinedev/core @refinedev/antd @refinedev/strapi-graphql
-```
-
-:::caution
-
-To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
-
-:::
-
-:::info
-
-We used [strapi-graphql](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql) server for this guide. You can customize your data provider for your own GraphQL server.
-
-:::
-
-## Usage
-
-To activate the data provider in `@refinedev/strapi-graphql`, we have to pass the API address with `GraphQLClient`.
-
-```tsx title="src/App.tsx"
-import { Refine } from "@refinedev/core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
-// highlight-next-line
-import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
-
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-const client = new GraphQLClient("API_URL");
-
-const App: React.FC = () => {
-  return (
-    <BrowserRouter>
-      <Refine
-        routerProvider={routerProvider}
-        // highlight-next-line
-        dataProvider={dataProvider(client)}
-        notificationProvider={notificationProvider}
-      >
-        {/* ... */}
-      </Refine>
-    </BrowserRouter>
-  );
-};
-```
-
-:::note
-
-With `GraphQLClient` you can do things like add headers for authentication. On the other hand, you can send a request with your query.
-
-:::
-
-## Create Collections
-
-We created two collections on [Strapi](https://strapi.io/) as `posts` and `categories` and added a relation between them. For detailed information on how to create a collection, you can check [here](https://strapi.io/documentation/developer-docs/latest/getting-started/quick-start.html).
-
-You can see the fields of the collections we created as below.
-
-```json title="post"
-{
-  "id": 1,
-  "title": "Eius ea autem.",
-  "content": "Explicabo nihil delectus. Name aliquid sunt numquam...",
-  "category": {
-    "id": 24,
-    "title": "Placeat fuga"
-  }
-}
-```
-
-## List Page
-
-When sending the request, we must specify which fields will come, so we send `fields` in `meta` to hooks that we will fetch data from.
-
-<Tabs
-defaultValue="implementation"
-values={[
-{label: 'Implementation', value: 'implementation'},
-{label: 'Output', value: 'output'}
-]}>
-<TabItem value="implementation">
-
-```tsx live url=http://localhost:5173 previewHeight=450px
-setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
-import { ConfigProvider, Layout } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-// visible-block-start
-// src/pages/posts/list.tsx
-
-import {
-  List,
-  EditButton,
-  ShowButton,
-  DeleteButton,
-  useTable,
-  useSelect,
-  getDefaultSortOrder,
-  FilterDropdown,
-} from "@refinedev/antd";
-import { Table, Space, Select } from "antd";
-
-const PostList = () => {
-  const { tableProps, sorter } = useTable<IPost>({
-    sorters: {
-      initial: [
-        {
-          field: "id",
-          order: "asc",
-        },
-      ],
-    },
-    // highlight-start
-    meta: {
-      fields: [
-        "id",
-        "title",
-        {
-          category: ["title"],
-        },
-      ],
-    },
-    // highlight-end
-  });
-
-  const { selectProps } = useSelect<ICategory>({
-    resource: "categories",
-    // highlight-start
-    meta: {
-      fields: ["id", "title"],
-    },
-    // highlight-end
-  });
-
-  return (
-    <List>
-      <Table {...tableProps} rowKey="id">
-        <Table.Column
-          dataIndex="id"
-          title="ID"
-          sorter={{ multiple: 2 }}
-          defaultSortOrder={getDefaultSortOrder("id", sorter)}
-        />
-        <Table.Column key="title" dataIndex="title" title="Title" sorter={{ multiple: 1 }} />
-        <Table.Column<IPost>
-          dataIndex="category"
-          title="Category"
-          filterDropdown={(props) => (
-            <FilterDropdown {...props}>
-              <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Category" {...selectProps} />
-            </FilterDropdown>
-          )}
-          render={(_, record) => {
-            if (record.category) {
-              return record.category.title;
-            }
-
-            return "-";
-          }}
-        />
-        <Table.Column<IPost>
-          title="Actions"
-          dataIndex="actions"
-          render={(_, record) => (
-            <Space>
-              <EditButton hideText size="small" recordItemId={record.id} />
-              <ShowButton hideText size="small" recordItemId={record.id} />
-              <DeleteButton hideText size="small" recordItemId={record.id} />
-            </Space>
-          )}
-        />
-      </Table>
-    </List>
-  );
-};
-// visible-block-end
-
-const App: React.FC = () => {
-  return (
-    <BrowserRouter>
-      <ConfigProvider theme={RefineThemes.Blue}>
-        <Refine
-          routerProvider={routerProvider}
-          dataProvider={gqlDataProvider}
-          resources={[
-            {
-              name: "posts",
-              list: "/posts",
-            },
-          ]}
-        >
-          <Routes>
-            <Route
-              element={
-                <ThemedLayoutV2>
-                  <Outlet />
-                </ThemedLayoutV2>
-              }
-            >
-              <Route path="posts">
-                <Route index element={<PostList />} />
-              </Route>
-            </Route>
-          </Routes>
-        </Refine>
-      </ConfigProvider>
-    </BrowserRouter>
-  );
-};
-
-render(<App />);
-```
-
-</TabItem>
-<TabItem value="output">
-
-This will be the result GraphQL query:
-
-```ts
-
-query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
-    posts (sort: $sort, where: $where, start: $start, limit: $limit) {
-        id,
-        title,
-        category {
-            title
-        }
-    }
-}
-```
-
-</TabItem>
-</Tabs>
-
-## Edit Page
-
-On the edit page, `useForm` sends a request with the record id to fill the form. `fields` must be sent in `meta` to determine which fields will come in this request.
-
-<Tabs
-defaultValue="implementation"
-values={[
-{label: 'Implementation', value: 'implementation'},
-{label: 'Output', value: 'output'}
-]}>
-<TabItem value="implementation">
-
-```tsx live url=http://localhost:5173 previewHeight=450px
-setInitialRoutes(["/posts/edit/2020"]);
-import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
-import { ConfigProvider, Layout } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-// visible-block-start
-// src/pages/posts/edit.tsx
-
-import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { Select, Form, Input } from "antd";
-import { HttpError } from "@refinedev/core";
-
-interface IPost {
-  id: string;
-  title: string;
-  content: string;
-  category: ICategory;
-}
-
-interface ICategory {
-  id: string;
-  title: string;
-}
-
-const PostEdit: React.FC = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost, HttpError, IPost>({
-    // highlight-start
-    meta: {
-      fields: [
-        "id",
-        "title",
-        {
-          category: ["id", "title"],
-        },
-        "content",
-      ],
-    },
-    // highlight-end
-  });
-
-  const postData = queryResult?.data?.data;
-  const { selectProps: categorySelectProps } = useSelect<ICategory>({
-    resource: "categories",
-    defaultValue: postData?.category.id,
-    // highlight-start
-    meta: {
-      fields: ["id", "title"],
-    },
-    // highlight-end
-  });
-
-  const { TextArea } = Input;
-
-  return (
-    <Edit saveButtonProps={saveButtonProps}>
-      <Form
-        {...formProps}
-        layout="vertical"
-        onFinish={(values) =>
-          formProps.onFinish?.({
-            ...values,
-            category: values.category.id,
-          } as any)
-        }
-      >
-        <Form.Item
-          label="Title"
-          name="title"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Category"
-          name={["category", "id"]}
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Select {...categorySelectProps} />
-        </Form.Item>
-        <Form.Item
-          label="Content"
-          name="content"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <TextArea />
-        </Form.Item>
-      </Form>
-    </Edit>
-  );
-};
-// visible-block-end
-
-const App: React.FC = () => {
-  return (
-    <BrowserRouter>
-      <ConfigProvider theme={RefineThemes.Blue}>
-        <Refine
-          routerProvider={routerProvider}
-          dataProvider={gqlDataProvider}
-          resources={[
-            {
-              name: "posts",
-              edit: "/posts/edit/:id",
-            },
-          ]}
-        >
-          <Routes>
-            <Route
-              element={
-                <ThemedLayoutV2>
-                  <Outlet />
-                </ThemedLayoutV2>
-              }
-            >
-              <Route path="posts">
-                <Route path="edit/:id" element={<PostEdit />} />
-              </Route>
-            </Route>
-          </Routes>
-        </Refine>
-      </ConfigProvider>
-    </BrowserRouter>
-  );
-};
-
-render(<App />);
-```
-
-:::info
-
-The create page is largely the same as the edit page, there is no need to pass `meta` to [`useForm`](/docs/core/hooks/use-form) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `meta`.
-
-:::
-
-</TabItem>
-<TabItem value="output">
-
-This will be the result GraphQL query:
-
-```ts
-mutation ($input: updatePostInput) {
-    updatePost (input: $input) {
-        post  {
-            id
-        }
-    }
-}
-```
-
-</TabItem>
-</Tabs>
-
-## Show Page
-
-`<Show>` component includes the [`<RefreshButton>`](/docs/ui-integrations/ant-design/components/buttons/refresh-button) by default. We can pass `refetch` method of `queryResult` to its `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
-
-<Tabs
-defaultValue="implementation"
-values={[
-{label: 'Implementation', value: 'implementation'},
-{label: 'Output', value: 'output'}
-]}>
-<TabItem value="implementation">
-
-```tsx live url=http://localhost:5173 previewHeight=450px
-setInitialRoutes(["/posts/show/2020"]);
-import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
-import { ConfigProvider, Layout } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-// visible-block-start
-// src/pages/posts/edit.tsx
-
-import { Show, RefreshButton } from "@refinedev/antd";
-import { Select, Form, Input, Typography } from "antd";
-import { useShow } from "@refinedev/core";
-
-const PostShow: React.FC = () => {
-  const { Title, Text } = Typography;
-
-  const { queryResult } = useShow<IPost>({
-    resource: "posts",
-    // highlight-start
-    meta: {
-      fields: [
-        "id",
-        "title",
-        {
-          category: ["title"],
-        },
-        "content",
-      ],
-    },
-    // highlight-end
-  });
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
-
-  return (
-    <Show
-      isLoading={isLoading}
-      // highlight-next-line
-      headerProps={{
-        extra: <RefreshButton onClick={() => queryResult.refetch()} />,
-      }}
-    >
-      <Title level={5}>Id</Title>
-      <Text>{record?.id}</Text>
-
-      <Title level={5}>Title</Title>
-      <Text>{record?.title}</Text>
-
-      <Title level={5}>Category</Title>
-      <Text>{record?.category.title}</Text>
-
-      <Title level={5}>Content</Title>
-      <Text value={record?.content} />
-    </Show>
-  );
-};
-// visible-block-end
-
-const App: React.FC = () => {
-  return (
-    <BrowserRouter>
-      <ConfigProvider theme={RefineThemes.Blue}>
-        <Refine
-          routerProvider={routerProvider}
-          dataProvider={gqlDataProvider}
-          resources={[
-            {
-              name: "posts",
-              show: "/posts/show/:id",
-            },
-          ]}
-        >
-          <Routes>
-            <Route
-              element={
-                <ThemedLayoutV2>
-                  <Outlet />
-                </ThemedLayoutV2>
-              }
-            >
-              <Route path="posts">
-                <Route path="show/:id" element={<PostShow />} />
-              </Route>
-            </Route>
-          </Routes>
-        </Refine>
-      </ConfigProvider>
-    </BrowserRouter>
-  );
-};
-
-render(<App />);
-```
-
-</TabItem>
-<TabItem value="output">
-
-This will be the result GraphQL query:
-
-```ts
-mutation ($input: updatePostInput) {
-    updatePost (input: $input) {
-        post  {
-            id
-        }
-    }
-}
-```
-
-</TabItem>
-</Tabs>
 
 ## Usage with Inferencer
 
