@@ -1,12 +1,9 @@
-// import { CloudIcon } from "../icons/cloud";
-import { HackathonAltIcon } from "../icons/hackathon-alt";
 import {
     DocumentsIcon,
     IntegrationsIcon,
     TutorialIcon,
     ExamplesIcon,
     AwesomeIcon,
-    // UseCasesIcon,
     ContributeIcon,
     RefineWeekIcon,
     HackathonsIcon,
@@ -14,6 +11,7 @@ import {
     StoreIcon,
     MeetIcon,
     BlogIcon,
+    NewBadgeIcon,
 } from "../icons/popover";
 
 export type NavbarPopoverItemType = {
@@ -79,22 +77,16 @@ export const MENU_ITEMS: MenuItemType[] = [
             },
         ],
     },
-    // {
-    //     isPopover: false,
-    //     label: "Cloud",
-    //     icon: CloudIcon,
-    //     href: "#cloud",
-    // },
+    {
+        isPopover: false,
+        label: "Enterprise",
+        href: "/enterprise",
+        icon: NewBadgeIcon,
+    },
     {
         isPopover: true,
         label: "Community",
         items: [
-            // {
-            //     label: "Use cases",
-            //     description: "Inspiring projects built with refine.",
-            //     link: "/use-cases",
-            //     icon: UseCasesIcon,
-            // },
             {
                 label: "Contributing",
                 description: "Join open-source contributors.",
@@ -139,15 +131,4 @@ export const MENU_ITEMS: MenuItemType[] = [
             },
         ],
     },
-    {
-        isPopover: false,
-        label: "Pricing",
-        href: "/pricing",
-    },
-    /*    {
-        isPopover: false,
-        label: "Hackathon",
-        icon: HackathonAltIcon,
-        href: "https://s.refine.dev/hackathon2",
-    }, */
 ];

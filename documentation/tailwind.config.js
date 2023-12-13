@@ -44,6 +44,8 @@ module.exports = {
                     "walkthrough-button-alt-bg": "#474E6B",
                     "pricing-table-alt-dark": "#181927",
                     "pricing-table-alt": "#F4F8FB",
+                    "enterprise-table-alt-dark": "#1D1E30",
+                    "enterprise-table-alt": "#F4F8FB",
                 },
                 gray: {
                     0: "#FFFFFF",
@@ -383,6 +385,45 @@ module.exports = {
                 "landing-copy-command-hover-bg-light": [
                     "radial-gradient(transparent 30%, rgba(0, 128, 255, 0.1))",
                 ],
+                "enterprise-cta-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(45% 80% at 50% 50%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%)",
+                ],
+                "enterprise-cta-dark-md": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(30% 100% at 100% 50%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%)",
+                ],
+                "enterprise-cta-light":
+                    "radial-gradient(100% 100% at 50% 50%, rgba(0, 128, 255, 0.15) 0%, rgba(0, 128, 255, 0.00) 100%)",
+                "enterprise-cta-light-md":
+                    "radial-gradient(60% 100% at 100% 50%, rgba(0, 128, 255, 0.15) 0%, rgba(0, 128, 255, 0.00) 100%)",
+                "enterprise-data-source-dark":
+                    "radial-gradient(100% 90% at 120% -12%, rgba(255, 255, 255, 0.50) 45%, rgba(255, 255, 255, 0.00) 100%)",
+                "enterprise-frequent-updates-dark": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(70% 90% at 50% 100%, rgba(38, 217, 127, 0.10) 0%, rgba(38, 217, 127, 0.00) 100%)",
+                ],
+                "enterprise-frequent-updates-light":
+                    "radial-gradient(100% 100% at 50% 100%, rgba(0, 128, 255, 0.25) 0%, rgba(0, 128, 255, 0.00) 100%)",
+                "enterprise-frequent-updates-dark-md": [
+                    "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+                    "radial-gradient(50% 100% at 100% 50%, rgba(38, 217, 127, 0.15) 0%, rgba(38, 217, 127, 0.00) 100%)",
+                ],
+                "enterprise-frequent-updates-light-md":
+                    "radial-gradient(120% 100% at 100% 50%, rgba(0, 128, 255, 0.25) 0%, rgba(0, 128, 255, 0.00) 100%)",
+                "new-badge-border-dark": `conic-gradient( from 45deg at 50% 50%, #194b3a, rgb(38 217 127 / 40%), #194b3a, #194b3a, #194b3a, #26d97f, #194b3a, #194b3a, #194b3a)`,
+                "new-badge-border-light": `conic-gradient(
+                    from 45deg at 50% 50%,
+                    #b7dbff,
+                    rgb(0 128 255 / 50%),
+                    #b7dbff,
+                    #b7dbff,
+                    #b7dbff,
+                    #0080ff,
+                    #b7dbff,
+                    #b7dbff,
+                    #b7dbff
+                )`,
             },
             backgroundPosition: {
                 "landing-wizard-option-right":
@@ -451,6 +492,19 @@ module.exports = {
                     "github-stars-border 10s linear infinite alternate",
                 "github-stars-glow":
                     "github-stars-glow 10s linear infinite alternate",
+                "enterprise-iam-services-left":
+                    "enterprise-iam-services-left 40s linear infinite",
+                "enterprise-iam-services-right":
+                    "enterprise-iam-services-right 40s linear infinite",
+                "enterprise-data-source-left":
+                    "enterprise-data-source-left 25s linear infinite",
+                "enterprise-data-source-right":
+                    "enterprise-data-source-right 25s linear infinite",
+                "enterprise-table-left-to-right":
+                    "enterprise-table-left-to-right 0.3s ease-in-out forwards",
+                "enterprise-table-right-to-left":
+                    "enterprise-table-right-to-left 0.3s ease-in-out forwards",
+                "new-badge-border": "new-badge-border 4s linear infinite",
             },
             keyframes: {
                 "code-scroll": {
@@ -703,6 +757,34 @@ module.exports = {
                     "100%": {
                         transform: "translateX(156px) scale(0.5)",
                     },
+                },
+                "enterprise-iam-services-left": {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(-50%)" },
+                },
+                "enterprise-iam-services-right": {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(50%)" },
+                },
+                "enterprise-data-source-left": {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(-50%)" },
+                },
+                "enterprise-data-source-right": {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(50%)" },
+                },
+                "enterprise-table-left-to-right": {
+                    "0%": { transform: "translateX(-100%)", opacity: 0 },
+                    "100%": { transform: "translateX(0)", opacity: 1 },
+                },
+                "enterprise-table-right-to-left": {
+                    "0%": { transform: "translateX(100%)", opacity: 0 },
+                    "100%": { transform: "translateX(0)", opacity: 1 },
+                },
+                "new-badge-border": {
+                    "0%": { transform: "rotate(0deg)" },
+                    "100%": { transform: "rotate(360deg)" },
                 },
             },
         },
