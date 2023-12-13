@@ -251,33 +251,44 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
         updateMany: async ({ resource, ids, variables, meta }) => {
-            const operation = `updateMany${camelcase(resource, {
+            const pascalResource = camelcase(resource, {
                 pascalCase: true,
-            })}`;
+            });
+            const mutationOperation = `updateMany${pascalResource}`;
 
-            const { query, variables: queryVariables } = gql.mutation({
-                operation,
-                fields: ["updatedCount"],
-                variables: {
-                    input: {
-                        type: `UpdateMany${camelcase(resource, {
-                            pascalCase: true,
-                        })}Input`,
-                        required: true,
-                        value: {
-                            filter: {
-                                id: { in: ids },
-                            },
-                            update: variables,
-                        },
-                    },
-                },
+            const mutation = gqlTag`
+                mutation UpdateMany${pascalResource}($input: UpdateMany${pascalResource}Input!) {
+                    ${mutationOperation}(input: $input) {
+                        updatedCount
+                    }
+                }
+            `;
+
+            const operation = camelcase(resource);
+
+            await client.request<BaseRecord>(mutation, {
+                input: { filter: { id: { in: ids } }, update: variables },
             });
 
-            await client.request<BaseRecord>(query, queryVariables);
+            const query = gqlTag`
+                query GetMany${pascalResource}($filter: ${singular(
+                pascalResource,
+            )}Filter!) {
+                    ${operation}(filter: $filter) {
+                        nodes {
+                            id
+                        }
+                    }
+                }
+            `;
 
-            // TODO: Fix
-            return { data: [] };
+            const response = await client.request<BaseRecord>(query, {
+                filter: { id: { in: ids } },
+            });
+
+            return {
+                data: response[operation].nodes,
+            };
         },
         getOne: async ({ resource, id, meta }) => {
             const operation = camelcase(singular(resource));
