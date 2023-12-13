@@ -7,6 +7,7 @@ export const Image = (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
         className={clsx(
             "w-full h-auto",
             "object-contain",
+            "object-center",
             "bg-gray-100 dark:bg-gray-800",
             "rounded-md",
             "border",
