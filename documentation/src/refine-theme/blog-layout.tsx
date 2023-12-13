@@ -5,18 +5,20 @@ import { BlogFooter } from "./blog-footer";
 import clsx from "clsx";
 import { BannerSidebar } from "../components/banner/banner-sidebar";
 import { BannerModal } from "../components/banner/banner-modal";
-import { useLocation } from "@docusaurus/router";
 import useScrollTracker from "../hooks/use-scroll-tracker";
 
-export const RefineBlogLayout = (props: any) => {
+type Props = {
+    showSidebarBanner?: boolean;
+} & Record<string, any>;
+
+export const RefineBlogLayout = (props: Props) => {
     const [shouldShowBanner, setShouldShowBanner] = useState(false);
-    const { children, toc, ...layoutProps } = props;
-    const { pathname } = useLocation();
+    const { children, toc, showSidebarBanner = true, ...layoutProps } = props;
 
     const tracker = useScrollTracker();
 
     useEffect(() => {
-        if (pathname === "/blog/" || pathname === "/blog") return;
+        if (!showSidebarBanner) return;
 
         if (tracker.scrollY > 20) {
             setShouldShowBanner(true);
@@ -25,7 +27,7 @@ export const RefineBlogLayout = (props: any) => {
         if (tracker.scrollY < 20) {
             setShouldShowBanner(false);
         }
-    }, [tracker.scrollY]);
+    }, [tracker.scrollY, showSidebarBanner]);
 
     return (
         <CommonLayout {...layoutProps}>
@@ -41,30 +43,34 @@ export const RefineBlogLayout = (props: any) => {
                     "w-full",
                 )}
             >
-                <div
-                    className={clsx(
-                        "relative",
-                        "w-[264px]",
-                        "pl-4",
-                        "py-10 blog-sm:py-12 blog-md:py-16",
-                        "hidden xl:block",
-                        shouldShowBanner && "opacity-100",
-                        !shouldShowBanner && "opacity-0",
-                        "transition-opacity duration-300 ease-in-out",
-                    )}
-                >
+                {showSidebarBanner && (
                     <div
                         className={clsx(
-                            "sticky",
+                            "relative",
                             "w-[264px]",
-                            "z-[1]",
-                            "top-32",
-                            "left-0",
+                            "pl-4",
+                            "py-10 blog-sm:py-12 blog-md:py-16",
+                            "hidden xl:block",
+                            shouldShowBanner && "opacity-100",
+                            !shouldShowBanner && "opacity-0",
+                            "transition-opacity duration-300 ease-in-out",
                         )}
                     >
-                        <BannerSidebar shouldShowBanner={shouldShowBanner} />
+                        <div
+                            className={clsx(
+                                "sticky",
+                                "w-[264px]",
+                                "z-[1]",
+                                "top-32",
+                                "left-0",
+                            )}
+                        >
+                            <BannerSidebar
+                                shouldShowBanner={shouldShowBanner}
+                            />
+                        </div>
                     </div>
-                </div>
+                )}
                 <div
                     className={clsx(
                         "refine-prose",
