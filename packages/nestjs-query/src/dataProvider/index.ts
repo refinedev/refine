@@ -276,7 +276,8 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
             await client.request<BaseRecord>(query, queryVariables);
 
-            return await handleGetMany(client, { resource, ids, meta });
+            // TODO: Fix
+            return { data: [] };
         },
         getOne: async ({ resource, id, meta }) => {
             const operation = camelcase(singular(resource));
