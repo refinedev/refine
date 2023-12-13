@@ -1,6 +1,5 @@
 ---
 title: Notification Provider
-sidebar_label: Notification Provider
 ---
 
 **refine** let's you set a notification API by providing the `notificationProvider` property to the `<Refine>` component.
@@ -303,9 +302,7 @@ We add `closeButton` and `autoClose` for progress notifications, which are not c
 </p>
 </details>
 
-:::tip
-
-The `open` method will be accessible via [`useNotification`](/docs/core/hooks/utilities/use-notification) hook.
+The `open` method then will be accessible via [`useNotification`](/docs/core/hooks/utilities/use-notification) hook.
 
 ```tsx
 import { useNotification } from "@refinedev/core";
@@ -320,8 +317,6 @@ open?.({
 });
 ```
 
-:::
-
 ### `close`
 
 **refine** calls this method when it wants to close a notification. **refine** pass the `key` of the notification to the `close` method. So, we can handle the notification close logic with this `key`.
@@ -335,9 +330,7 @@ const notificationProvider: NotificationProvider = {
 };
 ```
 
-:::tip
-
-`close` method will be accessible via [`useNotification`](/docs/core/hooks/utilities/use-notification) hook.
+`close` method then will be accessible via [`useNotification`](/docs/core/hooks/utilities/use-notification) hook.
 
 ```tsx
 import { useNotification } from "@refinedev/core";
@@ -346,8 +339,6 @@ const { close } = useNotification();
 
 close?.("displayed-notification-key");
 ```
-
-:::
 
 ## Example
 

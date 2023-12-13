@@ -1,15 +1,8 @@
 ---
 title: useOnError
-siderbar_label: useOnError
 description: useOnError data hook from refine is a modified version of react-query's useMutation for create mutations
 source: /packages/core/src/hooks/auth/useOnError/index.ts
 ---
-
-:::caution
-
-This hook can only be used if the [`authProvider`][auth-provider] is provided.
-
-:::
 
 `useOnError` calls the [`onError`][on-error] method from the [`authProvider`][auth-provider] under the hood.
 
@@ -33,7 +26,7 @@ According to the `onError` method's returned values, the following process will 
 
 ## Internal Usage
 
-**refine** uses `useOnError` internally in the data hooks to handle errors in a unified way.
+Refine uses `useOnError` internally in the data hooks to handle errors in a unified way.
 
 When an error is thrown by any data hook, the `useOnError` function is triggered with the error object. Afterward, the error object is passed to the [`onError`][on-error] method of the [`authProvider`][auth-provider], which can be utilized to redirect the user or to log them out.
 
@@ -41,14 +34,7 @@ When an error is thrown by any data hook, the `useOnError` function is triggered
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-  // ---
-  logout: () => {
-    // ---
-    return {
-      success: true,
-      redirectTo: "/login",
-    };
-  },
+  // ...
   // highlight-start
   onError: (error) => {
     const status = error.status;
@@ -90,14 +76,6 @@ We have a logic in [`authProvider`](/docs/core/providers/auth-provider)'s `onErr
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-  // ---
-  logout: () => {
-    // ---
-    return {
-      success: true,
-      redirectTo: "/login",
-    };
-  },
   // highlight-start
   onError: (error) => {
     const status = error.status;
@@ -114,12 +92,6 @@ const authProvider: AuthBindings = {
   // ---
 };
 ```
-
-:::note
-
-Any error passed to `mutate` function will be available in the `onError` in the `authProvider`.
-
-:::
 
 [on-error]: /docs/core/providers/auth-provider#onerror-
 [auth-provider]: /docs/core/providers/auth-provider

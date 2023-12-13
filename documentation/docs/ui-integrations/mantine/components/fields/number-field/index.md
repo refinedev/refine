@@ -28,7 +28,7 @@ const Wrapper = ({ children }) => {
 
 This field is used to display a number formatted according to the browser locale, right aligned. and uses [`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) to display date format.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
@@ -146,7 +146,7 @@ render(
 
 <PropsTable module="@refinedev/mantine/NumberField" value-description="Number value" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Mantine [Text](https://mantine.dev/core/text/?t=props).
 

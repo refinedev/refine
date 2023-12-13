@@ -1,10 +1,9 @@
 ---
 title: useBreadcrumb
-sidebar_label: useBreadcrumb
 source: packages/core/src/hooks/breadcrumb
 ---
 
-:::info Congratulations 🥇
+:::simple Congratulations 🥇
 
 The feature won first place with the joint votes of our team members in a May 2022 internal hackathon!
 
@@ -18,7 +17,7 @@ It is a hook that returns `breadcrumbs` to create breadcrumbs for the current pa
 - `href`: the route of the resource's list action.
 - `icon`: the icon of the resource.
 
-## Basic Usage
+## Usage
 
 ```tsx
 import React from "react";
@@ -82,11 +81,7 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
   ];
   ```
 
-:::info
-
 If the resource has no `icon` property, the `icon` property of the breadcrumbs is `undefined`. Likewise, if the resource's list page is not found, the `href` property of the breadcrumbs is `undefined`.
-
-:::
 
 ### Nested resource
 
@@ -150,30 +145,26 @@ In earlier versions, the home icon in the `Breadcrumb` was created by the `Dashb
 
 If the `resource` definition has a `label` property, `useBreadcrumbs` uses the `label` property. Otherwise, the `name` property of the `resource` is used. Likewise, if the `resource` definition has `route` property, `useBreadcrumbs` uses the `route` property. Otherwise, the `name` property of the `resource` is used.
 
-:::info
-
 If a `label` is not provided in your `posts` resource, `useBreadcrumb` uses the [`useTranslate`](/docs/core/hooks/translate/use-translate) hook to translate the names.
 
 For CRUD operations (`list`,`create`,`edit`,`show`) the `useBreadcrumb` uses the `actions` key to translate the key `` translate(`actions.${action}`) ``.
 
 For example, `create` action should look like: `` translate(`actions.create`) ``
 
-:::
-
 ## API Reference
 
 ### Return values
 
-| Property    | Description           | Type                |
-| ----------- | --------------------- | ------------------- |
-| breadcrumbs | The breadcrumbs array | `BreadcrumbsType`\* |
+| Property    | Description           | Type              |
+| ----------- | --------------------- | ----------------- |
+| breadcrumbs | The breadcrumbs array | `BreadcrumbsType` |
 
-> **BreadcrumbsType**
->
-> ```tsx
-> type BreadcrumbsType = {
->   label: string;
->   href?: string;
->   icon?: React.ReactNode;
-> };
-> ```
+#### BreadcrumbsType
+
+```tsx
+type BreadcrumbsType = {
+  label: string;
+  href?: string;
+  icon?: React.ReactNode;
+};
+```

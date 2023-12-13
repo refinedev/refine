@@ -5,7 +5,7 @@ siderbar_label: useCan
 
 `useCan` uses the [Access Control Provider's][access-control-provider] `can` function as the query function for [TanStack Query's][tanstack-query] [`useQuery`][use-query]. It takes the [parameters][can-params] that `can` takes. It can also be configured with [`queryOptions`][query-options] for `useQuery`. Returns the result of `useQuery`.
 
-## Basic Usage
+## Usage
 
 ```tsx
 import { useCan } from "@refinedev/core";
@@ -87,33 +87,35 @@ useCan({
 For example, if you want to check if the user can create a post based on the return value:
 
 ```tsx
-<Refine
-  accessControlProvider={{
-    can: async ({ resource, action }) => {
-      if (resource === "post" && action === "create") {
-        return {
-          can: false,
-          reason: "Unauthorized",
-        };
-      }
+const App = (
+  <Refine
+    // ...
+    accessControlProvider={{
+      can: async ({ resource, action }) => {
+        if (resource === "post" && action === "create") {
+          return {
+            can: false,
+            reason: "Unauthorized",
+          };
+        }
 
-      return { can: true };
-    },
-  }}
+        return { can: true };
+      },
+    }}
+  />
+);
 
-  // ...
-/>;
+const MyComponent = () => {
+  const { data: canCreatePost } = useCan({
+    action: "create",
+    resource: "post",
+  });
 
-// inside your component
-const { data: canCreatePost } = useCan({
-  action: "create",
-  resource: "post",
-});
-
-console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
+  console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
+};
 ```
 
-## API
+## API Reference
 
 ### Properties
 
@@ -121,9 +123,9 @@ console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
 
 ### Type Parameters
 
-| Property                                                       | Description                                                                       |
-| -------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| [CanReturnType](/docs/core/interface-references#canreturntype) | Result data of the query [`HttpError`](/docs/core/interface-references#httperror) |
+| Property                                                   | Description                                                                       |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| [CanResponse](/docs/core/interface-references#canresponse) | Result data of the query [`HttpError`](/docs/core/interface-references#httperror) |
 
 ### Return values
 

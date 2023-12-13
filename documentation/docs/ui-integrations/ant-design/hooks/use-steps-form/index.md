@@ -293,13 +293,9 @@ const PostCreate = () => {
 
 The `useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful functionalities that will help you manage your form.
 
-:::info
-
 The `useStepsForm` hook is extended from [`useForm`][antd-use-form] under the hood. This means that you can use all the functionalities of [`useForm`][antd-use-form] in your `useStepsForm`.
 
-:::
-
-## Basic Usage
+## Usage
 
 We will show two examples, one for creating a post and one for editing it. Let's see how `useStepsForm` is used in both.
 
@@ -732,7 +728,7 @@ interface IPost {
 }
 ```
 
-:::tip
+:::simple Relational Data
 
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
@@ -825,7 +821,7 @@ interface IPost {
 }
 ```
 
-:::danger Important
+:::simple Implementation Tips
 
 Make sure to add as much `<Steps.Step>` components as the number of steps in the `formList` array.
 
@@ -946,11 +942,7 @@ interface IPost {
 
 ## Properties
 
-:::tip
-
 All of the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) props are also available in `useStepsForm`. You can find descriptions on [`useForm` documentation](/docs/ui-integrations/ant-design/hooks/use-form#properties).
-
-:::
 
 ### `defaultCurrent`
 
@@ -1018,19 +1010,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. By default, it is `false`.
 
 ```tsx
 useStepsForm({
@@ -1042,9 +1028,7 @@ useStepsForm({
 
 #### `debounce`
 
-> Default: `1000`
-
-Set the debounce time for the `autoSave` prop.
+Set the debounce time for the `autoSave` prop. By default, it is `1000` milliseconds.
 
 ```tsx
 useStepsForm({
@@ -1078,9 +1062,7 @@ useStepsForm({
 
 #### `invalidateOnUnmount`
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default, it is `false`.
 
 ```tsx
 useStepsForm({
@@ -1094,11 +1076,7 @@ useStepsForm({
 
 ## Return Values
 
-:::tip
-
 All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) docs.
-
-:::
 
 ### `stepsProps`
 
@@ -1176,10 +1154,6 @@ const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } = 
 ### Properties
 
 <PropsTable module="@refinedev/antd/useStepsForm"/>
-
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/core/refine-component)>** component. `useModalForm` will use what is passed to `<Refine>` as default but a local value will override it.
-
-> `**`: If not explicitly configured, default value of `redirect` depends on which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). if `action` is `edit` instead, `redirect`s default value is `list`.
 
 ### Type Parameters
 

@@ -143,7 +143,7 @@ render(
 );
 ```
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 

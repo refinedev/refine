@@ -1,6 +1,5 @@
 ---
-title: <FilterDropdown>
-sidebar_label: <FilterDropdown>
+title: <FilterDropdown />
 ---
 
 ## Usage
@@ -62,11 +61,7 @@ Selecting categories from dropdown will send the id's of categories as filtering
 
 `<FilterDropdown>` will put two buttons for filtering and clearing filter actions.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/category_filter-dropdown.png" alt="Show record action" />
-
-<br/>
-
-:::tip
+<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/category_filter-dropdown.png" alt="Show record action" />
 
 We added category options for `<Select>` manually for the sake of simplicity but the [useSelect](/docs/ui-integrations/ant-design/hooks/use-select) hook can be used to populate the props of `<Select>`
 
@@ -79,8 +74,6 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
 
 <Select {...categorySelectProps} />;
 ```
-
-:::
 
 ## Properties
 
@@ -134,7 +127,7 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
 </Table>;
 ```
 
-:::caution
+:::simple Good to know
 
 If [syncWithLocation](/docs/core/refine-component#syncwithlocation) is enabled, on page refresh, the filter values will be type of `string` since they will be parsed from URL. This might produce some incompatibility if data for filter input comes from an API and it's not type of `string`.
 

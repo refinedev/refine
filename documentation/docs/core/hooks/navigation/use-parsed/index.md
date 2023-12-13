@@ -1,14 +1,17 @@
 ---
 title: useParsed
-sidebar_label: useParsed
 ---
 
 `useParsed` is a hook that leverages the `parse` method of the [`routerProvider`][routerprovider] to access the URL and query parameters along with the inferred `resource`, `action` and `id` from the URL.
 
-## Basic Usage
+## Usage
 
 ```tsx
 import { useParsed } from "@refinedev/core";
+
+type MyParams = {
+  someParam: string;
+};
 
 const MyComponent = () => {
   const {
@@ -21,9 +24,9 @@ const MyComponent = () => {
       sorters,
       current,
       pageSize,
-      ...restParams // Any other parameters are also parsed and available in `params`
+      ...restParams // TParams - Any other parameters are also parsed and available in `params`
     },
-  } = useParsed();
+  } = useParsed<MyParams>();
 
   /* ... */
 };
@@ -68,9 +71,3 @@ This is the page size that is parsed from the URL. It will be `undefined` if the
 This is the object that contains all the parameters that are parsed from the URL. It will be an empty object if there is no parameter in the URL. `params` object contains both the URL parameters and the query parameters.
 
 [routerprovider]: /docs/core/providers/router-provider
-
-## Type Parameters
-
-| Property | Description           | Default               |
-| -------- | --------------------- | --------------------- |
-| TParams  | Query parameters type | `Record<string, any>` |

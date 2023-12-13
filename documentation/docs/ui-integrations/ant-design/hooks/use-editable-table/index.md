@@ -7,13 +7,9 @@ import LivePreview from "./\_partial-use-editable-table-live-preview.md";
 
 `useEditeableTable` allows you to implement the edit feature on the [`<Table>`][table] with ease and returns properties that can be used on Ant Design's [`<Table>`][table] and [`<Form>`][form] components.
 
-:::info
-
 `useEditeableTable` hook is extended from the [`useTable`][usetable] hook from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package. This means that you can use all the features of [`useTable`][usetable] hook.
 
-:::
-
-## Basic Usage
+## Usage
 
 Here is an example of how to use `useEditableTable` hook. We will explain the details of this example and hooks usage in the following sections.
 
@@ -122,11 +118,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-:::tip
-
 `isEditing` function that returns from `useEditableTable` lets us check whether a line is currently in edit mode or not.
-
-:::
 
 For now, our post is not editable yet. If a post is being edited, we must show editable columns inside a `<Form.Item>` using conditional rendering:
 
@@ -206,7 +198,7 @@ export const PostList: React.FC = () => {
 
 With this, when a user clicks on the edit button, `isEditing(lineId)` will turn `true` for the relevant line. This will also cause `<TextInput>` to show up on the line that's being edited. When the editing is finished, a new value can be saved by clicking `<SaveButton>`.
 
-:::tip
+:::simple Implementation Tips
 
 By giving the `<Table.Column>` component a unique `render` property, you can render the value in that column however you want.
 
@@ -272,11 +264,7 @@ export const PostList: React.FC = () => {
 
 ## Properties
 
-:::tip
-
 All `useForm` and [`useTable`][usetable] properties are available in `useEditableTable`. You can read the documentation of [`useForm`][useform] and [`useTable`][usetable] for more information.
-
-:::
 
 ### `autoSubmitClose`
 
@@ -292,11 +280,7 @@ const editableTable = useEditableTable({
 
 ## Return Values
 
-:::tip
-
 All `useForm` and [`useTable`][usetable] return values are available in `useEditableTable`. You can read the documentation of [`useForm`][useform] and [`useTable`][usetable] for more information.
-
-:::
 
 ### `cancelButtonProps`
 

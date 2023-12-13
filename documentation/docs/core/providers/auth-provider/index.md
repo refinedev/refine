@@ -1,15 +1,18 @@
 ---
 title: Auth Provider
-sidebar_label: Auth Provider
 ---
 
 import AuthProviderExamplesLinks from "@site/src/partials/auth-provider/auth-provider-examples-links.md";
 
 Auth provider is an object that contains methods to handle authentication and access control in your app by having **refine** consume them. These methods expect to return a promise, so they can be used with async methods.
 
-You can use any third-party authentication service like [Auth0, Okta, etc.](#examples) or your own custom methods while creating an auth provider from scratch.
+:::simple Good to know
 
-> For more information on how you can create your own auth providers, refer to the [Create a Auth Provider tutorial &#8594][create-auth-provider-tutorial]
+- You can use any third-party authentication service like [Auth0, Okta, etc.](#examples) or your own custom methods while creating an auth provider from scratch.
+- Auth Provider is not required for Refine to work, if it is not provided, your application will not have any authentication capabilities. As a result, you will not be able to use any of the auth hooks or components.
+- To learn more about how to create your own auth provider, refer to the [Create an Auth Provider tutorial &#8594][create-auth-provider-tutorial].
+
+:::
 
 ## Usage
 
@@ -26,12 +29,6 @@ const App = () => {
   return <Refine authProvider={authProvider} />;
 };
 ```
-
-:::note
-
-`authProvider` isn't required for the `<Refine/>` to work, if it is not provided, your application will not have any authentication capabilities. As a result, you will not be able to use any of the auth hooks or components.
-
-:::
 
 ## Examples
 

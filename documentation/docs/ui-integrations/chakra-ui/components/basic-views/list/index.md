@@ -138,7 +138,7 @@ render(
 );
 ```
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
@@ -345,15 +345,9 @@ render(
 );
 ```
 
-### `breadcrumb`
+### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/chakra-ui` package.
-
-:::tip
-
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
-
-:::
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
@@ -569,7 +563,7 @@ By default, the `<List/>` component has a [`<CreateButton>`][create-button] at t
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, createButtonProps}) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-:::caution
+:::simple Implementation Tips
 
 If "create" resource is not defined or [`canCreate`](#cancreate-and-createbuttonprops) is `false`, the [`<CreateButton>`][create-button] will not render and `createButtonProps` will be `undefined`.
 

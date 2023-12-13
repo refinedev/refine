@@ -28,7 +28,7 @@ const Wrapper = ({ children }) => {
 
 This field lets you show basic text. It uses Mantine [`<Text>`](https://mantine.dev/core/text/) component.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
@@ -116,7 +116,7 @@ render(
 
 <PropsTable module="@refinedev/mantine/TextField" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Mantine [Text](https://mantine.dev/core/text/?t=props).
 

@@ -62,7 +62,7 @@ export const PostEdit: React.FC = (props) => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/inputs/custom-inputs/markdown-input.png" alt="Markdown input" />
+<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/inputs/custom-inputs/markdown-input.png" alt="Markdown input" />
 <br/>
 
 ## Example

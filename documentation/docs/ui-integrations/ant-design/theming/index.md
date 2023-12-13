@@ -1,6 +1,5 @@
 ---
 title: Theming
-sidebar_label: Theming
 ---
 
 Ant Design allows you to customize design tokens to satisfy UI diversity from business or brand requirements, including primary color, border radius, border color, etc.
@@ -35,11 +34,7 @@ const App: React.FC = () => {
 };
 ```
 
-:::info
-
 If you want to see how themes change the look of the application, check out this [example &#8594](/docs/examples/themes/refine-themes-antd/)
-
-:::
 
 ## Theme customization
 
@@ -189,11 +184,7 @@ const App: React.FC = () => {
 };
 ```
 
-:::tip
-
 If you want to customize the default layout elements provided with `@refinedev/antd` package, check out the [Custom Layout](/docs/advanced-tutorials/custom-layout) tutorial.
-
-:::
 
 ## Example
 

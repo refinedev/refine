@@ -5,7 +5,7 @@ swizzle: true
 
 `<EditButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `edit` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood. It can be useful to redirect the app to the edit page route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
 
@@ -72,7 +72,7 @@ render(
 
 ### `recordItemId`
 
-`recordItemId` is used to append the record id to the end of the route path for the edit route.
+`recordItemId` is used to append the record id to the end of the route path for the edit route. By default, the `recordItemId` is inferred from the route params.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -111,12 +111,6 @@ render(
 ```
 
 Clicking the button will trigger the `edit` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `edit` action path of the resource, filling the necessary parameters in the route.
-
-:::note
-
-**`<EditButton>`** component reads the id information from the route by default.
-
-:::
 
 ### `resource`
 
@@ -234,51 +228,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-`resourceNameOrRouteName` is used to redirect the app to the `/edit` endpoint of the given resource name. By default, the app redirects to a URL with `/edit` defined by the name property of resource object.
-
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { EditButton } from "@refinedev/mui";
-
-const MyEditComponent = () => {
-  return (
-    <EditButton
-      // highlight-next-line
-      resourceNameOrRouteName="categories"
-      recordItemId="2"
-    />
-  );
-};
-
-// visible-block-end
-
-const EditPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
-};
-
-render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        edit: EditPage,
-      },
-    ]}
-    DashboardPage={MyEditComponent}
-  />,
-);
-```
-
-Clicking the button will trigger the `edit` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect to `/posts/edit/2`.
+Use `resource` prop instead.
 
 ## API Reference
 
@@ -286,7 +236,7 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/docs/co
 
 <PropsTable module="@refinedev/mui/EditButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button/).
 

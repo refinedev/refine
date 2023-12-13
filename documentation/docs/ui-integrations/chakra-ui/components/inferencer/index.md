@@ -1,6 +1,5 @@
 ---
 title: Inferencer
-sidebar_label: Inferencer
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `ChakraUIListInferencer`, `ChakraUIShowInferencer`, `ChakraUIEditInferencer`, `ChakraUICreateInferencer` components and finally the `ChakraUIInferencer` component, which combines all in one place.
@@ -89,11 +88,7 @@ const SampleEdit = () => {
   </TabItem>
 </Tabs>
 
-:::info
-
 To learn more about `@refinedev/inferencer` package, please check out its [documentation](/docs/packages/list-of-packages)
-
-:::
 
 ## Views
 

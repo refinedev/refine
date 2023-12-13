@@ -8,68 +8,63 @@ title: List of Packages
 
 ### UI Framework Packages:
 
-- `@refinedev/antd` - [Ant Design](https://ant.design/) System UI Framework support. **20+** _framework-specific_ `hooks` and  `components`  incl. _Table, Form, Select, Menu, Layout, Notification and CRUD components._
+To learn more about UI Libraries and integrations, check out [UI Libraries](/docs/guides-concepts/ui-libraries) guide.
 
-- `@refinedev/mui` - [Material UI](https://mui.com/material-ui/getting-started/overview/) Framework support. **20+** _framework-specific_ `hooks` and  `components`  incl. _DataGrid (+ Pro), AutoComplete, Menu, Layout, Notification and CRUD components._
+- [`@refinedev/antd`](/docs/ui-integrations/ant-design/introduction) - [Ant Design](https://ant.design/) System UI Framework support. **20+** framework-specific `hooks` and  `components`  incl. Table, Form, Select, Menu, Layout, Notification and CRUD components.
+- [`@refinedev/mui`](/docs/ui-integrations/material-ui/introduction) - [Material UI](https://mui.com/material-ui/getting-started/overview/) Framework support. **20+** framework-specific `hooks` and  `components`  incl. DataGrid (+ Pro), AutoComplete, Menu, Layout, Notification and CRUD components.
+- [`@refinedev/mantine`](/docs/ui-integrations/mantine/introduction) - [Mantine](https://mantine.dev/) UI Framework support. **20+** framework-specific **hooks** and **components** incl. Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components.
+- [`@refinedev/chakra-ui`](/docs/ui-integrations/chakra-ui/introduction) - [Chakra UI](https://chakra-ui.com/) UI Framework support. **20+** framework-specific **components** incl. Menu, Layout, Notification and CRUD components.
 
-- `@refinedev/mantine` - [Mantine](https://mantine.dev/) UI Framework support. **20+** framework-specific **hooks** and **components** incl. _Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components._
+### Data Provider Packages:
 
-- `@refinedev/chakra-ui` - [Chakra UI](https://chakra-ui.com/) UI Framework support. **20+** framework-specific **components** incl. _Menu, Layout, Notification and CRUD components._
+To learn more about Data Providers, check out [Data Provider](/docs/core/providers/data-provider/) docs.
 
-### [Data Provider](https://refine.dev/docs/core/providers/data-provider/) Packages:
-
-- `@refinedev/simple-rest` - Connect any custom **REST API** backend.
-
-- `@refinedev/graphql` - Connect any custom **GraphQL** backend.
-
-- `@refinedev/nestjsx-crud` - Consume **REST API**'s built with **NestJs**.
-
-- `@refinedev/nestjs-query` - Consume **GraphQL API**'s built with **Nestjs-Query**.
-
-- `@refinedev/strapi-v4` - [Strapi](https://strapi.io/) connector for **v4 REST API.**
-
-- `@refinedev/strapi-graphql` - [Strapi](https://strapi.io/) connector for **GraphQL API.**
-
-- `@refinedev/strapi` - [Strapi](https://strapi.io/) connector for **legacy REST API.**
-
-- `@refinedev/supabase` -[Supabase](https://supabase.com/) data provider. Supports **Supabase Realtime** for **live/realtime** projects.
-
-- `@refinedev/hasura` - [Hasura GraphQL](https://hasura.io/) data provider. Supports **GraphQL Subscriptions** for **live/realtime** projects.
-
-- `@refinedev/appwrite` - [Appwrite](https://appwrite.io/) data provider. Supports **Appwrite Realtime** for **live/realtime** projects.
-
+- [`@refinedev/simple-rest`](/docs/packages/data-providers/simple-rest) - Connect any custom **REST API** backend.
+- [`@refinedev/graphql`](/docs/packages/data-providers/graphql) - Connect any custom **GraphQL** backend.
+- [`@refinedev/nestjsx-crud`](/docs/packages/data-providers/nestjsx-crud) - Consume **REST API**'s built with **NestJs**.
+- [`@refinedev/nestjs-query`](/docs/packages/data-providers/nestjs-query) - Consume **GraphQL API**'s built with **Nestjs-Query**.
+- [`@refinedev/strapi-v4`](/docs/packages/data-providers/strapi-v4) - [Strapi](https://strapi.io/) connector for **v4 REST API.**
+- [`@refinedev/strapi-graphql`](/docs/packages/data-providers/strapi-graphql) - [Strapi](https://strapi.io/) connector for **GraphQL API.**
+- [`@refinedev/strapi`](/docs/packages/data-providers/strapi-v4) - [Strapi](https://strapi.io/) connector for **legacy REST API.**
+- [`@refinedev/supabase`](/docs/packages/data-providers/supabase) -[Supabase](https://supabase.com/) data provider. Supports **Supabase Realtime** for **live/realtime** projects.
+- [`@refinedev/hasura`](/docs/packages/data-providers/hasura) - [Hasura GraphQL](https://hasura.io/) data provider. Supports **GraphQL Subscriptions** for **live/realtime** projects.
+- [`@refinedev/appwrite`](/docs/packages/data-providers/appwrite) - [Appwrite](https://appwrite.io/) data provider. Supports **Appwrite Realtime** for **live/realtime** projects.
+- [`@refinedev/airtable`](/docs/packages/data-providers/airtable) - Use [Airtable](https://airtable.com/) as backend service.
 - `@refinedev/medusa` - [Medusa](https://medusajs.com/) connector for your e-commerce projects.
 
-- `@refinedev/airtable` - Use [Airtable](https://airtable.com/) as backend service.
+### Router Provider Packages
 
-- `@refinedev/nhost` - [Nhost](https://nhost.io/) data provider. Supports **GraphQL Subscriptions** for **live/realtime** projects.
+To learn more about Router Providers, check out [Routing](/docs/guides-concepts/routing) guide.
 
-### [Router Provider](https://refine.dev/docs/core/providers/router-provider/) Packages
-
-- `@refinedev/react-router-v6` - Router Provider for [React Router (v6)](https://reactrouter.com)
-
+- [`@refinedev/react-router-v6`](/docs/router-integrations/react-router) - Router Provider for [React Router (v6)](https://reactrouter.com)
+- [`@refinedev/nextjs-router`](/docs/router-integrations/next-js) - Router Provider for [Next.js](https://nextjs.org/docs/api-reference/next/router#userouter)
+- [`@refinedev/remix-router`](/docs/router-integrations/remix) - Router Provider for [Remix](https://remix.run/)
+- [`@refinenative/expo-router`](https://www.npmjs.com/package/@refinenative/expo-router) - Router Provider for [Expo](https://docs.expo.dev/)
 - `@pankod/refine-react-router` - Router Provider for [React Router (v5)](https://v5.reactrouter.com/)
-
-- `@refinedev/nextjs-router` - Router Provider for [Next.js](https://nextjs.org/docs/api-reference/next/router#userouter)
-
 - `@pankod/refine-react-location` - Router Provider for [React Location](https://github.com/tannerlinsley/react-location)
 
-- `@refinedev/remix-router` - Router Provider for [Remix](https://remix.run/)
+### Live Provider Packages
 
-### [Live Provider](https://refine.dev/docs/core/providers/live-provider/) Packages
+To learn more about Live Providers, check out [Realtime](/docs/guides-concepts/realtime) guide.
 
-- `@refinedev/ably` - [React Table](https://ably.com/) support for for **live/realtime** projects.
+- `@refinedev/ably` - [Ably](https://ably.com/) integration for realtime applications.
+- `@refinedev/graphql` - Realtime support through GraphQL Subscriptions.
+- `@refinedev/nestjs-query` - Realtime support through GraphQL Subscriptions for **Nestjs-Query**.
+- `@refinedev/supabase` -[Supabase](https://supabase.com/) realtime support.
+- `@refinedev/hasura` - [Hasura GraphQL](https://hasura.io/) support with GraphQL Subscriptions.
+- `@refinedev/appwrite` - [Appwrite](https://appwrite.io/) realtime support.
 
 ### Integrations
 
-- `@refinedev/kbar` - [kbar](https://kbar.vercel.app/) integration. Add `command`/`crtrl`+`k` interfaces to your project.
-- `@refinedev/react-table` - [React Table](https://tanstack.com/table/v8) integration. Powerful tables & datagrids for your headless projects.
-- `@refinedev/react-hook-form` - [React Hook Form](https://react-hook-form.com/) integration. Extensible forms and validation for your projects.
+- [`@refinedev/kbar`](/docs/packages/command-palette) - [kbar](https://kbar.vercel.app/) integration. Add `command`/`crtrl`+`k` interfaces to your project.
+- [`@refinedev/react-table`](/docs/packages/tanstack-table/introduction) - [React Table](https://tanstack.com/table/v8) integration. Powerful tables & datagrids for your headless projects.
+- [`@refinedev/react-hook-form`](/docs/packages/react-hook-form/introduction) - [React Hook Form](https://react-hook-form.com/) integration. Extensible forms and validation for your projects.
 
 ### React Frameworks
 
 - `NextJS` - SSR and SSG support for your projects.
 - `Remix` - SSR support for your projects.
+- `React Native` - Mobile support for your projects.
 
 ### ❤️ Community Packages:
 

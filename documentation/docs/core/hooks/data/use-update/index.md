@@ -8,7 +8,7 @@ source: packages/core/src/hooks/data/useUpdate.ts
 
 It uses the `update` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
 
-## Basic Usage
+## Usage
 
 The `useUpdate` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values`, `resource`, and `id` as parameters. These parameters will be passed to the `update` method from the `dataProvider` as parameters.
 
@@ -29,15 +29,9 @@ mutate({
 
 ## Realtime Updates
 
-:::caution
-
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
-
-:::
+> This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
 
 When the `useUpdate` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
-
-> For more information, refer to the [`liveProvider` documentation&#8594](/docs/core/providers/live-provider)
 
 ## Invalidating Queries
 
@@ -47,15 +41,9 @@ When the `useUpdate` mutation runs successfully, it will invalidate the followin
 
 ## Audit Logs
 
-:::caution
-
-This feature is only available if you use a [Audit Log Provider](/docs/core/providers/audit-log-provider).
-
-:::
+> This feature is only available if you use a [Audit Log Provider](/docs/core/providers/audit-log-provider).
 
 When the `useUpdate` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data`, `previousData` etc. It is useful when you want to log the changes to the database.
-
-> For more information, refer to the [`auditLogProvider` documentation&#8594](/docs/core/providers/audit-log-provider)
 
 ## Properties
 
@@ -70,8 +58,6 @@ useUpdate({
   },
 });
 ```
-
-:::tip
 
 `mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate functions like this:
 
@@ -97,8 +83,6 @@ mutate(
   },
 );
 ```
-
-:::
 
 [Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
@@ -216,11 +200,7 @@ const MyComponent = () => {
 
 ### `successNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useUpdate` can calls `open` function from `NotificationProvider`:
 
@@ -240,11 +220,7 @@ mutate({
 
 ### `errorNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useUpdate` calls the `open` function from `NotificationProvider`:
 
@@ -369,12 +345,6 @@ If the mutation mode is defined as `optimistic` or `undoable` the `useUpdate` ho
 
 When the mutation mode is set to `optimistic` or `undoable`, the `useUpdate` hook will automatically update the cache without waiting for a server response. If you need to customize update logic, you can achieve it by using the `optimisticUpdateMap` prop.
 
-:::caution
-
-This feature only works when `mutationMode` is set to `optimistic` or `undoable`.
-
-:::
-
 `list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. To automatically update the cache, you should pass `true`. If you don't want to update the cache, you should pass `false`.
 
 ```tsx
@@ -482,25 +452,25 @@ const { overtime } = useUpdate();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-## API
+## API Reference
 
 ### Mutation Parameters
 
-| Property                                                                                            | Description                                                                                        | Type                                                                                   | Default                                                      |
-| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                               |                                                              |
-| id <div className=" required">Required</div>                                                        | id for mutation function                                                                           | [`BaseKey`](/docs/core/interface-references#basekey)                                   |                                                              |
-| values <div className=" required">Required</div>                                                    | Values for mutation function                                                                       | `TVariables`                                                                           | {}                                                           |
-| mutationMode                                                                                        | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                       | `"pessimistic"`\*                                            |
-| undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                               | `5000ms`\*                                                   |
-| onCancel                                                                                            | Provides a function to cancel the mutation when `mutationMode = "undoable"`                        | `(cancelMutation: () => void) => void`                                                 |                                                              |
-| successNotification                                                                                 | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "Successfully updated `resource`"                            |
-| errorNotification                                                                                   | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "Error when updating `resource` (status code: `statusCode`)" |
-| meta                                                                                                | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/core/interface-references#metadataquery)                       | {}                                                           |
-| dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                               | `default`                                                    |
-| invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                | `["list", "many", "detail"]`                                 |
+| Property                      | Description                                                                                        | Type                                                                                   | Default                                                      |
+| ----------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| resource <PropTag asterisk /> | Resource name for API data interactions                                                            | `string`                                                                               |                                                              |
+| id <PropTag asterisk />       | id for mutation function                                                                           | [`BaseKey`](/docs/core/interface-references#basekey)                                   |                                                              |
+| values <PropTag asterisk />   | Values for mutation function                                                                       | `TVariables`                                                                           | {}                                                           |
+| mutationMode                  | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                       | `"pessimistic"`\*                                            |
+| undoableTimeout               | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                               | `5000ms`\*                                                   |
+| onCancel                      | Provides a function to cancel the mutation when `mutationMode = "undoable"`                        | `(cancelMutation: () => void) => void`                                                 |                                                              |
+| successNotification           | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "Successfully updated `resource`"                            |
+| errorNotification             | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "Error when updating `resource` (status code: `statusCode`)" |
+| meta                          | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/core/interface-references#metaquery)                           | {}                                                           |
+| dataProviderName              | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                               | `default`                                                    |
+| invalidates                   | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                | `["list", "many", "detail"]`                                 |
 
-:::note
+:::simple Global Configuration
 
 These props have default values in `RefineContext` and can also be set on [`<Refine>`](/docs/core/refine-component) component. `useUpdate` will use what's passed to `<Refine>` as default, but a local value will override it.
 

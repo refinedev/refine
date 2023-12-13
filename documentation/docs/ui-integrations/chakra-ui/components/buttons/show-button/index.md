@@ -39,7 +39,7 @@ const ShowPage = () => {
 
 `<ShowButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `show` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
@@ -166,7 +166,7 @@ render(
 
 ### `recordItemId`
 
-`recordItemId` is used to append the record id to the end of the route path.
+`recordItemId` is used to append the record id to the end of the route path. By default it will read the id information from the route.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -202,12 +202,6 @@ render(
 ```
 
 Clicking the button will trigger the `show` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
-
-:::note
-
-`<ShowButton>` component reads the id information from the route by default.
-
-:::
 
 ### `resource`
 
@@ -320,48 +314,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceNameOrRouteName` property. By default, `<ShowButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
-
-// visible-block-start
-import { ShowButton } from "@refinedev/chakra-ui";
-
-const MyShowComponent = () => {
-  return <ShowButton colorScheme="black" resourceNameOrRouteName="categories" recordItemId="2" />;
-};
-// visible-block-end
-
-const App = () => {
-  return (
-    <Refine
-      resources={[
-        {
-          name: "posts",
-          list: MyShowComponent,
-        },
-        {
-          name: "categories",
-          show: ShowPage,
-        },
-      ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
-```
-
-Clicking the button will trigger the `show` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to `/categories/show/2`.
+Use `resource` prop instead.
 
 ## API Reference
 

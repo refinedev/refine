@@ -1,6 +1,5 @@
 ---
 title: CLI
-sidebar_label: CLI
 ---
 
 import Tabs from '@theme/Tabs';
@@ -42,7 +41,7 @@ Commands:
 
 ```
 
-:::tip Installation
+:::simple Installation
 
 CLI is automatically installed in projects created with the `create refine-app` command. You can use the [commands](#commands) immediately 🎉
 
@@ -91,7 +90,7 @@ UI Framework
 
 First, you need to select the package you want to swizzle. In this example, we will swizzle the `@refinedev/antd` package.
 
-:::info
+:::simple Good to know
 
 **refine** CLI will only show the packages that are installed in your project.
 
@@ -148,15 +147,11 @@ component.
 
 Finally, the swizzle command will create a new folder in the `src/components/layout` directory and generate the layout components of the `@refinedev/antd` package in it.
 
-:::info
+:::simple Good to know
 
-**refine** CLI determines the path to create a new folder according to the framework you are using. For example, if you are using the `remix`, the path will be `app/components/layout`.
+- Refine CLI determines the path to create a new folder according to the framework you are using. For example, if you are using the `remix`, the path will be `app/components/layout`.
 
-:::
-
-:::caution
-
-If there is already a file with the same name in the directory, the swizzle command will not overwrite it.
+- If there is already a file with the same name in the directory, the swizzle command will not overwrite it.
 
 :::
 
@@ -201,83 +196,9 @@ Empty Provider methods are created for to easily implement and connect to your d
 | -p    | --path    | (when `add providers`): react/vite: `src/providers` next.js: `src/providers` remix: `app/providers` | The path to create source files. (It is created automatically according to the framework.) |
 | -h    | --help    |                                                                                                     | Output usage information                                                                   |
 
-### create-resource
+### create-resource <PropTag deprecated />
 
-> 🚨 Deprecated: Please use [add](#add) command instead.
-
-Use this command to add a new resource to your project. CRUD components are created for the selected actions. These components are put on the specified path. The folder name here becomes plural.
-
-```bash
-> npm run refine create-resource
-```
-
-| Argument                | Description                               |
-| ----------------------- | ----------------------------------------- |
-| resourceName (optional) | The name of the resource you want to add. |
-
-#### Options
-
-| Alias | Option    | Default                                                              | Description                                                                                |
-| ----- | --------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| -a    | --actions | `list`,`create`,`edit`,`show`                                        | Only generate the specified actions.                                                       |
-| -p    | --path    | react: `src/pages` next.js: `src/components` remix: `app/components` | The path to create source files. (It is created automatically according to the framework.) |
-| -h    | --help    |                                                                      | Output usage information                                                                   |
-
-#### Usage **Examples**
-
-Let's create a `Category` resource with all the actions.
-
-```bash
-> npm run refine create-resource category
-
-src/pages/
-└── categories
-    ├── create.tsx
-    ├── edit.tsx
-    ├── index.ts
-    ├── list.tsx
-    └── show.tsx
-```
-
-If we only want to use list and create actions, it should be like this.
-
-```bash
-> npm run refine create-resource category -- --actions list,create
-
-src/pages/
-└── categories
-    ├── create.tsx
-    ├── index.ts
-    └── list.tsx
-```
-
-If we want to create these files in another path, use the `--path` option.
-
-```bash
-> npm run refine create-resource category -- --path src/resources --actions list,create
-
-src/resources/
-└── categories
-    ├── create.tsx
-    ├── index.ts
-    └── list.tsx
-```
-
-You can also create multiple resources at the same time. For this, you can write the sources by separating them with a space.
-
-```bash
-> npm run refine create-resource category user -- --actions list,create
-
-src/pages/
-├── categories
-│   ├── create.tsx
-│   ├── index.ts
-│   └── list.tsx
-└── users
-    ├── create.tsx
-    ├── index.ts
-    └── list.tsx
-```
+Use [add](#add) command instead.
 
 ### update
 

@@ -108,7 +108,7 @@ render(
 );
 ```
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
@@ -289,8 +289,6 @@ render(
 );
 ```
 
-:::caution
-
 If your route has no `:action` parameter or your action is `list`, the back button will _not_ be shown even if you pass a `goBack` property. You can override this behavior by using the `headerProps` property:
 
 ```tsx
@@ -312,8 +310,6 @@ const PostCreate: React.FC = () => {
   );
 };
 ```
-
-:::
 
 ### `isLoading`
 
@@ -354,7 +350,7 @@ render(
 );
 ```
 
-### `breadcrumb`
+### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default the `Breadcrumb` component from the `@refinedev/antd` package is used for breadcrumbs.
 
@@ -404,12 +400,6 @@ render(
   />,
 );
 ```
-
-:::tip
-
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
-
-:::
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/ant-design/components/breadcrumb)
 

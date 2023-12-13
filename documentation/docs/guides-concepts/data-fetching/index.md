@@ -25,9 +25,7 @@ Once you provide `data provider` to **refine**, you can utilize our data hooks (
 
 Moreover, refine offers support for multiple data providers, allowing you to use different data providers for different resources. For instance, you can use **REST** for the `posts` endpoint and **GraphQL** for the `users` query.
 
-<div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.png" />
-</div>
+<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.png" />
 
 ## Fetching Data
 
@@ -411,7 +409,7 @@ To better understand the data provider interface, we have created an example tha
 [crud-filters]: /docs/core/interface-references#crudfilters
 [pagination]: /docs/core/interface-references#pagination
 [http-error]: /docs/core/interface-references#httperror
-[meta-data]: /docs/core/interface-references#metadataquery
-[meta]: /docs/core/interface-references#metadataquery
+[meta-data]: /docs/core/interface-references#metaquery
+[meta]: /docs/core/interface-references#metaquery
 [use-login]: /docs/core/hooks/auth/use-login
 [use-register]: /docs/core/hooks/auth/use-register

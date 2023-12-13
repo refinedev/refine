@@ -7,7 +7,7 @@ swizzle: true
 
 It can be useful when redirecting the app to the list page route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
@@ -70,11 +70,7 @@ render(
 );
 ```
 
-:::note
-
-The button text is defined automatically by **refine** based on the _resource_ object name property.
-
-:::
+The button text is defined automatically by **refine** based on the `resource` definition.
 
 ## Properties
 
@@ -188,46 +184,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-The redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
-
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { ListButton } from "@refinedev/antd";
-
-const MyListComponent = () => {
-  return <ListButton resourceNameOrRouteName="categories" />;
-};
-
-// visible-block-end
-
-render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        list: () => {
-          return (
-            <RefineAntd.List>
-              <p>Your list page here</p>
-            </RefineAntd.List>
-          );
-        },
-      },
-    ]}
-    DashboardPage={MyListComponent}
-  />,
-);
-```
-
-Clicking the button will trigger the `list` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect to `/categories`.
+Use `resource` prop instead.
 
 ## API Reference
 
@@ -235,7 +192,7 @@ Clicking the button will trigger the `list` method of [`useNavigation`](/docs/co
 
 <PropsTable module="@refinedev/antd/ListButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
 

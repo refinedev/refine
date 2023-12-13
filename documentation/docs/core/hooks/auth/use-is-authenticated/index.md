@@ -1,15 +1,8 @@
 ---
 title: useIsAuthenticated
-siderbar_label: useIsAuthenticated
 description: useIsAuthenticated data hook from refine is a modified version of react-query's useMutation for create mutations
 source: /packages/core/src/hooks/auth/useIsAuthenticated/index.ts
 ---
-
-:::caution
-
-This hook can only be used if the `authProvider` is provided.
-
-:::
 
 `useIsAuthenticated` calls the `check` method from the [`authProvider`](/docs/core/providers/auth-provider) under the hood.
 
@@ -43,24 +36,25 @@ We have a logic in [`authProvider`](/docs/core/providers/auth-provider)'s `check
 
 ```tsx
 const authProvider: AuthBindings = {
-  // ---
+  // ...
   // highlight-start
-  check: () =>
-    localStorage.getItem("email")
-      ? {
-          authenticated: true,
-        }
-      : {
-          authenticated: false,
-          error: {
-            message: "Check failed",
-            name: "Not authenticated",
-          },
-          logout: true,
-          redirectTo: "/login",
-        },
+  check: () => {
+    if (localStorage.getItem("email")) {
+      return {
+        authenticated: true,
+      };
+    }
+    return {
+      authenticated: false,
+      error: {
+        message: "Check failed",
+        name: "Not authenticated",
+      },
+      logout: true,
+      redirectTo: "/login",
+    };
+  },
   // highlight-end
-  // ---
 };
 ```
 

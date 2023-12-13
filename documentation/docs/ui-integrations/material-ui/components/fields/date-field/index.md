@@ -5,7 +5,7 @@ swizzle: true
 
 This field is used to display dates. It uses [`Day.js`](https://day.js.org/docs/en/display/format) to display date format.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
 
@@ -76,7 +76,7 @@ render(
 
 <PropsTable module="@refinedev/mui/DateField" format-default="`L`"/>
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Typography](https://mui.com/material-ui/react-typography/#main-content).
 

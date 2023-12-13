@@ -1,6 +1,5 @@
 ---
 title: useStepsForm
-sidebar_label: useStepsForm
 ---
 
 ```css live shared
@@ -318,13 +317,9 @@ const PostEdit: React.FC = () => {
 
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
-:::info
-
 `useStepsForm` hook is extended from [`useForm`][refine-react-hook-form-use-form] from the [`@refinedev/react-hook-form`][@refinedev/react-hook-form] package. This means you can use all the features of [`useForm`][refine-react-hook-form-use-form].
 
-:::
-
-## Basic Usage
+## Usage
 
 We'll show two examples, one for creating and one for editing a post. Let's see how `useStepsForm` is used in both.
 
@@ -796,7 +791,7 @@ interface IPost {
 }
 ```
 
-:::tip
+:::simple Relational Data
 
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
@@ -965,8 +960,6 @@ The props needed by the manage state steps.
 
 #### `defaultStep`
 
-> Default: `0`
-
 Sets the default starting step number. Counting starts from `0`.
 
 ```tsx
@@ -979,9 +972,7 @@ const stepsForm = useStepsForm({
 
 #### `isBackValidate`
 
-> Default: `false`
-
-When is `true`, validates a form fields when the user navigates to a previous step.
+When is `true`, validates a form fields when the user navigates to a previous step. Default is `false`.
 
 ```tsx
 const stepsForm = useStepsForm({
@@ -999,19 +990,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. By default, it is set to `false`.
 
 ```tsx
 useStepsForm({
@@ -1025,9 +1010,7 @@ useStepsForm({
 
 #### `debounce`
 
-> Default: `1000`
-
-Set the debounce time for the `autoSave` prop.
+Set the debounce time for the `autoSave` prop. By default, it is set to `1000` milliseconds.
 
 ```tsx
 useStepsForm({
@@ -1065,9 +1048,7 @@ useStepsForm({
 
 #### `invalidateOnUnmount`
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default, it is set to `false`.
 
 ```tsx
 useStepsForm({
@@ -1083,11 +1064,7 @@ useStepsForm({
 
 ## Return Values
 
-:::tip
-
 All [`useForm`](/docs/packages/list-of-packages) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/packages/list-of-packages#return-values) docs.
-
-:::
 
 ### `steps`
 
@@ -1108,9 +1085,7 @@ It takes in one argument, step, which is a number representing the index of the 
 
 <PropsTable module="@refinedev/react-hook-form/useStepsForm" />
 
-> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/docs/core/refine-component)>** component.
-
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of [useForm](https://react-hook-form.com/api/useform) hook available in the [React Hook Form](https://react-hook-form.com/).
 

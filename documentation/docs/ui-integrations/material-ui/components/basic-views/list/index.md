@@ -1,6 +1,5 @@
 ---
 title: List
-sidebar_label: List
 swizzle: true
 ---
 
@@ -75,7 +74,7 @@ const SampleList = () => {
 render(<RefineMuiDemo initialRoutes={["/samples"]} resources={[{ name: "samples", list: SampleList }]} />);
 ```
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
 
@@ -176,7 +175,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `canCreate` and `createButtonProps`
 
-`canCreate` allows us to add the create button inside the `<List>` component. If resource is passed a create component, **refine** adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
+`canCreate` allows us to add the create button inside the `<List>` component. If resource is passed a create component, Refine adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
 
 Create button redirects to the create page of the resource according to the value it reads from the URL.
 
@@ -261,15 +260,9 @@ render(
 
 > For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions)
 
-### `breadcrumb`
+### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
-
-:::tip
-
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
-
-:::
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
@@ -452,11 +445,7 @@ By default, the `<List/>` component has a [`<CreateButton>`][create-button] at t
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, createButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-:::caution
-
 If "create" resource is not defined or [`canCreate`](#cancreate-and-createbuttonprops) is `false`, the [`<CreateButton>`][create-button] will not render and `createButtonProps` will be `undefined`.
-
-:::
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
