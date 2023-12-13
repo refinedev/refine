@@ -411,22 +411,11 @@ module.exports = {
                 ],
                 "enterprise-frequent-updates-light-md":
                     "radial-gradient(120% 100% at 100% 50%, rgba(0, 128, 255, 0.25) 0%, rgba(0, 128, 255, 0.00) 100%)",
-                "new-badge-border-dark": `conic-gradient(
-                    from 45deg at 50% 50%,
-                    #194b3a,
-                    #26d97f,
-                    #194b3a,
-                    #194b3a,
-                    #194b3a,
-                    #26d97f,
-                    #194b3a,
-                    #194b3a,
-                    #194b3a
-                )`,
+                "new-badge-border-dark": `conic-gradient( from 45deg at 50% 50%, #194b3a, rgb(38 217 127 / 40%), #194b3a, #194b3a, #194b3a, #26d97f, #194b3a, #194b3a, #194b3a)`,
                 "new-badge-border-light": `conic-gradient(
                     from 45deg at 50% 50%,
                     #b7dbff,
-                    #0080ff,
+                    rgb(0 128 255 / 50%),
                     #b7dbff,
                     #b7dbff,
                     #b7dbff,
@@ -515,7 +504,7 @@ module.exports = {
                     "enterprise-table-left-to-right 0.3s ease-in-out forwards",
                 "enterprise-table-right-to-left":
                     "enterprise-table-right-to-left 0.3s ease-in-out forwards",
-                "new-badge-border": "new-badge-border 2s linear infinite",
+                "new-badge-border": "new-badge-border 4s linear infinite",
             },
             keyframes: {
                 "code-scroll": {
