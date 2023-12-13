@@ -31,6 +31,8 @@ import {
 import { SelectOptionWithAvatar } from "@/components";
 import { Company, User } from "@/interfaces";
 import gql from "graphql-tag";
+import { CreateCompanyMutation } from "./gqlTypes";
+import { GetFields } from "@refinedev/nestjs-query";
 
 type Props = {
     isOverModal?: boolean;
@@ -66,7 +68,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
     const go = useGo();
 
     const { formProps, modalProps, close, onFinish } = useModalForm<
-        Company,
+        GetFields<CreateCompanyMutation>,
         HttpError,
         FormValues
     >({
@@ -77,7 +79,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
         warnWhenUnsavedChanges: !isOverModal,
         mutationMode: "pessimistic",
         meta: {
-            gqlQuery: COMPANY_CREATE_MUTATION,
+            gqlMutation: COMPANY_CREATE_MUTATION,
         },
     });
 
