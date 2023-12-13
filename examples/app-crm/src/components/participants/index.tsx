@@ -3,7 +3,7 @@ import { FC } from "react";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Space, Tooltip } from "antd";
 
-import { User } from "@/interfaces";
+import { User } from "@/graphql/schema.types";
 
 import { CustomAvatar } from "../custom-avatar";
 

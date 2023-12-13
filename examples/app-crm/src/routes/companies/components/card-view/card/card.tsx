@@ -6,14 +6,15 @@ import { DeleteOutlined, EyeOutlined, MoreOutlined } from "@ant-design/icons";
 import { Button, Card, Dropdown, Space, Tooltip } from "antd";
 
 import { CustomAvatar, Text } from "@/components";
-import { Company } from "@/interfaces";
 import { currencyNumber } from "@/utilities";
 
 import { AvatarGroup } from "../../avatar-group";
 import { CompanyCardSkeleton } from "./skeleton";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { CompaniesTableQuery } from "@/graphql/types";
 
 type Props = {
-    company: Company | null;
+    company: GetFieldsFromList<CompaniesTableQuery> | null;
 };
 
 export const CompanyCard: FC<Props> = ({ company }) => {

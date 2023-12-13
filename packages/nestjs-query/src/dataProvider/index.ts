@@ -1,11 +1,4 @@
-import {
-    BaseKey,
-    BaseRecord,
-    DataProvider,
-    GetManyResponse,
-    LogicalFilter,
-    MetaQuery,
-} from "@refinedev/core";
+import { BaseRecord, DataProvider, LogicalFilter } from "@refinedev/core";
 import camelcase from "camelcase";
 import * as gql from "gql-query-builder";
 import VariableOptions from "gql-query-builder/build/VariableOptions";
@@ -254,7 +247,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 data: response[operation],
             };
         },
-        updateMany: async ({ resource, ids, variables, meta }) => {
+        updateMany: async ({ resource, ids, variables }) => {
             const pascalResource = camelcase(resource, {
                 pascalCase: true,
             });
@@ -347,7 +340,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 data: response[operation],
             };
         },
-        deleteOne: async ({ resource, id, meta }) => {
+        deleteOne: async ({ resource, id }) => {
             const pascalResource = camelcase(singular(resource), {
                 pascalCase: true,
             });
@@ -370,7 +363,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 data: response[operation],
             };
         },
-        deleteMany: async ({ resource, ids, meta }) => {
+        deleteMany: async ({ resource, ids }) => {
             const operation = `deleteMany${camelcase(resource, {
                 pascalCase: true,
             })}`;

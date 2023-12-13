@@ -12,7 +12,7 @@ import { Form, Grid, Input, Radio, Space, Spin } from "antd";
 import debounce from "lodash/debounce";
 
 import { ListTitleButton } from "@/components";
-import { Contact } from "@/interfaces";
+import { Contact } from "@/graphql/schema.types";
 
 import { CardView, TableView } from "./components";
 

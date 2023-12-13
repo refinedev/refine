@@ -11,7 +11,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { DatePicker, Input, Radio, Space, Table, Tag, TagProps } from "antd";
 
 import { CustomAvatar, PaginationTotal, Text } from "@/components";
-import { Audit } from "@/interfaces";
+import { Audit } from "@/graphql/schema.types";
 
 import { ActionCell } from "./components";
 

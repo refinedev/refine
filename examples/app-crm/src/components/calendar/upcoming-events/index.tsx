@@ -13,7 +13,8 @@ import { CalendarUpcomingEvent } from "./event";
 
 import styles from "./index.module.css";
 import gql from "graphql-tag";
-import { UpcomingEventsQuery } from "./gqlTypes";
+import { UpcomingEventsQuery } from "@/graphql/types";
+import { CALENDAR_UPCOMING_EVENTS_QUERY } from "./queries";
 
 type CalendarUpcomingEventsProps = {
     limit?: number;
@@ -65,25 +66,6 @@ const Skeleton: React.FC = () => {
     );
 };
 
-const CALENDAR_UPCOMING_EVENTS_QUERY = gql`
-    query UpcomingEvents(
-        $filter: EventFilter!
-        $sorting: [EventSort!]
-        $paging: OffsetPaging!
-    ) {
-        events(filter: $filter, sorting: $sorting, paging: $paging) {
-            nodes {
-                id
-                title
-                color
-                startDate
-                endDate
-            }
-            totalCount
-        }
-    }
-`;
-
 export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
     limit = 5,
     cardProps,
@@ -112,7 +94,6 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             ],
             meta: {
                 gqlQuery: CALENDAR_UPCOMING_EVENTS_QUERY,
-                fields: ["id", "title", "color", "startDate", "endDate"],
             },
         },
     );

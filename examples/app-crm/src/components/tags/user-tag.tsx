@@ -1,6 +1,6 @@
 import { Space, Tag } from "antd";
 
-import { User } from "@/interfaces";
+import { User } from "@/graphql/schema.types";
 
 import { CustomAvatar } from "../custom-avatar";
 

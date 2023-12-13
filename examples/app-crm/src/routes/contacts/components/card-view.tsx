@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { List, type ListProps, type TableProps } from "antd";
 
 import { PaginationTotal } from "@/components";
-import { Contact } from "@/interfaces";
+import { Contact } from "@/graphql/schema.types";
 
 import { ContactCard, ContactCardSkeleton } from "./card";
 

@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 
 import { useSelect } from "@refinedev/antd";
-import {
-    useDataProvider,
-    useDelete,
-    useNavigation,
-    useShow,
-    useUpdate,
-} from "@refinedev/core";
+import { useDelete, useNavigation, useShow, useUpdate } from "@refinedev/core";
 
 import {
     CloseOutlined,
@@ -41,48 +35,25 @@ import {
     TextIcon,
 } from "@/components";
 import { TimezoneEnum } from "@/enums";
-import type { Contact } from "@/interfaces";
+import type { Contact } from "@/graphql/schema.types";
 
 import { ContactComment, ContactStatus } from "../components";
 
 import styles from "./index.module.css";
-import gql from "graphql-tag";
 import { COMPANIES_SELECT_QUERY, USERS_SELECT_QUERY } from "@/graphql/queries";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
-import { CompaniesSelectQuery, UsersSelectQuery } from "@/graphql/gqlTypes";
+import {
+    CompaniesSelectQuery,
+    UsersSelectQuery,
+    ContactShowQuery,
+} from "@/graphql/types";
 import { GetFields } from "@refinedev/nestjs-query/dist/interfaces";
-import { ContactShowQuery } from "./gqlTypes";
+import { CONTACT_SHOW_QUERY } from "./queries";
 
 const timezoneOptions = Object.keys(TimezoneEnum).map((key) => ({
     label: TimezoneEnum[key as keyof typeof TimezoneEnum],
     value: TimezoneEnum[key as keyof typeof TimezoneEnum],
 }));
-
-const CONTACT_SHOW_QUERY = gql`
-    query ContactShow($id: ID!) {
-        contact(id: $id) {
-            id
-            name
-            email
-            company {
-                id
-                name
-                avatarUrl
-            }
-            jobTitle
-            phone
-            timezone
-            stage
-            status
-            avatarUrl
-            salesOwner {
-                id
-                name
-                avatarUrl
-            }
-        }
-    }
-`;
 
 export const ContactShowPage: React.FC = () => {
     const [activeForm, setActiveForm] = useState<

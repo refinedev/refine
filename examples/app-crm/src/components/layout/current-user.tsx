@@ -5,7 +5,7 @@ import { useGetIdentity, useLogout } from "@refinedev/core";
 import { LogoutOutlined, SettingOutlined } from "@ant-design/icons";
 import { Button, Popover } from "antd";
 
-import type { User } from "@/interfaces";
+import type { User } from "@/graphql/schema.types";
 
 import { CustomAvatar } from "../custom-avatar";
 import { Text } from "../text";

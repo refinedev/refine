@@ -14,7 +14,7 @@ import { Card, Col, Input, Row, Select, Space, Table } from "antd";
 import cn from "classnames";
 
 import { CustomAvatar, Logo, Text } from "@/components";
-import { User } from "@/interfaces";
+import { User } from "@/graphql/schema.types";
 
 import { RoleTag } from "./components";
 

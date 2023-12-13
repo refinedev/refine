@@ -13,7 +13,12 @@ import {
 import { Card, Input, InputNumber, Select, Space } from "antd";
 
 import { SingleElementForm, Text } from "@/components";
-import { BusinessType, Company, CompanySize, Industry } from "@/interfaces";
+import {
+    BusinessType,
+    Company,
+    CompanySize,
+    Industry,
+} from "@/graphql/schema.types";
 import { currencyNumber } from "@/utilities";
 
 export const CompanyInfoForm = () => {

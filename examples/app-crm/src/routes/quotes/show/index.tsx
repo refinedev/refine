@@ -7,7 +7,7 @@ import { EditOutlined, LeftOutlined } from "@ant-design/icons";
 import { Button, Space } from "antd";
 
 import { CustomAvatar, FullScreenLoading, Text } from "@/components";
-import { Quote } from "@/interfaces";
+import { Quote } from "@/graphql/schema.types";
 
 import {
     ProductsServices,
@@ -62,10 +62,7 @@ export const QuotesShowPage = () => {
                         <Suspense>
                             <PdfExport />
                         </Suspense>
-                        <Button
-                            icon={<EditOutlined />}
-                            onClick={() => show()}
-                        >
+                        <Button icon={<EditOutlined />} onClick={() => show()}>
                             Edit
                         </Button>
                     </Space>

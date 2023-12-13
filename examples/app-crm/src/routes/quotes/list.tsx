@@ -25,7 +25,7 @@ import {
     QuoteStatusTag,
     Text,
 } from "@/components";
-import { Quote, QuoteStatus } from "@/interfaces";
+import { Quote, QuoteStatus } from "@/graphql/schema.types";
 import { currencyNumber } from "@/utilities";
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [

@@ -7,50 +7,19 @@ import { EditOutlined } from "@ant-design/icons";
 import { Button, Form, Select, Skeleton, Space } from "antd";
 
 import { CustomAvatar, SelectOptionWithAvatar, Text } from "@/components";
-import { User } from "@/interfaces";
+import { User } from "@/graphql/schema.types";
 import { getNameInitials } from "@/utilities";
 
 import styles from "./title-form.module.css";
-import gql from "graphql-tag";
 import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 import {
     CompanyTitleFormMutation,
     CompanyTitleFormMutationVariables,
-} from "./gqlTypes";
-
-const COMPANY_TITLE_FORM_MUTATION = gql`
-    mutation CompanyTitleForm($input: UpdateOneCompanyInput!) {
-        updateOneCompany(input: $input) {
-            id
-            name
-            avatarUrl
-            salesOwner {
-                id
-                name
-                avatarUrl
-            }
-        }
-    }
-`;
-
-const COMPANY_TITLE_QUERY = gql`
-    query CompanyTitle($id: ID!) {
-        company(id: $id) {
-            id
-            name
-            createdAt
-            avatarUrl
-            salesOwner {
-                id
-                name
-                avatarUrl
-            }
-        }
-    }
-`;
+} from "@/graphql/types";
+import { COMPANY_TITLE_FORM_MUTATION, COMPANY_TITLE_QUERY } from "./queries";
 
 export const CompanyTitleForm = () => {
-    const { formProps, queryResult, onFinish, mutationResult } = useForm<
+    const { formProps, queryResult, onFinish } = useForm<
         GetFields<CompanyTitleFormMutation>,
         HttpError,
         GetVariables<CompanyTitleFormMutationVariables>

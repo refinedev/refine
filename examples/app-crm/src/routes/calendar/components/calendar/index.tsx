@@ -8,7 +8,7 @@ import { Button, Card, Grid, Radio } from "antd";
 import dayjs from "dayjs";
 
 import { Text } from "@/components";
-import { Event } from "@/interfaces";
+import { Event } from "@/graphql/schema.types";
 
 import styles from "./index.module.css";
 

@@ -10,7 +10,7 @@ import {
 import { Button, Dropdown, MenuProps } from "antd";
 
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
-import { Contact } from "@/interfaces";
+import { Contact } from "@/graphql/schema.types";
 
 import { ContactCardSkeleton } from "./skeleton";
 

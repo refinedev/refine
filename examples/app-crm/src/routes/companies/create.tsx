@@ -1,6 +1,8 @@
 import { useLocation, useSearchParams } from "react-router-dom";
 
 import { useModalForm, useSelect } from "@refinedev/antd";
+import { GetFields } from "@refinedev/nestjs-query";
+
 import {
     CreateResponse,
     HttpError,
@@ -29,10 +31,9 @@ import {
 } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company, User } from "@/interfaces";
-import gql from "graphql-tag";
-import { CreateCompanyMutation } from "./gqlTypes";
-import { GetFields } from "@refinedev/nestjs-query";
+import { Company, User } from "@/graphql/schema.types";
+import { CreateCompanyMutation } from "@/graphql/types";
+import { COMPANY_CREATE_MUTATION } from "./queries";
 
 type Props = {
     isOverModal?: boolean;
@@ -46,20 +47,6 @@ type FormValues = {
         email?: string;
     }[];
 };
-
-const COMPANY_CREATE_MUTATION = gql`
-    mutation CreateCompany($input: CreateOneCompanyInput!) {
-        createOneCompany(input: $input) {
-            id
-            name
-            salesOwner {
-                id
-                name
-                avatarUrl
-            }
-        }
-    }
-`;
 
 export const CompanyCreatePage = ({ isOverModal }: Props) => {
     const getToPath = useGetToPath();

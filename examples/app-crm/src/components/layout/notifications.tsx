@@ -6,56 +6,12 @@ import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { BellOutlined } from "@ant-design/icons";
 import { Badge, Button, Divider, Popover, Space, Spin } from "antd";
 import dayjs from "dayjs";
-import gql from "graphql-tag";
 
 import { CustomAvatar } from "../custom-avatar";
 import { Text } from "../text";
 import { NotificationMessage } from "./notification-message";
-import { NotificationsDealsQuery, NotificationsQuery } from "./gqlTypes";
-
-const NOTIFICATIONS_QUERY = gql`
-    query Notifications(
-        $paging: OffsetPaging!
-        $filter: AuditFilter!
-        $sorting: [AuditSort!]
-    ) {
-        audits(paging: $paging, filter: $filter, sorting: $sorting) {
-            nodes {
-                id
-                action
-                targetEntity
-                targetId
-                createdAt
-                user {
-                    id
-                    name
-                    avatarUrl
-                }
-            }
-            totalCount
-        }
-    }
-`;
-
-const NOTIFICATIONS_DEALS_QUERY = gql`
-    query NotificationsDeals($filter: DealFilter!) {
-        deals(filter: $filter) {
-            nodes {
-                id
-                title
-                stage {
-                    id
-                    title
-                }
-                company {
-                    id
-                    name
-                    avatarUrl
-                }
-            }
-        }
-    }
-`;
+import { NotificationsDealsQuery, NotificationsQuery } from "@/graphql/types";
+import { NOTIFICATIONS_DEALS_QUERY, NOTIFICATIONS_QUERY } from "./queries";
 
 export const Notifications: React.FC = () => {
     const [open, setOpen] = useState(false);

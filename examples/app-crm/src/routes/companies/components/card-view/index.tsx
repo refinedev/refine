@@ -4,9 +4,10 @@ import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { List, ListProps, TableProps } from "antd";
 
 import { PaginationTotal } from "@/components";
-import { CompaniesTableQuery, Company } from "@/interfaces";
+import { Company } from "@/graphql/schema.types";
 
 import { CompanyCard, CompanyCardSkeleton } from "./card";
+import { CompaniesTableQuery } from "@/graphql/types";
 
 type Props = {
     tableProps: TableProps<GetFieldsFromList<CompaniesTableQuery>>;

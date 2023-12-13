@@ -5,7 +5,7 @@ const config: IGraphQLConfig = {
     extensions: {
         codegen: {
             generates: {
-                "src/interfaces/schema.ts": {
+                "src/graphql/schema.types.ts": {
                     plugins: ["typescript"],
                     config: {
                         skipTypename: true,
@@ -15,19 +15,18 @@ const config: IGraphQLConfig = {
                         afterOneFileWrite: ["eslint --fix", "prettier --write"],
                     },
                 },
-                "src/": {
-                    preset: "near-operation-file",
+                "src/graphql/types.ts": {
+                    preset: "import-types",
                     documents: ["src/**/*.{ts,tsx}"],
                     plugins: ["typescript-operations"],
                     config: {
                         skipTypename: true,
                         enumsAsTypes: true,
+                        preResolveTypes: false,
+                        useTypeImports: true,
                     },
                     presetConfig: {
-                        baseTypesPath: "~@/interfaces",
-                        extension: ".ts",
-                        folder: "gqlTypes",
-                        fileName: "index",
+                        typesPath: "@/graphql/schema.types",
                     },
                     hooks: {
                         afterOneFileWrite: ["eslint --fix", "prettier --write"],

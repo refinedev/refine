@@ -18,7 +18,7 @@ import {
 } from "antd";
 
 import { FullScreenLoading, Text } from "@/components";
-import { Quote, QuoteUpdateInput } from "@/interfaces";
+import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
 import { currencyNumber } from "@/utilities";
 
 const columns = [

@@ -24,7 +24,7 @@ import {
 } from "antd";
 
 import { TimezoneEnum } from "@/enums";
-import { User } from "@/interfaces";
+import { User } from "@/graphql/schema.types";
 
 import { CustomAvatar } from "../../custom-avatar";
 import { SingleElementForm } from "../../single-element-form";

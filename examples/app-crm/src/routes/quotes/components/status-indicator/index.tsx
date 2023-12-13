@@ -4,7 +4,7 @@ import { HttpError, useUpdate } from "@refinedev/core";
 
 import cn from "classnames";
 
-import { Quote, QuoteUpdateInput } from "@/interfaces";
+import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
 
 import { quotesFragment } from "../quotes-fragment";
 

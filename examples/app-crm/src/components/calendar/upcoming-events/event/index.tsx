@@ -5,14 +5,14 @@ import { useNavigation } from "@refinedev/core";
 import { Badge } from "antd";
 import dayjs from "dayjs";
 
-import type { Event } from "@/interfaces";
-
 import { Text } from "../../../text";
 
 import styles from "../index.module.css";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { UpcomingEventsQuery } from "@/graphql/types";
 
 type CalendarUpcomingEventProps = {
-    item: Partial<Event>;
+    item: GetFieldsFromList<UpcomingEventsQuery>;
 };
 
 export const CalendarUpcomingEvent: React.FC<CalendarUpcomingEventProps> = ({

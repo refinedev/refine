@@ -13,28 +13,14 @@ import {
     DashboardTotalRevenueChart,
 } from "./components";
 import { useCustom } from "@refinedev/core";
-import gql from "graphql-tag";
-import { DashboardTotalCountsQuery } from "./gqlTypes";
-
-const DASHBOARD_QUERY = gql`
-    query DashboardTotalCounts {
-        companies {
-            totalCount
-        }
-        contacts {
-            totalCount
-        }
-        deals {
-            totalCount
-        }
-    }
-`;
+import { DashboardTotalCountsQuery } from "@/graphql/types";
+import { DASHBOARD_TOTAL_COUNTS_QUERY } from "./queries";
 
 export const DashboardPage: React.FC = () => {
     const { data, isLoading } = useCustom<DashboardTotalCountsQuery>({
         url: "",
         method: "get",
-        meta: { gqlQuery: DASHBOARD_QUERY },
+        meta: { gqlQuery: DASHBOARD_TOTAL_COUNTS_QUERY },
     });
 
     return (

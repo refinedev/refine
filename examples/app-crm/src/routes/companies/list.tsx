@@ -11,48 +11,14 @@ import {
 } from "@ant-design/icons";
 import { Form, Grid, Input, Radio, Space, Spin } from "antd";
 import debounce from "lodash/debounce";
-import gql from "graphql-tag";
 
 import { ListTitleButton } from "@/components";
 
 import { CompaniesCardView, CompaniesTableView } from "./components";
-import { CompaniesTableQuery } from "./gqlTypes";
+import { CompaniesTableQuery } from "@/graphql/types";
+import { COMPANIES_TABLE_QUERY } from "./queries";
 
 type View = "card" | "table";
-
-const COMPANIES_TABLE_QUERY = gql`
-    query CompaniesTable(
-        $filter: CompanyFilter!
-        $sorting: [CompanySort!]!
-        $paging: OffsetPaging!
-    ) {
-        companies(filter: $filter, sorting: $sorting, paging: $paging) {
-            nodes {
-                id
-                name
-                avatarUrl
-                dealsAggregate {
-                    sum {
-                        value
-                    }
-                }
-                salesOwner {
-                    id
-                    name
-                    avatarUrl
-                }
-                contacts {
-                    nodes {
-                        id
-                        name
-                        avatarUrl
-                    }
-                }
-            }
-            totalCount
-        }
-    }
-`;
 
 export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
     const [view, setView] = useState<View>("card");

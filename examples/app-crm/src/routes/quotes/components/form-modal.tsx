@@ -7,7 +7,7 @@ import { RedirectAction, useNavigation } from "@refinedev/core";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select, Spin } from "antd";
 
-import { Quote } from "@/interfaces";
+import { Quote } from "@/graphql/schema.types";
 
 type Props = {
     action: "create" | "edit";

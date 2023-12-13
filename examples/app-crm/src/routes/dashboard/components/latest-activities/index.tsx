@@ -7,7 +7,7 @@ import { Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";
-import { Audit, Deal } from "@/interfaces";
+import { Audit, Deal } from "@/graphql/schema.types";
 
 import styles from "./index.module.css";
 

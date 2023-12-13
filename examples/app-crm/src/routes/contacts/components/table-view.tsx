@@ -17,7 +17,7 @@ import {
     Text,
 } from "@/components";
 import { ContactStatusEnum } from "@/enums";
-import { Contact } from "@/interfaces";
+import { Contact } from "@/graphql/schema.types";
 
 type Props = {
     tableProps: TableProps<Contact>;
