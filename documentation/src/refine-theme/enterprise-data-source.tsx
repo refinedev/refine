@@ -34,7 +34,7 @@ export const EnterpriseDataSource = ({ className }: { className?: string }) => {
                     >
                         Integrate{" "}
                     </span>
-                    with every data source.
+                    with any data source.
                 </h2>
             </div>
 
