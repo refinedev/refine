@@ -11,7 +11,7 @@ For more information, refer to the [General Concepts documentation](/docs/api-re
 const GeneralConceptsLink = () => {
     return (
         <div>
-            <Admonition type="tip">
+            <Admonition type="simple" title="Good to know">
                 <ReactMarkdown>{md}</ReactMarkdown>
             </Admonition>
         </div>
