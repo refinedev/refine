@@ -278,7 +278,7 @@ useForm({
 
 > [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
-Behavior of how to handle received real-time updates, can be `auto`, `manual` or `off`. By default, `auto` or whatever is defined in the refine's global options.
+Behavior of how to handle received real-time updates, can be `auto`, `manual` or `off`. By default, `auto` or whatever is defined in the Refine's global options.
 
 ```tsx
 useForm({ liveMode: "auto" });
