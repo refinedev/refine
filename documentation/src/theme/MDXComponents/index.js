@@ -22,6 +22,7 @@ import CommonDetails from "@site/src/refine-theme/common-details";
 import CommonSummary from "@site/src/refine-theme/common-summary";
 import CommonTabItem from "@site/src/refine-theme/common-tab-item";
 import CommonTabs from "@site/src/refine-theme/common-tabs";
+import { Image } from "@site/src/components/image";
 
 export default {
     ...MDXComponents,
@@ -47,4 +48,5 @@ export default {
     GuideBadge,
     RouterBadge,
     GlobalConfigBadge,
+    Image,
 };
