@@ -250,8 +250,6 @@ export const generateUpdatedSubscription = ({
             pascalCase: true,
         });
 
-        console.log(meta.gqlQuery);
-
         const operationName = `Updated${singularResourceName}`;
 
         const operation = `updatedOne${singularResourceName}`;

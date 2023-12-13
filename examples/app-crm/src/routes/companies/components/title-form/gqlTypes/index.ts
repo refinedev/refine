@@ -1,9 +1,7 @@
 import * as Types from "@/interfaces";
 
 export type CompanyTitleFormMutationVariables = Types.Exact<{
-    id: Types.Scalars["ID"]["input"];
-    name?: Types.InputMaybe<Types.Scalars["String"]["input"]>;
-    salesOwnerId?: Types.InputMaybe<Types.Scalars["ID"]["input"]>;
+    input: Types.UpdateOneCompanyInput;
 }>;
 
 export type CompanyTitleFormMutation = {

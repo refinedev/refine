@@ -1,10 +1,11 @@
-import { Audit, Deal } from "@/interfaces";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { Text } from "../text";
+import { NotificationsDealsQuery, NotificationsQuery } from "./gqlTypes";
 
 type Props = {
-    audit: Audit;
-    deal?: Deal;
+    audit: GetFieldsFromList<NotificationsQuery>;
+    deal?: GetFieldsFromList<NotificationsDealsQuery>;
 };
 
 export const NotificationMessage = ({ audit, deal }: Props) => {

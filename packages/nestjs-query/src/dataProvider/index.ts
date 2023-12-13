@@ -20,39 +20,6 @@ import {
 } from "../utils";
 import gqlTag from "graphql-tag";
 
-const handleGetMany = async <TData>(
-    client: GraphQLClient,
-    {
-        resource,
-        ids,
-        meta,
-    }: { resource: string; ids: BaseKey[]; meta?: MetaQuery },
-): Promise<GetManyResponse<TData>> => {
-    const operation = camelcase(resource);
-
-    const { query, variables } = gql.query({
-        operation,
-        fields: [{ nodes: meta?.fields || ["id"] }],
-        variables: {
-            filter: {
-                type: camelcase(`${singular(resource)}Filter`, {
-                    pascalCase: true,
-                }),
-                required: true,
-                value: {
-                    id: { in: ids },
-                },
-            },
-        },
-    });
-
-    const response = await client.request<BaseRecord>(query, variables);
-
-    return {
-        data: response[operation].nodes,
-    };
-};
-
 const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
     return {
         getList: async ({ resource, pagination, sorters, filters, meta }) => {
@@ -95,11 +62,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             let variables;
 
             if (meta?.gqlQuery) {
-                console.log("[Raw Variables]", queryVariables);
-
                 query = meta?.gqlQuery;
-
-                console.log("[GQL Query]", query);
 
                 variables = {
                     filter: filters
@@ -117,10 +80,6 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
                 query = gqlQuery.query;
                 variables = gqlQuery.variables;
-
-                console.log("[GraphQL Query Operation]", operation);
-                console.log("[GraphQL Query Query]", query);
-                console.log("[GraphQL Query Variables]", variables);
             }
 
             const response = await client.request<BaseRecord>(query, variables);
@@ -132,7 +91,44 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         },
 
         getMany: async ({ resource, ids, meta }) => {
-            return await handleGetMany(client, { resource, ids, meta });
+            const operation = camelcase(resource);
+
+            if (meta?.gqlQuery) {
+                const response = await client.request<BaseRecord>(
+                    meta.gqlQuery,
+                    {
+                        filter: {
+                            id: { in: ids },
+                        },
+                    },
+                );
+
+                return {
+                    data: response[operation].nodes,
+                };
+            }
+
+            const { query, variables } = gql.query({
+                operation,
+                fields: [{ nodes: meta?.fields || ["id"] }],
+                variables: {
+                    filter: {
+                        type: camelcase(`${singular(resource)}Filter`, {
+                            pascalCase: true,
+                        }),
+                        required: true,
+                        value: {
+                            id: { in: ids },
+                        },
+                    },
+                },
+            });
+
+            const response = await client.request<BaseRecord>(query, variables);
+
+            return {
+                data: response[operation].nodes,
+            };
         },
 
         create: async ({ resource, variables, meta }) => {
