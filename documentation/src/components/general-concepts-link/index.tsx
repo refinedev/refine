@@ -3,7 +3,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 
 const md = `
-All the data related hooks (useTable, useForm, useList etc.) of refine can be given some common properties like \`resource\`, \`meta\` etc.
+All the data related hooks (useTable, useForm, useList etc.) of Refine can be given some common properties like \`resource\`, \`meta\` etc.
 
 For more information, refer to the [General Concepts documentation](/docs/api-reference/general-concepts).
 `;

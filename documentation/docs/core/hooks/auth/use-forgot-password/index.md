@@ -1,6 +1,6 @@
 ---
 title: useForgotPassword
-description: useForgotPassword data hook from refine is a modified version of react-query's useMutation for registration.
+description: useForgotPassword data hook from Refine is a modified version of react-query's useMutation for registration.
 source: /packages/core/src/hooks/auth/useForgotPassword/index.ts
 ---
 

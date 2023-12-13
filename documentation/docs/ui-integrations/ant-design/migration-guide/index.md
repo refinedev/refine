@@ -33,7 +33,7 @@ Some of the changes are:
 <Tabs
 defaultValue="refine-cli"
 values={[
-{label: 'refine CLI', value: 'refine-cli'},
+{label: 'Refine CLI', value: 'refine-cli'},
 {label: 'Manual', value: 'manual'},
 ]}>
 
@@ -45,7 +45,7 @@ values={[
 npm run refine update
 ```
 
-> [How to add refine CLI to an existing project?](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project)
+> [How to add Refine CLI to an existing project?](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project)
 
 </TabItem>
 

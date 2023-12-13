@@ -63,17 +63,17 @@ const authProvider = {
 
 ## Introduction
 
-[Supabase](https://supabase.com/) is an open-source Firebase alternative that provides backend features. This tutorial steps will focus specifically on database and authentication features. We'll see how to use Supabase as a data provider and implement authentication to refine app.
+[Supabase](https://supabase.com/) is an open-source Firebase alternative that provides backend features. This tutorial steps will focus specifically on database and authentication features. We'll see how to use Supabase as a data provider and implement authentication to Refine app.
 
-refine offers built-in data provider support for Supabase and handles all required data service methods out-of-the-box. Therefore, we will not need to use complex boilerplate codes to make it work. refine handles all the complex works for us by internal hooks and implementations.
+Refine offers built-in data provider support for Supabase and handles all required data service methods out-of-the-box. Therefore, we will not need to use complex boilerplate codes to make it work. Refine handles all the complex works for us by internal hooks and implementations.
 
-We'll build a simple CRUD app with refine and use Supabase as a data provider. We'll also see how to use Supabase's authentication features on refine app.
+We'll build a simple CRUD app with Refine and use Supabase as a data provider. We'll also see how to use Supabase's authentication features on Refine app.
 
-We are assuming that you have already know how refine works. If not, please check out the [Tutorial](/docs/tutorial/introduction/index/) section first.
+We are assuming that you have already know how Refine works. If not, please check out the [Tutorial](/docs/tutorial/introduction/index/) section first.
 
 [Refer to docs for more information about data provider &#8594](/docs/core/providers/data-provider)
 
-[Discover the +15 most popular backend service data providers supported out-of-the-box by refine &#8594](/integrations/)
+[Discover the +15 most popular backend service data providers supported out-of-the-box by Refine &#8594](/integrations/)
 
 ## Project Setup
 
@@ -97,7 +97,7 @@ Also, we need to install npm packages to use markdown editor:
 npm i @uiw/react-md-editor
 ```
 
-This will create a new refine app with Supabase data provider and Ant Design as a UI framework. We'll be using this project as a base to implement our example.
+This will create a new Refine app with Supabase data provider and Ant Design as a UI framework. We'll be using this project as a base to implement our example.
 
   </TabItem>
     <TabItem value="nopreset">
@@ -155,7 +155,7 @@ export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
 });
 ```
 
-We'll use this example API credentials and `createClient` method that exposes from `refine-supabase` package for enabling refine to Supabase API connection.
+We'll use this example API credentials and `createClient` method that exposes from `refine-supabase` package for enabling Refine to Supabase API connection.
 
 [You can find your Supabase URL and key from your Supabase dashboard &#8594 ](https://supabase.com/docs/guides/with-react#get-the-api-keys)
 
@@ -193,7 +193,7 @@ export default App;
 
 Highlighted lines are the ones the CLI generator automatically added to register Supabase data provider. Simply, we are passing `supabaseClient` to `dataProvider` method to establish a connection with Supabase API.
 
-With this configuration, refine can now communicate with Supabase API and perform all required data service CRUD methods using data hooks.
+With this configuration, Refine can now communicate with Supabase API and perform all required data service CRUD methods using data hooks.
 
 [Refer to documentation to learn more about how to use data hooks &#8594](/docs/core/hooks/data/use-create)
 
@@ -205,7 +205,7 @@ You'll see a file called `src/authProvider.ts` created by CLI. This auto-generat
 
 So basically, this is where we set complete authentication logic for the app.
 
-Since we preferred refine-supabase as the data provider during the CLI project initialization, all required Supabase authentication methods are already implemented for us. This shows us how easy it is to bootstrap a refine app with CLI
+Since we preferred refine-supabase as the data provider during the CLI project initialization, all required Supabase authentication methods are already implemented for us. This shows us how easy it is to bootstrap a Refine app with CLI
 
 [Refer to docs for more information about Auth Provider methods and custom Auth Providers &#8594](/docs/core/providers/auth-provider)
 
@@ -461,7 +461,7 @@ export default authProvider;
 
 :::tip
 
-Auth provider functions are also consumed by [refine authorization hooks](/docs/core/hooks/auth/use-login). Since this is out of scope of this tutorial, we'll not cover them for now
+Auth provider functions are also consumed by [Refine authorization hooks](/docs/core/hooks/auth/use-login). Since this is out of scope of this tutorial, we'll not cover them for now
 
 :::
 
@@ -488,7 +488,7 @@ export default App;
 
 Also, we'll see the `Auth provider` methods in action when using `AuthPage` in the next sections.
 
-At this point, our refine app is configured to communicate with Supabase API and ready to perform authentication operations using Supabase Auth methods.
+At this point, our Refine app is configured to communicate with Supabase API and ready to perform authentication operations using Supabase Auth methods.
 
 If you head over to `localhost:5173`, you'll see a welcome page.
 
@@ -1018,7 +1018,7 @@ const App = () => {
 render(<App />);
 ```
 
-Normally, refine shows a default login page when `authProvider` and `resources` properties are passed to `<Refine />` component. However, our login screen is slightly different from the default one.
+Normally, Refine shows a default login page when `authProvider` and `resources` properties are passed to `<Refine />` component. However, our login screen is slightly different from the default one.
 
 #### This premade and ready to use Login screen consist `AuthPage` and `authProvider` concepts behind the scenes:
 
@@ -1306,7 +1306,7 @@ So far, we have implemented the followings:
 - We have seen how the [`Authentication`](/docs/packages/list-of-packages#usage-with-authentication) component works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
 - We have seen how authorization handling in Refine app by understanding the logic behind of `authProvider`, and `<AuthPage>` component.
 
-**refine provides solutions for critical parts of the complete CRUD app requirements. It saves development time and effort by providing ready-to-use components and features.**
+**Refine provides solutions for critical parts of the complete CRUD app requirements. It saves development time and effort by providing ready-to-use components and features.**
 
 ## Supabase Real Time Support
 
@@ -1315,7 +1315,7 @@ Required Supabase Real Time setup is already done in the [`@refinedev/supabase`]
 
 [You can check the Supabase Real Time integration in the data provider source code &#8594](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L325)
 
-We only need to register refine's Supabase Live Provider to the `liveProvider` property to enable real-time support.
+We only need to register Refine's Supabase Live Provider to the `liveProvider` property to enable real-time support.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -1455,7 +1455,7 @@ const { tableProps, sorter } = useTable<IUser>({
 
 `meta` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 
-refine's [useMany](/docs/core/hooks/data/use-many) hook accepts `meta` property and uses `getMany` method of data provider.
+Refine's [useMany](/docs/core/hooks/data/use-many) hook accepts `meta` property and uses `getMany` method of data provider.
 
 ```tsx
 useMany({

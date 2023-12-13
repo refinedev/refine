@@ -99,7 +99,7 @@ const RefineWeek = () => {
                             <RefineWeekLogoXL className="flex-shrink-0 landing-xl:mr-[116px]" />
                             <p className="text-[32px] leading-10 font-semibold text-gray-800 dark:text-gray-100">
                                 Participate in refineWeek series and discover
-                                the full potential of refine as you craft
+                                the full potential of Refine as you craft
                                 complete CRUD apps - a practical and engaging
                                 learning experience
                             </p>

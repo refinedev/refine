@@ -175,7 +175,7 @@ const PostCreate: React.FC = () => {
 };
 ```
 
-`useForm` is used to manage forms. It is based on the [`Mantine useForm`][use-form-mantine] and the [`refine useForm`][use-form-core] and supports all the features of both packages and adds some additional features.
+`useForm` is used to manage forms. It is based on the [`Mantine useForm`][use-form-mantine] and the [`Refine useForm`][use-form-core] and supports all the features of both packages and adds some additional features.
 
 <GeneralConceptsLink />
 
@@ -783,7 +783,7 @@ useForm({
 
 When it's true, Shows a warning when the user tries to leave the page with unsaved changes. It can be used to prevent the user from accidentally leaving the page. It is `false` by default.
 
-It can be set globally in [`refine config`](/docs/core/refine-component#warnwhenunsavedchanges).
+It can be set globally in [`Refine config`](/docs/core/refine-component#warnwhenunsavedchanges).
 
 ```tsx
 useForm({

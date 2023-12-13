@@ -1,6 +1,6 @@
 ---
 title: <AuthPage />
-description: <AuthPage> component from refine is an authentication page that can be used to login, register, forgot password, and update password.
+description: <AuthPage> component from Refine is an authentication page that can be used to login, register, forgot password, and update password.
 source: packages/core/src/components/pages/auth/index.tsx
 ---
 

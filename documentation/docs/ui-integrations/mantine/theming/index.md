@@ -228,9 +228,9 @@ render(<App />);
 
 > For more information, refer to the [`<MantineProvider/>` documentation &#8594](https://mantine.dev/theming/mantine-provider/)
 
-### Overriding the refine themes
+### Overriding the Refine themes
 
-You can override or extend the default refine themes. You can also create your own theme. Let's see how you can do this:
+You can override or extend the default Refine themes. You can also create your own theme. Let's see how you can do this:
 
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);

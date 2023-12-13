@@ -19,7 +19,7 @@ You don’t need to worry about creating data providers from scratch, as Refine 
 
 ## Usage
 
-To activate the data provider in refine, we have to pass the `dataProvider` to the `<Refine />` component.
+To activate the data provider in Refine, we have to pass the `dataProvider` to the `<Refine />` component.
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
@@ -428,7 +428,7 @@ If your API supports bulk actions, you can implement them in your data provider.
 
 ### getMany
 
-The `getMany` method gets the records with the `resource` and `ids` parameters. This method is optional, and refine will use the [`getOne`](#getone-) method to handle multiple requests if you don't implement it.
+The `getMany` method gets the records with the `resource` and `ids` parameters. This method is optional, and Refine will use the [`getOne`](#getone-) method to handle multiple requests if you don't implement it.
 
 Refine will consume this `getMany` method using the [`useMany`][use-many] data hook.
 
@@ -452,7 +452,7 @@ getMany: async ({ resource, ids, meta }) => {
 
 ### createMany
 
-This method allows us to create multiple items in a resource. This method is optional, and refine will use the [`create`](#create-) method to handle multiple requests if you don't implement it.
+This method allows us to create multiple items in a resource. This method is optional, and Refine will use the [`create`](#create-) method to handle multiple requests if you don't implement it.
 
 Refine will consume this `createMany` method using the [`useCreateMany`][use-create-many] data hook.
 
@@ -478,7 +478,7 @@ createMany: async ({ resource, variables, meta }) => {
 
 ### deleteMany
 
-This method allows us to delete multiple items in a resource. This method is optional, and refine will use the [`deleteOne`](#deleteone-) method to handle multiple requests if you don't implement it.
+This method allows us to delete multiple items in a resource. This method is optional, and Refine will use the [`deleteOne`](#deleteone-) method to handle multiple requests if you don't implement it.
 
 Refine will consume this `deleteMany` method using the [`useDeleteMany`][use-delete-many] data hook.
 
@@ -503,7 +503,7 @@ deleteMany: async ({ resource, ids, variables, meta }) => {
 
 ### updateMany
 
-This method allows us to update multiple items in a resource. This method is optional, and refine will use the [`update`](#update-) method to handle multiple requests if you don't implement it.
+This method allows us to update multiple items in a resource. This method is optional, and Refine will use the [`update`](#update-) method to handle multiple requests if you don't implement it.
 
 Refine will consume this `updateMany` method using the [`useUpdateMany`][use-update-many] data hook.
 

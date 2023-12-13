@@ -35,7 +35,7 @@ interface OpenNotificationParams {
 
 ## Usage
 
-To use `notificationProvider` in refine, we have to pass the `notificationProvider` to the `<Refine>` component.
+To use `notificationProvider` in Refine, we have to pass the `notificationProvider` to the `<Refine>` component.
 
 ```tsx
 import { Refine, NotificationProvider } from "@refinedev/core";

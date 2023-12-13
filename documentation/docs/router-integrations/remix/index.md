@@ -8,7 +8,7 @@ Refine provides router bindings and utilities for [Remix](https://remix.run). Th
 npm i @refinedev/remix-router
 ```
 
-We recommend using `create refine-app` to initialize your refine projects. It configures the project according to your needs including SSR with Remix!
+We recommend using `create refine-app` to initialize your Refine projects. It configures the project according to your needs including SSR with Remix!
 
 ```sh
 npm create refine-app@latest -- -o refine-remix my-refine-remix-app
@@ -1016,7 +1016,7 @@ Default paths are:
 [routerprovider]: /docs/core/providers/router-provider
 [remix]: https://remix.run/
 [remixrouter]: https://www.npmjs.com/package/@refinedev/remix-router
-[refine]: /docs/core/refine-component
+[Refine]: /docs/core/refine-component
 [remixroutes]: https://remix.run/docs/en/v1/api/conventions#routes
 [usetable]: /docs/core/hooks/use-table
 [reactqueryssr]: https://react-query.tanstack.com/guides/ssr#using-initialdata

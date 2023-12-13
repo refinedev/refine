@@ -1,6 +1,6 @@
 ---
 title: useUpdatePassword
-description: useUpdatePassword data hook from refine is a modified version of react-query's useMutation for registration.
+description: useUpdatePassword data hook from Refine is a modified version of react-query's useMutation for registration.
 source: /packages/core/src/hooks/auth/useUpdatePassword/index.ts
 ---
 

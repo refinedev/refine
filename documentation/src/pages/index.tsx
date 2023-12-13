@@ -17,7 +17,7 @@ import { CommonHeader } from "../refine-theme/common-header";
 import { LandingTestimonial } from "../refine-theme/landing-testimonial";
 
 function Home() {
-    const title = "refine | Open-source Retool for Enterprise";
+    const title = "Refine | Open-source Retool for Enterprise";
     return (
         <>
             <Head>

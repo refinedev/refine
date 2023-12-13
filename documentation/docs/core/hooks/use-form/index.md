@@ -114,7 +114,7 @@ If explicit `resource` is provided, `id` must be provided as well to avoid any u
 
 ### redirect <GuideBadge id="guides-concepts/forms#redirection" /><GlobalConfigBadge />
 
-The redirection behavior after the form submission. It can be `list`, `edit`, `show`, `create`, or `false`. By default it will be `list` or whatever is defined in the refine's global options.
+The redirection behavior after the form submission. It can be `list`, `edit`, `show`, `create`, or `false`. By default it will be `list` or whatever is defined in the Refine's global options.
 
 ```tsx
 useForm({ redirect: "show" });
@@ -174,7 +174,7 @@ useForm({ dataProviderName: "store" });
 
 ### mutationMode <GuideBadge id="guides-concepts/forms#mutation-modes" /> <GlobalConfigBadge />
 
-Behavior of the mutation, can either be `pessimistic`, `optimistic` or `undoable`. By default, `pessimistic` or whatever is defined in the refine's global options.
+Behavior of the mutation, can either be `pessimistic`, `optimistic` or `undoable`. By default, `pessimistic` or whatever is defined in the Refine's global options.
 
 ```tsx
 useForm({ mutationMode: "optimistic" });

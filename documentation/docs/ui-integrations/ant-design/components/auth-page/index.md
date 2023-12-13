@@ -1,6 +1,6 @@
 ---
 title: <AuthPage />
-description: <AuthPage> component from refine is an authentication page that can be used to login, register, forgot password, and update password.
+description: <AuthPage> component from Refine is an authentication page that can be used to login, register, forgot password, and update password.
 swizzle: true
 source: packages/antd/src/components/pages/auth/index.tsx
 ---
@@ -11,7 +11,7 @@ Before using `<AuthPage>` component you need to add [authProvider](/docs/core/pr
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -791,8 +791,8 @@ const MyLoginPage = () => {
 
 By default, `AuthPage` uses text with icon on top of page. You can use this property to change the default title.
 
-- Default text is: refine Project
-- Default icon is: refine Logo
+- Default text is: Refine Project
+- Default icon is: Refine Logo
 
 ```tsx
 import { AuthPage, ThemedTitle } from "@refinedev/antd";

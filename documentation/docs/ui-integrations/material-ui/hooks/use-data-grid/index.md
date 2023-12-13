@@ -897,6 +897,6 @@ useDataGrid({
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
-[refine swl]: /docs/core/refine-component#syncwithlocation
+[Refine swl]: /docs/core/refine-component#syncwithlocation
 [data-grid]: https://mui.com/x/react-data-grid/
 [notification-provider]: /docs/core/providers/notification-provider

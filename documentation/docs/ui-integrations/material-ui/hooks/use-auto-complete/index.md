@@ -403,7 +403,7 @@ return <Autocomplete {...autocompleteProps} options={options || []} />;
 
 The use of `useAutocomplete` with [`useForm`](/docs/packages/list-of-packages) is demonstrated in the code above. You can use the `useAutocomplete` hook independently of the `useForm` hook.
 
-By default, refine does the search using the [`useList`](/docs/core/hooks/data/use-delete) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
+By default, Refine does the search using the [`useList`](/docs/core/hooks/data/use-delete) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
 
 ## API Reference
 

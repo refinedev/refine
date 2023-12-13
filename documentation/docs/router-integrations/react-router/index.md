@@ -8,7 +8,7 @@ Refine provides router bindings and utilities for [React Router v6](https://reac
 npm i @refinedev/react-router-v6 react-router-dom
 ```
 
-We recommend using `create refine-app` to initialize your refine projects. It gives you a good boilerplate to start with using React Router v6.
+We recommend using `create refine-app` to initialize your Refine projects. It gives you a good boilerplate to start with using React Router v6.
 
 ```sh
 npm create refine-app@latest -- -p refine-react my-refine-app
@@ -93,7 +93,7 @@ When handling authenticated routes, we can use [`<Authenticated>`](/docs/core/co
 
 Additionally, we'll use the [`<Outlet>`](https://reactrouter.com/en/main/components/outlet) component from `react-router-dom` to render our routes inside the `<Authenticated>` component. This will allow us to create protected routes and render the routes only when the user is authenticated.
 
-We will also need to create a `/login` route to handle the redirection when the user is not authenticated. We can use the `AuthPage` components from refine's UI packages with `type="login"` prop to render the login page.
+We will also need to create a `/login` route to handle the redirection when the user is not authenticated. We can use the `AuthPage` components from Refine's UI packages with `type="login"` prop to render the login page.
 
 ```tsx title=App.tsx
 // highlight-next-line
@@ -656,12 +656,12 @@ const App = () => {
 This component will generate the document title for the current page.By default, it follows a set of predefined rules to generate titles based on the provided props. However, it also offers the flexibility to customize the title generation process by providing a custom `handler` function.
 The default title generation rules are as follows:
 
-- list : `Posts | refine`
-- edit : `#{id} Edit Post | refine`
-- show : `#{id} Show Post | refine`
-- create : `Create new Post | refine`
-- clone : `#{id} Clone Post | refine`
-- default : `refine`
+- list : `Posts | Refine`
+- edit : `#{id} Edit Post | Refine`
+- show : `#{id} Show Post | Refine`
+- create : `Create new Post | Refine`
+- clone : `#{id} Clone Post | Refine`
+- default : `Refine`
 
 ```tsx
 const App = () => {
@@ -717,7 +717,7 @@ import { useDocumentTitle } from "@refinedev/react-router-v6";
 
 const PostList = () => {
   // highlight-next-line
-  useDocumentTitle("Posts | refine");
+  useDocumentTitle("Posts | Refine");
 
   return <List>{/* ... */}</List>;
 };
@@ -745,7 +745,7 @@ const PostList = () => {
   const setTitle = useDocumentTitle();
 
   useEffect(() => {
-    setTitle("Posts | refine");
+    setTitle("Posts | Refine");
   }, []);
 
   return <List>{/* ... */}</List>;

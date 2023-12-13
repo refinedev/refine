@@ -3,7 +3,7 @@ title: Migration Guide from v4 to v5
 sidebar_label: Migration Guide
 ---
 
-Material UI released a new major version for `@mui/x-data-grid` package as v6. This document will guide you through the migration process for the refine related parts. While this document won't cover all the changes, it will help you get started with the migration process.
+Material UI released a new major version for `@mui/x-data-grid` package as v6. This document will guide you through the migration process for the Refine related parts. While this document won't cover all the changes, it will help you get started with the migration process.
 
 :::simple Official Migration Guide
 

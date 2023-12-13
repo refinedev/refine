@@ -2,7 +2,7 @@
 title: useGetLocale
 ---
 
-If you need to know the current locale, refine provides the `useGetLocale` hook. It returns the `getLocale` method from [`i18nProvider`](/docs/core/providers/i18n-provider/#usage) under the hood.
+If you need to know the current locale, Refine provides the `useGetLocale` hook. It returns the `getLocale` method from [`i18nProvider`](/docs/core/providers/i18n-provider/#usage) under the hood.
 
 ## Usage
 

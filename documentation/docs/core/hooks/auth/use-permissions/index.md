@@ -1,6 +1,6 @@
 ---
 title: usePermissions
-description: usePermissions data hook from refine is a modified version of react-query's useQuery for retrieving user data
+description: usePermissions data hook from Refine is a modified version of react-query's useQuery for retrieving user data
 source: /packages/core/src/hooks/auth/usePermissions/index.ts
 ---
 

@@ -134,7 +134,7 @@ values={[
 ]}>
 <TabItem value="create">
 
-When a record is created, refine automatically sends an event to `create` method like this:
+When a record is created, Refine automatically sends an event to `create` method like this:
 
 ```json
 {
@@ -155,7 +155,7 @@ When a record is created, refine automatically sends an event to `create` method
 </TabItem>
 <TabItem value="update">
 
-When a record is updated, refine automatically sends an event to `create` method like this:
+When a record is updated, Refine automatically sends an event to `create` method like this:
 
 ```json
 {
@@ -179,7 +179,7 @@ When a record is updated, refine automatically sends an event to `create` method
 </TabItem>
 <TabItem value="delete">
 
-When a record is deleted, refine automatically sends an event to `create` method like this:
+When a record is deleted, Refine automatically sends an event to `create` method like this:
 
 ```json
 {
@@ -195,7 +195,7 @@ When a record is deleted, refine automatically sends an event to `create` method
 </TabItem>
 <TabItem value="createMany">
 
-When a record is created with the `useCreateMany` hook, refine automatically sends an event to the `create` method like this:
+When a record is created with the `useCreateMany` hook, Refine automatically sends an event to the `create` method like this:
 
 ```json
 {
@@ -220,7 +220,7 @@ When a record is created with the `useCreateMany` hook, refine automatically sen
 </TabItem>
 <TabItem value="updateMany">
 
-When a record is updated with the `useUpdateMany` hook, refine automatically sends an event to the `create` method like this:
+When a record is updated with the `useUpdateMany` hook, Refine automatically sends an event to the `create` method like this:
 
 ```json
 {
@@ -247,7 +247,7 @@ When a record is updated with the `useUpdateMany` hook, refine automatically sen
 </TabItem>
 <TabItem value="deleteMany">
 
-When a record is deleted with the `useDeleteMany` hook, refine automatically sends an event to the `create` method like this:
+When a record is deleted with the `useDeleteMany` hook, Refine automatically sends an event to the `create` method like this:
 
 ```json
 {

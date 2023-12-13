@@ -1,6 +1,6 @@
 ---
 title: <ThemedLayout />
-description: <ThemedLayoutV2> component from refine, defines the overall structure and layout of a web page.
+description: <ThemedLayoutV2> component from Refine, defines the overall structure and layout of a web page.
 swizzle: true
 source: packages/mui/src/components/themedLayoutV2/index.tsx
 ---

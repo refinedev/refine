@@ -7,7 +7,7 @@ A breadcrumb displays the current location within a hierarchy. It allows going b
 
 :::simple Good to know
 
-- You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+- You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 - In earlier versions of Refine, `<Refine>` component had accepted `DashboardPage` which could be used to add an index page to your app. With the changes in `routerProvider` API of Refine, `DashboardPage` is deprecated. You can now define an index route yourself manually by your router package.
 

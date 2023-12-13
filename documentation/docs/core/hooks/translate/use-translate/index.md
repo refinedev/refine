@@ -2,7 +2,7 @@
 title: useTranslate
 ---
 
-If you need to translate the texts in your own components, refine provides the `useTranslate` hook, It returns the translate method from [`i18nProvider`](/docs/core/providers/i18n-provider/#usage) under the hood.
+If you need to translate the texts in your own components, Refine provides the `useTranslate` hook, It returns the translate method from [`i18nProvider`](/docs/core/providers/i18n-provider/#usage) under the hood.
 
 ## Usage
 

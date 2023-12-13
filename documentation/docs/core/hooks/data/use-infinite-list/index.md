@@ -2,7 +2,7 @@
 title: useInfiniteList
 siderbar_label: useInfiniteList
 source: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/data/useInfiniteList.ts
-description: useInfiniteList data hook from refine is a modified version of TanStack Query's useInfiniteQuery for retrieving items from a resource with pagination, search, sort, and filter configurations.
+description: useInfiniteList data hook from Refine is a modified version of TanStack Query's useInfiniteQuery for retrieving items from a resource with pagination, search, sort, and filter configurations.
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -394,7 +394,7 @@ getList: async ({ resource, pagination }) => {
 
 ### How to override the `getNextPageParam` method?
 
-By default, `refine` expects you to return the `cursor` object, but is not required. This is because some APIs don't work that way. To fix this problem you need to override the `getNextPageParam` method and return the next `cursor`.
+By default, `Refine` expects you to return the `cursor` object, but is not required. This is because some APIs don't work that way. To fix this problem you need to override the `getNextPageParam` method and return the next `cursor`.
 
 ```tsx
 import { useInfiniteList } from "@refinedev/core";

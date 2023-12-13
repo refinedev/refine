@@ -677,7 +677,7 @@ useForm({
 
 > [`NotificationProvider`][notification-provider] is required for this prop to work.
 
-After form is submit is failed, `refine` will show a error notification. With this prop, you can customize the error notification.
+After form is submit is failed, `Refine` will show a error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useForm({
@@ -823,7 +823,7 @@ useForm({
 
 When it's true, Shows a warning when the user tries to leave the page with unsaved changes. It can be used to prevent the user from accidentally leaving the page. Default value is `false`.
 
-It can be set globally in [`refine config`](/docs/core/refine-component#warnwhenunsavedchanges).
+It can be set globally in [`Refine config`](/docs/core/refine-component#warnwhenunsavedchanges).
 
 ```tsx
 useForm({
@@ -1131,7 +1131,7 @@ const { ... } = useForm({
     refineCoreProps: {
         resource: "posts",
         redirect: false,
-        // You can define all properties provided by refine useForm
+        // You can define all properties provided by Refine useForm
     },
 });
 ```

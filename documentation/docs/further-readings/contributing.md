@@ -11,15 +11,15 @@ We follow a [code of conduct][code_of_conduct] when participating in the communi
 
 ## Ways to contribute
 
-- **Stars on GitHub**: If you're a refine user and enjoy using our platform, don't forget to star it on [GitHub](https://github.com/refinedev/refine)! 🌟
+- **Stars on GitHub**: If you're a Refine user and enjoy using our platform, don't forget to star it on [GitHub](https://github.com/refinedev/refine)! 🌟
 - **Improve documentation**: Good documentation is imperative to the success of any project. You can make our documents the best they need to be by improving their quality or adding new ones.
-- **Give feedback**: We're always looking for ways to make refine better, please share how you use refine, what features are missing and what is done good via [GitHub Discussions](https://github.com/refinedev/refine/discussions) or [Discord](http://discord.gg/refine).
-- **Share refine**: Help us reach people. Share [refine repository](https://github.com/refinedev/refine) with everyone who can be interested.
+- **Give feedback**: We're always looking for ways to make Refine better, please share how you use Refine, what features are missing and what is done good via [GitHub Discussions](https://github.com/refinedev/refine/discussions) or [Discord](http://discord.gg/refine).
+- **Share Refine**: Help us reach people. Share [Refine repository](https://github.com/refinedev/refine) with everyone who can be interested.
 - **Contribute to codebase**: your help is needed to make this project the best it can be! You could develop new features or fix [existing issues](https://github.com/refinedev/refine/issues) - every contribution will be welcomed with great pleasure!
 
 ## Commit convention
 
-refine is a monorepo. For a monorepo, commit messages are essential to keep everything clear. We use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to keep our commit messages consistent and easy to understand.
+Refine is a monorepo. For a monorepo, commit messages are essential to keep everything clear. We use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to keep our commit messages consistent and easy to understand.
 
 ```
 <type>(optional scope): <description>
@@ -79,7 +79,7 @@ First, install dependencies:
 npm install
 ```
 
-From now on, depending on the packages you plan to work on, (they are located under `packages/` and `examples/` directories - see [lerna.json][lerna.json]) you will need to bootstrap them and start them in watch mode. Instead of running `lerna bootstrap` directly, read on to see how **refine** team handles it.
+From now on, depending on the packages you plan to work on, (they are located under `packages/` and `examples/` directories - see [lerna.json][lerna.json]) you will need to bootstrap them and start them in watch mode. Instead of running `lerna bootstrap` directly, read on to see how **Refine** team handles it.
 
 [Refer to **lerna** docs to learn more about it. &#8594][lerna]
 
@@ -87,7 +87,7 @@ From now on, depending on the packages you plan to work on, (they are located un
 
 ### Starting the packages you work in watch mode
 
-Before running a package in development mode in the refine project, you need to first bootstrap and build all the packages.
+Before running a package in development mode in the Refine project, you need to first bootstrap and build all the packages.
 
 #### Bootstrap & build all packages
 
@@ -184,17 +184,17 @@ Please make sure you contribute well tested code.
 
 ## Creating Live Previews in Documentation
 
-We're using live previews powered with [`react-live`](https://github.com/FormidableLabs/react-live) to demonstrate our components and logic with `refine` running at full functionality. To create a live preview, you should add `live` property to your code blocks in markdown files.
+We're using live previews powered with [`react-live`](https://github.com/FormidableLabs/react-live) to demonstrate our components and logic with `Refine` running at full functionality. To create a live preview, you should add `live` property to your code blocks in markdown files.
 
 :::tip
 
-You can use `import` statements to show them in the code block but they will be ignored when running the code. Instead all import statements related to **refine** will be converted into object destructures and prepended into code. This will allow you to do the import in the visible part of the code and also use them before the import statements. Check out [Defined Scope](#defined-scope) section to learn more about the available packages and variables.
+You can use `import` statements to show them in the code block but they will be ignored when running the code. Instead all import statements related to **Refine** will be converted into object destructures and prepended into code. This will allow you to do the import in the visible part of the code and also use them before the import statements. Check out [Defined Scope](#defined-scope) section to learn more about the available packages and variables.
 
 :::
 
 :::info
 
-refine Live Previews has an independent package apart from the documentation and the previews are rendered through this package via iframe. `@refinedev/live-previews` runs on `3030` port by default and the fallback value for `LIVE_PREVIEW_URL` is set to `http://localhost:3030` for development purposes. If you want to run both the previews package and the documentation at the same time, use `npm run start:doc` command.
+Refine Live Previews has an independent package apart from the documentation and the previews are rendered through this package via iframe. `@refinedev/live-previews` runs on `3030` port by default and the fallback value for `LIVE_PREVIEW_URL` is set to `http://localhost:3030` for development purposes. If you want to run both the previews package and the documentation at the same time, use `npm run start:doc` command.
 
 :::
 

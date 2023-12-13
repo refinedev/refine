@@ -69,7 +69,7 @@ render(
 
 :::simple Good to know
 
-- You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+- You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 - In earlier versions of Refine, `<Refine>` component had accepted `DashboardPage` which could be used to add an index page to your app. With the changes in `routerProvider` API of Refine, `DashboardPage` is deprecated. You can now define an index route yourself manually by your router package.
 

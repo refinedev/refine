@@ -740,6 +740,6 @@ errorNotification-default='"There was an error creating resource (status code: `
 [crudsorting]: /docs/core/interface-references#crudsorting
 [crudfilters]: /docs/core/interface-references#crudfilters
 [httperror]: /docs/core/interface-references#httperror
-[refine swl]: /docs/core/refine-component#syncwithlocation
+[Refine swl]: /docs/core/refine-component#syncwithlocation
 [syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
 [notification-provider]: /docs/core/providers/notification-provider

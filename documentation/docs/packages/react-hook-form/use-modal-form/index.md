@@ -647,7 +647,7 @@ const modalForm = useModalForm({
 
 ### `warnWhenUnsavedChanges`
 
-When you have unsaved changes and try to leave the current page, refine shows a confirmation modal box. To activate this feature. By default, this feature is disabled.
+When you have unsaved changes and try to leave the current page, Refine shows a confirmation modal box. To activate this feature. By default, this feature is disabled.
 
 You can also set this value in [`<Refine>`](/docs/core/refine-component#warnwhenunsavedchanges) component.
 

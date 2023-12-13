@@ -8,7 +8,7 @@ Refine provides router bindings and utilities for [Next.js](https://nextjs.org/)
 npm i @refinedev/nextjs-router
 ```
 
-We recommend using `create refine-app` to initialize your refine projects. It configures the project according to your needs including SSR with Next.js!
+We recommend using `create refine-app` to initialize your Refine projects. It configures the project according to your needs including SSR with Next.js!
 
 ```sh
 npm create refine-app@latest -- -o refine-nextjs my-refine-nextjs-app
@@ -277,7 +277,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           ]}
         >
           {/* We're defining `Layout` here but you might want to have different layouts per your page. */}
-          {/* This is totally fine for refine, you can place your Layout wherever you like. */}
+          {/* This is totally fine for Refine, you can place your Layout wherever you like. */}
           <Layout>{children}</Layout>
         </Refine>
       </body>
@@ -528,12 +528,12 @@ Note that this component currently only works in the `pages` directory.
 This component will generate the document title for the current page.By default, it follows a set of predefined rules to generate titles based on the provided props. However, it also offers the flexibility to customize the title generation process by providing a custom `handler` function.
 The default title generation rules are as follows:
 
-- list : `Posts | refine`
-- edit : `#{id} Edit Post | refine`
-- show : `#{id} Show Post | refine`
-- create : `Create new Post | refine`
-- clone : `#{id} Clone Post | refine`
-- default : `refine`
+- list : `Posts | Refine`
+- edit : `#{id} Edit Post | Refine`
+- show : `#{id} Show Post | Refine`
+- create : `Create new Post | Refine`
+- clone : `#{id} Clone Post | Refine`
+- default : `Refine`
 
 ```tsx
 const App = () => {
@@ -591,7 +591,7 @@ import { useDocumentTitle } from "@refinedev/nextjs-router";
 
 const PostList = () => {
   // highlight-next-line
-  useDocumentTitle("Posts | refine");
+  useDocumentTitle("Posts | Refine");
 
   return <List>{/* ... */}</List>;
 };
@@ -619,7 +619,7 @@ const PostList = () => {
   const setTitle = useDocumentTitle();
 
   useEffect(() => {
-    setTitle("Posts | refine");
+    setTitle("Posts | Refine");
   }, []);
 
   return <List>{/* ... */}</List>;

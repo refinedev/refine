@@ -379,7 +379,7 @@ If you are overriding the `fontFamily` in typography, you can add the `<link>` t
       rel="stylesheet"
     />
     // highlight-end
-    <title>refine adding font family example</title>
+    <title>Refine adding font family example</title>
   </head>
 
   <body>

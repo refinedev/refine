@@ -5,7 +5,7 @@ title: CLI
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-refine CLI is a command line application that allows you to interact with your Refine project and perform some tasks. This includes [creating a new resource](#create-resource), [managing updates](#update), [swizzle](#swizzle) components, and [runs your project](#dev--start--build) (build, start, dev).
+Refine CLI is a command line application that allows you to interact with your Refine project and perform some tasks. This includes [creating a new resource](#create-resource), [managing updates](#update), [swizzle](#swizzle) components, and [runs your project](#dev--start--build) (build, start, dev).
 
 ```bash
 > npm run refine
@@ -30,8 +30,8 @@ Options:
 Commands:
   add [options] [auth] [live] [data] [resource]  Creates new features for your project (data-provider, auth-provider, live-provider, resource etc.)
   create-resource [options]  Create a new resource files (deprecated, please use "add resource" command)
-  check-updates              Check all installed `refine` packages are up to date
-  update [options]           Interactively select and update all `refine` packages to selected version. To skip the interactive mode, use the `--all` option.
+  check-updates              Check all installed `Refine` packages are up to date
+  update [options]           Interactively select and update all `Refine` packages to selected version. To skip the interactive mode, use the `--all` option.
   dev [args...]              It runs: `nextjs dev`. Also accepts all the arguments `nextjs` accepts.
   build [args...]            It runs: `nextjs build`. Also accepts all the arguments `nextjs` accepts.
   start [args...]            It runs: `nextjs start`. Also accepts all the arguments `nextjs` accepts.
@@ -231,7 +231,7 @@ Major Updates
 | Option    | Alias | Description                                                                                 | Values           | Default                                                    |
 | --------- | ----- | ------------------------------------------------------------------------------------------- | ---------------- | ---------------------------------------------------------- |
 | --tag     | -t    | Select version to update to.                                                                | `latest`, `next` | Version ranges in the `package.json` will be installed.    |
-| --all     | -a    | Use to skip interactive mode update and update all `refine` packages to the selected `tag`. |                  | `false` Interactive mode will be open.                     |
+| --all     | -a    | Use to skip interactive mode update and update all `Refine` packages to the selected `tag`. |                  | `false` Interactive mode will be open.                     |
 | --dry-run | -d    | Use to skip automatic installation. Prints the update command of the packages.              |                  | `false` Selected packages will be installed automatically. |
 
 ### check-updates
@@ -256,7 +256,7 @@ Show the running versions of the installed Refine packages.
                 ├────────────────────────────────┼─────────┼────────┼────────┤
                 │ @refinedev/strapi          │ 3.18.0  │ 3.37.0 │ 3.37.0 │
                 └────────────────────────────────┴─────────┴────────┴────────┘
-                    To update `refine` packages with the wanted version
+                    To update `Refine` packages with the wanted version
                         Run the following command npm run refine update
 ```
 
@@ -436,8 +436,8 @@ Options:
 
 Commands:
   create-resource [options]  Create a new resource files
-  check-updates              Check all installed `refine` packages are up to date
-  update [options]           Interactively select and update all `refine` packages to selected version. To skip the interactive mode, use the `--all` option.
+  check-updates              Check all installed `Refine` packages are up to date
+  update [options]           Interactively select and update all `Refine` packages to selected version. To skip the interactive mode, use the `--all` option.
   dev [args...]              It runs: `nextjs dev`. Also accepts all the arguments `nextjs` accepts.
   build [args...]            It runs: `nextjs build`. Also accepts all the arguments `nextjs` accepts.
   start [args...]            It runs: `nextjs start`. Also accepts all the arguments `nextjs` accepts.
@@ -447,7 +447,7 @@ Commands:
 
 ```
 
-You can optionally modify your scripts in `package.json` with `refine CLI` [commands](#dev--start--build). The benefit it will provide you is that it gives warnings to keep your `refine` packages always up to date.
+You can optionally modify your scripts in `package.json` with `Refine CLI` [commands](#dev--start--build). The benefit it will provide you is that it gives warnings to keep your `Refine` packages always up to date.
 
 <Tabs
 defaultValue="react"

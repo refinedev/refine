@@ -72,7 +72,7 @@ To learn more about Live Providers, check out [Realtime](/docs/guides-concepts/r
 - [`@tspvivek/refine-directus`](https://github.com/tspvivek/refine-directus) - Connector for backends created with [Directus](https://directus.io/)
 - [`refine-elide-rest`](https://github.com/chirdeeptomar/refine-elide-rest) - Connector for backends created with [Elide](https://elide.io/)
 - [`refine-elide-graphql`](https://github.com/chirdeeptomar/refine-elide-graphql) - Connector for GraphQL backends created with [Elide](https://elide.io/)
-- [`ent-refine`](https://github.com/diazoxide/entrefine) - A library that generates fully customizable UI based on [Entgo ORM](https://entgo.io/) and [GraphQL API](https://graphql.org/) with [refine](https://github.com/refinedev/refine)
+- [`ent-refine`](https://github.com/diazoxide/entrefine) - A library that generates fully customizable UI based on [Entgo ORM](https://entgo.io/) and [GraphQL API](https://graphql.org/) with [Refine](https://github.com/refinedev/refine)
 - [`refine-use-generated`](https://github.com/usegen/refine-use-generated) - Connector for GraphQL backends created with [useGenerated](https://usegenerated.com/)
 - [`refine-hygraph`](https://github.com/acomagu/refine-hygraph) - Connector for [Hygraph](https://hygraph.com/) backends(GraphQL)
 - [`refine-sanity`](https://github.com/hirenf14/refine-sanity) - Connector for [Sanity](https://www.sanity.io/) backends

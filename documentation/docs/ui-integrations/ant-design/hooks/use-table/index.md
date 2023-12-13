@@ -880,7 +880,7 @@ const ListPage = () => {
 [crudfilters]: /docs/core/interface-references#crudfilters
 [httperror]: /docs/core/interface-references#httperror
 [table search]: /advanced-tutorials/search/table-search.md
-[refine swl]: /docs/core/refine-component#syncwithlocation
+[Refine swl]: /docs/core/refine-component#syncwithlocation
 [filter-dropdown]: /docs/ui-integrations/ant-design/components/filter-dropdown
 [syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
 [notification-provider]: /docs/core/providers/notification-provider

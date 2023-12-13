@@ -1,6 +1,6 @@
 ---
 title: useOnError
-description: useOnError data hook from refine is a modified version of react-query's useMutation for create mutations
+description: useOnError data hook from Refine is a modified version of react-query's useMutation for create mutations
 source: /packages/core/src/hooks/auth/useOnError/index.ts
 ---
 

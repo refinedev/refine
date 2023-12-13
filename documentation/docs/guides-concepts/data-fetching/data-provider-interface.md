@@ -133,7 +133,7 @@ axiosInstance.interceptors.response.use(
   },
 );
 
-// convert refine CrudOperators to the format that API accepts.
+// convert Refine CrudOperators to the format that API accepts.
 const mapOperator = (operator: CrudOperators): string => {
   switch (operator) {
     case "ne":
@@ -148,7 +148,7 @@ const mapOperator = (operator: CrudOperators): string => {
   }
 };
 
-// generate query string from refine CrudFilters to the format that API accepts.
+// generate query string from Refine CrudFilters to the format that API accepts.
 const generateFilter = (filters?: CrudFilters) => {
   const queryFilters: { [key: string]: string } = {};
 
@@ -175,7 +175,7 @@ const generateFilter = (filters?: CrudFilters) => {
   return queryFilters;
 };
 
-// generate query string from refine CrudSorting to the format that API accepts.
+// generate query string from Refine CrudSorting to the format that API accepts.
 const generateSort = (sorters?: CrudSorting) => {
   if (sorters && sorters.length > 0) {
     const _sort: string[] = [];
@@ -195,7 +195,7 @@ const generateSort = (sorters?: CrudSorting) => {
   return;
 };
 
-// generate query string from refine Pagination to the format that API accepts.
+// generate query string from Refine Pagination to the format that API accepts.
 const generatePagination = (pagination?: Pagination) => {
   // pagination is optional on data hooks, so we need to set default values.
   const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};

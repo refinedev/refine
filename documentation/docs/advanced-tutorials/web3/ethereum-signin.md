@@ -5,11 +5,11 @@ title: Sign in with Ethereum Web3 Wallet
 
 ## Introduction
 
-In this guide, you will examine what a web3 wallet is, how to sign in to your wallet, and how to use the popular wallet [MetaMask](https://metamask.io/). We will learn to log in to your Metamask wallet using **refine** and [Web3](https://web3js.readthedocs.io/en/v1.5.2/).
+In this guide, you will examine what a web3 wallet is, how to sign in to your wallet, and how to use the popular wallet [MetaMask](https://metamask.io/). We will learn to log in to your Metamask wallet using **Refine** and [Web3](https://web3js.readthedocs.io/en/v1.5.2/).
 
 A web3 wallet is a software that allows you to send, receive, or store cryptocurrency securely without the need for a 3rd party. Web3 wallet is your key to accessing your cryptocurrency. If you want to send cryptocurrency or receive it you will need a wallet.
 
-We will show you how to log in to your Metamask wallet with **refine**.
+We will show you how to log in to your Metamask wallet with **Refine**.
 
 ## Installation
 
@@ -26,7 +26,7 @@ To make this example more visual, we used the [`@refinedev/antd`](https://github
 
 :::
 
-## Configure refine Auth provider
+## Configure Refine Auth provider
 
 First, we need to define a web3modal and create a provider. We can get information about the wallet by connecting this provider that we have created to web3.
 
@@ -146,7 +146,7 @@ export const getBalance = async (account: string): Promise<string> => {
 
 ### Override Login page​
 
-We need to override the refine login page. In this way, we will redirect it to the Metamask Wallet login page. We create a `login.tsx` file in the /pages folder.
+We need to override the Refine login page. In this way, we will redirect it to the Metamask Wallet login page. We create a `login.tsx` file in the /pages folder.
 
 <details>
 <summary>Show Code</summary>
@@ -194,7 +194,7 @@ export const Login: React.FC = () => {
 
 ## Create Dashboard
 
-After connecting with our account, we can now retrieve account information. We will display this information on the dashboard of the **refine**.
+After connecting with our account, we can now retrieve account information. We will display this information on the dashboard of the **Refine**.
 
 <details>
 <summary>Show Code</summary>
@@ -246,9 +246,9 @@ export const DashboardPage: React.FC = () => {
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/dashboard.jpg" alt="refine-dashboard" className="border border-gray-200 rounded" />
 
-Now lets customize **refine** dashboard. Send your test ethereum via **refine** dashboard and Metamask.
+Now lets customize **Refine** dashboard. Send your test ethereum via **Refine** dashboard and Metamask.
 
-## Send Test Ethereum with refine Dashboard
+## Send Test Ethereum with Refine Dashboard
 
 Here we use the `sendTransaction` function to send ethereum with your browser-enabled web3 wallet.
 
@@ -375,7 +375,7 @@ export const DashboardPage: React.FC = () => {
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/customize.jpg" alt="refine-customize" className="border border-gray-200 rounded" />
 
-We can now request to send ethereum through our **refine** dashboard and also view your account details on [Etherscan Ropsten Test Network](https://ropsten.etherscan.io/)
+We can now request to send ethereum through our **Refine** dashboard and also view your account details on [Etherscan Ropsten Test Network](https://ropsten.etherscan.io/)
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/overview-min.gif" alt="refine-overview" className="border border-gray-200 rounded" />
 

@@ -25,8 +25,8 @@ const App = () => (
 
 ## dataProvider <PropTag asterisk />
 
-A [`dataProvider`](/docs/core/providers/data-provider) is the place where a refine app communicates with an API.
-Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.
+A [`dataProvider`](/docs/core/providers/data-provider) is the place where a Refine app communicates with an API.
+Data providers also act as adapters for Refine, making it possible for it to consume different API's and data services.
 A [`dataProvider`](/docs/core/providers/data-provider) makes HTTP requests and returns response data back using predefined methods.
 
 [Refer to the Data Provider documentation for detailed information. &#8594](/docs/core/providers/data-provider)
@@ -323,7 +323,7 @@ Custom route name for the resource.
 
 ## authProvider
 
-`authProvider` handles authentication logic like login, logout flow, and checking user credentials. It is an object with methods that refine uses when necessary.
+`authProvider` handles authentication logic like login, logout flow, and checking user credentials. It is an object with methods that Refine uses when necessary.
 
 [Refer to Auth Provider documentation for detailed information. &#8594](/docs/core/providers/auth-provider)
 
@@ -347,7 +347,7 @@ Refine lets you add Realtime support to your app via `liveProvider`. It can be u
 
 ## notificationProvider
 
-`notificationProvider` handles notification logic. It is an object with methods that refine uses when necessary.
+`notificationProvider` handles notification logic. It is an object with methods that Refine uses when necessary.
 
 [Refer to the Notification Provider documentation for detailed information. &#8594](/docs/core/providers/notification-provider)
 
@@ -477,7 +477,7 @@ This feature also **requires** `UnsavedChangesNotifier` component to be mounted.
 
 Refine implements a simple and transparent telemetry module for collecting usage statistics defined in a very limited scope. This telemetry module is used to improve the Refine experience. You can disable this by setting `disableTelemetry` to `true`.
 
-> For more information, refer to the [refine telemetry documentation &#8594](/further-readings/telemetry.md)
+> For more information, refer to the [Refine telemetry documentation &#8594](/further-readings/telemetry.md)
 
 ### redirect
 
@@ -559,13 +559,13 @@ const App = () => (
 
 #### ~~devtoolConfig~~ <PropTag deprecated />
 
-React Query Devtools are removed from the `@refinedev/core` and this prop is no longer supported for the configuration of the devtools. You can use the `@tanstack/react-query-devtools` in your app directly to use the devtools. For more information, please check out [FAQ - How to use React Query Devtools with refine?](/docs/guides-concepts/faq/#how-to-use-react-query-devtools-with-refine)
+React Query Devtools are removed from the `@refinedev/core` and this prop is no longer supported for the configuration of the devtools. You can use the `@tanstack/react-query-devtools` in your app directly to use the devtools. For more information, please check out [FAQ - How to use React Query Devtools with Refine?](/docs/guides-concepts/faq/#how-to-use-react-query-devtools-with-refine)
 
 > For more information, refer to the [Devtools documentation &#8594](https://react-query.tanstack.com/devtools#options)
 
 ### textTransformers
 
-The `textTransformers` option in Refine is used to transform the resource name displayed on the user interface (UI). By default, if you define a resource named `posts`, refine will display it as `Posts`. Similarly, when you delete a record, notification messages will be shown as `Post deleted successfully.`.
+The `textTransformers` option in Refine is used to transform the resource name displayed on the user interface (UI). By default, if you define a resource named `posts`, Refine will display it as `Posts`. Similarly, when you delete a record, notification messages will be shown as `Post deleted successfully.`.
 
 You have the flexibility to customize these messages by using the `textTransformers` option. For instance, if you wish to disable any transformation, you can set the `textTransformers` option as shown in the example below:
 
@@ -632,15 +632,15 @@ The callback function receives two parameters:
 
 ### useNewQueryKeys
 
-With `@refinedev/core`'s `v4.35.0`, refine introduced new query and mutation keys which are more structured and easy to construct. These keys are used in all data, auth, access control and audit log queries and mutations.
+With `@refinedev/core`'s `v4.35.0`, Refine introduced new query and mutation keys which are more structured and easy to construct. These keys are used in all data, auth, access control and audit log queries and mutations.
 
-By default, refine uses the legacy keys for backward compatibility and in the future versions it will switch to using the new query keys. You can easily switch to using new keys by setting `useNewQueryKeys` to `true`.
+By default, Refine uses the legacy keys for backward compatibility and in the future versions it will switch to using the new query keys. You can easily switch to using new keys by setting `useNewQueryKeys` to `true`.
 
 ## onLiveEvent
 
 Callback to handle all live events.
 
-> For more information, refer to the [live provider documentation &#8594](/docs/core/providers/live-provider#refine)
+> For more information, refer to the [live provider documentation &#8594](/docs/core/providers/live-provider#Refine)
 
 ## ~~catchAll~~ <PropTag deprecated />
 
@@ -714,7 +714,7 @@ const App = () => (
 
 ## ~~Sider~~ <PropTag deprecated />
 
-The default sidebar can be customized by using refine hooks and passing custom components to the `Sider` property.
+The default sidebar can be customized by using Refine hooks and passing custom components to the `Sider` property.
 
 > For more information, refer to the [`useMenu` hook documentation &#8594](/docs/core/hooks/utilities/use-menu)
 

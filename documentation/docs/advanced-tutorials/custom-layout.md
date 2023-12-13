@@ -4,7 +4,7 @@ title: Custom Layout
 sidebar_label: Custom Layout
 ---
 
-**refine** supports any layout you want with no restrictions and also provides default layouts with its UI packages. You are free to use them or create your own with the help of **refine**'s hooks and components. You can also use the [`swizzle`][cli] command to customize the default layouts and adapt them to your needs.
+**Refine** supports any layout you want with no restrictions and also provides default layouts with its UI packages. You are free to use them or create your own with the help of **Refine**'s hooks and components. You can also use the [`swizzle`][cli] command to customize the default layouts and adapt them to your needs.
 
 ## Layout Elements
 
@@ -70,7 +70,7 @@ const CustomSider = () => {
 
 ### `Title`
 
-`<Title>` components are designed to render a title inside the `<Sider>` component. By default, it renders the **refine** logo with a link to the index page.
+`<Title>` components are designed to render a title inside the `<Sider>` component. By default, it renders the **Refine** logo with a link to the index page.
 
 ### `Footer`
 
@@ -82,12 +82,12 @@ const CustomSider = () => {
 
 ## Example
 
-Here's an example of a custom layout, made with help of **refine**'s hooks and components.
+Here's an example of a custom layout, made with help of **Refine**'s hooks and components.
 
 You can find more examples about custom layouts for different UI packages in the [examples](/docs/examples) section.
 
 <CodeSandboxExample path="customization-top-menu-layout" />
 
-[refine]: /docs/core/refine-component
+[Refine]: /docs/core/refine-component
 [cli]: /docs/packages/list-of-packages#swizzle
 [usemenu]: /docs/core/hooks/utilities/use-menu
