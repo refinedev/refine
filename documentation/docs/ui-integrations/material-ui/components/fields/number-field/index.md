@@ -5,7 +5,7 @@ swizzle: true
 
 This field is used to display a number formatted according to the browser locale, right aligned. and uses [`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) to display date format.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
@@ -87,7 +87,7 @@ render(
 
 <PropsTable module="@refinedev/mui/NumberField" value-description="Number value" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Text](https://mui.com/material-ui/react-text-field/).
 

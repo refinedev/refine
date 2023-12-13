@@ -296,7 +296,7 @@ useForm({
 });
 ```
 
-### Unsaved Changes <GuideBadge id="guides-concepts/routing/#useform" /> <GlobalConfigBadge id="api-reference/core/components/refine-config/#warnwhenunsavedchanges" />
+### Unsaved Changes <GuideBadge id="guides-concepts/routing/#useform" /> <GlobalConfigBadge id="core/refine-component/#warnwhenunsavedchanges" />
 
 Refine's `useForm` hooks have a built-in feature to prevent the user from losing the unsaved changes via a confirmation dialog when changing the route/leaving the page. To enable this feature, you need to use the [`<UnsavedChangesNotifier />`](/docs/guides-concepts/routing/#useform) components from the router package of the library you are using and set the `warnWhenUnsavedChanges` prop to `true`.
 
@@ -433,7 +433,7 @@ Used for editing an existing record. This action mode requires an `id` prop to b
 
 Used for cloning an existing record. This action mode requires an `id` prop to be passed to the form. The record with the given `id` will be fetched and the values will be used as the initial values for the form fields and the mutation will be performed to create a new record.
 
-## Mutation Modes <GlobalConfigBadge id="api-reference/core/components/refine-config/#mutationmode" />
+## Mutation Modes <GlobalConfigBadge id="core/refine-component/#mutationmode" />
 
 `useForm` provides 3 mutation modes to choose from, you may need each of them in different scenarios throughout your application.
 
@@ -566,11 +566,11 @@ useForm({
 });
 ```
 
-## Server Side Validation <GlobalConfigBadge id="api-reference/core/components/refine-config/#disableserversidevalidation" />
+## Server Side Validation <GlobalConfigBadge id="core/refine-component/#disableserversidevalidation" />
 
 Server-side form validation is a technique used to validate form data on the server before processing it. Unlike client-side validation, which is performed in the user's browser using JavaScript, server-side validation occurs on the server-side code, typically in the backend of the application.
 
-**Refine** supports server-side validation out-of-the-box in all `useForm` derivatives. To handle server-side validation, the data providers needs to be correctly set up to return the errors in form submissions with a specific format. After this, **Refine**'s `useForm` will propagate the errors to the respective form fields.
+Refine supports server-side validation out-of-the-box in all `useForm` derivatives. To handle server-side validation, the data providers needs to be correctly set up to return the errors in form submissions with a specific format. After this, Refine's `useForm` will propagate the errors to the respective form fields.
 
 ```ts
 import { HttpError } from "@refinedev/core";

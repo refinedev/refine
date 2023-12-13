@@ -1,6 +1,5 @@
 ---
 title: useForm
-sidebar_label: useForm
 source: packages/react-hook-form/src/useForm/index.ts
 ---
 
@@ -183,7 +182,7 @@ Install the [`@refinedev/react-hook-form`][refine-react-hook-form] library.
 npm i @refinedev/react-hook-form
 ```
 
-## Basic Usage
+## Usage
 
 > For more detailed usage examples please refer to the [React Hook Form](https://react-hook-form.com/get-started) documentation.
 
@@ -264,11 +263,7 @@ export const PostEdit: React.FC = () => {
 };
 ```
 
-:::tip
-
 If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/docs/packages/list-of-packages).
-
-:::
 
 ## Properties
 
@@ -276,13 +271,9 @@ If you want to show a form in a modal or drawer where necessary route params mig
 
 `useForm` can handle `edit`, `create` and `clone` actions.
 
-:::tip
-
 By default, it determines the `action` from route. The action is inferred by matching the resource's action path with the current route.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
-
-:::
 
 <Tabs
 defaultValue="create"
@@ -491,9 +482,9 @@ render(<RefineHeadlessDemo />);
 
 ### `resource`
 
-> Default: It reads the `resource` value from the current URL.
-
 It will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. See the [`creating a data provider`](/docs/core/providers/data-provider#creating-a-data-provider) section for an example of how `resource` are handled.
+
+By default it reads the `resource` value from the current URL.
 
 - When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
 - When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
@@ -506,8 +497,6 @@ useForm({
   },
 });
 ```
-
-:::caution
 
 If the `resource` is passed, the `id` from the current URL will be ignored because it may belong to a different resource. To retrieve the `id` value from the current URL, use the `useParsed` hook and pass the `id` value to the `useForm` hook.
 
@@ -541,8 +530,6 @@ const {
 setId("123");
 ```
 
-:::
-
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
@@ -551,9 +538,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 `id` is used for determining the record to `edit` or `clone`. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
-It is useful when you want to `edit` or `clone` a `resource` from a different page.
-
-> Note: `id` is required when `action: "edit"` or `action: "clone"`.
+It is useful when you want to `edit` or `clone` a `resource` from a different page. Keep in mind that `id` is required when `action: "edit"` or `action: "clone"`.
 
 ```tsx
 useForm({
@@ -643,11 +628,7 @@ useForm({
 If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
 It is useful when you want to use a different `dataProvider` for a specific resource.
 
-:::tip
-
 If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop ](/docs/core/refine-component#dataprovidername) of the `<Refine>` component.
-
-:::
 
 ```tsx
 useForm({
@@ -774,11 +755,7 @@ useForm({
 });
 ```
 
-:::tip
-
 If you have overlapping properties in both `meta` and `queryMeta`, the `queryMeta` property will be used.
-
-:::
 
 ### `mutationMeta`
 
@@ -792,17 +769,13 @@ useForm({
 });
 ```
 
-:::tip
-
 If you have overlapping properties in both `meta` and `mutationMeta`, the `mutationMeta` property will be used.
-
-:::
 
 ### `queryOptions`
 
 > Works only in `action: "edit"` or `action: "clone"` mode.
 
-in `edit` or `clone` mode, **Refine** uses [`useOne`](/docs/core/hooks/data/use-one) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
+in `edit` or `clone` mode, Refine uses [`useOne`](/docs/core/hooks/data/use-one) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
 
 ```tsx
 useForm({
@@ -818,7 +791,7 @@ useForm({
 
 > This option is only available when `action: "create"` or `action: "clone"`.
 
-In `create` or `clone` mode, **Refine** uses [`useCreate`](/docs/core/hooks/data/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
+In `create` or `clone` mode, Refine uses [`useCreate`](/docs/core/hooks/data/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
 
 ```tsx
 useForm({
@@ -834,7 +807,7 @@ useForm({
 
 > This option is only available when `action: "edit"`.
 
-In `edit` mode, **Refine** uses [`useUpdate`](/docs/core/hooks/data/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
+In `edit` mode, Refine uses [`useUpdate`](/docs/core/hooks/data/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
 
 ```tsx
 useForm({
@@ -848,9 +821,7 @@ useForm({
 
 ### `warnWhenUnsavedChanges`
 
-> Default: `false`
-
-When it's true, Shows a warning when the user tries to leave the page with unsaved changes. It can be used to prevent the user from accidentally leaving the page.
+When it's true, Shows a warning when the user tries to leave the page with unsaved changes. It can be used to prevent the user from accidentally leaving the page. Default value is `false`.
 
 It can be set globally in [`Refine config`](/docs/core/refine-component#warnwhenunsavedchanges).
 
@@ -901,19 +872,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. By default, it is disabled.
 
 ```tsx
 useForm({
@@ -927,9 +892,7 @@ useForm({
 
 #### `debounce`
 
-> Default: `1000`
-
-Set the debounce time for the `autoSave` prop.
+Set the debounce time for the `autoSave` prop. Default value is `1000` milliseconds.
 
 ```tsx
 useForm({
@@ -967,9 +930,9 @@ useForm({
 
 #### `invalidateOnUnmount`
 
-> Default: `false`
-
 This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+
+By default, the `invalidateOnUnmount` prop is set to `false`.
 
 ```tsx
 useForm({
@@ -1152,13 +1115,11 @@ You can use `meta` property to pass common values to the mutation and the query.
 
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/docs/core/refine-component)>** component.
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of [useForm](https://react-hook-form.com/api/useform) hook available in the [React Hook Form](https://react-hook-form.com/).
 
 :::
-
-<br/>
 
 > For example, we can define the `refineCoreProps` property in the `useForm` hook as:
 

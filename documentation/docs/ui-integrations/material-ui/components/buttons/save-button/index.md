@@ -3,9 +3,9 @@ title: Save
 swizzle: true
 ---
 
-`<SaveButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses it for presantation purposes only. Some of the hooks that **Refine** has adds features to this button.
+`<SaveButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses it for presantation purposes only. Some of the hooks that Refine has adds features to this button.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
@@ -116,7 +116,7 @@ render(
 
 <PropsTable module="@refinedev/mui/SaveButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
 

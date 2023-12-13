@@ -1,15 +1,8 @@
 ---
 title: useLogin
-siderbar_label: useLogin
 description: useLogin data hook from Refine is a modified version of react-query's useMutation for authentication.
 source: /packages/core/src/hooks/auth/useLogin/index.ts
 ---
-
-:::caution
-
-This hook can only be used if `authProvider` is provided.
-
-:::
 
 `useLogin` calls `login` method from [`authProvider`](/docs/core/providers/auth-provider) under the hood.
 
@@ -34,11 +27,11 @@ type AuthActionResponse = {
 
 ## Usage
 
-**Refine** provides a default login page which handles the login flow manually.
+Refine provides a default login page which handles the login flow manually.
 
 If you want to use a custom login page however, you can use the `useLogin` hook like this:
 
-```tsx title="pages/customLoginPage"
+```tsx title="pages/custom-login.tsx"
 import { useLogin } from "@refinedev/core";
 import { Form } from "antd";
 
@@ -50,31 +43,33 @@ type LoginVariables = {
 export const LoginPage = () => {
   const { mutate: login } = useLogin<LoginVariables>();
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    const values = {
-      username: e.currentTarget.username.value,
-      password: e.currentTarget.password.value,
-    };
-
-    login(values);
+    login({
+      username: event.currentTarget.username.value,
+      password: event.currentTarget.password.value,
+    });
   };
 
-  return <Form onFinish={onSubmit}>// rest of the login form</Form>;
+  return (
+    <Form
+      // ...
+      onFinish={onSubmit}
+    >
+      {/* ... */}
+    </Form>
+  );
 };
 ```
 
-:::tip
-
 `mutate` acquired from `useLogin` can accept any kind of object for values since `login` method from `authProvider` doesn't have a restriction on its parameters.
+
 A type parameter for the values can be provided to `useLogin`.
 
 ```tsx
 const { mutate: login } = useLogin<{ username: string; password: string }>();
 ```
-
-:::
 
 ## Redirection after login
 
@@ -94,9 +89,9 @@ Then, you can handle this URL in your `login` method of the `authProvider`.
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-  // ---
+  // ...
   login: async ({ redirectPath }) => {
-    // ---
+    // ...
     return {
       success: true,
       redirectTo: redirectPath,

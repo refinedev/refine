@@ -4,7 +4,7 @@ title: Directus
 example-tags: [community, data-provider]
 ---
 
-**Refine** full-featured [Directus](https://directus.io/) Data Provider it allows you to get to your data quickly without requiring any additional setup or code. This example will show how to utilize the **Refine** Directus Provider in this project.
+Refine full-featured [Directus](https://directus.io/) Data Provider it allows you to get to your data quickly without requiring any additional setup or code. This example will show how to utilize the Refine Directus Provider in this project.
 
 [View Directus Example Source](https://github.com/tspvivek/refine-directus)
 

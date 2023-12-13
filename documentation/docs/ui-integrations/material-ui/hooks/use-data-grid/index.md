@@ -11,19 +11,15 @@ By using `useDataGrid`, you can get properties that are compatible with MUI X [`
 
 For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation
 
-:::caution
+:::simple Good to know
 
 💡 The `useDataGrid` hook is compatible with both the [`<DataGrid>`][data-grid] and the [`<DataGridPro>`](https://mui.com/x/react-data-grid/#commercial-version) components.
-
-:::
-
-:::info
 
 This hook is extended from [`useTable`][use-table-core] from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
 
 :::
 
-## Basic usage
+## usage
 
 In basic usage, `useDataGrid` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the URL.
 
@@ -35,11 +31,7 @@ The hook handles pagination by setting the `paginationMode`, `paginationModel` a
 
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
-:::info
-
 If you want to handle the pagination on client-side, you can pass the `pagination.mode` prop to the `useDataGrid` hook and set it to `"client"`.
-
-:::
 
 ```tsx
 export const PostsList: React.FC = () => {
@@ -143,8 +135,6 @@ export const PostsList: React.FC = () => {
 };
 ```
 
-:::tip
-
 Mui X community version only sorts the rows according to one criterion at a time. To use multi-sorting, you need to upgrade to the [Pro plan](https://mui.com/pricing/).
 
 However, multiple sorting can be done server-side without specifying the `sortModel`.
@@ -154,8 +144,6 @@ return <DataGrid {...dataGridProps} sortModel={undefined} autoHeight />;
 ```
 
 When `sortModel` is not passed, it supports more than one criteria at a time, but cannot show which fields are sorted in `<DataGrid>` headers.
-
-:::
 
 ## Filtering
 
@@ -226,8 +214,6 @@ export const PostsList: React.FC = () => {
 };
 ```
 
-:::tip
-
 Mui X community version only filters the rows according to one criterion at a time. To use multi-filtering, you need to upgrade to the [Pro plan](#).
 
 However, multiple filtering can be done server-side without specifying the `filterModel`.
@@ -238,19 +224,11 @@ return <DataGrid {...dataGridProps} filterModel={undefined} autoHeight />;
 
 When `filterModel` is not passed, it supports more than one criteria at a time, but cannot show which fields are filtered in `<DataGrid>` headers.
 
-:::
-
 ## Realtime Updates
 
-:::caution
-
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 When the `useDataGrid` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
-
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
@@ -265,7 +243,10 @@ method={{
     name:"getList",
     URL:"/docs/api-reference/core/providers/data-provider/#getlist"
 }}
+hasDefault={false}
 />
+
+By default, `resource` will be inferred from the current route.
 
 ```tsx
 useDataGrid({
@@ -289,9 +270,7 @@ useDataGrid({
 
 ### `pagination.current`
 
-> Default: `1`
-
-Sets the initial value of the page index.
+Sets the initial value of the page index. Default value is `1`.
 
 ```tsx
 useDataGrid({
@@ -455,11 +434,9 @@ useDataGrid({
 });
 ```
 
-### `syncWithLocation`
+### `syncWithLocation` <GlobalConfigBadge id="api-reference/core/components/refine-config/#syncwithlocation" />
 
 When you use the syncWithLocation feature, the `useDataGrid`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useDataGrid` state is automatically updated to match. This makes it easy to share table states across different routes or pages and allows users to bookmark or share links to specific table views. It is `false` by default.
-
-Also, you can set this value globally on [`<Refine>`][Refine swl] component.
 
 ```tsx
 useDataGrid({
@@ -527,11 +504,7 @@ const myDataProvider = {
 
 ### `successNotification`
 
-:::caution
-
-[`NotificationProvider`][notification-provider] is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useDataGrid` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -549,11 +522,7 @@ useDataGrid({
 
 ### `errorNotification`
 
-:::caution
-
-[`NotificationProvider`][notification-provider] is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useDataGrid` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
@@ -571,11 +540,7 @@ useDataGrid({
 
 ### `liveMode`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -589,11 +554,7 @@ useDataGrid({
 
 ### `onLiveEvent`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -607,11 +568,7 @@ useDataGrid({
 
 ### `liveParams`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
@@ -641,169 +598,37 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### ~~`initialCurrent`~~
-
-:::caution Deprecated
+### ~~`initialCurrent`~~ <PropTag deprecated />
 
 Use `pagination.current` instead.
 
-:::
-
-Sets the initial value of the page index. It is `1` by default.
-
-```tsx
-useDataGrid({
-  initialCurrent: 2,
-});
-```
-
-### ~~`initialPageSize`~~
-
-:::caution Deprecated
+### ~~`initialPageSize`~~ <PropTag deprecated />
 
 Use `pagination.pageSize` instead.
 
-:::
-
-Sets the initial value of the page size. It is `25` by default.
-
-```tsx
-useDataGrid({
-  initialPageSize: 20,
-});
-```
-
-### ~~`hasPagination`~~
-
-:::caution Deprecated
+### ~~`hasPagination`~~ <PropTag deprecated />
 
 Use `pagination.mode` instead.
 
-:::
-
-Determines whether to use server-side pagination or not. It is `true` by default.
-
-```tsx
-useDataGrid({
-  hasPagination: false,
-});
-```
-
-### ~~`initialSorter`~~
-
-:::caution Deprecated
+### ~~`initialSorter`~~ <PropTag deprecated />
 
 Use `sorters.initial` instead.
 
-:::
-
-Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
-
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references#crudsorting)
-
-```tsx
-useDataGrid({
-  initialSorter: [
-    {
-      field: "name",
-      order: "asc",
-    },
-  ],
-});
-```
-
-### ~~`permanentSorter`~~
-
-:::caution Deprecated
+### ~~`permanentSorter`~~ <PropTag deprecated />
 
 Use `sorters.permanent` instead.
 
-:::
-
-Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
-
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references#crudsorting)
-
-```tsx
-useDataGrid({
-  permanentSorter: [
-    {
-      field: "name",
-      order: "asc",
-    },
-  ],
-});
-```
-
-### ~~`initialFilter`~~
-
-:::caution Deprecated
+### ~~`initialFilter`~~ <PropTag deprecated />
 
 Use `filters.initial` instead.
 
-:::
-
-Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
-
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references#crudfilters)
-
-```tsx
-useDataGrid({
-  initialFilter: [
-    {
-      field: "name",
-      operator: "contains",
-      value: "Foo",
-    },
-  ],
-});
-```
-
-### ~~`permanentFilter`~~
-
-:::caution Deprecated
+### ~~`permanentFilter`~~ <PropTag deprecated />
 
 Use `filters.permanent` instead.
 
-:::
-
-Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
-
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references#crudfilters)
-
-```tsx
-useDataGrid({
-  permanentFilter: [
-    {
-      field: "name",
-      operator: "contains",
-      value: "Foo",
-    },
-  ],
-});
-```
-
-### ~~`defaultSetFilterBehavior`~~
-
-:::caution Deprecated
+### ~~`defaultSetFilterBehavior`~~ <PropTag deprecated />
 
 Use `filters.defaultBehavior` instead.
-
-:::
-
-The filtering behavior can be set to either `"merge"` or `"replace"`. It is `merge` by default.
-
-- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
-
-- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
-
-You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
-
-```tsx
-useDataGrid({
-  defaultSetFilterBehavior: "replace",
-});
-```
 
 ## Return Values
 
@@ -823,11 +648,7 @@ Current `GridSortModel` compatible with [`<DataGrid>`][data-grid] component.
 
 When the user sorts a column, this function is called with the new sort model.
 
-:::caution
-
 `dataGridProps.onSortModelChange` automatically transform `GridSortModel` to [`CrudSorting`][crudsorting] and call `setSorter` function. If you want to override it, you can use like this:
-
-:::
 
 ```tsx
 <DataGrid
@@ -853,11 +674,7 @@ Current `GridFilterModel` compatible with [`<DataGrid>`][data-grid] component.
 
 When the user filters a column, this function is called with the new filter model.
 
-:::caution
-
 `dataGridProps.onFilterModelChange` automatically transform `GridFilterModel` to [`CrudFilters`][crudfilters] and call `setFilters` function. If you want to override it, you can use like this:
-
-:::
 
 ```tsx
 <DataGrid
@@ -875,11 +692,7 @@ When the user filters a column, this function is called with the new filter mode
 
 When the user sorts or filters a column, this function is called with the new state.
 
-:::caution
-
 The `onStateChange` callback is used internally by the `useDataGrid` hook. If you want to override it, you can use like this:
-
-:::
 
 ```tsx
 <DataGrid
@@ -983,29 +796,13 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
-### ~~`sorter`~~
-
-:::caution Deprecated
+### ~~`sorter`~~ <PropTag deprecated />
 
 Use `sorters` instead.
 
-:::
-
-Current [sorters state][crudsorting].
-
-### ~~`setSorter`~~
-
-:::caution Deprecated
+### ~~`setSorter`~~ <PropTag deprecated />
 
 Use `setSorters` instead.
-
-:::
-
-A function to set current [sorters state][crudsorting].
-
-```tsx
- (sorters: CrudSorting) => void;
-```
 
 ## FAQ
 

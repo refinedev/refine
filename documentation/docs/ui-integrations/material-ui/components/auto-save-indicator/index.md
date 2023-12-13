@@ -1,13 +1,12 @@
 ---
-title: <AutoSaveIndicator>
-sidebar_label: <AutoSaveIndicator>
+title: <AutoSaveIndicator />
 description: <AutoSaveIndicator> component shows `autoSave` status on edit actions.
 source: packages/antd/src/components/autoSaveIndicator/index.tsx
 ---
 
-`<AutoSaveIndicator>` component from **Refine** for **Material UI** can be used to communicate auto-save status to the user.
+`<AutoSaveIndicator>` component from Refine for **Material UI** can be used to communicate auto-save status to the user.
 
-Simple usage is as follows:
+## Usage
 
 ```tsx
 import { AutoSaveIndicator, useForm } from "@refinedev/mui";

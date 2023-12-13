@@ -2,17 +2,17 @@
 title: Routing
 ---
 
-Routing is essential for any CRUD application. **Refine**'s headless architecture allows you to use any router solution, without being locked into a specific router/framework.
+Routing is essential for any CRUD application. Refine's headless architecture allows you to use any router solution, without being locked into a specific router/framework.
 
-**Refine** also offers built-in router integrations for the most popular frameworks such as **React Router**, **Next.js** and **Remix**.
+Refine also offers built-in router integrations for the most popular frameworks such as **React Router**, **Next.js** and **Remix**.
 
-These integrations makes it easier to use **Refine** with these frameworks and offers a lot of benefits such as:
+These integrations makes it easier to use Refine with these frameworks and offers a lot of benefits such as:
 
 - Automatic parameter detection in hooks/components.
 - Automatic redirections after mutation or authentication.
 - Set of utility components & hooks which can be used to navigate between pages/routes.
 
-Since **Refine** is router agnostic, you are responsible for creating your own routes.
+Since Refine is router agnostic, you are responsible for creating your own routes.
 
 If you are using **React Router**, you'll be defining your routes under the `Routes` component.<br />
 If you are using **Next.js**, you'll be defining your routes in the `pages` or `app` directory.<br />
@@ -20,7 +20,7 @@ If you are using **Remix**, you'll be defining your routes in the `app/routes` d
 
 ## Router Integrations
 
-To integrate a router provider with **Refine**, all you need to do is to import the router integration of your choice and pass it to the `<Refine />`'s `routerProvider` prop.
+To integrate a router provider with Refine, all you need to do is to import the router integration of your choice and pass it to the `<Refine />`'s `routerProvider` prop.
 
 <Tabs>
 <TabItem value="react-router-v6" label="React Router v6" default>
@@ -121,7 +121,7 @@ Once you passed router provider to `<Refine />` component, you can use all the f
 
 ## Relationship Between Resources and Routes <GuideBadge id="guides-concepts/general-concepts" />
 
-**Refine** can infer current `resource`, `action` and it's `id` from the **current route** based on your **resource definitions**.
+Refine can infer current `resource`, `action` and it's `id` from the **current route** based on your **resource definitions**.
 
 This eliminates the need of passing these parameters to the components/hooks manually.
 
@@ -172,7 +172,7 @@ import { RemixResourceAndRoutesUsage } from "./remix/resource-and-routes-usage";
 
 ### useForm <GuideBadge id="guides-concepts/forms/#integration-with-routers" />
 
-Router integration of **Refine** allows you to use `useForm` without passing **resource**, **id** and **action** parameters.
+Router integration of Refine allows you to use `useForm` without passing **resource**, **id** and **action** parameters.
 It will also redirect you to resource's action route defined in `redirect` prop. `redirect` prop is `list` by default.
 
 import { ReactRouterUseFormUsage } from "./react-router/use-form-usage";

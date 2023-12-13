@@ -1,15 +1,8 @@
 ---
 title: useForgotPassword
-siderbar_label: useForgotPassword
 description: useForgotPassword data hook from Refine is a modified version of react-query's useMutation for registration.
 source: /packages/core/src/hooks/auth/useForgotPassword/index.ts
 ---
-
-:::caution
-
-This hook can only be used if `authProvider` is provided.
-
-:::
 
 `useForgotPassword` calls the `forgotPassword` method from [`authProvider`](/docs/core/providers/auth-provider) under the hood.
 
@@ -34,7 +27,7 @@ type AuthActionResponse = {
 
 ## Usage
 
-**Refine** provides a default 'forgot password' page which handles the forgot password flow manually.
+Refine provides a default 'forgot password' page which handles the forgot password flow manually.
 
 If you want to use a custom 'forgot password' page however, you can use the `useForgotPassword` hook like this:
 
@@ -68,8 +61,6 @@ export const ForgotPasswordPage = () => {
 };
 ```
 
-:::tip
-
 `mutate` acquired from the `useForgotPassword` hook can accept any kind of object for values because the `forgotPassword` method from `authProvider` doesn't have a restriction on its parameters.
 A type parameter for the values can be provided to `useForgotPassword`:
 
@@ -78,8 +69,6 @@ import { useForgotPassword } from "@refinedev/core";
 
 const { mutate: forgotPassword } = useForgotPassword<{ email: string }>();
 ```
-
-:::
 
 ## Redirection after forgotPassword
 
@@ -99,9 +88,9 @@ Then, you can handle this URL in your `forgotPassword` method of the `authProvid
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-  // ---
+  // ...
   forgotPassword: async ({ redirectPath }) => {
-    // ---
+    // ...
     return {
       success: true,
       redirectTo: redirectPath,

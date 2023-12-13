@@ -371,7 +371,7 @@ export const UserCreate: React.FC = () => {
 
 ## How can I refetch data?
 
-**Refine** automatically invalidates the affected resources after mutations. However, in some cases you may want to refetch manually.
+Refine automatically invalidates the affected resources after mutations. However, in some cases you may want to refetch manually.
 
 <Tabs
 defaultValue="refetch"
@@ -429,14 +429,14 @@ invalidate({
 });
 ```
 
-[Refer to the **Refine** useInvalidate hook documentation for more information. →](/docs/core/hooks/data/use-invalidate)
+[Refer to the Refine useInvalidate hook documentation for more information. →](/docs/core/hooks/data/use-invalidate)
 
 </TabItem>
 </Tabs>
 
 ## How can I request an API with nested route?
 
-**Refine**'s way of doing this is with the `resource` property on all data hooks. You can think of the `resource` property as the URL.
+Refine's way of doing this is with the `resource` property on all data hooks. You can think of the `resource` property as the URL.
 
 For example, If you want to make a request of the URL `/user/1/posts`.
 
@@ -763,13 +763,13 @@ const App = () => {
 
 ## How do invalidation works in queries?
 
-**Refine** invalidates for the specific scope of queries after a successful mutation. The scope of the invalidation can be customized by the `invalidates` prop in the mutation hooks.
+Refine invalidates for the specific scope of queries after a successful mutation. The scope of the invalidation can be customized by the `invalidates` prop in the mutation hooks.
 
-By default, **Refine** invalidates all the queries that are in the defined scope and only triggers a refetch for the active queries (mounted and enabled). This is done to prevent unnecessary refetches and for more precise invalidation.
+By default, Refine invalidates all the queries that are in the defined scope and only triggers a refetch for the active queries (mounted and enabled). This is done to prevent unnecessary refetches and for more precise invalidation.
 
-In realtime updates, **Refine** will invalidate and refetch all the active queries that are in the defined scope.
+In realtime updates, Refine will invalidate and refetch all the active queries that are in the defined scope.
 
-In both cases, if there are any ongoing queries, **Refine** will keep them as they are and will not invalidate or refetch them.
+In both cases, if there are any ongoing queries, Refine will keep them as they are and will not invalidate or refetch them.
 
 ## Handling client side pagination along with client side filtering and sorting
 

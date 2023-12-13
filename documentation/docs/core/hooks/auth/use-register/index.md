@@ -1,15 +1,8 @@
 ---
 title: useRegister
-siderbar_label: useRegister
 description: useRegister data hook from Refine is a modified version of react-query's useMutation for registration.
 source: /packages/core/src/hooks/auth/useRegister/index.ts
 ---
-
-:::caution
-
-This hook can only be used if `authProvider` is provided.
-
-:::
 
 `useRegister` calls `register` method from [`authProvider`](/docs/core/providers/auth-provider) under the hood.
 
@@ -34,7 +27,7 @@ type AuthActionResponse = {
 
 ## Usage
 
-**Refine** provides a default registration page, page which handles the registration flow manually.
+Refine provides a default registration page, page which handles the registration flow manually.
 If you want to use a custom registration page however, you can use the `useRegister` hook like this:
 
 ```tsx title="pages/customRegisterPage"
@@ -71,16 +64,12 @@ export const RegisterPage = () => {
 };
 ```
 
-:::tip
-
 `mutate` acquired from the `useRegister` hook can accept any kind of object for values since the `register` method from `authProvider` doesn't have a restriction on its parameters.
 A type parameter for the values can be provided to `useRegister`.
 
 ```tsx
 const { mutate: register } = useRegister<{ email: string; password: string }>();
 ```
-
-:::
 
 ## Logged In after successful registration
 
@@ -143,9 +132,9 @@ Then, you can handle this URL in your `register` method of the `authProvider`:
 
 ```tsx
 const authProvider: AuthBindings = {
-  // ---
+  // ...
   register: ({ redirectPath }) => {
-    // ---
+    // ...
     return {
       success: true,
       redirectTo: redirectPath,

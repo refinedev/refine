@@ -1,17 +1,12 @@
 ---
 title: useDrawerForm
-sidebar_label: useDrawerForm
 ---
 
 The `useDrawerForm` hook allows you to manage a form within a Drawer. It returns the Ant Design [`<Form>`](https://ant.design/components/form/) and [`<Drawer>`](https://ant.design/components/drawer/) components props.
 
-:::info
-
 The`useDrawerForm` hook is extended from [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/master/packages/antd) package. This means that you can use all the features of [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) hook with it.
 
-:::
-
-## Basic Usage
+## Usage
 
 We will show two examples, one for creating a post and one for editing it. Let's see how `useDrwaerForm` is used in them.
 
@@ -253,9 +248,7 @@ setRefineProps({
 render(<RefineAntdDemo />);
 ```
 
-:::caution
-
-**Refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens the edit form in `<Drawer>` when clicked.
+Refine doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens the edit form in `<Drawer>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list manually. In that way, `<Edit>` form in `<Drawer>` can fetch data by the record `id`.
 
@@ -268,13 +261,7 @@ So, we have to put the `<EditButton/>` on our list manually. In that way, `<Edit
 />
 ```
 
-:::
-
-:::caution
-
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
-
-:::
 
 </TabItem>
 
@@ -282,11 +269,7 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 
 ## Properties
 
-:::tip
-
 All [`useForm`][antd-use-form] props are also available in `useDrawerForm`. You can find descriptions on the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#properties) documentation.
-
-:::
 
 ### `syncWithLocation`
 
@@ -334,19 +317,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. Default value is `false`.
 
 ```tsx
 useDrawerForm({
@@ -358,9 +335,7 @@ useDrawerForm({
 
 #### `debounce`
 
-> Default: `1000`
-
-Set the debounce time for the `autoSave` prop.
+Set the debounce time for the `autoSave` prop. Default value is `1000` milliseconds.
 
 ```tsx
 useDrawerForm({
@@ -394,9 +369,7 @@ useDrawerForm({
 
 #### `invalidateOnUnmount`
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. Default value is `false`.
 
 ```tsx
 useDrawerForm({
@@ -410,9 +383,7 @@ useDrawerForm({
 
 #### `invalidateOnClose`
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the drawer is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the drawer is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. Default value is `false`.
 
 ```tsx
 useDrawerForm({
@@ -454,9 +425,7 @@ It's required to manage [`<Drawer>`](https://ant.design/components/drawer/#API) 
 
 #### `width`
 
-> Default: `"500px"`
-
-It's the width of the `<Drawer>`.
+It's the width of the `<Drawer>`. Default value is `"500px"`.
 
 #### `onClose`
 
@@ -465,15 +434,11 @@ When [`warnWhenUnsavedChanges`](/docs/ui-integrations/ant-design/hooks/use-form#
 
 #### `open`
 
-> Default: `false`
-
-Current visible state of `<Drawer>`.
+Current visible state of `<Drawer>`. Default value is `false`.
 
 #### `forceRender`
 
-> Default: `true`
-
-It renders `<Drawer>` instead of lazy rendering it.
+It renders `<Drawer>` instead of lazy rendering it. Default value is `true`.
 
 ### `overtime`
 
@@ -558,19 +523,25 @@ export const UserCreate: React.FC = () => {
 
 ### Return Value
 
-| Key               | Description                                                  | Type                                                                                                                                    |
-| ----------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
-| show              | A function that opens the drawer                             | `(id?: BaseKey) => void`                                                                                                                |
-| form              | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                          |
-| formProps         | Ant Design form props                                        | [`FormProps`](/docs/ui-integrations/ant-design/hooks/use-form#properties)                                                               |
-| drawerProps       | Props for managed drawer                                     | [`DrawerProps`](#drawerprops)                                                                                                           |
-| saveButtonProps   | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                         |
-| deleteButtonProps | Adds props for delete button                                 | [`DeleteButtonProps`](/docs/core/interface-references#delete-button-props)                                                              |
-| submit            | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                            |
-| open              | Whether the drawer is open or not                            | `boolean`                                                                                                                               |
-| close             | Specify a function that can close the drawer                 | `() => void`                                                                                                                            |
-| overtime          | Overtime loading props                                       | `{ elapsedTime?: number }`                                                                                                              |
-| autoSaveProps     | Auto save props                                              | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }` |
+| resourceName? | `string` |
+| recordItemId? | [`BaseKey`](#basekey) |
+| onSuccess? | `<TData = BaseRecord>(value: { data: TData; }) => void;` |
+| mutationMode? | [`MutationMode`](#mutationmode) |
+| hideText? | `boolean` |
+
+| Key               | Description                                                  | Type                                                                                                                                     |
+| ----------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| show              | A function that opens the drawer                             | `(id?: BaseKey) => void`                                                                                                                 |
+| form              | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                           |
+| formProps         | Ant Design form props                                        | [`FormProps`](/docs/ui-integrations/ant-design/hooks/use-form#properties)                                                                |
+| drawerProps       | Props for managed drawer                                     | [`DrawerProps`](#drawerprops)                                                                                                            |
+| saveButtonProps   | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                          |
+| deleteButtonProps | Adds props for delete button                                 | `{ resourceName?: string; recordItemId?: BaseKey; onSuccess?: (data: TData) => void; mutationMode?: MutationMode; hideText?: boolean; }` |
+| submit            | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                             |
+| open              | Whether the drawer is open or not                            | `boolean`                                                                                                                                |
+| close             | Specify a function that can close the drawer                 | `() => void`                                                                                                                             |
+| overtime          | Overtime loading props                                       | `{ elapsedTime?: number }`                                                                                                               |
+| autoSaveProps     | Auto save props                                              | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`  |
 
 ## Example
 

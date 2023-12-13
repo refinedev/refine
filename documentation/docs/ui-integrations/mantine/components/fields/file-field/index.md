@@ -28,7 +28,7 @@ const Wrapper = ({ children }) => {
 
 This field is used to display files and it uses the [`<Anchor>`](https://mantine.dev/core/anchor) component of Mantine.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -132,7 +132,7 @@ render(
 );
 ```
 
-:::tip
+:::simple Implementation Tips
 
 If you don't use `title` prop it will use `src` as `title`
 

@@ -20,7 +20,7 @@ const Wrapper = ({ children }) => {
 
 This field lets you show basic text. It uses Chakra UI's [`<Text>`](https://chakra-ui.com/docs/components/text/usage) component.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -105,7 +105,7 @@ render(
 
 <PropsTable module="@refinedev/chakra-ui/TextField" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Chakra UI's [Text](https://chakra-ui.com/docs/components/text/usage) component.
 

@@ -1,11 +1,8 @@
 ---
 title: Live Provider
-sidebar_label: Live Provider
 ---
 
-## Overview
-
-**Live Provider** is **Refine**'s built-in provider that enables real-time updates and interactions between the server and the client. **Refine** being agnostic as always allows you to integrate any solution of your choice
+**Live Provider** is Refine's built-in provider that enables real-time updates and interactions between the server and the client. Refine being agnostic as always allows you to integrate any solution of your choice
 
 A live provider must include the following methods:
 
@@ -21,7 +18,7 @@ const liveProvider = {
 
 We have the following built-in integrations which you can use out-of-the-box.
 
-**Refine** includes some out-of-the-box live providers to use in your projects such as:
+Refine includes some out-of-the-box live providers to use in your projects such as:
 
 - **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
 - **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
@@ -31,7 +28,7 @@ We have the following built-in integrations which you can use out-of-the-box.
 
 ## Live Mode Options
 
-To activate live features in **Refine**, you need to use the `liveMode` option.
+To activate live features in Refine, you need to use the `liveMode` option.
 
 **Global Configuration**: Add liveMode to the options prop of the `<Refine>` component. This sets it up for your entire application, and all hooks will automatically use this by default.
 
@@ -190,7 +187,7 @@ Since the following hooks are using `useMany` hook, they will subscribe to the s
 
 ## Publish Events from Hooks
 
-**Refine** publishes these events in the hooks. Let's see the usage of hooks and what kind of events are published:
+Refine publishes these events in the hooks. Let's see the usage of hooks and what kind of events are published:
 
 ### `useCreate`
 

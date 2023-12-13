@@ -15,20 +15,16 @@ Let's say we have two data providers:
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 
-const App = () => {
-  return (
-    <Refine
-      dataProvider={{
-        default: dataProvider("API_URL"),
-        second: dataProvider("SECOND_API_URL"),
-      }}
-    >
-      {/* ... */}
-    </Refine>
-  );
-};
-
-export default App;
+const App = () => (
+  <Refine
+    dataProvider={{
+      default: dataProvider("API_URL"),
+      second: dataProvider("SECOND_API_URL"),
+    }}
+  >
+    {/* ... */}
+  </Refine>
+);
 ```
 
 Now we can access the data providers with the `useDataProvider` hook:
@@ -42,7 +38,7 @@ const defaultDataProvider = dataProvider(); // return default data provider
 const secondDataProvider = dataProvider("second"); // return second data provider
 ```
 
-## API
+## API Reference
 
 ### Properties
 

@@ -96,7 +96,7 @@ render(<App />);
 
 Each blog post includes the `category` field, which has an `id` property. This is a foreign key that points to the `categories` resource, which is different from the `blog_posts` resource.
 
-There is a `title` field in the `categories` resource; to display it in the table, we can use the `useMany` hook provided by **Refine**.
+There is a `title` field in the `categories` resource; to display it in the table, we can use the `useMany` hook provided by Refine.
 
 This hook allows us to fetch data for multiple records in a single request by providing the `id`'s of the related records. In this case, we need to provide the `id`'s of the blog posts categories. It is particularly useful when we need to fetch related data for multiple records.
 

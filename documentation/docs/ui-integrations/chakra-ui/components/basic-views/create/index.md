@@ -127,7 +127,7 @@ render(
 );
 ```
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
@@ -364,15 +364,9 @@ render(
 );
 ```
 
-### `breadcrumb`
+### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/chakra-ui` package.
-
-:::tip
-
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
-
-:::
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);

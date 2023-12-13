@@ -2,9 +2,11 @@
 title: useGetLocale
 ---
 
-If you need to know the current locale, Refine provides the `useGetLocale` hook. It returns the `getLocale` method from `i18nProvider` under the hood.
+If you need to know the current locale, Refine provides the `useGetLocale` hook. It returns the `getLocale` method from [`i18nProvider`](/docs/core/providers/i18n-provider/#usage) under the hood.
 
 ## Usage
+
+> This hook can only be used if [`i18nProvider`](/docs/core/providers/i18n-provider/#usage) is provided.
 
 You can get the `locale` value from the `i18nProvider` that you provided.
 For example, `<LanguageSwitcher>` component needs to know the current locale in order to disable the button for the current language.
@@ -31,9 +33,3 @@ export const LanguageSwitcher = () => {
   );
 };
 ```
-
-:::caution
-
-This hook can only be used if `i18nProvider` is provided.
-
-:::

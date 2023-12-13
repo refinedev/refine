@@ -1,6 +1,5 @@
 ---
 title: useCustom
-siderbar_label: useCustom
 source: packages/core/src/hooks/data/useCustom.ts
 ---
 
@@ -8,7 +7,7 @@ source: packages/core/src/hooks/data/useCustom.ts
 
 It uses the `custom` method as the **query function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
 
-:::danger attention
+:::caution Use Cases
 
 `useCustom` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/core/hooks/data/use-create), [useUpdate](/docs/core/hooks/data/use-update) or [useDelete](/docs/core/hooks/data/use-delete)
 
@@ -146,13 +145,9 @@ useCustom({
 });
 ```
 
-### ~~`config.sort`~~
-
-:::caution Deprecated
+### ~~`config.sort`~~ <PropTag deprecated />
 
 Use `config.sorters` instead.
-
-:::
 
 ### `queryOptions`
 
@@ -212,11 +207,7 @@ useCustom({
 
 ### `successNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCustom` calls the `open` function from `NotificationProvider`:
 
@@ -234,11 +225,7 @@ useCustom({
 
 ### `errorNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useCustom` calls the `open` function from `NotificationProvider`
 
@@ -306,13 +293,7 @@ useCustom({
 });
 ```
 
-:::tip
-
-By default, the query key is generated based on the properties passed to `useCustom` hook, you can see it in the `@tanstack/react-query` devtools panel.
-
-:::
-
-## API
+## API Reference
 
 ### Properties
 

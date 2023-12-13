@@ -5,7 +5,7 @@ swizzle: true
 
 This field lets you display a value in a tag. It uses Material UI's [`<Chip>`](https://mui.com/material-ui/react-chip/#main-content) component.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -76,7 +76,7 @@ render(
 
 <PropsTable module="@refinedev/mui/TagField" value-description="Tag content" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Chip](https://mui.com/material-ui/react-chip/#main-content).
 

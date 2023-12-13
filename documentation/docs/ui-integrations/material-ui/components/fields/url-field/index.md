@@ -5,7 +5,7 @@ swizzle: true
 
 This field lets you embed a link. It uses Material UI's [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) and [`Link`](https://mui.com/material-ui/react-link/#main-content) components. You can pass a URL in its `value` prop and you can show a text in its place by passing any `children`.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -80,7 +80,7 @@ render(
 
 <PropsTable module="@refinedev/mui/UrlField" value-description="URL for link to reference to"/>
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Link](https://mui.com/material-ui/react-link/#main-content).
 

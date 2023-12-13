@@ -1,7 +1,6 @@
 ---
 title: Introduction
 source: /packages/react-table/src/useTable
-sidebar_label: Introduction
 ---
 
 import BaseHeadlessTable from "../examples/headless";

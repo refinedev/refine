@@ -5,7 +5,7 @@ swizzle: true
 
 This field is used to display email values. It uses the [`<Link>`](https://ant.design/components/typography/#FAQ) component of [`<Typography>`](https://ant.design/components/typography) from Ant Design.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -63,7 +63,7 @@ render(
 );
 ```
 
-:::tip
+:::simple Implementation Tips
 
 `<EmailField>` uses "mailto:" in the href prop of the `<Link>` component. For this reason, clicking `<EmailField>` opens your device's default mail application.
 
@@ -73,7 +73,7 @@ render(
 
 <PropsTable module="@refinedev/antd/EmailField" />
 
-:::tip External Props
+:::simple External Props
 
 This field also accepts all props of Ant Design's [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router) component.
 

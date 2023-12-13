@@ -1,15 +1,8 @@
 ---
 title: useGetIdentity
-siderbar_label: useGetIdentity
 description: useGetIdentity data hook from Refine is a modified version of react-query's useQuery for retrieving user data
 source: /packages/core/src/hooks/auth/useGetIdentity/index.ts
 ---
-
-:::caution
-
-This hook can only be used if the `authProvider` is provided.
-
-:::
 
 `useGetIdentity` calls the `getIdentity` method from the [`authProvider`](/docs/core/providers/auth-provider) under the hood.
 
@@ -29,7 +22,7 @@ We have a logic in [`authProvider`](/docs/core/providers/auth-provider)'s `getId
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-  // ---
+  // ...
   // highlight-start
   getIdentity: async () => {
     return {
@@ -38,11 +31,8 @@ const authProvider: AuthBindings = {
     };
   },
   // highlight-end
-  // ---
 };
 ```
-
-<br/>
 
 You can access identity data like below:
 
@@ -50,13 +40,15 @@ You can access identity data like below:
 // highlight-next-line
 import { useGetIdentity } from "@refinedev/core";
 
-export const User: React.FC = () => {
+export const User = () => {
   // highlight-next-line
-  const { data: identity } = useGetIdentity<{
-    id: number;
-    fullName: string;
-  }>();
+  const { data: identity } = useGetIdentity<IIdentity>();
 
   return <span>{identity?.fullName}</span>;
+};
+
+type IIdentity = {
+  id: number;
+  fullName: string;
 };
 ```

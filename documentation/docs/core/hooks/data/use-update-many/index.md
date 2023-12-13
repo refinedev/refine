@@ -10,13 +10,9 @@ source: packages/core/src/hooks/data/useUpdateMany.ts
 
 It is useful when you want to update many records at once.
 
-:::caution
-
 If your data provider does not have a `updateMany` method, `useUpdateMany` will use the `update` method instead. It is not recommended, because it will make requests one by one for each id. It is better to implement the `updateMany` method in the data provider.
 
-:::
-
-## Basic Usage
+## Usage
 
 The `useUpdateMany` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values`, `resource`, and `ids` as parameters. These parameters will be passed to the `updateMany` method from the `dataProvider` as parameters.
 
@@ -41,8 +37,6 @@ mutate({
 
 When the `useUpdateMany` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/core/providers/live-provider)
-
 ## Invalidating Queries
 
 When the `useUpdateMany` mutation runs successfully, by default it will invalidate the following queries from the current `resource`: `"list"`, `"many"`, and `"detail"`. That means, if you use `useList`, `useMany`, or `useOne` hooks on the same page, they will refetch the data after the mutation is completed. You can change this behavior by passing [`invalidates`](#invalidates) prop.
@@ -64,8 +58,6 @@ useUpdateMany({
   },
 });
 ```
-
-:::tip
 
 `mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate functions like this:
 
@@ -91,8 +83,6 @@ mutate(
   },
 );
 ```
-
-:::
 
 ### `overtimeOptions`
 
@@ -352,12 +342,6 @@ If the mutation mode is defined as `optimistic` or `undoable` the `useUpdate` ho
 
 When the mutation mode is set to `optimistic` or `undoable`, the `useUpdate` hook will automatically update the cache without waiting for a server response. If you need to customize update logic, you can achieve it by using the `optimisticUpdateMap` prop.
 
-:::caution
-
-This feature only works when `mutationMode` is set to `optimistic` or `undoable`.
-
-:::
-
 `list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. To automatically update the cache, you should pass `true`. If you don't want to update the cache, you should pass `false`.
 
 ```tsx
@@ -483,27 +467,25 @@ const { overtime } = useUpdateMany();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-## API
+## API Reference
 
 ### Mutation Parameters
 
-| Property                                                                                            | Description                                                                                        | Type                                                                                   | Default                                                      |
-| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                               |                                                              |
-| ids <div className=" required">Required</div>                                                       | id for mutation function                                                                           | [`BaseKey[]`](/docs/core/interface-references#basekey)                                 |                                                              |
-| values <div className=" required">Required</div>                                                    | Values for mutation function                                                                       | `TVariables`                                                                           | {}                                                           |
-| mutationMode                                                                                        | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                       | `"pessimistic"`\*                                            |
-| undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                               | `5000ms`\*                                                   |
-| onCancel                                                                                            | Provides a function to cancel the mutation when `mutationMode = "undoable"`                        | `(cancelMutation: () => void) => void`                                                 |                                                              |
-| successNotification                                                                                 | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "Successfully updated `resource`"                            |
-| errorNotification                                                                                   | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "Error when updating `resource` (status code: `statusCode`)" |
-| meta                                                                                                | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/core/interface-references#metadataquery)                       | {}                                                           |
-| dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                               | `default`                                                    |
-| invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                | `["list", "many", "detail"]`                                 |
+| Property                      | Description                                                                                        | Type                                                                                   | Default                                                      |
+| ----------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| resource <PropTag asterisk /> | Resource name for API data interactions                                                            | `string`                                                                               |                                                              |
+| ids <PropTag asterisk />      | id for mutation function                                                                           | [`BaseKey[]`](/docs/core/interface-references#basekey)                                 |                                                              |
+| values <PropTag asterisk />   | Values for mutation function                                                                       | `TVariables`                                                                           | {}                                                           |
+| mutationMode                  | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                       | `"pessimistic"`\*                                            |
+| undoableTimeout               | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                               | `5000ms`\*                                                   |
+| onCancel                      | Provides a function to cancel the mutation when `mutationMode = "undoable"`                        | `(cancelMutation: () => void) => void`                                                 |                                                              |
+| successNotification           | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "Successfully updated `resource`"                            |
+| errorNotification             | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "Error when updating `resource` (status code: `statusCode`)" |
+| meta                          | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/core/interface-references#metaquery)                           | {}                                                           |
+| dataProviderName              | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                               | `default`                                                    |
+| invalidates                   | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                | `["list", "many", "detail"]`                                 |
 
 > `*`: These props have default values in `RefineContext` and can also be set on [`<Refine>`](/docs/core/refine-component) component. `useUpdateMany` will use what is passed to `<Refine>` as default but a local value will override it.
-
-<br/>
 
 ### Type Parameters
 

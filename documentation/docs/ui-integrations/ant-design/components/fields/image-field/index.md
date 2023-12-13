@@ -5,7 +5,7 @@ swizzle: true
 
 This field is used to display images and uses [`<Image>`](https://ant.design/components/image/#header) from Ant Design.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -78,7 +78,7 @@ render(
 
 <PropsTable module="@refinedev/antd/ImageField" value-description="Image path"/>
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Ant Design [Image](https://ant.design/components/image/#API).
 

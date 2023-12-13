@@ -8,7 +8,7 @@ source: packages/core/src/hooks/data/useDelete.ts
 
 It uses the `deleteOne` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
 
-## Basic Usage
+## Usage
 
 The `useDelete` hook returns many useful properties and methods. One of them is the `mutate` method which expects `resource` and `id` as parameters. These parameters will be passed to the `deleteOne` method from the `dataProvider` as parameters.
 
@@ -25,15 +25,9 @@ mutate({
 
 ## Realtime Updates
 
-:::caution
-
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
-
-:::
+> This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
 
 When the `useDelete` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. This is useful when you want to publish the changes to the subscribers on the client side.
-
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider)
 
 ## Invalidating Queries
 
@@ -43,15 +37,9 @@ When the `useDelete` mutation runs successfully, it will invalidate the followin
 
 ## Audit Logs
 
-:::caution
-
-This feature is only available if you use a [Audit Log Provider](/docs/core/providers/audit-log-provider).
-
-:::
+> This feature is only available if you use a [Audit Log Provider](/docs/core/providers/audit-log-provider).
 
 When the `useDelete` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data`, `previousData` etc. This is useful when you want to log the changes to the database.
-
-> For more information, refer to the [`auditLogProvider` documentation &#8594](/docs/core/providers/audit-log-provider)
 
 ## Properties
 
@@ -68,8 +56,6 @@ useDelete({
   },
 });
 ```
-
-:::tip
 
 `mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate functions like this:
 
@@ -91,8 +77,6 @@ mutate(
   },
 );
 ```
-
-:::
 
 ### `overtimeOptions`
 
@@ -219,11 +203,7 @@ const MyComponent = () => {
 
 ### `successNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useDelete` calls the `open` function from `NotificationProvider`:
 
@@ -243,11 +223,7 @@ mutate({
 
 ### `errorNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useDelete` calls the `open` function from `NotificationProvider`:
 
@@ -357,30 +333,28 @@ const { overtime } = useDelete();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-## API
+## API Reference
 
 ### Mutation Parameters
 
-| Property                                                                                            | Description                                                                                        | Type                                                                                   | Default                             |
-| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                               |                                     |
-| id <div className=" required">Required</div>                                                        | id for mutation function                                                                           | [`BaseKey`](/docs/core/interface-references#basekey)                                   |                                     |
-| mutationMode                                                                                        | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                       | `"pessimistic"`\*                   |
-| undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                               | `5000ms`\*                          |
-| onCancel                                                                                            | Provides a function to cancel the mutation when `mutationMode = "undoable"`                        | `(cancelMutation: () => void) => void`                                                 |                                     |
-| successNotification                                                                                 | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "Successfully deleted a `resource`" |
-| errorNotification                                                                                   | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "Error (status code: `status`"      |
-| meta                                                                                                | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/core/interface-references#metadataquery)                       | {}                                  |
-| dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                               | `default`                           |
-| invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                | `["list", "many"]`                  |
+| Property                      | Description                                                                                        | Type                                                                                   | Default                             |
+| ----------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------- |
+| resource <PropTag asterisk /> | Resource name for API data interactions                                                            | `string`                                                                               |                                     |
+| id <PropTag asterisk />       | id for mutation function                                                                           | [`BaseKey`](/docs/core/interface-references#basekey)                                   |                                     |
+| mutationMode                  | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                       | `"pessimistic"`\*                   |
+| undoableTimeout               | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                               | `5000ms`\*                          |
+| onCancel                      | Provides a function to cancel the mutation when `mutationMode = "undoable"`                        | `(cancelMutation: () => void) => void`                                                 |                                     |
+| successNotification           | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "Successfully deleted a `resource`" |
+| errorNotification             | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "Error (status code: `status`"      |
+| meta                          | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/core/interface-references#metaquery)                           | {}                                  |
+| dataProviderName              | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                               | `default`                           |
+| invalidates                   | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                | `["list", "many"]`                  |
 
-:::note
+:::simple Global Configuration
 
 These props have default values in `RefineContext` and can also be set on [`<Refine>`](/docs/core/refine-component) component. `useDelete` will use what is passed to `<Refine>` as default but a local value will override it.
 
 :::
-
-<br/>
 
 ### Type Parameters
 

@@ -1,11 +1,12 @@
 ---
-title: <AutoSaveIndicator>
-sidebar_label: <AutoSaveIndicator>
+title: <AutoSaveIndicator />
 description: <AutoSaveIndicator> component shows `autoSave` status on edit actions.
 source: packages/chakra-ui/src/components/autoSaveIndicator/index.tsx
 ---
 
-`<AutoSaveIndicator>` component from **Refine** for **Chakra UI** can be used to communicate auto-save status to the user.
+`<AutoSaveIndicator>` component from Refine for **Chakra UI** can be used to communicate auto-save status to the user.
+
+## Usage
 
 Simple usage is as follows:
 

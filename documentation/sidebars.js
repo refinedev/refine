@@ -961,6 +961,7 @@ module.exports = {
                         "packages/data-providers/graphql/index",
                         "packages/data-providers/simple-rest/index",
                         "packages/data-providers/strapi-v4/index",
+                        "packages/data-providers/strapi-graphql/index",
                         "packages/data-providers/supabase/index",
                         "packages/data-providers/nestjs-query/index",
                         "packages/data-providers/nestjsx-crud/index",

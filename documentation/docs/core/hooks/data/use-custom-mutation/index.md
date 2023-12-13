@@ -1,6 +1,5 @@
 ---
 title: useCustomMutation
-siderbar_label: useCustomMutation
 source: packages/core/src/hooks/data/useCustomMutation.ts
 ---
 
@@ -8,7 +7,7 @@ source: packages/core/src/hooks/data/useCustomMutation.ts
 
 It uses the `custom` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
 
-:::danger attention
+:::caution Use Cases
 
 `useCustomMutation` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/core/hooks/data/use-create), [useUpdate](/docs/core/hooks/data/use-update) or [useDelete](/docs/core/hooks/data/use-delete).
 
@@ -59,8 +58,6 @@ useCustomMutation({
 });
 ```
 
-:::tip
-
 `mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate functions like this:
 
 ```tsx
@@ -84,8 +81,6 @@ mutate(
   },
 );
 ```
-
-:::
 
 ## Mutation Parameters
 
@@ -146,11 +141,7 @@ mutate({
 
 ### `successNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCustomMutation` calls the `open` function from `NotificationProvider`:
 
@@ -277,20 +268,20 @@ const { overtime } = useCustomMutation();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-## API
+## API Reference
 
 ### Mutation Parameters
 
-| Property                                         | Description                                                                                        | Type                                                                                   |
-| ------------------------------------------------ | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| url <div className="required">Required</div>     | URL                                                                                                | string                                                                                 |
-| method <div className="required">Required</div>  | Method                                                                                             | `post`, `put`, `patch`, `delete`                                                       |
-| values <div className=" required">Required</div> | Values for mutation function                                                                       | `TVariables`                                                                           |
-| config                                           | The config of your request. You can send `headers` using this field.                               | { headers?: {}; }                                                                      |
-| successNotification                              | Successful mutation notification                                                                   | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) |
-| errorNotification                                | Unsuccessful mutation notification                                                                 | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) |
-| meta                                             | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/core/interface-references#metadataquery)                       |
-| dataProviderName                                 | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                               |
+| Property                    | Description                                                                                        | Type                                                                                   |
+| --------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| url <PropTag asterisk />    | URL                                                                                                | string                                                                                 |
+| method <PropTag asterisk /> | Method                                                                                             | `post`, `put`, `patch`, `delete`                                                       |
+| values <PropTag asterisk /> | Values for mutation function                                                                       | `TVariables`                                                                           |
+| config                      | The config of your request. You can send `headers` using this field.                               | { headers?: {}; }                                                                      |
+| successNotification         | Successful mutation notification                                                                   | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) |
+| errorNotification           | Unsuccessful mutation notification                                                                 | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) |
+| meta                        | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/core/interface-references#metaquery)                           |
+| dataProviderName            | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                               |
 
 ### Type Parameters
 

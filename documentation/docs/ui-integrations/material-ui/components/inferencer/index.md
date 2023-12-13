@@ -1,6 +1,5 @@
 ---
 title: Inferencer
-sidebar_label: Inferencer
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `MuiListInferencer`, `MuiShowInferencer`, `MuiEditInferencer`, `MuiCreateInferencer` components and finally the `MuiInferencer` component, which combines all in one place.
@@ -103,11 +102,7 @@ const SampleEdit = () => {
   </TabItem>
 </Tabs>
 
-:::info
-
 To learn more about `@refinedev/inferencer` package, please check out [Docs](/docs/packages/list-of-packages)
-
-:::
 
 ## Views
 

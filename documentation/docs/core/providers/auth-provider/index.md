@@ -1,15 +1,18 @@
 ---
 title: Auth Provider
-sidebar_label: Auth Provider
 ---
 
 import AuthProviderExamplesLinks from "@site/src/partials/auth-provider/auth-provider-examples-links.md";
 
-Auth provider is an object that contains methods to handle authentication and access control in your app by having **Refine** consume them. These methods expect to return a promise, so they can be used with async methods.
+Auth provider is an object that contains methods to handle authentication and access control in your app by having Refine consume them. These methods expect to return a promise, so they can be used with async methods.
 
-You can use any third-party authentication service like [Auth0, Okta, etc.](#examples) or your own custom methods while creating an auth provider from scratch.
+:::simple Good to know
 
-> For more information on how you can create your own auth providers, refer to the [Create a Auth Provider tutorial &#8594][create-auth-provider-tutorial]
+- You can use any third-party authentication service like [Auth0, Okta, etc.](#examples) or your own custom methods while creating an auth provider from scratch.
+- Auth Provider is not required for Refine to work, if it is not provided, your application will not have any authentication capabilities. As a result, you will not be able to use any of the auth hooks or components.
+- To learn more about how to create your own auth provider, refer to the [Create an Auth Provider tutorial &#8594][create-auth-provider-tutorial].
+
+:::
 
 ## Usage
 
@@ -26,12 +29,6 @@ const App = () => {
   return <Refine authProvider={authProvider} />;
 };
 ```
-
-:::note
-
-`authProvider` isn't required for the `<Refine/>` to work, if it is not provided, your application will not have any authentication capabilities. As a result, you will not be able to use any of the auth hooks or components.
-
-:::
 
 ## Examples
 
@@ -115,7 +112,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-**Refine** will consume this method using the `useLogin` hook which is used for login operations.
+Refine will consume this method using the `useLogin` hook which is used for login operations.
 
 For example, if we call the `useLogin` hook's mutation like this:
 
@@ -217,7 +214,7 @@ const authProvider: AuthBindings = {
 <details>
   <summary><strong>How can I customize the error message?</strong></summary>
 
-**Refine** automatically displays an error notification when the `login` method resolves the promise with `success: false`. If you want to customize the error message, you can resolve the promise with an `error` object that has `name` and `message` properties.
+Refine automatically displays an error notification when the `login` method resolves the promise with `success: false`. If you want to customize the error message, you can resolve the promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -291,7 +288,7 @@ const authProvider: AuthBindings = {
 
 <br />
 
-**Refine** will consume this method using the `useIsAuthenticated` hook which is used for checking if the user is authenticated.
+Refine will consume this method using the `useIsAuthenticated` hook which is used for checking if the user is authenticated.
 
 ```tsx
 import { useIsAuthenticated } from "@refinedev/core";
@@ -363,7 +360,7 @@ const authProvider: AuthBindings = {
 
 <br />
 
-**Refine** will consume this method using the `useLogout` hook which is used for logging out users.
+Refine will consume this method using the `useLogout` hook which is used for logging out users.
 
 For example, if we call the `useLogout` hook's mutation like this:
 
@@ -456,7 +453,7 @@ const authProvider: AuthBindings = {
 <details>
   <summary><strong>How can I customize the error message?</strong></summary>
 
-**Refine** automatically displays an error notification when the `logout` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
+Refine automatically displays an error notification when the `logout` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -522,7 +519,7 @@ const authProvider: AuthBindings = {
 
 <br />
 
-**Refine** will consume this method using the `useOnError` hook which is used for handling errors.
+Refine will consume this method using the `useOnError` hook which is used for handling errors.
 
 ```tsx
 import { useOnError } from "@refinedev/core";
@@ -596,7 +593,7 @@ const authProvider: AuthBindings = {
 
 <br />
 
-**Refine** will consume this method using the `usePermissions` hook which is used for getting the user's permissions.
+Refine will consume this method using the `usePermissions` hook which is used for getting the user's permissions.
 
 For example, if you want to check if the user has a specific permission, you can use the `usePermissions` hook like this:
 
@@ -651,7 +648,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-**Refine** will consume this method using the `useGetIdentity` hook which is used for getting the user's identity.
+Refine will consume this method using the `useGetIdentity` hook which is used for getting the user's identity.
 
 For example, if you want to get the user's email, you can use the `useGetIdentity` hook like this:
 
@@ -720,7 +717,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-**Refine** will consume this method using the `useRegister` hook which is used for registering a new user.
+Refine will consume this method using the `useRegister` hook which is used for registering a new user.
 
 For example, if you want to register a new user, you can use the `useRegister` hook like this:
 
@@ -818,7 +815,7 @@ const authProvider: AuthBindings = {
 <details>
   <summary><strong>How can I customize the error message?</strong></summary>
 
-**Refine** automatically displays an error notification when the `register` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
+Refine automatically displays an error notification when the `register` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
 const authProvider: AuthBindings = {
@@ -887,7 +884,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-**Refine** will consume this method using the `useForgotPassword` hook which is used for sending a password reset link to the user's email address.
+Refine will consume this method using the `useForgotPassword` hook which is used for sending a password reset link to the user's email address.
 
 For example, if you want to send a password reset link to the user's email address, you can use the `useForgotPassword` hook like this:
 
@@ -966,7 +963,7 @@ const authProvider: AuthBindings = {
 <details>
   <summary><strong>How can I customize the error message?</strong></summary>
 
-**Refine** automatically displays an error notification when the `forgotPassword` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an object that has `name` and `message` properties.
+Refine automatically displays an error notification when the `forgotPassword` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
 const authProvider: AuthBindings = {
@@ -1035,7 +1032,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-**Refine** will consume this method using the `useUpdatePassword` hook which is used to update the user's password.
+Refine will consume this method using the `useUpdatePassword` hook which is used to update the user's password.
 
 For example, if you want to update the user's password, you can use the `useUpdatePassword` hook like this:
 
@@ -1132,7 +1129,7 @@ const authProvider: AuthBindings = {
 <details>
   <summary><strong>How can I customize the error message?</strong></summary>
 
-**Refine** automatically displays an error notification when the `updatePassword` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
+Refine automatically displays an error notification when the `updatePassword` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
 const authProvider: AuthBindings = {
@@ -1154,7 +1151,7 @@ const authProvider: AuthBindings = {
 
 ## Legacy Auth Provider
 
-**Refine**'s v4 release is backward compatible and supports legacy auth provider implementations until v5.
+Refine's v4 release is backward compatible and supports legacy auth provider implementations until v5.
 
 If you want to use a legacy auth provider, you can pass them to the `<Refine />` component using the `legacyAuthProvider` prop.
 

@@ -5,7 +5,7 @@ swizzle: true
 
 This field lets you show basic text. It uses Ant Design's [`<Typography.Text>`](https://ant.design/components/typography/#Typography.Text) component.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -86,7 +86,7 @@ render(
 );
 ```
 
-:::tip
+:::simple Implementation Tips
 
 Table columns already render their data as text by default. If the rendered data is in text form and its text field won't be customized with any of Ant Design `<Typography.Text>` properties, there isn't any need to use `<TextField>` in a column's render function.
 
@@ -98,7 +98,7 @@ Table columns already render their data as text by default. If the rendered data
 
 <PropsTable module="@refinedev/antd/TextField" />
 
-:::tip External Props
+:::simple External Props
 
 This field also accepts all props of Ant Design's [Text](https://ant.design/components/typography/#Typography.Text) component.
 

@@ -5,7 +5,7 @@ swizzle: true
 
 This field is used to display dates. It uses the [`Day.js`](https://day.js.org/docs/en/display/format) to display date format.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -74,7 +74,7 @@ render(
 
 <PropsTable module="@refinedev/antd/DateField" format-default="`L`"/>
 
-:::tip External Props
+:::simple External Props
 
 This field also accepts all props of Ant Design's [Text](https://ant.design/components/typography/#Typography.Text) component.
 

@@ -12,7 +12,7 @@ import PropResource from "@site/src/partials/prop-resource";
 
 `useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
 
-:::info
+:::simple Extended Versions
 
 If you're looking for a complete table library, Refine supports two table libraries out of the box.
 
@@ -22,7 +22,7 @@ If you're looking for a complete table library, Refine supports two table librar
 
 :::
 
-## Basic Usage
+## Usage
 
 In basic usage, `useTable` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the URL.
 
@@ -62,7 +62,7 @@ It also syncs the filtering state with the URL if you enable the [`syncWithLocat
 
 `setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the second parameter. You can change the default behavior with the [`filters.defaultBehavior`](#filtersdefaultbehavior) prop.
 
-:::info
+:::simple Merge behavior
 
 If you are using `merge` behavior and want to remove one of the filters, you should set the `value` to `undefined` or `null`. For `or` filters, you should set the `value` to an empty array `[]` to remove the filter.
 
@@ -72,15 +72,9 @@ If you are using `merge` behavior and want to remove one of the filters, you sho
 
 ## Realtime Updates
 
-:::caution
-
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
-
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
@@ -95,7 +89,10 @@ method={{
     name:"getList",
     URL:"/docs/api-reference/core/providers/data-provider/#getlist"
 }}
+hasDefault={false}
 />
+
+By default, it will try to read the `resource` value from the current URL.
 
 ```tsx
 import { useTable } from "@refinedev/core";
@@ -121,9 +118,7 @@ useTable({
 
 ### `pagination.current`
 
-> Default: `1`
-
-Sets the initial value of the page index.
+Sets the initial value of the page index. Defaults to `1`.
 
 ```tsx
 import { useTable } from "@refinedev/core";
@@ -136,9 +131,7 @@ useTable({
 
 ### `pagination.pageSize`
 
-> Default: `10`
-
-Sets the initial value of the page size.
+Sets the initial value of the page size. Defaults to `10`.
 
 ```tsx
 import { useTable } from "@refinedev/core";
@@ -151,9 +144,7 @@ useTable({
 
 ### `pagination.mode`
 
-> Default: `"server"`
-
-It can be `"off"`, `"server"` or `"client"`.
+It can be `"off"`, `"server"` or `"client"`. Defaults to `"server"`.
 
 - **"off":** Pagination is disabled. All records will be fetched.
 - **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
@@ -170,9 +161,7 @@ useTable({
 
 ### `sorters.mode`
 
-> Default: `"server"`
-
-It can be `"off"`, or `"server"`.
+It can be `"off"`, or `"server"`. Defaults to `"server"`.
 
 - **"off":** `sorters` do not get sent to the server. You can use the `sorters` value to sort the records on the client side.
 - **"server":**: Sorting is done on the server side. Records will be fetched by using the `sorters` value.
@@ -228,9 +217,7 @@ useTable({
 
 ### `filters.mode`
 
-> Default: `"server"`
-
-It can be `"off"` or `"server"`.
+It can be `"off"` or `"server"`. Defaults to `"server"`.
 
 - **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
 - **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
@@ -288,9 +275,7 @@ useTable({
 
 ### `filters.defaultBehavior`
 
-> Default: `merge`
-
-The filtering behavior can be set to either `"merge"` or `"replace"`.
+The filtering behavior can be set to either `"merge"` or `"replace"`. Defaults to `"merge"`.
 
 - When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
@@ -307,13 +292,9 @@ useTable({
 });
 ```
 
-### `syncWithLocation`
+### `syncWithLocation` <GlobalConfigBadge id="core/refine-component/#syncwithlocation" />
 
-> Default: `false`
-
-When you use the `syncWithLocation` feature, the `useTable`'s state (e.g., sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
-
-Also, you can set this value globally on [`<Refine>`][Refine swl] component.
+When you use the `syncWithLocation` feature, the `useTable`'s state (e.g., sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views. By default, this feature is disabled.
 
 ```tsx
 import { useTable } from "@refinedev/core";
@@ -386,11 +367,7 @@ const myDataProvider = {
 
 ### `successNotification`
 
-:::caution
-
-[`NotificationProvider`][notification-provider] is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -409,11 +386,7 @@ useTable({
 
 ### `errorNotification`
 
-:::caution
-
-[`NotificationProvider`][notification-provider] is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
@@ -432,11 +405,7 @@ useTable({
 
 ### `liveMode`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -447,15 +416,9 @@ useTable({
 });
 ```
 
-> For more information, refer to the [Live / Realtime page](/docs/core/providers/live-provider#livemode)
-
 ### `onLiveEvent`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -470,11 +433,7 @@ useTable({
 
 ### `liveParams`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
@@ -505,185 +464,37 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### ~~`initialCurrent`~~
-
-:::caution Deprecated
+### ~~`initialCurrent`~~ <PropTag deprecated />
 
 Use `pagination.current` instead.
 
-:::
-
-> Default: `1`
-
-Sets the initial value of the page index.
-
-```tsx
-import { useTable } from "@refinedev/core";
-useTable({
-  initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
-});
-```
-
-### ~~`initialPageSize`~~
-
-:::caution Deprecated
+### ~~`initialPageSize`~~ <PropTag deprecated />
 
 Use `pagination.pageSize` instead.
 
-:::
-
-> Default: `10`
-
-Sets the initial value of the page size.
-
-```tsx
-import { useTable } from "@refinedev/core";
-useTable({
-  initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
-});
-```
-
-### ~~`hasPagination`~~
-
-:::caution Deprecated
+### ~~`hasPagination`~~ <PropTag deprecated />
 
 Use `pagination.mode` instead.
 
-:::
-
-> Default: `true`
-
-Determines whether to use server-side pagination or not.
-
-```tsx
-import { useTable } from "@refinedev/core";
-useTable({
-  hasPagination: false,
-});
-```
-
-### ~~`initialSorter`~~
-
-:::caution Deprecated
+### ~~`initialSorter`~~ <PropTag deprecated />
 
 Use `sorters.initial` instead.
 
-:::
-
-Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
-
-[Refer to the `CrudSorting` interface for more information &#8594](/docs/core/interface-references#crudsorting)
-
-```tsx
-import { useTable } from "@refinedev/core";
-useTable({
-  initialSorter: [
-    {
-      field: "name",
-      order: "asc",
-    },
-  ],
-});
-```
-
-### ~~`permanentSorter`~~
-
-:::caution Deprecated
+### ~~`permanentSorter`~~ <PropTag deprecated />
 
 Use `sorters.permanent` instead.
 
-:::
-
-Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
-
-```tsx
-import { useTable } from "@refinedev/core";
-useTable({
-  permanentSorter: [
-    {
-      field: "name",
-      order: "asc",
-    },
-  ],
-});
-```
-
-> For more information, refer to the [`CrudSorting` interface &#8594](/docs/core/interface-references#crudsorting)
-
-### ~~`initialFilter`~~
-
-:::caution Deprecated
+### ~~`initialFilter`~~ <PropTag deprecated />
 
 Use `filters.initial` instead.
 
-:::
-
-Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
-
-```tsx
-import { useTable } from "@refinedev/core";
-useTable({
-  initialFilter: [
-    {
-      field: "name",
-      operator: "contains",
-      value: "Foo",
-    },
-  ],
-});
-```
-
-> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references#crudfilters)
-
-### ~~`permanentFilter`~~
-
-:::caution Deprecated
+### ~~`permanentFilter`~~ <PropTag deprecated />
 
 Use `filters.permanent` instead.
 
-:::
-
-Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
-
-```tsx
-import { useTable } from "@refinedev/core";
-useTable({
-  permanentFilter: [
-    {
-      field: "name",
-      operator: "contains",
-      value: "Foo",
-    },
-  ],
-});
-```
-
-> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references#crudfilters)
-
-### ~~`defaultSetFilterBehavior`~~
-
-:::caution Deprecated
+### ~~`defaultSetFilterBehavior`~~ <PropTag deprecated />
 
 Use `filters.defaultBehavior` instead.
-
-:::
-
-> Default: `merge`
-
-The filtering behavior can be set to either `"merge"` or `"replace"`.
-
-- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
-
-- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed, and only the new filter will be applied to the table.
-
-You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
-
-```tsx
-import { useTable } from "@refinedev/core";
-useTable({
-  defaultSetFilterBehavior: "replace",
-});
-```
 
 ## Return Values
 
@@ -762,29 +573,13 @@ const { overtime } = useTable();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-### ~~`sorter`~~
-
-:::caution Deprecated
+### ~~`sorter`~~ <PropTag deprecated />
 
 Use `sorters` instead.
 
-:::
-
-Current [sorters state][crudsorting].
-
-### ~~`setSorter`~~
-
-:::caution Deprecated
+### ~~`setSorter`~~ <PropTag deprecated />
 
 Use `setSorters` instead.
-
-:::
-
-A function to set current [sorters state][crudsorting].
-
-```tsx
- (sorters: CrudSorting) => void;
-```
 
 ## FAQ
 
@@ -904,7 +699,7 @@ const List = () => {
 };
 ```
 
-## API
+## API Reference
 
 ### Properties
 

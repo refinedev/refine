@@ -1,15 +1,8 @@
 ---
 title: useLogout
-siderbar_label: useLogout
 description: useLogout data hook from Refine is a modified version of react-query's useMutation for unauthentication.
 source: /packages/core/src/hooks/auth/useLogout/index.ts
 ---
-
-:::caution
-
-This hook can only be used if the `authProvider` is provided.
-
-:::
 
 `useLogout` calls the `logout` method from the [`authProvider`](/docs/core/providers/auth-provider) under the hood.
 
@@ -34,7 +27,7 @@ type AuthActionResponse = {
 
 ## Usage
 
-**Refine** provides a default logout page which handles the logout flow manually.
+Refine provides a default logout page which handles the logout flow manually.
 
 If you want to use a custom logout page however, you can use the `useLogout` hook like this:
 
@@ -48,16 +41,12 @@ export const LogoutButton = () => {
 };
 ```
 
-:::tip
-
 `mutate` acquired from the `useLogout` can accept any kind of object for values since the `logout` method from the `authProvider` doesn't have a restriction on its parameters.
 A type parameter for the values can be provided to `useLogout`.
 
 ```tsx
 const { mutate: logout } = useLogout<{ redirectPath: string }>();
 ```
-
-:::
 
 ## Redirection after logout
 
@@ -77,9 +66,9 @@ Then, you can handle this URL in your `logout` method of the `authProvider`:
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-  // ---
+  // ...
   logout: async ({ redirectPath }) => {
-    // ---
+    // ...
     return {
       success: true,
       redirectTo: redirectPath,

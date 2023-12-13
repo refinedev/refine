@@ -2,9 +2,11 @@
 title: useSetLocale
 ---
 
-If you need to change the locale at runtime, Refine provides the `useSetLocale` hook, It returns the changeLocale method from `i18nProvider` under the hood.
+If you need to change the locale at runtime, Refine provides the `useSetLocale` hook, It returns the changeLocale method from [`i18nProvider`](/docs/core/providers/i18n-provider/#usage) under the hood.
 
 ## Usage
+
+> This hook can only be used if [`i18nProvider`](/docs/core/providers/i18n-provider/#usage) is provided.
 
 You can use the features of your own i18n library to change the locale in your own components.
 
@@ -23,9 +25,3 @@ export const LanguageSwicher = () => {
   );
 };
 ```
-
-:::caution
-
-This hook can only be used if `i18nProvider` is provided.
-
-:::

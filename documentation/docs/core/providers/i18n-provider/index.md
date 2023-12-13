@@ -1,18 +1,17 @@
 ---
 title: i18n Provider
-sidebar_label: i18n Provider
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Internationalization (i18n) is a process that allows software applications to be localized for different regions and languages. **refine** can work with any i18n framework, but needs an `i18nProvider` to be created based on the chosen library.
+Internationalization (i18n) is a process that allows software applications to be localized for different regions and languages. Refine can work with any i18n framework, but needs an `i18nProvider` to be created based on the chosen library.
 
-This document will help you add languages other than English, the default language of **refine**, to your app. If you don't want to do that, you can skip it.
+This document will help you add languages other than English, the default language of Refine, to your app. If you don't want to do that, you can skip it.
 
 ## Usage
 
-First of all, **refine** expects the `i18nProvider` type as follows:
+First of all, Refine expects the `i18nProvider` type as follows:
 
 ```ts
 import { I18nProvider } from "@refinedev/core";
@@ -54,21 +53,11 @@ This will allow us to put translation features to the followings hooks:
 
 Let's add multi-language support to our application using the `react-i18next` framework. When we are done, our application will support both German and English.
 
-> For more information, refer to the [react-i18next documentation&#8594](https://react.i18next.com/getting-started)
+:::simple Good to know
 
-:::tip
-
-We recommend using [`create refine-app`][create-refine-app] to initialize your Refine projects as it configures the project according to your needs, i18n support included if you choose it in the CLI
-
-If you choose to have
-
-:::
-
----
-
-:::caution
-
-The following parts of the document are for SPA react apps, for Next.js refer to [i18n Nextjs example&#8594][i18nnextjs]
+- We recommend using [`create refine-app`][create-refine-app] to initialize your refine projects as it configures the project according to your needs, i18n support included if you choose it in the CLI
+- For more information, refer to the [react-i18next documentation&#8594](https://react.i18next.com/getting-started)
+- This example is for SPA react apps, for Next.js refer to [i18n Nextjs example&#8594][i18nnextjs]
 
 :::
 
@@ -160,12 +149,6 @@ root.render(
   </React.StrictMode>,
 );
 ```
-
-:::tip
-
-We use `React.Suspense` because it improves performance by preventing the app from rendering unnecessarily.
-
-:::
 
 ### Creating the i18n Provider
 
@@ -690,19 +673,7 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
 </TabItem>
 </Tabs>
 
-:::tip
-
-We can override refine's default texts by changing the `common.json` files in the example above.
-
-:::
-
----
-
-:::tip
-
-All of **refine**'s components support i18n, meaning that if you want to change their text, you can create your own translation files with the reference to the keys above.
-
-:::
+All of Refine's components support i18n, meaning that if you want to change their text, you can create your own translation files with the reference to the keys above. We can override refine's default texts by changing the `common.json` files in the example above.
 
 ### Changing The Locale
 
@@ -887,9 +858,7 @@ export interface IPost {
 }
 ```
 
-<br/>
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/i18n/changing-language.gif" alt="Language change action" />
+<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/i18n/changing-language.gif" alt="Language change action" />
 
 ## Methods
 

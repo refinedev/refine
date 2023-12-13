@@ -20,7 +20,7 @@ const Wrapper = ({ children }) => {
 
 This field is used to display email values. It uses the [`<Link>`](https://chakra-ui.com/docs/components/link/usage) component of Chakra UI.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 

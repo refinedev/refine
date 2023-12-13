@@ -7,7 +7,7 @@ swizzle: true
 
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -69,7 +69,7 @@ render(
 
 ### `recordItemId`
 
-`recordItemId` is used to append the record id to the end of the route path.
+`recordItemId` is used to append the record id to the end of the route path. By default, the `recordItemId` is inferred from the route params.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -102,12 +102,6 @@ render(
 ```
 
 Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
-
-:::note
-
-The **`<CloneButton>`** component reads the id information from the route by default.
-
-:::
 
 ### `resource`
 
@@ -226,45 +220,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> The`resourceNameOrRouteName` prop is deprecated. Use the `resource` prop instead.
-
-It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
-
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { CloneButton } from "@refinedev/antd";
-
-const MyCloneComponent = () => {
-  return <CloneButton resourceNameOrRouteName="categories" recordItemId="1" />;
-};
-
-// visible-block-end
-
-const ClonedPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
-};
-
-render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        create: ClonedPage,
-      },
-    ]}
-    DashboardPage={MyCloneComponent}
-  />,
-);
-```
-
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to `/categories/clone/2`.
+Use the `resource` prop instead.
 
 ## API Reference
 
@@ -272,7 +228,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/c
 
 <PropsTable module="@refinedev/antd/CloneButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
 

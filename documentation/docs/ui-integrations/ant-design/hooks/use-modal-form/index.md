@@ -1,17 +1,12 @@
 ---
 title: useModalForm
-sidebar_label: useModalForm
 ---
 
 The `useModalForm` hook allows you to manage a form within a [`<Modal>`][antd-modal]. It returns Ant Design [`<Form>`][antd-form] and [Modal][antd-modal] components props.
 
-:::info
-
 `useModalForm` hook is extended from [`useForm`][antd-use-form] from the [`@refinedev/antd`][@refinedev/antd] package. This means that you can use all the features of [`useForm`][antd-use-form] hook.
 
-:::
-
-## Basic Usage
+## Usage
 
 We'll show three examples, `"create"`, `"edit"` and `"clone"`. Let's see how `useModalForm` is used in all.
 
@@ -250,9 +245,7 @@ setRefineProps({
 render(<RefineAntdDemo />);
 ```
 
-:::caution
-
-**Refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens the edit form in `<Modal>` when clicked.
+Refine doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens the edit form in `<Modal>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by the record `id`.
 
@@ -265,13 +258,7 @@ So, we have to put the `<EditButton/>` on our list. In that way, `<Edit>` form i
 />
 ```
 
-:::
-
-:::caution
-
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
-
-:::
 
 </TabItem>
 
@@ -387,9 +374,7 @@ setRefineProps({
 render(<RefineAntdDemo />);
 ```
 
-:::caution
-
-**Refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens clone form in `<Modal>` when clicked.
+Refine doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens clone form in `<Modal>` when clicked.
 
 So, we have to put the `<CloneButton/>` on our list. In that way, `<Clone>` form in `<Modal>` can fetch data by the record `id`.
 
@@ -402,13 +387,7 @@ So, we have to put the `<CloneButton/>` on our list. In that way, `<Clone>` form
 />
 ```
 
-:::
-
-:::caution
-
 Don't forget to pass the record id to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
-
-:::
 
 </TabItem>
 
@@ -416,11 +395,7 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 
 ## Properties
 
-:::tip
-
 All [`useForm`][antd-use-form] props are also available in `useModalForm`. You can find descriptions on the [`useForm` documentation](/docs/ui-integrations/ant-design/hooks/use-form#properties).
-
-:::
 
 ### `syncWithLocation`
 
@@ -436,13 +411,7 @@ const modalForm = useModalForm({
 
 ### `defaultFormValues`
 
-:::caution
-
-`defaultFormValues` is only available in `"create"` form.
-
-:::
-
-Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed. This property is only available for `"create"` action.
 
 ```tsx
 const modalForm = useModalForm({
@@ -528,19 +497,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. By default, it is `false`.
 
 ```tsx
 useModalForm({
@@ -552,9 +515,7 @@ useModalForm({
 
 #### `debounce`
 
-> Default: `1000`
-
-Set the debounce time for the `autoSave` prop.
+Set the debounce time for the `autoSave` prop. By default, it is `1000` milliseconds.
 
 ```tsx
 useModalForm({
@@ -588,9 +549,7 @@ useModalForm({
 
 #### `invalidateOnUnmount`
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default, it is `false`.
 
 ```tsx
 useModalForm({
@@ -604,9 +563,7 @@ useModalForm({
 
 #### `invalidateOnClose`
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default, it is `false`.
 
 ```tsx
 useModalForm({
@@ -631,8 +588,6 @@ It contains the props to manage the [Antd `<Form>`](https://ant.design/component
 The props needed by the [`<Modal>`][antd-modal] component.
 
 #### `title`
-
-> Default when url is `"/posts/create"`: "Create Post"
 
 Title of the modal. Value is based on resource and action values.
 
@@ -668,17 +623,13 @@ A function that can close the `<Modal>`. It's useful when you want to close the 
 
 #### ~~`visible`~~ <PropTag deprecated />
 
-> This prop is deprecated. Please use `open` instead.
-
-Current visible state of `<Modal>`. Default value depends on `defaultVisible` prop.
+Please use `open` instead.
 
 ### `open`
 
 Current visible state of `<Modal>`. Default value depends on `defaultVisible` prop.
 
 ### `close`
-
-> Same as `onCancel`
 
 A function that can close the `<Modal>`. It's useful when you want to close the modal manually.
 

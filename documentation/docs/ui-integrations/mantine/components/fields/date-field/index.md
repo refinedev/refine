@@ -28,7 +28,7 @@ const Wrapper = ({ children }) => {
 
 This field is used to display dates. It uses [`Day.js`](https://day.js.org/docs/en/display/format) to display date format.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -138,7 +138,7 @@ render(
 
 <PropsTable module="@refinedev/mantine/DateField" format-default="`L`" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Mantine [Text](https://mantine.dev/core/text/?t=props).
 

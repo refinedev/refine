@@ -5,7 +5,7 @@ swizzle: true
 
 This field lets you show basic text. It uses Material UI's [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) component.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -74,7 +74,7 @@ render(
 
 <PropsTable module="@refinedev/mui/TextField" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Typography](https://mui.com/material-ui/react-typography/#main-content).
 

@@ -1,22 +1,17 @@
 ---
 title: Breadcrumb
-sidebar_label: Breadcrumb
 swizzle: true
 ---
 
 A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. `<Breadcrumb>` component built with Mantine [Breadcrumb][mantine-breadcrumb] components using the [`useBreadcrumb`](/docs/core/hooks/utilities/use-breadcrumb) hook.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+- You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
-:::
+- In earlier versions of Refine, `<Refine>` component had accepted `DashboardPage` which could be used to add an index page to your app. With the changes in `routerProvider` API of Refine, `DashboardPage` is deprecated. You can now define an index route yourself manually by your router package.
 
-:::info Legacy Behavior (Dashboard Page)
-
-In earlier versions of **Refine**, `<Refine>` component had accepted `DashboardPage` which could be used to add an index page to your app. With the changes in `routerProvider` API of **Refine**, `DashboardPage` is deprecated. You can now define an index route yourself manually by your router package.
-
-In earlier versions, the home icon in the `Breadcrumb` was created by the `DashboardPage`, now it is rendered if you define a an action route as `/` in any one of your resources. It will be rendered with the home icon regardless of the current route. You can also hide the home icon by setting `showHome` to `false`.
+- In earlier versions, the home icon in the `Breadcrumb` was created by the `DashboardPage`, now it is rendered if you define a an action route as `/` in any one of your resources. It will be rendered with the home icon regardless of the current route. You can also hide the home icon by setting `showHome` to `false`.
 
 :::
 
@@ -24,7 +19,7 @@ In earlier versions, the home icon in the `Breadcrumb` was created by the `Dashb
 
 ### `breadcrumbProps`
 
-The `<Breadcrumb>` component uses the Mantine [Breadcrumb][mantine-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
+The `<Breadcrumb />` component uses the Mantine [Breadcrumb][mantine-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
 
 ```tsx
 import { Show, Breadcrumb } from "@refinedev/mantine";

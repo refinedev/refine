@@ -45,7 +45,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ## Error Handling
 
-When the API returns an error, you need to extend **Refine** from [HttpError](/docs/core/interface-references#httperror) to handle it. To transform the error from the response before `axios` returns the response to your code, you can use the `axios` interceptor.
+When the API returns an error, you need to extend Refine from [HttpError](/docs/core/interface-references#httperror) to handle it. To transform the error from the response before `axios` returns the response to your code, you can use the `axios` interceptor.
 
 To do this, create an `axiosInstance` in a `utility` file, define an `interceptor` to handle errors, and then export it.
 
@@ -152,7 +152,7 @@ We can then add the pagination feature. For this, the API takes the following pa
 [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2
 ```
 
-**Refine** uses the `pagination` parameter for pagination. For this parameter, `current` refers to the page number, and `pageSize` refers to the number of records on each page.
+Refine uses the `pagination` parameter for pagination. For this parameter, `current` refers to the page number, and `pageSize` refers to the number of records on each page.
 
 ```bash
 {
@@ -198,7 +198,7 @@ Now let's add the sorting feature. The API expects the following parameters for 
 [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc
 ```
 
-**Refine** uses the `sorters` parameter for sorting. This parameter includes the `field` and `order` values.
+Refine uses the `sorters` parameter for sorting. This parameter includes the `field` and `order` values.
 Supports multiple field sorting. [CrudSort[]](/docs/core/interface-references#crudsorting) type, it comes in the data provider as follows.
 
 ```bash
@@ -256,7 +256,7 @@ Now let's add the filtering feature. The API expects the following parameters fo
 [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc&title_like
 ```
 
-**Refine** uses the `filters` parameter for filtering. This parameter contains the `field`, `operator` and `value` values with the [CrudFilters []](/docs/core/interface-references#crudfilters) type.
+Refine uses the `filters` parameter for filtering. This parameter contains the `field`, `operator` and `value` values with the [CrudFilters []](/docs/core/interface-references#crudfilters) type.
 
 ```bash
 [
@@ -403,7 +403,7 @@ The conditional filters can also be made using `and` and `or`. For example:
 
 <br/>
 
-**Refine** will consume the `getList` method using the `useList` or `useInfiniteList` data hook.
+Refine will consume the `getList` method using the `useList` or `useInfiniteList` data hook.
 
 ```ts
 import { useList } from "@refinedev/core";
@@ -463,7 +463,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 <br/>
 
-**Refine** will consume the `create` method using the `useCreate` data hook.
+Refine will consume the `create` method using the `useCreate` data hook.
 
 ```ts
 import { useCreate } from "@refinedev/core";
@@ -516,7 +516,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 <br/>
 
-**Refine** will consume the `update` method using the `useUpdate` data hook.
+Refine will consume the `update` method using the `useUpdate` data hook.
 
 ```ts
 import { useUpdate } from "@refinedev/core";
@@ -570,7 +570,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 <br/>
 
-**Refine** will consume the `deleteOne` method using the `useDelete` data hook.
+Refine will consume the `deleteOne` method using the `useDelete` data hook.
 
 ```ts
 import { useDelete } from "@refinedev/core";
@@ -611,7 +611,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 <br/>
 
-**Refine** will consume the `getOne` method using the `useOne` data hook.
+Refine will consume the `getOne` method using the `useOne` data hook.
 
 ```ts
 import { useOne } from "@refinedev/core";
@@ -637,7 +637,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 });
 ```
 
-**Refine** will consume the `getApiUrl` method using the `useApiUrl` data hook.
+Refine will consume the `getApiUrl` method using the `useApiUrl` data hook.
 
 ```ts
 import { useApiUrl } from "@refinedev/core";
@@ -719,7 +719,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 <br/>
 
-**Refine** will consume the `custom` method using the `useCustom` data hook.
+Refine will consume the `custom` method using the `useCustom` data hook.
 
 ```ts
 import { useCustom, useApiUrl } from "@refinedev/core";
@@ -770,7 +770,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 <br/>
 
-**Refine** will consume the `getMany` method using the `useMany` data hook.
+Refine will consume the `getMany` method using the `useMany` data hook.
 
 ```ts
 import { useMany } from "@refinedev/core";
@@ -814,7 +814,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 <br/>
 
-**Refine** will consume the `createMany` method using the `useCreateMany` data hook.
+Refine will consume the `createMany` method using the `useCreateMany` data hook.
 
 ```ts
 import { useCreateMany } from "@refinedev/core";
@@ -871,7 +871,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 <br/>
 
-**Refine** will consume the `deleteMany` method using the `useDeleteMany` data hook.
+Refine will consume the `deleteMany` method using the `useDeleteMany` data hook.
 
 ```ts
 import { useDeleteMany } from "@refinedev/core";
@@ -905,7 +905,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 });
 ```
 
-**Refine** will consume the `updateMany` method using the `useUpdateMany` data hook.
+Refine will consume the `updateMany` method using the `useUpdateMany` data hook.
 
 ```ts
 import { useUpdateMany } from "@refinedev/core";

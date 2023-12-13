@@ -1,7 +1,6 @@
 ---
 title: useTable
 source: /packages/react-table/src/useTable
-sidebar_label: useTable
 ---
 
 import BasicUsageLivePreview from "../examples/\_partial-basic-usage-live-preview.md";
@@ -11,15 +10,11 @@ import FilteringLivePreview from "../examples/\_partial-filtering-live-preview.m
 import RelationalLivePreview from "../examples/\_partial-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-Refine offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-table][refine-react-table] that allows you to use the TanStack Table library with **Refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch. Since it is designed as headless, It expects you to handle the UI.
+Refine offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-table][refine-react-table] that allows you to use the TanStack Table library with Refine. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch. Since it is designed as headless, It expects you to handle the UI.
 
 All of [TanStack Table's][tanstack-table] features are supported and you can use all of the [TanStack Table's][tanstack-table] examples with no changes just copy and paste them into your project.
 
-:::info
-
 `useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
-
-:::
 
 ## Installation
 
@@ -59,7 +54,7 @@ pnpm add @refinedev/react-table
 
 </Tabs>
 
-## Basic Usage
+## Usage
 
 In basic usage, `useTable` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the url.
 
@@ -71,11 +66,7 @@ In basic usage, `useTable` returns the data as it comes from the endpoint. By de
 
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
-:::info
-
 By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the pagination.mode property and set it to "client". Also, you can disable the pagination by setting the "off".
-
-:::
 
 <PaginationLivePreview/>
 
@@ -103,15 +94,9 @@ By default, filter operators are set to "eq" for all fields. You can specify whi
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/core/providers/live-provider)
-
 ## Properties
 
-:::tip
-
 It also accepts all props of [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#options).
-
-:::
 
 ### `resource`
 
@@ -124,7 +109,10 @@ method={{
     name:"getList",
     URL:"/docs/api-reference/core/providers/data-provider/#getlist"
 }}
+hasDefault={false}
 />
+
+By default, it reads the resource from the current route.
 
 ```tsx
 useTable({
@@ -152,9 +140,7 @@ useTable({
 
 ### `pagination.current`
 
-> Default: `1`
-
-Sets the initial value of the page index.
+Sets the initial value of the page index. Default value is `1`.
 
 ```tsx
 useTable({
@@ -168,9 +154,7 @@ useTable({
 
 ### `pagination.pageSize`
 
-> Default: `10`
-
-Sets the initial value of the page size.
+Sets the initial value of the page size. Default value is `10`.
 
 ```tsx
 useTable({
@@ -184,9 +168,7 @@ useTable({
 
 ### `pagination.mode`
 
-> Default: `"server"`
-
-It can be `"off"`, `"server"` or `"client"`.
+It can be `"off"`, `"server"` or `"client"`. Default value is `"server"`.
 
 - **"off":** Pagination is disabled. All records will be fetched.
 - **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
@@ -246,9 +228,7 @@ useTable({
 
 ### `sorters.mode`
 
-> Default: `"server"`
-
-It can be `"off"` or `"server"`.
+It can be `"off"` or `"server"`. Default value is `"server"`.
 
 - **"off":** Sorting are disabled. All records will be fetched.
 - **"server":**: Sorting are done on the server side. Records will be fetched by using the `sorters` value.
@@ -309,9 +289,7 @@ useTable({
 
 ### `filters.defaultBehavior`
 
-> Default: `replace`
-
-The filtering behavior can be set to either `"merge"` or `"replace"`.
+The filtering behavior can be set to either `"merge"` or `"replace"`. Default value is `"replace"`.
 
 - When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
@@ -331,9 +309,7 @@ useTable({
 
 ### `filters.mode`
 
-> Default: `"server"`
-
-It can be `"off"` or `"server"`.
+It can be `"off"` or `"server"`. Default value is `"server"`.
 
 - **"off":** `filters` are not sent to the server. You can use the `filters` value to filter the records on the client side.
 - **"server":**: Filters are done on the server side. Records will be fetched by using the `filters` value.
@@ -348,13 +324,11 @@ useTable({
 });
 ```
 
-### `syncWithLocation`
-
-> Default: `false`
+### `syncWithLocation` <GlobalConfigBadge id="core/refine-component/#syncwithlocation" />
 
 When you use the syncWithLocation feature, the `useTable`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages and to allow users to bookmark or share links to specific table views.
 
-Also you can set this value globally on [`<Refine>`][Refine swl] component.
+By default, it reads the `syncWithLocation` from the `<Refine>` component.
 
 ```tsx
 useTable({
@@ -503,201 +477,41 @@ useTable({
 
 Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
-### ~~`initialCurrent`~~
-
-:::caution Deprecated
+### ~~`initialCurrent`~~ <PropTag deprecated />
 
 Use `pagination.current` instead.
 
-:::
-
-> Default: `1`
-
-Sets the initial value of the page index.
-
-```tsx
-useTable({
-  refineCoreProps: {
-    initialCurrent: 2,
-  },
-});
-```
-
-### ~~`initialPageSize`~~
-
-:::caution Deprecated
+### ~~`initialPageSize`~~ <PropTag deprecated />
 
 Use `pagination.pageSize` instead.
 
-:::
-
-> Default: `10`
-
-Sets the initial value of the page size.
-
-```tsx
-useTable({
-  refineCoreProps: {
-    initialPageSize: 20,
-  },
-});
-```
-
-### ~~`hasPagination`~~
-
-:::caution Deprecated
+### ~~`hasPagination`~~ <PropTag deprecated />
 
 Use `pagination.mode` instead.
 
-:::
-
-> Default: `true`
-
-Determines whether to use server-side pagination or not.
-
-```tsx
-useTable({
-  refineCoreProps: {
-    hasPagination: false,
-  },
-});
-```
-
-### ~~`initialSorter`~~
-
-:::caution Deprecated
+### ~~`initialSorter`~~ <PropTag deprecated />
 
 Use `sorters.initial` instead.
 
-:::
-
-Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
-
-[Refer to the `CrudSorting` interface for more information &#8594](/docs/core/interface-references#crudsorting)
-
-```tsx
-useTable({
-  refineCoreProps: {
-    initialSorter: [
-      {
-        field: "name",
-        order: "asc",
-      },
-    ],
-  },
-});
-```
-
-### ~~`permanentSorter`~~
-
-:::caution Deprecated
+### ~~`permanentSorter`~~ <PropTag deprecated />
 
 Use `sorters.permanent` instead.
 
-:::
-
-Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
-
-[Refer to the `CrudSorting` interface for more information &#8594](/docs/core/interface-references#crudsorting)
-
-```tsx
-useTable({
-  refineCoreProps: {
-    permanentSorter: [
-      {
-        field: "name",
-        order: "asc",
-      },
-    ],
-  },
-});
-```
-
-### ~~`initialFilter`~~
-
-:::caution Deprecated
+### ~~`initialFilter`~~ <PropTag deprecated />
 
 Use `filters.initial` instead.
 
-:::
-
-Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
-
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/core/interface-references#crudfilters)
-
-```tsx
-useTable({
-  refineCoreProps: {
-    initialFilter: [
-      {
-        field: "name",
-        operator: "contains",
-        value: "Foo",
-      },
-    ],
-  },
-});
-```
-
-### ~~`permanentFilter`~~
-
-:::caution Deprecated
+### ~~`permanentFilter`~~ <PropTag deprecated />
 
 Use `filters.permanent` instead.
 
-:::
-
-Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
-
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/core/interface-references#crudfilters)
-
-```tsx
-useTable({
-  refineCoreProps: {
-    permanentFilter: [
-      {
-        field: "name",
-        operator: "contains",
-        value: "Foo",
-      },
-    ],
-  },
-});
-```
-
-### ~~`defaultSetFilterBehavior`~~
-
-:::caution Deprecated
+### ~~`defaultSetFilterBehavior`~~ <PropTag deprecated />
 
 Use `filters.defaultBehavior` instead.
 
-:::
-
-> Default: `replace`
-
-The filtering behavior can be set to either `"merge"` or `"replace"`.
-
-- When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
-
-- When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
-
-You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
-
-```tsx
-useTable({
-  refineCoreProps: {
-    defaultSetFilterBehavior: "merge",
-  },
-});
-```
-
 ## Return Values
 
-:::tip
-
 It also have all return values of [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#options).
-
-:::
 
 ### `refineCore`
 
@@ -767,29 +581,15 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 
 A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
-### ~~`sorter`~~
-
-:::caution Deprecated
+### ~~`sorter`~~ <PropTag deprecated />
 
 Use `sorters` instead.
 
-:::
-
 Current [sorters state][crudsorting].
 
-### ~~`setSorter`~~
-
-:::caution Deprecated
+### ~~`setSorter`~~ <PropTag deprecated />
 
 Use `setSorters` instead.
-
-:::
-
-A function to set current [sorters state][crudsorting].
-
-```tsx
- (sorters: CrudSorting) => void;
-```
 
 ## FAQ
 

@@ -48,7 +48,7 @@ const ClonePage = () => {
 `<CloneButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `clone` method from [useNavigation](/docs/core/hooks/navigation/use-navigation) under the hood.
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -170,7 +170,7 @@ render(
 
 ### `recordItemId`
 
-`recordItemId` is used to append the record id to the end of the route path.
+`recordItemId` is used to append the record id to the end of the route path. By default `id` will be read from the route parameters.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -206,12 +206,6 @@ render(
 ```
 
 Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
-
-:::note
-
-**`<CloneButton>`** component reads the id information from the route by default.
-
-:::
 
 ### `resource`
 
@@ -324,48 +318,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-`resourceNameOrRouteName` is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
-
-// visible-block-start
-import { CloneButton } from "@refinedev/mantine";
-
-const MyCloneComponent = () => {
-  return <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />;
-};
-// visible-block-end
-
-const App = () => {
-  return (
-    <RefineHeadlessDemo
-      resources={[
-        {
-          name: "posts",
-          list: MyCloneComponent,
-        },
-        {
-          name: "categories",
-          create: ClonePage,
-        },
-      ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
-```
-
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to `/categories/clone/2`.
+Use `resource` prop instead.
 
 ## API Reference
 

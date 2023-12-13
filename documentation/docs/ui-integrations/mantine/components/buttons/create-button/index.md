@@ -47,7 +47,7 @@ const CreatePage = () => {
 
 `<CreateButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `create` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood. It can be useful to redirect the app to the create page route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
@@ -262,49 +262,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-`resourceNameOrRouteName` is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
-
-// visible-block-start
-import { CreateButton } from "@refinedev/mantine";
-
-const MyCreateComponent = () => {
-  return <CreateButton resourceNameOrRouteName="categories" />;
-};
-// visible-block-end
-
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      resources={[
-        {
-          name: "posts",
-          list: MyCreateComponent,
-        },
-        {
-          name: "categories",
-          create: CreatePage,
-        },
-      ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
-```
-
-Clicking the button will trigger the `create` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect to `/posts/create`.
+Use `resource` prop instead.
 
 ## API Reference
 

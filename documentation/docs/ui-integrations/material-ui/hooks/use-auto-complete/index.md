@@ -14,17 +14,7 @@ import OnSearchLivePreview from "./on-search-live-preview.md";
 
 This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/docs/core/hooks/data/use-list)
 
-:::info-tip DERIVATIVES
-
-If you're looking for a complete select library, Refine has out-of-the-box support for the libraries below:
-
-- Refine's `useSelect` (for Headless users) - [Documentation](/docs/core/hooks/use-select) - [Example](/docs/examples/core/useSelect)
-- [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-select) - [Example](/docs/examples/field/useSelect)
-- [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/ui-integrations/mantine/hooks/use-select)
-
-:::
-
-## Basic Usage
+## Usage
 
 Here is a basic example of how to use `useAutocomplete` hook.
 
@@ -32,16 +22,10 @@ Here is a basic example of how to use `useAutocomplete` hook.
 
 ## Realtime Updates
 
-:::caution
-
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider)
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 When `useAutocomplete` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`.
 It is useful when you want to subscribe to the live updates.
-
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
@@ -195,11 +179,7 @@ It allows us to `AutoComplete` the `options`.
 
 <OnSearchLivePreview />
 
-:::info
-
 If `onSearch` is used, it will override the existing `filters`.
-
-:::
 
 #### Client-side filtering
 
@@ -292,11 +272,7 @@ useAutocomplete({
 
 ### `successNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useAutocomplete` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -314,11 +290,7 @@ useAutocomplete({
 
 ### `errorNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useAutocomplete` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
@@ -336,11 +308,7 @@ useAutocomplete({
 
 ### `liveMode`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -354,11 +322,7 @@ useAutocomplete({
 
 ### `onLiveEvent`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 The callback function that is executed when new events from a subscription are arrived.
 
@@ -372,11 +336,7 @@ useAutocomplete({
 
 ### `liveParams`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
@@ -406,29 +366,13 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### ~~`sort`~~
-
-:::caution Deprecated
+### ~~`sort`~~ <PropTag deprecated />
 
 Use `sorters` instead.
 
-:::
-
-### ~~`hasPagination`~~
-
-:::caution Deprecated
+### ~~`hasPagination`~~ <PropTag deprecated />
 
 Use `pagination.mode` instead.
-
-:::
-
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not. It is `false` by default.
-
-```tsx
-useAutocomplete({
-  hasPagination: true,
-});
-```
 
 ## FAQ
 
@@ -459,11 +403,7 @@ return <Autocomplete {...autocompleteProps} options={options || []} />;
 
 The use of `useAutocomplete` with [`useForm`](/docs/packages/list-of-packages) is demonstrated in the code above. You can use the `useAutocomplete` hook independently of the `useForm` hook.
 
-:::info
-
 By default, Refine does the search using the [`useList`](/docs/core/hooks/data/use-delete) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
-
-:::
 
 ## API Reference
 

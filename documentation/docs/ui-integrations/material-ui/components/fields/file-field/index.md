@@ -5,7 +5,7 @@ swizzle: true
 
 This field is used to display files and it uses the [`<Link>`](https://mui.com/material-ui/react-link/#main-content) component of [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) from Material UI.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
@@ -74,7 +74,7 @@ render(
 );
 ```
 
-:::tip
+:::simple Implementation Tips
 
 If you don't use `title` prop it will use `src` as `title`
 
@@ -86,7 +86,7 @@ If you don't use `title` prop it will use `src` as `title`
 
 <PropsTable module="@refinedev/mui/FileField"/>
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Link](https://mui.com/material-ui/react-link/#main-content).
 

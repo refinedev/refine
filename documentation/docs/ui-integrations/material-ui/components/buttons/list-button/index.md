@@ -5,7 +5,7 @@ swizzle: true
 
 `<ListButton>` is using Material UI's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
@@ -68,11 +68,7 @@ render(
 );
 ```
 
-:::note
-
-The button text is defined automatically by **Refine** based on the _resource_ object name property.
-
-:::
+The button text is defined automatically by Refine based on the `resource` definition.
 
 ## Properties
 
@@ -184,43 +180,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
-
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { ListButton } from "@refinedev/mui";
-
-const MyListComponent = () => {
-  return <ListButton resourceNameOrRouteName="categories" recordItemId="2" />;
-};
-// visible-block-end
-
-render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        list: () => (
-          <RefineMui.List>
-            <p>Rest of the page here...</p>
-          </RefineMui.List>
-        ),
-      },
-    ]}
-    DashboardPage={MyListComponent}
-  />,
-);
-```
-
-Clicking the button will trigger the `list` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect to `/categories`.
+Use `resource` prop instead.
 
 ## API Reference
 
@@ -228,7 +188,7 @@ Clicking the button will trigger the `list` method of [`useNavigation`](/docs/co
 
 <PropsTable module="@refinedev/mui/ListButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
 

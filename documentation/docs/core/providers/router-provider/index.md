@@ -1,14 +1,22 @@
 ---
 title: Router Provider
-sidebar_label: Router Provider
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-**Refine** provides a simple interface from the `routerProvider` prop to infer the resource from route, pass, parse and sync the query parameters and handle navigation operations. This provider and its properties are optional but recommended to get the most out of **Refine**.
+Refine provides a simple interface from the `routerProvider` prop to infer the resource from route, pass, parse and sync the query parameters and handle navigation operations. This provider and its properties are optional but recommended to get the most out of Refine.
 
 Rather than restricting and limiting our users to specific routing libraries or practices, we have designed the `routerProvider` interface to communicate with the router libraries rather than managing them.
+
+:::simple Out of the Box Router Providers
+
+- [React Router V6][react-router-v6]
+- [Next.js Router][nextjs-router]
+- [Remix Router][remix-router]
+- [Expo Router (Community)][expo-router]
+
+:::
 
 A router provider may contain the following methods:
 
@@ -42,26 +50,11 @@ const routerProvider: {
 };
 ```
 
-:::info
-
-**Refine** includes many out-of-the-box router providers to use in your projects like
-
-- [React Router V6][react-router-v6]
-- [Next.js Router][nextjs-router]
-- [Remix Router][remix-router]
-- [React Router V5][react-router-v5] (Only available for `legacyRouterProvider`, see below.)
-
-:::
-
-:::tip
-
-You can also create your own router provider or easily customize the existing ones to suit your needs. The existing implementations are pretty simple and straightforward. Do not hesitate to check the source code of the existing router providers when creating your own.
-
-:::
+You can create your own router provider or easily customize the existing ones to suit your needs. The existing implementations are pretty simple and straightforward. Do not hesitate to check the source code of the existing router providers when creating your own.
 
 ## Usage
 
-To activate router provider in **Refine**, we have to pass the `routerProvider` to the `<Refine />` component:
+To activate router provider in Refine, we have to pass the `routerProvider` to the `<Refine />` component:
 
 <Tabs
 defaultValue="react-router-v6"
@@ -176,7 +169,7 @@ export default function App() {
 
 ## Creating a router provider
 
-The `routerProvider` methods are designed to be as simple as possible and to be compatible with any router library. **Refine** also exports some helper functions to make it easier to create a customized `routerProvider`.
+The `routerProvider` methods are designed to be as simple as possible and to be compatible with any router library. Refine also exports some helper functions to make it easier to create a customized `routerProvider`.
 
 ### `go`
 
@@ -208,7 +201,7 @@ Matching the resource route can be done with the help of the `matchResourceFromR
 
 ### `Link`
 
-The `Link` component is used to create links to other pages. It accepts a `to` parameter which is the path of the page to navigate to. It's meant to be used internally in UI packages and other parts of **Refine** to complement the router library. It's not meant to be used directly in the application.
+The `Link` component is used to create links to other pages. It accepts a `to` parameter which is the path of the page to navigate to. It's meant to be used internally in UI packages and other parts of Refine to complement the router library. It's not meant to be used directly in the application.
 
 ### Source Code for the Existing Router Providers
 
@@ -218,11 +211,11 @@ The `Link` component is used to create links to other pages. It accepts a `to` p
 
 ## Legacy Router Provider
 
-**Refine**'s v4 release is backward compatible and supports the legacy router provider implementations until v5 comes out. The legacy router provider implementations are still available at `/legacy` paths in the router provider packages. For example, the legacy router provider implementation for React Router V6 is available at `@refinedev/react-router-v6/legacy`.
+Refine's v4 release is backward compatible and supports the legacy router provider implementations until v5 comes out. The legacy router provider implementations are still available at `/legacy` paths in the router provider packages. For example, the legacy router provider implementation for React Router V6 is available at `@refinedev/react-router-v6/legacy`.
 
 If you want to use a legacy router provider, you can pass them to the `<Refine />` component using the `legacyRouterProvider` prop.
 
-[react-router-v5]: https://github.com/refinedev/refine/tree/master/packages/react-router
+[expo-router]: https://www.npmjs.com/package/@refinenative/expo-router
 [react-router-v6]: https://github.com/refinedev/refine/tree/master/packages/react-router-v6
 [nextjs-router]: https://github.com/refinedev/refine/tree/master/packages/nextjs-router
 [remix-router]: https://github.com/refinedev/refine/tree/master/packages/remix

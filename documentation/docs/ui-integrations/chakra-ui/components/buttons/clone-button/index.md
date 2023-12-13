@@ -39,7 +39,7 @@ const ClonePage = () => {
 
 `<CloneButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `clone` method from [useNavigation](/docs/core/hooks/navigation/use-navigation) under the hood.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -204,7 +204,7 @@ render(
 
 Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
-:::note
+:::simple Good to know
 
 **`<CloneButton>`** component reads the id information from the route by default.
 
@@ -321,48 +321,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-`resourceNameOrRouteName` is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
-
-// visible-block-start
-import { CloneButton } from "@refinedev/chakra-ui";
-
-const MyCloneComponent = () => {
-  return <CloneButton colorScheme="black" resourceNameOrRouteName="categories" recordItemId="2" />;
-};
-// visible-block-end
-
-const App = () => {
-  return (
-    <RefineHeadlessDemo
-      resources={[
-        {
-          name: "posts",
-          list: MyCloneComponent,
-        },
-        {
-          name: "categories",
-          create: ClonePage,
-        },
-      ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
-```
-
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to `/categories/clone/2`.
+Use `resource` prop instead.
 
 ## API Reference
 

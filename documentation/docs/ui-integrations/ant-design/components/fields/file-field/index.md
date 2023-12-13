@@ -5,7 +5,7 @@ swizzle: true
 
 This field is used to display files and uses [`<Typography.Link>`](https://ant.design/components/typography) from Ant Design.
 
-:::info-tip Swizzle
+:::simple Good to know
 
 You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
@@ -70,7 +70,7 @@ render(
 );
 ```
 
-:::tip
+:::simple Implementation Tips
 
 If you don't use `title` prop it will use `src` as `title`
 
@@ -82,7 +82,7 @@ If you don't use `title` prop it will use `src` as `title`
 
 <PropsTable module="@refinedev/antd/FileField" />
 
-:::tip External Props
+:::simple External Props
 
 This field also accepts all props of Ant Design's [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router) component.
 

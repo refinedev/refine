@@ -1,6 +1,5 @@
 ---
-title: <ThemedLayout>
-sidebar_label: <ThemedLayout>
+title: <ThemedLayout />
 description: <ThemedLayoutV2> component from Refine, defines the overall structure and layout of a web page.
 swizzle: true
 source: packages/chakra-ui/src/components/themedLayoutV2/index.tsx
@@ -41,7 +40,7 @@ By using `<ThemedLayoutV2>`, developers can create a consistent look and feel ac
 - `<Footer>`: displayed at the bottom of the page.
 - `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
 
-:::note
+:::simple Good to know
 
 `Footer` and `OffLayoutArea` do not have any default components.
 
@@ -108,8 +107,6 @@ const App = () => {
 render(<App />);
 ```
 
-:::info
-
 Example above shows how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/list-of-packages). You can see these examples for other routers:
 
 - [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-chakra-ui/src/App.tsx#L171)
@@ -118,13 +115,7 @@ Example above shows how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs
 
 > ⚠️ Next.js and Remix examples are using `<ThemedLayoutV2`> from `@refinedev/antd` package. But you can use `<ThemedLayoutV2>` from `@refinedev/chakra-ui` as same.
 
-:::
-
-:::note
-
 `<ThemedLayoutV2>` is designed to be responsive. In the live-preview, it appears in tablet mode and toggle [`<Drawer>`][chakra-ui-drawer]. On larger screens, it will use fixed open [`<Drawer>`][chakra-ui-drawer].
-
-:::
 
 ## Props
 
@@ -324,7 +315,7 @@ const App: React.FC = () => {
 
 ### `Footer`
 
-The footer section of the layout is displayed at the bottom of the page. **Refine** doesn't provide a default footer component. However, you can pass a custom component to the `Footer` prop to display a footer section.
+The footer section of the layout is displayed at the bottom of the page. Refine doesn't provide a default footer component. However, you can pass a custom component to the `Footer` prop to display a footer section.
 
 Here is an example of how to display a footer section:
 
@@ -422,7 +413,7 @@ const App: React.FC = () => {
 
 ### `OffLayoutArea`
 
-off-layout area component is rendered outside of the main layout component, allowing it to be placed anywhere on the page while still being part of the overall layout .**Refine** doesn't provide a default off-layout area component. However, you can pass a custom component to the `OffLayoutArea` prop to display a custom off-layout area.
+off-layout area component is rendered outside of the main layout component, allowing it to be placed anywhere on the page while still being part of the overall layout .Refine doesn't provide a default off-layout area component. However, you can pass a custom component to the `OffLayoutArea` prop to display a custom off-layout area.
 
 Here is an example of how to display a custom off-layout area:
 
@@ -539,11 +530,7 @@ const App: React.FC = () => {
 
 ## Customizing with swizzle
 
-:::note
-
-🚨 This feature is available with `@refine/cli`. Please refer to [CLI documentation](/docs/packages/list-of-packages#swizzle) for more information.
-
-:::
+> This feature is available with `@refine/cli`. Please refer to [CLI documentation](/docs/packages/list-of-packages#swizzle) for more information.
 
 `<ThemedLayoutV2>` component source code can be ejected using the `swizzle` command. This will create a copy of the component in your project's `src` directory, allowing you to customize as your needs.
 
@@ -564,11 +551,7 @@ UI Framework
 
 First, you need to select the package you want to swizzle. In this example, we will swizzle the `@refinedev/chakra-ui` package.
 
-:::info
-
-**Refine** CLI will only show the packages that are installed in your project.
-
-:::
+Refine CLI will only show the packages that are installed in your project.
 
 ```bash
 ? Which component do you want to swizzle?
@@ -649,13 +632,9 @@ const App = () => {
 };
 ```
 
-:::info
+:::simple Good to know
 
-**Refine** CLI determines the path to create a new folder according to the framework you are using. For example, if you are using the `remix`, the path will be `app/components/layout`.
-
-:::
-
-:::caution
+Refine CLI determines the path to create a new folder according to the framework you are using. For example, if you are using the `remix`, the path will be `app/components/layout`.
 
 If there is already a file with the same name in the directory, the swizzle command will not overwrite it.
 

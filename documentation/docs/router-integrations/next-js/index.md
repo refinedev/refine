@@ -2,13 +2,11 @@
 title: Next.js
 ---
 
-**Refine** provides router bindings and utilities for [Next.js](https://nextjs.org/). This package will provide easy integration between **Refine** and **Next.js** for both existing projects and new projects without giving up the benefits of **Next.js**.
+Refine provides router bindings and utilities for [Next.js](https://nextjs.org/). This package will provide easy integration between Refine and **Next.js** for both existing projects and new projects without giving up the benefits of **Next.js**.
 
 ```bash
 npm i @refinedev/nextjs-router
 ```
-
-:::tip
 
 We recommend using `create refine-app` to initialize your Refine projects. It configures the project according to your needs including SSR with Next.js!
 
@@ -16,13 +14,11 @@ We recommend using `create refine-app` to initialize your Refine projects. It co
 npm create refine-app@latest -- -o refine-nextjs my-refine-nextjs-app
 ```
 
-:::
-
 [Refer to the Router Provider documentation for detailed information. &#8594][routerprovider]
 
-:::note Legacy Router
+:::simple Legacy Router
 
-`@refinedev/nextjs-router` also exports the legacy router provider and it will be available until the next major version of **Refine**. It is recommended to use the new router provider instead of the legacy one.
+`@refinedev/nextjs-router` also exports the legacy router provider and it will be available until the next major version of Refine. It is recommended to use the new router provider instead of the legacy one.
 
 If you are using the legacy router provider, it can be imported from `@refinedev/nextjs-router/legacy` for the `/pages` directory and `@refinedev/nextjs-router/legacy-app` for the `/app` directory and passed to the `legacyRouterProvider` prop of the `Refine` component.
 
@@ -32,7 +28,7 @@ If you are using the legacy router provider, it can be imported from `@refinedev
 
 ### `/pages` Directory
 
-We'll use the `routerProvider` from `@refinedev/nextjs-router` to set up the router bindings for **Refine**. We'll define the action routes for our resources in the `resources` array and define our pages in the `pages` directory.
+We'll use the `routerProvider` from `@refinedev/nextjs-router` to set up the router bindings for Refine. We'll define the action routes for our resources in the `resources` array and define our pages in the `pages` directory.
 
 We'll create four pages for our resources:
 
@@ -45,7 +41,7 @@ And we'll create one page for the index route and use it to redirect to the `pos
 
 - `pages/index.tsx` - Index page
 
-Let's start with the initialization of the **Refine** app in the `_app.tsx` file:
+Let's start with the initialization of the Refine app in the `_app.tsx` file:
 
 ```tsx title=_app.tsx
 import { Refine } from "@refinedev/core";
@@ -81,19 +77,15 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
 }
 ```
 
-:::tip
+:::simple Good to know
 
-Next.js uses the bracket syntax (`[param]`) for dynamic routes but **Refine** uses the colon syntax (`:param`) for route parameters. This won't cause any problems since **Refine** only uses the colon syntax as an indicator for route parameters and the communication between **Refine** and the router is handled by the `routerProvider` prop.
+Next.js uses the bracket syntax (`[param]`) for dynamic routes but Refine uses the colon syntax (`:param`) for route parameters. This won't cause any problems since Refine only uses the colon syntax as an indicator for route parameters and the communication between Refine and the router is handled by the `routerProvider` prop.
 
 :::
-
-:::note Additional Parameters and Nesting
 
 Your action definitions in the resources can contain additional parameters and nested routes. Passing these parameters when navigating to the pages are handled by the current available parameters and the `meta` props of the related hooks and components.
 
-**Refine** supports route parameters defined with `:param` syntax. You can use these parameters in your action definitions and create your routes accordingly. For example, if you have a `posts` resource and you want to create a route for the `show` action of a specific post, you can define the `show` action as `/posts/show/:id` and use the `id` parameter in your component.
-
-:::
+Refine supports route parameters defined with `:param` syntax. You can use these parameters in your action definitions and create your routes accordingly. For example, if you have a `posts` resource and you want to create a route for the `show` action of a specific post, you can define the `show` action as `/posts/show/:id` and use the `id` parameter in your component.
 
 Now we can create our pages in the `pages` directory:
 
@@ -223,7 +215,7 @@ export default function CategoryShow() {
 
 Now, we'll use [`NavigateToResource`](#navigatetoresource) component to redirect to the `posts` resource when the user visits the home page.
 
-:::tip
+:::simple Implementation Tips
 
 Even though we're using the `NavigateToResource` component, when using Next.js it's better to handle such redirect operations in the server side rather than the client side. You can use the `getServerSideProps` function to redirect the user to the `/posts`.
 
@@ -239,7 +231,7 @@ export default function Home() {
 
 ### `/app` Directory
 
-We'll use the `routerProvider` from `@refinedev/nextjs-router/app` to set up the router bindings for **Refine**. We'll define the action routes for our resources in the `resources` array and define our pages in the `app` directory.
+We'll use the `routerProvider` from `@refinedev/nextjs-router/app` to set up the router bindings for Refine. We'll define the action routes for our resources in the `resources` array and define our pages in the `app` directory.
 
 We'll create four routes for our resources:
 
@@ -252,7 +244,7 @@ And we'll create one route for the index and use it to redirect to the `posts` r
 
 - `app/page.tsx` - Index page
 
-Let's start with the initialization of the **Refine** app in the `app/layout.tsx` file:
+Let's start with the initialization of the Refine app in the `app/layout.tsx` file:
 
 ```tsx title=app/layout.tsx
 "use client";
@@ -294,19 +286,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-:::tip
+:::simple Good to know
 
-Next.js uses the bracket syntax (`[param]`) for dynamic routes but **Refine** uses the colon syntax (`:param`) for route parameters. This won't cause any problems since **Refine** only uses the colon syntax as an indicator for route parameters and the communication between **Refine** and the router is handled by the `routerProvider` prop.
+Next.js uses the bracket syntax (`[param]`) for dynamic routes but Refine uses the colon syntax (`:param`) for route parameters. This won't cause any problems since Refine only uses the colon syntax as an indicator for route parameters and the communication between Refine and the router is handled by the `routerProvider` prop.
 
 :::
-
-:::note Additional Parameters and Nesting
 
 Your action definitions in the resources can contain additional parameters and nested routes. Passing these parameters when navigating to the pages are handled by the current available parameters and the `meta` props of the related hooks and components.
 
-**Refine** supports route parameters defined with `:param` syntax. You can use these parameters in your action definitions and create your routes accordingly. For example, if you have a `posts` resource and you want to create a route for the `show` action of a specific post, you can define the `show` action as `/posts/show/:id` and use the `id` parameter in your component.
-
-:::
+Refine supports route parameters defined with `:param` syntax. You can use these parameters in your action definitions and create your routes accordingly. For example, if you have a `posts` resource and you want to create a route for the `show` action of a specific post, you can define the `show` action as `/posts/show/:id` and use the `id` parameter in your component.
 
 Now we can create our pages in the `app` directory:
 
@@ -444,7 +432,7 @@ export default function CategoryShow() {
 
 Now, we'll use [`NavigateToResource`](#navigatetoresource) component to redirect to the `posts` resource when the user visits the home page.
 
-:::tip
+:::simple Implementation Tips
 
 Even though we're using the `NavigateToResource` component, when using Next.js it's better to handle such redirect operations in the server side rather than the client side. You can use the `getServerSideProps` function to redirect the user to the `/posts`.
 
@@ -496,7 +484,7 @@ export default function IndexPage() {
 
 ### `UnsavedChangesNotifier`
 
-This component enables the `warnWhenUnsavedChanges` feature of **Refine**. It will show a warning message when user tries to navigate away from the current page without saving the changes. Also checks for `beforeunload` event to warn the user when they try to close the browser tab or window.
+This component enables the `warnWhenUnsavedChanges` feature of Refine. It will show a warning message when user tries to navigate away from the current page without saving the changes. Also checks for `beforeunload` event to warn the user when they try to close the browser tab or window.
 
 Place this component inside the `<Refine>` components children to enable this feature.
 
@@ -535,11 +523,7 @@ This function can be used to parse the query parameters of a table page. It can 
 
 ### `DocumentTitleHandler`
 
-:::note
-
 Note that this component currently only works in the `pages` directory.
-
-:::
 
 This component will generate the document title for the current page.By default, it follows a set of predefined rules to generate titles based on the provided props. However, it also offers the flexibility to customize the title generation process by providing a custom `handler` function.
 The default title generation rules are as follows:
@@ -598,11 +582,7 @@ const customTitleHandler = ({ resource, action, params }) => {
 
 ### `useDocumentTitle`
 
-:::note
-
 Note that this hook doesn't support SSR. It will only set the document title in the client side.
-
-:::
 
 This hook allows you to set the document title for the current page. It can be used in any component that is a child of the `<Refine>` component.
 
@@ -654,7 +634,7 @@ On the client-side, you can wrap your pages with [`Authenticated`](/docs/core/co
 
 On the server-side, you can use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthenticated users to other pages like login...
 
-:::info
+:::simple Implementation Tips
 
 For page level authentication, server-side approach is recommended.
 
@@ -813,7 +793,7 @@ On the client-side you can wrap your pages with `CanAccess` component from `@ref
 
 And on the server-side you can use your `accessControlProvider`'s `can` function inside server side functions (`getServerSideProps`) to redirect unauthorized users to other pages..
 
-:::info
+:::simple Implementation Tips
 
 For page level access control, server-side approach is recommended.
 
@@ -840,11 +820,7 @@ export const accessControlProvider = {
 };
 ```
 
-:::tip
-
 You can also access resource object directly.
-
-:::
 
 ```tsx
 export const accessControlProvider = {
@@ -908,7 +884,7 @@ export const MyPage = () => (
 
 ### Can I use nested routes?
 
-Yes, you can use nested routes in your app. **Refine** will match the routes depending on how you define the action paths in your resources. Additional parameters and nesting is supported. **Refine** will not limit you and your router in route configuration, all you need to do is to pass the appropriate path to the related resource and the action in the `resources` array (This is also optional but recommended due to the features it provides).
+Yes, you can use nested routes in your app. Refine will match the routes depending on how you define the action paths in your resources. Additional parameters and nesting is supported. Refine will not limit you and your router in route configuration, all you need to do is to pass the appropriate path to the related resource and the action in the `resources` array (This is also optional but recommended due to the features it provides).
 
 You can use `:param` syntax to define parameters in your routes.
 
@@ -1049,7 +1025,7 @@ export default function MyApp({ Component, pageProps }) {
 
 To comply with TypeScript types, we'll need to extend the `NextPage` and `AppProps` types accordingly to expect the `layout` property in page components.
 
-:::info Read more at Next.js Docs
+:::simple Further Reading
 
 You can find out more about this at [Next.js documentation for multiple layouts](https://nextjs.org/docs/basic-features/layouts#with-typescript)
 
@@ -1093,7 +1069,7 @@ Login.layout = "auth";
 
 ### Handling 404s
 
-In the earlier versions of **Refine**, if `authProvider` was defined, we've redirected the users to the `/login` route even with the 404s and 404 pages were only available to the authenticated users. Now, the routes are handled by the users, so you can handle the 404s however you like.
+In the earlier versions of Refine, if `authProvider` was defined, we've redirected the users to the `/login` route even with the 404s and 404 pages were only available to the authenticated users. Now, the routes are handled by the users, so you can handle the 404s however you like.
 
 #### Using the Next.js's 404 page
 
@@ -1103,7 +1079,7 @@ If you want to use the Next.js's 404 page, you can create a `404.tsx` file in yo
 
 If you want to achieve the legacy behavior or want to have more control over the unhandled routes, you can use the catch-all route. For more information, you can check the [Next.js documentation for catch-all route](https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes).
 
-You can use **Refine**'s authentication hooks and the `authProvider` to check if the user is authenticated or not and redirect them to the login page. This check can be done on the client-side or server-side.
+You can use Refine's authentication hooks and the `authProvider` to check if the user is authenticated or not and redirect them to the login page. This check can be done on the client-side or server-side.
 
 **Client Side**
 
@@ -1150,7 +1126,7 @@ export default function CatchAll() {
 
 ### `RefineRoutes` Component
 
-:::caution
+:::simple Good to know
 
 While this may work for the simple cases, it is not recommended to use this component. Defining your routes separately will give you more control over your routes and will allow you to use the full potential of your router.
 
@@ -1230,8 +1206,6 @@ export default function CatchAll() {
 }
 ```
 
-:::info
-
 When components are used to define the resource actions, default paths will be used. You can override the default paths by assigning an object with `component` and `path` properties to the action properties.
 
 Default paths are:
@@ -1240,8 +1214,6 @@ Default paths are:
 - `create`: `/resources/create`
 - `edit`: `/resources/edit/:id`
 - `show`: `/resources/show/:id`
-
-:::
 
 ## Example (`/pages`)
 

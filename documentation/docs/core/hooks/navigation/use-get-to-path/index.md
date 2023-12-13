@@ -1,13 +1,12 @@
 ---
 title: useGetToPath
-sidebar_label: useGetToPath
 ---
 
 `useGetToPath` is a hook that returns a function that composes the URL for the given `resource` and the `action` by using the URL parameters and the `meta` property if provided.
 
 This is useful when you want to navigate to a specific action of a resource and you want to have the URL to be composed automatically.
 
-## Basic Usage
+## Usage
 
 ```tsx
 import { useGetToPath, useGo } from "@refinedev/core";
