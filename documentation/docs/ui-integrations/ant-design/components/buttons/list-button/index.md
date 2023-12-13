@@ -70,7 +70,7 @@ render(
 );
 ```
 
-The button text is defined automatically by **refine** based on the `resource` definition.
+The button text is defined automatically by Refine based on the `resource` definition.
 
 ## Properties
 

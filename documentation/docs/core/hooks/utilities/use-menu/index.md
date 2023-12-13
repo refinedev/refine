@@ -34,7 +34,7 @@ If you are using [`@refinedev/antd`](/docs/ui-integrations/ant-design/introducti
 
 ### Creating a Menu
 
-We will show you how to use `useMenu` to create a simple menu for your **refine** application.
+We will show you how to use `useMenu` to create a simple menu for your Refine application.
 
 ```tsx live hideCode url=http://localhost:3000
 setInitialRoutes(["/"]);

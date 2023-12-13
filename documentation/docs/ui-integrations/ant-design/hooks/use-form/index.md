@@ -679,7 +679,7 @@ If you have overlapping properties in both `meta` and `mutationMeta`, the `mutat
 
 ### `queryOptions`
 
-In the `edit` and `clone` modes, **refine** uses [`useOne`](/docs/core/hooks/data/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property. This property will only work in the `edit` and `clone` actions.
+In the `edit` and `clone` modes, Refine uses [`useOne`](/docs/core/hooks/data/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property. This property will only work in the `edit` and `clone` actions.
 
 ```tsx
 useForm({
@@ -691,7 +691,7 @@ useForm({
 
 ### `createMutationOptions`
 
-In the `create` and `clone` modes, **refine** uses the [`useCreate`](/docs/core/hooks/data/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing the `createMutationOptions` property. This property will only work in the `create` and `clone` actions.
+In the `create` and `clone` modes, Refine uses the [`useCreate`](/docs/core/hooks/data/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing the `createMutationOptions` property. This property will only work in the `create` and `clone` actions.
 
 ```tsx
 useForm({
@@ -703,7 +703,7 @@ useForm({
 
 ### `updateMutationOptions`
 
-In the `edit` mode, **refine** uses [`useUpdate`](/docs/core/hooks/data/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property. This property will only work in the `edit` action.
+In the `edit` mode, Refine uses [`useUpdate`](/docs/core/hooks/data/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property. This property will only work in the `edit` action.
 
 ```tsx
 useForm({

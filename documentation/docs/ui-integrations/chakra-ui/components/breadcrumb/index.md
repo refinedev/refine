@@ -9,7 +9,7 @@ A breadcrumb displays the current location within a hierarchy. It allows going b
 
 - You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
 
-- In the earlier versions of **refine**, `<Refine>` component had accepted `DashboardPage` which could be used to add an index page to your app. With the changes in `routerProvider` API of **refine**, `DashboardPage` is deprecated. You can now define an index route yourself manually with your router package.
+- In the earlier versions of Refine, `<Refine>` component had accepted `DashboardPage` which could be used to add an index page to your app. With the changes in `routerProvider` API of Refine, `DashboardPage` is deprecated. You can now define an index route yourself manually with your router package.
 
 - In earlier versions, the home icon in the `Breadcrumb` was created by the `DashboardPage`, now it is rendered if you define a an action route as `/` in any one of your resources. It will be rendered with the home icon regardless of the current route. You can also hide the home icon by setting `showHome` to `false`.
 

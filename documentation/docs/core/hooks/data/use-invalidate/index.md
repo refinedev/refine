@@ -103,7 +103,7 @@ The scope of the invalidation process. These scopes can be provided in an array.
 
 ### `invalidationFilters` and `invalidationOptions`
 
-The filters and options applied to the invalidation process when picking which queries to invalidate. By default **refine** applies some filters and options to fine-tune the invalidation process.
+The filters and options applied to the invalidation process when picking which queries to invalidate. By default Refine applies some filters and options to fine-tune the invalidation process.
 
 By default settings, all the targeted queries are invalidated and the active ones are triggered for a refetch. If there are any ongoing queries, they are kept as they are.
 

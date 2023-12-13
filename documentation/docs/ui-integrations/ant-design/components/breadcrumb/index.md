@@ -115,7 +115,7 @@ render(
 
 - You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
 
-- In the earlier versions of **refine**, `<Refine>` component had accepted `DashboardPage`, which could be used to add an index page to your app. With the changes in the `routerProvider` API of **refine** however, `DashboardPage` is deprecated. You can now define an index route yourself manually by your router package.
+- In the earlier versions of Refine, `<Refine>` component had accepted `DashboardPage`, which could be used to add an index page to your app. With the changes in the `routerProvider` API of Refine however, `DashboardPage` is deprecated. You can now define an index route yourself manually by your router package.
 
 - In earlier versions, the home icon in the `Breadcrumb` was created by the `DashboardPage`, now it is rendered if you define a an action route as `/` in any one of your resources. It will be rendered with the home icon regardless of the current route. You can also hide the home icon by setting `showHome` to `false`.
 

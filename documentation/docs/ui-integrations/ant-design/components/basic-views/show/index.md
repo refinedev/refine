@@ -334,7 +334,7 @@ The `<Show>` component needs the `id` information for `<RefreshButton>` to work 
 
 ### `dataProviderName`
 
-If not specified, **refine** will use the default data provider. If you have multiple data providers, you can use the `dataProviderName` property to specify which one you want to use:
+If not specified, Refine will use the default data provider. If you have multiple data providers, you can use the `dataProviderName` property to specify which one you want to use:
 
 ```tsx
 import { Refine } from "@refinedev/core";

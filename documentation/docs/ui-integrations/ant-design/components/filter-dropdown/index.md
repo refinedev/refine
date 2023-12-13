@@ -57,7 +57,7 @@ interface IPost {
 }
 ```
 
-Selecting categories from dropdown will send the id's of categories as filtering values to **Table** and data will be updated by **refine** under the hood.
+Selecting categories from dropdown will send the id's of categories as filtering values to **Table** and data will be updated by Refine under the hood.
 
 `<FilterDropdown>` will put two buttons for filtering and clearing filter actions.
 

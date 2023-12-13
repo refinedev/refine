@@ -4,7 +4,7 @@ description: <AutoSaveIndicator> component shows `autoSave` status on edit actio
 source: packages/antd/src/components/autoSaveIndicator/index.tsx
 ---
 
-`<AutoSaveIndicator>` component from **refine** for **Ant Design** can be used to communicate auto-save status to the user.
+`<AutoSaveIndicator>` component from Refine for **Ant Design** can be used to communicate auto-save status to the user.
 
 ## Usage
 

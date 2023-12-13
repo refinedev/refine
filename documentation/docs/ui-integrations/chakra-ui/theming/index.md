@@ -130,7 +130,7 @@ interface IPost {
 }
 ```
 
-The theme object is where you define your application's color palette, type scale, font stacks, breakpoints, border radius values, and more. You can either create your own theme object or use theme that provide from **refine**. You can find more information about theme in Chakra UI documentation.
+The theme object is where you define your application's color palette, type scale, font stacks, breakpoints, border radius values, and more. You can either create your own theme object or use theme that provide from Refine. You can find more information about theme in Chakra UI documentation.
 
 > For more information, refer to the [Chakra UI documentation &#8594](https://chakra-ui.com/docs/styled-system/customize-theme)
 
@@ -165,13 +165,13 @@ You can see how themes change the look of the application in [this example &#859
 
 If you want to use `<ThemedLayoutV2>` you have to wrap your application with the `<ChakraProvider>` component and should give `theme` prop to it.
 
-You can use `RefineThemes` provided by **refine** or you can create your own theme object.
+You can use `RefineThemes` provided by Refine or you can create your own theme object.
 
 > For more information, please refer to the [Chakra UI documentation &#8594](https://chakra-ui.com/docs/styled-system/customize-theme)
 
 ## Theme customization
 
-`<ChakraProvider/>` component can be used to change the theme and other global settings. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by **refine**.
+`<ChakraProvider/>` component can be used to change the theme and other global settings. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by Refine.
 
 ```tsx live url=http://localhost:3000 previewHeight=450px
 setInitialRoutes(["/posts"]);
@@ -256,7 +256,7 @@ render(<App />);
 
 ## Theme switching
 
-Chakra UI comes with built-in support for managing color mode in your apps. You can manage the color mode on **refine** applications such as Chakra UI applications.
+Chakra UI comes with built-in support for managing color mode in your apps. You can manage the color mode on Refine applications such as Chakra UI applications.
 
 Chakra stores the color mode in `localStorage` and appends a className to the body to ensure the color mode is persistent.
 

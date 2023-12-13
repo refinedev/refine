@@ -4,7 +4,7 @@ description: <AutoSaveIndicator> component shows `autoSave` status on edit actio
 source: packages/chakra-ui/src/components/autoSaveIndicator/index.tsx
 ---
 
-`<AutoSaveIndicator>` component from **refine** for **Chakra UI** can be used to communicate auto-save status to the user.
+`<AutoSaveIndicator>` component from Refine for **Chakra UI** can be used to communicate auto-save status to the user.
 
 ## Usage
 

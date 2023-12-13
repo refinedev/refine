@@ -246,7 +246,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `canCreate` and `createButtonProps`
 
-`canCreate` allows us to add the create button inside the `<List>` component. If resource is passed a create component, **refine** adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
+`canCreate` allows us to add the create button inside the `<List>` component. If resource is passed a create component, Refine adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
 
 Create button redirects to the create page of the resource according to the value it reads from the URL.
 
