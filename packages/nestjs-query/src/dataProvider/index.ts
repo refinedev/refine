@@ -136,9 +136,11 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 pascalCase: true,
             })}`;
 
-            if (meta?.gqlQuery) {
+            const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+            if (gqlOperation) {
                 const response = await client.request<BaseRecord>(
-                    meta.gqlQuery,
+                    gqlOperation,
                     { input: { [camelcase(singular(resource))]: variables } },
                 );
 
@@ -208,9 +210,11 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 pascalCase: true,
             })}`;
 
-            if (meta?.gqlQuery) {
+            const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+            if (gqlOperation) {
                 const response = await client.request<BaseRecord>(
-                    meta.gqlQuery,
+                    gqlOperation,
                     {
                         input: {
                             id,
@@ -254,6 +258,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             const pascalResource = camelcase(resource, {
                 pascalCase: true,
             });
+
             const mutationOperation = `updateMany${pascalResource}`;
 
             const mutation = gqlTag`
@@ -293,12 +298,15 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         getOne: async ({ resource, id, meta }) => {
             const operation = camelcase(singular(resource));
 
-            if (meta?.gqlQuery) {
-                let query = meta.gqlQuery;
+            const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
+
+            if (gqlOperation) {
+                let query = gqlOperation;
                 const variables = { id };
 
-                if (isMutation(meta.gqlQuery)) {
-                    const stringFields = fieldsToString(meta?.gqlQuery);
+                if (isMutation(gqlOperation)) {
+                    console.log("Mutation");
+                    const stringFields = fieldsToString(gqlOperation);
 
                     query = gqlTag`
                         query Get${camelcase(singular(resource), {
@@ -405,10 +413,12 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 client.setHeaders(headers);
             }
 
-            if (meta?.gqlQuery) {
+            const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+            if (gqlOperation) {
                 const response: any = await client.request(
-                    meta.gqlQuery,
-                    meta.variables,
+                    gqlOperation,
+                    meta?.variables ?? {},
                 );
 
                 return { data: response };
