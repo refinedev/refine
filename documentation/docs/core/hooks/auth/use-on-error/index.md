@@ -1,7 +1,7 @@
 ---
 title: useOnError
 siderbar_label: useOnError
-description: useOnError data hook from refine is a modified version of react-query's useMutation for create mutations
+description: useOnError data hook from Refine is a modified version of react-query's useMutation for create mutations
 source: /packages/core/src/hooks/auth/useOnError/index.ts
 ---
 
@@ -33,7 +33,7 @@ According to the `onError` method's returned values, the following process will 
 
 ## Internal Usage
 
-**refine** uses `useOnError` internally in the data hooks to handle errors in a unified way.
+**Refine** uses `useOnError` internally in the data hooks to handle errors in a unified way.
 
 When an error is thrown by any data hook, the `useOnError` function is triggered with the error object. Afterward, the error object is passed to the [`onError`][on-error] method of the [`authProvider`][auth-provider], which can be utilized to redirect the user or to log them out.
 

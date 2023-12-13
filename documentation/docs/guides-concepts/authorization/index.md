@@ -4,7 +4,7 @@ title: Authorization
 
 Authorization is a key aspect of security and user experience in web applications. Whether you are building a complex **enterprise-level** application or a simple CRUD interface, **Refine**'s authorization system provides the necessary infrastructure to protect your resources and ensure that users interact with your application in a secure and controlled manner.
 
-refine's **flexible architecture** allows you to easily implement various authorization strategies:
+Refine's **flexible architecture** allows you to easily implement various authorization strategies:
 
 - Role-Based Access Control (**RBAC**)
 - Attribute-Based Access Control (**ABAC**)

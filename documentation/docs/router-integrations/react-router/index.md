@@ -2,7 +2,7 @@
 title: React Router v6
 ---
 
-**refine** provides router bindings and utilities for [React Router v6](https://reactrouter.com/). It is built on top of the `react-router-dom` package. This package will provide easy integration between **refine** and **react-router-dom** for both existing projects and new projects.
+**Refine** provides router bindings and utilities for [React Router v6](https://reactrouter.com/). It is built on top of the `react-router-dom` package. This package will provide easy integration between **Refine** and **react-router-dom** for both existing projects and new projects.
 
 ```bash
 npm i @refinedev/react-router-v6 react-router-dom
@@ -10,7 +10,7 @@ npm i @refinedev/react-router-v6 react-router-dom
 
 :::tip
 
-We recommend using `create refine-app` to initialize your refine projects. It gives you a good boilerplate to start with using React Router v6.
+We recommend using `create refine-app` to initialize your Refine projects. It gives you a good boilerplate to start with using React Router v6.
 
 ```sh
 npm create refine-app@latest -- -p refine-react my-refine-app
@@ -22,7 +22,7 @@ npm create refine-app@latest -- -p refine-react my-refine-app
 
 :::note Legacy Router
 
-`@refinedev/react-router-v6` also exports the legacy router provider and it will be available until the next major version of **refine**. It is recommended to use the new router provider instead of the legacy one.
+`@refinedev/react-router-v6` also exports the legacy router provider and it will be available until the next major version of **Refine**. It is recommended to use the new router provider instead of the legacy one.
 
 If you are using the legacy router provider, it can be imported from `@refinedev/react-router-v6/legacy` and passed to the `legacyRouterProvider` prop of the `Refine` component.
 
@@ -36,7 +36,7 @@ You can define your routes the way you want, then pass the `routerProvider` prop
 
 ### Basic Usage
 
-We'll pass the `routerProvider` prop to the `Refine` component to instruct **refine** on how to communicate with the router. We'll also define our resources and their action paths, this will inform **refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
+We'll pass the `routerProvider` prop to the `Refine` component to instruct **Refine** on how to communicate with the router. We'll also define our resources and their action paths, this will inform **Refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
 
 ```tsx title=App.tsx
 import { Refine } from "@refinedev/core";
@@ -97,7 +97,7 @@ When handling authenticated routes, we can use [`<Authenticated>`](/docs/core/co
 
 Additionally, we'll use the [`<Outlet>`](https://reactrouter.com/en/main/components/outlet) component from `react-router-dom` to render our routes inside the `<Authenticated>` component. This will allow us to create protected routes and render the routes only when the user is authenticated.
 
-We will also need to create a `/login` route to handle the redirection when the user is not authenticated. We can use the `AuthPage` components from refine's UI packages with `type="login"` prop to render the login page.
+We will also need to create a `/login` route to handle the redirection when the user is not authenticated. We can use the `AuthPage` components from Refine's UI packages with `type="login"` prop to render the login page.
 
 ```tsx title=App.tsx
 // highlight-next-line
@@ -549,7 +549,7 @@ const App = () => {
 
 Your action definitions in the resources can contain additional parameters and nested routes. Passing these parameters when navigating to the pages are handled by the current available parameters and the `meta` props of the related hooks and components.
 
-**refine** supports route parameters defined with `:param` syntax. You can use these parameters in your action definitions and create your routes accordingly. For example, if you have a `posts` resource and you want to create a route for the `show` action of a specific post, you can define the `show` action as `/posts/show/:id` and use the `id` parameter in your component.
+**Refine** supports route parameters defined with `:param` syntax. You can use these parameters in your action definitions and create your routes accordingly. For example, if you have a `posts` resource and you want to create a route for the `show` action of a specific post, you can define the `show` action as `/posts/show/:id` and use the `id` parameter in your component.
 
 :::
 
@@ -595,7 +595,7 @@ const App = () => {
 
 ### `UnsavedChangesNotifier`
 
-This component enables the `warnWhenUnsavedChanges` feature of **refine**. It will show a warning message when user tries to navigate away from the current page without saving the changes. Also checks for `beforeunload` event to warn the user when they try to close the browser tab or window.
+This component enables the `warnWhenUnsavedChanges` feature of **Refine**. It will show a warning message when user tries to navigate away from the current page without saving the changes. Also checks for `beforeunload` event to warn the user when they try to close the browser tab or window.
 
 Place this component inside the `<Refine>` components children to enable this feature.
 
@@ -672,12 +672,12 @@ const App = () => {
 This component will generate the document title for the current page.By default, it follows a set of predefined rules to generate titles based on the provided props. However, it also offers the flexibility to customize the title generation process by providing a custom `handler` function.
 The default title generation rules are as follows:
 
-- list : `Posts | refine`
-- edit : `#{id} Edit Post | refine`
-- show : `#{id} Show Post | refine`
-- create : `Create new Post | refine`
-- clone : `#{id} Clone Post | refine`
-- default : `refine`
+- list : `Posts | Refine`
+- edit : `#{id} Edit Post | Refine`
+- show : `#{id} Show Post | Refine`
+- create : `Create new Post | Refine`
+- clone : `#{id} Clone Post | Refine`
+- default : `Refine`
 
 ```tsx
 const App = () => {
@@ -733,7 +733,7 @@ import { useDocumentTitle } from "@refinedev/react-router-v6";
 
 const PostList = () => {
   // highlight-next-line
-  useDocumentTitle("Posts | refine");
+  useDocumentTitle("Posts | Refine");
 
   return <List>{/* ... */}</List>;
 };
@@ -761,7 +761,7 @@ const PostList = () => {
   const setTitle = useDocumentTitle();
 
   useEffect(() => {
-    setTitle("Posts | refine");
+    setTitle("Posts | Refine");
   }, []);
 
   return <List>{/* ... */}</List>;
@@ -772,7 +772,7 @@ const PostList = () => {
 
 ### How to handle optional authentication, redirects and layouts with authentication?
 
-In the below example, you'll find different cases for route definitions, we've used `Authenticated` component to handle authentication and redirects. You can always choose to use a different approach, **refine** will allow you to handle the routes however you like.
+In the below example, you'll find different cases for route definitions, we've used `Authenticated` component to handle authentication and redirects. You can always choose to use a different approach, **Refine** will allow you to handle the routes however you like.
 
 For optional authentication, in our `authProvider` implementation's `check` method, we can pass `authentication: false` and `redirectTo: undefined` to indicate that the current user is not authenticated but we don't want to redirect them to the login page. This is useful, when some pages in our app are public and don't require authentication and some pages are private and require authentication.
 
@@ -1071,7 +1071,7 @@ We've now added our `AuthPage` and `ErrorComponent` components to our app. We've
 
 ### Handling 404s
 
-In the earlier versions of **refine**, if `authProvider` was defined, we've redirected the users to the `/login` route even with the 404s and 404 pages were only available to the authenticated users. Now, the routes are handled by the users, so you can handle the 404s however you like.
+In the earlier versions of **Refine**, if `authProvider` was defined, we've redirected the users to the `/login` route even with the 404s and 404 pages were only available to the authenticated users. Now, the routes are handled by the users, so you can handle the 404s however you like.
 
 #### 404 Pages for both authenticated and not authenticated users
 

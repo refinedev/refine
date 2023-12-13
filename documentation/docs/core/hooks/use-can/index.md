@@ -19,7 +19,7 @@ const { data } = useCan({
 
 ## Performance
 
-As the number of points that check for access control in your app increases, the performance of your app may take a hit, especially if its access control involves remote endpoints. Caching the access control checks helps quite a bit, and since **refine** uses [TanStack Query][tanstack-query], it can be easily done by confiruging the [`staleTime` and `cacheTime`][query-options] properties.
+As the number of points that check for access control in your app increases, the performance of your app may take a hit, especially if its access control involves remote endpoints. Caching the access control checks helps quite a bit, and since **Refine** uses [TanStack Query][tanstack-query], it can be easily done by confiruging the [`staleTime` and `cacheTime`][query-options] properties.
 
 ```ts
 import { useCan } from "@refinedev/core";

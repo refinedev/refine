@@ -5,7 +5,7 @@ source: packages/core/src/hooks/form/useForm.ts
 
 import BasicUsage from "./basic-usage";
 
-A hook that orchestrates refine's data hooks to create, edit, and clone data. It also provides a set of features to make it easier for users to implement their real world needs and handle edge cases such as redirects, invalidation, auto-save and more.
+A hook that orchestrates Refine's data hooks to create, edit, and clone data. It also provides a set of features to make it easier for users to implement their real world needs and handle edge cases such as redirects, invalidation, auto-save and more.
 
 ```tsx
 import { useForm } from "@refinedev/core";
@@ -16,7 +16,7 @@ const { onFinish, ... } = useForm({ ... });
 :::info Extended Versions
 `@refinedev/antd`, `@refinedev/mantine` and `@refinedev/react-hook-form` packages provide their own extended versions of `useForm` hook with full support for their respective form implementations including validation, error handling, form values, and more.
 
-Refer to their respective documentation for more information and check out the [Forms in refine](guides-concepts/forms/index.md) guide for detailed information on how to handle forms in refine.
+Refer to their respective documentation for more information and check out the [Forms in Refine](guides-concepts/forms/index.md) guide for detailed information on how to handle forms in refine.
 
 - [`@refinedev/antd`'s `useForm`](/docs/ui-integrations/ant-design/hooks/use-form)
 - [`@refinedev/mantine`'s `useForm`](/docs/ui-integrations/mantine/hooks/use-form)
@@ -111,7 +111,7 @@ If explicit `resource` is provided, `id` must be provided as well to avoid any u
 
 ### redirect <GuideBadge id="guides-concepts/forms#redirection" /><GlobalConfigBadge />
 
-The redirection behavior after the form submission. It can be `list`, `edit`, `show`, `create`, or `false`. By default it will be `list` or whatever is defined in the refine's global options.
+The redirection behavior after the form submission. It can be `list`, `edit`, `show`, `create`, or `false`. By default it will be `list` or whatever is defined in the Refine's global options.
 
 ```tsx
 useForm({ redirect: "show" });
@@ -169,7 +169,7 @@ useForm({ dataProviderName: "store" });
 
 ### mutationMode <GuideBadge id="guides-concepts/forms#mutation-modes" /> <GlobalConfigBadge />
 
-Behavior of the mutation, can either be `pessimistic`, `optimistic` or `undoable`. By default, `pessimistic` or whatever is defined in the refine's global options.
+Behavior of the mutation, can either be `pessimistic`, `optimistic` or `undoable`. By default, `pessimistic` or whatever is defined in the Refine's global options.
 
 ```tsx
 useForm({ mutationMode: "optimistic" });
@@ -275,7 +275,7 @@ useForm({
 
 ### liveMode <GuideBadge id="guides-concepts/realtime" />
 
-Behavior of how to handle received real-time updates, can be `auto`, `manual` or `off`. By default, `auto` or whatever is defined in the refine's global options.
+Behavior of how to handle received real-time updates, can be `auto`, `manual` or `off`. By default, `auto` or whatever is defined in the Refine's global options.
 
 ```tsx
 useForm({ liveMode: "auto" });

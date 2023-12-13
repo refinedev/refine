@@ -344,7 +344,7 @@ render(<RefineHeadlessDemo />);
 
 :::caution
 
-**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
+**Refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by the record `id`.
 
@@ -483,7 +483,7 @@ render(<RefineHeadlessDemo />);
 
 :::caution
 
-**refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
+**Refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
 
 So, we have to put the `<CloneButton/>` on our list. In that way, `<Clone>` form in `<Modal>` can fetch data by the record `id`.
 
@@ -674,7 +674,7 @@ const modalForm = useModalForm({
 
 > Default: `false`
 
-When you have unsaved changes and try to leave the current page, refine shows a confirmation modal box. To activate this feature.
+When you have unsaved changes and try to leave the current page, Refine shows a confirmation modal box. To activate this feature.
 
 You can also set this value in [`<Refine>`](/docs/core/refine-component#warnwhenunsavedchanges) component.
 

@@ -127,7 +127,7 @@ export default function plugin(): Plugin {
         },
         async contentLoaded({ allContent, actions }): Promise<void> {
             if (!process.env.DISABLE_EXAMPLES) {
-                console.log("Composing refine examples...");
+                console.log("Composing Refine examples...");
 
                 const { createData } = actions;
 

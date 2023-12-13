@@ -208,7 +208,7 @@ const PostShow: React.FC = () => {
 };
 ```
 
-**refine** supports the command palette feature and use the
+**Refine** supports the command palette feature and use the
 [**kbar**][kbar]. **kbar** is a fully extensible `cmd` + `k`(MacOS) or `ctrl` + `k`(Linux/Windows) interface for your site.
 
 ## Installation

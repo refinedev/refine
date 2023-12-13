@@ -3,7 +3,7 @@ title: Theming
 sidebar_label: Theming
 ---
 
-Theme specifies the color of the components, the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc. You can either create your own Theme or use Themes that provide from **refine**. Theme provides a way to your app's design to meet them.
+Theme specifies the color of the components, the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc. You can either create your own Theme or use Themes that provide from **Refine**. Theme provides a way to your app's design to meet them.
 
 > For more information, refer to the [Material UI documentation &#8594](https://mui.com/material-ui/customization/theming/)
 
@@ -108,7 +108,7 @@ export default App;
 
 :::tip
 
-We recommend using [`create refine-app`][create-refine-app] to initialize your **refine** projects. It configures the project according to your needs including SSR and Theme with Next.js.
+We recommend using [`create refine-app`][create-refine-app] to initialize your **Refine** projects. It configures the project according to your needs including SSR and Theme with Next.js.
 
 :::
 
@@ -394,7 +394,7 @@ If you are overriding the `fontFamily` in typography, you can add the `<link>` t
       rel="stylesheet"
     />
     // highlight-end
-    <title>refine adding font family example</title>
+    <title>Refine adding font family example</title>
   </head>
 
   <body>
@@ -407,7 +407,7 @@ If you are overriding the `fontFamily` in typography, you can add the `<link>` t
 
 ## Create Custom Theme
 
-With the help of **refine**'s themes, you can customize your site in a matter of minutes. Alternatively, there is also an option to create a custom theme with the [`createTheme()`](https://mui.com/material-ui/customization/theming/#createtheme-options-args-theme) method so you can create a custom theme with the configuration variables and use it in the whole application.
+With the help of **Refine**'s themes, you can customize your site in a matter of minutes. Alternatively, there is also an option to create a custom theme with the [`createTheme()`](https://mui.com/material-ui/customization/theming/#createtheme-options-args-theme) method so you can create a custom theme with the configuration variables and use it in the whole application.
 
 :::tip
 

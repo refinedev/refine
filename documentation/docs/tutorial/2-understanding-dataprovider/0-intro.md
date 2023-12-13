@@ -17,11 +17,11 @@ The Data Provider unit is optional for the tutorial. You can directly skip to th
 
 ## What is data provider?
 
-Data provider acts as a data layer for your app, making HTTP requests and encapsulating how the data is retrieved. The methods of these requests are then consumed by **refine** via data hooks.
+Data provider acts as a data layer for your app, making HTTP requests and encapsulating how the data is retrieved. The methods of these requests are then consumed by **Refine** via data hooks.
 
-Data providers can also communicate with `REST`, `GraphQL`, `RPC` and `SOAP` based APIs, so you can imagine the data provider as an adapter between **refine** and the API.
+Data providers can also communicate with `REST`, `GraphQL`, `RPC` and `SOAP` based APIs, so you can imagine the data provider as an adapter between **Refine** and the API.
 
-You don’t need to worry about creating data providers from scratch, as **refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers). If you want, we will also show how you can create your own data provider in the coming sections.
+You don’t need to worry about creating data providers from scratch, as **Refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers). If you want, we will also show how you can create your own data provider in the coming sections.
 
 <div>
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.png" />
@@ -51,13 +51,13 @@ const dataProvider: DataProvider = {
 }
 ```
 
-**refine** comes with various data providers out of the box, but for this tutorial, will be using the `refine-simple-rest` data provider to communicate with RESTful APIs.
+**Refine** comes with various data providers out of the box, but for this tutorial, will be using the `refine-simple-rest` data provider to communicate with RESTful APIs.
 
 > For more information, refer to the [`refine-simple-rest` source code&#8594](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
 
-## Using data providers in refine
+## Using data providers in Refine
 
-In the previous unit, we already consumed the API to show the data in the auto-generated Inferencer pages and registered a data provider using the `dataProvider` property of the `<Refine>` component to allow **refine** communicate with the API:
+In the previous unit, we already consumed the API to show the data in the auto-generated Inferencer pages and registered a data provider using the `dataProvider` property of the `<Refine>` component to allow **Refine** communicate with the API:
 
 ```tsx
 ...
@@ -69,13 +69,13 @@ import dataProvider from "@refinedev/simple-rest";
 />;
 ```
 
-> For more information, refer to **refine's** [dataProvider prop component documentation&#8594](/docs/core/refine-component#dataprovider)
+> For more information, refer to **Refine's** [dataProvider prop component documentation&#8594](/docs/core/refine-component#dataprovider)
 
 ## How are data provider methods used in the app?
 
-When we want to fetch data from API, we do it by using **refine's** data hooks, which are internally connected to data provider methods. We pass the required parameters to the data provider methods, and then the API returns a response.
+When we want to fetch data from API, we do it by using **Refine's** data hooks, which are internally connected to data provider methods. We pass the required parameters to the data provider methods, and then the API returns a response.
 
-To illustrate this internal connection, imagine that we want to get all records from the `post` resource using **refine's** `useList` data hook.
+To illustrate this internal connection, imagine that we want to get all records from the `post` resource using **Refine's** `useList` data hook.
 
 ```ts title="src/pages/posts/index.tsx"
 import { useList } from "@refinedev/core";
@@ -98,7 +98,7 @@ const postUseListResult = useList({
 });
 ```
 
-As you can see, when we pass parameters to the `useList` hook, **refine** automatically forwards them to the `getList` method of the data provider. This is because **refine** connects all data provider methods to their corresponding data hooks in the background.
+As you can see, when we pass parameters to the `useList` hook, **Refine** automatically forwards them to the `getList` method of the data provider. This is because **Refine** connects all data provider methods to their corresponding data hooks in the background.
 
 ```ts title="dataProvider.ts"
 const dataProvider = {
@@ -137,7 +137,7 @@ const dataProvider = {
 I understood what is data provider and how it works.
 </ChecklistItem>
 <ChecklistItem id="data-provider-intro-2">
-I have learned that refine offers built-in data provider support for the most popular API providers.
+I have learned that Refine offers built-in data provider support for the most popular API providers.
 </ChecklistItem>
 
 </Checklist>

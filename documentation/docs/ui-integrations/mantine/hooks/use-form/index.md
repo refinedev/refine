@@ -176,7 +176,7 @@ const PostCreate: React.FC = () => {
 };
 ```
 
-`useForm` is used to manage forms. It is based on the [`Mantine useForm`][use-form-mantine] and the [`refine useForm`][use-form-core] and supports all the features of both packages and adds some additional features.
+`useForm` is used to manage forms. It is based on the [`Mantine useForm`][use-form-mantine] and the [`Refine useForm`][use-form-core] and supports all the features of both packages and adds some additional features.
 
 <GeneralConceptsLink />
 
@@ -780,7 +780,7 @@ Works only in the `action: "edit"` or `action: "clone"` modes.
 
 :::
 
-in `edit` or `clone` modes, **refine** uses [`useOne`](/docs/core/hooks/data/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property.
+in `edit` or `clone` modes, **Refine** uses [`useOne`](/docs/core/hooks/data/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property.
 
 ```tsx
 useForm({
@@ -800,7 +800,7 @@ This option is only available when `action: "create"` or `action: "clone"`.
 
 :::
 
-In `create` or `clone` modes, **refine** uses [`useCreate`](/docs/core/hooks/data/use-create) hook to create data. You can pass the [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
+In `create` or `clone` modes, **Refine** uses [`useCreate`](/docs/core/hooks/data/use-create) hook to create data. You can pass the [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
 
 ```tsx
 useForm({
@@ -820,7 +820,7 @@ This option is only available when `action: "edit"`.
 
 :::
 
-In `edit` mode, **refine** uses [`useUpdate`](/docs/core/hooks/data/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
+In `edit` mode, **Refine** uses [`useUpdate`](/docs/core/hooks/data/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
 
 ```tsx
 useForm({
@@ -836,7 +836,7 @@ useForm({
 
 When it's true, Shows a warning when the user tries to leave the page with unsaved changes. It can be used to prevent the user from accidentally leaving the page. It is `false` by default.
 
-It can be set globally in [`refine config`](/docs/core/refine-component#warnwhenunsavedchanges).
+It can be set globally in [`Refine config`](/docs/core/refine-component#warnwhenunsavedchanges).
 
 ```tsx
 useForm({

@@ -10,7 +10,7 @@ import TabItem from "@theme/TabItem";
 
 ## Summary
 
-**refine** implements a **simple** and **transparent** telemetry module for collecting usage statistics defined in a **very limited scope**.
+**Refine** implements a **simple** and **transparent** telemetry module for collecting usage statistics defined in a **very limited scope**.
 
 Tracking is totally **secure** and users can choose to remain **anonymous** without providing any personally identifiable information.
 
@@ -22,14 +22,14 @@ The telemetry system **does not use cookies**. Participation is optional and use
 
 ## Why do we need this?
 
-We try to answer the question **how many users are actively using the refine framework**. This information is critical for open-source projects like refine to better understand their communities and measure their growth metrics.
+We try to answer the question **how many users are actively using the Refine framework**. This information is critical for open-source projects like Refine to better understand their communities and measure their growth metrics.
 
 ## How do we collect data?
 
 <Tabs>
-    <TabItem value="refine-core" label="refine core" default>
+    <TabItem value="refine-core" label="Refine core" default>
 
-The tracking happens when a refine application is loaded on the user's browser. On application init, a single HTTP request is sent to "https://telemetry.refine.dev". The request body is encoded with Base64 to be decoded on refine servers.
+The tracking happens when a Refine application is loaded on the user's browser. On application init, a single HTTP request is sent to "https://telemetry.refine.dev". The request body is encoded with Base64 to be decoded on Refine servers.
 
 There are no consequent requests for that session, as we do NOT collect any behavioral information such as _page views_, _button clicks_, etc.
 
@@ -40,7 +40,7 @@ The HTTP call has a JSON payload having the following application-specific attri
 | Value         | Type        | Description                                                                                                     |
 | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------- |
 | providers     | `boolean[]` | List of providers used in the project (auth, data, router, live, notification, auditLog, i18n or accessControl) |
-| version       | `string`    | Version of the refine package.                                                                                  |
+| version       | `string`    | Version of the Refine package.                                                                                  |
 | resourceCount | `number`    | Number of total resources.                                                                                      |
 
 Additionally, the following information is extracted and collected from the HTTP header:
@@ -60,7 +60,7 @@ Lastly, we collect the contact information, **if provided** upon project creatio
 
 :::note
 
-refine.new is the cloud-based alternative to CLI for creating refine projects.
+refine.new is the cloud-based alternative to CLI for creating Refine projects.
 It requires users signing in with an GitHub account and a limited set of public profile information is collected for analytics purposes. The collected data can also be automatically linked to the created project.
 
 Projects created with refine.new still can opt-out from telemetry by simply adding `disableTelemetry` prop to the `<Refine>` component's `options` prop.
@@ -73,9 +73,9 @@ You can opt out of telemetry by simply adding `disableTelemetry` prop to the `<R
 
   </TabItem>
 
-<TabItem value="refine-cli" label="refine CLI">
+<TabItem value="refine-cli" label="Refine CLI">
 
-After running a command with the `refine` CLI, a single HTTP request is sent to "https://telemetry.refine.dev/cli".
+After running a command with the `Refine` CLI, a single HTTP request is sent to "https://telemetry.refine.dev/cli".
 
 ## What is collected?
 
@@ -86,7 +86,7 @@ After running a command with the `refine` CLI, a single HTTP request is sent to 
 | os               | `string`                                      | Operating system name.                                        |
 | osVersion        | `string`                                      | Operating system version.                                     |
 | command          | `string`                                      | Running script name.                                          |
-| packages         | `{ "name": "string", "version": "string" }[]` | Installed `refine` packages.                                  |
+| packages         | `{ "name": "string", "version": "string" }[]` | Installed `Refine` packages.                                  |
 | projectFramework | `string`                                      | Installed `react` framework.                                  |
 
 Additionally, the following information is extracted and collected from the HTTP header:
@@ -97,7 +97,7 @@ Additionally, the following information is extracted and collected from the HTTP
 
 :::note
 
-refine.new is the cloud-based alternative to CLI for creating refine projects.
+refine.new is the cloud-based alternative to CLI for creating Refine projects.
 It requires users signing in with an GitHub account and a limited set of public profile information is collected for analytics purposes. The collected data can also be automatically linked to the created project.
 
 Projects created with refine.new still can opt-out from telemetry by simply adding `disableTelemetry` prop to the `<Refine>` component's `options` prop.

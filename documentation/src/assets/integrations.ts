@@ -254,7 +254,7 @@ export const integrations: IntegrationsType = {
             name: "Ent refine",
             icon: EntRefine,
             description:
-                "A library that generates fully customizable UI based on Entgo ORM and GraphQL API with refine.",
+                "A library that generates fully customizable UI based on Entgo ORM and GraphQL API with Refine.",
             url: "https://github.com/diazoxide/entrefine",
             status: "stable",
             contributors: [
@@ -376,7 +376,7 @@ export const integrations: IntegrationsType = {
             name: "Kinde Auth Provider",
             icon: Kinde,
             description:
-                "Auth provider for refine to integrate <strong>Kinde</strong> authentication",
+                "Auth provider for Refine to integrate <strong>Kinde</strong> authentication",
             url: "https://github.com/hirenf14/refine-auth-kinde-react",
             status: "stable",
             contributors: [

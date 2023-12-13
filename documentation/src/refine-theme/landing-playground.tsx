@@ -218,7 +218,7 @@ export const LandingPlayground = () => {
                                                     "landing-md:mx-0",
                                                 )}
                                             >
-                                                Starting a new refine project{" "}
+                                                Starting a new Refine project{" "}
                                                 <span className="block landing-lg:inline font-semibold">
                                                     takes less than one minute.
                                                 </span>

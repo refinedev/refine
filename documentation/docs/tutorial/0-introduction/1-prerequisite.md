@@ -2,12 +2,12 @@
 id: prerequisite
 title: 2. Prerequisite
 tutorial:
-    order: 1
-    prev: tutorial/introduction/index
-    next: tutorial/introduction/select-framework
+  order: 1
+  prev: tutorial/introduction/index
+  next: tutorial/introduction/select-framework
 ---
 
-**refine** is a React-based framework. So, if you have some preliminary knowledge of React and TypeScript, then this tutorial is perfect for you! Just by following the directions provided, you'll be able to finish it from start to finish.
+**Refine** is a React-based framework. So, if you have some preliminary knowledge of React and TypeScript, then this tutorial is perfect for you! Just by following the directions provided, you'll be able to finish it from start to finish.
 
 In order to publish and deploy your project, you'll also need a [GitHub](https://github.com/) account (or a similar platform).
 
@@ -16,16 +16,16 @@ In order to publish and deploy your project, you'll also need a [GitHub](https:/
 
 A clickable task checklist is waiting for you at the end of each page to measure your understanding of the content. Check these items off to see your progress in the Tutorial Tracker.
 
-(This data is only saved to your browser’s local storage, and is not available elsewhere. No data is sent to, nor stored by **refine**.)
+(This data is only saved to your browser’s local storage, and is not available elsewhere. No data is sent to, nor stored by **Refine**.)
 
 </details>
 
 <details>
-<summary>What if i need help or want to learn more about <strong>refine</strong>, or want to give feedback to developers behind it?</summary>
+<summary>What if i need help or want to learn more about <strong>Refine</strong>, or want to give feedback to developers behind it?</summary>
 
--   [🌟 Apply for the Priority support program!](https://s.refine.dev/enterprise) you can apply to priority support program and receive assistance from the refine **core** team in your **private** channel.
--   [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help and ask questions to the community.
--   [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback, we'd love to hear your thoughts!
+- [🌟 Apply for the Priority support program!](https://s.refine.dev/enterprise) you can apply to priority support program and receive assistance from the Refine **core** team in your **private** channel.
+- [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help and ask questions to the community.
+- [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback, we'd love to hear your thoughts!
 
 </details>
 

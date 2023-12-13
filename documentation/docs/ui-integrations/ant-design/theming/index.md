@@ -43,7 +43,7 @@ If you want to see how themes change the look of the application, check out this
 
 ## Theme customization
 
-You can use either the [`<ConfigProvider/>`](https://ant.design/components/config-provider/#components-config-provider-demo-theme) component or the `RefineThemes` provided by **refine** to change the theme. This is not required if you decide to use the default theme.
+You can use either the [`<ConfigProvider/>`](https://ant.design/components/config-provider/#components-config-provider-demo-theme) component or the `RefineThemes` provided by **Refine** to change the theme. This is not required if you decide to use the default theme.
 
 ### Overriding the themes
 

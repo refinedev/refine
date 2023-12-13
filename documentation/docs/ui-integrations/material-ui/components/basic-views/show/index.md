@@ -67,7 +67,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -171,7 +171,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `canDelete` and `canEdit`
 
-`canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
+`canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property Refine adds the buttons by default.
 
 When clicked on, delete button executes the [`useDelete`](/docs/core/hooks/data/use-delete) method provided by the [`dataProvider`](/docs/core/providers/data-provider) and the edit button redirects the user to the record edit page.
 
@@ -336,7 +336,7 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 
 ### `dataProviderName`
 
-If not specified, **refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
+If not specified, **Refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
 import { Refine } from "@refinedev/core";

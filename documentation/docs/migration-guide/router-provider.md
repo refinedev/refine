@@ -7,11 +7,11 @@ sidebar_label: Migrating Router Provider
 
 Our motivation behind the changes to `routerProvider` and route handling was to increase flexibility and ease of use.
 
-By simplifying the `routerProvider` to just an interaction and connection point between **refine** and the router, we eliminated the need for a specific way of defining routes and a `routerProvider` altogether. This means that **refine** will meet enterprise-grade requirements. While router bindings are optional, we recommend passing them to **refine** for optimal usage.
+By simplifying the `routerProvider` to just an interaction and connection point between **Refine** and the router, we eliminated the need for a specific way of defining routes and a `routerProvider` altogether. This means that **Refine** will meet enterprise-grade requirements. While router bindings are optional, we recommend passing them to **Refine** for optimal usage.
 
-By making these changes, we made it so that people can integrate refine into their existing projects without needing to modify their current routes or applications
+By making these changes, we made it so that people can integrate Refine into their existing projects without needing to modify their current routes or applications
 
-Ultimately, our goal is to make it simple for users to handle their unique situations without enforcing a particular methodology. With the updated router provider, you can continue using routers like before while benefiting from the features that **refine** offers.
+Ultimately, our goal is to make it simple for users to handle their unique situations without enforcing a particular methodology. With the updated router provider, you can continue using routers like before while benefiting from the features that **Refine** offers.
 
 ## Important Notes
 
@@ -65,9 +65,9 @@ If you have customized the use of `useMenu` hook, you might need to check the us
 
 ### Behavioral Changes in Routing
 
-Since **refine** doesn't create routes internally anymore, you are free to create your routes according to your framework without any limitations.
+Since **Refine** doesn't create routes internally anymore, you are free to create your routes according to your framework without any limitations.
 
-This means that tasks such as `authentication` and `access control` are decoupled from **refine** and should be handled in accordance with your framework. However, we do provide a set of helpers for you to use in your components to make these tasks easier to handle:
+This means that tasks such as `authentication` and `access control` are decoupled from **Refine** and should be handled in accordance with your framework. However, we do provide a set of helpers for you to use in your components to make these tasks easier to handle:
 
 - The [`Authenticated`](/docs/core/components/authenticated) component as a wrapper or the `useIsAuthenticated` hook for authentication
 - The [`CanAccess`](/docs/core/components/can-access) component as a wrapper or the `useCan` hook for access control

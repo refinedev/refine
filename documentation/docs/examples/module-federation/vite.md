@@ -7,7 +7,7 @@ example-tags: [module-federation]
 
 Module federation is concept which get different builds to come together to make one application. So in most cases one will be the host application which will bring all other remote components that are built to be shared.
 
-This example demonstrates how to integrate **refine** with Vite's module federation.
+This example demonstrates how to integrate **Refine** with Vite's module federation.
 
 In this example, we have 3 apps:
 

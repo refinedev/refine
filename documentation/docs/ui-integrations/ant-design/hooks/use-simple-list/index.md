@@ -283,7 +283,7 @@ useSimpleList({
 
 When you use the syncWithLocation feature, the `useSimpleList`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useSimpleList` state is automatically updated to match. This makes it easy to share list states across different routes or pages and allows users to bookmark or share links to specific table views. `syncWithLocation` is set to `false` by default.
 
-Also, you can set this value globally on the [`<Refine>`][refine swl] component.
+Also, you can set this value globally on the [`<Refine>`][Refine swl] component.
 
 ```tsx
 useSimpleList({
@@ -892,4 +892,4 @@ Use `setSorters` instead.
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
-[refine swl]: /docs/core/refine-component#syncwithlocation
+[Refine swl]: /docs/core/refine-component#syncwithlocation

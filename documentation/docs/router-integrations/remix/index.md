@@ -2,7 +2,7 @@
 title: Remix
 ---
 
-**refine** provides router bindings and utilities for [Remix](https://remix.run). This package will provide easy integration between **refine** and **Remix** for both existing projects and new projects without giving up the benefits of **Remix**.
+**Refine** provides router bindings and utilities for [Remix](https://remix.run). This package will provide easy integration between **Refine** and **Remix** for both existing projects and new projects without giving up the benefits of **Remix**.
 
 ```bash
 npm i @refinedev/remix-router
@@ -10,7 +10,7 @@ npm i @refinedev/remix-router
 
 :::tip
 
-We recommend using `create refine-app` to initialize your refine projects. It configures the project according to your needs including SSR with Remix!
+We recommend using `create refine-app` to initialize your Refine projects. It configures the project according to your needs including SSR with Remix!
 
 ```sh
 npm create refine-app@latest -- -o refine-remix my-refine-remix-app
@@ -22,7 +22,7 @@ npm create refine-app@latest -- -o refine-remix my-refine-remix-app
 
 :::note Legacy Router
 
-`@refinedev/remix-router` also exports the legacy router provider and it will be available until the next major version of **refine**. It is recommended to use the new router provider instead of the legacy one.
+`@refinedev/remix-router` also exports the legacy router provider and it will be available until the next major version of **Refine**. It is recommended to use the new router provider instead of the legacy one.
 
 If you are using the legacy router provider, it can be imported from `@refinedev/remix-router/legacy` and passed to the `legacyRouterProvider` prop of the `Refine` component.
 
@@ -30,7 +30,7 @@ If you are using the legacy router provider, it can be imported from `@refinedev
 
 ## Basic Usage
 
-We'll use the `routerProvider` from `@refinedev/remix-router` to set up the router bindings for **refine**. We'll define the action routes for our resources in the `resources` array and define our routes in `app/routes` directory.
+We'll use the `routerProvider` from `@refinedev/remix-router` to set up the router bindings for **Refine**. We'll define the action routes for our resources in the `resources` array and define our routes in `app/routes` directory.
 
 We'll create four pages for our resources:
 
@@ -59,7 +59,7 @@ module.exports = {
 
 :::
 
-Let's start with the initialization of the **refine** app in the `app/root.tsx` file:
+Let's start with the initialization of the **Refine** app in the `app/root.tsx` file:
 
 ```tsx title=app/root.tsx
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
@@ -110,7 +110,7 @@ export default function App(): JSX.Element {
 
 :::tip
 
-Remix uses the `$` symbol to indicate parameters but **refine** uses the colon syntax (`:param`) for route parameters. This won't cause any problems since **refine** only uses the colon syntax as an indicator for route parameters and the communication between **refine** and the router is handled by the `routerProvider` prop.
+Remix uses the `$` symbol to indicate parameters but **Refine** uses the colon syntax (`:param`) for route parameters. This won't cause any problems since **Refine** only uses the colon syntax as an indicator for route parameters and the communication between **Refine** and the router is handled by the `routerProvider` prop.
 
 :::
 
@@ -118,7 +118,7 @@ Remix uses the `$` symbol to indicate parameters but **refine** uses the colon s
 
 Your action definitions in the resources can contain additional parameters and nested routes. Passing these parameters when navigating to the pages are handled by the current available parameters and the `meta` props of the related hooks and components.
 
-**refine** supports route parameters defined with `:param` syntax. You can use these parameters in your action definitions and create your routes accordingly. For example, if you have a `posts` resource and you want to create a route for the `show` action of a specific post, you can define the `show` action as `/posts/show/:id` and use the `id` parameter in your component.
+**Refine** supports route parameters defined with `:param` syntax. You can use these parameters in your action definitions and create your routes accordingly. For example, if you have a `posts` resource and you want to create a route for the `show` action of a specific post, you can define the `show` action as `/posts/show/:id` and use the `id` parameter in your component.
 
 :::
 
@@ -308,7 +308,7 @@ export default function IndexPage() {
 
 ### `UnsavedChangesNotifier`
 
-This component enables the `warnWhenUnsavedChanges` feature of **refine**. It will show a warning message when user tries to navigate away from the current page without saving the changes. Also checks for `beforeunload` event to warn the user when they try to close the browser tab or window.
+This component enables the `warnWhenUnsavedChanges` feature of **Refine**. It will show a warning message when user tries to navigate away from the current page without saving the changes. Also checks for `beforeunload` event to warn the user when they try to close the browser tab or window.
 
 Place this component inside the `<Refine>` components children to enable this feature.
 
@@ -854,7 +854,7 @@ export const MyPage = () => (
 
 ### Can I use nested routes?
 
-Yes, you can use nested routes in your app. **refine** will match the routes depending on how you define the action paths in your resources. Additional parameters and nesting is supported. **refine** will not limit you and your router in route configuration, all you need to do is to pass the appropriate path to the related resource and the action in the `resources` array (This is also optional but recommended due to the features it provides).
+Yes, you can use nested routes in your app. **Refine** will match the routes depending on how you define the action paths in your resources. Additional parameters and nesting is supported. **Refine** will not limit you and your router in route configuration, all you need to do is to pass the appropriate path to the related resource and the action in the `resources` array (This is also optional but recommended due to the features it provides).
 
 You can use `:param` syntax to define parameters in your routes.
 
@@ -942,7 +942,7 @@ export default function MyListRoute() {
 
 ### Handling 404s
 
-In the earlier versions of **refine**, if `authProvider` was defined, we've redirected the users to the `/login` route even with the 404s and 404 pages were only available to the authenticated users. Now, the routes are handled by the users, so you can handle the 404s however you like.
+In the earlier versions of **Refine**, if `authProvider` was defined, we've redirected the users to the `/login` route even with the 404s and 404 pages were only available to the authenticated users. Now, the routes are handled by the users, so you can handle the 404s however you like.
 
 In remix, you can use a splat ($) route to handle the 404s. Check out the [remix docs](https://remix.run/docs/en/main/guides/routing#md-splats) for more information.
 
@@ -1048,7 +1048,7 @@ Default paths are:
 [routerprovider]: /docs/core/providers/router-provider
 [remix]: https://remix.run/
 [remixrouter]: https://www.npmjs.com/package/@refinedev/remix-router
-[refine]: /docs/core/refine-component
+[Refine]: /docs/core/refine-component
 [remixroutes]: https://remix.run/docs/en/v1/api/conventions#routes
 [usetable]: /docs/core/hooks/use-table
 [reactqueryssr]: https://react-query.tanstack.com/guides/ssr#using-initialdata

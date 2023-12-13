@@ -43,7 +43,7 @@ In [Unit 2.4](/docs/tutorial/getting-started/mui/generate-crud-pages/), we defin
 
 Before we start, we need to understand what the `<Refine>` component is.
 
-The `<Refine>` component serves as the starting point for **refine**. It is a wrapper component that offers context to the **refine** components and hooks and is used to configure the top-level settings of the application.
+The `<Refine>` component serves as the starting point for **Refine**. It is a wrapper component that offers context to the **Refine** components and hooks and is used to configure the top-level settings of the application.
 
 Though `dataProvider` is the only necessary prop for initializing the app, there are other props such as `resources`, `routerProvider`, `authProvider`, `i18nProvider`, etc. Each of these props enables the configuration of various aspects of the application, such as data management, routing, authentication, localization, layout and more.
 
@@ -57,19 +57,19 @@ To add a `resource` to our app, we need to use the `resources` prop of the `<Ref
 
 :::note
 
-The action paths we define in resources help **refine** render menu items, breadcrumbs, and handle form redirections, among other things. Which means that **refine** coexists with your routes and complements them without imposing any limitations.
+The action paths we define in resources help **Refine** render menu items, breadcrumbs, and handle form redirections, among other things. Which means that **Refine** coexists with your routes and complements them without imposing any limitations.
 
 :::
 
 ### Resources and routes
 
-Path definitions in the resource configuration help **refine** recognize the available actions for the resource at that particular path. This allows **refine** to automatically identify the resource based on the current path without requiring users to manually specify the resource prop in their hooks and components.
+Path definitions in the resource configuration help **Refine** recognize the available actions for the resource at that particular path. This allows **Refine** to automatically identify the resource based on the current path without requiring users to manually specify the resource prop in their hooks and components.
 
-Thanks to its flexibility, **refine** can be seamlessly integrated into any existing React application without imposing any limitations on users. It can also be attached to routes where it’s needed without interfering with your routing logic. This makes it possible to use **refine** with enterprise-grade applications that have complex requirements such as nested routes and multi-tenancy.
+Thanks to its flexibility, **Refine** can be seamlessly integrated into any existing React application without imposing any limitations on users. It can also be attached to routes where it’s needed without interfering with your routing logic. This makes it possible to use **Refine** with enterprise-grade applications that have complex requirements such as nested routes and multi-tenancy.
 
 :::caution
 
-It’s important to note that route management will be handled by your preferred framework (React Router, Next.js, Remix) which is what makes it possible to use **refine** with any React (Web, Electron, React Native etc.) application freely.
+It’s important to note that route management will be handled by your preferred framework (React Router, Next.js, Remix) which is what makes it possible to use **Refine** with any React (Web, Electron, React Native etc.) application freely.
 
 :::
 
@@ -434,7 +434,7 @@ When the user clicks on the `create` button, they will be redirected to `/:userI
 
 Features related to routing, such as the inference of the resource by the route, the generation of the routes (optional), etc., require the use of the `routerProvider` prop of the `<Refine/>` component.
 
-When using the **refine** hooks and components, if you provide a `routerProvider` the `resource` will be inferred from the current route and the inferred resource will be passed as `resource` to `dataProvider` functions, hooks and components by default.
+When using the **Refine** hooks and components, if you provide a `routerProvider` the `resource` will be inferred from the current route and the inferred resource will be passed as `resource` to `dataProvider` functions, hooks and components by default.
 
 For more information, refer to the [`<routerProvider` part of the `<Refine>` Documentation&#8594](/docs/core/refine-component#routerprovider)
 

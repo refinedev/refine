@@ -9,7 +9,7 @@ This hook will be called when a mutation hook is successful. For example, creati
 
 :::info-tip
 
-The hook is used internally by **refine**. In most cases, you won't need this hook, but we export it as it may be useful for some use-cases that may require customized invalidation.
+The hook is used internally by **Refine**. In most cases, you won't need this hook, but we export it as it may be useful for some use-cases that may require customized invalidation.
 
 :::
 
@@ -17,7 +17,7 @@ The hook is used internally by **refine**. In most cases, you won't need this ho
 
 :::info-tip
 
-**refine** uses [TanStack Query](https://tanstack.com/query/latest) to fetch and manage the state of the data. For more information about invalidation, please read the TanStack Query's [invalidation](https://tanstack.com/query/v4/docs/react/guides/query-invalidation) docs.
+**Refine** uses [TanStack Query](https://tanstack.com/query/latest) to fetch and manage the state of the data. For more information about invalidation, please read the TanStack Query's [invalidation](https://tanstack.com/query/v4/docs/react/guides/query-invalidation) docs.
 
 :::
 
@@ -119,7 +119,7 @@ The states you want to invalidate. You can use the following values:
 
 > Type: [`InvalidateQueryFilters`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries)
 
-The filters and options applied to the invalidation process when picking which queries to invalidate. By default **refine** applies some filters and options to fine-tune the invalidation process.
+The filters and options applied to the invalidation process when picking which queries to invalidate. By default **Refine** applies some filters and options to fine-tune the invalidation process.
 
 By default settings, all the targeted queries are invalidated and the active ones are triggered for a refetch. If there are any ongoing queries, they are kept as they are.
 

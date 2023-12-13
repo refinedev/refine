@@ -16,9 +16,9 @@ This hook uses the `useList` hook for fetching data. [Refer to useList hook for 
 
 :::info-tip DERIVATIVES
 
-If you're looking for a complete select library, refine has out-of-the-box support for the libraries below:
+If you're looking for a complete select library, Refine has out-of-the-box support for the libraries below:
 
-- refine's `useSelect` (for Headless users) - [Documentation](/docs/core/hooks/use-select) - [Example](/docs/examples/core/useSelect)
+- Refine's `useSelect` (for Headless users) - [Documentation](/docs/core/hooks/use-select) - [Example](/docs/examples/core/useSelect)
 - [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-select) - [Example](/docs/examples/field/useSelect)
 - [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/ui-integrations/mantine/hooks/use-select)
 
@@ -461,7 +461,7 @@ The use of `useAutocomplete` with [`useForm`](/docs/packages/list-of-packages) i
 
 :::info
 
-By default, refine does the search using the [`useList`](/docs/core/hooks/data/use-delete) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
+By default, Refine does the search using the [`useList`](/docs/core/hooks/data/use-delete) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
 
 :::
 

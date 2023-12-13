@@ -6,7 +6,7 @@ sidebar_label: CLI
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-refine CLI is a command line application that allows you to interact with your **refine** project and perform some tasks. This includes [creating a new resource](#create-resource), [managing updates](#update), [swizzle](#swizzle) components, and [runs your project](#dev--start--build) (build, start, dev).
+Refine CLI is a command line application that allows you to interact with your **Refine** project and perform some tasks. This includes [creating a new resource](#create-resource), [managing updates](#update), [swizzle](#swizzle) components, and [runs your project](#dev--start--build) (build, start, dev).
 
 ```bash
 > npm run refine
@@ -31,8 +31,8 @@ Options:
 Commands:
   add [options] [auth] [live] [data] [resource]  Creates new features for your project (data-provider, auth-provider, live-provider, resource etc.)
   create-resource [options]  Create a new resource files (deprecated, please use "add resource" command)
-  check-updates              Check all installed `refine` packages are up to date
-  update [options]           Interactively select and update all `refine` packages to selected version. To skip the interactive mode, use the `--all` option.
+  check-updates              Check all installed `Refine` packages are up to date
+  update [options]           Interactively select and update all `Refine` packages to selected version. To skip the interactive mode, use the `--all` option.
   dev [args...]              It runs: `nextjs dev`. Also accepts all the arguments `nextjs` accepts.
   build [args...]            It runs: `nextjs build`. Also accepts all the arguments `nextjs` accepts.
   start [args...]            It runs: `nextjs start`. Also accepts all the arguments `nextjs` accepts.
@@ -54,7 +54,7 @@ If you want to add it to your existing project, checkout [how to add to an exist
 
 ### swizzle
 
-In this command, you can swizzle the components of the **refine**. This allows you to customize the components and use your own components.
+In this command, you can swizzle the components of the **Refine**. This allows you to customize the components and use your own components.
 
 <details>
 
@@ -62,7 +62,7 @@ In this command, you can swizzle the components of the **refine**. This allows y
 
 The term comes from Objective-C and Swift-UI: [method swizzling](https://pspdfkit.com/blog/2019/swizzling-in-swift/) is the process of changing the implementation of an existing selector (method).
 
-For **refine**, component swizzling means providing an alternative component that will be used instead of the default one.
+For **Refine**, component swizzling means providing an alternative component that will be used instead of the default one.
 
 You can think of it as [Monkey Patching](https://en.wikipedia.org/wiki/Monkey_patch) for React components, which allows you to change the default implementation. Gatsby has a similar feature called [theme shadowing](https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/shadowing/).
 
@@ -72,7 +72,7 @@ You can think of it as [Monkey Patching](https://en.wikipedia.org/wiki/Monkey_pa
 
 #### Do I need to swizzle?
 
-**refine** packages provide data providers, UI frameworks, and components that make it easy to build a project. Most these are customizable and can be used as is. However, sometimes you may want to customize it as if you created it yourself. This is where swizzling comes in. Most of **refine** packages provide a swizzle command that ejects the files to your project. You can then customize them as you wish.
+**Refine** packages provide data providers, UI frameworks, and components that make it easy to build a project. Most these are customizable and can be used as is. However, sometimes you may want to customize it as if you created it yourself. This is where swizzling comes in. Most of **Refine** packages provide a swizzle command that ejects the files to your project. You can then customize them as you wish.
 
 #### Usage
 
@@ -93,7 +93,7 @@ First, you need to select the package you want to swizzle. In this example, we w
 
 :::info
 
-**refine** CLI will only show the packages that are installed in your project.
+**Refine** CLI will only show the packages that are installed in your project.
 
 :::
 
@@ -150,7 +150,7 @@ Finally, the swizzle command will create a new folder in the `src/components/lay
 
 :::info
 
-**refine** CLI determines the path to create a new folder according to the framework you are using. For example, if you are using the `remix`, the path will be `app/components/layout`.
+**Refine** CLI determines the path to create a new folder according to the framework you are using. For example, if you are using the `remix`, the path will be `app/components/layout`.
 
 :::
 
@@ -178,7 +178,7 @@ CRUD components are created for the selected actions. These components are put o
 
 #### provider
 
-Empty Provider methods are created for to easily implement and connect to your data source from your **refine** project. These components are put on the specified path.
+Empty Provider methods are created for to easily implement and connect to your data source from your **Refine** project. These components are put on the specified path.
 
 ```bash
 > npm run refine add auth
@@ -281,7 +281,7 @@ src/pages/
 
 ### update
 
-Interactively update your outdated **refine** packages. To skip interactive mode, use the `--all` flag to update all outdated **refine** packages to selected tag.
+Interactively update your outdated **Refine** packages. To skip interactive mode, use the `--all` flag to update all outdated **Refine** packages to selected tag.
 
 ```bash
 > npm run refine update
@@ -310,12 +310,12 @@ Major Updates
 | Option    | Alias | Description                                                                                 | Values           | Default                                                    |
 | --------- | ----- | ------------------------------------------------------------------------------------------- | ---------------- | ---------------------------------------------------------- |
 | --tag     | -t    | Select version to update to.                                                                | `latest`, `next` | Version ranges in the `package.json` will be installed.    |
-| --all     | -a    | Use to skip interactive mode update and update all `refine` packages to the selected `tag`. |                  | `false` Interactive mode will be open.                     |
+| --all     | -a    | Use to skip interactive mode update and update all `Refine` packages to the selected `tag`. |                  | `false` Interactive mode will be open.                     |
 | --dry-run | -d    | Use to skip automatic installation. Prints the update command of the packages.              |                  | `false` Selected packages will be installed automatically. |
 
 ### check-updates
 
-Show the running versions of the installed **refine** packages.
+Show the running versions of the installed **Refine** packages.
 
 ```bash
 > npm run refine check-updates
@@ -335,7 +335,7 @@ Show the running versions of the installed **refine** packages.
                 ├────────────────────────────────┼─────────┼────────┼────────┤
                 │ @refinedev/strapi          │ 3.18.0  │ 3.37.0 │ 3.37.0 │
                 └────────────────────────────────┴─────────┴────────┴────────┘
-                    To update `refine` packages with the wanted version
+                    To update `Refine` packages with the wanted version
                         Run the following command npm run refine update
 ```
 
@@ -415,11 +415,11 @@ npm run refine build
 
 ### run
 
-Runs a custom script in the context of your **refine** project. Also It will pass all the arguments to the script.
+Runs a custom script in the context of your **Refine** project. Also It will pass all the arguments to the script.
 
 First it will check `package.json` to see if there is a script with the given name. If there is, it will run that script. Otherwise, it will run in `node_modules/.bin`.
 
-With this way you can run unsupported commands via **refine**.
+With this way you can run unsupported commands via **Refine**.
 
 ```bash
 npm run refine run react-app-rewired start
@@ -515,8 +515,8 @@ Options:
 
 Commands:
   create-resource [options]  Create a new resource files
-  check-updates              Check all installed `refine` packages are up to date
-  update [options]           Interactively select and update all `refine` packages to selected version. To skip the interactive mode, use the `--all` option.
+  check-updates              Check all installed `Refine` packages are up to date
+  update [options]           Interactively select and update all `Refine` packages to selected version. To skip the interactive mode, use the `--all` option.
   dev [args...]              It runs: `nextjs dev`. Also accepts all the arguments `nextjs` accepts.
   build [args...]            It runs: `nextjs build`. Also accepts all the arguments `nextjs` accepts.
   start [args...]            It runs: `nextjs start`. Also accepts all the arguments `nextjs` accepts.
@@ -526,7 +526,7 @@ Commands:
 
 ```
 
-You can optionally modify your scripts in `package.json` with `refine CLI` [commands](#dev--start--build). The benefit it will provide you is that it gives warnings to keep your `refine` packages always up to date.
+You can optionally modify your scripts in `package.json` with `Refine CLI` [commands](#dev--start--build). The benefit it will provide you is that it gives warnings to keep your `Refine` packages always up to date.
 
 <Tabs
 defaultValue="react"

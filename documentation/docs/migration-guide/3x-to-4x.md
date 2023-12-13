@@ -9,11 +9,11 @@ import CodeBlock from '@theme/CodeBlock';
 
 ### Motivation behind the release
 
-After a year since the release of v3, we have addressed the most requested and questioned areas by the community. **refine v4** features better developer experience, and new functionalities to simplify the work of developers.
+After a year since the release of v3, we have addressed the most requested and questioned areas by the community. **Refine v4** features better developer experience, and new functionalities to simplify the work of developers.
 
-In **refine v4**, our goal was to make **refine** available and accessible on every platform where you can use React and make it easy to use in both new and existing projects. This meant making **refine** more flexible and a better fit for a wider range of use cases. To achieve this, we needed a more robust, easy-to-integrate and consistent API throughout the project that would boost the DX without limiting our users' options.
+In **Refine v4**, our goal was to make **Refine** available and accessible on every platform where you can use React and make it easy to use in both new and existing projects. This meant making **Refine** more flexible and a better fit for a wider range of use cases. To achieve this, we needed a more robust, easy-to-integrate and consistent API throughout the project that would boost the DX without limiting our users' options.
 
-Our goal was to make things easier for developers by providing abstractions and techniques to manage some concerns like data, routing, authorization, layouts, etc. without limiting the power of other tools and libraries they want to use. These changes were made to our API to allow you to use **refine** in every use case and easily adopt it for your existing projects.
+Our goal was to make things easier for developers by providing abstractions and techniques to manage some concerns like data, routing, authorization, layouts, etc. without limiting the power of other tools and libraries they want to use. These changes were made to our API to allow you to use **Refine** in every use case and easily adopt it for your existing projects.
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨ (recommended)
 
@@ -39,7 +39,7 @@ And that’s it! You have successfully migrated your project to `refine@4.x.x`.
 
 ## Migrating your project manually
 
-**refine v4** will be released under the new `@refinedev` `npm` organization, so you must install the packages with the new organization name.
+**Refine v4** will be released under the new `@refinedev` `npm` organization, so you must install the packages with the new organization name.
 
 ```bash
 npm uninstall @pankod/refine-core @pankod/refine-antd @pankod/..
@@ -55,17 +55,17 @@ You must make this change for all packages that start with `@pankod`.
 
 ## New NPM organization
 
-**refine** has recently migrated to a new NPM organization and will be using `@refinedev` as the new NPM organization going forward. As a result of this migration, all of our package names have been updated accordingly.
+**Refine** has recently migrated to a new NPM organization and will be using `@refinedev` as the new NPM organization going forward. As a result of this migration, all of our package names have been updated accordingly.
 
 ## **`@pankod/refine-core` changes**
 
 ### `routerProvider`
 
-**refine v4** includes a new interface for the `routerProvider` prop. It is now smaller and more flexible, as it leaves the control of the routes to the user and only constructs the communication and bindings of the router and **refine**.
+**Refine v4** includes a new interface for the `routerProvider` prop. It is now smaller and more flexible, as it leaves the control of the routes to the user and only constructs the communication and bindings of the router and **Refine**.
 
-`routerProvider` is now optional because **refine** can now be used without a router. However, it is still recommended to use a router provider to enable useful features such as inferring the current resource from the URL, redirection and navigation helpers, menus, breadcrumbs and more.
+`routerProvider` is now optional because **Refine** can now be used without a router. However, it is still recommended to use a router provider to enable useful features such as inferring the current resource from the URL, redirection and navigation helpers, menus, breadcrumbs and more.
 
-In order to maintain backward compatibility, **refine** still supports the `routerProvider@v3`. However, this provider has been renamed to `legacyRouterProvider` and will be removed in the next major version. If you wish to continue using `routerProvider@v3`, you can still do so by using it as `legacyRouterProvider` in your project.
+In order to maintain backward compatibility, **Refine** still supports the `routerProvider@v3`. However, this provider has been renamed to `legacyRouterProvider` and will be removed in the next major version. If you wish to continue using `routerProvider@v3`, you can still do so by using it as `legacyRouterProvider` in your project.
 
 ```diff
 - import routerProvider from "@pankod/refine-react-router-v6";
@@ -156,7 +156,7 @@ resources={[
 
 ### `authProvider`
 
-**refine** still supports the `authProvider@v3` for backward compatibility. We changed its name to `legacyAuthProvider` and it will be removed in the next major version. If you want to continue using the `authProvider@v3` you can use it as `legacyAuthProvider` in your project.
+**Refine** still supports the `authProvider@v3` for backward compatibility. We changed its name to `legacyAuthProvider` and it will be removed in the next major version. If you want to continue using the `authProvider@v3` you can use it as `legacyAuthProvider` in your project.
 
 ```diff
 - import { AuthProvider } from "@refinedev/core";
@@ -469,11 +469,11 @@ In addition to this change, the `useMenu` hook now accepts a meta property, whic
 const { menuItems } = useMenu({ meta: { authorId: 123 } });
 ```
 
-This won't be necessary if there's already an `authorId` parameter present in the current URL. **refine** will use this parameter by default if there's no override in the `meta` property. If you only want to show the items with defined parameters or no parameters, then you can pass `hideOnMissingParameter: true` to the `useMenu`, and these items will not be returned.
+This won't be necessary if there's already an `authorId` parameter present in the current URL. **Refine** will use this parameter by default if there's no override in the `meta` property. If you only want to show the items with defined parameters or no parameters, then you can pass `hideOnMissingParameter: true` to the `useMenu`, and these items will not be returned.
 
 ### `useNavigation` hook
 
-This hook was designed to work with the legacy router provider, but it has been updated to work with both router provider versions. Although it's recommended to use the new routing hooks when necessary or the ones available from your router library, **refine** now exports `useGo`, `useParsed`, `useBack`, `useLink` and `useGetToPath` hooks for the new routing system.
+This hook was designed to work with the legacy router provider, but it has been updated to work with both router provider versions. Although it's recommended to use the new routing hooks when necessary or the ones available from your router library, **Refine** now exports `useGo`, `useParsed`, `useBack`, `useLink` and `useGetToPath` hooks for the new routing system.
 
 If you still want to use the `useNavigation` hook and its returned functions in the new routing system, their paths that accept props now accept the `meta` prop.
 
@@ -1473,7 +1473,7 @@ After that, you can import them from `react-hook-form` package directly.
 ```
 
 [refine-codemod]: https://github.com/refinedev/refine/tree/master/packages/codemod
-[refine]: /docs/core/refine-component
+[Refine]: /docs/core/refine-component
 [resources]: /docs/core/refine-component#resources
 [routerprovider]: /docs/core/providers/router-provider
 [auth-provider]: /docs/core/providers/auth-provider

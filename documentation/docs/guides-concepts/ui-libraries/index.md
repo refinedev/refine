@@ -23,7 +23,7 @@ Refine's UI integration packages exposes prebuilt components that are designed t
 
 ### Layouts and Menus
 
-Layouts and menus are one of the common elements of an application, this is why we're providing layout and menu components for the supported UI libraries. While these components are also a composition of the refine's core functionalities, they fit well with the design language of the UI libraries and provide a seamless integration.
+Layouts and menus are one of the common elements of an application, this is why we're providing layout and menu components for the supported UI libraries. While these components are also a composition of the Refine's core functionalities, they fit well with the design language of the UI libraries and provide a seamless integration.
 
 These components are designed to fit the most common needs of an application with a flexibility to customize them to fit your needs. For example, a `<Sider>` component is available in all of the UI integrations which includes a navigation menu with a multi-level support, an authorization check for menu items and a logout button which leverages the `useLogout` hook of refine.
 
@@ -130,7 +130,7 @@ import { Refine } from "@refinedev/core";
 
 ### Using the `swizzle` command
 
-refine's CLI has this command called `swizzle` which lets you export the components of the UI integrations and use them in your application. This will let you to change the components in a granular level and use them in your application. You can also use this command to export the `<EditButton />` and change its logic to hide instead of disabling it.
+Refine's CLI has this command called `swizzle` which lets you export the components of the UI integrations and use them in your application. This will let you to change the components in a granular level and use them in your application. You can also use this command to export the `<EditButton />` and change its logic to hide instead of disabling it.
 
 ```bash
 > npm run refine swizzle
@@ -161,9 +161,9 @@ Pages
 
 ## Notifications <GuideBadge id="api-reference/core/providers/notification-provider" />
 
-One of the most important parts of an application is the notifications and the visual feedbacks. refine has this built-in notification integration that works automatically when it's needed in cases such as when a request fails or when a form is submitted.
+One of the most important parts of an application is the notifications and the visual feedbacks. Refine has this built-in notification integration that works automatically when it's needed in cases such as when a request fails or when a form is submitted.
 
-While this integration is not coupled with the UI integrations, it will be a wise choice to use the one that is provided by the UI libraries for a consistent design language. This is why refine's UI integrations also provides a `notificationProvider` to be used with the notification integration of refine.
+While this integration is not coupled with the UI integrations, it will be a wise choice to use the one that is provided by the UI libraries for a consistent design language. This is why Refine's UI integrations also provides a `notificationProvider` to be used with the notification integration of refine.
 
 Using of the prebuilt notification providers are optional and can be customized, extended or even swapped with a custom implementation if needed.
 
@@ -184,6 +184,6 @@ const App = () => (
 
 ## Custom Implementations
 
-While there are integrations for the popular UI libraries, every app has its own needs and requirements. This is why refine is designed in a way that it can be used with any UI library or even without one. This is also true for the UI integrations, you can create your own custom UI integration for your needs.
+While there are integrations for the popular UI libraries, every app has its own needs and requirements. This is why Refine is designed in a way that it can be used with any UI library or even without one. This is also true for the UI integrations, you can create your own custom UI integration for your needs.
 
 If you've decided to create your own custom UI integration, the source code of the existing UI integrations will be a good starting point for you. You can check out the source code of the UI integrations from the [GitHub repository](https://github.com/refinedev/refine)

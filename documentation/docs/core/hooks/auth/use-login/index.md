@@ -1,7 +1,7 @@
 ---
 title: useLogin
 siderbar_label: useLogin
-description: useLogin data hook from refine is a modified version of react-query's useMutation for authentication.
+description: useLogin data hook from Refine is a modified version of react-query's useMutation for authentication.
 source: /packages/core/src/hooks/auth/useLogin/index.ts
 ---
 
@@ -34,7 +34,7 @@ type AuthActionResponse = {
 
 ## Usage
 
-**refine** provides a default login page which handles the login flow manually.
+**Refine** provides a default login page which handles the login flow manually.
 
 If you want to use a custom login page however, you can use the `useLogin` hook like this:
 

@@ -13,7 +13,7 @@ import SharedComponents from "../../../partials/tutorial/headless-layout.md";
 
 In [Unit 2.4](/docs/tutorial/getting-started/headless/generate-crud-pages/), we created the CRUD pages automatically with Inferencer and wrapped them with a `<Layout>` component.
 
-This component is provided when you create a new application using `create-refine-app` to help you get started quickly by providing simple implementations of `Menu` and `Breadcrumb` components using **refine**'s hooks, [`useMenu`](/docs/core/hooks/utilities/use-menu) and [`useBreadcrumb`](/docs/core/hooks/utilities/use-breadcrumb).
+This component is provided when you create a new application using `create-refine-app` to help you get started quickly by providing simple implementations of `Menu` and `Breadcrumb` components using **Refine**'s hooks, [`useMenu`](/docs/core/hooks/utilities/use-menu) and [`useBreadcrumb`](/docs/core/hooks/utilities/use-breadcrumb).
 
 Here is the preview for the `Layout`, `Menu` and `Breadcrumb` components:
 
@@ -78,7 +78,7 @@ render(<App />);
 
 ## Layout
 
-When you create a new application with the **refine**, it creates a default layout under the `src/components/layout.tsx` file and it looks like below:
+When you create a new application with the **Refine**, it creates a default layout under the `src/components/layout.tsx` file and it looks like below:
 
 ```tsx title="src/components/layout.tsx"
 import { PropsWithChildren } from "react";

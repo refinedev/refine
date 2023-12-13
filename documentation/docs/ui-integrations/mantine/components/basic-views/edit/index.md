@@ -131,7 +131,7 @@ render(
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -244,7 +244,7 @@ render(
 
 ### `canDelete` and `deleteButtonProps`
 
-`canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property,refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
+`canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property,Refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
 When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
 
@@ -564,7 +564,7 @@ render(
 
 ### `dataProviderName`
 
-If not specified, **refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
+If not specified, **Refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
 import { Refine } from "@refinedev/core";

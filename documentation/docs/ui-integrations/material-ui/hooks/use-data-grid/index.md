@@ -459,7 +459,7 @@ useDataGrid({
 
 When you use the syncWithLocation feature, the `useDataGrid`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useDataGrid` state is automatically updated to match. This makes it easy to share table states across different routes or pages and allows users to bookmark or share links to specific table views. It is `false` by default.
 
-Also, you can set this value globally on [`<Refine>`][refine swl] component.
+Also, you can set this value globally on [`<Refine>`][Refine swl] component.
 
 ```tsx
 useDataGrid({
@@ -1100,6 +1100,6 @@ useDataGrid({
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
-[refine swl]: /docs/core/refine-component#syncwithlocation
+[Refine swl]: /docs/core/refine-component#syncwithlocation
 [data-grid]: https://mui.com/x/react-data-grid/
 [notification-provider]: /docs/core/providers/notification-provider

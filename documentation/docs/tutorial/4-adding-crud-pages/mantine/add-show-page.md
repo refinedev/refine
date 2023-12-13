@@ -96,7 +96,7 @@ render(<App />);
 
 ### Hooks and Components in Show Page
 
-- `<Show/>` is a **refine** component that is used for presentation purposes like showing the title of the page, list button, etc.
+- `<Show/>` is a **Refine** component that is used for presentation purposes like showing the title of the page, list button, etc.
 
   > For more information, refer to the [`<Show/>` documentation&#8594](/docs/ui-integrations/mantine/components/basic-views/show)
 
@@ -112,7 +112,7 @@ render(<App />);
 
 On the show page, we have a single record, and it may have relationships with other resources.
 
-For example, the `blog_posts` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **refine**, which allows us to fetch single record data by using the `id` and `resource` parameters.
+For example, the `blog_posts` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **Refine**, which allows us to fetch single record data by using the `id` and `resource` parameters.
 
 In the auto-generated show page code, Inferencer used the `useOne` hook to fetch the category data of the blog post record like below:
 
