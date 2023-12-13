@@ -83,22 +83,10 @@ export const MENU_ITEMS: MenuItemType[] = [
         href: "/enterprise",
         icon: NewBadgeIcon,
     },
-    // {
-    //     isPopover: false,
-    //     label: "Cloud",
-    //     icon: CloudIcon,
-    //     href: "#cloud",
-    // },
     {
         isPopover: true,
         label: "Community",
         items: [
-            // {
-            //     label: "Use cases",
-            //     description: "Inspiring projects built with refine.",
-            //     link: "/use-cases",
-            //     icon: UseCasesIcon,
-            // },
             {
                 label: "Contributing",
                 description: "Join open-source contributors.",
@@ -143,15 +131,4 @@ export const MENU_ITEMS: MenuItemType[] = [
             },
         ],
     },
-    // {
-    //     isPopover: false,
-    //     label: "Pricing",
-    //     href: "/pricing",
-    // },
-    /*    {
-        isPopover: false,
-        label: "Hackathon",
-        icon: HackathonAltIcon,
-        href: "https://s.refine.dev/hackathon2",
-    }, */
 ];
