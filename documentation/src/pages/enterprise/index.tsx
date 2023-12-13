@@ -16,7 +16,7 @@ import { EnterpriseTable } from "@site/src/refine-theme/enterprise-table";
 import { LandingFooter } from "@site/src/refine-theme/landing-footer";
 
 const Enterprise: React.FC = () => {
-    const title = "refine | Open-source Retool for Enterprise";
+    const title = "Refine | Open-source Retool for Enterprise";
 
     return (
         <>
