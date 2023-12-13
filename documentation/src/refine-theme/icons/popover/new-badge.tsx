@@ -14,9 +14,12 @@ export const NewBadgeIcon = (props: React.SVGProps<SVGSVGElement>) => {
                 "justify-center",
                 "rounded-full",
                 "overflow-hidden",
-                "p-[1px]",
+                "p-px",
                 "dark:bg-[#194b3a] bg-[#b7dbff]",
             )}
+            style={{
+                transform: "translateZ(0)",
+            }}
         >
             <div
                 className={clsx(
