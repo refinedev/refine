@@ -440,7 +440,7 @@ const drawerForm = useDrawerForm({
 
 ### `initialValues`
 
-Default values for the form. Use this to pre-populate the form with data that needs to be displayed. This propery is only available in `"create"` action.
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed. This property is only available in `"create"` action.
 
 ```tsx
 const drawerForm = useDrawerForm({
