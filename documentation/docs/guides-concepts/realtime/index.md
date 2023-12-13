@@ -144,7 +144,7 @@ We will build the **"Ably Live Provider"** of [`@refinedev/ably`](https://github
 
 ### Implementing `subscribe` method
 
-This method is used to subscribe to a Realtime channel. **refine** subscribes to the related channels using subscribe method in supported hooks to be aware of the data changes.
+This method is used to subscribe to a Realtime channel. **Refine** subscribes to the related channels using subscribe method in supported hooks to be aware of the data changes.
 
 ```ts title="liveProvider.ts"
 import { LiveProvider, LiveEvent } from "@refinedev/core";
@@ -192,7 +192,7 @@ interface MessageType extends Types.Message {
 }
 ```
 
-**refine** will use this subscribe method in the [`useSubscription`](/docs/core/hooks/realtime/use-subscription) hook.
+**Refine** will use this subscribe method in the [`useSubscription`](/docs/core/hooks/realtime/use-subscription) hook.
 
 ```ts
 import { useSubscription } from "@refinedev/core";
@@ -250,7 +250,7 @@ If `publish` is used on client side you must handle the security of it by yourse
 
 :::
 
-**refine** will provide this publish method via the [`usePublish`](/docs/core/hooks/realtime/use-publish) hook.
+**Refine** will provide this publish method via the [`usePublish`](/docs/core/hooks/realtime/use-publish) hook.
 
 ```ts
 import { usePublish } from "@refinedev/core";

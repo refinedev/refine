@@ -9,7 +9,7 @@ It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -72,7 +72,7 @@ render(
 
 :::note
 
-The button text is defined automatically by **refine** based on the _resource_ object name property.
+The button text is defined automatically by **Refine** based on the _resource_ object name property.
 
 :::
 

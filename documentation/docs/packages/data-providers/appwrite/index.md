@@ -325,7 +325,7 @@ We created two collections on Appwrite Database as `posts` and `categories` and 
 
 <TabItem value="auth" label="Authentication">
 
-Then we need to create an appwrite user to be able to login with **refine**.
+Then we need to create an appwrite user to be able to login with **Refine**.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/user.png" alt="user" />
 
@@ -507,7 +507,7 @@ export const App = () => (
 
 :::
 
-Now that we've created our collections, we can create and list documents. Let's list the posts and categories that we have created by Appwrite with **refine**.
+Now that we've created our collections, we can create and list documents. Let's list the posts and categories that we have created by Appwrite with **Refine**.
 
 <details>
 <summary>Show Code</summary>
@@ -698,7 +698,7 @@ render(<App />);
 
 ## Create Page
 
-We can now create posts and set categories from our **refine** UI.
+We can now create posts and set categories from our **Refine** UI.
 
 <details>
 <summary>Show Code</summary>

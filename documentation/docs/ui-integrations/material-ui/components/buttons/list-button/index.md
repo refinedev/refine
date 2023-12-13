@@ -7,7 +7,7 @@ swizzle: true
 
 :::info-tip Swizzle
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -70,7 +70,7 @@ render(
 
 :::note
 
-The button text is defined automatically by **refine** based on the _resource_ object name property.
+The button text is defined automatically by **Refine** based on the _resource_ object name property.
 
 :::
 

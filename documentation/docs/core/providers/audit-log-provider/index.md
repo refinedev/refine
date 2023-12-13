@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 ## Overview
 
-**refine** allows you to track changes and who made them in your data by sending a new log event record whenever a new record is created, updated or deleted. Mutations made with data hooks are automatically sent to the `auditLogProvider` as an event. You can also manually send events to the `auditLogProvider` via hooks.
+**Refine** allows you to track changes and who made them in your data by sending a new log event record whenever a new record is created, updated or deleted. Mutations made with data hooks are automatically sent to the `auditLogProvider` as an event. You can also manually send events to the `auditLogProvider` via hooks.
 
 To use `auditLogProvider`, you just need to pass it to `<Refine>`:
 
@@ -58,13 +58,13 @@ const auditLogProvider = {
 
 :::note
 
-**refine** provides the `useLog` and `useLogList` hooks that can be used to access your `auditLogProvider` methods from anywhere in your application.
+**Refine** provides the `useLog` and `useLogList` hooks that can be used to access your `auditLogProvider` methods from anywhere in your application.
 
 :::
 
 ## Creating an Audit Log Provider
 
-Let's create an `auditLogProvider` to understand how it works better. Though we will be using `dataProvider` to handle events, you can do it however you want thanks to **refine** providing an agnostic API.
+Let's create an `auditLogProvider` to understand how it works better. Though we will be using `dataProvider` to handle events, you can do it however you want thanks to **Refine** providing an agnostic API.
 
 ### `get`
 
@@ -129,7 +129,7 @@ values={[
 ]}>
 <TabItem value="create">
 
-When a record is created, refine automatically sends an event to `create` method like this:
+When a record is created, Refine automatically sends an event to `create` method like this:
 
 ```json
 {
@@ -156,7 +156,7 @@ The `id` of the created record is added to the `meta` object and can be used for
 </TabItem>
 <TabItem value="update">
 
-When a record is updated, refine automatically sends an event to `create` method like this:
+When a record is updated, Refine automatically sends an event to `create` method like this:
 
 ```json
 {
@@ -179,14 +179,14 @@ When a record is updated, refine automatically sends an event to `create` method
 
 :::info
 
-**refine** returns the `previousData` from the react-query cache if it can find it, returns `undefined` otherwise.
+**Refine** returns the `previousData` from the react-query cache if it can find it, returns `undefined` otherwise.
 
 :::
 
 </TabItem>
 <TabItem value="delete">
 
-When a record is deleted, refine automatically sends an event to `create` method like this:
+When a record is deleted, Refine automatically sends an event to `create` method like this:
 
 ```json
 {
@@ -202,7 +202,7 @@ When a record is deleted, refine automatically sends an event to `create` method
 </TabItem>
 <TabItem value="createMany">
 
-When a record is created with the `useCreateMany` hook, refine automatically sends an event to the `create` method like this:
+When a record is created with the `useCreateMany` hook, Refine automatically sends an event to the `create` method like this:
 
 ```json
 {
@@ -233,7 +233,7 @@ The `id` of the created record is added to the `meta` object and can be used for
 </TabItem>
 <TabItem value="updateMany">
 
-When a record is updated with the `useUpdateMany` hook, refine automatically sends an event to the `create` method like this:
+When a record is updated with the `useUpdateMany` hook, Refine automatically sends an event to the `create` method like this:
 
 ```json
 {
@@ -259,14 +259,14 @@ When a record is updated with the `useUpdateMany` hook, refine automatically sen
 
 :::info
 
-**refine** returns the `previousData` from the react-query cache but if it can't find it, it will return `undefined`.
+**Refine** returns the `previousData` from the react-query cache but if it can't find it, it will return `undefined`.
 
 :::
 
 </TabItem>
 <TabItem value="deleteMany">
 
-When a record is deleted with the `useDeleteMany` hook, refine automatically sends an event to the `create` method like this:
+When a record is deleted with the `useDeleteMany` hook, Refine automatically sends an event to the `create` method like this:
 
 ```json
 {

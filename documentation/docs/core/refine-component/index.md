@@ -3,7 +3,7 @@ title: <Refine>
 sidebar_label: <Refine>
 ---
 
-`<Refine>` component is the entry point of a **refine** app. It is where the highest level of configuration of the app occurs.
+`<Refine>` component is the entry point of a **Refine** app. It is where the highest level of configuration of the app occurs.
 
 [`dataProvider`](/docs/core/providers/data-provider) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
 
@@ -38,15 +38,15 @@ export default App;
 <br/>
 <br/>
 
-A [`dataProvider`](/docs/core/providers/data-provider) is the place where a refine app communicates with an API.
-Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.
+A [`dataProvider`](/docs/core/providers/data-provider) is the place where a Refine app communicates with an API.
+Data providers also act as adapters for Refine, making it possible for it to consume different API's and data services.
 A [`dataProvider`](/docs/core/providers/data-provider) makes HTTP requests and returns response data back using predefined methods.
 
 [Refer to the Data Provider documentation for detailed information. &#8594](/docs/core/providers/data-provider)
 
 :::tip
 
-To activate multiple data provider in refine, we have to pass the default key with `dataProvider` for the default data provider and we can pass other data providers with any key to the `<Refine />` component.
+To activate multiple data provider in Refine, we have to pass the default key with `dataProvider` for the default data provider and we can pass other data providers with any key to the `<Refine />` component.
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
@@ -69,7 +69,7 @@ const App: React.FC = () => {
 
 ## `routerProvider`
 
-**refine** provides a simple interface from the `routerProvider` prop to infer the resource from route, pass, parse and sync the query parameters and handle navigation operations. This provider and its properties are optional but it is recommended to use it to get the most out of **refine**. Bindings to pass to the `routerProvider` prop are provided for the following libraries:
+**Refine** provides a simple interface from the `routerProvider` prop to infer the resource from route, pass, parse and sync the query parameters and handle navigation operations. This provider and its properties are optional but it is recommended to use it to get the most out of **Refine**. Bindings to pass to the `routerProvider` prop are provided for the following libraries:
 
 - React Router via `@refinedev/react-router-v6`
 - Next.js via `@refinedev/nextjs-router`
@@ -81,13 +81,13 @@ It's also possible to create a custom router bindings for your routing needs.
 
 :::info Legacy Router
 
-In prior versions from v4 of **refine**, `routerProvider` had a different interface and it was required. This is no longer the case and `routerProvider` is optional. If you want to keep using the legacy router provider, you can use the `legacyRouterProvider` prop instead.
+In prior versions from v4 of **Refine**, `routerProvider` had a different interface and it was required. This is no longer the case and `routerProvider` is optional. If you want to keep using the legacy router provider, you can use the `legacyRouterProvider` prop instead.
 
 :::
 
 ## `resources`
 
-`resources` is the main building block of a **refine** app. A resource represents an entity in an endpoint in the API (e.g. https://api.fake-rest.refine.dev/posts). It serves as a bridge between the data from the API and the pages in the app, allowing pages to interact with the data from the API.
+`resources` is the main building block of a **Refine** app. A resource represents an entity in an endpoint in the API (e.g. https://api.fake-rest.refine.dev/posts). It serves as a bridge between the data from the API and the pages in the app, allowing pages to interact with the data from the API.
 
 Here's an app that consumes the https://api.fake-rest.refine.dev/posts endpoint as a resource to list multiple items, edit or create an item and show a single item.
 
@@ -333,7 +333,7 @@ This value will be passed to all CRUD pages defined as the `resources` element.
 
 :::tip
 
-**refine**'s <[Edit](/docs/ui-integrations/ant-design/components/basic-views/edit)> component uses `canDelete` value to whether show delete button in the edit form or not.
+**Refine**'s <[Edit](/docs/ui-integrations/ant-design/components/basic-views/edit)> component uses `canDelete` value to whether show delete button in the edit form or not.
 
 :::
 
@@ -393,7 +393,7 @@ You can also pass any type of property into the `meta` object. This property you
 
 ## `authProvider`
 
-`authProvider` handles authentication logic like login, logout flow, and checking user credentials. It is an object with methods that refine uses when necessary.
+`authProvider` handles authentication logic like login, logout flow, and checking user credentials. It is an object with methods that Refine uses when necessary.
 
 [Refer to the Auth Provider documentation for detailed information. &#8594](/docs/core/providers/auth-provider)
 
@@ -409,7 +409,7 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 ## `accessControlProvider`
 
-`accessControlProvider` is the entry point for implementing access control for **refine** apps.
+`accessControlProvider` is the entry point for implementing access control for **Refine** apps.
 
 [Refer to access control documentation for detailed information. &#8594](/docs/core/providers/access-control-provider)
 
@@ -417,7 +417,7 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 ## `liveProvider`
 
-**refine** lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
+**Refine** lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
 
 [Refer to live provider documentation for detailed information. &#8594](/docs/core/providers/live-provider)
 
@@ -425,7 +425,7 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 ## `notificationProvider`
 
-`notificationProvider` handles notification logic. It is an object with methods that refine uses when necessary.
+`notificationProvider` handles notification logic. It is an object with methods that Refine uses when necessary.
 
 [Refer to the Notification Provider documentation for detailed information. &#8594](/docs/core/providers/notification-provider)
 
@@ -582,7 +582,7 @@ Users can change the current page, items count per page, and sort and filter par
 
 ### `warnWhenUnsavedChanges`
 
-When you have unsaved changes and try to leave the current page, **refine** shows a confirmation modal box.
+When you have unsaved changes and try to leave the current page, **Refine** shows a confirmation modal box.
 `warnWhenUnsavedChanges`'s default value is `false`, so you need to set it to `true` to activate the feature.
 
 :::caution
@@ -607,13 +607,13 @@ This feature also requires `UnsavedChangesNotifier` component to be mounted. You
 
 ### `disableTelemetry`
 
-**refine** implements a simple and transparent telemetry module for collecting usage statistics defined in a very limited scope. This telemetry module is used to improve the **refine** experience. You can disable this by setting `disableTelemetry` to `true`.
+**Refine** implements a simple and transparent telemetry module for collecting usage statistics defined in a very limited scope. This telemetry module is used to improve the **Refine** experience. You can disable this by setting `disableTelemetry` to `true`.
 
-> For more information, refer to the [refine telemetry documentation &#8594](/further-readings/telemetry.md)
+> For more information, refer to the [Refine telemetry documentation &#8594](/further-readings/telemetry.md)
 
 ### `redirect`
 
-By default, **refine** redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/core/hooks/use-form/#actions), set `redirect` as follows:
+By default, **Refine** redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/core/hooks/use-form/#actions), set `redirect` as follows:
 
 ```tsx title="App.tsx"
 const App: React.FC = () => {
@@ -646,9 +646,9 @@ If you don't have a show page and you redirect to the show page, the user will b
 
 #### `clientConfig`
 
-Config for React Query client that **refine** uses.
+Config for React Query client that **Refine** uses.
 
-**refine** uses some defaults that apply to all queries:
+**Refine** uses some defaults that apply to all queries:
 
 ```ts
 {
@@ -705,13 +705,13 @@ const App: React.FC = () => (
 
 :::caution Deprecated
 
-React Query Devtools are removed from the `@refinedev/core` and this prop is no longer supported for the configuration of the devtools. You can use the `@tanstack/react-query-devtools` in your app directly to use the devtools. For more information, please check out [FAQ - How to use React Query Devtools with refine?](/docs/guides-concepts/faq/#how-to-use-react-query-devtools-with-refine)
+React Query Devtools are removed from the `@refinedev/core` and this prop is no longer supported for the configuration of the devtools. You can use the `@tanstack/react-query-devtools` in your app directly to use the devtools. For more information, please check out [FAQ - How to use React Query Devtools with Refine?](/docs/guides-concepts/faq/#how-to-use-react-query-devtools-with-refine)
 
 :::
 
 Config for customizing the React Query Devtools. If you want to disable the Devtools, set `devtoolConfig` to `false`.
 
-**refine** uses some defaults that apply to react-query devtool:
+**Refine** uses some defaults that apply to react-query devtool:
 
 ```ts
 {
@@ -742,7 +742,7 @@ const App: React.FC = () => (
 
 ### `textTransformers`
 
-The `textTransformers` option in **refine** is used to transform the resource name displayed on the user interface (UI). By default, if you define a resource named `posts`, refine will display it as `Posts`. Similarly, when you delete a record, notification messages will be shown as `Post deleted successfully.`.
+The `textTransformers` option in **Refine** is used to transform the resource name displayed on the user interface (UI). By default, if you define a resource named `posts`, Refine will display it as `Posts`. Similarly, when you delete a record, notification messages will be shown as `Post deleted successfully.`.
 
 You have the flexibility to customize these messages by using the `textTransformers` option. For instance, if you wish to disable any transformation, you can set the `textTransformers` option as shown in the example below:
 
@@ -816,15 +816,15 @@ The callback function receives two parameters:
 
 ### `useNewQueryKeys`
 
-With `@refinedev/core`'s `v4.35.0`, refine introduced new query and mutation keys which are more structured and easy to construct. These keys are used in all data, auth, access control and audit log queries and mutations.
+With `@refinedev/core`'s `v4.35.0`, Refine introduced new query and mutation keys which are more structured and easy to construct. These keys are used in all data, auth, access control and audit log queries and mutations.
 
-By default, refine uses the legacy keys for backward compatibility and in the future versions it will switch to using the new query keys. You can easily switch to using new keys by setting `useNewQueryKeys` to `true`.
+By default, Refine uses the legacy keys for backward compatibility and in the future versions it will switch to using the new query keys. You can easily switch to using new keys by setting `useNewQueryKeys` to `true`.
 
 ## `onLiveEvent`
 
 Callback to handle all live events.
 
-> For more information, refer to the [live provider documentation &#8594](/docs/core/providers/live-provider#refine)
+> For more information, refer to the [live provider documentation &#8594](/docs/core/providers/live-provider#Refine)
 
 ## ~~`catchAll`~~
 
@@ -834,7 +834,7 @@ Callback to handle all live events.
 
 :::
 
-When the app is navigated to a non-existent route, **refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to the `catchAll` property:
+When the app is navigated to a non-existent route, **Refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to the `catchAll` property:
 
 ```tsx title="App.tsx"
 // highlight-next-line
@@ -859,7 +859,7 @@ const App: React.FC = () => {
 
 :::
 
-**refine** has a default login page form which is served on the `/login` route when the `authProvider` configuration is provided.
+**Refine** has a default login page form which is served on the `/login` route when the `authProvider` configuration is provided.
 
 Custom login component can be passed to the `LoginPage` property.
 
@@ -905,11 +905,11 @@ const App: React.FC = () => (
 
 :::caution Deprecated
 
-`ReadyPage` only works with the legacy routing system. Now you can start using **refine** without any resources defined.
+`ReadyPage` only works with the legacy routing system. Now you can start using **Refine** without any resources defined.
 
 :::
 
-**refine** shows a default ready page on the root route when no `resources` is passed to the `<Refine>`.
+**Refine** shows a default ready page on the root route when no `resources` is passed to the `<Refine>`.
 
 Custom ready page component can be set by passing to the `ReadyPage` property?.
 
@@ -934,9 +934,9 @@ const App: React.FC = () => (
 
 :::
 
-The default sidebar can be customized by using refine hooks and passing custom components to the `Sider` property.
+The default sidebar can be customized by using Refine hooks and passing custom components to the `Sider` property.
 
-**refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default.
+**Refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default.
 
 > For more information, refer to the [`useMenu` hook documentation &#8594](/docs/core/hooks/utilities/use-menu)
 
@@ -998,7 +998,7 @@ const App: React.FC = () => (
 
 The default layout can be customized by passing the `Layout` property.
 
-**refine** uses [Ant Design Layout](https://ant.design/components/layout/) components by default.
+**Refine** uses [Ant Design Layout](https://ant.design/components/layout/) components by default.
 
 Layout property will receive individual layout components as property.
 
@@ -1027,7 +1027,7 @@ const App: React.FC = () => (
 );
 ```
 
-A completely custom layout can also be implemented instead of the **refine**'s default [Ant Design based layout](https://ant.design/components/layout) like below.
+A completely custom layout can also be implemented instead of the **Refine**'s default [Ant Design based layout](https://ant.design/components/layout) like below.
 
 ```tsx title="App.tsx"
 const App: React.FC = () => (

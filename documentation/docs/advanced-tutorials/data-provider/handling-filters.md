@@ -3,7 +3,7 @@ id: handling-filters
 title: Handling Filters
 ---
 
-**refine** expects an array of type `CrudFilters` to filter results based on some field’s values. So you can use more than one filter. Even the `or` operator can be used to combine multiple filters.
+**Refine** expects an array of type `CrudFilters` to filter results based on some field’s values. So you can use more than one filter. Even the `or` operator can be used to combine multiple filters.
 
 ## `CrudFilters`
 

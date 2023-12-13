@@ -58,7 +58,7 @@ Let's add multi-language support to our application using the `react-i18next` fr
 
 :::tip
 
-We recommend using [`create refine-app`][create-refine-app] to initialize your refine projects as it configures the project according to your needs, i18n support included if you choose it in the CLI
+We recommend using [`create refine-app`][create-refine-app] to initialize your Refine projects as it configures the project according to your needs, i18n support included if you choose it in the CLI
 
 If you choose to have
 

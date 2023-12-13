@@ -1,57 +1,57 @@
 ---
 id: create-project
-title: 3. Creating your refine project
+title: 3. Creating your Refine project
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/prepare-env
-    next: tutorial/getting-started/{preferredUI}/generate-crud-pages
+  prev: tutorial/getting-started/{preferredUI}/prepare-env
+  next: tutorial/getting-started/{preferredUI}/generate-crud-pages
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Launch the refine CLI setup
+## Launch the Refine CLI setup
 
-The easiest way to create a new project is using the **refine CLI**. This tool will help you get started quickly by generating a new project with a basic configuration and a folder structure that follows best practices.
+The easiest way to create a new project is using the **Refine CLI**. This tool will help you get started quickly by generating a new project with a basic configuration and a folder structure that follows best practices.
 
 1. Launch your terminal and type the following command using your preferred package manager:
 
-    <Tabs
-    defaultValue="npm"
-    values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+   <Tabs
+   defaultValue="npm"
+   values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
 
-    <TabItem value="npm">
+   <TabItem value="npm">
 
-    ```bash
-    npm create refine-app@latest -- -o refine-headless tutorial
-    ```
+   ```bash
+   npm create refine-app@latest -- -o refine-headless tutorial
+   ```
 
-    </TabItem>
+   </TabItem>
 
-    <TabItem value="pnpm">
+   <TabItem value="pnpm">
 
-    ```bash
-    pnpm create refine-app@latest -- -o refine-headless tutorial
-    ```
+   ```bash
+   pnpm create refine-app@latest -- -o refine-headless tutorial
+   ```
 
-    </TabItem>
+   </TabItem>
 
-    <TabItem value="yarn">
+   <TabItem value="yarn">
 
-    ```bash
-    yarn create refine-app -- -o refine-headless tutorial
-    ```
+   ```bash
+   yarn create refine-app -- -o refine-headless tutorial
+   ```
 
-    > Only supports yarn@1 version.
+   > Only supports yarn@1 version.
 
-    </TabItem>
+   </TabItem>
 
-    </Tabs>
+   </Tabs>
 
 2. Confirm `y` to installation of `create-refine-app`
 
 3. The `-o refine-headless` flag in the command above tells the CLI to install the project with the `refine-headless` preset. This preset selects some of the options for you in accordance with this tutorial. Outside of this tutorial, you can skip this flag and select your own options.
 
-4. The CLI will then ask if you agree to share your selection anonymously with the **refine** team. This is for measuring community preferences. You can learn more about it here: [Telemetry](/docs/further-readings/telemetry/).
+4. The CLI will then ask if you agree to share your selection anonymously with the **Refine** team. This is for measuring community preferences. You can learn more about it here: [Telemetry](/docs/further-readings/telemetry/).
 
 Once the installation wizard is finished, you can close this terminal window and open VS Code to continue your journey.
 
@@ -101,7 +101,7 @@ yarn run dev
 
 </Tabs>
 
-You should see confirmation in the terminal that the **refine** app is running in dev mode.
+You should see confirmation in the terminal that the **Refine** app is running in dev mode.
 
 ### Viewing a preview of your app
 
@@ -122,18 +122,15 @@ import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                routerProvider={routerBindings}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            >
-                <Routes>
-                    <Route index element={<WelcomePage />} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine routerProvider={routerBindings} dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
+        <Routes>
+          <Route index element={<WelcomePage />} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 render(<App />);

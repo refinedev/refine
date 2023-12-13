@@ -318,6 +318,6 @@ render(<App />);
 
 ## Example
 
-Below you'll find a Live CodeSandbox Example displaying a fully setup **refine** app with `@refinedev/inferencer/headless` components.
+Below you'll find a Live CodeSandbox Example displaying a fully setup **Refine** app with `@refinedev/inferencer/headless` components.
 
 <CodeSandboxExample path="inferencer-headless" />

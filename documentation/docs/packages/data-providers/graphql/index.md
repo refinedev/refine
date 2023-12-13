@@ -14,7 +14,7 @@ const client = new GraphQLClient(API_URL);
 const gqlDataProvider = dataProvider(client);
 ```
 
-**refine** [graphql](https://github.com/refinedev/refine/tree/master/packages/graphql) and [strapi-graphql](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql) data provider built with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and [graphql-request](https://github.com/prisma-labs/graphql-request) is made for GraphQL implementation. It aims to create a query dynamically with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and send requests with [graphql-request](https://github.com/prisma-labs/graphql-request).
+**Refine** [graphql](https://github.com/refinedev/refine/tree/master/packages/graphql) and [strapi-graphql](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql) data provider built with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and [graphql-request](https://github.com/prisma-labs/graphql-request) is made for GraphQL implementation. It aims to create a query dynamically with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and send requests with [graphql-request](https://github.com/prisma-labs/graphql-request).
 
 ## GraphQL Query Builder
 
