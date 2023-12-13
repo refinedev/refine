@@ -173,7 +173,9 @@ export const generateCreatedSubscription = ({
     filters,
     meta,
 }: any) => {
-    if (meta?.gqlQuery) {
+    const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
+
+    if (gqlOperation) {
         const singularResourceName = camelcase(singular(resource), {
             pascalCase: true,
         });
@@ -185,7 +187,7 @@ export const generateCreatedSubscription = ({
         const query = `
             subscription ${operationName}($input: Create${singularResourceName}SubscriptionFilterInput) {
                 ${operation}(input: $input) {
-                    ${fieldsToString(meta.gqlQuery)}
+                    ${fieldsToString(gqlOperation)}
                 }
             }
         `;
@@ -245,7 +247,9 @@ export const generateUpdatedSubscription = ({
     filters,
     meta,
 }: any) => {
-    if (meta?.gqlQuery) {
+    const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
+
+    if (gqlOperation) {
         const singularResourceName = camelcase(singular(resource), {
             pascalCase: true,
         });
@@ -257,7 +261,7 @@ export const generateUpdatedSubscription = ({
         const query = `
             subscription ${operationName}($input: UpdateOne${singularResourceName}SubscriptionFilterInput) {
                 ${operation}(input: $input) {
-                    ${fieldsToString(meta.gqlQuery)}
+                    ${fieldsToString(gqlOperation)}
                 }
             }
         `;
