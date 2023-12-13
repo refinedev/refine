@@ -11,13 +11,13 @@ import AuthProviderExamplesLinks from "@site/src/partials/auth-provider/auth-pro
 
 ## What is auth provider?
 
-Auth provider is an object that contains methods to handle authentication and access control in your app by having **Refine** consume them. These methods expect to return a promise, so they can be used with async methods.
+Auth provider is an object that contains methods to handle authentication and access control in your app by having Refine consume them. These methods expect to return a promise, so they can be used with async methods.
 
 You can use any third-party authentication service like Auth0, Okta, etc. or your own custom methods while creating an auth provider from scratch, which we will explore in the next section.
 
 :::tip
 
-**Refine** does offer built-in examples for auth providers that you can use as a starting point for your own auth providers as well.
+Refine does offer built-in examples for auth providers that you can use as a starting point for your own auth providers as well.
 
 Refer to the [Auth Provider Examples &#8594](#auth-provider-examples)
 
@@ -43,7 +43,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-> For more information about these methods and how **Refine** hooks use them, refer to the [Auth Provider documentation&#8594](/docs/core/providers/auth-provider)
+> For more information about these methods and how Refine hooks use them, refer to the [Auth Provider documentation&#8594](/docs/core/providers/auth-provider)
 
 ## Using Auth Providers in Refine
 
@@ -72,7 +72,7 @@ const authProvider: AuthBindings = {
 
 ## How are auth provider methods used in the app?
 
-Each method of auth provider corresponds to a hook in **Refine** that you can use these hooks to perform auth operations in your app.
+Each method of auth provider corresponds to a hook in Refine that you can use these hooks to perform auth operations in your app.
 
 For example, to show you how relationship between auth provider methods and hooks, here is how you can use the `useLogin` hook to perform a login operation:
 

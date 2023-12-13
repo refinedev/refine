@@ -17,7 +17,7 @@ The changes in the `DataGrid` API are included in the `@refinedev/mui`'s latest 
 
 ## Required Changes
 
-The changes listed below are required to use `@mui/x-data-grid` with **Refine**. It doesn't cover all the changes in the `DataGrid` API. To see all the changes, please follow the [official migration guide for MUI X](https://mui.com/x/migration/migration-data-grid-v5/).
+The changes listed below are required to use `@mui/x-data-grid` with Refine. It doesn't cover all the changes in the `DataGrid` API. To see all the changes, please follow the [official migration guide for MUI X](https://mui.com/x/migration/migration-data-grid-v5/).
 
 ### Updating the packages
 

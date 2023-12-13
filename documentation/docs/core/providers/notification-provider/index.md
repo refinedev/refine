@@ -3,9 +3,9 @@ title: Notification Provider
 sidebar_label: Notification Provider
 ---
 
-**Refine** let's you set a notification API by providing the `notificationProvider` property to the `<Refine>` component.
+Refine let's you set a notification API by providing the `notificationProvider` property to the `<Refine>` component.
 
-`notificationProvider` is an object with close and open methods. **Refine** uses these methods to show and hide notifications. These methods can be called from anywhere in the application with [`useNotification`](/docs/core/hooks/utilities/use-notification) hook.
+`notificationProvider` is an object with close and open methods. Refine uses these methods to show and hide notifications. These methods can be called from anywhere in the application with [`useNotification`](/docs/core/hooks/utilities/use-notification) hook.
 
 An `notificationProvider` must include following methods:
 
@@ -61,14 +61,14 @@ const App = () => {
 };
 ```
 
-By default, **Refine** doesn't require `notificationProvider` configuration.
+By default, Refine doesn't require `notificationProvider` configuration.
 
-If an `notificationProvider` property is not provided, **Refine** will use the default `notificationProvider`, which lets the app work without an notification.
+If an `notificationProvider` property is not provided, Refine will use the default `notificationProvider`, which lets the app work without an notification.
 If your app doesn't require `notification`, no further setup is necessary for the app to work.
 
 ## Built-in Notification Providers
 
-If you're looking for a complete notification infrastructure, **Refine** has out-of-the-box support for the libraries below:
+If you're looking for a complete notification infrastructure, Refine has out-of-the-box support for the libraries below:
 
 <Tabs
 defaultValue="antd"
@@ -177,7 +177,7 @@ export default App;
 
 ### `open`
 
-**Refine** calls this method when it wants to open a notification. It also helps you to get the right notification by sending some parameters to the **Refine** open method. For example, `message`, `description`, etc.
+Refine calls this method when it wants to open a notification. It also helps you to get the right notification by sending some parameters to the Refine open method. For example, `message`, `description`, etc.
 
 Here we open a notification with [`react-toastify`](https://github.com/fkhadra/react-toastify):
 
@@ -218,7 +218,7 @@ const notificationProvider: NotificationProvider = {
 };
 ```
 
-Now, let's create a custom notification when the mutation mode is `undoable`. In this case, **Refine** sends the notification's type as `progress` as well as `cancelMutation` and `undoableTimeout`.
+Now, let's create a custom notification when the mutation mode is `undoable`. In this case, Refine sends the notification's type as `progress` as well as `cancelMutation` and `undoableTimeout`.
 
 `undoableTimeout` decreases by 1 every second until it reaches 0, at which point the notification is closed. The `open` method is called again with the same`key` each countdown. So, the notification should be updated with the new`undoableTimeout` value.
 
@@ -324,7 +324,7 @@ open?.({
 
 ### `close`
 
-**Refine** calls this method when it wants to close a notification. **Refine** pass the `key` of the notification to the `close` method. So, we can handle the notification close logic with this `key`.
+Refine calls this method when it wants to close a notification. Refine pass the `key` of the notification to the `close` method. So, we can handle the notification close logic with this `key`.
 
 ```tsx
 import { toast } from "react-toastify";

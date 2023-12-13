@@ -6,7 +6,7 @@ swizzle: true
 
 The Simple REST data provider is a package that provides an implementation for working with REST APIs that conform to a standard API design. It is built on the foundation of the [json-server](https://github.com/typicode/json-server) package.
 
-You can use this data provider to quickly get started with **Refine** and then customize it to fit your specific needs.
+You can use this data provider to quickly get started with Refine and then customize it to fit your specific needs.
 
 Run the following command to install:
 

@@ -119,7 +119,7 @@ interface IPost {
 }
 ```
 
-Mantine theme is an object where your application's colors, fonts, spacing, border-radius and other design tokens are stored. You can either create your own theme object or use themes that provide from **Refine**. Theme provides a way to your app's design to meet them.
+Mantine theme is an object where your application's colors, fonts, spacing, border-radius and other design tokens are stored. You can either create your own theme object or use themes that provide from Refine. Theme provides a way to your app's design to meet them.
 
 > For more information, refer to the [Mantine documentation &#8594](https://mantine.dev/theming/theme-object/)
 
@@ -158,7 +158,7 @@ const App: React.FC = () => {
 
 ## Theme customization
 
-`<MantineProvider/>` component can be used to change the theme. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by **Refine**.
+`<MantineProvider/>` component can be used to change the theme. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by Refine.
 
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);

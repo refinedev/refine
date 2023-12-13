@@ -3,7 +3,7 @@ title: <Refine>
 sidebar_label: <Refine>
 ---
 
-`<Refine>` component is the entry point of a **Refine** app. It is where the highest level of configuration of the app occurs.
+`<Refine>` component is the entry point of a Refine app. It is where the highest level of configuration of the app occurs.
 
 [`dataProvider`](/docs/core/providers/data-provider) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
 
@@ -69,7 +69,7 @@ const App: React.FC = () => {
 
 ## `routerProvider`
 
-**Refine** provides a simple interface from the `routerProvider` prop to infer the resource from route, pass, parse and sync the query parameters and handle navigation operations. This provider and its properties are optional but it is recommended to use it to get the most out of **Refine**. Bindings to pass to the `routerProvider` prop are provided for the following libraries:
+Refine provides a simple interface from the `routerProvider` prop to infer the resource from route, pass, parse and sync the query parameters and handle navigation operations. This provider and its properties are optional but it is recommended to use it to get the most out of Refine. Bindings to pass to the `routerProvider` prop are provided for the following libraries:
 
 - React Router via `@refinedev/react-router-v6`
 - Next.js via `@refinedev/nextjs-router`
@@ -81,13 +81,13 @@ It's also possible to create a custom router bindings for your routing needs.
 
 :::info Legacy Router
 
-In prior versions from v4 of **Refine**, `routerProvider` had a different interface and it was required. This is no longer the case and `routerProvider` is optional. If you want to keep using the legacy router provider, you can use the `legacyRouterProvider` prop instead.
+In prior versions from v4 of Refine, `routerProvider` had a different interface and it was required. This is no longer the case and `routerProvider` is optional. If you want to keep using the legacy router provider, you can use the `legacyRouterProvider` prop instead.
 
 :::
 
 ## `resources`
 
-`resources` is the main building block of a **Refine** app. A resource represents an entity in an endpoint in the API (e.g. https://api.fake-rest.refine.dev/posts). It serves as a bridge between the data from the API and the pages in the app, allowing pages to interact with the data from the API.
+`resources` is the main building block of a Refine app. A resource represents an entity in an endpoint in the API (e.g. https://api.fake-rest.refine.dev/posts). It serves as a bridge between the data from the API and the pages in the app, allowing pages to interact with the data from the API.
 
 Here's an app that consumes the https://api.fake-rest.refine.dev/posts endpoint as a resource to list multiple items, edit or create an item and show a single item.
 
@@ -333,7 +333,7 @@ This value will be passed to all CRUD pages defined as the `resources` element.
 
 :::tip
 
-**Refine**'s <[Edit](/docs/ui-integrations/ant-design/components/basic-views/edit)> component uses `canDelete` value to whether show delete button in the edit form or not.
+Refine's <[Edit](/docs/ui-integrations/ant-design/components/basic-views/edit)> component uses `canDelete` value to whether show delete button in the edit form or not.
 
 :::
 
@@ -409,7 +409,7 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 ## `accessControlProvider`
 
-`accessControlProvider` is the entry point for implementing access control for **Refine** apps.
+`accessControlProvider` is the entry point for implementing access control for Refine apps.
 
 [Refer to access control documentation for detailed information. &#8594](/docs/core/providers/access-control-provider)
 
@@ -417,7 +417,7 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 ## `liveProvider`
 
-**Refine** lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
+Refine lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
 
 [Refer to live provider documentation for detailed information. &#8594](/docs/core/providers/live-provider)
 
@@ -582,7 +582,7 @@ Users can change the current page, items count per page, and sort and filter par
 
 ### `warnWhenUnsavedChanges`
 
-When you have unsaved changes and try to leave the current page, **Refine** shows a confirmation modal box.
+When you have unsaved changes and try to leave the current page, Refine shows a confirmation modal box.
 `warnWhenUnsavedChanges`'s default value is `false`, so you need to set it to `true` to activate the feature.
 
 :::caution
@@ -607,13 +607,13 @@ This feature also requires `UnsavedChangesNotifier` component to be mounted. You
 
 ### `disableTelemetry`
 
-**Refine** implements a simple and transparent telemetry module for collecting usage statistics defined in a very limited scope. This telemetry module is used to improve the **Refine** experience. You can disable this by setting `disableTelemetry` to `true`.
+Refine implements a simple and transparent telemetry module for collecting usage statistics defined in a very limited scope. This telemetry module is used to improve the Refine experience. You can disable this by setting `disableTelemetry` to `true`.
 
 > For more information, refer to the [Refine telemetry documentation &#8594](/further-readings/telemetry.md)
 
 ### `redirect`
 
-By default, **Refine** redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/core/hooks/use-form/#actions), set `redirect` as follows:
+By default, Refine redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/core/hooks/use-form/#actions), set `redirect` as follows:
 
 ```tsx title="App.tsx"
 const App: React.FC = () => {
@@ -646,9 +646,9 @@ If you don't have a show page and you redirect to the show page, the user will b
 
 #### `clientConfig`
 
-Config for React Query client that **Refine** uses.
+Config for React Query client that Refine uses.
 
-**Refine** uses some defaults that apply to all queries:
+Refine uses some defaults that apply to all queries:
 
 ```ts
 {
@@ -711,7 +711,7 @@ React Query Devtools are removed from the `@refinedev/core` and this prop is no 
 
 Config for customizing the React Query Devtools. If you want to disable the Devtools, set `devtoolConfig` to `false`.
 
-**Refine** uses some defaults that apply to react-query devtool:
+Refine uses some defaults that apply to react-query devtool:
 
 ```ts
 {
@@ -742,7 +742,7 @@ const App: React.FC = () => (
 
 ### `textTransformers`
 
-The `textTransformers` option in **Refine** is used to transform the resource name displayed on the user interface (UI). By default, if you define a resource named `posts`, Refine will display it as `Posts`. Similarly, when you delete a record, notification messages will be shown as `Post deleted successfully.`.
+The `textTransformers` option in Refine is used to transform the resource name displayed on the user interface (UI). By default, if you define a resource named `posts`, Refine will display it as `Posts`. Similarly, when you delete a record, notification messages will be shown as `Post deleted successfully.`.
 
 You have the flexibility to customize these messages by using the `textTransformers` option. For instance, if you wish to disable any transformation, you can set the `textTransformers` option as shown in the example below:
 
@@ -834,7 +834,7 @@ Callback to handle all live events.
 
 :::
 
-When the app is navigated to a non-existent route, **Refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to the `catchAll` property:
+When the app is navigated to a non-existent route, Refine shows a default error page. A custom error component can be used for this error page by passing the customized component to the `catchAll` property:
 
 ```tsx title="App.tsx"
 // highlight-next-line
@@ -859,7 +859,7 @@ const App: React.FC = () => {
 
 :::
 
-**Refine** has a default login page form which is served on the `/login` route when the `authProvider` configuration is provided.
+Refine has a default login page form which is served on the `/login` route when the `authProvider` configuration is provided.
 
 Custom login component can be passed to the `LoginPage` property.
 
@@ -905,11 +905,11 @@ const App: React.FC = () => (
 
 :::caution Deprecated
 
-`ReadyPage` only works with the legacy routing system. Now you can start using **Refine** without any resources defined.
+`ReadyPage` only works with the legacy routing system. Now you can start using Refine without any resources defined.
 
 :::
 
-**Refine** shows a default ready page on the root route when no `resources` is passed to the `<Refine>`.
+Refine shows a default ready page on the root route when no `resources` is passed to the `<Refine>`.
 
 Custom ready page component can be set by passing to the `ReadyPage` property?.
 
@@ -936,7 +936,7 @@ const App: React.FC = () => (
 
 The default sidebar can be customized by using Refine hooks and passing custom components to the `Sider` property.
 
-**Refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default.
+Refine uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default.
 
 > For more information, refer to the [`useMenu` hook documentation &#8594](/docs/core/hooks/utilities/use-menu)
 
@@ -998,7 +998,7 @@ const App: React.FC = () => (
 
 The default layout can be customized by passing the `Layout` property.
 
-**Refine** uses [Ant Design Layout](https://ant.design/components/layout/) components by default.
+Refine uses [Ant Design Layout](https://ant.design/components/layout/) components by default.
 
 Layout property will receive individual layout components as property.
 
@@ -1027,7 +1027,7 @@ const App: React.FC = () => (
 );
 ```
 
-A completely custom layout can also be implemented instead of the **Refine**'s default [Ant Design based layout](https://ant.design/components/layout) like below.
+A completely custom layout can also be implemented instead of the Refine's default [Ant Design based layout](https://ant.design/components/layout) like below.
 
 ```tsx title="App.tsx"
 const App: React.FC = () => (

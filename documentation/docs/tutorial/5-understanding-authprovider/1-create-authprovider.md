@@ -201,7 +201,7 @@ const authProvider: AuthBindings = {
 <details>
   <summary><strong>How can I customize the error message?</strong></summary>
 
-**Refine** automatically displays an error notification when the `login` method resolves the promise with `success: false`. If you want to customize the error message, you can resolve the promise with an `error` object that has `name` and `message` properties.
+Refine automatically displays an error notification when the `login` method resolves the promise with `success: false`. If you want to customize the error message, you can resolve the promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -444,7 +444,7 @@ const authProvider: AuthBindings = {
 <details>
   <summary><strong>How can I customize the error message?</strong></summary>
 
-**Refine** automatically displays an error notification when the `logout` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
+Refine automatically displays an error notification when the `logout` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
 import { AuthBindings } from "@refinedev/core";
@@ -841,7 +841,7 @@ const authProvider: AuthBindings = {
 <details>
   <summary><strong>How can I customize the error message?</strong></summary>
 
-**Refine** automatically displays an error notification when the `register` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
+Refine automatically displays an error notification when the `register` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
 const authProvider: AuthBindings = {
@@ -989,7 +989,7 @@ const authProvider: AuthBindings = {
 <details>
   <summary><strong>How can I customize the error message?</strong></summary>
 
-**Refine** automatically displays an error notification when the `forgotPassword` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an object that has `name` and `message` properties.
+Refine automatically displays an error notification when the `forgotPassword` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
 const authProvider: AuthBindings = {
@@ -1153,7 +1153,7 @@ const authProvider: AuthBindings = {
 <details>
   <summary><strong>How can I customize the error message?</strong></summary>
 
-**Refine** automatically displays an error notification when the `updatePassword` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
+Refine automatically displays an error notification when the `updatePassword` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
 const authProvider: AuthBindings = {

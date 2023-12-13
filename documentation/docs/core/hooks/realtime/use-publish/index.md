@@ -7,7 +7,7 @@ source: packages/core/src/hooks/live/usePublish/index.ts
 
 :::info-tip
 
-**Refine** use this hook internally in mutation hooks to `publish` events after successful mutations. You can refer to the `liveProvider`'s [Publish Events from Hooks](/docs/core/providers/live-provider#publish-events-from-hooks) section for more information.
+Refine use this hook internally in mutation hooks to `publish` events after successful mutations. You can refer to the `liveProvider`'s [Publish Events from Hooks](/docs/core/providers/live-provider#publish-events-from-hooks) section for more information.
 
 :::
 

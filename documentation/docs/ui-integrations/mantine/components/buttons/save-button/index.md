@@ -27,7 +27,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<SaveButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button) component. It uses it for presantation purposes only. Some of the hooks that **Refine** has adds features to this button.
+`<SaveButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button) component. It uses it for presantation purposes only. Some of the hooks that Refine has adds features to this button.
 
 :::info-tip Swizzle
 

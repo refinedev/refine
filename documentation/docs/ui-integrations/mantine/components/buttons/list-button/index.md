@@ -104,7 +104,7 @@ render(
 
 :::note
 
-The button text is defined automatically by **Refine** based on _resource_ object name property.
+The button text is defined automatically by Refine based on _resource_ object name property.
 
 :::
 

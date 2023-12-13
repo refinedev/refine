@@ -34,7 +34,7 @@ type AuthActionResponse = {
 
 ## Usage
 
-**Refine** provides a default login page which handles the login flow manually.
+Refine provides a default login page which handles the login flow manually.
 
 If you want to use a custom login page however, you can use the `useLogin` hook like this:
 

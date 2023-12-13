@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 ## Overview
 
-**Refine** allows you to track changes and who made them in your data by sending a new log event record whenever a new record is created, updated or deleted. Mutations made with data hooks are automatically sent to the `auditLogProvider` as an event. You can also manually send events to the `auditLogProvider` via hooks.
+Refine allows you to track changes and who made them in your data by sending a new log event record whenever a new record is created, updated or deleted. Mutations made with data hooks are automatically sent to the `auditLogProvider` as an event. You can also manually send events to the `auditLogProvider` via hooks.
 
 To use `auditLogProvider`, you just need to pass it to `<Refine>`:
 
@@ -58,13 +58,13 @@ const auditLogProvider = {
 
 :::note
 
-**Refine** provides the `useLog` and `useLogList` hooks that can be used to access your `auditLogProvider` methods from anywhere in your application.
+Refine provides the `useLog` and `useLogList` hooks that can be used to access your `auditLogProvider` methods from anywhere in your application.
 
 :::
 
 ## Creating an Audit Log Provider
 
-Let's create an `auditLogProvider` to understand how it works better. Though we will be using `dataProvider` to handle events, you can do it however you want thanks to **Refine** providing an agnostic API.
+Let's create an `auditLogProvider` to understand how it works better. Though we will be using `dataProvider` to handle events, you can do it however you want thanks to Refine providing an agnostic API.
 
 ### `get`
 
@@ -179,7 +179,7 @@ When a record is updated, Refine automatically sends an event to `create` method
 
 :::info
 
-**Refine** returns the `previousData` from the react-query cache if it can find it, returns `undefined` otherwise.
+Refine returns the `previousData` from the react-query cache if it can find it, returns `undefined` otherwise.
 
 :::
 
@@ -259,7 +259,7 @@ When a record is updated with the `useUpdateMany` hook, Refine automatically sen
 
 :::info
 
-**Refine** returns the `previousData` from the react-query cache but if it can't find it, it will return `undefined`.
+Refine returns the `previousData` from the react-query cache but if it can't find it, it will return `undefined`.
 
 :::
 

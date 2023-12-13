@@ -103,7 +103,7 @@ render(<App />);
 
 In the create page, we may need to select a record from another resource.
 
-For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by **Refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the `options` to be used in the `<select/>` component.
+For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by Refine. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the `options` to be used in the `<select/>` component.
 
 In the auto-generated create page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 

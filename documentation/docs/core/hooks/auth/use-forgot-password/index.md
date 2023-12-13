@@ -34,7 +34,7 @@ type AuthActionResponse = {
 
 ## Usage
 
-**Refine** provides a default 'forgot password' page which handles the forgot password flow manually.
+Refine provides a default 'forgot password' page which handles the forgot password flow manually.
 
 If you want to use a custom 'forgot password' page however, you can use the `useForgotPassword` hook like this:
 

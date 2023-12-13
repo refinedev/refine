@@ -3,7 +3,7 @@ title: Save
 swizzle: true
 ---
 
-`<SaveButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses it for presantation purposes only. Some of the hooks that **Refine** has adds features to this button.
+`<SaveButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses it for presantation purposes only. Some of the hooks that Refine has adds features to this button.
 
 :::info-tip Swizzle
 

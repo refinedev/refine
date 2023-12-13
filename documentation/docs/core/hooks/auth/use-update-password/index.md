@@ -34,7 +34,7 @@ type AuthActionResponse = {
 
 ## Usage
 
-**Refine** provides a default 'update password' page, page which handles the update password flow manually.
+Refine provides a default 'update password' page, page which handles the update password flow manually.
 If you want to use a custom 'update password' however, you can use the `useUpdatePassword` hook like this:
 
 ```tsx title="pages/customupdatePasswordPage"

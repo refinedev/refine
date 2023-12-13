@@ -102,7 +102,7 @@ This will create a new Refine app with Supabase data provider and Ant Design as 
   </TabItem>
     <TabItem value="nopreset">
 
-You are free to bootstrap a **Refine** app with any other features you want. To do so, you can run the following command and choose any data provider or feature you want.
+You are free to bootstrap a Refine app with any other features you want. To do so, you can run the following command and choose any data provider or feature you want.
 
 ```
 npm create refine-app@latest example-app
@@ -121,7 +121,7 @@ Then choose the following options:
 
 :::tip
 
-If you want to add Supabase data provider to existed **Refine** app, you add it by running:
+If you want to add Supabase data provider to existed Refine app, you add it by running:
 
 ```
 npm i @refinedev/supabase
@@ -975,7 +975,7 @@ export default App;
 
 The resources property activates the connection between CRUD pages and Supabase API.
 
-**Refine** automatically matches the Supabase API endpoint with CRUD pages for us. In this way, the pages can interact with data from the API.
+Refine automatically matches the Supabase API endpoint with CRUD pages for us. In this way, the pages can interact with data from the API.
 
 - The `name` property refers to the name of the table in the Supabase database.
 
@@ -1083,7 +1083,7 @@ The `AuthPage` component returns ready-to-use authentication pages for login, re
 
 **This is where `authProvider` comes into play.**
 
-Remember the [Understanding the Auth Provider](#understanding-auth-provider) section? We mentioned `login`, `register,`, `forgotPassword`, and `updatePassword` functions that use [Supabase Auth API](https://supabase.com/docs/guides/auth) methods internally in the `authProvider.ts` file. These methods automatically bind to `<AuthPage>` components by **Refine** to perform authentication operations.
+Remember the [Understanding the Auth Provider](#understanding-auth-provider) section? We mentioned `login`, `register,`, `forgotPassword`, and `updatePassword` functions that use [Supabase Auth API](https://supabase.com/docs/guides/auth) methods internally in the `authProvider.ts` file. These methods automatically bind to `<AuthPage>` components by Refine to perform authentication operations.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/flow.jpg" className="rounded" alt="flow" />
 
@@ -1300,17 +1300,17 @@ Here is the result:
 
 So far, we have implemented the followings:
 
-- We have reviewed Supabase Client and data provider concepts. We've seen benefits of using **Refine** and how it can handle complex setups for us.
-- We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of **Refine**'s built-in authentication support.
+- We have reviewed Supabase Client and data provider concepts. We've seen benefits of using Refine and how it can handle complex setups for us.
+- We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of Refine's built-in authentication support.
 - We have added CRUD pages to make the app interact with Supabase API. We've seen how the `resources` property works and how it connects the pages with the API.
 - We have seen how the [`Authentication`](/docs/packages/list-of-packages#usage-with-authentication) component works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
-- We have seen how authorization handling in **Refine** app by understanding the logic behind of `authProvider`, and `<AuthPage>` component.
+- We have seen how authorization handling in Refine app by understanding the logic behind of `authProvider`, and `<AuthPage>` component.
 
 **Refine provides solutions for critical parts of the complete CRUD app requirements. It saves development time and effort by providing ready-to-use components and features.**
 
 ## Supabase Real Time Support
 
-**Refine** has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.
+Refine has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.
 Required Supabase Real Time setup is already done in the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase)` data provider.
 
 [You can check the Supabase Real Time integration in the data provider source code &#8594](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L325)
@@ -1361,7 +1361,7 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 
 :::tip
 
-**Refine** offers out-of-the-box live provider support:
+Refine offers out-of-the-box live provider support:
 
 - **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
 - **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)

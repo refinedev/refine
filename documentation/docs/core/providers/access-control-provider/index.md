@@ -7,7 +7,7 @@ sidebar_label: Access Control Provider
 
 Access control is a broad topic with lots of advanced solutions that provide different sets of features.
 
-**Refine** provides an agnostic API via the `accessControlProvider` to manage access control throughout your app, which allows you to integrate different methods, such as `RBAC`, `ABAC`, `ACL`, etc., and libraries, such as [Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/) and [AccessControl.js](https://onury.io/accesscontrol/).
+Refine provides an agnostic API via the `accessControlProvider` to manage access control throughout your app, which allows you to integrate different methods, such as `RBAC`, `ABAC`, `ACL`, etc., and libraries, such as [Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/) and [AccessControl.js](https://onury.io/accesscontrol/).
 
 To check if a desired access will be granted, the `accessControlProvider` should at least have an asynchronous method named `can` with the following interface:
 
@@ -160,7 +160,7 @@ export const accessControlProvider = {
 
 :::tip
 
-You can pass a `reason` along with `can`. It will be accessible using `useCan`. It will be shown at the tooltip of the buttons from **Refine** when they are disabled.
+You can pass a `reason` along with `can`. It will be accessible using `useCan`. It will be shown at the tooltip of the buttons from Refine when they are disabled.
 
 :::
 
@@ -168,18 +168,18 @@ You can pass a `reason` along with `can`. It will be accessible using `useCan`. 
 
 :::tip
 
-You can find access control examples made with **Refine**
+You can find access control examples made with Refine
 
 - **Casbin** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-casbin) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/access-control-casbin/?view=preview&theme=dark&codemirror=1)
 - **Cerbos** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-cerbos) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/access-control-cerbos/?view=preview&theme=dark&codemirror=1)
 
 :::
 
-[**Refine** checks for access control in its related components and pages.](#list-of-default-access-control-points)
+[Refine checks for access control in its related components and pages.](#list-of-default-access-control-points)
 
 ## Hooks and Components
 
-**Refine** provides a hook and a component to use the `can` method from the `accessControlProvider`.
+Refine provides a hook and a component to use the `can` method from the `accessControlProvider`.
 
 ### `useCan`
 
@@ -218,7 +218,7 @@ const useCan: ({
 
 ## Performance
 
-As the number of points that check for access control in your app increases, the performance of your app may take a hit, especially if its access control involves remote endpoints. Caching the access control checks helps quite a lot, which can be done easily by configuring the [`staleTime` and `cacheTime`](https://react-query.tanstack.com/reference/useQuery) properties since **Refine** uses react-query.
+As the number of points that check for access control in your app increases, the performance of your app may take a hit, especially if its access control involves remote endpoints. Caching the access control checks helps quite a lot, which can be done easily by configuring the [`staleTime` and `cacheTime`](https://react-query.tanstack.com/reference/useQuery) properties since Refine uses react-query.
 
 ```ts
 // inside your component
@@ -235,13 +235,13 @@ const { data } = useCan({
 
 :::note
 
-By default, **Refine** uses 5 minutes for `cacheTime` and 0 minutes for `staleTime` for its own access control points.
+By default, Refine uses 5 minutes for `cacheTime` and 0 minutes for `staleTime` for its own access control points.
 
 :::
 
 ## List of Default Access Control Points
 
-Here is a list of components and pages **Refine** checks for access control:
+Here is a list of components and pages Refine checks for access control:
 
 ### Sider
 

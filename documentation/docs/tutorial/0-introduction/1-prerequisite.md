@@ -7,7 +7,7 @@ tutorial:
   next: tutorial/introduction/select-framework
 ---
 
-**Refine** is a React-based framework. So, if you have some preliminary knowledge of React and TypeScript, then this tutorial is perfect for you! Just by following the directions provided, you'll be able to finish it from start to finish.
+Refine is a React-based framework. So, if you have some preliminary knowledge of React and TypeScript, then this tutorial is perfect for you! Just by following the directions provided, you'll be able to finish it from start to finish.
 
 In order to publish and deploy your project, you'll also need a [GitHub](https://github.com/) account (or a similar platform).
 
@@ -16,7 +16,7 @@ In order to publish and deploy your project, you'll also need a [GitHub](https:/
 
 A clickable task checklist is waiting for you at the end of each page to measure your understanding of the content. Check these items off to see your progress in the Tutorial Tracker.
 
-(This data is only saved to your browser’s local storage, and is not available elsewhere. No data is sent to, nor stored by **Refine**.)
+(This data is only saved to your browser’s local storage, and is not available elsewhere. No data is sent to, nor stored by Refine.)
 
 </details>
 

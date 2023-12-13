@@ -564,7 +564,7 @@ render(
 
 ### `dataProviderName`
 
-If not specified, **Refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
+If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
 import { Refine } from "@refinedev/core";

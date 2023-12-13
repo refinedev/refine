@@ -133,7 +133,7 @@ If you have a nested resource definition as below:
 
 ### Adding a Home/Root Page
 
-In earlier versions of **Refine**, `<Refine>` component accepted `DashboardPage` which could be used to add an index page to your app. With the changes in `routerProvider` API of **Refine**, `DashboardPage` is deprecated. You can now define an index route manually in your router package.
+In earlier versions of Refine, `<Refine>` component accepted `DashboardPage` which could be used to add an index page to your app. With the changes in `routerProvider` API of Refine, `DashboardPage` is deprecated. You can now define an index route manually in your router package.
 
 In earlier versions, the home icon in the `Breadcrumb` was created by the `DashboardPage`, but now it is rendered if you define an action route as `/` in any one of your resources. It will be rendered with the home icon regardless of the current route. You can also hide the home icon by setting `showHome` to `false`.
 

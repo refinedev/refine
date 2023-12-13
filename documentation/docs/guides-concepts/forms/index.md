@@ -570,7 +570,7 @@ useForm({
 
 Server-side form validation is a technique used to validate form data on the server before processing it. Unlike client-side validation, which is performed in the user's browser using JavaScript, server-side validation occurs on the server-side code, typically in the backend of the application.
 
-**Refine** supports server-side validation out-of-the-box in all `useForm` derivatives. To handle server-side validation, the data providers needs to be correctly set up to return the errors in form submissions with a specific format. After this, **Refine**'s `useForm` will propagate the errors to the respective form fields.
+Refine supports server-side validation out-of-the-box in all `useForm` derivatives. To handle server-side validation, the data providers needs to be correctly set up to return the errors in form submissions with a specific format. After this, Refine's `useForm` will propagate the errors to the respective form fields.
 
 ```ts
 import { HttpError } from "@refinedev/core";

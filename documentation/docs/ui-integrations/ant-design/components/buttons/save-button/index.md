@@ -3,7 +3,7 @@ title: Save
 swizzle: true
 ---
 
-`<SaveButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses it for presantation purposes only. Some of the hooks that **Refine** has adds features to this button.
+`<SaveButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses it for presantation purposes only. Some of the hooks that Refine has adds features to this button.
 
 :::info-tip Swizzle
 

@@ -34,7 +34,7 @@ type AuthActionResponse = {
 
 ## Usage
 
-**Refine** provides a default logout page which handles the logout flow manually.
+Refine provides a default logout page which handles the logout flow manually.
 
 If you want to use a custom logout page however, you can use the `useLogout` hook like this:
 

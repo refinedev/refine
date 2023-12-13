@@ -34,7 +34,7 @@ type AuthActionResponse = {
 
 ## Usage
 
-**Refine** provides a default registration page, page which handles the registration flow manually.
+Refine provides a default registration page, page which handles the registration flow manually.
 If you want to use a custom registration page however, you can use the `useRegister` hook like this:
 
 ```tsx title="pages/customRegisterPage"

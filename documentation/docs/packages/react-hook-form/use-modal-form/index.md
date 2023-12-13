@@ -344,7 +344,7 @@ render(<RefineHeadlessDemo />);
 
 :::caution
 
-**Refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
+Refine doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by the record `id`.
 
@@ -483,7 +483,7 @@ render(<RefineHeadlessDemo />);
 
 :::caution
 
-**Refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
+Refine doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
 
 So, we have to put the `<CloneButton/>` on our list. In that way, `<Clone>` form in `<Modal>` can fetch data by the record `id`.
 

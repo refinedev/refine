@@ -10,7 +10,7 @@ Some components were removed or renamed, and some APIs are changed.
 
 Some of the changes are:
 
-- `<PageHeader>` component moved into `@ant-design/pro-components`. **Refine** is using `<PageHeader>` in `<List>`, `<Create>`, `<Edit>`, `<Show>` components and added as a dependency. You don't need to install `@ant-design/pro-components` package manually.
+- `<PageHeader>` component moved into `@ant-design/pro-components`. Refine is using `<PageHeader>` in `<List>`, `<Create>`, `<Edit>`, `<Show>` components and added as a dependency. You don't need to install `@ant-design/pro-components` package manually.
 - `<Comment>` component moved into `@ant-design/compatible`.
 - `moment.js` is replaced with `day.js`.
 - `less` is removed from `antd` package.
@@ -19,7 +19,7 @@ Some of the changes are:
 
 :::info A little more clarification
 
-| **Refine** package                                               | Ant Design version |
+| Refine package                                                   | Ant Design version |
 | ---------------------------------------------------------------- | ------------------ |
 | &#64;pankod/refine-antd&#64;3.x.x                                | antd&#64;4.x.x     |
 | &#64;pankod/refine-antd&#64;4.x.x, &#64;refinedev/antd&#64;5.x.x | antd&#64;5.x.x     |
@@ -39,7 +39,7 @@ values={[
 
 <TabItem value="refine-cli">
 
-⚡️ You can easily update **Refine** packages with the **Refine** CLI [`update`](https://refine.dev/docs/packages/documentation/cli/#update) command.
+⚡️ You can easily update Refine packages with the Refine CLI [`update`](https://refine.dev/docs/packages/documentation/cli/#update) command.
 
 ```bash
 npm run refine update

@@ -5,9 +5,9 @@ sidebar_label: Data Provider
 
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
 
-Data provider acts as a data layer for your app, making HTTP requests and encapsulating how the data is retrieved. The methods of these requests are then consumed by **Refine** via data hooks.
+Data provider acts as a data layer for your app, making HTTP requests and encapsulating how the data is retrieved. The methods of these requests are then consumed by Refine via data hooks.
 
-You don’t need to worry about creating data providers from scratch, as **Refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers).
+You don’t need to worry about creating data providers from scratch, as Refine offers built-in data provider support for the most popular [API providers](#supported-data-providers).
 
 <div>
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.png" />
@@ -47,7 +47,7 @@ const App: React.FC = () => {
 
 ## Multiple Data Providers
 
-**Refine** allows you to use multiple data providers in your app. All you need to do is pass key and value pairs to the `dataProvider` prop of the `<Refine />` component. In the pair object, the key corresponds to the data provider name, and the value corresponds to the data provider itself.
+Refine allows you to use multiple data providers in your app. All you need to do is pass key and value pairs to the `dataProvider` prop of the `<Refine />` component. In the pair object, the key corresponds to the data provider name, and the value corresponds to the data provider itself.
 
 Here is an example which uses multiple data providers:
 
@@ -93,7 +93,7 @@ const App: React.FC = () => {
         resources={[
           {
             // highlight-next-line
-            // **Refine** will use the `default` data provider for this resource
+            // Refine will use the `default` data provider for this resource
             name: "posts",
             list: "/posts",
           },
@@ -101,7 +101,7 @@ const App: React.FC = () => {
             name: "products",
             meta: {
               // highlight-start
-              // **Refine** will use the `fineFoods` data provider for this resource
+              // Refine will use the `fineFoods` data provider for this resource
               dataProviderName: "fineFoods",
               // highlight-end
             },
@@ -221,13 +221,13 @@ const App = () => {
       }}
       resources={[
         {
-          // **Refine** will use the `default` data provider for this resource
+          // Refine will use the `default` data provider for this resource
           name: "posts",
         },
         {
           name: "products",
           meta: {
-            // **Refine** will use the `exampleDataProvider` data provider for this resource
+            // Refine will use the `exampleDataProvider` data provider for this resource
             dataProviderName: "exampleDataProvider",
           },
         },
@@ -278,7 +278,7 @@ const dataProvider: DataProvider = {
 
 :::info-tip
 
-**Refine** consumes these data provider methods using [data hooks](#supported-hooks), which are used for CRUD actions like creating a new record, listing a resource or deleting a record, etc.
+Refine consumes these data provider methods using [data hooks](#supported-hooks), which are used for CRUD actions like creating a new record, listing a resource or deleting a record, etc.
 
 :::
 
@@ -289,7 +289,7 @@ const dataProvider: DataProvider = {
 `getList` method is used to get a list of resources with sorting, filtering, and pagination features.
 It takes `resource`, `sorters`, `pagination`, and, `filters` as parameters and returns `data` and `total`.
 
-**Refine** will consume this method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
+Refine will consume this method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
 
 ```ts
 getList: async ({ resource, pagination, sorters, filters, meta }) => {
@@ -326,7 +326,7 @@ getList: async ({ resource, pagination, sorters, filters, meta }) => {
 
 The `create` method creates a new record with the `resource` and `variables` parameters.
 
-**Refine** will consume this method using the [`useCreate`][use-create] data hook.
+Refine will consume this method using the [`useCreate`][use-create] data hook.
 
 ```ts
 create: async ({ resource, variables, meta }) => {
@@ -352,7 +352,7 @@ create: async ({ resource, variables, meta }) => {
 
 The `update` method updates the record with the `resource`, `id`, and, `variables` parameters.
 
-**Refine** will consume this method using the [`useUpdate`][use-update] data hook.
+Refine will consume this method using the [`useUpdate`][use-update] data hook.
 
 ```ts
 update: async ({ resource, id, variables, meta }) => {
@@ -379,7 +379,7 @@ update: async ({ resource, id, variables, meta }) => {
 
 The `deleteOne` method delete the record with the `resource` and `id` parameters.
 
-**Refine** will consume this method using the [`useDelete`][use-delete] data hook.
+Refine will consume this method using the [`useDelete`][use-delete] data hook.
 
 ```ts
 deleteOne: async ({ resource, id, variables, meta }) => {
@@ -406,7 +406,7 @@ deleteOne: async ({ resource, id, variables, meta }) => {
 
 The `getOne` method gets the record with the `resource` and `id` parameters.
 
-**Refine** will consume this method using the [`useOne`][use-one] data hook.
+Refine will consume this method using the [`useOne`][use-one] data hook.
 
 ```ts
 getOne: async ({ resource, id, meta }) => {
@@ -430,7 +430,7 @@ getOne: async ({ resource, id, meta }) => {
 
 The `getApiUrl` method returns the `apiUrl` value.
 
-**Refine** will consume this method using the [`useApiUrl`][use-api-url] data hook.
+Refine will consume this method using the [`useApiUrl`][use-api-url] data hook.
 
 ```ts title="src/data-provider.ts"
 import { DataProvider } from "@refinedev/core";
@@ -446,7 +446,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 An optional method named `custom` can be added to handle requests with custom parameters like URL, CRUD methods and configurations.
 It's useful if you have non-standard REST API endpoints or want to make a connection with external resources.
 
-**Refine** will consume this method using the [`useCustom`][use-custom] data hook.
+Refine will consume this method using the [`useCustom`][use-custom] data hook.
 
 ```ts
 custom: async ({ url, method, filters, sorters, payload, query, headers, meta }) => {
@@ -481,7 +481,7 @@ If your API supports bulk actions, you can implement them in your data provider.
 
 The `getMany` method gets the records with the `resource` and `ids` parameters. This method is optional, and Refine will use the [`getOne`](#getone-) method to handle multiple requests if you don't implement it.
 
-**Refine** will consume this `getMany` method using the [`useMany`][use-many] data hook.
+Refine will consume this `getMany` method using the [`useMany`][use-many] data hook.
 
 ```ts
 getMany: async ({ resource, ids, meta }) => {
@@ -505,7 +505,7 @@ getMany: async ({ resource, ids, meta }) => {
 
 This method allows us to create multiple items in a resource. This method is optional, and Refine will use the [`create`](#create-) method to handle multiple requests if you don't implement it.
 
-**Refine** will consume this `createMany` method using the [`useCreateMany`][use-create-many] data hook.
+Refine will consume this `createMany` method using the [`useCreateMany`][use-create-many] data hook.
 
 ```ts
 createMany: async ({ resource, variables, meta }) => {
@@ -531,7 +531,7 @@ createMany: async ({ resource, variables, meta }) => {
 
 This method allows us to delete multiple items in a resource. This method is optional, and Refine will use the [`deleteOne`](#deleteone-) method to handle multiple requests if you don't implement it.
 
-**Refine** will consume this `deleteMany` method using the [`useDeleteMany`][use-delete-many] data hook.
+Refine will consume this `deleteMany` method using the [`useDeleteMany`][use-delete-many] data hook.
 
 ```ts
 deleteMany: async ({ resource, ids, variables, meta }) => {
@@ -556,7 +556,7 @@ deleteMany: async ({ resource, ids, variables, meta }) => {
 
 This method allows us to update multiple items in a resource. This method is optional, and Refine will use the [`update`](#update-) method to handle multiple requests if you don't implement it.
 
-**Refine** will consume this `updateMany` method using the [`useUpdateMany`][use-update-many] data hook.
+Refine will consume this `updateMany` method using the [`useUpdateMany`][use-update-many] data hook.
 
 ```ts
 updateMany: async ({ resource, ids, variables, meta }) => {
@@ -579,7 +579,7 @@ updateMany: async ({ resource, ids, variables, meta }) => {
 
 ## Error Format
 
-**Refine** expects errors to be extended from [`HttpError`][http-error].
+Refine expects errors to be extended from [`HttpError`][http-error].
 
 Here is a basic example of how to implement error handling in your data provider.
 
@@ -719,7 +719,7 @@ The `meta` parameter can be used in all data, form, and table hooks.
 
 ## Supported Hooks
 
-**Refine** will consume:
+Refine will consume:
 
 - [`getList`](#getlist-) method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
 - [`create`](#create-) method using the [`useCreate`][use-create] data hook.
@@ -745,7 +745,7 @@ The `meta` parameter can be used in all data, form, and table hooks.
 
 ### How I can override a specific method of Data Providers?
 
-In some cases, you may need to override the method of **Refine** data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+In some cases, you may need to override the method of Refine data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
 For example, Let's override the `update` function of the [`@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/master/packages/simple-rest). `@refinedev/simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
 

@@ -33,7 +33,7 @@ According to the `onError` method's returned values, the following process will 
 
 ## Internal Usage
 
-**Refine** uses `useOnError` internally in the data hooks to handle errors in a unified way.
+Refine uses `useOnError` internally in the data hooks to handle errors in a unified way.
 
 When an error is thrown by any data hook, the `useOnError` function is triggered with the error object. Afterward, the error object is passed to the [`onError`][on-error] method of the [`authProvider`][auth-provider], which can be utilized to redirect the user or to log them out.
 
