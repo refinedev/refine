@@ -18,8 +18,6 @@ With Stylex, we can go about defining colocated styles in a React component, man
 
 In this introductory post, we cover how to define and use Stylex styles using the [`stylex.create`](https://stylexjs.com/docs/api/javascript/create/) and [`stylex.props`](https://stylexjs.com/docs/api/javascript/props/) APIs in an already set up Next.js application. We expend efforts to understand some of the quirks of writing collision-free inline CSS with Stylex. While doing so, we come across snippets implementing simple style declarations, style declarations with imported Stylex variables, conditional styling as well as a responsive component using media queries. We also explore how to create variables with the [`stylex.defineVars`](https://stylexjs.com/docs/api/javascript/defineVars/) API and use them inside components.
 
-## The App
-
 We are using [this example Next.js app](https://github.com/facebook/stylex/blob/main/apps/nextjs-example) from Facebook as a base and tweaking it to build our own page and component. If you need to, please feel free to clone it, use it locally and adopt your own from it.
 
 ## CSS-in-JS with Stylex and TypeScript
