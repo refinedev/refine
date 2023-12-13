@@ -149,7 +149,7 @@ npm run dev
 
 Your **Refine** application will be accessible at [http://localhost:5173](http://localhost:5173):
 
-<a href="http://localhost:5173">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/new-welcome-readme.jpg)</a>
+<a href="http://localhost:5173">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/new-welcome.png)</a>
 
 <br/>
 
