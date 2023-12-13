@@ -4,45 +4,48 @@ import { generateSubscription } from "../utils";
 
 type SubscriptionAction = "created" | "updated" | "deleted";
 
-const subscriptions: {
-    [K in SubscriptionAction]: { [key: string]: boolean };
-} = {
-    created: {},
-    updated: {},
-    deleted: {},
-};
-
-const alreadySubscribed = (action: SubscriptionAction, resource: string) => {
-    return !!subscriptions[action][resource];
-};
-
-const resetSubscriptions = () => {
-    subscriptions.created = {};
-    subscriptions.updated = {};
-    subscriptions.deleted = {};
-};
-
-const subscribeToResource = (
-    client: Client,
-    callback: Function,
-    params: any,
-    meta: any,
-    action: SubscriptionAction,
-    resource: string,
-    unsubscribes: Function[],
-) => {
-    if (!alreadySubscribed(action, resource)) {
-        const unsubscribe = generateSubscription(
-            client,
-            { callback, params, meta },
-            action,
-        );
-        subscriptions[action][resource] = true;
-        unsubscribes.push(unsubscribe);
-    }
-};
-
 export const liveProvider = (client: Client): LiveProvider => {
+    const subscriptions: {
+        [K in SubscriptionAction]: { [key: string]: boolean };
+    } = {
+        created: {},
+        updated: {},
+        deleted: {},
+    };
+
+    const alreadySubscribed = (
+        action: SubscriptionAction,
+        resource: string,
+    ) => {
+        return !!subscriptions[action][resource];
+    };
+
+    const resetSubscriptions = () => {
+        subscriptions.created = {};
+        subscriptions.updated = {};
+        subscriptions.deleted = {};
+    };
+
+    const subscribeToResource = (
+        client: Client,
+        callback: Function,
+        params: any,
+        meta: any,
+        action: SubscriptionAction,
+        resource: string,
+        unsubscribes: Function[],
+    ) => {
+        if (!alreadySubscribed(action, resource)) {
+            const unsubscribe = generateSubscription(
+                client,
+                { callback, params, meta },
+                action,
+            );
+            subscriptions[action][resource] = true;
+            unsubscribes.push(unsubscribe);
+        }
+    };
+
     return {
         subscribe({ callback, params, meta }) {
             const { resource, subscriptionType } = params ?? {};
