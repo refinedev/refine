@@ -4,6 +4,7 @@ import { CloseIcon } from "./icons/close";
 import { Transition } from "@headlessui/react";
 import { createPortal } from "react-dom";
 import { useScroll } from "framer-motion";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
 type Props = {
     title?: string;
@@ -24,7 +25,11 @@ export const CommonDrawer: FC<PropsWithChildren<Props>> = (props) => {
         };
     }, [props.open]);
 
-    return createPortal(<DrawerComponent {...props} />, document.body);
+    return (
+        <BrowserOnly>
+            {() => createPortal(<DrawerComponent {...props} />, document.body)}
+        </BrowserOnly>
+    );
 };
 
 const DEFAULT_TOP_OFFSET = 48;
