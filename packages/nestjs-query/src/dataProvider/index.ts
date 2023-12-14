@@ -393,27 +393,26 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
         deleteMany: async ({ resource, ids }) => {
-            const operation = `deleteMany${camelcase(resource, {
+            const pascalResource = camelcase(resource, {
                 pascalCase: true,
-            })}`;
+            });
+            const operation = `deleteMany${pascalResource}`;
 
-            const { query, variables } = gql.mutation({
-                operation,
-                fields: ["deletedCount"],
-                variables: {
-                    input: {
-                        type: `DeleteMany${camelcase(resource, {
-                            pascalCase: true,
-                        })}Input`,
-                        required: true,
-                        value: {
-                            filter: {
-                                id: { in: ids },
-                            },
-                        },
+            const query = gqlTag`
+                mutation DeleteMany${pascalResource}($input: DeleteMany${pascalResource}Input!) {
+                    ${operation}(input: $input) {
+                        deletedCount
+                    }
+                }
+            `;
+
+            const variables = {
+                input: {
+                    filter: {
+                        id: { in: ids },
                     },
                 },
-            });
+            };
 
             await client.request<BaseRecord>(query, variables);
 
