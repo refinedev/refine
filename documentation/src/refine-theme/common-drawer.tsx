@@ -46,7 +46,8 @@ const DrawerComponent: FC<PropsWithChildren<Props>> = ({
     const { scrollY } = useScroll();
 
     const drawerRef = React.useRef<HTMLDivElement>(null);
-    useOutsideClick(drawerRef, () => {
+    useOutsideClick(drawerRef, (event) => {
+        event.stopPropagation();
         onClose();
     });
     useKeyDown(drawerRef, ["Escape"], () => {
@@ -73,10 +74,9 @@ const DrawerComponent: FC<PropsWithChildren<Props>> = ({
             }}
             className={clsx(
                 "fixed",
-                "left-0 right-0 bottom-0",
+                "right-0 bottom-0",
                 "z-modal",
-                open && "block",
-                !open && "hidden",
+                !open && "pointer-events-none",
             )}
         >
             <Transition
