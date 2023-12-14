@@ -225,7 +225,16 @@ export const LandingFooter = () => {
                                                 "hover:text-gray-800 dark:hover:text-gray-300",
                                             )}
                                         >
-                                            {item.label}
+                                            <div
+                                                className={clsx(
+                                                    "flex",
+                                                    "items-center",
+                                                    "gap-2",
+                                                )}
+                                            >
+                                                {item.label}
+                                                {item.icon}
+                                            </div>
                                         </a>
                                     ))}
                                 </div>

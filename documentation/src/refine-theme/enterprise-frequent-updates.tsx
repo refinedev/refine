@@ -107,7 +107,11 @@ export const EnterpriseFrequentUpdates = ({
                         "w-[232px] landing-sm:w-[360px]",
                         "h-[232px] landing-sm:h-[360px]",
                     )}
-                    src={`https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/refine-git-history-logo-${colorMode}.png`}
+                    src={
+                        colorMode === "dark"
+                            ? `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/refine-git-history-logo-dark.png`
+                            : `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/refine-git-history-logo-light.png`
+                    }
                 />
             </div>
         </div>
