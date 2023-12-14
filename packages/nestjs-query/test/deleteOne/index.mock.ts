@@ -2,8 +2,9 @@ import nock from "nock";
 
 nock("http://localhost:3003", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: DeleteOneBlogPostInput!) {\n      deleteOneBlogPost (input: $input) {\n    id, title\n  }\n    }",
+        query: "mutation DeleteOneBlogPost($input: DeleteOneBlogPostInput!) {\n  deleteOneBlogPost(input: $input) {\n    id\n  }\n}\n",
         variables: { input: { id: "77" } },
+        operationName: "DeleteOneBlogPost",
     })
     .reply(
         200,
@@ -35,8 +36,9 @@ nock("http://localhost:3003", { encodedQueryParams: true })
 
 nock("http://localhost:3003", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: DeleteOneBlogPostInput!) {\n      deleteOneBlogPost (input: $input) {\n    id\n  }\n    }",
+        query: "mutation DeleteOneBlogPost($input: DeleteOneBlogPostInput!) {\n  deleteOneBlogPost(input: $input) {\n    id\n  }\n}\n",
         variables: { input: { id: "78" } },
+        operationName: "DeleteOneBlogPost",
     })
     .reply(200, { data: { deleteOneBlogPost: { id: null } } }, [
         "X-Powered-By",
