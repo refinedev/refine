@@ -705,6 +705,11 @@ export const renderer = ({
         return undefined;
     };
 
+    const customId = fields?.[0]?.key ?? "id";
+    const getRowIdProp = fields?.find((field) => field?.key === "id")
+        ? ""
+        : `getRowId={(row) => row?.${customId}}`;
+
     const {
         canEdit,
         canShow,
@@ -824,7 +829,7 @@ export const renderer = ({
 
         return (
             <List>
-                <DataGrid {...dataGridProps} columns={columns} autoHeight />
+                <DataGrid {...dataGridProps} ${getRowIdProp} columns={columns} autoHeight />
             </List>
         );
     };
