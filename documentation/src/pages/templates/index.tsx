@@ -414,7 +414,7 @@ const dataTemplates: {
             {
                 label: "Headless",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Antd width={16} height={16} {...props} />
+                    <Headless width={16} height={16} {...props} />
                 ),
             },
             {
@@ -494,7 +494,7 @@ const dataTemplates: {
             {
                 label: "Headless",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Antd width={16} height={16} {...props} />
+                    <Headless width={16} height={16} {...props} />
                 ),
             },
             {
@@ -534,7 +534,7 @@ const dataTemplates: {
             {
                 label: "Headless",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Antd width={16} height={16} {...props} />
+                    <Headless width={16} height={16} {...props} />
                 ),
             },
             {

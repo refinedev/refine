@@ -5,6 +5,8 @@ import { Transition } from "@headlessui/react";
 import { createPortal } from "react-dom";
 import { useScroll } from "framer-motion";
 import BrowserOnly from "@docusaurus/BrowserOnly";
+import { useOutsideClick } from "../hooks/use-outside-click";
+import { useKeyDown } from "../hooks/use-keydown";
 
 type Props = {
     title?: string;
@@ -43,6 +45,14 @@ const DrawerComponent: FC<PropsWithChildren<Props>> = ({
     const [topOffset, setTopOffset] = React.useState(DEFAULT_TOP_OFFSET);
     const { scrollY } = useScroll();
 
+    const drawerRef = React.useRef<HTMLDivElement>(null);
+    useOutsideClick(drawerRef, () => {
+        onClose();
+    });
+    useKeyDown(drawerRef, ["Escape"], () => {
+        onClose();
+    });
+
     // this is required for the <TopAnnouncement /> component.
     React.useEffect(() => {
         const unsubscribeScrollY = scrollY.onChange((latest) => {
@@ -70,6 +80,7 @@ const DrawerComponent: FC<PropsWithChildren<Props>> = ({
             )}
         >
             <Transition
+                ref={drawerRef}
                 as="div"
                 className={clsx(
                     "z-modal",
