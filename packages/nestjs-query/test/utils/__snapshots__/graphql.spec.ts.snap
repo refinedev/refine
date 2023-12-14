@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fieldsToString CompaniesTable 1`] = `
+"id
+  name
+  avatarUrl
+  dealsAggregate {
+    sum {
+      value
+    }
+  }
+  salesOwner {
+    id
+    name
+    avatarUrl
+  }
+contacts {
+  nodes {
+    id
+    name
+    avatarUrl
+  }
+}"
+`;
+
+exports[`fieldsToString CompanyTitleForm 1`] = `
+"id
+name
+avatarUrl
+salesOwner {
+  id
+  name
+  avatarUrl
+}"
+`;
+
+exports[`fieldsToString ContactShow 1`] = `
+"id
+name
+email
+company {
+  id
+  name
+  avatarUrl
+}
+status
+jobTitle
+phone
+timezone
+avatarUrl
+createdAt"
+`;
+
+exports[`fieldsToString Upcoming Events 1`] = `
+"id
+title
+color
+startDate
+endDate"
+`;

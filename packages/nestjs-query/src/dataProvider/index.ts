@@ -7,13 +7,9 @@ import { GraphQLClient } from "graphql-request";
 import gqlTag from "graphql-tag";
 import { singular } from "pluralize";
 
-import {
-    fieldsToString,
-    generateFilters,
-    generatePaging,
-    generateSorting,
-    isMutation,
-} from "../utils";
+import { generateFilters, generatePaging, generateSorting } from "../utils";
+
+import { fieldsToString, isMutation } from "../utils/graphql";
 
 const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
     return {
