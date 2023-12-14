@@ -84,6 +84,7 @@ const DrawerComponent: FC<PropsWithChildren<Props>> = ({
                 as="div"
                 className={clsx(
                     "z-modal",
+                    "flex flex-col",
                     "w-[240px] h-full",
                     "ml-auto",
                     "p-4",
@@ -105,6 +106,7 @@ const DrawerComponent: FC<PropsWithChildren<Props>> = ({
                         "flex",
                         "items-center",
                         "justify-between",
+                        "mb-10",
                         "dark:text-gray-300 text-gray-900",
                     )}
                 >
@@ -118,7 +120,7 @@ const DrawerComponent: FC<PropsWithChildren<Props>> = ({
                         <CloseIcon />
                     </button>
                 </div>
-                {children}
+                <div className={clsx("overflow-auto h-full")}>{children}</div>
             </Transition>
         </div>
     );

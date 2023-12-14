@@ -37,7 +37,6 @@ export const TemplatesFilters: FC<Props> = ({
                     "pl-4",
                     "text-sm",
                     "dark:text-gray-500 text-gray-700",
-                    "mt-10",
                 )}
             >
                 UI Frameworks
