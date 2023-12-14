@@ -10,19 +10,19 @@ export const TemplatesHero: FC<Props> = ({ className }) => {
                 "relative",
                 "flex",
                 "flex-col",
-                "items-start landing-md:items-center",
+                "items-start landing-md:items-center landing-md:justify-center",
                 "gap-6 landing-md:gap-12",
                 "not-prose",
                 "landing-md:mx-auto",
                 "w-full",
-                "overflow-hidden",
+                "landing-md:h-[264px]",
+                "landing-md:overflow-hidden",
                 className,
             )}
         >
             <img
                 className={clsx(
                     "absolute",
-                    "top-0",
                     "hidden landing-md:block",
                     "w-[1200px]",
                     "max-w-[1200px]",

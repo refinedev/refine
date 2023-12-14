@@ -85,12 +85,13 @@ const Enterprise: React.FC = () => {
                     >
                         <div
                             className={clsx(
+                                "w-full",
+                                "mx-auto",
+                                "px-2 landing-sm:px-8 landing-md:px-0",
                                 "pt-4",
                                 "landing-sm:pt-12",
-                                "landing-md:pt-20",
+                                "landing-md:pt-0",
                                 "landing-lg:pt-12",
-                                "mx-auto",
-                                "px-2 landing-sm:px-8",
                             )}
                         >
                             <TemplatesHero />
