@@ -1,5 +1,7 @@
 import { LiveProvider } from "@refinedev/core";
+
 import { Client } from "graphql-ws";
+
 import { generateSubscription } from "../utils";
 
 type SubscriptionAction = "created" | "updated" | "deleted";

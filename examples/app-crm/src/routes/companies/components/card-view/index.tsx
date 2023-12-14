@@ -1,13 +1,14 @@
 import { FC, useMemo } from "react";
 
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
+
 import { List, ListProps, TableProps } from "antd";
 
 import { PaginationTotal } from "@/components";
 import { Company } from "@/graphql/schema.types";
+import { CompaniesTableQuery } from "@/graphql/types";
 
 import { CompanyCard, CompanyCardSkeleton } from "./card";
-import { CompaniesTableQuery } from "@/graphql/types";
 
 type Props = {
     tableProps: TableProps<GetFieldsFromList<CompaniesTableQuery>>;

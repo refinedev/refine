@@ -1,8 +1,11 @@
 import React from "react";
 
+import { useCustom } from "@refinedev/core";
+
 import { Col, Row } from "antd";
 
 import { CalendarUpcomingEvents } from "@/components";
+import { DashboardTotalCountsQuery } from "@/graphql/types";
 
 import {
     CompaniesMap,
@@ -12,8 +15,6 @@ import {
     DashboardTotalCountCard,
     DashboardTotalRevenueChart,
 } from "./components";
-import { useCustom } from "@refinedev/core";
-import { DashboardTotalCountsQuery } from "@/graphql/types";
 import { DASHBOARD_TOTAL_COUNTS_QUERY } from "./queries";
 
 export const DashboardPage: React.FC = () => {

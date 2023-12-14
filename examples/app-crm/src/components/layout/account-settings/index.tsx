@@ -29,7 +29,6 @@ import { User } from "@/graphql/schema.types";
 import { CustomAvatar } from "../../custom-avatar";
 import { SingleElementForm } from "../../single-element-form";
 import { Text } from "../../text";
-
 import styles from "./index.module.css";
 
 const timezoneOptions = Object.keys(TimezoneEnum).map((key) => ({

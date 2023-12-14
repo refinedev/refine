@@ -1,5 +1,6 @@
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
+
 import "./index.mock";
 
 describe("createMany", () => {

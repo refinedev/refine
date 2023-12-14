@@ -8,12 +8,11 @@ import type { CardProps } from "antd";
 import { Button, Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
+import { UpcomingEventsQuery } from "@/graphql/types";
+
 import { Text } from "../../text";
 import { CalendarUpcomingEvent } from "./event";
-
 import styles from "./index.module.css";
-import gql from "graphql-tag";
-import { UpcomingEventsQuery } from "@/graphql/types";
 import { CALENDAR_UPCOMING_EVENTS_QUERY } from "./queries";
 
 type CalendarUpcomingEventsProps = {

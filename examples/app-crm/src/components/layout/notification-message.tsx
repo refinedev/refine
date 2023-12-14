@@ -1,7 +1,8 @@
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
-import { Text } from "../text";
 import { NotificationsDealsQuery, NotificationsQuery } from "@/graphql/types";
+
+import { Text } from "../text";
 
 type Props = {
     audit: GetFieldsFromList<NotificationsQuery>;

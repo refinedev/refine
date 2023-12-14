@@ -1,6 +1,8 @@
 import { BaseRecord } from "@refinedev/core";
+
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
+
 import "./index.mock";
 
 describe("custom", () => {

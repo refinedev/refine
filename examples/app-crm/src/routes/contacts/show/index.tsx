@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import { useSelect } from "@refinedev/antd";
 import { useDelete, useNavigation, useShow, useUpdate } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { GetFields } from "@refinedev/nestjs-query/dist/interfaces";
 
 import {
     CloseOutlined,
@@ -35,19 +37,16 @@ import {
     TextIcon,
 } from "@/components";
 import { TimezoneEnum } from "@/enums";
-import type { Contact } from "@/graphql/schema.types";
-
-import { ContactComment, ContactStatus } from "../components";
-
-import styles from "./index.module.css";
 import { COMPANIES_SELECT_QUERY, USERS_SELECT_QUERY } from "@/graphql/queries";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { Contact } from "@/graphql/schema.types";
 import {
     CompaniesSelectQuery,
-    UsersSelectQuery,
     ContactShowQuery,
+    UsersSelectQuery,
 } from "@/graphql/types";
-import { GetFields } from "@refinedev/nestjs-query/dist/interfaces";
+
+import { ContactComment, ContactStatus } from "../components";
+import styles from "./index.module.css";
 import { CONTACT_SHOW_QUERY } from "./queries";
 
 const timezoneOptions = Object.keys(TimezoneEnum).map((key) => ({

@@ -13,9 +13,9 @@ import { Form, Grid, Input, Radio, Space, Spin } from "antd";
 import debounce from "lodash/debounce";
 
 import { ListTitleButton } from "@/components";
+import { CompaniesTableQuery } from "@/graphql/types";
 
 import { CompaniesCardView, CompaniesTableView } from "./components";
-import { CompaniesTableQuery } from "@/graphql/types";
 import { COMPANIES_TABLE_QUERY } from "./queries";
 
 type View = "card" | "table";

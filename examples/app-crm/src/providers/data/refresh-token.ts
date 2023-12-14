@@ -1,8 +1,10 @@
 import { request } from "@refinedev/nestjs-query";
 
 import { AxiosResponse } from "axios";
-import { REFRESH_TOKEN_MUTATION } from "./queries";
+
 import { RefreshTokenMutation } from "@/graphql/types";
+
+import { REFRESH_TOKEN_MUTATION } from "./queries";
 
 export const shouldRefreshToken = (response: AxiosResponse) => {
     const errors = response?.data?.errors;

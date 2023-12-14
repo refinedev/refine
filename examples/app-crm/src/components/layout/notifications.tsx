@@ -7,10 +7,11 @@ import { BellOutlined } from "@ant-design/icons";
 import { Badge, Button, Divider, Popover, Space, Spin } from "antd";
 import dayjs from "dayjs";
 
+import { NotificationsDealsQuery, NotificationsQuery } from "@/graphql/types";
+
 import { CustomAvatar } from "../custom-avatar";
 import { Text } from "../text";
 import { NotificationMessage } from "./notification-message";
-import { NotificationsDealsQuery, NotificationsQuery } from "@/graphql/types";
 import { NOTIFICATIONS_DEALS_QUERY, NOTIFICATIONS_QUERY } from "./queries";
 
 export const Notifications: React.FC = () => {

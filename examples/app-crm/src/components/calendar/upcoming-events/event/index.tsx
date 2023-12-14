@@ -1,15 +1,15 @@
 import React from "react";
 
 import { useNavigation } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { Badge } from "antd";
 import dayjs from "dayjs";
 
-import { Text } from "../../../text";
-
-import styles from "../index.module.css";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { UpcomingEventsQuery } from "@/graphql/types";
+
+import { Text } from "../../../text";
+import styles from "../index.module.css";
 
 type CalendarUpcomingEventProps = {
     item: GetFieldsFromList<UpcomingEventsQuery>;

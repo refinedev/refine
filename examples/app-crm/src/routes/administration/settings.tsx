@@ -17,7 +17,6 @@ import { CustomAvatar, Logo, Text } from "@/components";
 import { User } from "@/graphql/schema.types";
 
 import { RoleTag } from "./components";
-
 import styles from "./settings.module.css";
 
 export const SettingsPage = () => {

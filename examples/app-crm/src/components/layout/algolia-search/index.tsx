@@ -19,7 +19,6 @@ import {
 } from "@/graphql/schema.types";
 
 import { CustomAvatar } from "../../custom-avatar";
-
 import styles from "./index.module.css";
 
 export const AlgoliaSearch: React.FC = () => {

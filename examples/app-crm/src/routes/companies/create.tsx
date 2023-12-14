@@ -1,8 +1,6 @@
 import { useLocation, useSearchParams } from "react-router-dom";
 
 import { useModalForm, useSelect } from "@refinedev/antd";
-import { GetFields } from "@refinedev/nestjs-query";
-
 import {
     CreateResponse,
     HttpError,
@@ -10,6 +8,7 @@ import {
     useGetToPath,
     useGo,
 } from "@refinedev/core";
+import { GetFields } from "@refinedev/nestjs-query";
 
 import {
     DeleteOutlined,
@@ -33,6 +32,7 @@ import {
 import { SelectOptionWithAvatar } from "@/components";
 import { Company, User } from "@/graphql/schema.types";
 import { CreateCompanyMutation } from "@/graphql/types";
+
 import { COMPANY_CREATE_MUTATION } from "./queries";
 
 type Props = {

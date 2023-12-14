@@ -12,9 +12,8 @@ import { Button, Dropdown, MenuProps } from "antd";
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
 import { Contact } from "@/graphql/schema.types";
 
-import { ContactCardSkeleton } from "./skeleton";
-
 import styles from "./index.module.css";
+import { ContactCardSkeleton } from "./skeleton";
 
 type ContactCardProps = {
     contact: Contact | null;

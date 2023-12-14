@@ -2,21 +2,21 @@ import { useState } from "react";
 
 import { useForm, useSelect } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { EditOutlined } from "@ant-design/icons";
 import { Button, Form, Select, Skeleton, Space } from "antd";
 
 import { CustomAvatar, SelectOptionWithAvatar, Text } from "@/components";
 import { User } from "@/graphql/schema.types";
-import { getNameInitials } from "@/utilities";
-
-import styles from "./title-form.module.css";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 import {
     CompanyTitleFormMutation,
     CompanyTitleFormMutationVariables,
 } from "@/graphql/types";
+import { getNameInitials } from "@/utilities";
+
 import { COMPANY_TITLE_FORM_MUTATION, COMPANY_TITLE_QUERY } from "./queries";
+import styles from "./title-form.module.css";
 
 export const CompanyTitleForm = () => {
     const { formProps, queryResult, onFinish } = useForm<

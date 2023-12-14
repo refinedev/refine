@@ -10,9 +10,8 @@ import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import { Text } from "@/components";
 import { EventCategory } from "@/graphql/schema.types";
 
-import { CalendarManageCategories } from "./manage-categories";
-
 import styles from "./index.module.css";
+import { CalendarManageCategories } from "./manage-categories";
 
 type CalendarCategoriesProps = {
     onChange?: (e: CheckboxChangeEvent) => void;

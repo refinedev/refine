@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import { useOne, useModal } from "@refinedev/core";
+import { useModal,useOne } from "@refinedev/core";
 
 import { EditOutlined, LeftOutlined } from "@ant-design/icons";
 import { Button, Space } from "antd";
@@ -16,7 +16,6 @@ import {
     ShowDescription,
     StatusIndicator,
 } from "../components";
-
 import styles from "./index.module.css";
 
 const PdfExport = lazy(() => import("../components/pdf-export"));

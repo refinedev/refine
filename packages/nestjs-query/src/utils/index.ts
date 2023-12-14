@@ -1,17 +1,18 @@
 import {
-    CrudOperators,
-    LogicalFilter,
-    CrudSorting,
-    Pagination,
     CrudFilter,
+    CrudOperators,
+    CrudSorting,
+    LogicalFilter,
+    Pagination,
 } from "@refinedev/core";
+
 import camelcase from "camelcase";
-import VariableOptions from "gql-query-builder/build/VariableOptions";
 import * as gql from "gql-query-builder";
-import { singular } from "pluralize";
-import set from "lodash/set";
+import VariableOptions from "gql-query-builder/build/VariableOptions";
+import { DocumentNode, FieldNode, print as prt,visit } from "graphql";
 import { Client } from "graphql-ws";
-import { DocumentNode, FieldNode, visit, print as prt } from "graphql";
+import set from "lodash/set";
+import { singular } from "pluralize";
 
 export const generateSubscription = (
     client: Client,

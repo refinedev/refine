@@ -14,10 +14,10 @@ import { Input, Select, Space, Table, TableProps } from "antd";
 
 import { CustomAvatar, PaginationTotal, Text } from "@/components";
 import { Company } from "@/graphql/schema.types";
+import { CompaniesTableQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
 import { AvatarGroup } from "./avatar-group";
-import { CompaniesTableQuery } from "@/graphql/types";
 
 type Props = {
     tableProps: TableProps<GetFieldsFromList<CompaniesTableQuery>>;
