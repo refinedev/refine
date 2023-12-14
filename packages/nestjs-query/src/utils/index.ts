@@ -11,7 +11,7 @@ import * as gql from "gql-query-builder";
 import { singular } from "pluralize";
 import set from "lodash/set";
 import { Client } from "graphql-ws";
-import { DocumentNode, FieldNode, visit } from "graphql";
+import { DocumentNode, FieldNode, visit, print as prt } from "graphql";
 
 export const generateSubscription = (
     client: Client,
@@ -184,6 +184,10 @@ export const generateCreatedSubscription = ({
 
         const operation = `created${singularResourceName}`;
 
+        console.log("Operation", prt(gqlOperation));
+
+        console.log("Fields", fieldsToString(gqlOperation));
+
         const query = `
             subscription ${operationName}($input: Create${singularResourceName}SubscriptionFilterInput) {
                 ${operation}(input: $input) {
@@ -258,10 +262,14 @@ export const generateUpdatedSubscription = ({
 
         const operation = `updatedOne${singularResourceName}`;
 
+        console.log("Operation", prt(gqlOperation));
+
+        console.log("Fields", fieldsToString(gqlOperation));
+
         const query = `
             subscription ${operationName}($input: UpdateOne${singularResourceName}SubscriptionFilterInput) {
                 ${operation}(input: $input) {
-                    ${fieldsToString(gqlOperation)}
+                   ${fieldsToString(gqlOperation)}
                 }
             }
         `;
@@ -422,8 +430,18 @@ const isNodesField = (node: FieldNode) => {
     );
 };
 
+function removeNodesField(inputString: string) {
+    const lines = inputString.split("\n");
+
+    const filteredLines = lines
+        .filter((line) => line.trim() !== "nodes {" && line.trim() !== "}")
+        .map((line) => line.trim());
+
+    return filteredLines.join("\n");
+}
+
 export function fieldsToString(documentNode: DocumentNode) {
-    const fieldLines: any[] = [];
+    const fieldLines: string[] = [];
     let depth = 0;
     let isNestedField = false;
 
@@ -461,7 +479,9 @@ export function fieldsToString(documentNode: DocumentNode) {
                             )}}`,
                         );
                     }
-                    depth--;
+                    if (depth > 0) {
+                        depth--;
+                    }
                     if (depth === 0) {
                         // Reset isNestedField after leaving the first nested field
                         isNestedField = false;
@@ -471,7 +491,10 @@ export function fieldsToString(documentNode: DocumentNode) {
         },
     });
 
-    // Join all field lines into a single string
+    if (fieldLines.length && fieldLines[0].startsWith("nodes")) {
+        fieldLines[0] = removeNodesField(fieldLines[0]);
+    }
+
     return fieldLines.join("\n").trim();
 }
 
