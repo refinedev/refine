@@ -171,9 +171,25 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         },
 
         createMany: async ({ resource, variables, meta }) => {
-            const operation = `createMany${camelcase(resource, {
-                pascalCase: true,
-            })}`;
+            const pascalResource = camelcase(resource, { pascalCase: true });
+            const operation = `createMany${pascalResource}`;
+
+            const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+            if (gqlOperation) {
+                const response = await client.request<BaseRecord>(
+                    gqlOperation,
+                    {
+                        input: {
+                            [camelcase(resource)]: variables,
+                        },
+                    },
+                );
+
+                return {
+                    data: response[operation],
+                };
+            }
 
             const { query, variables: queryVariables } = gql.mutation({
                 operation,
