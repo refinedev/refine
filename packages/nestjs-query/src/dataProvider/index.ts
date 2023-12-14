@@ -249,7 +249,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 data: response[operation],
             };
         },
-        updateMany: async ({ resource, ids, variables }) => {
+        updateMany: async ({ resource, ids, variables, meta }) => {
             const pascalResource = camelcase(resource, {
                 pascalCase: true,
             });
@@ -264,27 +264,54 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 }
             `;
 
-            const operation = camelcase(resource);
-
             await client.request<BaseRecord>(mutation, {
                 input: { filter: { id: { in: ids } }, update: variables },
             });
 
-            const query = gqlTag`
-                query GetMany${pascalResource}($filter: ${singular(
-                pascalResource,
-            )}Filter!) {
-                    ${operation}(filter: $filter) {
-                        nodes {
-                            id
+            const operation = camelcase(resource);
+
+            let query, queryVariables;
+
+            if (meta?.fields) {
+                const gqlQuery = gql.query({
+                    operation,
+                    fields: [{ nodes: meta?.fields || ["id"] }],
+                    variables: {
+                        filter: {
+                            type: camelcase(`${singular(resource)}Filter`, {
+                                pascalCase: true,
+                            }),
+                            required: true,
+                            value: {
+                                id: { in: ids },
+                            },
+                        },
+                    },
+                });
+                query = gqlQuery.query;
+                queryVariables = gqlQuery.variables;
+            } else {
+                query = gqlTag`
+                    query GetMany${pascalResource}($filter: ${singular(
+                    pascalResource,
+                )}Filter!) {
+                        ${operation}(filter: $filter) {
+                            nodes {
+                                id
+                            }
                         }
                     }
-                }
-            `;
+                `;
 
-            const response = await client.request<BaseRecord>(query, {
-                filter: { id: { in: ids } },
-            });
+                queryVariables = {
+                    filter: { id: { in: ids } },
+                };
+            }
+
+            const response = await client.request<BaseRecord>(
+                query,
+                queryVariables,
+            );
 
             return {
                 data: response[operation].nodes,
