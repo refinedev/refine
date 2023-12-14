@@ -1,5 +1,5 @@
 const urlLikeKeyRegexp = /(image|photo|avatar|url|logo|cover|thumbnail|icon)/i;
-const nameLikeRegexp = /^(\w|\d|_|-|)*?(name|label){1}/i;
+const nameLikeRegexp = /^(\w|\d|_|-|)*?(name|label){1}$/i;
 
 /**
  * Returns a list of keys that are likely to be fieldable.
