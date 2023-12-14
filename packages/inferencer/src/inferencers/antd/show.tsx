@@ -175,8 +175,8 @@ export const renderer = ({
                                     return `{record?.${field.key}?.length ? ${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />) : <></>}`;
                                 }
                             } else {
-                                console.warn(
-                                    "Inferencer failed to render this field",
+                                console.log(
+                                    "@refinedev/inferencer: Inferencer failed to render this field",
                                     {
                                         key: field.key,
                                         relation: field.relationInfer,
@@ -186,8 +186,8 @@ export const renderer = ({
                                 return `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`;
                             }
                         } else {
-                            console.warn(
-                                "Inferencer failed to render this field",
+                            console.log(
+                                "@refinedev/inferencer: Inferencer failed to render this field",
                                 {
                                     key: field.key,
                                     relation: field.relationInfer,
@@ -248,8 +248,8 @@ export const renderer = ({
                                     !field?.relationInfer?.accessor;
 
                                 if (cannotRender) {
-                                    console.warn(
-                                        "Inferencer failed to render this field",
+                                    console.log(
+                                        "@refinedev/inferencer: Inferencer failed to render this field",
                                         {
                                             key: field.key,
                                             relation: field.relationInfer,

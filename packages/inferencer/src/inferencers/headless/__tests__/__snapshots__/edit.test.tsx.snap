@@ -2440,17 +2440,6 @@ exports[`HeadlessEditInferencer should match the snapshot 1`] = `
                 tags
               </span>
               <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                ?.
-              </span>
-              <span
-                class="token plain"
-              >
-                id
-              </span>
-              <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >

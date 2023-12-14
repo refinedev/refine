@@ -193,10 +193,13 @@ export const renderer = ({
                     field?.relationInfer?.type === "object" &&
                     !field?.relationInfer?.accessor
                 ) {
-                    console.warn("Inferencer failed to render this field", {
-                        key: field.key,
-                        relation: field.relationInfer,
-                    });
+                    console.log(
+                        "@refinedev/inferencer: Inferencer failed to render this field",
+                        {
+                            key: field.key,
+                            relation: field.relationInfer,
+                        },
+                    );
 
                     return `renderCell: function render({ getValue }) {
                         return (
@@ -234,10 +237,13 @@ export const renderer = ({
                         !field?.relationInfer?.accessor;
 
                     if (cannotRender) {
-                        console.warn("Inferencer failed to render this field", {
-                            key: field.key,
-                            relation: field.relationInfer,
-                        });
+                        console.log(
+                            "@refinedev/inferencer: Inferencer failed to render this field",
+                            {
+                                key: field.key,
+                                relation: field.relationInfer,
+                            },
+                        );
 
                         renderCell = `
                         renderCell: function render({ value }) {

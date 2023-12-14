@@ -164,8 +164,8 @@ export const renderer = ({
                                 if (
                                     Array.isArray(field.relationInfer.accessor)
                                 ) {
-                                    console.warn(
-                                        "Inferencer failed to render this field",
+                                    console.log(
+                                        "@refinedev/inferencer: Inferencer failed to render this field",
                                         {
                                             key: field.key,
                                             relation: field.relationInfer,
@@ -189,8 +189,8 @@ export const renderer = ({
                                     `;
                                 }
                             } else {
-                                console.warn(
-                                    "Inferencer failed to render this field",
+                                console.log(
+                                    "@refinedev/inferencer: Inferencer failed to render this field",
                                     {
                                         key: field.key,
                                         relation: field.relationInfer,
@@ -200,8 +200,8 @@ export const renderer = ({
                                 return `<span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>`;
                             }
                         } else {
-                            console.warn(
-                                "Inferencer failed to render this field",
+                            console.log(
+                                "@refinedev/inferencer: Inferencer failed to render this field",
                                 { key: field.key },
                             );
 
@@ -259,8 +259,8 @@ export const renderer = ({
                                     !field?.relationInfer?.accessor;
 
                                 if (cannotRender) {
-                                    console.warn(
-                                        "Inferencer failed to render this field",
+                                    console.log(
+                                        "@refinedev/inferencer: Inferencer failed to render this field",
                                         {
                                             key: field.key,
                                             relation: field.relationInfer,
