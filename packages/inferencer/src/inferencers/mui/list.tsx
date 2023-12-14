@@ -188,6 +188,18 @@ export const renderer = ({
                     val = valViewableSingle;
                 }
 
+                if (
+                    field?.relationInfer &&
+                    field?.relationInfer?.type === "object" &&
+                    !field?.relationInfer?.accessor
+                ) {
+                    return `renderCell: function render({ getValue }) {
+                        return (
+                            <span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>
+                        )
+                    }`;
+                }
+
                 renderCell = `
                 renderCell: function render({ value }) {
                     return ${loadingCondition} (
@@ -212,11 +224,23 @@ export const renderer = ({
                         field?.relationInfer?.accessor,
                     );
 
-                    renderCell = `
+                    const cannotRender =
+                        field?.relationInfer?.type === "object" &&
+                        !field?.relationInfer?.accessor;
+
+                    if (cannotRender) {
+                        renderCell = `
+                        renderCell: function render({ value }) {
+                            return <span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>;
+                        }
+                        `;
+                    } else {
+                        renderCell = `
                     renderCell: function render({ value }) {
                         return ${loadingCondition} ${valViewableSingle};
                     }
                     `;
+                    }
                 } else {
                     renderCell = "";
                 }

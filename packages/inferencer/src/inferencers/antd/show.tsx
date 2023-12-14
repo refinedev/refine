@@ -146,6 +146,7 @@ export const renderer = ({
                 const variableDataLength =
                     accessor(recordName, field.key) + "?.length";
                 imports.push(["TagField", "@refinedev/antd"]);
+
                 return jsx`
                 <Title level={5}>${translatePrettyString({
                     resource,
@@ -161,7 +162,7 @@ export const renderer = ({
                                 if (
                                     Array.isArray(field.relationInfer.accessor)
                                 ) {
-                                    return `Not Handled.`;
+                                    return `<span title="Inferencer failed to render this field. (Unsupported nesting)">Cannot Render</span>`;
                                     // return `{${multipleAccessor(
                                     //     `${variableName}?.data`,
                                     //     field.relationInfer.accessor,
@@ -179,10 +180,10 @@ export const renderer = ({
                                     return `{record?.${field.key}?.length ? ${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />) : <></>}`;
                                 }
                             } else {
-                                return undefined;
+                                return `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`;
                             }
                         } else {
-                            return undefined;
+                            return `<span title="Inferencer failed to render this field (Cannot find relation)">Cannot Render</span>`;
                         }
                     })()}
                     </>
@@ -241,7 +242,13 @@ export const renderer = ({
                                     return `{${variableName}?.data?.${field.relationInfer.accessor}}`;
                                 }
                             } else {
-                                return `{${variableName}?.data}`;
+                                const cannotRender =
+                                    field?.relationInfer?.type === "object" &&
+                                    !field?.relationInfer?.accessor;
+
+                                return cannotRender
+                                    ? `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`
+                                    : `{${variableName}?.data}`;
                             }
                         } else {
                             return `{${variableName}?.data?.id}`;

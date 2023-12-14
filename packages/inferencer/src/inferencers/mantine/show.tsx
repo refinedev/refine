@@ -181,10 +181,10 @@ export const renderer = ({
                                     `;
                                 }
                             } else {
-                                return `Not Handled.`;
+                                return `<span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>`;
                             }
                         } else {
-                            return `not-handled - relation with multiple but no resource`;
+                            return `<span title="Inferencer failed to render this field (Cannot find relation)">Cannot Render</span>`;
                         }
                     })()}
                     </>
@@ -233,6 +233,13 @@ export const renderer = ({
                                     return `{${variableName}?.data?.${field.relationInfer.accessor}}`;
                                 }
                             } else {
+                                const cannotRender =
+                                    field?.relationInfer?.type === "object" &&
+                                    !field?.relationInfer?.accessor;
+
+                                if (cannotRender) {
+                                    return `<span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>`;
+                                }
                                 return `{${variableName}?.data}`;
                             }
                         } else {

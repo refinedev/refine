@@ -152,21 +152,29 @@ export const renderer = ({
                 imports.push(["TagField", "@refinedev/antd"]);
                 let val = "item";
 
-                if (field?.relationInfer) {
-                    const valSingle = `${variableName}?.find((resourceItems) => resourceItems.id === ${accessor(
-                        "item",
-                        undefined,
-                        field.accessor,
-                    )})`;
-                    const valViewableSingle = accessor(
-                        valSingle,
-                        undefined,
-                        field?.relationInfer?.accessor,
-                    );
-                    val = valViewableSingle;
-                }
+                const cannotRender =
+                    field?.relationInfer &&
+                    field?.relationInfer?.type === "object" &&
+                    !field?.relationInfer?.accessor;
 
-                render = `render={(value: any[]) => ${loadingCondition} (
+                if (cannotRender) {
+                    render = `render={(value) => <span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>}`;
+                } else {
+                    if (field?.relationInfer) {
+                        const valSingle = `${variableName}?.find((resourceItems) => resourceItems.id === ${accessor(
+                            "item",
+                            undefined,
+                            field.accessor,
+                        )})`;
+                        const valViewableSingle = accessor(
+                            valSingle,
+                            undefined,
+                            field?.relationInfer?.accessor,
+                        );
+                        val = valViewableSingle;
+                    }
+
+                    render = `render={(value: any[]) => ${loadingCondition} (
                     <>
                         {${accessor(
                             "value",
@@ -177,16 +185,25 @@ export const renderer = ({
                         ))}
                     </>
                 )}`;
+                }
             } else {
                 if (field?.relationInfer) {
-                    const valSingle = `${variableName}?.find((item) => item.id === value)`;
-                    const valViewableSingle = accessor(
-                        valSingle,
-                        undefined,
-                        field?.relationInfer?.accessor,
-                    );
+                    const cannotRender =
+                        field?.relationInfer?.type === "object" &&
+                        !field?.relationInfer?.accessor;
 
-                    render = `render={(value) => ${loadingCondition} ${valViewableSingle}}`;
+                    if (cannotRender) {
+                        render = `render={(value) => <span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>}`;
+                    } else {
+                        const valSingle = `${variableName}?.find((item) => item.id === value)`;
+                        const valViewableSingle = accessor(
+                            valSingle,
+                            undefined,
+                            field?.relationInfer?.accessor,
+                        );
+
+                        render = `render={(value) => ${loadingCondition} ${valViewableSingle}}`;
+                    }
                 } else {
                     render = "";
                 }

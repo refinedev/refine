@@ -157,6 +157,18 @@ export const renderer = ({
                     );
                 }
 
+                if (
+                    field?.relationInfer &&
+                    field?.relationInfer?.type === "object" &&
+                    !field?.relationInfer?.accessor
+                ) {
+                    return `cell: function render({ getValue }) {
+                        return (
+                            <span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>
+                        )
+                    }`;
+                }
+
                 cell = `cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
                         ${getVariableName(field.key, "Data")}: GetManyResponse;
@@ -202,6 +214,10 @@ export const renderer = ({
             `;
             } else {
                 if (field?.relationInfer) {
+                    const cannotRender =
+                        field?.relationInfer?.type === "object" &&
+                        !field?.relationInfer?.accessor;
+
                     cell = `cell: function render({ getValue, table }) {
                         const meta = table.options.meta as {
                             ${getVariableName(
@@ -219,11 +235,15 @@ export const renderer = ({
                             (item) => item.id == getValue<any>(),
                         );
 
-                        return ${accessor(
-                            getVariableName(field.key),
-                            undefined,
-                            field?.relationInfer?.accessor,
-                        )} ?? "Loading...";
+                        return ${
+                            cannotRender
+                                ? `<span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>`
+                                : `${accessor(
+                                      getVariableName(field.key),
+                                      undefined,
+                                      field?.relationInfer?.accessor,
+                                  )} ?? "Loading..."`
+                        };
 
                         ${
                             field?.accessor

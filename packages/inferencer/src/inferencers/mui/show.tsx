@@ -171,7 +171,7 @@ export const renderer = ({
                                 if (
                                     Array.isArray(field.relationInfer.accessor)
                                 ) {
-                                    return `Not Handled.`;
+                                    return `<span title="Inferencer failed to render this field. (Unsupported nesting)">Cannot Render</span>`;
                                 } else {
                                     const mapItemName = getVariableName(
                                         field.key,
@@ -190,10 +190,10 @@ export const renderer = ({
                                     `;
                                 }
                             } else {
-                                return `Not Handled.`;
+                                return `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`;
                             }
                         } else {
-                            return `not-handled - relation with multiple but no resource`;
+                            return `<span title="Inferencer failed to render this field (Cannot find relation)">Cannot Render</span>`;
                         }
                     })()}
                     </>
@@ -249,7 +249,13 @@ export const renderer = ({
                                     return `{${variableName}?.data?.${field.relationInfer.accessor}}`;
                                 }
                             } else {
-                                return `{${variableName}?.data}`;
+                                const cannotRender =
+                                    field?.relationInfer?.type === "object" &&
+                                    !field?.relationInfer?.accessor;
+
+                                return cannotRender
+                                    ? `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`
+                                    : `{${variableName}?.data}`;
                             }
                         } else {
                             return `{${variableName}?.data?.id}`;
