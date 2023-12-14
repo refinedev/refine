@@ -193,6 +193,11 @@ export const renderer = ({
                     field?.relationInfer?.type === "object" &&
                     !field?.relationInfer?.accessor
                 ) {
+                    console.warn("Inferencer failed to render this field", {
+                        key: field.key,
+                        relation: field.relationInfer,
+                    });
+
                     return `renderCell: function render({ getValue }) {
                         return (
                             <span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>
@@ -229,6 +234,11 @@ export const renderer = ({
                         !field?.relationInfer?.accessor;
 
                     if (cannotRender) {
+                        console.warn("Inferencer failed to render this field", {
+                            key: field.key,
+                            relation: field.relationInfer,
+                        });
+
                         renderCell = `
                         renderCell: function render({ value }) {
                             return <span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>;

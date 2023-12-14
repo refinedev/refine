@@ -164,7 +164,15 @@ export const renderer = ({
                                 if (
                                     Array.isArray(field.relationInfer.accessor)
                                 ) {
-                                    return `Not Handled.`;
+                                    console.warn(
+                                        "Inferencer failed to render this field",
+                                        {
+                                            key: field.key,
+                                            relation: field.relationInfer,
+                                        },
+                                    );
+
+                                    return `<span title="Inferencer failed to render this field. (Unsupported nesting)">Cannot Render</span>`;
                                 } else {
                                     const mapItemName = toSingular(
                                         field.resource?.name,
@@ -181,9 +189,22 @@ export const renderer = ({
                                     `;
                                 }
                             } else {
+                                console.warn(
+                                    "Inferencer failed to render this field",
+                                    {
+                                        key: field.key,
+                                        relation: field.relationInfer,
+                                    },
+                                );
+
                                 return `<span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>`;
                             }
                         } else {
+                            console.warn(
+                                "Inferencer failed to render this field",
+                                { key: field.key },
+                            );
+
                             return `<span title="Inferencer failed to render this field (Cannot find relation)">Cannot Render</span>`;
                         }
                     })()}
@@ -238,6 +259,14 @@ export const renderer = ({
                                     !field?.relationInfer?.accessor;
 
                                 if (cannotRender) {
+                                    console.warn(
+                                        "Inferencer failed to render this field",
+                                        {
+                                            key: field.key,
+                                            relation: field.relationInfer,
+                                        },
+                                    );
+
                                     return `<span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>`;
                                 }
                                 return `{${variableName}?.data}`;

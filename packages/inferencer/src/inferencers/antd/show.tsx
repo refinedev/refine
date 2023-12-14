@@ -163,12 +163,7 @@ export const renderer = ({
                                     Array.isArray(field.relationInfer.accessor)
                                 ) {
                                     return `<span title="Inferencer failed to render this field. (Unsupported nesting)">Cannot Render</span>`;
-                                    // return `{${multipleAccessor(
-                                    //     `${variableName}?.data`,
-                                    //     field.relationInfer.accessor,
-                                    // ).join(' + " " + ')}}`;
                                 } else {
-                                    // return `Not Handled.`;
                                     const mapItemName = toSingular(
                                         field.resource?.name,
                                     );
@@ -180,25 +175,31 @@ export const renderer = ({
                                     return `{record?.${field.key}?.length ? ${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />) : <></>}`;
                                 }
                             } else {
+                                console.warn(
+                                    "Inferencer failed to render this field",
+                                    {
+                                        key: field.key,
+                                        relation: field.relationInfer,
+                                    },
+                                );
+
                                 return `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`;
                             }
                         } else {
+                            console.warn(
+                                "Inferencer failed to render this field",
+                                {
+                                    key: field.key,
+                                    relation: field.relationInfer,
+                                },
+                            );
+
                             return `<span title="Inferencer failed to render this field (Cannot find relation)">Cannot Render</span>`;
                         }
                     })()}
                     </>
                 )}
                 `;
-                // {${accessorString(variableName, {
-                //     key: field.key,
-                // })}?.map((item) => (
-                //     <TagField value={${
-                //         field.accessor ? `item?.${field.accessor}` : `item`
-                //     }} key={${
-                //     field.accessor ? `item?.${field.accessor}` : `item`
-                // }} />
-                // ))}
-                // `;
             }
 
             if (field.fieldable) {
@@ -245,6 +246,16 @@ export const renderer = ({
                                 const cannotRender =
                                     field?.relationInfer?.type === "object" &&
                                     !field?.relationInfer?.accessor;
+
+                                if (cannotRender) {
+                                    console.warn(
+                                        "Inferencer failed to render this field",
+                                        {
+                                            key: field.key,
+                                            relation: field.relationInfer,
+                                        },
+                                    );
+                                }
 
                                 return cannotRender
                                     ? `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`
