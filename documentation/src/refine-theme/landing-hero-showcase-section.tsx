@@ -129,7 +129,7 @@ export const LandingHeroShowcaseSection = ({}) => {
                         ))}
                     </div>
                     <a
-                        href="/docs/examples"
+                        href="/templates"
                         target="_blank"
                         rel="noopener noreferrer"
                         className={clsx(

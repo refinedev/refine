@@ -64,9 +64,9 @@ export const MENU_ITEMS: MenuItemType[] = [
                 icon: IntegrationsIcon,
             },
             {
-                label: "Examples",
-                description: "Ready-made snippets for your projects.",
-                link: "/examples",
+                label: "Templates",
+                description: "Ready-made examples for your project",
+                link: "/templates",
                 icon: ExamplesIcon,
             },
             {
