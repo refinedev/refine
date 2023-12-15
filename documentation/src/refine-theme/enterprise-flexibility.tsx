@@ -54,7 +54,11 @@ export const EnterpriseFlexibility = ({
                 >
                     <img
                         className={clsx("rounded-2xl landing-sm:rounded-3xl")}
-                        src={`https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/lego-pieces-${colorMode}.png`}
+                        src={
+                            colorMode === "dark"
+                                ? `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/lego-pieces-dark.png`
+                                : `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/lego-pieces-light.png`
+                        }
                     />
                     <div
                         className={clsx(
