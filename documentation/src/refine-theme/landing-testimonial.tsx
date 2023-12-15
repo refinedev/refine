@@ -283,7 +283,7 @@ const testimonials = [
         name: "Pouya Saadeghi",
         link: "https://daisyui.com",
         description:
-            "I really like how refine gives the freedom to choose different stacks for back-end, front-end, and even UI libraries.",
+            "I really like how Refine gives the freedom to choose different stacks for back-end, front-end, and even UI libraries.",
         img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/testimonials/pouya-saadeghi.png",
     },
     {

@@ -5,9 +5,9 @@ swizzle: true
 
 This field is used to display the email values. It uses the [`<Link>`](https://mui.com/material-ui/react-link/#main-content) component of [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) from Material UI.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -72,7 +72,7 @@ render(
 );
 ```
 
-:::tip
+:::simple Implementation Tips
 
 `<EmailField>` uses "mailto:" in the href prop of the [`<Link>`](https://mui.com/material-ui/react-link/#main-content) component. For this reason, clicking `<EmailField>` opens your device's default mail application.
 
@@ -84,7 +84,7 @@ render(
 
 <PropsTable module="@refinedev/mui/EmailField"/>
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Link](https://mui.com/material-ui/react-link/#main-content).
 

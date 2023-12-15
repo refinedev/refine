@@ -15,6 +15,7 @@ type MobileNavItemProps = {
     href?: string;
     open?: boolean;
     component?: React.FC;
+    icon?: React.FC;
 };
 
 export const MobileNavItem: React.FC<MobileNavItemProps> = ({
@@ -22,6 +23,7 @@ export const MobileNavItem: React.FC<MobileNavItemProps> = ({
     href,
     component,
     open,
+    icon: Icon,
 }) => {
     const [theme, setTheme] = useState(null);
 
@@ -46,11 +48,17 @@ export const MobileNavItem: React.FC<MobileNavItemProps> = ({
             )}
             {...(href ? { to: href } : {})}
         >
-            <div className="text-gray-800 dark:text-white font-semibold">
+            <div
+                className={clsx("text-gray-800 dark:text-white font-semibold")}
+            >
                 {label === "Hackathon" && (
                     <HackathonAltIcon className="inline text-[#F93] -mt-1 mr-1.5" />
                 )}
-                {label}
+
+                <div className={clsx("flex items-center gap-2")}>
+                    <div>{label}</div>
+                    {Icon && <Icon />}
+                </div>
             </div>
             {isCollapseble && (
                 <div

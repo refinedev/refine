@@ -1,34 +1,23 @@
 ---
 title: Access Control Provider
-sidebar_label: Access Control Provider
 ---
-
-## Overview
 
 Access control is a broad topic with lots of advanced solutions that provide different sets of features.
 
-**refine** provides an agnostic API via the `accessControlProvider` to manage access control throughout your app, which allows you to integrate different methods, such as `RBAC`, `ABAC`, `ACL`, etc., and libraries, such as [Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/) and [AccessControl.js](https://onury.io/accesscontrol/).
+Refine provides an agnostic API via the `accessControlProvider` to manage access control throughout your app, which allows you to integrate different methods, such as `RBAC`, `ABAC`, `ACL`, etc., and libraries, such as [Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/) and [AccessControl.js](https://onury.io/accesscontrol/).
 
 To check if a desired access will be granted, the `accessControlProvider` should at least have an asynchronous method named `can` with the following interface:
 
+:::simple Interface References
+
+- [`CanParams`](/docs/core/interface-references#canparams): Arguments for the `can` method.
+- [`CanResponse`](/docs/core/interface-references#canresponse): Return type of the `can` method.
+
+:::
+
 ```ts
-type CanParams = {
-  resource: string;
-  action: string;
-  params?: {
-    resource?: IResourceItem;
-    id?: BaseKey;
-    [key: string]: any;
-  };
-};
-
-type CanReturnType = {
-  can: boolean;
-  reason?: string;
-};
-
 export interface IAccessControlContext {
-  can?: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
+  can?: ({ resource, action, params }: CanParams) => Promise<CanResponse>;
   options?: {
     buttons?: {
       enableAccessControl?: boolean;
@@ -38,7 +27,7 @@ export interface IAccessControlContext {
 }
 
 const accessControlProvider: IAccessControlContext = {
-  can: async ({ resource, action, params }: CanParams): Promise<CanReturnType> => {
+  can: async ({ resource, action, params }: CanParams): Promise<CanResponse> => {
     return { can: true };
   },
   options: {
@@ -50,41 +39,11 @@ const accessControlProvider: IAccessControlContext = {
 };
 ```
 
-It's also possible to globally configure buttons' behavior by passing `options` to the `accessControlProvider`.
+It's possible to globally configure buttons' behavior by passing `options` to the `accessControlProvider`.
 You can still change the behavior of the buttons independently, however, if no configuration is found, buttons will fallback to configuration defined in `options.buttons`.
 By default, `enableAccessControl` is **true** and `hideIfUnauthorized` is **false**.
 
-```ts
-export interface IAccessControlContext {
-  can?: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
-  options?: {
-    buttons?: {
-      // default is true
-      enableAccessControl?: boolean;
-      // default is false
-      hideIfUnauthorized?: boolean;
-    };
-  };
-}
-
-const accessControlProvider: IAccessControlContext = {
-  can: async ({ resource, action, params }: CanParams): Promise<CanReturnType> => {
-    return { can: true };
-  },
-  // Global settings
-  options: {
-    buttons: {
-      enableAccessControl: true,
-      // hide action buttons if not authorized.
-      hideIfUnauthorized: true,
-    },
-  },
-};
-```
-
-> For more information, refer to these sections in the Interface References documentation [`IResourceItem`][iresourceitem], [`BaseKey`][basekey], [`CanParams`][canparams], [`CanReturnType`][canreturntype]
-
-A basic usage would be like this:
+## Usage
 
 ```tsx
 const App: React.FC = () => {
@@ -118,25 +77,21 @@ const App: React.FC = () => {
 
 :::caution
 
-Depending on your router, providing `accessControlProvider` to the `<Refine>` component **won't enforce** access control by itself; you may need to wrap protected routes with the `<CanAccess>` component.
+Providing `accessControlProvider` to the `<Refine />` component **won't enforce** access control by itself; you will need to wrap protected routes with the `<CanAccess />` component.
 
-Refer to one of the following documentations, depending on your preferred router:
+Refer to one of the following documentations, based on your preferred router:
 
 - [React Router Access Control](/docs/packages/list-of-packages#usage-with-access-control-providers)
-
 - [NextJS Router Access Control](/docs/packages/list-of-packages#access-control)
-
 - [Remix Router Access Control](/docs/packages/list-of-packages#access-control)
 
 :::
 
----
+### Meta Access
 
-:::tip
+In the `can` method, you'll have access to the `resource` object you passed to the `<Refine/>` component.
 
-You can also access the resource object directly.
-
-In the example below, the `can` function receives the `resource`([ResourceItemProps][iresourceitem]) object you pass to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
+In the example below, the `can` function receives the `resource`([ResourceProps][iresourceitem]) object you pass to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
 
 ```tsx
 export const accessControlProvider = {
@@ -154,32 +109,13 @@ export const accessControlProvider = {
 };
 ```
 
-:::
+### Using `reason` property
 
----
-
-:::tip
-
-You can pass a `reason` along with `can`. It will be accessible using `useCan`. It will be shown at the tooltip of the buttons from **refine** when they are disabled.
-
-:::
-
----
-
-:::tip
-
-You can find access control examples made with **refine**
-
-- **Casbin** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-casbin) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/access-control-casbin/?view=preview&theme=dark&codemirror=1)
-- **Cerbos** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-cerbos) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/access-control-cerbos/?view=preview&theme=dark&codemirror=1)
-
-:::
-
-[**refine** checks for access control in its related components and pages.](#list-of-default-access-control-points)
+If your response from the `can` method has a `reason` property, it will be shown at the tooltip of the buttons if they are disabled.
 
 ## Hooks and Components
 
-**refine** provides a hook and a component to use the `can` method from the `accessControlProvider`.
+Refine provides a hook and a component to use the `can` method from the `accessControlProvider`.
 
 ### `useCan`
 
@@ -204,8 +140,6 @@ const useCan: ({
 }) => UseQueryResult<CanReturnType*>
 ```
 
-> For more information, refer to these sections in the Interfaces documentation: [`CanParams`](/docs/core/interface-references#canparams) and [`CanReturnType`](/docs/core/interface-references#canreturntype)
-
 ### `<CanAccess />`
 
 `<CanAccess />` is a wrapper component that uses `useCan` to check for access control. It takes the parameters that `can` method takes and also a `fallback`. If access control returns true, it renders its children; otherwise, it renders `fallback`, if it was provided.
@@ -218,7 +152,7 @@ const useCan: ({
 
 ## Performance
 
-As the number of points that check for access control in your app increases, the performance of your app may take a hit, especially if its access control involves remote endpoints. Caching the access control checks helps quite a lot, which can be done easily by configuring the [`staleTime` and `cacheTime`](https://react-query.tanstack.com/reference/useQuery) properties since **refine** uses react-query.
+As the number of points that check for access control in your app increases, the performance of your app may take a hit, especially if its access control involves remote endpoints. Caching the access control checks helps quite a lot, which can be done easily by configuring the [`staleTime` and `cacheTime`](https://react-query.tanstack.com/reference/useQuery) properties since Refine uses react-query.
 
 ```ts
 // inside your component
@@ -235,13 +169,13 @@ const { data } = useCan({
 
 :::note
 
-By default, **refine** uses 5 minutes for `cacheTime` and 0 minutes for `staleTime` for its own access control points.
+By default, Refine uses 5 minutes for `cacheTime` and 0 minutes for `staleTime` for its own access control points.
 
 :::
 
 ## List of Default Access Control Points
 
-Here is a list of components and pages **refine** checks for access control:
+Here is a list of components and pages Refine checks for access control:
 
 ### Sider
 
@@ -253,7 +187,7 @@ Menu items will check access control with `{ resource, action: "list" }`. For ex
 
 These buttons will be checked for access control.
 
-Let's say they are rendered where `resource` is `posts` and `id` is `1` where applicable. The `can` function will receive the `resource`([ResourceItemProps][iresourceitem]) object you passed to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
+Let's say they are rendered where `resource` is `posts` and `id` is `1` where applicable. The `can` function will receive the `resource`([ResourceProps][iresourceitem]) object you passed to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
 
 - [**List**](/docs/ui-integrations/ant-design/components/buttons/list-button): `{ resource: "posts", action: "list", params: { *resource } }`
 - [**Create**](/docs/ui-integrations/ant-design/components/buttons/create-button): `{ resource: "posts", action: "create", params: { *resource } }`
@@ -269,7 +203,7 @@ These buttons will be disabled if access control returns `{ can: false }`
 This example is for **Casbin** access control provider. You can check our other access control provider, [**Cerbos**](/docs/examples/access-control/cerbos/) as well.
 <CodeSandboxExample path="access-control-casbin" />
 
-[iresourceitem]: /docs/core/interface-references#resourceitemprops
+[iresourceitem]: /docs/core/interface-references#resourceprops
 [basekey]: /docs/core/interface-references#basekey
 [canparams]: /docs/core/interface-references#canparams
-[canreturntype]: /docs/core/interface-references#canreturntype
+[canresponse]: /docs/core/interface-references#canresponse

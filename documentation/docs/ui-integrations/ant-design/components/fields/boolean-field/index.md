@@ -5,9 +5,9 @@ swizzle: true
 
 This field is used to display boolean values. It uses the [`<Tooltip>`](https://ant.design/components/tooltip/#header) values from Ant Design.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -89,7 +89,7 @@ trueIcon-default="[`<CheckOutlined />`](https://ant.design/components/icon/)"
 falseIcon-default="[`<CloseOutlined />`](https://ant.design/components/icon/)"
 />
 
-:::tip External Props
+:::simple External Props
 
 This field also accepts all props of Ant Design's [Tooltip](https://ant.design/components/tooltip/#API) component.
 

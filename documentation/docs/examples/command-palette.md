@@ -1,7 +1,7 @@
 ---
 id: command-palette
 title: Command Palette
-description: kbar integration for `command`/`crtrl`+`k` interface for your refine App.
+description: kbar integration for `command`/`crtrl`+`k` interface for your Refine App.
 example-tags: [command-palette]
 ---
 

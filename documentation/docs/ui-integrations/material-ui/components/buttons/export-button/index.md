@@ -7,9 +7,9 @@ swizzle: true
 
 > For more information, refer to the [useExport documentation &#8594][useexport]
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -109,7 +109,7 @@ render(
 
 <PropsTable module="@refinedev/mui/ExportButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [LoadingButton](https://mui.com/material-ui/api/loading-button/#main-content).
 

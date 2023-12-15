@@ -1,6 +1,5 @@
 ---
 title: useForm
-sidebar_label: useForm
 source: packages/mantine/src/hooks/form/useForm/index.ts
 ---
 
@@ -176,11 +175,11 @@ const PostCreate: React.FC = () => {
 };
 ```
 
-`useForm` is used to manage forms. It is based on the [`Mantine useForm`][use-form-mantine] and the [`refine useForm`][use-form-core] and supports all the features of both packages and adds some additional features.
+`useForm` is used to manage forms. It is based on the [`Mantine useForm`][use-form-mantine] and the [`Refine useForm`][use-form-core] and supports all the features of both packages and adds some additional features.
 
 <GeneralConceptsLink />
 
-## Basic Usage
+## Usage
 
 We'll show the basic usage of `useForm` by adding an editing form.
 
@@ -228,11 +227,7 @@ Since this is an edit form it will fill the form with the data of the post with 
 
 Submit functionality is provided by `saveButtonProps` which includes all of the necessary props for a button to submit a form including automatically updating loading states.
 
-:::tip
-
 If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/docs/ui-integrations/mantine/hooks/use-modal-form) or the [useDrawerForm](/docs/ui-integrations/mantine/hooks/use-drawer-form) hook.
-
-:::
 
 > For more detailed usage examples please refer to the [Mantine Form](https://mantine.dev/form/use-form/) documentation.
 
@@ -242,13 +237,9 @@ If you want to show a form in a modal or drawer where necessary route params mig
 
 `useForm` can handle the `edit`, `create` and `clone` actions.
 
-:::tip
-
 By default, `useForm` determines the `action` from route. The action is inferred by matching the resource's action path with the current route.
 
 It can be overridden by passing the `action` prop when it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
-
-:::
 
 <Tabs
 defaultValue="create"
@@ -468,8 +459,6 @@ useForm({
 });
 ```
 
-:::caution
-
 If the `resource` is passed, the `id` from the current URL will be ignored because it may belong to a different resource. To retrieve the `id` value from the current URL, use the `useParsed` hook and pass the `id` value to the `useForm` hook.
 
 ```tsx
@@ -502,8 +491,6 @@ const {
 setId("123");
 ```
 
-:::
-
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
@@ -514,11 +501,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 It is useful when you want to `edit` or `clone` a `resource` from a different page.
 
-:::note
-
 `id` is required when `action: "edit"` or `action: "clone"`.
-
-:::
 
 ```tsx
 useForm({
@@ -609,11 +592,7 @@ If there is more than one `dataProvider`, you should use pass the name of the `d
 
 It is useful when you want to use a different `dataProvider` for a specific resource.
 
-:::tip
-
 If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop](/docs/core/refine-component#dataprovidername) of the `<Refine>` component.
-
-:::
 
 ```tsx
 useForm({
@@ -640,11 +619,7 @@ useForm({
 
 ### `successNotification`
 
-:::caution
-
-[`NotificationProvider`][notification-provider] is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After form is submitted successfully, `useForm` will call the `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize that success notification.
 
@@ -664,11 +639,7 @@ useForm({
 
 ### `errorNotification`
 
-:::caution
-
-[`NotificationProvider`][notification-provider] is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After the form submit has failed, `useForm` will call the `open` function from [`NotificationProvider`][notification-provider] to show a error notification. With this prop, you can customize that error notification.
 
@@ -748,11 +719,7 @@ useForm({
 });
 ```
 
-:::tip
-
 If you have overlapping properties in both `meta` and `queryMeta`, the `queryMeta` property will be used.
-
-:::
 
 ### `mutationMeta`
 
@@ -766,21 +733,13 @@ useForm({
 });
 ```
 
-:::tip
-
 If you have overlapping properties in both `meta` and `mutationMeta`, the `mutationMeta` property will be used.
-
-:::
 
 ### `queryOptions`
 
-:::caution
-
 Works only in the `action: "edit"` or `action: "clone"` modes.
 
-:::
-
-in `edit` or `clone` modes, **refine** uses [`useOne`](/docs/core/hooks/data/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property.
+in `edit` or `clone` modes, Refine uses [`useOne`](/docs/core/hooks/data/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property.
 
 ```tsx
 useForm({
@@ -794,13 +753,7 @@ useForm({
 
 ### `createMutationOptions`
 
-:::caution
-
-This option is only available when `action: "create"` or `action: "clone"`.
-
-:::
-
-In `create` or `clone` modes, **refine** uses [`useCreate`](/docs/core/hooks/data/use-create) hook to create data. You can pass the [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
+In `create` or `clone` modes, Refine uses [`useCreate`](/docs/core/hooks/data/use-create) hook to create data. You can pass the [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property. This option is only available when `action: "create"` or `action: "clone"`.
 
 ```tsx
 useForm({
@@ -814,13 +767,7 @@ useForm({
 
 ### `updateMutationOptions`
 
-:::caution
-
-This option is only available when `action: "edit"`.
-
-:::
-
-In `edit` mode, **refine** uses [`useUpdate`](/docs/core/hooks/data/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
+In `edit` mode, Refine uses [`useUpdate`](/docs/core/hooks/data/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property. This option is only available when `action: "edit"`.
 
 ```tsx
 useForm({
@@ -836,7 +783,7 @@ useForm({
 
 When it's true, Shows a warning when the user tries to leave the page with unsaved changes. It can be used to prevent the user from accidentally leaving the page. It is `false` by default.
 
-It can be set globally in [`refine config`](/docs/core/refine-component#warnwhenunsavedchanges).
+It can be set globally in [`Refine config`](/docs/core/refine-component#warnwhenunsavedchanges).
 
 ```tsx
 useForm({
@@ -912,19 +859,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports the [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError`](#onmutationerror) callback functions. You can use the `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. Default value is `false`.
 
 ```tsx
 useForm({
@@ -938,9 +879,7 @@ useForm({
 
 #### `debounce`
 
-> Default: `1000`
-
-`debounce` allows you to set the debounce time for the `autoSave` prop.
+`debounce` allows you to set the debounce time for the `autoSave` prop. Default value is `1000` milliseconds.
 
 ```tsx
 useForm({
@@ -956,9 +895,7 @@ useForm({
 
 #### `invalidateOnUnmount`
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. Default value is `false`.
 
 ```tsx
 useForm({
@@ -974,11 +911,7 @@ useForm({
 
 ## Return Values
 
-:::tip
-
 All [`mantine useForm`][use-form-mantine] and [`core useForm`][use-form-core] return values also available in `useForm`.
-
-:::
 
 ### `queryResult`
 

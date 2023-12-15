@@ -1,6 +1,5 @@
 ---
 title: useMenu
-sidebar_label: useMenu
 source: packages/core/src/hooks/menu/useMenu.tsx
 ---
 
@@ -23,9 +22,7 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 - `selectedKey` is the key of the resource user is viewing at the moment. Its inferred from the route.
 - `defaultOpenKeys` is the array with the keys of default opened menus.
 
-<br />
-
-:::caution
+:::simple Deprecation Notice
 
 `useMenu` hooks exported from `@refinedev/antd` and `@refinedev/mui` packages are now **deprecated** and will be removed. Please use `useMenu` from `@refinedev/core`.
 
@@ -33,15 +30,11 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 
 ## Usage
 
-:::tip
-
 If you are using [`@refinedev/antd`](/docs/ui-integrations/ant-design/introduction), [`@refinedev/mui`](/docs/ui-integrations/material-ui/introduction), [`@refinedev/chakra-ui`](/docs/ui-integrations/chakra-ui/introduction) or [`@refinedev/mantine`](/docs/ui-integrations/mantine/introduction) as a UI framework integration, you can find out more info about their structure and how to use `useMenu` in the [Custom Layout][customlayout]
-
-:::
 
 ### Creating a Menu
 
-We will show you how to use `useMenu` to create a simple menu for your **refine** application.
+We will show you how to use `useMenu` to create a simple menu for your Refine application.
 
 ```tsx live hideCode url=http://localhost:3000
 setInitialRoutes(["/"]);
@@ -280,9 +273,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 ### `hideOnMissingParameter`
 
-> Default: `true`
-
-It only affects menu items that require additional parameters to generate their URL. If the parameters are missing in the current URL neither in the `meta` property of the `useMenu` or in the `meta` property of the resource definition, the menu items that require a parameter will be hidden.
+It only affects menu items that require additional parameters to generate their URL. If the parameters are missing in the current URL neither in the `meta` property of the `useMenu` or in the `meta` property of the resource definition, the menu items that require a parameter will be hidden. By default, this property is set to `true`.
 
 For example, suppose you have a resource with a list path defined as `/authors/:authorId/books`. If there is no `authorId` parameter in the current URL or in the `meta` object, the menu item for this resource will be hidden.
 

@@ -19,15 +19,9 @@ If you define `resource` and `id` on the hook, when these properties are changed
 
 ## Realtime Updates
 
-:::caution
-
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 When the `useShow` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
-
-> For more information, refer to the [`liveProvider` documentation&#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
@@ -36,21 +30,22 @@ When the `useShow` hook is mounted, it will call the `subscribe` method from the
 <PropResource
 hook={{
         name:"useOne",
-        URL:"/docs/api-reference/core/hooks/data/useOne/"
+        URL:"/docs/core/hooks/data/use-one/"
     }}
 method={{
         name:"getOne",
-        URL:"/docs/api-reference/core/providers/data-provider/#getone"
+        URL:"/docs/core/providers/data-provider/#getone"
     }}
+hasDefault={false}
 />
+
+By default, it will try to read the `resource` value from the current URL.
 
 ```tsx
 useShow({
   resource: "categories",
 });
 ```
-
-:::caution
 
 If the `resource` is passed, the `id` from the current URL will be ignored because it may belong to a different resource. To retrieve the `id` value from the current URL, use the `useParsed` hook and pass the `id` value to the `useShow` hook.
 
@@ -77,17 +72,13 @@ const { setShowId } = useShow({
 setShowId("123");
 ```
 
-:::
-
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### `id`
 
-> Default: It reads the `id` value from the current URL.
-
-It will be passed to the `getOne` method from the `dataProvider` as a parameter. It is used to determine which record to fetch.
+It will be passed to the `getOne` method from the `dataProvider` as a parameter. It is used to determine which record to fetch. By default, it will try to read the `id` value from the current URL.
 
 ```tsx
 useShow({
@@ -168,11 +159,7 @@ useShow({
 
 ### `successNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useShow` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -190,11 +177,7 @@ useShow({
 
 ### `errorNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useShow` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -212,11 +195,7 @@ useShow({
 
 ### `liveMode`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -230,11 +209,7 @@ useShow({
 
 ### `onLiveEvent`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -248,11 +223,7 @@ useShow({
 
 ### `liveParams`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 

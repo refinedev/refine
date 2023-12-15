@@ -54,6 +54,7 @@ const siteConfig = {
                                   "danger",
                                   "sourcecode",
                                   "create-example",
+                                  "simple",
                               ],
                           },
                       },

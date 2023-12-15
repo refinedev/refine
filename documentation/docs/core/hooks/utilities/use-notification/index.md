@@ -1,6 +1,5 @@
 ---
 title: useNotification
-siderbar_label: useNotification
 source: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/notification/useNotification/index.ts
 ---
 
@@ -10,7 +9,7 @@ import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
 `useNotification` can be used to `open` or `close` notification at any time. It returns the `open` and `close` method from [`notificationProvider`](/docs/core/providers/notification-provider) under the hood.
 
-## Basic Usage
+## Usage
 
 Here is a basic example of how to use `useNotification` hook.
 
@@ -56,13 +55,7 @@ const { close } = useNotification();
 close?.("notification-key");
 ```
 
-> For more information, refer to the [`Close Notification Params` interface→](/docs/core/interface-references#close-notification-params)
-
-:::info
-
 You must pass a `key` to the `open` method. This key is used to close the notification.
-
-:::
 
 ## FAQ
 
@@ -87,7 +80,7 @@ open?.({
 
 ### Return Values
 
-| Property | Description               | Type                                                                                     |
-| -------- | ------------------------- | ---------------------------------------------------------------------------------------- |
-| open     | Open Notification Params  | [`Open Notification Params`](/docs/core/interface-references#open-notification-params)   |
-| close    | Close Notification Params | [`Close Notification Params`](/docs/core/interface-references#close-notification-params) |
+| Property | Description               | Type                                                                                   |
+| -------- | ------------------------- | -------------------------------------------------------------------------------------- |
+| open     | Open Notification Params  | [`Open Notification Params`](/docs/core/interface-references#open-notification-params) |
+| close    | Close Notification Params | `(key: string) => void;`                                                               |

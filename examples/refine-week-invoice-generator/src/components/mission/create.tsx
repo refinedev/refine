@@ -10,7 +10,7 @@ export const CreateMission: React.FC<CreateMissionProps> = ({
     formProps,
 }) => {
     return (
-        <Modal {...modalProps} title="Create Contact">
+        <Modal {...modalProps} title="Create Mission">
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -26,11 +26,15 @@ export const CreateMission: React.FC<CreateMissionProps> = ({
                 <Form.Item label="Description" name="mission_description">
                     <Input />
                 </Form.Item>
-                <Form.Item label="Day(s)" name="day">
-                    <InputNumber defaultValue={1} />
+                <Form.Item initialValue={1} label="Day(s)" name="day">
+                    <InputNumber />
                 </Form.Item>
-                <Form.Item label="Daily Rate" name="daily_rate">
-                    <InputNumber defaultValue={1} />
+                <Form.Item
+                    initialValue={1}
+                    label="Daily Rate"
+                    name="daily_rate"
+                >
+                    <InputNumber />
                 </Form.Item>
             </Form>
         </Modal>

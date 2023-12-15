@@ -14,6 +14,7 @@ import { CreateContact } from "../../components/contact";
 
 export const ContactList: React.FC = () => {
     const { tableProps } = useTable<IContact>({
+        sorters: { initial: [{ field: "id", order: "desc" }] },
         meta: { populate: ["client"] },
     });
 

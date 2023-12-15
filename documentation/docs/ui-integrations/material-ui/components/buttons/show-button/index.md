@@ -5,9 +5,9 @@ swizzle: true
 
 `<ShowButton>` uses Material UI's [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -72,7 +72,7 @@ render(
 
 ### `recordItemId`
 
-`recordItemId` is used to append the record id to the end of the route path.
+`recordItemId` is used to append the record id to the end of the route path. By default, the `recordItemId` is inferred from the route params.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -111,12 +111,6 @@ render(
 ```
 
 Clicking the button will trigger the `show` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
-
-:::note
-
-`<ShowButton>` component reads the id information from the route by default.
-
-:::
 
 ### `resource`
 
@@ -234,51 +228,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceNameOrRouteName` property. By default, `<ShowButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
-
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { ShowButton } from "@refinedev/mui";
-
-const MyShowComponent = () => {
-  return (
-    <ShowButton
-      // highlight-next-line
-      resourceNameOrRouteName="categories"
-      recordItemId="2"
-    />
-  );
-};
-
-// visible-block-end
-
-const ShowPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
-};
-
-render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        show: ShowPage,
-      },
-    ]}
-    DashboardPage={MyShowComponent}
-  />,
-);
-```
-
-Clicking the button will trigger the `show` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to `/categories/show/2`.
+Use `resource` prop instead.
 
 ## API Reference
 
@@ -286,7 +236,7 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/docs/co
 
 <PropsTable module="@refinedev/mui/ShowButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
 

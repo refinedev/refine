@@ -1,6 +1,7 @@
 ---
 title: Appwrite
-sidebar_label: Appwrite
+source: https://github.com/refinedev/refine/tree/master/packages/appwrite
+swizzle: true
 ---
 
 ```tsx live shared
@@ -268,201 +269,38 @@ const PostShow: React.FC = () => {
 };
 ```
 
-## Introduction
+Refine provides a data provider for [Appwrite](https://appwrite.io/), a backend as a service platform, to build CRUD applications.
 
-**refine** and [Appwrite](https://appwrite.io/) work in harmony, offering you quick development options. You can use your data (API, Database) very simply by using **refine**'s Appwrite data provider.
+:::simple Good to know
 
-:::info
-
-[Appwrite](https://appwrite.io/) version >= 1.0 is required
-
-:::
-
-You can only focus on your UI as we can handle your data quickly and simply.
-
-:::caution
-
-This guide has been prepared assuming you know the basics of **refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
+- `@refinedev/appwrite` requires Appwrite version >= 1.0
+- To learn more about data fetching in Refine, check out the [Data Fetching](/docs/guides-concepts/data-fetching) guide.
+- To learn more about realtime features of Refine, check out the [Realtime](/docs/guides-concepts/realtime) guide.
+- Example below uses `@refinedev/antd` as the UI library but Refine is UI agnostic and you can use any UI library you want.
 
 :::
 
-## Setup
+## Installation
 
 ```bash
-npm install @refinedev/appwrite
+npm i @refinedev/appwrite
 ```
-
-:::caution
-
-To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
-
-:::
 
 ## Usage
 
-It is very simple to use and consists of two steps. First, define your Appwrite project id and then give it to the dataprovider.
+First, we'll create our Appwrite client and use it in our `dataProvider`, `authProvider` and `liveProvider`.
 
-### Creating Appwrite Client
+import Usage from "./usage.tsx";
 
-```tsx title="appwriteClient.ts"
-import { Appwrite, Account, Storage } from "@refinedev/appwrite";
-
-const APPWRITE_URL = "http://YOUR_COOL_APPWRITE_API/v1";
-//highlight-start
-const APPWRITE_PROJECT = "YOUR_APPWRITE_PROJECT_ID";
-//highlight-end
-
-const appwriteClient = new Appwrite();
-
-appwriteClient.setEndpoint(APPWRITE_URL).setProject(APPWRITE_PROJECT);
-
-// for authentication
-const account = new Account(appwriteClient);
-// for file upload
-const storage = new Storage(appwriteClient);
-
-export { appwriteClient, account, storage };
-```
-
-### Creating Auth Provider
-
-```tsx title="authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
-
-import { account } from "./appwriteClient";
-
-const authProvider: AuthBindings = {
-  login: async ({ email, password }) => {
-    try {
-      await account.createEmailSession(email, password);
-      return {
-        success: true,
-        redirectTo: "/",
-      };
-    } catch (e) {
-      const { type, message, code } = e as AppwriteException;
-      return {
-        success: false,
-        error: {
-          message,
-          name: `${code} - ${type}`,
-        },
-      };
-    }
-  },
-  logout: async () => {
-    try {
-      await account.deleteSession("current");
-    } catch (error: any) {
-      return {
-        success: false,
-        error,
-      };
-    }
-
-    return {
-      success: true,
-      redirectTo: "/login",
-    };
-  },
-  onError: async (error) => {
-    console.error(error);
-    return { error };
-  },
-  check: async () => {
-    try {
-      const session = await account.get();
-
-      if (session) {
-        return {
-          authenticated: true,
-        };
-      }
-    } catch (error: any) {
-      return {
-        authenticated: false,
-        error: error,
-        logout: true,
-        redirectTo: "/login",
-      };
-    }
-
-    return {
-      authenticated: false,
-      error: {
-        message: "Check failed",
-        name: "Session not found",
-      },
-      logout: true,
-      redirectTo: "/login",
-    };
-  },
-  getPermissions: async () => null,
-  getIdentity: async () => {
-    const user = await account.get();
-
-    if (user) {
-      return user;
-    }
-
-    return null;
-  },
-};
-```
-
-### Configure Refine Component
-
-```tsx title="App.tsx"
-import { Refine, AuthBindings } from "@refinedev/core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
-
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-//highlight-start
-import { dataProvider, liveProvider } from "@refinedev/appwrite";
-//highlight-end
-
-//highlight-start
-import { appwriteClient, account } from "./appwriteClient";
-import authProvider from "./authProvider";
-//highlight-end
-
-const App: React.FC = () => {
-  return (
-    <BrowserRouter>
-      <Refine
-        //highlight-start
-        dataProvider={dataProvider(appwriteClient, {
-          databaseId: "default",
-        })}
-        liveProvider={liveProvider(appwriteClient, {
-          databaseId: "default",
-        })}
-        options={{ liveMode: "auto" }}
-        authProvider={authProvider}
-        //highlight-end
-        routerProvider={routerProvider}
-        notificationProvider={notificationProvider}
-      >
-        {/* ... */}
-      </Refine>
-    </BrowserRouter>
-  );
-};
-```
-
-:::tip Live/Realtime 🚀
-
-`@refinedev/appwrite` package supports Live/Realtime Provider natively 🚀
-
-[Refer to the Live/Realtime Provider docs for detailed usage. →](/docs/core/providers/live-provider)
-
-:::
+<Usage />
 
 ## Create Collections
 
 We created two collections on Appwrite Database as `posts` and `categories` and added a relation between them.
+
+<Tabs>
+
+<TabItem value="category" label="Category Collection">
 
 `Category Collection`:
 
@@ -470,7 +308,9 @@ We created two collections on Appwrite Database as `posts` and `categories` and 
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/category.png" alt="category" />
 
-<br/>
+</TabItem>
+
+<TabItem value="post" label="Post Collection">
 
 `Post Collection`:
 
@@ -481,13 +321,17 @@ We created two collections on Appwrite Database as `posts` and `categories` and 
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/posts.png" alt="posts" />
 
-<br/>
+</TabItem>
 
-Then we need to create an appwrite user to be able to login with **refine**.
+<TabItem value="auth" label="Authentication">
+
+Then we need to create an appwrite user to be able to login with Refine.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/user.png" alt="user" />
 
-<br/>
+</TabItem>
+
+</Tabs>
 
 ### Permissions
 
@@ -500,9 +344,12 @@ Example: `Post Collection Permissions`
 
 We indicate that the read and write permission is open to everyone by giving the "\*" parameter.
 
-[Refer to the Appwrite Permissions documentation for detailed information.→](https://appwrite.io/docs/permissions)
+:::simple Related resources
 
-[Check out how you can use permissions when creating posts with **refine** →](#create-page)
+- Check out Appwrite's [Permissions](https://appwrite.io/docs/permissions) documentation for detailed information.
+- Check out how you can use permissions when [creating posts](#create-page) with Refine
+
+:::
 
 ## Login page​
 
@@ -510,7 +357,7 @@ Before creating CRUD pages, let's create a login page. For this we use the [`Aut
 
 Below we see its implementation in the `App.tsx` file:
 
-```tsx live hideCode url=http://localhost:5173 previewHeight=650px
+```tsx live hideCode url=http://localhost:5173
 setInitialRoutes(["/"]);
 // visible-block-start
 // src/App.tsx
@@ -632,52 +479,35 @@ render(<App />);
 
 Now we can login with the user we created by Appwrite. We can then list, create and edit posts.
 
+## List Page
+
 :::tip
 
-**refine** resource name must be the same as Appwrite Collection ID. You can change your label with resource meta.
+When defining your resources, `name` must match the Appwrite Collection ID. You can change the label with the resource meta.
 
 ```tsx
-const App: React.FC = () => {
-  return (
-    <Refine
-      dataProvider={dataProvider(appwriteClient, {
-        databaseId: "default",
-      })}
-      liveProvider={liveProvider(appwriteClient, {
-        databaseId: "default",
-      })}
-      options={{ liveMode: "auto" }}
-      authProvider={authProvider}
-      routerProvider={routerProvider}
-      Layout={Layout}
-      ReadyPage={ReadyPage}
-      notificationProvider={notificationProvider}
-      catchAll={<ErrorComponent />}
-      LoginPage={Login}
-      resources={[
-        {
+export const App = () => (
+  <Refine
+    // ...
+    resources={[
+      {
+        //highlight-start
+        name: "61bc3660648a6",
+        //highlight-end
+        meta: {
           //highlight-start
-          name: "61bc3660648a6",
+          label: "Post",
           //highlight-end
-          meta: {
-            //highlight-start
-            label: "Post",
-            //highlight-end
-          },
         },
-      ]}
-    />
-  );
-};
-
-export default App;
+      },
+    ]}
+  />
+);
 ```
 
 :::
 
-## List Page
-
-Now that we've created our collections, we can create and list documents. Let's list the posts and categories that we have created by Appwrite with **refine**.
+Now that we've created our collections, we can create and list documents. Let's list the posts and categories that we have created by Appwrite with Refine.
 
 <details>
 <summary>Show Code</summary>
@@ -746,7 +576,7 @@ export const PostsList: React.FC = () => {
 </p>
 </details>
 
-```tsx live previewOnly url=http://localhost:5173 previewHeight=650px
+```tsx live previewOnly url=http://localhost:5173
 setInitialRoutes(["/"]);
 
 import { Refine, Authenticated } from "@refinedev/core";
@@ -868,7 +698,7 @@ render(<App />);
 
 ## Create Page
 
-We can now create posts and set categories from our **refine** UI.
+We can now create posts and set categories from our Refine UI.
 
 <details>
 <summary>Show Code</summary>
@@ -964,7 +794,7 @@ export const PostsCreate: React.FC = () => {
 </p>
 </details>
 
-```tsx live previewOnly url=http://localhost:5173 previewHeight=650px
+```tsx live previewOnly url=http://localhost:5173
 setInitialRoutes(["/posts/create"]);
 
 import { Refine, Authenticated } from "@refinedev/core";
@@ -1086,11 +916,9 @@ render(<App />);
 
 :::tip
 
-As we mentioned above, we need permissions to list or create documents in Appwrite. By default, Read Access and Write Access are public when creating documents from **refine** UI.
+By default, Read Access and Write Access are public when creating documents via Refine. If you want to restrict [permissions](https://appwrite.io/docs/permissions#permission-types) and only allow specific users, you need to specify it in meta.
 
-If you want to restrict [permissions](https://appwrite.io/docs/permissions#permission-types) and only allow specific users, you need to specify it in meta.
-
-```tsx
+```tsx title="edit.tsx"
 import { Permission, Role } from "@refinedev/appwrite";
 const { formProps, saveButtonProps } = useForm<IPost>({
   meta: {
@@ -1202,7 +1030,7 @@ export const PostsEdit: React.FC = () => {
 </p>
 </details>
 
-```tsx live previewOnly url=http://localhost:5173 previewHeight=650px
+```tsx live previewOnly url=http://localhost:5173
 setInitialRoutes(["/posts/edit/61c4697ab9ff9"]);
 
 import { Refine, Authenticated } from "@refinedev/core";

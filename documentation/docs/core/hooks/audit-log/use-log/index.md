@@ -2,9 +2,7 @@
 title: useLog
 ---
 
-## Overview
-
-If you need to create or update an audit log, you can use **refine**'s `useLog` hook. This hook will return two mutations called `log` and `rename`
+If you need to create or update an audit log, you can use Refine's `useLog` hook. This hook will return two mutations called `log` and `rename`
 
 ```tsx
 import { useLog } from "@refinedev/core";
@@ -38,22 +36,16 @@ mutate({
 });
 ```
 
-:::caution
-
-This hook can only be used if `auditLogProvider`'s `create` method is provided.
-
-:::
-
 ### Properties
 
-| Property                                                                                            | Type                  |
-| --------------------------------------------------------------------------------------------------- | --------------------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | `string`              |
-| <div className="required-block"><div>action</div> <div className=" required">Required</div></div>   | `string`              |
-| author                                                                                              | `Record<string, any>` |
-| meta                                                                                                | `Record<string, any>` |
-| data                                                                                                | `Record<string, any>` |
-| previousData                                                                                        | `Record<string, any>` |
+| Property                      | Type                  |
+| ----------------------------- | --------------------- |
+| resource <PropTag asterisk /> | `string`              |
+| action <PropTag asterisk />   | `string`              |
+| author                        | `Record<string, any>` |
+| meta                          | `Record<string, any>` |
+| data                          | `Record<string, any>` |
+| previousData                  | `Record<string, any>` |
 
 ### Type Parameters
 
@@ -85,18 +77,12 @@ mutate({
 });
 ```
 
-:::caution
-
-This hook can only be used if `auditLogProvider`'s `update` method is provided.
-
-:::
-
 ### Properties
 
-| Property                                       | Type      |
-| ---------------------------------------------- | --------- |
-| id<div className=" required">Required</div>    | `BaseKey` |
-| name <div className=" required">Required</div> | `string`  |
+| Property                  | Type      |
+| ------------------------- | --------- |
+| id <PropTag asterisk />   | `BaseKey` |
+| name <PropTag asterisk /> | `string`  |
 
 ### Type Parameters
 
@@ -111,11 +97,3 @@ This hook can only be used if `auditLogProvider`'s `update` method is provided.
 | Description                               | Type                                                                                                                                           |
 | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result of the `react-query`'s useMutation | [`UseMutationResult<{ data: TData}, TError, { id: BaseKey; name: string; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
-
-<br />
-
-:::info
-
-You can get audit logs with [`useLogList`](/docs/core/hooks/audit-log/use-log).
-
-:::

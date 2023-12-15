@@ -17,7 +17,8 @@ type Props = {
         | "note"
         | "additional"
         | "danger"
-        | "info-tip";
+        | "info-tip"
+        | "simple";
     title?: React.ReactNode;
     children: React.ReactNode;
 };
@@ -44,6 +45,7 @@ const colorTextClasses = {
     tip: "text-refine-green",
     note: "text-refine-cyan",
     additional: "text-refine-cyan",
+    simple: "text-gray-700 dark:text-gray-100",
 };
 
 const colorWrapperClasses = {
@@ -58,6 +60,7 @@ const colorWrapperClasses = {
     tip: "bg-refine-green bg-opacity-10 border-l-refine-green",
     note: "bg-refine-cyan bg-opacity-10 border-l-refine-cyan",
     additional: "bg-refine-cyan bg-opacity-10 border-l-refine-cyan",
+    simple: "border dark:border-gray-700 border-gray-300",
 };
 
 const titles = {
@@ -70,12 +73,21 @@ const titles = {
     note: "NOTE",
     additional: "ADDITIONAL INFO",
     "info-tip": "INFORMATION",
+    simple: "Good to know",
 };
 
 export const Admonition = ({ type, title, children }: Props) => {
     const Icon = icons[type] ?? (() => null);
     const clsText = colorTextClasses[type] ?? "tex-inherit";
     const clsWrapper = colorWrapperClasses[type] ?? "bg-inherit";
+
+    if (type === "simple") {
+        return (
+            <Simple type={type} title={title}>
+                {children}
+            </Simple>
+        );
+    }
 
     return (
         <div
@@ -117,6 +129,52 @@ export const Admonition = ({ type, title, children }: Props) => {
                     </div>
                 )}
                 <div className={clsx("text-gray-0", "text-base", "last:mb-0")}>
+                    {children}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const Simple = ({ type, title, children }: Props) => {
+    const clsText = colorTextClasses[type] ?? "tex-inherit";
+    const clsWrapper = colorWrapperClasses[type] ?? "bg-inherit";
+
+    return (
+        <div
+            className={clsx(
+                "rounded-md",
+                "admonition",
+                `admonition-${type}`,
+                "mb-6",
+                clsWrapper,
+            )}
+        >
+            <div className={clsx("flex flex-col", "gap-2", !title && "pt-4")}>
+                {title && (
+                    <div
+                        className={clsx(
+                            "px-4",
+                            "pt-4",
+                            "text-sm",
+                            "leading-5",
+                            "-mt-0.5",
+                            clsText,
+                        )}
+                    >
+                        <span className="font-semibold">{title ?? ""}</span>
+                        <span>:</span>
+                    </div>
+                )}
+                <div
+                    className={clsx(
+                        "text-gray-0",
+                        "text-base",
+                        "last:mb-0",
+                        "px-4 pb-4",
+                        "admonition-content",
+                    )}
+                >
                     {children}
                 </div>
             </div>

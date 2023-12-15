@@ -5,9 +5,9 @@ swizzle: true
 
 This field lets you embed a link. It uses Ant Design's [<Typography.Link\>](https://ant.design/components/typography/) component. You can pass a URL in its `value` prop and you can show a text in its place by passing any `children`.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -73,7 +73,7 @@ render(
 
 <PropsTable module="@refinedev/antd/UrlField" value-description="URL for link to reference to"/>
 
-:::tip External Props
+:::simple External Props
 
 This field also accepts all props of Ant Design's [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router) component.
 

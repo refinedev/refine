@@ -1,6 +1,5 @@
 ---
 title: useSelect
-siderbar_label: useSelect
 source: https://github.com/refinedev/refine/blob/master/packages/mantine/src/hooks/useSelect/index.ts
 ---
 
@@ -14,17 +13,7 @@ import CrudLivePreview from "./crud-live-preview.md";
 
 This hook uses the `useList` hook for fetching data. [Refer to useList hook documentation for details. →](/docs/core/hooks/data/use-list)
 
-:::info-tip DERIVATIVES
-
-If you're looking for a complete select library, refine has out-of-the-box support for the libraries below:
-
-- refine's `useSelect` (for Headless users) - [Documentation](/docs/core/hooks/use-select) - [Example](/docs/examples/core/useSelect)
-- [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-select) - [Example](/docs/examples/field/useSelect)
-- [Material UI Autocomplete](https://mui.com/material-ui/react-autocomplete) (for Material UI users) - [Documentation](/docs/ui-integrations/material-ui/hooks/use-auto-complete)
-
-:::
-
-## Basic Usage
+## Usage
 
 Here is a basic example of how to use `useSelect` hook.
 
@@ -32,16 +21,10 @@ Here is a basic example of how to use `useSelect` hook.
 
 ## Realtime Updates
 
-:::caution
-
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider)
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 When `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`.
 It is useful when you want to subscribe to the live updates.
-
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
@@ -72,9 +55,7 @@ useSelect<ICategory>({
 });
 ```
 
-:::tip
-
-Supports nested properties with option [Object path](https://lodash.com/docs/4.17.15#get) syntax.
+These properties also support nested properties via [Object path](https://lodash.com/docs/4.17.15#get) syntax.
 
 ```tsx
 const { options } = useSelect({
@@ -83,8 +64,6 @@ const { options } = useSelect({
   optionValue: "nested.id",
 });
 ```
-
-:::
 
 ### `sorters`
 
@@ -219,11 +198,7 @@ const { options } = useSelect({
 
 <OnSearchLivePreview />
 
-:::info
-
 If `onSearch` is used, it will override the existing `filters`.
-
-:::
 
 > For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references#crudfilters)
 
@@ -306,11 +281,7 @@ useSelect({
 
 ### `successNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useSelect` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -328,11 +299,7 @@ useSelect({
 
 ### `errorNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useSelect` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
@@ -350,11 +317,7 @@ useSelect({
 
 ### `liveMode`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -364,15 +327,9 @@ useSelect({
 });
 ```
 
-> For more information, refer to the [Live / Realtime documentation](/docs/core/providers/live-provider#livemode)
-
 ### `onLiveEvent`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 The callback function that is executed when new events from a subscription are arrived.
 
@@ -386,11 +343,7 @@ useSelect({
 
 ### `liveParams`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
@@ -420,29 +373,13 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### ~~`sort`~~
-
-:::caution Deprecated
+### ~~`sort`~~ <PropTag deprecated />
 
 Use `sorters` instead.
 
-:::
-
-### ~~`hasPagination`~~
-
-:::caution Deprecated
+### ~~`hasPagination`~~ <PropTag deprecated />
 
 Use `pagination.mode` instead.
-
-:::
-
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not. It is `false` by default.
-
-```tsx
-useSelect({
-  hasPagination: true,
-});
-```
 
 ## FAQ
 

@@ -1,6 +1,5 @@
 ---
 title: Theme
-sidebar_label: Theme
 ---
 
 ```tsx live shared
@@ -119,7 +118,7 @@ interface IPost {
 }
 ```
 
-Mantine theme is an object where your application's colors, fonts, spacing, border-radius and other design tokens are stored. You can either create your own theme object or use themes that provide from **refine**. Theme provides a way to your app's design to meet them.
+Mantine theme is an object where your application's colors, fonts, spacing, border-radius and other design tokens are stored. You can either create your own theme object or use themes that provide from Refine. Theme provides a way to your app's design to meet them.
 
 > For more information, refer to the [Mantine documentation &#8594](https://mantine.dev/theming/theme-object/)
 
@@ -150,15 +149,11 @@ const App: React.FC = () => {
 };
 ```
 
-:::info
-
 [You can see how themes change the look of the application in this example.](/docs/examples/themes/refine-themes-mantine/)
-
-:::
 
 ## Theme customization
 
-`<MantineProvider/>` component can be used to change the theme. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by **refine**.
+`<MantineProvider/>` component can be used to change the theme. It is not required if you decide to use the default theme. You can also use `RefineThemes` provided by Refine.
 
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);
@@ -233,9 +228,9 @@ render(<App />);
 
 > For more information, refer to the [`<MantineProvider/>` documentation &#8594](https://mantine.dev/theming/mantine-provider/)
 
-### Overriding the refine themes
+### Overriding the Refine themes
 
-You can override or extend the default refine themes. You can also create your own theme. Let's see how you can do this:
+You can override or extend the default Refine themes. You can also create your own theme. Let's see how you can do this:
 
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);
@@ -465,8 +460,4 @@ render(<App />);
 
 > For more information, refer to the [Mantine dark theme documentation &#8594](https://mantine.dev/guides/dark-theme)
 
-:::tip
-
 If you want to customize the default layout elements provided with `@refinedev/mantine` package, check out the [Custom ThemedLayout](/docs/advanced-tutorials/custom-layout) tutorial.
-
-:::

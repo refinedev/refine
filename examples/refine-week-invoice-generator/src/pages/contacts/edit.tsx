@@ -9,14 +9,10 @@ export const EditContact: React.FC<IResourceComponentsProps> = () => {
         meta: { populate: ["client"] },
     });
 
-    const defaultClientCompany = queryResult?.data?.data;
-
     const { selectProps } = useSelect({
         resource: "clients",
-        defaultValue: defaultClientCompany?.client?.id,
         optionValue: "id",
         optionLabel: "name",
-
         pagination: {
             mode: "server",
         },
@@ -29,19 +25,41 @@ export const EditContact: React.FC<IResourceComponentsProps> = () => {
                 layout="vertical"
                 wrapperCol={{ md: 18, lg: 16 }}
             >
-                <Form.Item label="First Name" name="first_name">
+                <Form.Item
+                    label="First Name"
+                    name="first_name"
+                    rules={[{ required: true }]}
+                >
                     <Input />
                 </Form.Item>
-                <Form.Item label="Last Name" name="last_name">
+                <Form.Item
+                    label="Last Name"
+                    name="last_name"
+                    rules={[{ required: true }]}
+                >
                     <Input />
                 </Form.Item>
-                <Form.Item label="Client Company" name={["client", "id"]}>
+                <Form.Item
+                    label="Client Company"
+                    name={["client", "id"]}
+                    rules={[{ required: true }]}
+                >
                     <Select {...selectProps} />
                 </Form.Item>
-                <Form.Item label="Phone Number" name="phone_number">
+                <Form.Item
+                    label="Phone Number"
+                    name="phone_number"
+                    rules={[
+                        { type: "number", transform: (value) => Number(value) },
+                    ]}
+                >
                     <Input />
                 </Form.Item>
-                <Form.Item label="Email" name="email">
+                <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[{ required: true, type: "email" }]}
+                >
                     <Input />
                 </Form.Item>
                 <Form.Item label="Job" name="job">

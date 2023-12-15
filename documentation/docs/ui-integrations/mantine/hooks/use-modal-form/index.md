@@ -1,17 +1,12 @@
 ---
 title: useModalForm
-sidebar_label: useModalForm
 ---
 
 `useModalForm` hook also allows you to manage a form inside a modal component. It provides some useful methods to handle the form modal.
 
-:::info
-
 `useModalForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/master/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
 
-:::
-
-## Basic Usage
+## Usage
 
 We will show three examples, `"create"`, `"edit"` and `"clone"`. Let's see how `useModalForm` is used in all.
 
@@ -378,9 +373,7 @@ setRefineProps({
 render(<RefineMantineDemo />);
 ```
 
-:::caution
-
-**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Modal>` when clicked.
+Refine doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Modal>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list for `"edit"` form in `<Modal>` to be able to fetch data by the record `id`.
 
@@ -411,13 +404,7 @@ const table = useTable({
 });
 ```
 
-:::
-
-:::caution
-
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
-
-:::
 
 </TabItem>
 
@@ -604,9 +591,7 @@ setRefineProps({
 render(<RefineMantineDemo />);
 ```
 
-:::caution
-
-**refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens `"clone"` form in `<Modal>` when clicked.
+Refine doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens `"clone"` form in `<Modal>` when clicked.
 
 So, we have to put the `<CloneButton/>` on our list for `"clone"` form in `<Modal>` to be able to fetch data by the record `id`.
 
@@ -637,13 +622,7 @@ const table = useTable({
 });
 ```
 
-:::
-
-:::caution
-
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
-
-:::
 
 </TabItem>
 
@@ -667,13 +646,7 @@ const modalForm = useModalForm({
 
 ### `initialValues`
 
-:::caution
-
-Only available in `"create"` form.
-
-:::
-
-Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed. This property is only available for `"create"` action.
 
 ```tsx
 const modalForm = useModalForm({
@@ -765,19 +738,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. Default value is `false`.
 
 ```tsx
 useModalForm({
@@ -791,9 +758,7 @@ useModalForm({
 
 #### `debounce`
 
-> Default: `1000`
-
-Set the debounce time for the `autoSave` prop.
+Set the debounce time for the `autoSave` prop. Default value is `1000` milliseconds.
 
 ```tsx
 useModalForm({
@@ -809,9 +774,7 @@ useModalForm({
 
 #### `invalidateOnUnmount`
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. Default value is `false`.
 
 ```tsx
 useModalForm({
@@ -827,9 +790,7 @@ useModalForm({
 
 #### `invalidateOnClose`
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. Default value is `false`.
 
 ```tsx
 useModalForm({
@@ -845,13 +806,9 @@ useModalForm({
 
 ## Return Values
 
-:::tip
-
 All [`useForm`][use-form-refine-mantine] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) docs.
 
 All [`mantine useForm`](https://mantine.dev/form/use-form/) return values also available in `useModalForm`. You can find descriptions on [`mantine`](https://mantine.dev/form/use-form/) docs.
-
-:::
 
 ### `visible`
 

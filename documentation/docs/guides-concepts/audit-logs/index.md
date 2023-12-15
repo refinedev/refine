@@ -6,7 +6,7 @@ Audit logs are useful tool for web applications, providing a reliable record of 
 
 ## Audit Log Provider
 
-**Refine** offers [Audit Log Provider](/docs/core/providers/audit-log-provider) to centralize retrieving audit logs easily across your application.
+Refine offers [Audit Log Provider](/docs/core/providers/audit-log-provider) to centralize retrieving audit logs easily across your application.
 
 CRUD operations are automatically logged when **Audit Log Provider** is provided, along with the current user information coming from [useGetIdentity](/docs/core/hooks/auth/use-get-identity) hook.
 
@@ -77,7 +77,7 @@ export const App = () => {
 
 ### Hook Integrations
 
-**Refine**'s mutation hooks such as `useCreate`, `useCreateMany`, `useUpdate`, `useUpdateMany`, `useDelete`, `useDeleteMany` are already integrated with **Audit Log Provider**.
+Refine's mutation hooks such as `useCreate`, `useCreateMany`, `useUpdate`, `useUpdateMany`, `useDelete`, `useDeleteMany` are already integrated with **Audit Log Provider**.
 
 See the [Supported Hooks](/docs/core/providers/audit-log-provider#supported-hooks) section for more information.
 

@@ -3,7 +3,7 @@ id: custom-form-validation
 title: Custom Form Validation
 ---
 
-In **refine**, we can use the form validation that comes with `Ant Design` with the [rules](https://ant.design/components/form/#Rule) property of the [Form.Item](https://ant.design/components/form/#Form.Item) component.
+In **Refine**, we can use the form validation that comes with `Ant Design` with the [rules](https://ant.design/components/form/#Rule) property of the [Form.Item](https://ant.design/components/form/#Form.Item) component.
 
 ```tsx
 <Form>

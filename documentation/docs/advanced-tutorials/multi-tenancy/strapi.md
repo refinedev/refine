@@ -12,11 +12,11 @@ Multitenancy refers to a kind of architecture where a single instance of softwar
 
 In this guide, we will create an application with you in the logic of Multi Tenant(Multitenancy). We can say multi tenant application is separate and manage multiple contents independently from each other in a single application.
 
-We will make a Cake House application using **refine** and [Strapi-v4](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html). Our Cake House will consist of two separate stores and there will be special products for these stores. We will explain step by step how to manage these stores, products, and orders separately.
+We will make a Cake House application using **Refine** and [Strapi-v4](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html). Our Cake House will consist of two separate stores and there will be special products for these stores. We will explain step by step how to manage these stores, products, and orders separately.
 
 :::caution
 
-This guide has been prepared to assume you know the basics of **refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
+This guide has been prepared to assume you know the basics of **Refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
 
 :::
 
@@ -230,7 +230,7 @@ We created three collections on Strapi as store, product, and order and added a 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/orders.png" alt="orders" />
 <br/>
 
-Now that we have completed the setup and our collections, we can now log in with the **refine** and start the listing processes.
+Now that we have completed the setup and our collections, we can now log in with the **Refine** and start the listing processes.
 
 ## Create Resources and Routes
 
@@ -313,12 +313,12 @@ import { useParsed } from "@refinedev/core";
 
 const { params } = useParsed<{ tenant: string }>();
 
-console.log(params?.tenant); // { tenant: "refine" }
+console.log(params?.tenant); // { tenant: "Refine" }
 ```
 
 ## Shop Select to Sider Component
 
-We will create a select component in the `Header` Menu where the user will select the stores. Let's create our select component first, then let's see how we can define it in the **refine** `Header` component.
+We will create a select component in the `Header` Menu where the user will select the stores. Let's create our select component first, then let's see how we can define it in the **Refine** `Header` component.
 
 ```tsx title="scr/components/select/StoreSelect.tsx"
 import { useSelect } from "@refinedev/antd";
@@ -379,7 +379,7 @@ export const StoreSelect: React.FC<SelectProps> = ({ onSelect }) => {
 
 Here we have created a select component. Then we fetch the store id and title we created in the Strapi database with `useSelect`.
 
-Let's define the select component in the **refine** `Header`.
+Let's define the select component in the **Refine** `Header`.
 
 [Check out how you can customize `Header` →](/docs/ui-integrations/ant-design/components/themed-layout#header)
 
@@ -453,7 +453,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
 
 ## Product List Page
 
-Now we can list the products of the selected store according to the `storeId` information by filtering it. We can do this filtering by using the `filters.permanent` property within the **refine**'s `useSimpleList` hook.
+Now we can list the products of the selected store according to the `storeId` information by filtering it. We can do this filtering by using the `filters.permanent` property within the **Refine**'s `useSimpleList` hook.
 
 We separate the products of different stores by using the `filters.permanent` with the `storeId` we get from the Store Context. So we can control more than single content in one application.
 
@@ -566,11 +566,11 @@ export const dataProvider = (): Required<DataProvider> => {
   return {
     getList: async ({ resource, pagination, filters, sorters, meta }) => {
       // ...
-      console.log(meta.tenant); // { tenant: "refine" }
+      console.log(meta.tenant); // { tenant: "Refine" }
     },
     getOne: async ({ resource, id, meta }) => {
       // ...
-      console.log(meta.tenant); // { tenant: "refine" }
+      console.log(meta.tenant); // { tenant: "Refine" }
     },
     // ...
   };
@@ -700,7 +700,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({ modalProps, formPr
 
 ## Conclusion
 
-In this guide and in our example app, we talked about how we can build multitenancy apps with **refine**. Developing a multitenancy application is quite simple with the flexible route infrastructure of `refine`.
+In this guide and in our example app, we talked about how we can build multitenancy apps with **Refine**. Developing a multitenancy application is quite simple with the flexible route infrastructure of `Refine`.
 
 ## Example
 

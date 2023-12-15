@@ -1,6 +1,5 @@
 ---
-title: <Authenticated>
-sidebar_label: <Authenticated>
+title: <Authenticated />
 ---
 
 `<Authenticated>` is the component form of [`useIsAuthenticated`][use-is-authenticated].
@@ -89,6 +88,11 @@ Component to render while checking whether the user is logged in.
 
 ### Properties
 
-<PropsTable module="@refinedev/core/Authenticated" />
+<PropsTable
+  module="@refinedev/core/Authenticated"
+  v3LegacyAuthProviderCompatible-required={false}
+  v3LegacyAuthProviderCompatible-type="boolean"
+  v3LegacyAuthProviderCompatible-description="This must be set to `true` if legacy auth provider is being used."
+/>
 
 [use-is-authenticated]: /docs/core/hooks/auth/use-is-authenticated

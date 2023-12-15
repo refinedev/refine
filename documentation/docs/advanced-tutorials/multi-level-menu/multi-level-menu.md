@@ -4,7 +4,7 @@ title: Multi Level Menu
 sidebar_label: Multi Level Menu
 ---
 
-This document is related to how to create a multi-level menu for **refine** applications.
+This document is related to how to create a multi-level menu for **Refine** applications.
 
 ### What is Multi-level Menu?
 
@@ -12,7 +12,7 @@ The multi-level menu is a great way to organize your sider menu items. You can c
 
 ## Usage
 
-To do this, it is necessary to create an object array with the following [resources properties](/docs/core/interface-references#resourceitemprops):
+To do this, it is necessary to create an object array with the following [resources properties](/docs/core/interface-references#resourceprops):
 
 ```tsx title="src/App.tsx"
         <Refine

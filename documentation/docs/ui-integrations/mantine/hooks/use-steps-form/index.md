@@ -353,13 +353,9 @@ const PostEdit: React.FC = () => {
 
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
-:::info
-
 The `useStepsForm` hook is extended from [`useForm`][use-form-refine-mantine] from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/master/packages/mantine) package. This means that you can use all the functionalities of [`useForm`][use-form-refine-mantine] in your `useStepsForm`.
 
-:::
-
-## Basic Usage
+## Usage
 
 We will show two examples, one for creating and one for editing a post. Let's see how `useStepsForm` is used in both.
 
@@ -814,19 +810,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. Default is `false`.
 
 ```tsx
 useStepsForm({
@@ -840,9 +830,7 @@ useStepsForm({
 
 #### `debounce`
 
-> Default: `1000`
-
-`debounce` sets the debounce time for the `autoSave` prop.
+`debounce` sets the debounce time for the `autoSave` prop. Default is `1000` milliseconds.
 
 ```tsx
 useStepsForm({
@@ -858,9 +846,7 @@ useStepsForm({
 
 #### `invalidateOnUnmount`
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. Default is `false`.
 
 ```tsx
 useStepsForm({
@@ -876,11 +862,7 @@ useStepsForm({
 
 ## Return Values
 
-:::tip
-
 All [`useForm`](/docs/ui-integrations/mantine/hooks/use-form) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/mantine/hooks/use-form#return-values) docs.
-
-:::
 
 ### `steps`
 

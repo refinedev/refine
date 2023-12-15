@@ -1,70 +1,38 @@
 ---
 title: Simple REST
+source: https://github.com/refinedev/refine/tree/master/packages/simple-rest
+swizzle: true
 ---
 
 The Simple REST data provider is a package that provides an implementation for working with REST APIs that conform to a standard API design. It is built on the foundation of the [json-server](https://github.com/typicode/json-server) package.
 
-You can use this data provider to quickly get started with **refine** and then customize it to fit your specific needs.
+You can use this data provider to quickly get started with Refine and then customize it to fit your specific needs.
 
-Run the following command to install:
+## Installation
 
 ```bash
-npm install @refinedev/simple-rest
+npm i @refinedev/simple-rest
 ```
 
 ## Usage
 
-The package exports a function that accepts two parameters: `apiUrl` and `httpClient`.
+Simple REST package exports a function that accepts `apiUrl` and `httpClient` parameters. While `apiUrl` is required to set the base URL for your API endpoints, `httpClient` is optional and can be used to provide a custom axios instance to handle logics like authentication, error handling, etc.
 
-- **`apiUrl`:** The base URL for your API endpoints. All requests made through the data provider will be made relative to this URL.
+```tsx title="app.tsx"
+import { Refine } from "@refinedev/core";
+// highlight-next-line
+import dataProvider from "@refinedev/simple-rest";
 
-  ```tsx
-  import { Refine } from "@refinedev/core";
-  import dataProvider from "@refinedev/simple-rest";
-
-  const App = () => {
-    return (
-      <Refine
-        dataProvider={dataProvider("https://my.api.com")}
-        /* ... */
-      />
-    );
-  };
-  ```
-
-- **`httpClient`:** An axios instance used to make HTTP requests. You can provide your own instance otherwise the data provider will create one for you.
-
-  ```tsx
-  import { Refine, HttpError } from "@refinedev/core";
-  import dataProvider from "@refinedev/simple-rest";
-  import axios from "axios";
-
-  const httpClient = axios.create();
-
-  httpClient.interceptors.response.use(
-    (response) => {
-      return response;
-    },
-    (error) => {
-      const customError: HttpError = {
-        ...error,
-        message: error.response?.data?.message,
-        statusCode: error.response?.status,
-      };
-
-      return Promise.reject(customError);
-    },
+const App = () => {
+  return (
+    <Refine
+      // highlight-next-line
+      dataProvider={dataProvider("<API_URL>")}
+      /* ... */
+    />
   );
-
-  const App = () => {
-    return (
-      <Refine
-        dataProvider={dataProvider("https://my.api.com", httpClient)}
-        /* ... */
-      />
-    );
-  };
-  ```
+};
+```
 
 ## URL design
 
@@ -133,15 +101,9 @@ useOne({
 });
 ```
 
-## Customizing the data provider
+## Customizing the data provider <GuideBadge id="packages/cli/#swizzle" />
 
 In some cases, you may need to customize the data provider to work with a REST API that doesn't follow the simple-rest design. In this case, you can use the `swizzle` command to customize the data provider.
-
-:::caution
-
-The `swizzle` command is only available in the `@refinedev/cli` package. If you don't have it installed, refer to the [CLI documentation](/docs/packages/list-of-packages).
-
-:::
 
 1. Run the `swizzle` command in the project directory:
 

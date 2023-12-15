@@ -1,11 +1,10 @@
 ---
 title: useGo
-sidebar_label: useGo
 ---
 
 `useGo` is a hook that leverages the `go` method of the [`routerProvider`][routerprovider] to perform navigation operations.
 
-## Basic Usage
+## Usage
 
 ### With path
 
@@ -43,11 +42,13 @@ const MyComponent = () => {
 
 `to` accepts an object with the following shape to navigate to a resource:
 
-| Name     | Type                                                        | Description                                                 |
-| -------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| resource | `string`                                                    | resource name or identifier.                                |
-| id       | [`BaseKey`][basekey]                                        | required when `action` is `"edit"`, `"show"`, or `"clone"`. |
-| action   | `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` | action name.                                                |
+```tsx
+type ToWithResource = {
+  resource: string; // resource name or identifier
+  id?: BaseKey; // required when `action` is `"edit"`, `"show"`, or `"clone"`.
+  action: "list" | "create" | "edit" | "show" | "clone"; // action name
+};
+```
 
 `useGo` will convert the resource object into the path defined in the resources array within the `<Refine />` component.
 

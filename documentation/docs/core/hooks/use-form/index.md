@@ -5,7 +5,7 @@ source: packages/core/src/hooks/form/useForm.ts
 
 import BasicUsage from "./basic-usage";
 
-A hook that orchestrates refine's data hooks to create, edit, and clone data. It also provides a set of features to make it easier for users to implement their real world needs and handle edge cases such as redirects, invalidation, auto-save and more.
+A hook that orchestrates Refine's data hooks to create, edit, and clone data. It also provides a set of features to make it easier for users to implement their real world needs and handle edge cases such as redirects, invalidation, auto-save and more.
 
 ```tsx
 import { useForm } from "@refinedev/core";
@@ -13,10 +13,11 @@ import { useForm } from "@refinedev/core";
 const { onFinish, ... } = useForm({ ... });
 ```
 
-:::info Extended Versions
+:::simple Extended Versions
+
 `@refinedev/antd`, `@refinedev/mantine` and `@refinedev/react-hook-form` packages provide their own extended versions of `useForm` hook with full support for their respective form implementations including validation, error handling, form values, and more.
 
-Refer to their respective documentation for more information and check out the [Forms in refine](guides-concepts/forms/index.md) guide for detailed information on how to handle forms in refine.
+Refer to their respective documentation for more information and check out the [Forms in Refine](guides-concepts/forms/index.md) guide for detailed information on how to handle forms in Refine.
 
 - [`@refinedev/antd`'s `useForm`](/docs/ui-integrations/ant-design/hooks/use-form)
 - [`@refinedev/mantine`'s `useForm`](/docs/ui-integrations/mantine/hooks/use-form)
@@ -105,20 +106,24 @@ useForm({
 });
 ```
 
-:::caution Using with explicit resource
+:::simple Using with explicit resource
+
 If explicit `resource` is provided, `id` must be provided as well to avoid any unexpected API calls.
+
 :::
 
 ### redirect <GuideBadge id="guides-concepts/forms#redirection" /><GlobalConfigBadge />
 
-The redirection behavior after the form submission. It can be `list`, `edit`, `show`, `create`, or `false`. By default it will be `list` or whatever is defined in the refine's global options.
+The redirection behavior after the form submission. It can be `list`, `edit`, `show`, `create`, or `false`. By default it will be `list` or whatever is defined in the Refine's global options.
 
 ```tsx
 useForm({ redirect: "show" });
 ```
 
-:::caution
+:::simple Router Integration
+
 This will only work if you have `routerProvider` defined in your `<Refine>` component along with the proper `resource` definition with routes and actions.
+
 :::
 
 ### onMutationSuccess
@@ -169,13 +174,15 @@ useForm({ dataProviderName: "store" });
 
 ### mutationMode <GuideBadge id="guides-concepts/forms#mutation-modes" /> <GlobalConfigBadge />
 
-Behavior of the mutation, can either be `pessimistic`, `optimistic` or `undoable`. By default, `pessimistic` or whatever is defined in the refine's global options.
+Behavior of the mutation, can either be `pessimistic`, `optimistic` or `undoable`. By default, `pessimistic` or whatever is defined in the Refine's global options.
 
 ```tsx
 useForm({ mutationMode: "optimistic" });
 ```
 
 ### successNotification <GuideBadge id="guides-concepts/forms#notifications" />
+
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 Customization options for the notification that will be shown after a successful mutation.
 
@@ -193,11 +200,9 @@ useForm({
 });
 ```
 
-:::caution
-This will only work if you have `notificationProvider` defined in your `<Refine>` component.
-:::
-
 ### errorNotification <GuideBadge id="guides-concepts/forms#notifications" />
+
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 Customization options for the notification that will be shown after a failed mutation.
 
@@ -214,10 +219,6 @@ useForm({
   },
 });
 ```
-
-:::caution
-This will only work if you have `notificationProvider` defined in your `<Refine>` component.
-:::
 
 ### meta <GuideBadge id="guides-concepts/general-concepts#meta" description="To learn more about the `meta` and how it works with the data providers, refer to General Concepts guide" />
 
@@ -275,15 +276,13 @@ useForm({
 
 ### liveMode <GuideBadge id="guides-concepts/realtime" />
 
-Behavior of how to handle received real-time updates, can be `auto`, `manual` or `off`. By default, `auto` or whatever is defined in the refine's global options.
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+
+Behavior of how to handle received real-time updates, can be `auto`, `manual` or `off`. By default, `auto` or whatever is defined in the Refine's global options.
 
 ```tsx
 useForm({ liveMode: "auto" });
 ```
-
-:::caution
-This will only work if you have `liveProvider` defined in your `<Refine>` component.
-:::
 
 ### onLiveEvent <GuideBadge id="guides-concepts/realtime" />
 
@@ -324,7 +323,7 @@ const { overtime } = useForm({
 
 ### autoSave <GuideBadge id="guides-concepts/forms#auto-save" />
 
-Auto-save behavior of the form. Can have `enabled` to toggle auto-save, `debounce` to set the debounce interval for saving and `invalidateOnUnmount` to invalidate the queries specified in `invalidates` prop on unmount. By default, `autoSave` is disabled.
+Auto-save behavior of the form. Can have `enabled` to toggle auto-save, `debounce` to set the debounce interval for saving and `invalidateOnUnmount` to invalidate the queries specified in `invalidates` prop on unmount. This feature is only available for the `edit` action. By default, `autoSave` is disabled.
 
 ```tsx
 const { onFinishAutoSave } = useForm({
@@ -336,12 +335,12 @@ const { onFinishAutoSave } = useForm({
 });
 ```
 
-:::caution
-This feature is only available for the `edit` action.
-:::
+:::simple Auto-save Implementation
 
-:::note
-Core implementation of the `useForm` hook doesn't provide out of the box auto-save functionality since it doesn't have access to the form values but it provides the necessary props and callbacks to implement it. Extended versions of `useForm` (such as the one in `@refinedev/react-hook-form`) provides auto-save functionality out of the box.
+Core implementation of the `useForm` hook doesn't provide out of the box auto-save functionality since it doesn't have access to the form values but it provides the necessary props and callbacks to implement it.
+
+Extended versions of `useForm` (such as the one in `@refinedev/react-hook-form`) provides auto-save functionality out of the box.
+
 :::
 
 ### optimisticUpdateMap <GuideBadge id="guides-concepts/forms#optimistic-updates" />
@@ -467,8 +466,10 @@ const { autoSaveProps: { data, error, status } } = useForm({ ... });
 
 <PropsTable module="@refinedev/core/useForm" />
 
-:::caution
-These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/core/refine-component)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
+:::simple Global Configuration
+
+These props have default values in `RefineContext` and can also be set on [`<Refine />`](/docs/core/refine-component) component. `useForm` will use what is passed to `<Refine />` as default but a local value will override it.
+
 :::
 
 ### Type Parameters

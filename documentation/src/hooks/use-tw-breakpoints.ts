@@ -6,7 +6,17 @@ import React from "react";
  * md: 768px
  * lg: 1024px
  * xl: 1280px
+ *
+ * landing breakpoints
+ * sm: 720px
+ * md: 960px
+ * lg: 1296px
+ * xl: 1440px
  */
+const breakpoints = {
+    landing: [720, 960, 1296, 1440, 1584],
+    tw: [640, 768, 1024, 1280, 1536],
+};
 
 /**
  * check tailwindcss breakpoints with matchMedia and addEventListener
@@ -14,7 +24,15 @@ import React from "react";
 
 export type TWBreakpoints = Record<"sm" | "md" | "lg" | "xl" | "xxl", boolean>;
 
-export const useTWBreakpoints = (): TWBreakpoints => {
+type Props = {
+    variant: "landing" | "tw";
+};
+
+export const useTWBreakpoints = (
+    props: Props = {
+        variant: "tw",
+    },
+): TWBreakpoints => {
     const [sm, setSm] = React.useState(true);
     const [md, setMd] = React.useState(true);
     const [lg, setLg] = React.useState(true);
@@ -23,11 +41,9 @@ export const useTWBreakpoints = (): TWBreakpoints => {
 
     React.useEffect(() => {
         if (typeof window !== "undefined") {
-            const smQuery = window.matchMedia("(min-width: 640px)");
-            const mdQuery = window.matchMedia("(min-width: 768px)");
-            const lgQuery = window.matchMedia("(min-width: 1024px)");
-            const xlQuery = window.matchMedia("(min-width: 1280px)");
-            const xxlQuery = window.matchMedia("(min-width: 1536px)");
+            const [smQuery, mdQuery, lgQuery, xlQuery, xxlQuery] = breakpoints[
+                props.variant
+            ].map((bp) => window.matchMedia(`(min-width: ${bp}px)`));
 
             const smHandler = (e: MediaQueryListEvent) => {
                 setSm(e.matches);

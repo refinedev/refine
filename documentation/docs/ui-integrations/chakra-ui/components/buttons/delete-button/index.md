@@ -20,9 +20,9 @@ const Wrapper = ({ children }) => {
 `<DeleteButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) and [`<Popover>`](https://chakra-ui.com/docs/components/popover/usage) components.
 When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/core/hooks/data/use-delete) method provided by your [`dataProvider`](/docs/core/providers/data-provider).
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -141,7 +141,7 @@ render(
 
 ### `recordItemId`
 
-`recordItemId` allows us to manage which record will be deleted.
+`recordItemId` allows us to manage which record will be deleted. By default, it will be read from the URL.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -193,15 +193,9 @@ render(
 
 Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete) method and then the record whose resource is "post" and whose id is "123" gets deleted.
 
-:::note
-
-**`<DeleteButton>`** component reads the id information from the route by default.
-
-:::
-
 ### `resource`
 
-`resource` allows us to manage which resource's record is going to be deleted.
+`resource` allows us to manage which resource's record is going to be deleted. By default, it will be read from the URL.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -256,12 +250,6 @@ render(
 ```
 
 Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
-
-:::note
-
-**`<DeleteButton>`** component reads the resource name from the route by default.
-
-:::
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
@@ -450,69 +438,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-
-// visible-block-start
-import { DeleteButton } from "@refinedev/chakra-ui";
-
-const MyDeleteComponent = () => {
-  return <DeleteButton resourceNameOrRouteName="categories" recordItemId="2" />;
-};
-// visible-block-end
-
-const App = () => {
-  const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
-
-  const customDataProvider = {
-    ...simpleRestDataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      return {
-        data: {},
-      };
-    },
-  };
-
-  return (
-    <Refine
-      notificationProvider={RefineChakra.notificationProvider()}
-      dataProvider={customDataProvider}
-      resources={[
-        {
-          name: "posts",
-          list: MyDeleteComponent,
-        },
-        {
-          name: "categories",
-        },
-      ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
-```
-
-Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
-
-:::note
-
-**`<DeleteButton>`** component reads the resource name from the route by default.
-
-:::
+Use `resource` prop instead.
 
 ## How to override confirm texts?
 

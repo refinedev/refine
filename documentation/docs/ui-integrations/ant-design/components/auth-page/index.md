@@ -1,18 +1,17 @@
 ---
-title: <AuthPage>
-sidebar_label: <AuthPage>
-description: <AuthPage> component from refine is an authentication page that can be used to login, register, forgot password, and update password.
+title: <AuthPage />
+description: <AuthPage> component from Refine is an authentication page that can be used to login, register, forgot password, and update password.
 swizzle: true
 source: packages/antd/src/components/pages/auth/index.tsx
 ---
 
-`<AuthPage>` component from **refine** for **Ant Design** contains authentication pages that can be used for the login, register, forgot password, and update password actions.
+`<AuthPage>` component from Refine for **Ant Design** contains authentication pages that can be used for the login, register, forgot password, and update password actions.
 
 Before using `<AuthPage>` component you need to add [authProvider](/docs/core/providers/auth-provider) that will be used to handle authentication.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -582,13 +581,7 @@ const MyLoginPage = () => {
 
 ### `providers`
 
-:::info
-
-The `providers` property is only available for types `login` and `register`.
-
-:::
-
-The `providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type.
+The `providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type. This property is only available for types `login` and `register`.
 
 ```tsx
 const MyLoginPage = () => {
@@ -616,19 +609,9 @@ const MyLoginPage = () => {
 
 ### `rememberMe`
 
-:::info
-
-The `rememberMe` property is only available for type `login`.
-
-:::
-
-The `rememberMe` property defines to render your custom `<RememberMe>` component or you can pass `false` to don't render it.
-
-:::info
+The `rememberMe` property defines to render your custom `<RememberMe>` component or you can pass `false` to don't render it. This property is only available for type `login`.
 
 You have to wrap your custom `<RememberMe>` component with the `Form.Item` component from **Ant Design** and pass the `name` prop to it then you can access its value from the `formProps` `onFinish` function with `formValues`.
-
-:::
 
 ```tsx
 const MyLoginPage = () => {
@@ -656,13 +639,7 @@ const MyLoginPage = () => {
 
 ### `loginLink`
 
-:::info
-
-The `loginLink` property is only available for types `register` and `forgotPassword`.
-
-:::
-
-The `loginLink` property defines the link to the login page and also you can give a node to render. The default value is `"/login"`.
+The `loginLink` property defines the link to the login page and also you can give a node to render. The default value is `"/login"`. This property is only available for type `register` and `forgotPassword`.
 
 ```tsx
 const MyRegisterPage = () => {
@@ -688,13 +665,7 @@ const MyRegisterPage = () => {
 
 ### `registerLink`
 
-:::info
-
-The `registerLink` property is only available for type `login`.
-
-:::
-
-The `registerLink` property defines the link to the registration page and also you can give a node to render. The default value is `"/register"`.
+The `registerLink` property defines the link to the registration page and also you can give a node to render. The default value is `"/register"`. This property is only available for type `login`.
 
 ```tsx
 const MyLoginPage = () => {
@@ -721,13 +692,7 @@ const MyLoginPage = () => {
 
 ### `forgotPasswordLink`
 
-:::info
-
-The `forgotPasswordLink` property is only available for type `login`.
-
-:::
-
-The `forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. Its default value is `"/forgot-password"`.
+The `forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. Its default value is `"/forgot-password"`. This property is only available for type `login`.
 
 ```tsx
 const MyLoginPage = () => {
@@ -826,8 +791,8 @@ const MyLoginPage = () => {
 
 By default, `AuthPage` uses text with icon on top of page. You can use this property to change the default title.
 
-- Default text is: refine Project
-- Default icon is: refine Logo
+- Default text is: Refine Project
+- Default icon is: Refine Logo
 
 ```tsx
 import { AuthPage, ThemedTitle } from "@refinedev/antd";

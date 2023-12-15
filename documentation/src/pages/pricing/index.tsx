@@ -769,8 +769,8 @@ function Pricing() {
                 <html data-active-page="index" />
             </Head>
             <CommonLayout
-                title={`refine | Build your React-based CRUD applications, without constraints!`}
-                description="refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. It ships with Ant Design, an enterprise-level UI toolkit."
+                title={`Refine | Build your React-based CRUD applications, without constraints!`}
+                description="Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. It ships with Ant Design, an enterprise-level UI toolkit."
             >
                 <CommonHeader hasSticky={true} />
                 <div

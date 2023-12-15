@@ -28,9 +28,9 @@ const Wrapper = ({ children }) => {
 
 This field is used to display email values. It uses the [`<Anchor>`](https://mantine.dev/core/anchor) component of Mantine.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -138,7 +138,7 @@ render(
 );
 ```
 
-:::tip
+:::simple Implementation Tips
 
 `<EmailField>` uses "mailto:" in the href prop of the [`<Anchor>`](https://mantine.dev/core/anchor) component. For this reason, clicking `<EmailField>` opens your device's default mail application.
 

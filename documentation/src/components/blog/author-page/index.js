@@ -28,7 +28,7 @@ const AuthorPage = (props) => {
     return (
         <>
             <BlogListPageMetadata />
-            <BlogLayout>
+            <BlogLayout showSidebarBanner={false}>
                 <div className="h-12" />
                 <AuthorCardWithProps author={author} />
                 <div

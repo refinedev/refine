@@ -9,10 +9,11 @@ import {
     Grid,
     Select,
 } from "antd";
+import { IClient, IContact } from "../../interfaces";
 
 type EditClientProps = {
     drawerProps: DrawerProps;
-    formProps: FormProps;
+    formProps: FormProps<IClient>;
     saveButtonProps: ButtonProps;
 };
 
@@ -23,10 +24,14 @@ export const EditClient: React.FC<EditClientProps> = ({
 }) => {
     const breakpoint = Grid.useBreakpoint();
 
-    const { selectProps } = useSelect({
+    const contactIds = formProps.initialValues?.contacts.map(
+        (c: IClient) => c.id,
+    );
+
+    const { selectProps } = useSelect<IContact>({
         resource: "contacts",
         optionLabel: "first_name",
-
+        defaultValue: contactIds,
         pagination: {
             mode: "server",
         },
@@ -36,7 +41,7 @@ export const EditClient: React.FC<EditClientProps> = ({
         <Drawer
             {...drawerProps}
             width={breakpoint.sm ? "500px" : "100%"}
-            bodyStyle={{ padding: 0 }}
+            styles={{ body: { padding: 0 } }}
         >
             <Edit
                 saveButtonProps={saveButtonProps}
@@ -52,10 +57,11 @@ export const EditClient: React.FC<EditClientProps> = ({
                     initialValues={{
                         isActive: true,
                         ...formProps.initialValues,
+                        contacts: contactIds,
                     }}
                 >
                     <Form.Item
-                        label="Client Company Name"
+                        label="Client Name"
                         name="name"
                         rules={[
                             {
@@ -65,7 +71,7 @@ export const EditClient: React.FC<EditClientProps> = ({
                     >
                         <Input />
                     </Form.Item>
-                    <Form.Item label="Select Contact" name="contacts">
+                    <Form.Item label="Select Contacts" name={["contacts"]}>
                         <Select {...selectProps} mode="multiple" />
                     </Form.Item>
                 </Form>

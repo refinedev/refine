@@ -44,7 +44,7 @@ function BlogListPageContent(props) {
     );
 
     return (
-        <BlogLayout>
+        <BlogLayout showSidebarBanner={false}>
             {/*  <div
                 className={clsx(
                     "px-4",

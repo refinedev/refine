@@ -3,7 +3,7 @@ id: csv-import
 title: CSV Import
 ---
 
-You can easily import CSV files for any resource by using **refine**'s customizable `useImport` hook, optionally with `<ImportButton>` component. `useImport` hook returns the necessary props for `<ImportButton>` component.
+You can easily import CSV files for any resource by using **Refine**'s customizable `useImport` hook, optionally with `<ImportButton>` component. `useImport` hook returns the necessary props for `<ImportButton>` component.
 
 Internally, `useImport` uses [Papa Parse][papa parse] to parse the CSV file contents.
 
