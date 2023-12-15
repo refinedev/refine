@@ -9,12 +9,11 @@ import {
 import camelcase from "camelcase";
 import * as gql from "gql-query-builder";
 import VariableOptions from "gql-query-builder/build/VariableOptions";
-import { print as prt } from "graphql";
 import { Client } from "graphql-ws";
 import set from "lodash/set";
 import { singular } from "pluralize";
 
-import { fieldsToString } from "./graphql";
+import { getOperationFields } from "./graphql";
 
 export const generateSubscription = (
     client: Client,
@@ -187,14 +186,10 @@ export const generateCreatedSubscription = ({
 
         const operation = `created${singularResourceName}`;
 
-        console.log("Operation", prt(gqlOperation));
-
-        console.log("Fields", fieldsToString(gqlOperation));
-
         const query = `
             subscription ${operationName}($input: Create${singularResourceName}SubscriptionFilterInput) {
                 ${operation}(input: $input) {
-                    ${fieldsToString(gqlOperation)}
+                    ${getOperationFields(gqlOperation)}
                 }
             }
         `;
@@ -265,14 +260,10 @@ export const generateUpdatedSubscription = ({
 
         const operation = `updatedOne${singularResourceName}`;
 
-        console.log("Operation", prt(gqlOperation));
-
-        console.log("Fields", fieldsToString(gqlOperation));
-
         const query = `
             subscription ${operationName}($input: UpdateOne${singularResourceName}SubscriptionFilterInput) {
                 ${operation}(input: $input) {
-                   ${fieldsToString(gqlOperation)}
+                   ${getOperationFields(gqlOperation)}
                 }
             }
         `;

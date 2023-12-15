@@ -1,81 +1,59 @@
-import { FieldNode, DocumentNode, visit } from "graphql";
+import { FieldNode, DocumentNode, visit, SelectionSetNode } from "graphql";
 
-export const isNodesField = (node: FieldNode) => {
-    return (
-        node.selectionSet &&
-        node.selectionSet.selections.length &&
-        node.selectionSet.selections[0].kind === "Field" &&
-        node.selectionSet.selections[0].name.value === "nodes"
-    );
+const getChildNodesField = (node: FieldNode): FieldNode | undefined => {
+    return node?.selectionSet?.selections?.find(
+        (node) => node.kind === "Field" && node.name.value === "nodes",
+    ) as FieldNode;
 };
 
-export function removeNodesField(inputString: string) {
-    if (inputString.startsWith("nodes")) {
-        const lines = inputString.split("\n");
-
-        const filteredLines = lines
-            .filter((line) => line.trim() !== "nodes {" && line.trim() !== "}")
-            .map((line) => line.trim());
-
-        return filteredLines.join("\n");
-    }
-
-    return inputString;
-}
-
-export function fieldsToString(documentNode: DocumentNode) {
+export const getOperationFields = (documentNode: DocumentNode) => {
     const fieldLines: string[] = [];
+    let isInitialEnter = true;
     let depth = 0;
     let isNestedField = false;
 
     visit(documentNode, {
         Field: {
-            enter(node) {
-                if (node.selectionSet && !isNestedField) {
-                    isNestedField = true;
-                    return;
+            enter(node): SelectionSetNode | void {
+                if (isInitialEnter) {
+                    isInitialEnter = false;
+
+                    const childNodesField = getChildNodesField(node);
+
+                    const nodeToReturn = childNodesField ?? node;
+
+                    if (typeof nodeToReturn.selectionSet === "undefined") {
+                        throw new Error("Operation must have a selection set");
+                    }
+
+                    return nodeToReturn.selectionSet;
                 }
 
-                if (isNodesField(node) || node.name.value === "totalCount")
-                    return;
+                fieldLines.push(
+                    `${
+                        depth > 0
+                            ? "  ".repeat(isNestedField ? depth : depth - 1)
+                            : ""
+                    }${node.name.value}${node.selectionSet ? " {" : ""}`,
+                );
 
                 if (node.selectionSet) {
                     depth++;
-                } else {
-                    fieldLines.push(`${"  ".repeat(depth)}${node.name.value}`);
+                    isNestedField = true;
                 }
             },
             leave(node) {
-                if (node.selectionSet && isNestedField) {
-                    const nestedFieldLines = fieldLines.splice(
-                        -node.selectionSet.selections.length,
-                    );
-                    if (depth > 0) {
-                        fieldLines.push(
-                            `${"  ".repeat(depth - 1)}${
-                                node.name.value
-                            } {\n${nestedFieldLines.join("\n")}\n${"  ".repeat(
-                                depth - 1,
-                            )}}`,
-                        );
-                    }
-                    if (depth > 0) {
-                        depth--;
-                    }
-                    if (depth === 0) {
-                        isNestedField = false;
-                    }
+                if (node.selectionSet) {
+                    depth--;
+                    fieldLines.push(`${"  ".repeat(depth)}}`);
+                    isNestedField = false;
                 }
             },
         },
     });
 
-    if (fieldLines.length && fieldLines[0].startsWith("nodes")) {
-        fieldLines[0] = removeNodesField(fieldLines[0]);
-    }
-
     return fieldLines.join("\n").trim();
-}
+};
 
 export const isMutation = (documentNode: DocumentNode) => {
     let isMutation = false;

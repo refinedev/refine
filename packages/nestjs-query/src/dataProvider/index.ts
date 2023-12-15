@@ -9,7 +9,7 @@ import { singular } from "pluralize";
 
 import { generateFilters, generatePaging, generateSorting } from "../utils";
 
-import { fieldsToString, isMutation } from "../utils/graphql";
+import { getOperationFields, isMutation } from "../utils/graphql";
 
 const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
     return {
@@ -339,8 +339,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 const variables = { id };
 
                 if (isMutation(gqlOperation)) {
-                    console.log("Mutation");
-                    const stringFields = fieldsToString(gqlOperation);
+                    const stringFields = getOperationFields(gqlOperation);
 
                     query = gqlTag`
                         query Get${camelcase(singular(resource), {

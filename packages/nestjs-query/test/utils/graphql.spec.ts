@@ -1,58 +1,8 @@
-import { FieldNode } from "graphql";
 import gql from "graphql-tag";
 
-import {
-    fieldsToString,
-    isMutation,
-    isNodesField,
-    removeNodesField,
-} from "../../src/utils/graphql";
+import { getOperationFields, isMutation } from "../../src/utils/graphql";
 
-describe("isNodesField", () => {
-    it('should return true for a node with a "nodes" field', () => {
-        const query = gql`
-            {
-                users {
-                    nodes {
-                        id
-                    }
-                }
-            }
-        `;
-        const node = (query.definitions[0] as any).selectionSet
-            .selections[0] as FieldNode;
-        expect(isNodesField(node)).toBeTruthy();
-    });
-
-    it('should return false for a node without a "nodes" field', () => {
-        const query = gql`
-            {
-                users {
-                    id
-                }
-            }
-        `;
-        const node = (query.definitions[0] as any).selectionSet
-            .selections[0] as FieldNode;
-        expect(isNodesField(node)).toBeFalsy();
-    });
-});
-
-describe("removeNodesField", () => {
-    it("should remove the nodes field from the string", () => {
-        const inputString = `nodes {\nid\nname\navatarUrl\n}`;
-        const expectedOutput = `id\nname\navatarUrl`;
-
-        expect(removeNodesField(inputString)).toEqual(expectedOutput);
-    });
-
-    it("should return the same string if no nodes field is present", () => {
-        const inputString = `users {\n  id\n}`;
-        expect(removeNodesField(inputString)).toEqual(inputString);
-    });
-});
-
-describe("fieldsToString", () => {
+describe("getOperationFields", () => {
     it("UsersSelect", () => {
         const query = gql`
             query UsersSelect {
@@ -65,8 +15,7 @@ describe("fieldsToString", () => {
                 }
             }
         `;
-        const expectedOutput = `id\nname\navatarUrl`;
-        expect(fieldsToString(query)).toEqual(expectedOutput);
+        expect(getOperationFields(query)).toMatchSnapshot();
     });
 
     it("ContactShow", () => {
@@ -96,10 +45,7 @@ describe("fieldsToString", () => {
             }
         `;
 
-        // TODO: Fix `salesOwner` absent from fields.
-        // const expectedOutput = `id\nname\nemail\ncompany {\n  id\n  name\n  avatarUrl\n}\nstatus\njobTitle\nphone\ntimezone\navatarUrl\nsalesOwner {\n  id\n  name\n  avatarUrl\n}\ncreatedAt`;
-
-        expect(fieldsToString(query)).toMatchSnapshot();
+        expect(getOperationFields(query)).toMatchSnapshot();
     });
 
     it("Upcoming Events", () => {
@@ -110,6 +56,7 @@ describe("fieldsToString", () => {
                 $paging: OffsetPaging!
             ) {
                 events(filter: $filter, sorting: $sorting, paging: $paging) {
+                    totalCount
                     nodes {
                         id
                         title
@@ -117,12 +64,11 @@ describe("fieldsToString", () => {
                         startDate
                         endDate
                     }
-                    totalCount
                 }
             }
         `;
 
-        expect(fieldsToString(query)).toMatchSnapshot();
+        expect(getOperationFields(query)).toMatchSnapshot();
     });
 
     it("CompaniesTable", () => {
@@ -160,7 +106,7 @@ describe("fieldsToString", () => {
             }
         `;
 
-        expect(fieldsToString(query)).toMatchSnapshot();
+        expect(getOperationFields(query)).toMatchSnapshot();
     });
 
     it("CompanyTitleForm", () => {
@@ -179,7 +125,7 @@ describe("fieldsToString", () => {
             }
         `;
 
-        expect(fieldsToString(query)).toMatchSnapshot();
+        expect(getOperationFields(query)).toMatchSnapshot();
     });
 
     it("CategoryEdit", () => {
@@ -192,7 +138,7 @@ describe("fieldsToString", () => {
             }
         `;
 
-        expect(fieldsToString(query)).toMatchSnapshot();
+        expect(getOperationFields(query)).toMatchSnapshot();
     });
 });
 

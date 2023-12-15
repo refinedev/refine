@@ -1,19 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fieldsToString CompaniesTable 1`] = `
+exports[`getOperationFields CategoryEdit 1`] = `
 "id
+title"
+`;
+
+exports[`getOperationFields CompaniesTable 1`] = `
+"id
+name
+avatarUrl
+dealsAggregate {
+  sum {
+    value
+  }
+}
+salesOwner {
+  id
   name
   avatarUrl
-  dealsAggregate {
-    sum {
-      value
-    }
-  }
-  salesOwner {
-    id
-    name
-    avatarUrl
-  }
+}
 contacts {
   nodes {
     id
@@ -23,7 +28,7 @@ contacts {
 }"
 `;
 
-exports[`fieldsToString CompanyTitleForm 1`] = `
+exports[`getOperationFields CompanyTitleForm 1`] = `
 "id
 name
 avatarUrl
@@ -34,7 +39,7 @@ salesOwner {
 }"
 `;
 
-exports[`fieldsToString ContactShow 1`] = `
+exports[`getOperationFields ContactShow 1`] = `
 "id
 name
 email
@@ -48,13 +53,24 @@ jobTitle
 phone
 timezone
 avatarUrl
+salesOwner {
+  id
+  name
+  avatarUrl
+}
 createdAt"
 `;
 
-exports[`fieldsToString Upcoming Events 1`] = `
+exports[`getOperationFields Upcoming Events 1`] = `
 "id
 title
 color
 startDate
 endDate"
+`;
+
+exports[`getOperationFields UsersSelect 1`] = `
+"id
+name
+avatarUrl"
 `;
