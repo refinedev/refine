@@ -91,7 +91,6 @@ const Enterprise: React.FC = () => {
                                 "pt-4",
                                 "landing-sm:pt-12",
                                 "landing-md:pt-0",
-                                "landing-lg:pt-12",
                             )}
                         >
                             <TemplatesHero />
@@ -112,7 +111,7 @@ const Enterprise: React.FC = () => {
                                 "items-start",
                                 "gap-6",
                                 "mx-auto",
-                                "mt-16",
+                                "mt-12",
                                 "relative",
                                 "not-prose",
                             )}
@@ -130,6 +129,7 @@ const Enterprise: React.FC = () => {
                                         "text-base",
                                         "font-semibold",
                                         "dark:text-gray-300 text-gray-900",
+                                        "pl-4",
                                     )}
                                 >
                                     Filter Templates

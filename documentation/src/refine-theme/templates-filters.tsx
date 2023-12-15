@@ -47,7 +47,7 @@ export const TemplatesFilters: FC<Props> = ({
                     "flex-col",
                     "items-start",
                     "gap-3",
-                    "mt-3",
+                    "mt-4",
                 )}
             >
                 {data.uiFrameworks.map((item) => {
@@ -102,7 +102,7 @@ export const TemplatesFilters: FC<Props> = ({
                     "flex",
                     "flex-col",
                     "items-start",
-                    "gap-3",
+                    "gap-4",
                     "mt-3",
                 )}
             >

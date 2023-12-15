@@ -107,6 +107,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                     >
                         <div
                             className={clsx(
+                                "max-w-full",
                                 "flex",
                                 "flex-col",
                                 "gap-8 landing-sm:gap-10",
