@@ -1,3 +1,4 @@
+import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React, { FC, SVGProps } from "react";
 
@@ -7,6 +8,7 @@ type Props = {
         title: string;
         description: string;
         image: string;
+        to: string;
         integrations: {
             label: string;
             icon: (props: SVGProps<SVGSVGElement>) => JSX.Element;
@@ -22,12 +24,14 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                     "grid",
                     "grid-cols-1 landing-sm:grid-cols-2 landing-lg:grid-cols-3",
                     "gap-8 landing-sm:gap-6",
+                    "not-prose",
                     className,
                 )}
             >
                 {data.map((item) => {
                     return (
-                        <div
+                        <Link
+                            to={item.to}
                             key={item.title}
                             className={clsx(
                                 "h-full",
@@ -36,6 +40,8 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                                 "dark:bg-gray-800 bg-gray-50",
                                 "border dark:border-gray-700 border-transparent",
                                 "rounded-2xl",
+                                "hover:no-underline",
+                                "not-prose",
                             )}
                         >
                             <img
@@ -112,7 +118,7 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                                     })}
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     );
                 })}
             </div>

@@ -7,7 +7,7 @@ type Props = {
     onClick: () => void;
 };
 
-export const FilterButton: FC<Props> = ({ className, onClick }) => {
+export const TemplatesFilterButton: FC<Props> = ({ className, onClick }) => {
     return (
         <button
             onClick={onClick}

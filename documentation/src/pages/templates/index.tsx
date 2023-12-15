@@ -21,7 +21,7 @@ import {
 } from "@site/src/assets/integration-icons";
 import { TemplatesList } from "@site/src/refine-theme/templates-list";
 import { TemplatesFilters } from "@site/src/refine-theme/templates-filters";
-import { FilterButton } from "@site/src/refine-theme/templates-filter-button";
+import { TemplatesFilterButton } from "@site/src/refine-theme/templates-filter-button";
 import { CommonDrawer } from "@site/src/refine-theme/common-drawer";
 
 const Enterprise: React.FC = () => {
@@ -95,7 +95,7 @@ const Enterprise: React.FC = () => {
                             )}
                         >
                             <TemplatesHero />
-                            <FilterButton
+                            <TemplatesFilterButton
                                 className={clsx(
                                     "flex landing-md:hidden",
                                     "mt-6",
@@ -109,9 +109,11 @@ const Enterprise: React.FC = () => {
                             className={clsx(
                                 "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
                                 "flex",
+                                "items-start",
                                 "gap-6",
                                 "mx-auto",
                                 "mt-16",
+                                "relative",
                                 "not-prose",
                             )}
                         >
@@ -120,6 +122,7 @@ const Enterprise: React.FC = () => {
                                     "hidden landing-md:flex",
                                     "flex-col",
                                     "not-prose",
+                                    "sticky top-24 left-0",
                                 )}
                             >
                                 <h3
@@ -142,7 +145,7 @@ const Enterprise: React.FC = () => {
                                             "uiFramework",
                                         );
                                     }}
-                                    className={clsx("min-w-[180px]")}
+                                    className={clsx("min-w-[180px]", "mt-10")}
                                     selected={filters}
                                     data={dataFilters}
                                 />
@@ -283,9 +286,11 @@ const dataTemplates: {
     title: string;
     description: string;
     image: string;
+    to: string;
     integrations: (Integration["uiFrameworks"] | Integration["backends"])[];
 }[] = [
     {
+        to: "/templates/crm-application",
         title: "CRM Application",
         description:
             "Comprehensive CRM App developed using refine, Ant Design and GraphQL. It includes features like authentication, a dashboard, and over 10 CRUD interfaces ranging from charts and sales kanban boards to user administration.",
@@ -306,6 +311,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "HR Application",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -326,6 +332,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "DevOps Dashboard",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -346,6 +353,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "E-Commerce Application Storefront",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -366,6 +374,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "E-Commerce Application with Material UI",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -386,6 +395,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "E-Commerce Application with Antd Design",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -406,6 +416,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "Swag Store",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -426,6 +437,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "Pixels",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -446,6 +458,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "Invoice Generator",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -466,6 +479,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "Win95 Style Admin Panel",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -486,6 +500,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "Realworld Example",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -506,6 +521,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "Multitenancy App with Strapi",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -526,6 +542,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "Multitenancy App with Appwrite",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -546,6 +563,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "Ant Design Template",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -566,6 +584,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "Material UI Template",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -586,6 +605,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "Chakra UI Template",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -606,6 +626,7 @@ const dataTemplates: {
         ],
     },
     {
+        to: "/templates/crm-application",
         title: "Mantine Template",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
