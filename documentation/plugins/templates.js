@@ -57,25 +57,7 @@ A table:
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/refine-crm-ss.jpg",
         ],
-        runOnYourLocal: "npm create refine-app@latest -- --example app-crm",
-        liveDemo: "https://crm.refine.dev",
-        github: "https://github.com/refinedev/refine/tree/master/examples/app-crm",
-        tutorial: "",
-        reactPlatform: "Next.js",
-        uiFramework: "ShadCN UI",
-        dataProvider: "Supabase",
-        authProvider: "Supabase",
-    },
-    {
-        slug: "hr-application",
-        title: "HR Application",
-        description: `
-HR
-        `,
-        images: [
-            "https://refine.ams3.cdn.digitaloceanspaces.com/templates/refine-crm-ss.jpg",
-        ],
-        runOnYourLocal: "npm create refine-app@latest -- --example app-crm",
+        runOnYourLocalPath: "app-crm",
         liveDemo: "https://crm.refine.dev",
         github: "https://github.com/refinedev/refine/tree/master/examples/app-crm",
         tutorial: "",
