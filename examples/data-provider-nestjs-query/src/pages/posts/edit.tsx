@@ -1,6 +1,4 @@
-import React from "react";
 import { HttpError, IResourceComponentsProps } from "@refinedev/core";
-
 import {
     Edit,
     ListButton,
@@ -8,37 +6,30 @@ import {
     useForm,
     useSelect,
 } from "@refinedev/antd";
-
-import { Form, Input, Select } from "antd";
+import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import MDEditor from "@uiw/react-md-editor";
+import { Form, Input, Select } from "antd";
 
-import { IPost, ICategory } from "../../interfaces";
+import { CATEGORIES_SELECT_QUERY, POST_EDIT_MUTATION } from "./queries";
+import { CategoriesSelectQuery, PostEditMutation } from "graphql/types";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<
-        IPost,
-        HttpError,
-        IPost
+        GetFields<PostEditMutation>,
+        HttpError
     >({
         metaData: {
-            fields: [
-                "id",
-                "title",
-                "status",
-                {
-                    category: ["id", "title"],
-                },
-                "categoryId",
-                "content",
-            ],
+            gqlMutation: POST_EDIT_MUTATION,
         },
     });
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    const { selectProps: categorySelectProps } = useSelect<
+        GetFieldsFromList<CategoriesSelectQuery>
+    >({
         resource: "categories",
         metaData: {
-            fields: ["id", "title"],
+            gqlQuery: CATEGORIES_SELECT_QUERY,
         },
     });
 

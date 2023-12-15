@@ -1,28 +1,19 @@
 import { useShow, IResourceComponentsProps } from "@refinedev/core";
-
 import { Show, MarkdownField, RefreshButton } from "@refinedev/antd";
+import { GetFields } from "@refinedev/nestjs-query";
 
 import { Typography } from "antd";
 
-import { IPost } from "../../interfaces";
+import { POST_SHOW_QUERY } from "./queries";
+import { PostShowQuery } from "graphql/types";
 
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const metaData = {
-        fields: [
-            "id",
-            "title",
-            "status",
-            {
-                category: ["title"],
-            },
-            "content",
-        ],
-    };
-
-    const { queryResult } = useShow<IPost>({
-        metaData,
+    const { queryResult } = useShow<GetFields<PostShowQuery>>({
+        metaData: {
+            gqlQuery: POST_SHOW_QUERY,
+        },
     });
 
     const { data, isLoading } = queryResult;

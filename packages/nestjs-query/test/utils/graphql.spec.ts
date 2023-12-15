@@ -181,6 +181,19 @@ describe("fieldsToString", () => {
 
         expect(fieldsToString(query)).toMatchSnapshot();
     });
+
+    it("CategoryEdit", () => {
+        const query = gql`
+            mutation CategoryEdit($input: UpdateOneCategoryInput!) {
+                updateOneCategory(input: $input) {
+                    id
+                    title
+                }
+            }
+        `;
+
+        expect(fieldsToString(query)).toMatchSnapshot();
+    });
 });
 
 describe("isMutation", () => {

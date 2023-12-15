@@ -22,7 +22,7 @@ npm i @refinedev/nestjs-query
 If you're going to use realtime features, you'll also need to install the `graphql-ws` package to handle graphql subscriptions.
 
 ```bash
-npm i graphql-ws
+npm i graphql-tag graphql-ws
 ```
 
 ## Usage
