@@ -154,7 +154,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                                                 "text-xs landing-md:text-base",
                                             )}
                                         >
-                                            GitHub Repo
+                                            Source code
                                         </span>
                                     </ProjectLink>
                                 )}
