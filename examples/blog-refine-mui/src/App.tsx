@@ -1,4 +1,4 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import { GitHubBanner, I18nProvider, Refine } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -42,9 +42,9 @@ import {
 function App() {
     const { t, i18n } = useTranslation();
 
-    const i18nProvider = {
-        translate: (key: string, params: object) => t(key, params),
-        changeLocale: (lang: string) => i18n.changeLanguage(lang),
+    const i18nProvider: I18nProvider = {
+        translate: (key, params) => t(String(key), params),
+        changeLocale: (lang) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
 

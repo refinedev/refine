@@ -1,4 +1,4 @@
-import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
+import { ErrorComponent, GitHubBanner, I18nProvider, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import routerBindings, {
@@ -30,9 +30,9 @@ import "react-toastify/dist/ReactToastify.min.css";
 function App() {
     const { t, i18n } = useTranslation();
 
-    const i18nProvider = {
-        translate: (key: string, params: object) => t(key, params),
-        changeLocale: (lang: string) => i18n.changeLanguage(lang),
+    const i18nProvider: I18nProvider = {
+        translate: (key, params) => t(String(key), params),
+        changeLocale: (lang) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
 

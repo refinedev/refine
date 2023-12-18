@@ -1,5 +1,5 @@
 import React from "react";
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, I18nProvider, Refine } from "@refinedev/core";
 import { RefineKbarProvider } from "@refinedev/kbar";
 import {
     notificationProvider,
@@ -57,9 +57,9 @@ const App: React.FC = () => {
 
     const { t, i18n } = useTranslation();
 
-    const i18nProvider = {
-        translate: (key: string, params: object) => t(key, params),
-        changeLocale: (lang: string) => i18n.changeLanguage(lang),
+    const i18nProvider: I18nProvider = {
+        translate: (key, params) => t(String(key), params),
+        changeLocale: (lang) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
 
