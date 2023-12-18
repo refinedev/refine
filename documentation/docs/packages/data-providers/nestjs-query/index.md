@@ -50,7 +50,7 @@ const App = () => (
 
 ### Developer Experience
 
-We suggest using `GraphQL Code Generator` to generate types for your queries and mutations. You can check out the [GraphQL Code Generator](/docs/guides-concepts/codegen) guide to learn more about it.
+We suggest using `GraphQL Code Generator` to generate types for your queries and mutations. You can check out the [GraphQL Code Generator](https://the-guild.dev/graphql/codegen/docs/getting-started) guide to learn more about it.
 
 It simplifies the process of writing queries and mutations and provides a better developer experience with auto-completions.
 
@@ -60,16 +60,6 @@ VSCode: https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graph
 
 ```bash
 npm i -D @graphql-codegen/cli@5 @graphql-codegen/typescript@4 @graphql-codegen/import-types-preset@3
-```
-
-Add the following script to your `package.json` file.
-
-```json title="package.json"
-{
-  "scripts": {
-    "codegen": "graphql-codegen --config ./graphql.config.ts"
-  }
-}
 ```
 
 Add a `graphql.config.ts` file to the root of your project.
@@ -104,7 +94,7 @@ const config: IGraphQLConfig = {
             useTypeImports: true,
           },
           presetConfig: {
-            typesPath: "@/graphql/schema.types",
+            typesPath: "./schema.types",
           },
         },
       },
@@ -113,6 +103,16 @@ const config: IGraphQLConfig = {
 };
 
 export default config;
+```
+
+Add the following script to your `package.json` file.
+
+```json title="package.json"
+{
+  "scripts": {
+    "codegen": "graphql-codegen --config ./graphql.config.ts"
+  }
+}
 ```
 
 Now you can run the following command to generate your types.
@@ -177,8 +177,6 @@ Once you write your query, you can generate types for it with `GraphQL Code Gene
 npm run codegen
 ```
 
-And then you can use it with hooks:
-
 ```simple
 `@refinedev/nestjs-query` also exports 2 utility types:
   - GetFields: Get fields from your non-list queries and mutations.
@@ -186,6 +184,8 @@ And then you can use it with hooks:
 
 You can use these types to get the fields of your queries/mutations.
 ```
+
+And then you can use it with hooks:
 
 ```tsx
 import { useList, useTable, useForm } from "@refinedev/core";
