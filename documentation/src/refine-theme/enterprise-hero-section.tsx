@@ -90,7 +90,11 @@ export const EnterpriseHeroSection = ({
                         "landing-md:h-[360px] landing-md:w-[360px]",
                         "landing-md:h-[360px] landing-md:w-[360px]",
                     )}
-                    src={`https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/enterprise-hero-image-${colorMode}.png`}
+                    src={
+                        colorMode === "dark"
+                            ? `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/enterprise-hero-image-dark.png`
+                            : `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/enterprise-hero-image-light.png`
+                    }
                     alt="refine enterprise image"
                 />
             </div>
