@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 
 import { AutoSaveIndicator, useForm } from "@refinedev/antd";
-import { HttpError, useOne } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
+import { GetFields } from "@refinedev/nestjs-query";
 
 import { DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import {
@@ -20,12 +21,9 @@ import {
 import { FullScreenLoading, Text } from "@/components";
 import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
 import { currencyNumber } from "@/utilities";
-import {
-    QUOTE_ONE_QUERY,
-    QUOTE_USE_FORM_MUTATION,
-    QUOTE_USE_FORM_QUERY,
-} from "./queries";
-import { GetFields } from "@refinedev/nestjs-query";
+
+import { QUOTE_USE_FORM_MUTATION } from "./queries";
+import { ProductsServicesQuoteFormMutation } from "@/graphql/types";
 
 const columns = [
     {
@@ -115,22 +113,8 @@ const columns = [
 export const ProductsServices = () => {
     const params = useParams<{ id: string }>();
 
-    const {
-        data: quoteData,
-        refetch: refetchQuote,
-        isLoading: isLoadingQuote,
-        isFetching: isFetchingQuote,
-    } = useOne<GetFields<Quote>>({
-        resource: "quotes",
-        id: params.id,
-        liveMode: "off",
-        meta: {
-            gqlQuery: QUOTE_ONE_QUERY,
-        },
-    });
-
     const { formProps, autoSaveProps, queryResult } = useForm<
-        GetFields<Quote>,
+        GetFields<ProductsServicesQuoteFormMutation>,
         HttpError,
         QuoteUpdateInput
     >({
@@ -147,8 +131,6 @@ export const ProductsServices = () => {
                 );
                 items?.forEach((item) => {
                     if ("totalPrice" in item) {
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        // @ts-ignore
                         delete item.totalPrice;
                     }
                 });
@@ -159,16 +141,20 @@ export const ProductsServices = () => {
             },
         },
         onMutationSuccess: () => {
-            refetchQuote();
+            refetch?.();
         },
         meta: {
-            gqlQuery: QUOTE_USE_FORM_QUERY,
             gqlMutation: QUOTE_USE_FORM_MUTATION,
         },
     });
-    const formLoading = queryResult?.isLoading ?? false;
 
-    const { total, subTotal, items } = quoteData?.data ?? {};
+    const {
+        isLoading = false,
+        isFetching = false,
+        refetch,
+    } = queryResult ?? {};
+
+    const { total, subTotal, items } = queryResult?.data?.data ?? {};
 
     return (
         <div
@@ -234,8 +220,8 @@ export const ProductsServices = () => {
                     })}
                 </Row>
                 <Form {...formProps}>
-                    {formLoading && <FullScreenLoading />}
-                    {!formLoading && (
+                    {isLoading && <FullScreenLoading />}
+                    {!isLoading && (
                         <Form.List name="items">
                             {(fields, { add, remove }) => {
                                 return (
@@ -345,9 +331,9 @@ export const ProductsServices = () => {
             <TotalSection
                 total={total || 0}
                 subTotal={subTotal || 0}
-                isLoading={isLoadingQuote}
-                isFetching={isFetchingQuote}
-                taxFormOnMutationSuccess={() => refetchQuote()}
+                isLoading={isLoading}
+                isFetching={isFetching}
+                taxFormOnMutationSuccess={() => refetch?.()}
             />
         </div>
     );

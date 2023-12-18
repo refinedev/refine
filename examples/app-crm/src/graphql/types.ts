@@ -299,41 +299,16 @@ export type QuoteSalesOwnerSelectQuery = {
     users: { nodes: Array<Pick<Types.User, "id" | "name">> };
 };
 
-export type QuoteOneQueryQueryVariables = Types.Exact<{
-    id: Types.Scalars["ID"]["input"];
-}>;
-
-export type QuoteOneQueryQuery = {
-    quote: Pick<Types.Quote, "id" | "title" | "total" | "subTotal"> & {
-        items: Array<Pick<Types.QuoteItem, "totalPrice">>;
-    };
-};
-
-export type QuoteUseFormQueryQueryVariables = Types.Exact<{
-    id: Types.Scalars["ID"]["input"];
-}>;
-
-export type QuoteUseFormQueryQuery = {
-    quote: Pick<Types.Quote, "id"> & {
-        items: Array<
-            Pick<
-                Types.QuoteItem,
-                "title" | "unitPrice" | "quantity" | "discount"
-            >
-        >;
-    };
-};
-
-export type QuoteUseFormMutationMutationVariables = Types.Exact<{
+export type ProductsServicesQuoteFormMutationVariables = Types.Exact<{
     input: Types.UpdateOneQuoteInput;
 }>;
 
-export type QuoteUseFormMutationMutation = {
-    updateOneQuote: Pick<Types.Quote, "id"> & {
+export type ProductsServicesQuoteFormMutation = {
+    updateOneQuote: Pick<Types.Quote, "id" | "title" | "total" | "subTotal"> & {
         items: Array<
             Pick<
                 Types.QuoteItem,
-                "title" | "unitPrice" | "quantity" | "discount"
+                "totalPrice" | "title" | "unitPrice" | "quantity" | "discount"
             >
         >;
     };
