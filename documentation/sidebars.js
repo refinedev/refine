@@ -199,13 +199,6 @@ module.exports = {
                                 "examples/next-js/NextAuth-js",
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Notification Provider",
-                            items: [
-                                "examples/notification-provider/react-toastify",
-                            ],
-                        },
                         "examples/persistQuery",
                         {
                             type: "category",
@@ -632,6 +625,30 @@ module.exports = {
                         },
                     ],
                 },
+                // Notification
+                {
+                    type: "category",
+                    collapsible: false,
+                    label: "Notification",
+                    items: [
+                        "core/providers/notification-provider/index",
+                        {
+                            type: "category",
+                            collapsible: false,
+                            label: "Hooks",
+                            items: [
+                                "core/hooks/utilities/use-notification/index",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Examples",
+                            items: [
+                                "examples/notification-provider/react-toastify",
+                            ],
+                        },
+                    ],
+                },
                 // i18n
                 {
                     type: "category",
@@ -664,7 +681,6 @@ module.exports = {
                     label: "Providers",
                     items: [
                         "core/providers/audit-log-provider/index",
-                        "core/providers/notification-provider/index",
                         "core/providers/router-provider/index",
                     ],
                 },
@@ -698,7 +714,6 @@ module.exports = {
                         "core/hooks/utilities/use-modal/index",
                         "core/hooks/utilities/use-menu/index",
                         "core/hooks/utilities/use-breadcrumb/index",
-                        "core/hooks/utilities/use-notification/index",
                         "core/hooks/utilities/use-import/index",
                         "core/hooks/utilities/use-export/index",
                     ],
