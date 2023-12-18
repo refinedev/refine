@@ -1,4 +1,4 @@
-import type * as Types from "@/graphql/schema.types";
+import type * as Types from "./schema.types";
 
 export type UpcomingEventsQueryVariables = Types.Exact<{
     filter: Types.EventFilter;
