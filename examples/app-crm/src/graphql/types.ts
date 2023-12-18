@@ -314,13 +314,13 @@ export type ProductsServicesQuoteFormMutation = {
     };
 };
 
-export type QuotesTableQueryQueryVariables = Types.Exact<{
+export type QuotesTableQueryVariables = Types.Exact<{
     filter: Types.QuoteFilter;
     sorting: Array<Types.QuoteSort> | Types.QuoteSort;
     paging: Types.OffsetPaging;
 }>;
 
-export type QuotesTableQueryQuery = {
+export type QuotesTableQuery = {
     quotes: Pick<Types.QuoteConnection, "totalCount"> & {
         nodes: Array<
             Pick<

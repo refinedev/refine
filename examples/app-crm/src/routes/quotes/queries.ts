@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export const QUOTES_TABLE_QUERY = gql`
-    query QuotesTableQuery(
+    query QuotesTable(
         $filter: QuoteFilter!
         $sorting: [QuoteSort!]!
         $paging: OffsetPaging!

@@ -11,6 +11,7 @@ import {
     useTable,
 } from "@refinedev/antd";
 import { getDefaultFilter, HttpError } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { SearchOutlined } from "@ant-design/icons";
 import { Form, Grid, Input, Select, Space, Spin, Table } from "antd";
@@ -26,10 +27,11 @@ import {
     Text,
 } from "@/components";
 import { Quote, QuoteStatus } from "@/graphql/schema.types";
-import { currencyNumber } from "@/utilities";
-import { QUOTES_TABLE_QUERY } from "./queries";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { COMPANIES_SELECT_QUERY, USERS_SELECT_QUERY } from "@/graphql/queries";
+import { currencyNumber } from "@/utilities";
+
+import { QUOTES_TABLE_QUERY } from "./queries";
+import { QuotesTableQuery } from "@/graphql/types";
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [
     {
@@ -50,7 +52,11 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
     const screens = Grid.useBreakpoint();
 
     const { tableProps, searchFormProps, filters, sorters, tableQueryResult } =
-        useTable<GetFieldsFromList<Quote>, HttpError, { title: string }>({
+        useTable<
+            GetFieldsFromList<QuotesTableQuery>,
+            HttpError,
+            { title: string }
+        >({
             resource: "quotes",
             onSearch: (values) => {
                 return [
