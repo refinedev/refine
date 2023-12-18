@@ -25,10 +25,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "Authentication",
-                            items: [
-                                "examples/authentication/mui",
-                                "examples/authentication/mantine",
-                            ],
+                            items: ["examples/authentication/mui"],
                         },
                         {
                             type: "category",
@@ -61,7 +58,6 @@ module.exports = {
                                     items: [
                                         "examples/customization/theme/customThemeChakraUI",
                                         "examples/customization/theme/customThemeMaterialUI",
-                                        "examples/customization/theme/customThemeMantine",
                                     ],
                                 },
                                 "examples/customization/customFooter",
@@ -96,17 +92,7 @@ module.exports = {
                                         "examples/form/headless/useForm",
                                     ],
                                 },
-                                {
-                                    type: "category",
-                                    label: "Mantine",
-                                    items: [
-                                        "examples/form/mantine/useDrawerForm",
-                                        "examples/form/mantine/useForm",
-                                        "examples/form/mantine/useModalForm",
-                                        "examples/form/mantine/useStepsForm",
-                                        "examples/form/mantine/serverSideFormValidation",
-                                    ],
-                                },
+
                                 {
                                     type: "category",
                                     label: "Material UI",
@@ -142,10 +128,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "Import / Export",
-                            items: [
-                                "examples/import-export/material-ui",
-                                "examples/import-export/mantine",
-                            ],
+                            items: ["examples/import-export/material-ui"],
                         },
                         {
                             type: "category",
@@ -204,14 +187,6 @@ module.exports = {
                             items: [
                                 {
                                     type: "category",
-                                    label: "Mantine",
-                                    items: [
-                                        "examples/table/mantine/advanced-react-table",
-                                        "examples/table/mantine/basic",
-                                    ],
-                                },
-                                {
-                                    type: "category",
                                     label: "Material UI",
                                     items: [
                                         "examples/table/mui/advanced",
@@ -249,7 +224,6 @@ module.exports = {
                             label: "Themes",
                             items: [
                                 "examples/themes/refine-themes-chakra-ui",
-                                "examples/themes/refine-themes-mantine",
                                 "examples/themes/refine-themes-mui",
                             ],
                         },
@@ -267,14 +241,6 @@ module.exports = {
                             type: "category",
                             label: "Upload",
                             items: [
-                                {
-                                    type: "category",
-                                    label: "Mantine",
-                                    items: [
-                                        "examples/upload/mantine/base64",
-                                        "examples/upload/mantine/multipart",
-                                    ],
-                                },
                                 {
                                     type: "category",
                                     label: "Material UI",
@@ -1013,6 +979,25 @@ module.exports = {
                                 "ui-integrations/mantine/hooks/use-modal-form/index",
                                 "ui-integrations/mantine/hooks/use-steps-form/index",
                                 "ui-integrations/mantine/hooks/use-select/index",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Examples",
+                            items: [
+                                "examples/themes/refine-themes-mantine",
+                                "examples/form/mantine/useDrawerForm",
+                                "examples/form/mantine/useForm",
+                                "examples/form/mantine/useModalForm",
+                                "examples/form/mantine/useStepsForm",
+                                "examples/form/mantine/serverSideFormValidation",
+                                "examples/authentication/mantine",
+                                "examples/customization/theme/customThemeMantine",
+                                "examples/import-export/mantine",
+                                "examples/table/mantine/advanced-react-table",
+                                "examples/table/mantine/basic",
+                                "examples/upload/mantine/base64",
+                                "examples/upload/mantine/multipart",
                             ],
                         },
                         "ui-integrations/mantine/theming/index",
