@@ -2,7 +2,7 @@
 title: useInfiniteList
 siderbar_label: useInfiniteList
 source: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/data/useInfiniteList.ts
-description: useInfiniteList data hook from refine is a modified version of TanStack Query's useInfiniteQuery for retrieving items from a resource with pagination, search, sort, and filter configurations.
+description: useInfiniteList data hook from Refine is a modified version of TanStack Query's useInfiniteQuery for retrieving items from a resource with pagination, search, sort, and filter configurations.
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -15,7 +15,7 @@ The `useInfiniteList` hook is an extended version of TanStack Query's [`useInfin
 
 - It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 
-## Basic Usage
+## Usage
 
 Here is a basic example of how to use the `useInfiniteList` hook.
 
@@ -54,15 +54,9 @@ Dynamically changing the `filters` property will trigger a new request.
 
 ## Realtime Updates
 
-:::caution
-
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
-
-:::
+> This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
 
 When the `useInfiniteList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. This is useful when you want to subscribe to live updates.
-
-> For more information, refer to the [`liveProvider` documentation&#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
@@ -212,10 +206,7 @@ const myDataProvider = {
     // highlight-next-line
     const headers = meta?.headers ?? {};
     const url = `${apiUrl}/${resource}`;
-
     //...
-    //...
-
     // highlight-next-line
     const { data } = await httpClient.get(`${url}`, { headers });
 
@@ -231,11 +222,7 @@ const myDataProvider = {
 
 ### `successNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useInfiniteList` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -253,11 +240,7 @@ useInfiniteList({
 
 ### `errorNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useInfiniteList` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -275,11 +258,7 @@ useInfiniteList({
 
 ### `liveMode`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -289,15 +268,9 @@ useInfiniteList({
 });
 ```
 
-> For more information, refer to the [Live / Realtime page&#8594](/docs/core/providers/live-provider#livemode)
-
 ### `onLiveEvent`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -311,11 +284,7 @@ useInfiniteList({
 
 ### `liveParams`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
@@ -345,29 +314,13 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### ~~`config`~~
-
-:::caution Deprecated
+### ~~`config`~~ <PropTag deprecated />
 
 Use `pagination`, `hasPagination`, `sorters` and `filters` instead.
 
-:::
-
-### ~~`hasPagination`~~
-
-:::caution Deprecated
+### ~~`hasPagination`~~ <PropTag deprecated />
 
 Use `pagination.mode` instead.
-
-:::
-
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to determine whether to use server-side pagination or not.
-
-```tsx
-useInfiniteList({
-  hasPagination: false,
-});
-```
 
 ## Return Values
 
@@ -441,7 +394,7 @@ getList: async ({ resource, pagination }) => {
 
 ### How to override the `getNextPageParam` method?
 
-By default, `refine` expects you to return the `cursor` object, but is not required. This is because some APIs don't work that way. To fix this problem you need to override the `getNextPageParam` method and return the next `cursor`.
+By default, `Refine` expects you to return the `cursor` object, but is not required. This is because some APIs don't work that way. To fix this problem you need to override the `getNextPageParam` method and return the next `cursor`.
 
 ```tsx
 import { useInfiniteList } from "@refinedev/core";
@@ -450,6 +403,7 @@ const { data, error, hasNextPage, isLoading, fetchNextPage, isFetchingNextPage }
   resource: "posts",
   // highlight-start
   queryOptions: {
+    // When you override this method, you can access the `lastPage` and `allPages`.
     getNextPageParam: (lastPage, allPages) => {
       // return the last post's id
       const { data } = lastPage;
@@ -461,13 +415,7 @@ const { data, error, hasNextPage, isLoading, fetchNextPage, isFetchingNextPage }
 });
 ```
 
-:::tip
-
-When you override this method, you can access the `lastPage` and `allPages`.
-
-:::
-
-## API
+## API Reference
 
 ### Properties
 

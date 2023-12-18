@@ -5,11 +5,7 @@ source: packages/core/src/hooks/live/useSubscription/index.ts
 
 `useSubscription` calls the [`subscribe`][live-provider-subscribe] method from [`liveProvider`][live-provider] when mounted. It is useful when you want to subscribe to a Realtime channel.
 
-:::info-tip
-
-**refine** use this hook internally in data hooks to `subscribe` Realtime data. You can refer liveProvider's [Integrated Hooks][integrated-hooks] section for more information.
-
-:::
+Refine uses this hook internally in data hooks to `subscribe` Realtime data. You can refer liveProvider's [Integrated Hooks][integrated-hooks] section for more information.
 
 ## Usage
 
@@ -39,15 +35,11 @@ Callback that is run when new events from the subscription arrive.
 
 ### types
 
-> Default: `["*"]`
-
-Type of events to subscribe. `"\*"` means all events.
+Type of events to subscribe. `"\*"` means all events. By default, it subscribes to all events.
 
 ### enabled
 
-> Default: `true`
-
-You can disable the subscription by setting this prop to `false` and vice versa.
+You can disable the subscription by setting this prop to `false` and vice versa. By default, it is enabled.
 
 ### params
 
@@ -59,9 +51,7 @@ Hooks that use `useSubscription` internally send the query's parameters' (pagina
 
 ### dataProviderName
 
-> Default: `"default"`
-
-You can pass the name of the data provider to use for the subscription.
+You can pass the name of the data provider to use for the subscription. By default, it uses the `"default"` data provider.
 
 ## API Reference
 

@@ -5,9 +5,9 @@ swizzle: true
 
 This field lets you display markdown content. It supports [GitHub Flavored Markdown](https://github.github.com/gfm/).
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 

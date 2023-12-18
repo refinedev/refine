@@ -241,7 +241,7 @@ const PostShow: React.FC = () => {
 };
 ```
 
-We will demonstrate how to perform a multipart upload with **refine**.
+We will demonstrate how to perform a multipart upload with **Refine**.
 
 Let's start with the `creation form` first.
 

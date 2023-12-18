@@ -65,9 +65,9 @@ render(
 );
 ```
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -330,15 +330,11 @@ render(
 );
 ```
 
-:::note
-
 The `<Show>` component needs the `id` information for `<RefreshButton>` to work properly.
-
-:::
 
 ### `dataProviderName`
 
-If not specified, **refine** will use the default data provider. If you have multiple data providers, you can use the `dataProviderName` property to specify which one you want to use:
+If not specified, Refine will use the default data provider. If you have multiple data providers, you can use the `dataProviderName` property to specify which one you want to use:
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -409,8 +405,6 @@ render(
 );
 ```
 
-:::caution
-
 If your route has no `:action` parameter or your action is `list`, the back button will not be shown even if you pass a `goBack` property. You can override this behavior by using the `headerProps` property:
 
 ```tsx
@@ -432,8 +426,6 @@ const PostShow: React.FC = () => {
   );
 };
 ```
-
-:::
 
 ### `isLoading`
 
@@ -474,7 +466,7 @@ render(
 );
 ```
 
-### `breadcrumb`
+### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default the `Breadcrumb` component from the `@refinedev/antd` package is used for breadcrumbs.
 
@@ -524,12 +516,6 @@ render(
   />,
 );
 ```
-
-:::tip
-
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
-
-:::
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/ant-design/components/breadcrumb)
 
@@ -685,15 +671,11 @@ By default, the `<Show/>` component has a [`<ListButton>`][list-button], [`<Edit
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, listButtonProps, editButtonProps, deleteButtonProps, refreshButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-:::caution
-
 If the "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
 
 If [`canDelete`](#candelete-and-canedit) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
 
 If [`canEdit`](#candelete-and-canedit) is `false`, [`<EditButton>`][edit-button] will not render and `editButtonProps` will be `undefined`.
-
-:::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
 const { ShowButton } = RefineAntd;

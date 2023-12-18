@@ -6,7 +6,6 @@ authors: joseph_mawa
 tags: [refine, tutorial, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/social.png
 hide_table_of_contents: false
-is_featured: true
 ---
 
 ## Introduction
@@ -52,11 +51,9 @@ You can create a refine application using create refine-app or the [refine bro
 
 Follow the steps below to create a headless refine application using the refine browser tool.
 
-
 ### Step 1 — Create new refine application
 
 Follow the steps to create a new refine project. Select Vite as your build tool, Headless as the UI framework, REST API as the back-end service, and no authentication provider.
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/refine-tool.png"  alt="react admin dashboard" />
@@ -94,22 +91,15 @@ npm run dev
 
 Your project should look like the image below.
 
-
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/blog-list.png"  alt="react admin dashboard" />
 
 <br />
 
-
-
-
 Though we created a “Headless” refine project, the template we used comes with some basic styling. Some styles will affect our project when we use Tremor and Tailwind CSS later. Let’s remove some of them by applying the changes below to the `src/App.css` file.
-
 
 <details>
 <summary>Show App.css code</summary>
 <p>
-
 
 ```css title="src/App.css"
 body {
@@ -156,20 +146,16 @@ td:last-child {
 ...
 ```
 
-
-
 </p>
 </details>
 
-
 ## What is Tremor
-
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/what-is-tremor.png"  alt="react admin dashboard" />
 
 <br />
 
-Like refine, [Tremor](https://www.tremor.so/) is a free, open-source React library for building dashboards. Unlike refine, Tremor is Apache-2.0-licensed. Though still in beta while writing this article, Tremor is a  popular package with over [11K+ GitHub](https://github.com/tremorlabs/tremor) stars.
+Like refine, [Tremor](https://www.tremor.so/) is a free, open-source React library for building dashboards. Unlike refine, Tremor is Apache-2.0-licensed. Though still in beta while writing this article, Tremor is a popular package with over [11K+ GitHub](https://github.com/tremorlabs/tremor) stars.
 
 You can integrate Tremor in a React, Next.js, or Redwood project. In this article, we will integrate it in a refine project. Tremor uses Tailwind CSS internally. Therefore, any project that intends to use it has to install Tailwind CSS and its peer dependencies.
 
@@ -199,7 +185,7 @@ As mentioned above, you install Tremor and its peer dependencies before using it
 
 Do check out the documentation for detailed installation instructions. In this article, we will use Tremor in a refine project.
 
-If you have created a refine application as described in one of the previous sub-sections, follow the steps below to install and set up Tremor for your application. We will install Tremor manually in this article. However, you can also use the [Tremor CLI](https://github.com/tremorlabs/tremor-cli). The CLI requires first installing and configuring Tailwind CSS and its dependencies. 
+If you have created a refine application as described in one of the previous sub-sections, follow the steps below to install and set up Tremor for your application. We will install Tremor manually in this article. However, you can also use the [Tremor CLI](https://github.com/tremorlabs/tremor-cli). The CLI requires first installing and configuring Tailwind CSS and its dependencies.
 
 ### Step 1 — Install Tremor
 
@@ -233,11 +219,9 @@ npx tailwindcss init -p
 
 You can copy and paste the code below into the `tailwind.config.js` file. It has the path to the Tremor module and the default theme configuration. You can modify the default theme below to suit your brand. The Tremor [Theming documentation](https://www.tremor.so/docs/getting-started/theming) explains how to customize the default theme.
 
-
 <details>
 <summary>Show tailwind.config code</summary>
 <p>
-
 
 ```js title="tailwind.config.js"
 /** @type {import('tailwindcss').Config} */
@@ -319,16 +303,12 @@ module.exports = {
       boxShadow: {
         // light
         "tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        "tremor-card":
-          "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
-        "tremor-dropdown":
-          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        "tremor-card": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "tremor-dropdown": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
         // dark
         "dark-tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        "dark-tremor-card":
-          "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
-        "dark-tremor-dropdown":
-          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        "dark-tremor-card": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "dark-tremor-dropdown": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
       },
       borderRadius: {
         "tremor-small": "0.375rem",
@@ -379,7 +359,6 @@ module.exports = {
 </p>
 </details>
 
-
 Similarly, create the `index.css` file in your `src` directory. You can copy and paste the `@tailwind` directives below into it.
 
 ```css title="src/index.css"
@@ -407,7 +386,7 @@ root.render(
     <React.Suspense fallback="loading">
       <App />
     </React.Suspense>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 ```
 
@@ -493,8 +472,6 @@ export default App;
 
 After successfully making the above changes, you should see the Dashboard entry in the list of resources on the sidebar on the left.
 
-
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dasboard-error-message.png"  alt="react admin dashboard" />
 
 <br />
@@ -578,8 +555,6 @@ export default App;
 
 When you navigate the `/dashboard` page, you will see `Hello world!` instead of the error message. Let us now create our dashboard.
 
-
-
 ### Step 3 — Create Overview section of the dashboard
 
 The admin dashboard we want to create consists of the Overview and Details sections. The Overview section summarizes daily revenue, orders, and new customers of a restaurant business.
@@ -594,17 +569,7 @@ Tremor has several dashboard layout templates. We will use one of them in this p
 
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
-import {
-  Card,
-  Grid,
-  Title,
-  Text,
-  Tab,
-  TabList,
-  TabGroup,
-  TabPanel,
-  TabPanels,
-} from "@tremor/react";
+import { Card, Grid, Title, Text, Tab, TabList, TabGroup, TabPanel, TabPanels } from "@tremor/react";
 
 export const DashboardPage: React.FC = () => {
   return (
@@ -652,11 +617,9 @@ export const DashboardPage: React.FC = () => {
 </p>
 </details>
 
-
 The Overview section should now look like the image below. The Overview template has a three-column KPI section and another section below it to graphically represent variations over time.
 
 You can switch between the Overview and Details sections using the tab.
-
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/overview-template.png"  alt="react admin dashboard" />
 
@@ -670,17 +633,7 @@ Now that we have the layout of our project, let's retrieve the data to display f
 
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
-import {
-  Card,
-  Grid,
-  Title,
-  Text,
-  Tab,
-  TabList,
-  TabGroup,
-  TabPanel,
-  TabPanels,
-} from "@tremor/react";
+import { Card, Grid, Title, Text, Tab, TabList, TabGroup, TabPanel, TabPanels } from "@tremor/react";
 
 //highlight-start
 import { useApiUrl, useCustom } from "@refinedev/core";
@@ -721,32 +674,19 @@ export const DashboardPage: React.FC = () => {
   });
   //highlight-end
 
-  return (
-    <main className="m-2">
-      ...
-    </main>
-  );
+  return <main className="m-2">...</main>;
 };
 ```
 
 </p>
 </details>
 
-
-In the code above, we used the `useCustom` hook to retrieve the data from our fake restaurant API using the GET method. The sets of data we need are from different endpoints. 
+In the code above, we used the `useCustom` hook to retrieve the data from our fake restaurant API using the GET method. The sets of data we need are from different endpoints.
 
 You can log the data above to the browser console to see what it looks like. We will now create one component for the three KPIs and reuse it for all three. Create the `src/pages/dashboard/kpiCard/index.tsx` file, and copy and paste the code below.
 
 ```tsx title="src/pages/dashboard/kpiCard/index.tsx"
-import {
-  Card,
-  Text,
-  Metric,
-  Flex,
-  ProgressBar,
-  BadgeDelta,
-  DeltaType,
-} from "@tremor/react";
+import { Card, Text, Metric, Flex, ProgressBar, BadgeDelta, DeltaType } from "@tremor/react";
 
 const getDeltaType = (trend: number): DeltaType => {
   if (trend < -35) return "decrease";
@@ -786,7 +726,6 @@ export const KpiCard = ({
     </Card>
   );
 };
-
 ```
 
 The component above will look like the image below after rendering.
@@ -795,8 +734,7 @@ The component above will look like the image below after rendering.
 
 <br />
 
-
-The above component is for the key performance indicators in our restaurant business. As highlighted in the data we fetched in the previous sub-section, we are tracking three KPIs. 
+The above component is for the key performance indicators in our restaurant business. As highlighted in the data we fetched in the previous sub-section, we are tracking three KPIs.
 
 We will reuse the same component for all three KPIs. Import and render the above component by applying the following changes to the `src/pages/dashboard/index.tsx` file.
 
@@ -804,20 +742,9 @@ We will reuse the same component for all three KPIs. Import and render the above
 <summary>Show Dashboard code</summary>
 <p>
 
-
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
-import {
-  Card,
-  Grid,
-  Title,
-  Text,
-  Tab,
-  TabList,
-  TabGroup,
-  TabPanel,
-  TabPanels,
-} from "@tremor/react";
+import { Card, Grid, Title, Text, Tab, TabList, TabGroup, TabPanel, TabPanels } from "@tremor/react";
 
 import { useApiUrl, useCustom } from "@refinedev/core";
 import dayjs from "dayjs";
@@ -880,30 +807,21 @@ export const DashboardPage: React.FC = () => {
                 total={`$ ${dailyRevenue?.data.total ?? 0}`}
                 trend={dailyRevenue?.data.trend ?? 0}
                 target="$ 10,500"
-                percentage={calculatePercentage(
-                  dailyRevenue?.data.total ?? 0,
-                  10_500
-                )}
+                percentage={calculatePercentage(dailyRevenue?.data.total ?? 0, 10_500)}
               />
               <KpiCard
                 title="Weekly Orders"
                 total={`${dailyOrders?.data.total ?? 0}`}
                 trend={dailyOrders?.data.trend ?? 0}
                 target="500"
-                percentage={calculatePercentage(
-                  dailyOrders?.data.total ?? 0,
-                  500
-                )}
+                percentage={calculatePercentage(dailyOrders?.data.total ?? 0, 500)}
               />
               <KpiCard
                 title="New Customers"
                 total={`${newCustomers?.data.total ?? 0}`}
                 trend={newCustomers?.data.trend ?? 0}
                 target="200"
-                percentage={calculatePercentage(
-                  newCustomers?.data.total ?? 0,
-                  200
-                )}
+                percentage={calculatePercentage(newCustomers?.data.total ?? 0, 200)}
               />
               //highlight-end
             </Grid>
@@ -926,6 +844,7 @@ export const DashboardPage: React.FC = () => {
   );
 };
 ```
+
 </p>
 </details>
 
@@ -933,10 +852,7 @@ After applying the above changes, your Dashboard section should look like the im
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-three-kpis.png"  alt="react admin dashboard" />
 
-
 Similarly, let us create a component to visualize the daily variation of our KPIs over time. We will display it below the KPIs. Create the `src/pages/dashboard/chartView/index.tsx` file. You can copy and paste the code below into it.
-
-
 
 <details>
 <summary>Show dashboard/chartView code</summary>
@@ -944,17 +860,7 @@ Similarly, let us create a component to visualize the daily variation of our KPI
 
 ```tsx title="src/pages/dashboard/chartView/index.tsx"
 import { useState } from "react";
-import {
-  AreaChart,
-  Card,
-  Flex,
-  Text,
-  Title,
-  Icon,
-  TabGroup,
-  TabList,
-  Tab,
-} from "@tremor/react";
+import { AreaChart, Card, Flex, Text, Title, Icon, TabGroup, TabList, Tab } from "@tremor/react";
 
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
 
@@ -970,11 +876,9 @@ interface IProps {
 }
 
 // Basic formatters for the chart values
-const dollarFormatter = (value: number) =>
-  `$ ${Intl.NumberFormat("us").format(value).toString()}`;
+const dollarFormatter = (value: number) => `$ ${Intl.NumberFormat("us").format(value).toString()}`;
 
-const numberFormatter = (value: number) =>
-  `${Intl.NumberFormat("us").format(value).toString()}`;
+const numberFormatter = (value: number) => `${Intl.NumberFormat("us").format(value).toString()}`;
 
 const formatDate = new Intl.DateTimeFormat("en-US", {
   month: "short",
@@ -1012,25 +916,14 @@ export function ChartView({ revenue, orders, customers }: IProps) {
     <Card>
       <div className="md:flex justify-between">
         <div>
-          <Flex
-            justifyContent="start"
-            className="space-x-0.5"
-            alignItems="center"
-          >
+          <Flex justifyContent="start" className="space-x-0.5" alignItems="center">
             <Title> Performance History </Title>
-            <Icon
-              icon={InformationCircleIcon}
-              variant="simple"
-              tooltip="Shows daily performance change"
-            />
+            <Icon icon={InformationCircleIcon} variant="simple" tooltip="Shows daily performance change" />
           </Flex>
           <Text> Daily increase or decrease per domain </Text>
         </div>
         <div className="mt-6 md:mt-0">
-          <TabGroup
-            index={selectedKpi}
-            onIndexChange={(idx) => setSelectedKpi(idx)}
-          >
+          <TabGroup index={selectedKpi} onIndexChange={(idx) => setSelectedKpi(idx)}>
             <TabList>
               <Tab>Revenue</Tab>
               <Tab>Orders</Tab>
@@ -1059,12 +952,9 @@ export function ChartView({ revenue, orders, customers }: IProps) {
 
 The component above will look like the image below after rendering.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/chart-showing-kpis.png"  alt="react admin dashboard" /> 
-
-
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/chart-showing-kpis.png"  alt="react admin dashboard" />
 
 Let us import the component above and render it in the `DashboardPage` component. Add the following changes to the `src/pages/dashboard/index.tsx` file. We are replacing the last placeholder component in the Overview section of our template.
-
 
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
@@ -1139,30 +1029,19 @@ export const DashboardPage: React.FC = () => {
 
 Your dashboard Overview section should now look like the image below.
 
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-overview-sectipn.png"  alt="react admin dashboard" />
 
-
-
- ### Step 4 — Create Details section of the dashboard
+### Step 4 — Create Details section of the dashboard
 
 We have finished creating the Overview section. Let's create the Details section of the dashboard. When you click the Details button, refine renders a blank placeholder component which, at the moment, looks like the image below.
 
-
-
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-details.png"  alt="react admin dashboard" />
-
-
-
-
 
 We will create a separate component for our Details section. Create the `src/pages/dashboard/details/index.tsx` file. Copy and paste the code below into it.
 
 <details>
 <summary>Show Dashboard Details code</summary>
 <p>
-
 
 ```tsx title="src/pages/dashboard/details/index.tsx"
 import React from "react";
@@ -1270,9 +1149,7 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
         accessorKey: "status",
         cell: function render({ row, getValue }) {
           const deltaType = getDeltaType(row?.original?.statusId ?? 0);
-          return (
-            <BadgeDelta deltaType={deltaType}>{getValue<any>()}</BadgeDelta>
-          );
+          return <BadgeDelta deltaType={deltaType}>{getValue<any>()}</BadgeDelta>;
         },
         header: "Delivery Status",
         enableColumnFilter: false,
@@ -1287,7 +1164,7 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
         enableColumnFilter: false,
       },
     ],
-    []
+    [],
   );
 
   const {
@@ -1351,11 +1228,7 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
     <Card>
       <Flex justifyContent="start" className="space-x-0.5" alignItems="center">
         <Title>Customer Orders</Title>
-        <Icon
-          icon={InformationCircleIcon}
-          variant="simple"
-          tooltip="Shows customer orders"
-        />
+        <Icon icon={InformationCircleIcon} variant="simple" tooltip="Shows customer orders" />
       </Flex>
 
       <Table>
@@ -1366,15 +1239,10 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
                 <TableHeaderCell key={header.id}>
                   {!header.isPlaceholder && (
                     <>
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
+                      {flexRender(header.column.columnDef.header, header.getContext())}
                       {header.column.getCanFilter() ? (
                         <TextInput
-                          value={
-                            (header.column.getFilterValue() as string) ?? ""
-                          }
+                          value={(header.column.getFilterValue() as string) ?? ""}
                           placeholder={`Enter ${header.column.id}`}
                           onChange={(e) => {
                             const { value } = e.target;
@@ -1393,19 +1261,13 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
           {getRowModel().rows.map((row) => (
             <TableRow key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </TableCell>
+                <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
               ))}
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <Flex
-        className="mt-2  flex-wrap gap-2"
-        justifyContent="between"
-        alignItems="center"
-      >
+      <Flex className="mt-2  flex-wrap gap-2" justifyContent="between" alignItems="center">
         <Flex className="w-4/8 flex-wrap gap-2">
           <Button
             size="xs"
@@ -1462,10 +1324,7 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
           }}
         />
 
-        <Select
-          className="w-2/8"
-          onValueChange={(value) => setPageSize(Number(value))}
-        >
+        <Select className="w-2/8" onValueChange={(value) => setPageSize(Number(value))}>
           {[10, 20, 30, 40, 50].map((pageSize) => (
             <SelectItem key={pageSize} value={`${pageSize}`}>
               {pageSize}
@@ -1524,11 +1383,7 @@ export const DashboardPage: React.FC = () => {
 
 The Details section of your dashboard should now look like the image below.
 
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-details-last.png"  alt="react admin dashboard" />
-
-
-
 
 You have just built a simple dashboard using refine and Tremor. To explore more on what you can do with refine or Tremor, check out the [refine](https://refine.dev/docs/) or [Tremor documentation](https://www.tremor.so/docs/getting-started/installation).
 
@@ -1544,7 +1399,6 @@ On the other hand, Tremor is a new but promising React framework for building da
 
 As highlighted above, when you integrate refine with Tremor, you can build complex applications fast. Both frameworks are free and open source with permissible licenses.
 
-
 <br/>
 <div>
 <a href="https://discord.gg/refine">
@@ -1552,9 +1406,8 @@ As highlighted above, when you integrate refine with Tremor, you can build compl
 </a>
 </div>
 
-
 ## Live CodeSandbox Example
 
- <CodeSandboxExample path="blog-refine-tremor" /> 
+ <CodeSandboxExample path="blog-refine-tremor" />
 
 ---

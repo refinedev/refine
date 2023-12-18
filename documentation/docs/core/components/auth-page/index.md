@@ -1,11 +1,10 @@
 ---
-title: <AuthPage>
-sidebar_label: <AuthPage>
-description: <AuthPage> component from refine is an authentication page that can be used to login, register, forgot password, and update password.
+title: <AuthPage />
+description: <AuthPage> component from Refine is an authentication page that can be used to login, register, forgot password, and update password.
 source: packages/core/src/components/pages/auth/index.tsx
 ---
 
-`<AuthPage>` component from **refine** contains authentication pages that can be used to login, register, forgot password, and update password.
+`<AuthPage>` component from Refine contains authentication pages that can be used to login, register, forgot password, and update password.
 
 Before using `<AuthPage>` component you need to add [authProvider](/docs/core/providers/auth-provider) that will be used to handle authentication.
 
@@ -499,13 +498,7 @@ const MyLoginPage = () => {
 
 ### `providers`
 
-:::info
-
-`providers` property is only available for `login` and `register` types.
-
-:::
-
-`providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type.
+`providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type. This property is only available for `login` and `register` types.
 
 ```tsx
 const LoginPage = () => {
@@ -532,13 +525,7 @@ const LoginPage = () => {
 
 ### `rememberMe`
 
-:::info
-
-`rememberMe` property is only available for type `login`.
-
-:::
-
-`rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it.
+`rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it. This property is only available for `login` type.
 
 ```tsx
 const LoginPage = () => {
@@ -564,13 +551,7 @@ const LoginPage = () => {
 
 ### `loginLink`
 
-:::info
-
-`loginLink` property is only available for types `register` and `forgotPassword`.
-
-:::
-
-`loginLink` property defines the link to the login page and also you can give a node to render. The default value is `"/login"`.
+`loginLink` property defines the link to the login page and also you can give a node to render. The default value is `"/login"`. This property is only available for `register` and `forgotPassword` types.
 
 ```tsx
 const MyRegisterPage = () => {
@@ -596,13 +577,7 @@ const MyRegisterPage = () => {
 
 ### `registerLink`
 
-:::info
-
-`registerLink` property is only available for type `login`.
-
-:::
-
-`registerLink` property defines the link to the registration page and also you can give a node to render. The default value is `"/register"`.
+`registerLink` property defines the link to the registration page and also you can give a node to render. The default value is `"/register"`. This property is only available for `login` type.
 
 ```tsx
 const MyLoginPage = () => {
@@ -629,13 +604,7 @@ const MyLoginPage = () => {
 
 ### `forgotPasswordLink`
 
-:::info
-
-`forgotPasswordLink` property is only available for type `login`.
-
-:::
-
-`forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. The default value is `"/forgot-password"`.
+`forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. The default value is `"/forgot-password"`. This property is only available for `login` type.
 
 ```tsx
 const MyLoginPage = () => {

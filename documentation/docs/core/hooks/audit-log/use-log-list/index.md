@@ -2,17 +2,9 @@
 title: useLogList
 ---
 
-## Overview
-
-If you need to list audit log events, you can use the `useLogList` hook of **refine**, which uses the `get` method from [`auditLogProvider`](/docs/core/providers/audit-log-provider#get) under the hood.
+If you need to list audit log events, you can use the `useLogList` hook of Refine, which uses the `get` method from [`auditLogProvider`](/docs/core/providers/audit-log-provider#get) under the hood.
 
 ## Usage
-
-:::caution
-
-This hook can only be used if `auditLogProvider`'s `get` method is provided.
-
-:::
 
 ```tsx
 import { useLogList } from "@refinedev/core";
@@ -22,18 +14,18 @@ const postAuditLogResults = useLogList({
 });
 ```
 
-## API
+## API Reference
 
 ### Properties
 
-| Property                                                                                            | Type                                                             | Default                         |
-| --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | `string`                                                         | Action that it reads from route |
-| action                                                                                              | `string`                                                         |                                 |
-| author                                                                                              | `Record<string, any>`                                            |                                 |
-| meta                                                                                                | `Record<string, any>`                                            |                                 |
-| metaData                                                                                            | [`MetaDataQuery`](/docs/core/interface-references#metadataquery) |                                 |
-| queryOptions                                                                                        | `UseQueryOptions<TQueryFnData, TError, TData>`                   |                                 |
+| Property                      | Type                                                         | Default                         |
+| ----------------------------- | ------------------------------------------------------------ | ------------------------------- |
+| resource <PropTag asterisk /> | `string`                                                     | Action that it reads from route |
+| action                        | `string`                                                     |                                 |
+| author                        | `Record<string, any>`                                        |                                 |
+| meta                          | `Record<string, any>`                                        |                                 |
+| metaData                      | [`MetaDataQuery`](/docs/core/interface-references#metaquery) |                                 |
+| queryOptions                  | `UseQueryOptions<TQueryFnData, TError, TData>`               |                                 |
 
 ### Type Parameters
 

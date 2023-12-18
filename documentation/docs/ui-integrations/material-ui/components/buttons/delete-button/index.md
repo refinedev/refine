@@ -7,9 +7,9 @@ swizzle: true
 
 When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed, it executes the [`useDelete`](/docs/core/hooks/data/use-delete) method provided by your [`dataProvider`](/docs/core/providers/data-provider).
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -89,7 +89,7 @@ render(
 
 ### `recordItemId`
 
-`recordItemId` allows us to manage which record will be deleted.
+`recordItemId` allows us to manage which record will be deleted. By default, the `recordItemId` is inferred from the route params.
 
 ```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
@@ -133,12 +133,6 @@ render(
 ```
 
 Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete) method and then the record whose resource is `post` and whose id is `1` gets deleted.
-
-:::note
-
-**`<DeleteButton>`** component reads the id information from the route by default.
-
-:::
 
 ### `resource`
 
@@ -361,50 +355,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
-
-```tsx live disableScroll previewHeight=200px
-const { useRouterContext } = RefineCore;
-import dataProvider from "@refinedev/simple-rest";
-
-// visible-block-start
-import { DeleteButton } from "@refinedev/mui";
-
-const MyDeleteComponent = () => {
-  return <DeleteButton resourceNameOrRouteName="categories" recordItemId="2" />;
-};
-// visible-block-end
-const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
-
-const customDataProvider = {
-  ...simpleRestDataProvider,
-  deleteOne: async ({ resource, id, variables }) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    return {
-      message: "You have successfully deleted the record",
-    };
-  },
-};
-
-render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    dataProvider={customDataProvider}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-      },
-    ]}
-    DashboardPage={MyDeleteComponent}
-  />,
-);
-```
+Use `resource` prop instead.
 
 ## How to override confirm texts?
 
@@ -463,7 +414,7 @@ render(
 
 <PropsTable module="@refinedev/mui/DeleteButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button/).
 

@@ -1,15 +1,8 @@
 ---
 title: usePermissions
-siderbar_label: usePermissions
-description: usePermissions data hook from refine is a modified version of react-query's useQuery for retrieving user data
+description: usePermissions data hook from Refine is a modified version of react-query's useQuery for retrieving user data
 source: /packages/core/src/hooks/auth/usePermissions/index.ts
 ---
-
-:::caution
-
-This hook can only be used if the `authProvider` is provided.
-
-:::
 
 `usePermissions` calls the `getPermissions` method from the [`authProvider`](/docs/core/providers/auth-provider) under the hood.
 
@@ -27,13 +20,13 @@ For example, if you want only the users with the admin role to see the create bu
 import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
-  ...
-    // highlight-start
-    getPermissions: async () => {
-        return ["admin"];
-    },
-    // highlight-end
-  ...
+  // ...
+  // highlight-start
+  getPermissions: async () => {
+    return ["admin"];
+  },
+  // highlight-end
+  // ...
 };
 ```
 
@@ -52,4 +45,4 @@ export const PostList: React.FC = () => {
 };
 ```
 
-> For more information, refer to the [`<List>` documentation &#8594](/docs/ui-integrations/ant-design/components/basic-views/list)
+To learn more about the `List` component and CRUD views, refer to the [UI Libraries](/docs/guides-concepts/ui-libraries/#views) guide.

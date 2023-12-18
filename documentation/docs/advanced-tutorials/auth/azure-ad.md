@@ -124,7 +124,7 @@ root.render(
 
 ## Override `/login` page
 
-First, we need to override the refine login page. In this way, we will redirect it to the Azure AD login page. We create a `login.tsx` file in the `/src` folder.
+First, we need to override the Refine login page. In this way, we will redirect it to the Azure AD login page. We create a `login.tsx` file in the `/src` folder.
 
 ```tsx title="src/login.tsx"
 import React from "react";
@@ -166,7 +166,7 @@ export default LoginPage;
 
 ## Auth Provider
 
-In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Azure AD.
+In Refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Azure AD.
 
 ```tsx title="src/App.tsx"
 import { Refine, AuthBindings, Authenticated } from "@refinedev/core";

@@ -1,9 +1,8 @@
 ---
 title: Theming
-sidebar_label: Theming
 ---
 
-Theme specifies the color of the components, the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc. You can either create your own Theme or use Themes that provide from **refine**. Theme provides a way to your app's design to meet them.
+Theme specifies the color of the components, the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc. You can either create your own Theme or use Themes that provide from Refine. Theme provides a way to your app's design to meet them.
 
 > For more information, refer to the [Material UI documentation &#8594](https://mui.com/material-ui/customization/theming/)
 
@@ -38,11 +37,7 @@ const App: React.FC = () => {
 };
 ```
 
-:::info
-
 [You can see how themes change the look of the application in this example.](/docs/examples/themes/refine-themes-mui/)
-
-:::
 
 ## Theme Provider
 
@@ -106,11 +101,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-:::tip
-
-We recommend using [`create refine-app`][create-refine-app] to initialize your **refine** projects. It configures the project according to your needs including SSR and Theme with Next.js.
-
-:::
+We recommend using [`create refine-app`][create-refine-app] to initialize your Refine projects. It configures the project according to your needs including SSR and Theme with Next.js.
 
 ## Passing the Theme to ThemeProvider
 
@@ -266,11 +257,7 @@ const overriddenLightTheme = createTheme({
 });
 ```
 
-:::tip
-
 Get a designer's opinion anyway - you'll be happy with the end result!
-
-:::
 
 When we easy-override our `RefineThemes`, it's going to look like this:
 
@@ -380,8 +367,6 @@ const overriddenLightTheme = createTheme({
 
 > Refer to the [Material UI documentation for more information about Material UI Theme Configuration Variables. &#8594](https://mui.com/material-ui/customization/theming/)
 
-:::info
-
 If you are overriding the `fontFamily` in typography, you can add the `<link>` tags in your `index.html` like the following:
 
 ```html title="index.html"
@@ -394,7 +379,7 @@ If you are overriding the `fontFamily` in typography, you can add the `<link>` t
       rel="stylesheet"
     />
     // highlight-end
-    <title>refine adding font family example</title>
+    <title>Refine adding font family example</title>
   </head>
 
   <body>
@@ -403,19 +388,13 @@ If you are overriding the `fontFamily` in typography, you can add the `<link>` t
 </html>
 ```
 
-:::
-
 ## Create Custom Theme
 
-With the help of **refine**'s themes, you can customize your site in a matter of minutes. Alternatively, there is also an option to create a custom theme with the [`createTheme()`](https://mui.com/material-ui/customization/theming/#createtheme-options-args-theme) method so you can create a custom theme with the configuration variables and use it in the whole application.
-
-:::tip
+With the help of Refine's themes, you can customize your site in a matter of minutes. Alternatively, there is also an option to create a custom theme with the [`createTheme()`](https://mui.com/material-ui/customization/theming/#createtheme-options-args-theme) method so you can create a custom theme with the configuration variables and use it in the whole application.
 
 You can use the `responsiveFontSizes()` helper to make Typography font sizes in your theme automated.
 
 For more information, you can review [`responsiveFontSizes()`](https://mui.com/material-ui/customization/typography/#responsive-font-sizes) in the mui document.
-
-:::
 
 ```tsx live
 setInitialRoutes(["/samples"]);
@@ -904,17 +883,9 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-:::tip
-
 If you want to use `notistack` snackbars with the default style, simply wrap `<Refine>` in `<SnackbarProvider>`.
 
-:::
-
-:::tip
-
 If you want to customize the default layout elements provided with `@refinedev/mui` package, check out the [Custom ThemedLayout](/docs/advanced-tutorials/custom-layout) tutorial.
-
-:::
 
 [create-refine-app]: /docs/getting-started/quickstart.md
 

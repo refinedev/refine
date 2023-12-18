@@ -6,7 +6,7 @@ title: useExport
 
 Internally, it uses [`export-to-csv`][export-to-csv] to create the `CSV` file.
 
-## Basic Usage
+## Usage
 
 Here is a basic usage example of the `useExport` hook:
 
@@ -31,9 +31,7 @@ export const PostList: React.FC = () => {
 
 ### `resource`
 
-> Default: Read from the current route
-
-Determines which resource is passed to the `getList` method of your data provider.
+Determines which resource is passed to the `getList` method of your data provider. By default, it reads the resource name from the current route.
 
 ```ts
 useExport({
@@ -176,21 +174,13 @@ useExport({
 });
 ```
 
-### ~~`resourceName`~~
-
-:::caution Deprecated
+### ~~`resourceName`~~ <PropTag deprecated />
 
 Use `resource` instead.
 
-:::
-
-### ~~`sorter`~~
-
-:::caution Deprecated
+### ~~`sorter`~~ <PropTag deprecated />
 
 Use `sorters` instead.
-
-:::
 
 ## Return Values
 

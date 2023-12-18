@@ -136,6 +136,14 @@
     @apply border-none;
 }
 
+.refine-prose .table-container {
+    @apply overflow-auto max-w-full mt-8 mb-4 pb-4;
+}
+
+.refine-prose .table-container table {
+    @apply my-0 table table-auto;
+}
+
 .refine-toc-item {
     @apply cursor-pointer;
 }
@@ -430,4 +438,12 @@ button.sp-button.sp-icon-standalone[title="Open in CodeSandbox"]:has(svg + span)
 
 .admonition-simple .admonition-content ul li::marker {
     @apply text-gray-700 dark:text-gray-100;
+}
+
+h4 > del:has(code:only-child) {
+    @apply no-underline;
+}
+
+h4 > del:has(code:only-child) code {
+    @apply line-through;
 }

@@ -94,7 +94,7 @@ render(<App />);
 
 ### Hooks and Components in List Page
 
-- `<List/>` is a **refine** component that is used for presentation purposes like showing the create button, page title etc.
+- `<List/>` is a Refine component that is used for presentation purposes like showing the create button, page title etc.
 
   > For more information, refer to the [`<List/>` documentation&#8594](/docs/ui-integrations/mantine/components/basic-views/list)
 
@@ -106,7 +106,7 @@ render(<App />);
 
   > For more information, refer to the [`useTable` documentation](/docs/packages/list-of-packages) and the [TanStack Table v8 documentation&#8594](https://tanstack.com/table/v8)
 
-- `<EditButton/>` and `<ShowButton/>` are **refine** components that are used to navigate to the edit and show pages of the record, respectively.
+- `<EditButton/>` and `<ShowButton/>` are Refine components that are used to navigate to the edit and show pages of the record, respectively.
 
   > For more information, refer to the [ `<EditButton/>`](/docs/ui-integrations/mantine/components/buttons/edit-button) and [`<ShowButton/>` documentations&#8594](/docs/ui-integrations/mantine/components/buttons/show-button)
 
@@ -114,7 +114,7 @@ render(<App />);
 
 Each blog post includes the `category` field, which has an `id` property. This is a foreign key that points to the `categories` resource, which is different from the "blog_posts" resource.
 
-There is a `title` field in the `categories` resource; to display it in the table, we can use the `useMany` hook provided by **refine**.
+There is a `title` field in the `categories` resource; to display it in the table, we can use the `useMany` hook provided by Refine.
 
 This hook allows us to fetch data for multiple records in a single request by providing the `id`'s of the related records. In this case, we need to provide the `id`'s of the blog posts categories. It is particularly useful when we need to fetch related data for multiple records.
 

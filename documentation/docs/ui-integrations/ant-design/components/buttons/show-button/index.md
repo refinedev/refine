@@ -7,9 +7,9 @@ swizzle: true
 
 It can be useful when redirecting the app to the show page with the record id route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -69,7 +69,7 @@ render(
 
 ### `recordItemId`
 
-`recordItemId` is used to append the record id to the end of the route path.
+`recordItemId` is used to append the record id to the end of the route path. By default, the `recordItemId` is inferred from the route params.
 
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
@@ -108,12 +108,6 @@ render(
 ```
 
 Clicking the button will trigger the `show` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
-
-:::note
-
-`<ShowButton>` component reads the id information from the route by default.
-
-:::
 
 ### `resource`
 
@@ -244,57 +238,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> The `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-The redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceNameOrRouteName` property. By default, `<ShowButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
-
-```tsx live disableScroll previewHeight=150px disableScroll
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { ShowButton } from "@refinedev/antd";
-
-const MyShowComponent = () => {
-  return (
-    <ShowButton
-      // highlight-next-line
-      resourceNameOrRouteName="categories"
-      recordItemId="123"
-    />
-  );
-};
-
-// visible-block-end
-
-render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
-        },
-        show: () => {
-          return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
-        },
-      },
-      {
-        name: "categories",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
-        },
-        show: () => {
-          return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
-        },
-      },
-    ]}
-    DashboardPage={MyShowComponent}
-  />,
-);
-```
-
-Clicking the button will trigger the `show` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to `/categories/show/123`.
+Use `resource` prop instead.
 
 ## API Reference
 
@@ -302,7 +246,7 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/docs/co
 
 <PropsTable module="@refinedev/antd/ShowButton" />
 
-:::tip External Props
+:::simple External Props
 
 `<ShowButton>` also accepts all props of Ant Design's [Button](https://ant.design/components/button/#API) component.
 

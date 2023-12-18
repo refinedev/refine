@@ -1,8 +1,10 @@
+import React from "react";
 import { FooterDiscordIcon } from "./icons/footer-discord";
 import { FooterGithubIcon } from "./icons/footer-github";
 import { FooterLinkedinIcon } from "./icons/footer-linkedin";
 import { FooterRedditIcon } from "./icons/footer-reddit";
 import { FooterTwitterIcon } from "./icons/footer-twitter";
+import { NewBadgeIcon } from "./icons/popover";
 
 export const menuItems = [
     {
@@ -29,6 +31,11 @@ export const menuItems = [
     {
         label: "Product",
         items: [
+            {
+                label: "Enterprise",
+                icon: <NewBadgeIcon />,
+                href: "/enterprise",
+            },
             {
                 label: "Examples",
                 href: "/docs/examples",
@@ -77,11 +84,11 @@ export const secondaryMenuItems = [
     },
     {
         label: "License",
-        href: "https://github.com/refinedev/refine/blob/next/LICENSE",
+        href: "https://github.com/refinedev/refine/blob/master/LICENSE",
     },
 ];
 
-export const footerDescription = `refine is a React-based framework for the rapid development of web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions.`;
+export const footerDescription = `Refine is a React-based framework for the rapid development of web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions.`;
 
 export const socialLinks = [
     {

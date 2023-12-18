@@ -403,7 +403,7 @@ module.exports = {
         {
             type: "link",
             href: "https://s.refine.dev/devtools-beta",
-            label: "refine Devtools",
+            label: "Refine Devtools",
             className: "sidebar-item-shiny mt-6 -ml-2",
         },
         // Guides & Concepts
@@ -961,6 +961,7 @@ module.exports = {
                         "packages/data-providers/graphql/index",
                         "packages/data-providers/simple-rest/index",
                         "packages/data-providers/strapi-v4/index",
+                        "packages/data-providers/strapi-graphql/index",
                         "packages/data-providers/supabase/index",
                         "packages/data-providers/nestjs-query/index",
                         "packages/data-providers/nestjsx-crud/index",

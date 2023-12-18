@@ -32,11 +32,11 @@ const Name = ({
     prop: RowItem;
     overrides: OverridesMap;
 }) => {
-    const required = overrides[`${prop.name}-required`] || prop.required;
+    const required = overrides[`${prop.name}-required`] ?? prop.required;
     const deprecated =
-        overrides[`${prop.name}-deprecated`] || prop.tags?.deprecated;
+        overrides[`${prop.name}-deprecated`] ?? prop.tags?.deprecated;
     const deprecation =
-        overrides[`${prop.name}-deprecated`] || prop.tags?.deprecated || "";
+        overrides[`${prop.name}-deprecated`] ?? prop.tags?.deprecated ?? "";
 
     const variant = useMemo(() => {
         const className = "props-table--name";

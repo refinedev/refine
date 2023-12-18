@@ -11,7 +11,7 @@ const { show, close, visible } = useModal();
 
 You can use the `visible` state to show or hide the modal. The `show` and `close` functions' only use is changing the `visible` state. You can use this hook anywhere.
 
-## Basic Usage
+## Usage
 
 Let's see an example:
 
@@ -49,9 +49,7 @@ To demonstrate the `close` function, we created a `<button>` that uses it in its
 
 ### `defaultVisible`
 
-> Default: `false`
-
-`defaultVisible` is a boolean value that determines whether the modal is visible by default.
+`defaultVisible` is a boolean value that determines whether the modal is visible by default. By default, it is `false`.
 
 ```tsx
 useModal({

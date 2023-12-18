@@ -56,10 +56,10 @@ export const App: React.FC = () => {
 
 
 const apiUrl = useApiUrl("other");
-// https://other-api.fake-rest.refine.dev/
+//    ^ https://other-api.fake-rest.refine.dev/
 ```
 
-## API
+## API Reference
 
 ### Return value
 

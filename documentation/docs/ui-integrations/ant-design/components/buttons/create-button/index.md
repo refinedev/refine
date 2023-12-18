@@ -7,9 +7,9 @@ swizzle: true
 
 It can be useful when redirecting the app to the create page route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -183,48 +183,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> The `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
-
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { CreateButton } from "@refinedev/antd";
-
-const MyCreateComponent = () => {
-  return (
-    <CreateButton
-      // highlight-next-line
-      resourceNameOrRouteName="categories"
-    />
-  );
-};
-
-// visible-block-end
-
-const CreatePage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
-};
-
-render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        create: CreatePage,
-      },
-    ]}
-    DashboardPage={MyCreateComponent}
-  />,
-);
-```
+Use `resource` prop instead.
 
 ## API Reference
 
@@ -232,7 +191,7 @@ render(
 
 <PropsTable module="@refinedev/antd/CreateButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
 

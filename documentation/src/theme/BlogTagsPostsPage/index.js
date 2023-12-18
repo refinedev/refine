@@ -55,7 +55,7 @@ function BlogTagsPostsPageMetadata({ tag }) {
 
 function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
     return (
-        <BlogLayout sidebar={sidebar}>
+        <BlogLayout showSidebarBanner={false} sidebar={sidebar}>
             <div
                 className={clsx(
                     "py-8",

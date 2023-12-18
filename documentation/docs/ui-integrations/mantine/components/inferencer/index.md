@@ -1,6 +1,5 @@
 ---
 title: Inferencer
-sidebar_label: Inferencer
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `MantineListInferencer`, `MantineShowInferencer`, `MantineEditInferencer`, `MantineCreateInferencer` components and finally the `MantineInferencer` component, which combines all in one place.
@@ -88,11 +87,7 @@ const SampleEdit = () => {
   </TabItem>
 </Tabs>
 
-:::info
-
 To learn more about `@refinedev/inferencer` package, please check out its [Documentation](/docs/packages/list-of-packages)
-
-:::
 
 ## Views
 

@@ -10,7 +10,7 @@ import AuthProviderInterface from "./auth-provider-interface.md";
 import AuthHooks from "@site/src/partials/auth-provider/auth-hooks.md";
 import AuthProviderExamplesLinks from "@site/src/partials/auth-provider/auth-provider-examples-links.md";
 
-Authentication is the process of verifying the identity of a user or client. It's a critical component of security, ensuring that only authorized users can access certain features or data within the application. Whether you are building a complex **enterprise-level** application or a simple CRUD interface, **Refine**'s authentication system provides the necessary infrastructure to protect your pages and ensure that users interact with your application in a secure and controlled manner.
+Authentication is the process of verifying the identity of a user or client. It's a critical component of security, ensuring that only authorized users can access certain features or data within the application. Whether you are building a complex **enterprise-level** application or a simple CRUD interface, Refine's authentication system provides the necessary infrastructure to protect your pages and ensure that users interact with your application in a secure and controlled manner.
 
 Refine's **flexible architecture** allows you to easily implement various authentication strategies:
 

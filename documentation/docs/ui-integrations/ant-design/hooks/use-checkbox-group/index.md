@@ -59,7 +59,7 @@ interface ITag {
 All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component.
 `useCheckboxGroup` uses the `useList` hook for fetching data.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useCheckboxGroup/basic.png" alt="Tags" />
+<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useCheckboxGroup/basic.png" alt="Tags" />
 
 > For more information, refer to the [`useList` documentation &#8594](/docs/core/hooks/data/use-list)
 
@@ -107,9 +107,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 `optionLabel` and `optionValue` allows you to change the values and appearances of your options. Default values are `optionLabel = "title"` and `optionValue = "id"`.
 
-:::tip
-
-Supports use with `optionLabel` and `optionValue` [Object path](https://lodash.com/docs/4.17.15#get) syntax.
+These properties also support nested property access with [Object path](https://lodash.com/docs/4.17.15#get) syntax.
 
 ```tsx
 const { options } = useSelect({
@@ -120,8 +118,6 @@ const { options } = useSelect({
   // highlight-end
 });
 ```
-
-:::
 
 ### `filters`
 
@@ -205,13 +201,9 @@ const { selectProps } = useSelect({
 
 The listing will start from page 3, showing 8 records per page.
 
-### ~~`sort`~~
-
-:::caution Deprecated
+### ~~`sort`~~ <PropTag deprecated />
 
 Use `sorters` instead.
-
-:::
 
 ## API Reference
 

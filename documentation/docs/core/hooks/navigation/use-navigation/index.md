@@ -1,6 +1,5 @@
 ---
 title: useNavigation
-sidebar_label: useNavigation
 ---
 
 `useNavigation` is a hook that provides methods to navigate the app. Internally, it uses the `go` method of the [`routerProvider`][routerprovider].
@@ -18,11 +17,7 @@ const { list, create, edit, show, clone, push, replace, goBack, listUrl, createU
 
 ## Return Values
 
-:::info
-
 All functions the `useNavigation` hook returns, except `push`, `replace` and `goBack`, accept a `meta` parameter. This is an optional parameter that can be used to pass additional parameters to the routes if they contain multiple parameters other than `id`.
-
-:::
 
 ### `list`
 
@@ -200,27 +195,26 @@ cloneUrl("posts", "1"); // It returns the `/posts/clone/1` URL
 
 ### Return values
 
-| Property  | Description                                                 | Type                                                                                                              |
-| --------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| list      | Method that navigates to the list page                      | ( resource: string, type: [HistoryType](#interface), meta?: Record<string, any> ) => void                         |
-| create    | Method that navigates to the create page                    | ( resource: string, type: [HistoryType](#interface), meta?: Record<string, any> ) => void                         |
-| edit      | Method that navigates to the edit page                      | ( resource: string, id: [BaseKey][basekey], type: [HistoryType](#interface), meta?: Record<string, any> ) => void |
-| show      | Method that navigates to the show page                      | ( resource: string, id: [BaseKey][basekey], type: [HistoryType](#interface), meta?: Record<string, any> ) => void |
-| clone     | Method that navigates to the clone page                     | ( resource: string, id: [BaseKey][basekey], type: [HistoryType](#interface), meta?: Record<string, any> ) => void |
-| push      | Method that pushes the given path to the history stack      | ( path: string, ...rest: unknown[] ) => void                                                                      |
-| replace   | Method that replaces the current entry on the history stack | ( path: string, ...rest: unknown[] ) => void                                                                      |
-| goBack    | Method that navigates to the previous page                  | () => void                                                                                                        |
-| listUrl   | Method that returns the list page URL                       | ( resource: string, meta?: Record<string, any> ) => string                                                        |
-| createUrl | Method that returns the create page URL                     | ( resource: string, meta?: Record<string, any> ) => string                                                        |
-| editUrl   | Method that returns the edit page URL                       | ( resource: string, id: [BaseKey][basekey], meta?: Record<string, any> ) => string                                |
-| showUrl   | Method that returns the show page URL                       | ( resource: string, id: [BaseKey][basekey], meta?: Record<string, any> ) => string                                |
-| cloneUrl  | Method that returns the clone page URL                      | ( resource: string, id: [BaseKey][basekey], meta?: Record<string, any> ) => string                                |
+| Property  | Description                                                 | Type                                                                                     |
+| --------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| list      | Method that navigates to the list page                      | `(resource: string, type: HistoryType, meta?: Record<string, any>) => void`              |
+| create    | Method that navigates to the create page                    | `(resource: string, type: HistoryType, meta?: Record<string, any>) => void`              |
+| edit      | Method that navigates to the edit page                      | `(resource: string, id: BaseKey, type: HistoryType, meta?: Record<string, any>) => void` |
+| show      | Method that navigates to the show page                      | `(resource: string, id: BaseKey, type: HistoryType, meta?: Record<string, any>) => void` |
+| clone     | Method that navigates to the clone page                     | `(resource: string, id: BaseKey, type: HistoryType, meta?: Record<string, any>) => void` |
+| push      | Method that pushes the given path to the history stack      | `(path: string, ...rest: unknown[]) => void`                                             |
+| replace   | Method that replaces the current entry on the history stack | `(path: string, ...rest: unknown[]) => void`                                             |
+| goBack    | Method that navigates to the previous page                  | `() => void`                                                                             |
+| listUrl   | Method that returns the list page URL                       | `(resource: string, meta?: Record<string, any>) => string`                               |
+| createUrl | Method that returns the create page URL                     | `(resource: string, meta?: Record<string, any>) => string`                               |
+| editUrl   | Method that returns the edit page URL                       | `(resource: string, id: BaseKey, meta?: Record<string, any>) => string`                  |
+| showUrl   | Method that returns the show page URL                       | `(resource: string, id: BaseKey, meta?: Record<string, any>) => string`                  |
+| cloneUrl  | Method that returns the clone page URL                      | `(resource: string, id: BaseKey, meta?: Record<string, any>) => string`                  |
 
-#### Interface
+#### Interfaces
 
-```tsx title="History Type"
-export type HistoryType = "push" | "replace";
-```
+- [`type BaseKey`][basekey]
+- `type HistoryType = "push" | "replace";`
 
 [routerprovider]: /docs/core/providers/router-provider
 [basekey]: /docs/core/interface-references#basekey

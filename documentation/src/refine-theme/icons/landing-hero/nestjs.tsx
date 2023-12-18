@@ -9,7 +9,11 @@ export const LandingHeroNestjsIcon = (props: React.SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
-        <g opacity={0.5} filter="url(#filter0_f_1305_2754)">
+        <g
+            opacity={0.5}
+            className="hidden dark:block"
+            filter="url(#filter0_f_1305_2754)"
+        >
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"

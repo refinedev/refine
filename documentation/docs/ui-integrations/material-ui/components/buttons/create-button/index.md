@@ -5,9 +5,9 @@ swizzle: true
 
 `<CreateButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `create` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood. It can be useful to redirect the app to the create page route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -176,50 +176,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-`resourceNameOrRouteName` is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
-
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { CreateButton } from "@refinedev/mui";
-
-const MyCreateComponent = () => {
-  return (
-    <CreateButton
-      // highlight-next-line
-      resourceNameOrRouteName="categories"
-    />
-  );
-};
-
-// visible-block-end
-
-const CreatePage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
-};
-
-render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        create: CreatePage,
-      },
-    ]}
-    DashboardPage={MyCreateComponent}
-  />,
-);
-```
-
-Clicking the button will trigger the `create` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect to `/posts/create`.
+Use `resource` prop instead.
 
 ## API Reference
 
@@ -227,7 +184,7 @@ Clicking the button will trigger the `create` method of [`useNavigation`](/docs/
 
 <PropsTable module="@refinedev/mui/CreateButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button/).
 

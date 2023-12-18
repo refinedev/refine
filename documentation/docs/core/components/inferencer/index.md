@@ -1,15 +1,13 @@
 ---
 title: Inferencer
-sidebar_label: Inferencer
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `HeadlessListInferencer`, `HeadlessShowInferencer`, `HeadlessEditInferencer`, `HeadlessCreateInferencer`, and finally `HeadlessInferencer` components, the last of which combines all in one place.
 
-:::caution Dependencies
+:::simple Good to know
 
-`@refinedev/inferencer/headless` uses [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) and [`@refinedev/react-table`](/docs/packages/list-of-packages) to create views.
-
-Make sure you include them in your dependencies.
+- Headless elements of `@refinedev/inferencer` uses [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) and [`@refinedev/react-table`](/docs/packages/list-of-packages) to create views. These dependencies should be installed in your project in order to use inferencer components.
+- To learn more about the `@refinedev/inferencer` package, please check out [Inferencer](/docs/packages/inferencer) docs.
 
 :::
 
@@ -91,12 +89,6 @@ const SampleEdit = () => {
 
   </TabItem>
 </Tabs>
-
-:::info
-
-To learn more about the `@refinedev/inferencer` package, please check out [Docs](/docs/packages/list-of-packages)
-
-:::
 
 ## Views
 
@@ -318,6 +310,6 @@ render(<App />);
 
 ## Example
 
-Below you'll find a Live CodeSandbox Example displaying a fully setup **refine** app with `@refinedev/inferencer/headless` components.
+Below you'll find a Live CodeSandbox Example displaying a fully setup Refine app with `@refinedev/inferencer/headless` components.
 
 <CodeSandboxExample path="inferencer-headless" />

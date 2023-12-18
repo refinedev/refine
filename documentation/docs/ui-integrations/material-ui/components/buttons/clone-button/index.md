@@ -7,9 +7,9 @@ swizzle: true
 
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -74,7 +74,7 @@ render(
 
 ### `recordItemId`
 
-`recordItemId` is used to append the record id to the end of the route path.
+`recordItemId` is used to append the record id to the end of the route path. By default, the `recordItemId` is inferred from the route params.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -107,12 +107,6 @@ render(
 ```
 
 Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
-
-:::note
-
-**`<CloneButton>`** component reads the id information from the route by default.
-
-:::
 
 ### `resource`
 
@@ -224,51 +218,13 @@ export const MyCloneComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-`resourceNameOrRouteName` is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
-
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { CloneButton } from "@refinedev/mui";
-
-const MyCloneComponent = () => {
-  return <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />;
-};
-
-// visible-block-end
-
-const ClonedPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
-};
-
-render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        create: ClonedPage,
-      },
-    ]}
-    DashboardPage={MyCloneComponent}
-  />,
-);
-```
-
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to `/categories/clone/2`.
+Use `resource` prop instead.
 
 ## API Reference
 
 <PropsTable module="@refinedev/mui/CloneButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button/).
 

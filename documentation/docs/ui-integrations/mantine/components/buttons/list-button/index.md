@@ -29,9 +29,9 @@ const Wrapper = ({ children }) => {
 
 `<ListButton>` is uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `list` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -102,11 +102,7 @@ render(
 );
 ```
 
-:::note
-
-The button text is defined automatically by **refine** based on _resource_ object name property.
-
-:::
+The button text is defined automatically by Refine based on resource definition.
 
 ## Properties
 
@@ -227,67 +223,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine, useRouterContext, useNavigation } from "@refinedev/core";
-import { Button, Code, Space, Text } from "@mantine/core";
-
-// visible-block-start
-import { ListButton } from "@refinedev/mantine";
-
-const MyListComponent = () => {
-  return <ListButton resourceNameOrRouteName="categories" />;
-};
-// visible-block-end
-
-const ListPage = () => {
-  const { list } = useNavigation();
-  const params = useRouterContext().useParams();
-
-  return (
-    <div>
-      <Text italic color="dimmed" size="sm">
-        URL Parameters:
-      </Text>
-      <Code>{JSON.stringify(params)}</Code>
-      <Space h="md" />
-      <Button size="xs" variant="outline" onClick={() => list("posts")}>
-        Go back
-      </Button>
-    </div>
-  );
-};
-
-const App = () => {
-  return (
-    <Refine
-      resources={[
-        {
-          name: "posts",
-          list: MyListComponent,
-        },
-        {
-          name: "categories",
-          list: ListPage,
-        },
-      ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
-```
-
-Clicking the button will trigger the `list` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect to `/categories`.
+Use `resource` prop instead.
 
 ## API Reference
 

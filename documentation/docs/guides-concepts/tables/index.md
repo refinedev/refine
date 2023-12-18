@@ -170,7 +170,7 @@ useTable({
 });
 ```
 
-### Sync with Location <RouterBadge id="guides-concepts/routing/#usetable" /> <GlobalConfigBadge id="api-reference/core/components/refine-config/#syncwithlocation" />
+### Sync with Location <RouterBadge id="guides-concepts/routing/#usetable" /> <GlobalConfigBadge id="core/refine-component/#syncwithlocation" />
 
 When you use the [`syncWithLocation`](/docs/core/hooks/use-table#syncwithlocation) feature, the `useTable`'s state (e.g., sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
 
@@ -189,7 +189,7 @@ For example imagine each post has a many category. We can fetch the categories o
 [crudsorting]: /docs/core/interface-references#crudsorting
 [crudfilters]: /docs/core/interface-references#crudfilters
 [httperror]: /docs/core/interface-references#httperror
-[refine swl]: /docs/core/refine-component#syncwithlocation
+[Refine swl]: /docs/core/refine-component#syncwithlocation
 [syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
 [notification-provider]: /docs/core/providers/notification-provider
 [data-provider]: /docs/core/providers/data-provider

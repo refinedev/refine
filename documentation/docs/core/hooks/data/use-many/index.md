@@ -14,13 +14,9 @@ import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
 It is useful when you want to fetch multiple records from the API. It will return the data and some functions to control the query.
 
-:::caution
-
 If your data provider does not have a `getMany` method, `useMany` will use the `getOne` method instead. This is not recommended, as it will make requests one by one for each id. It is better to implement the `getMany` method in the data provider.
 
-:::
-
-## Basic Usage
+## Usage
 
 The `useMany` hook expects a `resource` and `ids` property, which will be passed to the `getMany` method from the `dataProvider` as a parameter.
 
@@ -30,15 +26,9 @@ When these properties are changed, the `useMany` hook will trigger a new request
 
 ## Realtime Updates
 
-:::caution
-
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
-
-:::
+> This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
 
 When the `useMany` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
-
-> For more information, refer to the [`liveProvider` documentation&#8594](/docs/core/providers/live-provider)
 
 ## Properties
 
@@ -143,11 +133,7 @@ const myDataProvider = {
 
 ### `successNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useMany` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -165,11 +151,7 @@ useMany({
 
 ### `errorNotification`
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useMany` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -187,11 +169,7 @@ useMany({
 
 ### `liveMode`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -201,15 +179,9 @@ useMany({
 });
 ```
 
-> For more information, refer to the [Live / Realtime page&#8594](/docs/core/providers/live-provider#livemode)
-
 ### `onLiveEvent`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -223,11 +195,7 @@ useMany({
 
 ### `liveParams`
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
 
@@ -275,7 +243,7 @@ const { overtime } = useMany();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-## API
+## API Reference
 
 ### Properties
 

@@ -1,7 +1,6 @@
 ---
-title: <ThemedLayout>
-sidebar_label: <ThemedLayout>
-description: <ThemedLayoutV2> component from refine, defines the overall structure and layout of a web page.
+title: <ThemedLayout />
+description: <ThemedLayoutV2> component from Refine, defines the overall structure and layout of a web page.
 swizzle: true
 source: packages/antd/src/components/themedLayoutV2/index.tsx
 ---
@@ -40,8 +39,6 @@ By using `<ThemedLayoutV2>`, developers can create a consistent look and feel ac
 - [`<ThemedTitleV2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
 - `<Footer>`: displayed at the bottom of the page.
 - `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
-
-> `Footer` and `OffLayoutArea` do not have any default components.
 
 ## Usage
 
@@ -105,21 +102,13 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-:::note
-
 `<ThemedLayoutV2>` is designed to be responsive. In the live-preview, it appears in tablet mode and uses [`<Drawer>`][antd-drawer]. On larger screens, it will use [`<Sider>`][antd-sider].
-
-:::
-
-:::info
 
 Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/list-of-packages). You can see these examples for other routers:
 
 - [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-antd/src/App.tsx#L186)
 - [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs-auth/pages/_app.tsx#L31)
 - [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-auth/app/routes/_protected.tsx)
-
-:::
 
 ## Props
 
@@ -343,7 +332,7 @@ const App: React.FC = () => {
 
 ### `Footer`
 
-The footer section of the layout is displayed at the bottom of the page. **refine** doesn't provide a default footer component. However, you can pass a custom component to the `Footer` prop to display a footer section.
+The footer section of the layout is displayed at the bottom of the page. Refine doesn't provide a default footer component. However, you can pass a custom component to the `Footer` prop to display a footer section.
 
 Here is an example of how to display a footer section:
 
@@ -452,7 +441,7 @@ const App: React.FC = () => {
 
 ### `OffLayoutArea`
 
-Used to component is rendered outside of the main layout component, allowing it to be placed anywhere on the page while still being part of the overall layout .**refine** doesn't provide a default off-layout area component. However, you can pass a custom component to the `OffLayoutArea` prop to display a custom off-layout area.
+Used to component is rendered outside of the main layout component, allowing it to be placed anywhere on the page while still being part of the overall layout .Refine doesn't provide a default off-layout area component. However, you can pass a custom component to the `OffLayoutArea` prop to display a custom off-layout area.
 
 Here is an example of how to display a custom off-layout area:
 
@@ -589,11 +578,7 @@ UI Framework
 
 First, you need to select the package you want to swizzle. In this example, we will swizzle the `@refinedev/antd` package.
 
-:::info
-
-**refine** CLI will only show the packages that are installed in your project.
-
-:::
+Refine CLI will only show the packages that are installed in your project.
 
 ```bash
 ? Which component do you want to swizzle?
@@ -674,13 +659,9 @@ const App = () => {
 };
 ```
 
-:::info
+:::simple Good to know
 
-**refine** CLI determines the path to create a new folder according to the framework you are using. For example, if you are using the `remix`, the path will be `app/components/layout`.
-
-:::
-
-:::caution
+Refine CLI determines the path to create a new folder according to the framework you are using. For example, if you are using the `remix`, the path will be `app/components/layout`.
 
 If there is already a file with the same name in the directory, the swizzle command will not overwrite it.
 

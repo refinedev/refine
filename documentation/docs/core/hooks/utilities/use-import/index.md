@@ -7,7 +7,7 @@ description: useImport hook API references of @refinedev/core
 
 Internally, it uses [Papa Parse][papaparse] to parse the file contents.
 
-## Basic Usage
+## Usage
 
 Here is a basic usage example of the `useImport` hook:
 
@@ -30,9 +30,7 @@ export const PostList: React.FC = () => {
 
 ### `resource`
 
-> Default: Read from the current route
-
-Determines which resource is passed to the `create` or `createMany` method of your data provider.
+Determines which resource is passed to the `create` or `createMany` method of your data provider. By default, it reads the resource name from the current route.
 
 ```ts
 useImport({
@@ -73,9 +71,7 @@ useImport({
 
 ### `batchSize`
 
-> Default: [`Number.MAX_SAFE_INTEGER`][number.max_safe_integer]
-
-If you want to send the data in batches, you can use the `batchSize` property. When the `batchSize` is 1, it calls the `create` method of your data provider for each row in the file. When the `batchSize` is greater than 1, it calls the `createMany` method of your data provider for each batch.
+If you want to send the data in batches, you can use the `batchSize` property. When the `batchSize` is 1, it calls the `create` method of your data provider for each row in the file. When the `batchSize` is greater than 1, it calls the `createMany` method of your data provider for each batch. By default, it is set to [`Number.MAX_SAFE_INTEGER`][number.max_safe_integer]
 
 ```ts
 useImport({
@@ -138,13 +134,9 @@ useImport({
 });
 ```
 
-### ~~`resourceName`~~
-
-:::caution Deprecated
+### ~~`resourceName`~~ <PropTag deprecated />
 
 Use `resource` instead.
-
-:::
 
 ## Return Values
 

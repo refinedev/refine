@@ -5,9 +5,7 @@ title: Audit Log Provider
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Overview
-
-**refine** allows you to track changes and who made them in your data by sending a new log event record whenever a new record is created, updated or deleted. Mutations made with data hooks are automatically sent to the `auditLogProvider` as an event. You can also manually send events to the `auditLogProvider` via hooks.
+Refine allows you to track changes and who made them in your data by sending a new log event record whenever a new record is created, updated or deleted. Mutations made with data hooks are automatically sent to the `auditLogProvider` as an event. You can also manually send events to the `auditLogProvider` via hooks.
 
 To use `auditLogProvider`, you just need to pass it to `<Refine>`:
 
@@ -16,9 +14,12 @@ import { Refine } from "@refinedev/core";
 
 import auditLogProvider from "./auditLogProvider";
 
-const App: React.FC = () => {
-  return <Refine auditLogProvider={auditLogProvider} />;
-};
+const App = () => (
+  <Refine
+    /* ... */
+    auditLogProvider={auditLogProvider}
+  />
+);
 ```
 
 An `auditLogProvider` must have the following methods:
@@ -58,13 +59,13 @@ const auditLogProvider = {
 
 :::note
 
-**refine** provides the `useLog` and `useLogList` hooks that can be used to access your `auditLogProvider` methods from anywhere in your application.
+Refine provides the `useLog` and `useLogList` hooks that can be used to access your `auditLogProvider` methods from anywhere in your application.
 
 :::
 
 ## Creating an Audit Log Provider
 
-Let's create an `auditLogProvider` to understand how it works better. Though we will be using `dataProvider` to handle events, you can do it however you want thanks to **refine** providing an agnostic API.
+Let's create an `auditLogProvider` to understand how it works better. Though we will be using `dataProvider` to handle events, you can do it however you want thanks to Refine providing an agnostic API.
 
 ### `get`
 
@@ -80,12 +81,6 @@ For example, using the `useLogList` hook to list all resource activities by a sp
   }
 }
 ```
-
-:::info
-
-The event is created with parameters that were passed to the `useLogList` hook.
-
-:::
 
 Now let's see how we can handle these events in our audit log provider.
 
@@ -107,29 +102,39 @@ export const auditLogProvider: AuditLogProvider = {
 
 ### `create`
 
-This method is used to create an audit log event. It is triggered when a new successful mutation is made or when you use `useLog`'s `log` method. The incoming parameters show the values of the new record to be created.
-
-:::caution
+:::simple Caution
 
 We recommend you create audit logs on the API side for security concerns since the data can be changed on the client side.
 
 :::
 
+This method is used to create an audit log event. It is triggered when a new successful mutation is made or when you use `useLog`'s `log` method. The incoming parameters show the values of the new record to be created.
+
 When the mutations is successful, the `create` method is called with the following parameters, depending on the mutation type:
+
+:::simple Log parameters for each mutation type
+
+- Refine returns the `previousData` from the react-query cache if it can find it, returns `undefined` otherwise.
+
+- In create mutations, if the request response has an `id` field, it will be added to the `meta` object.
+
+- If [`getUserIdentity`](/docs/core/providers/auth-provider) is defined in your auth provider, the `author` object will be added to the event with the value returned by `getUserIdentity`.
+
+:::
 
 <Tabs
 defaultValue="create"
 values={[
-{label: 'Create Event', value: 'create'},
-{label: 'Update Event', value: 'update'},
-{label: 'Delete Event', value: 'delete'},
-{label: 'Create Many Event', value: 'createMany'},
-{label: 'Update Many Event', value: 'updateMany'},
-{label: 'Delete Many Event', value: 'deleteMany'}
+{label: 'Create', value: 'create'},
+{label: 'Update', value: 'update'},
+{label: 'Delete', value: 'delete'},
+{label: 'Create Many', value: 'createMany'},
+{label: 'Update Many', value: 'updateMany'},
+{label: 'Delete Many', value: 'deleteMany'}
 ]}>
 <TabItem value="create">
 
-When a record is created, refine automatically sends an event to `create` method like this:
+When a record is created, Refine automatically sends an event to `create` method like this:
 
 ```json
 {
@@ -147,16 +152,10 @@ When a record is created, refine automatically sends an event to `create` method
 }
 ```
 
-:::info
-
-The `id` of the created record is added to the `meta` object and can be used for filtering purposes.
-
-:::
-
 </TabItem>
 <TabItem value="update">
 
-When a record is updated, refine automatically sends an event to `create` method like this:
+When a record is updated, Refine automatically sends an event to `create` method like this:
 
 ```json
 {
@@ -177,16 +176,10 @@ When a record is updated, refine automatically sends an event to `create` method
 }
 ```
 
-:::info
-
-**refine** returns the `previousData` from the react-query cache if it can find it, returns `undefined` otherwise.
-
-:::
-
 </TabItem>
 <TabItem value="delete">
 
-When a record is deleted, refine automatically sends an event to `create` method like this:
+When a record is deleted, Refine automatically sends an event to `create` method like this:
 
 ```json
 {
@@ -202,7 +195,7 @@ When a record is deleted, refine automatically sends an event to `create` method
 </TabItem>
 <TabItem value="createMany">
 
-When a record is created with the `useCreateMany` hook, refine automatically sends an event to the `create` method like this:
+When a record is created with the `useCreateMany` hook, Refine automatically sends an event to the `create` method like this:
 
 ```json
 {
@@ -224,16 +217,10 @@ When a record is created with the `useCreateMany` hook, refine automatically sen
 }
 ```
 
-:::info
-
-The `id` of the created record is added to the `meta` object and can be used for filtering purposes.
-
-:::
-
 </TabItem>
 <TabItem value="updateMany">
 
-When a record is updated with the `useUpdateMany` hook, refine automatically sends an event to the `create` method like this:
+When a record is updated with the `useUpdateMany` hook, Refine automatically sends an event to the `create` method like this:
 
 ```json
 {
@@ -257,16 +244,10 @@ When a record is updated with the `useUpdateMany` hook, refine automatically sen
 }
 ```
 
-:::info
-
-**refine** returns the `previousData` from the react-query cache but if it can't find it, it will return `undefined`.
-
-:::
-
 </TabItem>
 <TabItem value="deleteMany">
 
-When a record is deleted with the `useDeleteMany` hook, refine automatically sends an event to the `create` method like this:
+When a record is deleted with the `useDeleteMany` hook, Refine automatically sends an event to the `create` method like this:
 
 ```json
 {
@@ -281,14 +262,6 @@ When a record is deleted with the `useDeleteMany` hook, refine automatically sen
 
 </TabItem>
 </Tabs>
-
-:::tip
-
-If [`getUserIdentity`](/docs/core/providers/auth-provider) is defined in your auth provider, the `author` object will be added to the event with the value returned by `getUserIdentity`.
-
-:::
-
-<br />
 
 And here is how we can handle these events in our audit log provider:
 
@@ -315,11 +288,7 @@ export const auditLogProvider: AuditLogProvider = {
 };
 ```
 
-:::info
-
 For more information, refer to the [`useLog` documentation&#8594](/docs/core/hooks/audit-log/use-log)
-
-:::
 
 ### `update`
 
@@ -352,17 +321,7 @@ export const auditLogProvider: AuditLogProvider = {
 };
 ```
 
-:::info
-
 For more information, refer to the [`useLog` documentation&#8594](/docs/core/hooks/audit-log/use-log)
-
-:::
-
-:::tip
-
-You can use this hook to name an event and create a milestone.
-
-:::
 
 ## Supported Hooks
 
@@ -584,11 +543,6 @@ For example, if you have the code below, only events will be created for the `cr
   resources={[
     {
       name: "posts",
-      list: PostList,
-      create: PostCreate,
-      edit: PostEdit,
-      show: PostShow,
-      canDelete: true,
       // highlight-start
       meta: {
         audit: ["create"],

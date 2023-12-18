@@ -1,6 +1,6 @@
 ---
-title: <CanAccess>
-siderbar_label: <CanAccess>
+title: <CanAccess />
+siderbar_label: <CanAccess />
 source: packages/core/src/components/canAccess/index.tsx
 ---
 
@@ -10,7 +10,7 @@ It internally uses [`useCan`][use-can]'s return values to provide its functional
 
 Passes the given properties to the `can` method from your access control provider. After, if it returns `true`, it renders the children, otherwise, if it returns `false`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it renders `null`.
 
-> For more information, refer to [Access Control Provider &#8594][access-control-provider]
+To learn more about the authorization, check out the [Authorization](/docs/guides-concepts/authorization) guide and [Access Control Provider](/docs/core/providers/access-control-provider) documentation.
 
 ## Basic Usage
 

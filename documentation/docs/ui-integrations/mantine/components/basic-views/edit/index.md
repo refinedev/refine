@@ -129,9 +129,9 @@ render(
 );
 ```
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -244,7 +244,7 @@ render(
 
 ### `canDelete` and `deleteButtonProps`
 
-`canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property,refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
+`canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property,Refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
 When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
 
@@ -486,12 +486,6 @@ render(
 );
 ```
 
-:::note
-
-The `<Edit>` component needs the `id` information for the `<RefreshButton>` to work properly.
-
-:::
-
 ### `mutationMode`
 
 Determines which mode mutation will have while executing `<DeleteButton>`.
@@ -564,7 +558,7 @@ render(
 
 ### `dataProviderName`
 
-If not specified, **refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
+If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -696,15 +690,9 @@ render(
 );
 ```
 
-### `breadcrumb`
+### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mantine` package.
-
-:::tip
-
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
-
-:::
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -956,11 +944,7 @@ By default, the `<Edit/>` component has a [`<ListButton>`][list-button] and a [`
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, refreshButtonProps, listButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-:::caution
-
 If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
-
-:::
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -1154,11 +1138,7 @@ By default, the `<Edit/>` component has a [`<SaveButton>`][save-button] and a [`
 
 You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, saveButtonProps, deleteButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-:::caution
-
 If [`canDelete`](#candelete-and-deletebuttonprops) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
-
-:::
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);

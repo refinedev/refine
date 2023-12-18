@@ -1,6 +1,5 @@
 ---
 title: List
-sidebar_label: List
 swizzle: true
 ---
 
@@ -78,9 +77,9 @@ render(
 );
 ```
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -262,25 +261,15 @@ render(
 );
 ```
 
-:::note
-
 The create button redirects to the create page of the resource according to the value it reads from the URL.
-
-:::
 
 > For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions)
 
-### `breadcrumb`
+### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/antd` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/docs/ui-integrations/ant-design/components/breadcrumb)
-
-:::tip
-
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
-
-:::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
@@ -451,11 +440,7 @@ By default, the `<List/>` component has a [`<CreateButton>`][create-button] at t
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, createButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-:::caution
-
 If the "create" resource is not defined or if [`canCreate`](#cancreate-and-createbuttonprops) is false, the [`<CreateButton>`][create-button] will not render and `createButtonProps`will be `undefined`.
-
-:::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start

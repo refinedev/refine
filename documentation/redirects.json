@@ -625,10 +625,6 @@
       "to": "/examples/"
     },
     {
-      "from": "/enterprise/",
-      "to": "/"
-    },
-    {
       "from": "/headset/",
       "to": "/"
     },

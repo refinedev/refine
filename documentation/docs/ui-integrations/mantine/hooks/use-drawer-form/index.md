@@ -1,19 +1,14 @@
 ---
 title: useDrawerForm
-sidebar_label: useDrawerForm
 ---
 
 The [`useModalForm`][use-modal-form-refine-mantine] hook allows you to manage a form within a `<Modal>` as well as a `<Drawer>`. It provides some useful methods to handle the form `<Modal>` or form `<Drawer>`.
 
 We will use [`useModalForm`][use-modal-form-refine-mantine] hook as a `useDrawerForm` to manage a form within a `<Drawer>`.
 
-:::info
-
 The `useDrawerForm` hook is extended from the [`useForm`][use-form-refine-mantine] hook from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/master/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
 
-:::
-
-## Basic Usage
+## Usage
 
 We will show two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
 
@@ -390,9 +385,7 @@ setRefineProps({
 render(<RefineMantineDemo />);
 ```
 
-:::caution
-
-**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Drawer>` when clicked.
+Refine doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Drawer>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list. In that way, `"edit"` form in `<Drawer>` can fetch data by the record `id`.
 
@@ -423,11 +416,7 @@ const table = useTable({
 });
 ```
 
-:::caution
-
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
-
-:::
 
 </TabItem>
 
@@ -451,13 +440,7 @@ const drawerForm = useDrawerForm({
 
 ### `initialValues`
 
-:::caution
-
-Only available in `"create"` form.
-
-:::
-
-Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed. This property is only available in `"create"` action.
 
 ```tsx
 const drawerForm = useDrawerForm({
@@ -549,19 +532,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
 #### `enabled`
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. Default value is `false`.
 
 ```tsx
 useDrawerForm({
@@ -575,9 +552,7 @@ useDrawerForm({
 
 #### `debounce`
 
-> Default: `1000`
-
-Set the debounce time for the `autoSave` prop.
+Set the debounce time for the `autoSave` prop. Default value is `1000` milliseconds.
 
 ```tsx
 useDrawerForm({
@@ -593,9 +568,7 @@ useDrawerForm({
 
 #### `invalidateOnUnmount`
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. Default value is `false`.
 
 ```tsx
 useDrawerForm({
@@ -611,9 +584,7 @@ useDrawerForm({
 
 #### `invalidateOnClose`
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the drawer is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the drawer is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. Default value is `false`.
 
 ```tsx
 useDrawerForm({
@@ -629,13 +600,9 @@ useDrawerForm({
 
 ## Return Values
 
-:::tip
-
 All [`useForm`][use-form-refine-mantine] return values are also available in `useDrawerForm`. You can find descriptions on the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) documentation.
 
 All [`mantine useForm`](https://mantine.dev/form/use-form/) return values also available in `useDrawerForm`. You can find descriptions on [`mantine`](https://mantine.dev/form/use-form/) docs.
-
-:::
 
 ### `visible`
 

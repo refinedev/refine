@@ -1,15 +1,8 @@
 ---
 title: useIsAuthenticated
-siderbar_label: useIsAuthenticated
-description: useIsAuthenticated data hook from refine is a modified version of react-query's useMutation for create mutations
+description: useIsAuthenticated data hook from Refine is a modified version of react-query's useMutation for create mutations
 source: /packages/core/src/hooks/auth/useIsAuthenticated/index.ts
 ---
-
-:::caution
-
-This hook can only be used if the `authProvider` is provided.
-
-:::
 
 `useIsAuthenticated` calls the `check` method from the [`authProvider`](/docs/core/providers/auth-provider) under the hood.
 
@@ -35,7 +28,7 @@ type CheckResponse = {
 
 `useIsAuthenticated` can be useful when you want to check for authentication and handle the result manually.
 
-We have used this hook in refine's [`<Authenticated>`](/docs/core/components/authenticated) component, which allows only authenticated users to access the page or any part of the code.
+We have used this hook in Refine's [`<Authenticated>`](/docs/core/components/authenticated) component, which allows only authenticated users to access the page or any part of the code.
 
 We will demonstrate a similar basic implementation below. Imagine that you have a public page, but you want to make some specific fields private.
 
@@ -43,24 +36,25 @@ We have a logic in [`authProvider`](/docs/core/providers/auth-provider)'s `check
 
 ```tsx
 const authProvider: AuthBindings = {
-  // ---
+  // ...
   // highlight-start
-  check: () =>
-    localStorage.getItem("email")
-      ? {
-          authenticated: true,
-        }
-      : {
-          authenticated: false,
-          error: {
-            message: "Check failed",
-            name: "Not authenticated",
-          },
-          logout: true,
-          redirectTo: "/login",
-        },
+  check: () => {
+    if (localStorage.getItem("email")) {
+      return {
+        authenticated: true,
+      };
+    }
+    return {
+      authenticated: false,
+      error: {
+        message: "Check failed",
+        name: "Not authenticated",
+      },
+      logout: true,
+      redirectTo: "/login",
+    };
+  },
   // highlight-end
-  // ---
 };
 ```
 

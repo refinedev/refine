@@ -7,9 +7,9 @@ swizzle: true
 
 It can be useful when redirecting the app to the edit page with the record id route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -69,7 +69,7 @@ render(
 
 ### `recordItemId`
 
-`recordItemId` is used to append the record id to the end of the route path.
+`recordItemId` is used to append the record id to the end of the route path. By default, the `recordItemId` is inferred from the route params.
 
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
@@ -108,12 +108,6 @@ render(
 ```
 
 Clicking the button will trigger the `edit` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `edit` action path of the resource, filling the necessary parameters in the route.
-
-:::note
-
-`<EditButton>` component reads the id information from the route by default.
-
-:::
 
 ### `resource`
 
@@ -244,57 +238,7 @@ export const MyListComponent = () => {
 
 ### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
 
-> The `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-The Redirection endpoint(`resourceNameOrRouteName/edit`) is defined by `resourceNameOrRouteName` property. By default, `<EditButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
-
-```tsx live disableScroll previewHeight=150px disableScroll
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { EditButton } from "@refinedev/antd";
-
-const MyEditComponent = () => {
-  return (
-    <EditButton
-      // highlight-next-line
-      resourceNameOrRouteName="categories"
-      recordItemId="123"
-    />
-  );
-};
-
-// visible-block-end
-
-render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
-        },
-        edit: () => {
-          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
-        },
-      },
-      {
-        name: "categories",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
-        },
-        edit: () => {
-          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
-        },
-      },
-    ]}
-    DashboardPage={MyEditComponent}
-  />,
-);
-```
-
-Clicking the button will trigger the `edit` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to `/categories/edit/123`.
+Use `resource` prop instead.
 
 ## API Reference
 
@@ -302,7 +246,7 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/docs/co
 
 <PropsTable module="@refinedev/antd/EditButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
 

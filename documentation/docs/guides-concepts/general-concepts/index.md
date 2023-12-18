@@ -53,9 +53,9 @@ They are pluggable, which means you can use the **built-in providers** or **crea
 
 ## Hook Concept
 
-refine adopts a hook-based architecture, a modern and powerful pattern in React development, which significantly enhances the development experience and application performance.
+Refine adopts a hook-based architecture, a modern and powerful pattern in React development, which significantly enhances the development experience and application performance.
 
-**refine**'s hooks are **headless**, which means they are library agnostic, provides **a unified interface** for your needs regardless of your library or framework of your choice.
+Refine's hooks are **headless**, which means they are library agnostic, provides **a unified interface** for your needs regardless of your library or framework of your choice.
 
 For example, we have different built-in router providers for **React Router v6**, **Next.js**, **Remix**, **Expo** that handles routing in your application.
 
@@ -117,7 +117,7 @@ export const MyPage = () => {
 
 ### Authentication Provider
 
-The Authentication Provider centralizes the authentication and authorization processes in **refine** applications.
+The Authentication Provider centralizes the authentication and authorization processes in Refine applications.
 
 It handles authentication and authorization processes such as login, logout, redirection, error handling, and more.
 
@@ -294,11 +294,11 @@ This applies to all buttons like `CreateButton`, `EditButton`, `ShowButton`, `Li
 
 ### Notification Provider
 
-**refine** can automatically show notifications for CRUD operations and errors.
+Refine can automatically show notifications for CRUD operations and errors.
 
 For example, after creating, updating, or deleting a record for `products` resource, or when an error occurs on form submission.
 
-**refine** has out-of-the-box notification providers for popular UI libraries like **Ant Design**, **Material UI**, **Chakra UI**, and **Mantine**.
+Refine has out-of-the-box notification providers for popular UI libraries like **Ant Design**, **Material UI**, **Chakra UI**, and **Mantine**.
 
 > See the [Notifications](/docs/core/providers/notification-provider) guide for more information.
 
@@ -375,7 +375,7 @@ export const MyPage = () => {
 
 ### I18n Provider
 
-I18n provider centralizes localization process in **refine** applications.
+I18n provider centralizes localization process in Refine applications.
 
 ```tsx title=App.tsx
 import { Refine, I18nProvider } from "@refinedev/core";
@@ -430,7 +430,7 @@ For example, it will automatically translate menu items, button texts, table col
 
 ### Router Provider
 
-Router provider helps **refine** understand the relationship between resources and routes. Enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items, inferring hook parameters, and more.
+Router provider helps Refine understand the relationship between resources and routes. Enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items, inferring hook parameters, and more.
 
 We have built-in router integrations for the following packages:
 
@@ -467,7 +467,7 @@ export const ProductsListPage = () => {
 
 #### Hooks
 
-**refine** hooks can synchronize **resource**, **id**, **action** parameters from the current URL. This eliminates the need to pass them manually.
+Refine hooks can synchronize **resource**, **id**, **action** parameters from the current URL. This eliminates the need to pass them manually.
 
 For example, `useShow` hook can infer `resource` and `id` parameters from the current URL.
 
@@ -499,14 +499,14 @@ Another example is `useTable` hook. While it can infer **resource**, **paginatio
 
 ## UI Integrations
 
-While **refine** itself is headless, it offers UI Integrations for popular UI libraries:
+While Refine itself is headless, it offers UI Integrations for popular UI libraries:
 
 - [Ant Design](/docs/ui-integrations/ant-design/introduction)
 - [Material UI](/docs/ui-integrations/material-ui/introduction)
 - [Chakra UI](/docs/ui-integrations/chakra-ui/introduction)
 - [Mantine](/docs/ui-integrations/mantine/introduction)
 
-These integrations use `@refinedev/core` under the hood, becomes a bridge between the UI library and the **refine** framework.
+These integrations use `@refinedev/core` under the hood, becomes a bridge between the UI library and the Refine framework.
 
 <Tabs wrapContent={false}>
 
@@ -577,7 +577,7 @@ These components provide layout views based on the resource information automati
 - Translated texts
 - CRUD Buttons
 
-On top of that, **refine** adds some features to these layouts:
+On top of that, Refine adds some features to these layouts:
 
 - **Access Control**: If the current user isn't authorized to create a product, the create button will be disabled or hidden automatically.
 - **Translation**: buttons, titles, columns will be translated to the current language of the user.
@@ -586,7 +586,7 @@ On top of that, **refine** adds some features to these layouts:
 
 For example, our **UI Integrations** export `CreateButton`, for redirecting the user to the create page of the resource.
 
-While the button itself is imported from underlying UI package, **refine** adds some capabilities to it:
+While the button itself is imported from underlying UI package, Refine adds some capabilities to it:
 
 - **Routing**: when the button is clicked, the user will be redirected to the create page of the resource.
 - **Access Control**: if current user isn't authorized, this button will be disabled or hidden automatically.
@@ -745,29 +745,29 @@ These are some but not all examples of how you can use the `meta` property.
 
 ## State Management
 
-**refine** leverages **React Query** for data fetching and caching, which enhances the performance and user experience of applications. React Query provides efficient data synchronization between your server and UI, making it easier to handle background updates, cache management, and data invalidation.
+Refine leverages **React Query** for data fetching and caching, which enhances the performance and user experience of applications. React Query provides efficient data synchronization between your server and UI, making it easier to handle background updates, cache management, and data invalidation.
 
-Key Aspects of State Management in refine:
+Key Aspects of State Management in Refine:
 
-- **Data Fetching and Caching**: **refine** handles data fetching with **built-in hooks** that automatically manage the loading states, caching, and updating of data. This integration means fewer boilerplate codes and a more streamlined approach to handling server-state.
+- **Data Fetching and Caching**: Refine handles data fetching with **built-in hooks** that automatically manage the loading states, caching, and updating of data. This integration means fewer boilerplate codes and a more streamlined approach to handling server-state.
 
-- **Invalidation and Refetching**: One of the challenges in state management is knowing when to invalidate and refetch data. refine, through React Query, provides simple yet powerful mechanisms to control data refetching. This ensures that the UI always reflects the most current data.
+- **Invalidation and Refetching**: One of the challenges in state management is knowing when to invalidate and refetch data. Refine, through React Query, provides simple yet powerful mechanisms to control data refetching. This ensures that the UI always reflects the most current data.
 
-- **Query Keys Structure**: Each data fetching operation in refine is associated with a unique query key. These keys are used to uniquely identify and cache server responses, making it easy to optimize performance by reusing cached data when needed.
+- **Query Keys Structure**: Each data fetching operation in Refine is associated with a unique query key. These keys are used to uniquely identify and cache server responses, making it easy to optimize performance by reusing cached data when needed.
 
-- **Mutation and Cache Updates**: When a mutation (create, update, delete) occurs, refine allows for the automatic or manual invalidation of related queries. This ensures that the data your users interact with is always fresh and consistent with the backend.
+- **Mutation and Cache Updates**: When a mutation (create, update, delete) occurs, Refine allows for the automatic or manual invalidation of related queries. This ensures that the data your users interact with is always fresh and consistent with the backend.
 
 ## Developer Experience
 
 ### CLI
 
-refine CLI allows you to interact with your **refine** project and perform certain tasks such as creating a new resource, managing version updates, swizzling components, running your project (build, start, dev).
+Refine CLI allows you to interact with your Refine project and perform certain tasks such as creating a new resource, managing version updates, swizzling components, running your project (build, start, dev).
 
 > See the [CLI](/docs/packages/list-of-packages) page for more information.
 
 ### Devtools
 
-**refine devtools** is designed to help you debug and develop your refine apps. It will be a collection of features including monitoring queries and mutations, testing out inferencer generated codes, adding and updating refine packages from the UI and more.
+**Refine Devtools** is designed to help you debug and develop your Refine apps. It will be a collection of features including monitoring queries and mutations, testing out inferencer generated codes, adding and updating Refine packages from the UI and more.
 
 > See the [Devtools](https://github.com/refinedev/refine/tree/master/packages/devtools) package for more information.
 

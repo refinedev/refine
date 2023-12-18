@@ -54,8 +54,7 @@ interface ILanguage {
 }
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useRadioGroup/basic-usage.png" alt="Radio group" />
-<br/>
+<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useRadioGroup/basic-usage.png" alt="Radio group" />
 
 All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>` component.
 
@@ -107,9 +106,7 @@ const { radioGroupProps } = useRadioGroup({
 
 `optionLabel` and `optionValue` allows you to change the values and appearances of your options. Default values are `optionLabel = "title"` and `optionValue = "id"`.
 
-:::tip
-
-Supports use with `optionLabel` and `optionValue` [Object path](https://lodash.com/docs/4.17.15#get) syntax.
+These properties also support nested property access with [Object path](https://lodash.com/docs/4.17.15#get) syntax.
 
 ```tsx
 const { options } = useSelect({
@@ -120,8 +117,6 @@ const { options } = useSelect({
   // highlight-end
 });
 ```
-
-:::
 
 ### `filters`
 
@@ -205,13 +200,9 @@ const { selectProps } = useSelect({
 
 The listing will start from page 3, showing 8 records per page.
 
-### ~~`sort`~~
-
-:::caution Deprecated
+### ~~`sort`~~ <PropTag deprecated />
 
 Use `sorters` instead.
-
-:::
 
 ## API Reference
 

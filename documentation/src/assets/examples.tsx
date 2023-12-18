@@ -5,9 +5,9 @@ import { Examples } from "../types/examples";
 
 export const SHOW_CASES: Examples = [
     {
-        title: "refine CRM Application",
+        title: "Refine CRM Application",
         description:
-            "Comprehensive CRM App developed using refine, Ant Design and GraphQL. It includes features like authentication, a dashboard, and over 10 CRUD interfaces ranging from charts and sales kanban boards to user administration.",
+            "Comprehensive CRM App developed using Refine, Ant Design and GraphQL. It includes features like authentication, a dashboard, and over 10 CRUD interfaces ranging from charts and sales kanban boards to user administration.",
         image: "/examples/crm-banner.jpg",
         image2x: "/examples/crm-banner.jpg",
         buttons: [
@@ -69,7 +69,7 @@ export const SHOW_CASES: Examples = [
 export const EXAMPLES: Examples = [
     {
         title: "Realworld Example",
-        description: `"The mother of all demo apps" - Exemplary fullstack Medium.com clone powered by <strong>refine</strong>!`,
+        description: `"The mother of all demo apps" - Exemplary fullstack Medium.com clone powered by <strong>Refine</strong>!`,
         image: "/examples/real-world.jpg",
         image2x: "/examples/real-world2x.jpg",
         buttons: [
@@ -99,7 +99,7 @@ export const EXAMPLES: Examples = [
     {
         title: "Win95 Style Admin Panel",
         description:
-            "With <strong>refine</strong>'s headless feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility.",
+            "With <strong>Refine</strong>'s headless feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility.",
         image: "/examples/win95.jpg",
         image2x: "/examples/win952x.jpg",
         buttons: [
@@ -119,7 +119,7 @@ export const EXAMPLES: Examples = [
     {
         title: "Invoice Generator App",
         description:
-            "You can develop any web application or admin panel you want in a very short time with <strong>refine</strong> like an invoice app.",
+            "You can develop any web application or admin panel you want in a very short time with <strong>Refine</strong> like an invoice app.",
         image: "/examples/invoice-generator.jpg",
         image2x: "/examples/invoice-generator2x.jpg",
         buttons: [
@@ -137,9 +137,9 @@ export const EXAMPLES: Examples = [
         source: "https://github.com/refinedev/refine/tree/master/examples/refine-week-invoice-generator",
     },
     {
-        title: "refine Pixels!",
+        title: "Refine Pixels!",
         description:
-            "Our internal hackathon winner by  Ali Emir Şen. He used Supabase as a db and real-time API and it worked in perfect harmony with <strong>refine</strong>.",
+            "Our internal hackathon winner by  Ali Emir Şen. He used Supabase as a db and real-time API and it worked in perfect harmony with <strong>Refine</strong>.",
         image: "/examples/refine-pixels.jpg",
         image2x: "/examples/refine-pixels2x.jpg",
         buttons: [
@@ -160,7 +160,7 @@ export const EXAMPLES: Examples = [
     {
         title: "Multi-Tenancy Example with Strapi",
         description:
-            "Cake House application using <strong>refine</strong> and Strapi-v4 and AppWrite.",
+            "Cake House application using <strong>Refine</strong> and Strapi-v4 and AppWrite.",
         image: "/examples/multi-tenancy-strapi.jpg",
         image2x: "/examples/multi-tenancy-strapi2x.jpg",
         buttons: [
@@ -180,7 +180,7 @@ export const EXAMPLES: Examples = [
     {
         title: "Multi-Tenancy Example with Appwrite",
         description:
-            "Cake House application using <strong>refine</strong> and Strapi-v4 and AppWrite.",
+            "Cake House application using <strong>Refine</strong> and Strapi-v4 and AppWrite.",
         image: "/examples/multi-tenancy-appwrite.jpg",
         image2x: "/examples/multi-tenancy-appwrite2x.jpg",
         buttons: [
