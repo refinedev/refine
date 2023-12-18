@@ -20,6 +20,12 @@ import {
 import { FullScreenLoading, Text } from "@/components";
 import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
 import { currencyNumber } from "@/utilities";
+import {
+    QUOTE_ONE_QUERY,
+    QUOTE_USE_FORM_MUTATION,
+    QUOTE_USE_FORM_QUERY,
+} from "./queries";
+import { GetFields } from "@refinedev/nestjs-query";
 
 const columns = [
     {
@@ -114,24 +120,17 @@ export const ProductsServices = () => {
         refetch: refetchQuote,
         isLoading: isLoadingQuote,
         isFetching: isFetchingQuote,
-    } = useOne<Quote>({
+    } = useOne<GetFields<Quote>>({
         resource: "quotes",
         id: params.id,
         liveMode: "off",
         meta: {
-            fields: [
-                "id",
-                "subTotal",
-                "total",
-                {
-                    items: ["totalPrice"],
-                },
-            ],
+            gqlQuery: QUOTE_ONE_QUERY,
         },
     });
 
     const { formProps, autoSaveProps, queryResult } = useForm<
-        Quote,
+        GetFields<Quote>,
         HttpError,
         QuoteUpdateInput
     >({
@@ -163,12 +162,8 @@ export const ProductsServices = () => {
             refetchQuote();
         },
         meta: {
-            fields: [
-                "id",
-                {
-                    items: ["title", "unitPrice", "quantity", "discount"],
-                },
-            ],
+            gqlQuery: QUOTE_USE_FORM_QUERY,
+            gqlMutation: QUOTE_USE_FORM_MUTATION,
         },
     });
     const formLoading = queryResult?.isLoading ?? false;

@@ -10,26 +10,21 @@ import { CustomAvatar, Text } from "@/components";
 import { Audit, Deal } from "@/graphql/schema.types";
 
 import styles from "./index.module.css";
+import { AUDITS_LIST_QUERY, DEALS_LIST_QUERY } from "./queries";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
     limit = 5,
 }) => {
-    const { data: deals, isLoading: isLoadingDeals } = useList<Deal>({
+    const { data: deals, isLoading: isLoadingDeals } = useList<
+        GetFieldsFromList<Deal>
+    >({
         resource: "deals",
         pagination: {
             mode: "off",
         },
         meta: {
-            fields: [
-                "id",
-                "title",
-                {
-                    stage: ["id", "title"],
-                },
-                {
-                    company: ["id", "name", "avatarUrl"],
-                },
-            ],
+            gqlQuery: DEALS_LIST_QUERY,
         },
     });
     const {
@@ -37,7 +32,7 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
         isLoading: isLoadingAudit,
         isError,
         error,
-    } = useList<Audit>({
+    } = useList<GetFieldsFromList<Audit>>({
         resource: "audits",
         pagination: {
             pageSize: limit,
@@ -61,19 +56,7 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
             },
         ],
         meta: {
-            fields: [
-                "id",
-                "action",
-                "targetEntity",
-                "targetId",
-                {
-                    changes: ["field", "from", "to"],
-                },
-                "createdAt",
-                {
-                    user: ["id", "name", "avatarUrl"],
-                },
-            ],
+            gqlQuery: AUDITS_LIST_QUERY,
         },
     });
 
