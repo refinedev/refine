@@ -4,15 +4,15 @@ const config: IGraphQLConfig = {
     schema: "https://api.crm.refine.dev/graphql",
     extensions: {
         codegen: {
+            hooks: {
+                afterOneFileWrite: ["eslint --fix", "prettier --write"],
+            },
             generates: {
                 "src/graphql/schema.types.ts": {
                     plugins: ["typescript"],
                     config: {
                         skipTypename: true,
                         enumsAsTypes: true,
-                    },
-                    hooks: {
-                        afterOneFileWrite: ["eslint --fix", "prettier --write"],
                     },
                 },
                 "src/graphql/types.ts": {
@@ -26,10 +26,7 @@ const config: IGraphQLConfig = {
                         useTypeImports: true,
                     },
                     presetConfig: {
-                        typesPath: "@/graphql/schema.types",
-                    },
-                    hooks: {
-                        afterOneFileWrite: ["eslint --fix", "prettier --write"],
+                        typesPath: "./schema.types",
                     },
                 },
             },
