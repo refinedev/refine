@@ -26,7 +26,6 @@ module.exports = {
                             type: "category",
                             label: "Authentication",
                             items: [
-                                "examples/authentication/antd",
                                 "examples/authentication/mui",
                                 "examples/authentication/mantine",
                             ],
@@ -40,7 +39,6 @@ module.exports = {
                                 "examples/build-systems/nx",
                             ],
                         },
-                        "examples/antd-calendar-example",
                         "examples/command-palette",
                         {
                             type: "category",
@@ -61,7 +59,6 @@ module.exports = {
                                     type: "category",
                                     label: "Custom Theme",
                                     items: [
-                                        "examples/customization/theme/customThemeAntd",
                                         "examples/customization/theme/customThemeChakraUI",
                                         "examples/customization/theme/customThemeMaterialUI",
                                         "examples/customization/theme/customThemeMantine",
@@ -91,18 +88,6 @@ module.exports = {
                             type: "category",
                             label: "Form",
                             items: [
-                                {
-                                    type: "category",
-                                    label: "Ant Design",
-                                    items: [
-                                        "examples/form/antd/custom-form-validation",
-                                        "examples/form/antd/useDrawerForm",
-                                        "examples/form/antd/useForm",
-                                        "examples/form/antd/useModalForm",
-                                        "examples/form/antd/useStepsForm",
-                                        "examples/form/antd/serverSideFormValidation",
-                                    ],
-                                },
                                 {
                                     type: "category",
                                     label: "Headless",
@@ -158,7 +143,6 @@ module.exports = {
                             type: "category",
                             label: "Import / Export",
                             items: [
-                                "examples/import-export/antd",
                                 "examples/import-export/material-ui",
                                 "examples/import-export/mantine",
                             ],
@@ -220,18 +204,6 @@ module.exports = {
                             items: [
                                 {
                                     type: "category",
-                                    label: "Ant Design",
-                                    items: [
-                                        "examples/table/antd/advancedTable",
-                                        "examples/table/antd/tableFilter",
-                                        "examples/table/antd/useDeleteMany",
-                                        "examples/table/antd/useEditableTable",
-                                        "examples/table/antd/useTable",
-                                        "examples/table/antd/useUpdateMany",
-                                    ],
-                                },
-                                {
-                                    type: "category",
                                     label: "Mantine",
                                     items: [
                                         "examples/table/mantine/advanced-react-table",
@@ -276,7 +248,6 @@ module.exports = {
                             type: "category",
                             label: "Themes",
                             items: [
-                                "examples/themes/refine-themes-antd",
                                 "examples/themes/refine-themes-chakra-ui",
                                 "examples/themes/refine-themes-mantine",
                                 "examples/themes/refine-themes-mui",
@@ -296,14 +267,6 @@ module.exports = {
                             type: "category",
                             label: "Upload",
                             items: [
-                                {
-                                    type: "category",
-                                    label: "Ant Design",
-                                    items: [
-                                        "examples/upload/antd/base64",
-                                        "examples/upload/antd/multipart",
-                                    ],
-                                },
                                 {
                                     type: "category",
                                     label: "Mantine",
@@ -816,6 +779,30 @@ module.exports = {
                                 "ui-integrations/ant-design/hooks/use-radio-group/index",
                                 "ui-integrations/ant-design/hooks/use-import/index",
                                 "ui-integrations/ant-design/hooks/use-modal/index",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Examples",
+                            items: [
+                                "examples/customization/theme/customThemeAntd",
+                                "examples/authentication/antd",
+                                "examples/themes/refine-themes-antd",
+                                "examples/form/antd/custom-form-validation",
+                                "examples/form/antd/useDrawerForm",
+                                "examples/form/antd/useForm",
+                                "examples/form/antd/useModalForm",
+                                "examples/form/antd/useStepsForm",
+                                "examples/form/antd/serverSideFormValidation",
+                                "examples/upload/antd/base64",
+                                "examples/upload/antd/multipart",
+                                "examples/table/antd/advancedTable",
+                                "examples/table/antd/tableFilter",
+                                "examples/table/antd/useDeleteMany",
+                                "examples/table/antd/useEditableTable",
+                                "examples/table/antd/useTable",
+                                "examples/table/antd/useUpdateMany",
+                                "examples/import-export/antd",
                             ],
                         },
                         "ui-integrations/ant-design/theming/index",
