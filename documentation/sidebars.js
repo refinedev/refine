@@ -56,7 +56,6 @@ module.exports = {
                                     type: "category",
                                     label: "Custom Theme",
                                     items: [
-                                        "examples/customization/theme/customThemeChakraUI",
                                         "examples/customization/theme/customThemeMaterialUI",
                                     ],
                                 },
@@ -104,16 +103,7 @@ module.exports = {
                                         "examples/form/mui/serverSideFormValidation",
                                     ],
                                 },
-                                {
-                                    type: "category",
-                                    label: "Chakra UI",
-                                    items: [
-                                        "examples/form/chakra-ui/useDrawerForm",
-                                        "examples/form/chakra-ui/useForm",
-                                        "examples/form/chakra-ui/useModalForm",
-                                        "examples/form/chakra-ui/serverSideFormValidation",
-                                    ],
-                                },
+
                                 {
                                     type: "category",
                                     label: "React Hook Form",
@@ -222,10 +212,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "Themes",
-                            items: [
-                                "examples/themes/refine-themes-chakra-ui",
-                                "examples/themes/refine-themes-mui",
-                            ],
+                            items: ["examples/themes/refine-themes-mui"],
                         },
                         {
                             type: "category",
@@ -905,6 +892,18 @@ module.exports = {
                                         "ui-integrations/chakra-ui/components/fields/url-field/index",
                                     ],
                                 },
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Examples",
+                            items: [
+                                "examples/themes/refine-themes-chakra-ui",
+                                "examples/customization/theme/customThemeChakraUI",
+                                "examples/form/chakra-ui/useDrawerForm",
+                                "examples/form/chakra-ui/useForm",
+                                "examples/form/chakra-ui/useModalForm",
+                                "examples/form/chakra-ui/serverSideFormValidation",
                             ],
                         },
                         "ui-integrations/chakra-ui/theming/index",
