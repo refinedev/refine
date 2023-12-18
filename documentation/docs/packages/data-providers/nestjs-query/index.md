@@ -182,7 +182,9 @@ npm run codegen
   - GetFields: Get fields from your non-list queries and mutations.
   - GetFieldsFromList: Get fields from your offset-paginated list queries.
 
-You can use these types to get the fields of your queries/mutations.
+You can use these types to extract the type of selected fields of your queries/mutations.
+
+See the [Utility Types](#utility-types) section for more information.
 ```
 
 And then you can use it with hooks:
@@ -235,6 +237,82 @@ const { formProps } = useForm<GetFields<PostEditMutation>>({
     gqlQuery: POST_EDIT_QUERY,
   },
 });
+```
+
+### Utility Types
+
+`@refinedev/nestjs-query` exports 2 utility types, `GetFields` and `GetFieldsFromList`.
+
+These types can be used to extract selection set from your queries mutations.
+
+#### GetFields
+
+Let's say we have the following queries and mutations:
+
+```graphql
+query PostShow($id: ID!) {
+  post(id: $id) {
+    id
+  }
+}
+
+mutation PostCreate($input: CreateOneBlogPostInput!) {
+  createOneBlogPost(input: $input) {
+    id
+  }
+}
+```
+
+While you can use this type directly, it's not very useful, because you would need to extract fields manually, by passing your query/mutation name.
+
+```ts
+import { GetFields } from "@refinedev/nestjs-query";
+import { PostShowQuery, PostCreateMutation } from "src/graphql/types";
+
+PostShowQuery; // { blogPost: { id: string }; }
+
+GetFields<PostShowQuery>; // { id: string; }
+
+PostCreateMutation; // { createOneBlogPost: { id: string; } }
+
+GetFields<PostCreateMutation>; // { id: string; }
+```
+
+#### GetFieldsFromList
+
+Let's say you have the following query:
+
+```graphql
+query PostsList($paging: OffsetPaging!, $filter: BlogPostFilter, $sorting: [BlogPostSort!]!) {
+  blogPosts(paging: $paging, filter: $filter, sorting: $sorting) {
+    nodes {
+      id
+    }
+    totalCount
+  }
+}
+```
+
+This query will generate the following type:
+
+```ts
+export type BlogPostsListQuery = {
+  blogPosts: Pick<Types.BlogPostConnection, "totalCount"> & {
+    nodes: Array<Pick<Types.BlogPost, "id">>;
+  };
+};
+```
+
+As you can see, the selectionSet is under `nodes`, and it's not very useful, because data provider already returns normalized result.
+
+`GetFieldsFromList` will convert it to:
+
+```ts
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
+
+type PostFields = GetFieldsFromList<BlogPostListQuery>;
+
+PostFields; // { id: string }
 ```
 
 ### Realtime
