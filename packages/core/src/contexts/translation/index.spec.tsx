@@ -3,6 +3,7 @@ import * as React from "react";
 import { render } from "@test";
 import { TranslationContextProvider } from "@contexts/translation";
 import { useGetLocale, useTranslate } from "@hooks";
+import { I18nProvider } from "./ITranslationContext";
 
 describe("TranslationContext", () => {
     const TestComponent = () => {
@@ -29,7 +30,7 @@ describe("TranslationContext", () => {
     };
 
     it("should get value from TranslationContext ", () => {
-        const providerProps = {
+        const providerProps: { i18nProvider: I18nProvider } = {
             i18nProvider: {
                 translate: () => "hello",
                 changeLocale: () => Promise.resolve(),
@@ -43,9 +44,9 @@ describe("TranslationContext", () => {
     });
 
     it("should get options value from TranslationContext ", () => {
-        const providerProps = {
+        const providerProps: { i18nProvider: I18nProvider } = {
             i18nProvider: {
-                translate: (key: string, options: any) =>
+                translate: (key, options) =>
                     `hello ${options.name}`,
                 changeLocale: () => Promise.resolve(),
                 getLocale: () => "tr",
