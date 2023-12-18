@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export type Translate = (
-    key: string,
+    key: string | Record<string, string>,
     options?: any,
     defaultMessage?: string,
 ) => string;
