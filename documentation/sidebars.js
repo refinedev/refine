@@ -31,15 +31,6 @@ module.exports = {
                                 "examples/authentication/mantine",
                             ],
                         },
-
-                        {
-                            type: "category",
-                            label: "Audit Log",
-                            items: [
-                                "examples/audit-log/audit-log-antd",
-                                "examples/audit-log/audit-log-provider",
-                            ],
-                        },
                         {
                             type: "category",
                             label: "Build Systems",
@@ -676,13 +667,36 @@ module.exports = {
                         },
                     ],
                 },
+                // Audit Logs
+                {
+                    type: "category",
+                    collapsible: false,
+                    label: "Audit Logs",
+                    items: [
+                        "core/providers/audit-log-provider/index",
+                        {
+                            type: "category",
+                            collapsible: false,
+                            label: "Hooks",
+                            items: [
+                                "core/hooks/audit-log/use-log/index",
+                                "core/hooks/audit-log/use-log-list/index",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Examples",
+                            items: [
+                                "examples/audit-log/audit-log-antd",
+                                "examples/audit-log/audit-log-provider",
+                            ],
+                        },
+                    ],
+                },
                 {
                     type: "category",
                     label: "Providers",
-                    items: [
-                        "core/providers/audit-log-provider/index",
-                        "core/providers/router-provider/index",
-                    ],
+                    items: ["core/providers/router-provider/index"],
                 },
                 {
                     type: "category",
@@ -699,9 +713,6 @@ module.exports = {
                     label: "Hooks",
                     collapsible: false,
                     items: [
-                        { type: "html", value: "AUDIT LOG" },
-                        "core/hooks/audit-log/use-log/index",
-                        "core/hooks/audit-log/use-log-list/index",
                         { type: "html", value: "NAVIGATION" },
                         "core/hooks/navigation/use-resource/index",
                         "core/hooks/navigation/use-go/index",
