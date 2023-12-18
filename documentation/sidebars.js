@@ -24,11 +24,6 @@ module.exports = {
                     items: [
                         {
                             type: "category",
-                            label: "Authentication",
-                            items: ["examples/authentication/mui"],
-                        },
-                        {
-                            type: "category",
                             label: "Build Systems",
                             items: [
                                 "examples/build-systems/turbo",
@@ -52,13 +47,6 @@ module.exports = {
                             type: "category",
                             label: "Customization",
                             items: [
-                                {
-                                    type: "category",
-                                    label: "Custom Theme",
-                                    items: [
-                                        "examples/customization/theme/customThemeMaterialUI",
-                                    ],
-                                },
                                 "examples/customization/customFooter",
                                 "examples/customization/customLogin",
                                 "examples/customization/customSider",
@@ -91,19 +79,6 @@ module.exports = {
                                         "examples/form/headless/useForm",
                                     ],
                                 },
-
-                                {
-                                    type: "category",
-                                    label: "Material UI",
-                                    items: [
-                                        "examples/form/mui/useDrawerForm",
-                                        "examples/form/mui/useForm",
-                                        "examples/form/mui/useModalForm",
-                                        "examples/form/mui/useStepsForm",
-                                        "examples/form/mui/serverSideFormValidation",
-                                    ],
-                                },
-
                                 {
                                     type: "category",
                                     label: "React Hook Form",
@@ -114,11 +89,6 @@ module.exports = {
                                     ],
                                 },
                             ],
-                        },
-                        {
-                            type: "category",
-                            label: "Import / Export",
-                            items: ["examples/import-export/material-ui"],
                         },
                         {
                             type: "category",
@@ -165,28 +135,8 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "Storybook",
-                            items: [
-                                "examples/storybook/antd-storybook",
-                                "examples/storybook/material-ui-storybook",
-                            ],
-                        },
-                        {
-                            type: "category",
                             label: "Table",
                             items: [
-                                {
-                                    type: "category",
-                                    label: "Material UI",
-                                    items: [
-                                        "examples/table/mui/advanced",
-                                        "examples/table/mui/cursor-pagination",
-                                        "examples/table/mui/filter",
-                                        "examples/table/mui/useDataGrid",
-                                        "examples/table/mui/useDeleteMany",
-                                        "examples/table/mui/useUpdateMany",
-                                    ],
-                                },
                                 {
                                     type: "category",
                                     label: "TanStack Table",
@@ -211,11 +161,6 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "Themes",
-                            items: ["examples/themes/refine-themes-mui"],
-                        },
-                        {
-                            type: "category",
                             label: "Tutorial",
                             items: [
                                 "examples/tutorial/antd-tutorial",
@@ -224,20 +169,7 @@ module.exports = {
                                 "examples/tutorial/mui-tutorial",
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Upload",
-                            items: [
-                                {
-                                    type: "category",
-                                    label: "Material UI",
-                                    items: [
-                                        "examples/upload/mui/base64",
-                                        "examples/upload/mui/multipart",
-                                    ],
-                                },
-                            ],
-                        },
+
                         {
                             type: "category",
                             label: "Web3",
@@ -756,6 +688,7 @@ module.exports = {
                                 "examples/table/antd/useTable",
                                 "examples/table/antd/useUpdateMany",
                                 "examples/import-export/antd",
+                                "examples/storybook/antd-storybook",
                             ],
                         },
                         "ui-integrations/ant-design/theming/index",
@@ -828,6 +761,30 @@ module.exports = {
                             items: [
                                 "ui-integrations/material-ui/hooks/use-auto-complete/index",
                                 "ui-integrations/material-ui/hooks/use-data-grid/index",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Examples",
+                            items: [
+                                "examples/authentication/mui",
+                                "examples/customization/theme/customThemeMaterialUI",
+                                "examples/form/mui/useDrawerForm",
+                                "examples/form/mui/useForm",
+                                "examples/form/mui/useModalForm",
+                                "examples/form/mui/useStepsForm",
+                                "examples/form/mui/serverSideFormValidation",
+                                "examples/import-export/material-ui",
+                                "examples/storybook/material-ui-storybook",
+                                "examples/table/mui/advanced",
+                                "examples/table/mui/cursor-pagination",
+                                "examples/table/mui/filter",
+                                "examples/table/mui/useDataGrid",
+                                "examples/table/mui/useDeleteMany",
+                                "examples/table/mui/useUpdateMany",
+                                "examples/themes/refine-themes-mui",
+                                "examples/upload/mui/base64",
+                                "examples/upload/mui/multipart",
                             ],
                         },
                         "ui-integrations/material-ui/theming/index",
