@@ -186,11 +186,6 @@ module.exports = {
                             label: "List",
                             items: ["examples/list/useSimpleList"],
                         },
-                        {
-                            type: "category",
-                            label: "Live Provider",
-                            items: ["examples/live-provider/ably"],
-                        },
                         "examples/module-federation/vite",
                         "examples/multi-level-menu/multi-level-menu",
                         "examples/mutation-mode",
@@ -614,6 +609,29 @@ module.exports = {
                         },
                     ],
                 },
+                // Realtime
+                {
+                    type: "category",
+                    collapsible: false,
+                    label: "Realtime",
+                    items: [
+                        "core/providers/live-provider/index",
+                        {
+                            type: "category",
+                            collapsible: false,
+                            label: "Hooks",
+                            items: [
+                                "core/hooks/realtime/use-publish/index",
+                                "core/hooks/realtime/use-subscription/index",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Examples",
+                            items: ["examples/live-provider/ably"],
+                        },
+                    ],
+                },
                 // i18n
                 {
                     type: "category",
@@ -646,7 +664,6 @@ module.exports = {
                     label: "Providers",
                     items: [
                         "core/providers/audit-log-provider/index",
-                        "core/providers/live-provider/index",
                         "core/providers/notification-provider/index",
                         "core/providers/router-provider/index",
                     ],
@@ -669,9 +686,6 @@ module.exports = {
                         { type: "html", value: "AUDIT LOG" },
                         "core/hooks/audit-log/use-log/index",
                         "core/hooks/audit-log/use-log-list/index",
-                        { type: "html", value: "REALTIME" },
-                        "core/hooks/realtime/use-publish/index",
-                        "core/hooks/realtime/use-subscription/index",
                         { type: "html", value: "NAVIGATION" },
                         "core/hooks/navigation/use-resource/index",
                         "core/hooks/navigation/use-go/index",
