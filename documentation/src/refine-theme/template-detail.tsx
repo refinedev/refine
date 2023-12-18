@@ -11,6 +11,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import { CommonRunLocalPrompt } from "./common-run-local-prompt";
+import { GithubIcon } from "./icons/github";
+import { TutorialIcon } from "./icons/tutorial";
 
 type Props = {
     data: {
@@ -127,6 +129,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                                         <ShareIcon width={16} height={16} />
                                         <span
                                             className={clsx(
+                                                "font-semibold",
                                                 "text-xs landing-md:text-base",
                                             )}
                                         >
@@ -136,9 +139,10 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                                 )}
                                 {data.tutorial && (
                                     <ProjectLink to={data.tutorial}>
-                                        <ShareIcon width={16} height={16} />
+                                        <TutorialIcon width={16} height={16} />
                                         <span
                                             className={clsx(
+                                                "font-semibold",
                                                 "text-xs landing-md:text-base",
                                             )}
                                         >
@@ -148,9 +152,10 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                                 )}
                                 {data.github && (
                                     <ProjectLink to={data.github}>
-                                        <ShareIcon width={16} height={16} />
+                                        <GithubIcon width={16} height={16} />
                                         <span
                                             className={clsx(
+                                                "font-semibold",
                                                 "text-xs landing-md:text-base",
                                             )}
                                         >
@@ -184,6 +189,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                                         className={clsx(
                                             "text-xl landing-sm:text-2xl",
                                             "dark:text-gray-0 text-gray-900",
+                                            "font-semibold",
                                         )}
                                     >
                                         Description
@@ -191,7 +197,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                                 </div>
                                 <div
                                     className={clsx(
-                                        "dark:text-gray-200 text-gray-600",
+                                        "dark:text-gray-200 text-gray-900",
                                         "text-sm",
                                         "mt-4 landing-sm:gap-6",
                                     )}
@@ -247,6 +253,9 @@ const ProjectLink: FC<PropsWithChildren<{ to: string }>> = ({
             target="_blank"
             rel="noopener noreferrer"
             className={clsx(
+                "select-none",
+                "group/project-link-button",
+                "relative",
                 "w-max",
                 "flex",
                 "items-center",
@@ -257,9 +266,31 @@ const ProjectLink: FC<PropsWithChildren<{ to: string }>> = ({
                 "dark:bg-refine-cyan-alt/10 bg-refine-blue/10",
                 "dark:text-refine-cyan-alt text-refine-blue",
                 "hover:no-underline",
+                "overflow-hidden",
             )}
         >
             {children}
+            <div
+                className={clsx(
+                    "select-none",
+                    "rounded-3xl",
+                    "absolute",
+                    "left-0",
+                    "top-0",
+                    "w-full",
+                    "h-full",
+                    "scale-[2]",
+                    "origin-center",
+                    "transition-[opacity,transform]",
+                    "duration-300",
+                    "ease-in-out",
+                    "opacity-0",
+                    "group-hover/project-link-button:opacity-100",
+                    "group-hover/project-link-button:scale-100",
+                    "pointer-events-none",
+                    "bg-landing-copy-command-hover-bg-light dark:bg-landing-copy-command-hover-bg-dark",
+                )}
+            />
         </Link>
     );
 };
@@ -387,7 +418,9 @@ const integrationToIconMap = {
     Nhost: (props: SVGProps<SVGSVGElement>) => <Icons.Nhost {...props} />,
     React: (props: SVGProps<SVGSVGElement>) => <Icons.React {...props} />,
     Remix: (props: SVGProps<SVGSVGElement>) => <Icons.Remix {...props} />,
-    "Rest API": (props: SVGProps<SVGSVGElement>) => <Icons.Rest {...props} />,
+    "Rest API": (props: SVGProps<SVGSVGElement>) => (
+        <Icons.RestWithoutText {...props} />
+    ),
     Sanity: (props: SVGProps<SVGSVGElement>) => <Icons.Sanity {...props} />,
     "ShadCN UI": (props: SVGProps<SVGSVGElement>) => (
         <Icons.ShadCnUI {...props} />

@@ -15,6 +15,7 @@ import {
     Medusa,
     Mui,
     Rest,
+    RestWithoutText,
     ShadCnUI,
     Strapi,
     Supabase,
@@ -24,30 +25,31 @@ import { TemplatesFilters } from "@site/src/refine-theme/templates-filters";
 import { TemplatesFilterButton } from "@site/src/refine-theme/templates-filter-button";
 import { CommonDrawer } from "@site/src/refine-theme/common-drawer";
 
-const Enterprise: React.FC = () => {
+const Templates: React.FC = () => {
     const title = "Refine | Open-source Retool for Enterprise";
 
     const [isFilterDrawerOpen, setIsFilterDrawerOpen] = React.useState(false);
 
-    const [filters, setFilters] = React.useState({
-        uiFramework: null,
-        backend: null,
+    const [filters, setFilters] = React.useState<{
+        uiFramework: string[];
+        backend: string[];
+    }>({
+        uiFramework: [],
+        backend: [],
     });
 
     const dataFiltered = React.useMemo(() => {
-        if (!filters.uiFramework && !filters.backend) {
+        if (!filters.uiFramework.length && !filters.backend.length) {
             return dataTemplates;
         }
 
         return dataTemplates.filter((item) => {
-            return (
-                item.integrations.some(
-                    (integration) => integration.label === filters.uiFramework,
-                ) ||
-                item.integrations.some(
-                    (integration) => integration.label === filters.backend,
-                )
-            );
+            return item.integrations.some((integration) => {
+                return (
+                    filters.uiFramework.includes(integration.label) ||
+                    filters.backend.includes(integration.label)
+                );
+            });
         });
     }, [filters]);
 
@@ -55,10 +57,20 @@ const Enterprise: React.FC = () => {
         filter: string,
         field: keyof typeof filters,
     ) => {
-        setFilters((prev) => ({
-            ...prev,
-            [field]: prev[field] === filter ? null : filter,
-        }));
+        setFilters((prev) => {
+            const hasFilter = prev[field].includes(filter);
+            if (hasFilter) {
+                return {
+                    ...prev,
+                    [field]: prev[field].filter((item) => item !== filter),
+                };
+            }
+
+            return {
+                ...prev,
+                [field]: [...prev[field], filter],
+            };
+        });
     };
 
     return (
@@ -91,6 +103,7 @@ const Enterprise: React.FC = () => {
                                 "pt-4",
                                 "landing-sm:pt-12",
                                 "landing-md:pt-0",
+                                "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-full",
                             )}
                         >
                             <TemplatesHero />
@@ -252,7 +265,7 @@ const dataFilters = {
         {
             label: "Rest API",
             icon: (props: SVGProps<SVGSVGElement>) => (
-                <Rest width={16} height={16} {...props} />
+                <RestWithoutText width={16} height={16} {...props} />
             ),
         },
         {
@@ -648,4 +661,4 @@ const dataTemplates: {
     },
 ];
 
-export default Enterprise;
+export default Templates;

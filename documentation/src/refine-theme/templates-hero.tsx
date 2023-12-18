@@ -1,9 +1,12 @@
 import clsx from "clsx";
 import React, { FC } from "react";
+import { useColorMode } from "@docusaurus/theme-common";
 
 type Props = { className?: string };
 
 export const TemplatesHero: FC<Props> = ({ className }) => {
+    const { colorMode } = useColorMode();
+
     return (
         <div
             className={clsx(
@@ -27,7 +30,11 @@ export const TemplatesHero: FC<Props> = ({ className }) => {
                     "w-[1200px]",
                     "max-w-[1200px]",
                 )}
-                src="https://refine.ams3.cdn.digitaloceanspaces.com/templates/templates-hero.png"
+                src={
+                    colorMode === "dark"
+                        ? "https://refine.ams3.cdn.digitaloceanspaces.com/templates/templates-hero-dark.png"
+                        : "https://refine.ams3.cdn.digitaloceanspaces.com/templates/templates-hero-light.png"
+                }
                 alt="Refine Templates"
             />
             <h2

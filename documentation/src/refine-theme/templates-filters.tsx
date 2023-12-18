@@ -5,8 +5,8 @@ type Props = {
     svgId?: string;
     className?: string;
     selected: {
-        uiFramework: string | null;
-        backend: string | null;
+        uiFramework: string[];
+        backend: string[];
     };
     data: {
         uiFrameworks: {
@@ -51,7 +51,9 @@ export const TemplatesFilters: FC<Props> = ({
                 )}
             >
                 {data.uiFrameworks.map((item) => {
-                    const isSelected = item.label === selected.uiFramework;
+                    const isSelected = selected.uiFramework.includes(
+                        item.label,
+                    );
                     const Icon = item.icon;
 
                     return (
@@ -107,7 +109,7 @@ export const TemplatesFilters: FC<Props> = ({
                 )}
             >
                 {data.backends.map((item) => {
-                    const isSelected = item.label === selected.backend;
+                    const isSelected = selected.backend.includes(item.label);
                     const Icon = item.icon;
 
                     return (

@@ -60,7 +60,8 @@ A table:
         runOnYourLocalPath: "app-crm",
         liveDemo: "https://crm.refine.dev",
         github: "https://github.com/refinedev/refine/tree/master/examples/app-crm",
-        tutorial: "",
+        tutorial:
+            "https://github.com/refinedev/refine/tree/master/examples/app-crm",
         reactPlatform: "Next.js",
         uiFramework: "ShadCN UI",
         dataProvider: "Supabase",

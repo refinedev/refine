@@ -51,3 +51,4 @@ export { default as MsSqlServer } from "./ms-sql-server";
 export { default as MySql } from "./mysql";
 export { default as PostgreSql } from "./postgresql";
 export { default as Oracle } from "./oracle";
+export { default as RestWithoutText } from "./rest-without-text";
