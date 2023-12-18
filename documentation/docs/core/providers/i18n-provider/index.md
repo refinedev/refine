@@ -740,7 +740,7 @@ export const Header: React.FC = () => {
 Then, we will pass `<Header>` to our `<Layout>` component.
 
 ```tsx title="src/App.tsx"
-import { Refine, Resource } from "@refinedev/core";
+import { I18nProvider, Refine, Resource } from "@refinedev/core";
 import { ThemedLayoutV2 } from "@refinedev/antd";
 
 import { useTranslation } from "react-i18next";
@@ -753,9 +753,9 @@ import { Header } from "components";
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
 
-    const i18nProvider = {
-        translate: (key: string, options?: any) => t(key, options),
-        changeLocale: (lang: string) => i18n.changeLanguage(lang),
+    const i18nProvider: I18nProvider = {
+        translate: (key, options) => t(String(key), options),
+        changeLocale: (lang) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
 

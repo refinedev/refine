@@ -18,7 +18,11 @@ If you want to add i18n support in the app, **refine** expects the `i18nProvider
 import { I18nProvider } from "@pankod/refine-core";
 
 const i18nProvider: I18nProvider = {
-  translate: (key: string, options?: any, defaultMessage?: string) => string,
+  translate: (
+    key: string | Record<string, string>,
+    options?: any,
+    defaultMessage?: string,
+  ) => string,
   changeLocale: (lang: string, options?: any) => Promise,
   getLocale: () => string,
 };
@@ -177,8 +181,8 @@ const App: React.FC = () => {
   const { t, i18n } = useTranslation();
 
   const i18nProvider: I18nProvider = {
-    translate: (key: string, options?: any) => t(key, options),
-    changeLocale: (lang: string) => i18n.changeLanguage(lang),
+    translate: (key, options) => t(String(key), options),
+    changeLocale: (lang) => i18n.changeLanguage(lang),
     getLocale: () => i18n.language,
   };
   // highlight-end
@@ -713,7 +717,7 @@ export const Header: React.FC = () => {
 Then, we will pass `<Header>` to the `<Refine>` component as a property.
 
 ```tsx title="src/App.tsx"
-import { Refine, Resource } from "@pankod/refine-core";
+import { I18nProvider, Refine, Resource } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { useTranslation } from "react-i18next";
@@ -727,9 +731,9 @@ import { Header } from "components";
 const App: React.FC = () => {
   const { t, i18n } = useTranslation();
 
-  const i18nProvider = {
-    translate: (key: string, options?: any) => t(key, options),
-    changeLocale: (lang: string) => i18n.changeLanguage(lang),
+  const i18nProvider: I18nProvider = {
+    translate: (key, options) => t(String(key), options),
+    changeLocale: (lang) => i18n.changeLanguage(lang),
     getLocale: () => i18n.language,
   };
 
@@ -854,8 +858,15 @@ export interface IPost {
 It has two [function signatures](https://developer.mozilla.org/en-US/docs/Glossary/Signature/Function) with different parameters, which is known as function overloading.
 
 ```ts
-function translate(key: string, options?: any, defaultMessage?: string): string;
-function translate(key: string, defaultMessage?: string): string;
+function translate(
+  key: string | Record<string, string>,
+  options?: any,
+  defaultMessage?: string,
+): string;
+function translate(
+  key: string | Record<string, string>,
+  defaultMessage?: string,
+): string;
 ```
 
 It means that you can use it in two different ways. The first one is to pass the `key`, `options`, and, `defaultMessage` as parameters. The second one is to pass the `key` and `defaultMessage` parameters. The `options` parameter is optional.
@@ -871,7 +882,7 @@ import { useTranslation } from "react-i18next";
 const { t } = useTranslation();
 
 const i18nProvider: I18nProvider = {
-  translate: (key: string, defaultMessage?: string) => t(key, defaultMessage),
+  translate: (key, defaultMessage) => t(key, defaultMessage),
   // ...
 };
 
@@ -903,8 +914,8 @@ import { useTranslation } from "react-i18next";
 const { t } = useTranslation();
 
 const i18nProvider: I18nProvider = {
-  translate: (key: string, options?: any, defaultMessage?: string) =>
-    t(key, defaultMessage, options),
+  translate: (key, options, defaultMessage) =>
+    t(String(key), defaultMessage, options),
   // ...
 };
 
