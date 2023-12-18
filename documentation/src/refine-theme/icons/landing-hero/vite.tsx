@@ -9,7 +9,11 @@ export const LandingHeroViteIcon = (props: React.SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
-        <g opacity={0.5} filter="url(#filter0_f_1305_2584)">
+        <g
+            opacity={0.5}
+            className="hidden dark:block"
+            filter="url(#filter0_f_1305_2584)"
+        >
             <path
                 d="M43.9206 23.5524L32.6466 43.6869C32.4138 44.1026 31.8158 44.1051 31.5795 43.6914L20.082 23.5543C19.8246 23.1035 20.2106 22.5575 20.7221 22.6488L32.0081 24.6636C32.0801 24.6764 32.1538 24.6763 32.2258 24.6632L43.2759 22.6517C43.7857 22.5589 44.1735 23.1007 43.9206 23.5524Z"
                 fill="url(#paint0_linear_1305_2584)"
