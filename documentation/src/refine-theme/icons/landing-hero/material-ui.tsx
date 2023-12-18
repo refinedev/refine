@@ -11,7 +11,11 @@ export const LandingHeroMaterialUIIcon = (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
-        <g opacity={0.5} filter="url(#filter0_f_1305_2667)">
+        <g
+            opacity={0.5}
+            className="hidden dark:block"
+            filter="url(#filter0_f_1305_2667)"
+        >
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
