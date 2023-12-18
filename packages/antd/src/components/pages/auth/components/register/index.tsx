@@ -215,7 +215,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                                         fontWeight: "bold",
                                         color: token.colorPrimaryTextHover,
                                     }}
-                                    to="/login"
+                                    to={loginLink}
                                 >
                                     {translate("pages.login.signin", "Sign in")}
                                 </ActiveLink>

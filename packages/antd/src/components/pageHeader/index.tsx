@@ -31,7 +31,7 @@ export const PageHeader: FC<AntdPageHeaderProps> = ({ children, ...props }) => {
         );
 
     const subtitle =
-        typeof props.title === "string" ? (
+        typeof props.subtitle === "string" ? (
             <Typography.Title
                 className={RefinePageHeaderClassNames.SubTitle}
                 level={5}

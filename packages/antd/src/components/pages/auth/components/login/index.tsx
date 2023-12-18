@@ -268,7 +268,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             "Don’t have an account?",
                         )}{" "}
                         <ActiveLink
-                            to="/register"
+                            to={registerLink}
                             style={{
                                 fontWeight: "bold",
                                 color: token.colorPrimaryTextHover,
