@@ -71,7 +71,7 @@ pnpm install
 
 ### Bootstrapping the Packages
 
-Refine uses [Lerna][https://lerna.js.org] to manage and run packages and examples. If you're unfamiliar with Lerna, you may get confused about how to run the packages in development mode but don't worry, we got you covered. By following the steps below, you will be able to prepare the packages and examples you're going to work on.
+Refine uses [Lerna](https://lerna.js.org) to manage and run packages and examples. If you're unfamiliar with Lerna, you may get confused about how to run the packages in development mode but don't worry, we got you covered. By following the steps below, you will be able to prepare the packages and examples you're going to work on.
 
 :::simple Development Tip
 
