@@ -859,7 +859,7 @@
     },
     {
       "from": "/docs/contributing",
-      "to": "/docs/further-readings/contributing"
+      "to": "/docs/guides-concepts/contributing"
     },
     {
       "from": "/docs/testing",
@@ -1773,6 +1773,10 @@
     {
       "from": "/docs/packages/documentation/routers/remix",
       "to": "/docs/router-integrations/remix"
+    },
+    {
+      "from": "/docs/further-readings/contributing",
+      "to": "/docs/guides-concepts/contributing"
     }
   ]
 }
