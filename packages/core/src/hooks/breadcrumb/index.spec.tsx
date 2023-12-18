@@ -163,7 +163,7 @@ describe("useBreadcrumb Hook", () => {
                     resource: { name: "posts" },
                 }),
                 i18nProvider: {
-                    translate: (key: string) => key,
+                    translate: (key) => String(key),
                     changeLocale: () => Promise.resolve(),
                     getLocale: () => "en",
                 },
