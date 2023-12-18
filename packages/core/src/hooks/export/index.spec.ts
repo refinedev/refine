@@ -421,4 +421,26 @@ describe("useExport Hook", () => {
             }
         )
     });
+    it("should now download when set to false",
+        async () => {
+            const {result} = renderHook(
+                () => useExport({
+                    download: false
+                }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{name: "posts"}],
+                    }),
+                });
+
+            let resultCSV = null;
+            await act(async () => {
+                resultCSV = await result.current.triggerExport();
+            });
+
+            expect(resultCSV).toEqual(testCsv)
+            expect(downloadInBrowser).not.toBeCalled()
+        }
+    )
 });

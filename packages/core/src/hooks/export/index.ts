@@ -97,6 +97,10 @@ type UseExportOptionsType<
      *  Callback to handle error events of this hook
      */
     onError?: (error: any) => void;
+    /**
+     *  Whether to generate download of the CSV in browser environments, defaults to true.
+     */
+    download?: boolean;
 };
 
 type UseExportReturnType = {
@@ -131,6 +135,7 @@ export const useExport = <
     metaData,
     dataProviderName,
     onError,
+    download
 }: UseExportOptionsType<TData, TVariables> = {}): UseExportReturnType => {
     const [isLoading, setIsLoading] = useState(false);
 
