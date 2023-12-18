@@ -5,25 +5,10 @@ export const urlWithQueryString = (
     query: ParsedUrlQueryInput,
     queryFilters: ParsedUrlQueryInput,
 ) => {
-    const hasQuery = Object.keys(query).length > 0;
-    const hasQueryFilters = Object.keys(queryFilters).length > 0;
-    let requestUrl = url;
+    const queryObject = { ...query, ...queryFilters };
 
-    if (hasQuery || hasQueryFilters) {
-        requestUrl += "?";
-
-        if (hasQuery) {
-            requestUrl += stringify(query);
-        }
-
-        if (hasQuery && hasQueryFilters) {
-            requestUrl += "&";
-        }
-
-        if (hasQueryFilters) {
-            requestUrl += stringify(queryFilters);
-        }
+    if (Object.keys(queryObject).length > 0) {
+        return `${url}?${stringify(queryObject)}`;
     }
-
-    return requestUrl;
+    return url;
 };
