@@ -1,5 +1,5 @@
 ---
-"@refinedev/simple-rest": major
+"@refinedev/simple-rest": patch
 ---
 
 add a urlWithQueryString util
