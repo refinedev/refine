@@ -399,7 +399,7 @@ When it comes to documentation, refine has more useful resources.
 
 **Advanced Integration Guides**: refine's guides enable smooth integration with other tools and platforms, amplifying its utility in your projects.
 
-**refineWeek Tutorial Series**: The refineWeek initiative brings you a week-long tutorial series, collaborating with prominent open-source projects like Strapi and Supabase. Dive into hands-on experiences that showcase refine's potential in building complete CRUD applications.
+**RefineWeek Tutorial Series**: The RefineWeek initiative brings you a week-long tutorial series, collaborating with prominent open-source projects like Strapi and Supabase. Dive into hands-on experiences that showcase refine's potential in building complete CRUD applications.
 
 **Technical Blog**: refine's technical blog is a valuable resource for staying updated on refine, front-end trends, and web development insights. Gain deep insights into complex concepts, emerging trends, and practical tips.
 
