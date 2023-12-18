@@ -5,9 +5,9 @@ import { useList } from "@refinedev/core";
 import { DollarOutlined } from "@ant-design/icons";
 import { GaugeConfig } from "@ant-design/plots";
 import { Card, Skeleton, Space } from "antd";
-import { DealStage } from "interfaces/graphql";
 
 import { Text } from "@/components";
+import { DealStage } from "@/graphql/schema.types";
 import { currencyNumber } from "@/utilities";
 
 const Gauge = React.lazy(() => import("@ant-design/plots/es/components/gauge"));
