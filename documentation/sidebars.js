@@ -498,6 +498,7 @@ module.exports = {
                         },
                     ],
                 },
+                "guides-concepts/development/index",
                 "guides-concepts/contributing/index",
                 "guides-concepts/faq/index",
             ],
