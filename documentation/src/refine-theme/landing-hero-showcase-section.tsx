@@ -209,7 +209,7 @@ export const LandingHeroShowcaseSection = ({}) => {
                         "landing-lg:block",
                         "landing-lg:opacity-0",
                         "landing-lg:translate-y-24",
-                        "landing-lg:group-hover/showcase:opacity-100 landing-lg:group-hover/showcase:translate-y-0",
+                        "landing-lg:group-hover/showcase-inner:opacity-100 landing-lg:group-hover/showcase-inner:translate-y-0",
                         "duration-300",
                         "ease-in-out",
                         "transition-[opacity,transform,background-color,color]",
