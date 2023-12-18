@@ -245,7 +245,7 @@ export const useExport = <
         }
 
         // Backward compatibility support for downloadInBrowser of the exported file, only works for browsers.
-        if(window && csv.length > 0){
+        if(typeof window !== "undefined" && csv.length > 0 && (download ?? true)){
             const fileExtension = options.useTextFile ? '.txt' : '.csv';
             const fileType = `text/${options.useTextFile ? "plain" : "csv"};charset=utf8;`;
             const downloadFilename =
