@@ -165,14 +165,6 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "i18n",
-                            items: [
-                                "examples/i18n/i18n-nextjs",
-                                "examples/i18n/i18n-react",
-                            ],
-                        },
-                        {
-                            type: "category",
                             label: "Import / Export",
                             items: [
                                 "examples/import-export/antd",
@@ -622,12 +614,38 @@ module.exports = {
                         },
                     ],
                 },
+                // i18n
+                {
+                    type: "category",
+                    collapsible: false,
+                    label: "I18n",
+                    items: [
+                        "core/providers/i18n-provider/index",
+                        {
+                            type: "category",
+                            collapsible: false,
+                            label: "Hooks",
+                            items: [
+                                "core/hooks/translate/use-get-locale/index",
+                                "core/hooks/translate/use-set-locale/index",
+                                "core/hooks/translate/use-translate/index",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Examples",
+                            items: [
+                                "examples/i18n/i18n-nextjs",
+                                "examples/i18n/i18n-react",
+                            ],
+                        },
+                    ],
+                },
                 {
                     type: "category",
                     label: "Providers",
                     items: [
                         "core/providers/audit-log-provider/index",
-                        "core/providers/i18n-provider/index",
                         "core/providers/live-provider/index",
                         "core/providers/notification-provider/index",
                         "core/providers/router-provider/index",
@@ -662,10 +680,6 @@ module.exports = {
                         "core/hooks/navigation/use-link/index",
                         "core/hooks/navigation/use-get-to-path/index",
                         "core/hooks/navigation/use-navigation/index",
-                        { type: "html", value: "TRANSLATE" },
-                        "core/hooks/translate/use-get-locale/index",
-                        "core/hooks/translate/use-set-locale/index",
-                        "core/hooks/translate/use-translate/index",
                         { type: "html", value: "UTILITIES" },
                         "core/hooks/utilities/use-modal/index",
                         "core/hooks/utilities/use-menu/index",
