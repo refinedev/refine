@@ -2,12 +2,31 @@ import { FC, useEffect } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 import { useModalForm, useSelect } from "@refinedev/antd";
-import { RedirectAction, useNavigation } from "@refinedev/core";
+import { HttpError, RedirectAction, useNavigation } from "@refinedev/core";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select, Spin } from "antd";
 
-import { Quote } from "@/graphql/schema.types";
+import { Company, Contact, User } from "@/graphql/schema.types";
+import {
+    QUOTE_COMPANY_SELECT_QUERY,
+    QUOTE_CONTACT_SELECT_QUERY,
+    QUOTE_CREATE_MUTATION,
+    QUOTE_SALES_OWNER_SELECT_QUERY,
+    QUOTE_UPDATE_MUTATION,
+} from "./queries";
+import {
+    QuoteCompanySelectQuery,
+    QuoteContactSelectQuery,
+    QuoteCreateMutation,
+    QuoteCreateMutationVariables,
+    QuoteSalesOwnerSelectQuery,
+} from "@/graphql/types";
+import {
+    GetFields,
+    GetFieldsFromList,
+    GetVariables,
+} from "@refinedev/nestjs-query";
 
 type Props = {
     action: "create" | "edit";
@@ -15,6 +34,14 @@ type Props = {
     onMutationSuccess?: () => void;
     onCancel?: () => void;
 };
+
+type QuoteMutationVariables = Partial<
+    GetVariables<QuoteCreateMutationVariables> & {
+        company?: Partial<Pick<Company, "id">>;
+        contact?: Partial<Pick<Contact, "id">>;
+        salesOwner?: Partial<Pick<User, "id">>;
+    }
+>;
 
 export const QuotesFormModal: FC<Props> = ({
     action,
@@ -27,33 +54,28 @@ export const QuotesFormModal: FC<Props> = ({
     const { list, replace } = useNavigation();
     const [searchParams] = useSearchParams();
 
-    const { formProps, modalProps, close, onFinish } = useModalForm<Quote>({
+    const { formProps, modalProps, close, onFinish } = useModalForm<
+        GetFields<QuoteCreateMutation>,
+        HttpError,
+        QuoteMutationVariables
+    >({
         resource: "quotes",
         action,
         id: params.id,
         defaultVisible: true,
         redirect,
         meta: {
-            fields: [
-                "id",
-                "title",
-                {
-                    salesOwner: ["id", "name"],
-                },
-                {
-                    company: ["id", "name"],
-                },
-                {
-                    contact: ["id", "name"],
-                },
-            ],
+            gqlMutation:
+                action === "create"
+                    ? QUOTE_CREATE_MUTATION
+                    : QUOTE_UPDATE_MUTATION,
         },
         onMutationSuccess: () => {
             onMutationSuccess?.();
         },
     });
 
-    const handleOnFinish = (values: Quote) => {
+    const handleOnFinish = (values: QuoteMutationVariables) => {
         const { company, salesOwner, contact, ...rest } = values;
 
         onFinish({
@@ -67,7 +89,7 @@ export const QuotesFormModal: FC<Props> = ({
     const {
         selectProps: selectPropsCompanies,
         queryResult: { isLoading: isLoadingCompanies },
-    } = useSelect({
+    } = useSelect<GetFieldsFromList<QuoteCompanySelectQuery>>({
         resource: "companies",
         pagination: {
             mode: "off",
@@ -75,14 +97,14 @@ export const QuotesFormModal: FC<Props> = ({
         optionLabel: "name",
         optionValue: "id",
         meta: {
-            fields: ["id", "name"],
+            gqlQuery: QUOTE_COMPANY_SELECT_QUERY,
         },
     });
 
     const {
         selectProps: selectPropsContacts,
         queryResult: { isLoading: isLoadingContact },
-    } = useSelect({
+    } = useSelect<GetFieldsFromList<QuoteContactSelectQuery>>({
         resource: "contacts",
         pagination: {
             mode: "off",
@@ -90,14 +112,14 @@ export const QuotesFormModal: FC<Props> = ({
         optionLabel: "name",
         optionValue: "id",
         meta: {
-            fields: ["id", "name"],
+            gqlQuery: QUOTE_CONTACT_SELECT_QUERY,
         },
     });
 
     const {
         selectProps: selectPropsSalesOwners,
         queryResult: { isLoading: isLoadingSalesOwners },
-    } = useSelect({
+    } = useSelect<GetFieldsFromList<QuoteSalesOwnerSelectQuery>>({
         resource: "users",
         pagination: {
             mode: "off",
@@ -105,7 +127,7 @@ export const QuotesFormModal: FC<Props> = ({
         optionLabel: "name",
         optionValue: "id",
         meta: {
-            fields: ["id", "name"],
+            gqlQuery: QUOTE_SALES_OWNER_SELECT_QUERY,
         },
     });
 
@@ -146,7 +168,7 @@ export const QuotesFormModal: FC<Props> = ({
                 <Form
                     {...formProps}
                     onFinish={(values) => {
-                        handleOnFinish(values as Quote);
+                        handleOnFinish(values as QuoteMutationVariables);
                     }}
                     layout="vertical"
                 >
