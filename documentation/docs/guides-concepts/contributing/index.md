@@ -165,7 +165,7 @@ Check out the example usage of `<Sandpack />` in Core API's `useForm` hook docum
 
 Refine is a monorepo with multiple packages and examples. To make sure we're keeping things clean and in order, we're using couple of tools to enforce a good development experience.
 
-### Commmit Convention
+### Commit Convention
 
 Commit messages are essential to keep everything clear in our development process. We use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to keep our commit messages consistent and easy to understand.
 
