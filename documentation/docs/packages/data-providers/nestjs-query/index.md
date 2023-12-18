@@ -50,7 +50,7 @@ const App = () => (
 
 ### Developer Experience
 
-We suggest using `GraphQL Code Generator` to generate types for your queries and mutations. You can check out the [GraphQL Code Generator](https://the-guild.dev/graphql/codegen/docs/getting-started) guide to learn more about it.
+We suggest using `GraphQL Code Generator` to generate types for your queries and mutations. You can check out the [GraphQL Code Generator Documentation](https://the-guild.dev/graphql/codegen/docs/getting-started) to learn more about it.
 
 It simplifies the process of writing queries and mutations and provides a better developer experience with auto-completions.
 
@@ -63,6 +63,9 @@ npm i -D @graphql-codegen/cli@5 @graphql-codegen/typescript@4 @graphql-codegen/i
 ```
 
 Add a `graphql.config.ts` file to the root of your project.
+
+<details>
+<summary>Show Config File</summary>
 
 ```ts title="graphql.config.ts"
 import type { IGraphQLConfig } from "graphql-config";
@@ -104,6 +107,8 @@ const config: IGraphQLConfig = {
 
 export default config;
 ```
+
+</details>
 
 Add the following script to your `package.json` file.
 
