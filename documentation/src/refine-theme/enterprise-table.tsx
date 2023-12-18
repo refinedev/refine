@@ -5,37 +5,11 @@ import { CheckCircle } from "@site/src/refine-theme/icons/check-circle";
 import { CrossCircle } from "@site/src/refine-theme/icons/cross-circle";
 import { EnterpriseGetInTouchButton } from "./enterprise-get-in-touch-button";
 import { ArrowLeftLongIcon } from "./icons/arrow-left-long";
-import { useTWBreakpoints } from "../hooks/use-tw-breakpoints";
 
 export const EnterpriseTable = ({ className }: { className?: string }) => {
-    const breakpoints = useTWBreakpoints({ variant: "landing" });
     const [activeTab, setActiveTab] = useState<"community" | "enterprise">(
         "enterprise",
     );
-    const intervalRef = React.useRef<NodeJS.Timer>(null);
-
-    React.useEffect(() => {
-        if (breakpoints.lg) {
-            if (intervalRef.current) {
-                clearInterval(intervalRef.current);
-            }
-            intervalRef.current = null;
-            return;
-        }
-
-        const interval = setInterval(() => {
-            setActiveTab((prev) =>
-                prev === "community" ? "enterprise" : "community",
-            );
-        }, 5000);
-
-        intervalRef.current = interval;
-
-        return () => {
-            clearInterval(intervalRef.current);
-            intervalRef.current = null;
-        };
-    }, [breakpoints.lg]);
 
     return (
         <div
@@ -87,7 +61,6 @@ export const EnterpriseTable = ({ className }: { className?: string }) => {
                         activeTab={activeTab}
                         setActiveTab={(tab: "community" | "enterprise") => {
                             setActiveTab(tab);
-                            clearInterval(intervalRef.current);
                         }}
                     />
                     <TableSectionWrapper>

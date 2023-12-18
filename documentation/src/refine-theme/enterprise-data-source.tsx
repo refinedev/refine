@@ -34,7 +34,7 @@ export const EnterpriseDataSource = ({ className }: { className?: string }) => {
                     >
                         Integrate{" "}
                     </span>
-                    with every data source.
+                    with any data source.
                 </h2>
             </div>
 
@@ -52,6 +52,7 @@ export const EnterpriseDataSource = ({ className }: { className?: string }) => {
                         "p-4 landing-sm:p-10",
                         "dark:bg-enterprise-data-source-dark dark:bg-gray-900 bg-gray-0",
                         "bg-blend-overlay",
+                        "bg-no-repeat",
                         "rounded-2xl landing-sm:rounded-3xl",
                         "border dark:border-gray-700 border-gray-200",
                         "not-prose",
@@ -110,6 +111,7 @@ export const EnterpriseDataSource = ({ className }: { className?: string }) => {
                         "p-4 landing-sm:p-10",
                         "dark:bg-enterprise-data-source-dark dark:bg-gray-900 bg-gray-0",
                         "bg-blend-overlay",
+                        "bg-no-repeat",
                         "rounded-2xl landing-sm:rounded-3xl",
                         "border dark:border-gray-700 border-gray-200",
                         "not-prose",
