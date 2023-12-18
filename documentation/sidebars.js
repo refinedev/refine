@@ -34,23 +34,12 @@ module.exports = {
                             type: "category",
                             label: "Authentication",
                             items: [
-                                "examples/authentication/headless",
                                 "examples/authentication/antd",
                                 "examples/authentication/mui",
                                 "examples/authentication/mantine",
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Auth Provider",
-                            items: [
-                                "examples/auth-provider/auth0",
-                                "examples/auth-provider/google-auth",
-                                "examples/auth-provider/keycloak",
-                                "examples/auth-provider/kinde",
-                                "examples/auth-provider/otpLogin",
-                            ],
-                        },
+
                         {
                             type: "category",
                             label: "Audit Log",
@@ -515,11 +504,56 @@ module.exports = {
                     label: "<Refine>",
                 },
                 "core/interface-references/index",
+                // Authentication
+                {
+                    type: "category",
+                    collapsible: false,
+                    label: "Authentication",
+                    items: [
+                        "core/providers/auth-provider/index",
+                        {
+                            type: "category",
+                            collapsible: false,
+                            label: "Components",
+                            items: [
+                                "core/components/authenticated/index",
+                                "core/components/auth-page/index",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            collapsible: false,
+                            label: "Hooks",
+                            items: [
+                                "core/hooks/auth/use-is-authenticated/index",
+                                "core/hooks/auth/use-on-error/index",
+                                "core/hooks/auth/use-get-identity/index",
+                                "core/hooks/auth/use-login/index",
+                                "core/hooks/auth/use-logout/index",
+                                "core/hooks/auth/use-permissions/index",
+                                "core/hooks/auth/use-register/index",
+                                "core/hooks/auth/use-forgot-password/index",
+                                "core/hooks/auth/use-update-password/index",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Examples",
+                            items: [
+                                "examples/authentication/headless",
+                                "examples/auth-provider/auth0",
+                                "examples/auth-provider/google-auth",
+                                "examples/auth-provider/keycloak",
+                                "examples/auth-provider/kinde",
+                                "examples/auth-provider/otpLogin",
+                            ],
+                        },
+                    ],
+                },
                 {
                     type: "category",
                     label: "Providers",
                     items: [
-                        "core/providers/auth-provider/index",
                         "core/providers/access-control-provider/index",
                         "core/providers/audit-log-provider/index",
                         "core/providers/data-provider/index",
@@ -534,9 +568,8 @@ module.exports = {
                     label: "Components",
                     collapsible: false,
                     items: [
-                        "core/components/authenticated/index",
                         "core/components/can-access/index",
-                        "core/components/auth-page/index",
+
                         // TODO: add doc
                         // "core/components/auto-save-indicator/index",
                         "core/components/inferencer/index",
@@ -552,16 +585,6 @@ module.exports = {
                         "core/hooks/use-select/index",
                         "core/hooks/use-form/index",
                         "core/hooks/use-can/index",
-                        { type: "html", value: "AUTH" },
-                        "core/hooks/auth/use-is-authenticated/index",
-                        "core/hooks/auth/use-on-error/index",
-                        "core/hooks/auth/use-get-identity/index",
-                        "core/hooks/auth/use-login/index",
-                        "core/hooks/auth/use-logout/index",
-                        "core/hooks/auth/use-permissions/index",
-                        "core/hooks/auth/use-register/index",
-                        "core/hooks/auth/use-forgot-password/index",
-                        "core/hooks/auth/use-update-password/index",
                         { type: "html", value: "DATA" },
                         "core/hooks/data/use-one/index",
                         "core/hooks/data/use-many/index",
