@@ -24,14 +24,6 @@ module.exports = {
                     items: [
                         {
                             type: "category",
-                            label: "Access Control",
-                            items: [
-                                "examples/access-control/casbin",
-                                "examples/access-control/cerbos",
-                            ],
-                        },
-                        {
-                            type: "category",
                             label: "Authentication",
                             items: [
                                 "examples/authentication/antd",
@@ -604,9 +596,36 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    label: "Providers",
+                    collapsible: false,
+                    label: "Authorization",
                     items: [
                         "core/providers/access-control-provider/index",
+                        {
+                            type: "category",
+                            collapsible: false,
+                            label: "Components",
+                            items: ["core/components/can-access/index"],
+                        },
+                        {
+                            type: "category",
+                            collapsible: false,
+                            label: "Hooks",
+                            items: ["core/hooks/use-can/index"],
+                        },
+                        {
+                            type: "category",
+                            label: "Examples",
+                            items: [
+                                "examples/access-control/casbin",
+                                "examples/access-control/cerbos",
+                            ],
+                        },
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Providers",
+                    items: [
                         "core/providers/audit-log-provider/index",
                         "core/providers/i18n-provider/index",
                         "core/providers/live-provider/index",
@@ -619,7 +638,6 @@ module.exports = {
                     label: "Components",
                     collapsible: false,
                     items: [
-                        "core/components/can-access/index",
                         // TODO: add doc
                         // "core/components/auto-save-indicator/index",
                         "core/components/inferencer/index",
@@ -630,7 +648,6 @@ module.exports = {
                     label: "Hooks",
                     collapsible: false,
                     items: [
-                        "core/hooks/use-can/index",
                         { type: "html", value: "AUDIT LOG" },
                         "core/hooks/audit-log/use-log/index",
                         "core/hooks/audit-log/use-log-list/index",
