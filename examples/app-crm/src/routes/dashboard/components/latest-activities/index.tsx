@@ -1,30 +1,33 @@
 import React from "react";
 
 import { useList } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";
-import { Audit, Deal } from "@/graphql/schema.types";
+import {
+    LatestActivitiesAuditsQuery,
+    LatestActivitiesDealsQuery,
+} from "@/graphql/types";
 
 import styles from "./index.module.css";
-import { AUDITS_LIST_QUERY, DEALS_LIST_QUERY } from "./queries";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { AUDITS_QUERY, DEALS_QUERY } from "./queries";
 
 export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
     limit = 5,
 }) => {
     const { data: deals, isLoading: isLoadingDeals } = useList<
-        GetFieldsFromList<Deal>
+        GetFieldsFromList<LatestActivitiesDealsQuery>
     >({
         resource: "deals",
         pagination: {
             mode: "off",
         },
         meta: {
-            gqlQuery: DEALS_LIST_QUERY,
+            gqlQuery: DEALS_QUERY,
         },
     });
     const {
@@ -32,7 +35,7 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
         isLoading: isLoadingAudit,
         isError,
         error,
-    } = useList<GetFieldsFromList<Audit>>({
+    } = useList<GetFieldsFromList<LatestActivitiesAuditsQuery>>({
         resource: "audits",
         pagination: {
             pageSize: limit,
@@ -56,7 +59,7 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
             },
         ],
         meta: {
-            gqlQuery: AUDITS_LIST_QUERY,
+            gqlQuery: AUDITS_QUERY,
         },
     });
 

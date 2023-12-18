@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
-export const DEALS_LIST_QUERY = gql`
-    query DealsListQuery(
+export const DEALS_QUERY = gql`
+    query LatestActivitiesDeals(
         $filter: DealFilter!
         $sorting: [DealSort!]!
         $paging: OffsetPaging!
@@ -24,8 +24,8 @@ export const DEALS_LIST_QUERY = gql`
     }
 `;
 
-export const AUDITS_LIST_QUERY = gql`
-    query AuditsListQuery(
+export const AUDITS_QUERY = gql`
+    query LatestActivitiesAudits(
         $filter: AuditFilter!
         $sorting: [AuditSort!]!
         $paging: OffsetPaging!

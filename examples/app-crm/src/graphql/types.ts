@@ -172,13 +172,13 @@ export type ContactShowQuery = {
     };
 };
 
-export type DealsListQueryQueryVariables = Types.Exact<{
+export type LatestActivitiesDealsQueryVariables = Types.Exact<{
     filter: Types.DealFilter;
     sorting: Array<Types.DealSort> | Types.DealSort;
     paging: Types.OffsetPaging;
 }>;
 
-export type DealsListQueryQuery = {
+export type LatestActivitiesDealsQuery = {
     deals: {
         nodes: Array<
             Pick<Types.Deal, "id" | "title"> & {
@@ -189,13 +189,13 @@ export type DealsListQueryQuery = {
     };
 };
 
-export type AuditsListQueryQueryVariables = Types.Exact<{
+export type LatestActivitiesAuditsQueryVariables = Types.Exact<{
     filter: Types.AuditFilter;
     sorting: Array<Types.AuditSort> | Types.AuditSort;
     paging: Types.OffsetPaging;
 }>;
 
-export type AuditsListQueryQuery = {
+export type LatestActivitiesAuditsQuery = {
     audits: {
         nodes: Array<
             Pick<
