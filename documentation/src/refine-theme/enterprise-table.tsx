@@ -19,7 +19,6 @@ export const EnterpriseTable = ({ className }: { className?: string }) => {
                 "not-prose",
                 "min-h-[1556px] landing-sm:min-h-[1444px] landing-md:min-h-min",
                 "w-full",
-                "overflow-hidden",
                 className,
             )}
         >
