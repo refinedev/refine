@@ -43,7 +43,7 @@ const Enterprise: React.FC = () => {
                     >
                         <EnterpriseHeroSection
                             className={clsx(
-                                secitonWidth,
+                                sectionWidth,
                                 sectionPadding,
                                 "h-auto landing-md:h-[432px]",
                                 "mt-4 landing-sm:mt-8 landing-lg:mt-8",
@@ -54,43 +54,43 @@ const Enterprise: React.FC = () => {
                         <EnterpriseGetSupport
                             className={clsx(
                                 sectionPadding,
-                                secitonWidth,
+                                sectionWidth,
                                 "landing-lg:-mt-40",
                             )}
                         />
                         <EnterpriseSecurity
-                            className={clsx(sectionPadding, secitonWidth)}
+                            className={clsx(sectionPadding, sectionWidth)}
                         />
                         <EnterpriseGetInTouchCta
                             className={clsx(
                                 sectionPadding,
-                                secitonWidth,
+                                sectionWidth,
                                 "w-full landing-lg:max-w-[792px] mx-auto",
                             )}
                         />
                         <EnterpriseFlexibility
-                            className={clsx(sectionPadding, secitonWidth)}
+                            className={clsx(sectionPadding, sectionWidth)}
                         />
                         <EnterpriseDataSource
-                            className={clsx(sectionPadding, secitonWidth)}
+                            className={clsx(sectionPadding, sectionWidth)}
                         />
                         <EnterpriseGetInTouchCta
                             className={clsx(
                                 sectionPadding,
-                                secitonWidth,
+                                sectionWidth,
                                 "w-full landing-lg:max-w-[792px] mx-auto",
                             )}
                         />
                         <EnterpriseFrequentUpdates
-                            className={clsx(sectionPadding, secitonWidth)}
+                            className={clsx(sectionPadding, sectionWidth)}
                         />
                         <div className={clsx("w-full", "overflow-hidden")}>
                             <EnterpriseTable
-                                className={clsx(secitonWidth, sectionPadding)}
+                                className={clsx(sectionWidth, sectionPadding)}
                             />
                         </div>
                         <LandingTrustedByDevelopers
-                            className={clsx(sectionPadding, secitonWidth)}
+                            className={clsx(sectionPadding, sectionWidth)}
                         />
                         <EnterpriseFaq
                             className={clsx(
@@ -102,7 +102,7 @@ const Enterprise: React.FC = () => {
                         <EnterpriseGetInTouchCta
                             className={clsx(
                                 sectionPadding,
-                                secitonWidth,
+                                sectionWidth,
                                 "landing-lg:max-w-[792px]",
                             )}
                         />
@@ -116,7 +116,7 @@ const Enterprise: React.FC = () => {
 
 const sectionPadding = clsx("px-2 landing-sm:px-0");
 
-const secitonWidth = clsx(
+const sectionWidth = clsx(
     "mx-auto",
     "w-full",
     "max-w-[592px]",
