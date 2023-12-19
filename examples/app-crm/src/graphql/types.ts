@@ -54,7 +54,9 @@ export type NotificationsDealsQuery = {
 };
 
 export type CompaniesSelectQueryVariables = Types.Exact<{
-    [key: string]: never;
+    filter: Types.CompanyFilter;
+    sorting?: Types.InputMaybe<Array<Types.CompanySort> | Types.CompanySort>;
+    paging: Types.OffsetPaging;
 }>;
 
 export type CompaniesSelectQuery = {
@@ -63,10 +65,26 @@ export type CompaniesSelectQuery = {
     };
 };
 
-export type UsersSelectQueryVariables = Types.Exact<{ [key: string]: never }>;
+export type UsersSelectQueryVariables = Types.Exact<{
+    filter: Types.UserFilter;
+    sorting?: Types.InputMaybe<Array<Types.UserSort> | Types.UserSort>;
+    paging: Types.OffsetPaging;
+}>;
 
 export type UsersSelectQuery = {
     users: { nodes: Array<Pick<Types.User, "id" | "name" | "avatarUrl">> };
+};
+
+export type ContactsSelectQueryVariables = Types.Exact<{
+    filter: Types.ContactFilter;
+    sorting?: Types.InputMaybe<Array<Types.ContactSort> | Types.ContactSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type ContactsSelectQuery = {
+    contacts: {
+        nodes: Array<Pick<Types.Contact, "id" | "name" | "avatarUrl">>;
+    };
 };
 
 export type RefreshTokenMutationVariables = Types.Exact<{
@@ -267,36 +285,6 @@ export type QuoteUpdateMutation = {
         company: Pick<Types.Company, "id" | "name">;
         contact: Pick<Types.Contact, "id" | "name">;
     };
-};
-
-export type QuoteCompanySelectQueryVariables = Types.Exact<{
-    filter: Types.CompanyFilter;
-    sorting?: Types.InputMaybe<Array<Types.CompanySort> | Types.CompanySort>;
-    paging: Types.OffsetPaging;
-}>;
-
-export type QuoteCompanySelectQuery = {
-    companies: { nodes: Array<Pick<Types.Company, "id" | "name">> };
-};
-
-export type QuoteContactSelectQueryVariables = Types.Exact<{
-    filter: Types.ContactFilter;
-    sorting?: Types.InputMaybe<Array<Types.ContactSort> | Types.ContactSort>;
-    paging: Types.OffsetPaging;
-}>;
-
-export type QuoteContactSelectQuery = {
-    contacts: { nodes: Array<Pick<Types.Contact, "id" | "name">> };
-};
-
-export type QuoteSalesOwnerSelectQueryVariables = Types.Exact<{
-    filter: Types.UserFilter;
-    sorting?: Types.InputMaybe<Array<Types.UserSort> | Types.UserSort>;
-    paging: Types.OffsetPaging;
-}>;
-
-export type QuoteSalesOwnerSelectQuery = {
-    users: { nodes: Array<Pick<Types.User, "id" | "name">> };
 };
 
 export type ProductsServicesQuoteFormMutationVariables = Types.Exact<{

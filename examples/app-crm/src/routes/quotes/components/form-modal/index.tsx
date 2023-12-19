@@ -3,30 +3,30 @@ import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 import { useModalForm, useSelect } from "@refinedev/antd";
 import { HttpError, RedirectAction, useNavigation } from "@refinedev/core";
+import {
+    GetFields,
+    GetFieldsFromList,
+    GetVariables,
+} from "@refinedev/nestjs-query";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select, Spin } from "antd";
 
 import { Company, Contact, User } from "@/graphql/schema.types";
 import {
-    QUOTE_COMPANY_SELECT_QUERY,
-    QUOTE_CONTACT_SELECT_QUERY,
-    QUOTE_CREATE_MUTATION,
-    QUOTE_SALES_OWNER_SELECT_QUERY,
-    QUOTE_UPDATE_MUTATION,
-} from "./queries";
-import {
-    QuoteCompanySelectQuery,
-    QuoteContactSelectQuery,
+    CompaniesSelectQuery,
+    ContactsSelectQuery,
     QuoteCreateMutation,
     QuoteCreateMutationVariables,
-    QuoteSalesOwnerSelectQuery,
+    UsersSelectQuery,
 } from "@/graphql/types";
 import {
-    GetFields,
-    GetFieldsFromList,
-    GetVariables,
-} from "@refinedev/nestjs-query";
+    COMPANIES_SELECT_QUERY,
+    CONTACTS_SELECT_QUERY,
+    USERS_SELECT_QUERY,
+} from "@/graphql/queries";
+
+import { QUOTE_CREATE_MUTATION, QUOTE_UPDATE_MUTATION } from "./queries";
 
 type Props = {
     action: "create" | "edit";
@@ -89,7 +89,7 @@ export const QuotesFormModal: FC<Props> = ({
     const {
         selectProps: selectPropsCompanies,
         queryResult: { isLoading: isLoadingCompanies },
-    } = useSelect<GetFieldsFromList<QuoteCompanySelectQuery>>({
+    } = useSelect<GetFieldsFromList<CompaniesSelectQuery>>({
         resource: "companies",
         pagination: {
             mode: "off",
@@ -97,14 +97,14 @@ export const QuotesFormModal: FC<Props> = ({
         optionLabel: "name",
         optionValue: "id",
         meta: {
-            gqlQuery: QUOTE_COMPANY_SELECT_QUERY,
+            gqlQuery: COMPANIES_SELECT_QUERY,
         },
     });
 
     const {
         selectProps: selectPropsContacts,
         queryResult: { isLoading: isLoadingContact },
-    } = useSelect<GetFieldsFromList<QuoteContactSelectQuery>>({
+    } = useSelect<GetFieldsFromList<ContactsSelectQuery>>({
         resource: "contacts",
         pagination: {
             mode: "off",
@@ -112,14 +112,14 @@ export const QuotesFormModal: FC<Props> = ({
         optionLabel: "name",
         optionValue: "id",
         meta: {
-            gqlQuery: QUOTE_CONTACT_SELECT_QUERY,
+            gqlQuery: CONTACTS_SELECT_QUERY,
         },
     });
 
     const {
         selectProps: selectPropsSalesOwners,
         queryResult: { isLoading: isLoadingSalesOwners },
-    } = useSelect<GetFieldsFromList<QuoteSalesOwnerSelectQuery>>({
+    } = useSelect<GetFieldsFromList<UsersSelectQuery>>({
         resource: "users",
         pagination: {
             mode: "off",
@@ -127,7 +127,7 @@ export const QuotesFormModal: FC<Props> = ({
         optionLabel: "name",
         optionValue: "id",
         meta: {
-            gqlQuery: QUOTE_SALES_OWNER_SELECT_QUERY,
+            gqlQuery: USERS_SELECT_QUERY,
         },
     });
 
