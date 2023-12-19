@@ -134,7 +134,7 @@ export const ProductsServices = () => {
                 );
                 items?.forEach((item) => {
                     if ("totalPrice" in item) {
-                        delete item.totalPrice;
+                        delete (item as any).totalPrice;
                     }
                 });
                 return {
