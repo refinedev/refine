@@ -85,12 +85,14 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                             "rounded-lg landing-md:rounded-xl landing-lg:rounded-3xl",
                             "-mx-4 landing-sm:-mx-0",
                             "landing-sm:px-4",
+                            "aspect-[1168/736]",
                         )}
                     >
                         <img
                             className={clsx(
                                 "rounded-lg landing-md:rounded-xl landing-lg:rounded-3xl",
                                 "block",
+                                "aspect-[1168/736]",
                             )}
                             src={data.images[0]}
                             alt={data.title}
@@ -195,23 +197,18 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                                         Description
                                     </h2>
                                 </div>
-                                <div
+                                <ReactMarkdown
                                     className={clsx(
-                                        "dark:text-gray-200 text-gray-900",
-                                        "text-sm",
                                         "mt-4 landing-sm:gap-6",
+                                        "whitespace-pre-wrap",
+                                        "not-prose",
+                                        "dark:!text-gray-200 !text-gray-900",
+                                        "template-detail-markdown",
                                     )}
+                                    remarkPlugins={[remarkGfm, remarkRehype]}
                                 >
-                                    <ReactMarkdown
-                                        className={clsx("whitespace-pre-wrap")}
-                                        remarkPlugins={[
-                                            remarkGfm,
-                                            remarkRehype,
-                                        ]}
-                                    >
-                                        {data.description}
-                                    </ReactMarkdown>
-                                </div>
+                                    {data.description}
+                                </ReactMarkdown>
                             </div>
                             <div className={clsx()}>
                                 <CommonRunLocalPrompt
@@ -342,7 +339,7 @@ const IntegrationBadge = (props: {
     label: string;
     integration: string;
 }) => {
-    const Icon = integrationToIconMap?.[props.integration];
+    const Icon = integrationToIconMap?.[props.integration] || (() => null);
 
     return (
         <div className={clsx("flex", "flex-col", "gap-3", "not-prose")}>
@@ -461,6 +458,8 @@ const integrationToIconMap = {
         <Icons.PostgreSql {...props} />
     ),
     Oracle: (props: SVGProps<SVGSVGElement>) => <Icons.Oracle {...props} />,
+    Custom: (props: SVGProps<SVGSVGElement>) => <Icons.CustomAuth {...props} />,
+    Vite: (props: SVGProps<SVGSVGElement>) => <Icons.Vite {...props} />,
 };
 
 export type Integration = keyof typeof integrationToIconMap;

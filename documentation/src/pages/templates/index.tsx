@@ -324,52 +324,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
-        title: "HR Application",
-        description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
-        image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/refine-hr.jpg",
-        integrations: [
-            {
-                label: "ShadCN UI",
-                icon: (props: SVGProps<SVGSVGElement>) => (
-                    <ShadCnUI width={16} height={16} {...props} />
-                ),
-            },
-            {
-                label: "Rest API",
-                icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
-                ),
-            },
-        ],
-    },
-    {
-        to: "/templates/crm-application",
-        title: "DevOps Dashboard",
-        description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
-        image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/refine-k8s.jpg",
-        integrations: [
-            {
-                label: "Ant Design",
-                icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Antd width={16} height={16} {...props} />
-                ),
-            },
-            {
-                label: "Supabase",
-                icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Supabase width={16} height={16} {...props} />
-                ),
-            },
-        ],
-    },
-    {
-        to: "/templates/crm-application",
+        to: "/templates/e-commerce-storefront",
         title: "E-Commerce Application Storefront",
         description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+            "Headless storefront example built with Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-storefront.jpg",
         integrations: [
             {
@@ -387,10 +345,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
-        title: "E-Commerce Application with Material UI",
+        to: "/templates/finefoods-material-ui",
+        title: "Finefoods Material UI Admin Panel",
         description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+            "Complete admin panel example built with Material UI. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-material-ui.jpg",
         integrations: [
             {
@@ -408,10 +366,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
-        title: "E-Commerce Application with Antd Design",
+        to: "/templates/finefoods-ant-design",
+        title: "Finefoods Ant Design Admin Panel",
         description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+            "Complete admin panel example built with Ant Design. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-ant-design.jpg",
         integrations: [
             {
@@ -429,10 +387,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
+        to: "/templates/swag-store",
         title: "Swag Store",
         description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+            "Complete headless e-commerce built on top of Medusa. Features a fully working solution with product listings, shopping cart and checkout.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/swag-store.jpg",
         integrations: [
             {
@@ -450,10 +408,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
+        to: "/templates/pixels",
         title: "Pixels",
         description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+            "Our internal hackathon winner by  Ali Emir Şen. He used Supabase as a db and real-time API and it worked in perfect harmony with <strong>Refine</strong>.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/pixels.jpg",
         integrations: [
             {
@@ -471,10 +429,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
+        to: "/templates/invoice-generator",
         title: "Invoice Generator",
         description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+            "You can develop any web application or admin panel you want in a very short time with Refine like an invoice app.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/invoicer.jpg",
         integrations: [
             {
@@ -492,10 +450,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
+        to: "/templates/win-95-style-admin-panel",
         title: "Win95 Style Admin Panel",
         description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+            "With Refine's headless feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/win95.jpg",
         integrations: [
             {
@@ -513,10 +471,9 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
+        to: "/templates/realworld",
         title: "Realworld Example",
-        description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+        description: `"The mother of all demo apps" - Exemplary fullstack Medium.com clone powered by Refine!`,
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/realworld.jpg",
         integrations: [
             {
@@ -534,10 +491,9 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
+        to: "/templates/multitenancy-strapi",
         title: "Multitenancy App with Strapi",
-        description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+        description: "Cake House application using Refine and Strapi",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/multitenancy-strapi.jpg",
         integrations: [
             {
@@ -555,10 +511,9 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
+        to: "/templates/multitenancy-appwrite",
         title: "Multitenancy App with Appwrite",
-        description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+        description: "Cake House application using Refine and AppWrite.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/multitenancy-appwrite.jpg",
         integrations: [
             {
@@ -576,10 +531,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
+        to: "/templates/ant-design-template",
         title: "Ant Design Template",
         description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+            "Complete admin panel template built with Ant Design. Features authentication and CRUD screens.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/ant-design-template.jpg",
         integrations: [
             {
@@ -597,10 +552,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
+        to: "/templates/material-ui-template",
         title: "Material UI Template",
         description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+            "Complete admin panel template built with Material UI. Features authentication and CRUD screens.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/material-ui-template.jpg",
         integrations: [
             {
@@ -618,10 +573,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
+        to: "/templates/chakra-ui-template",
         title: "Chakra UI Template",
         description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+            "Complete admin panel template built with Chakra UI. Features authentication and CRUD screens.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/chakra-ui-template.jpg",
         integrations: [
             {
@@ -639,10 +594,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/crm-application",
+        to: "/templates/mantine-template",
         title: "Mantine Template",
         description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+            "Complete admin panel template built with Mantine. Features authentication and CRUD screens.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/mantine-template.jpg",
         integrations: [
             {
