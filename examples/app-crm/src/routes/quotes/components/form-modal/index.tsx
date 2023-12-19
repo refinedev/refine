@@ -144,10 +144,7 @@ export const QuotesFormModal: FC<Props> = ({
                     <Form.Item
                         rules={[{ required: true }]}
                         name={["salesOwnerId"]}
-                        initialValue={{
-                            value: formProps?.initialValues?.salesOwner?.id,
-                            label: formProps?.initialValues?.salesOwner?.name,
-                        }}
+                        initialValue={formProps?.initialValues?.salesOwner?.id}
                         label="Sales owner"
                     >
                         <Select
@@ -159,10 +156,8 @@ export const QuotesFormModal: FC<Props> = ({
                         rules={[{ required: true }]}
                         name={["companyId"]}
                         initialValue={
-                            searchParams.get("companyId") ?? {
-                                value: formProps?.initialValues?.company?.id,
-                                label: formProps?.initialValues?.company?.name,
-                            }
+                            searchParams.get("companyId") ??
+                            formProps?.initialValues?.company?.id
                         }
                         label="Company"
                         extra={
@@ -186,10 +181,7 @@ export const QuotesFormModal: FC<Props> = ({
                     <Form.Item
                         rules={[{ required: true }]}
                         name={["contactId"]}
-                        initialValue={{
-                            value: formProps?.initialValues?.contact?.id,
-                            label: formProps?.initialValues?.contact?.name,
-                        }}
+                        initialValue={formProps?.initialValues?.contact?.id}
                         label="Quote Contact"
                     >
                         <Select
