@@ -258,299 +258,302 @@ module.exports = {
                     label: "<Refine>",
                 },
                 "core/interface-references/index",
-                // Data
+            ],
+        },
+        // Data
+        {
+            type: "category",
+            label: "Data",
+            className: "category-as-header",
+            items: [
+                "core/providers/data-provider/index",
                 {
                     type: "category",
                     collapsible: false,
-                    label: "Data",
+                    label: "Hooks",
                     items: [
-                        "core/providers/data-provider/index",
-                        {
-                            type: "category",
-                            collapsible: false,
-                            label: "Hooks",
-                            items: [
-                                "core/hooks/use-show/index",
-                                "core/hooks/use-table/index",
-                                "core/hooks/use-select/index",
-                                "core/hooks/use-form/index",
-                                "core/hooks/data/use-one/index",
-                                "core/hooks/data/use-many/index",
-                                "core/hooks/data/use-list/index",
-                                "core/hooks/data/use-infinite-list/index",
-                                "core/hooks/data/use-create/index",
-                                "core/hooks/data/use-create-many/index",
-                                "core/hooks/data/use-update/index",
-                                "core/hooks/data/use-update-many/index",
-                                "core/hooks/data/use-delete/index",
-                                "core/hooks/data/use-delete-many/index",
-                                "core/hooks/data/use-custom/index",
-                                "core/hooks/data/use-custom-mutation/index",
-                                "core/hooks/data/use-invalidate/index",
-                                "core/hooks/data/use-api-url/index",
-                                "core/hooks/data/use-data-provider/index",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Packages",
-                            items: [
-                                "packages/data-providers/airtable/index",
-                                "packages/data-providers/appwrite/index",
-                                "packages/data-providers/graphql/index",
-                                "packages/data-providers/simple-rest/index",
-                                "packages/data-providers/strapi-v4/index",
-                                "packages/data-providers/strapi-graphql/index",
-                                "packages/data-providers/supabase/index",
-                                "packages/data-providers/nestjs-query/index",
-                                "packages/data-providers/nestjsx-crud/index",
-                                "packages/data-providers/hasura/index",
-                                "packages/data-providers/community-data-providers/index",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Examples",
-                            items: [
-                                "examples/data-provider/airtable",
-                                "examples/data-provider/appwrite",
-                                "examples/data-provider/directus",
-                                "examples/data-provider/elide",
-                                "examples/data-provider/hasura",
-                                "examples/data-provider/multiple",
-                                "examples/data-provider/nestjsxCrud",
-                                "examples/data-provider/nestjs-query",
-                                "examples/data-provider/nhost",
-                                "examples/data-provider/strapi",
-                                "examples/data-provider/strapi-graphql",
-                                "examples/data-provider/strapi-v4",
-                                "examples/data-provider/supabase",
-                                "examples/data-provider/sanity",
-                            ],
-                        },
+                        "core/hooks/use-show/index",
+                        "core/hooks/use-table/index",
+                        "core/hooks/use-select/index",
+                        "core/hooks/use-form/index",
+                        "core/hooks/data/use-one/index",
+                        "core/hooks/data/use-many/index",
+                        "core/hooks/data/use-list/index",
+                        "core/hooks/data/use-infinite-list/index",
+                        "core/hooks/data/use-create/index",
+                        "core/hooks/data/use-create-many/index",
+                        "core/hooks/data/use-update/index",
+                        "core/hooks/data/use-update-many/index",
+                        "core/hooks/data/use-delete/index",
+                        "core/hooks/data/use-delete-many/index",
+                        "core/hooks/data/use-custom/index",
+                        "core/hooks/data/use-custom-mutation/index",
+                        "core/hooks/data/use-invalidate/index",
+                        "core/hooks/data/use-api-url/index",
+                        "core/hooks/data/use-data-provider/index",
                     ],
                 },
-                // Router
                 {
                     type: "category",
-                    collapsible: false,
-                    label: "Router",
+                    label: "Packages",
                     items: [
-                        "core/providers/router-provider/index",
-                        {
-                            type: "category",
-                            collapsible: false,
-                            label: "Integrations",
-                            items: [
-                                "router-integrations/react-router/index",
-                                "router-integrations/next-js/index",
-                                "router-integrations/remix/index",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Hooks",
-                            items: [
-                                "core/hooks/navigation/use-resource/index",
-                                "core/hooks/navigation/use-go/index",
-                                "core/hooks/navigation/use-back/index",
-                                "core/hooks/navigation/use-parsed/index",
-                                "core/hooks/navigation/use-link/index",
-                                "core/hooks/navigation/use-get-to-path/index",
-                                "core/hooks/navigation/use-navigation/index",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Examples",
-                            items: [
-                                { type: "html", value: "Next.js" },
-                                "examples/next-js/nextjs",
-                                "examples/next-js/nextjs-appdir",
-                                "examples/next-js/auth",
-                                "examples/next-js/NextAuth-js",
-                                { type: "html", value: "Remix" },
-                                "examples/remix/remix-headless",
-                                "examples/remix/remix-auth",
-                            ],
-                        },
+                        "packages/data-providers/airtable/index",
+                        "packages/data-providers/appwrite/index",
+                        "packages/data-providers/graphql/index",
+                        "packages/data-providers/simple-rest/index",
+                        "packages/data-providers/strapi-v4/index",
+                        "packages/data-providers/strapi-graphql/index",
+                        "packages/data-providers/supabase/index",
+                        "packages/data-providers/nestjs-query/index",
+                        "packages/data-providers/nestjsx-crud/index",
+                        "packages/data-providers/hasura/index",
+                        "packages/data-providers/community-data-providers/index",
                     ],
                 },
-                // Authentication
+                {
+                    type: "category",
+                    label: "Examples",
+                    items: [
+                        "examples/data-provider/airtable",
+                        "examples/data-provider/appwrite",
+                        "examples/data-provider/directus",
+                        "examples/data-provider/elide",
+                        "examples/data-provider/hasura",
+                        "examples/data-provider/multiple",
+                        "examples/data-provider/nestjsxCrud",
+                        "examples/data-provider/nestjs-query",
+                        "examples/data-provider/nhost",
+                        "examples/data-provider/strapi",
+                        "examples/data-provider/strapi-graphql",
+                        "examples/data-provider/strapi-v4",
+                        "examples/data-provider/supabase",
+                        "examples/data-provider/sanity",
+                    ],
+                },
+            ],
+        },
+        // Router
+        {
+            type: "category",
+            label: "Router",
+            className: "category-as-header",
+            items: [
+                "core/providers/router-provider/index",
                 {
                     type: "category",
                     collapsible: false,
-                    label: "Authentication",
+                    label: "Integrations",
                     items: [
-                        "core/providers/auth-provider/index",
-                        {
-                            type: "category",
-                            collapsible: false,
-                            label: "Components",
-                            items: [
-                                "core/components/authenticated/index",
-                                "core/components/auth-page/index",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            collapsible: false,
-                            label: "Hooks",
-                            items: [
-                                "core/hooks/auth/use-is-authenticated/index",
-                                "core/hooks/auth/use-on-error/index",
-                                "core/hooks/auth/use-get-identity/index",
-                                "core/hooks/auth/use-login/index",
-                                "core/hooks/auth/use-logout/index",
-                                "core/hooks/auth/use-permissions/index",
-                                "core/hooks/auth/use-register/index",
-                                "core/hooks/auth/use-forgot-password/index",
-                                "core/hooks/auth/use-update-password/index",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Examples",
-                            items: [
-                                "examples/authentication/headless",
-                                "examples/auth-provider/auth0",
-                                "examples/auth-provider/google-auth",
-                                "examples/auth-provider/keycloak",
-                                "examples/auth-provider/kinde",
-                                "examples/auth-provider/otpLogin",
-                            ],
-                        },
+                        "router-integrations/react-router/index",
+                        "router-integrations/next-js/index",
+                        "router-integrations/remix/index",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Hooks",
+                    items: [
+                        "core/hooks/navigation/use-resource/index",
+                        "core/hooks/navigation/use-go/index",
+                        "core/hooks/navigation/use-back/index",
+                        "core/hooks/navigation/use-parsed/index",
+                        "core/hooks/navigation/use-link/index",
+                        "core/hooks/navigation/use-get-to-path/index",
+                        "core/hooks/navigation/use-navigation/index",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Examples",
+                    items: [
+                        { type: "html", value: "Next.js" },
+                        "examples/next-js/nextjs",
+                        "examples/next-js/nextjs-appdir",
+                        "examples/next-js/auth",
+                        "examples/next-js/NextAuth-js",
+                        { type: "html", value: "Remix" },
+                        "examples/remix/remix-headless",
+                        "examples/remix/remix-auth",
+                    ],
+                },
+            ],
+        },
+        // Authentication
+        {
+            type: "category",
+            label: "Authentication",
+            className: "category-as-header",
+            items: [
+                "core/providers/auth-provider/index",
+                {
+                    type: "category",
+                    collapsible: false,
+                    label: "Components",
+                    items: [
+                        "core/components/authenticated/index",
+                        "core/components/auth-page/index",
                     ],
                 },
                 {
                     type: "category",
                     collapsible: false,
-                    label: "Authorization",
+                    label: "Hooks",
                     items: [
-                        "core/providers/access-control-provider/index",
-                        {
-                            type: "category",
-                            collapsible: false,
-                            label: "Components",
-                            items: ["core/components/can-access/index"],
-                        },
-                        {
-                            type: "category",
-                            collapsible: false,
-                            label: "Hooks",
-                            items: ["core/hooks/use-can/index"],
-                        },
-                        {
-                            type: "category",
-                            label: "Examples",
-                            items: [
-                                "examples/access-control/casbin",
-                                "examples/access-control/cerbos",
-                            ],
-                        },
+                        "core/hooks/auth/use-is-authenticated/index",
+                        "core/hooks/auth/use-on-error/index",
+                        "core/hooks/auth/use-get-identity/index",
+                        "core/hooks/auth/use-login/index",
+                        "core/hooks/auth/use-logout/index",
+                        "core/hooks/auth/use-permissions/index",
+                        "core/hooks/auth/use-register/index",
+                        "core/hooks/auth/use-forgot-password/index",
+                        "core/hooks/auth/use-update-password/index",
                     ],
                 },
-                // Realtime
+                {
+                    type: "category",
+                    label: "Examples",
+                    items: [
+                        "examples/authentication/headless",
+                        "examples/auth-provider/auth0",
+                        "examples/auth-provider/google-auth",
+                        "examples/auth-provider/keycloak",
+                        "examples/auth-provider/kinde",
+                        "examples/auth-provider/otpLogin",
+                    ],
+                },
+            ],
+        },
+        // Authorization
+        {
+            type: "category",
+            label: "Authorization",
+            className: "category-as-header",
+            items: [
+                "core/providers/access-control-provider/index",
                 {
                     type: "category",
                     collapsible: false,
-                    label: "Realtime",
-                    items: [
-                        "core/providers/live-provider/index",
-                        {
-                            type: "category",
-                            collapsible: false,
-                            label: "Hooks",
-                            items: [
-                                "core/hooks/realtime/use-publish/index",
-                                "core/hooks/realtime/use-subscription/index",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Examples",
-                            items: ["examples/live-provider/ably"],
-                        },
-                    ],
+                    label: "Components",
+                    items: ["core/components/can-access/index"],
                 },
-                // Notification
                 {
                     type: "category",
                     collapsible: false,
-                    label: "Notification",
+                    label: "Hooks",
+                    items: ["core/hooks/use-can/index"],
+                },
+                {
+                    type: "category",
+                    label: "Examples",
                     items: [
-                        "core/providers/notification-provider/index",
-                        {
-                            type: "category",
-                            collapsible: false,
-                            label: "Hooks",
-                            items: [
-                                "core/hooks/utilities/use-notification/index",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Examples",
-                            items: [
-                                "examples/notification-provider/react-toastify",
-                            ],
-                        },
+                        "examples/access-control/casbin",
+                        "examples/access-control/cerbos",
                     ],
                 },
-                // i18n
+            ],
+        },
+        // Realtime
+        {
+            type: "category",
+            label: "Realtime",
+            className: "category-as-header",
+            items: [
+                "core/providers/live-provider/index",
                 {
                     type: "category",
                     collapsible: false,
-                    label: "I18n",
+                    label: "Hooks",
                     items: [
-                        "core/providers/i18n-provider/index",
-                        {
-                            type: "category",
-                            collapsible: false,
-                            label: "Hooks",
-                            items: [
-                                "core/hooks/translate/use-get-locale/index",
-                                "core/hooks/translate/use-set-locale/index",
-                                "core/hooks/translate/use-translate/index",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Examples",
-                            items: [
-                                "examples/i18n/i18n-nextjs",
-                                "examples/i18n/i18n-react",
-                            ],
-                        },
+                        "core/hooks/realtime/use-publish/index",
+                        "core/hooks/realtime/use-subscription/index",
                     ],
                 },
-                // Audit Logs
+                {
+                    type: "category",
+                    label: "Examples",
+                    items: ["examples/live-provider/ably"],
+                },
+            ],
+        },
+        // Notification
+        {
+            type: "category",
+            label: "Notification",
+            className: "category-as-header",
+            items: [
+                "core/providers/notification-provider/index",
                 {
                     type: "category",
                     collapsible: false,
-                    label: "Audit Logs",
+                    label: "Hooks",
+                    items: ["core/hooks/utilities/use-notification/index"],
+                },
+                {
+                    type: "category",
+                    label: "Examples",
+                    items: ["examples/notification-provider/react-toastify"],
+                },
+            ],
+        },
+        // i18n
+        {
+            type: "category",
+            label: "I18n",
+            className: "category-as-header",
+            items: [
+                "core/providers/i18n-provider/index",
+                {
+                    type: "category",
+                    collapsible: false,
+                    label: "Hooks",
                     items: [
-                        "core/providers/audit-log-provider/index",
-                        {
-                            type: "category",
-                            collapsible: false,
-                            label: "Hooks",
-                            items: [
-                                "core/hooks/audit-log/use-log/index",
-                                "core/hooks/audit-log/use-log-list/index",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Examples",
-                            items: [
-                                "examples/audit-log/audit-log-antd",
-                                "examples/audit-log/audit-log-provider",
-                            ],
-                        },
+                        "core/hooks/translate/use-get-locale/index",
+                        "core/hooks/translate/use-set-locale/index",
+                        "core/hooks/translate/use-translate/index",
                     ],
                 },
-
+                {
+                    type: "category",
+                    label: "Examples",
+                    items: [
+                        "examples/i18n/i18n-nextjs",
+                        "examples/i18n/i18n-react",
+                    ],
+                },
+            ],
+        },
+        // Audit Logs
+        {
+            type: "category",
+            label: "Audit Logs",
+            className: "category-as-header",
+            items: [
+                "core/providers/audit-log-provider/index",
+                {
+                    type: "category",
+                    collapsible: false,
+                    label: "Hooks",
+                    items: [
+                        "core/hooks/audit-log/use-log/index",
+                        "core/hooks/audit-log/use-log-list/index",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Examples",
+                    items: [
+                        "examples/audit-log/audit-log-antd",
+                        "examples/audit-log/audit-log-provider",
+                    ],
+                },
+            ],
+        },
+        {
+            type: "category",
+            label: "Core Utilities",
+            className: "category-as-header",
+            items: [
                 {
                     type: "category",
                     label: "Components",
@@ -566,7 +569,6 @@ module.exports = {
                     label: "Hooks",
                     collapsible: false,
                     items: [
-                        { type: "html", value: "UTILITIES" },
                         "core/hooks/utilities/use-modal/index",
                         "core/hooks/utilities/use-menu/index",
                         "core/hooks/utilities/use-breadcrumb/index",
