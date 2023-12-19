@@ -107,27 +107,7 @@ module.exports = {
                         "examples/module-federation/vite",
                         "examples/multi-level-menu/multi-level-menu",
                         "examples/mutation-mode",
-                        {
-                            type: "category",
-                            label: "Next.js",
-                            items: [
-                                "examples/next-js/nextjs",
-                                "examples/next-js/nextjs-appdir",
-                                "examples/next-js/auth",
-                                "examples/next-js/NextAuth-js",
-                            ],
-                        },
                         "examples/persistQuery",
-                        {
-                            type: "category",
-                            label: "Remix",
-                            items: [
-                                "examples/remix/remix-antd",
-                                "examples/remix/remix-material-ui",
-                                "examples/remix/remix-headless",
-                                "examples/remix/remix-auth",
-                            ],
-                        },
                         {
                             type: "category",
                             label: "Search",
@@ -367,6 +347,52 @@ module.exports = {
                         },
                     ],
                 },
+                // Router
+                {
+                    type: "category",
+                    collapsible: false,
+                    label: "Router",
+                    items: [
+                        "core/providers/router-provider/index",
+                        {
+                            type: "category",
+                            collapsible: false,
+                            label: "Integrations",
+                            items: [
+                                "router-integrations/react-router/index",
+                                "router-integrations/next-js/index",
+                                "router-integrations/remix/index",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Hooks",
+                            items: [
+                                "core/hooks/navigation/use-resource/index",
+                                "core/hooks/navigation/use-go/index",
+                                "core/hooks/navigation/use-back/index",
+                                "core/hooks/navigation/use-parsed/index",
+                                "core/hooks/navigation/use-link/index",
+                                "core/hooks/navigation/use-get-to-path/index",
+                                "core/hooks/navigation/use-navigation/index",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Examples",
+                            items: [
+                                { type: "html", value: "Next.js" },
+                                "examples/next-js/nextjs",
+                                "examples/next-js/nextjs-appdir",
+                                "examples/next-js/auth",
+                                "examples/next-js/NextAuth-js",
+                                { type: "html", value: "Remix" },
+                                "examples/remix/remix-headless",
+                                "examples/remix/remix-auth",
+                            ],
+                        },
+                    ],
+                },
                 // Authentication
                 {
                     type: "category",
@@ -541,11 +567,7 @@ module.exports = {
                         },
                     ],
                 },
-                {
-                    type: "category",
-                    label: "Providers",
-                    items: ["core/providers/router-provider/index"],
-                },
+
                 {
                     type: "category",
                     label: "Components",
@@ -561,14 +583,6 @@ module.exports = {
                     label: "Hooks",
                     collapsible: false,
                     items: [
-                        { type: "html", value: "NAVIGATION" },
-                        "core/hooks/navigation/use-resource/index",
-                        "core/hooks/navigation/use-go/index",
-                        "core/hooks/navigation/use-back/index",
-                        "core/hooks/navigation/use-parsed/index",
-                        "core/hooks/navigation/use-link/index",
-                        "core/hooks/navigation/use-get-to-path/index",
-                        "core/hooks/navigation/use-navigation/index",
                         { type: "html", value: "UTILITIES" },
                         "core/hooks/utilities/use-modal/index",
                         "core/hooks/utilities/use-menu/index",
@@ -670,6 +684,7 @@ module.exports = {
                             type: "category",
                             label: "Examples",
                             items: [
+                                "examples/remix/remix-antd",
                                 "examples/customization/theme/customThemeAntd",
                                 "examples/authentication/antd",
                                 "examples/themes/refine-themes-antd",
@@ -768,6 +783,7 @@ module.exports = {
                             label: "Examples",
                             items: [
                                 "examples/authentication/mui",
+                                "examples/remix/remix-material-ui",
                                 "examples/customization/theme/customThemeMaterialUI",
                                 "examples/form/mui/useDrawerForm",
                                 "examples/form/mui/useForm",
@@ -959,17 +975,6 @@ module.exports = {
                         "ui-integrations/mantine/theming/index",
                     ],
                 },
-            ],
-        },
-        // Router Integrations
-        {
-            type: "category",
-            label: "Router Integrations",
-            className: "category-as-header",
-            items: [
-                "router-integrations/react-router/index",
-                "router-integrations/next-js/index",
-                "router-integrations/remix/index",
             ],
         },
         // Packages
