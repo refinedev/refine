@@ -38,21 +38,6 @@ const templates = [
     {
         slug: "crm-application",
         title: "CRM Application",
-        description: `This is a complete CRM (Customer Relationship Management) example project built using [Refine](https://refine.dev/) and [Ant Design](https://ant.design/). It provides a set of tools and features to manage customer data, track interactions, and streamline business processes.
-
-The application includes features such as dashboard analytics, a calendar for scheduling appointments, a scrum board for task management, and CRUD operations for managing companies, contacts, and quotes.
-
-Refine is a React-based powerful framework for building low-code applications. It is primarily focused on implementing data-heavy apps such as internal tools, dashboards, admin panels, and storefronts. It comes with a core package that segregates app concerns like data handling, authentication, access control, etc., into React contexts. It also supports integration with industry standard backend systems such and UI frameworks. It is highly customizable and extensible.
-
-### Features
- 
-- **Dashboard**: Gain insights into your business with interactive charts and analytics.
-- **Calendar**: Schedule and manage appointments, meetings, and events.
-- **Scrumboard**: Organize and track tasks using a Kanban-style board.
-- **Companies**: Create, update, and delete company records.
-- **Contacts**: Manage your customer contacts efficiently.
-- **Quotes**: Generate and manage quotes for your clients.
-- **Administration**: Configure application settings and user roles.`,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-refine-crm.jpg",
         ],
@@ -63,11 +48,34 @@ Refine is a React-based powerful framework for building low-code applications. I
         uiFramework: "ShadCN UI",
         dataProvider: "Supabase",
         authProvider: "Supabase",
+        description: `
+This  CRM app example, built with Refine, demonstrates a complete solution for enterprise-level CRM internal tool needs. It has a wide range of functionalities for real-use cases, which are extensively utilized by enterprise companies.
+
+The app connected to GraphQL API through Refine's Nestjs-query data provider, and its user interface is developed using Ant Design, which Refine offers built-in UI framework support. 
+
+We built this template to demonstrate how the Refine framework simplifies and speeds up development. It is a valuable resource, offering insights into Refine's best practices and modern development techniques.
+
+The source code of the CRM app is also open-source; feel free to use or inspect it to discover how Refine works. Being production-ready, you can either build your own CRM internal tool using it as a code base or directly implement it as is.
+
+
+### Key Features:
+
+
+- **Dashboard**: Overview of CRM activities, key metrics, and customer interactions.
+- **Calendar**: Manage appointments and events.
+- **Scrumboard-Project Kanban**: Streamline project management and task tracking.
+- **Sales Pipeline**: Visualize sales stages and track lead conversions.
+- **Companies**: Organize business contacts with detailed profiles.
+- **Contacts**: Efficient management of individual customer interactions.
+- **Quotes**: Create, send, and manage customer quotes.
+- **Administration**: Customize CRM settings, user roles, and permissions.
+
+
+This CRM app template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard and all CRUD applications, providing a comprehensive platform for managing customer interactions, project management, and sales processes.`,
     },
     {
-        slug: "e-commerce-storefront",
+        slug: "next-js-tailwind",
         title: "E-Commerce Application Storefront",
-        description: `Headless storefront example built with Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.`,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-storefront.jpg",
         ],
@@ -78,11 +86,20 @@ Refine is a React-based powerful framework for building low-code applications. I
         uiFramework: "Headless",
         dataProvider: "Rest API",
         authProvider: "Custom",
+        description: `
+This is a template that can serve as an example for building React-based storefronts, admin panels, or internal tools using Refine. Implemented popular tools like Tailwind CSS and Next.js, which are highly demanded by the community.
+
+### Key Features:
+
+- With Refine's headless approach, we demonstrated how to apply a style of your choice, such as Tailwind CSS. 
+- SSR support with Next.js. Refine supports SSR with Next.js and Remix. You can use this template as a starter point for Next.js-powered Refine apps.
+- REST API implementation
+
+The source code is also open-source; feel free to use or inspect it to discover how to Refine works with any custom designs & UI library and supports SSR with Next.js.`,
     },
     {
-        slug: "finefoods-material-ui",
+        slug: "react-admin-panel",
         title: "Finefoods Material UI Admin Panel",
-        description: `Complete admin panel example built with Material UI. Features authentication, dashboard and 10+ CRUD screens from orders to user management.`,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-material-ui.jpg",
         ],
@@ -93,11 +110,30 @@ Refine is a React-based powerful framework for building low-code applications. I
         uiFramework: "Material UI",
         dataProvider: "Rest API",
         authProvider: "Custom",
+        description: `
+This example of a React admin panel, built with Refine, provides a comprehensive solution for the needs of enterprise-level admin panels. It features a full range of functionalities typical in products used by enterprise companies.
+
+The admin panel connects to a REST API using a Simple REST data provider. Its user interface is developed with Material UI, which Refine offers built-in UI framework support.
+
+We built this template to showcase the efficiency and ease of using the Refine framework in development. It is a valuable resource, offering insights into Refine's best practices and modern development techniques. As it's ready for production, you can use this template as a foundation to build your own React admin panel or implement it as it is.
+
+The template is open-source, so you can freely use or examine it to understand how Refine works.
+
+### Key Features:
+
+-   **Dashboard**: Get an overview of food ordering activities, track product performance, and view insightful charts.
+-   **Orders**: Manage, track, and filter all customer orders.
+-   **Users**: Administer customer and courier accounts and data.
+-   **Stores**: View and manage the list of participating stores.
+-   **Categories**: Categorize and organize menu items and store types.
+-   **Couriers**: Monitor and manage courier activity and interactions.
+-   **Reviews**: Handle customer feedback, review ratings, and respond to comments.
+
+This admin panel template can be used for various app requirements like B2B applications, internal tools, admin panel, dashboard, and all CRUD applications, providing a comprehensive platform for managing order interactions, restaurant management, and sales processes.`,
     },
     {
-        slug: "finefoods-ant-design",
+        slug: "react-admin-panel-ant-design",
         title: "Finefoods Ant Design Admin Panel",
-        description: `Complete admin panel example built with Ant Design. Features authentication, dashboard and 10+ CRUD screens from orders to user management.`,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-ant-design.jpg",
         ],
@@ -108,42 +144,31 @@ Refine is a React-based powerful framework for building low-code applications. I
         uiFramework: "Ant Design",
         dataProvider: "Rest API",
         authProvider: "Custom",
+        description: `
+This example of a React admin panel, built with Refine, provides a comprehensive solution for the needs of enterprise-level admin panels. It features a full range of functionalities typical in products used by enterprise companies.
+
+The admin panel connects to a REST API using a Simple REST data provider. Its user interface is developed with Ant Design, which Refine offers built-in UI framework support.
+
+We built this template to showcase the efficiency and ease of using the Refine framework in development. It is a valuable resource, offering insights into Refine's best practices and modern development techniques. As it's ready for production, you can use this template as a foundation to build your own React admin panel or implement it as it is.
+
+The template is open-source, so you can freely use or examine it to understand how Refine works.
+
+
+### Key Features:
+
+- **Dashboard**: Get an overview of food ordering activities, track product performance, and view insightful charts.
+- **Orders**: Manage, track, and filter all customer orders.
+- **Users**: Administer customer and courier accounts and data.
+- **Stores**: View and manage the list of participating stores.
+- **Categories**: Categorize and organize menu items and store types.
+- **Couriers**: Monitor and manage courier activity and interactions.
+- **Reviews**: Handle customer feedback, review ratings, and respond to comments.
+
+This admin panel template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard and all CRUD applications, providing a comprehensive platform for managing order interactions, restaurant management, and sales processes.`,
     },
     {
-        slug: "swag-store",
+        slug: "next-js-ecommerce-store",
         title: "Swag Store",
-        description: `
-This is a complete eCommerce storefront app built with refine, Medusa.js, Next.js, and Stripe.
-
-We were planning to build a swag store for our open source project called refine.
-
-We had two options when it came to building this shop.
-
-The first option was to deploy a ready-made solution like Shopify, and the second was to create a custom solution.
-
-Since refine can be used to build eCommerce storefronts with SSR support, we started looking for Headless eCommerce solutions.
-During this process, we met with the Medusa, and we decided that the solution offered by Medusajs fit us quite well.
-Starting from this, we decided to use the Medusa commerce API and built the storefront app with refine and Next.js.
-
-In that way, we could share complete eCommerce store solutions with the open source community. Also, it helps us to test our framework with a real-world use case.
-
-We deployed our Medusa commerce API fastly without pain. First, we deployed our admin interface and created products, collections, and other stuff.
-For the UI, we used [Vercel's eCommerce template](https://demo.vercel.store/). Since there is no payment step involved in Vercel's eCommerce template, we took advantage of the [nextjs-starter-medusa](https://github.com/medusajs/nextjs-starter-medusa) for checkout and account features.
-
-So basically, we built a complete eCommerce storefront by combining Vercel's eCommerce template with [nextjs-starter-medusa](https://github.com/medusajs/nextjs-starter-medusa).
-
-Currently, we are using this store and have already processed real shopping transactions with credit cards and gift codes.
-
-The app includes the following features:
-- Authentication & Authorization
-- Product Listing
-- Account information pages
-- Product detail
-- Shopping cart
-- Payment with Stripe
-- Gift Code feature
-- Email send and verification
-        `,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-store.jpg",
         ],
@@ -154,13 +179,29 @@ The app includes the following features:
         uiFramework: "Ant Design",
         dataProvider: "Rest API",
         authProvider: "Custom",
+        description: `
+This template is a comprehensive e-commerce storefront app created using Refine, Medusa.js, Next.js, and Stripe, encompassing all the necessary features for an e-commerce web application. Its source code is open-source, allowing you to freely use or explore it to gain a deeper understanding of how Refine integrates with Next.js and Tailwind CSS.
+
+The app interfaces with the Medusa API through Refine's Medusa data provider, and its user interface is crafted with Tailwind CSS. This template is designed to showcase the effectiveness of the Refine framework in streamlining and accelerating the development process for storefront apps, providing an optimal approach to using Refine in storefront app development.
+
+With its production-ready status, this template offers a solid foundation for building your own storefront, whether you choose to use it as a starting point or implement it directly as it is.
+
+
+### Key Features:
+
+- **Authentication & Authorization**: Securely manages user logins and permissions.
+- **Product Listing**: Displays a catalog of products available for purchase.
+- **Account Information Pages**: Allows users to view and edit their account details.
+- **Product Detail**: Provides detailed information about each product, including descriptions, prices, and images.
+- **Shopping Cart**: Enables customers to add products to a virtual cart and manage their selections before checkout.
+- **Payment with Stripe**: Offers a secure payment system through Stripe for processing transactions.
+- **Gift Code Feature**: Allows gift codes for discounts or special offers during the checkout process.
+- **Email Send and Verification**: Handles the sending of emails for purposes like account verification and marketing, and verifies email addresses.
+                `,
     },
     {
-        slug: "pixels",
+        slug: "supabase-crud-app",
         title: "Pixels",
-        description: `
-Our internal hackathon winner by  Ali Emir Şen. He used Supabase as a db and real-time API and it worked in perfect harmony with Refine.
-        `,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-pixels.jpg",
         ],
@@ -172,13 +213,25 @@ Our internal hackathon winner by  Ali Emir Şen. He used Supabase as a db and re
         uiFramework: "Ant Design",
         dataProvider: "Supabase",
         authProvider: "Supabase",
+        description: `
+This example presents the RefineWeek series - a seven-part quickfire guide to help developers learn the ins and outs of Refine and Supabase's powerful capabilities and get going with Refine within a week.
+
+The source code for this CRUD app is open-source, providing an opportunity for you to use or examine it to gain a deeper understanding of how Refine operates. The CRM application featured in this series utilizes a Supabase API through Refine's Supabase data provider, and its user interface is crafted using Ant Design.
+
+This CRM application consumes a Supabase API through Refine's Supabase data provider, and its user interface is developed using Ant Design, which Refine offers built-in UI framework support.
+ 
+We built this template to demonstrate how the Refine framework simplifies and speeds up development. It is a valuable resource, offering insights into Refine's best practices and modern development techniques. 
+
+### Key Features:
+
+- **Realtime Collaboration Features**: Implements real-time updates using Supabase's Realtime for collaborative canvas drawing.
+- **Role-Based Authorization**: Incorporates user role-based authorization with different permissions for editors and admins.
+- **Audit Logging**: Implements an audit log for tracking pixel drawing activities in both the client and admin apps.
+        `,
     },
     {
-        slug: "invoice-generator",
-        title: "Invoice Generator",
-        description: `
-You can develop any web application or admin panel you want in a very short time with Refine like an invoice app.
-        `,
+        slug: "react-pdf-invoice-generator",
+        title: "Invoice Generator - Internal Tool",
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-invoice-generator.jpg",
         ],
@@ -190,13 +243,25 @@ You can develop any web application or admin panel you want in a very short time
         uiFramework: "Ant Design",
         dataProvider: "Strapi",
         authProvider: "Strapi",
+        description: `
+The Invoicer is a template for an internal tool created as part of the #RefineWeek series, integrating Refine, Strapi, and Ant Design technologies. It's designed for users to manage company registrations, client and contact additions, task creations, and invoice issuance. A standout feature of this app is its ability to generate PDF invoices, enabling the creation of professional documents.
+
+With its PDF generation feature, this open-source internal tool template is ideal for understanding Refine's capabilities. The app uses Strapi for data management, connecting through a Strapi data provider. Its interface is crafted using Ant Design, supported natively by Refine for a seamless UI experience.
+
+We built this template to showcase the efficiency and ease of using the Refine framework in development along with third-party API management tools. It is a valuable resource, offering insights into Refine's best practices and modern development techniques. Being production-ready, this template can serve as a solid base for developing your own React-based internal tools, or it can be used as-is for immediate implementation.
+
+
+
+### Key Features
+
+- **Comprehensive CRUD Operations**: The app supports CRUD functionalities for companies, clients, contacts, missions, and invoices.
+- **Authentication and Authorization**: Implements secure user authentication and role-based permissions using Refine's authProvider.
+- **PDF Invoice Generation**: Includes the capability to generate and view PDF documents of invoices using the @react-pdf/renderer package.
+        `,
     },
     {
         slug: "win-95-style-admin-panel",
         title: "Win95 Style Admin Panel",
-        description: `
-With Refine's headless feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility.
-        `,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-win95.jpg",
         ],
@@ -209,13 +274,15 @@ With Refine's headless feature, you can include any UI in your project and take 
         uiFramework: "Headless",
         dataProvider: "Supabase",
         authProvider: "Supabase",
+        description: `
+This Fun CRUD app example demonstrates how you can customize the Refine app design for specific needs. It is connected to a Supabase backend through Refine’s Supabase data provider and its user interface is developed using [React95](https://github.com/React95/React95).
+
+The source code of the CRUD app is also open-source; feel free to use or inspect it to discover how Refine works along with external UI packages.
+        `,
     },
     {
-        slug: "realworld",
+        slug: "react-crud-app",
         title: "Realworld Example",
-        description: `
-"The mother of all demo apps" - Exemplary fullstack Medium.com clone powered by Refine!
-        `,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-realworld.jpg",
         ],
@@ -226,13 +293,29 @@ With Refine's headless feature, you can include any UI in your project and take 
         uiFramework: "Headless",
         dataProvider: "Rest API",
         authProvider: "Custom",
+        description: `
+This RealWorld app template displays a comprehensive full-stack application created using Refine, including features like CRUD operations, user authentication, routing, and pagination, among others.
+
+The RealWorld example standard, often called the "Mother of All Demo Apps," is a specification for building full-stack applications that demonstrate real-world usage of various frontend and backend technologies. This standard provides consistent requirements for creating functionally equivalent applications across different technology stacks. 
+
+This RealWorld example aims to demonstrate the practical use of Refine in building standards and real-world applications, providing a more authentic and useful example than the usual "to-do list" demonstrations.
+
+Since the source code of this RealWorld app is open-source, you have the freedom to use or explore it to gain insights into the workings of Refine and its integration with Next.js and Tailwind CSS.
+
+
+### Key Features
+- Authenticate users via JWT (login/register pages + logout button on settings page)
+- CRUD users (sign up & settings page - no deleting required)
+- CRUD Articles
+- CRUD Comments on articles (no updating required)
+- GET and display paginated lists of articles
+- Favorite articles
+- Follow other users
+`,
     },
     {
         slug: "multitenancy-strapi",
         title: "Multitenancy App with Strapi",
-        description: `
-Cake House application using Refine and Strapi.
-        `,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-strapi.jpg",
         ],
@@ -245,13 +328,17 @@ Cake House application using Refine and Strapi.
         uiFramework: "Ant Design",
         dataProvider: "Strapi",
         authProvider: "Strapi",
+        description: `
+Multitenancy is a design approach where a single software instance on a server provides services to multiple clients at the same time. This CRUD app template is an excellent example of implementing multitenant architecture in Refine applications. It connects to a Strapi API using a Strapi data provider and features a user interface developed with Ant Design, which is natively supported by Refine.
+
+This template was developed to demonstrate how the Refine framework can simplify and expedite the development of apps with enterprise-level needs. It's a valuable resource that offers insights into Refine's best practices and modern development techniques.
+
+The source code of this multitenancy app is open-source, allowing you to use or inspect it to see how Refine can fulfill enterprise-grade application requirements. 
+        `,
     },
     {
         slug: "multitenancy-appwrite",
         title: "Multitenancy App with Appwrite",
-        description: `
-Cake House application using Refine and Appwrite.
-        `,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-appwrite.jpg",
         ],
@@ -264,13 +351,17 @@ Cake House application using Refine and Appwrite.
         uiFramework: "Ant Design",
         dataProvider: "Appwrite",
         authProvider: "Appwrite",
+        description: `
+Multitenancy is a design approach where a single software instance on a server provides services to multiple clients at the same time. This CRUD app template is an excellent example of implementing multitenant architecture in Refine applications. It connects to a Appwrite API using a Appwrite data provider and features a user interface developed with Ant Design, which is natively supported by Refine.
+
+This template was developed to demonstrate how the Refine framework can simplify and expedite the development of apps with enterprise-level needs. It's a valuable resource that offers insights into Refine's best practices and modern development techniques.
+
+The source code of this multitenancy app is open-source, allowing you to use or inspect it to see how Refine can fulfill enterprise-grade application requirements. 
+        `,
     },
     {
         slug: "ant-design-template",
         title: "Ant Design template",
-        description: `
-Complete admin panel template built with Ant Design. Features authentication and CRUD screens.
-        `,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-ant-design-template.jpg",
         ],
@@ -283,13 +374,13 @@ Complete admin panel template built with Ant Design. Features authentication and
         uiFramework: "Ant Design",
         dataProvider: "Rest API",
         authProvider: "Custom",
+        description: `
+Complete admin panel template built with Material UI. Features authentication and CRUD screens.
+        `,
     },
     {
         slug: "material-ui-template",
         title: "Material UI template",
-        description: `
-Complete admin panel template built with Material UI. Features authentication and CRUD screens.
-        `,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-material-ui-template.jpg",
         ],
@@ -302,13 +393,13 @@ Complete admin panel template built with Material UI. Features authentication an
         uiFramework: "Material UI",
         dataProvider: "Rest API",
         authProvider: "Custom",
+        description: `
+Complete admin panel template built with Material UI. Features authentication and CRUD screens.
+        `,
     },
     {
         slug: "mantine-template",
         title: "Mantine template",
-        description: `
-Complete admin panel template built with Mantine. Features authentication and CRUD screens.
-        `,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-mantine-template.jpg",
         ],
@@ -321,13 +412,13 @@ Complete admin panel template built with Mantine. Features authentication and CR
         uiFramework: "Mantine",
         dataProvider: "Rest API",
         authProvider: "Custom",
+        description: `
+Complete admin panel template built with Mantine. Features authentication and CRUD screens.
+        `,
     },
     {
         slug: "chakra-ui-template",
         title: "Chakra UI template",
-        description: `
-Complete admin panel template built with Chakra UI. Features authentication and CRUD screens.
-        `,
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-chakra-ui-template.jpg",
         ],
@@ -340,5 +431,8 @@ Complete admin panel template built with Chakra UI. Features authentication and 
         uiFramework: "Chakra UI",
         dataProvider: "Rest API",
         authProvider: "Custom",
+        description: `
+Complete admin panel template built with Chakra UI. Features authentication and CRUD screens.
+        `,
     },
 ];

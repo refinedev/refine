@@ -1215,9 +1215,7 @@ form.DocSearch-Form label.DocSearch-MagnifierLabel svg.DocSearch-Search-Icon {
     @apply break-words;
 }
 
-.template-detail-markdown h3 + ul,
-p + ul,
-h2 + p {
+.template-detail-markdown h3 + ul {
     margin-block-start: -20px;
 }
 
@@ -1246,7 +1244,7 @@ h2 + p {
 }
 
 .template-detail-markdown h3 {
-    @apply leading-snug text-lg font-semibold mb-4 mt-6;
+    @apply leading-snug text-lg font-semibold pb-0 mb-0 mt-6;
 }
 
 .template-detail-markdown h4 {

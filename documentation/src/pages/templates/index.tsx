@@ -306,7 +306,7 @@ const dataTemplates: {
         to: "/templates/crm-application",
         title: "CRM Application",
         description:
-            "Comprehensive CRM App developed using refine, Ant Design and GraphQL. It includes features like authentication, a dashboard, and over 10 CRUD interfaces ranging from charts and sales kanban boards to user administration.",
+            "A comprehensive CRM app built using Refine, Ant Design, and GraphQL. It includes authentication, a dashboard, and over 10 CRUD interfaces, ranging from charts and sales kanban boards to user administration.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/refine-crm.jpg",
         integrations: [
             {
@@ -324,10 +324,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/e-commerce-storefront",
+        to: "/templates/next-js-tailwind",
         title: "E-Commerce Application Storefront",
         description:
-            "Headless storefront example built with Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
+            "A Headless storefront example built with Refine and Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-storefront.jpg",
         integrations: [
             {
@@ -345,10 +345,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/finefoods-material-ui",
+        to: "/templates/react-admin-panel",
         title: "Finefoods Material UI Admin Panel",
         description:
-            "Complete admin panel example built with Material UI. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
+            "A comprehensive Admin panel template built using Refine and Material UI demonstrating a food ordering system. It includes features such as authentication, a dashboard, and over 10 CRUD interfaces, ranging from orders to user management.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-material-ui.jpg",
         integrations: [
             {
@@ -366,10 +366,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/finefoods-ant-design",
+        to: "/templates/react-admin-panel-ant-design",
         title: "Finefoods Ant Design Admin Panel",
         description:
-            "Complete admin panel example built with Ant Design. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
+            "A comprehensive Admin panel template built using Refine and Ant design demonstrating a food ordering system. It includes features such as authentication, a dashboard, and over 10 CRUD interfaces, ranging from orders to user management.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-ant-design.jpg",
         integrations: [
             {
@@ -387,10 +387,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/swag-store",
+        to: "/templates/next-js-ecommerce-store",
         title: "Swag Store",
         description:
-            "Complete headless e-commerce built on top of Medusa. Features a fully working solution with product listings, shopping cart and checkout.",
+            "A complete headless e-commerce template was built on top of Medusa with Refine. Features a fully working solution with product listings, a shopping cart, and checkout. Supports SSR with NextJS.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/swag-store.jpg",
         integrations: [
             {
@@ -408,10 +408,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/pixels",
+        to: "/templates/supabase-crud-app",
         title: "Pixels",
         description:
-            "Our internal hackathon winner by  Ali Emir Şen. He used Supabase as a db and real-time API and it worked in perfect harmony with <strong>Refine</strong>.",
+            "It is a funny app built with Refine and Supabase, along with a Realtime feature.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/pixels.jpg",
         integrations: [
             {
@@ -429,10 +429,10 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/invoice-generator",
-        title: "Invoice Generator",
+        to: "/templates/react-pdf-invoice-generator",
+        title: "Invoice Generator - Internal Tool",
         description:
-            "You can develop any web application or admin panel you want in a very short time with Refine like an invoice app.",
+            "The Internal Tool template features a PDF Invoice Generator along with CRUD functionalities.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/invoicer.jpg",
         integrations: [
             {
@@ -453,7 +453,7 @@ const dataTemplates: {
         to: "/templates/win-95-style-admin-panel",
         title: "Win95 Style Admin Panel",
         description:
-            "With Refine's headless feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility.",
+            "With the headless architecture of Refine, you have the flexibility to implement any custom design!",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/win95.jpg",
         integrations: [
             {
@@ -471,7 +471,7 @@ const dataTemplates: {
         ],
     },
     {
-        to: "/templates/realworld",
+        to: "/templates/react-crud-app",
         title: "Realworld Example",
         description: `"The mother of all demo apps" - Exemplary fullstack Medium.com clone powered by Refine!`,
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/realworld.jpg",
@@ -493,7 +493,8 @@ const dataTemplates: {
     {
         to: "/templates/multitenancy-strapi",
         title: "Multitenancy App with Strapi",
-        description: "Cake House application using Refine and Strapi",
+        description:
+            "Implementing multitenancy architecture in Refine applications.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/multitenancy-strapi.jpg",
         integrations: [
             {
@@ -513,7 +514,8 @@ const dataTemplates: {
     {
         to: "/templates/multitenancy-appwrite",
         title: "Multitenancy App with Appwrite",
-        description: "Cake House application using Refine and AppWrite.",
+        description:
+            "Implementing multitenancy architecture in Refine applications.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/multitenancy-appwrite.jpg",
         integrations: [
             {
