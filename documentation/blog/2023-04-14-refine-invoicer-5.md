@@ -10,9 +10,9 @@ hide_table_of_contents: false
 
 In this post, we add pdf renderer to **PDF Invoice Generator** app that we have been building last few days. This is also where we summarize our accomplishments and wrap up the series.
 
-This is Day 5, the final day of the running [**#refineWeek**](https://refine.dev/week-of-refine-strapi/) series and this [**#refineWeek**](https://refine.dev/week-of-refine-strapi/) is a five-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with [**Strapi**](https://strapi.io/) within a week.
+This is Day 5, the final day of the running [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) series and this [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) is a five-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with [**Strapi**](https://strapi.io/) within a week.
 
-### refineWeek ft. Strapi series
+### RefineWeek ft. Strapi series
 
 - Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-react-invoice-generator-1/)
 - Day 2 - [Setting Up the Invoicer App](https://refine.dev/blog/refine-react-invoice-generator-2/)
@@ -396,7 +396,7 @@ OK. With this done, we can now go ahead and test our app and should be able to v
 
 ## Series Wrap Up
 
-In this **#refineWeek** series, we built a pdf invoice generator which allows users to create companies, add their clients, their contacts. They are also able to create missions with payment details such as daily rate and number of days for the mission to be completed, and issue invoices on those missions.
+In this **#RefineWeek** series, we built a pdf invoice generator which allows users to create companies, add their clients, their contacts. They are also able to create missions with payment details such as daily rate and number of days for the mission to be completed, and issue invoices on those missions.
 
 While building the app, we covered several core **refine** concepts, particularly how data providers and hooks interact in data fetching and authentication. We made use of `dataProvider` and `authProvider` props, along with `resources` and `routerProvider`.
 

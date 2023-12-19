@@ -9,7 +9,11 @@ export const LandingHeroGoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
-        <g opacity={0.5} filter="url(#filter0_f_1305_2841)">
+        <g
+            opacity={0.5}
+            className="hidden dark:block"
+            filter="url(#filter0_f_1305_2841)"
+        >
             <path
                 d="M32.2399 29.8184V34.4657H38.6981C38.4145 35.9602 37.5635 37.2257 36.2871 38.0766L40.1817 41.0985C42.4508 39.004 43.7599 35.9276 43.7599 32.273C43.7599 31.4221 43.6835 30.6039 43.5417 29.8185L32.2399 29.8184Z"
                 fill="#4285F4"

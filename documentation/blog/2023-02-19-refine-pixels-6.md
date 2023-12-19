@@ -8,19 +8,19 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-19-refine-p
 hide_table_of_contents: false
 ---
 
-In this post, we implement Role Based Access Control (RBAC) on our **Pixels Admin** app. **Pixels Admin** serves as the admin dashboard of our **Pixels** client app that we built previously in the [**refineWeek**](https://refine.dev/week-of-refine/) series.
+In this post, we implement Role Based Access Control (RBAC) on our **Pixels Admin** app. **Pixels Admin** serves as the admin dashboard of our **Pixels** client app that we built previously in the [**RefineWeek**](https://refine.dev/week-of-refine/) series.
 
-This is Day 6, and **refineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of [**refine**'](https://github.com/refinedev/refine)s powerful capabilities and get going with **refine** within a week.
+This is Day 6, and **RefineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of [**refine**'](https://github.com/refinedev/refine)s powerful capabilities and get going with **refine** within a week.
 
-### refineWeek series
+### RefineWeek series
 
--   Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
--   Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
--   Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
--   Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
--   Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
--   Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
--   Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+- Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
+- Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
+- Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
+- Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+- Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
+- Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
 
 ## Overview
 
@@ -88,32 +88,32 @@ import { NodeModulesPolyfillPlugin } from "@esbuild-plugins/node-modules-polyfil
 import rollupNodePolyFill from "rollup-plugin-polyfill-node";
 
 export default defineConfig({
-    plugins: [react()],
-    optimizeDeps: {
-        esbuildOptions: {
-            // Node.js global to browser globalThis
-            define: {
-                global: "globalThis",
-            },
-            // Enable esbuild polyfill plugins
-            plugins: [
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                NodeGlobalsPolyfillPlugin({
-                    buffer: true,
-                    process: true,
-                }),
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                NodeModulesPolyfillPlugin(),
-            ],
-        },
+  plugins: [react()],
+  optimizeDeps: {
+    esbuildOptions: {
+      // Node.js global to browser globalThis
+      define: {
+        global: "globalThis",
+      },
+      // Enable esbuild polyfill plugins
+      plugins: [
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        NodeGlobalsPolyfillPlugin({
+          buffer: true,
+          process: true,
+        }),
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        NodeModulesPolyfillPlugin(),
+      ],
     },
-    build: {
-        rollupOptions: {
-            plugins: [rollupNodePolyFill()],
-        },
+  },
+  build: {
+    rollupOptions: {
+      plugins: [rollupNodePolyFill()],
     },
+  },
 });
 ```
 
@@ -156,16 +156,16 @@ export const adapter = new StringAdapter(`
 
 A quick run down of the `model` is:
 
--   with the request definition in `r = sub, obj, act`, **Casbin** scans the request for the subject (`editor` or `admin`), object (the `resource`) and the action (`get`, `create`, `edit`, etc.).
--   with the same parameters in `p = sub, obj, act`, it compares the request parameters with those in the policy instances declared in the policy adapter
--   with the two level grouping in `g = _, _`, we are declaring user role inheritance can go two levels deep, i.e. an `admin` is an `user`.
+- with the request definition in `r = sub, obj, act`, **Casbin** scans the request for the subject (`editor` or `admin`), object (the `resource`) and the action (`get`, `create`, `edit`, etc.).
+- with the same parameters in `p = sub, obj, act`, it compares the request parameters with those in the policy instances declared in the policy adapter
+- with the two level grouping in `g = _, _`, we are declaring user role inheritance can go two levels deep, i.e. an `admin` is an `user`.
 
 The `adapter` holds our instances of policies produced from `p`. The policies above basically allows:
 
--   an `admin` to `list` users.
--   an admin to `list`, `edit` and `delete` canvases.
--   an `editor` to `list` users.
--   an `editor` to `list` and `edit` canvases.
+- an `admin` to `list` users.
+- an admin to `list`, `edit` and `delete` canvases.
+- an `editor` to `list` users.
+- an `editor` to `list` and `edit` canvases.
 
 ## `<Refine />`'s `accessControlProvider`
 
@@ -185,13 +185,13 @@ The `accessControlProvider` implements only one method named `can`. It has the f
 
 ```tsx
 type CanParams = {
-    resource: string;
-    action: string;
-    params?: {
-        resource?: IResourceItem;
-        id?: BaseKey;
-        [key: string]: any;
-    };
+  resource: string;
+  action: string;
+  params?: {
+    resource?: IResourceItem;
+    id?: BaseKey;
+    [key: string]: any;
+  };
 };
 ```
 
@@ -207,14 +207,14 @@ import { CanParams, CanReturnType } from "@refinedev/core";
 import { adapter, model } from "../casbin/accessControl";
 
 export const accessControlProvider = {
-    can: async ({ resource, action }: CanParams): Promise<CanReturnType> => {
-        const enforcer = await newEnforcer(model, adapter);
-        const can = await enforcer.enforce("admin", resource, action);
+  can: async ({ resource, action }: CanParams): Promise<CanReturnType> => {
+    const enforcer = await newEnforcer(model, adapter);
+    const can = await enforcer.enforce("admin", resource, action);
 
-        return Promise.resolve({
-            can,
-        });
-    },
+    return Promise.resolve({
+      can,
+    });
+  },
 };
 ```
 
@@ -260,13 +260,13 @@ When you bootstraped **refine** app with CLI, the default `getPermissions` metho
 
 ```tsx title="src/providers/authProvider.ts"
 getPermissions: async () => {
-    const user = await supabaseClient.auth.getUser();
+  const user = await supabaseClient.auth.getUser();
 
-    if (user) {
-        return user.data.user?.role;
-    }
+  if (user) {
+    return user.data.user?.role;
+  }
 
-    return null;
+  return null;
 };
 ```
 
@@ -282,8 +282,8 @@ So, before we can use the `getPermissions()` method, we have to set up custom us
 
 Here are two crucial particulars on how they work:
 
--   Only a user with a `{ claims_admin: true }` claim can set claims data on others. So we need to bootstrap a `claims_admin` role for a first user using the **Supabase** SQL Editor.
--   Our app can access the getter and setter functions via **Supabase** Remote Procedure Calls (RPCs) with the `supabaseClient.rpc()` method.
+- Only a user with a `{ claims_admin: true }` claim can set claims data on others. So we need to bootstrap a `claims_admin` role for a first user using the **Supabase** SQL Editor.
+- Our app can access the getter and setter functions via **Supabase** Remote Procedure Calls (RPCs) with the `supabaseClient.rpc()` method.
 
 With these in mind, let's go ahead and set up **Supabase Custom Claims** on our database.
 
@@ -365,16 +365,16 @@ import { adapter, model } from "../casbin/accessControl";
 import { authProvider } from "./authProvider";
 
 export const accessControlProvider = {
-    can: async ({ resource, action }: CanParams): Promise<CanReturnType> => {
-        const role = await authProvider.getPermissions?.();
+  can: async ({ resource, action }: CanParams): Promise<CanReturnType> => {
+    const role = await authProvider.getPermissions?.();
 
-        const enforcer = await newEnforcer(model, adapter);
-        const can = await enforcer.enforce(role, resource, action);
+    const enforcer = await newEnforcer(model, adapter);
+    const can = await enforcer.enforce(role, resource, action);
 
-        return Promise.resolve({
-            can,
-        });
-    },
+    return Promise.resolve({
+      can,
+    });
+  },
 };
 ```
 
