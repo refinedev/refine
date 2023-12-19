@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 import { useModalForm, useSelect } from "@refinedev/antd";
@@ -12,7 +12,6 @@ import {
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select, Spin } from "antd";
 
-import { Company, Contact, User } from "@/graphql/schema.types";
 import {
     CompaniesSelectQuery,
     ContactsSelectQuery,
@@ -35,14 +34,6 @@ type Props = {
     onCancel?: () => void;
 };
 
-type QuoteMutationVariables = Partial<
-    GetVariables<QuoteCreateMutationVariables> & {
-        company?: Partial<Pick<Company, "id">>;
-        contact?: Partial<Pick<Contact, "id">>;
-        salesOwner?: Partial<Pick<User, "id">>;
-    }
->;
-
 export const QuotesFormModal: FC<Props> = ({
     action,
     redirect,
@@ -54,10 +45,10 @@ export const QuotesFormModal: FC<Props> = ({
     const { list, replace } = useNavigation();
     const [searchParams] = useSearchParams();
 
-    const { formProps, modalProps, close, onFinish } = useModalForm<
+    const { formProps, modalProps, close } = useModalForm<
         GetFields<QuoteCreateMutation>,
         HttpError,
-        QuoteMutationVariables
+        GetVariables<QuoteCreateMutationVariables>
     >({
         resource: "quotes",
         action,
@@ -74,17 +65,6 @@ export const QuotesFormModal: FC<Props> = ({
             onMutationSuccess?.();
         },
     });
-
-    const handleOnFinish = (values: QuoteMutationVariables) => {
-        const { company, salesOwner, contact, ...rest } = values;
-
-        onFinish({
-            ...rest,
-            companyId: company?.id,
-            salesOwnerId: salesOwner?.id,
-            contactId: contact?.id,
-        });
-    };
 
     const {
         selectProps: selectPropsCompanies,
@@ -131,18 +111,6 @@ export const QuotesFormModal: FC<Props> = ({
         },
     });
 
-    useEffect(() => {
-        const companyId = searchParams.get("companyId");
-
-        if (companyId && companyId !== "null") {
-            formProps.form?.setFieldsValue({
-                company: {
-                    id: companyId,
-                },
-            });
-        }
-    }, [searchParams]);
-
     const loading =
         isLoadingCompanies || isLoadingContact || isLoadingSalesOwners;
 
@@ -165,13 +133,7 @@ export const QuotesFormModal: FC<Props> = ({
             }}
         >
             <Spin spinning={loading}>
-                <Form
-                    {...formProps}
-                    onFinish={(values) => {
-                        handleOnFinish(values as QuoteMutationVariables);
-                    }}
-                    layout="vertical"
-                >
+                <Form {...formProps} layout="vertical">
                     <Form.Item
                         rules={[{ required: true }]}
                         name="title"
@@ -181,7 +143,11 @@ export const QuotesFormModal: FC<Props> = ({
                     </Form.Item>
                     <Form.Item
                         rules={[{ required: true }]}
-                        name={["salesOwner", "id"]}
+                        name={["salesOwnerId"]}
+                        initialValue={{
+                            value: formProps?.initialValues?.salesOwner?.id,
+                            label: formProps?.initialValues?.salesOwner?.name,
+                        }}
                         label="Sales owner"
                     >
                         <Select
@@ -191,7 +157,13 @@ export const QuotesFormModal: FC<Props> = ({
                     </Form.Item>
                     <Form.Item
                         rules={[{ required: true }]}
-                        name={["company", "id"]}
+                        name={["companyId"]}
+                        initialValue={
+                            searchParams.get("companyId") ?? {
+                                value: formProps?.initialValues?.company?.id,
+                                label: formProps?.initialValues?.company?.name,
+                            }
+                        }
                         label="Company"
                         extra={
                             <Button
@@ -213,7 +185,11 @@ export const QuotesFormModal: FC<Props> = ({
                     </Form.Item>
                     <Form.Item
                         rules={[{ required: true }]}
-                        name={["contact", "id"]}
+                        name={["contactId"]}
+                        initialValue={{
+                            value: formProps?.initialValues?.contact?.id,
+                            label: formProps?.initialValues?.contact?.name,
+                        }}
                         label="Quote Contact"
                     >
                         <Select
