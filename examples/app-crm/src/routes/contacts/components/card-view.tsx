@@ -1,14 +1,17 @@
 import { useMemo } from "react";
 
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
+
 import { List, type ListProps, type TableProps } from "antd";
 
 import { PaginationTotal } from "@/components";
 import { Contact } from "@/graphql/schema.types";
+import { ContactsListQuery } from "@/graphql/types";
 
 import { ContactCard, ContactCardSkeleton } from "./card";
 
 type Props = {
-    tableProps: TableProps<Contact>;
+    tableProps: TableProps<GetFieldsFromList<ContactsListQuery>>;
     setCurrent: (current: number) => void;
     setPageSize: (pageSize: number) => void;
 };
