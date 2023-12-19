@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 
 import { AutoSaveIndicator, useForm } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
-import { GetFields } from "@refinedev/nestjs-query";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import {
@@ -23,7 +23,10 @@ import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
 import { currencyNumber } from "@/utilities";
 
 import { QUOTE_USE_FORM_MUTATION } from "./queries";
-import { ProductsServicesQuoteFormMutation } from "@/graphql/types";
+import {
+    ProductsServicesQuoteFormMutation,
+    ProductsServicesQuoteFormMutationVariables,
+} from "@/graphql/types";
 
 const columns = [
     {
@@ -116,7 +119,7 @@ export const ProductsServices = () => {
     const { formProps, autoSaveProps, queryResult } = useForm<
         GetFields<ProductsServicesQuoteFormMutation>,
         HttpError,
-        QuoteUpdateInput
+        GetVariables<ProductsServicesQuoteFormMutationVariables>
     >({
         resource: "quotes",
         action: "edit",

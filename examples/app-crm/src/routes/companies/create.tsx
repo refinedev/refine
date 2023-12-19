@@ -8,7 +8,7 @@ import {
     useGetToPath,
     useGo,
 } from "@refinedev/core";
-import { GetFields } from "@refinedev/nestjs-query";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import {
     DeleteOutlined,
@@ -31,7 +31,10 @@ import {
 
 import { SelectOptionWithAvatar } from "@/components";
 import { Company, User } from "@/graphql/schema.types";
-import { CreateCompanyMutation } from "@/graphql/types";
+import {
+    CreateCompanyMutation,
+    CreateCompanyMutationVariables,
+} from "@/graphql/types";
 
 import { COMPANY_CREATE_MUTATION } from "./queries";
 
@@ -39,9 +42,7 @@ type Props = {
     isOverModal?: boolean;
 };
 
-type FormValues = {
-    name: string;
-    salesOwnerId: string;
+type FormValues = GetVariables<CreateCompanyMutationVariables> & {
     contacts?: {
         name?: string;
         email?: string;
