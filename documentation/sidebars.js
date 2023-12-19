@@ -79,15 +79,6 @@ module.exports = {
                                         "examples/form/headless/useForm",
                                     ],
                                 },
-                                {
-                                    type: "category",
-                                    label: "React Hook Form",
-                                    items: [
-                                        "examples/form/react-hook-form/useForm",
-                                        "examples/form/react-hook-form/useModalForm",
-                                        "examples/form/react-hook-form/useStepsForm",
-                                    ],
-                                },
                             ],
                         },
                         {
@@ -117,14 +108,6 @@ module.exports = {
                             type: "category",
                             label: "Table",
                             items: [
-                                {
-                                    type: "category",
-                                    label: "TanStack Table",
-                                    items: [
-                                        "examples/table/tanstack-table/advanced-tanstack-table",
-                                        "examples/table/tanstack-table/basic-tanstack-table",
-                                    ],
-                                },
                                 {
                                     type: "category",
                                     label: "Handson Table",
@@ -992,6 +975,14 @@ module.exports = {
                     items: [
                         "packages/tanstack-table/introduction/index",
                         "packages/tanstack-table/use-table/index",
+                        {
+                            type: "category",
+                            label: "Examples",
+                            items: [
+                                "examples/table/tanstack-table/basic-tanstack-table",
+                                "examples/table/tanstack-table/advanced-tanstack-table",
+                            ],
+                        },
                     ],
                 },
                 // React Hook Form
@@ -1004,6 +995,15 @@ module.exports = {
                         "packages/react-hook-form/use-form/index",
                         "packages/react-hook-form/use-modal-form/index",
                         "packages/react-hook-form/use-steps-form/index",
+                        {
+                            type: "category",
+                            label: "Examples",
+                            items: [
+                                "examples/form/react-hook-form/useForm",
+                                "examples/form/react-hook-form/useModalForm",
+                                "examples/form/react-hook-form/useStepsForm",
+                            ],
+                        },
                     ],
                 },
                 "packages/cli/index",
