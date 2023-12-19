@@ -380,12 +380,23 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 data: response[operation],
             };
         },
-        deleteOne: async ({ resource, id }) => {
+        deleteOne: async ({ resource, id, meta }) => {
             const pascalResource = camelcase(singular(resource), {
                 pascalCase: true,
             });
 
             const operation = `deleteOne${pascalResource}`;
+
+            if (meta?.gqlMutation) {
+                const response = await client.request<BaseRecord>(
+                    meta.gqlMutation,
+                    { input: { id } },
+                );
+
+                return {
+                    data: response[operation],
+                };
+            }
 
             const query = gqlTag`
                     mutation DeleteOne${pascalResource}($input: DeleteOne${pascalResource}Input!) {
