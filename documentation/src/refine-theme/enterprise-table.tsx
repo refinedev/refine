@@ -571,7 +571,7 @@ const tableData = [
         items: [
             {
                 description: "Direct Database Access",
-                community: <CheckIcon />,
+                community: <CrossIcon />,
                 enterprise: <TableText>via API Generator</TableText>,
                 valueType: {
                     community: "icon",
@@ -580,7 +580,7 @@ const tableData = [
             },
             {
                 description: "Supported Databases",
-                community: <CheckIcon />,
+                community: <CrossIcon />,
                 enterprise: (
                     <TableText>
                         Oracle, MSSQL, PostgreSQL, MySQL, MongoDB
