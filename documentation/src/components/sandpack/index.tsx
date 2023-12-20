@@ -10,10 +10,9 @@ import type {
     TemplateFiles,
 } from "@codesandbox/sandpack-react";
 
-import { nightOwl } from "@codesandbox/sandpack-themes";
+import { nightOwl, aquaBlue } from "@codesandbox/sandpack-themes";
 
 import {
-    defaultLight,
     SandpackCodeEditor,
     SandpackConsole,
     SandpackFileExplorer,
@@ -95,6 +94,11 @@ const SandpackBase = ({
     hidePreview = false,
     ...props
 }: Props) => {
+    const [mounted, setMounted] = React.useState(false);
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
+
     const { colorMode } = useColorMode();
     options ??= {};
     options.resizablePanels ??= true;
@@ -165,7 +169,7 @@ const SandpackBase = ({
                     )}
                 >
                     <SandpackProvider
-                        key={template}
+                        key={`${template}-${colorMode}-${mounted}`}
                         customSetup={{ dependencies, ...customSetup }}
                         files={
                             files as TemplateFiles<SandpackPredefinedTemplate>
@@ -175,9 +179,10 @@ const SandpackBase = ({
                         theme={
                             colorMode === "light"
                                 ? {
-                                      ...defaultLight,
+                                      ...aquaBlue,
                                       colors: {
-                                          ...defaultLight.colors,
+                                          ...aquaBlue.colors,
+                                          accent: "#1D1E30",
                                           surface1: "#F4F8FB",
                                           surface2: "rgb(222, 229, 237)",
                                           surface3: "rgb(222, 229, 237)",
@@ -196,6 +201,7 @@ const SandpackBase = ({
                         className={clsx(
                             "not-prose sandpack-container",
                             "max-w-screen-xl",
+                            "animate-reveal",
                         )}
                         {...props}
                     >

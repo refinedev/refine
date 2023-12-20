@@ -505,8 +505,17 @@ module.exports = {
                 "enterprise-table-right-to-left":
                     "enterprise-table-right-to-left 0.3s ease-in-out forwards",
                 "new-badge-border": "new-badge-border 4s linear infinite",
+                reveal: "reveal 0.3s ease-in-out forwards",
             },
             keyframes: {
+                reveal: {
+                    "0%": {
+                        opacity: 0,
+                    },
+                    "100%": {
+                        opacity: 1,
+                    },
+                },
                 "code-scroll": {
                     "0%": {
                         transform: "translateY(0)",

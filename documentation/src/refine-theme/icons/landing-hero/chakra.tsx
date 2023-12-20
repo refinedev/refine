@@ -11,7 +11,11 @@ export const LandingHeroChakraUIIcon = (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
-        <g opacity={0.5} filter="url(#filter0_f_1305_2683)">
+        <g
+            opacity={0.5}
+            className="hidden dark:block"
+            filter="url(#filter0_f_1305_2683)"
+        >
             <circle cx={32} cy={32} r={11.25} fill="white" />
             <path
                 fillRule="evenodd"
