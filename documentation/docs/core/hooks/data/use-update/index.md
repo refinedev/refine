@@ -6,7 +6,7 @@ source: packages/core/src/hooks/data/useUpdate.ts
 
 `useUpdate` is used when you want to update a record. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation) that supports all of its features and adds some more.
 
-It uses the `update` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
+It uses the `update` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
 ## Usage
 

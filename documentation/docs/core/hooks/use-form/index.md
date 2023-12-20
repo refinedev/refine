@@ -49,7 +49,7 @@ After form is submitted:
 
 1. `useForm` calls `onFinish` function with the form values.
 2. `onFinish` function calls [`useCreate`](/docs/core/hooks/data/use-create) with the form values.
-3. `useCreate` calls [`dataProvider`](/docs/core/providers/data-provider)'s `create` function and returns the response.
+3. `useCreate` calls [`dataProvider`](/docs/data/data-provider)'s `create` function and returns the response.
 4. `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 5. After a successful mutation, `useForm` will invalidate the queries specified in `invalidates` prop.
 6. `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/core/providers/notification-provider) to inform the user.
@@ -67,7 +67,7 @@ After form is submitted:
 2.  `onFinish` function calls [`useUpdate`](/docs/core/hooks/data/use-update) with the form values.
 3.  If the mutation mode is `optimistic` or `undoable`, `useForm` will update the query cache with the form values immediately after the mutation is triggered.
 4.  If the mutation mode is `undoable`, `useForm` will display a notification with a countdown to undo the mutation.
-5.  `useUpdate` calls [`dataProvider`](/docs/core/providers/data-provider)'s `update` function and returns the response.
+5.  `useUpdate` calls [`dataProvider`](/docs/data/data-provider)'s `update` function and returns the response.
 6.  `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 7.  If the mutation fails, `useForm` will revert the query cache to the previous values made in step 3.
 8.  After a successful mutation, `useForm` will invalidate the queries specified in `invalidates` prop.
@@ -82,7 +82,7 @@ After form is submitted:
 
 1.  `useForm` calls `onFinish` function with the form values.
 2.  `onFinish` function calls [`useCreate`](/docs/core/hooks/data/use-create) with the form values.
-3.  `useUpdate` calls [`dataProvider`](/docs/core/providers/data-provider)'s `update` function and returns the response.
+3.  `useUpdate` calls [`dataProvider`](/docs/data/data-provider)'s `update` function and returns the response.
 4.  `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 5.  After a successful mutation, `useForm` will invalidate the queries specified in `invalidates` prop.
 6.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/core/providers/notification-provider) to inform the user.

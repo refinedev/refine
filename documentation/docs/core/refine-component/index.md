@@ -4,7 +4,7 @@ title: <Refine>
 
 `<Refine>` component is the entry point of a Refine app. It is where the highest level of configuration of the app occurs.
 
-[`dataProvider`](/docs/core/providers/data-provider) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
+[`dataProvider`](/docs/data/data-provider) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
@@ -25,11 +25,11 @@ const App = () => (
 
 ## dataProvider <PropTag asterisk />
 
-A [`dataProvider`](/docs/core/providers/data-provider) is the place where a Refine app communicates with an API.
+A [`dataProvider`](/docs/data/data-provider) is the place where a Refine app communicates with an API.
 Data providers also act as adapters for Refine, making it possible for it to consume different API's and data services.
-A [`dataProvider`](/docs/core/providers/data-provider) makes HTTP requests and returns response data back using predefined methods.
+A [`dataProvider`](/docs/data/data-provider) makes HTTP requests and returns response data back using predefined methods.
 
-[Refer to the Data Provider documentation for detailed information. &#8594](/docs/core/providers/data-provider)
+[Refer to the Data Provider documentation for detailed information. &#8594](/docs/data/data-provider)
 
 Multiple data providers can be used with Refine, if you have multiple data providers, you can pass them to the `dataProvider` prop as an object.
 

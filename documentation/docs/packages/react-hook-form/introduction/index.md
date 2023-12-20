@@ -291,7 +291,7 @@ interface IPost {
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
 [notification-provider]: /docs/core/providers/notification-provider
-[get-one]: /docs/core/providers/data-provider#getone-
-[create]: /docs/core/providers/data-provider#create-
-[update]: /docs/core/providers/data-provider#update-
-[data-provider]: /docs/core/providers/data-provider
+[get-one]: /docs/data/data-provider#getone-
+[create]: /docs/data/data-provider#create-
+[update]: /docs/data/data-provider#update-
+[data-provider]: /docs/data/data-provider

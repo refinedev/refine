@@ -89,7 +89,7 @@ When the `useSimpleList` hook is mounted, it will call the `subscribe` method fr
 
 The `useSimpleList` passes the `resource` to the `dataProvider` as a param. This parameter is usually used as an API endpoint path. It all depends on how to handle the resources in your `dataProvider`.
 
-Refer to the [`creating a data provider`](/docs/core/providers/data-provider#creating-a-data-provider) documentation for an example of how resources are handled.
+Refer to the [`creating a data provider`](/docs/data/data-provider#creating-a-data-provider) documentation for an example of how resources are handled.
 
 The `resource` value is inferred from the current route where the component or the hook is used. It can be overridden by passing the `resource` prop.
 

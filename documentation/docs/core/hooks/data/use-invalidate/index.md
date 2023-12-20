@@ -120,4 +120,4 @@ By default settings, all the targeted queries are invalidated and the active one
 | invalidationFilters              | The filters to use when picking queries to invalidate             | [`InvalidateQueryFilters`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries) | `{ type: "all", refetchType: "active" }` |
 | invalidationOptions              | The options to use in the invalidation process                    | [`InvalidateOptions`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries)      | `{ cancelRefetch: false }`               |
 
-[data-provider]: /docs/core/providers/data-provider
+[data-provider]: /docs/data/data-provider

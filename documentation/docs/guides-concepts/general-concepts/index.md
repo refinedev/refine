@@ -91,7 +91,7 @@ const myDataProvider: DataProvider = {
 };
 ```
 
-> Refine offers various built-in data providers for popular data sources like REST, Strapi, AirTable, Supabase, GraphQL, and more. See the [Data Providers](/docs/core/providers/data-provider) page for more information.
+> Refine offers various built-in data providers for popular data sources like REST, Strapi, AirTable, Supabase, GraphQL, and more. See the [Data Providers](/docs/data/data-provider) page for more information.
 
 > See the [Data Fetching](/docs/guides-concepts/data-fetching/) guide for more information.
 

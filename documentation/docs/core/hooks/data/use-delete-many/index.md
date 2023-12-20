@@ -6,7 +6,7 @@ source: packages/core/src/hooks/data/useDeleteMany.ts
 
 `useDeleteMany` is used when you want to delete multiple records at once. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `deleteMany` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
+It uses the `deleteMany` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
 If your data provider does not have a `deleteMany` method, `useDeleteMany` will use the `deleteOne` method instead. This is not recommended since it will make requests one by one for each id.
 

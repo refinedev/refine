@@ -34,7 +34,7 @@ hook={{
     }}
 method={{
         name:"getOne",
-        URL:"/docs/core/providers/data-provider/#getone"
+        URL:"/docs/data/data-provider/#getone"
     }}
 hasDefault={false}
 />

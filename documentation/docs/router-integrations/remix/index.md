@@ -1021,8 +1021,8 @@ Default paths are:
 [usetable]: /docs/core/hooks/use-table
 [reactqueryssr]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [reactquery]: https://react-query.tanstack.com/
-[getlist]: /docs/core/providers/data-provider#getlist-
-[dataprovider]: /docs/core/providers/data-provider
+[getlist]: /docs/data/data-provider#getlist-
+[dataprovider]: /docs/data/data-provider
 [usetable]: /docs/core/hooks/use-table
 [interfaces]: /docs/core/interface-references/#crudfilters
 [loaderfunction]: https://remix.run/docs/en/v1/api/conventions#loader

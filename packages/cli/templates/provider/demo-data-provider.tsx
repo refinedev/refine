@@ -2,7 +2,7 @@ import { DataProvider } from "@refinedev/core";
 
 /**
  * Check out the Data Provider documentation for detailed information
- * https://refine.dev/docs/api-reference/core/providers/data-provider/
+ * https://refine.dev/docs/data/data-provider/
  **/
 export const dataProvider = (
     apiUrl: string,

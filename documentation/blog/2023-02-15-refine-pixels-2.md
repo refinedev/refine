@@ -464,7 +464,7 @@ export const dataProvider = (supabaseClient: SupabaseClient): Required<DataProvi
 
 We don't have to get into the mind of the people at **refine** yet, but if we skim over closely, the `dataProvider` object above has pretty much every method we need to perform all CRUD operations against a **Supabase** database. Notable methods we are going to use in our app are: `create()`, `getOne()`, `getList()` and `update()`.
 
-For the details of how these methods work, please take your time to scan through the [`dataProvider` API reference](https://refine.dev/docs/api-reference/core/providers/data-provider/).
+For the details of how these methods work, please take your time to scan through the [`dataProvider` API reference](https://refine.dev/docs/data/data-provider/).
 
 In order to get the **Supabase** `dataProvider` object to deliver, first a `supabaseClient` has to be set up.
 

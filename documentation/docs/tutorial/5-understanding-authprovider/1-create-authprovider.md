@@ -1240,7 +1240,7 @@ const App = () => {
 
 :::note
 
-We recommend using **axios** as the **HTTP** client with the **@refinedev/simple-rest** [`dataProvider`](/docs/core/providers/data-provider) but other **HTTP** clients can also be preferred.
+We recommend using **axios** as the **HTTP** client with the **@refinedev/simple-rest** [`dataProvider`](/docs/data/data-provider) but other **HTTP** clients can also be preferred.
 
 :::
 

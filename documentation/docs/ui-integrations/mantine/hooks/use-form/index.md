@@ -445,7 +445,7 @@ render(<RefineMantineDemo />);
 
 `resource`, read from the current URL by default, will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider].
 
-See the [`creating a data provider`](/docs/core/providers/data-provider#creating-a-data-provider) section for an example of how `resource` are handled.
+See the [`creating a data provider`](/docs/data/data-provider#creating-a-data-provider) section for an example of how `resource` are handled.
 
 - When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
 - When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
@@ -1145,7 +1145,7 @@ const {
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
 [notification-provider]: /docs/core/providers/notification-provider
-[get-one]: /docs/core/providers/data-provider#getone-
-[create]: /docs/core/providers/data-provider#create-
-[update]: /docs/core/providers/data-provider#update-
-[data-provider]: /docs/core/providers/data-provider
+[get-one]: /docs/data/data-provider#getone-
+[create]: /docs/data/data-provider#create-
+[update]: /docs/data/data-provider#update-
+[data-provider]: /docs/data/data-provider

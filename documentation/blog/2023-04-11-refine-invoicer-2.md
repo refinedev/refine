@@ -576,7 +576,7 @@ This overwhelming and intimidating, but if we skim over closely, the `dataProvid
 
 Notable methods that we are going to use in our app are: `create()`, `getList()`, `update()` and `delete()`. Also notice that the `@refinedev/strapi-4` package uses [`axios`](https://axios-http.com) to communicate with the **Strapi** server.
 
-For the details of how these methods work, please take your time to scan through the [`dataProvider` API reference](https://refine.dev/docs/api-reference/core/providers/data-provider/).
+For the details of how these methods work, please take your time to scan through the [`dataProvider` API reference](https://refine.dev/docs/data/data-provider/).
 
 ## Strapi Client
 

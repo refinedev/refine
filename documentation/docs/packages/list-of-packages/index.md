@@ -17,7 +17,7 @@ To learn more about UI Libraries and integrations, check out [UI Libraries](/doc
 
 ### Data Provider Packages:
 
-To learn more about Data Providers, check out [Data Provider](/docs/core/providers/data-provider/) docs.
+To learn more about Data Providers, check out [Data Provider](/docs/data/data-provider/) docs.
 
 - [`@refinedev/simple-rest`](/docs/packages/data-providers/simple-rest) - Connect any custom **REST API** backend.
 - [`@refinedev/graphql`](/docs/packages/data-providers/graphql) - Connect any custom **GraphQL** backend.

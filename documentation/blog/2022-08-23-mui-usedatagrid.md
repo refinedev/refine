@@ -190,7 +190,7 @@ It's important to note that in the above example, we're not passing the `rows` p
 
 The `dataProvider` prop is used to read data from an API endpoint and then make the data available in the entire application.
 
-[Refer to refine data provider documentation for detailed usage](https://refine.dev/docs/core/providers/data-provider/)
+[Refer to refine data provider documentation for detailed usage](https://refine.dev/docs/data/data-provider/)
 
 ## Rendering data with the `<DataGrid />` component
 

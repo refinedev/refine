@@ -266,7 +266,7 @@ module.exports = {
             label: "Data",
             className: "category-as-header",
             items: [
-                "core/providers/data-provider/index",
+                "data/data-provider",
                 {
                     type: "category",
                     collapsible: false,

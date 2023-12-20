@@ -39,11 +39,11 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 To learn more about **refine**, please check out the [Documentation](https://refine.dev/docs)
 
-- **REST Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
-- **Ant Design** [Docs](https://refine.dev/docs/ui-frameworks/antd/tutorial/)
-- **Antd Light/Dark Mode** [Docs](#)
-- **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
-- **Example Pages** [Docs](https://refine.dev/docs/guides-and-concepts/custom-pages/)
+-   **REST Data Provider** [Docs](https://refine.dev/docs/data/data-provider/#overview)
+-   **Ant Design** [Docs](https://refine.dev/docs/ui-frameworks/antd/tutorial/)
+-   **Antd Light/Dark Mode** [Docs](#)
+-   **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
+-   **Example Pages** [Docs](https://refine.dev/docs/guides-and-concepts/custom-pages/)
 
 ## License
 

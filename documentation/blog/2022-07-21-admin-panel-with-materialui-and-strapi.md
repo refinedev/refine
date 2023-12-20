@@ -122,7 +122,7 @@ export const API_URL = "https://api.strapi-v4.refine.dev";
 
 [Refer to refine docs for more detailed information about refine Strapi V4 support&#8594](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4)
 
-[Refer to refine's data provider documentation for detailed information&#8594](https://refine.dev/docs/core/providers/data-provider/)
+[Refer to refine's data provider documentation for detailed information&#8594](https://refine.dev/docs/data/data-provider/)
 
 [Refer to official Strapi v4 documentation&#8594](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html)
 

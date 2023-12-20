@@ -39,9 +39,9 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 To learn more about **refine**, please check out the [Documentation](https://refine.dev/docs)
 
-- **REST Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
-- **Mantine** [Docs](#)
-- **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
+-   **REST Data Provider** [Docs](https://refine.dev/docs/data/data-provider/#overview)
+-   **Mantine** [Docs](#)
+-   **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
 
 ## License
 

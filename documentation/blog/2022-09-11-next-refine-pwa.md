@@ -256,7 +256,7 @@ With our Fake store endpoint:
 
 Next, we’ll create a layout component for our app and pass it as a prop to the refine component.
 
-[Refer to documentation for more information about data providers in refine. &#8594](https://refine.dev/docs/core/providers/data-provider/)
+[Refer to documentation for more information about data providers in refine. &#8594](https://refine.dev/docs/data/data-provider/)
 
 <br/>
 <div>

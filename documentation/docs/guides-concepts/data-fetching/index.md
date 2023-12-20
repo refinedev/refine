@@ -379,7 +379,7 @@ To better understand the data provider interface, we have created an example tha
 
 <DataProviderInterface />
 
-[To learn more about the `dataProvider` interface, check out the reference page.](/docs/core/providers/data-provider)
+[To learn more about the `dataProvider` interface, check out the reference page.](/docs/data/data-provider)
 
 ## Supported data providers
 

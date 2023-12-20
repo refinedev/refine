@@ -398,7 +398,7 @@ For example, when you use the `useList` hook, **refine** internally calls the `g
 
 In this case, we pass the `supabaseClient` as the data provider. Supabase is supported out-of-the-box as a data provider by **refine**. Here, the data provider internally calls supabase-js database methods like `select()`, `insert()`, etc., to handle the data.
 
-[You can learn more about data provider in the refine docs.](https://refine.dev/docs/api-reference/core/providers/data-provider/)
+[You can learn more about data provider in the refine docs.](https://refine.dev/docs/data/data-provider/)
 
 ## Auth Provider
 

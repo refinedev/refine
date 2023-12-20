@@ -71,7 +71,7 @@ We'll build a simple CRUD app with Refine and use Supabase as a data provider. W
 
 We are assuming that you have already know how Refine works. If not, please check out the [Tutorial](/docs/tutorial/introduction/index/) section first.
 
-[Refer to docs for more information about data provider &#8594](/docs/core/providers/data-provider)
+[Refer to docs for more information about data provider &#8594](/docs/data/data-provider)
 
 [Discover the +15 most popular backend service data providers supported out-of-the-box by Refine &#8594](/integrations/)
 

@@ -4,7 +4,7 @@
 
 ## Live App Link
 
-Here is the deployed version  
+Here is the deployed version
 https://store.refine.dev/
 
 ## About
@@ -38,14 +38,14 @@ Currently, we are using this store and have already processed real shopping tran
 
 The app includes the following features:
 
-- Authentication & Authorization
-- Product Listing
-- Account information pages
-- Product detail
-- Shopping cart
-- Payment with Stripe
-- Gift Code feature
-- Email send and verification
+-   Authentication & Authorization
+-   Product Listing
+-   Account information pages
+-   Product detail
+-   Shopping cart
+-   Payment with Stripe
+-   Gift Code feature
+-   Email send and verification
 
 ### Preview
 
@@ -55,9 +55,9 @@ The app includes the following features:
 
 ### Prerequisites
 
-- Minimum Node v16.0.0
-- [Stripe Account](https://stripe.com/)
-- [Medusa API](https://docs.medusajs.com/quickstart/quick-start)
+-   Minimum Node v16.0.0
+-   [Stripe Account](https://stripe.com/)
+-   [Medusa API](https://docs.medusajs.com/quickstart/quick-start)
 
 ### Install Project
 
@@ -75,9 +75,9 @@ npm run start
 
 ## Resources
 
-- [refine documentation](https://refine.dev/docs/getting-started/overview/)
-- [Medusa documentation](https://docs.medusajs.com/quickstart/quick-start)
-- [Data provider](https://refine.dev/docs/api-reference/core/providers/data-provider/)
-  - [@refinedev/medusa](https://www.npmjs.com/package/@refinedev/medusa)
-- [Auth Provider](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
-  - [@refinedev/medusa](https://www.npmjs.com/package/@refinedev/medusa)
+-   [refine documentation](https://refine.dev/docs/getting-started/overview/)
+-   [Medusa documentation](https://docs.medusajs.com/quickstart/quick-start)
+-   [Data provider](https://refine.dev/docs/data/data-provider/)
+    -   [@refinedev/medusa](https://www.npmjs.com/package/@refinedev/medusa)
+-   [Auth Provider](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
+    -   [@refinedev/medusa](https://www.npmjs.com/package/@refinedev/medusa)

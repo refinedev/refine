@@ -419,7 +419,7 @@ render(<RefineAntdDemo />);
 
 `resource` will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path but it all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. By default it uses the inferred resource name from the route.
 
-> For more information on how `resource` is handled, refer to the [`creating a data provider` section](/docs/core/providers/data-provider#creating-a-data-provider)
+> For more information on how `resource` is handled, refer to the [`creating a data provider` section](/docs/data/data-provider#creating-a-data-provider)
 
 - When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
 - When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
@@ -1099,7 +1099,7 @@ You can use the `meta` property to pass common values to the mutation and the qu
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
 [notification-provider]: /docs/core/providers/notification-provider
-[get-one]: /docs/core/providers/data-provider#getone-
-[create]: /docs/core/providers/data-provider#create-
-[update]: /docs/core/providers/data-provider#update-
-[data-provider]: /docs/core/providers/data-provider
+[get-one]: /docs/data/data-provider#getone-
+[create]: /docs/data/data-provider#create-
+[update]: /docs/data/data-provider#update-
+[data-provider]: /docs/data/data-provider

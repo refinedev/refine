@@ -67,7 +67,7 @@ export interface RefineProps {
     routerProvider?: RouterBindings;
     /**
      * A `dataProvider` is the place where a refine app communicates with an API. Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.
-     * @type [`IDataContextProvider` | `IDataMultipleContextProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/)
+     * @type [`IDataContextProvider` | `IDataMultipleContextProvider`](https://refine.dev/docs/data/data-provider/)
      */
     dataProvider: IDataContextProvider | IDataMultipleContextProvider;
     /**

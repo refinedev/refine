@@ -52,7 +52,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-> For more information about data hooks, refer to the [Data Provider documentation&#8594](/docs/core/providers/data-provider#supported-hooks)
+> For more information about data hooks, refer to the [Data Provider documentation&#8594](/docs/data/data-provider#supported-hooks)
 
 ## Usage
 

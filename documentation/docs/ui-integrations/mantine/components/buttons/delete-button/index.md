@@ -26,7 +26,7 @@ const Wrapper = ({ children }) => {
 ```
 
 `<DeleteButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) and [`<Popconfirm>`](https://mantine.dev/core/popover/) components.
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/core/hooks/data/use-delete) method provided by your [`dataProvider`](/docs/core/providers/data-provider).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/core/hooks/data/use-delete) method provided by your [`dataProvider`](/docs/data/data-provider).
 
 :::simple Good to know
 

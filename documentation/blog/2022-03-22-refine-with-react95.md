@@ -81,7 +81,7 @@ export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
 
 The `supabaseClient` will be used by the `@refinedev/supabase` package to create a `dataProvider` for us.
 
-You can learn more about the it in the [Data Provider](/docs/core/providers/data-provider) section.
+You can learn more about the it in the [Data Provider](/docs/data/data-provider) section.
 
 ### AuthProvider
 

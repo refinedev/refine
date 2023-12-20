@@ -8,7 +8,7 @@ import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
 `useMany` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) that supports all of its features and adds some more.
 
-- It uses the `getMany` method as the **query function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
+- It uses the `getMany` method as the **query function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
 - It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 

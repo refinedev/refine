@@ -142,4 +142,4 @@ You can also use `@refinedev/inferencer` package to generate sample codes for yo
 
 <CodeSandboxExample path="data-provider-strapi-graphql" />
 
-[data-provider]: /docs/core/providers/data-provider
+[data-provider]: /docs/data/data-provider

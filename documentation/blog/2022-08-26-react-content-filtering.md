@@ -500,7 +500,7 @@ This is the root file of the refine app, where we passed `routeProvider` for the
 
 Dataproviders are refine components making it possible to consume different API's and data services conveniently.
 
-[Refer to the dataProvider documentation for detailed usage. →](https://refine.dev/docs/core/providers/data-provider/)
+[Refer to the dataProvider documentation for detailed usage. →](https://refine.dev/docs/data/data-provider/)
 
 :::
 
