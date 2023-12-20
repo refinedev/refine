@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-import { useOne, useUpdate } from "@refinedev/core";
+import { HttpError, useOne, useUpdate } from "@refinedev/core";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import {
     CloseOutlined,
@@ -24,11 +25,20 @@ import {
 } from "antd";
 
 import { TimezoneEnum } from "@/enums";
-import { User } from "@/graphql/schema.types";
+import {
+    AccountSettingsGetUserQuery,
+    AccountSettingsUpdateUserMutation,
+    AccountSettingsUpdateUserMutationVariables,
+} from "@/graphql/types";
 
 import { CustomAvatar } from "../../custom-avatar";
 import { SingleElementForm } from "../../single-element-form";
 import { Text } from "../../text";
+import {
+    ACCOUNT_SETTINGS_GET_USER_QUERY,
+    ACCOUNT_SETTINGS_UPDATE_USER_MUTATION,
+} from "./queries";
+
 import styles from "./index.module.css";
 
 const timezoneOptions = Object.keys(TimezoneEnum).map((key) => ({
@@ -47,25 +57,24 @@ type FormKeys = "email" | "jobTitle" | "phone" | "timezone";
 export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
     const [activeForm, setActiveForm] = useState<FormKeys>();
 
-    const { data, isLoading, isError } = useOne<User>({
+    const { data, isLoading, isError } = useOne<
+        GetFields<AccountSettingsGetUserQuery>
+    >({
         resource: "users",
         id: userId,
         queryOptions: {
             enabled: opened,
         },
         meta: {
-            fields: [
-                "id",
-                "name",
-                "email",
-                "avatarUrl",
-                "jobTitle",
-                "phone",
-                "timezone",
-            ],
+            gqlQuery: ACCOUNT_SETTINGS_GET_USER_QUERY,
         },
     });
-    const { mutate: updateMutation } = useUpdate<User>();
+
+    const { mutate: updateMutation } = useUpdate<
+        GetFields<AccountSettingsUpdateUserMutation>,
+        HttpError,
+        GetVariables<AccountSettingsUpdateUserMutationVariables>
+    >();
 
     const closeModal = () => {
         setOpened(false);
@@ -94,7 +103,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
     }
 
     const { id, name, email, jobTitle, phone, timezone, avatarUrl } =
-        data?.data ?? {};
+        data?.data;
 
     const getActiveForm = (key: FormKeys) => {
         if (activeForm === key) {
@@ -113,8 +122,10 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
             onClose={closeModal}
             open={opened}
             width={756}
-            bodyStyle={{ background: "#f5f5f5", padding: 0 }}
-            headerStyle={{ display: "none" }}
+            styles={{
+                body: { background: "#f5f5f5", padding: 0 },
+                header: { display: "none" },
+            }}
         >
             <div className={styles.header}>
                 <Text strong>Account Settings</Text>
@@ -148,6 +159,10 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
                                     values: { name: value },
                                     mutationMode: "optimistic",
                                     successNotification: false,
+                                    meta: {
+                                        gqlMutation:
+                                            ACCOUNT_SETTINGS_UPDATE_USER_MUTATION,
+                                    },
                                 });
                             },
                             triggerType: ["text", "icon"],
@@ -172,7 +187,14 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
                     bodyStyle={{ padding: "0" }}
                 >
                     <SingleElementForm
-                        useFormProps={{ id, resource: "users" }}
+                        useFormProps={{
+                            id,
+                            resource: "users",
+                            meta: {
+                                gqlMutation:
+                                    ACCOUNT_SETTINGS_UPDATE_USER_MUTATION,
+                            },
+                        }}
                         formProps={{ initialValues: { jobTitle } }}
                         icon={<IdcardOutlined className="tertiary" />}
                         state={getActiveForm("jobTitle")}
@@ -188,7 +210,14 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
                         <Input />
                     </SingleElementForm>
                     <SingleElementForm
-                        useFormProps={{ id, resource: "users" }}
+                        useFormProps={{
+                            id,
+                            resource: "users",
+                            meta: {
+                                gqlMutation:
+                                    ACCOUNT_SETTINGS_UPDATE_USER_MUTATION,
+                            },
+                        }}
                         formProps={{ initialValues: { phone } }}
                         icon={<PhoneOutlined className="tertiary" />}
                         state={getActiveForm("phone")}
@@ -204,7 +233,14 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
                         <Input />
                     </SingleElementForm>
                     <SingleElementForm
-                        useFormProps={{ id, resource: "users" }}
+                        useFormProps={{
+                            id,
+                            resource: "users",
+                            meta: {
+                                gqlMutation:
+                                    ACCOUNT_SETTINGS_UPDATE_USER_MUTATION,
+                            },
+                        }}
                         formProps={{ initialValues: { timezone } }}
                         style={{ borderBottom: "none" }}
                         icon={<GlobalOutlined className="tertiary" />}
@@ -235,7 +271,14 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
                     bodyStyle={{ padding: "0" }}
                 >
                     <SingleElementForm
-                        useFormProps={{ id, resource: "users" }}
+                        useFormProps={{
+                            id,
+                            resource: "users",
+                            meta: {
+                                gqlMutation:
+                                    ACCOUNT_SETTINGS_UPDATE_USER_MUTATION,
+                            },
+                        }}
                         formProps={{ initialValues: { email } }}
                         icon={<MailOutlined className="tertiary" />}
                         state={getActiveForm("email")}

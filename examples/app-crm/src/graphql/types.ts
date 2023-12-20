@@ -17,6 +17,40 @@ export type UpcomingEventsQuery = {
     };
 };
 
+export type AccountSettingsGetUserQueryVariables = Types.Exact<{
+    id: Types.Scalars["ID"]["input"];
+}>;
+
+export type AccountSettingsGetUserQuery = {
+    user: Pick<
+        Types.User,
+        | "id"
+        | "name"
+        | "email"
+        | "avatarUrl"
+        | "jobTitle"
+        | "phone"
+        | "timezone"
+    >;
+};
+
+export type AccountSettingsUpdateUserMutationVariables = Types.Exact<{
+    input: Types.UpdateOneUserInput;
+}>;
+
+export type AccountSettingsUpdateUserMutation = {
+    updateOneUser: Pick<
+        Types.User,
+        | "id"
+        | "name"
+        | "email"
+        | "avatarUrl"
+        | "jobTitle"
+        | "phone"
+        | "timezone"
+    >;
+};
+
 export type NotificationsQueryVariables = Types.Exact<{
     paging: Types.OffsetPaging;
     filter: Types.AuditFilter;
