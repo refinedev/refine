@@ -42,10 +42,10 @@ const templates = [
         runOnYourLocalPath: "app-crm",
         liveDemo: "https://crm.refine.dev",
         github: "https://github.com/refinedev/refine/tree/master/examples/app-crm",
-        reactPlatform: "Next.js",
-        uiFramework: "ShadCN UI",
-        dataProvider: "Supabase",
-        authProvider: "Supabase",
+        reactPlatform: "Vite",
+        uiFramework: "Ant Design",
+        dataProvider: "Nestjs-query",
+        authProvider: "Custom",
         description: `
 This  CRM app example, built with Refine, demonstrates a complete solution for enterprise-level CRM internal tool needs. It has a wide range of functionalities for real-use cases, which are extensively utilized by enterprise companies.
 

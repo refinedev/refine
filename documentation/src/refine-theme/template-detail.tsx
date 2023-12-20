@@ -347,7 +347,6 @@ const IntegrationBadge = (props: {
                 {props.label}
             </h6>
             <div
-                role="button"
                 className={clsx(
                     "flex",
                     "items-center",
@@ -460,6 +459,9 @@ const integrationToIconMap = {
     Oracle: (props: SVGProps<SVGSVGElement>) => <Icons.Oracle {...props} />,
     Custom: (props: SVGProps<SVGSVGElement>) => <Icons.CustomAuth {...props} />,
     Vite: (props: SVGProps<SVGSVGElement>) => <Icons.Vite {...props} />,
+    "Nestjs-query": (props: SVGProps<SVGSVGElement>) => (
+        <Icons.Graphql {...props} />
+    ),
 };
 
 export type Integration = keyof typeof integrationToIconMap;
