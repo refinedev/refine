@@ -1,5 +1,5 @@
 ---
-"@refinedev/nestjs-query": major
+"@refinedev/nestjs-query": minor
 ---
 
 feat: add `gqlQuery` and `gqlMutation` support.
