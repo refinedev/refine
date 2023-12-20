@@ -38,35 +38,7 @@ The `@refinedev/inferencer` package provides the `<HeadlessInferencer/>` compone
 
 Before we start using Inferencer, we need to add the `@refinedev/react-hook-form` and `@refinedev/react-table` packages to our project. Since these packages are used by Inferencer to generate forms and tables, they need to be installed in our project.
 
-<Tabs
-defaultValue="npm"
-values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
-
-<TabItem value="npm">
-
-```bash
-npm i @refinedev/react-table @refinedev/react-hook-form
-```
-
-</TabItem>
-
-<TabItem value="pnpm">
-
-```bash
-pnpm i @refinedev/react-table @refinedev/react-hook-form
-```
-
-</TabItem>
-
-<TabItem value="yarn">
-
-```bash
-yarn add @refinedev/react-table @refinedev/react-hook-form
-```
-
-</TabItem>
-
-</Tabs>
+<InstallPackagesCommand args="@refinedev/react-table @refinedev/react-hook-form"/>
 
 Then, we need to add the `<HeadlessInferencer/>` component which is used by passing appropriate values to the `resources` prop of the `<Refine/>` component in `App.tsx` as shown below:
 

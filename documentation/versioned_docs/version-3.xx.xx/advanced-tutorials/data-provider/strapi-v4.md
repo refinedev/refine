@@ -64,9 +64,7 @@ However, we can use [normalizeData](https://github.com/refinedev/refine/blob/27a
 
 ## Setup
 
-```bash
-npm i @pankod/refine-strapi-v4
-```
+<InstallPackagesCommand args="@pankod/refine-strapi-v4"/>
 
 :::caution
 To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/v3/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/v3/packages/refine-antd) package.

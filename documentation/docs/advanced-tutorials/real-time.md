@@ -14,9 +14,7 @@ We will be using [Ably](https://ably.com) in this guide to provide Realtime feat
 
 We need to install the Ably live provider package from **Refine**.
 
-```bash
-npm install @refinedev/ably
-```
+<InstallPackagesCommand args="@refinedev/ably"/>
 
 :::caution
 

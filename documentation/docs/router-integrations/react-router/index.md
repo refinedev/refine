@@ -4,15 +4,11 @@ title: React Router v6
 
 Refine provides router bindings and utilities for [React Router v6](https://reactrouter.com/). It is built on top of the `react-router-dom` package. This package will provide easy integration between Refine and **react-router-dom** for both existing projects and new projects.
 
-```bash
-npm i @refinedev/react-router-v6 react-router-dom
-```
+<InstallPackagesCommand args="@refinedev/react-router-v6 react-router-dom"/>
 
 We recommend using `create refine-app` to initialize your Refine projects. It gives you a good boilerplate to start with using React Router v6.
 
-```sh
-npm create refine-app@latest -- -p refine-react my-refine-app
-```
+<CreateRefineAppCommand args="-p refine-react my-refine-app" />
 
 [Refer to the Router Provider documentation for detailed information. &#8594][routerprovider]
 

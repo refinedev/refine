@@ -12,9 +12,7 @@ import Example from "./previews/example.tsx";
 
 Installing the package is as simple as just by running the following command without any additional configuration:
 
-```bash
-npm install @refinedev/chakra-ui @chakra-ui/react @refinedev/react-table @refinedev/react-hook-form @tanstack/react-table react-hook-form @tabler/icons@1
-```
+<InstallPackagesCommand args="@refinedev/chakra-ui @chakra-ui/react @refinedev/react-table @refinedev/react-hook-form @tanstack/react-table react-hook-form @tabler/icons@1"/>
 
 ## Usage
 

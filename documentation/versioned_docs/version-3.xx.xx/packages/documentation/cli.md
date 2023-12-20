@@ -409,28 +409,7 @@ View the details of the development environment.
 
 If you want to add the [@pankod/refine-cli](https://github.com/refinedev/refine/tree/v3/packages/cli) to your existing project, you have to add it to your project's `dependencies`.
 
-<Tabs
-defaultValue="npm"
-values={[
-{label: 'use npm', value: 'npm'},
-{label: 'use yarn', value: 'yarn'},
-]}>
-
-<TabItem value="npm">
-
-```bash
-npm i @pankod/refine-cli
-```
-
-</TabItem>
-<TabItem value="yarn">
-
-```bash
-yarn add @pankod/refine-cli
-```
-
-</TabItem>
-</Tabs>
+<InstallPackagesCommand args="@pankod/refine-cli"/>
 
 Then add the `refine` command to your scripts in your `package.json` file
 
