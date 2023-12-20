@@ -96,11 +96,12 @@ const App: React.FC = () => {
                                             path="create"
                                             element={<CompanyCreatePage />}
                                         />
-                                        <Route
-                                            path="edit/:id"
-                                            element={<CompanyEditPage />}
-                                        />
                                     </Route>
+
+                                    <Route
+                                        path="companies/edit/:id"
+                                        element={<CompanyEditPage />}
+                                    />
 
                                     <Route
                                         path="*"
