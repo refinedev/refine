@@ -1,41 +1,32 @@
 import React from "react";
 
 import { useList } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { Card, Skeleton as AntdSkeleton, List, Space } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";
-import { Audit, Deal } from "@/interfaces";
+import {
+    DashboardLatestActivitiesAuditsQuery,
+    DashboardLatestActivitiesDealsQuery,
+} from "@/graphql/types";
+
+import {
+    DASHBOARD_LATEST_ACTIVITIES_AUDITS_QUERY,
+    DASHBOARD_LATEST_ACTIVITIES_DEALS_QUERY,
+} from "./queries";
 
 export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
     limit = 5,
 }) => {
-    const { data: deals, isLoading: isLoadingDeals } = useList<Deal>({
-        resource: "deals",
-        pagination: {
-            mode: "off",
-        },
-        meta: {
-            fields: [
-                "id",
-                "title",
-                {
-                    stage: ["id", "title"],
-                },
-                {
-                    company: ["id", "name", "avatarUrl"],
-                },
-            ],
-        },
-    });
     const {
         data: audit,
         isLoading: isLoadingAudit,
         isError,
         error,
-    } = useList<Audit>({
+    } = useList<GetFieldsFromList<DashboardLatestActivitiesAuditsQuery>>({
         resource: "audits",
         pagination: {
             pageSize: limit,
@@ -59,19 +50,22 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
             },
         ],
         meta: {
-            fields: [
-                "id",
-                "action",
-                "targetEntity",
-                "targetId",
-                {
-                    changes: ["field", "from", "to"],
-                },
-                "createdAt",
-                {
-                    user: ["id", "name", "avatarUrl"],
-                },
-            ],
+            gqlQuery: DASHBOARD_LATEST_ACTIVITIES_AUDITS_QUERY,
+        },
+    });
+
+    const dealIds = audit?.data?.map((audit) => audit.targetId);
+
+    const { data: deals, isLoading: isLoadingDeals } = useList<
+        GetFieldsFromList<DashboardLatestActivitiesDealsQuery>
+    >({
+        resource: "deals",
+        pagination: {
+            mode: "off",
+        },
+        filters: [{ field: "id", operator: "in", value: dealIds }],
+        meta: {
+            gqlQuery: DASHBOARD_LATEST_ACTIVITIES_DEALS_QUERY,
         },
     });
 
@@ -152,7 +146,7 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
                     renderItem={(item) => {
                         const deal =
                             deals?.data.find(
-                                (task) => task.id === `${item.targetId}`,
+                                (deal) => deal.id === `${item.targetId}`,
                             ) || undefined;
 
                         return (

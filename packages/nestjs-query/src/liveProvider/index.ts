@@ -66,8 +66,6 @@ export const liveProvider = (client: Client): LiveProvider => {
                 unsubscribes.forEach((unsubscribe) => unsubscribe());
             };
 
-            console.log("unsubscribes", unsubscribes);
-
             return unsubscribe;
         },
         unsubscribe(unsubscribe) {
