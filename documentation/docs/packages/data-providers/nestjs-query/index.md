@@ -347,12 +347,49 @@ const App = () => (
 );
 ```
 
+## Backend Configuration
+
+Currently `@refinedev/nestjs-query` supports [`OffsetPagingStrategy`](https://doug-martin.github.io/nestjs-query/docs/graphql/paging#offset-based-paging) **only**. [See their offset pagination example](https://github.com/doug-martin/nestjs-query/tree/master/examples/offset-paging)
+
+You can configure [resolvers](https://doug-martin.github.io/nestjs-query/docs/graphql/resolvers) in your `app.module.ts` file as follows:
+
+```ts title="app.module.ts"
+@Module({
+  imports: [
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      // ...other config
+      // Enable for live provider.
+      installSubscriptionHandlers: true,
+      subscriptions: {
+        "graphql-ws": true,
+      },
+    }),
+    NestjsQueryGraphQLModule.forFeature({
+      imports: [NestjsQueryTypeOrmModule.forFeature([BlogPostEntity])],
+      resolvers: [
+        {
+          // Only OFFSET paging strategy is supported.
+          pagingStrategy: PagingStrategies.OFFSET,
+          // Needed for dataprovider to build pagination.
+          enableTotalCount: true,
+          DTOClass: BlogPostDTO,
+          // enable for live provider
+          enableSubscriptions: true,
+        },
+      ],
+    }),
+  ],
+})
+export class AppModule {}
+```
+
 ## Authentication
 
 If your API uses authentication, you can easily provide a custom fetcher for the requests and handle the authentication logic there. When creating a GraphQL Client, you can pass a `fetch` function to the client options. This function will be used to append the authentication headers to the requests.
 
 ```tsx title="data-provider.tsx"
-import graphqlDataProvider, { GraphQLClient } from "@refinedev/nestjs-query";
+import graphqlDataProvider, { GraphQLClient, liveProvider as graphqlLiveProvider } from "@refinedev/nestjs-query";
+import { createClient } from "graphql-ws";
 
 const client = new GraphQLClient(API_URL, {
   fetch: (url: string, options: RequestInit) => {
@@ -372,10 +409,17 @@ const client = new GraphQLClient(API_URL, {
   },
 });
 
-/**
- * Create the data provider with the custom client.
- */
-const dataProvider = graphqlDataProvider(client);
+const wsClient = createClient({
+  url: WS_URL,
+  connectionParams: () => ({
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }),
+});
+
+export const dataProvider = graphqlDataProvider(client);
+export const liveProvider = graphqlLiveProvider(wsClient);
 ```
 
 ## Example
