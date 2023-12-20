@@ -11,6 +11,6 @@ You can use the following auth provider examples as a starting point for your ow
 - [Strapi](/docs/data/examples/strapi-v4) - An auth provider example with Strapi.
 - [Strapi Graphql](/docs/data/examples/strapi-graphql) - An auth provider example with Strapi Graphql.
 - [Nhost](/docs/data/examples/nhost) - An auth provider example with Nhost.
-- [Basic with Nextjs](/docs/examples/next-js/) - A basic auth provider example with Nextjs.
-- [Basic with Remix](/docs/examples/remix/remix-headless) - A basic auth provider example with Remix.
+- [Basic with Nextjs](/docs/routing/examples/next-js/) - A basic auth provider example with Nextjs.
+- [Basic with Remix](/docs/routing/examples/remix/remix-headless) - A basic auth provider example with Remix.
 - [Kinde](/docs/examples/auth-provider/kinde) - An auth provider example with Kinde.
