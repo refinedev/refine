@@ -537,7 +537,7 @@ While building these twp apps, we have covered core **refine** concepts like the
 
 - [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/): used to handling authentication. We used it to implement email / password based authentication as well as social logins with Google and GitHub.
 - [`dataProvider`](https://refine.dev/docs/data/data-provider/): used to fetch data to and from a backend API by sending HTTP requests. We used the supplementary **Supabase** package to build a gallery of canvases, a public dashboard and a private dashboard for role based managers.
-- [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/): used for routing. We briefly touched over how it handles routing and resources following RESTful conventions.
+- [`routerProvider`](https://refine.dev/docs/api-reference/routing/router-provider/): used for routing. We briefly touched over how it handles routing and resources following RESTful conventions.
 - [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/): used to implement real time Publish Subscribe features. We used it for allowing users to draw pixels collaboratively on a canvas.
 - [`accessControlProvider`](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/): used to implement authorization. We implemented a Role Based Access Control authorization for `editor` and `admin` roles.
 - [`auditLogProvider`](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/): used for logging resource mutations. We used it to log and display pixels drawing activities on a canvas.

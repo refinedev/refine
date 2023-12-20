@@ -833,5 +833,5 @@ const App = () => (
 
 <PropsTable module="@refinedev/core/Refine"/>
 
-[routerprovider]: /docs/core/providers/router-provider
+[routerprovider]: /docs/routing/router-provider
 [http-error]: /docs/core/interface-references#httperror

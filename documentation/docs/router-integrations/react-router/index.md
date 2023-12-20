@@ -1283,7 +1283,7 @@ Default paths are:
 - `edit`: `/resources/edit/:id`
 - `show`: `/resources/show/:id`
 
-[routerprovider]: /docs/core/providers/router-provider
+[routerprovider]: /docs/routing/router-provider
 [resources]: /docs/tutorial/understanding-resources/index
 
 ```

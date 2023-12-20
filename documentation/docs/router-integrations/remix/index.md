@@ -1013,7 +1013,7 @@ Default paths are:
 
 <CodeSandboxExample path="with-remix-headless" hideSandbox />
 
-[routerprovider]: /docs/core/providers/router-provider
+[routerprovider]: /docs/routing/router-provider
 [remix]: https://remix.run/
 [remixrouter]: https://www.npmjs.com/package/@refinedev/remix-router
 [Refine]: /docs/core/refine-component

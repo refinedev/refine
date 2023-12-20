@@ -42,7 +42,7 @@ To learn more about **refine**, please check out the [Documentation](https://ref
 -   **REST Data Provider** [Docs](https://refine.dev/docs/data/data-provider/#overview)
 -   **Ant Design** [Docs](https://refine.dev/docs/ui-frameworks/antd/tutorial/)
 -   **Antd Light/Dark Mode** [Docs](#)
--   **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
+-   **React Router** [Docs](https://refine.dev/docs/routing/router-provider/)
 -   **Example Pages** [Docs](https://refine.dev/docs/guides-and-concepts/custom-pages/)
 
 ## License

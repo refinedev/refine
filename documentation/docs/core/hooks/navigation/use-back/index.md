@@ -16,4 +16,4 @@ const MyComponent = () => {
 };
 ```
 
-[routerprovider]: /docs/core/providers/router-provider
+[routerprovider]: /docs/routing/router-provider

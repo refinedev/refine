@@ -56,7 +56,7 @@ export interface RefineProps {
     resources?: ResourceProps[];
     /**
      * **refine** needs some router functions to create resource pages, handle navigation, etc. This provider allows you to use the router library you want
-     * @type [`IRouterProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/)
+     * @type [`IRouterProvider`](https://refine.dev/docs/api-reference/routing/router-provider/)
      * @deprecated This property is deprecated and was the legacy way of routing. Please use `routerProvider` with new router bindings instead.
      */
     legacyRouterProvider?: IRouterProvider;

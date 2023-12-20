@@ -1475,5 +1475,5 @@ After that, you can import them from `react-hook-form` package directly.
 [refine-codemod]: https://github.com/refinedev/refine/tree/master/packages/codemod
 [Refine]: /docs/core/refine-component
 [resources]: /docs/core/refine-component#resources
-[routerprovider]: /docs/core/providers/router-provider
+[routerprovider]: /docs/routing/router-provider
 [auth-provider]: /docs/core/providers/auth-provider

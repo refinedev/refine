@@ -78,7 +78,7 @@ The following package names have been changed:
 
 Routes is now completely detached from refine.
 
-We have made significant changes to the [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/) and route handling to improve flexibility and provide unlimited customization options, in response to requests from our community.
+We have made significant changes to the [`routerProvider`](https://refine.dev/docs/api-reference/routing/router-provider/) and route handling to improve flexibility and provide unlimited customization options, in response to requests from our community.
 
 We have simplified the `routerProvider` to act solely as a link between refine and the router, eliminating the need for a specific way of defining routes. This means that refine will meet enterprise-grade requirements, and users can integrate refine into their existing projects without needing to modify their current routes or application structure.
 

@@ -26,4 +26,4 @@ refine has connectors for 15+ backend services, including REST API, [GraphQL](ht
 
 ## Documentation
 
-For more detailed information and usage, refer to the [refine router provider documentation](https://refine.dev/docs/core/providers/router-provider/).
+For more detailed information and usage, refer to the [refine router provider documentation](https://refine.dev/docs/routing/router-provider/).

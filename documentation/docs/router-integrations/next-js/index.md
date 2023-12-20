@@ -1223,4 +1223,4 @@ Default paths are:
 
 <CodeSandboxExample path="with-nextjs-appdir" />
 
-[routerprovider]: /docs/core/providers/router-provider
+[routerprovider]: /docs/routing/router-provider

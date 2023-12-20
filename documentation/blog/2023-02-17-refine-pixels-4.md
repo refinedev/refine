@@ -29,7 +29,7 @@ This is Day 4 in the series titled [**refineWeek**](https://refine.dev/week-of-r
 
 ## Overview
 
-On Day Three, we implemented CRUD operations using **Supabase** `dataProvider` methods and the `resources` prop, which leveraged RESTful routes in the [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/) object under the hood.
+On Day Three, we implemented CRUD operations using **Supabase** `dataProvider` methods and the `resources` prop, which leveraged RESTful routes in the [`routerProvider`](https://refine.dev/docs/api-reference/routing/router-provider/) object under the hood.
 
 Today, we are going to explore the [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/) prop as we implement realtime collaboration on a `canvas` so that `pixels` drawn on a `canvas` by one user is instantly seen by anyone else viewing it from another client.
 

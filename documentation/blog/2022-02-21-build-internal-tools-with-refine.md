@@ -169,7 +169,7 @@ Refine needs some router functions to create resource pages, navigation, and so 
 
 If you don't need any customization in your router, we not recommend making this provider. Instead, try `nextjs-router` for your Next.js project and `react-router` or `react-location` for your React project.
 
-Refer to the [`routerProvider`](https://refine.dev/docs/core/providers/router-provider) for more information.
+Refer to the [`routerProvider`](https://refine.dev/docs/routing/router-provider) for more information.
 
 ### Out-of-the-box router providers
 

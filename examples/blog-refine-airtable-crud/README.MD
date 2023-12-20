@@ -39,9 +39,9 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 To learn more about **refine**, please check out the [Documentation](https://refine.dev/docs)
 
-- **Airtable Data Provider** [Docs](https://refine.dev/docs/core/providers/auth-provider/)
-- **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
-- **i18n** [Docs](https://refine.dev/docs/core/providers/i18n-provider/)
+-   **Airtable Data Provider** [Docs](https://refine.dev/docs/core/providers/auth-provider/)
+-   **React Router** [Docs](https://refine.dev/docs/routing/router-provider/)
+-   **i18n** [Docs](https://refine.dev/docs/core/providers/i18n-provider/)
 
 ## License
 

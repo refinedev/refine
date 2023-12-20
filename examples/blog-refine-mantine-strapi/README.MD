@@ -41,7 +41,7 @@ To learn more about **refine**, please check out the [Documentation](https://ref
 
 -   **Strapi v4 Data Provider** [Docs](https://refine.dev/docs/data/data-provider/#overview)
 -   **Mantine** [Docs](#)
--   **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
+-   **React Router** [Docs](https://refine.dev/docs/routing/router-provider/)
 
 ## License
 

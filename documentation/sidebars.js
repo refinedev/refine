@@ -338,7 +338,7 @@ module.exports = {
             label: "Routing",
             className: "category-as-header",
             items: [
-                "core/providers/router-provider/index",
+                "routing/router-provider",
                 {
                     type: "category",
                     collapsible: false,

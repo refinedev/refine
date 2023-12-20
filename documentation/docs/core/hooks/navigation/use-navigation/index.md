@@ -216,5 +216,5 @@ cloneUrl("posts", "1"); // It returns the `/posts/clone/1` URL
 - [`type BaseKey`][basekey]
 - `type HistoryType = "push" | "replace";`
 
-[routerprovider]: /docs/core/providers/router-provider
+[routerprovider]: /docs/routing/router-provider
 [basekey]: /docs/core/interface-references#basekey

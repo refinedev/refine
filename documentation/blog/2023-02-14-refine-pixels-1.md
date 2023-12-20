@@ -84,7 +84,7 @@ import authProvider from "./authProvider";
 
 The above snippet lists a few of the props and their objects.
 
-However, rather than precisely being a component, `<Refine />` is largely a monolith of provider configurations backed by a context for each. Hence, inside [`dataProvider`](http://localhost:3000/docs/data/data-provider/), we have a standard set of methods for making API requests; inside [`authProvider`](http://localhost:3000/docs/api-reference/core/providers/auth-provider/), we have methods for dealing with authentication and authorization; inside [`routerProvider`](http://localhost:3000/docs/api-reference/core/providers/router-provider/), we have _exact_ definitions of routes and the components to render for that route, etc. And each provider comes with its own set of conventions and type definitions.
+However, rather than precisely being a component, `<Refine />` is largely a monolith of provider configurations backed by a context for each. Hence, inside [`dataProvider`](http://localhost:3000/docs/data/data-provider/), we have a standard set of methods for making API requests; inside [`authProvider`](http://localhost:3000/docs/api-reference/core/providers/auth-provider/), we have methods for dealing with authentication and authorization; inside [`routerProvider`](http://localhost:3000/docs/api-reference/routing/router-provider/), we have _exact_ definitions of routes and the components to render for that route, etc. And each provider comes with its own set of conventions and type definitions.
 
 For example, a `dataProvider` object has the following signature to which any definition of a data provider conform:
 
@@ -214,7 +214,7 @@ Common providers include:
 
 - [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/) - for authentication and authorization.
 - [`dataProvider`](https://refine.dev/docs/data/data-provider/) - for CRUD operations.
-- [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/) - for defining routes, RESTful and non-RESTful.
+- [`routerProvider`](https://refine.dev/docs/api-reference/routing/router-provider/) - for defining routes, RESTful and non-RESTful.
 - [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/) - for implementing real time features.
 - [`accessControlProvider`](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/) - for access control management.
 - [`auditLogProvider`](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/) - for logging appwide activities.
