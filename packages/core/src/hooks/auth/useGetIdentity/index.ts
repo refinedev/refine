@@ -68,41 +68,38 @@ export function useGetIdentity<TData = any>({
     const { getIdentity } = useAuthBindingsContext();
     const { keys, preferLegacyKeys } = useKeys();
 
-    const queryResponse = useQuery<TData>(
-        keys().auth().action("identity").get(preferLegacyKeys),
+    const queryResponse = useQuery<TData>({
+        queryKey: keys().auth().action("identity").get(preferLegacyKeys),
         // Enabled check for `getIdentity` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
-        (getIdentity as (params?: unknown) => Promise<TData>) ??
+        queryFn:
+            (getIdentity as (params?: unknown) => Promise<TData>) ??
             (() => Promise.resolve({})),
-        {
-            enabled: !v3LegacyAuthProviderCompatible && !!getIdentity,
-            retry: false,
-            ...(v3LegacyAuthProviderCompatible === true ? {} : queryOptions),
-            meta: {
-                ...(v3LegacyAuthProviderCompatible === true
-                    ? {}
-                    : queryOptions?.meta),
-                ...getXRay("useGetIdentity", preferLegacyKeys),
-            },
+        enabled: !v3LegacyAuthProviderCompatible && !!getIdentity,
+        retry: false,
+        ...(v3LegacyAuthProviderCompatible === true ? {} : queryOptions),
+        meta: {
+            ...(v3LegacyAuthProviderCompatible === true
+                ? {}
+                : queryOptions?.meta),
+            ...getXRay("useGetIdentity", preferLegacyKeys),
         },
-    );
+    });
 
-    const legacyQueryResponse = useQuery<TData>(
-        [
+    const legacyQueryResponse = useQuery<TData>({
+        queryKey: [
             ...keys().auth().action("identity").get(preferLegacyKeys),
             "v3LegacyAuthProviderCompatible",
         ],
         // Enabled check for `getUserIdentity` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
-        legacyGetUserIdentity ?? (() => Promise.resolve({})),
-        {
-            enabled: v3LegacyAuthProviderCompatible && !!legacyGetUserIdentity,
-            retry: false,
-            ...(v3LegacyAuthProviderCompatible ? queryOptions : {}),
-            meta: {
-                ...(v3LegacyAuthProviderCompatible ? queryOptions?.meta : {}),
-                ...getXRay("useGetIdentity", preferLegacyKeys),
-            },
+        queryFn: legacyGetUserIdentity ?? (() => Promise.resolve({})),
+        enabled: v3LegacyAuthProviderCompatible && !!legacyGetUserIdentity,
+        retry: false,
+        ...(v3LegacyAuthProviderCompatible ? queryOptions : {}),
+        meta: {
+            ...(v3LegacyAuthProviderCompatible ? queryOptions?.meta : {}),
+            ...getXRay("useGetIdentity", preferLegacyKeys),
         },
-    );
+    });
 
     return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
 }

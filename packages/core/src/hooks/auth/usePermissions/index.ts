@@ -67,37 +67,34 @@ export function usePermissions<TData = any>({
     const { getPermissions } = useAuthBindingsContext();
     const { keys, preferLegacyKeys } = useKeys();
 
-    const queryResponse = useQuery<TData>(
-        keys().auth().action("permissions").get(preferLegacyKeys),
+    const queryResponse = useQuery<TData>({
+        queryKey: keys().auth().action("permissions").get(preferLegacyKeys),
         // Enabled check for `getPermissions` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
-        (getPermissions as (params?: unknown) => Promise<TData>) ??
+        queryFn:
+            (getPermissions as (params?: unknown) => Promise<TData>) ??
             (() => Promise.resolve(undefined)),
-        {
-            enabled: !v3LegacyAuthProviderCompatible && !!getPermissions,
-            ...(v3LegacyAuthProviderCompatible ? {} : options),
-            meta: {
-                ...(v3LegacyAuthProviderCompatible ? {} : options?.meta),
-                ...getXRay("usePermissions", preferLegacyKeys),
-            },
+        enabled: !v3LegacyAuthProviderCompatible && !!getPermissions,
+        ...(v3LegacyAuthProviderCompatible ? {} : options),
+        meta: {
+            ...(v3LegacyAuthProviderCompatible ? {} : options?.meta),
+            ...getXRay("usePermissions", preferLegacyKeys),
         },
-    );
+    });
 
-    const legacyQueryResponse = useQuery<TData>(
-        [
+    const legacyQueryResponse = useQuery<TData>({
+        queryKey: [
             ...keys().auth().action("permissions").get(preferLegacyKeys),
             "v3LegacyAuthProviderCompatible",
         ],
         // Enabled check for `getPermissions` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
-        legacyGetPermission ?? (() => Promise.resolve(undefined)),
-        {
-            enabled: v3LegacyAuthProviderCompatible && !!legacyGetPermission,
-            ...(v3LegacyAuthProviderCompatible ? options : {}),
-            meta: {
-                ...(v3LegacyAuthProviderCompatible ? options?.meta : {}),
-                ...getXRay("usePermissions", preferLegacyKeys),
-            },
+        queryFn: legacyGetPermission ?? (() => Promise.resolve(undefined)),
+        enabled: v3LegacyAuthProviderCompatible && !!legacyGetPermission,
+        ...(v3LegacyAuthProviderCompatible ? options : {}),
+        meta: {
+            ...(v3LegacyAuthProviderCompatible ? options?.meta : {}),
+            ...getXRay("usePermissions", preferLegacyKeys),
         },
-    );
+    });
 
     return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
 }
