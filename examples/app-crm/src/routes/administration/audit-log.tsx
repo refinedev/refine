@@ -6,14 +6,17 @@ import {
     useTable,
 } from "@refinedev/antd";
 import { getDefaultFilter } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { SearchOutlined } from "@ant-design/icons";
 import { DatePicker, Input, Radio, Space, Table, Tag, TagProps } from "antd";
 
 import { CustomAvatar, PaginationTotal, Text } from "@/components";
 import { Audit } from "@/graphql/schema.types";
+import { AdministrationAuditLogsQuery } from "@/graphql/types";
 
 import { ActionCell } from "./components";
+import { ADMINISTRATION_AUDIT_LOGS_QUERY } from "./queries";
 
 const getActionColor = (action: string): TagProps["color"] => {
     switch (action) {
@@ -29,17 +32,11 @@ const getActionColor = (action: string): TagProps["color"] => {
 };
 
 export const AuditLogPage = () => {
-    const { tableProps, filters, sorters } = useTable<Audit>({
+    const { tableProps, filters, sorters } = useTable<
+        GetFieldsFromList<AdministrationAuditLogsQuery>
+    >({
         meta: {
-            fields: [
-                "id",
-                { user: ["name", "avatarUrl"] },
-                "action",
-                "targetEntity",
-                "targetId",
-                { changes: ["field", "from", "to"] },
-                "createdAt",
-            ],
+            gqlQuery: ADMINISTRATION_AUDIT_LOGS_QUERY,
         },
         filters: {
             initial: [

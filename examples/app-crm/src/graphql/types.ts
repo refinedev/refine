@@ -129,6 +129,44 @@ export type RefreshTokenMutation = {
     refreshToken: Pick<Types.AuthResponse, "accessToken" | "refreshToken">;
 };
 
+export type AdministrationUsersQueryVariables = Types.Exact<{
+    filter: Types.UserFilter;
+    sorting?: Types.InputMaybe<Array<Types.UserSort> | Types.UserSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type AdministrationUsersQuery = {
+    users: Pick<Types.UserConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<Types.User, "id" | "name" | "jobTitle" | "role" | "avatarUrl">
+        >;
+    };
+};
+
+export type AdministrationAuditLogsQueryVariables = Types.Exact<{
+    filter: Types.AuditFilter;
+    sorting?: Types.InputMaybe<Array<Types.AuditSort> | Types.AuditSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type AdministrationAuditLogsQuery = {
+    audits: Pick<Types.AuditConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<
+                Types.Audit,
+                "id" | "action" | "targetEntity" | "targetId" | "createdAt"
+            > & {
+                user?: Types.Maybe<
+                    Pick<Types.User, "id" | "name" | "avatarUrl">
+                >;
+                changes: Array<
+                    Pick<Types.AuditChange, "field" | "from" | "to">
+                >;
+            }
+        >;
+    };
+};
+
 export type CompanyTitleFormMutationVariables = Types.Exact<{
     input: Types.UpdateOneCompanyInput;
 }>;
