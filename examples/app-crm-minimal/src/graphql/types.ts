@@ -11,6 +11,18 @@ export type UpdateUserMutation = {
     >;
 };
 
+export type UsersSelectQueryVariables = Types.Exact<{
+    filter: Types.UserFilter;
+    sorting?: Types.InputMaybe<Array<Types.UserSort> | Types.UserSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type UsersSelectQuery = {
+    users: Pick<Types.UserConnection, "totalCount"> & {
+        nodes: Array<Pick<Types.User, "id" | "name" | "avatarUrl">>;
+    };
+};
+
 export type CompanyContactsTableQueryVariables = Types.Exact<{
     filter: Types.ContactFilter;
     sorting?: Types.InputMaybe<Array<Types.ContactSort> | Types.ContactSort>;
@@ -61,18 +73,6 @@ export type UpdateCompanyMutation = {
         | "website"
         | "avatarUrl"
     > & { salesOwner: Pick<Types.User, "id" | "name" | "avatarUrl"> };
-};
-
-export type UsersSelectQueryVariables = Types.Exact<{
-    filter: Types.UserFilter;
-    sorting?: Types.InputMaybe<Array<Types.UserSort> | Types.UserSort>;
-    paging: Types.OffsetPaging;
-}>;
-
-export type UsersSelectQuery = {
-    users: Pick<Types.UserConnection, "totalCount"> & {
-        nodes: Array<Pick<Types.User, "id" | "name" | "avatarUrl">>;
-    };
 };
 
 export type CompaniesListQueryVariables = Types.Exact<{

@@ -3,13 +3,18 @@ import { HttpError, useGo } from "@refinedev/core";
 import { Form, Input, Modal, Select } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { User } from "@/interfaces";
 import { CREATE_COMPANY_MUTATION } from "./queries";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import {
+    GetFields,
+    GetFieldsFromList,
+    GetVariables,
+} from "@refinedev/nestjs-query";
 import {
     CreateCompanyMutation,
     CreateCompanyMutationVariables,
+    UsersSelectQuery,
 } from "@/graphql/types";
+import { USERS_SELECT_QUERY } from "@/graphql/queries";
 
 export const CompanyCreateModal = () => {
     const go = useGo();
@@ -40,10 +45,12 @@ export const CompanyCreateModal = () => {
         },
     });
 
-    const { selectProps, queryResult } = useSelect<User>({
+    const { selectProps, queryResult } = useSelect<
+        GetFieldsFromList<UsersSelectQuery>
+    >({
         resource: "users",
         meta: {
-            fields: ["name", "id", "avatarUrl"],
+            gqlQuery: USERS_SELECT_QUERY,
         },
         optionLabel: "name",
     });

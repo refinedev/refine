@@ -4,6 +4,9 @@ import { HttpError } from "@refinedev/core";
 import { Button, Form, Select, Space } from "antd";
 
 import { Task } from "@/interfaces";
+import { USERS_SELECT_QUERY } from "@/graphql/queries";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { UsersSelectQuery } from "@/graphql/types";
 
 type Props = {
     initialValues: {
@@ -23,10 +26,10 @@ export const UsersForm = ({ initialValues, cancelForm }: Props) => {
         },
     });
 
-    const { selectProps } = useSelect({
+    const { selectProps } = useSelect<GetFieldsFromList<UsersSelectQuery>>({
         resource: "users",
         meta: {
-            fields: ["name", "id"],
+            gqlQuery: USERS_SELECT_QUERY,
         },
         optionLabel: "name",
     });

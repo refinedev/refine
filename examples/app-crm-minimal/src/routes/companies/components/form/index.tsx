@@ -6,7 +6,7 @@ import { BusinessType, CompanySize, Industry } from "@/interfaces";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { CustomAvatar, SelectOptionWithAvatar } from "@/components";
 import { getNameInitials } from "@/utilities";
-import { UPDATE_COMPANY_MUTATION, USERS_SELECT_QUERY } from "./queries";
+import { UPDATE_COMPANY_MUTATION } from "./queries";
 import {
     GetFields,
     GetFieldsFromList,
@@ -17,6 +17,7 @@ import {
     UpdateCompanyMutationVariables,
     UsersSelectQuery,
 } from "@/graphql/types";
+import { USERS_SELECT_QUERY } from "@/graphql/queries";
 
 export const CompanyForm = () => {
     const { saveButtonProps, formProps, formLoading, queryResult } = useForm<
