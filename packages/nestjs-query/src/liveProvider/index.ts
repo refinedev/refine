@@ -7,27 +7,6 @@ import { generateSubscription } from "../utils";
 type SubscriptionAction = "created" | "updated" | "deleted";
 
 export const liveProvider = (client: Client): LiveProvider => {
-    const subscriptions: {
-        [K in SubscriptionAction]: { [key: string]: boolean };
-    } = {
-        created: {},
-        updated: {},
-        deleted: {},
-    };
-
-    const alreadySubscribed = (
-        action: SubscriptionAction,
-        resource: string,
-    ) => {
-        return !!subscriptions[action][resource];
-    };
-
-    const resetSubscriptions = () => {
-        subscriptions.created = {};
-        subscriptions.updated = {};
-        subscriptions.deleted = {};
-    };
-
     const subscribeToResource = (
         client: Client,
         callback: Function,
@@ -37,15 +16,12 @@ export const liveProvider = (client: Client): LiveProvider => {
         resource: string,
         unsubscribes: Function[],
     ) => {
-        if (!alreadySubscribed(action, resource)) {
-            const unsubscribe = generateSubscription(
-                client,
-                { callback, params, meta },
-                action,
-            );
-            subscriptions[action][resource] = true;
-            unsubscribes.push(unsubscribe);
-        }
+        const unsubscribe = generateSubscription(
+            client,
+            { callback, params, meta },
+            action,
+        );
+        unsubscribes.push(unsubscribe);
     };
 
     return {
@@ -87,9 +63,10 @@ export const liveProvider = (client: Client): LiveProvider => {
             }
 
             const unsubscribe = () => {
-                resetSubscriptions();
                 unsubscribes.forEach((unsubscribe) => unsubscribe());
             };
+
+            console.log("unsubscribes", unsubscribes);
 
             return unsubscribe;
         },
