@@ -52,7 +52,7 @@ export const LandingCopyCommandButton = ({
                 "bg-refine-blue dark:bg-refine-cyan-alt",
                 "bg-opacity-10 dark:bg-opacity-10",
                 "text-refine-blue dark:text-refine-cyan-alt",
-                "text-[13px] leading-5",
+                "text-[12px] leading-5",
                 "leading-6",
                 "font-jetBrains-mono",
                 "overflow-hidden",
@@ -89,9 +89,9 @@ export const LandingCopyCommandButton = ({
                     setCopied(true);
                     setTimeout(() => {
                         setCopied(false);
-                    }, 1500);
+                    }, 1300);
                 }}
-                tick={50}
+                tick={30}
                 className={clsx(
                     "inline-block",
                     "whitespace-pre",

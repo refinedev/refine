@@ -90,11 +90,11 @@ export const MENU_ITEMS: MenuItemType[] = [
             {
                 label: "Contributing",
                 description: "Join open-source contributors.",
-                link: "/docs/further-readings/contributing/",
+                link: "/docs/guides-concepts/contributing/",
                 icon: ContributeIcon,
             },
             {
-                label: "refineWeek",
+                label: "RefineWeek",
                 description: "Weekly projects to practice refine.",
                 link: "/week-of-refine",
                 icon: RefineWeekIcon,

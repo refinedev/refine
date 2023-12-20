@@ -11,7 +11,11 @@ export const LandingHeroSupabaseIcon = (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
-        <g opacity={0.5} filter="url(#filter0_f_1305_2751)">
+        <g
+            opacity={0.5}
+            className="hidden dark:block"
+            filter="url(#filter0_f_1305_2751)"
+        >
             <path
                 d="M33.903 43.5872C33.2794 44.3865 32.015 43.9486 32 42.9279L32 28H41.8615C43.6476 28 44.6438 30.0999 43.5332 31.5237L33.903 43.5872Z"
                 fill="url(#paint0_linear_1305_2751)"

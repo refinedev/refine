@@ -7,7 +7,7 @@ Refine's open source community has created data providers for various platforms.
 :::simple Good to know
 
 - Although we're trying to be helpful as much as we can about the issues related with Refine, if you're having troubles with these data providers, please contact the maintainers of the data provider first.
-- Check out the [Contributing](/docs/further-readings/contributing) guide to learn how to contribute to Refine.
+- Check out the [Contributing](/docs/guides-concepts/contributing) guide to learn how to contribute to Refine.
 
 :::
 

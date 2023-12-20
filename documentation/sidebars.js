@@ -498,6 +498,8 @@ module.exports = {
                         },
                     ],
                 },
+                "guides-concepts/development/index",
+                "guides-concepts/contributing/index",
                 "guides-concepts/faq/index",
             ],
         },
@@ -996,7 +998,6 @@ module.exports = {
             label: "Further Readings",
             className: "category-as-header",
             items: [
-                "further-readings/contributing",
                 "further-readings/testing",
                 "further-readings/benchmarks",
                 "further-readings/telemetry",

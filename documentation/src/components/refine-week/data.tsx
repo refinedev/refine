@@ -17,13 +17,13 @@ const hashtags = "opensource";
 const supabaseShareTweetURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
     "https://refine.dev/week-of-refine-supabase/",
 )}&text=${encodeURIComponent(
-    `📚 refineWeek ft Supabase: A week-long journey of building a complete CRUD app with @refine_dev and @supabase!\n\n`,
+    `📚 RefineWeek ft Supabase: A week-long journey of building a complete CRUD app with @refine_dev and @supabase!\n\n`,
 )}&hashtags=${hashtags}`;
 
 const strapiShareTweetURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
     "https://refine.dev/week-of-refine-strapi/",
 )}&text=${encodeURIComponent(
-    `📚 refineWeek ft Strapi: A week-long journey of building a complete CRUD app with @refine_dev and @strapijs!\n\n`,
+    `📚 RefineWeek ft Strapi: A week-long journey of building a complete CRUD app with @refine_dev and @strapijs!\n\n`,
 )}&hashtags=${hashtags}`;
 
 export const data = {

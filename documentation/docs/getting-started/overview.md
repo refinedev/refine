@@ -47,7 +47,7 @@ Instead of being limited to a set of pre-styled components, **Refine** provides 
 
 It means, **Refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_. Thanks to it's headless architecture, you can use popular CSS frameworks like [TailwindCSS](https://tailwindcss.com/) or even create your own styles from scratch.
 
-Refine also provides integrations with [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/)to get you started quickly. These libraries are set of components which are nicely integrated with headless `@refinedev/core` package.
+Refine also provides integrations with [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) to get you started quickly. These libraries are set of components which are nicely integrated with headless `@refinedev/core` package.
 
 ### Headless in Routing
 
@@ -98,7 +98,7 @@ This means you can use Refine seamlessly in different platforms like React Nativ
 - [🌟 Apply for the Priority support program!](https://s.refine.dev/enterprise) You can apply to priority support program and receive assistance from the Refine **core** team in your **private** channel.
 - [Join the Discord community!](https://discord.gg/refine) It is the easiest way to get help and ask questions to the community.
 - [Join the GitHub Discussions](https://github.com/refinedev/refine/discussions) to ask anything about the Refine project or give feedback; we would love to hear your thoughts!
-- [Learn how to contribute to the Refine!](/docs/further-readings/contributing/)
+- [Learn how to contribute to the Refine!](/docs/guides-concepts/contributing/)
 - [Join our Guest Technical Writer Program](https://refine.dev/blog/refine-writer-program/) and become a blog writer for **Refine**.
 
 ## Next Steps

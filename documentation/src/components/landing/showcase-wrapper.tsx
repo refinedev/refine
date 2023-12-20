@@ -77,6 +77,7 @@ const HighlightItem = React.memo(function HighlightBase({
                     "z-[2]",
                     "duration-200 ease-in-out transition-opacity",
                     "opacity-100",
+                    "group-hover/all:opacity-0",
                     "group-hover/highlight:opacity-0",
                 )}
             />
