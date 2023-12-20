@@ -9,9 +9,11 @@ import { Input, Space, Table, TableProps } from "antd";
 import { CustomAvatar, PaginationTotal, Text } from "@/components";
 import { Company } from "@/interfaces";
 import { currencyNumber } from "@/utilities";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { CompaniesListQuery } from "@/graphql/types";
 
 type Props = {
-    tableProps: TableProps<Company>;
+    tableProps: TableProps<GetFieldsFromList<CompaniesListQuery>>;
     filters: CrudFilters;
     sorters: CrudSorting;
 };

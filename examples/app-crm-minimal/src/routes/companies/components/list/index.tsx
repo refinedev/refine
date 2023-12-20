@@ -2,18 +2,22 @@ import { FC, PropsWithChildren } from "react";
 
 import { CreateButton, List, useTable } from "@refinedev/antd";
 import { HttpError, useGetToPath, useGo } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
+
+import { CompaniesListQuery } from "@/graphql/types";
 
 import { CompaniesTableView } from "..";
-import { Company } from "@/interfaces";
+
+import { COMPANIES_LIST_QUERY } from "./queries";
 
 export const CompanyList: FC<PropsWithChildren> = ({ children }) => {
     const getToPath = useGetToPath();
     const go = useGo();
 
     const { tableProps, filters, sorters } = useTable<
-        Company,
+        GetFieldsFromList<CompaniesListQuery>,
         HttpError,
-        { name: string }
+        GetFieldsFromList<CompaniesListQuery>
     >({
         resource: "companies",
         onSearch: (values) => {
@@ -40,30 +44,13 @@ export const CompanyList: FC<PropsWithChildren> = ({ children }) => {
                     operator: "contains",
                     value: undefined,
                 },
-                {
-                    field: "contacts.id",
-                    operator: "in",
-                    value: undefined,
-                },
             ],
         },
         pagination: {
             pageSize: 12,
         },
         meta: {
-            to: "undefined",
-            fields: [
-                "id",
-                "name",
-                "avatarUrl",
-                {
-                    dealsAggregate: [
-                        {
-                            sum: ["value"],
-                        },
-                    ],
-                },
-            ],
+            gqlQuery: COMPANIES_LIST_QUERY,
         },
     });
 
