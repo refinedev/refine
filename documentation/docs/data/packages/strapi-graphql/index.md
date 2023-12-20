@@ -14,7 +14,7 @@ const client = new GraphQLClient(API_URL);
 const gqlDataProvider = dataProvider(client);
 ```
 
-Refine provides a data provider for Strapi's GraphQL APIs that works similar to the [GraphQL data provider](/docs/packages/data-providers/graphql) and enables you to use all the features of Refine without giving up the GraphQL features.
+Refine provides a data provider for Strapi's GraphQL APIs that works similar to the [GraphQL data provider](/docs/data/packages/graphql) and enables you to use all the features of Refine without giving up the GraphQL features.
 
 :::simple Good to know
 
