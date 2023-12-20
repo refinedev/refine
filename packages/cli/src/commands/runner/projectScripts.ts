@@ -5,48 +5,69 @@ import { ProjectTypes } from "@definitions/projectTypes";
  */
 export const projectScripts = {
     [ProjectTypes.REACT_SCRIPT]: {
-        dev: ["start"],
-        start: ["start"],
-        build: ["build"],
+        getDev: (args: string[]) => ["start", ...args],
+        getStart: (args: string[]) => ["start", ...args],
+        getBuild: (args: string[]) => ["build", ...args],
         getBin: () => require.resolve(".bin/react-scripts"),
     },
     [ProjectTypes.VITE]: {
-        dev: ["dev"],
-        start: ["preview"],
-        build: ["build"],
+        getDev: (args: string[]) => ["dev", ...args],
+        getStart: (args: string[]) => ["preview", ...args],
+        getBuild: (args: string[]) => ["build", ...args],
         getBin: () => require.resolve(".bin/vite"),
     },
     [ProjectTypes.NEXTJS]: {
-        dev: ["dev"],
-        start: ["start"],
-        build: ["build"],
+        getDev: (args: string[]) => ["dev", ...args],
+        getStart: (args: string[]) => ["start", ...args],
+        getBuild: (args: string[]) => ["build", ...args],
         getBin: () => require.resolve(".bin/next"),
     },
     [ProjectTypes.REMIX]: {
-        dev: ["dev"],
-        start: ["build"],
-        build: ["build"],
-        getBin: (type: "dev" | "start" | "build") => {
+        getDev: (args: string[]) => ["dev", ...args],
+        getStart: (args: string[]) => {
+            // remix-serve accepts a path to the entry file as an argument
+            // if we have arguments, we will pass them to remix-serve and do nothing.
+            // ex: `refine start ./build/index.js`
+            const hasArgs = args?.length;
+            if (hasArgs) {
+                return args;
+            }
+
+            // otherwise print a warning and use `./build/index.js` as default
+            console.log();
+            console.warn(
+                `🚨 Remix requires a path to the entry file. Please provide it as an argument to \`refine start\` command in package.json scripts`,
+            );
+            console.warn("Refine will use `./build/index.js` as default");
+            console.warn("Example: `refine start ./build/index.js`");
+            console.log();
+
+            return ["./build/index.js"];
+        },
+        getBuild: (args: string[]) => ["build", ...args],
+        getBin: (type?: "dev" | "start" | "build") => {
             const binName = type === "start" ? "remix-serve" : "remix";
-            return require.resolve(`.bin/${binName}`);
+            return require.resolve(
+                `${process.cwd()}/node_modules/.bin/${binName}`,
+            );
         },
     },
     [ProjectTypes.CRACO]: {
-        dev: ["start"],
-        start: ["start"],
-        build: ["build"],
+        getDev: (args: string[]) => ["start", ...args],
+        getStart: (args: string[]) => ["start", ...args],
+        getBuild: (args: string[]) => ["build", ...args],
         getBin: () => require.resolve(".bin/craco"),
     },
     [ProjectTypes.PARCEL]: {
-        dev: ["start"],
-        start: ["start"],
-        build: ["build"],
+        getDev: (args: string[]) => ["start", ...args],
+        getStart: (args: string[]) => ["start", ...args],
+        getBuild: (args: string[]) => ["build", ...args],
         getBin: () => require.resolve(".bin/parcel"),
     },
     [ProjectTypes.UNKNOWN]: {
-        dev: [],
-        start: [],
-        build: [],
+        getDev: (args: string[]) => [...args],
+        getStart: (args: string[]) => [...args],
+        getBuild: (args: string[]) => [...args],
         getBin: () => {
             return "unknown";
         },
