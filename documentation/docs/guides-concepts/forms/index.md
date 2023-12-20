@@ -282,7 +282,7 @@ useForm({
 });
 ```
 
-To learn more about the routing, check out the [Routing](/guides-concepts/routing/index.md#router-integrations) guide and the [General Concepts](/guides-concepts/general-concepts/index.md#router-provider) guide to learn more about how it benefits the development experience.
+To learn more about the routing, check out the [Routing](/guides-concepts/routing/index.md#routing/integrations) guide and the [General Concepts](/guides-concepts/general-concepts/index.md#router-provider) guide to learn more about how it benefits the development experience.
 
 ### Redirection
 

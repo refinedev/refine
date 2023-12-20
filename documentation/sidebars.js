@@ -344,9 +344,9 @@ module.exports = {
                     collapsible: false,
                     label: "Integrations",
                     items: [
-                        "router-integrations/react-router/index",
-                        "router-integrations/next-js/index",
-                        "router-integrations/remix/index",
+                        "routing/integrations/react-router/index",
+                        "routing/integrations/next-js/index",
+                        "routing/integrations/remix/index",
                     ],
                 },
                 {

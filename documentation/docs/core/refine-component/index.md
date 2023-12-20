@@ -206,7 +206,7 @@ There's also a third option, which is to pass an object with the `component` and
 
 - Additional parameters can also be used in the paths for the actions of the resources. Paths like `/:authorId/posts/:id/details` are also valid and supported. When these actions are used in the navigation helpers, the existing parameters from the URL and the `meta` property of these functions will be used to determine the additional parameters when composing the path.
 
-- Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/guides-concepts/routing/#router-integrations) is used in the app to render the routes.
+- Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/guides-concepts/routing/#routing/integrations) is used in the app to render the routes.
 
 - When using the legacy router provider, only the component values will be used. Custom paths are not supported.
 
