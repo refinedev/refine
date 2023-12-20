@@ -491,7 +491,7 @@ const dataTemplates: {
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/multitenancy-strapi.jpg",
         integrations: [
             {
-                label: "Headless",
+                label: "Ant Design",
                 icon: (props: SVGProps<SVGSVGElement>) => (
                     <Antd width={16} height={16} {...props} />
                 ),
@@ -512,9 +512,9 @@ const dataTemplates: {
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/multitenancy-appwrite.jpg",
         integrations: [
             {
-                label: "Headless",
+                label: "Ant Design",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Headless width={16} height={16} {...props} />
+                    <Antd width={16} height={16} {...props} />
                 ),
             },
             {
