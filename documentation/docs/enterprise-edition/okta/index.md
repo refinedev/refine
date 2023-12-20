@@ -10,13 +10,7 @@ Okta is an enterprise-grade identity management service. Refine's integration of
 
 This package is included in Refine's Enterprise Edition. To learn more about Refine's Enterprise Edition, please [contact us](https://s.refine.dev/okta-enterprise).
 
-<Tabs>
-
-<TabItem value="npm" label="npm" default>
-
-```bash
-npm i @refinedev-ee/okta @okta/okta-auth-js
-```
+<InstallPackagesCommand args="@refinedev-ee/okta @okta/okta-auth-js">
 
 ```yml title=".npmrc"
 # A registry with the auth token should be added for the @refinedev-ee scope
@@ -24,37 +18,7 @@ npm i @refinedev-ee/okta @okta/okta-auth-js
 //registry.npmjs.org/:_authToken=$NPM_TOKEN
 ```
 
-</TabItem>
-
-<TabItem value="yarn" label="yarn" default>
-
-```bash
-yarn add @refinedev-ee/okta @okta/okta-auth-js
-```
-
-```yml title=".yarnrc"
-# A registry with the auth token should be added for the @refinedev-ee scope
-@refinedev-ee:registry=https://registry.npmjs.org/
-//registry.npmjs.org/:_authToken=$NPM_TOKEN
-```
-
-</TabItem>
-
-<TabItem value="pnpm" label="pnpm" default>
-
-```bash
-pnpm i @refinedev-ee/okta @okta/okta-auth-js
-```
-
-```yml title=".pnpmrc"
-# A registry with the auth token should be added for the @refinedev-ee scope
-@refinedev-ee:registry=https://registry.npmjs.org/
-//registry.npmjs.org/:_authToken=$NPM_TOKEN
-```
-
-</TabItem>
-
-</Tabs>
+</InstallPackagesCommand>
 
 ## Usage
 

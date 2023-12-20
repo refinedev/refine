@@ -20,39 +20,7 @@ All of [TanStack Table's][tanstack-table] features are supported and you can use
 
 Install the [`@refinedev/react-table`][refine-react-table] library.
 
-<Tabs
-defaultValue="npm"
-values={[
-{label: 'npm', value: 'npm'},
-{label: 'yarn', value: 'yarn'},
-{label: 'pnpm', value: 'pnpm'}
-]}>
-
-<TabItem value="npm">
-
-```bash
-npm i @refinedev/react-table
-```
-
-</TabItem>
-
-<TabItem value="yarn">
-
-```bash
-yarn add @refinedev/react-table
-```
-
-</TabItem>
-
-<TabItem value="pnpm">
-
-```bash
-pnpm add @refinedev/react-table
-```
-
-</TabItem>
-
-</Tabs>
+<InstallPackagesCommand args="@refinedev/react-table"/>
 
 ## Usage
 

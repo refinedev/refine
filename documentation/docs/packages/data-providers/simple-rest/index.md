@@ -10,9 +10,7 @@ You can use this data provider to quickly get started with Refine and then custo
 
 ## Installation
 
-```bash
-npm i @refinedev/simple-rest
-```
+<InstallPackagesCommand args="@refinedev/simple-rest"/>
 
 ## Usage
 

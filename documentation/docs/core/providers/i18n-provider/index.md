@@ -64,39 +64,8 @@ Let's add multi-language support to our application using the `react-i18next` fr
 ### Installation
 
 To install both `react-i18next` and `i18next` packages, run the following command within your project directory:
-<Tabs
-defaultValue="npm"
-values={[
-{label: 'use npm', value: 'npm'},
-{label: 'use yarn', value: 'yarn'},
-{label: 'use pnpm', value: 'pnpm'},
-]}>
 
-<TabItem value="npm">
-
-```bash
-npm install react-i18next i18next i18next-http-backend i18next-browser-languagedetector
-```
-
-</TabItem>
-
-<TabItem value="yarn">
-
-```bash
-yarn add react-i18next i18next i18next-http-backend i18next-browser-languagedetector
-```
-
-</TabItem>
-
-<TabItem value="pnpm">
-
-```bash
-pnpm install react-i18next i18next i18next-http-backend i18next-browser-languagedetector
-```
-
-</TabItem>
-
-</Tabs>
+<InstallPackagesCommand args="react-i18next i18next i18next-http-backend i18next-browser-languagedetector"/>
 
 ### Creating the i18n Instance
 
