@@ -1,9 +1,64 @@
+import gql from "graphql-tag";
+
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
 
 import "./index.mock";
 
 describe("getList", () => {
+    describe("gql", () => {
+        it("correct response for query", async () => {
+            const { data, total } = await dataProvider(client).getList<{
+                id: string;
+                status: string;
+                category: { id: string };
+            }>({
+                resource: "blog_posts",
+                pagination: {
+                    current: 2,
+                    pageSize: 5,
+                    mode: "server",
+                },
+                filters: [
+                    { field: "id", operator: "lt", value: 500 },
+                    { field: "status", operator: "eq", value: "PUBLISHED" },
+                    { field: "category.id", operator: "eq", value: 1 },
+                ],
+                sorters: [{ field: "id", order: "desc" }],
+                meta: {
+                    gqlQuery: gql`
+                        query BlogPostsList(
+                            $paging: OffsetPaging!
+                            $filter: BlogPostFilter
+                            $sorting: [BlogPostSort!]!
+                        ) {
+                            blogPosts(
+                                paging: $paging
+                                filter: $filter
+                                sorting: $sorting
+                            ) {
+                                nodes {
+                                    id
+                                    status
+                                    category {
+                                        id
+                                    }
+                                }
+                                totalCount
+                            }
+                        }
+                    `,
+                },
+            });
+
+            expect(total).toBe(13);
+            expect(data.length).toBe(5);
+            expect(+data[0].id).toBeGreaterThan(+data[1].id);
+            data.forEach((item) => expect(item.status).toBe("PUBLISHED"));
+            data.forEach((item) => expect(item.category.id).toBe("1"));
+        });
+    });
+
     describe("fields (legacy)", () => {
         it("correct response", async () => {
             const { data, total } = await dataProvider(client).getList({

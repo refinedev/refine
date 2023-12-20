@@ -20,35 +20,6 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
             const queryVariables: VariableOptions = {};
 
-            if (filters) {
-                queryVariables["filter"] = {
-                    type: camelcase(`${singular(resource)}Filter`, {
-                        pascalCase: true,
-                    }),
-                    required: true,
-                    value: generateFilters(filters as LogicalFilter[]),
-                };
-            }
-
-            if (sorters) {
-                queryVariables["sorting"] = {
-                    type: camelcase(`${singular(resource)}Sort`, {
-                        pascalCase: true,
-                    }),
-                    required: true,
-                    list: [true],
-                    value: generateSorting(sorters),
-                };
-            }
-
-            if (paging) {
-                queryVariables["paging"] = {
-                    type: "OffsetPaging",
-                    required: true,
-                    value: paging,
-                };
-            }
-
             let query;
             let variables;
 
@@ -63,6 +34,35 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                     paging,
                 };
             } else {
+                if (filters) {
+                    queryVariables["filter"] = {
+                        type: camelcase(`${singular(resource)}Filter`, {
+                            pascalCase: true,
+                        }),
+                        required: true,
+                        value: generateFilters(filters as LogicalFilter[]),
+                    };
+                }
+
+                if (sorters) {
+                    queryVariables["sorting"] = {
+                        type: camelcase(`${singular(resource)}Sort`, {
+                            pascalCase: true,
+                        }),
+                        required: true,
+                        list: [true],
+                        value: generateSorting(sorters),
+                    };
+                }
+
+                if (paging) {
+                    queryVariables["paging"] = {
+                        type: "OffsetPaging",
+                        required: true,
+                        value: paging,
+                    };
+                }
+
                 const gqlQuery = gql.query({
                     operation,
                     fields: [{ nodes: meta?.fields }, "totalCount"],

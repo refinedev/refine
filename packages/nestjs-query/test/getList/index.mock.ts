@@ -2,6 +2,78 @@ import nock from "nock";
 
 nock("http://localhost:3003", { encodedQueryParams: true })
     .post("/graphql", {
+        query: "query BlogPostsList($paging: OffsetPaging!, $filter: BlogPostFilter, $sorting: [BlogPostSort!]!) {\n  blogPosts(paging: $paging, filter: $filter, sorting: $sorting) {\n    nodes {\n      id\n      status\n      category {\n        id\n      }\n    }\n    totalCount\n  }\n}\n",
+        variables: {
+            filter: {
+                id: { lt: 500 },
+                status: { eq: "PUBLISHED" },
+                category: { id: { eq: 1 } },
+            },
+            sorting: [{ field: "id", direction: "DESC" }],
+            paging: { limit: 5, offset: 5 },
+        },
+        operationName: "BlogPostsList",
+    })
+    .reply(
+        200,
+        {
+            data: {
+                blogPosts: {
+                    nodes: [
+                        {
+                            id: "332",
+                            status: "PUBLISHED",
+                            category: { id: "1" },
+                        },
+                        {
+                            id: "307",
+                            status: "PUBLISHED",
+                            category: { id: "1" },
+                        },
+                        {
+                            id: "290",
+                            status: "PUBLISHED",
+                            category: { id: "1" },
+                        },
+                        {
+                            id: "249",
+                            status: "PUBLISHED",
+                            category: { id: "1" },
+                        },
+                        {
+                            id: "213",
+                            status: "PUBLISHED",
+                            category: { id: "1" },
+                        },
+                    ],
+                    totalCount: 13,
+                },
+            },
+        },
+        [
+            "Date",
+            "Wed, 20 Dec 2023 07:59:42 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "331",
+            "Connection",
+            "close",
+            "X-Powered-By",
+            "Express",
+            "Access-Control-Allow-Origin",
+            "*",
+            "cache-control",
+            "no-store",
+            "ETag",
+            'W/"14b-nOpqc7yIQ1vFwVuKcUn1H9OYv28"',
+            "Strict-Transport-Security",
+            "max-age=15724800; includeSubDomains",
+        ],
+    );
+
+nock("http://localhost:3003", { encodedQueryParams: true })
+    .post("/graphql", {
         query: "query  { blogPosts  { nodes { id, title }, totalCount } }",
         variables: {},
     })
