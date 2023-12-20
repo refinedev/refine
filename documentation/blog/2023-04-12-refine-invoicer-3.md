@@ -10,11 +10,11 @@ hide_table_of_contents: false
 
 In this post, we build on our existing understanding of `dataProvider` and `authProvider` props of `<Refine />` to implement CRUD operations in our **Pdf Invoice Generator** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's `resources` and routing conventions as well.
 
-CRUD actions are supported by the [**Strapi**](https://strapi.io/) data provider we chose for our project and in this post we use them to build pages for **Company**, **Client** and **Contact** resources. We implement appropriate pages and partial components with `list`, `create`, `edit` and `delete` actions. We also add auth features we discussed on Day Two of the [**refineWeek**](https://refine.dev/week-of-refine-strapi/) series.
+CRUD actions are supported by the [**Strapi**](https://strapi.io/) data provider we chose for our project and in this post we use them to build pages for **Company**, **Client** and **Contact** resources. We implement appropriate pages and partial components with `list`, `create`, `edit` and `delete` actions. We also add auth features we discussed on Day Two of the [**RefineWeek**](https://refine.dev/week-of-refine-strapi/) series.
 
-We're on Day Three and this **refineWeek** is a five-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
+We're on Day Three and this **RefineWeek** is a five-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
 
-### refineWeek ft. Strapi series
+### RefineWeek ft. Strapi series
 
 - Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-react-invoice-generator-1/)
 - Day 2 - [Setting Up the Invoicer App](https://refine.dev/blog/refine-react-invoice-generator-2/)

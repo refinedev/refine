@@ -5,6 +5,7 @@ import { CheckCircle } from "@site/src/refine-theme/icons/check-circle";
 import { CrossCircle } from "@site/src/refine-theme/icons/cross-circle";
 import { EnterpriseGetInTouchButton } from "./enterprise-get-in-touch-button";
 import { ArrowLeftLongIcon } from "./icons/arrow-left-long";
+import { AnimatePresence, motion } from "framer-motion";
 
 export const EnterpriseTable = ({ className }: { className?: string }) => {
     const [activeTab, setActiveTab] = useState<"community" | "enterprise">(
@@ -16,7 +17,8 @@ export const EnterpriseTable = ({ className }: { className?: string }) => {
             className={clsx(
                 "flex flex-col",
                 "not-prose",
-                "h-[1556px] landing-sm:h-[1444px] landing-md:h-min ",
+                "min-h-[1556px] landing-sm:min-h-[1444px] landing-md:min-h-min",
+                "w-full",
                 className,
             )}
         >
@@ -36,50 +38,50 @@ export const EnterpriseTable = ({ className }: { className?: string }) => {
                 </h2>
             </div>
 
-            <div
-                className={clsx(
-                    "w-full",
-                    "mx-auto",
-                    "flex flex-col",
-                    "gap-16",
-                    "pb-8",
-                )}
-            >
-                <div
-                    className={clsx(
-                        "relative",
-                        "w-full",
-                        "pt-4",
-                        activeTab === "enterprise" &&
-                            "animate-enterprise-table-right-to-left",
-                        activeTab === "community" &&
-                            "animate-enterprise-table-left-to-right",
-                        "landing-md:animate-none landing-md:translate-x-0",
-                    )}
-                >
-                    <TableStickyHeader
-                        activeTab={activeTab}
-                        setActiveTab={(tab: "community" | "enterprise") => {
-                            setActiveTab(tab);
+            <div className={clsx("w-full", "pb-8", "relative")}>
+                <AnimatePresence exitBeforeEnter>
+                    <motion.div
+                        key={activeTab}
+                        initial={{
+                            opacity: 0,
+                            x: activeTab === "community" ? "-100%" : "100%",
                         }}
-                    />
-                    <TableSectionWrapper>
-                        {tableData.map((section) => {
-                            const isLast =
-                                section.title === tableData.at(-1).title;
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{
+                            opacity: 0,
+                            x: activeTab === "community" ? "-100%" : "100%",
+                        }}
+                        transition={{
+                            duration: 0.3,
+                            bounce: 0,
+                            ease: "easeInOut",
+                        }}
+                        className={clsx("relative", "w-full", "pt-8")}
+                    >
+                        <TableStickyHeader
+                            activeTab={activeTab}
+                            setActiveTab={(tab: "community" | "enterprise") => {
+                                setActiveTab(tab);
+                            }}
+                        />
+                        <TableSectionWrapper>
+                            {tableData.map((section) => {
+                                const isLast =
+                                    section.title === tableData.at(-1).title;
 
-                            return (
-                                <TableSection
-                                    key={section.title}
-                                    title={section.title}
-                                    activeTab={activeTab}
-                                    items={section.items}
-                                    isLast={isLast}
-                                />
-                            );
-                        })}
-                    </TableSectionWrapper>
-                </div>
+                                return (
+                                    <TableSection
+                                        key={section.title}
+                                        title={section.title}
+                                        activeTab={activeTab}
+                                        items={section.items}
+                                        isLast={isLast}
+                                    />
+                                );
+                            })}
+                        </TableSectionWrapper>
+                    </motion.div>
+                </AnimatePresence>
             </div>
             <EnterpriseGetInTouchButton
                 className={clsx("block landing-sm:hidden", "mx-auto")}
@@ -187,9 +189,7 @@ const TableItemContentGroup = ({
                     valueType={valueType}
                     className={clsx(
                         activeTab !== "community" && "hidden landing-md:flex",
-                        activeTab !== "community" &&
-                            "opacity-0 landing-md:opacity-100",
-                        activeTab === "community" && "opacity-100",
+                        activeTab === "community" && "flex",
                     )}
                 >
                     {community}
@@ -209,9 +209,7 @@ const TableItemContentGroup = ({
                     valueType={valueType}
                     className={clsx(
                         activeTab !== "enterprise" && "hidden landing-md:flex",
-                        activeTab !== "enterprise" &&
-                            "opacity-0 landing-md:opacity-100",
-                        activeTab === "enterprise" && "opacity-100",
+                        activeTab === "enterprise" && "flex",
                     )}
                 >
                     {enterprise}
@@ -572,7 +570,7 @@ const tableData = [
         items: [
             {
                 description: "Direct Database Access",
-                community: <CheckIcon />,
+                community: <CrossIcon />,
                 enterprise: <TableText>via API Generator</TableText>,
                 valueType: {
                     community: "icon",
@@ -581,7 +579,7 @@ const tableData = [
             },
             {
                 description: "Supported Databases",
-                community: <CheckIcon />,
+                community: <CrossIcon />,
                 enterprise: (
                     <TableText>
                         Oracle, MSSQL, PostgreSQL, MySQL, MongoDB

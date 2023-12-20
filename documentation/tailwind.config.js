@@ -10,6 +10,7 @@ module.exports = {
         extend: {
             zIndex: {
                 modal: 100,
+                "top-announcement": 1000,
             },
             colors: {
                 discord: "#5865F2",

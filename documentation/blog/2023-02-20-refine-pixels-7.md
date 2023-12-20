@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-20-refine-p
 hide_table_of_contents: false
 ---
 
-### refineWeek series
+### RefineWeek series
 
 - Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
 - Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
@@ -18,9 +18,9 @@ hide_table_of_contents: false
 - Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
 - Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
 
-In this post, we apply **refine**'s built-in audit logging functionality to our **Pixels Admin** app and to the **Pixels** client app that we built previously in this [**refineWeek**](http://localhost:3000/week-of-refine/) series. **refine**'s audit logging system comes already baked into its data hooks and inside supplemental data provider packages, like the [`@refinedev/supabase`](https://www.npmjs.com/package/@refinedev/supabase). Today we are going to get it to work by using the `auditLogProvider` prop.
+In this post, we apply **refine**'s built-in audit logging functionality to our **Pixels Admin** app and to the **Pixels** client app that we built previously in this [**RefineWeek**](http://localhost:3000/week-of-refine/) series. **refine**'s audit logging system comes already baked into its data hooks and inside supplemental data provider packages, like the [`@refinedev/supabase`](https://www.npmjs.com/package/@refinedev/supabase). Today we are going to get it to work by using the `auditLogProvider` prop.
 
-This is Day 7, and **refineWeek** is a quickfire tutorial guide that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
+This is Day 7, and **RefineWeek** is a quickfire tutorial guide that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
 
 ## Overview
 
@@ -528,7 +528,7 @@ We implemented audit logging for `create` actions of the `pixels` resource in ou
 
 ## Series Wrap Up
 
-In this **refineWeek** series, built the following two apps with **refine**:
+In this **RefineWeek** series, built the following two apps with **refine**:
 
 [**Pixels**](https://github.com/refinedev/refine/tree/master/examples/pixels) - the client app that allows users to create a canvas and draw collaboratively on
 [**Pixels Admin**](https://github.com/refinedev/refine/tree/master/examples/pixels-admin) - the admin dashboard that helps managers manage users and canvases

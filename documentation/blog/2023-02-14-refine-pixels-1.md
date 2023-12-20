@@ -10,7 +10,7 @@ hide_table_of_contents: false
 
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/refine_supabase.png" alt="refine banner" />
 
-### refineWeek series
+### RefineWeek series
 
 - Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
 - Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
@@ -25,7 +25,7 @@ hide_table_of_contents: false
 
 This post provides an introduction to [**refine**](https://github.com/refinedev/refine), a React framework used to rapidly build data heavy CRUD apps like dashboards, admin panels and e-commerce storefronts.
 
-It also presents the [refineWeek](https://refine.dev/week-of-refine-supabase/) series - which is a seven part quickfire guide that aims to help developers learn the ins-and-outs of [**refine**](https://github.com/refinedev/refine) and [**Supabase**](https://supabase.com/) powerful capabilities and get going with **refine** within a week.
+It also presents the [RefineWeek](https://refine.dev/week-of-refine-supabase/) series - which is a seven part quickfire guide that aims to help developers learn the ins-and-outs of [**refine**](https://github.com/refinedev/refine) and [**Supabase**](https://supabase.com/) powerful capabilities and get going with **refine** within a week.
 
 At the end of this series, you'll be able to build a fully functional CRUD app named "**Pixels**" with **refine** and **Supabase**.
 
@@ -258,7 +258,7 @@ As far as our features and functionalities go, we will cover most of the provide
 
 Here are the detailed outlines split per day:
 
-### Day One - On refineWeek
+### Day One - On RefineWeek
 
 This post. Hello! :wave: :wave: **refine** welcomes you! We are here :smile: :smile:
 
@@ -319,7 +319,7 @@ We will display these logs inside a modal for each canvas both in the client **P
 
 ## Summary
 
-In this post, we introduced the **refine** framework and the [refineWeek](https://refine.dev/week-of-refine/) series itself. We talked about **refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
+In this post, we introduced the **refine** framework and the [RefineWeek](https://refine.dev/week-of-refine/) series itself. We talked about **refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
 
 We laid out the plans for building a **Pixels** client app and an admin dashboard app in considerable depth.
 

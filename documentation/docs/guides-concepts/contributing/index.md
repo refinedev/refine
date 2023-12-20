@@ -98,6 +98,16 @@ npm run build -- --scope @refinedev/antd --scope base-antd --includeDependencies
 
 Just like the `bootstrap` command we're using `--scope` flag to filter the packages we want and use `--includeDependencies` flag to include the dependencies of the packages we've filtered. This way, we're including the dependencies of the packages we're working on to the build process.
 
+<details>
+
+<summary>How to add a dependency to a package?</summary>
+
+If you need to add a dependency to a package you're working on, it's best to update the `package.json` file of the package manually and run the `bootstrap` command again in the root. This way, Lerna will install the dependency to the package and link it to the other packages.
+
+Since Refine's repository uses the hoist option of Lerna, you need to use the same version of the dependency if it exists in another package or an example.
+
+</details>
+
 ### Starting the Packages and Examples in Watch Mode
 
 Now that we've bootstrapped and built the packages and examples we want to work on, we can start them in watch mode. This way, the packages and examples we've started will re-compile when we make a change in any of them.

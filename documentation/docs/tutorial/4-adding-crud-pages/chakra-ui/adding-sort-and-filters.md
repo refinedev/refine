@@ -70,43 +70,39 @@ Now, we can finally use `<ColumnSorter/>` in our table header.
 
 First, import the `<ColumnSorter/>` component:
 
-    ```tsx title="src/pages/blog-posts/list.tsx"
-    import { ColumnSorter } from "../../components/table/ColumnSorter";
-    ```
+```tsx title="src/pages/blog-posts/list.tsx"
+import { ColumnSorter } from "../../components/table/ColumnSorter";
+```
 
 Then add the `<ColumnSorter/>` component to the `<Th/>` as a child like below:
 
-    ```tsx title="src/pages/blog-posts/list.tsx"
-    <Thead>
-        {getHeaderGroups().map((headerGroup) => (
-            <Tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                    <Th key={header.id}>
-                        {!header.isPlaceholder &&
-                            flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                            )}
-                        //highlight-next-line
-                        <ColumnSorter column={header.column} />
-                    </Th>
-                ))}
-            </Tr>
-        ))}
-    </Thead>
-    ```
+```tsx title="src/pages/blog-posts/list.tsx"
+<Thead>
+  {getHeaderGroups().map((headerGroup) => (
+    <Tr key={headerGroup.id}>
+      {headerGroup.headers.map((header) => (
+        <Th key={header.id}>
+          {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+          //highlight-next-line
+          <ColumnSorter column={header.column} />
+        </Th>
+      ))}
+    </Tr>
+  ))}
+</Thead>
+```
 
 Finally, disable sorting for the `actions` column by setting the `enableSorting` property of the column to `false` in the column definition like below:
 
-    ```tsx title="src/pages/blog-posts/list.tsx"
-    {
-        id: "actions",
-        accessorKey: "id",
-        header: "Actions",
-        //highlight-next-line
-        enableSorting: false,
-    },
-    ```
+```tsx title="src/pages/blog-posts/list.tsx"
+{
+    id: "actions",
+    accessorKey: "id",
+    header: "Actions",
+    //highlight-next-line
+    enableSorting: false,
+},
+```
 
 Now, we can sort the table by clicking on the sort button in the table header.
 

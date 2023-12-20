@@ -13,9 +13,9 @@ import TabItem from '@theme/TabItem';
 
 In this episode, we initialize our **Pdf Invoice Generator** app using with the **refine** CLI Wizard and get familiar with the boilerplate code created. We also initialize our [**Strapi**](https://strapi.io/) backend server and create the database collections we need.
 
-This is Day 2 of the [**#refineWeek**](https://refine.dev/week-of-refine-strapi/) series. This five-part tutorial that aims to help developers learn the ins-and-outs of [**refine**](https://github.com/refinedev/refine)'s powerful capabilities and get going with **refine** within a week.
+This is Day 2 of the [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) series. This five-part tutorial that aims to help developers learn the ins-and-outs of [**refine**](https://github.com/refinedev/refine)'s powerful capabilities and get going with **refine** within a week.
 
-### refineWeek ft. Strapi series
+### RefineWeek ft. Strapi series
 
 - Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-react-invoice-generator-1/)
 

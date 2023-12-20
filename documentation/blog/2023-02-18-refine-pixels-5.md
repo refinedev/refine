@@ -8,14 +8,14 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-18-refine-p
 hide_table_of_contents: false
 ---
 
-This post is the first part of an admin dashboard app built using [**refine**](https://github.com/refinedev/refine). The dashboard is an admin backend for the **Pixels** client that we built previously in the [**refineWeek**](https://refine.dev/week-of-refine/) series. We are using the same [**Supabase**](https://supabase.com/) database for this app and have [**Ant Design**](https://ant.design/) as the UI framework.
+This post is the first part of an admin dashboard app built using [**refine**](https://github.com/refinedev/refine). The dashboard is an admin backend for the **Pixels** client that we built previously in the [**RefineWeek**](https://refine.dev/week-of-refine/) series. We are using the same [**Supabase**](https://supabase.com/) database for this app and have [**Ant Design**](https://ant.design/) as the UI framework.
 
-This is Day 5, and **refineWeek** is a seven-part tutorial series that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities within a week.
+This is Day 5, and **RefineWeek** is a seven-part tutorial series that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities within a week.
 
 - You can find the complete source code for the **Pixels Admin** app on [GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels-admin)
 - Also **Pixel Client** app source code from previous days can be found [here](https://github.com/refinedev/refine/tree/master/examples/pixels)
 
-### refineWeek series
+### RefineWeek series
 
 - Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
 - Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
@@ -1049,7 +1049,7 @@ With these additions, `/canvases` looks like this:
 
 ## Summary
 
-In this post, we initialized an admin dashboard app for our **Pixels** client app which we built in the previous episodes in the [refineWeek](https://refine.dev/week-of-refine/) series. We implemented list views for two `resources`: `users` and `canvases`.
+In this post, we initialized an admin dashboard app for our **Pixels** client app which we built in the previous episodes in the [RefineWeek](https://refine.dev/week-of-refine/) series. We implemented list views for two `resources`: `users` and `canvases`.
 
 Inside the lists, we fetched data from these resources and rendered them inside tables. We implemented two types of tables using two distinct `@refinedev/antd` hooks: `useTable()` for regular tables and `useEditableTable()` that allows data in the table to be mutated.
 
