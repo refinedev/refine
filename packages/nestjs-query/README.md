@@ -71,6 +71,6 @@ const App = () => {
 ## Documentation
 
 - For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/data/data-provider).
-- [Refer to refine NestJS Query example](https://refine.dev/docs/examples/data-provider/nestjs-query/).
+- [Refer to refine NestJS Query example](https://refine.dev/docs/data/examples/nestjs-query/).
 - [Refer to documentation for more info about refine](https://refine.dev/docs/).
 - [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

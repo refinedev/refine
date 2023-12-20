@@ -261,9 +261,9 @@ You can use the following oAuth provider implementations as a starting point for
 - [Auth0](https://github.com/refinedev/refine/tree/master/examples/auth-auth0)
 - [Kinde](https://github.com/refinedev/refine/tree/master/examples/auth-kinde)
 - [Keycloak](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak)
-- [supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
-- [Strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
-- [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
+- [supabase](https://github.com/refinedev/refine/tree/master/data/examples-supabase)
+- [Strapi](https://github.com/refinedev/refine/tree/master/data/examples-strapi-v4)
+- [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/data/examples-strapi-graphql)
 - [Auth.js](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-next-auth)
 
 [To learn more about the `authProvider` interface, check out the reference page.](/docs/core/providers/auth-provider)

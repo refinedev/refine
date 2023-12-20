@@ -350,15 +350,15 @@ Here we only make requests for queries that are necessary. As you can see, all y
 
 Connects to any REST or GraphQL custom backend.
 
-- NestJs CRUD: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud](https://github.com/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud)
-- Airtable: [https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable](https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable)
-- Strapi: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi)
-- Strapi v4: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
-- Strapi GraphQL: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
-- Supabase: [https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
-- Hasura: [https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura](https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura)
-- Nhost: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost](https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost)
-- Appwrite: [https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite](https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite)
+- NestJs CRUD: [https://github.com/refinedev/refine/tree/master/data/examples-nestjsx-crud](https://github.com/refinedev/refine/tree/master/data/examples-nestjsx-crud)
+- Airtable: [https://github.com/refinedev/refine/tree/master/data/examples-airtable](https://github.com/refinedev/refine/tree/master/data/examples-airtable)
+- Strapi: [https://github.com/refinedev/refine/tree/master/data/examples-strapi](https://github.com/refinedev/refine/tree/master/data/examples-strapi)
+- Strapi v4: [https://github.com/refinedev/refine/tree/master/data/examples-strapi-v4](https://github.com/refinedev/refine/tree/master/data/examples-strapi-v4)
+- Strapi GraphQL: [https://github.com/refinedev/refine/tree/master/data/examples-strapi-graphql](https://github.com/refinedev/refine/tree/master/data/examples-strapi-graphql)
+- Supabase: [https://github.com/refinedev/refine/tree/master/data/examples-supabase](https://github.com/refinedev/refine/tree/master/data/examples-supabase)
+- Hasura: [https://github.com/refinedev/refine/tree/master/data/examples-hasura](https://github.com/refinedev/refine/tree/master/data/examples-hasura)
+- Nhost: [https://github.com/refinedev/refine/tree/master/data/examples-nhost](https://github.com/refinedev/refine/tree/master/data/examples-nhost)
+- Appwrite: [https://github.com/refinedev/refine/tree/master/data/examples-appwrite](https://github.com/refinedev/refine/tree/master/data/examples-appwrite)
 - Medusa: [https://github.com/refinedev/refine/tree/master/packages/medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
 
 ### Customization

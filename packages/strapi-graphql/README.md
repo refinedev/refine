@@ -67,6 +67,6 @@ const App = () => {
 ## Documentation
 
 - For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/data/data-provider).
-- [Refer to refine Strapi GraphQL example](https://refine.dev/docs/examples/data-provider/strapi-graphql/).
+- [Refer to refine Strapi GraphQL example](https://refine.dev/docs/data/examples/strapi-graphql/).
 - [Refer to documentation for more info about refine](https://refine.dev/docs/).
 - [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).

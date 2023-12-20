@@ -12,7 +12,7 @@ hide_table_of_contents: false
 
 ## Introduction
 
-In this tutorial, we will use [Supabase](https://supabase.com/) as the backend of our project. Our goal with this is to create a `Windows95`-style admin panel using **refine** and [Supabase Data Provider](/docs/examples/data-provider/supabase/) features.
+In this tutorial, we will use [Supabase](https://supabase.com/) as the backend of our project. Our goal with this is to create a `Windows95`-style admin panel using **refine** and [Supabase Data Provider](/docs/data/examples/supabase/) features.
 
 ## Create a new refine app
 

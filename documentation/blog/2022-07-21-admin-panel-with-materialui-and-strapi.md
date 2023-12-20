@@ -54,7 +54,7 @@ Steps we'll cover includes:
 Before we dive into the meat of the article, let's first take a look at the tools documents we'll be using.
 
 - [refine](https://refine.dev/docs/)
-- [refine StrapiV4 data provider ](https://refine.dev/docs/examples/data-provider/strapi-v4/)
+- [refine StrapiV4 data provider ](https://refine.dev/docs/data/examples/strapi-v4/)
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
 - [refine Material UI Tutorial](https://refine.dev/docs/tutorial/introduction/index/)
 
