@@ -282,9 +282,7 @@ Refine provides a data provider for [Appwrite](https://appwrite.io/), a backend 
 
 ## Installation
 
-```bash
-npm i @refinedev/appwrite
-```
+<InstallPackagesCommand args="@refinedev/appwrite"/>
 
 ## Usage
 

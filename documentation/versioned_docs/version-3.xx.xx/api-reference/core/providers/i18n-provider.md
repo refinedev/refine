@@ -69,39 +69,7 @@ Let's add multi-language support using the [`react-i18next`][react-i18next] fram
 
 Run the following command within your project directory to install both [`react-i18next`][react-i18next] and `i18next` packages :
 
-<Tabs
-defaultValue="npm"
-values={[
-{label: 'use npm', value: 'npm'},
-{label: 'use yarn', value: 'yarn'},
-{label: 'use pnpm', value: 'pnpm'},
-]}>
-
-<TabItem value="npm">
-
-```bash
-npm install react-i18next i18next
-```
-
-</TabItem>
-
-<TabItem value="yarn">
-
-```bash
-yarn add react-i18next i18next
-```
-
-</TabItem>
-
-<TabItem value="pnpm">
-
-```bash
-pnpm install react-i18next i18next
-```
-
-</TabItem>
-
-</Tabs>
+<InstallPackagesCommand args="react-i18next i18next"/>
 
 ### Creating i18n Instance
 

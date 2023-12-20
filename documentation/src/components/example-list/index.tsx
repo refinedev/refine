@@ -287,61 +287,6 @@ const ExampleList: React.FC = () => {
         );
     };
 
-    const renderShowcaseExamples = () => {
-        const list = showMore ? [...SHOW_CASES, ...EXAMPLES] : SHOW_CASES;
-
-        return (
-            <>
-                <div
-                    className={clsx(
-                        "grid grid-cols-1 md:grid-cols-2",
-                        "gap-4 2xl:gap-8",
-                    )}
-                >
-                    {list.map((example) => {
-                        return renderShowcaseExampleCard(example);
-                    })}
-                </div>
-                <button
-                    className={clsx(
-                        "w-full h-12 2xl:h-16",
-                        "flex justify-center items-center gap-4",
-                        "bg-gray-100 dark:bg-gray-700",
-                        "rounded-lg",
-                        "mt-4 sm:mt-8 2xl:mt-10 py-2",
-                    )}
-                    onClick={() => {
-                        setShowMore((prev) => !prev);
-                    }}
-                >
-                    <div
-                        className={clsx(
-                            "flex justify-center items-center",
-                            "w-8 h-8",
-                            "text-gray-500",
-                            "bg-gray-0 dark:bg-gray-800",
-                            "rounded-[4px]",
-                        )}
-                    >
-                        <ArrowUpIcon
-                            className={clsx("w-3 h-3", {
-                                "transform rotate-180": !showMore,
-                            })}
-                        />
-                    </div>
-                    <span
-                        className={clsx(
-                            "text-gray-700 dark:text-gray-400",
-                            "text-sm 2xl:text-base font-semibold",
-                        )}
-                    >
-                        {showMore ? "Show Less" : "Show More"}
-                    </span>
-                </button>
-            </>
-        );
-    };
-
     const renderFilterList = () => {
         return (
             <div className="flex justify-start gap-2 flex-wrap mt-0 md:mt-4 2xl:mt-10">
@@ -481,23 +426,9 @@ const ExampleList: React.FC = () => {
     const renderFilters = () => {
         return (
             <div className="flex flex-col">
-                <h2
-                    id="other-examples"
-                    className={clsx(
-                        "mb-0 mt-0",
-                        "text-[32px] leading-[40px] 2xl:text-[40px] 2xl:leading-[48px]",
-                        "text-gray-700 dark:text-gray-200",
-                        "font-semibold",
-                    )}
-                    style={{
-                        scrollMarginTop: "5rem",
-                    }}
-                >
-                    Other Examples
-                </h2>
                 <div
                     className={clsx(
-                        "flex items-center justify-between mt-8 2xl:mt-10 pb-4",
+                        "flex items-center justify-between mt-4 pb-4",
                         "md:border-b border-gray-200 dark:border-gray-700",
                     )}
                 >
@@ -648,7 +579,6 @@ const ExampleList: React.FC = () => {
 
     return (
         <div className="">
-            <div className="mt-10">{renderShowcaseExamples()}</div>
             <div className="mt-16">{renderFilters()}</div>
             <div className="mt-10">{renderCards()}</div>
         </div>

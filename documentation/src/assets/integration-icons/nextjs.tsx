@@ -10,9 +10,9 @@ const SvgNextjs = (props: SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
-        <g clipPath="url(#nextjs_svg__a)">
+        <g clipPath={`url(#nextjs_svg-${props.id}__a)`}>
             <mask
-                id="nextjs_svg__b"
+                id={`nextjs_svg-${props.id}__b`}
                 style={{
                     maskType: "alpha",
                 }}
@@ -27,7 +27,7 @@ const SvgNextjs = (props: SVGProps<SVGSVGElement>) => (
                     fill="#000"
                 />
             </mask>
-            <g mask="url(#nextjs_svg__b)">
+            <g mask={`url(#nextjs_svg-${props.id}__b)`}>
                 <path
                     d="M32 64c17.673 0 32-14.327 32-32C64 14.327 49.673 0 32 0 14.327 0 0 14.327 0 32c0 17.673 14.327 32 32 32Z"
                     fill="currentColor"
@@ -35,17 +35,17 @@ const SvgNextjs = (props: SVGProps<SVGSVGElement>) => (
                 />
                 <path
                     d="M53.159 56.007 24.584 19.2H19.2v25.59h4.307V24.67l26.27 33.941a32.11 32.11 0 0 0 3.382-2.604Z"
-                    fill="url(#nextjs_svg__c)"
+                    fill={`url(#nextjs_svg-${props.id}__c)`}
                 />
                 <path
                     d="M45.155 19.2H40.89v25.6h4.266V19.2Z"
-                    fill="url(#nextjs_svg__d)"
+                    fill={`url(#nextjs_svg-${props.id}__d)`}
                 />
             </g>
         </g>
         <defs>
             <linearGradient
-                id="nextjs_svg__c"
+                id={`nextjs_svg-${props.id}__c`}
                 x1={38.756}
                 y1={41.422}
                 x2={51.378}
@@ -64,7 +64,7 @@ const SvgNextjs = (props: SVGProps<SVGSVGElement>) => (
                 />
             </linearGradient>
             <linearGradient
-                id="nextjs_svg__d"
+                id={`nextjs_svg-${props.id}__d`}
                 x1={43.022}
                 y1={19.2}
                 x2={42.95}
@@ -82,7 +82,7 @@ const SvgNextjs = (props: SVGProps<SVGSVGElement>) => (
                     stopOpacity={0}
                 />
             </linearGradient>
-            <clipPath id="nextjs_svg__a">
+            <clipPath id={`nextjs_svg-${props.id}__a}`}>
                 <path
                     fill="currentColor"
                     className="text-gray-0 dark:text-gray-1000"

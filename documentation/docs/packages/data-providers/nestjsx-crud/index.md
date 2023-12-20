@@ -15,9 +15,7 @@ Refine provides a data provider for APIs powered with [Nest.js CRUD](https://git
 
 ## Installation
 
-```bash
-npm i @refinedev/nestjsx-crud
-```
+<InstallPackagesCommand args="@refinedev/nestjsx-crud"/>
 
 ## Usage
 

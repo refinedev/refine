@@ -26,9 +26,7 @@ Refine provides a data provider for GraphQL APIs that has all the features of Re
 
 ## Installation
 
-```bash
-npm i @refinedev/graphql
-```
+<InstallPackagesCommand args="@refinedev/graphql"/>
 
 ## Usage
 

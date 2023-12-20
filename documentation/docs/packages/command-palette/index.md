@@ -214,9 +214,7 @@ Refine supports the command palette feature and use the
 
 Install the [@refinedev/kbar][refine-kbar] library.
 
-```bash
-npm i @refinedev/kbar
-```
+<InstallPackagesCommand args="@refinedev/kbar"/>
 
 ## Usage
 

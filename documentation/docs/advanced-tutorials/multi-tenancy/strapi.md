@@ -22,9 +22,7 @@ This guide has been prepared to assume you know the basics of **Refine**. If you
 
 ## Setup
 
-```bash
-npm i @refinedev/strapi-v4
-```
+<InstallPackagesCommand args="@refinedev/strapi-v4"/>
 
 :::caution
 
