@@ -797,7 +797,7 @@ Keys are used to identify and cache server responses for queries and mutations. 
 
 - Then the next level contains the information about the operation parameters (It can be `"filters"`, `"sorters"`, `"pagination"`, `"id"` etc.) and also the content of the `meta` property.
 
-- Keep in mind, Refine will treat `meta` properties as a part of the keys and differantiate the queries based on the `meta` properties.
+- Keep in mind, Refine will treat `meta` properties as a part of the keys and differentiate the queries based on the `meta` properties.
 
 :::
 
