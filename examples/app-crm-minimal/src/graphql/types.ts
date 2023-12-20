@@ -1,5 +1,15 @@
 import type * as Types from "./schema.types";
 
+export type CreateCompanyMutationVariables = Types.Exact<{
+    input: Types.CreateOneCompanyInput;
+}>;
+
+export type CreateCompanyMutation = {
+    createOneCompany: Pick<Types.Company, "id"> & {
+        salesOwner: Pick<Types.User, "id">;
+    };
+};
+
 export type UpdateCompanyMutationVariables = Types.Exact<{
     input: Types.UpdateOneCompanyInput;
 }>;

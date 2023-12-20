@@ -1,35 +1,42 @@
 import { useModalForm, useSelect } from "@refinedev/antd";
-import { HttpError, useGetToPath, useGo } from "@refinedev/core";
+import { HttpError, useGo } from "@refinedev/core";
 import { Form, Input, Modal, Select } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company, User } from "@/interfaces";
-
-type FormValues = {
-    name: string;
-    salesOwnerId: string;
-    contacts?: {
-        name?: string;
-        email?: string;
-    }[];
-};
+import { User } from "@/interfaces";
+import { CREATE_COMPANY_MUTATION } from "./queries";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import {
+    CreateCompanyMutation,
+    CreateCompanyMutationVariables,
+} from "@/graphql/types";
 
 export const CompanyCreateModal = () => {
-    const getToPath = useGetToPath();
     const go = useGo();
 
-    const { formProps, modalProps, close } = useModalForm<
-        Company,
+    const goToListPage = () => {
+        go({
+            to: { resource: "companies", action: "list" },
+            options: {
+                keepQuery: true,
+            },
+            type: "replace",
+        });
+    };
+
+    const { formProps, modalProps } = useModalForm<
+        GetFields<CreateCompanyMutation>,
         HttpError,
-        FormValues
+        GetVariables<CreateCompanyMutationVariables>
     >({
         action: "create",
         defaultVisible: true,
         resource: "companies",
         redirect: false,
         mutationMode: "pessimistic",
+        onMutationSuccess: goToListPage,
         meta: {
-            fields: ["id", { salesOwner: ["id"] }],
+            gqlMutation: CREATE_COMPANY_MUTATION,
         },
     });
 
@@ -41,26 +48,11 @@ export const CompanyCreateModal = () => {
         optionLabel: "name",
     });
 
-    const closeModal = () => {
-        // modal is a opening from the url (/companies/create)
-        // to close modal we need to navigate to the list page (/companies)
-        close();
-        go({
-            to: getToPath({
-                action: "list",
-            }),
-            options: {
-                keepQuery: true,
-            },
-            type: "replace",
-        });
-    };
-
     return (
         <Modal
             {...modalProps}
             mask={true}
-            onCancel={closeModal}
+            onCancel={goToListPage}
             title="Add new company"
             width={512}
         >

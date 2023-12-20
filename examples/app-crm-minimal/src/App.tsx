@@ -80,28 +80,20 @@ const App: React.FC = () => {
                                         />
                                     </Route>
 
-                                    <Route
-                                        path="/companies"
-                                        element={
-                                            <CompanyListPage>
-                                                <Outlet />
-                                            </CompanyListPage>
-                                        }
-                                    >
+                                    <Route path="/companies">
                                         <Route
-                                            path="list"
+                                            index
                                             element={<CompanyListPage />}
                                         />
                                         <Route
                                             path="create"
                                             element={<CompanyCreatePage />}
                                         />
+                                        <Route
+                                            path="edit/:id"
+                                            element={<CompanyEditPage />}
+                                        />
                                     </Route>
-
-                                    <Route
-                                        path="companies/edit/:id"
-                                        element={<CompanyEditPage />}
-                                    />
 
                                     <Route
                                         path="*"
