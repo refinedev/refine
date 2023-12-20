@@ -1,11 +1,11 @@
-import React from "react";
+import { FC } from "react";
 
 type PaginationTotalProps = {
     total: number;
     entityName: string;
 };
 
-export const PaginationTotal: React.FC<PaginationTotalProps> = ({
+export const PaginationTotal: FC<PaginationTotalProps> = ({
     total,
     entityName,
 }) => {

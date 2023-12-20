@@ -1,14 +1,17 @@
-import { Space, Tag } from "antd";
+import { FC } from "react";
 
-import { User } from "@/graphql/schema.types";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
+
+import { Space, Tag } from "antd";
+import { UsersSelectQuery } from "@/graphql/types";
 
 import { CustomAvatar } from "../custom-avatar";
 
 type Props = {
-    user: User;
+    user: GetFieldsFromList<UsersSelectQuery>;
 };
 
-export const UserTag = ({ user }: Props) => {
+export const UserTag: FC<Props> = ({ user }) => {
     return (
         <Tag
             key={user.id}
