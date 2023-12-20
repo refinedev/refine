@@ -1,5 +1,28 @@
 import type * as Types from "./schema.types";
 
+export type CompanyContactsTableQueryVariables = Types.Exact<{
+    filter: Types.ContactFilter;
+    sorting?: Types.InputMaybe<Array<Types.ContactSort> | Types.ContactSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type CompanyContactsTableQuery = {
+    contacts: Pick<Types.ContactConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<
+                Types.Contact,
+                | "id"
+                | "name"
+                | "avatarUrl"
+                | "jobTitle"
+                | "email"
+                | "phone"
+                | "status"
+            >
+        >;
+    };
+};
+
 export type CreateCompanyMutationVariables = Types.Exact<{
     input: Types.CreateOneCompanyInput;
 }>;
