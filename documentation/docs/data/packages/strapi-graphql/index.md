@@ -26,9 +26,7 @@ Refine provides a data provider for Strapi's GraphQL APIs that works similar to 
 
 ## Installation
 
-```bash
-npm i @refinedev/strapi-graphql
-```
+<InstallPackagesCommand args="@refinedev/strapi-graphql"/>
 
 ## Usage
 

@@ -16,9 +16,7 @@ Refine provides a data provider for [Airtable](https://airtable.com/), a spreads
 
 ## Installation
 
-```bash
-npm i @refinedev/airtable
-```
+<InstallPackagesCommand args="@refinedev/airtable"/>
 
 ## Usage
 

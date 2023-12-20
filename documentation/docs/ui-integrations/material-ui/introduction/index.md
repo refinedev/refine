@@ -12,9 +12,7 @@ import Example from "./previews/example.tsx";
 
 Installing the package is as simple as just by running the following command without any additional configuration:
 
-```bash
-npm install @refinedev/mui @refinedev/react-hook-form @emotion/react @emotion/styled @mui/lab @mui/material @mui/x-data-grid react-hook-form
-```
+<InstallPackagesCommand args="@refinedev/mui @refinedev/react-hook-form @emotion/react @emotion/styled @mui/lab @mui/material @mui/x-data-grid react-hook-form"/>
 
 ## Usage
 

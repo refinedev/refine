@@ -4,15 +4,11 @@ title: Remix
 
 Refine provides router bindings and utilities for [Remix](https://remix.run). This package will provide easy integration between Refine and **Remix** for both existing projects and new projects without giving up the benefits of **Remix**.
 
-```bash
-npm i @refinedev/remix-router
-```
+<InstallPackagesCommand args="@refinedev/remix-router"/>
 
 We recommend using `create refine-app` to initialize your Refine projects. It configures the project according to your needs including SSR with Remix!
 
-```sh
-npm create refine-app@latest -- -o refine-remix my-refine-remix-app
-```
+<CreateRefineAppCommand args="-o refine-remix my-refine-remix-app" />
 
 [Refer to the Router Provider documentation for detailed information. &#8594][routerprovider]
 
@@ -601,12 +597,9 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 First, let's install the `js-cookie` and `cookie` packages in our project.
 
-```sh
-npm i js-cookie cookie
+<InstallPackagesCommand args="js-cookie cookie"/>
 
-# typescript types
-npm i -D @types/js-cookie
-```
+<InstallPackagesCommand args="-D @types/js-cookie"/>
 
 We will set/destroy cookies in the `login`, `logout` and `check` functions of our `AuthProvider`.
 

@@ -4,15 +4,11 @@ title: Next.js
 
 Refine provides router bindings and utilities for [Next.js](https://nextjs.org/). This package will provide easy integration between Refine and **Next.js** for both existing projects and new projects without giving up the benefits of **Next.js**.
 
-```bash
-npm i @refinedev/nextjs-router
-```
+<InstallPackagesCommand args="@refinedev/nextjs-router"/>
 
 We recommend using `create refine-app` to initialize your Refine projects. It configures the project according to your needs including SSR with Next.js!
 
-```sh
-npm create refine-app@latest -- -o refine-nextjs my-refine-nextjs-app
-```
+<CreateRefineAppCommand args="-o refine-nextjs my-refine-nextjs-app" />
 
 [Refer to the Router Provider documentation for detailed information. &#8594][routerprovider]
 
@@ -644,9 +640,7 @@ For page level authentication, server-side approach is recommended.
 
 First, let's install the `nookies` packages in our project.
 
-```sh
-npm i nookies
-```
+<InstallPackagesCommand args="@refinedev/nookies"/>
 
 We will set/destroy cookies in the `login`, `logout` and `check` functions of our `AuthProvider`.
 

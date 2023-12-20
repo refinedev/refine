@@ -8,27 +8,7 @@ The package exports components for **List**, **Show**, **Create** and **Edit** v
 
 ## Installation
 
-<Tabs
-defaultValue="npm"
-values={[
-{label: 'use npm', value: 'npm'},
-{label: 'use yarn', value: 'yarn'}
-]}>
-<TabItem value="npm">
-
-```bash
-npm i @refinedev/inferencer
-```
-
-  </TabItem>
-    <TabItem value="yarn">
-
-```bash
-yarn add @refinedev/inferencer
-```
-
-  </TabItem>
-</Tabs>
+<InstallPackagesCommand args="@refinedev/inferencer"/>
 
 ## Available UI Inferencers
 

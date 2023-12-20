@@ -16,39 +16,7 @@ This package exports following hooks to manage your forms:
 
 Install the [`@refinedev/react-hook-form`][refine-react-hook-form] library.
 
-<Tabs
-defaultValue="npm"
-values={[
-{label: 'npm', value: 'npm'},
-{label: 'yarn', value: 'yarn'},
-{label: 'pnpm', value: 'pnpm'}
-]}>
-
-<TabItem value="npm">
-
-```bash
-npm i @refinedev/react-hook-form
-```
-
-</TabItem>
-
-<TabItem value="yarn">
-
-```bash
-yarn add @refinedev/react-hook-form
-```
-
-</TabItem>
-
-<TabItem value="pnpm">
-
-```bash
-pnpm add @refinedev/react-hook-form
-```
-
-</TabItem>
-
-</Tabs>
+<InstallPackagesCommand args="@refinedev/react-hook-form"/>
 
 ## Usage
 

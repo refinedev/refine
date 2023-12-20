@@ -12,9 +12,7 @@ We will show you how to use Auth0 with Refine
 
 Run the following command within your project directory to install the Auth0 React SDK:
 
-```
-npm install @auth0/auth0-react
-```
+<InstallPackagesCommand args="@auth0/auth0-react"/>
 
 #### Configure the Auth0Provider component
 

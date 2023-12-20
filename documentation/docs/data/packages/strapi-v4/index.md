@@ -76,9 +76,7 @@ However, we can use [normalizeData](https://github.com/refinedev/refine/blob/27a
 
 ## Setup
 
-```bash
-npm i @refinedev/strapi-v4
-```
+<InstallPackagesCommand args="@refinedev/strapi-v4"/>
 
 :::caution
 

@@ -22,9 +22,7 @@ This guide has been prepared to assume you know the basics of **Refine**. If you
 
 ## Setup
 
-```bash
-npm install @refinedev/appwrite
-```
+<InstallPackagesCommand args="@refinedev/appwrite"/>
 
 :::caution
 
