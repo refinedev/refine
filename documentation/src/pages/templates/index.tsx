@@ -200,7 +200,6 @@ type Integration = {
             | "Material UI"
             | "Headless"
             | "Chakra UI"
-            | "ShadCN UI"
             | "Mantine";
         icon: (props: SVGProps<SVGSVGElement>) => JSX.Element;
     };
@@ -240,12 +239,6 @@ const dataFilters = {
             label: "Chakra UI",
             icon: (props: SVGProps<SVGSVGElement>) => (
                 <Chakra width={16} height={16} {...props} />
-            ),
-        },
-        {
-            label: "ShadCN UI",
-            icon: (props: SVGProps<SVGSVGElement>) => (
-                <ShadCnUI width={16} height={16} {...props} />
             ),
         },
         {
