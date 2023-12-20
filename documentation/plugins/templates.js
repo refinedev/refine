@@ -177,8 +177,8 @@ This admin panel template can be used in for various app requirements like B2B a
         github: "https://github.com/refinedev/refine/tree/master/examples/store",
         reactPlatform: "Vite",
         uiFramework: "Ant Design",
-        dataProvider: "Rest API",
-        authProvider: "Custom",
+        dataProvider: "Medusa",
+        authProvider: "Medusa",
         description: `
 This template is a comprehensive e-commerce storefront app created using Refine, Medusa.js, Next.js, and Stripe, encompassing all the necessary features for an e-commerce web application. Its source code is open-source, allowing you to freely use or explore it to gain a deeper understanding of how Refine integrates with Next.js and Tailwind CSS.
 
