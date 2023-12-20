@@ -175,7 +175,7 @@ This admin panel template can be used in for various app requirements like B2B a
         runOnYourLocalPath: "store",
         liveDemo: "https://store.refine.dev/",
         github: "https://github.com/refinedev/refine/tree/master/examples/store",
-        reactPlatform: "Vite",
+        reactPlatform: "Next.js",
         uiFramework: "Ant Design",
         dataProvider: "Medusa",
         authProvider: "Medusa",
