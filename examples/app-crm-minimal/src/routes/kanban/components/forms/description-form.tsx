@@ -5,6 +5,12 @@ import { HttpError } from "@refinedev/core";
 import { Button, Form, Space } from "antd";
 
 import { Task } from "@/interfaces";
+import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
+import {
+    UpdateTaskMutation,
+    UpdateTaskMutationVariables,
+} from "@/graphql/types";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 const MDEditor = React.lazy(() => import("@uiw/react-md-editor"));
 
@@ -16,13 +22,20 @@ type Props = {
 };
 
 export const DescriptionForm = ({ initialValues, cancelForm }: Props) => {
-    const { formProps, saveButtonProps } = useForm<Task, HttpError, Task>({
+    const { formProps, saveButtonProps } = useForm<
+        GetFields<UpdateTaskMutation>,
+        HttpError,
+        Pick<GetVariables<UpdateTaskMutationVariables>, "description">
+    >({
         queryOptions: {
             enabled: false,
         },
         redirect: false,
         onMutationSuccess: () => {
             cancelForm();
+        },
+        meta: {
+            gqlMutation: UPDATE_TASK_MUTATION,
         },
     });
 

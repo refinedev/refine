@@ -10,8 +10,17 @@ import { Task } from "@/interfaces";
 
 import { AccordionHeaderSkeleton } from "@/components";
 import { TASK_STAGES_SELECT_QUERY } from "@/graphql/queries";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
-import { TaskStagesSelectQuery } from "@/graphql/types";
+import {
+    GetFields,
+    GetFieldsFromList,
+    GetVariables,
+} from "@refinedev/nestjs-query";
+import {
+    TaskStagesSelectQuery,
+    UpdateTaskMutation,
+    UpdateTaskMutationVariables,
+} from "@/graphql/types";
+import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
 
 type Props = {
     initialValues: {
@@ -23,23 +32,20 @@ type Props = {
 
 export const StageForm = ({ initialValues, isLoading }: Props) => {
     const invalidate = useInvalidate();
-    const { formProps } = useForm<Task, HttpError, Task>({
-        queryOptions: {
-            enabled: true,
-        },
+    const { formProps } = useForm<
+        GetFields<UpdateTaskMutation>,
+        HttpError,
+        Pick<GetVariables<UpdateTaskMutationVariables>, "stageId" | "completed">
+    >({
         autoSave: {
             enabled: true,
             debounce: 0,
-            onFinish: (values) => {
-                return {
-                    ...values,
-                    stage: undefined,
-                    stageId: values.stage?.id,
-                };
-            },
         },
         onMutationSuccess: () => {
             invalidate({ invalidates: ["list"], resource: "tasks" });
+        },
+        meta: {
+            gqlMutation: UPDATE_TASK_MUTATION,
         },
     });
 
@@ -75,7 +81,11 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
             >
                 <Space size={5}>
                     <FlagOutlined />
-                    <Form.Item noStyle name={["stage", "id"]}>
+                    <Form.Item
+                        noStyle
+                        name={["stageId"]}
+                        initialValue={formProps?.initialValues?.stage?.id}
+                    >
                         <Select
                             {...selectProps}
                             popupMatchSelectWidth={false}

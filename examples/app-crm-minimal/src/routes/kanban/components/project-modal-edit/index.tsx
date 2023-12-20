@@ -22,6 +22,7 @@ import {
     UsersForm,
     UsersHeader,
 } from "..";
+import { UPDATE_TASK_MUTATION } from "./queries";
 
 export const ProjectModalEdit = () => {
     const [activeKey, setActiveKey] = useState<string | undefined>();
@@ -31,16 +32,7 @@ export const ProjectModalEdit = () => {
         action: "edit",
         defaultVisible: true,
         meta: {
-            fields: [
-                "id",
-                "title",
-                "completed",
-                "description",
-                "dueDate",
-                { stage: ["id", "title"] },
-                { users: ["id", "name", "avatarUrl"] },
-                { checklist: ["title", "checked"] },
-            ],
+            gqlMutation: UPDATE_TASK_MUTATION,
         },
     });
 

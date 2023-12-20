@@ -5,6 +5,12 @@ import { Button, DatePicker, Form, Space } from "antd";
 import dayjs from "dayjs";
 
 import { Task } from "@/interfaces";
+import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
+import {
+    UpdateTaskMutation,
+    UpdateTaskMutationVariables,
+} from "@/graphql/types";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 type Props = {
     initialValues: {
@@ -14,13 +20,20 @@ type Props = {
 };
 
 export const DueDateForm = ({ initialValues, cancelForm }: Props) => {
-    const { formProps, saveButtonProps } = useForm<Task, HttpError, Task>({
+    const { formProps, saveButtonProps } = useForm<
+        GetFields<UpdateTaskMutation>,
+        HttpError,
+        Pick<GetVariables<UpdateTaskMutationVariables>, "dueDate">
+    >({
         queryOptions: {
             enabled: false,
         },
         redirect: false,
         onMutationSuccess: () => {
             cancelForm();
+        },
+        meta: {
+            gqlMutation: UPDATE_TASK_MUTATION,
         },
     });
 

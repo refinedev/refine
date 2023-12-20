@@ -6,7 +6,13 @@ import { HttpError, useInvalidate } from "@refinedev/core";
 import { Form, Skeleton } from "antd";
 
 import { Text } from "@/components";
-import { Task, TaskUpdateInput } from "@/interfaces";
+import { Task } from "@/interfaces";
+import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
+import {
+    UpdateTaskMutation,
+    UpdateTaskMutationVariables,
+} from "@/graphql/types";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 const TitleInput = ({
     value,
@@ -41,7 +47,11 @@ type Props = {
 export const TitleForm = ({ initialValues, isLoading }: Props) => {
     const invalidate = useInvalidate();
 
-    const { formProps } = useForm<Task, HttpError, TaskUpdateInput>({
+    const { formProps } = useForm<
+        GetFields<UpdateTaskMutation>,
+        HttpError,
+        Pick<GetVariables<UpdateTaskMutationVariables>, "title">
+    >({
         queryOptions: {
             enabled: false,
         },
@@ -52,6 +62,9 @@ export const TitleForm = ({ initialValues, isLoading }: Props) => {
         },
         onMutationSuccess: () => {
             invalidate({ invalidates: ["list"], resource: "tasks" });
+        },
+        meta: {
+            gqlMutation: UPDATE_TASK_MUTATION,
         },
     });
 

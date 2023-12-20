@@ -204,3 +204,18 @@ export type DashboardTotalCountsQuery = {
     contacts: Pick<Types.ContactConnection, "totalCount">;
     deals: Pick<Types.DealConnection, "totalCount">;
 };
+
+export type UpdateTaskMutationVariables = Types.Exact<{
+    input: Types.UpdateOneTaskInput;
+}>;
+
+export type UpdateTaskMutation = {
+    updateOneTask: Pick<
+        Types.Task,
+        "id" | "title" | "completed" | "description" | "dueDate"
+    > & {
+        stage?: Types.Maybe<Pick<Types.TaskStage, "id" | "title">>;
+        users: Array<Pick<Types.User, "id" | "name" | "avatarUrl">>;
+        checklist: Array<Pick<Types.CheckListItem, "title" | "checked">>;
+    };
+};
