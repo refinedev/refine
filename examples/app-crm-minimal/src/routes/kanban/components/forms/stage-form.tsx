@@ -9,6 +9,9 @@ import { Checkbox, Form, Select, Space } from "antd";
 import { Task } from "@/interfaces";
 
 import { AccordionHeaderSkeleton } from "@/components";
+import { TASK_STAGES_SELECT_QUERY } from "@/graphql/queries";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { TaskStagesSelectQuery } from "@/graphql/types";
 
 type Props = {
     initialValues: {
@@ -40,12 +43,14 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
         },
     });
 
-    const { selectProps } = useSelect({
-        resource: "taskStages",
-        meta: {
-            fields: ["title", "id"],
+    const { selectProps } = useSelect<GetFieldsFromList<TaskStagesSelectQuery>>(
+        {
+            resource: "taskStages",
+            meta: {
+                gqlQuery: TASK_STAGES_SELECT_QUERY,
+            },
         },
-    });
+    );
 
     useEffect(() => {
         formProps.form?.setFieldsValue(initialValues);

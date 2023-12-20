@@ -16,3 +16,19 @@ export const USERS_SELECT_QUERY = gql`
         }
     }
 `;
+
+export const TASK_STAGES_SELECT_QUERY = gql`
+    query TaskStagesSelect(
+        $filter: TaskStageFilter!
+        $sorting: [TaskStageSort!]
+        $paging: OffsetPaging!
+    ) {
+        taskStages(filter: $filter, sorting: $sorting, paging: $paging) {
+            totalCount
+            nodes {
+                id
+                title
+            }
+        }
+    }
+`;

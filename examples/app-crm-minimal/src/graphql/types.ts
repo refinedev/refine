@@ -23,6 +23,20 @@ export type UsersSelectQuery = {
     };
 };
 
+export type TaskStagesSelectQueryVariables = Types.Exact<{
+    filter: Types.TaskStageFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.TaskStageSort> | Types.TaskStageSort
+    >;
+    paging: Types.OffsetPaging;
+}>;
+
+export type TaskStagesSelectQuery = {
+    taskStages: Pick<Types.TaskStageConnection, "totalCount"> & {
+        nodes: Array<Pick<Types.TaskStage, "id" | "title">>;
+    };
+};
+
 export type CompanyContactsTableQueryVariables = Types.Exact<{
     filter: Types.ContactFilter;
     sorting?: Types.InputMaybe<Array<Types.ContactSort> | Types.ContactSort>;
