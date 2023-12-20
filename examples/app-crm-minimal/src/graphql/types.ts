@@ -1,5 +1,36 @@
 import type * as Types from "./schema.types";
 
+export type UpdateCompanyMutationVariables = Types.Exact<{
+    input: Types.UpdateOneCompanyInput;
+}>;
+
+export type UpdateCompanyMutation = {
+    updateOneCompany: Pick<
+        Types.Company,
+        | "id"
+        | "name"
+        | "totalRevenue"
+        | "industry"
+        | "companySize"
+        | "businessType"
+        | "country"
+        | "website"
+        | "avatarUrl"
+    > & { salesOwner: Pick<Types.User, "id" | "name" | "avatarUrl"> };
+};
+
+export type UsersSelectQueryVariables = Types.Exact<{
+    filter: Types.UserFilter;
+    sorting?: Types.InputMaybe<Array<Types.UserSort> | Types.UserSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type UsersSelectQuery = {
+    users: Pick<Types.UserConnection, "totalCount"> & {
+        nodes: Array<Pick<Types.User, "id" | "name" | "avatarUrl">>;
+    };
+};
+
 export type CompaniesListQueryVariables = Types.Exact<{
     filter: Types.CompanyFilter;
     sorting?: Types.InputMaybe<Array<Types.CompanySort> | Types.CompanySort>;
