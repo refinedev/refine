@@ -167,6 +167,45 @@ export type AdministrationAuditLogsQuery = {
     };
 };
 
+export type CalendarEventsQueryVariables = Types.Exact<{
+    filter: Types.EventFilter;
+    sorting?: Types.InputMaybe<Array<Types.EventSort> | Types.EventSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type CalendarEventsQuery = {
+    events: Pick<Types.EventConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<
+                Types.Event,
+                | "id"
+                | "title"
+                | "description"
+                | "startDate"
+                | "endDate"
+                | "color"
+                | "createdAt"
+            > & {
+                createdBy: Pick<Types.User, "id" | "name">;
+                category: Pick<Types.EventCategory, "id" | "title">;
+            }
+        >;
+    };
+};
+
+export type CalendarEventCategoriesQueryVariables = Types.Exact<{
+    filter: Types.EventCategoryFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.EventCategorySort> | Types.EventCategorySort
+    >;
+}>;
+
+export type CalendarEventCategoriesQuery = {
+    eventCategories: Pick<Types.EventCategoryConnection, "totalCount"> & {
+        nodes: Array<Pick<Types.EventCategory, "id" | "title">>;
+    };
+};
+
 export type CompanyTitleFormMutationVariables = Types.Exact<{
     input: Types.UpdateOneCompanyInput;
 }>;
