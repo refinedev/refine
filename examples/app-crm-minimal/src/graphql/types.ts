@@ -69,6 +69,23 @@ export type DashboardLatestActivitiesAuditsQuery = {
     };
 };
 
+export type DashboardCalendarUpcomingEventsQueryVariables = Types.Exact<{
+    filter: Types.EventFilter;
+    sorting?: Types.InputMaybe<Array<Types.EventSort> | Types.EventSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type DashboardCalendarUpcomingEventsQuery = {
+    events: Pick<Types.EventConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<
+                Types.Event,
+                "id" | "title" | "color" | "startDate" | "endDate"
+            >
+        >;
+    };
+};
+
 export type DashboardTotalCountsQueryVariables = Types.Exact<{
     [key: string]: never;
 }>;

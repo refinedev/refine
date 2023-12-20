@@ -57,7 +57,7 @@ export const DashboardPage: React.FC = () => {
                         height: "460px",
                     }}
                 >
-                    <CalendarUpcomingEvents showGoToListButton />
+                    <CalendarUpcomingEvents />
                 </Col>
                 <Col
                     xs={24}

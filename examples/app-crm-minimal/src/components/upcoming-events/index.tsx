@@ -1,30 +1,24 @@
-import React from "react";
+import { FC } from "react";
 
 import { useList } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { CalendarOutlined } from "@ant-design/icons";
-import type { CardProps } from "antd";
 import { Card, Skeleton as AntdSkeleton, List, Badge } from "antd";
 import dayjs from "dayjs";
 
-import { Event } from "@/interfaces";
-
 import { Text } from "@/components";
+import { DashboardCalendarUpcomingEventsQuery } from "@/graphql/types";
 
-type CalendarUpcomingEventsProps = {
-    limit?: number;
-    cardProps?: CardProps;
-    showGoToListButton?: boolean;
-};
+import { DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY } from "./queries";
 
-export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
-    limit = 5,
-    cardProps,
-}) => {
-    const { data, isLoading } = useList<Event>({
+export const CalendarUpcomingEvents: FC = () => {
+    const { data, isLoading } = useList<
+        GetFieldsFromList<DashboardCalendarUpcomingEventsQuery>
+    >({
         resource: "events",
         pagination: {
-            pageSize: limit,
+            pageSize: 5,
         },
         sorters: [
             {
@@ -40,7 +34,7 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             },
         ],
         meta: {
-            fields: ["id", "title", "color", "startDate", "endDate"],
+            gqlQuery: DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY,
         },
     });
 
@@ -67,16 +61,13 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
                     </Text>
                 </div>
             }
-            {...cardProps}
         >
             {isLoading ? (
                 <List
                     itemLayout="horizontal"
-                    dataSource={Array.from({ length: limit }).map(
-                        (_, index) => ({
-                            id: index,
-                        }),
-                    )}
+                    dataSource={Array.from({ length: 5 }).map((_, index) => ({
+                        id: index,
+                    }))}
                     renderItem={() => {
                         return (
                             <List.Item>
