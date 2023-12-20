@@ -1,14 +1,14 @@
 ---
 id: command-palette
 title: Command Palette
-description: kbar integration for `command`/`crtrl`+`k` interface for your refine App.
+description: kbar integration for `Command`/`Ctrl`+`K` interface for your refine App.
 example-tags: [command-palette]
 ---
 
-[kbar](https://kbar.vercel.app/) is a fully extensible command+k interface for your site.
+[kbar](https://kbar.vercel.app/) is a fully extensible `Command` + `K` interface for your site.
 
-`command`/`crtrl`+`k` interfaces are used to create a web experience where any type of action users would be able to do via clicking can be done through a command menu.
+`Command` / `CTRL` + `K` interfaces are used to create a web experience where any type of action users would be able to do via clicking can be done through a command menu.
 
-Try it out – press cmd+k (macOS) or ctrl+k (Linux/Windows).
+Try it out – press `Cmd` + `K` (macOS) or `CTRL` + `K` (Linux/Windows).
 
 <CodeSandboxExample path="command-palette-kbar" />
