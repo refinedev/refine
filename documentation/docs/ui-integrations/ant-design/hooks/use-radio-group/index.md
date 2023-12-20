@@ -60,7 +60,7 @@ All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>
 
 `useRadioGroup` uses the `useList` hook for fetching data.
 
-> For more information, refer to the [Refine Core's `useList` hook documentation &#8594](/docs/core/hooks/data/use-list)
+> For more information, refer to the [Refine Core's `useList` hook documentation &#8594](/docs/data/hooks/use-list)
 
 ## Options
 

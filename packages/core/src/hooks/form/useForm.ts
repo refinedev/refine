@@ -160,7 +160,7 @@ type ActionFormProps<
         TVariables
     >["mutationOptions"];
     /**
-     * If you customize the [`optimisticUpdateMap`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdateMany/#optimisticupdatemap) option, you can use it to manage the invalidations that will occur at the end of the mutation.
+     * If you customize the [`optimisticUpdateMap`](https://refine.dev/docs/api-reference/data/hooks/useUpdateMany/#optimisticupdatemap) option, you can use it to manage the invalidations that will occur at the end of the mutation.
      * @default {
      *   list: true,
      *   many: true,

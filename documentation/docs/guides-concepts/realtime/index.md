@@ -313,7 +313,7 @@ As you can see, the only difference between queries and subscriptions is the `su
 
 ### Implementing `subscribe` method
 
-When you call the [`useList`](/docs/core/hooks/data/use-list), [`useOne`](/docs/core/hooks/data/use-one) or [`useMany`](/docs/core/hooks/data/use-many) hooks, they will call the `subscribe` method of the live provider.
+When you call the [`useList`](/docs/data/hooks/use-list), [`useOne`](/docs/data/hooks/use-one) or [`useMany`](/docs/data/hooks/use-many) hooks, they will call the `subscribe` method of the live provider.
 
 Thus, we will be able to create subscription queries using the parameters of these hooks. After creating the subscription query, we will listen it using the [`graphql-ws`](https://github.com/enisdenjo/graphql-ws) client and return the unsubscribe method to use in the `unsubscribe` method of the live provider.
 

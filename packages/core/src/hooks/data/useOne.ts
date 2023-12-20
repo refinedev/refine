@@ -81,7 +81,7 @@ export type UseOneProps<TQueryFnData, TError, TData> = {
  *
  * It uses `getOne` method as query function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-reference/core/hooks/data/useOne} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/data/hooks/useOne} for more details.
  *
  * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
@@ -107,7 +107,8 @@ export const useOne = <
     dataProviderName,
     overtimeOptions,
 }: UseOneProps<TQueryFnData, TError, TData>): QueryObserverResult<
-    GetOneResponse<TData>, TError
+    GetOneResponse<TData>,
+    TError
 > &
     UseLoadingOvertimeReturnType => {
     const { resources, resource, identifier } = useResource(resourceFromProp);

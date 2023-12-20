@@ -481,7 +481,7 @@ Refine implements a simple and transparent telemetry module for collecting usage
 
 ### redirect
 
-By default, Refine redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/core/hooks/use-form/#actions), set `redirect` as follows:
+By default, Refine redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/data/hooks/use-form/#actions), set `redirect` as follows:
 
 ```tsx title="App.tsx"
 const App = () => (

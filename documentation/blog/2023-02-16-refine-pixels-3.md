@@ -533,7 +533,7 @@ We will use the **Ant Design** [`<List />`](https://ant.design/components/list#l
 
 **2. `useSimpleList()` Hook**
 
-The `useSimpleList()` is a `@refinedev/antd` hook built on top of the low level [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) hook to fetch a resource collection. After fetching data according to the the value of the `resource` property, it prepares it according to the `listProps` of the **Ant Design**'s `<List />` component.
+The `useSimpleList()` is a `@refinedev/antd` hook built on top of the low level [`useList()`](https://refine.dev/docs/api-reference/data/hooks/useList/) hook to fetch a resource collection. After fetching data according to the the value of the `resource` property, it prepares it according to the `listProps` of the **Ant Design**'s `<List />` component.
 
 In our `<CanvasList />` component, we are passing the `listProps` props to `<List />` in order to show a list of canvases.
 
@@ -934,7 +934,7 @@ Notice the use of the `formProps.onFinish()` method on `<Form />`'s `onFinish` p
 
 Behind the scenes, `useModalForm()` ultimately calls the `useCreate()` data hook which fetches the data with the `dataProvider.create()` method.
 
-For details about how the `useCreate()` hook works, please refer to [this **refine** documentation](https://refine.dev/docs/api-reference/core/hooks/data/useCreate/).
+For details about how the `useCreate()` hook works, please refer to [this **refine** documentation](https://refine.dev/docs/api-reference/data/hooks/useCreate/).
 
 Notice also that we are passing the `redirect` property to the `useModalForm()` hook which specifies that we redirect to the `show` action of the resource. We'll come to this in the next section related to adding `show` action in our `canvases` resource.
 

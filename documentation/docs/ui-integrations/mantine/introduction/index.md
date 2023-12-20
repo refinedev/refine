@@ -50,7 +50,7 @@ import UsageRemix from "./previews/usage-remix.tsx";
 
 ## Tables
 
-Mantine offers styled [table primitives](https://v5.mantine.dev/core/table/) but lacks the table management solution. Refine recommends using [`@refinedev/react-table`](/docs/packages/list-of-packages) package which is built on top of Refine's [`useTable`](/docs/core/hooks/use-table) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Mantine uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
+Mantine offers styled [table primitives](https://v5.mantine.dev/core/table/) but lacks the table management solution. Refine recommends using [`@refinedev/react-table`](/docs/packages/list-of-packages) package which is built on top of Refine's [`useTable`](/docs/data/hooks/use-table) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Mantine uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
 
 ```tsx title="pages/products/list.tsx"
 import React from "react";
@@ -164,7 +164,7 @@ export const ProductCreate = () => {
 };
 ```
 
-`@refinedev/mantine` also offers hooks to implement different types of forms such as [`useModalForm`](/docs/ui-integrations/mantine/hooks/use-modal-form), [`useDrawerForm`](/docs/ui-integrations/mantine/hooks/use-drawer-form) and [`useStepsForm`](/docs/ui-integrations/mantine/hooks/use-steps-form) hooks. Additionally [`useSelect`](/docs/ui-integrations/mantine/hooks/use-select) hook is also provided to make it easier to implement form fields with relational data. The `useSelect` hook of `@refinedev/mantine` leverage the [`useSelect`](/docs/core/hooks/use-select) hook from the `@refinedev/core` package.
+`@refinedev/mantine` also offers hooks to implement different types of forms such as [`useModalForm`](/docs/ui-integrations/mantine/hooks/use-modal-form), [`useDrawerForm`](/docs/ui-integrations/mantine/hooks/use-drawer-form) and [`useStepsForm`](/docs/ui-integrations/mantine/hooks/use-steps-form) hooks. Additionally [`useSelect`](/docs/ui-integrations/mantine/hooks/use-select) hook is also provided to make it easier to implement form fields with relational data. The `useSelect` hook of `@refinedev/mantine` leverage the [`useSelect`](/docs/data/hooks/use-select) hook from the `@refinedev/core` package.
 
 ## Notifications
 

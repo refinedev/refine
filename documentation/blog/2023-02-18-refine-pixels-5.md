@@ -399,7 +399,7 @@ The components tree looks very plain, but there is plenty going on in there. Fir
 const { tableProps } = useTable<TUser>();
 ```
 
-`useTable()` is built on top of **refine** core's [`useMany()`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) data hook. `useMany()`, in turn, invokes the [`getMany()`](https://refine.dev/docs/data/data-provider/#getmany) data provider method.
+`useTable()` is built on top of **refine** core's [`useMany()`](https://refine.dev/docs/api-reference/data/hooks/useMany/) data hook. `useMany()`, in turn, invokes the [`getMany()`](https://refine.dev/docs/data/data-provider/#getmany) data provider method.
 
 Here, we did not need to set any configuration for our API request and the returned response. The `resource.name` was figured by `useTable` from the `resources` prop that was passed to `<Refine />`. It is possible to set options for **sorting**, **filtering**, **pagination**, etc. with an object passed to `useTable()`.
 

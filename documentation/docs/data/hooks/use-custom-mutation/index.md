@@ -9,11 +9,11 @@ It uses the `custom` method as the **mutation function** from the [`dataProvider
 
 :::caution Use Cases
 
-`useCustomMutation` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/core/hooks/data/use-create), [useUpdate](/docs/core/hooks/data/use-update) or [useDelete](/docs/core/hooks/data/use-delete).
+`useCustomMutation` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/data/hooks/use-create), [useUpdate](/docs/data/hooks/use-update) or [useDelete](/docs/data/hooks/use-delete).
 
 This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
-If you need to custom query request, use the [useCustom](/docs/core/hooks/data/use-custom) hook.
+If you need to custom query request, use the [useCustom](/docs/data/hooks/use-custom) hook.
 
 :::
 

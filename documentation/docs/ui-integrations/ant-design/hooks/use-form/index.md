@@ -110,7 +110,7 @@ const PostCreate = () => {
 };
 ```
 
-`useForm` is used to manage forms. It returns the necessary properties and methods to control the [Antd Form](https://ant.design/components/form/). It has been developed by using [`useForm`](/docs/core/hooks/use-form/) imported from the [@refinedev/core](https://github.com/refinedev/refine/tree/master/packages/core) package.
+`useForm` is used to manage forms. It returns the necessary properties and methods to control the [Antd Form](https://ant.design/components/form/). It has been developed by using [`useForm`](/docs/data/hooks/use-form/) imported from the [@refinedev/core](https://github.com/refinedev/refine/tree/master/packages/core) package.
 
 <GeneralConceptsLink />
 
@@ -198,7 +198,7 @@ values={[
 ]}>
 <TabItem value="create">
 
-`action: "create"` is used for creating new records. `useForm` uses [`useCreate`](/docs/core/hooks/data/use-create) under the hood for mutations on create mode.
+`action: "create"` is used for creating new records. `useForm` uses [`useCreate`](/docs/data/hooks/use-create) under the hood for mutations on create mode.
 
 In the following example, we will show how to use `useForm` with `action: "create"`:
 
@@ -271,7 +271,7 @@ render(<RefineAntdDemo />);
 
 `action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route but that can be changed with the `setId` function or `id` property.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/core/hooks/data/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/core/hooks/data/use-update).
+It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/data/hooks/use-update).
 
 In the following example, we will show how to use `useForm` with `action: "edit"`.
 
@@ -346,7 +346,7 @@ render(<RefineAntdDemo />);
 
 You can think `action:clone` like "save as". It is also similar to `action:edit` but it creates a new record instead of updating the existing one.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/core/hooks/data/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/core/hooks/data/use-create).
+It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/data/hooks/use-create).
 
 ```tsx live url=http://localhost:3000/clone/123 previewHeight=420px
 setInitialRoutes(["/posts/clone/123"]);
@@ -493,7 +493,7 @@ useForm({
 
 It receives the following parameters:
 
-- `data`: Returned value from [`useCreate`](/docs/core/hooks/data/use-create) or [`useUpdate`](/docs/core/hooks/data/use-update) depending on the `action`.
+- `data`: Returned value from [`useCreate`](/docs/data/hooks/use-create) or [`useUpdate`](/docs/data/hooks/use-update) depending on the `action`.
 - `variables`: The variables passed to the mutation.
 - `context`: react-query context.
 - `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
@@ -512,7 +512,7 @@ It's a callback function that will be called after a mutation fails.
 
 It receives the following parameters:
 
-- `data`: Returned value from [`useCreate`](/docs/core/hooks/data/use-create) or [`useUpdate`](/docs/core/hooks/data/use-update) depending on the `action`.
+- `data`: Returned value from [`useCreate`](/docs/data/hooks/use-create) or [`useUpdate`](/docs/data/hooks/use-update) depending on the `action`.
 - `variables`: The variables passed to the mutation.
 - `context`: react-query context.
 - `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
@@ -679,7 +679,7 @@ If you have overlapping properties in both `meta` and `mutationMeta`, the `mutat
 
 ### `queryOptions`
 
-In the `edit` and `clone` modes, Refine uses [`useOne`](/docs/core/hooks/data/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property. This property will only work in the `edit` and `clone` actions.
+In the `edit` and `clone` modes, Refine uses [`useOne`](/docs/data/hooks/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property. This property will only work in the `edit` and `clone` actions.
 
 ```tsx
 useForm({
@@ -691,7 +691,7 @@ useForm({
 
 ### `createMutationOptions`
 
-In the `create` and `clone` modes, Refine uses the [`useCreate`](/docs/core/hooks/data/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing the `createMutationOptions` property. This property will only work in the `create` and `clone` actions.
+In the `create` and `clone` modes, Refine uses the [`useCreate`](/docs/data/hooks/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing the `createMutationOptions` property. This property will only work in the `create` and `clone` actions.
 
 ```tsx
 useForm({
@@ -703,7 +703,7 @@ useForm({
 
 ### `updateMutationOptions`
 
-In the `edit` mode, Refine uses [`useUpdate`](/docs/core/hooks/data/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property. This property will only work in the `edit` action.
+In the `edit` mode, Refine uses [`useUpdate`](/docs/data/hooks/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property. This property will only work in the `edit` action.
 
 ```tsx
 useForm({
@@ -867,7 +867,7 @@ useForm({
 
 ## Return Values
 
-All [`Refine Core's useForm`](/docs/core/hooks/use-form/) return values also available in `useForm`.
+All [`Refine Core's useForm`](/docs/data/hooks/use-form/) return values also available in `useForm`.
 
 ### `form`
 
@@ -893,7 +893,7 @@ The `warnWhenUnsavedChanges` feature requires this function to work. If you want
 
 #### `initialValues`
 
-When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/docs/core/hooks/data/use-one) hook.
+When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/docs/data/hooks/use-one) hook.
 
 ### `saveButtonProps`
 
@@ -905,7 +905,7 @@ It contains all the props needed by the `"submit"` button within the form (disab
 
 ### `queryResult`
 
-If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/core/hooks/data/use-one) and set the returned values as the `queryResult` property.
+If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/data/hooks/use-one) and set the returned values as the `queryResult` property.
 
 ```tsx
 const { queryResult } = useForm();
@@ -915,7 +915,7 @@ const { data } = queryResult;
 
 ### `mutationResult`
 
-When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/core/hooks/data/use-create). When in `"edit"` mode, it will call [`useUpdate`](/docs/core/hooks/data/use-update) and set the resulting values as the `mutationResult` property.
+When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/data/hooks/use-create). When in `"edit"` mode, it will call [`useUpdate`](/docs/data/hooks/use-update) and set the resulting values as the `mutationResult` property.
 
 ```tsx
 const { mutationResult } = useForm();
@@ -943,7 +943,7 @@ return (
 
 ### `redirect`
 
-By default, after a successful mutation, `useForm` will redirect to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the `redirect` [property](/docs/core/hooks/use-form/#redirect) in the hook's options.
+By default, after a successful mutation, `useForm` will redirect to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the `redirect` [property](/docs/data/hooks/use-form/#redirect) in the hook's options.
 
 In the following example, we redirect to the `"show"` page after a successful mutation:
 
@@ -986,7 +986,7 @@ If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, 
 
 ### How can Invalidate other resources?
 
-You can invalidate other resources with help of [`useInvalidate`](/docs/core/hooks/data/use-invalidate) hook.
+You can invalidate other resources with help of [`useInvalidate`](/docs/data/hooks/use-invalidate) hook.
 
 It is useful when you want to `invalidate` other resources don't have relation with the current resource.
 

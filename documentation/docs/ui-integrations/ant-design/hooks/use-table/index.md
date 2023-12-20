@@ -10,7 +10,7 @@ import SearchPreview from "./\_partial-use-table-search-live-preview.md";
 import RelationalLivePreview from "./\_partial-use-table-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-By using `useTable`, you can get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch.
+By using `useTable`, you can get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/data/hooks/use-list) for the fetch.
 
 For all the other features, you can refer to the Ant Design [`<Table>`][table] documentation.
 
@@ -148,7 +148,7 @@ When the `useTable` hook is mounted, it will call the `subscribe` method from th
 <PropResource
 hook={{
     name:"useList",
-    URL:"/docs/api-reference/core/hooks/data/useList/"
+    URL:"/docs/api-reference/data/hooks/useList/"
 }}
 method={{
     name:"getList",
@@ -394,7 +394,7 @@ useTable({
 
 ### `queryOptions`
 
-`useTable` uses the [`useList`](/docs/core/hooks/data/use-list) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
+`useTable` uses the [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
 
 ```tsx
 useTable({
@@ -607,7 +607,7 @@ const { tableProps } = useTable()
 
 #### `dataSource`
 
-`dataSource` contains the data to be displayed in the table. Values fetched with [`useList`](/docs/core/hooks/data/use-list) hook.
+`dataSource` contains the data to be displayed in the table. Values fetched with [`useList`](/docs/data/hooks/use-list) hook.
 
 #### `loading`
 
@@ -675,7 +675,7 @@ const PostList: React.FC = () => {
 
 ### `tableQueryResult`
 
-`tableQueryResult` are the returned values from [`useList`](/docs/core/hooks/data/use-list) hook.
+`tableQueryResult` are the returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
 ### `sorters`
 
@@ -759,7 +759,7 @@ Use `setSorters` instead.
 
 ### How can I handle relational data?
 
-You can use the [`useMany`](/docs/core/hooks/data/use-many) hook to fetch relational data and filter `<Table>` by categories with the help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
+You can use the [`useMany`](/docs/data/hooks/use-many) hook to fetch relational data and filter `<Table>` by categories with the help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
 
 <RelationalLivePreview/>
 
@@ -870,7 +870,7 @@ const ListPage = () => {
 
 <CodeSandboxExample path="table-antd-use-table" />
 
-[use-table-core]: /docs/core/hooks/use-table
+[use-table-core]: /docs/data/hooks/use-table
 [table]: https://ant.design/components/table/#API
 [table-column]: https://ant.design/components/table#column
 [form]: https://ant.design/components/form/#API

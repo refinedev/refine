@@ -14,7 +14,7 @@ import CrudLivePreview from "./crud-live-preview.md";
 
 This hook uses the `useList` hook for fetching data.
 
-> For more information, refer to the [useList documentation &#8594](/docs/core/hooks/data/use-list)
+> For more information, refer to the [useList documentation &#8594](/docs/data/hooks/use-list)
 
 ## Usage
 
@@ -122,7 +122,7 @@ useSelect({
 });
 ```
 
-> For more information, refer to the [`useMany` documentation &#8594](/docs/core/hooks/data/use-many)
+> For more information, refer to the [`useMany` documentation &#8594](/docs/data/hooks/use-many)
 
 ### `debounce`
 
@@ -396,19 +396,19 @@ Use `pagination.mode` instead.
 
 ### How to add search to options (Autocomplete)?
 
-[`onSearch`](/docs/core/hooks/use-select#onsearch) is a function that is used to set the search value. It is useful when you want to search for a specific value. A simple example of this is shown below.
+[`onSearch`](/docs/data/hooks/use-select#onsearch) is a function that is used to set the search value. It is useful when you want to search for a specific value. A simple example of this is shown below.
 
 <OnSearchLivePreview />
 
 ### How to ensure `defaultValue` is included in the options?
 
-In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/core/hooks/data/use-many), gets the data and mark as selected.
+In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/data/hooks/use-many), gets the data and mark as selected.
 
 <DefaultValueLivePreview />
 
 ### How to change the `label` and `value` properties in options?
 
-[`optionLabel` and `optionValue`](/docs/core/hooks/use-select#optionlabel-and-optionvalue) are used to change the value of your options.
+[`optionLabel` and `optionValue`](/docs/data/hooks/use-select#optionlabel-and-optionvalue) are used to change the value of your options.
 The default values are `optionsLabel="title"` and `optionsValue="id"`.
 
 To change to `name` and `categoryId`;

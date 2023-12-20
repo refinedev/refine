@@ -96,7 +96,7 @@ render(<App />);
 
 - The `useResource` is hook is used to get current resource information and `resources` that are defined in `<Refine/>`.
 
-  > For more information, refer to the [`useShow`](/docs/core/hooks/use-show),[`useNavigation`](/docs/core/hooks/navigation/use-navigation) and [`useResource` documentations&#8594](/docs/core/hooks/navigation/use-resource)
+  > For more information, refer to the [`useShow`](/docs/data/hooks/use-show),[`useNavigation`](/docs/core/hooks/navigation/use-navigation) and [`useResource` documentations&#8594](/docs/core/hooks/navigation/use-resource)
 
 ### Handling Relationships
 
@@ -125,7 +125,7 @@ const { data: categoryData, isLoading: categoryIsLoading } = useOne({
 });
 ```
 
-> For more information, refer to the [`useOne` documentation&#8594](/docs/core/hooks/data/use-one)
+> For more information, refer to the [`useOne` documentation&#8594](/docs/data/hooks/use-one)
 
 ## Adding the Show Page to the App
 

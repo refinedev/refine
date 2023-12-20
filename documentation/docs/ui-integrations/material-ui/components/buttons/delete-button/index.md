@@ -5,7 +5,7 @@ swizzle: true
 
 `<DeleteButton>` uses Material UI's [`<LoadingButton>`](https://mui.com/material-ui/api/loading-button/#main-content) and [`<Dialog>`](https://mui.com/material-ui/react-dialog/) components.
 
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed, it executes the [`useDelete`](/docs/core/hooks/data/use-delete) method provided by your [`dataProvider`](/docs/data/data-provider).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed, it executes the [`useDelete`](/docs/data/hooks/use-delete) method provided by your [`dataProvider`](/docs/data/data-provider).
 
 :::simple Good to know
 
@@ -132,7 +132,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete) method and then the record whose resource is `post` and whose id is `1` gets deleted.
+Clicking the button will trigger the [`useDelete`](/docs/data/hooks/use-delete) method and then the record whose resource is `post` and whose id is `1` gets deleted.
 
 ### `resource`
 

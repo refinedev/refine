@@ -48,7 +48,7 @@ In `create` action, `useForm` will follow the flow below:
 After form is submitted:
 
 1. `useForm` calls `onFinish` function with the form values.
-2. `onFinish` function calls [`useCreate`](/docs/core/hooks/data/use-create) with the form values.
+2. `onFinish` function calls [`useCreate`](/docs/data/hooks/use-create) with the form values.
 3. `useCreate` calls [`dataProvider`](/docs/data/data-provider)'s `create` function and returns the response.
 4. `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 5. After a successful mutation, `useForm` will invalidate the queries specified in `invalidates` prop.
@@ -59,12 +59,12 @@ After form is submitted:
 
 In `edit` action, `useForm` will follow the flow below:
 
-When `useForm` is mounted, it calls [`useOne`](/docs/core/hooks/data/use-one) hook to retrieve the record to be edited. The `id` for the record is obtained from the props or the current route.
+When `useForm` is mounted, it calls [`useOne`](/docs/data/hooks/use-one) hook to retrieve the record to be edited. The `id` for the record is obtained from the props or the current route.
 
 After form is submitted:
 
 1.  `useForm` calls `onFinish` function with the form values.
-2.  `onFinish` function calls [`useUpdate`](/docs/core/hooks/data/use-update) with the form values.
+2.  `onFinish` function calls [`useUpdate`](/docs/data/hooks/use-update) with the form values.
 3.  If the mutation mode is `optimistic` or `undoable`, `useForm` will update the query cache with the form values immediately after the mutation is triggered.
 4.  If the mutation mode is `undoable`, `useForm` will display a notification with a countdown to undo the mutation.
 5.  `useUpdate` calls [`dataProvider`](/docs/data/data-provider)'s `update` function and returns the response.
@@ -76,12 +76,12 @@ After form is submitted:
 
 #### Clone
 
-When `useForm` is mounted, it calls [`useOne`](/docs/core/hooks/data/use-one) hook to retrieve the record to be cloned. The `id` for the record is obtained from the props or the current route.
+When `useForm` is mounted, it calls [`useOne`](/docs/data/hooks/use-one) hook to retrieve the record to be cloned. The `id` for the record is obtained from the props or the current route.
 
 After form is submitted:
 
 1.  `useForm` calls `onFinish` function with the form values.
-2.  `onFinish` function calls [`useCreate`](/docs/core/hooks/data/use-create) with the form values.
+2.  `onFinish` function calls [`useCreate`](/docs/data/hooks/use-create) with the form values.
 3.  `useUpdate` calls [`dataProvider`](/docs/data/data-provider)'s `update` function and returns the response.
 4.  `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 5.  After a successful mutation, `useForm` will invalidate the queries specified in `invalidates` prop.

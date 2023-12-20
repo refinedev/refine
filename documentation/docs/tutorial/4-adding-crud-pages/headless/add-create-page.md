@@ -113,7 +113,7 @@ const { options: categoryOptions } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect` documentation&#8594](/docs/core/hooks/use-select)
+> For more information, refer to the [`useSelect` documentation&#8594](/docs/data/hooks/use-select)
 
 ## Adding the Create Page to the App
 

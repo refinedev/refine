@@ -7,7 +7,7 @@ import BasicUsagePreview from "./\_partial-use-data-grid-basic-usage-live-previe
 import RelationalPreview from "./\_partial-use-data-grid-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch.
+By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/data/hooks/use-list) for the fetch.
 
 For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation
 
@@ -237,7 +237,7 @@ When the `useDataGrid` hook is mounted, it will call the `subscribe` method from
 <PropResource
 hook={{
     name:"useList",
-    URL:"/docs/api-reference/core/hooks/data/useList/"
+    URL:"/docs/api-reference/data/hooks/useList/"
 }}
 method={{
     name:"getList",
@@ -446,7 +446,7 @@ useDataGrid({
 
 ### `queryOptions`
 
-`useDataGrid` uses [`useList`](/docs/core/hooks/data/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useDataGrid` uses [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 useDataGrid({
@@ -708,11 +708,11 @@ The `onStateChange` callback is used internally by the `useDataGrid` hook. If yo
 
 #### `rows`
 
-Contains the data to be displayed in the data grid. Values fetched with [`useList`](/docs/core/hooks/data/use-list) hook.
+Contains the data to be displayed in the data grid. Values fetched with [`useList`](/docs/data/hooks/use-list) hook.
 
 #### `rowCount`
 
-Total number of data. Value fetched with [`useList`](/docs/core/hooks/data/use-list) hook.
+Total number of data. Value fetched with [`useList`](/docs/data/hooks/use-list) hook.
 
 #### `loading`
 
@@ -724,7 +724,7 @@ Returns pagination configuration values(pageSize, current, setCurrent, etc.).
 
 ### `tableQueryResult`
 
-Returned values from [`useList`](/docs/core/hooks/data/use-list) hook.
+Returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
 ### `sorters`
 
@@ -890,7 +890,7 @@ useDataGrid({
 
 <CodeSandboxExample path="table-material-ui-use-data-grid" />
 
-[use-table-core]: /docs/core/hooks/use-table
+[use-table-core]: /docs/data/hooks/use-table
 [syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
 [crudsorting]: /docs/core/interface-references#crudsorting
 [crudfilters]: /docs/core/interface-references#crudfilters

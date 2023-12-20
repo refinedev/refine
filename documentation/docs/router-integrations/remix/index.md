@@ -1018,12 +1018,12 @@ Default paths are:
 [remixrouter]: https://www.npmjs.com/package/@refinedev/remix-router
 [Refine]: /docs/core/refine-component
 [remixroutes]: https://remix.run/docs/en/v1/api/conventions#routes
-[usetable]: /docs/core/hooks/use-table
+[usetable]: /docs/data/hooks/use-table
 [reactqueryssr]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [reactquery]: https://react-query.tanstack.com/
 [getlist]: /docs/data/data-provider#getlist-
 [dataprovider]: /docs/data/data-provider
-[usetable]: /docs/core/hooks/use-table
+[usetable]: /docs/data/hooks/use-table
 [interfaces]: /docs/core/interface-references/#crudfilters
 [loaderfunction]: https://remix.run/docs/en/v1/api/conventions#loader
 [jokesapp]: https://remix.run/docs/en/v1/tutorials/jokes#authentication

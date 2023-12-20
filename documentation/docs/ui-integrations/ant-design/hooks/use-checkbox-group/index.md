@@ -61,7 +61,7 @@ All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.
 
 <Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useCheckboxGroup/basic.png" alt="Tags" />
 
-> For more information, refer to the [`useList` documentation &#8594](/docs/core/hooks/data/use-list)
+> For more information, refer to the [`useList` documentation &#8594](/docs/data/hooks/use-list)
 
 ## Options
 

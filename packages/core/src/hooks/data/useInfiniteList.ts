@@ -62,7 +62,7 @@ type BaseInfiniteListProps = {
     metaData?: MetaQuery;
     /**
      * Configuration for pagination, sorting and filtering
-     * @type [`useInfiniteListConfig`](/docs/api-reference/core/hooks/data/useInfiniteList/#config-parameters)
+     * @type [`useInfiniteListConfig`](/docs/api-reference/data/hooks/useInfiniteList/#config-parameters)
      * @deprecated `config` property is deprecated. Use `pagination`, `hasPagination`, `sorters` and `filters` instead.
      */
     config?: UseInfiniteListConfig;
@@ -116,7 +116,7 @@ export type UseInfiniteListProps<TQueryFnData, TError, TData> = {
  *
  * It uses the `getList` method as the query function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-reference/core/hooks/data/useInfiniteList} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/data/hooks/useInfiniteList} for more details.
  *
  * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}

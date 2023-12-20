@@ -67,7 +67,7 @@ import routerBindings from "@refinedev/react-router-v6";
 />;
 ```
 
-The code above shows a few of the props and their assigned objects. As can be inferred from this, rather than precisely being a component, [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) is largely a monolith of provider configurations backed by a context for each.  
+The code above shows a few of the props and their assigned objects. As can be inferred from this, rather than precisely being a component, [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) is largely a monolith of provider configurations backed by a context for each.
 Hence, inside [`dataProvider`](https://refine.dev/docs/tutorial/understanding-dataprovider/index/), we should have a standard set of methods for making API requests; inside [`authProvider`](https://refine.dev/docs/tutorial/understanding-authprovider/index/#what-is-auth-provider), we should have methods for dealing with authentication and authorization; inside [`routerProvider`](https://refine.dev/docs/packages/documentation/routers/), we should have methods for dealing with standard routing - both RESTful and non-RESTful, etc. And each of these providers should have their own set of conventions and type definitions.
 
 For example, a `dataProvider` object should have the following signature to which any definition of a data provider object should conform:
@@ -101,7 +101,7 @@ const { listProps } = useSimpleList<IClient>({
 });
 ```
 
-The above `useSimpleList()` hook is a `@refinedev/antd` UI hook that is built on top of the low level [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) data hook. Low level hooks, in turn, leverage **React Query** hooks in order to make API calls invoked from inside the provider methods. Here's an early sneak peek into the action under the hood:
+The above `useSimpleList()` hook is a `@refinedev/antd` UI hook that is built on top of the low level [`useList()`](https://refine.dev/docs/api-reference/data/hooks/useList/) data hook. Low level hooks, in turn, leverage **React Query** hooks in order to make API calls invoked from inside the provider methods. Here's an early sneak peek into the action under the hood:
 
 ```tsx title="Inside useList() hook"
 const queryResponse = useQuery<GetListResponse<TData>, TError>(

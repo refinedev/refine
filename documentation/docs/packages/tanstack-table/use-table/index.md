@@ -10,7 +10,7 @@ import FilteringLivePreview from "../examples/\_partial-filtering-live-preview.m
 import RelationalLivePreview from "../examples/\_partial-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-Refine offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-table][refine-react-table] that allows you to use the TanStack Table library with Refine. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch. Since it is designed as headless, It expects you to handle the UI.
+Refine offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-table][refine-react-table] that allows you to use the TanStack Table library with Refine. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/data/hooks/use-list) for the fetch. Since it is designed as headless, It expects you to handle the UI.
 
 All of [TanStack Table's][tanstack-table] features are supported and you can use all of the [TanStack Table's][tanstack-table] examples with no changes just copy and paste them into your project.
 
@@ -103,7 +103,7 @@ It also accepts all props of [TanStack Table](https://tanstack.com/table/v8/docs
 <PropResource
 hook={{
     name:"useList",
-    URL:"/docs/api-reference/core/hooks/data/useList/"
+    URL:"/docs/api-reference/data/hooks/useList/"
 }}
 method={{
     name:"getList",
@@ -340,7 +340,7 @@ useTable({
 
 ### `queryOptions`
 
-`useTable` uses [`useList`](/docs/core/hooks/data/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useTable` uses [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 useTable({
@@ -517,7 +517,7 @@ It also have all return values of [TanStack Table](https://tanstack.com/table/v8
 
 #### `tableQueryResult`
 
-Returned values from [`useList`](/docs/core/hooks/data/use-list) hook.
+Returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
 ### `sorters`
 
@@ -595,7 +595,7 @@ Use `setSorters` instead.
 
 ### How can I handle relational data?
 
-You can use [`useMany`](/docs/core/hooks/data/use-many) hook to fetch relational data.
+You can use [`useMany`](/docs/data/hooks/use-many) hook to fetch relational data.
 
 <RelationalLivePreview/>
 
@@ -645,7 +645,7 @@ useTable({
 
 | Property                     | Description                                                                                     | Type                                                               |
 | ---------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| refineCore                   | The return values of the [`useTable`][use-table-core] in the core                               | [`UseTableReturnValues`](/docs/core/hooks/use-table#return-values) |
+| refineCore                   | The return values of the [`useTable`][use-table-core] in the core                               | [`UseTableReturnValues`](/docs/data/hooks/use-table#return-values) |
 | Tanstack Table Return Values | See [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#table-api) documentation |
 
 ## Example
@@ -654,7 +654,7 @@ useTable({
 
 [tanstack-table]: https://tanstack.com/table/v8
 [refine-react-table]: https://github.com/refinedev/refine/tree/master/packages/react-table
-[use-table-core]: /docs/core/hooks/use-table
+[use-table-core]: /docs/data/hooks/use-table
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
 [syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams

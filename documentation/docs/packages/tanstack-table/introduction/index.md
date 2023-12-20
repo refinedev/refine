@@ -79,7 +79,7 @@ We provide implementation examples for the Mantine and Chakra UI. If you using a
 
 [tanstack-table]: https://tanstack.com/table/v8
 [refine-react-table]: https://github.com/refinedev/refine/tree/master/packages/react-table
-[use-table-core]: /docs/core/hooks/use-table
+[use-table-core]: /docs/data/hooks/use-table
 [use-table-tanstack]: /docs/packages/list-of-packages
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

@@ -1145,7 +1145,7 @@ const pageSizeOptions = [
 
 We used the `useTable` hook to fetch the data for the table. It makes a request to the `/posts` endpoint with the query parameters. The query parameters are used to filter, sort, and paginate the posts. Since we defined the posts resource in `src/App.tsx`, the `useTable` hook knows which endpoint to use for fetching the data.
 
-After fetching the data, we used the React95 table components to render the data. We also added delete button and edit button to each row. When the user clicks the delete button, we call the `deletePost` function with the `resource` and `id` parameters. The `deletePost` function is provided by the [`useDelete`](/docs/core/hooks/data/use-delete) hook. When the user clicks the edit button, we call the `edit` function with the "posts" resource and the post id to navigate to the edit page.
+After fetching the data, we used the React95 table components to render the data. We also added delete button and edit button to each row. When the user clicks the delete button, we call the `deletePost` function with the `resource` and `id` parameters. The `deletePost` function is provided by the [`useDelete`](/docs/data/hooks/use-delete) hook. When the user clicks the edit button, we call the `edit` function with the "posts" resource and the post id to navigate to the edit page.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/list-page.gif" alt="Refine List Page" className="border border-gray-200 rounded" />
 

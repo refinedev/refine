@@ -195,7 +195,7 @@ Highlighted lines are the ones the CLI generator automatically added to register
 
 With this configuration, Refine can now communicate with Supabase API and perform all required data service CRUD methods using data hooks.
 
-[Refer to documentation to learn more about how to use data hooks &#8594](/docs/core/hooks/data/use-create)
+[Refer to documentation to learn more about how to use data hooks &#8594](/docs/data/hooks/use-create)
 
 ## Understanding the Auth Provider
 
@@ -1455,7 +1455,7 @@ const { tableProps, sorter } = useTable<IUser>({
 
 `meta` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 
-Refine's [useMany](/docs/core/hooks/data/use-many) hook accepts `meta` property and uses `getMany` method of data provider.
+Refine's [useMany](/docs/data/hooks/use-many) hook accepts `meta` property and uses `getMany` method of data provider.
 
 ```tsx
 useMany({

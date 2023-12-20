@@ -5,7 +5,7 @@ swizzle: true
 
 `<DeleteButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) and [`<Popconfirm>`](https://ant.design/components/popconfirm/) components.
 
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/core/hooks/data/use-delete) method provided by your [`dataProvider`](/docs/data/data-provider).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/data/hooks/use-delete) method provided by your [`dataProvider`](/docs/data/data-provider).
 
 :::simple Good to know
 
@@ -105,7 +105,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete) method and then the record whose resource is "posts" and whose id is "123" will be deleted.
+Clicking the button will trigger the [`useDelete`](/docs/data/hooks/use-delete) method and then the record whose resource is "posts" and whose id is "123" will be deleted.
 
 ### `resource`
 
@@ -145,7 +145,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete) method and then the record whose resource is "categories" and whose id is "2" will be deleted.
+Clicking the button will trigger the [`useDelete`](/docs/data/hooks/use-delete) method and then the record whose resource is "categories" and whose id is "2" will be deleted.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 

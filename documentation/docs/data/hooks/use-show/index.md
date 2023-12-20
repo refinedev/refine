@@ -5,7 +5,7 @@ title: useShow
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-`useShow` is an extended version of [`useOne`](/docs/core/hooks/data/use-one) that supports all of its features and adds some more.
+`useShow` is an extended version of [`useOne`](/docs/data/hooks/use-one) that supports all of its features and adds some more.
 
 It is useful when you want to fetch a single record from the API. It will return the data and some functions to control the query.
 
@@ -30,7 +30,7 @@ When the `useShow` hook is mounted, it will call the `subscribe` method from the
 <PropResource
 hook={{
         name:"useOne",
-        URL:"/docs/core/hooks/data/use-one/"
+        URL:"/docs/data/hooks/use-one/"
     }}
 method={{
         name:"getOne",

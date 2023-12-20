@@ -10,7 +10,7 @@ import FilteringLivePreview from "./\_partial-filtering-live-preview.md";
 import RelationalDataLivePreview from "./\_partial-relational-data-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
+`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/docs/data/hooks/use-list) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
 
 :::simple Extended Versions
 
@@ -83,7 +83,7 @@ When the `useTable` hook is mounted, it will call the `subscribe` method from th
 <PropResource
 hook={{
     name:"useList",
-    URL:"/docs/api-reference/core/hooks/data/useList/"
+    URL:"/docs/api-reference/data/hooks/useList/"
 }}
 method={{
     name:"getList",
@@ -305,7 +305,7 @@ useTable({
 
 ### `queryOptions`
 
-`useTable` uses [`useList`](/docs/core/hooks/data/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useTable` uses [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 import { useTable } from "@refinedev/core";
@@ -500,7 +500,7 @@ Use `filters.defaultBehavior` instead.
 
 ### `tableQueryResult`
 
-Returned values from [`useList`](/docs/core/hooks/data/use-list) hook.
+Returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
 ### `sorters`
 
@@ -585,7 +585,7 @@ Use `setSorters` instead.
 
 ### How can I handle relational data?
 
-You can use [`useMany`](/docs/core/hooks/data/use-many) hook to fetch relational data.
+You can use [`useMany`](/docs/data/hooks/use-many) hook to fetch relational data.
 
 <RelationalDataLivePreview/>
 

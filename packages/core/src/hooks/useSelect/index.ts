@@ -75,7 +75,7 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
         GetListResponse<TData>
     >;
     /**
-     * Pagination option from [`useList()`](/docs/api-reference/core/hooks/data/useList/)
+     * Pagination option from [`useList()`](/docs/api-reference/data/hooks/useList/)
      * @type {  current?: number; pageSize?: number;}
      * @default `undefined`
      */
@@ -89,7 +89,7 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
         }
     >;
     /**
-     * Disabling pagination option from [`useList()`](/docs/api-reference/core/hooks/data/useList/)
+     * Disabling pagination option from [`useList()`](/docs/api-reference/data/hooks/useList/)
      * @type boolean
      * @default `false`
      * @deprecated `hasPagination` is deprecated, use `pagination.mode` instead.

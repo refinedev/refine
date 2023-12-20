@@ -426,7 +426,7 @@ const { data } = useList({
 });
 ```
 
-> [Refer to the useList documentation for more information. &#8594](/docs/core/hooks/data/use-list)
+> [Refer to the useList documentation for more information. &#8594](/docs/data/hooks/use-list)
 
 ### create
 
@@ -457,7 +457,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useCreate`](/docs/core/hooks/data/use-create#type-parameters) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useCreate`](/docs/data/hooks/use-create#type-parameters) to type `variables`
 
 :::
 
@@ -478,7 +478,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreate documentation for more information. &#8594](/docs/core/hooks/data/use-create)
+> [Refer to the useCreate documentation for more information. &#8594](/docs/data/hooks/use-create)
 
 ### update
 
@@ -510,7 +510,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/core/hooks/data/use-update#type-parameters) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/data/hooks/use-update#type-parameters) to type `variables`
 
 :::
 
@@ -530,7 +530,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdate documentation for more information. &#8594](/docs/core/hooks/data/use-update)
+> [Refer to the useUpdate documentation for more information. &#8594](/docs/data/hooks/use-update)
 
 ### deleteOne
 
@@ -564,7 +564,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useDelete`](/docs/core/hooks/data/use-delete) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useDelete`](/docs/data/hooks/use-delete) to type `variables`
 
 :::
 
@@ -580,7 +580,7 @@ const { mutate } = useDelete();
 mutate({ resource: "posts", id: 2 });
 ```
 
-> [Refer to the useDelete documentation for more information. &#8594](/docs/core/hooks/data/use-delete)
+> [Refer to the useDelete documentation for more information. &#8594](/docs/data/hooks/use-delete)
 
 ### getOne
 
@@ -619,7 +619,7 @@ import { useOne } from "@refinedev/core";
 const { data } = useOne({ resource: "posts", id: 1 });
 ```
 
-> [Refer to the useOne documentation for more information. &#8594](/docs/core/hooks/data/use-one)
+> [Refer to the useOne documentation for more information. &#8594](/docs/data/hooks/use-one)
 
 <br/>
 
@@ -645,7 +645,7 @@ import { useApiUrl } from "@refinedev/core";
 const { data } = useApiUrl();
 ```
 
-> [Refer to the useApiUrl documentation for more information. &#8594](/docs/core/hooks/data/use-api-url)
+> [Refer to the useApiUrl documentation for more information. &#8594](/docs/data/hooks/use-api-url)
 
 ### custom
 
@@ -735,7 +735,7 @@ const { data, isLoading } = useCustom({
 });
 ```
 
-> [Refer to the useCustom documentation for more information. &#8594](/docs/core/hooks/data/use-custom)
+> [Refer to the useCustom documentation for more information. &#8594](/docs/data/hooks/use-custom)
 
 ## Bulk Actions
 
@@ -778,7 +778,7 @@ import { useMany } from "@refinedev/core";
 const { data } = useMany({ resource: "posts", ids: [1, 2] });
 ```
 
-> [Refer to the useMany documentation for more information. &#8594](/docs/core/hooks/data/use-many)
+> [Refer to the useMany documentation for more information. &#8594](/docs/data/hooks/use-many)
 
 ### createMany
 
@@ -808,7 +808,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/core/hooks/data/use-create) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/data/hooks/use-create) to type `variables`
 
 :::
 
@@ -834,7 +834,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreateMany documentation for more information. &#8594](/docs/core/hooks/data/use-create)
+> [Refer to the useCreateMany documentation for more information. &#8594](/docs/data/hooks/use-create)
 
 ### deleteMany
 
@@ -865,7 +865,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useDeleteMany`](/docs/core/hooks/data/use-delete) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useDeleteMany`](/docs/data/hooks/use-delete) to type `variables`
 
 :::
 
@@ -884,7 +884,7 @@ mutate({
 });
 ```
 
-> [Refer to the useDeleteMany documentation for more information. &#8594](/docs/core/hooks/data/use-delete)
+> [Refer to the useDeleteMany documentation for more information. &#8594](/docs/data/hooks/use-delete)
 
 ### updateMany
 
@@ -919,7 +919,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdateMany documentation for more information. &#8594](/docs/core/hooks/data/use-update)
+> [Refer to the useUpdateMany documentation for more information. &#8594](/docs/data/hooks/use-update)
 
 ## meta usage
 

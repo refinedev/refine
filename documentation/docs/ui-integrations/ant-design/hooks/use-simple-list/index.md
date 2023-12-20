@@ -8,7 +8,7 @@ import SortingLivePreview from "./sorting-live-preview.md";
 import FilteringLivePreview from "./filtering-live-preview.md";
 import SearchLivePreview from "./search-live-preview.md";
 
-By using `useSimpleList`, you can get properties that are compatible with the Ant Design's [`<List>`](https://ant.design/components/list/) component. All features such as sorting, filtering, and pagination come out of the box. `useSimpleList` uses [`useTable`](/docs/core/hooks/use-table) under the hood for the fetch.
+By using `useSimpleList`, you can get properties that are compatible with the Ant Design's [`<List>`](https://ant.design/components/list/) component. All features such as sorting, filtering, and pagination come out of the box. `useSimpleList` uses [`useTable`](/docs/data/hooks/use-table) under the hood for the fetch.
 
 For all the other features, you can refer to the Ant Design's [`<List>`](https://ant.design/components/list/) documentation.
 
@@ -285,7 +285,7 @@ useSimpleList({
 
 ### `queryOptions`
 
-`useSimpleList` uses the [`useTable`](/docs/core/hooks/use-table) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
+`useSimpleList` uses the [`useTable`](/docs/data/hooks/use-table) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
 
 ```tsx
 useSimpleList({
@@ -531,7 +531,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### `queryResult`
 
-`queryResult` is the returned values from [`useList`](/docs/core/hooks/data/use-list) hook.
+`queryResult` is the returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
 ### `searchFormProps`
 
@@ -586,7 +586,7 @@ return (
 
 #### `dataSource`
 
-`dataSource` contains the data to be displayed in the list. Values are fetched with the [`useList`](/docs/core/hooks/data/use-list) hook.
+`dataSource` contains the data to be displayed in the list. Values are fetched with the [`useList`](/docs/data/hooks/use-list) hook.
 
 #### `loading`
 

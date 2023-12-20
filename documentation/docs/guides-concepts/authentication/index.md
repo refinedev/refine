@@ -292,4 +292,4 @@ To better understand the auth provider interface, we have created an example tha
 [use-forgot-password]: /docs/core/hooks/auth/use-forgot-password
 [use-update-password]: /docs/core/hooks/auth/use-update-password
 [create-auth-provider-tutorial]: /docs/tutorial/understanding-authprovider/create-authprovider
-[use-one]: /docs/core/hooks/data/use-one
+[use-one]: /docs/data/hooks/use-one

@@ -68,7 +68,7 @@ const dataProvider = {
 
 Refine offers hooks to help you with data fetching and mutations using the data provider's properties. For example, when you use the `useTable` or `useList` hook, it will call the `getList` method underneath the hood.
 
-Refer to the [`useTable`](https://refine.dev/docs/ui-frameworks/antd/hooks/table/useTable/) and [data hooks](https://refine.dev/docs/core/hooks/data/useCreate/) for more information.
+Refer to the [`useTable`](https://refine.dev/docs/ui-frameworks/antd/hooks/table/useTable/) and [data hooks](https://refine.dev/docs/data/hooks/useCreate/) for more information.
 
 For example, let's look at what happens when `useTable` is called.
 

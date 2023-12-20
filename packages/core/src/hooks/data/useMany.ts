@@ -77,7 +77,7 @@ export type UseManyProps<TQueryFnData, TError, TData> = {
  *
  * It uses `getMany` method as query function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-reference/core/hooks/data/useMany} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/data/hooks/useMany} for more details.
  *
  * @typeParam TQueryFnData - Result data returned by the query function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#httperror `HttpError`}
@@ -103,7 +103,8 @@ export const useMany = <
     dataProviderName,
     overtimeOptions,
 }: UseManyProps<TQueryFnData, TError, TData>): QueryObserverResult<
-    GetManyResponse<TData>, TError
+    GetManyResponse<TData>,
+    TError
 > &
     UseLoadingOvertimeReturnType => {
     const { resources, resource, identifier } = useResource(resourceFromProp);

@@ -607,10 +607,10 @@ export interface ICategory {
 // highlight-end
 ```
 
-Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the [`useMany()`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) **refine** hook.
+Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the [`useMany()`](https://refine.dev/docs/api-reference/data/hooks/useMany/) **refine** hook.
 
 The `useMany()` hook is a variant of the `react-query's` [useQuery()](https://tanstack.com/query/v4/docs/react/guides/queries?from=reactQueryV3&original=https%3A%2F%2Freact-query-v3.tanstack.com%2Fguides%2Fqueries) hook. it is used to obtain multiple items from a resource.
-To get more information about this hook, view its documentation [here](https://refine.dev/docs/api-reference/core/hooks/data/useMany/).
+To get more information about this hook, view its documentation [here](https://refine.dev/docs/api-reference/data/hooks/useMany/).
 
 Update the `<PostList />` component with the highlighted code below:
 

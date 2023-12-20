@@ -104,7 +104,7 @@ On the edit page, we may need to select a record from another resource.
 
 For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by Refine. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the `options` to be used in the `<select/>` component.
 
-> For more information, refer to the [`useSelect` documentation&#8594](/docs/core/hooks/use-select)
+> For more information, refer to the [`useSelect` documentation&#8594](/docs/data/hooks/use-select)
 
 In the auto-generated edit page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 
