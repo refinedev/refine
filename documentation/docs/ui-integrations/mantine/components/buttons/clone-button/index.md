@@ -45,7 +45,7 @@ const ClonePage = () => {
 };
 ```
 
-`<CloneButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `clone` method from [useNavigation](/docs/core/hooks/navigation/use-navigation) under the hood.
+`<CloneButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `clone` method from [useNavigation](/docs/routing/hooks/use-navigation) under the hood.
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
 :::simple Good to know
@@ -205,7 +205,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
 ### `resource`
 
@@ -248,11 +248,11 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
 ### `meta`
 
-It is used to pass additional parameters to the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation). By default, existing parameters in the route are used by the `clone` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+It is used to pass additional parameters to the `clone` method of [`useNavigation`](/docs/routing/hooks/use-navigation). By default, existing parameters in the route are used by the `clone` method. You can pass additional parameters or override the existing ones using the `meta` prop.
 
 If the `clone` action route is defined by the pattern: `/posts/:authorId/clone/:id`, the `meta` prop can be used as follows:
 

@@ -46,7 +46,7 @@ const EditPage = () => {
 };
 ```
 
-`<EditButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
+`<EditButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `edit` method from [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
@@ -269,7 +269,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/edit/2`.
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) and then redirect the app to `/categories/edit/2`.
 
 ### `hideText`
 

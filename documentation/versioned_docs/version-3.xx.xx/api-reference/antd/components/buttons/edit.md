@@ -4,7 +4,7 @@ title: Edit
 swizzle: true
 ---
 
-`<EditButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
+`<EditButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
@@ -104,7 +104,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/edit/1`.
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) and then redirect the app to `/posts/edit/1`.
 
 :::note
 `<EditButton>` component reads the id information from the route by default.
@@ -160,7 +160,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/edit/2`.
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) and then redirect the app to `/categories/edit/2`.
 
 ### `hideText`
 

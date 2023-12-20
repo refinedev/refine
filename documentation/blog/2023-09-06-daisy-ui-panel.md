@@ -2256,7 +2256,7 @@ Inside the React Table `columns` definition object, using the `cell` property we
 },
 ```
 
-Notice also, we are using the [`useNavigation()`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) core hook to pick the `show()` and `edit()` methods and use them inside the buttons to navigate to their respective routes:
+Notice also, we are using the [`useNavigation()`](https://refine.dev/docs/api-reference/routing/hooks/useNavigation/) core hook to pick the `show()` and `edit()` methods and use them inside the buttons to navigate to their respective routes:
 
 ```tsx
 const { edit, show, create } = useNavigation();

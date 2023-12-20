@@ -97,7 +97,7 @@ render(<App />);
 
 - The `useNavigation` hook is used for navigating between pages. In this case, we are using it to navigate to the `list` pages when the user clicks on the "Blog Posts List" buttons.
 
-  > For more information, refer to the [`useNavigation` documentation &#8594](/docs/core/hooks/navigation/use-navigation)
+  > For more information, refer to the [`useNavigation` documentation &#8594](/docs/routing/hooks/use-navigation)
 
 ### Handling Relationships
 

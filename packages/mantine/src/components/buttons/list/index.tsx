@@ -23,7 +23,7 @@ import { ListButtonProps } from "../types";
 
 /**
  * `<ListButton>` is using uses Mantine {@link https://mantine.dev/core/button `<Button> `} component.
- * It uses the  {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
+ * It uses the  {@link https://refine.dev/docs/api-reference/routing/hooks/useNavigation#list `list`} method from {@link https://refine.dev/docs/api-reference/routing/hooks/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the list page route of resource}.
  *
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/list-button} for more details.

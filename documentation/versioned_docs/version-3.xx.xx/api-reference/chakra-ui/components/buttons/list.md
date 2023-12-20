@@ -24,7 +24,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<ListButton>` is using Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
+`<ListButton>` is using Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `list` method from [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
@@ -175,7 +175,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
+Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) and then redirect to `/categories`.
 
 ### `hideText`
 

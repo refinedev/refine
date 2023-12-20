@@ -46,7 +46,7 @@ const ClonePage = () => {
 };
 ```
 
-`<CloneButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `clone` method from [useNavigation](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
+`<CloneButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `clone` method from [useNavigation](/api-reference/routing/hooks/useNavigation.md) under the hood.
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
 :::info-tip Swizzle
@@ -224,7 +224,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/clone/123`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) and then redirect the app to `/posts/clone/123`.
 
 :::note
 **`<CloneButton>`** component reads the id information from the route by default.
@@ -277,7 +277,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/clone/2`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) and then redirect the app to `/categories/clone/2`.
 
 ### `hideText`
 

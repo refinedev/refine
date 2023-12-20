@@ -964,7 +964,7 @@ export default function UserList() {
 }
 ```
 
-The `<EditButton>` component uses Ant's `Button` component and refine's [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook under the hood. It displays an edit icon with the functionality of redirecting users to the edit page of a record, whose `id` is passed to the `recordItemId` prop of the component, when clicked on.
+The `<EditButton>` component uses Ant's `Button` component and refine's [`useNavigation`](https://refine.dev/docs/api-reference/routing/hooks/useNavigation/) hook under the hood. It displays an edit icon with the functionality of redirecting users to the edit page of a record, whose `id` is passed to the `recordItemId` prop of the component, when clicked on.
 
 Refer to the `<EditButton>` [documentation](https://refine.dev/docs/api-reference/antd/components/buttons/edit-button/) to learn more about the component.
 

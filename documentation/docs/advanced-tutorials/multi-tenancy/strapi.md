@@ -306,7 +306,7 @@ const App: React.FC = () => {
 
 ## Using the `tenant` at the other components
 
-You may want to get the `tenant` within the project. This is easily get with the [`useParsed`](/docs/core/hooks/navigation/use-parsed) hook.
+You may want to get the `tenant` within the project. This is easily get with the [`useParsed`](/docs/routing/hooks/use-parsed) hook.
 
 ```tsx
 import { useParsed } from "@refinedev/core";
@@ -706,7 +706,7 @@ In this guide and in our example app, we talked about how we can build multitena
 
 :::note Demo Credentials
 
-Email: `demo@refine.dev`  
+Email: `demo@refine.dev`
 Password: `demodemo`
 
 :::

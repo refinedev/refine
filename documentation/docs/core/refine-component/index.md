@@ -98,7 +98,7 @@ const App = () => (
 
 :::simple Accessing the Resource
 
-You can use [useResource](/docs/core/hooks/navigation/use-resource) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
+You can use [useResource](/docs/routing/hooks/use-resource) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
 
 :::
 
@@ -214,7 +214,7 @@ There's also a third option, which is to pass an object with the `component` and
 
 ### meta
 
-`meta` can have any kind of property. It is used to store additional information about the resource. This property you pass can be received from the [useResource](/docs/core/hooks/navigation/use-resource). Listed below are the properties that are used by Refine or its libraries.
+`meta` can have any kind of property. It is used to store additional information about the resource. This property you pass can be received from the [useResource](/docs/routing/hooks/use-resource). Listed below are the properties that are used by Refine or its libraries.
 
 #### label
 

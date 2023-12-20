@@ -17,7 +17,7 @@ export type HistoryType = "push" | "replace";
  *
  * @internal This is an internal hook of refine. Do not use it directly.
  *
- * @see {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/routing/hooks/useNavigation} for more details.
  */
 export const useNavigation = () => {
     const { resources } = useResource();

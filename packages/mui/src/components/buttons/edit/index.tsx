@@ -21,7 +21,7 @@ import { EditButtonProps } from "../types";
 
 /**
  * `<EditButton>` uses uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.
- * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
+ * It uses the {@link https://refine.dev/docs/api-reference/routing/hooks/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/api-reference/routing/hooks/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the edit page with the record id route of resource}.
  *
  * @see {@link https://refine.dev/docs/api-reference/mui/components/buttons/edit-button} for more details.

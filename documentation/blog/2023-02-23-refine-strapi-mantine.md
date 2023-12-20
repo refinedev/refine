@@ -369,7 +369,7 @@ export default App;
 
 **In the code above:**
 
-We defined the `resources` property of the `<Refine />` component. It just defines the routes for the CRUD pages. The routes are used by **refine** hooks and components. For example, the [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook uses the `list`, `create`, `edit`, and `show` routes to navigate between the pages. Also, data hooks like [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) use the resource name when you don't pass the `resource` prop.
+We defined the `resources` property of the `<Refine />` component. It just defines the routes for the CRUD pages. The routes are used by **refine** hooks and components. For example, the [`useNavigation`](https://refine.dev/docs/api-reference/routing/hooks/useNavigation/) hook uses the `list`, `create`, `edit`, and `show` routes to navigate between the pages. Also, data hooks like [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) use the resource name when you don't pass the `resource` prop.
 
 You can refer to the [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) component documentation for more information on the available props.
 

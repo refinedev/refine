@@ -20,7 +20,7 @@ import { CloneButtonProps } from "../types";
 
 /**
  * `<CloneButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> component`}.
- * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#clone `clone`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation useNavigation} under the hood.
+ * It uses the {@link https://refine.dev/docs/api-reference/routing/hooks/useNavigation#clone `clone`} method from {@link https://refine.dev/docs/api-reference/routing/hooks/useNavigation useNavigation} under the hood.
  * It can be useful when redirecting the app to the create page with the record id route of resource.
  *
  * @see {@link https://refine.dev/docs/api-reference/chakra-ui/components/buttons/clone-button} for more details.

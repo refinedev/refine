@@ -892,7 +892,7 @@ import { useDataGrid, DataGrid, GridColumns, List, Stack, EditButton } from "@re
 
 The `EditButton` component uses refine’s `useNavigation` hook under the hood to redirect users to the edit page of resources.
 
-Refer to the documentation to learn more about the [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook.
+Refer to the documentation to learn more about the [`useNavigation`](https://refine.dev/docs/api-reference/routing/hooks/useNavigation/) hook.
 
 Next, add a fourth object to the `columns` array with the following properties:
 

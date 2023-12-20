@@ -4,7 +4,7 @@ title: Create
 swizzle: true
 ---
 
-`<CreateButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
+`<CreateButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `create` method from [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
@@ -104,7 +104,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `create` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/create`.
+Clicking the button will trigger the `create` method of [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) and then redirect to `/posts/create`.
 
 ### `hideText`
 

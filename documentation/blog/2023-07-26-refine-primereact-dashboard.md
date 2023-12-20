@@ -1026,7 +1026,7 @@ export default App;
 
 </details>
 
-The resource definition above don't create any CRUD pages. It just defines the routes for the CRUD pages. The routes are used by **refine** hooks and components. For example, the [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook uses the `list`, `create`, `edit`, and `show` routes to navigate between the pages. Also, data hooks like [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) use the resource name when you don't pass the `resource` prop.
+The resource definition above don't create any CRUD pages. It just defines the routes for the CRUD pages. The routes are used by **refine** hooks and components. For example, the [`useNavigation`](https://refine.dev/docs/api-reference/routing/hooks/useNavigation/) hook uses the `list`, `create`, `edit`, and `show` routes to navigate between the pages. Also, data hooks like [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) use the resource name when you don't pass the `resource` prop.
 
 You can find more information about [resources](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) on the **refine** documentation.
 

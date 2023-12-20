@@ -340,7 +340,7 @@ export const PostCreate: React.FC = () => {
 ```
 
 :::tip
-We used the `redirect` method to perform the redirection, which returns from [`useForm`](/docs/3.xx.xx/api-reference/core/hooks/useForm) instead of [`useNavigation`](/docs/3.xx.xx/api-reference/core/hooks/navigation/useNavigation) Thus, we can do our routing without dealing with managing resources.
+We used the `redirect` method to perform the redirection, which returns from [`useForm`](/docs/3.xx.xx/api-reference/core/hooks/useForm) instead of [`useNavigation`](/docs/3.xx.xx/api-reference/routing/hooks/useNavigation) Thus, we can do our routing without dealing with managing resources.
 :::
 
 ## Example

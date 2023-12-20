@@ -71,7 +71,7 @@ We will go through the list page hooks one by one.
 
 - `useNavigation` is a **refine** hook that is used to navigate between pages. In this case, we are using it to navigate to the `edit` and `show` pages when the user clicks on the edit and show buttons in the table.
 
-  [Refer to the `useNavigation` documentation for more information &#8594](/docs/3.xx.xx/api-reference/core/hooks/navigation/useNavigation/)
+  [Refer to the `useNavigation` documentation for more information &#8594](/docs/3.xx.xx/api-reference/routing/hooks/useNavigation/)
 
 ### Handling Relationships
 

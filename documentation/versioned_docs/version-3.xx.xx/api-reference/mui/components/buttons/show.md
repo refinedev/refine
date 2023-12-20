@@ -4,7 +4,7 @@ title: Show
 swizzle: true
 ---
 
-`<ShowButton>` uses Material UI [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
+`<ShowButton>` uses Material UI [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
@@ -110,7 +110,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/show/1`.
+Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) and then redirect the app to `/posts/show/1`.
 
 :::note
 `<ShowButton>` component reads the id information from the route by default.
@@ -160,7 +160,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/2`.
+Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/routing/hooks/useNavigation.md) and then redirect the app to `/categories/show/2`.
 
 ### `hideText`
 

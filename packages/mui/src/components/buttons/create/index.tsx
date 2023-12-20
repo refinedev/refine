@@ -21,7 +21,7 @@ import { CreateButtonProps } from "../types";
 
 /**
  * <CreateButton> uses Material UI {@link https://mui.com/components/buttons/ `<Button> component`}.
- * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#create `create`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
+ * It uses the {@link https://refine.dev/docs/api-reference/routing/hooks/useNavigation#create `create`} method from {@link https://refine.dev/docs/api-reference/routing/hooks/useNavigation `useNavigation`} under the hood.
  * It can be useful to redirect the app to the create page route of resource}.
  *
  * @see {@link https://refine.dev/docs/api-reference/mui/components/buttons/create-button} for more details.

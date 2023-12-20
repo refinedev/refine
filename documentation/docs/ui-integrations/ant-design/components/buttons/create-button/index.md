@@ -3,7 +3,7 @@ title: Create
 swizzle: true
 ---
 
-`<CreateButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component and the `create` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood.
+`<CreateButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component and the `create` method from [`useNavigation`](/docs/routing/hooks/use-navigation) under the hood.
 
 It can be useful when redirecting the app to the create page route of resource.
 
@@ -111,7 +111,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `create` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `create` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `create` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `create` action path of the resource, filling the necessary parameters in the route.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
@@ -119,7 +119,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `meta`
 
-It is used to pass additional parameters to the `create` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation). By default, existing parameters in the route are used by the `create` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+It is used to pass additional parameters to the `create` method of [`useNavigation`](/docs/routing/hooks/use-navigation). By default, existing parameters in the route are used by the `create` method. You can pass additional parameters or override the existing ones using the `meta` prop.
 
 If the `create` action route is defined by the pattern: `/posts/:authorId/create`, the `meta` prop can be used as follows:
 
