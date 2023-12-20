@@ -68,3 +68,13 @@ export type DashboardLatestActivitiesAuditsQuery = {
         >;
     };
 };
+
+export type DashboardTotalCountsQueryVariables = Types.Exact<{
+    [key: string]: never;
+}>;
+
+export type DashboardTotalCountsQuery = {
+    companies: Pick<Types.CompanyConnection, "totalCount">;
+    contacts: Pick<Types.ContactConnection, "totalCount">;
+    deals: Pick<Types.DealConnection, "totalCount">;
+};
