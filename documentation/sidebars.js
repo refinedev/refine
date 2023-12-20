@@ -335,7 +335,7 @@ module.exports = {
         // Router
         {
             type: "category",
-            label: "Router",
+            label: "Routing",
             className: "category-as-header",
             items: [
                 "core/providers/router-provider/index",
@@ -351,6 +351,7 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    collapsible: false,
                     label: "Hooks",
                     items: [
                         "core/hooks/navigation/use-resource/index",
