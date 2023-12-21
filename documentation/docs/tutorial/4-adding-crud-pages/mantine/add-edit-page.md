@@ -98,7 +98,7 @@ render(<App />);
 
 - The `useForm` hook is imported from `@refinedev/mantine` package and has been developed by using the **Mantine** `useForm` hook and `@refinedev/core` `useForm` hook. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
 
-  > For more information, refer to the [`useForm`&#8594](/docs/ui-integrations/mantine/hooks/form/use-form/) and [**Mantine** documentations&#8594](https://mantine.dev/form/use-form/)
+  > For more information, refer to the [`useForm`&#8594](/docs/ui-integrations/mantine/hooks/use-form/) and [**Mantine** documentations&#8594](https://mantine.dev/form/use-form/)
 
 - All other components provided by **Mantine** are used to display the form fields.
 
