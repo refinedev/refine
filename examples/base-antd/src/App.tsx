@@ -1,14 +1,4 @@
-import {
-    BaseRecord,
-    DataProvider,
-    GetListParams,
-    GetListResponse,
-    GitHubBanner,
-    Refine,
-    useList,
-    useOne,
-    useUpdate,
-} from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     useNotificationProvider,
     ThemedLayoutV2,
@@ -31,21 +21,6 @@ import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const { mutate } = useUpdate({
-        mutationOptions: {
-            mutationKey: ["posts"],
-        },
-    });
-    useOne({
-        queryOptions: {
-            queryFn: async () => {
-                return Promise.reject("error");
-            },
-            onSuccess(data) {
-                console.log(data);
-            },
-        },
-    });
     return (
         <DevtoolsProvider>
             <BrowserRouter>
