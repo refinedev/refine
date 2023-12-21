@@ -10,7 +10,7 @@ import SearchPreview from "./\_partial-use-table-search-live-preview.md";
 import RelationalLivePreview from "./\_partial-use-table-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-By using `useTable`, you can get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch.
+By using `useTable`, you can get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/data/hooks/use-list) for the fetch.
 
 For all the other features, you can refer to the Ant Design [`<Table>`][table] documentation.
 
@@ -135,11 +135,11 @@ We can use the [`onSearch`](#onsearch) and [`searchFormProps`](#searchformprops)
 
 ## Realtime Updates
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/realtime/live-provider)
 
 ## Properties
 
@@ -394,7 +394,7 @@ useTable({
 
 ### `queryOptions`
 
-`useTable` uses the [`useList`](/docs/core/hooks/data/use-list) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
+`useTable` uses the [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
 
 ```tsx
 useTable({
@@ -454,7 +454,7 @@ const myDataProvider = {
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -472,7 +472,7 @@ useTable({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
@@ -490,11 +490,11 @@ useTable({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 `liveMode` determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
-> For more information, refer to the [Live / Realtime documentation &#8594](/docs/core/providers/live-provider#livemode)
+> For more information, refer to the [Live / Realtime documentation &#8594](/docs/realtime/live-provider#livemode)
 
 ```tsx
 useTable({
@@ -504,7 +504,7 @@ useTable({
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -518,9 +518,9 @@ useTable({
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
-Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
 
 ### `overtimeOptions`
 
@@ -607,7 +607,7 @@ const { tableProps } = useTable()
 
 #### `dataSource`
 
-`dataSource` contains the data to be displayed in the table. Values fetched with [`useList`](/docs/core/hooks/data/use-list) hook.
+`dataSource` contains the data to be displayed in the table. Values fetched with [`useList`](/docs/data/hooks/use-list) hook.
 
 #### `loading`
 
@@ -675,7 +675,7 @@ const PostList: React.FC = () => {
 
 ### `tableQueryResult`
 
-`tableQueryResult` are the returned values from [`useList`](/docs/core/hooks/data/use-list) hook.
+`tableQueryResult` are the returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
 ### `sorters`
 
@@ -759,7 +759,7 @@ Use `setSorters` instead.
 
 ### How can I handle relational data?
 
-You can use the [`useMany`](/docs/core/hooks/data/use-many) hook to fetch relational data and filter `<Table>` by categories with the help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
+You can use the [`useMany`](/docs/data/hooks/use-many) hook to fetch relational data and filter `<Table>` by categories with the help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
 
 <RelationalLivePreview/>
 
@@ -870,7 +870,7 @@ const ListPage = () => {
 
 <CodeSandboxExample path="table-antd-use-table" />
 
-[use-table-core]: /docs/core/hooks/use-table
+[use-table-core]: /docs/data/hooks/use-table
 [table]: https://ant.design/components/table/#API
 [table-column]: https://ant.design/components/table#column
 [form]: https://ant.design/components/form/#API
@@ -883,4 +883,4 @@ const ListPage = () => {
 [Refine swl]: /docs/core/refine-component#syncwithlocation
 [filter-dropdown]: /docs/ui-integrations/ant-design/components/filter-dropdown
 [syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
-[notification-provider]: /docs/core/providers/notification-provider
+[notification-provider]: /docs/notification/notification-provider

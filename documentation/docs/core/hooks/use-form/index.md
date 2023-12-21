@@ -48,44 +48,44 @@ In `create` action, `useForm` will follow the flow below:
 After form is submitted:
 
 1. `useForm` calls `onFinish` function with the form values.
-2. `onFinish` function calls [`useCreate`](/docs/core/hooks/data/use-create) with the form values.
-3. `useCreate` calls [`dataProvider`](/docs/core/providers/data-provider)'s `create` function and returns the response.
+2. `onFinish` function calls [`useCreate`](/docs/data/hooks/use-create) with the form values.
+3. `useCreate` calls [`dataProvider`](/docs/data/data-provider)'s `create` function and returns the response.
 4. `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 5. After a successful mutation, `useForm` will invalidate the queries specified in `invalidates` prop.
-6. `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/core/providers/notification-provider) to inform the user.
+6. `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/notification/notification-provider) to inform the user.
 7. `useForm` redirects to the `list` page.
 
 #### Edit
 
 In `edit` action, `useForm` will follow the flow below:
 
-When `useForm` is mounted, it calls [`useOne`](/docs/core/hooks/data/use-one) hook to retrieve the record to be edited. The `id` for the record is obtained from the props or the current route.
+When `useForm` is mounted, it calls [`useOne`](/docs/data/hooks/use-one) hook to retrieve the record to be edited. The `id` for the record is obtained from the props or the current route.
 
 After form is submitted:
 
 1.  `useForm` calls `onFinish` function with the form values.
-2.  `onFinish` function calls [`useUpdate`](/docs/core/hooks/data/use-update) with the form values.
+2.  `onFinish` function calls [`useUpdate`](/docs/data/hooks/use-update) with the form values.
 3.  If the mutation mode is `optimistic` or `undoable`, `useForm` will update the query cache with the form values immediately after the mutation is triggered.
 4.  If the mutation mode is `undoable`, `useForm` will display a notification with a countdown to undo the mutation.
-5.  `useUpdate` calls [`dataProvider`](/docs/core/providers/data-provider)'s `update` function and returns the response.
+5.  `useUpdate` calls [`dataProvider`](/docs/data/data-provider)'s `update` function and returns the response.
 6.  `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 7.  If the mutation fails, `useForm` will revert the query cache to the previous values made in step 3.
 8.  After a successful mutation, `useForm` will invalidate the queries specified in `invalidates` prop.
-9.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/core/providers/notification-provider) to inform the user.
+9.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/notification/notification-provider) to inform the user.
 10. `useForm` redirects to the `list` page.
 
 #### Clone
 
-When `useForm` is mounted, it calls [`useOne`](/docs/core/hooks/data/use-one) hook to retrieve the record to be cloned. The `id` for the record is obtained from the props or the current route.
+When `useForm` is mounted, it calls [`useOne`](/docs/data/hooks/use-one) hook to retrieve the record to be cloned. The `id` for the record is obtained from the props or the current route.
 
 After form is submitted:
 
 1.  `useForm` calls `onFinish` function with the form values.
-2.  `onFinish` function calls [`useCreate`](/docs/core/hooks/data/use-create) with the form values.
-3.  `useUpdate` calls [`dataProvider`](/docs/core/providers/data-provider)'s `update` function and returns the response.
+2.  `onFinish` function calls [`useCreate`](/docs/data/hooks/use-create) with the form values.
+3.  `useUpdate` calls [`dataProvider`](/docs/data/data-provider)'s `update` function and returns the response.
 4.  `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 5.  After a successful mutation, `useForm` will invalidate the queries specified in `invalidates` prop.
-6.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/core/providers/notification-provider) to inform the user.
+6.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/notification/notification-provider) to inform the user.
 7.  `useForm` redirects to the `list` page.
 
 ### resource <GuideBadge id="guides-concepts/general-concepts" /> <RouterBadge />
@@ -182,7 +182,7 @@ useForm({ mutationMode: "optimistic" });
 
 ### successNotification <GuideBadge id="guides-concepts/forms#notifications" />
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 Customization options for the notification that will be shown after a successful mutation.
 
@@ -202,7 +202,7 @@ useForm({
 
 ### errorNotification <GuideBadge id="guides-concepts/forms#notifications" />
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 Customization options for the notification that will be shown after a failed mutation.
 
@@ -276,7 +276,7 @@ useForm({
 
 ### liveMode <GuideBadge id="guides-concepts/realtime" />
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 Behavior of how to handle received real-time updates, can be `auto`, `manual` or `off`. By default, `auto` or whatever is defined in the Refine's global options.
 

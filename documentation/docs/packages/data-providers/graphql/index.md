@@ -115,20 +115,20 @@ In order to create a GraphQL query, our [`dataProvider`][data-provider] has to t
 
 Hooks and components that support `meta`:
 
-| Supported data hooks                                       | Supported other hooks                                                                  | Supported components                                                                         |
-| ---------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/docs/core/hooks/data/use-update)     | [`useForm` &#8594](/docs/core/hooks/use-form)                                          | [`DeleteButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/delete-button)   |
-| [`useUpdateMany` &#8594](/docs/core/hooks/data/use-update) | [`useModalForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-modal-form)         | [`RefreshButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/refresh-button) |
-| [`useDelete` &#8594](/docs/core/hooks/data/use-delete)     | [`useDrawerForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-drawer-form)       |                                                                                              |
-| [`useDeleteMany` &#8594](/docs/core/hooks/data/use-delete) | [`useStepsForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-steps-form)         |                                                                                              |
-| [`useCreate` &#8594](/docs/core/hooks/data/use-create)     | [`useTable` &#8594](/docs/core/hooks/use-table)                                        |                                                                                              |
-| [`useCreateMany` &#8594](/docs/core/hooks/data/use-create) | [`useEditableTable` &#8594](/docs/ui-integrations/ant-design/hooks/use-editable-table) |                                                                                              |
-| [`useList` &#8594](/docs/core/hooks/data/use-list)         | [`useSimpleList` &#8594](/docs/ui-integrations/ant-design/hooks/use-simple-list)       |                                                                                              |
-| [`useOne` &#8594](/docs/core/hooks/data/use-one)           | [`useShow` &#8594](/docs/core/hooks/use-show)                                          |                                                                                              |
-| [`useMany` &#8594](/docs/core/hooks/data/use-many)         | [`useExport` &#8594](/docs/core/hooks/utilities/use-export)                            |                                                                                              |
-| [`useCustom` &#8594](/docs/core/hooks/data/use-custom)     | [`useCheckboxGroup` &#8594](/docs/ui-integrations/ant-design/hooks/use-checkbox-group) |                                                                                              |
-|                                                            | [`useSelect` &#8594](/docs/core/hooks/use-select)                                      |                                                                                              |
-|                                                            | [`useRadioGroup` &#8594](/docs/ui-integrations/ant-design/hooks/use-radio-group)       |                                                                                              |
+| Supported data hooks                                  | Supported other hooks                                                                  | Supported components                                                                         |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| [`useUpdate` &#8594](/docs/data/hooks/use-update)     | [`useForm` &#8594](/docs/data/hooks/use-form)                                          | [`DeleteButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/delete-button)   |
+| [`useUpdateMany` &#8594](/docs/data/hooks/use-update) | [`useModalForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-modal-form)         | [`RefreshButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/refresh-button) |
+| [`useDelete` &#8594](/docs/data/hooks/use-delete)     | [`useDrawerForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-drawer-form)       |                                                                                              |
+| [`useDeleteMany` &#8594](/docs/data/hooks/use-delete) | [`useStepsForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-steps-form)         |                                                                                              |
+| [`useCreate` &#8594](/docs/data/hooks/use-create)     | [`useTable` &#8594](/docs/data/hooks/use-table)                                        |                                                                                              |
+| [`useCreateMany` &#8594](/docs/data/hooks/use-create) | [`useEditableTable` &#8594](/docs/ui-integrations/ant-design/hooks/use-editable-table) |                                                                                              |
+| [`useList` &#8594](/docs/data/hooks/use-list)         | [`useSimpleList` &#8594](/docs/ui-integrations/ant-design/hooks/use-simple-list)       |                                                                                              |
+| [`useOne` &#8594](/docs/data/hooks/use-one)           | [`useShow` &#8594](/docs/data/hooks/use-show)                                          |                                                                                              |
+| [`useMany` &#8594](/docs/data/hooks/use-many)         | [`useExport` &#8594](/docs/core/hooks/utilities/use-export)                            |                                                                                              |
+| [`useCustom` &#8594](/docs/data/hooks/use-custom)     | [`useCheckboxGroup` &#8594](/docs/ui-integrations/ant-design/hooks/use-checkbox-group) |                                                                                              |
+|                                                       | [`useSelect` &#8594](/docs/data/hooks/use-select)                                      |                                                                                              |
+|                                                       | [`useRadioGroup` &#8594](/docs/ui-integrations/ant-design/hooks/use-radio-group)       |                                                                                              |
 
 ## Usage with Inferencer
 
@@ -140,4 +140,4 @@ You can also use `@refinedev/inferencer` package to generate sample codes for yo
 
 <CodeSandboxExample path="data-provider-strapi-graphql" />
 
-[data-provider]: /docs/core/providers/data-provider
+[data-provider]: /docs/data/data-provider

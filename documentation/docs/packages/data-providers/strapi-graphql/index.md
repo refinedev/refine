@@ -14,7 +14,7 @@ const client = new GraphQLClient(API_URL);
 const gqlDataProvider = dataProvider(client);
 ```
 
-Refine provides a data provider for Strapi's GraphQL APIs that works similar to the [GraphQL data provider](/docs/packages/data-providers/graphql) and enables you to use all the features of Refine without giving up the GraphQL features.
+Refine provides a data provider for Strapi's GraphQL APIs that works similar to the [GraphQL data provider](/docs/data/packages/graphql) and enables you to use all the features of Refine without giving up the GraphQL features.
 
 :::simple Good to know
 
@@ -491,7 +491,7 @@ render(<App />);
 
 :::info
 
-The create page is largely the same as the edit page, there is no need to pass `meta` to [`useForm`](/docs/core/hooks/use-form) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `meta`.
+The create page is largely the same as the edit page, there is no need to pass `meta` to [`useForm`](/docs/data/hooks/use-form) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `meta`.
 
 :::
 
@@ -643,4 +643,4 @@ mutation ($input: updatePostInput) {
 
 <CodeSandboxExample path="data-provider-strapi-graphql" />
 
-[data-provider]: /docs/core/providers/data-provider
+[data-provider]: /docs/data/data-provider

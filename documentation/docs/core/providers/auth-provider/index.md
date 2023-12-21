@@ -613,7 +613,7 @@ if (data?.includes("admin")) {
 
 Though `usePermissions` hook can be used for simple authorization purposes, if you need more complex authorization logic, we recommend using the access control provider.
 
-For more information, refer to the [`accessControlProvider` documentation&#8594](/docs/core/providers/access-control-provider)
+For more information, refer to the [`accessControlProvider` documentation&#8594](/docs/authorization/access-control-provider)
 
 :::
 
@@ -1190,13 +1190,13 @@ const App = () => {
 
 [Refer to the "Implementing Refresh Token Mechanism" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/#implementing-refresh-token-mechanism)
 
-[use-login]: /docs/core/hooks/auth/use-login
-[use-logout]: /docs/core/hooks/auth/use-logout
-[use-is-authenticated]: /docs/core/hooks/auth/use-is-authenticated
-[use-on-error]: /docs/core/hooks/auth/use-on-error
-[use-get-identity]: /docs/core/hooks/auth/use-get-identity
-[use-permissions]: /docs/core/hooks/auth/use-permissions
-[use-register]: /docs/core/hooks/auth/use-register
-[use-forgot-password]: /docs/core/hooks/auth/use-forgot-password
-[use-update-password]: /docs/core/hooks/auth/use-update-password
+[use-login]: /docs/authentication/hooks/use-login
+[use-logout]: /docs/authentication/hooks/use-logout
+[use-is-authenticated]: /docs/authentication/hooks/use-is-authenticated
+[use-on-error]: /docs/authentication/hooks/use-on-error
+[use-get-identity]: /docs/authentication/hooks/use-get-identity
+[use-permissions]: /docs/authentication/hooks/use-permissions
+[use-register]: /docs/authentication/hooks/use-register
+[use-forgot-password]: /docs/authentication/hooks/use-forgot-password
+[use-update-password]: /docs/authentication/hooks/use-update-password
 [create-auth-provider-tutorial]: /docs/tutorial/understanding-authprovider/create-authprovider

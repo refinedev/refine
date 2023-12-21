@@ -6,7 +6,7 @@ source: packages/core/src/hooks/data/useUpdateMany.ts
 
 `useUpdateMany` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.
 
-- It uses the `updateMany` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
+- It uses the `updateMany` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
 It is useful when you want to update many records at once.
 
@@ -33,7 +33,7 @@ mutate({
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
+> This feature is only available if you use a [Live Provider](/docs/realtime/live-provider).
 
 When the `useUpdateMany` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
 
@@ -222,7 +222,7 @@ const MyComponent = () => {
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useUpdateMany` can call the `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -242,7 +242,7 @@ mutate({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useUpdateMany` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 

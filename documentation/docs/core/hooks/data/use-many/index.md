@@ -8,7 +8,7 @@ import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
 `useMany` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) that supports all of its features and adds some more.
 
-- It uses the `getMany` method as the **query function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
+- It uses the `getMany` method as the **query function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
 - It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 
@@ -26,7 +26,7 @@ When these properties are changed, the `useMany` hook will trigger a new request
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
+> This feature is only available if you use a [Live Provider](/docs/realtime/live-provider).
 
 When the `useMany` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
@@ -133,7 +133,7 @@ const myDataProvider = {
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useMany` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -151,7 +151,7 @@ useMany({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useMany` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -169,7 +169,7 @@ useMany({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -181,7 +181,7 @@ useMany({
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -195,9 +195,9 @@ useMany({
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
-Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
 
 ### `overtimeOptions`
 

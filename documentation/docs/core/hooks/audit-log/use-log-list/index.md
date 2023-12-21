@@ -2,7 +2,7 @@
 title: useLogList
 ---
 
-If you need to list audit log events, you can use the `useLogList` hook of Refine, which uses the `get` method from [`auditLogProvider`](/docs/core/providers/audit-log-provider#get) under the hood.
+If you need to list audit log events, you can use the `useLogList` hook of Refine, which uses the `get` method from [`auditLogProvider`](/docs/audit-logs/audit-log-provider#get) under the hood.
 
 ## Usage
 

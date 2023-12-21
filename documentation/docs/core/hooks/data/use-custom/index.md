@@ -5,15 +5,15 @@ source: packages/core/src/hooks/data/useCustom.ts
 
 `useCustom` is used to send custom query requests using the Tanstack Query advantages. It is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `custom` method as the **query function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
+It uses the `custom` method as the **query function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
 :::caution Use Cases
 
-`useCustom` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/core/hooks/data/use-create), [useUpdate](/docs/core/hooks/data/use-update) or [useDelete](/docs/core/hooks/data/use-delete)
+`useCustom` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/data/hooks/use-create), [useUpdate](/docs/data/hooks/use-update) or [useDelete](/docs/data/hooks/use-delete)
 
 This is because `useCustom`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
-If you need to customize the mutation request, use the [useCustomMutation](/docs/core/hooks/data/use-custom) hook instead.
+If you need to customize the mutation request, use the [useCustomMutation](/docs/data/hooks/use-custom) hook instead.
 
 :::
 
@@ -207,7 +207,7 @@ useCustom({
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCustom` calls the `open` function from `NotificationProvider`:
 
@@ -225,7 +225,7 @@ useCustom({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useCustom` calls the `open` function from `NotificationProvider`
 

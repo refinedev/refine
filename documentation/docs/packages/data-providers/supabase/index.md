@@ -71,7 +71,7 @@ We'll build a simple CRUD app with Refine and use Supabase as a data provider. W
 
 We are assuming that you have already know how Refine works. If not, please check out the [Tutorial](/docs/tutorial/introduction/index/) section first.
 
-[Refer to docs for more information about data provider &#8594](/docs/core/providers/data-provider)
+[Refer to docs for more information about data provider &#8594](/docs/data/data-provider)
 
 [Discover the +15 most popular backend service data providers supported out-of-the-box by Refine &#8594](/integrations/)
 
@@ -195,7 +195,7 @@ Highlighted lines are the ones the CLI generator automatically added to register
 
 With this configuration, Refine can now communicate with Supabase API and perform all required data service CRUD methods using data hooks.
 
-[Refer to documentation to learn more about how to use data hooks &#8594](/docs/core/hooks/data/use-create)
+[Refer to documentation to learn more about how to use data hooks &#8594](/docs/data/hooks/use-create)
 
 ## Understanding the Auth Provider
 
@@ -207,7 +207,7 @@ So basically, this is where we set complete authentication logic for the app.
 
 Since we preferred refine-supabase as the data provider during the CLI project initialization, all required Supabase authentication methods are already implemented for us. This shows us how easy it is to bootstrap a Refine app with CLI
 
-[Refer to docs for more information about Auth Provider methods and custom Auth Providers &#8594](/docs/core/providers/auth-provider)
+[Refer to docs for more information about Auth Provider methods and custom Auth Providers &#8594](/docs/authentication/auth-provider)
 
 <details><summary>Take a look the auto-generated <b>authProvider.ts</b> file </summary>
 <p>
@@ -461,7 +461,7 @@ export default authProvider;
 
 :::tip
 
-Auth provider functions are also consumed by [Refine authorization hooks](/docs/core/hooks/auth/use-login). Since this is out of scope of this tutorial, we'll not cover them for now
+Auth provider functions are also consumed by [Refine authorization hooks](/docs/authentication/hooks/use-login). Since this is out of scope of this tutorial, we'll not cover them for now
 
 :::
 
@@ -1345,7 +1345,7 @@ function App() {
 
 For live features to work automatically, we set `liveMode: "auto"` in the options prop.
 
-[Refer to Live Provider docs for more information &#8594](/docs/core/providers/live-provider#livemode)
+[Refer to Live Provider docs for more information &#8594](/docs/realtime/live-provider#livemode)
 
 :::
 
@@ -1455,7 +1455,7 @@ const { tableProps, sorter } = useTable<IUser>({
 
 `meta` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 
-Refine's [useMany](/docs/core/hooks/data/use-many) hook accepts `meta` property and uses `getMany` method of data provider.
+Refine's [useMany](/docs/data/hooks/use-many) hook accepts `meta` property and uses `getMany` method of data provider.
 
 ```tsx
 useMany({

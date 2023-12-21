@@ -10,7 +10,7 @@ import FilteringLivePreview from "./\_partial-filtering-live-preview.md";
 import RelationalDataLivePreview from "./\_partial-relational-data-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
+`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/docs/data/hooks/use-list) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
 
 :::simple Extended Versions
 
@@ -72,7 +72,7 @@ If you are using `merge` behavior and want to remove one of the filters, you sho
 
 ## Realtime Updates
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
@@ -305,7 +305,7 @@ useTable({
 
 ### `queryOptions`
 
-`useTable` uses [`useList`](/docs/core/hooks/data/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useTable` uses [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 import { useTable } from "@refinedev/core";
@@ -367,7 +367,7 @@ const myDataProvider = {
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -386,7 +386,7 @@ useTable({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
@@ -405,7 +405,7 @@ useTable({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -418,7 +418,7 @@ useTable({
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -433,9 +433,9 @@ useTable({
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
-Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
 
 ### `overtimeOptions`
 
@@ -500,7 +500,7 @@ Use `filters.defaultBehavior` instead.
 
 ### `tableQueryResult`
 
-Returned values from [`useList`](/docs/core/hooks/data/use-list) hook.
+Returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
 ### `sorters`
 
@@ -585,7 +585,7 @@ Use `setSorters` instead.
 
 ### How can I handle relational data?
 
-You can use [`useMany`](/docs/core/hooks/data/use-many) hook to fetch relational data.
+You can use [`useMany`](/docs/data/hooks/use-many) hook to fetch relational data.
 
 <RelationalDataLivePreview/>
 
@@ -742,4 +742,4 @@ errorNotification-default='"There was an error creating resource (status code: `
 [httperror]: /docs/core/interface-references#httperror
 [Refine swl]: /docs/core/refine-component#syncwithlocation
 [syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
-[notification-provider]: /docs/core/providers/notification-provider
+[notification-provider]: /docs/notification/notification-provider

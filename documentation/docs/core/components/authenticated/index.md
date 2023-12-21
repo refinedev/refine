@@ -95,4 +95,4 @@ Component to render while checking whether the user is logged in.
   v3LegacyAuthProviderCompatible-description="This must be set to `true` if legacy auth provider is being used."
 />
 
-[use-is-authenticated]: /docs/core/hooks/auth/use-is-authenticated
+[use-is-authenticated]: /docs/authentication/hooks/use-is-authenticated

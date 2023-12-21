@@ -133,7 +133,7 @@ const MyComponent = () => {
 | ------------------------------------------------------------------------ | ---------------------------------------------------------------- |
 | Result of the [TanStack Query's][tanstack-query] [`useQuery`][use-query] | [`QueryObserverResult<{ data: CanReturnType; }>`][query-options] |
 
-[access-control-provider]: /docs/core/providers/access-control-provider
+[access-control-provider]: /docs/authorization/access-control-provider
 [use-query]: https://tanstack.com/query/latest/docs/react/guides/queries
 [tanstack-query]: https://tanstack.com/query/latest
 [query-options]: https://tanstack.com/query/v4/docs/react/reference/useQuery

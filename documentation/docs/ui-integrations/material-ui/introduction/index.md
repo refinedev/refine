@@ -44,7 +44,7 @@ import UsageRemix from "./previews/usage-remix.tsx";
 
 ## Tables
 
-Refine provides a seamless integration with the [`<DataGrid />`](https://mui.com/x/react-data-grid/) component of Material UI from pagination to sorting and filtering via the [`useDataGrid`](/docs/ui-integrations/material-ui/hooks/use-data-grid) hook exported from the `@refinedev/mui` package. This `useDataGrid` hook extends the [`useTable`](/docs/core/hooks/use-table) hook of `@refinedev/core` package and provides a set of additional features and transformations to make it work with Material UI's `<DataGrid />` component without any additional configuration.
+Refine provides a seamless integration with the [`<DataGrid />`](https://mui.com/x/react-data-grid/) component of Material UI from pagination to sorting and filtering via the [`useDataGrid`](/docs/ui-integrations/material-ui/hooks/use-data-grid) hook exported from the `@refinedev/mui` package. This `useDataGrid` hook extends the [`useTable`](/docs/data/hooks/use-table) hook of `@refinedev/core` package and provides a set of additional features and transformations to make it work with Material UI's `<DataGrid />` component without any additional configuration.
 
 ```tsx title="pages/products/list.tsx"
 // highlight-next-line
@@ -79,7 +79,7 @@ interface IProduct {
 
 ## Forms
 
-Material UI offers form elements yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) package which is built on top of Refine's [`useForm`](/docs/core/hooks/use-form/) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
+Material UI offers form elements yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) package which is built on top of Refine's [`useForm`](/docs/data/hooks/use-form/) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
 
 Refine's documentations and examples of Material UI uses `@refinedev/react-hook-form` package for form management but you have the option to use any form management solution you want.
 
@@ -144,7 +144,7 @@ interface IProduct {
 }
 ```
 
-`@refinedev/mui` also provides [`useAutocomplete`](/docs/ui-integrations/material-ui/hooks/use-auto-complete) hook which can be used to implement autocomplete fields with relational data. This hook leverages the [`useSelect`](/docs/core/hooks/use-select) hook from the `@refinedev/core` package.
+`@refinedev/mui` also provides [`useAutocomplete`](/docs/ui-integrations/material-ui/hooks/use-auto-complete) hook which can be used to implement autocomplete fields with relational data. This hook leverages the [`useSelect`](/docs/data/hooks/use-select) hook from the `@refinedev/core` package.
 
 Additional hooks of `@refinedev/react-hook-form` such as [`useStepsForm`](/docs/packages/list-of-packages) and [`useModalForm`](/docs/packages/list-of-packages) can also be used together with Refine's Material UI integration with ease.
 

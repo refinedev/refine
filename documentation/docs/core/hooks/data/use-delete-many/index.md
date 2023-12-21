@@ -6,7 +6,7 @@ source: packages/core/src/hooks/data/useDeleteMany.ts
 
 `useDeleteMany` is used when you want to delete multiple records at once. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `deleteMany` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
+It uses the `deleteMany` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
 If your data provider does not have a `deleteMany` method, `useDeleteMany` will use the `deleteOne` method instead. This is not recommended since it will make requests one by one for each id.
 
@@ -29,7 +29,7 @@ mutate({
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
+> This feature is only available if you use a [Live Provider](/docs/realtime/live-provider).
 
 When the `useDeleteMany` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. This is useful when you want to publish the changes to the subscribers on the client side.
 
@@ -201,7 +201,7 @@ const MyComponent = () => {
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useDeleteMany` calls `open` function from `NotificationProvider`:
 
@@ -221,7 +221,7 @@ mutate({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useDeleteMany` calls `open` function from `NotificationProvider`:
 

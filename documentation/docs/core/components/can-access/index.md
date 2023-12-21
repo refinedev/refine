@@ -10,7 +10,7 @@ It internally uses [`useCan`][use-can]'s return values to provide its functional
 
 Passes the given properties to the `can` method from your access control provider. After, if it returns `true`, it renders the children, otherwise, if it returns `false`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it renders `null`.
 
-To learn more about the authorization, check out the [Authorization](/docs/guides-concepts/authorization) guide and [Access Control Provider](/docs/core/providers/access-control-provider) documentation.
+To learn more about the authorization, check out the [Authorization](/docs/guides-concepts/authorization) guide and [Access Control Provider](/docs/authorization/access-control-provider) documentation.
 
 ## Basic Usage
 
@@ -53,7 +53,7 @@ export const MyComponent = () => {
 
 ## Properties
 
-It also accepts all the properties of [`useCan`](/docs/core/hooks/use-can#properties).
+It also accepts all the properties of [`useCan`](/docs/authorization/hooks/use-can#properties).
 
 ### `onUnauthorized`
 
@@ -85,5 +85,5 @@ Component to render if [`useCan`][use-can] returns false. If `undefined`, it ren
 
 <PropsTable module="@refinedev/core/CanAccess"/>
 
-[use-can]: /docs/core/hooks/use-can
-[access-control-provider]: /docs/core/providers/access-control-provider
+[use-can]: /docs/authorization/hooks/use-can
+[access-control-provider]: /docs/authorization/access-control-provider

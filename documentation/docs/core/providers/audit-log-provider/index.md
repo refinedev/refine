@@ -118,7 +118,7 @@ When the mutations is successful, the `create` method is called with the followi
 
 - In create mutations, if the request response has an `id` field, it will be added to the `meta` object.
 
-- If [`getUserIdentity`](/docs/core/providers/auth-provider) is defined in your auth provider, the `author` object will be added to the event with the value returned by `getUserIdentity`.
+- If [`getUserIdentity`](/docs/authentication/auth-provider) is defined in your auth provider, the `author` object will be added to the event with the value returned by `getUserIdentity`.
 
 :::
 
@@ -288,7 +288,7 @@ export const auditLogProvider: AuditLogProvider = {
 };
 ```
 
-For more information, refer to the [`useLog` documentation&#8594](/docs/core/hooks/audit-log/use-log)
+For more information, refer to the [`useLog` documentation&#8594](/docs/audit-logs/hooks/use-log)
 
 ### `update`
 
@@ -321,7 +321,7 @@ export const auditLogProvider: AuditLogProvider = {
 };
 ```
 
-For more information, refer to the [`useLog` documentation&#8594](/docs/core/hooks/audit-log/use-log)
+For more information, refer to the [`useLog` documentation&#8594](/docs/audit-logs/hooks/use-log)
 
 ## Supported Hooks
 
@@ -329,7 +329,7 @@ The following hooks will call **Audit Log Provider**'s `create` method when a mu
 
 | Package                    | Hooks                                                                                                                                                                                                                                                                             |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| @refinedev/core            | [useForm](/docs/core/hooks/use-form/)                                                                                                                                                                                                                                             |
+| @refinedev/core            | [useForm](/docs/data/hooks/use-form/)                                                                                                                                                                                                                                             |
 | @refinedev/antd            | [useForm](/docs/ui-integrations/ant-design/hooks/use-form), [useModalForm](/docs/ui-integrations/ant-design/hooks/use-modal-form), [useDrawerForm](/docs/ui-integrations/ant-design/hooks/use-drawer-form), [useStepsForm](/docs/ui-integrations/ant-design/hooks/use-steps-form) |
 | @refinedev/mantine         | [useForm](/docs/ui-integrations/mantine/hooks/use-form), [useModalForm](/docs/ui-integrations/mantine/hooks/use-modal-form), [useDrawerForm](/docs/ui-integrations/mantine/hooks/use-drawer-form), [useStepsForm](/docs/ui-integrations/mantine/hooks/use-steps-form)             |
 | @refinedev/react-hook-form | [useForm](/docs/packages/list-of-packages), [useModalForm](/docs/packages/list-of-packages), [useStepsForm](/docs/packages/list-of-packages)                                                                                                                                      |

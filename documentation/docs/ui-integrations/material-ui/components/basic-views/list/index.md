@@ -258,7 +258,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/authentication/hooks/use-permissions)
 
 ### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 

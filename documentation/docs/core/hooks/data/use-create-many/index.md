@@ -5,7 +5,7 @@ source: packages/core/src/hooks/data/useCreateMany.ts
 
 `useCreateMany` is used for creating multiple records. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `createMany` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
+It uses the `createMany` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
 If your data provider does not have a `createMany` method, `useCreateMany` will use the `create` method instead. This is not recommended, since it will make requests one by one for each record.
 
@@ -37,7 +37,7 @@ mutate({
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
+> This feature is only available if you use a [Live Provider](/docs/realtime/live-provider).
 
 When the `useCreateMany` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
 
@@ -49,7 +49,7 @@ When the `useCreateMany` mutation runs successfully, it will invalidate the foll
 
 ## Audit Logs
 
-> This feature is only available if you use a [Audit Log Provider](/docs/core/providers/audit-log-provider).
+> This feature is only available if you use a [Audit Log Provider](/docs/audit-logs/audit-log-provider).
 
 When the `useCreateMany` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data` etc. It is useful when you want to log the changes to the database.
 
@@ -168,7 +168,7 @@ mutate({
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCreateMany` calls the `open` function from `NotificationProvider`:
 
@@ -188,7 +188,7 @@ mutate({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useCreateMany` calls the `open` function from `NotificationProvider`
 

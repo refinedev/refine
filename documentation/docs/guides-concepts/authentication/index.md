@@ -91,7 +91,7 @@ Additionally, in this example, we will implement `authProvider.logout` and `auth
 
 Refine also provides `<Auhtenticated />` component to easily handle authentication state. You can use this component to protect your routes and conditionally render your components.
 
-[To learn more about the `<Auhtenticated />` component, check out the reference page.](/docs/core/components/authenticated)
+[To learn more about the `<Auhtenticated />` component, check out the reference page.](/docs/authentication/components/authenticated)
 
 ```tsx
 import { Authenticated } from "@refinedev/core";
@@ -129,7 +129,7 @@ Once you implement `authProvider.onError` method, you can call this method with 
 
 While Refine itself is headless, it offers `<AuthPage />` Integrations for popular UI libraries for:
 
-- [Headless](/docs/core/components/auth-page)
+- [Headless](/docs/authentication/components/auth-page)
 - [Ant Design](/docs/ui-integrations/ant-design/components/auth-page)
 - [Material UI](/docs/ui-integrations/material-ui/components/auth-page)
 - [Chakra UI](/docs/ui-integrations/chakra-ui/components/auth-page)
@@ -183,7 +183,7 @@ import { MantineAuth } from './auth-pages/mantine';
 
 ### Notification <GuideBadge id="api-reference/core/providers/notification-provider" />
 
-Refine provides a automatic notification system to notify users about the authentication errors. To use this feature, you need to pass [`notificationProvider`](/docs/core/providers/notification-provider) to the `<Refine />` component.
+Refine provides a automatic notification system to notify users about the authentication errors. To use this feature, you need to pass [`notificationProvider`](/docs/notification/notification-provider) to the `<Refine />` component.
 
 Once you provide `notificationProvider`, Refine will automatically notify users about the authentication errors on following auth provider methods:
 
@@ -215,7 +215,7 @@ export const authProvider: AuthBindings = {
 
 ## Router Integrations <GuideBadge id="guides-concepts/routing/" />
 
-Refine provides a automatic routing system to redirect users to the desired page after the authentication process. To use this feature, you need to pass [`routerProvider`](/docs/core/providers/router-provider) to the `<Refine />` component.
+Refine provides a automatic routing system to redirect users to the desired page after the authentication process. To use this feature, you need to pass [`routerProvider`](/docs/routing/router-provider) to the `<Refine />` component.
 
 Once you provide `routerProvider`, Refine will automatically redirect users to the desired page on following auth provider methods:
 
@@ -266,7 +266,7 @@ You can use the following oAuth provider implementations as a starting point for
 - [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
 - [Auth.js](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-next-auth)
 
-[To learn more about the `authProvider` interface, check out the reference page.](/docs/core/providers/auth-provider)
+[To learn more about the `authProvider` interface, check out the reference page.](/docs/authentication/auth-provider)
 
 ## Supported Auth Providers
 
@@ -278,18 +278,18 @@ You can use the following oAuth provider implementations as a starting point for
 
 To better understand the auth provider interface, we have created an example that demonstrates how the required methods are implemented. For more comprehensive and diverse examples, you can refer to the [supported auth providers](#supported-auth-providers) section.
 
-[To learn more about the `authProvider` interface, check out the reference page.](/docs/core/providers/auth-provider)
+[To learn more about the `authProvider` interface, check out the reference page.](/docs/authentication/auth-provider)
 
 <AuthProviderInterface />
 
-[use-login]: /docs/core/hooks/auth/use-login
-[use-logout]: /docs/core/hooks/auth/use-logout
-[use-is-authenticated]: /docs/core/hooks/auth/use-is-authenticated
-[use-on-error]: /docs/core/hooks/auth/use-on-error
-[use-get-identity]: /docs/core/hooks/auth/use-get-identity
-[use-permissions]: /docs/core/hooks/auth/use-permissions
-[use-register]: /docs/core/hooks/auth/use-register
-[use-forgot-password]: /docs/core/hooks/auth/use-forgot-password
-[use-update-password]: /docs/core/hooks/auth/use-update-password
+[use-login]: /docs/authentication/hooks/use-login
+[use-logout]: /docs/authentication/hooks/use-logout
+[use-is-authenticated]: /docs/authentication/hooks/use-is-authenticated
+[use-on-error]: /docs/authentication/hooks/use-on-error
+[use-get-identity]: /docs/authentication/hooks/use-get-identity
+[use-permissions]: /docs/authentication/hooks/use-permissions
+[use-register]: /docs/authentication/hooks/use-register
+[use-forgot-password]: /docs/authentication/hooks/use-forgot-password
+[use-update-password]: /docs/authentication/hooks/use-update-password
 [create-auth-provider-tutorial]: /docs/tutorial/understanding-authprovider/create-authprovider
-[use-one]: /docs/core/hooks/data/use-one
+[use-one]: /docs/data/hooks/use-one

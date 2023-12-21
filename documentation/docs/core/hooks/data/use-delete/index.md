@@ -6,7 +6,7 @@ source: packages/core/src/hooks/data/useDelete.ts
 
 `useDelete` is used when you want to delete a record. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `deleteOne` method as the **mutation function** from the [`dataProvider`](/docs/core/providers/data-provider) which is passed to `<Refine>`.
+It uses the `deleteOne` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
 ## Usage
 
@@ -25,7 +25,7 @@ mutate({
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider).
+> This feature is only available if you use a [Live Provider](/docs/realtime/live-provider).
 
 When the `useDelete` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. This is useful when you want to publish the changes to the subscribers on the client side.
 
@@ -37,7 +37,7 @@ When the `useDelete` mutation runs successfully, it will invalidate the followin
 
 ## Audit Logs
 
-> This feature is only available if you use a [Audit Log Provider](/docs/core/providers/audit-log-provider).
+> This feature is only available if you use a [Audit Log Provider](/docs/audit-logs/audit-log-provider).
 
 When the `useDelete` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data`, `previousData` etc. This is useful when you want to log the changes to the database.
 
@@ -203,7 +203,7 @@ const MyComponent = () => {
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useDelete` calls the `open` function from `NotificationProvider`:
 
@@ -223,7 +223,7 @@ mutate({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useDelete` calls the `open` function from `NotificationProvider`:
 

@@ -18,7 +18,7 @@ const Wrapper = ({ children }) => {
 ```
 
 `<DeleteButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) and [`<Popover>`](https://chakra-ui.com/docs/components/popover/usage) components.
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/core/hooks/data/use-delete) method provided by your [`dataProvider`](/docs/core/providers/data-provider).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/data/hooks/use-delete) method provided by your [`dataProvider`](/docs/data/data-provider).
 
 :::simple Good to know
 
@@ -191,7 +191,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete) method and then the record whose resource is "post" and whose id is "123" gets deleted.
+Clicking the button will trigger the [`useDelete`](/docs/data/hooks/use-delete) method and then the record whose resource is "post" and whose id is "123" gets deleted.
 
 ### `resource`
 
@@ -249,7 +249,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
+Clicking the button will trigger the [`useDelete`](/docs/data/hooks/use-delete) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
@@ -426,7 +426,7 @@ render(
 
 ### `accessControl`
 
-The `accessControl` prop can be used to skip the access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/core/providers/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
+The `accessControl` prop can be used to skip the access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
 
 ```tsx
 import { DeleteButton } from "@refinedev/chakra-ui";

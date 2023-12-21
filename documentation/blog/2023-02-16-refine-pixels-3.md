@@ -625,7 +625,7 @@ check: async () => {
 </p>
 </details>
 
-**refine** provides [`<Authenticated/>`](/docs/core/components/authenticated) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/docs/core/components/authenticated) component.
+**refine** provides [`<Authenticated/>`](/docs/authentication/components/authenticated) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/docs/authentication/components/authenticated) component.
 
 Let's look at the routes implementation:
 
@@ -704,9 +704,9 @@ const App = () => {
 </p>
 </details>
 
-In this example we didn't wrap our `canvases` resource routes with [`<Authenticated/>`](/docs/core/components/authenticated) component. This means that we can access the `canvases` resource routes without being authenticated.
+In this example we didn't wrap our `canvases` resource routes with [`<Authenticated/>`](/docs/authentication/components/authenticated) component. This means that we can access the `canvases` resource routes without being authenticated.
 
-However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/docs/core/components/authenticated) component. This means that we can not access these routes if we are authenticated.
+However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/docs/authentication/components/authenticated) component. This means that we can not access these routes if we are authenticated.
 
 [Refer to the Auth Provider tutorial for more information. →](/docs/tutorial/understanding-authprovider/index)
 

@@ -12,7 +12,7 @@ const { log, rename } = useLog();
 
 ## `log`
 
-The `log` mutation is used to create an audit log event using the `create` method from [`auditLogProvider`](/docs/core/providers/audit-log-provider#create) under the hood.
+The `log` mutation is used to create an audit log event using the `create` method from [`auditLogProvider`](/docs/audit-logs/audit-log-provider#create) under the hood.
 
 ```tsx
 import { useLog } from "@refinedev/core";
@@ -63,7 +63,7 @@ mutate({
 
 ## `rename`
 
-The `rename` mutation is used to update an audit log event using the `update` method from [`auditLogProvider`](/docs/core/providers/audit-log-provider#update) under the hood.
+The `rename` mutation is used to update an audit log event using the `update` method from [`auditLogProvider`](/docs/audit-logs/audit-log-provider#update) under the hood.
 
 ```tsx
 import { useLog } from "@refinedev/core";

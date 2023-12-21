@@ -7,7 +7,7 @@ import BasicUsagePreview from "./\_partial-use-data-grid-basic-usage-live-previe
 import RelationalPreview from "./\_partial-use-data-grid-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch.
+By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/data/hooks/use-list) for the fetch.
 
 For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation
 
@@ -226,7 +226,7 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 
 ## Realtime Updates
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 When the `useDataGrid` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
@@ -446,7 +446,7 @@ useDataGrid({
 
 ### `queryOptions`
 
-`useDataGrid` uses [`useList`](/docs/core/hooks/data/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useDataGrid` uses [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 useDataGrid({
@@ -504,7 +504,7 @@ const myDataProvider = {
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useDataGrid` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -522,7 +522,7 @@ useDataGrid({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useDataGrid` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
@@ -540,11 +540,11 @@ useDataGrid({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
-For more information, please refer to the [Live / Realtime documentation](/docs/core/providers/live-provider#livemode)
+For more information, please refer to the [Live / Realtime documentation](/docs/realtime/live-provider#livemode)
 
 ```tsx
 useDataGrid({
@@ -554,7 +554,7 @@ useDataGrid({
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -568,9 +568,9 @@ useDataGrid({
 
 ### `liveParams`
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
-Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
 
 ### `overtimeOptions`
 
@@ -708,11 +708,11 @@ The `onStateChange` callback is used internally by the `useDataGrid` hook. If yo
 
 #### `rows`
 
-Contains the data to be displayed in the data grid. Values fetched with [`useList`](/docs/core/hooks/data/use-list) hook.
+Contains the data to be displayed in the data grid. Values fetched with [`useList`](/docs/data/hooks/use-list) hook.
 
 #### `rowCount`
 
-Total number of data. Value fetched with [`useList`](/docs/core/hooks/data/use-list) hook.
+Total number of data. Value fetched with [`useList`](/docs/data/hooks/use-list) hook.
 
 #### `loading`
 
@@ -724,7 +724,7 @@ Returns pagination configuration values(pageSize, current, setCurrent, etc.).
 
 ### `tableQueryResult`
 
-Returned values from [`useList`](/docs/core/hooks/data/use-list) hook.
+Returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
 ### `sorters`
 
@@ -890,7 +890,7 @@ useDataGrid({
 
 <CodeSandboxExample path="table-material-ui-use-data-grid" />
 
-[use-table-core]: /docs/core/hooks/use-table
+[use-table-core]: /docs/data/hooks/use-table
 [syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
 [crudsorting]: /docs/core/interface-references#crudsorting
 [crudfilters]: /docs/core/interface-references#crudfilters
@@ -899,4 +899,4 @@ useDataGrid({
 [httperror]: /docs/core/interface-references#httperror
 [Refine swl]: /docs/core/refine-component#syncwithlocation
 [data-grid]: https://mui.com/x/react-data-grid/
-[notification-provider]: /docs/core/providers/notification-provider
+[notification-provider]: /docs/notification/notification-provider
