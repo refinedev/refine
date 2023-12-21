@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { TestWrapper } from "@test";
+import { TestWrapper, queryClient } from "@test";
 
 import { useGetIdentity } from "./";
 
@@ -151,6 +151,72 @@ describe("useGetIdentity Hook", () => {
 
         expect(result.current.status).toEqual("loading");
         expect(result.current.data).not.toBeDefined();
+    });
+
+    it("should override `queryKey` with `queryOptions.queryKey`", async () => {
+        const getIdentityMock = jest.fn().mockResolvedValue({
+            data: { id: 1, title: "foo" },
+        });
+
+        const { result } = renderHook(
+            () =>
+                useGetIdentity({
+                    queryOptions: {
+                        queryKey: ["foo", "bar"],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    authProvider: {
+                        ...mockAuthProvider,
+                        getIdentity: getIdentityMock,
+                    },
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(
+            queryClient.getQueryCache().findAll({
+                queryKey: ["foo", "bar"],
+            }),
+        ).toHaveLength(1);
+    });
+
+    it("should override `queryFn` with `queryOptions.queryFn`", async () => {
+        const getIdentityMock = jest.fn().mockResolvedValue({
+            data: [{ id: 1, title: "foo" }],
+        });
+        const queryFnMock = jest.fn().mockResolvedValue({
+            data: [{ id: 1, title: "foo" }],
+        });
+
+        const { result } = renderHook(
+            () =>
+                useGetIdentity({
+                    queryOptions: {
+                        queryFn: queryFnMock,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    authProvider: {
+                        ...mockAuthProvider,
+                        getIdentity: getIdentityMock,
+                    },
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(getIdentityMock).not.toBeCalled();
+        expect(queryFnMock).toBeCalled();
     });
 });
 

@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, queryClient } from "@test";
 
 import { defaultRefineOptions } from "@contexts/refine";
 import {
@@ -573,6 +573,91 @@ describe("useInfiniteList Hook", () => {
             });
 
             expect(onErrorMock).toBeCalledWith(new Error("Error"));
+        });
+
+        it("should override `queryKey` with `queryOptions.queryKey`", async () => {
+            const getInfiniteListMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useInfiniteList({
+                        resource: "posts",
+                        queryOptions: {
+                            queryKey: ["foo", "bar"],
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getList: getInfiniteListMock,
+                            },
+                        },
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getInfiniteListMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        queryContext: expect.objectContaining({
+                            queryKey: ["foo", "bar"],
+                        }),
+                    }),
+                }),
+            );
+
+            expect(
+                queryClient.getQueryCache().findAll({
+                    queryKey: ["foo", "bar"],
+                }),
+            ).toHaveLength(1);
+        });
+
+        it("should override `queryFn` with `queryOptions.queryFn`", async () => {
+            const getInfiniteListMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const queryFnMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useInfiniteList({
+                        resource: "posts",
+                        queryOptions: {
+                            queryFn: queryFnMock,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getList: getInfiniteListMock,
+                            },
+                        },
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getInfiniteListMock).not.toBeCalled();
+            expect(queryFnMock).toBeCalled();
         });
     });
 
