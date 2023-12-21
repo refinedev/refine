@@ -10,6 +10,7 @@ import {
 } from "@test/mutation-helpers";
 import * as UseInvalidate from "../invalidate/index";
 import { useDeleteMany } from "./useDeleteMany";
+import * as queryKeys from "@definitions/helpers/queryKeys";
 
 describe("useDeleteMany Hook", () => {
     it("should work with pessimistic update", async () => {
@@ -110,6 +111,35 @@ describe("useDeleteMany Hook", () => {
         await assertMutationSuccess(result);
     });
 
+    it("should exclude gqlQuery and qqlMutation from query keys", async () => {
+        const catchFn = jest.fn();
+
+        jest.spyOn(queryKeys, "queryKeysReplacement").mockImplementation(
+            () => catchFn,
+        );
+
+        const { result } = renderHook(() => useDeleteMany(), {
+            wrapper: TestWrapper({}),
+        });
+
+        const resource = "posts";
+
+        result.current.mutate({
+            resource,
+            ids: [1],
+            values: {},
+            meta: {
+                foo: "bar",
+                gqlQuery: "gqlQuery" as any,
+                gqlMutation: "gqlMutation" as any,
+            },
+        });
+
+        await waitFor(() => {
+            expect(catchFn).toBeCalledWith(resource, "default", { foo: "bar" });
+        });
+    });
+
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
         const deleteManyMock = jest.fn();
 
@@ -131,7 +161,11 @@ describe("useDeleteMany Hook", () => {
         result.current.mutate({
             resource: "posts",
             ids: ["1"],
-            meta: { foo: "bar" },
+            meta: {
+                foo: "bar",
+                gqlQuery: "gqlQuery" as any,
+                gqlMutation: "gqlMutation" as any,
+            },
         });
 
         await waitFor(() => {
@@ -143,6 +177,8 @@ describe("useDeleteMany Hook", () => {
                 meta: expect.objectContaining({
                     foo: "bar",
                     baz: "qux",
+                    gqlQuery: "gqlQuery",
+                    gqlMutation: "gqlMutation",
                 }),
             }),
         );
