@@ -124,7 +124,7 @@ describe("useDelete Hook", () => {
         await assertListLength(useManyResult, 1);
         await assertList(useManyResult, "id", ["2"]);
 
-        assertMutationSuccess(result);
+        await assertMutationSuccess(result);
     });
 
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
