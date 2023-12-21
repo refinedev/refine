@@ -65,7 +65,7 @@ npm run dev
 
 :::tip
 
-In case you select `Yes` for the `Do you want to add example pages?` option while using the CLI wizard, the Refine will add sample CRUD pages utilizing [`Refine Inferencer`](https://refine.dev/docs/api-reference/antd/components/inferencer/) and fill the `resources` property.
+In case you select `Yes` for the `Do you want to add example pages?` option while using the CLI wizard, the Refine will add sample CRUD pages utilizing [`Refine Inferencer`](/docs/ui-integrations/ant-design/components/inferencer/) and fill the `resources` property.
 
 It is highly recommended to add example pages as it provides a clearer understanding of how **Refine** works and lets you test out the CRUD operation functionalities.
 

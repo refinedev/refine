@@ -148,7 +148,7 @@ When the `useTable` hook is mounted, it will call the `subscribe` method from th
 <PropResource
 hook={{
     name:"useList",
-    URL:"/docs/api-reference/data/hooks/useList/"
+    URL:"/docs/data/hooks/useList/"
 }}
 method={{
     name:"getList",
@@ -759,7 +759,7 @@ Use `setSorters` instead.
 
 ### How can I handle relational data?
 
-You can use the [`useMany`](/docs/data/hooks/use-many) hook to fetch relational data and filter `<Table>` by categories with the help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
+You can use the [`useMany`](/docs/data/hooks/use-many) hook to fetch relational data and filter `<Table>` by categories with the help of [`useSelect`](/docs/ui-integrations/ant-design/hooks/use-select/)
 
 <RelationalLivePreview/>
 

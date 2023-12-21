@@ -1,6 +1,5 @@
 ---
 slug: ant-design-calendar-example
-id: antd-calendar-example
 title: Calendar
 example-tags: [antd]
 ---

@@ -237,7 +237,7 @@ When the `useDataGrid` hook is mounted, it will call the `subscribe` method from
 <PropResource
 hook={{
     name:"useList",
-    URL:"/docs/api-reference/data/hooks/useList/"
+    URL:"/docs/data/hooks/useList/"
 }}
 method={{
     name:"getList",
@@ -808,7 +808,7 @@ Use `setSorters` instead.
 
 ### How can I handle relational data?
 
-You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/useSelect/) hook to fetch relational data and filter [`<DataGrid>`][data-grid] by categories.
+You can use [`useSelect`](/docs/core/hooks/use-select/) hook to fetch relational data and filter [`<DataGrid>`][data-grid] by categories.
 
 <RelationalPreview/>
 

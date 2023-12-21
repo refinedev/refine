@@ -582,10 +582,10 @@ render(
 wrapperProps-type="[`CardProps`](https://mui.com/material-ui/api/card/#props)"
 contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)"
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"
-headerButtons-default="[`CreateButton`](https://refine.dev/docs/api-reference/mui/components/buttons/create-button/)"
+headerButtons-default="[`CreateButton`](/docs/ui-integrations/material-ui/components/buttons/create-button/)"
 headerButtonProps-type="[`BoxProps`](https://mui.com/material-ui/api/box/#props)"
 breadcrumb-default="[`<Breadcrumb/>`](/docs/ui-integrations/material-ui/components/breadcrumb)"
-createButtonProps-type="[`CreateButtonProps`](https://refine.dev/docs/api-reference/mui/components/buttons/create-button/)"
+createButtonProps-type="[`CreateButtonProps`](/docs/ui-integrations/material-ui/components/buttons/create-button/)"
 />
 
 ```tsx live shared

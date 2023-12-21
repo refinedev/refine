@@ -71,7 +71,7 @@ It also accepts all props of [TanStack Table](https://tanstack.com/table/v8/docs
 <PropResource
 hook={{
     name:"useList",
-    URL:"/docs/api-reference/data/hooks/useList/"
+    URL:"/docs/data/hooks/useList/"
 }}
 method={{
     name:"getList",
