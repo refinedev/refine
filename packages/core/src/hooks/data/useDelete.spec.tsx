@@ -139,7 +139,6 @@ describe("useDelete Hook", () => {
         result.current.mutate({
             resource,
             id: 1,
-            values: {},
             meta: {
                 foo: "bar",
                 gqlQuery: "gqlQuery" as any,

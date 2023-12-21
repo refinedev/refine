@@ -282,7 +282,6 @@ export const useUpdate = <
             }) => {
                 const { identifier } = select(resourceName);
 
-                // Exclude gqlMutation and gqlQuery from query keys.
                 const {
                     gqlMutation: _,
                     gqlQuery: __,
