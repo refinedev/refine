@@ -55,7 +55,7 @@ Let's add multi-language support to our application using the `react-i18next` fr
 
 :::simple Good to know
 
-- We recommend using [`create refine-app`][create-refine-app] to initialize your refine projects as it configures the project according to your needs, i18n support included if you choose it in the CLI
+- We recommend using [`create refine-app`][create-refine-app] to initialize your Refine projects as it configures the project according to your needs, i18n support included if you choose it in the CLI
 - For more information, refer to the [react-i18next documentation&#8594](https://react.i18next.com/getting-started)
 - This example is for SPA react apps, for Next.js refer to [i18n Nextjs example&#8594][i18nnextjs]
 
@@ -274,14 +274,14 @@ Before we get started, let's look at which parts are going to be translated:
     "title": "Dashboard"
   },
   "documentTitle": {
-    "default": "refine",
-    "suffix": " | refine",
+    "default": "Refine",
+    "suffix": " | Refine",
     "post": {
-      "list": "Posts | refine",
-      "show": "#{{id}} Show Post | refine",
-      "edit": "#{{id}} Edit Post | refine",
-      "create": "Create new Post | refine",
-      "clone": "#{{id}} Clone Post | refine"
+      "list": "Posts | Refine",
+      "show": "#{{id}} Show Post | Refine",
+      "edit": "#{{id}} Edit Post | Refine",
+      "create": "Create new Post | Refine",
+      "clone": "#{{id}} Clone Post | Refine"
     }
   },
   "autoSave": {
@@ -455,13 +455,13 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
   },
   "documentTitle": {
     "default": "refine",
-    "suffix": " | refine",
+    "suffix": " | Refine",
     "post": {
-      "list": "Posts | refine",
-      "show": "#{{id}} Show Post | refine",
-      "edit": "#{{id}} Edit Post | refine",
-      "create": "Create new Post | refine",
-      "clone": "#{{id}} Clone Post | refine"
+      "list": "Posts | Refine",
+      "show": "#{{id}} Show Post | Refine",
+      "edit": "#{{id}} Edit Post | Refine",
+      "create": "Create new Post | Refine",
+      "clone": "#{{id}} Clone Post | Refine"
     }
   },
   "autoSave": {
@@ -619,13 +619,13 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
   },
   "documentTitle": {
     "default": "refine",
-    "suffix": " | refine",
+    "suffix": " | Refine",
     "post": {
-      "list": "Beiträge | refine",
-      "show": "#{{id}} Beitrag anzeigen | refine",
-      "edit": "#{{id}} Beitrag bearbeiten | refine",
-      "create": "Neuen Beitrag erstellen | refine",
-      "clone": "#{{id}} Beitrag klonen | refine"
+      "list": "Beiträge | Refine",
+      "show": "#{{id}} Beitrag anzeigen | Refine",
+      "edit": "#{{id}} Beitrag bearbeiten | Refine",
+      "create": "Neuen Beitrag erstellen | Refine",
+      "clone": "#{{id}} Beitrag klonen | Refine"
     }
   },
   "autoSave": {
