@@ -10,7 +10,7 @@
     },
     {
       "from": "/docs/core/components/auth/authenticated/",
-      "to": "/docs/core/components/authenticated/"
+      "to": "/docs/authentication/components/authenticated"
     },
     {
       "from": "/docs/core/components/layout-wrapper/",
