@@ -178,9 +178,7 @@ const PostCreate: React.FC = () => {
 
 Install the [`@refinedev/react-hook-form`][refine-react-hook-form] library.
 
-```bash
-npm i @refinedev/react-hook-form
-```
+<InstallPackagesCommand args="@refinedev/react-hook-form"/>
 
 ## Usage
 

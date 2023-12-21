@@ -19,9 +19,7 @@ We will be using the javascript version of msal library and a helper for react. 
 
 To install the required dependencies, run the following command:
 
-```bash
-npm install @azure/msal-browser @azure/msal-react
-```
+<InstallPackagesCommand args="@azure/msal-browser @azure/msal-react"/>
 
 Detailed documentation for using msal with react can be found here: [docs](https://learn.microsoft.com/en-us/azure/active-directory/develop/single-page-app-quickstart?pivots=devlang-react)
 

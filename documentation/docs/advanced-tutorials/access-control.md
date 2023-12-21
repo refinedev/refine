@@ -260,9 +260,7 @@ We will be using **[Casbin](https://casbin.org/)** in this guide for users with 
 
 We need to install Casbin.
 
-```bash
-npm install casbin
-```
+<InstallPackagesCommand args="casbin"/>
 
 :::caution
 
