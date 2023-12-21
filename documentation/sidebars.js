@@ -385,14 +385,14 @@ module.exports = {
             label: "Authentication",
             className: "category-as-header",
             items: [
-                "core/providers/auth-provider/index",
+                "authentication/auth-provider/index",
                 {
                     type: "category",
                     collapsible: false,
                     label: "Components",
                     items: [
-                        "core/components/authenticated/index",
-                        "core/components/auth-page/index",
+                        "authentication/components/authenticated/index",
+                        "authentication/components/auth-page/index",
                     ],
                 },
                 {
@@ -400,15 +400,15 @@ module.exports = {
                     collapsible: false,
                     label: "Hooks",
                     items: [
-                        "core/hooks/auth/use-is-authenticated/index",
-                        "core/hooks/auth/use-on-error/index",
-                        "core/hooks/auth/use-get-identity/index",
-                        "core/hooks/auth/use-login/index",
-                        "core/hooks/auth/use-logout/index",
-                        "core/hooks/auth/use-permissions/index",
-                        "core/hooks/auth/use-register/index",
-                        "core/hooks/auth/use-forgot-password/index",
-                        "core/hooks/auth/use-update-password/index",
+                        "authentication/hooks/use-is-authenticated/index",
+                        "authentication/hooks/use-on-error/index",
+                        "authentication/hooks/use-get-identity/index",
+                        "authentication/hooks/use-login/index",
+                        "authentication/hooks/use-logout/index",
+                        "authentication/hooks/use-permissions/index",
+                        "authentication/hooks/use-register/index",
+                        "authentication/hooks/use-forgot-password/index",
+                        "authentication/hooks/use-update-password/index",
                     ],
                 },
                 {
@@ -431,18 +431,18 @@ module.exports = {
             label: "Authorization",
             className: "category-as-header",
             items: [
-                "core/providers/access-control-provider/index",
+                "authorization/access-control-provider/index",
                 {
                     type: "category",
                     collapsible: false,
                     label: "Components",
-                    items: ["core/components/can-access/index"],
+                    items: ["authorization/components/can-access/index"],
                 },
                 {
                     type: "category",
                     collapsible: false,
                     label: "Hooks",
-                    items: ["core/hooks/use-can/index"],
+                    items: ["authorization/hooks/use-can/index"],
                 },
                 {
                     type: "category",
@@ -460,14 +460,14 @@ module.exports = {
             label: "Realtime",
             className: "category-as-header",
             items: [
-                "core/providers/live-provider/index",
+                "realtime/live-provider/index",
                 {
                     type: "category",
                     collapsible: false,
                     label: "Hooks",
                     items: [
-                        "core/hooks/realtime/use-publish/index",
-                        "core/hooks/realtime/use-subscription/index",
+                        "realtime/hooks/use-publish/index",
+                        "realtime/hooks/use-subscription/index",
                     ],
                 },
                 {
@@ -483,12 +483,12 @@ module.exports = {
             label: "Notification",
             className: "category-as-header",
             items: [
-                "core/providers/notification-provider/index",
+                "notification/notification-provider/index",
                 {
                     type: "category",
                     collapsible: false,
                     label: "Hooks",
-                    items: ["core/hooks/utilities/use-notification/index"],
+                    items: ["notification/hooks/use-notification/index"],
                 },
                 {
                     type: "category",
@@ -503,15 +503,15 @@ module.exports = {
             label: "I18n",
             className: "category-as-header",
             items: [
-                "core/providers/i18n-provider/index",
+                "i18n/i18n-provider/index",
                 {
                     type: "category",
                     collapsible: false,
                     label: "Hooks",
                     items: [
-                        "core/hooks/translate/use-get-locale/index",
-                        "core/hooks/translate/use-set-locale/index",
-                        "core/hooks/translate/use-translate/index",
+                        "i18n/hooks/use-get-locale/index",
+                        "i18n/hooks/use-set-locale/index",
+                        "i18n/hooks/use-translate/index",
                     ],
                 },
                 {
@@ -530,14 +530,14 @@ module.exports = {
             label: "Audit Logs",
             className: "category-as-header",
             items: [
-                "core/providers/audit-log-provider/index",
+                "audit-logs/audit-log-provider/index",
                 {
                     type: "category",
                     collapsible: false,
                     label: "Hooks",
                     items: [
-                        "core/hooks/audit-log/use-log/index",
-                        "core/hooks/audit-log/use-log-list/index",
+                        "audit-logs/hooks/use-log/index",
+                        "audit-logs/hooks/use-log-list/index",
                     ],
                 },
                 {
