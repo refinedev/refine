@@ -205,6 +205,42 @@ export type DashboardTotalCountsQuery = {
     deals: Pick<Types.DealConnection, "totalCount">;
 };
 
+export type TaskStagesQueryVariables = Types.Exact<{
+    filter: Types.TaskStageFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.TaskStageSort> | Types.TaskStageSort
+    >;
+    paging: Types.OffsetPaging;
+}>;
+
+export type TaskStagesQuery = {
+    taskStages: Pick<Types.TaskStageConnection, "totalCount"> & {
+        nodes: Array<Pick<Types.TaskStage, "id" | "title">>;
+    };
+};
+
+export type TasksQueryVariables = Types.Exact<{
+    filter: Types.TaskFilter;
+    sorting?: Types.InputMaybe<Array<Types.TaskSort> | Types.TaskSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type TasksQuery = {
+    tasks: Pick<Types.TaskConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<
+                Types.Task,
+                | "id"
+                | "title"
+                | "description"
+                | "dueDate"
+                | "completed"
+                | "stageId"
+            > & { users: Array<Pick<Types.User, "id" | "name" | "avatarUrl">> }
+        >;
+    };
+};
+
 export type UpdateTaskMutationVariables = Types.Exact<{
     input: Types.UpdateOneTaskInput;
 }>;
