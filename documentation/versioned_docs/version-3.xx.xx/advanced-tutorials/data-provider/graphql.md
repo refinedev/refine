@@ -35,9 +35,7 @@ Hooks and components that support `MetaDataQuery`:
 
 ## Setup
 
-```bash
-npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-strapi-graphql
-```
+<InstallPackagesCommand args="@pankod/refine-core @pankod/refine-antd @pankod/refine-strapi-graphql"/>
 
 :::caution
 To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/v3/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/v3/packages/refine-antd) package.

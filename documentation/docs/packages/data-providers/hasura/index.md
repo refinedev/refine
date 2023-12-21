@@ -17,9 +17,7 @@ Refine provides a data provider for APIs powered with [Hasura](https://hasura.io
 
 ## Installation
 
-```bash
-npm i @refinedev/hasura
-```
+<InstallPackagesCommand args="@refinedev/hasura"/>
 
 ## Usage
 

@@ -620,7 +620,7 @@ exports[`MuiCreateInferencer should match the snapshot 1`] = `
         </form>
       </div>
       <div
-        class="MuiCardActions-root MuiCardActions-spacing css-otuins-MuiCardActions-root"
+        class="MuiCardActions-root MuiCardActions-spacing css-77lrgg-MuiCardActions-root"
       >
         <button
           class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium refine-save-button css-1jmqb42-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"

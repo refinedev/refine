@@ -379,28 +379,7 @@ View the details of the development environment.
 
 If you want to add the [@refinedev/cli](https://github.com/refinedev/refine/tree/master/packages/cli) to your existing project, you have to add it to your project's `dependencies`.
 
-<Tabs
-defaultValue="npm"
-values={[
-{label: 'use npm', value: 'npm'},
-{label: 'use yarn', value: 'yarn'},
-]}>
-
-<TabItem value="npm">
-
-```bash
-npm i @refinedev/cli
-```
-
-</TabItem>
-<TabItem value="yarn">
-
-```bash
-yarn add @refinedev/cli
-```
-
-</TabItem>
-</Tabs>
+<InstallPackagesCommand args="@refinedev/cli"/>
 
 Then add the `refine` command to your scripts in your `package.json` file
 

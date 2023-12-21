@@ -1210,3 +1210,100 @@ form.DocSearch-Form label.DocSearch-MagnifierLabel svg.DocSearch-Search-Icon {
     width: 18px;
     height: 18px;
 }
+
+.template-detail-markdown {
+    @apply break-words;
+}
+
+.template-detail-markdown h3 + ul {
+    margin-block-start: -20px;
+}
+
+.template-detail-markdown li > p + p {
+    @apply mt-6;
+}
+
+.template-detail-markdown strong {
+    @apply font-semibold;
+}
+
+.template-detail-markdown a {
+    @apply text-blue-600 font-semibold;
+}
+
+.template-detail-markdown strong a {
+    @apply font-bold;
+}
+
+.template-detail-markdown h1 {
+    @apply leading-tight border-b text-4xl font-semibold mb-4 mt-6 pb-2;
+}
+
+.template-detail-markdown h2 {
+    @apply leading-tight border-b text-2xl font-semibold mb-4 mt-6 pb-2;
+}
+
+.template-detail-markdown h3 {
+    @apply leading-snug text-lg font-semibold pb-0 mb-0 mt-6;
+}
+
+.template-detail-markdown h4 {
+    @apply leading-none text-base font-semibold mb-4 mt-6;
+}
+
+.template-detail-markdown h5 {
+    @apply leading-tight text-sm font-semibold mb-4 mt-6;
+}
+
+.template-detail-markdown h6 {
+    @apply leading-tight text-sm font-semibold mb-4 mt-6;
+}
+
+.template-detail-markdown blockquote {
+    @apply text-base border-l-4 border-gray-300 pl-4 pr-4;
+}
+
+.template-detail-markdown code {
+    @apply text-sm inline bg-gray-200 rounded px-1 py-[0.125rem];
+}
+
+.template-detail-markdown pre {
+    @apply bg-gray-100 rounded p-4;
+}
+
+.template-detail-markdown pre code {
+    @apply block bg-transparent p-0 overflow-visible rounded-none;
+}
+
+.template-detail-markdown ul {
+    @apply text-base pl-8 list-disc;
+}
+
+.template-detail-markdown ol {
+    @apply text-base pl-8 list-decimal;
+}
+
+.template-detail-markdown li {
+    @apply leading-none;
+}
+
+.template-detail-markdown kbd {
+    @apply text-xs inline-block rounded border px-1 py-[0.125rem] align-middle font-normal shadow;
+}
+
+.template-detail-markdown table {
+    @apply text-base border-gray-600;
+}
+
+.template-detail-markdown th {
+    @apply border py-1 px-3;
+}
+
+.template-detail-markdown td {
+    @apply border py-1 px-3;
+}
+
+/* Override pygments style background color. */
+.template-detail-markdown .highlight pre {
+    @apply bg-gray-100 !important;
+}
