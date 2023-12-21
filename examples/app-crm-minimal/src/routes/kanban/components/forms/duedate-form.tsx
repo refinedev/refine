@@ -4,7 +4,7 @@ import { HttpError } from "@refinedev/core";
 import { Button, DatePicker, Form, Space } from "antd";
 import dayjs from "dayjs";
 
-import { Task } from "@/interfaces";
+import { Task } from "@/graphql/schema.types";
 import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
 import {
     UpdateTaskMutation,

@@ -6,7 +6,7 @@ import { HttpError, useInvalidate } from "@refinedev/core";
 import { Form, Skeleton } from "antd";
 
 import { Text } from "@/components";
-import { Task } from "@/interfaces";
+import { Task } from "@/graphql/schema.types";
 import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
 import {
     UpdateTaskMutation,

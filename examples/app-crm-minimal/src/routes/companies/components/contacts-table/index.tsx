@@ -9,7 +9,7 @@ import {
 import { Button, Card, Input, Select, Space, Table } from "antd";
 
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
-import { Contact } from "@/interfaces";
+import { Contact } from "@/graphql/schema.types";
 import { useParams } from "react-router-dom";
 import { COMPANY_CONTACTS_TABLE_QUERY } from "./queries";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";

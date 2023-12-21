@@ -2,7 +2,7 @@ import { HttpError } from "@refinedev/core";
 
 import { Form, Input, InputNumber, Select } from "antd";
 
-import { BusinessType, CompanySize, Industry } from "@/interfaces";
+import { BusinessType, CompanySize, Industry } from "@/graphql/schema.types";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { CustomAvatar, SelectOptionWithAvatar } from "@/components";
 import { getNameInitials } from "@/utilities";

@@ -4,7 +4,7 @@ import { HttpError } from "@refinedev/core";
 
 import { Button, Form, Space } from "antd";
 
-import { Task } from "@/interfaces";
+import { Task } from "@/graphql/schema.types";
 import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
 import {
     UpdateTaskMutation,

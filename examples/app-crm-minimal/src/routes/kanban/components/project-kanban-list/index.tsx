@@ -5,7 +5,7 @@ import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DragEndEvent } from "@dnd-kit/core";
 
-import { TaskUpdateInput } from "@/interfaces";
+import { TaskUpdateInput } from "@/graphql/schema.types";
 import { TaskStagesQuery, TasksQuery } from "@/graphql/types";
 
 import {

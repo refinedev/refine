@@ -6,7 +6,7 @@ import { HttpError, useInvalidate } from "@refinedev/core";
 import { FlagOutlined } from "@ant-design/icons";
 import { Checkbox, Form, Select, Space } from "antd";
 
-import { Task } from "@/interfaces";
+import { Task } from "@/graphql/schema.types";
 
 import { AccordionHeaderSkeleton } from "@/components";
 import { TASK_STAGES_SELECT_QUERY } from "@/graphql/queries";

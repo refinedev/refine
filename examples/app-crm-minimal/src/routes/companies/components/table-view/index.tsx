@@ -7,7 +7,7 @@ import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { Input, Space, Table, TableProps } from "antd";
 
 import { CustomAvatar, PaginationTotal, Text } from "@/components";
-import { Company } from "@/interfaces";
+import { Company } from "@/graphql/schema.types";
 import { currencyNumber } from "@/utilities";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { CompaniesListQuery } from "@/graphql/types";
