@@ -9,13 +9,18 @@ import {
 import { Button, Card, Input, Select, Space, Table } from "antd";
 
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
-import { Contact } from "@/interfaces";
+import { Contact } from "@/graphql/schema.types";
 import { useParams } from "react-router-dom";
+import { COMPANY_CONTACTS_TABLE_QUERY } from "./queries";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { CompanyContactsTableQuery } from "@/graphql/types";
 
 export const CompanyContactsTable = () => {
     const params = useParams();
 
-    const { tableProps } = useTable<Contact>({
+    const { tableProps } = useTable<
+        GetFieldsFromList<CompanyContactsTableQuery>
+    >({
         resource: "contacts",
         syncWithLocation: false,
         sorters: {
@@ -53,21 +58,9 @@ export const CompanyContactsTable = () => {
             ],
         },
         meta: {
-            fields: [
-                "id",
-                "name",
-                "avatarUrl",
-                "jobTitle",
-                "email",
-                "phone",
-                "status",
-            ],
+            gqlQuery: COMPANY_CONTACTS_TABLE_QUERY,
         },
     });
-
-    const hasData = tableProps.loading
-        ? true
-        : tableProps?.dataSource?.length || 0 > 0;
 
     return (
         <Card
@@ -92,101 +85,89 @@ export const CompanyContactsTable = () => {
                 </>
             }
         >
-            {!hasData && (
-                <div
-                    style={{
-                        padding: 16,
-                        borderBottom: "1px solid #D9D9D9",
+            <Table
+                {...tableProps}
+                rowKey="id"
+                pagination={{
+                    ...tableProps.pagination,
+                    showSizeChanger: false,
+                }}
+            >
+                <Table.Column<Contact>
+                    title="Name"
+                    dataIndex="name"
+                    render={(_, record) => {
+                        return (
+                            <Space>
+                                <CustomAvatar
+                                    name={record.name}
+                                    src={record.avatarUrl}
+                                />
+                                <Text
+                                    style={{
+                                        whiteSpace: "nowrap",
+                                    }}
+                                >
+                                    {record.name}
+                                </Text>
+                            </Space>
+                        );
                     }}
-                >
-                    <Text>No contacts yet</Text>
-                </div>
-            )}
-            {hasData && (
-                <Table
-                    {...tableProps}
-                    rowKey="id"
-                    pagination={{
-                        ...tableProps.pagination,
-                        showSizeChanger: false,
+                    filterIcon={<SearchOutlined />}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Input placeholder="Search Name" />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column
+                    title="Title"
+                    dataIndex="jobTitle"
+                    filterIcon={<SearchOutlined />}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Input placeholder="Search Title" />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column<Contact>
+                    title="Stage"
+                    dataIndex="status"
+                    render={(_, record) => {
+                        return <ContactStatusTag status={record.status} />;
                     }}
-                >
-                    <Table.Column<Contact>
-                        title="Name"
-                        dataIndex="name"
-                        render={(_, record) => {
-                            return (
-                                <Space>
-                                    <CustomAvatar
-                                        name={record.name}
-                                        src={record.avatarUrl}
-                                    />
-                                    <Text
-                                        style={{
-                                            whiteSpace: "nowrap",
-                                        }}
-                                    >
-                                        {record.name}
-                                    </Text>
-                                </Space>
-                            );
-                        }}
-                        filterIcon={<SearchOutlined />}
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
-                                <Input placeholder="Search Name" />
-                            </FilterDropdown>
-                        )}
-                    />
-                    <Table.Column
-                        title="Title"
-                        dataIndex="jobTitle"
-                        filterIcon={<SearchOutlined />}
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
-                                <Input placeholder="Search Title" />
-                            </FilterDropdown>
-                        )}
-                    />
-                    <Table.Column<Contact>
-                        title="Stage"
-                        dataIndex="status"
-                        render={(_, record) => {
-                            return <ContactStatusTag status={record.status} />;
-                        }}
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
-                                <Select
-                                    style={{ width: "200px" }}
-                                    mode="multiple"
-                                    placeholder="Select Stage"
-                                    options={statusOptions}
-                                ></Select>
-                            </FilterDropdown>
-                        )}
-                    />
-                    <Table.Column<Contact>
-                        dataIndex="id"
-                        width={112}
-                        render={(value, record) => {
-                            return (
-                                <Space>
-                                    <Button
-                                        size="small"
-                                        href={`mailto:${record.email}`}
-                                        icon={<MailOutlined />}
-                                    />
-                                    <Button
-                                        size="small"
-                                        href={`tel:${record.phone}`}
-                                        icon={<PhoneOutlined />}
-                                    />
-                                </Space>
-                            );
-                        }}
-                    />
-                </Table>
-            )}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ width: "200px" }}
+                                mode="multiple"
+                                placeholder="Select Stage"
+                                options={statusOptions}
+                            ></Select>
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column<Contact>
+                    dataIndex="id"
+                    width={112}
+                    render={(value, record) => {
+                        return (
+                            <Space>
+                                <Button
+                                    size="small"
+                                    href={`mailto:${record.email}`}
+                                    icon={<MailOutlined />}
+                                />
+                                <Button
+                                    size="small"
+                                    href={`tel:${record.phone}`}
+                                    icon={<PhoneOutlined />}
+                                />
+                            </Space>
+                        );
+                    }}
+                />
+            </Table>
         </Card>
     );
 };

@@ -3,7 +3,18 @@ import { HttpError } from "@refinedev/core";
 
 import { Button, Form, Select, Space } from "antd";
 
-import { Task } from "@/interfaces";
+import { USERS_SELECT_QUERY } from "@/graphql/queries";
+import {
+    GetFields,
+    GetFieldsFromList,
+    GetVariables,
+} from "@refinedev/nestjs-query";
+import {
+    UpdateTaskMutation,
+    UpdateTaskMutationVariables,
+    UsersSelectQuery,
+} from "@/graphql/types";
+import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
 
 type Props = {
     initialValues: {
@@ -13,7 +24,11 @@ type Props = {
 };
 
 export const UsersForm = ({ initialValues, cancelForm }: Props) => {
-    const { formProps, saveButtonProps } = useForm<Task, HttpError, Task>({
+    const { formProps, saveButtonProps } = useForm<
+        GetFields<UpdateTaskMutation>,
+        HttpError,
+        Pick<GetVariables<UpdateTaskMutationVariables>, "userIds">
+    >({
         queryOptions: {
             enabled: false,
         },
@@ -21,12 +36,15 @@ export const UsersForm = ({ initialValues, cancelForm }: Props) => {
         onMutationSuccess: () => {
             cancelForm();
         },
+        meta: {
+            gqlMutation: UPDATE_TASK_MUTATION,
+        },
     });
 
-    const { selectProps } = useSelect({
+    const { selectProps } = useSelect<GetFieldsFromList<UsersSelectQuery>>({
         resource: "users",
         meta: {
-            fields: ["name", "id"],
+            gqlQuery: USERS_SELECT_QUERY,
         },
         optionLabel: "name",
     });

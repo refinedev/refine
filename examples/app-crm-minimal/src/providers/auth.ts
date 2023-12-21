@@ -1,6 +1,6 @@
 import { AuthBindings } from "@refinedev/core";
 import { API_URL, dataProvider } from "./data";
-import { User } from "@/interfaces";
+import { User } from "@/graphql/schema.types";
 
 /**
  * For demo purposes and to make it easier to test the app, you can use the following credentials:

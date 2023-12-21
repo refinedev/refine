@@ -2,67 +2,47 @@ import { HttpError } from "@refinedev/core";
 
 import { Form, Input, InputNumber, Select } from "antd";
 
-import {
-    BusinessType,
-    Company,
-    CompanySize,
-    CompanyUpdateInput,
-    Industry,
-    User,
-} from "@/interfaces";
+import { BusinessType, CompanySize, Industry } from "@/graphql/schema.types";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { CustomAvatar, SelectOptionWithAvatar } from "@/components";
 import { getNameInitials } from "@/utilities";
-
-type FormVariables = CompanyUpdateInput & {
-    salesOwner?: Company["salesOwner"];
-};
+import { UPDATE_COMPANY_MUTATION } from "./queries";
+import {
+    GetFields,
+    GetFieldsFromList,
+    GetVariables,
+} from "@refinedev/nestjs-query";
+import {
+    UpdateCompanyMutation,
+    UpdateCompanyMutationVariables,
+    UsersSelectQuery,
+} from "@/graphql/types";
+import { USERS_SELECT_QUERY } from "@/graphql/queries";
 
 export const CompanyForm = () => {
-    const { saveButtonProps, formProps, formLoading, queryResult, onFinish } =
-        useForm<Company, HttpError, FormVariables>({
-            redirect: false,
-            meta: {
-                fields: [
-                    "id",
-                    "name",
-                    "totalRevenue",
-                    "industry",
-                    "companySize",
-                    "businessType",
-                    "country",
-                    "website",
-                    "avatarUrl",
-                    {
-                        salesOwner: ["id", "name", "avatarUrl"],
-                    },
-                ],
-            },
-        });
+    const { saveButtonProps, formProps, formLoading, queryResult } = useForm<
+        GetFields<UpdateCompanyMutation>,
+        HttpError,
+        GetVariables<UpdateCompanyMutationVariables>
+    >({
+        redirect: false,
+        meta: {
+            gqlMutation: UPDATE_COMPANY_MUTATION,
+        },
+    });
     const { avatarUrl, name } = queryResult?.data?.data || {};
 
     const { selectProps: selectPropsUsers, queryResult: queryResultUsers } =
-        useSelect<User>({
+        useSelect<GetFieldsFromList<UsersSelectQuery>>({
             resource: "users",
             optionLabel: "name",
             pagination: {
                 mode: "off",
             },
             meta: {
-                fields: ["id", "name", "avatarUrl"],
+                gqlQuery: USERS_SELECT_QUERY,
             },
         });
-
-    const handleOnFinish = async (values: FormVariables) => {
-        const { salesOwner, ...rest } = values;
-
-        const input = {
-            ...rest,
-            salesOwnerId: salesOwner?.id,
-        };
-
-        return await onFinish?.(input);
-    };
 
     return (
         <Edit
@@ -70,11 +50,7 @@ export const CompanyForm = () => {
             saveButtonProps={saveButtonProps}
             breadcrumb={false}
         >
-            <Form
-                {...formProps}
-                onFinish={(values) => handleOnFinish(values)}
-                layout="vertical"
-            >
+            <Form {...formProps} layout="vertical">
                 <CustomAvatar
                     shape="square"
                     src={avatarUrl}
@@ -85,7 +61,11 @@ export const CompanyForm = () => {
                         marginBottom: "24px",
                     }}
                 />
-                <Form.Item label="Sales owner" name={["salesOwner", "id"]}>
+                <Form.Item
+                    label="Sales owner"
+                    name="salesOwnerId"
+                    initialValue={formProps?.initialValues?.salesOwner?.id}
+                >
                     <Select
                         {...selectPropsUsers}
                         options={

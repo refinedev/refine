@@ -43,6 +43,7 @@ const App: React.FC = () => {
                                 syncWithLocation: true,
                                 warnWhenUnsavedChanges: true,
                                 liveMode: "auto",
+                                useNewQueryKeys: true,
                             }}
                         >
                             <Routes>
@@ -80,16 +81,9 @@ const App: React.FC = () => {
                                         />
                                     </Route>
 
-                                    <Route
-                                        path="/companies"
-                                        element={
-                                            <CompanyListPage>
-                                                <Outlet />
-                                            </CompanyListPage>
-                                        }
-                                    >
+                                    <Route path="/companies">
                                         <Route
-                                            path="list"
+                                            index
                                             element={<CompanyListPage />}
                                         />
                                         <Route

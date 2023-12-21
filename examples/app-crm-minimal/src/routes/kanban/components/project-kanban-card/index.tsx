@@ -23,13 +23,13 @@ import {
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text, TextIcon } from "@/components";
-import { User } from "@/interfaces";
+import { User } from "@/graphql/schema.types";
 import { getDateColor } from "@/utilities";
 
 type ProjectCardProps = {
     id: string;
     title: string;
-
+    updatedAt: string;
     dueDate?: string;
     users?: {
         id: string;
@@ -247,6 +247,7 @@ export const ProjectCardMemo = memo(ProjectCard, (prev, next) => {
         prev.id === next.id &&
         prev.title === next.title &&
         prev.dueDate === next.dueDate &&
-        prev.users?.length === next.users?.length
+        prev.users?.length === next.users?.length &&
+        prev.updatedAt === next.updatedAt
     );
 });

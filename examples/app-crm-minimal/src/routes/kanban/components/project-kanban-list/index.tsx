@@ -1,10 +1,12 @@
 import { FC, PropsWithChildren, useMemo } from "react";
 
 import { HttpError, useList, useNavigation, useUpdate } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DragEndEvent } from "@dnd-kit/core";
 
-import { Task, TaskStage, TaskUpdateInput } from "@/interfaces";
+import { TaskUpdateInput } from "@/graphql/schema.types";
+import { TaskStagesQuery, TasksQuery } from "@/graphql/types";
 
 import {
     KanbanAddCardButton,
@@ -16,18 +18,14 @@ import {
     ProjectCardMemo,
     ProjectCardSkeleton,
 } from "..";
+import {
+    TASKS_QUERY,
+    TASK_STAGES_QUERY,
+    UPDATE_TASK_STAGE_MUTATION,
+} from "./queries";
 
-const taskFragment = [
-    "id",
-    "title",
-    "description",
-    "dueDate",
-    "completed",
-    "stageId",
-    {
-        users: ["id", "name", "avatarUrl"],
-    },
-];
+type Task = GetFieldsFromList<TasksQuery>;
+type TaskStage = GetFieldsFromList<TaskStagesQuery> & { tasks: Task[] };
 
 export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
     const { replace } = useNavigation();
@@ -35,7 +33,7 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
     const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
         resource: "taskStages",
         pagination: {
-            mode: "off",
+            pageSize: 4,
         },
         sorters: [
             {
@@ -44,11 +42,13 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
             },
         ],
         meta: {
-            fields: ["id", "title"],
+            gqlQuery: TASK_STAGES_QUERY,
         },
     });
 
-    const { data: tasks, isLoading: isLoadingTasks } = useList<Task>({
+    const { data: tasks, isLoading: isLoadingTasks } = useList<
+        GetFieldsFromList<TasksQuery>
+    >({
         resource: "tasks",
         sorters: [
             {
@@ -63,7 +63,7 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
             mode: "off",
         },
         meta: {
-            fields: taskFragment,
+            gqlQuery: TASKS_QUERY,
         },
     });
 
@@ -91,7 +91,7 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
 
         return {
             unassignedStage,
-            stages: grouped,
+            columns: grouped,
         };
     }, [tasks, stages]);
 
@@ -122,6 +122,9 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
             },
             successNotification: false,
             mutationMode: "optimistic",
+            meta: {
+                gqlMutation: UPDATE_TASK_STAGE_MUTATION,
+            },
         });
     };
 
@@ -169,7 +172,7 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
                             />
                         )}
                     </KanbanColumn>
-                    {taskStages.stages?.map((column) => {
+                    {taskStages.columns?.map((column) => {
                         return (
                             <KanbanColumn
                                 key={column.id}
@@ -187,10 +190,7 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
                                             <KanbanItem
                                                 key={task.id}
                                                 id={task.id}
-                                                data={{
-                                                    ...task,
-                                                    stageId: column.id,
-                                                }}
+                                                data={task}
                                             >
                                                 <ProjectCardMemo {...task} />
                                             </KanbanItem>

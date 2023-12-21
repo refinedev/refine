@@ -4,10 +4,15 @@ import { SaveButton, useForm } from "@refinedev/antd";
 import { Button, Card, Drawer, Form, Input, Spin } from "antd";
 
 import { getNameInitials } from "@/utilities";
-import { User, UserUpdateInput } from "@/interfaces";
 
 import { CustomAvatar } from "../../custom-avatar";
 import { Text } from "../../text";
+import { UPDATE_USER_MUTATION } from "./queries";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import {
+    UpdateUserMutation,
+    UpdateUserMutationVariables,
+} from "@/graphql/types";
 
 type Props = {
     opened: boolean;
@@ -17,16 +22,16 @@ type Props = {
 
 export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
     const { saveButtonProps, formProps, queryResult } = useForm<
-        User,
+        GetFields<UpdateUserMutation>,
         HttpError,
-        UserUpdateInput
+        GetVariables<UpdateUserMutationVariables>
     >({
         mutationMode: "optimistic",
         resource: "users",
         action: "edit",
         id: userId,
         meta: {
-            fields: ["id", "name", "email", "avatarUrl", "jobTitle", "phone"],
+            gqlMutation: UPDATE_USER_MUTATION,
         },
     });
     const { avatarUrl, name } = queryResult?.data?.data || {};

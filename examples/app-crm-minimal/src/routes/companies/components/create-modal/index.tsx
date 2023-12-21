@@ -1,54 +1,27 @@
 import { useModalForm, useSelect } from "@refinedev/antd";
-import { HttpError, useGetToPath, useGo } from "@refinedev/core";
+import { HttpError, useGo } from "@refinedev/core";
 import { Form, Input, Modal, Select } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company, User } from "@/interfaces";
-
-type FormValues = {
-    name: string;
-    salesOwnerId: string;
-    contacts?: {
-        name?: string;
-        email?: string;
-    }[];
-};
+import { CREATE_COMPANY_MUTATION } from "./queries";
+import {
+    GetFields,
+    GetFieldsFromList,
+    GetVariables,
+} from "@refinedev/nestjs-query";
+import {
+    CreateCompanyMutation,
+    CreateCompanyMutationVariables,
+    UsersSelectQuery,
+} from "@/graphql/types";
+import { USERS_SELECT_QUERY } from "@/graphql/queries";
 
 export const CompanyCreateModal = () => {
-    const getToPath = useGetToPath();
     const go = useGo();
 
-    const { formProps, modalProps, close } = useModalForm<
-        Company,
-        HttpError,
-        FormValues
-    >({
-        action: "create",
-        defaultVisible: true,
-        resource: "companies",
-        redirect: false,
-        mutationMode: "pessimistic",
-        meta: {
-            fields: ["id", { salesOwner: ["id"] }],
-        },
-    });
-
-    const { selectProps, queryResult } = useSelect<User>({
-        resource: "users",
-        meta: {
-            fields: ["name", "id", "avatarUrl"],
-        },
-        optionLabel: "name",
-    });
-
-    const closeModal = () => {
-        // modal is a opening from the url (/companies/create)
-        // to close modal we need to navigate to the list page (/companies)
-        close();
+    const goToListPage = () => {
         go({
-            to: getToPath({
-                action: "list",
-            }),
+            to: { resource: "companies", action: "list" },
             options: {
                 keepQuery: true,
             },
@@ -56,11 +29,37 @@ export const CompanyCreateModal = () => {
         });
     };
 
+    const { formProps, modalProps } = useModalForm<
+        GetFields<CreateCompanyMutation>,
+        HttpError,
+        GetVariables<CreateCompanyMutationVariables>
+    >({
+        action: "create",
+        defaultVisible: true,
+        resource: "companies",
+        redirect: false,
+        mutationMode: "pessimistic",
+        onMutationSuccess: goToListPage,
+        meta: {
+            gqlMutation: CREATE_COMPANY_MUTATION,
+        },
+    });
+
+    const { selectProps, queryResult } = useSelect<
+        GetFieldsFromList<UsersSelectQuery>
+    >({
+        resource: "users",
+        meta: {
+            gqlQuery: USERS_SELECT_QUERY,
+        },
+        optionLabel: "name",
+    });
+
     return (
         <Modal
             {...modalProps}
             mask={true}
-            onCancel={closeModal}
+            onCancel={goToListPage}
             title="Add new company"
             width={512}
         >
