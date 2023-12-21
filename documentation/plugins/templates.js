@@ -42,7 +42,7 @@ const templates = [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-refine-crm.jpg",
         ],
         runOnYourLocalPath: "app-crm",
-        liveDemo: "https://crm.refine.dev",
+        liveDemo: "https://example.crm.refine.dev/",
         github: "https://github.com/refinedev/refine/tree/master/examples/app-crm",
         reactPlatform: "Vite",
         uiFramework: "Ant Design",
