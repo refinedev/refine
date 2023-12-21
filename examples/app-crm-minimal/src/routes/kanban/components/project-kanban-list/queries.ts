@@ -36,7 +36,17 @@ export const TASKS_QUERY = gql`
                     name
                     avatarUrl
                 }
+                createdAt
+                updatedAt
             }
+        }
+    }
+`;
+
+export const UPDATE_TASK_STAGE_MUTATION = gql`
+    mutation UpdateTaskStage($input: UpdateOneTaskInput!) {
+        updateOneTask(input: $input) {
+            id
         }
     }
 `;

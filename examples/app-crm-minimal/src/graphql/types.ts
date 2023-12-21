@@ -236,10 +236,18 @@ export type TasksQuery = {
                 | "dueDate"
                 | "completed"
                 | "stageId"
+                | "createdAt"
+                | "updatedAt"
             > & { users: Array<Pick<Types.User, "id" | "name" | "avatarUrl">> }
         >;
     };
 };
+
+export type UpdateTaskStageMutationVariables = Types.Exact<{
+    input: Types.UpdateOneTaskInput;
+}>;
+
+export type UpdateTaskStageMutation = { updateOneTask: Pick<Types.Task, "id"> };
 
 export type UpdateTaskMutationVariables = Types.Exact<{
     input: Types.UpdateOneTaskInput;

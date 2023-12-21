@@ -18,7 +18,11 @@ import {
     ProjectCardMemo,
     ProjectCardSkeleton,
 } from "..";
-import { TASKS_QUERY, TASK_STAGES_QUERY } from "./queries";
+import {
+    TASKS_QUERY,
+    TASK_STAGES_QUERY,
+    UPDATE_TASK_STAGE_MUTATION,
+} from "./queries";
 
 type Task = GetFieldsFromList<TasksQuery>;
 type TaskStage = GetFieldsFromList<TaskStagesQuery> & { tasks: Task[] };
@@ -29,7 +33,7 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
     const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
         resource: "taskStages",
         pagination: {
-            mode: "off",
+            pageSize: 4,
         },
         sorters: [
             {
@@ -87,7 +91,7 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
 
         return {
             unassignedStage,
-            stages: grouped,
+            columns: grouped,
         };
     }, [tasks, stages]);
 
@@ -118,6 +122,9 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
             },
             successNotification: false,
             mutationMode: "optimistic",
+            meta: {
+                gqlMutation: UPDATE_TASK_STAGE_MUTATION,
+            },
         });
     };
 
@@ -165,7 +172,7 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
                             />
                         )}
                     </KanbanColumn>
-                    {taskStages.stages?.map((column) => {
+                    {taskStages.columns?.map((column) => {
                         return (
                             <KanbanColumn
                                 key={column.id}
@@ -183,10 +190,7 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
                                             <KanbanItem
                                                 key={task.id}
                                                 id={task.id}
-                                                data={{
-                                                    ...task,
-                                                    stageId: column.id,
-                                                }}
+                                                data={task}
                                             >
                                                 <ProjectCardMemo {...task} />
                                             </KanbanItem>
