@@ -1,6 +1,6 @@
 ---
 title: Building a React Admin Panel with Refine and daisyUI
-description: We'll build a simple React admin panel using refine and daisyUI.
+description: We'll build a simple React admin panel using Refine and daisyUI.
 slug: daisy-ui-react-admin-panel
 authors: abdullah_numan
 tags: [refine, tutorial, react]
