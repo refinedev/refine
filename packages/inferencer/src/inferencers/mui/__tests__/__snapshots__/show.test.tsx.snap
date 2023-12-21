@@ -267,7 +267,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
         </div>
       </div>
       <div
-        class="MuiCardActions-root MuiCardActions-spacing css-ljfa65-MuiCardActions-root"
+        class="MuiCardActions-root MuiCardActions-spacing css-op0xil-MuiCardActions-root"
       />
     </div>
   </div>
