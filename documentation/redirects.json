@@ -1777,6 +1777,10 @@
     {
       "from": "/docs/further-readings/contributing",
       "to": "/docs/guides-concepts/contributing"
+    },
+    {
+      "from": "/pricing",
+      "to": "/enterprise"
     }
   ]
 }
