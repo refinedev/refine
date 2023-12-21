@@ -1,5 +1,5 @@
 ---
-title: Building a React Admin Panel with refine and daisyUI
+title: Building a React Admin Panel with Refine and daisyUI
 description: We'll build a simple React admin panel using refine and daisyUI.
 slug: daisy-ui-react-admin-panel
 authors: abdullah_numan
@@ -119,9 +119,9 @@ import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import routerBindings, {
-    DocumentTitleHandler,
-    NavigateToResource,
-    UnsavedChangesNotifier,
+  DocumentTitleHandler,
+  NavigateToResource,
+  UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
@@ -129,43 +129,41 @@ import "./App.css";
 import { Layout } from "./components/layout";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                <Refine
-                    //highlight-next-line
-                    dataProvider={dataProvider(
-                        "https://api.finefoods.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                        projectId: "4kWrnz-AJZzOW-qq7MXL",
-                    }}
-                >
-                    <Routes>
-                        {/*highlight-start*/}
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                        {/*highlight-end*/}
-                    </Routes>
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <RefineKbarProvider>
+        <Refine
+          //highlight-next-line
+          dataProvider={dataProvider("https://api.finefoods.refine.dev")}
+          routerProvider={routerBindings}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+            projectId: "4kWrnz-AJZzOW-qq7MXL",
+          }}
+        >
+          <Routes>
+            {/*highlight-start*/}
+            <Route
+              element={
+                <Layout>
+                  <Outlet />
+                </Layout>
+              }
+            >
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+            {/*highlight-end*/}
+          </Routes>
 
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -197,12 +195,12 @@ npx tailwindcss init -p
 ```tsx title="tailwind.config.js"
 /** @type {import('tailwindcss').Config} */
 export default {
-    //highlight-next-line
-    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-    theme: {
-        extend: {},
-    },
-    plugins: [],
+  //highlight-next-line
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
 };
 ```
 
@@ -214,13 +212,13 @@ export default {
 
 ```css title="App.css"
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0px;
+  margin: 0px;
 }
 
 /* TailwindCSS layers towards the top */
@@ -229,70 +227,70 @@ body {
 @tailwind utilities;
 
 .layout {
-    display: flex;
-    gap: 16px;
+  display: flex;
+  gap: 16px;
 }
 
 @media screen and (max-width: 751px) {
-    .layout {
-        display: block;
-    }
+  .layout {
+    display: block;
+  }
 }
 
 .layout .content {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .breadcrumb {
-    display: flex;
-    gap: 24px;
-    list-style-type: "/  ";
-    padding: 8px 16px;
-    border-bottom: 1px solid lightgray;
+  display: flex;
+  gap: 24px;
+  list-style-type: "/  ";
+  padding: 8px 16px;
+  border-bottom: 1px solid lightgray;
 }
 
 .breadcrumb a {
-    color: blue;
-    text-decoration: none;
+  color: blue;
+  text-decoration: none;
 }
 
 .menu {
-    flex-shrink: 0;
-    padding: 8px 16px;
-    border-right: 1px solid lightgray;
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-right: 1px solid lightgray;
 }
 
 .menu a {
-    color: black;
+  color: black;
 }
 
 .menu .active {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 751px) {
-    .menu {
-        border-right: none;
-        border-bottom: 1px solid lightgray;
-    }
+  .menu {
+    border-right: none;
+    border-bottom: 1px solid lightgray;
+  }
 }
 
 .menu ul {
-    padding-left: 16px;
+  padding-left: 16px;
 }
 
 .page-container {
-    @apply mx-auto my-2 py-2 px-4 bg-slate-50 border rounded drop-shadow-md;
+  @apply mx-auto my-2 py-2 px-4 bg-slate-50 border rounded drop-shadow-md;
 }
 
 .page-title {
-    @apply text-xl font-bold;
+  @apply text-xl font-bold;
 }
 
 .page-header {
-    @apply py-4 flex justify-between items-center mb-6;
+  @apply py-4 flex justify-between items-center mb-6;
 }
 ```
 
@@ -317,23 +315,21 @@ npm install -D daisyui@latest
 ```tsx title="tailwind.config.js"
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-    daisyui: {
-        themes: [
-            {
-                light: {
-                    ...require("daisyui/src/theming/themes")[
-                        "[data-theme=light]"
-                    ],
-                    primary: "#0d89ec",
-                },
-            },
-        ],
-    },
-    theme: {
-        extend: {},
-    },
-    plugins: [require("daisyui")],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/theming/themes")["[data-theme=light]"],
+          primary: "#0d89ec",
+        },
+      },
+    ],
+  },
+  theme: {
+    extend: {},
+  },
+  plugins: [require("daisyui")],
 };
 ```
 
@@ -359,65 +355,65 @@ We'll be using the following interfaces throughout the app. So, feel free to cop
 
 ```tsx title="src/interfaces/index.ts"
 export interface IOrder {
-    id: number;
-    user: IUser;
-    createdAt: string;
-    status: IOrderStatus;
-    address: IAddress;
-    amount: number;
+  id: number;
+  user: IUser;
+  createdAt: string;
+  status: IOrderStatus;
+  address: IAddress;
+  amount: number;
 }
 
 export interface IUser {
-    id: number;
-    fullName: string;
-    gender: string;
-    gsm: string;
-    createdAt: string;
-    addresses: IAddress[];
+  id: number;
+  fullName: string;
+  gender: string;
+  gsm: string;
+  createdAt: string;
+  addresses: IAddress[];
 }
 
 export interface IOrderStatus {
-    id: number;
-    text: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
+  id: number;
+  text: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
 }
 
 export interface IAddress {
-    text: string;
-    coordinate: [string, string];
+  text: string;
+  coordinate: [string, string];
 }
 
 export interface IChartDatum {
-    date: string;
-    value: string;
+  date: string;
+  value: string;
 }
 
 export interface IChart {
-    data: IChartDatum[];
-    total: number;
-    trend: number;
+  data: IChartDatum[];
+  total: number;
+  trend: number;
 }
 
 export interface IProduct {
-    id: number;
-    name: string;
-    isActive: boolean;
-    description: string;
-    createdAt: string;
-    price: number;
-    category: ICategory;
-    stock: number;
+  id: number;
+  name: string;
+  isActive: boolean;
+  description: string;
+  createdAt: string;
+  price: number;
+  category: ICategory;
+  stock: number;
 }
 
 export interface ICategory {
-    id: number;
-    title: string;
-    isActive: boolean;
+  id: number;
+  title: string;
+  isActive: boolean;
 }
 
 export type TTab = {
-    id: number;
-    label: string;
-    content: JSX.Element;
+  id: number;
+  label: string;
+  content: JSX.Element;
 };
 ```
 
@@ -437,20 +433,17 @@ Initially, it will return a dummy hero component. We'll update it in the coming 
 import React from "react";
 
 export const Dashboard: React.FC = () => {
-    return (
-        <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content text-center">
-                <div className="max-w-md">
-                    <h1 className="text-5xl font-bold">Hello there...</h1>
-                    <p className="py-6">
-                        You're here. A deva just as dashing and daisyuing - as
-                        yourself refined
-                    </p>
-                    <button className="btn btn-primary">Buckle Up</button>
-                </div>
-            </div>
+  return (
+    <div className="hero min-h-screen bg-base-200">
+      <div className="hero-content text-center">
+        <div className="max-w-md">
+          <h1 className="text-5xl font-bold">Hello there...</h1>
+          <p className="py-6">You're here. A deva just as dashing and daisyuing - as yourself refined</p>
+          <button className="btn btn-primary">Buckle Up</button>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -467,76 +460,65 @@ import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import routerBindings, {
-    DocumentTitleHandler,
-    NavigateToResource,
-    UnsavedChangesNotifier,
+  DocumentTitleHandler,
+  NavigateToResource,
+  UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 //highlight-next-line
-import {
-    BrowserRouter,
-    Navigate,
-    Outlet,
-    Route,
-    Routes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout";
 //highlight-next-line
 import { Dashboard } from "./pages/dashboard";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.finefoods.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    //highlight-start
-                    resources={[
-                        {
-                            name: "dashboard",
-                            list: "/dashboard",
-                        },
-                    ]}
-                    //highlight-end
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                        projectId: "4kWrnz-AJZzOW-qq7MXL",
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            {/*highlight-start*/}
-                            <Route
-                                index
-                                element={<Navigate to="/dashboard" />}
-                            />
-                            <Route path="/dashboard">
-                                <Route index element={<Dashboard />} />
-                            </Route>
-                            {/*highlight-end*/}
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider("https://api.finefoods.refine.dev")}
+          routerProvider={routerBindings}
+          //highlight-start
+          resources={[
+            {
+              name: "dashboard",
+              list: "/dashboard",
+            },
+          ]}
+          //highlight-end
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+            projectId: "4kWrnz-AJZzOW-qq7MXL",
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <Layout>
+                  <Outlet />
+                </Layout>
+              }
+            >
+              {/*highlight-start*/}
+              <Route index element={<Navigate to="/dashboard" />} />
+              <Route path="/dashboard">
+                <Route index element={<Dashboard />} />
+              </Route>
+              {/*highlight-end*/}
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
 
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -566,58 +548,54 @@ Let's now focus on implementing the features of the dashboard. Inside it, we'll 
 import React from "react";
 import { KpiCard } from "./KpiCard";
 import { IChartDatum } from "../../interfaces";
-import {
-    CurrencyDollarIcon,
-    ShoppingCartIcon,
-    UserGroupIcon,
-} from "@heroicons/react/24/outline";
+import { CurrencyDollarIcon, ShoppingCartIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import { GetListResponse } from "@refinedev/core";
 
 type TStats = {
-    dailyRevenue?: GetListResponse<IChartDatum>;
-    dailyOrders?: GetListResponse<IChartDatum>;
-    newCustomers?: GetListResponse<IChartDatum>;
+  dailyRevenue?: GetListResponse<IChartDatum>;
+  dailyOrders?: GetListResponse<IChartDatum>;
+  newCustomers?: GetListResponse<IChartDatum>;
 };
 
 const Stats = ({ dailyRevenue, dailyOrders, newCustomers }: TStats) => {
-    return (
-        <div className="w-full mx-auto mb-4 flex flex-col justify-center items-stretch md:flex-row md:justify-between drop-shadow-md">
-            <div className="w-full mx-auto md:flex-1 md:mr-2">
-                <KpiCard
-                    title="Weekly Revenue"
-                    data={dailyRevenue}
-                    formatTotal={(value: number | string) => `$ ${value}`}
-                    icon={<CurrencyDollarIcon className="h-32 w-32" />}
-                    colors={{
-                        stroke: "rgb(54, 162, 235)",
-                        fill: "rgba(54, 162, 235, 0.2)",
-                    }}
-                />
-            </div>
-            <div className="w-full mx-auto md:flex-1">
-                <KpiCard
-                    title="Weekly Orders"
-                    data={dailyOrders}
-                    icon={<ShoppingCartIcon className="h-32 w-32" />}
-                    colors={{
-                        stroke: "rgb(255, 159, 64)",
-                        fill: "rgba(255, 159, 64, 0.2)",
-                    }}
-                />
-            </div>
-            <div className="w-full mx-auto md:flex-1 md:ml-2">
-                <KpiCard
-                    title="New Customers"
-                    data={newCustomers}
-                    icon={<UserGroupIcon className="h-32 w-32" />}
-                    colors={{
-                        stroke: "rgb(76, 175, 80)",
-                        fill: "rgba(76, 175, 80, 0.2)",
-                    }}
-                />
-            </div>
-        </div>
-    );
+  return (
+    <div className="w-full mx-auto mb-4 flex flex-col justify-center items-stretch md:flex-row md:justify-between drop-shadow-md">
+      <div className="w-full mx-auto md:flex-1 md:mr-2">
+        <KpiCard
+          title="Weekly Revenue"
+          data={dailyRevenue}
+          formatTotal={(value: number | string) => `$ ${value}`}
+          icon={<CurrencyDollarIcon className="h-32 w-32" />}
+          colors={{
+            stroke: "rgb(54, 162, 235)",
+            fill: "rgba(54, 162, 235, 0.2)",
+          }}
+        />
+      </div>
+      <div className="w-full mx-auto md:flex-1">
+        <KpiCard
+          title="Weekly Orders"
+          data={dailyOrders}
+          icon={<ShoppingCartIcon className="h-32 w-32" />}
+          colors={{
+            stroke: "rgb(255, 159, 64)",
+            fill: "rgba(255, 159, 64, 0.2)",
+          }}
+        />
+      </div>
+      <div className="w-full mx-auto md:flex-1 md:ml-2">
+        <KpiCard
+          title="New Customers"
+          data={newCustomers}
+          icon={<UserGroupIcon className="h-32 w-32" />}
+          colors={{
+            stroke: "rgb(76, 175, 80)",
+            fill: "rgba(76, 175, 80, 0.2)",
+          }}
+        />
+      </div>
+    </div>
+  );
 };
 
 export default Stats;
@@ -639,55 +617,40 @@ Let's create the `<KpiCard />` component inside `src/components/dashboard` direc
 import React from "react";
 
 type TKpiCardProps = {
-    title: string;
-    data: any;
-    icon: JSX.Element;
-    colors: {
-        stroke: string;
-        fill: string;
-    };
-    formatTotal?: (value: number | string) => typeof value;
+  title: string;
+  data: any;
+  icon: JSX.Element;
+  colors: {
+    stroke: string;
+    fill: string;
+  };
+  formatTotal?: (value: number | string) => typeof value;
 };
 
-export const KpiCard = ({
-    title,
-    data,
-    icon,
-    colors,
-    formatTotal = (value) => value,
-}: TKpiCardProps) => {
-    const total = data?.data?.total;
-    const trend = data?.data?.trend;
-    const calc = Math.round((trend / total) * 100);
-    const percent = total > trend ? `+ ${calc}%` : `- ${calc}%`;
-    const textColor = total > trend ? "seagreen" : "crimson";
+export const KpiCard = ({ title, data, icon, colors, formatTotal = (value) => value }: TKpiCardProps) => {
+  const total = data?.data?.total;
+  const trend = data?.data?.trend;
+  const calc = Math.round((trend / total) * 100);
+  const percent = total > trend ? `+ ${calc}%` : `- ${calc}%`;
+  const textColor = total > trend ? "seagreen" : "crimson";
 
-    return (
-        <div
-            className="stat my-2 py-4 flex-1 bg-zinc-50 border-l-4 rounded"
-            style={{ borderColor: colors?.stroke }}
-        >
-            <div
-                className="stat-figure text-secondary"
-                style={{ color: colors?.fill }}
-            >
-                {icon}
-            </div>
-            <div className="stat-title text-l">{title}</div>
-            <div className="stat-value" style={{ color: colors?.stroke }}>
-                {formatTotal(total ?? "...")}
-            </div>
-            <div className="stat-desc my-2">
-                <span
-                    className="mx-1 text-l font-bold"
-                    style={{ color: textColor }}
-                >
-                    {percent}
-                </span>
-                since last week
-            </div>
-        </div>
-    );
+  return (
+    <div className="stat my-2 py-4 flex-1 bg-zinc-50 border-l-4 rounded" style={{ borderColor: colors?.stroke }}>
+      <div className="stat-figure text-secondary" style={{ color: colors?.fill }}>
+        {icon}
+      </div>
+      <div className="stat-title text-l">{title}</div>
+      <div className="stat-value" style={{ color: colors?.stroke }}>
+        {formatTotal(total ?? "...")}
+      </div>
+      <div className="stat-desc my-2">
+        <span className="mx-1 text-l font-bold" style={{ color: textColor }}>
+          {percent}
+        </span>
+        since last week
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -714,43 +677,39 @@ import Stats from "../../components/dashboard/Stats";
 import { IChartDatum, TTab } from "../../interfaces";
 
 const filters: CrudFilter[] = [
-    {
-        field: "start",
-        operator: "eq",
-        value: dayjs()?.subtract(7, "days")?.startOf("day"),
-    },
-    {
-        field: "end",
-        operator: "eq",
-        value: dayjs().startOf("day"),
-    },
+  {
+    field: "start",
+    operator: "eq",
+    value: dayjs()?.subtract(7, "days")?.startOf("day"),
+  },
+  {
+    field: "end",
+    operator: "eq",
+    value: dayjs().startOf("day"),
+  },
 ];
 
 export const Dashboard: React.FC = () => {
-    const { data: dailyRevenue } = useList<IChartDatum>({
-        resource: "dailyRevenue",
-        filters,
-    });
+  const { data: dailyRevenue } = useList<IChartDatum>({
+    resource: "dailyRevenue",
+    filters,
+  });
 
-    const { data: dailyOrders } = useList<IChartDatum>({
-        resource: "dailyOrders",
-        filters,
-    });
+  const { data: dailyOrders } = useList<IChartDatum>({
+    resource: "dailyOrders",
+    filters,
+  });
 
-    const { data: newCustomers } = useList<IChartDatum>({
-        resource: "newCustomers",
-        filters,
-    });
+  const { data: newCustomers } = useList<IChartDatum>({
+    resource: "newCustomers",
+    filters,
+  });
 
-    return (
-        <>
-            <Stats
-                dailyRevenue={dailyRevenue}
-                dailyOrders={dailyOrders}
-                newCustomers={newCustomers}
-            />
-        </>
-    );
+  return (
+    <>
+      <Stats dailyRevenue={dailyRevenue} dailyOrders={dailyOrders} newCustomers={newCustomers} />
+    </>
+  );
 };
 ```
 
@@ -786,22 +745,17 @@ We need to have the `<TabItem />` button for accessing a tab panel. So, create t
 import React from "react";
 
 type TTabItem = {
-    label: string;
-    isActive: Boolean;
-    clickHandler: () => void;
+  label: string;
+  isActive: Boolean;
+  clickHandler: () => void;
 };
 
 export const TabItem = ({ label, isActive, clickHandler }: TTabItem) => {
-    return (
-        <a
-            className={`text-l font-bold tab tab-bordered${
-                isActive ? " tab-active" : ""
-            }`}
-            onClick={clickHandler}
-        >
-            {label}
-        </a>
-    );
+  return (
+    <a className={`text-l font-bold tab tab-bordered${isActive ? " tab-active" : ""}`} onClick={clickHandler}>
+      {label}
+    </a>
+  );
 };
 ```
 
@@ -819,12 +773,12 @@ The `<TabPanel />` will contain a chart which can be accessed by clicking on a `
 import React from "react";
 
 type TTabPanelProps = {
-    isActive: Boolean;
-    children: JSX.Element;
+  isActive: Boolean;
+  children: JSX.Element;
 };
 
 export const TabPanel = ({ isActive, children }: TTabPanelProps) => {
-    return isActive ? <div className="mx-auto py-6">{children}</div> : null;
+  return isActive ? <div className="mx-auto py-6">{children}</div> : null;
 };
 ```
 
@@ -845,32 +799,32 @@ import { TabPanel } from "./TabPanel";
 import { TTab } from "../../interfaces";
 
 type TTabViewProps = {
-    tabs: TTab[];
+  tabs: TTab[];
 };
 
 export const TabView = ({ tabs }: TTabViewProps) => {
-    const [activeTab, setActiveTab] = useState(0);
-    return (
-        <div className="mx-auto py-4 bg-slate-50 border rounded-lg drop-shadow-md">
-            <div className="tabs">
-                {tabs?.map((tab: TTab, index: number) => (
-                    <TabItem
-                        key={tab?.id}
-                        label={tab?.label}
-                        isActive={index === activeTab}
-                        clickHandler={() => setActiveTab(index)}
-                    />
-                ))}
-            </div>
-            <div className="mx-auto">
-                {tabs?.map((tab: TTab, index: number) => (
-                    <TabPanel key={tab?.id} isActive={index === activeTab}>
-                        {tab?.content}
-                    </TabPanel>
-                ))}
-            </div>
-        </div>
-    );
+  const [activeTab, setActiveTab] = useState(0);
+  return (
+    <div className="mx-auto py-4 bg-slate-50 border rounded-lg drop-shadow-md">
+      <div className="tabs">
+        {tabs?.map((tab: TTab, index: number) => (
+          <TabItem
+            key={tab?.id}
+            label={tab?.label}
+            isActive={index === activeTab}
+            clickHandler={() => setActiveTab(index)}
+          />
+        ))}
+      </div>
+      <div className="mx-auto">
+        {tabs?.map((tab: TTab, index: number) => (
+          <TabPanel key={tab?.id} isActive={index === activeTab}>
+            {tab?.content}
+          </TabPanel>
+        ))}
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -896,86 +850,74 @@ Create the `<ResponsiveAreaChart />` component with the code below:
 
 ```tsx title="src/components/dashboard/ResponsiveAreaChart.tsx"
 import React from "react";
-import {
-    ResponsiveContainer,
-    AreaChart,
-    CartesianGrid,
-    XAxis,
-    YAxis,
-    Tooltip,
-    Area,
-} from "recharts";
+import { ResponsiveContainer, AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, Area } from "recharts";
 import { ChartTooltip } from "../../components/dashboard/ChartTooltip";
 import { IChartDatum } from "../../interfaces";
 
 type TResponsiveAreaChartProps = {
-    kpi: string;
-    data: IChartDatum[];
-    colors: {
-        stroke: string;
-        fill: string;
-    };
+  kpi: string;
+  data: IChartDatum[];
+  colors: {
+    stroke: string;
+    fill: string;
+  };
 };
 
-export const ResponsiveAreaChart = ({
-    kpi,
-    data,
-    colors,
-}: TResponsiveAreaChartProps) => {
-    return (
-        <ResponsiveContainer height={400}>
-            <AreaChart
-                data={data}
-                height={400}
-                margin={{
-                    top: 10,
-                    right: 30,
-                    left: 0,
-                    bottom: 0,
-                }}
-            >
-                <CartesianGrid strokeDasharray="0 0 0" />
-                <XAxis
-                    dataKey="date"
-                    tickCount={data?.length ?? 0}
-                    tick={{
-                        stroke: "light-grey",
-                        strokeWidth: 0.5,
-                        fontSize: "12px",
-                    }}
-                />
-                <YAxis
-                    tickCount={13}
-                    tick={{
-                        stroke: "light-grey",
-                        strokeWidth: 0.5,
-                        fontSize: "12px",
-                    }}
-                    interval="preserveStartEnd"
-                    domain={[0, "dataMax + 10"]}
-                />
-                <Tooltip
-                    content={<ChartTooltip kpi={kpi} colors={colors} />}
-                    wrapperStyle={{
-                        backgroundColor: "rgba(0, 0, 0, 0.7)",
-                        border: "0 solid #000",
-                        borderRadius: "10px",
-                    }}
-                />
-                <Area
-                    type="monotone"
-                    dataKey="value"
-                    stroke={colors?.stroke}
-                    strokeWidth={3}
-                    fill={colors?.fill}
-                    dot={{
-                        stroke: colors?.stroke,
-                        strokeWidth: 3,
-                    }}
-                />
-            </AreaChart>
-        </ResponsiveContainer>
-    );
+export const ResponsiveAreaChart = ({ kpi, data, colors }: TResponsiveAreaChartProps) => {
+  return (
+    <ResponsiveContainer height={400}>
+      <AreaChart
+        data={data}
+        height={400}
+        margin={{
+          top: 10,
+          right: 30,
+          left: 0,
+          bottom: 0,
+        }}
+      >
+        <CartesianGrid strokeDasharray="0 0 0" />
+        <XAxis
+          dataKey="date"
+          tickCount={data?.length ?? 0}
+          tick={{
+            stroke: "light-grey",
+            strokeWidth: 0.5,
+            fontSize: "12px",
+          }}
+        />
+        <YAxis
+          tickCount={13}
+          tick={{
+            stroke: "light-grey",
+            strokeWidth: 0.5,
+            fontSize: "12px",
+          }}
+          interval="preserveStartEnd"
+          domain={[0, "dataMax + 10"]}
+        />
+        <Tooltip
+          content={<ChartTooltip kpi={kpi} colors={colors} />}
+          wrapperStyle={{
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
+            border: "0 solid #000",
+            borderRadius: "10px",
+          }}
+        />
+        <Area
+          type="monotone"
+          dataKey="value"
+          stroke={colors?.stroke}
+          strokeWidth={3}
+          fill={colors?.fill}
+          dot={{
+            stroke: colors?.stroke,
+            strokeWidth: 3,
+          }}
+        />
+      </AreaChart>
+    </ResponsiveContainer>
+  );
 };
 ```
 
@@ -993,82 +935,70 @@ In a similar way, create the `<ResponsiveBarChart />` component with the below c
 
 ```tsx title="src/components/dashboard/ResponsiveBarChart.tsx"
 import React from "react";
-import {
-    ResponsiveContainer,
-    BarChart,
-    CartesianGrid,
-    XAxis,
-    YAxis,
-    Tooltip,
-    Bar,
-} from "recharts";
+import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar } from "recharts";
 import { ChartTooltip } from "../../components/dashboard/ChartTooltip";
 import { IChartDatum } from "../../interfaces";
 
 type TResponsiveBarChartProps = {
-    kpi: string;
-    data: IChartDatum[];
-    colors: {
-        stroke: string;
-        fill: string;
-    };
+  kpi: string;
+  data: IChartDatum[];
+  colors: {
+    stroke: string;
+    fill: string;
+  };
 };
 
-export const ResponsiveBarChart = ({
-    kpi,
-    data,
-    colors,
-}: TResponsiveBarChartProps) => {
-    return (
-        <ResponsiveContainer height={400}>
-            <BarChart
-                data={data}
-                width={1200}
-                height={400}
-                margin={{
-                    top: 10,
-                    right: 30,
-                    left: 0,
-                    bottom: 0,
-                }}
-            >
-                <CartesianGrid strokeDasharray="0 0" />
-                <XAxis
-                    dataKey="date"
-                    tickCount={data?.length ?? 0}
-                    tick={{
-                        stroke: "light-grey",
-                        strokeWidth: 0.5,
-                        fontSize: "12px",
-                    }}
-                />
-                <YAxis
-                    domain={[0, "dataMax"]}
-                    tickCount={13}
-                    tick={{
-                        stroke: "light-grey",
-                        strokeWidth: 0.5,
-                        fontSize: "12px",
-                    }}
-                />
-                <Tooltip
-                    content={<ChartTooltip colors={colors} kpi={kpi} />}
-                    wrapperStyle={{
-                        backgroundColor: "rgba(0, 0, 0, 0.7)",
-                        border: "0 solid #000",
-                        borderRadius: "10px",
-                    }}
-                />
-                <Bar
-                    type="monotone"
-                    dataKey="value"
-                    stroke="rgb(255, 207, 159)"
-                    strokeWidth={1}
-                    fill="rgba(255, 207, 159, 0.7)"
-                />
-            </BarChart>
-        </ResponsiveContainer>
-    );
+export const ResponsiveBarChart = ({ kpi, data, colors }: TResponsiveBarChartProps) => {
+  return (
+    <ResponsiveContainer height={400}>
+      <BarChart
+        data={data}
+        width={1200}
+        height={400}
+        margin={{
+          top: 10,
+          right: 30,
+          left: 0,
+          bottom: 0,
+        }}
+      >
+        <CartesianGrid strokeDasharray="0 0" />
+        <XAxis
+          dataKey="date"
+          tickCount={data?.length ?? 0}
+          tick={{
+            stroke: "light-grey",
+            strokeWidth: 0.5,
+            fontSize: "12px",
+          }}
+        />
+        <YAxis
+          domain={[0, "dataMax"]}
+          tickCount={13}
+          tick={{
+            stroke: "light-grey",
+            strokeWidth: 0.5,
+            fontSize: "12px",
+          }}
+        />
+        <Tooltip
+          content={<ChartTooltip colors={colors} kpi={kpi} />}
+          wrapperStyle={{
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
+            border: "0 solid #000",
+            borderRadius: "10px",
+          }}
+        />
+        <Bar
+          type="monotone"
+          dataKey="value"
+          stroke="rgb(255, 207, 159)"
+          strokeWidth={1}
+          fill="rgba(255, 207, 159, 0.7)"
+        />
+      </BarChart>
+    </ResponsiveContainer>
+  );
 };
 ```
 
@@ -1088,58 +1018,51 @@ Let's create the `<ChartTooltip />` component with the following code:
 
 ```tsx title="src/components/dashboard/ChartTooltip.tsx"
 import React from "react";
-export const ChartTooltip = ({
-    active,
-    payload,
-    label,
-    coordinate,
-    colors,
-    kpi,
-}: any) => {
-    if (active && payload && payload.length) {
-        const dataPoint = payload[0].payload;
+export const ChartTooltip = ({ active, payload, label, coordinate, colors, kpi }: any) => {
+  if (active && payload && payload.length) {
+    const dataPoint = payload[0].payload;
 
-        const tooltipStyle = {
-            left: coordinate.x, // Adjust positioning
-            top: coordinate.y, // Adjust positioning
-        };
+    const tooltipStyle = {
+      left: coordinate.x, // Adjust positioning
+      top: coordinate.y, // Adjust positioning
+    };
 
-        return (
-            <div
-                className="p-1 flex flex-col justify-center items-start border border-black rounded-lg text-zinc-50"
-                style={tooltipStyle}
-            >
-                <div
-                    style={{
-                        position: "absolute",
-                        width: "0",
-                        height: "0",
-                        borderTop: "10px solid transparent",
-                        borderBottom: "10px solid transparent",
-                        borderRight: "10px solid rgba(0, 0, 0, 0.7)",
-                        left: "-10px",
-                    }}
-                />
-                <p className="flex text-xs font-semibold">{label}</p>
-                <p className="text-xs">
-                    <span
-                        className="mr-1"
-                        style={{
-                            width: "0.5px",
-                            height: "0.5px",
-                            border: `1px solid ${colors?.stroke}`,
-                            backgroundColor: colors?.fill,
-                        }}
-                    >
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                    </span>
-                    {`${kpi}: ${dataPoint.value}`}
-                </p>
-            </div>
-        );
-    }
+    return (
+      <div
+        className="p-1 flex flex-col justify-center items-start border border-black rounded-lg text-zinc-50"
+        style={tooltipStyle}
+      >
+        <div
+          style={{
+            position: "absolute",
+            width: "0",
+            height: "0",
+            borderTop: "10px solid transparent",
+            borderBottom: "10px solid transparent",
+            borderRight: "10px solid rgba(0, 0, 0, 0.7)",
+            left: "-10px",
+          }}
+        />
+        <p className="flex text-xs font-semibold">{label}</p>
+        <p className="text-xs">
+          <span
+            className="mr-1"
+            style={{
+              width: "0.5px",
+              height: "0.5px",
+              border: `1px solid ${colors?.stroke}`,
+              backgroundColor: colors?.fill,
+            }}
+          >
+            &nbsp;&nbsp;&nbsp;&nbsp;
+          </span>
+          {`${kpi}: ${dataPoint.value}`}
+        </p>
+      </div>
+    );
+  }
 
-    return null;
+  return null;
 };
 ```
 
@@ -1164,109 +1087,105 @@ import { TabView } from "../../components/dashboard/TabView";
 import { IChartDatum, TTab } from "../../interfaces";
 
 const filters: CrudFilter[] = [
-    {
-        field: "start",
-        operator: "eq",
-        value: dayjs()?.subtract(7, "days")?.startOf("day"),
-    },
-    {
-        field: "end",
-        operator: "eq",
-        value: dayjs().startOf("day"),
-    },
+  {
+    field: "start",
+    operator: "eq",
+    value: dayjs()?.subtract(7, "days")?.startOf("day"),
+  },
+  {
+    field: "end",
+    operator: "eq",
+    value: dayjs().startOf("day"),
+  },
 ];
 
 export const Dashboard: React.FC = () => {
-    const { data: dailyRevenue } = useList<IChartDatum>({
-        resource: "dailyRevenue",
-        filters,
-    });
+  const { data: dailyRevenue } = useList<IChartDatum>({
+    resource: "dailyRevenue",
+    filters,
+  });
 
-    const { data: dailyOrders } = useList<IChartDatum>({
-        resource: "dailyOrders",
-        filters,
-    });
+  const { data: dailyOrders } = useList<IChartDatum>({
+    resource: "dailyOrders",
+    filters,
+  });
 
-    const { data: newCustomers } = useList<IChartDatum>({
-        resource: "newCustomers",
-        filters,
-    });
+  const { data: newCustomers } = useList<IChartDatum>({
+    resource: "newCustomers",
+    filters,
+  });
 
-    //highlight-start
-    const useMemoizedChartData = (d: any) => {
-        return useMemo(() => {
-            return d?.data?.data?.map((item: IChartDatum) => ({
-                date: new Intl.DateTimeFormat("en-US", {
-                    month: "short",
-                    year: "numeric",
-                    day: "numeric",
-                }).format(new Date(item.date)),
-                value: item?.value,
-            }));
-        }, [d]);
-    };
+  //highlight-start
+  const useMemoizedChartData = (d: any) => {
+    return useMemo(() => {
+      return d?.data?.data?.map((item: IChartDatum) => ({
+        date: new Intl.DateTimeFormat("en-US", {
+          month: "short",
+          year: "numeric",
+          day: "numeric",
+        }).format(new Date(item.date)),
+        value: item?.value,
+      }));
+    }, [d]);
+  };
 
-    const memoizedRevenueData = useMemoizedChartData(dailyRevenue);
-    const memoizedOrdersData = useMemoizedChartData(dailyOrders);
-    const memoizedNewCustomersData = useMemoizedChartData(newCustomers);
+  const memoizedRevenueData = useMemoizedChartData(dailyRevenue);
+  const memoizedOrdersData = useMemoizedChartData(dailyOrders);
+  const memoizedNewCustomersData = useMemoizedChartData(newCustomers);
 
-    const tabs: TTab[] = [
-        {
-            id: 1,
-            label: "Daily Revenue",
-            content: (
-                <ResponsiveAreaChart
-                    kpi="Daily revenue"
-                    data={memoizedRevenueData}
-                    colors={{
-                        stroke: "rgb(54, 162, 235)",
-                        fill: "rgba(54, 162, 235, 0.2)",
-                    }}
-                />
-            ),
-        },
-        {
-            id: 2,
-            label: "Daily Orders",
-            content: (
-                <ResponsiveBarChart
-                    kpi="Daily orders"
-                    data={memoizedOrdersData}
-                    colors={{
-                        stroke: "rgb(255, 159, 64)",
-                        fill: "rgba(255, 159, 64, 0.7)",
-                    }}
-                />
-            ),
-        },
-        {
-            id: 3,
-            label: "New Customers",
-            content: (
-                <ResponsiveAreaChart
-                    kpi="New customers"
-                    data={memoizedNewCustomersData}
-                    colors={{
-                        stroke: "rgb(76, 175, 80)",
-                        fill: "rgba(54, 162, 235, 0.2)",
-                    }}
-                />
-            ),
-        },
-    ];
-    //highlight-end
+  const tabs: TTab[] = [
+    {
+      id: 1,
+      label: "Daily Revenue",
+      content: (
+        <ResponsiveAreaChart
+          kpi="Daily revenue"
+          data={memoizedRevenueData}
+          colors={{
+            stroke: "rgb(54, 162, 235)",
+            fill: "rgba(54, 162, 235, 0.2)",
+          }}
+        />
+      ),
+    },
+    {
+      id: 2,
+      label: "Daily Orders",
+      content: (
+        <ResponsiveBarChart
+          kpi="Daily orders"
+          data={memoizedOrdersData}
+          colors={{
+            stroke: "rgb(255, 159, 64)",
+            fill: "rgba(255, 159, 64, 0.7)",
+          }}
+        />
+      ),
+    },
+    {
+      id: 3,
+      label: "New Customers",
+      content: (
+        <ResponsiveAreaChart
+          kpi="New customers"
+          data={memoizedNewCustomersData}
+          colors={{
+            stroke: "rgb(76, 175, 80)",
+            fill: "rgba(54, 162, 235, 0.2)",
+          }}
+        />
+      ),
+    },
+  ];
+  //highlight-end
 
-    return (
-        <>
-            <Stats
-                dailyRevenue={dailyRevenue}
-                dailyOrders={dailyOrders}
-                newCustomers={newCustomers}
-            />
-            {/*highlight-next-line*/}
-            <TabView tabs={tabs} />
-        </>
-    );
+  return (
+    <>
+      <Stats dailyRevenue={dailyRevenue} dailyOrders={dailyOrders} newCustomers={newCustomers} />
+      {/*highlight-next-line*/}
+      <TabView tabs={tabs} />
+    </>
+  );
 };
 ```
 
@@ -1295,208 +1214,187 @@ import React, { useMemo, useRef } from "react";
 import { getDefaultFilter } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import {
-    FunnelIcon,
-    BarsArrowDownIcon,
-    BarsArrowUpIcon,
-} from "@heroicons/react/24/outline";
+import { FunnelIcon, BarsArrowDownIcon, BarsArrowUpIcon } from "@heroicons/react/24/outline";
 export const RecentSales = () => {
-    const filterForm: any = useRef(null);
+  const filterForm: any = useRef(null);
 
-    const columns = useMemo<ColumnDef<any>[]>(
-        () => [
-            {
-                id: "id",
-                accessorKey: "id",
-                header: "Id",
-            },
-            {
-                id: "amount",
-                accessorKey: "amount",
-                header: "Amount",
-                cell: function render({ getValue }) {
-                    const amountCur = new Intl.NumberFormat("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    }).format(getValue() as number);
+  const columns = useMemo<ColumnDef<any>[]>(
+    () => [
+      {
+        id: "id",
+        accessorKey: "id",
+        header: "Id",
+      },
+      {
+        id: "amount",
+        accessorKey: "amount",
+        header: "Amount",
+        cell: function render({ getValue }) {
+          const amountCur = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+          }).format(getValue() as number);
 
-                    return <div>{amountCur}</div>;
-                },
-            },
-            {
-                id: "orderedBy",
-                accessorKey: "user.fullName",
-                header: "Ordered By",
-            },
-            {
-                id: "gender",
-                accessorKey: "user.gender",
-                header: "Gender",
-            },
-            {
-                id: "tel",
-                accessorKey: "user.gsm",
-                enableSorting: false,
-                header: "Tel",
-            },
-            {
-                id: "deliveryAddress",
-                accessorKey: "address.text",
-                header: "Delivery Address",
-            },
-            {
-                id: "deliveryStatus",
-                accessorKey: "status.text",
-                header: "Delivery Status",
-                cell: function render({ getValue }) {
-                    type TSaleStatusStyleMap = {
-                        [key: string]: string;
-                    };
-
-                    const saleStatusStyleMap: TSaleStatusStyleMap = {
-                        Cancelled: "error",
-                        Ready: "primary",
-                        "On The Way": "info",
-                        Pending: "warning",
-                        Delivered: "success",
-                    };
-
-                    const status = getValue() as string;
-                    const daisyBadgeClasses = () =>
-                        "badge badge-" + saleStatusStyleMap[status];
-
-                    return <div className={daisyBadgeClasses()}>{status}</div>;
-                },
-            },
-            {
-                id: "createdAt",
-                accessorKey: "createdAt",
-                header: "Created At",
-                cell: function render({ getValue }) {
-                    const date = new Intl.DateTimeFormat("en-US", {
-                        dateStyle: "short",
-                        timeStyle: "short",
-                    }).format(new Date(getValue() as string));
-
-                    return <div>{date}</div>;
-                },
-            },
-        ],
-        [],
-    );
-
-    const {
-        refineCore: { filters, setCurrent, setFilters },
-        getHeaderGroups,
-        getRowModel,
-    } = useTable({
-        refineCoreProps: {
-            resource: "orders",
-            pagination: {
-                pageSize: 5,
-            },
+          return <div>{amountCur}</div>;
         },
-        columns,
-    });
+      },
+      {
+        id: "orderedBy",
+        accessorKey: "user.fullName",
+        header: "Ordered By",
+      },
+      {
+        id: "gender",
+        accessorKey: "user.gender",
+        header: "Gender",
+      },
+      {
+        id: "tel",
+        accessorKey: "user.gsm",
+        enableSorting: false,
+        header: "Tel",
+      },
+      {
+        id: "deliveryAddress",
+        accessorKey: "address.text",
+        header: "Delivery Address",
+      },
+      {
+        id: "deliveryStatus",
+        accessorKey: "status.text",
+        header: "Delivery Status",
+        cell: function render({ getValue }) {
+          type TSaleStatusStyleMap = {
+            [key: string]: string;
+          };
 
-    const header = (
-        <div className="w-full mx-auto">
-            <div className="my-2">
-                <h1 className="page-title text-gray-700">Recent Sales</h1>
-            </div>
-            <div className="overflow-x-auto bg-slate-50 border rounded-t-lg">
-                <div className="flex justify-between items-center m-4">
-                    <button
-                        className="btn btn-outline btn-primary btn-sm normal-case font-light"
-                        onClick={() => {
-                            setCurrent(1);
-                            setFilters([], "replace");
-                            filterForm?.current?.reset();
-                        }}
-                    >
-                        <FunnelIcon className="h-4 w-4" />
-                        Clear
-                    </button>
-                    <div className="flex justify-end items-center">
-                        <form ref={filterForm}>
-                            <input
-                                className="input input-bordered input-sm"
-                                type="search"
-                                value={getDefaultFilter("q", filters)}
-                                onChange={(e) => {
-                                    setCurrent(1);
-                                    setFilters([
-                                        {
-                                            field: "q",
-                                            value: e.target.value,
-                                            operator: "contains",
-                                        },
-                                    ]);
-                                }}
-                                placeholder="Search with keywords"
-                            />
-                        </form>
+          const saleStatusStyleMap: TSaleStatusStyleMap = {
+            Cancelled: "error",
+            Ready: "primary",
+            "On The Way": "info",
+            Pending: "warning",
+            Delivered: "success",
+          };
+
+          const status = getValue() as string;
+          const daisyBadgeClasses = () => "badge badge-" + saleStatusStyleMap[status];
+
+          return <div className={daisyBadgeClasses()}>{status}</div>;
+        },
+      },
+      {
+        id: "createdAt",
+        accessorKey: "createdAt",
+        header: "Created At",
+        cell: function render({ getValue }) {
+          const date = new Intl.DateTimeFormat("en-US", {
+            dateStyle: "short",
+            timeStyle: "short",
+          }).format(new Date(getValue() as string));
+
+          return <div>{date}</div>;
+        },
+      },
+    ],
+    [],
+  );
+
+  const {
+    refineCore: { filters, setCurrent, setFilters },
+    getHeaderGroups,
+    getRowModel,
+  } = useTable({
+    refineCoreProps: {
+      resource: "orders",
+      pagination: {
+        pageSize: 5,
+      },
+    },
+    columns,
+  });
+
+  const header = (
+    <div className="w-full mx-auto">
+      <div className="my-2">
+        <h1 className="page-title text-gray-700">Recent Sales</h1>
+      </div>
+      <div className="overflow-x-auto bg-slate-50 border rounded-t-lg">
+        <div className="flex justify-between items-center m-4">
+          <button
+            className="btn btn-outline btn-primary btn-sm normal-case font-light"
+            onClick={() => {
+              setCurrent(1);
+              setFilters([], "replace");
+              filterForm?.current?.reset();
+            }}
+          >
+            <FunnelIcon className="h-4 w-4" />
+            Clear
+          </button>
+          <div className="flex justify-end items-center">
+            <form ref={filterForm}>
+              <input
+                className="input input-bordered input-sm"
+                type="search"
+                value={getDefaultFilter("q", filters)}
+                onChange={(e) => {
+                  setCurrent(1);
+                  setFilters([
+                    {
+                      field: "q",
+                      value: e.target.value,
+                      operator: "contains",
+                    },
+                  ]);
+                }}
+                placeholder="Search with keywords"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="w-full mx-auto my-8 drop-shadow-md">
+      {header}
+      <div className="p-4 overflow-x-auto bg-slate-50 border rounded-b-lg">
+        <table className="table table-zebra border-t">
+          <thead className="bg-slate-200">
+            {getHeaderGroups()?.map((headerGroup) => (
+              <tr key={headerGroup?.id}>
+                {headerGroup?.headers?.map((header) => (
+                  <th
+                    className="hover:bg-slate-300"
+                    key={header?.id}
+                    onClick={header?.column?.getToggleSortingHandler()}
+                  >
+                    <div className="flex justify-start items-center">
+                      {!header?.isPlaceholder && flexRender(header?.column?.columnDef?.header, header?.getContext())}
+                      {{
+                        asc: <BarsArrowUpIcon className="h-4 w-4" />,
+                        desc: <BarsArrowDownIcon className="h-4 w-4" />,
+                      }[header?.column?.getIsSorted() as string] ?? null}
                     </div>
-                </div>
-            </div>
-        </div>
-    );
-
-    return (
-        <div className="w-full mx-auto my-8 drop-shadow-md">
-            {header}
-            <div className="p-4 overflow-x-auto bg-slate-50 border rounded-b-lg">
-                <table className="table table-zebra border-t">
-                    <thead className="bg-slate-200">
-                        {getHeaderGroups()?.map((headerGroup) => (
-                            <tr key={headerGroup?.id}>
-                                {headerGroup?.headers?.map((header) => (
-                                    <th
-                                        className="hover:bg-slate-300"
-                                        key={header?.id}
-                                        onClick={header?.column?.getToggleSortingHandler()}
-                                    >
-                                        <div className="flex justify-start items-center">
-                                            {!header?.isPlaceholder &&
-                                                flexRender(
-                                                    header?.column?.columnDef
-                                                        ?.header,
-                                                    header?.getContext(),
-                                                )}
-                                            {{
-                                                asc: (
-                                                    <BarsArrowUpIcon className="h-4 w-4" />
-                                                ),
-                                                desc: (
-                                                    <BarsArrowDownIcon className="h-4 w-4" />
-                                                ),
-                                            }[
-                                                header?.column?.getIsSorted() as string
-                                            ] ?? null}
-                                        </div>
-                                    </th>
-                                ))}
-                            </tr>
-                        ))}
-                    </thead>
-                    <tbody>
-                        {getRowModel()?.rows?.map((row) => (
-                            <tr key={row?.id}>
-                                {row?.getVisibleCells()?.map((cell) => (
-                                    <td key={cell?.id}>
-                                        {flexRender(
-                                            cell?.column?.columnDef?.cell,
-                                            cell?.getContext(),
-                                        )}
-                                    </td>
-                                ))}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    );
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {getRowModel()?.rows?.map((row) => (
+              <tr key={row?.id}>
+                {row?.getVisibleCells()?.map((cell) => (
+                  <td key={cell?.id}>{flexRender(cell?.column?.columnDef?.cell, cell?.getContext())}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -1525,108 +1423,104 @@ import { RecentSales } from "../../components/dashboard/RecentSales";
 import { IChartDatum, TTab } from "../../interfaces";
 
 const filters: CrudFilter[] = [
-    {
-        field: "start",
-        operator: "eq",
-        value: dayjs()?.subtract(7, "days")?.startOf("day"),
-    },
-    {
-        field: "end",
-        operator: "eq",
-        value: dayjs().startOf("day"),
-    },
+  {
+    field: "start",
+    operator: "eq",
+    value: dayjs()?.subtract(7, "days")?.startOf("day"),
+  },
+  {
+    field: "end",
+    operator: "eq",
+    value: dayjs().startOf("day"),
+  },
 ];
 
 export const Dashboard: React.FC = () => {
-    const { data: dailyRevenue } = useList<IChartDatum>({
-        resource: "dailyRevenue",
-        filters,
-    });
+  const { data: dailyRevenue } = useList<IChartDatum>({
+    resource: "dailyRevenue",
+    filters,
+  });
 
-    const { data: dailyOrders } = useList<IChartDatum>({
-        resource: "dailyOrders",
-        filters,
-    });
+  const { data: dailyOrders } = useList<IChartDatum>({
+    resource: "dailyOrders",
+    filters,
+  });
 
-    const { data: newCustomers } = useList<IChartDatum>({
-        resource: "newCustomers",
-        filters,
-    });
+  const { data: newCustomers } = useList<IChartDatum>({
+    resource: "newCustomers",
+    filters,
+  });
 
-    const useMemoizedChartData = (d: any) => {
-        return useMemo(() => {
-            return d?.data?.data?.map((item: IChartDatum) => ({
-                date: new Intl.DateTimeFormat("en-US", {
-                    month: "short",
-                    year: "numeric",
-                    day: "numeric",
-                }).format(new Date(item.date)),
-                value: item?.value,
-            }));
-        }, [d]);
-    };
+  const useMemoizedChartData = (d: any) => {
+    return useMemo(() => {
+      return d?.data?.data?.map((item: IChartDatum) => ({
+        date: new Intl.DateTimeFormat("en-US", {
+          month: "short",
+          year: "numeric",
+          day: "numeric",
+        }).format(new Date(item.date)),
+        value: item?.value,
+      }));
+    }, [d]);
+  };
 
-    const memoizedRevenueData = useMemoizedChartData(dailyRevenue);
-    const memoizedOrdersData = useMemoizedChartData(dailyOrders);
-    const memoizedNewCustomersData = useMemoizedChartData(newCustomers);
+  const memoizedRevenueData = useMemoizedChartData(dailyRevenue);
+  const memoizedOrdersData = useMemoizedChartData(dailyOrders);
+  const memoizedNewCustomersData = useMemoizedChartData(newCustomers);
 
-    const tabs: TTab[] = [
-        {
-            id: 1,
-            label: "Daily Revenue",
-            content: (
-                <ResponsiveAreaChart
-                    kpi="Daily revenue"
-                    data={memoizedRevenueData}
-                    colors={{
-                        stroke: "rgb(54, 162, 235)",
-                        fill: "rgba(54, 162, 235, 0.2)",
-                    }}
-                />
-            ),
-        },
-        {
-            id: 2,
-            label: "Daily Orders",
-            content: (
-                <ResponsiveBarChart
-                    kpi="Daily orders"
-                    data={memoizedOrdersData}
-                    colors={{
-                        stroke: "rgb(255, 159, 64)",
-                        fill: "rgba(255, 159, 64, 0.7)",
-                    }}
-                />
-            ),
-        },
-        {
-            id: 3,
-            label: "New Customers",
-            content: (
-                <ResponsiveAreaChart
-                    kpi="New customers"
-                    data={memoizedNewCustomersData}
-                    colors={{
-                        stroke: "rgb(76, 175, 80)",
-                        fill: "rgba(54, 162, 235, 0.2)",
-                    }}
-                />
-            ),
-        },
-    ];
+  const tabs: TTab[] = [
+    {
+      id: 1,
+      label: "Daily Revenue",
+      content: (
+        <ResponsiveAreaChart
+          kpi="Daily revenue"
+          data={memoizedRevenueData}
+          colors={{
+            stroke: "rgb(54, 162, 235)",
+            fill: "rgba(54, 162, 235, 0.2)",
+          }}
+        />
+      ),
+    },
+    {
+      id: 2,
+      label: "Daily Orders",
+      content: (
+        <ResponsiveBarChart
+          kpi="Daily orders"
+          data={memoizedOrdersData}
+          colors={{
+            stroke: "rgb(255, 159, 64)",
+            fill: "rgba(255, 159, 64, 0.7)",
+          }}
+        />
+      ),
+    },
+    {
+      id: 3,
+      label: "New Customers",
+      content: (
+        <ResponsiveAreaChart
+          kpi="New customers"
+          data={memoizedNewCustomersData}
+          colors={{
+            stroke: "rgb(76, 175, 80)",
+            fill: "rgba(54, 162, 235, 0.2)",
+          }}
+        />
+      ),
+    },
+  ];
 
-    return (
-        <>
-            <Stats
-                dailyRevenue={dailyRevenue}
-                dailyOrders={dailyOrders}
-                newCustomers={newCustomers}
-            />
-            <TabView tabs={tabs} />
-            {/*highlight-next-line*/}
-            <RecentSales />
-        </>
-    );
+  return (
+    <>
+      <Stats dailyRevenue={dailyRevenue} dailyOrders={dailyOrders} newCustomers={newCustomers} />
+      <TabView tabs={tabs} />
+      {/*highlight-next-line*/}
+      <RecentSales />
+    </>
+  );
 };
 ```
 
@@ -1689,106 +1583,81 @@ import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import routerBindings, {
-    DocumentTitleHandler,
-    NavigateToResource,
-    UnsavedChangesNotifier,
+  DocumentTitleHandler,
+  NavigateToResource,
+  UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import {
-    BrowserRouter,
-    Navigate,
-    Outlet,
-    Route,
-    Routes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout";
 import { Dashboard } from "./pages/dashboard";
 //highlight-next-line
-import {
-    ProductList,
-    ProductCreate,
-    ProductEdit,
-    ProductShow,
-} from "./pages/products";
+import { ProductList, ProductCreate, ProductEdit, ProductShow } from "./pages/products";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.finefoods.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "dashboard",
-                            list: "/dashboard",
-                        },
-                        //highlight-start
-                        {
-                            name: "products",
-                            list: "/products",
-                            create: "/products/create",
-                            edit: "/products/edit/:id",
-                            show: "/products/show/:id",
-                            meta: {
-                                canDelete: true,
-                            },
-                        },
-                        //highlight-end
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                        projectId: "4kWrnz-AJZzOW-qq7MXL",
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            <Route
-                                index
-                                element={<Navigate to="/dashboard" />}
-                            />
-                            <Route path="/dashboard">
-                                <Route index element={<Dashboard />} />
-                            </Route>
-                            {/*highlight-start*/}
-                            <Route path="/products">
-                                <Route index element={<ProductList />} />
-                                <Route
-                                    path="create"
-                                    element={<ProductCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<ProductEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<ProductShow />}
-                                />
-                            </Route>
-                            {/*highlight-end*/}
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider("https://api.finefoods.refine.dev")}
+          routerProvider={routerBindings}
+          resources={[
+            {
+              name: "dashboard",
+              list: "/dashboard",
+            },
+            //highlight-start
+            {
+              name: "products",
+              list: "/products",
+              create: "/products/create",
+              edit: "/products/edit/:id",
+              show: "/products/show/:id",
+              meta: {
+                canDelete: true,
+              },
+            },
+            //highlight-end
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+            projectId: "4kWrnz-AJZzOW-qq7MXL",
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <Layout>
+                  <Outlet />
+                </Layout>
+              }
+            >
+              <Route index element={<Navigate to="/dashboard" />} />
+              <Route path="/dashboard">
+                <Route index element={<Dashboard />} />
+              </Route>
+              {/*highlight-start*/}
+              <Route path="/products">
+                <Route index element={<ProductList />} />
+                <Route path="create" element={<ProductCreate />} />
+                <Route path="edit/:id" element={<ProductEdit />} />
+                <Route path="show/:id" element={<ProductShow />} />
+              </Route>
+              {/*highlight-end*/}
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
 
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -1815,7 +1684,7 @@ import { IResourceComponentsProps } from "@refinedev/core";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-    return <HeadlessInferencer />;
+  return <HeadlessInferencer />;
 };
 ```
 
@@ -1834,231 +1703,211 @@ import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-    const columns = React.useMemo<ColumnDef<any>[]>(
-        () => [
-            {
-                id: "id",
-                accessorKey: "id",
-                header: "Id",
-            },
-            {
-                id: "name",
-                accessorKey: "name",
-                header: "Name",
-            },
-            {
-                id: "isActive",
-                accessorKey: "isActive",
-                header: "Is Active",
-                cell: function render({ getValue }) {
-                    return getValue<any>() ? "yes" : "no";
-                },
-            },
-            {
-                id: "description",
-                accessorKey: "description",
-                header: "Description",
-            },
-            {
-                id: "images",
-                accessorKey: "images",
-                header: "Images",
-
-                cell: function render({ getValue }) {
-                    return (
-                        <ul>
-                            {getValue<any[]>()?.map((item, index) => (
-                                <li key={index}>{item?.url}</li>
-                            ))}
-                        </ul>
-                    );
-                },
-            },
-            {
-                id: "createdAt",
-                accessorKey: "createdAt",
-                header: "Created At",
-                cell: function render({ getValue }) {
-                    return new Date(getValue<any>()).toLocaleString(undefined, {
-                        timeZone: "UTC",
-                    });
-                },
-            },
-            {
-                id: "price",
-                accessorKey: "price",
-                header: "Price",
-            },
-            {
-                id: "category",
-                accessorKey: "category.title",
-                header: "Category",
-            },
-            {
-                id: "actions",
-                accessorKey: "id",
-                header: "Actions",
-                cell: function render({ getValue }) {
-                    return (
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                flexWrap: "wrap",
-                                gap: "4px",
-                            }}
-                        >
-                            <button
-                                onClick={() => {
-                                    show("products", getValue() as string);
-                                }}
-                            >
-                                Show
-                            </button>
-                            <button
-                                onClick={() => {
-                                    edit("products", getValue() as string);
-                                }}
-                            >
-                                Edit
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    const { edit, show, create } = useNavigation();
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
-        refineCore: {
-            tableQueryResult: { data: tableData },
+  const columns = React.useMemo<ColumnDef<any>[]>(
+    () => [
+      {
+        id: "id",
+        accessorKey: "id",
+        header: "Id",
+      },
+      {
+        id: "name",
+        accessorKey: "name",
+        header: "Name",
+      },
+      {
+        id: "isActive",
+        accessorKey: "isActive",
+        header: "Is Active",
+        cell: function render({ getValue }) {
+          return getValue<any>() ? "yes" : "no";
         },
-        getState,
-        setPageIndex,
-        getCanPreviousPage,
-        getPageCount,
-        getCanNextPage,
-        nextPage,
-        previousPage,
-        setPageSize,
-        getColumn,
-    } = useTable({
-        columns,
-    });
+      },
+      {
+        id: "description",
+        accessorKey: "description",
+        header: "Description",
+      },
+      {
+        id: "images",
+        accessorKey: "images",
+        header: "Images",
 
-    setOptions((prev) => ({
-        ...prev,
-        meta: {
-            ...prev.meta,
+        cell: function render({ getValue }) {
+          return (
+            <ul>
+              {getValue<any[]>()?.map((item, index) => (
+                <li key={index}>{item?.url}</li>
+              ))}
+            </ul>
+          );
         },
-    }));
-
-    return (
-        <div style={{ padding: "16px" }}>
+      },
+      {
+        id: "createdAt",
+        accessorKey: "createdAt",
+        header: "Created At",
+        cell: function render({ getValue }) {
+          return new Date(getValue<any>()).toLocaleString(undefined, {
+            timeZone: "UTC",
+          });
+        },
+      },
+      {
+        id: "price",
+        accessorKey: "price",
+        header: "Price",
+      },
+      {
+        id: "category",
+        accessorKey: "category.title",
+        header: "Category",
+      },
+      {
+        id: "actions",
+        accessorKey: "id",
+        header: "Actions",
+        cell: function render({ getValue }) {
+          return (
             <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                }}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                gap: "4px",
+              }}
             >
-                <h1>Products</h1>
-                <button onClick={() => create("products")}>Create</button>
+              <button
+                onClick={() => {
+                  show("products", getValue() as string);
+                }}
+              >
+                Show
+              </button>
+              <button
+                onClick={() => {
+                  edit("products", getValue() as string);
+                }}
+              >
+                Edit
+              </button>
             </div>
-            <div style={{ maxWidth: "100%", overflowY: "scroll" }}>
-                <table>
-                    <thead>
-                        {getHeaderGroups().map((headerGroup) => (
-                            <tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => (
-                                    <th key={header.id}>
-                                        {!header.isPlaceholder &&
-                                            flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext(),
-                                            )}
-                                    </th>
-                                ))}
-                            </tr>
-                        ))}
-                    </thead>
-                    <tbody>
-                        {getRowModel().rows.map((row) => (
-                            <tr key={row.id}>
-                                {row.getVisibleCells().map((cell) => (
-                                    <td key={cell.id}>
-                                        {flexRender(
-                                            cell.column.columnDef.cell,
-                                            cell.getContext(),
-                                        )}
-                                    </td>
-                                ))}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            <div style={{ marginTop: "12px" }}>
-                <button
-                    onClick={() => setPageIndex(0)}
-                    disabled={!getCanPreviousPage()}
-                >
-                    {"<<"}
-                </button>
-                <button
-                    onClick={() => previousPage()}
-                    disabled={!getCanPreviousPage()}
-                >
-                    {"<"}
-                </button>
-                <button onClick={() => nextPage()} disabled={!getCanNextPage()}>
-                    {">"}
-                </button>
-                <button
-                    onClick={() => setPageIndex(getPageCount() - 1)}
-                    disabled={!getCanNextPage()}
-                >
-                    {">>"}
-                </button>
-                <span>
-                    <strong>
-                        {" "}
-                        {getState().pagination.pageIndex + 1} / {getPageCount()}{" "}
-                    </strong>
-                </span>
-                <span>
-                    | Go to Page:{" "}
-                    <input
-                        type="number"
-                        defaultValue={getState().pagination.pageIndex + 1}
-                        onChange={(e) => {
-                            const page = e.target.value
-                                ? Number(e.target.value) - 1
-                                : 0;
-                            setPageIndex(page);
-                        }}
-                    />
-                </span> <select
-                    value={getState().pagination.pageSize}
-                    onChange={(e) => {
-                        setPageSize(Number(e.target.value));
-                    }}
-                >
-                    {[10, 20, 30, 40, 50].map((pageSize) => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
-                        </option>
-                    ))}
-                </select>
-            </div>
-        </div>
-    );
+          );
+        },
+      },
+    ],
+    [],
+  );
+
+  const { edit, show, create } = useNavigation();
+
+  const {
+    getHeaderGroups,
+    getRowModel,
+    setOptions,
+    refineCore: {
+      tableQueryResult: { data: tableData },
+    },
+    getState,
+    setPageIndex,
+    getCanPreviousPage,
+    getPageCount,
+    getCanNextPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    getColumn,
+  } = useTable({
+    columns,
+  });
+
+  setOptions((prev) => ({
+    ...prev,
+    meta: {
+      ...prev.meta,
+    },
+  }));
+
+  return (
+    <div style={{ padding: "16px" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <h1>Products</h1>
+        <button onClick={() => create("products")}>Create</button>
+      </div>
+      <div style={{ maxWidth: "100%", overflowY: "scroll" }}>
+        <table>
+          <thead>
+            {getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id}>
+                    {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {getRowModel().rows.map((row) => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div style={{ marginTop: "12px" }}>
+        <button onClick={() => setPageIndex(0)} disabled={!getCanPreviousPage()}>
+          {"<<"}
+        </button>
+        <button onClick={() => previousPage()} disabled={!getCanPreviousPage()}>
+          {"<"}
+        </button>
+        <button onClick={() => nextPage()} disabled={!getCanNextPage()}>
+          {">"}
+        </button>
+        <button onClick={() => setPageIndex(getPageCount() - 1)} disabled={!getCanNextPage()}>
+          {">>"}
+        </button>
+        <span>
+          <strong>
+            {" "}
+            {getState().pagination.pageIndex + 1} / {getPageCount()}{" "}
+          </strong>
+        </span>
+        <span>
+          | Go to Page:{" "}
+          <input
+            type="number"
+            defaultValue={getState().pagination.pageIndex + 1}
+            onChange={(e) => {
+              const page = e.target.value ? Number(e.target.value) - 1 : 0;
+              setPageIndex(page);
+            }}
+          />
+        </span> <select
+          value={getState().pagination.pageSize}
+          onChange={(e) => {
+            setPageSize(Number(e.target.value));
+          }}
+        >
+          {[10, 20, 30, 40, 50].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              Show {pageSize}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -2078,283 +1927,248 @@ So, we'll build on top of it and make necessary logic, markup and style modifica
 
 ```tsx title="src/pages/products/list.tsx
 import React, { useRef } from "react";
-import {
-    IResourceComponentsProps,
-    getDefaultFilter,
-    useDelete,
-    useNavigation,
-} from "@refinedev/core";
+import { IResourceComponentsProps, getDefaultFilter, useDelete, useNavigation } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { PlusIcon } from "@heroicons/react/20/solid";
 import {
-    FunnelIcon,
-    PencilSquareIcon,
-    EyeIcon,
-    TrashIcon,
-    BarsArrowDownIcon,
-    BarsArrowUpIcon,
+  FunnelIcon,
+  PencilSquareIcon,
+  EyeIcon,
+  TrashIcon,
+  BarsArrowDownIcon,
+  BarsArrowUpIcon,
 } from "@heroicons/react/24/outline";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-    const filterForm: any = useRef(null);
+  const filterForm: any = useRef(null);
 
-    const { mutate: deleteProduct } = useDelete();
+  const { mutate: deleteProduct } = useDelete();
 
-    const columns = React.useMemo<ColumnDef<any>[]>(
-        () => [
-            {
-                id: "id",
-                accessorKey: "id",
-                header: "Id",
-            },
-            {
-                id: "name",
-                accessorKey: "name",
-                header: "Name",
-            },
-            {
-                id: "price",
-                accessorKey: "price",
-                header: "Price",
-            },
-            {
-                id: "category",
-                header: "Category",
-                enableSorting: false,
-                accessorKey: "category.title",
-            },
-            {
-                id: "description",
-                accessorKey: "description",
-                enableSorting: false,
-                header: "Description",
-            },
-            {
-                id: "actions",
-                accessorKey: "id",
-                header: "Actions",
-                enableSorting: false,
-                cell: function render({ getValue }) {
-                    return (
-                        <div className="flex justify-around items-center">
-                            <button
-                                className="btn btn-xs btn-circle btn-ghost m-1"
-                                onClick={() => {
-                                    edit("products", getValue() as string);
-                                }}
-                            >
-                                <PencilSquareIcon className="h-4 w-4" />
-                            </button>
-                            <button
-                                className="btn btn-xs btn-circle btn-ghost m-1"
-                                onClick={() => {
-                                    show("products", getValue() as string);
-                                }}
-                            >
-                                <EyeIcon className="h-4 w-4" />
-                            </button>
-                            <button
-                                className="btn btn-xs btn-circle btn-ghost m-1"
-                                onClick={() => {
-                                    deleteProduct({
-                                        resource: "products",
-                                        id: getValue() as string,
-                                    });
-                                }}
-                            >
-                                <TrashIcon className="h-4 w-4 text-error" />
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    const { edit, show, create } = useNavigation();
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { filters, setCurrent, setFilters },
-        getState,
-        setPageIndex,
-        getCanPreviousPage,
-        getPageCount,
-        getCanNextPage,
-        nextPage,
-        previousPage,
-        setPageSize,
-    } = useTable({
-        columns,
-    });
-
-    return (
-        <div className="page-container">
-            <div className="page-header">
-                <h1 className="page-title">Products</h1>
-                <button
-                    className="btn btn-sm btn-primary normal-case font-normal text-zinc-50"
-                    onClick={() => create("products")}
-                >
-                    <PlusIcon className="h-5 w-5" />
-                    Create
-                </button>
+  const columns = React.useMemo<ColumnDef<any>[]>(
+    () => [
+      {
+        id: "id",
+        accessorKey: "id",
+        header: "Id",
+      },
+      {
+        id: "name",
+        accessorKey: "name",
+        header: "Name",
+      },
+      {
+        id: "price",
+        accessorKey: "price",
+        header: "Price",
+      },
+      {
+        id: "category",
+        header: "Category",
+        enableSorting: false,
+        accessorKey: "category.title",
+      },
+      {
+        id: "description",
+        accessorKey: "description",
+        enableSorting: false,
+        header: "Description",
+      },
+      {
+        id: "actions",
+        accessorKey: "id",
+        header: "Actions",
+        enableSorting: false,
+        cell: function render({ getValue }) {
+          return (
+            <div className="flex justify-around items-center">
+              <button
+                className="btn btn-xs btn-circle btn-ghost m-1"
+                onClick={() => {
+                  edit("products", getValue() as string);
+                }}
+              >
+                <PencilSquareIcon className="h-4 w-4" />
+              </button>
+              <button
+                className="btn btn-xs btn-circle btn-ghost m-1"
+                onClick={() => {
+                  show("products", getValue() as string);
+                }}
+              >
+                <EyeIcon className="h-4 w-4" />
+              </button>
+              <button
+                className="btn btn-xs btn-circle btn-ghost m-1"
+                onClick={() => {
+                  deleteProduct({
+                    resource: "products",
+                    id: getValue() as string,
+                  });
+                }}
+              >
+                <TrashIcon className="h-4 w-4 text-error" />
+              </button>
             </div>
-            <div className="overflow-x-auto bg-slate-50 border">
-                <div className="flex justify-between items-center m-4">
-                    <button
-                        className="btn btn-outline btn-primary btn-sm normal-case font-light"
-                        onClick={() => {
-                            setCurrent(1);
-                            setFilters([], "replace");
-                            filterForm?.current?.reset();
-                        }}
-                    >
-                        <FunnelIcon className="h-4 w-4" />
-                        Clear
-                    </button>
-                    <div className="flex justify-end items-center">
-                        <form ref={filterForm}>
-                            <input
-                                className="input input-bordered input-sm"
-                                type="search"
-                                value={getDefaultFilter("q", filters)}
-                                onChange={(e) => {
-                                    setCurrent(1);
-                                    setFilters([
-                                        {
-                                            field: "q",
-                                            value: e.target.value,
-                                            operator: "contains",
-                                        },
-                                    ]);
-                                }}
-                                placeholder="Search with keywords"
-                            />
-                        </form>
-                    </div>
-                </div>
-                <table className="table table-zebra border-t">
-                    <thead className="bg-slate-200">
-                        {getHeaderGroups()?.map((headerGroup) => (
-                            <tr key={headerGroup?.id}>
-                                {headerGroup?.headers?.map((header) => (
-                                    <th
-                                        className="text-center hover:bg-slate-300"
-                                        key={header?.id}
-                                        onClick={header?.column?.getToggleSortingHandler()}
-                                    >
-                                        <div className="flex justify-start items-center">
-                                            {!header?.isPlaceholder &&
-                                                flexRender(
-                                                    header?.column?.columnDef
-                                                        ?.header,
-                                                    header?.getContext(),
-                                                )}
-                                            {{
-                                                asc: (
-                                                    <BarsArrowUpIcon className="h-4 w-4" />
-                                                ),
-                                                desc: (
-                                                    <BarsArrowDownIcon className="h-4 w-4" />
-                                                ),
-                                            }[
-                                                header?.column?.getIsSorted() as string
-                                            ] ?? null}
-                                        </div>
-                                    </th>
-                                ))}
-                            </tr>
-                        ))}
-                    </thead>
-                    <tbody>
-                        {getRowModel()?.rows?.map((row) => (
-                            <tr key={row?.id}>
-                                {row?.getVisibleCells()?.map((cell) => (
-                                    <td key={cell?.id}>
-                                        {flexRender(
-                                            cell?.column?.columnDef?.cell,
-                                            cell?.getContext(),
-                                        )}
-                                    </td>
-                                ))}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            <div className="flex justify-center items-center mt-3">
-                <div className="join">
-                    <button
-                        className="join-item btn btn-sm btn-ghost"
-                        onClick={() => setPageIndex(0)}
-                        disabled={!getCanPreviousPage()}
-                    >
-                        {"<<"}
-                    </button>
-                    <button
-                        className="join-item btn btn-sm btn-ghost"
-                        onClick={() => previousPage()}
-                        disabled={!getCanPreviousPage()}
-                    >
-                        {"<"}
-                    </button>
-                    {Array.from(
-                        { length: getPageCount() },
-                        (_, index) => index + 1,
-                    )?.map((pageNumber) => {
-                        const btnActive =
-                            pageNumber - 1 == getState()?.pagination?.pageIndex
-                                ? " btn-active"
-                                : "";
-                        return (
-                            <button
-                                key={pageNumber}
-                                className={"join-item btn btn-sm" + btnActive}
-                                onClick={() => setPageIndex(pageNumber - 1)}
-                            >
-                                {pageNumber}
-                            </button>
-                        );
-                    })}
-                    <button
-                        className="join-item btn btn-sm btn-ghost"
-                        onClick={() => nextPage()}
-                        disabled={!getCanNextPage()}
-                    >
-                        {">"}
-                    </button>
-                    <button
-                        className="join-item btn btn-sm btn-ghost"
-                        onClick={() => setPageIndex(getPageCount() - 1)}
-                        disabled={!getCanNextPage()}
-                    >
-                        {">>"}
-                    </button>
-                </div>
-                <select
-                    className="mx-2 p-1 border rounded"
-                    value={getState()?.pagination?.pageSize}
-                    onChange={(e) => {
-                        setPageSize(Number(e.target.value));
-                    }}
-                >
-                    {[10, 25, 50].map((pageSize) => (
-                        <option
-                            className="border rounded"
-                            key={pageSize}
-                            value={pageSize}
-                        >
-                            {pageSize}
-                        </option>
-                    ))}
-                </select>
-            </div>
+          );
+        },
+      },
+    ],
+    [],
+  );
+
+  const { edit, show, create } = useNavigation();
+
+  const {
+    getHeaderGroups,
+    getRowModel,
+    refineCore: { filters, setCurrent, setFilters },
+    getState,
+    setPageIndex,
+    getCanPreviousPage,
+    getPageCount,
+    getCanNextPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+  } = useTable({
+    columns,
+  });
+
+  return (
+    <div className="page-container">
+      <div className="page-header">
+        <h1 className="page-title">Products</h1>
+        <button
+          className="btn btn-sm btn-primary normal-case font-normal text-zinc-50"
+          onClick={() => create("products")}
+        >
+          <PlusIcon className="h-5 w-5" />
+          Create
+        </button>
+      </div>
+      <div className="overflow-x-auto bg-slate-50 border">
+        <div className="flex justify-between items-center m-4">
+          <button
+            className="btn btn-outline btn-primary btn-sm normal-case font-light"
+            onClick={() => {
+              setCurrent(1);
+              setFilters([], "replace");
+              filterForm?.current?.reset();
+            }}
+          >
+            <FunnelIcon className="h-4 w-4" />
+            Clear
+          </button>
+          <div className="flex justify-end items-center">
+            <form ref={filterForm}>
+              <input
+                className="input input-bordered input-sm"
+                type="search"
+                value={getDefaultFilter("q", filters)}
+                onChange={(e) => {
+                  setCurrent(1);
+                  setFilters([
+                    {
+                      field: "q",
+                      value: e.target.value,
+                      operator: "contains",
+                    },
+                  ]);
+                }}
+                placeholder="Search with keywords"
+              />
+            </form>
+          </div>
         </div>
-    );
+        <table className="table table-zebra border-t">
+          <thead className="bg-slate-200">
+            {getHeaderGroups()?.map((headerGroup) => (
+              <tr key={headerGroup?.id}>
+                {headerGroup?.headers?.map((header) => (
+                  <th
+                    className="text-center hover:bg-slate-300"
+                    key={header?.id}
+                    onClick={header?.column?.getToggleSortingHandler()}
+                  >
+                    <div className="flex justify-start items-center">
+                      {!header?.isPlaceholder && flexRender(header?.column?.columnDef?.header, header?.getContext())}
+                      {{
+                        asc: <BarsArrowUpIcon className="h-4 w-4" />,
+                        desc: <BarsArrowDownIcon className="h-4 w-4" />,
+                      }[header?.column?.getIsSorted() as string] ?? null}
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {getRowModel()?.rows?.map((row) => (
+              <tr key={row?.id}>
+                {row?.getVisibleCells()?.map((cell) => (
+                  <td key={cell?.id}>{flexRender(cell?.column?.columnDef?.cell, cell?.getContext())}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="flex justify-center items-center mt-3">
+        <div className="join">
+          <button
+            className="join-item btn btn-sm btn-ghost"
+            onClick={() => setPageIndex(0)}
+            disabled={!getCanPreviousPage()}
+          >
+            {"<<"}
+          </button>
+          <button
+            className="join-item btn btn-sm btn-ghost"
+            onClick={() => previousPage()}
+            disabled={!getCanPreviousPage()}
+          >
+            {"<"}
+          </button>
+          {Array.from({ length: getPageCount() }, (_, index) => index + 1)?.map((pageNumber) => {
+            const btnActive = pageNumber - 1 == getState()?.pagination?.pageIndex ? " btn-active" : "";
+            return (
+              <button
+                key={pageNumber}
+                className={"join-item btn btn-sm" + btnActive}
+                onClick={() => setPageIndex(pageNumber - 1)}
+              >
+                {pageNumber}
+              </button>
+            );
+          })}
+          <button className="join-item btn btn-sm btn-ghost" onClick={() => nextPage()} disabled={!getCanNextPage()}>
+            {">"}
+          </button>
+          <button
+            className="join-item btn btn-sm btn-ghost"
+            onClick={() => setPageIndex(getPageCount() - 1)}
+            disabled={!getCanNextPage()}
+          >
+            {">>"}
+          </button>
+        </div>
+        <select
+          className="mx-2 p-1 border rounded"
+          value={getState()?.pagination?.pageSize}
+          onChange={(e) => {
+            setPageSize(Number(e.target.value));
+          }}
+        >
+          {[10, 25, 50].map((pageSize) => (
+            <option className="border rounded" key={pageSize} value={pageSize}>
+              {pageSize}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -2370,20 +2184,20 @@ The [`useTable()`](https://refine.dev/docs/packages/documentation/react-table/#b
 // Inside ProductList component
 
 const {
-    getHeaderGroups,
-    getRowModel,
-    setOptions,
-    refineCore: { filters, setCurrent, setFilters },
-    getState,
-    setPageIndex,
-    getCanPreviousPage,
-    getPageCount,
-    getCanNextPage,
-    nextPage,
-    previousPage,
-    setPageSize,
+  getHeaderGroups,
+  getRowModel,
+  setOptions,
+  refineCore: { filters, setCurrent, setFilters },
+  getState,
+  setPageIndex,
+  getCanPreviousPage,
+  getPageCount,
+  getCanNextPage,
+  nextPage,
+  previousPage,
+  setPageSize,
 } = useTable({
-    columns,
+  columns,
 });
 ```
 
@@ -2478,116 +2292,104 @@ The modified `<ProductCreate />` component looks like below, so replace the code
 
 ```tsx title="src/pages/products/create.tsx"
 import React from "react";
-import {
-    useNavigation,
-    IResourceComponentsProps,
-    useSelect,
-} from "@refinedev/core";
+import { useNavigation, IResourceComponentsProps, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
-    const { list } = useNavigation();
+  const { list } = useNavigation();
 
-    const {
-        refineCore: { onFinish },
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+  const {
+    refineCore: { onFinish },
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    const { options: categoryOptions } = useSelect({
-        resource: "categories",
-    });
+  const { options: categoryOptions } = useSelect({
+    resource: "categories",
+  });
 
-    return (
-        <div className="page-container">
-            <div className="flex justify-start items-center">
-                <div>
-                    <button
-                        className="mr-2 btn btn-primary btn-sm btn-ghost"
-                        onClick={() => {
-                            list("products");
-                        }}
-                    >
-                        <ArrowLeftIcon className="h-5 w-5" />
-                    </button>
-                </div>
-                <h1 className="page-title">Create a Product</h1>
-            </div>
-            <form className="mx-2" onSubmit={handleSubmit(onFinish)}>
-                <div className="form-control my-4">
-                    <label className="m-1">Name</label>
-                    <input
-                        className="input input-sm input-bordered"
-                        type="text"
-                        {...register("name", {
-                            required: "This field is required",
-                        })}
-                    />
-                    <span style={{ color: "red" }}>
-                        {(errors as any)?.name?.message as string}
-                    </span>
-                </div>
-                <div className="form-control my-4">
-                    <label className="m-1">Price</label>
-                    <input
-                        className="input input-sm input-bordered"
-                        type="number"
-                        {...register("price", {
-                            required: "This field is required",
-                            valueAsNumber: true,
-                        })}
-                    />
-                    <span style={{ color: "red" }}>
-                        {(errors as any)?.price?.message as string}
-                    </span>
-                </div>
-                <div className="form-control my-4">
-                    <label className="m-1" htmlFor="category">
-                        Category
-                    </label>
-                    <select
-                        className="input input-sm input-bordered"
-                        placeholder="Select category"
-                        {...register("category.id", {
-                            required: "This field is required",
-                        })}
-                    >
-                        {categoryOptions?.map((option) => (
-                            <option value={option.value} key={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </select>
-                    <span style={{ color: "red" }}>
-                        {(errors as any)?.category?.id?.message as string}
-                    </span>
-                </div>
-                <div className="form-control my-4">
-                    <label className="m-1">Description</label>
-                    <textarea
-                        className="textarea textarea-bordered"
-                        rows={5}
-                        style={{ verticalAlign: "top" }}
-                        {...register("description", {
-                            required: "This field is required",
-                        })}
-                    />
-                    <span style={{ color: "red" }}>
-                        {(errors as any)?.description?.message as string}
-                    </span>
-                </div>
-                <div className="flex justify-end items-center my-6">
-                    <input
-                        className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
-                        type="submit"
-                        value="Save"
-                    />
-                </div>
-            </form>
+  return (
+    <div className="page-container">
+      <div className="flex justify-start items-center">
+        <div>
+          <button
+            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            onClick={() => {
+              list("products");
+            }}
+          >
+            <ArrowLeftIcon className="h-5 w-5" />
+          </button>
         </div>
-    );
+        <h1 className="page-title">Create a Product</h1>
+      </div>
+      <form className="mx-2" onSubmit={handleSubmit(onFinish)}>
+        <div className="form-control my-4">
+          <label className="m-1">Name</label>
+          <input
+            className="input input-sm input-bordered"
+            type="text"
+            {...register("name", {
+              required: "This field is required",
+            })}
+          />
+          <span style={{ color: "red" }}>{(errors as any)?.name?.message as string}</span>
+        </div>
+        <div className="form-control my-4">
+          <label className="m-1">Price</label>
+          <input
+            className="input input-sm input-bordered"
+            type="number"
+            {...register("price", {
+              required: "This field is required",
+              valueAsNumber: true,
+            })}
+          />
+          <span style={{ color: "red" }}>{(errors as any)?.price?.message as string}</span>
+        </div>
+        <div className="form-control my-4">
+          <label className="m-1" htmlFor="category">
+            Category
+          </label>
+          <select
+            className="input input-sm input-bordered"
+            placeholder="Select category"
+            {...register("category.id", {
+              required: "This field is required",
+            })}
+          >
+            {categoryOptions?.map((option) => (
+              <option value={option.value} key={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <span style={{ color: "red" }}>{(errors as any)?.category?.id?.message as string}</span>
+        </div>
+        <div className="form-control my-4">
+          <label className="m-1">Description</label>
+          <textarea
+            className="textarea textarea-bordered"
+            rows={5}
+            style={{ verticalAlign: "top" }}
+            {...register("description", {
+              required: "This field is required",
+            })}
+          />
+          <span style={{ color: "red" }}>{(errors as any)?.description?.message as string}</span>
+        </div>
+        <div className="flex justify-end items-center my-6">
+          <input
+            className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
+            type="submit"
+            value="Save"
+          />
+        </div>
+      </form>
+    </div>
+  );
 };
 ```
 
@@ -2601,10 +2403,10 @@ The most significant part of the product `create` page lies in the use of the [`
 
 ```ts
 const {
-    refineCore: { onFinish },
-    register,
-    handleSubmit,
-    formState: { errors },
+  refineCore: { onFinish },
+  register,
+  handleSubmit,
+  formState: { errors },
 } = useForm();
 ```
 
@@ -2640,130 +2442,118 @@ The product edit page will have the same form functionality as the create page. 
 
 ```tsx title="src/pages/products/edit.tsx"
 import React from "react";
-import {
-    useNavigation,
-    IResourceComponentsProps,
-    useSelect,
-} from "@refinedev/core";
+import { useNavigation, IResourceComponentsProps, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 
 export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
-    const { list } = useNavigation();
+  const { list } = useNavigation();
 
-    const {
-        refineCore: { onFinish, queryResult },
-        register,
-        handleSubmit,
-        setValue,
-        formState: { errors },
-    } = useForm();
+  const {
+    refineCore: { onFinish, queryResult },
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm();
 
-    const productsData = queryResult?.data?.data;
+  const productsData = queryResult?.data?.data;
 
-    const { options: categoryOptions } = useSelect({
-        resource: "categories",
-        defaultValue: productsData?.category?.id,
-    });
+  const { options: categoryOptions } = useSelect({
+    resource: "categories",
+    defaultValue: productsData?.category?.id,
+  });
 
-    React.useEffect(() => {
-        setValue("category.id", productsData?.category?.id);
-    }, [productsData, categoryOptions]);
+  React.useEffect(() => {
+    setValue("category.id", productsData?.category?.id);
+  }, [productsData, categoryOptions]);
 
-    return (
-        <div className="page-container">
-            <div className="flex justify-between items-center">
-                <div className="flex justify-start items-center">
-                    <button
-                        className="mr-2 btn btn-primary btn-sm btn-ghost"
-                        onClick={() => {
-                            list("products");
-                        }}
-                    >
-                        <ArrowLeftIcon className="h-5 w-5" />
-                    </button>
-                    <h1 className="page-title">Edit Product</h1>
-                </div>
-                <div>
-                    <button
-                        className="flex justify-center items-center btn btn-sm btn-primary btn-outline normal-case font-normal"
-                        onClick={() => queryResult?.refetch()}
-                    >
-                        <ArrowPathIcon className="h-5 w-5" />
-                        Refresh
-                    </button>
-                </div>
-            </div>
-            <form className="mx-2" onSubmit={handleSubmit(onFinish)}>
-                <div className="form-control my-4">
-                    <label className="label">Name</label>
-                    <input
-                        className="input input-sm input-bordered"
-                        type="text"
-                        {...register("name", {
-                            required: "This field is required",
-                        })}
-                    />
-                    <span style={{ color: "red" }}>
-                        {(errors as any)?.name?.message as string}
-                    </span>
-                </div>
-                <div className="form-control my-4">
-                    <label className="label">Price</label>
-                    <input
-                        className="input input-sm input-bordered"
-                        type="number"
-                        {...register("price", {
-                            required: "This field is required",
-                            valueAsNumber: true,
-                        })}
-                    />
-                    <span style={{ color: "red" }}>
-                        {(errors as any)?.price?.message as string}
-                    </span>
-                </div>
-                <div className="form-control my-4">
-                    <label className="label">Category</label>
-                    <select
-                        className="input input-sm input-bordered"
-                        placeholder="Select category"
-                        {...register("category.id", {
-                            required: "This field is required",
-                        })}
-                    >
-                        {categoryOptions?.map((option) => (
-                            <option value={option.value} key={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </select>
-                    <span style={{ color: "red" }}>
-                        {(errors as any)?.category?.id?.message as string}
-                    </span>
-                </div>
-                <div className="form-control my-4">
-                    <label className="label">Description</label>
-                    <textarea
-                        className="textarea textarea-bordered"
-                        rows={5}
-                        {...register("description", {
-                            required: "This field is required",
-                        })}
-                    />
-                    <span style={{ color: "red" }}>
-                        {(errors as any)?.description?.message as string}
-                    </span>
-                </div>
-                <div className="flex justify-end items-center">
-                    <input
-                        className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
-                        type="submit"
-                        value="Save"
-                    />
-                </div>
-            </form>
+  return (
+    <div className="page-container">
+      <div className="flex justify-between items-center">
+        <div className="flex justify-start items-center">
+          <button
+            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            onClick={() => {
+              list("products");
+            }}
+          >
+            <ArrowLeftIcon className="h-5 w-5" />
+          </button>
+          <h1 className="page-title">Edit Product</h1>
         </div>
-    );
+        <div>
+          <button
+            className="flex justify-center items-center btn btn-sm btn-primary btn-outline normal-case font-normal"
+            onClick={() => queryResult?.refetch()}
+          >
+            <ArrowPathIcon className="h-5 w-5" />
+            Refresh
+          </button>
+        </div>
+      </div>
+      <form className="mx-2" onSubmit={handleSubmit(onFinish)}>
+        <div className="form-control my-4">
+          <label className="label">Name</label>
+          <input
+            className="input input-sm input-bordered"
+            type="text"
+            {...register("name", {
+              required: "This field is required",
+            })}
+          />
+          <span style={{ color: "red" }}>{(errors as any)?.name?.message as string}</span>
+        </div>
+        <div className="form-control my-4">
+          <label className="label">Price</label>
+          <input
+            className="input input-sm input-bordered"
+            type="number"
+            {...register("price", {
+              required: "This field is required",
+              valueAsNumber: true,
+            })}
+          />
+          <span style={{ color: "red" }}>{(errors as any)?.price?.message as string}</span>
+        </div>
+        <div className="form-control my-4">
+          <label className="label">Category</label>
+          <select
+            className="input input-sm input-bordered"
+            placeholder="Select category"
+            {...register("category.id", {
+              required: "This field is required",
+            })}
+          >
+            {categoryOptions?.map((option) => (
+              <option value={option.value} key={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <span style={{ color: "red" }}>{(errors as any)?.category?.id?.message as string}</span>
+        </div>
+        <div className="form-control my-4">
+          <label className="label">Description</label>
+          <textarea
+            className="textarea textarea-bordered"
+            rows={5}
+            {...register("description", {
+              required: "This field is required",
+            })}
+          />
+          <span style={{ color: "red" }}>{(errors as any)?.description?.message as string}</span>
+        </div>
+        <div className="flex justify-end items-center">
+          <input
+            className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
+            type="submit"
+            value="Save"
+          />
+        </div>
+      </form>
+    </div>
+  );
 };
 ```
 
@@ -2791,71 +2581,58 @@ The `<ProductShow />` component is more straight forward and the final adopted v
 
 ```tsx title="src/pages/products/show.tsx"
 import React from "react";
-import {
-    useShow,
-    useNavigation,
-    IResourceComponentsProps,
-} from "@refinedev/core";
+import { useShow, useNavigation, IResourceComponentsProps } from "@refinedev/core";
 import { ArrowLeftIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { IProduct } from "../../interfaces";
 
 export const ProductShow: React.FC<IResourceComponentsProps> = () => {
-    const { edit, list } = useNavigation();
-    const {
-        queryResult: { data },
-    } = useShow<IProduct>();
+  const { edit, list } = useNavigation();
+  const {
+    queryResult: { data },
+  } = useShow<IProduct>();
 
-    const record = data?.data;
-    const id = record?.id;
+  const record = data?.data;
+  const id = record?.id;
 
-    return (
-        <div className="page-container">
-            <div className="page-header">
-                <div className="flex justify-start items-center">
-                    <button
-                        className="mr-2 btn btn-primary btn-sm btn-ghost"
-                        onClick={() => list("products")}
-                    >
-                        <ArrowLeftIcon className="h-5 w-5" />
-                    </button>
-                    <h1 className="page-title">Product Details</h1>
-                </div>
-                <div className="flex justify-between items-center">
-                    <button
-                        className="flex justify-center items-center btn btn-primary btn-sm text-zinc-50 normal-case font-normal"
-                        onClick={() => edit("products", id ?? "")}
-                    >
-                        <PencilSquareIcon className="h-5 w-5" />
-                        Edit
-                    </button>
-                </div>
-            </div>
-            <div className="card">
-                <div className="card-body">
-                    <div className="text-xl font-bold">
-                        {record?.name ?? "Loading..."}
-                    </div>
-                    <div className="divider p-0 m-0"></div>
-                    <div className="mb-2">
-                        <h5 className="mb-1 font-bold">Price</h5>
-                        <div>
-                            {record?.price
-                                ? `$ ${record?.price}`
-                                : "Loading..."}
-                        </div>
-                    </div>
-                    <div className="mb-2">
-                        <h5 className="mb-1 font-bold">Category</h5>
-                        <div>{record?.category?.title ?? "Loading..."}</div>
-                    </div>
-                    <div className="mb-2">
-                        <h5 className="mb-1 font-bold">Description</h5>
-                        <div>{record?.description ?? "Loading..."}</div>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="page-container">
+      <div className="page-header">
+        <div className="flex justify-start items-center">
+          <button className="mr-2 btn btn-primary btn-sm btn-ghost" onClick={() => list("products")}>
+            <ArrowLeftIcon className="h-5 w-5" />
+          </button>
+          <h1 className="page-title">Product Details</h1>
         </div>
-    );
+        <div className="flex justify-between items-center">
+          <button
+            className="flex justify-center items-center btn btn-primary btn-sm text-zinc-50 normal-case font-normal"
+            onClick={() => edit("products", id ?? "")}
+          >
+            <PencilSquareIcon className="h-5 w-5" />
+            Edit
+          </button>
+        </div>
+      </div>
+      <div className="card">
+        <div className="card-body">
+          <div className="text-xl font-bold">{record?.name ?? "Loading..."}</div>
+          <div className="divider p-0 m-0"></div>
+          <div className="mb-2">
+            <h5 className="mb-1 font-bold">Price</h5>
+            <div>{record?.price ? `$ ${record?.price}` : "Loading..."}</div>
+          </div>
+          <div className="mb-2">
+            <h5 className="mb-1 font-bold">Category</h5>
+            <div>{record?.category?.title ?? "Loading..."}</div>
+          </div>
+          <div className="mb-2">
+            <h5 className="mb-1 font-bold">Description</h5>
+            <div>{record?.description ?? "Loading..."}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -2898,137 +2675,98 @@ import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import routerBindings, {
-    DocumentTitleHandler,
-    NavigateToResource,
-    UnsavedChangesNotifier,
+  DocumentTitleHandler,
+  NavigateToResource,
+  UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import {
-    BrowserRouter,
-    Navigate,
-    Outlet,
-    Route,
-    Routes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout";
 import { Dashboard } from "./pages/dashboard";
-import {
-    ProductList,
-    ProductCreate,
-    ProductEdit,
-    ProductShow,
-} from "./pages/products";
+import { ProductList, ProductCreate, ProductEdit, ProductShow } from "./pages/products";
 //highlight-next-line
-import {
-    CategoryList,
-    CategoryCreate,
-    CategoryEdit,
-    CategoryShow,
-} from "./pages/categories";
+import { CategoryList, CategoryCreate, CategoryEdit, CategoryShow } from "./pages/categories";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.finefoods.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "dashboard",
-                            list: "/dashboard",
-                        },
-                        {
-                            name: "products",
-                            list: "/products",
-                            create: "/products/create",
-                            edit: "/products/edit/:id",
-                            show: "/products/show/:id",
-                            meta: {
-                                canDelete: true,
-                            },
-                        },
-                        //highlight-start
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            create: "/categories/create",
-                            edit: "/categories/edit/:id",
-                            show: "/categories/show/:id",
-                            meta: {
-                                canDelete: true,
-                            },
-                        },
-                        //highlight-end
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                        projectId: "4kWrnz-AJZzOW-qq7MXL",
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            <Route
-                                index
-                                element={<Navigate to="/dashboard" />}
-                            />
-                            <Route path="/dashboard">
-                                <Route index element={<Dashboard />} />
-                            </Route>
-                            <Route path="/products">
-                                <Route index element={<ProductList />} />
-                                <Route
-                                    path="create"
-                                    element={<ProductCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<ProductEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<ProductShow />}
-                                />
-                            </Route>
-                            {/*highlight-start*/}
-                            <Route path="/categories">
-                                <Route index element={<CategoryList />} />
-                                <Route
-                                    path="create"
-                                    element={<CategoryCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<CategoryEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<CategoryShow />}
-                                />
-                            </Route>
-                            {/*highlight-end*/}
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider("https://api.finefoods.refine.dev")}
+          routerProvider={routerBindings}
+          resources={[
+            {
+              name: "dashboard",
+              list: "/dashboard",
+            },
+            {
+              name: "products",
+              list: "/products",
+              create: "/products/create",
+              edit: "/products/edit/:id",
+              show: "/products/show/:id",
+              meta: {
+                canDelete: true,
+              },
+            },
+            //highlight-start
+            {
+              name: "categories",
+              list: "/categories",
+              create: "/categories/create",
+              edit: "/categories/edit/:id",
+              show: "/categories/show/:id",
+              meta: {
+                canDelete: true,
+              },
+            },
+            //highlight-end
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+            projectId: "4kWrnz-AJZzOW-qq7MXL",
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <Layout>
+                  <Outlet />
+                </Layout>
+              }
+            >
+              <Route index element={<Navigate to="/dashboard" />} />
+              <Route path="/dashboard">
+                <Route index element={<Dashboard />} />
+              </Route>
+              <Route path="/products">
+                <Route index element={<ProductList />} />
+                <Route path="create" element={<ProductCreate />} />
+                <Route path="edit/:id" element={<ProductEdit />} />
+                <Route path="show/:id" element={<ProductShow />} />
+              </Route>
+              {/*highlight-start*/}
+              <Route path="/categories">
+                <Route index element={<CategoryList />} />
+                <Route path="create" element={<CategoryCreate />} />
+                <Route path="edit/:id" element={<CategoryEdit />} />
+                <Route path="show/:id" element={<CategoryShow />} />
+              </Route>
+              {/*highlight-end*/}
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
 
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 export default App;
 ```
@@ -3045,275 +2783,238 @@ For the final version of `<CategoryList />`, adopt the following code.
 
 ```tsx title="src/pages/categories/list.tsx"
 import React, { useRef } from "react";
-import {
-    IResourceComponentsProps,
-    getDefaultFilter,
-    useDelete,
-    useNavigation,
-} from "@refinedev/core";
+import { IResourceComponentsProps, getDefaultFilter, useDelete, useNavigation } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { PlusIcon } from "@heroicons/react/20/solid";
 import {
-    FunnelIcon,
-    PencilSquareIcon,
-    EyeIcon,
-    TrashIcon,
-    BarsArrowDownIcon,
-    BarsArrowUpIcon,
+  FunnelIcon,
+  PencilSquareIcon,
+  EyeIcon,
+  TrashIcon,
+  BarsArrowDownIcon,
+  BarsArrowUpIcon,
 } from "@heroicons/react/24/outline";
 import { ICategory } from "../../interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
-    const filterForm: any = useRef(null);
+  const filterForm: any = useRef(null);
 
-    const { mutate: deleteCategory } = useDelete<ICategory>();
-    const columns = React.useMemo<ColumnDef<any>[]>(
-        () => [
-            {
-                id: "id",
-                accessorKey: "id",
-                header: "Id",
-            },
-            {
-                id: "title",
-                accessorKey: "title",
-                header: "Name",
-                cell: function render({ getValue }) {
-                    return (
-                        <div className="w-24 md:w-60 lg:w-96 text-center">
-                            {getValue() as string}
-                        </div>
-                    );
-                },
-            },
-            {
-                id: "actions",
-                accessorKey: "id",
-                header: "Actions",
-                enableSorting: false,
-                cell: function render({ getValue }) {
-                    return (
-                        <div className="flex justify-around items-center">
-                            <button
-                                className="btn btn-xs btn-circle btn-ghost m-1"
-                                onClick={() => {
-                                    edit("categories", getValue() as string);
-                                }}
-                            >
-                                <PencilSquareIcon className="h-4 w-4" />
-                            </button>
-                            <button
-                                className="btn btn-xs btn-circle btn-ghost m-1"
-                                onClick={() => {
-                                    show("categories", getValue() as string);
-                                }}
-                            >
-                                <EyeIcon className="h-4 w-4" />
-                            </button>
-                            <button
-                                className="btn btn-xs btn-circle btn-ghost m-1"
-                                onClick={() => {
-                                    deleteCategory({
-                                        resource: "categories",
-                                        id: getValue() as string,
-                                    });
-                                }}
-                            >
-                                <TrashIcon className="h-4 w-4 text-error" />
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    const { edit, show, create } = useNavigation();
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { setCurrent, filters, setFilters },
-        getState,
-        setPageIndex,
-        getCanPreviousPage,
-        getPageCount,
-        getCanNextPage,
-        nextPage,
-        previousPage,
-        setPageSize,
-    } = useTable({
-        columns,
-    });
-
-    return (
-        <div className="page-container">
-            <div className="page-header">
-                <h1 className="page-title">Categories</h1>
-                <button
-                    className="btn btn-sm btn-primary normal-case font-normal text-zinc-50"
-                    onClick={() => create("categories")}
-                >
-                    <PlusIcon className="h-5 w-5" />
-                    Create
-                </button>
+  const { mutate: deleteCategory } = useDelete<ICategory>();
+  const columns = React.useMemo<ColumnDef<any>[]>(
+    () => [
+      {
+        id: "id",
+        accessorKey: "id",
+        header: "Id",
+      },
+      {
+        id: "title",
+        accessorKey: "title",
+        header: "Name",
+        cell: function render({ getValue }) {
+          return <div className="w-24 md:w-60 lg:w-96 text-center">{getValue() as string}</div>;
+        },
+      },
+      {
+        id: "actions",
+        accessorKey: "id",
+        header: "Actions",
+        enableSorting: false,
+        cell: function render({ getValue }) {
+          return (
+            <div className="flex justify-around items-center">
+              <button
+                className="btn btn-xs btn-circle btn-ghost m-1"
+                onClick={() => {
+                  edit("categories", getValue() as string);
+                }}
+              >
+                <PencilSquareIcon className="h-4 w-4" />
+              </button>
+              <button
+                className="btn btn-xs btn-circle btn-ghost m-1"
+                onClick={() => {
+                  show("categories", getValue() as string);
+                }}
+              >
+                <EyeIcon className="h-4 w-4" />
+              </button>
+              <button
+                className="btn btn-xs btn-circle btn-ghost m-1"
+                onClick={() => {
+                  deleteCategory({
+                    resource: "categories",
+                    id: getValue() as string,
+                  });
+                }}
+              >
+                <TrashIcon className="h-4 w-4 text-error" />
+              </button>
             </div>
-            <div className="overflow-x-auto bg-slate-50 border">
-                <div className="flex justify-between items-center m-4">
-                    <button
-                        className="btn btn-outline btn-primary btn-sm normal-case font-light"
-                        onClick={() => {
-                            setCurrent(1);
-                            setFilters([], "replace");
-                            filterForm?.current?.reset();
-                        }}
-                    >
-                        <FunnelIcon className="h-4 w-4" />
-                        Clear
-                    </button>
-                    <div className="flex justify-end items-center">
-                        <form ref={filterForm}>
-                            <input
-                                className="input input-bordered input-sm"
-                                type="search"
-                                value={getDefaultFilter("q", filters)}
-                                onChange={(e) => {
-                                    setCurrent(1);
-                                    setFilters([
-                                        {
-                                            field: "q",
-                                            value: e.target.value,
-                                            operator: "contains",
-                                        },
-                                    ]);
-                                }}
-                                placeholder="Search with keywords"
-                            />
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <table className="table table-zebra border-t">
-                <thead className="bg-slate-200">
-                    {getHeaderGroups()?.map((headerGroup) => (
-                        <tr key={headerGroup?.id}>
-                            {headerGroup?.headers?.map((header) => (
-                                <th
-                                    className="text-center hover:bg-slate-300"
-                                    key={header?.id}
-                                    onClick={header?.column?.getToggleSortingHandler()}
-                                >
-                                    <div className="flex justify-center items-center">
-                                        {!header?.isPlaceholder &&
-                                            flexRender(
-                                                header?.column?.columnDef
-                                                    ?.header,
-                                                header?.getContext(),
-                                            )}
-                                        {{
-                                            asc: (
-                                                <BarsArrowUpIcon className="h-4 w-4" />
-                                            ),
-                                            desc: (
-                                                <BarsArrowDownIcon className="h-4 w-4" />
-                                            ),
-                                        }[
-                                            header?.column?.getIsSorted() as string
-                                        ] ?? null}
-                                    </div>
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel()?.rows?.map((row) => (
-                        <tr key={row?.id}>
-                            {row?.getVisibleCells()?.map((cell) => (
-                                <td className="text-center" key={cell?.id}>
-                                    <div className="flex justify-center items-center">
-                                        {flexRender(
-                                            cell?.column?.columnDef?.cell,
-                                            cell?.getContext(),
-                                        )}
-                                    </div>
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <div className="flex justify-center items-center mt-3">
-                <div className="join">
-                    <button
-                        className="join-item btn btn-sm btn-ghost"
-                        onClick={() => setPageIndex(0)}
-                        disabled={!getCanPreviousPage()}
-                    >
-                        {"<<"}
-                    </button>
-                    <button
-                        className="join-item btn btn-sm btn-ghost"
-                        onClick={() => previousPage()}
-                        disabled={!getCanPreviousPage()}
-                    >
-                        {"<"}
-                    </button>
-                    {Array.from(
-                        { length: getPageCount() },
-                        (_, index) => index + 1,
-                    )?.map((pageNumber) => {
-                        const btnActive =
-                            pageNumber - 1 == getState()?.pagination?.pageIndex
-                                ? " btn-active"
-                                : "";
-                        return (
-                            <button
-                                key={pageNumber}
-                                className={"join-item btn btn-sm" + btnActive}
-                                onClick={() => setPageIndex(pageNumber - 1)}
-                            >
-                                {pageNumber}
-                            </button>
-                        );
-                    })}
-                    <button
-                        className="join-item btn btn-sm btn-ghost"
-                        onClick={() => nextPage()}
-                        disabled={!getCanNextPage()}
-                    >
-                        {">"}
-                    </button>
-                    <button
-                        className="join-item btn btn-sm btn-ghost"
-                        onClick={() => setPageIndex(getPageCount() - 1)}
-                        disabled={!getCanNextPage()}
-                    >
-                        {">>"}
-                    </button>
-                </div>
-                <select
-                    className="mx-2 p-1 border rounded"
-                    value={getState()?.pagination?.pageSize}
-                    onChange={(e) => {
-                        setPageSize(Number(e.target.value));
-                    }}
-                >
-                    {[10, 25, 50].map((pageSize) => (
-                        <option
-                            className="border rounded"
-                            key={pageSize}
-                            value={pageSize}
-                        >
-                            {pageSize}
-                        </option>
-                    ))}
-                </select>
-            </div>
+          );
+        },
+      },
+    ],
+    [],
+  );
+
+  const { edit, show, create } = useNavigation();
+
+  const {
+    getHeaderGroups,
+    getRowModel,
+    refineCore: { setCurrent, filters, setFilters },
+    getState,
+    setPageIndex,
+    getCanPreviousPage,
+    getPageCount,
+    getCanNextPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+  } = useTable({
+    columns,
+  });
+
+  return (
+    <div className="page-container">
+      <div className="page-header">
+        <h1 className="page-title">Categories</h1>
+        <button
+          className="btn btn-sm btn-primary normal-case font-normal text-zinc-50"
+          onClick={() => create("categories")}
+        >
+          <PlusIcon className="h-5 w-5" />
+          Create
+        </button>
+      </div>
+      <div className="overflow-x-auto bg-slate-50 border">
+        <div className="flex justify-between items-center m-4">
+          <button
+            className="btn btn-outline btn-primary btn-sm normal-case font-light"
+            onClick={() => {
+              setCurrent(1);
+              setFilters([], "replace");
+              filterForm?.current?.reset();
+            }}
+          >
+            <FunnelIcon className="h-4 w-4" />
+            Clear
+          </button>
+          <div className="flex justify-end items-center">
+            <form ref={filterForm}>
+              <input
+                className="input input-bordered input-sm"
+                type="search"
+                value={getDefaultFilter("q", filters)}
+                onChange={(e) => {
+                  setCurrent(1);
+                  setFilters([
+                    {
+                      field: "q",
+                      value: e.target.value,
+                      operator: "contains",
+                    },
+                  ]);
+                }}
+                placeholder="Search with keywords"
+              />
+            </form>
+          </div>
         </div>
-    );
+      </div>
+      <table className="table table-zebra border-t">
+        <thead className="bg-slate-200">
+          {getHeaderGroups()?.map((headerGroup) => (
+            <tr key={headerGroup?.id}>
+              {headerGroup?.headers?.map((header) => (
+                <th
+                  className="text-center hover:bg-slate-300"
+                  key={header?.id}
+                  onClick={header?.column?.getToggleSortingHandler()}
+                >
+                  <div className="flex justify-center items-center">
+                    {!header?.isPlaceholder && flexRender(header?.column?.columnDef?.header, header?.getContext())}
+                    {{
+                      asc: <BarsArrowUpIcon className="h-4 w-4" />,
+                      desc: <BarsArrowDownIcon className="h-4 w-4" />,
+                    }[header?.column?.getIsSorted() as string] ?? null}
+                  </div>
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {getRowModel()?.rows?.map((row) => (
+            <tr key={row?.id}>
+              {row?.getVisibleCells()?.map((cell) => (
+                <td className="text-center" key={cell?.id}>
+                  <div className="flex justify-center items-center">
+                    {flexRender(cell?.column?.columnDef?.cell, cell?.getContext())}
+                  </div>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="flex justify-center items-center mt-3">
+        <div className="join">
+          <button
+            className="join-item btn btn-sm btn-ghost"
+            onClick={() => setPageIndex(0)}
+            disabled={!getCanPreviousPage()}
+          >
+            {"<<"}
+          </button>
+          <button
+            className="join-item btn btn-sm btn-ghost"
+            onClick={() => previousPage()}
+            disabled={!getCanPreviousPage()}
+          >
+            {"<"}
+          </button>
+          {Array.from({ length: getPageCount() }, (_, index) => index + 1)?.map((pageNumber) => {
+            const btnActive = pageNumber - 1 == getState()?.pagination?.pageIndex ? " btn-active" : "";
+            return (
+              <button
+                key={pageNumber}
+                className={"join-item btn btn-sm" + btnActive}
+                onClick={() => setPageIndex(pageNumber - 1)}
+              >
+                {pageNumber}
+              </button>
+            );
+          })}
+          <button className="join-item btn btn-sm btn-ghost" onClick={() => nextPage()} disabled={!getCanNextPage()}>
+            {">"}
+          </button>
+          <button
+            className="join-item btn btn-sm btn-ghost"
+            onClick={() => setPageIndex(getPageCount() - 1)}
+            disabled={!getCanNextPage()}
+          >
+            {">>"}
+          </button>
+        </div>
+        <select
+          className="mx-2 p-1 border rounded"
+          value={getState()?.pagination?.pageSize}
+          onChange={(e) => {
+            setPageSize(Number(e.target.value));
+          }}
+        >
+          {[10, 25, 50].map((pageSize) => (
+            <option className="border rounded" key={pageSize} value={pageSize}>
+              {pageSize}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -3334,54 +3035,52 @@ import { useForm } from "@refinedev/react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
-    const { list } = useNavigation();
+  const { list } = useNavigation();
 
-    const {
-        refineCore: { onFinish },
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+  const {
+    refineCore: { onFinish },
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    return (
-        <div className="page-container">
-            <div className="flex justify-start items-center">
-                <div>
-                    <button
-                        className="mr-2 btn btn-primary btn-sm btn-ghost"
-                        onClick={() => {
-                            list("categories");
-                        }}
-                    >
-                        <ArrowLeftIcon className="h-4 w-4" />
-                    </button>
-                </div>
-                <h1 className="page-title">Create a Category</h1>
-            </div>
-            <form className="mx-2" onSubmit={handleSubmit(onFinish)}>
-                <div className="form-control my-4">
-                    <label className="label">Name</label>
-                    <input
-                        className="input input-sm input-bordered"
-                        type="text"
-                        {...register("title", {
-                            required: "This field is required",
-                        })}
-                    />
-                    <span style={{ color: "red" }}>
-                        {(errors as any)?.title?.message as string}
-                    </span>
-                    <div className="flex justify-end items-center my-6">
-                        <input
-                            className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
-                            type="submit"
-                            value="Save"
-                        />
-                    </div>
-                </div>
-            </form>
+  return (
+    <div className="page-container">
+      <div className="flex justify-start items-center">
+        <div>
+          <button
+            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            onClick={() => {
+              list("categories");
+            }}
+          >
+            <ArrowLeftIcon className="h-4 w-4" />
+          </button>
         </div>
-    );
+        <h1 className="page-title">Create a Category</h1>
+      </div>
+      <form className="mx-2" onSubmit={handleSubmit(onFinish)}>
+        <div className="form-control my-4">
+          <label className="label">Name</label>
+          <input
+            className="input input-sm input-bordered"
+            type="text"
+            {...register("title", {
+              required: "This field is required",
+            })}
+          />
+          <span style={{ color: "red" }}>{(errors as any)?.title?.message as string}</span>
+          <div className="flex justify-end items-center my-6">
+            <input
+              className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
+              type="submit"
+              value="Save"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  );
 };
 ```
 
@@ -3402,63 +3101,61 @@ import { useForm } from "@refinedev/react-hook-form";
 import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 
 export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
-    const { list } = useNavigation();
+  const { list } = useNavigation();
 
-    const {
-        refineCore: { onFinish, queryResult },
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+  const {
+    refineCore: { onFinish, queryResult },
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    return (
-        <div className="page-container">
-            <div className="flex justify-between items-center">
-                <div className="flex justify-start items-center">
-                    <button
-                        className="mr-2 btn btn-primary btn-sm btn-ghost"
-                        onClick={() => {
-                            list("categories");
-                        }}
-                    >
-                        <ArrowLeftIcon className="h-5 w-5" />
-                    </button>
-                    <h1 className="page-title">Edit Category</h1>
-                </div>
-                <div>
-                    <button
-                        className="flex justify-center items-center btn btn-sm btn-primary btn-outline normal-case font-normal"
-                        onClick={() => queryResult?.refetch()}
-                    >
-                        <ArrowPathIcon className="h-5 w-5" />
-                        Refresh
-                    </button>
-                </div>
-            </div>
-            <form onSubmit={handleSubmit(onFinish)}>
-                <div className="form-control my-4">
-                    <label className="label">Name</label>
-                    <input
-                        className="input input-sm input-bordered"
-                        type="text"
-                        {...register("title", {
-                            required: "This field is required",
-                        })}
-                    />
-                    <span style={{ color: "red" }}>
-                        {(errors as any)?.title?.message as string}
-                    </span>
-                </div>
-                <div className="flex justify-end items-center">
-                    <input
-                        className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
-                        type="submit"
-                        value="Save"
-                    />
-                </div>
-            </form>
+  return (
+    <div className="page-container">
+      <div className="flex justify-between items-center">
+        <div className="flex justify-start items-center">
+          <button
+            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            onClick={() => {
+              list("categories");
+            }}
+          >
+            <ArrowLeftIcon className="h-5 w-5" />
+          </button>
+          <h1 className="page-title">Edit Category</h1>
         </div>
-    );
+        <div>
+          <button
+            className="flex justify-center items-center btn btn-sm btn-primary btn-outline normal-case font-normal"
+            onClick={() => queryResult?.refetch()}
+          >
+            <ArrowPathIcon className="h-5 w-5" />
+            Refresh
+          </button>
+        </div>
+      </div>
+      <form onSubmit={handleSubmit(onFinish)}>
+        <div className="form-control my-4">
+          <label className="label">Name</label>
+          <input
+            className="input input-sm input-bordered"
+            type="text"
+            {...register("title", {
+              required: "This field is required",
+            })}
+          />
+          <span style={{ color: "red" }}>{(errors as any)?.title?.message as string}</span>
+        </div>
+        <div className="flex justify-end items-center">
+          <input
+            className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
+            type="submit"
+            value="Save"
+          />
+        </div>
+      </form>
+    </div>
+  );
 };
 ```
 
@@ -3474,58 +3171,51 @@ For the final version of the `<CategoryShow />` page, adopt this code:
 
 ```tsx title="src/pages/categories/show.tsx"
 import React from "react";
-import {
-    useShow,
-    useNavigation,
-    IResourceComponentsProps,
-} from "@refinedev/core";
+import { useShow, useNavigation, IResourceComponentsProps } from "@refinedev/core";
 import { ArrowLeftIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { ICategory } from "../../interfaces";
 
 export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
-    const { edit, list } = useNavigation();
-    const {
-        queryResult: { data },
-    } = useShow<ICategory>();
+  const { edit, list } = useNavigation();
+  const {
+    queryResult: { data },
+  } = useShow<ICategory>();
 
-    const record = data?.data;
+  const record = data?.data;
 
-    return (
-        <div className="page-container">
-            <div className="page-header">
-                <div className="flex justify-between items-center">
-                    <button
-                        className="mr-2 btn btn-primary btn-sm btn-ghost"
-                        onClick={() => list("categories")}
-                    >
-                        <ArrowLeftIcon className="h-5 w-5" />
-                    </button>
-                    <h1 className="page-title">Category Details</h1>
-                </div>
-                <div className="flex justify-start items-center">
-                    <button
-                        className="flex justify-center items-center btn btn-primary btn-sm text-zinc-50 normal-case font-normal"
-                        onClick={() => edit("categories", record?.id ?? "")}
-                    >
-                        <PencilSquareIcon className="h-5 w-5" />
-                        Edit
-                    </button>
-                </div>
-            </div>
-            <div className="card">
-                <div className="card-body">
-                    <div className="mb-2">
-                        <h5 className="text-xl font-bold">Id</h5>
-                        <div>{record?.id ?? "Loading..."}</div>
-                    </div>
-                    <div className="mb-2">
-                        <h5 className="text-xl font-bold">Name</h5>
-                        <div>{record?.title ?? "Loading..."}</div>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="page-container">
+      <div className="page-header">
+        <div className="flex justify-between items-center">
+          <button className="mr-2 btn btn-primary btn-sm btn-ghost" onClick={() => list("categories")}>
+            <ArrowLeftIcon className="h-5 w-5" />
+          </button>
+          <h1 className="page-title">Category Details</h1>
         </div>
-    );
+        <div className="flex justify-start items-center">
+          <button
+            className="flex justify-center items-center btn btn-primary btn-sm text-zinc-50 normal-case font-normal"
+            onClick={() => edit("categories", record?.id ?? "")}
+          >
+            <PencilSquareIcon className="h-5 w-5" />
+            Edit
+          </button>
+        </div>
+      </div>
+      <div className="card">
+        <div className="card-body">
+          <div className="mb-2">
+            <h5 className="text-xl font-bold">Id</h5>
+            <div>{record?.id ?? "Loading..."}</div>
+          </div>
+          <div className="mb-2">
+            <h5 className="text-xl font-bold">Name</h5>
+            <div>{record?.title ?? "Loading..."}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -3545,19 +3235,19 @@ In this section, we'll customize the app layout for a top navbar menu with icons
 
 ```tsx title="App.tsx"
 <Refine>
-    <Routes>
-        {/*highlight-start*/}
-        <Route
-            element={
-                <Layout>
-                    <Outlet />
-                </Layout>
-            }
-        >
-            {/*highlight-end*/}
-            <Route path="*" element={<ErrorComponent />} />
-        </Route>
-    </Routes>
+  <Routes>
+    {/*highlight-start*/}
+    <Route
+      element={
+        <Layout>
+          <Outlet />
+        </Layout>
+      }
+    >
+      {/*highlight-end*/}
+      <Route path="*" element={<ErrorComponent />} />
+    </Route>
+  </Routes>
 </Refine>
 ```
 
@@ -3573,15 +3263,15 @@ import { Breadcrumb } from "../breadcrumb";
 import { Menu } from "../menu";
 
 export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
-    return (
-        <div>
-            <Menu />
-            <div className="p-4 bg-zinc-100">
-                <Breadcrumb />
-                <div>{children}</div>
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <Menu />
+      <div className="p-4 bg-zinc-100">
+        <Breadcrumb />
+        <div>{children}</div>
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -3595,142 +3285,100 @@ Notice it renders the `<Menu />` and `<Breadcrumb />` components. We'll update t
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import {
-    BrowserRouter,
-    Navigate,
-    Outlet,
-    Route,
-    Routes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout";
-import {
-    ProductCreate,
-    ProductEdit,
-    ProductList,
-    ProductShow,
-} from "./pages/products";
-import {
-    CategoryCreate,
-    CategoryEdit,
-    CategoryList,
-    CategoryShow,
-} from "./pages/categories";
+import { ProductCreate, ProductEdit, ProductList, ProductShow } from "./pages/products";
+import { CategoryCreate, CategoryEdit, CategoryList, CategoryShow } from "./pages/categories";
 import { Dashboard } from "./pages/dashboard";
 //highlight-next-line
 import { HomeIcon, ShoppingCartIcon, TagIcon } from "@heroicons/react/20/solid";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.finefoods.refine.dev",
-                    )}
-                    routerProvider={routerBindings}
-                    resources={[
-                        {
-                            name: "dashboard",
-                            list: "/dashboard",
-                            //highlight-start
-                            meta: {
-                                icon: <HomeIcon className="h-4 w-4" />,
-                            },
-                            //highlight-end
-                        },
-                        {
-                            name: "products",
-                            list: "/products",
-                            create: "/products/create",
-                            edit: "/products/edit/:id",
-                            show: "/products/show/:id",
-                            meta: {
-                                //highlight-next-line
-                                icon: <ShoppingCartIcon className="h-4 w-4" />,
-                                canDelete: true,
-                            },
-                        },
-                        {
-                            name: "categories",
-                            list: "/categories",
-                            create: "/categories/create",
-                            edit: "/categories/edit/:id",
-                            show: "/categories/show/:id",
-                            meta: {
-                                //highlight-next-line
-                                icon: <TagIcon className="h-4 w-4" />,
-                                canDelete: true,
-                            },
-                        },
-                    ]}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                        projectId: "wl4d1W-RmKWNN-721Z9X",
-                    }}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            <Route
-                                index
-                                element={<Navigate to="/dashboard" />}
-                            />
-                            <Route path="/dashboard">
-                                <Route index element={<Dashboard />} />
-                            </Route>
-                            <Route path="/products">
-                                <Route index element={<ProductList />} />
-                                <Route
-                                    path="create"
-                                    element={<ProductCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<ProductEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<ProductShow />}
-                                />
-                            </Route>
-                            <Route path="/categories">
-                                <Route index element={<CategoryList />} />
-                                <Route
-                                    path="create"
-                                    element={<CategoryCreate />}
-                                />
-                                <Route
-                                    path="edit/:id"
-                                    element={<CategoryEdit />}
-                                />
-                                <Route
-                                    path="show/:id"
-                                    element={<CategoryShow />}
-                                />
-                            </Route>
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider("https://api.finefoods.refine.dev")}
+          routerProvider={routerBindings}
+          resources={[
+            {
+              name: "dashboard",
+              list: "/dashboard",
+              //highlight-start
+              meta: {
+                icon: <HomeIcon className="h-4 w-4" />,
+              },
+              //highlight-end
+            },
+            {
+              name: "products",
+              list: "/products",
+              create: "/products/create",
+              edit: "/products/edit/:id",
+              show: "/products/show/:id",
+              meta: {
+                //highlight-next-line
+                icon: <ShoppingCartIcon className="h-4 w-4" />,
+                canDelete: true,
+              },
+            },
+            {
+              name: "categories",
+              list: "/categories",
+              create: "/categories/create",
+              edit: "/categories/edit/:id",
+              show: "/categories/show/:id",
+              meta: {
+                //highlight-next-line
+                icon: <TagIcon className="h-4 w-4" />,
+                canDelete: true,
+              },
+            },
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+            projectId: "wl4d1W-RmKWNN-721Z9X",
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <Layout>
+                  <Outlet />
+                </Layout>
+              }
+            >
+              <Route index element={<Navigate to="/dashboard" />} />
+              <Route path="/dashboard">
+                <Route index element={<Dashboard />} />
+              </Route>
+              <Route path="/products">
+                <Route index element={<ProductList />} />
+                <Route path="create" element={<ProductCreate />} />
+                <Route path="edit/:id" element={<ProductEdit />} />
+                <Route path="show/:id" element={<ProductShow />} />
+              </Route>
+              <Route path="/categories">
+                <Route index element={<CategoryList />} />
+                <Route path="create" element={<CategoryCreate />} />
+                <Route path="edit/:id" element={<CategoryEdit />} />
+                <Route path="show/:id" element={<CategoryShow />} />
+              </Route>
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -3753,30 +3401,24 @@ import { useMenu } from "@refinedev/core";
 import { NavLink } from "react-router-dom";
 
 export const Menu = () => {
-    const { menuItems } = useMenu();
+  const { menuItems } = useMenu();
 
-    return (
-        <nav className="sticky top-0 z-50 menu mx-0 bg-white">
-            <ul className="mx-0 flex justify-start items-center">
-                {menuItems.map((item) => (
-                    <li
-                        key={item?.key}
-                        className="mx-0 flex justify-start items-center"
-                    >
-                        <div className="text-gray-600">
-                            <NavLink
-                                className="text-lg flex items-center"
-                                to={item?.route ?? "/"}
-                            >
-                                <span className="mr-2">{item?.icon}</span>
-                                {item?.label}
-                            </NavLink>
-                        </div>
-                    </li>
-                ))}
-            </ul>
-        </nav>
-    );
+  return (
+    <nav className="sticky top-0 z-50 menu mx-0 bg-white">
+      <ul className="mx-0 flex justify-start items-center">
+        {menuItems.map((item) => (
+          <li key={item?.key} className="mx-0 flex justify-start items-center">
+            <div className="text-gray-600">
+              <NavLink className="text-lg flex items-center" to={item?.route ?? "/"}>
+                <span className="mr-2">{item?.icon}</span>
+                {item?.label}
+              </NavLink>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
 };
 ```
 
@@ -3797,30 +3439,28 @@ import { useBreadcrumb } from "@refinedev/core";
 import { Link } from "react-router-dom";
 
 export const Breadcrumb = () => {
-    const { breadcrumbs } = useBreadcrumb();
+  const { breadcrumbs } = useBreadcrumb();
 
-    if (breadcrumbs.length == 1) return null;
+  if (breadcrumbs.length == 1) return null;
 
-    return (
-        <div className="text-sm breadcrumbs">
-            <ul className="my-2">
-                {breadcrumbs?.map((breadcrumb) => {
-                    return (
-                        <li key={`breadcrumb-${breadcrumb?.label}`}>
-                            <span className="mx-2">{breadcrumb?.icon}</span>
-                            {breadcrumb?.href ? (
-                                <Link to={breadcrumb?.href}>
-                                    {breadcrumb?.label}
-                                </Link>
-                            ) : (
-                                <span>{breadcrumb?.label}</span>
-                            )}
-                        </li>
-                    );
-                })}
-            </ul>
-        </div>
-    );
+  return (
+    <div className="text-sm breadcrumbs">
+      <ul className="my-2">
+        {breadcrumbs?.map((breadcrumb) => {
+          return (
+            <li key={`breadcrumb-${breadcrumb?.label}`}>
+              <span className="mx-2">{breadcrumb?.icon}</span>
+              {breadcrumb?.href ? (
+                <Link to={breadcrumb?.href}>{breadcrumb?.label}</Link>
+              ) : (
+                <span>{breadcrumb?.label}</span>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 };
 ```
 
