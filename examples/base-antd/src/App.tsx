@@ -1,4 +1,11 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import {
+    BaseRecord,
+    DataProvider,
+    GetListParams,
+    GetListResponse,
+    GitHubBanner,
+    Refine,
+} from "@refinedev/core";
 import {
     useNotificationProvider,
     ThemedLayoutV2,
