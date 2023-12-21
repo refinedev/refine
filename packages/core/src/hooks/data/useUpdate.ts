@@ -282,7 +282,12 @@ export const useUpdate = <
             }) => {
                 const { identifier } = select(resourceName);
 
-                const preferredMeta = pickNotDeprecated(meta, metaData);
+                // Exclude gqlMutation and gqlQuery from query keys.
+                const {
+                    gqlMutation: _,
+                    gqlQuery: __,
+                    ...preferredMeta
+                } = pickNotDeprecated(meta, metaData) ?? {};
 
                 const queryKey = queryKeysReplacement(preferLegacyKeys)(
                     identifier,
