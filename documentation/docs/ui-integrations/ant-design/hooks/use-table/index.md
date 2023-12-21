@@ -148,11 +148,11 @@ When the `useTable` hook is mounted, it will call the `subscribe` method from th
 <PropResource
 hook={{
     name:"useList",
-    URL:"/docs/api-reference/core/hooks/data/useList/"
+    URL:"/docs/data/hooks/use-list"
 }}
 method={{
     name:"getList",
-    URL:"/docs/api-reference/core/providers/data-provider/#getlist"
+    URL:"/docs/data/data-provider/#getlist"
 }}
 hasDefault={false}
 />
@@ -382,7 +382,7 @@ useTable({
 });
 ```
 
-### `syncWithLocation` <GlobalConfigBadge id="api-reference/core/components/refine-config/#syncwithlocation" />
+### `syncWithLocation` <GlobalConfigBadge id="core/refine-component/#syncwithlocation" />
 
 When you use the `syncWithLocation` feature, the `useTable`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views. It is set to `false` by default.
 
@@ -759,7 +759,7 @@ Use `setSorters` instead.
 
 ### How can I handle relational data?
 
-You can use the [`useMany`](/docs/data/hooks/use-many) hook to fetch relational data and filter `<Table>` by categories with the help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
+You can use the [`useMany`](/docs/data/hooks/use-many) hook to fetch relational data and filter `<Table>` by categories with the help of [`useSelect`](/docs/ui-integrations/ant-design/hooks/use-select/)
 
 <RelationalLivePreview/>
 

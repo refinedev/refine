@@ -16,7 +16,7 @@ We will make a Cake House application using **Refine** and [Strapi-v4](https://d
 
 :::caution
 
-This guide has been prepared to assume you know the basics of **Refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
+This guide has been prepared to assume you know the basics of **Refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](/docs/tutorial).
 
 :::
 

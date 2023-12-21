@@ -237,11 +237,11 @@ When the `useDataGrid` hook is mounted, it will call the `subscribe` method from
 <PropResource
 hook={{
     name:"useList",
-    URL:"/docs/api-reference/core/hooks/data/useList/"
+    URL:"/docs/data/hooks/use-list"
 }}
 method={{
     name:"getList",
-    URL:"/docs/api-reference/core/providers/data-provider/#getlist"
+    URL:"/docs/data/data-provider/#getlist"
 }}
 hasDefault={false}
 />
@@ -434,7 +434,7 @@ useDataGrid({
 });
 ```
 
-### `syncWithLocation` <GlobalConfigBadge id="api-reference/core/components/refine-config/#syncwithlocation" />
+### `syncWithLocation` <GlobalConfigBadge id="core/refine-component/#syncwithlocation" />
 
 When you use the syncWithLocation feature, the `useDataGrid`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useDataGrid` state is automatically updated to match. This makes it easy to share table states across different routes or pages and allows users to bookmark or share links to specific table views. It is `false` by default.
 
@@ -808,7 +808,7 @@ Use `setSorters` instead.
 
 ### How can I handle relational data?
 
-You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/useSelect/) hook to fetch relational data and filter [`<DataGrid>`][data-grid] by categories.
+You can use [`useSelect`](/docs/data/hooks/use-select/) hook to fetch relational data and filter [`<DataGrid>`][data-grid] by categories.
 
 <RelationalPreview/>
 

@@ -273,7 +273,7 @@ useSimpleList({
 });
 ```
 
-### `syncWithLocation` <GlobalConfigBadge id="api-reference/core/components/refine-config/#syncwithlocation" />
+### `syncWithLocation` <GlobalConfigBadge id="core/refine-component/#syncwithlocation" />
 
 When you use the syncWithLocation feature, the `useSimpleList`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useSimpleList` state is automatically updated to match. This makes it easy to share list states across different routes or pages and allows users to bookmark or share links to specific table views. `syncWithLocation` is set to `false` by default.
 

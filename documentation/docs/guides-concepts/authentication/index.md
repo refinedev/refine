@@ -181,7 +181,7 @@ import { MantineAuth } from './auth-pages/mantine';
 
 </Tabs>
 
-### Notification <GuideBadge id="api-reference/core/providers/notification-provider" />
+### Notification <GuideBadge id="notification/notification-provider" />
 
 Refine provides a automatic notification system to notify users about the authentication errors. To use this feature, you need to pass [`notificationProvider`](/docs/notification/notification-provider) to the `<Refine />` component.
 

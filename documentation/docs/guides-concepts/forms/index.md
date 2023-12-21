@@ -640,7 +640,7 @@ import ServerSideValidationChakraUi from "./server-side-validation-chakra-ui.tsx
 </TabItem>
 </Tabs>
 
-## Notifications <GuideBadge id="api-reference/core/providers/notification-provider" />
+## Notifications <GuideBadge id="notification/notification-provider" />
 
 When forms are submitted, it is a good practice to notify the user about the result of the submission. `useForm` handles this for you, when the mutation succeeds or fails it will show a notification to the user with a proper message. This behavior can be customized or disabled using the `successNotification` and `errorNotification` props.
 

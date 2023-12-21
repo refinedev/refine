@@ -16,7 +16,7 @@ We will make a Cake House application using **Refine** and [Appwrite](https://ap
 
 :::caution
 
-This guide has been prepared to assume you know the basics of **Refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
+This guide has been prepared to assume you know the basics of **Refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](/docs).
 
 :::
 
@@ -587,7 +587,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({ modalProps, formPr
 
 **Refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](/docs/core/refine-component). It can be used to update and show data in Realtime throughout your app. **Refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
 
-[Refer to the Live Provider documentation for detailed information. →](https://refine.dev/docs/core/providers/live-provider/)
+[Refer to the Live Provider documentation for detailed information. →](/docs/realtime/live-provider/)
 
 Appwrite Realtime API support is out-of-the-box supported by **Refine**, just add two lines to make your App Realtime.
 

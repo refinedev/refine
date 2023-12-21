@@ -83,11 +83,11 @@ When the `useTable` hook is mounted, it will call the `subscribe` method from th
 <PropResource
 hook={{
     name:"useList",
-    URL:"/docs/api-reference/core/hooks/data/useList/"
+    URL:"/docs/data/hooks/use-list/"
 }}
 method={{
     name:"getList",
-    URL:"/docs/api-reference/core/providers/data-provider/#getlist"
+    URL:"/docs/data/data-provider/#getlist"
 }}
 hasDefault={false}
 />
