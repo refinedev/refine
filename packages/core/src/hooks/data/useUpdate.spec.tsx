@@ -144,7 +144,7 @@ describe("useUpdate Hook", () => {
     it("should exclude gqlQuery and qqlMutation from query keys", async () => {
         const catchFn = jest.fn();
 
-        jest.spyOn(queryKeys, "queryKeysReplacement").mockImplementation(
+        jest.spyOn(queryKeys, "queryKeysReplacement").mockImplementationOnce(
             () => catchFn,
         );
 
