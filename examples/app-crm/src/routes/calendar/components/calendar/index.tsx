@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 
 import { useList } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import FullCalendar from "@fullcalendar/react";
@@ -8,7 +9,10 @@ import { Button, Card, Grid, Radio } from "antd";
 import dayjs from "dayjs";
 
 import { Text } from "@/components";
-import { Event } from "@/interfaces";
+import { Event } from "@/graphql/schema.types";
+import { CalendarEventsQuery } from "@/graphql/types";
+
+import { CALENDAR_EVENTS_QUERY } from "./queries";
 
 import styles from "./index.module.css";
 
@@ -50,7 +54,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         }
     }, [md]);
 
-    const { data } = useList<Event>({
+    const { data } = useList<GetFieldsFromList<CalendarEventsQuery>>({
         pagination: {
             mode: "off",
         },
@@ -62,21 +66,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             },
         ],
         meta: {
-            fields: [
-                "id",
-                "title",
-                "description",
-                "startDate",
-                "endDate",
-                "color",
-                "createdAt",
-                {
-                    createdBy: ["id", "name"],
-                },
-                {
-                    category: ["id", "title"],
-                },
-            ],
+            gqlQuery: CALENDAR_EVENTS_QUERY,
         },
     });
 

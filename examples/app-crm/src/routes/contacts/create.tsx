@@ -8,7 +8,7 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company, User } from "@/interfaces";
+import { Company, User } from "@/graphql/schema.types";
 
 export const ContactCreatePage: React.FC<PropsWithChildren> = ({
     children,

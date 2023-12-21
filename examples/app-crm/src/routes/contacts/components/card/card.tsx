@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useDelete, useNavigation } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
     DeleteOutlined,
@@ -10,14 +11,13 @@ import {
 import { Button, Dropdown, MenuProps } from "antd";
 
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
-import { Contact } from "@/interfaces";
-
-import { ContactCardSkeleton } from "./skeleton";
+import { ContactsListQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
+import { ContactCardSkeleton } from "./skeleton";
 
 type ContactCardProps = {
-    contact: Contact | null;
+    contact: GetFieldsFromList<ContactsListQuery>;
 };
 
 export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
