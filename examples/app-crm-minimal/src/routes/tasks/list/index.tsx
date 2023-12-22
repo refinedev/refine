@@ -17,7 +17,7 @@ import {
     KanbanItem,
     ProjectCardMemo,
     ProjectCardSkeleton,
-} from "..";
+} from "../components";
 import {
     TASKS_QUERY,
     TASK_STAGES_QUERY,
@@ -27,7 +27,7 @@ import {
 type Task = GetFieldsFromList<TasksQuery>;
 type TaskStage = GetFieldsFromList<TaskStagesQuery> & { tasks: Task[] };
 
-export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
+export const TasksListPage: FC<PropsWithChildren> = ({ children }) => {
     const { replace } = useNavigation();
 
     const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({

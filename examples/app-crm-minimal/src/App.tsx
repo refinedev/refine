@@ -18,9 +18,9 @@ import {
     CompanyCreatePage,
     CompanyEditPage,
     CompanyListPage,
-    KanbanCreatePage,
-    KanbanEditPage,
-    KanbanListPage,
+    TasksCreatePage,
+    TasksEditPage,
+    TasksListPage,
     LoginPage,
 } from "@/routes";
 
@@ -66,18 +66,18 @@ const App: React.FC = () => {
                                     <Route
                                         path="/tasks"
                                         element={
-                                            <KanbanListPage>
+                                            <TasksListPage>
                                                 <Outlet />
-                                            </KanbanListPage>
+                                            </TasksListPage>
                                         }
                                     >
                                         <Route
                                             path="new"
-                                            element={<KanbanCreatePage />}
+                                            element={<TasksCreatePage />}
                                         />
                                         <Route
                                             path="edit/:id"
-                                            element={<KanbanEditPage />}
+                                            element={<TasksEditPage />}
                                         />
                                     </Route>
 

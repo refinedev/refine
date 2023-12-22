@@ -21,6 +21,5 @@ export {
     ProjectCardSkeleton,
 } from "./project-kanban-card";
 export { KanbanAddCardButton } from "./button/add-card-button";
-export { ProjectKanbanList } from "./project-kanban-list";
 export { ProjectModalEdit } from "./project-modal-edit";
 export { ProjectModalCreate } from "./project-modal-create";
