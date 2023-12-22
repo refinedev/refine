@@ -72,8 +72,10 @@ const SidebarCategory = ({
 
     const { collapsible } = item;
 
+    const defaultCollapsed = isHeader || isActive ? false : item.collapsed;
+
     const [collapsed, setCollapsed] = React.useState(
-        collapsible === false ? false : !(isHeader || isActive),
+        collapsible === false ? false : defaultCollapsed,
     );
 
     const [settled, setSettled] = React.useState(false);
