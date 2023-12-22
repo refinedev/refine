@@ -15,8 +15,8 @@ export const client = new GraphQLClient(API_URL, {
   fetch: (url: string, options: RequestInit) => {
     try {
       return fetchWrapper(url, options);
-    } catch (error: any) {
-      return Promise.reject(error);
+    } catch (error) {
+      return Promise.reject(error as Error);
     }
   },
 });

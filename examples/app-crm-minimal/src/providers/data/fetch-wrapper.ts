@@ -1,3 +1,5 @@
+import { GraphQLFormattedError } from "graphql";
+
 type Error = {
   message: string;
   statusCode: string;
@@ -32,7 +34,9 @@ export const fetchWrapper = async (url: string, options: RequestInit) => {
   return response;
 };
 
-const getGraphQLErrors = (body: any): Error | null => {
+const getGraphQLErrors = (
+  body: Record<"errors", GraphQLFormattedError[] | undefined>,
+): Error | null => {
   if (!body) {
     return {
       message: "Unknown error",
@@ -42,7 +46,7 @@ const getGraphQLErrors = (body: any): Error | null => {
 
   if ("errors" in body) {
     const errors = body?.errors;
-    const messages = errors?.map((error: any) => error?.message)?.join("");
+    const messages = errors?.map((error) => error?.message)?.join("");
     const code = errors?.[0]?.extensions?.code;
 
     return {

@@ -39,7 +39,9 @@ export const authProvider: AuthBindings = {
         success: true,
         redirectTo: "/",
       };
-    } catch (error: any) {
+    } catch (e) {
+      const error = e as Error;
+
       return {
         success: false,
         error: {
