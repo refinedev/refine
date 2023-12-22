@@ -64,7 +64,7 @@ const App: React.FC = () => {
                                     <Route index element={<DashboardPage />} />
 
                                     <Route
-                                        path="/kanban"
+                                        path="/tasks"
                                         element={
                                             <KanbanListPage>
                                                 <Outlet />
@@ -72,7 +72,7 @@ const App: React.FC = () => {
                                         }
                                     >
                                         <Route
-                                            path="create"
+                                            path="new"
                                             element={<KanbanCreatePage />}
                                         />
                                         <Route
@@ -87,7 +87,7 @@ const App: React.FC = () => {
                                             element={<CompanyListPage />}
                                         />
                                         <Route
-                                            path="create"
+                                            path="new"
                                             element={<CompanyCreatePage />}
                                         />
                                         <Route

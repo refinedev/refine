@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from "react";
 
 import { CreateButton, List, useTable } from "@refinedev/antd";
-import { HttpError, useGetToPath, useGo } from "@refinedev/core";
+import { HttpError, useGo } from "@refinedev/core";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { CompaniesListQuery } from "@/graphql/types";
@@ -11,7 +11,6 @@ import { CompaniesTableView } from "..";
 import { COMPANIES_LIST_QUERY } from "./queries";
 
 export const CompanyList: FC<PropsWithChildren> = ({ children }) => {
-    const getToPath = useGetToPath();
     const go = useGo();
 
     const { tableProps, filters, sorters } = useTable<
@@ -62,13 +61,14 @@ export const CompanyList: FC<PropsWithChildren> = ({ children }) => {
                     return (
                         <CreateButton
                             onClick={() => {
-                                // modal is a opening from the url (/companies/create)
-                                // to open modal we need to navigate to the create page (/companies/create)
+                                // modal is a opening from the url (/companies/new)
+                                // to open modal we need to navigate to the create page (/companies/new)
                                 // we are using `go` function because we want to keep the query params
                                 go({
-                                    to: getToPath({
+                                    to: {
+                                        resource: "companies",
                                         action: "create",
-                                    }),
+                                    },
                                     options: {
                                         keepQuery: true,
                                     },

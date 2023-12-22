@@ -17,11 +17,11 @@ export const resources: IResourceItem[] = [
     },
     {
         name: "tasks",
-        list: "/kanban",
-        create: "/kanban/create",
-        edit: "/kanban/edit/:id",
+        list: "/tasks",
+        create: "/tasks/new",
+        edit: "/tasks/edit/:id",
         meta: {
-            label: "Kanban",
+            label: "Tasks",
             icon: <ProjectOutlined />,
         },
     },
@@ -30,7 +30,7 @@ export const resources: IResourceItem[] = [
         name: "companies",
         list: "/companies",
         show: "/companies/:id",
-        create: "/companies/create",
+        create: "/companies/new",
         edit: "/companies/edit/:id",
         meta: {
             label: "Companies",

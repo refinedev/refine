@@ -135,8 +135,8 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
     const handleAddCard = (args: { stageId: string }) => {
         const path =
             args.stageId === "unassigned"
-                ? "/kanban/create"
-                : `/kanban/create?stageId=${args.stageId}`;
+                ? "/tasks/new"
+                : `/tasks/new?stageId=${args.stageId}`;
 
         replace(path);
     };
