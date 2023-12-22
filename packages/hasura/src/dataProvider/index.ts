@@ -38,6 +38,17 @@ const dataProvider = (
                 ? `${meta?.operation ?? resource}_by_pk`
                 : camelCase(`${meta?.operation ?? resource}_by_pk`);
 
+            if (meta?.gqlQuery) {
+                const response = await client.request<BaseRecord>(
+                    meta.gqlQuery,
+                    { id, ...meta?.variables },
+                );
+
+                return {
+                    data: response[operation],
+                };
+            }
+
             const { query, variables } = gql.query({
                 operation,
                 variables: {
@@ -119,50 +130,75 @@ const dataProvider = (
                 ? `${operation}_bool_exp`
                 : camelCase(`${operation}_bool_exp`, { pascalCase: true });
 
-            const { query, variables } = gql.query([
-                {
-                    operation,
-                    fields: meta?.fields,
-                    variables: {
-                        ...(mode === "server"
+            let query, variables;
+
+            if (meta?.gqlQuery) {
+                query = meta.gqlQuery;
+                variables = {
+                    ...(mode === "server"
+                        ? { limit, offset: (current - 1) * limit }
+                        : {}),
+                    ...(hasuraSorting &&
+                        (namingConvention === "graphql-default"
                             ? {
-                                  limit,
-                                  offset: (current - 1) * limit,
+                                  orderBy: hasuraSorting,
                               }
-                            : {}),
-                        ...(hasuraSorting &&
-                            (namingConvention === "graphql-default"
+                            : {
+                                  order_by: hasuraSorting,
+                              })),
+                    ...(hasuraFilters && {
+                        where: hasuraFilters,
+                    }),
+                };
+            } else {
+                const gqlQuery = gql.query([
+                    {
+                        operation,
+                        fields: meta?.fields,
+                        variables: {
+                            ...(mode === "server"
                                 ? {
-                                      orderBy: {
-                                          value: hasuraSorting,
-                                          type: hasuraSortingType,
-                                      },
+                                      limit,
+                                      offset: (current - 1) * limit,
                                   }
-                                : {
-                                      order_by: {
-                                          value: hasuraSorting,
-                                          type: hasuraSortingType,
-                                      },
-                                  })),
-                        ...(hasuraFilters && {
+                                : {}),
+                            ...(hasuraSorting &&
+                                (namingConvention === "graphql-default"
+                                    ? {
+                                          orderBy: {
+                                              value: hasuraSorting,
+                                              type: hasuraSortingType,
+                                          },
+                                      }
+                                    : {
+                                          order_by: {
+                                              value: hasuraSorting,
+                                              type: hasuraSortingType,
+                                          },
+                                      })),
+                            ...(hasuraFilters && {
+                                where: {
+                                    value: hasuraFilters,
+                                    type: hasuraFiltersType,
+                                },
+                            }),
+                        },
+                    },
+                    {
+                        operation: aggregateOperation,
+                        fields: [{ aggregate: ["count"] }],
+                        variables: {
                             where: {
                                 value: hasuraFilters,
                                 type: hasuraFiltersType,
                             },
-                        }),
-                    },
-                },
-                {
-                    operation: aggregateOperation,
-                    fields: [{ aggregate: ["count"] }],
-                    variables: {
-                        where: {
-                            value: hasuraFilters,
-                            type: hasuraFiltersType,
                         },
                     },
-                },
-            ]);
+                ]);
+
+                query = gqlQuery.query;
+                variables = gqlQuery.variables;
+            }
 
             const result = await client.request<BaseRecord>(query, variables);
 
