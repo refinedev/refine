@@ -16,23 +16,16 @@ export const resources: IResourceItem[] = [
         },
     },
     {
-        name: "scrumboard",
-        meta: {
-            label: "Scrumboard",
-            icon: <ProjectOutlined />,
-        },
-    },
-
-    {
         name: "tasks",
         list: "/kanban",
         create: "/kanban/create",
         edit: "/kanban/edit/:id",
         meta: {
-            label: "Project Kanban",
-            parent: "scrumboard",
+            label: "Kanban",
+            icon: <ProjectOutlined />,
         },
     },
+
     {
         name: "companies",
         list: "/companies",
@@ -42,14 +35,6 @@ export const resources: IResourceItem[] = [
         meta: {
             label: "Companies",
             icon: <ShopOutlined />,
-        },
-    },
-    {
-        name: "companies",
-        identifier: "sales-companies",
-        create: "/scrumboard/sales/create/company/create",
-        meta: {
-            hide: true,
         },
     },
 ];
