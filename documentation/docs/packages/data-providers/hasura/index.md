@@ -8,6 +8,8 @@ Refine provides a data provider for APIs powered with [Hasura](https://hasura.io
 
 :::simple Good to know
 
+- Hasura data provider doesn't support `meta.gqlQuery` and `meta.gqlMutation` fields yet. We'll add support in the future.
+
 - This library uses [`graphql-request@5`](https://github.com/jasonkuhrt/graphql-request) to handle the requests.
 - The [`graphql-ws@5`](https://the-guild.dev/graphql/ws) package, used to handle the realtime subscriptions is included in the package.
 - To learn more about data fetching in Refine, check out the [Data Fetching](/docs/guides-concepts/data-fetching) guide.

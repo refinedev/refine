@@ -18,6 +18,8 @@ Refine provides a data provider for GraphQL APIs that has all the features of Re
 
 :::simple Good to know
 
+- GraphQL data provider doesn't support `meta.gqlQuery` and `meta.gqlMutation` fields yet. We'll add support in the future.
+
 - This library uses [`graphql-request@5`](https://github.com/jasonkuhrt/graphql-request) to handle the requests.
 - To build queries and mutations, [`gql-query-builder`](https://github.com/atulmy/gql-query-builder) is used.
 - To learn more about data fetching in Refine, check out the [Data Fetching](/docs/guides-concepts/data-fetching) guide.
