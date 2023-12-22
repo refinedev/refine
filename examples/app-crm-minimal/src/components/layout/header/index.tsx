@@ -1,4 +1,4 @@
-import { CSSProperties,FC } from "react";
+import { CSSProperties, FC } from "react";
 
 import { Layout, Space, theme } from "antd";
 

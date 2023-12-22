@@ -1,4 +1,4 @@
-import { FC, lazy,PropsWithChildren, ReactNode, Suspense } from "react";
+import { FC, lazy, PropsWithChildren, ReactNode, Suspense } from "react";
 
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
 import { AreaConfig } from "@ant-design/plots";

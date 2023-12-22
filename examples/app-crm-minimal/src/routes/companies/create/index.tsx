@@ -4,9 +4,9 @@ import { CompanyListPage } from "../list";
 import { CompanyCreateModal } from "../list/create-modal";
 
 export const CompanyCreatePage: FC = () => {
-    return (
-        <CompanyListPage>
-            <CompanyCreateModal />
-        </CompanyListPage>
-    );
+  return (
+    <CompanyListPage>
+      <CompanyCreateModal />
+    </CompanyListPage>
+  );
 };
