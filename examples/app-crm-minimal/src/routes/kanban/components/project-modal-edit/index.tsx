@@ -36,7 +36,7 @@ export const ProjectModalEdit = () => {
         },
     });
 
-    const { description, completed, stage, dueDate, users, title } =
+    const { description, dueDate, users, title } =
         queryResult?.data?.data ?? {};
     const isLoading = queryResult?.isLoading ?? true;
 
@@ -63,10 +63,7 @@ export const ProjectModalEdit = () => {
                 </DeleteButton>
             }
         >
-            <StageForm
-                initialValues={{ completed: completed ?? false, stage }}
-                isLoading={isLoading}
-            />
+            <StageForm isLoading={isLoading} />
             <Accordion
                 accordionKey="description"
                 activeKey={activeKey}
