@@ -2052,6 +2052,10 @@
     {
       "from": "/docs/packages/data-providers/community-data-providers",
       "to": "/docs/data/packages/community-data-providers"
+    },
+    {
+      "from": "/pricing",
+      "to": "/enterprise"
     }
   ]
 }
