@@ -1,10 +1,10 @@
-import { FC, lazy, Suspense, useMemo } from "react";
+import { FC, useMemo } from "react";
 
 import { useList } from "@refinedev/core";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DollarOutlined } from "@ant-design/icons";
-import { AreaConfig } from "@ant-design/plots";
+import { Area, AreaConfig } from "@ant-design/plots";
 import { Card } from "antd";
 import dayjs from "dayjs";
 
@@ -12,8 +12,6 @@ import { Text } from "@/components";
 import { DashboardDealsChartQuery } from "@/graphql/types";
 
 import { DASHBOARD_DEALS_CHART_QUERY } from "./queries";
-
-const Area = lazy(() => import("@ant-design/plots/es/components/area"));
 
 export const DashboardDealsChart: FC = () => {
   const { data } = useList<GetFieldsFromList<DashboardDealsChartQuery>>({
@@ -114,9 +112,7 @@ export const DashboardDealsChart: FC = () => {
         </div>
       }
     >
-      <Suspense>
-        <Area {...config} height={325} />
-      </Suspense>
+      <Area {...config} height={325} />
     </Card>
   );
 };

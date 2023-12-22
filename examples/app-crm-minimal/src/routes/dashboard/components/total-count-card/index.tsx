@@ -1,12 +1,10 @@
-import { FC, lazy, PropsWithChildren, ReactNode, Suspense } from "react";
+import { FC, PropsWithChildren, ReactNode } from "react";
 
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
-import { AreaConfig } from "@ant-design/plots";
+import { Area, AreaConfig } from "@ant-design/plots";
 import { Card, Skeleton } from "antd";
 
 import { Text } from "@/components";
-
-const Area = lazy(() => import("@ant-design/plots/es/components/area"));
 
 type Type = "companies" | "contacts" | "deals";
 
@@ -104,14 +102,12 @@ export const DashboardTotalCountCard: FC<{
             totalCount
           )}
         </Text>
-        <Suspense>
-          <Area
-            {...config}
-            style={{
-              width: "50%",
-            }}
-          />
-        </Suspense>
+        <Area
+          {...config}
+          style={{
+            width: "50%",
+          }}
+        />
       </div>
     </Card>
   );
