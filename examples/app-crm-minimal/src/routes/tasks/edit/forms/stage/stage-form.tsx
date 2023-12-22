@@ -18,7 +18,7 @@ import {
     UpdateTaskMutation,
     UpdateTaskMutationVariables,
 } from "@/graphql/types";
-import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
+import { UPDATE_TASK_MUTATION } from "../../queries";
 
 type Props = {
     isLoading?: boolean;

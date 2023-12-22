@@ -5,7 +5,7 @@ import { Button, DatePicker, Form, Space } from "antd";
 import dayjs from "dayjs";
 
 import { Task } from "@/graphql/schema.types";
-import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
+import { UPDATE_TASK_MUTATION } from "../../queries";
 import {
     UpdateTaskMutation,
     UpdateTaskMutationVariables,

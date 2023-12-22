@@ -7,7 +7,7 @@ import { Form, Skeleton } from "antd";
 
 import { Text } from "@/components";
 import { Task } from "@/graphql/schema.types";
-import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
+import { UPDATE_TASK_MUTATION } from "../../queries";
 import {
     UpdateTaskMutation,
     UpdateTaskMutationVariables,
