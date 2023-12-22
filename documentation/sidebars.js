@@ -269,7 +269,7 @@ module.exports = {
                 "data/data-provider/index",
                 {
                     type: "category",
-                    collapsible: false,
+                    collapsed: false,
                     label: "Hooks",
                     items: [
                         "data/hooks/use-show/index",
@@ -341,7 +341,7 @@ module.exports = {
                 "routing/router-provider/index",
                 {
                     type: "category",
-                    collapsible: false,
+                    collapsed: false,
                     label: "Integrations",
                     items: [
                         "routing/integrations/react-router/index",
@@ -351,7 +351,7 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    collapsible: false,
+                    collapsed: false,
                     label: "Hooks",
                     items: [
                         "routing/hooks/use-resource/index",
@@ -388,7 +388,7 @@ module.exports = {
                 "authentication/auth-provider/index",
                 {
                     type: "category",
-                    collapsible: false,
+                    collapsed: false,
                     label: "Components",
                     items: [
                         "authentication/components/authenticated/index",
@@ -397,7 +397,7 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    collapsible: false,
+                    collapsed: false,
                     label: "Hooks",
                     items: [
                         "authentication/hooks/use-is-authenticated/index",
@@ -434,13 +434,13 @@ module.exports = {
                 "authorization/access-control-provider/index",
                 {
                     type: "category",
-                    collapsible: false,
+                    collapsed: false,
                     label: "Components",
                     items: ["authorization/components/can-access/index"],
                 },
                 {
                     type: "category",
-                    collapsible: false,
+                    collapsed: false,
                     label: "Hooks",
                     items: ["authorization/hooks/use-can/index"],
                 },
@@ -463,7 +463,7 @@ module.exports = {
                 "realtime/live-provider/index",
                 {
                     type: "category",
-                    collapsible: false,
+                    collapsed: false,
                     label: "Hooks",
                     items: [
                         "realtime/hooks/use-publish/index",
@@ -486,7 +486,7 @@ module.exports = {
                 "notification/notification-provider/index",
                 {
                     type: "category",
-                    collapsible: false,
+                    collapsed: false,
                     label: "Hooks",
                     items: ["notification/hooks/use-notification/index"],
                 },
@@ -506,7 +506,7 @@ module.exports = {
                 "i18n/i18n-provider/index",
                 {
                     type: "category",
-                    collapsible: false,
+                    collapsed: false,
                     label: "Hooks",
                     items: [
                         "i18n/hooks/use-get-locale/index",
@@ -533,7 +533,7 @@ module.exports = {
                 "audit-logs/audit-log-provider/index",
                 {
                     type: "category",
-                    collapsible: false,
+                    collapsed: false,
                     label: "Hooks",
                     items: [
                         "audit-logs/hooks/use-log/index",
@@ -558,7 +558,7 @@ module.exports = {
                 {
                     type: "category",
                     label: "Components",
-                    collapsible: false,
+                    collapsed: false,
                     items: [
                         // TODO: add doc
                         // "core/components/auto-save-indicator/index",
@@ -568,7 +568,7 @@ module.exports = {
                 {
                     type: "category",
                     label: "Hooks",
-                    collapsible: false,
+                    collapsed: false,
                     items: [
                         "core/hooks/utilities/use-modal/index",
                         "core/hooks/utilities/use-menu/index",
@@ -589,7 +589,7 @@ module.exports = {
                 {
                     type: "category",
                     label: "Ant Design",
-                    collapsible: false,
+                    collapsed: false,
                     // className: "category-as-header",
                     items: [
                         "ui-integrations/ant-design/introduction/index",
@@ -701,7 +701,7 @@ module.exports = {
                 {
                     type: "category",
                     label: "Material UI",
-                    collapsible: false,
+                    collapsed: false,
                     // className: "category-as-header",
                     items: [
                         "ui-integrations/material-ui/introduction/index",
@@ -798,7 +798,7 @@ module.exports = {
                 {
                     type: "category",
                     label: "Chakra UI",
-                    collapsible: false,
+                    collapsed: false,
                     // className: "category-as-header",
                     items: [
                         "ui-integrations/chakra-ui/introduction/index",
@@ -873,7 +873,7 @@ module.exports = {
                 {
                     type: "category",
                     label: "Mantine",
-                    collapsible: false,
+                    collapsed: false,
                     // className: "category-as-header",
                     items: [
                         "ui-integrations/mantine/introduction/index",
@@ -975,7 +975,7 @@ module.exports = {
                 {
                     type: "category",
                     label: "React Table",
-                    collapsible: false,
+                    collapsed: false,
                     items: [
                         "packages/tanstack-table/introduction/index",
                         "packages/tanstack-table/use-table/index",
@@ -993,7 +993,7 @@ module.exports = {
                 {
                     type: "category",
                     label: "React Hook Form",
-                    collapsible: false,
+                    collapsed: false,
                     items: [
                         "packages/react-hook-form/introduction/index",
                         "packages/react-hook-form/use-form/index",
