@@ -2,6 +2,11 @@ import { FC } from "react";
 
 import { useForm, useSelect } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
+import {
+    GetFields,
+    GetFieldsFromList,
+    GetVariables,
+} from "@refinedev/nestjs-query";
 
 import { FlagOutlined } from "@ant-design/icons";
 import { Checkbox, Form, Select, Space } from "antd";
@@ -9,15 +14,11 @@ import { Checkbox, Form, Select, Space } from "antd";
 import { AccordionHeaderSkeleton } from "@/components";
 import { TASK_STAGES_SELECT_QUERY } from "@/graphql/queries";
 import {
-    GetFields,
-    GetFieldsFromList,
-    GetVariables,
-} from "@refinedev/nestjs-query";
-import {
     TaskStagesSelectQuery,
     UpdateTaskMutation,
     UpdateTaskMutationVariables,
 } from "@/graphql/types";
+
 import { UPDATE_TASK_MUTATION } from "../../queries";
 
 type Props = {

@@ -10,8 +10,8 @@ import {
 } from "@ant-design/icons";
 import { Modal } from "antd";
 
-import { Task } from "@/graphql/schema.types";
 import { Accordion } from "@/components";
+import { Task } from "@/graphql/schema.types";
 
 import { DescriptionForm } from "./forms/description/description-form";
 import { DescriptionHeader } from "./forms/description/description-header";
@@ -21,7 +21,6 @@ import { StageForm } from "./forms/stage/stage-form";
 import { TitleForm } from "./forms/title/title-form";
 import { UsersForm } from "./forms/users/users-form";
 import { UsersHeader } from "./forms/users/users-header";
-
 import { UPDATE_TASK_MUTATION } from "./queries";
 
 export const TasksEditPage = () => {

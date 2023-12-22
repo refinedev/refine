@@ -1,23 +1,24 @@
-import { HttpError } from "@refinedev/core";
-
-import { Form, Input, InputNumber, Select } from "antd";
-
-import { BusinessType, CompanySize, Industry } from "@/graphql/schema.types";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { CustomAvatar, SelectOptionWithAvatar } from "@/components";
-import { getNameInitials } from "@/utilities";
-import { UPDATE_COMPANY_MUTATION } from "./queries";
+import { HttpError } from "@refinedev/core";
 import {
     GetFields,
     GetFieldsFromList,
     GetVariables,
 } from "@refinedev/nestjs-query";
+
+import { Form, Input, InputNumber, Select } from "antd";
+
+import { CustomAvatar, SelectOptionWithAvatar } from "@/components";
+import { USERS_SELECT_QUERY } from "@/graphql/queries";
+import { BusinessType, CompanySize, Industry } from "@/graphql/schema.types";
 import {
     UpdateCompanyMutation,
     UpdateCompanyMutationVariables,
     UsersSelectQuery,
 } from "@/graphql/types";
-import { USERS_SELECT_QUERY } from "@/graphql/queries";
+import { getNameInitials } from "@/utilities";
+
+import { UPDATE_COMPANY_MUTATION } from "./queries";
 
 export const CompanyForm = () => {
     const { saveButtonProps, formProps, formLoading, queryResult } = useForm<

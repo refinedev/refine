@@ -8,22 +8,33 @@ import {
     List,
     useTable,
 } from "@refinedev/antd";
-import { HttpError, getDefaultFilter, useGo } from "@refinedev/core";
+import {
+    getDefaultFilter,
+    HttpError,
+    useGo,
+} from "@refinedev/core";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
+import { SearchOutlined } from "@ant-design/icons";
+import { Input, Space, Table } from "antd";
+
+import {
+    CustomAvatar,
+    PaginationTotal,
+    Text,
+} from "@/components";
+import { Company } from "@/graphql/schema.types";
 import { CompaniesListQuery } from "@/graphql/types";
+import { currencyNumber } from "@/utilities";
 
 import { COMPANIES_LIST_QUERY } from "./queries";
-import { PaginationTotal, CustomAvatar, Text } from "@/components";
-import { Company } from "@/graphql/schema.types";
-import { currencyNumber } from "@/utilities";
-import { SearchOutlined } from "@ant-design/icons";
-import { Table, Input, Space } from "antd";
 
-export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
+export const CompanyListPage: FC<
+    PropsWithChildren
+> = ({ children }) => {
     const go = useGo();
 
-    const { tableProps, filters, sorters } = useTable<
+    const { tableProps, filters } = useTable<
         GetFieldsFromList<CompaniesListQuery>,
         HttpError,
         GetFieldsFromList<CompaniesListQuery>
@@ -76,11 +87,13 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                                 // we are using `go` function because we want to keep the query params
                                 go({
                                     to: {
-                                        resource: "companies",
+                                        resource:
+                                            "companies",
                                         action: "create",
                                     },
                                     options: {
-                                        keepQuery: true,
+                                        keepQuery:
+                                            true,
                                     },
                                     type: "replace",
                                 });
@@ -93,7 +106,12 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                     {...tableProps}
                     pagination={{
                         ...tableProps.pagination,
-                        pageSizeOptions: ["12", "24", "48", "96"],
+                        pageSizeOptions: [
+                            "12",
+                            "24",
+                            "48",
+                            "96",
+                        ],
                         showTotal: (total) => (
                             <PaginationTotal
                                 total={total}
@@ -106,10 +124,19 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                     <Table.Column<Company>
                         dataIndex="name"
                         title="Company title"
-                        defaultFilteredValue={getDefaultFilter("id", filters)}
-                        filterIcon={<SearchOutlined />}
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
+                        defaultFilteredValue={getDefaultFilter(
+                            "id",
+                            filters,
+                        )}
+                        filterIcon={
+                            <SearchOutlined />
+                        }
+                        filterDropdown={(
+                            props,
+                        ) => (
+                            <FilterDropdown
+                                {...props}
+                            >
                                 <Input placeholder="Search Company" />
                             </FilterDropdown>
                         )}
@@ -118,15 +145,22 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                                 <Space>
                                     <CustomAvatar
                                         shape="square"
-                                        name={record.name}
-                                        src={record.avatarUrl}
+                                        name={
+                                            record.name
+                                        }
+                                        src={
+                                            record.avatarUrl
+                                        }
                                     />
                                     <Text
                                         style={{
-                                            whiteSpace: "nowrap",
+                                            whiteSpace:
+                                                "nowrap",
                                         }}
                                     >
-                                        {record.name}
+                                        {
+                                            record.name
+                                        }
                                     </Text>
                                 </Space>
                             );
@@ -139,8 +173,11 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                             return (
                                 <Text>
                                     {currencyNumber(
-                                        company?.dealsAggregate?.[0].sum
-                                            ?.value || 0,
+                                        company
+                                            ?.dealsAggregate?.[0]
+                                            .sum
+                                            ?.value ||
+                                            0,
                                     )}
                                 </Text>
                             );
@@ -155,13 +192,17 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                                 <EditButton
                                     hideText
                                     size="small"
-                                    recordItemId={value}
+                                    recordItemId={
+                                        value
+                                    }
                                 />
 
                                 <DeleteButton
                                     hideText
                                     size="small"
-                                    recordItemId={value}
+                                    recordItemId={
+                                        value
+                                    }
                                 />
                             </Space>
                         )}

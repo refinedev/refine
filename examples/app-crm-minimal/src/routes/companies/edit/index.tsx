@@ -1,6 +1,7 @@
 import { Col, Row } from "antd";
-import { CompanyForm } from "./form";
+
 import { CompanyContactsTable } from "./contacts-table";
+import { CompanyForm } from "./form";
 
 export const CompanyEditPage = () => {
     return (

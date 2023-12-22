@@ -1,19 +1,20 @@
 import { useForm, useSelect } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
-
-import { Button, Form, Select, Space } from "antd";
-
-import { USERS_SELECT_QUERY } from "@/graphql/queries";
 import {
     GetFields,
     GetFieldsFromList,
     GetVariables,
 } from "@refinedev/nestjs-query";
+
+import { Button, Form, Select, Space } from "antd";
+
+import { USERS_SELECT_QUERY } from "@/graphql/queries";
 import {
     UpdateTaskMutation,
     UpdateTaskMutationVariables,
     UsersSelectQuery,
 } from "@/graphql/types";
+
 import { UPDATE_TASK_MUTATION } from "../../queries";
 
 type Props = {

@@ -1,20 +1,22 @@
 import { useModalForm, useSelect } from "@refinedev/antd";
 import { HttpError, useGo } from "@refinedev/core";
-import { Form, Input, Modal, Select } from "antd";
-
-import { SelectOptionWithAvatar } from "@/components";
-import { CREATE_COMPANY_MUTATION } from "./queries";
 import {
     GetFields,
     GetFieldsFromList,
     GetVariables,
 } from "@refinedev/nestjs-query";
+
+import { Form, Input, Modal, Select } from "antd";
+
+import { SelectOptionWithAvatar } from "@/components";
+import { USERS_SELECT_QUERY } from "@/graphql/queries";
 import {
     CreateCompanyMutation,
     CreateCompanyMutationVariables,
     UsersSelectQuery,
 } from "@/graphql/types";
-import { USERS_SELECT_QUERY } from "@/graphql/queries";
+
+import { CREATE_COMPANY_MUTATION } from "./queries";
 
 export const CompanyCreateModal = () => {
     const go = useGo();

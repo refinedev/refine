@@ -2,17 +2,18 @@ import { useEffect } from "react";
 
 import { useForm } from "@refinedev/antd";
 import { HttpError, useInvalidate } from "@refinedev/core";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { Form, Skeleton } from "antd";
 
 import { Text } from "@/components";
 import { Task } from "@/graphql/schema.types";
-import { UPDATE_TASK_MUTATION } from "../../queries";
 import {
     UpdateTaskMutation,
     UpdateTaskMutationVariables,
 } from "@/graphql/types";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+
+import { UPDATE_TASK_MUTATION } from "../../queries";
 
 const TitleInput = ({
     value,
