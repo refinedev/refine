@@ -8,7 +8,7 @@ import clsx from "clsx";
 const PrivacyPolicy: React.FC = () => {
     return (
         <CommonLayout>
-            <Head title="Privacy Policy | refine">
+            <Head title="Privacy Policy | Refine">
                 <html data-page="privacy_policy" data-customized="true" />
             </Head>
             <div className="refine-prose">

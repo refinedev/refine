@@ -429,7 +429,7 @@ invalidate({
 });
 ```
 
-[Refer to the Refine useInvalidate hook documentation for more information. →](/docs/core/hooks/data/use-invalidate)
+[Refer to the Refine useInvalidate hook documentation for more information. →](/docs/data/hooks/use-invalidate)
 
 </TabItem>
 </Tabs>
@@ -775,7 +775,7 @@ In both cases, if there are any ongoing queries, Refine will keep them as they a
 
 When you're implementing client side pagination with the `pagination.mode` set to "client," you might run into issues when applying client side filtering and sorting. This is due to the fact that client side filtering and sorting are applied to the sliced data, not the whole data. To ensure that the client side filtering and sorting are applied to the whole data, you need to use the `pagination.mode: "off"` prop.
 
-[use-form-core]: /docs/core/hooks/use-form/
+[use-form-core]: /docs/data/hooks/use-form/
 [use-form-react-hook-form]: /docs/packages/list-of-packages
 [use-form-antd]: /docs/ui-integrations/ant-design/hooks/use-form
 [edit-mui]: /docs/packages/list-of-packages

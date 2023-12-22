@@ -134,6 +134,6 @@ Depending on the [`batchSize`][batchsize] option, posts can get sent one by one 
 
 [papa parse]: https://www.papaparse.com/
 [batchsize]: /docs/core/hooks/utilities/use-import#batchsize
-[dataprovider]: /docs/core/providers/data-provider
-[create]: /docs/core/providers/data-provider#create
-[createmany]: /docs/core/providers/data-provider#createmany
+[dataprovider]: /docs/data/data-provider
+[create]: /docs/data/data-provider#create
+[createmany]: /docs/data/data-provider#createmany
