@@ -52,16 +52,6 @@ export type CompanyContactsTableQuery = {
   };
 };
 
-export type CreateCompanyMutationVariables = Types.Exact<{
-  input: Types.CreateOneCompanyInput;
-}>;
-
-export type CreateCompanyMutation = {
-  createOneCompany: Pick<Types.Company, "id"> & {
-    salesOwner: Pick<Types.User, "id">;
-  };
-};
-
 export type UpdateCompanyMutationVariables = Types.Exact<{
   input: Types.UpdateOneCompanyInput;
 }>;
@@ -96,6 +86,16 @@ export type CompaniesListQuery = {
         }>;
       }
     >;
+  };
+};
+
+export type CreateCompanyMutationVariables = Types.Exact<{
+  input: Types.CreateOneCompanyInput;
+}>;
+
+export type CreateCompanyMutation = {
+  createOneCompany: Pick<Types.Company, "id"> & {
+    salesOwner: Pick<Types.User, "id">;
   };
 };
 
@@ -184,6 +184,21 @@ export type DashboardTotalCountsQuery = {
   deals: Pick<Types.DealConnection, "totalCount">;
 };
 
+export type UpdateTaskMutationVariables = Types.Exact<{
+  input: Types.UpdateOneTaskInput;
+}>;
+
+export type UpdateTaskMutation = {
+  updateOneTask: Pick<
+    Types.Task,
+    "id" | "title" | "completed" | "description" | "dueDate"
+  > & {
+    stage?: Types.Maybe<Pick<Types.TaskStage, "id" | "title">>;
+    users: Array<Pick<Types.User, "id" | "name" | "avatarUrl">>;
+    checklist: Array<Pick<Types.CheckListItem, "title" | "checked">>;
+  };
+};
+
 export type TaskStagesQueryVariables = Types.Exact<{
   filter: Types.TaskStageFilter;
   sorting?: Types.InputMaybe<Array<Types.TaskStageSort> | Types.TaskStageSort>;
@@ -225,18 +240,3 @@ export type UpdateTaskStageMutationVariables = Types.Exact<{
 }>;
 
 export type UpdateTaskStageMutation = { updateOneTask: Pick<Types.Task, "id"> };
-
-export type UpdateTaskMutationVariables = Types.Exact<{
-  input: Types.UpdateOneTaskInput;
-}>;
-
-export type UpdateTaskMutation = {
-  updateOneTask: Pick<
-    Types.Task,
-    "id" | "title" | "completed" | "description" | "dueDate"
-  > & {
-    stage?: Types.Maybe<Pick<Types.TaskStage, "id" | "title">>;
-    users: Array<Pick<Types.User, "id" | "name" | "avatarUrl">>;
-    checklist: Array<Pick<Types.CheckListItem, "title" | "checked">>;
-  };
-};
