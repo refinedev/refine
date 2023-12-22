@@ -1,6 +1,7 @@
 ---
 id: antd
-title: Ant Design
+title: Authentication in Ant Design
+sidebar_label: Authentication
 example-title: Authentication with Ant Design
 example-tags: [antd, auth-provider]
 ---

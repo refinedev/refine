@@ -1,6 +1,7 @@
 ---
 id: chakra-ui
-title: Chakra UI
+title: Authentication in Chakra UI
+sidebar_label: Authentication
 example-title: Authentication with Chakra UI
 example-tags: [chakra-ui, auth-provider]
 ---

@@ -1,6 +1,7 @@
 ---
 id: mantine
-title: Mantine
+title: Authentication in Mantine
+sidebar_label: Authentication
 example-title: Authentication with Mantine
 example-tags: [mantine, auth-provider]
 ---

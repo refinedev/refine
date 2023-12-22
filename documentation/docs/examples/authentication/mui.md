@@ -1,6 +1,7 @@
 ---
 id: mui
-title: Material UI
+title: Authentication in Material UI
+sidebar_label: Authentication
 example-title: Authentication with Material UI
 example-tags: [mui, auth-provider]
 ---

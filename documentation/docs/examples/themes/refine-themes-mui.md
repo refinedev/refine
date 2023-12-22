@@ -1,6 +1,7 @@
 ---
 id: refine-themes-mui
-title: Material UI
+title: Refine Themes in Material UI
+sidebar_label: Refine Themes
 example-title: Material UI
 example-tags: [mui, customization]
 ---
