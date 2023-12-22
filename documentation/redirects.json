@@ -1781,6 +1781,10 @@
     {
       "from": "/pricing",
       "to": "/enterprise"
+    },
+    {
+      "from": "/blog/javascript-vs-ts/",
+      "to":  "/blog/javascript-vs-typescript/"
     }
   ]
 }
