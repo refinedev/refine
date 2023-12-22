@@ -9,20 +9,15 @@ import { TaskUpdateInput } from "@/graphql/schema.types";
 import { TaskStagesQuery, TasksQuery } from "@/graphql/types";
 
 import {
-    KanbanAddCardButton,
-    KanbanBoard,
-    KanbanBoardContainer,
-    KanbanColumn,
-    KanbanColumnSkeleton,
-    KanbanItem,
-    ProjectCardMemo,
-    ProjectCardSkeleton,
-} from "../components";
-import {
     TASKS_QUERY,
     TASK_STAGES_QUERY,
     UPDATE_TASK_STAGE_MUTATION,
 } from "./queries";
+import { KanbanAddCardButton } from "../components";
+import { KanbanBoardContainer, KanbanBoard } from "./kanban/board";
+import { ProjectCardMemo, ProjectCardSkeleton } from "./kanban/card";
+import { KanbanColumn, KanbanColumnSkeleton } from "./kanban/column";
+import { KanbanItem } from "./kanban/item";
 
 type Task = GetFieldsFromList<TasksQuery>;
 type TaskStage = GetFieldsFromList<TaskStagesQuery> & { tasks: Task[] };
