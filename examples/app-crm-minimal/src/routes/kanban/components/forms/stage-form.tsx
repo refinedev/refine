@@ -52,6 +52,19 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
     const { selectProps } = useSelect<GetFieldsFromList<TaskStagesSelectQuery>>(
         {
             resource: "taskStages",
+            filters: [
+                {
+                    field: "title",
+                    operator: "in",
+                    value: ["TODO", "IN PROGRESS", "IN REVIEW", "DONE"],
+                },
+            ],
+            sorters: [
+                {
+                    field: "createdAt",
+                    order: "asc",
+                },
+            ],
             meta: {
                 gqlQuery: TASK_STAGES_SELECT_QUERY,
             },

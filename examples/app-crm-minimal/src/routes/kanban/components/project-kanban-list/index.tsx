@@ -32,9 +32,13 @@ export const ProjectKanbanList: FC<PropsWithChildren> = ({ children }) => {
 
     const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
         resource: "taskStages",
-        pagination: {
-            pageSize: 4,
-        },
+        filters: [
+            {
+                field: "title",
+                operator: "in",
+                value: ["TODO", "IN PROGRESS", "IN REVIEW", "DONE"],
+            },
+        ],
         sorters: [
             {
                 field: "createdAt",
