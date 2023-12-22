@@ -1,18 +1,19 @@
-import React, { Suspense } from "react";
+import { FC } from "react";
+
 import { useForm } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
+import MDEditor from "@uiw/react-md-editor";
 import { Button, Form, Space } from "antd";
 
 import { Task } from "@/graphql/schema.types";
-import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
 import {
     UpdateTaskMutation,
     UpdateTaskMutationVariables,
 } from "@/graphql/types";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
-const MDEditor = React.lazy(() => import("@uiw/react-md-editor"));
+import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
 
 type Props = {
     initialValues: {
@@ -21,7 +22,7 @@ type Props = {
     cancelForm: () => void;
 };
 
-export const DescriptionForm = ({ initialValues, cancelForm }: Props) => {
+export const DescriptionForm: FC<Props> = ({ initialValues, cancelForm }) => {
     const { formProps, saveButtonProps } = useForm<
         GetFields<UpdateTaskMutation>,
         HttpError,
@@ -43,13 +44,11 @@ export const DescriptionForm = ({ initialValues, cancelForm }: Props) => {
         <>
             <Form {...formProps} initialValues={initialValues}>
                 <Form.Item noStyle name="description">
-                    <Suspense>
-                        <MDEditor
-                            preview="edit"
-                            data-color-mode="light"
-                            height={250}
-                        />
-                    </Suspense>
+                    <MDEditor
+                        preview="edit"
+                        data-color-mode="light"
+                        height={250}
+                    />
                 </Form.Item>
             </Form>
             <div

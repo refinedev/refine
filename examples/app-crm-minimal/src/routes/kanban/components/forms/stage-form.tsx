@@ -1,12 +1,10 @@
-import { useEffect } from "react";
+import { FC } from "react";
 
 import { useForm, useSelect } from "@refinedev/antd";
-import { HttpError, useInvalidate } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 
 import { FlagOutlined } from "@ant-design/icons";
 import { Checkbox, Form, Select, Space } from "antd";
-
-import { Task } from "@/graphql/schema.types";
 
 import { AccordionHeaderSkeleton } from "@/components";
 import { TASK_STAGES_SELECT_QUERY } from "@/graphql/queries";
@@ -23,26 +21,21 @@ import {
 import { UPDATE_TASK_MUTATION } from "../project-modal-edit/queries";
 
 type Props = {
-    initialValues: {
-        completed: Task["completed"];
-        stage: Task["stage"];
-    };
     isLoading?: boolean;
 };
 
-export const StageForm = ({ initialValues, isLoading }: Props) => {
-    const invalidate = useInvalidate();
+export const StageForm: FC<Props> = ({ isLoading }) => {
     const { formProps } = useForm<
         GetFields<UpdateTaskMutation>,
         HttpError,
         Pick<GetVariables<UpdateTaskMutationVariables>, "stageId" | "completed">
     >({
+        queryOptions: {
+            enabled: false,
+        },
         autoSave: {
             enabled: true,
             debounce: 0,
-        },
-        onMutationSuccess: () => {
-            invalidate({ invalidates: ["list"], resource: "tasks" });
         },
         meta: {
             gqlMutation: UPDATE_TASK_MUTATION,
@@ -71,10 +64,6 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
         },
     );
 
-    useEffect(() => {
-        formProps.form?.setFieldsValue(initialValues);
-    }, [initialValues.completed, initialValues.stage]);
-
     if (isLoading) {
         return <AccordionHeaderSkeleton />;
     }
@@ -90,7 +79,6 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
                     alignItems: "center",
                 }}
                 {...formProps}
-                initialValues={initialValues}
             >
                 <Space size={5}>
                     <FlagOutlined />
