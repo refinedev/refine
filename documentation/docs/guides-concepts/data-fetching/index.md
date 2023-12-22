@@ -186,7 +186,7 @@ Refine expects errors to be extended from [HttpError](/docs/core/interface-refer
 
 When implemented correctly, Refine offers several advantages in error handling:
 
-- **Notification**: If you have [`notificationProvider` ](/docs/core/providers/notification-provider), Refine will automatically show a notification when an error occurs.
+- **Notification**: If you have [`notificationProvider` ](/docs/notification/notification-provider), Refine will automatically show a notification when an error occurs.
 - **Server-Side Validation**: Shows [errors coming from the API](/docs/advanced-tutorials/forms/server-side-form-validation/) on the corresponding form fields.
 - **Optimistic Updates**: Instantly update UI when you send a mutation and automatically revert the changes if an error occurs during the mutation.
 
@@ -361,7 +361,7 @@ const { data: categories } = useMany({
 
 Imagine you want to fetch a data from a protected API. To do this, you will first need to obtain your authentication token and you will need to send this token with every request.
 
-In Refine we handle [authentication](/docs/guides-concepts/authentication/) with [Auth Provider](/docs/core/providers/auth-provider/). To get token from the API, we will use the `authProvider.login` method. Then, we will use [`<Authenticated />`](/docs/core/components/authenticated) component to to render the appropriate components.
+In Refine we handle [authentication](/docs/guides-concepts/authentication/) with [Auth Provider](/docs/authentication/auth-provider/). To get token from the API, we will use the `authProvider.login` method. Then, we will use [`<Authenticated />`](/docs/authentication/components/authenticated) component to to render the appropriate components.
 
 After obtaining the token, we'll use Axios interceptors to include the token in the headers of all requests.
 
@@ -379,7 +379,7 @@ To better understand the data provider interface, we have created an example tha
 
 <DataProviderInterface />
 
-[To learn more about the `dataProvider` interface, check out the reference page.](/docs/core/providers/data-provider)
+[To learn more about the `dataProvider` interface, check out the reference page.](/docs/data/data-provider)
 
 ## Supported data providers
 
@@ -393,23 +393,23 @@ To better understand the data provider interface, we have created an example tha
 [create-a-data-provider]: /docs/tutorial/understanding-dataprovider/create-dataprovider/
 [swizzle-a-data-provider]: /docs/tutorial/understanding-dataprovider/swizzle/
 [data-provider-tutorial]: /docs/tutorial/understanding-dataprovider/
-[use-api-url]: /docs/core/hooks/data/use-api-url
-[use-create]: /docs/core/hooks/data/use-create
-[use-create-many]: /docs/core/hooks/data/use-create
-[use-custom]: /docs/core/hooks/data/use-custom
-[use-delete]: /docs/core/hooks/data/use-delete
-[use-delete-many]: /docs/core/hooks/data/use-delete
-[use-list]: /docs/core/hooks/data/use-list
-[use-infinite-list]: /docs/core/hooks/data/use-infinite-list
-[use-many]: /docs/core/hooks/data/use-many
-[use-one]: /docs/core/hooks/data/use-one
-[use-update]: /docs/core/hooks/data/use-update
-[use-update-many]: /docs/core/hooks/data/use-update
+[use-api-url]: /docs/data/hooks/use-api-url
+[use-create]: /docs/data/hooks/use-create
+[use-create-many]: /docs/data/hooks/use-create
+[use-custom]: /docs/data/hooks/use-custom
+[use-delete]: /docs/data/hooks/use-delete
+[use-delete-many]: /docs/data/hooks/use-delete
+[use-list]: /docs/data/hooks/use-list
+[use-infinite-list]: /docs/data/hooks/use-infinite-list
+[use-many]: /docs/data/hooks/use-many
+[use-one]: /docs/data/hooks/use-one
+[use-update]: /docs/data/hooks/use-update
+[use-update-many]: /docs/data/hooks/use-update
 [crud-sorting]: /docs/core/interface-references#crudsorting
 [crud-filters]: /docs/core/interface-references#crudfilters
 [pagination]: /docs/core/interface-references#pagination
 [http-error]: /docs/core/interface-references#httperror
 [meta-data]: /docs/core/interface-references#metaquery
 [meta]: /docs/core/interface-references#metaquery
-[use-login]: /docs/core/hooks/auth/use-login
-[use-register]: /docs/core/hooks/auth/use-register
+[use-login]: /docs/authentication/hooks/use-login
+[use-register]: /docs/authentication/hooks/use-register

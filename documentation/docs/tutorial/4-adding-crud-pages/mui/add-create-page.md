@@ -105,9 +105,9 @@ render(<App />);
 
   > For more information, refer to the [`<Create/>` documentation&#8594](/docs/ui-integrations/material-ui/components/basic-views/create)
 
-- The `useForm` hook is imported from `@refinedev/mantine` package and has been developed by using the **Mantine** `useForm` hook and `@refinedev/core` `useForm` hook. When used in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted. It also offers `saveButtonProps` for the form's submit button.
+- The `useForm` hook is imported from `@refinedev/react-hook-form` package and has been developed by using the **React Hook Form** `useForm` hook and `@refinedev/core` `useForm` hook. When used in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted. It also offers `saveButtonProps` for the form's submit button.
 
-  > For more information, refer to the [`useForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/) and [**Mantine** documentations&#8594](https://mantine.dev/form/use-form/)
+  > For more information, refer to the [`useForm`](/docs/packages/react-hook-form/use-form/) and [**React Hook Form** documentations&#8594](https://react-hook-form.com/get-started)
 
 - All other components provided by **Material UI** are used to display the form fields.
 

@@ -480,4 +480,4 @@ These implementations will be provided via `routerProvider` which expects an obj
 
 While all these methods are optional, if you're working on creating a custom router integration, you'll be able to incrementally add more features and adopt more of Refine's features by implementing more of these methods.
 
-To learn more about the `routerProvider` interface, check out the [`Router Provider` section of the Core API Reference](/docs/core/providers/router-provider).
+To learn more about the `routerProvider` interface, check out the [`Router Provider` section of the Core API Reference](/docs/routing/router-provider).

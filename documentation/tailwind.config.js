@@ -43,8 +43,6 @@ module.exports = {
                     "landing-footer-border": "#2E2E78",
                     "walkthrough-button-bg": "#4D4DB2",
                     "walkthrough-button-alt-bg": "#474E6B",
-                    "pricing-table-alt-dark": "#181927",
-                    "pricing-table-alt": "#F4F8FB",
                     "enterprise-table-alt-dark": "#1D1E30",
                     "enterprise-table-alt": "#F4F8FB",
                 },
@@ -296,12 +294,6 @@ module.exports = {
                     "linear-gradient(360deg, rgba(73, 69, 255, 0) 0%, rgba(73, 69, 255, 0.25) 50%, rgba(73, 69, 255, 0) 100%)",
                 "refine-week-strapi-timeline-item-bg-lg":
                     "linear-gradient(256deg, rgba(73, 69, 255, 0.25) 0%, rgba(73, 69, 255, 0) 60%)",
-                "pricing-text-bg-red":
-                    "linear-gradient(90deg, #FF4C4D 30.89%, #FF9933 48.82%)",
-                "pricing-text-bg-green":
-                    "linear-gradient(90deg, #0FBDBD 40.72%, #26D97F 51.09%)",
-                "pricing-text-bg-enterprise":
-                    "linear-gradient(90deg, #FF9933 37.5%, #FF4C4D 73.48%)",
                 "week-of-refine-strapi-card":
                     "linear-gradient(207deg, rgba(73, 69, 255, 0.25) 0%, rgba(73, 69, 255, 0.00) 100%)",
                 "week-of-refine-supabase-card":
@@ -813,8 +805,6 @@ module.exports = {
             "landing-lg": "1296px",
             "landing-xl": "1440px",
             "landing-footer": "1264px",
-            "pricing-content-sm": "640px",
-            "pricing-content": "960px",
             "blog-sm": "688px",
             "blog-md": "1000px",
             "blog-lg": "1280px",

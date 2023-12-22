@@ -69,8 +69,8 @@ Since **Refine** doesn't create routes internally anymore, you are free to creat
 
 This means that tasks such as `authentication` and `access control` are decoupled from **Refine** and should be handled in accordance with your framework. However, we do provide a set of helpers for you to use in your components to make these tasks easier to handle:
 
-- The [`Authenticated`](/docs/core/components/authenticated) component as a wrapper or the `useIsAuthenticated` hook for authentication
-- The [`CanAccess`](/docs/core/components/can-access) component as a wrapper or the `useCan` hook for access control
+- The [`Authenticated`](/docs/authentication/components/authenticated) component as a wrapper or the `useIsAuthenticated` hook for authentication
+- The [`CanAccess`](/docs/authorization/components/can-access) component as a wrapper or the `useCan` hook for access control
 
 ## Using the New Router Providers
 

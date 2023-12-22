@@ -342,7 +342,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<DeleteButton>` &#8594](/docs/ui-integrations/chakra-ui/components/buttons/delete-button) and [`usePermission` &#8594](/docs/core/hooks/auth/use-permissions) documentations
+> For more information, refer to the [`<DeleteButton>` &#8594](/docs/ui-integrations/chakra-ui/components/buttons/delete-button) and [`usePermission` &#8594](/docs/authentication/hooks/use-permissions) documentations
 
 ### `resource`
 

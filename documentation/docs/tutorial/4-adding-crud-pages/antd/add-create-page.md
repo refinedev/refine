@@ -120,7 +120,7 @@ const { selectProps: categorySelectProps } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect` documentation](/docs/core/hooks/use-select) and the [**Ant Design** `<Select/>` documentation&#8594](https://ant.design/components/select)
+> For more information, refer to the [`useSelect` documentation](/docs/data/hooks/use-select) and the [**Ant Design** `<Select/>` documentation&#8594](https://ant.design/components/select)
 
 ## Adding the Create Page to the App
 

@@ -120,7 +120,7 @@ const { options: categoryOptions } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect` documentation](/docs/core/hooks/use-select) and the [**Chakra UI** `<Select/>` documentation&#8594](https://chakra-ui.com/docs/components/select/usage)
+> For more information, refer to the [`useSelect` documentation](/docs/data/hooks/use-select) and the [**Chakra UI** `<Select/>` documentation&#8594](https://chakra-ui.com/docs/components/select/usage)
 
 ## Adding the Create Page to the App
 
