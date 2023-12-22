@@ -5,7 +5,11 @@ import {
     ErrorComponent,
     RefineThemes,
 } from "@refinedev/antd";
-import dataProvider, { GraphQLClient } from "@refinedev/hasura";
+import dataProvider, {
+    GraphQLClient,
+    graphqlWS,
+    liveProvider,
+} from "@refinedev/hasura";
 import routerProvider, {
     NavigateToResource,
     UnsavedChangesNotifier,
@@ -21,15 +25,11 @@ import { ConfigProvider, App as AntdApp } from "antd";
 
 const API_URL = "https://flowing-mammal-24.hasura.app/v1/graphql";
 
-/*
-## Refine supports GraphQL subscriptions out-of-the-box. For more detailed information, please visit here: https://refine.dev/docs/core/providers/live-provider/
-
 const WS_URL = "ws://flowing-mammal-24.hasura.app/v1/graphql";
 
 const gqlWebSocketClient = graphqlWS.createClient({
     url: WS_URL,
 });
- */
 
 const client = new GraphQLClient(API_URL, {
     headers: {
@@ -49,8 +49,7 @@ const App: React.FC = () => {
                         routerProvider={routerProvider}
                         dataProvider={gqlDataProvider}
                         // ## Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
-                        //liveProvider={liveProvider(gqlWebSocketClient)}
-                        //options={{ liveMode: "auto" }}
+                        liveProvider={liveProvider(gqlWebSocketClient)}
                         resources={[
                             {
                                 name: "posts",
@@ -68,6 +67,7 @@ const App: React.FC = () => {
                         ]}
                         notificationProvider={useNotificationProvider}
                         options={{
+                            liveMode: "auto",
                             syncWithLocation: true,
                             warnWhenUnsavedChanges: true,
                         }}

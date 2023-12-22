@@ -15,27 +15,11 @@ import {
 import { Table, Space, Select } from "antd";
 
 import { ICategory, IPost } from "../../interfaces";
+import { GET_POSTS_QUERY } from "./queries";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-        metaData: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["title"],
-                },
-                "content",
-                "category_id",
-                "created_at",
-            ],
-        },
+    const { tableProps, filters, sorters } = useTable<IPost>({
+        meta: { gqlQuery: GET_POSTS_QUERY },
     });
 
     const { selectProps } = useSelect<ICategory>({
@@ -52,7 +36,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="id"
                     title="ID"
                     sorter={{ multiple: 2 }}
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
+                    defaultSortOrder={getDefaultSortOrder("id", sorters)}
                 />
                 <Table.Column
                     dataIndex="title"
@@ -83,7 +67,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="created_at"
                     title="Created At"
                     render={(value) => <DateField value={value} format="LLL" />}
-                    defaultSortOrder={getDefaultSortOrder("created_at", sorter)}
+                    defaultSortOrder={getDefaultSortOrder(
+                        "created_at",
+                        sorters,
+                    )}
                     sorter
                 />
                 <Table.Column<IPost>
@@ -105,7 +92,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
-                                metaData={{
+                                meta={{
                                     fields: [
                                         "id",
                                         "content",
