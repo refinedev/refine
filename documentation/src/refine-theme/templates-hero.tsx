@@ -61,9 +61,10 @@ export const TemplatesHero: FC<Props> = ({ className }) => {
                     "dark:text-gray-400 text-gray-600",
                 )}
             >
-                Browse ready-made templates with different interfaces, database
-                collections, actions & more. Connect your data and start
-                customizing your app interface!
+                Explore a range of pre-designed Refine templates, perfect for
+                everything from admin panels to dashboards and CRMs. Easily
+                integrate these templates with your data sources and begin
+                customizing to jumpstart your projects.
             </p>
         </div>
     );
