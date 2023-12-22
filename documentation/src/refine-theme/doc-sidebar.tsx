@@ -244,19 +244,26 @@ const SidebarLink = ({
     onClick?: () => void;
     code?: boolean;
 }) => {
+    const once = React.useRef(false);
     const ref = React.useRef<HTMLAnchorElement>(null);
     const isActive = isActiveSidebarItem(item, path);
     const isSame = isSamePath(item.href, path);
     const isShiny = item.className?.includes("sidebar-item-shiny") || false;
 
-    // React.useEffect(() => {
-    //     if (isActive) {
-    //         ref.current?.scrollIntoView({
-    //             behavior: "smooth",
-    //             block: "center",
-    //         });
-    //     }
-    // }, [isActive]);
+    React.useEffect(() => {
+        if (isActive && !once.current) {
+            const sidebarParent = document.querySelector(
+                "#refine-docs-sidebar",
+            );
+            if (sidebarParent && ref.current) {
+                sidebarParent.scrollTop =
+                    ref.current?.offsetTop -
+                    sidebarParent.clientHeight / 2 +
+                    ref.current?.clientHeight / 2;
+            }
+        }
+        once.current = true;
+    }, [isActive]);
 
     return (
         <Link
@@ -390,6 +397,7 @@ type RenderItemConfig = {
 const renderItems = ({
     items = [],
     path,
+
     root,
     line,
     variant,
@@ -405,7 +413,7 @@ const renderItems = ({
                 case "category":
                     return (
                         <SidebarCategory
-                            key={index}
+                            key={`${item.label}:${item.href}:${item.type}`}
                             item={item}
                             path={path}
                             line={!!line}
@@ -417,7 +425,7 @@ const renderItems = ({
                 case "html":
                     return (
                         <SidebarHtml
-                            key={index}
+                            key={`${item.type}:${item.value}`}
                             item={item}
                             path={path}
                             line={!!line}
@@ -427,7 +435,7 @@ const renderItems = ({
                 case "link":
                     return (
                         <SidebarLink
-                            key={index}
+                            key={`${item.label}:${item.href}:${item.type}`}
                             item={item}
                             path={path}
                             dashed={isDashed}
@@ -449,6 +457,7 @@ export const DocSidebar = () => {
 
     return (
         <div
+            id="refine-docs-sidebar"
             className={clsx(
                 "hidden lg:block",
                 "sticky",
