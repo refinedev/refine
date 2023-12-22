@@ -1,6 +1,7 @@
 ---
 id: customThemeMantine
-title: Custom Theme Mantine
+title: Custom Theme in Mantine
+sidebar_label: Custom Theme
 example-title: Custom Theme Mantine
 example-tags: [mantine, customization]
 ---

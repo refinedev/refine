@@ -1,6 +1,7 @@
 ---
 id: customThemeMaterialUI
-title: Custom Theme Material UI
+title: Custom Theme in Material UI
+sidebar_label: Custom Theme
 example-title: Custom Theme Material UI
 example-tags: [mui, customization]
 ---

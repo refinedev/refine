@@ -189,7 +189,7 @@ return (
 
 ### `mutationResult`
 
-Returns the result of either the [`useCreate`](/docs/core/hooks/data/use-create) or the [`useCreateMany`](/docs/core/hooks/data/use-create) hook.
+Returns the result of either the [`useCreate`](/docs/data/hooks/use-create) or the [`useCreateMany`](/docs/data/hooks/use-create) hook.
 
 ## FAQ
 

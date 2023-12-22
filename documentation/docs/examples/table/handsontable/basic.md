@@ -1,6 +1,6 @@
 ---
 id: handsontable
-title: Basic
+title: Handsontable
 example-title: Handsontable Example
 example-tags: [table]
 ---

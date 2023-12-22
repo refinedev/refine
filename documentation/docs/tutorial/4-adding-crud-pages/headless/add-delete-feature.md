@@ -27,7 +27,7 @@ We will now add a delete button to the list page by using the `useDelete` hook; 
    };
    ```
 
-   > You can check the parameters of the `deleteBlogPost` mutation function in the [`useDelete` documentation](/docs/core/hooks/data/use-delete#properties).
+   > You can check the parameters of the `deleteBlogPost` mutation function in the [`useDelete` documentation](/docs/data/hooks/use-delete#properties).
 
 4. Add the `<button/>` component to the `actions` column of the table as shown below:
 
@@ -86,7 +86,7 @@ You can now delete a record from the list page by clicking on the delete button 
 
 You can also use `useDelete` hook provided by Refine to delete a record.
 
-For more information, refer to the [`useDelete` documentation&#8594](/docs/core/hooks/data/use-delete)
+For more information, refer to the [`useDelete` documentation&#8594](/docs/data/hooks/use-delete)
 
 :::
 

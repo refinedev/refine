@@ -131,7 +131,7 @@ const { options: categoryOptions } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect`](/docs/core/hooks/use-select) and the[**Chakra UI** `<Select/>` documentations&#8594](https://chakra-ui.com/docs/components/select/usage)
+> For more information, refer to the [`useSelect`](/docs/data/hooks/use-select) and the[**Chakra UI** `<Select/>` documentations&#8594](https://chakra-ui.com/docs/components/select/usage)
 
 ## Adding the Edit Page to the App
 

@@ -22,7 +22,7 @@ const About: React.FC = () => {
     const { colorMode } = useColorMode();
     return (
         <>
-            <Head title="About | refine">
+            <Head title="About | Refine">
                 <html data-page="about" data-customized="true" />
             </Head>
             <div className="refine-prose">

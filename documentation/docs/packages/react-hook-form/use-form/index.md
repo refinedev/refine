@@ -284,7 +284,7 @@ values={[
 
 `action: "create"` is used for creating a new record that didn't exist before.
 
-`useForm` uses [`useCreate`](/docs/core/hooks/data/use-create) under the hood for mutations on create mode.
+`useForm` uses [`useCreate`](/docs/data/hooks/use-create) under the hood for mutations on create mode.
 
 In the following example, we'll show how to use `useForm` with `action: "create"`.
 
@@ -349,7 +349,7 @@ render(<RefineHeadlessDemo />);
 
 `action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/core/hooks/data/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/core/hooks/data/use-update).
+It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/data/hooks/use-update).
 
 In the following example, we'll show how to use `useForm` with `action: "edit"`.
 
@@ -415,7 +415,7 @@ render(<RefineHeadlessDemo />);
 
 You can think `action:clone` like save as. It's similar to `action:edit` but it creates a new record instead of updating the existing one.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/core/hooks/data/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/core/hooks/data/use-create).
+It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/data/hooks/use-create).
 
 In the following example, we'll show how to use `useForm` with `action: "clone"`.
 
@@ -480,7 +480,7 @@ render(<RefineHeadlessDemo />);
 
 ### `resource`
 
-It will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. See the [`creating a data provider`](/docs/core/providers/data-provider#creating-a-data-provider) section for an example of how `resource` are handled.
+It will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. See the [`creating a data provider`](/docs/data/data-provider#creating-a-data-provider) section for an example of how `resource` are handled.
 
 By default it reads the `resource` value from the current URL.
 
@@ -568,7 +568,7 @@ It's a callback function that will be called after the mutation is successful.
 
 It receives the following parameters:
 
-- `data`: Returned value from [`useCreate`](/docs/core/hooks/data/use-create) or [`useUpdate`](/docs/core/hooks/data/use-update) depending on the `action`.
+- `data`: Returned value from [`useCreate`](/docs/data/hooks/use-create) or [`useUpdate`](/docs/data/hooks/use-update) depending on the `action`.
 - `variables`: The variables passed to the mutation.
 - `context`: react-query context.
 - `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
@@ -589,7 +589,7 @@ It's a callback function that will be called after the mutation is failed.
 
 It receives the following parameters:
 
-- `data`: Returned value from [`useCreate`](/docs/core/hooks/data/use-create) or [`useUpdate`](/docs/core/hooks/data/use-update) depending on the `action`.
+- `data`: Returned value from [`useCreate`](/docs/data/hooks/use-create) or [`useUpdate`](/docs/data/hooks/use-update) depending on the `action`.
 - `variables`: The variables passed to the mutation.
 - `context`: react-query context.
 - `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
@@ -773,7 +773,7 @@ If you have overlapping properties in both `meta` and `mutationMeta`, the `mutat
 
 > Works only in `action: "edit"` or `action: "clone"` mode.
 
-in `edit` or `clone` mode, Refine uses [`useOne`](/docs/core/hooks/data/use-one) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
+in `edit` or `clone` mode, Refine uses [`useOne`](/docs/data/hooks/use-one) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
 
 ```tsx
 useForm({
@@ -789,7 +789,7 @@ useForm({
 
 > This option is only available when `action: "create"` or `action: "clone"`.
 
-In `create` or `clone` mode, Refine uses [`useCreate`](/docs/core/hooks/data/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
+In `create` or `clone` mode, Refine uses [`useCreate`](/docs/data/hooks/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
 
 ```tsx
 useForm({
@@ -805,7 +805,7 @@ useForm({
 
 > This option is only available when `action: "edit"`.
 
-In `edit` mode, Refine uses [`useUpdate`](/docs/core/hooks/data/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
+In `edit` mode, Refine uses [`useUpdate`](/docs/data/hooks/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
 
 ```tsx
 useForm({
@@ -834,7 +834,7 @@ useForm({
 ### `liveMode`
 
 Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/core/providers/live-provider#livemode) page.
+For more information about live mode, please check [Live / Realtime](/docs/realtime/live-provider#livemode) page.
 
 ```tsx
 useForm({
@@ -860,7 +860,7 @@ useForm({
 
 ### `liveParams`
 
-Params to pass to [liveProvider's](/docs/core/providers/live-provider#subscribe) subscribe method.
+Params to pass to [liveProvider's](/docs/realtime/live-provider#subscribe) subscribe method.
 
 ### `autoSave`
 
@@ -948,7 +948,7 @@ useForm({
 
 ### `queryResult`
 
-If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/core/hooks/data/use-one) and set the returned values as the `queryResult` property.
+If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/data/hooks/use-one) and set the returned values as the `queryResult` property.
 
 ```tsx
 const {
@@ -960,7 +960,7 @@ const { data } = queryResult;
 
 ### `mutationResult`
 
-When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/core/hooks/data/use-create). When in `"edit"` mode, it will call [`useUpdate`](/docs/core/hooks/data/use-update) and set the resulting values as the `mutationResult` property."
+When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/data/hooks/use-create). When in `"edit"` mode, it will call [`useUpdate`](/docs/data/hooks/use-update) and set the resulting values as the `mutationResult` property."
 
 ```tsx
 const {
@@ -992,7 +992,7 @@ return (
 
 ### `redirect`
 
-"By default, after a successful mutation, `useForm` will `redirect` to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the redirect [property](/docs/core/hooks/use-form/#redirect) in the hook's options.
+"By default, after a successful mutation, `useForm` will `redirect` to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the redirect [property](/docs/data/hooks/use-form/#redirect) in the hook's options.
 
 In the following example we will redirect to the `"show"` page after a successful mutation.
 
@@ -1035,7 +1035,7 @@ If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, 
 
 ### How can Invalidate other resources?
 
-You can invalidate other resources with help of [`useInvalidate`](/docs/core/hooks/data/use-invalidate) hook.
+You can invalidate other resources with help of [`useInvalidate`](/docs/data/hooks/use-invalidate) hook.
 
 It is useful when you want to `invalidate` other resources don't have relation with the current resource.
 
@@ -1138,7 +1138,7 @@ const { ... } = useForm({
 
 Returns all the properties returned by [React Hook Form][react-hook-form] of the `useForm` hook. Also, we added the following return values:
 
-`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/docs/core/hooks/use-form/##return-values).
+`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/docs/data/hooks/use-form/##return-values).
 
 > For example, we can access the `refineCore` return value in the `useForm` hook as:
 
@@ -1173,11 +1173,11 @@ const {
 
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
-[use-form-core]: /docs/core/hooks/use-form/
+[use-form-core]: /docs/data/hooks/use-form/
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
-[notification-provider]: /docs/core/providers/notification-provider
-[get-one]: /docs/core/providers/data-provider#getone-
-[create]: /docs/core/providers/data-provider#create-
-[update]: /docs/core/providers/data-provider#update-
-[data-provider]: /docs/core/providers/data-provider
+[notification-provider]: /docs/notification/notification-provider
+[get-one]: /docs/data/data-provider#getone-
+[create]: /docs/data/data-provider#create-
+[update]: /docs/data/data-provider#update-
+[data-provider]: /docs/data/data-provider

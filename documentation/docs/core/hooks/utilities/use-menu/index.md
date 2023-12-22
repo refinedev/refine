@@ -338,5 +338,5 @@ export type TreeMenuItem = IResourceItem & {
 
 <CodeSandboxExample path="core-use-menu" />
 
-[use-navigation]: /docs/core/hooks/navigation/use-navigation
+[use-navigation]: /docs/routing/hooks/use-navigation
 [customlayout]: /docs/advanced-tutorials/custom-layout/
