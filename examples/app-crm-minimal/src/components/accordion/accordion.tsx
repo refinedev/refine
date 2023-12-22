@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from "react";
+import { FC, PropsWithChildren, ReactNode } from "react";
 
 import { Text } from "@/components";
 
@@ -19,7 +19,7 @@ type Props = PropsWithChildren<{
  * when isLoading is true, the <AccordionHeaderSkeleton /> will be rendered
  * when Accordion is clicked, setActive will be called with the accordionKey
  */
-export const Accordion = ({
+export const Accordion: FC<Props> = ({
   accordionKey,
   activeKey,
   setActive,
@@ -28,7 +28,7 @@ export const Accordion = ({
   label,
   children,
   isLoading,
-}: Props) => {
+}) => {
   if (isLoading) {
     return <AccordionHeaderSkeleton />;
   }

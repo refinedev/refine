@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { useForm, useSelect } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 import {
@@ -24,7 +26,7 @@ type Props = {
   cancelForm: () => void;
 };
 
-export const UsersForm = ({ initialValues, cancelForm }: Props) => {
+export const UsersForm: FC<Props> = ({ initialValues, cancelForm }) => {
   const { formProps, saveButtonProps } = useForm<
     GetFields<UpdateTaskMutation>,
     HttpError,

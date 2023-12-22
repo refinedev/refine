@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { Space, Typography } from "antd";
 
 import { UserTag } from "@/components";
@@ -7,7 +9,7 @@ type Props = {
   users?: Task["users"];
 };
 
-export const UsersHeader = ({ users = [] }: Props) => {
+export const UsersHeader: FC<Props> = ({ users = [] }) => {
   if (users.length > 0) {
     return (
       <Space size={[0, 8]} wrap>

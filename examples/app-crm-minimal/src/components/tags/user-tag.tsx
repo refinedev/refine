@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { Space, Tag } from "antd";
 
 import { User } from "@/graphql/schema.types";
@@ -8,7 +10,7 @@ type Props = {
   user: User;
 };
 
-export const UserTag = ({ user }: Props) => {
+export const UserTag: FC<Props> = ({ user }) => {
   return (
     <Tag
       key={user.id}

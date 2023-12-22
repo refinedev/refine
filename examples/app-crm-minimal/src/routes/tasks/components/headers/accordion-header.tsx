@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from "react";
+import { FC, PropsWithChildren, ReactNode } from "react";
 
 import { Space } from "antd";
 
@@ -12,13 +12,13 @@ type Props = PropsWithChildren<{
   onClick?: () => void;
 }>;
 
-export const AccordionHeader = ({
+export const AccordionHeader: FC<Props> = ({
   icon,
   isActive,
   fallback,
   isLoading = false,
   children,
-}: Props) => {
+}) => {
   if (isLoading) {
     return <AccordionHeaderSkeleton />;
   }

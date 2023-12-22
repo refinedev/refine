@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { MarkdownField } from "@refinedev/antd";
 
 import { Typography } from "antd";
@@ -8,7 +10,7 @@ type Props = {
   description?: Task["description"];
 };
 
-export const DescriptionHeader = ({ description }: Props) => {
+export const DescriptionHeader: FC<Props> = ({ description }) => {
   if (description) {
     return (
       <Typography.Paragraph ellipsis={{ rows: 8 }}>

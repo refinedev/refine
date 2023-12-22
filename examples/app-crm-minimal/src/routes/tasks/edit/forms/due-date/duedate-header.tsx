@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { Space, Tag, Typography } from "antd";
 import dayjs from "dayjs";
 
@@ -9,7 +11,7 @@ type Props = {
   dueData?: Task["dueDate"];
 };
 
-export const DueDateHeader = ({ dueData }: Props) => {
+export const DueDateHeader: FC<Props> = ({ dueData }) => {
   if (dueData) {
     const color = getDateColor({
       date: dueData,
