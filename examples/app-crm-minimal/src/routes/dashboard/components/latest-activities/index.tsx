@@ -60,6 +60,7 @@ export const DashboardLatestActivities: FC<{ limit?: number }> = ({
     GetFieldsFromList<DashboardLatestActivitiesDealsQuery>
   >({
     resource: "deals",
+    queryOptions: { enabled: !!dealIds?.length },
     pagination: {
       mode: "off",
     },

@@ -6,12 +6,12 @@ import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { DollarOutlined } from "@ant-design/icons";
 import { Area, AreaConfig } from "@ant-design/plots";
 import { Card } from "antd";
-import dayjs from "dayjs";
 
 import { Text } from "@/components";
 import { DashboardDealsChartQuery } from "@/graphql/types";
 
 import { DASHBOARD_DEALS_CHART_QUERY } from "./queries";
+import { mapDealsData } from "./utils";
 
 export const DashboardDealsChart: FC = () => {
   const { data } = useList<GetFieldsFromList<DashboardDealsChartQuery>>({
@@ -23,36 +23,8 @@ export const DashboardDealsChart: FC = () => {
   });
 
   const dealData = useMemo(() => {
-    const won = data?.data
-      .find((node) => node.title === "WON")
-      ?.dealsAggregate.map((item) => {
-        const { closeDateMonth, closeDateYear } = item.groupBy!;
-        const date = dayjs(`${closeDateYear}-${closeDateMonth}-01`);
-        return {
-          timeUnix: date.unix(),
-          timeText: date.format("MMM YYYY"),
-          value: item.sum?.value,
-          state: "Won",
-        };
-      });
-
-    const lost = data?.data
-      .find((node) => node.title === "LOST")
-      ?.dealsAggregate.map((item) => {
-        const { closeDateMonth, closeDateYear } = item.groupBy!;
-        const date = dayjs(`${closeDateYear}-${closeDateMonth}-01`);
-        return {
-          timeUnix: date.unix(),
-          timeText: date.format("MMM YYYY"),
-          value: item.sum?.value,
-          state: "Lost",
-        };
-      });
-
-    return [...(won || []), ...(lost || [])].sort(
-      (a, b) => a.timeUnix - b.timeUnix,
-    );
-  }, [data]);
+    return mapDealsData(data?.data);
+  }, [data?.data]);
 
   const config: AreaConfig = {
     isStack: false,
