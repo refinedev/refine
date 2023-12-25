@@ -1,5 +1,4 @@
 import { IResourceComponentsProps, getDefaultFilter } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -11,10 +10,14 @@ import {
     useSelect,
     DateField,
 } from "@refinedev/antd";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { Table, Space, Select } from "antd";
 
-import { ICategory, IPost } from "../../interfaces";
+import { CATEGORIES_SELECT_QUERY, POSTS_LIST_QUERY } from "./queries";
+import { BlogPostsListQuery, CategoriesSelectQuery } from "graphql/types";
+
+type IPost = GetFieldsFromList<BlogPostsListQuery>;
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, filters, sorters } = useTable<IPost>({
@@ -25,29 +28,18 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             },
         ],
         metaData: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["title"],
-                },
-                "content",
-                "createdAt",
-            ],
+            gqlQuery: POSTS_LIST_QUERY,
         },
     });
 
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-        pagination: {
-            pageSize: 100,
-            mode: "server",
-            current: 1,
+    const { selectProps } = useSelect<GetFieldsFromList<CategoriesSelectQuery>>(
+        {
+            resource: "categories",
+            metaData: {
+                gqlQuery: CATEGORIES_SELECT_QUERY,
+            },
         },
-        metaData: {
-            fields: ["id", "title"],
-        },
-    });
+    );
 
     return (
         <List>

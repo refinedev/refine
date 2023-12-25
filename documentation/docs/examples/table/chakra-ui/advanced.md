@@ -1,6 +1,7 @@
 ---
 id: advanced-react-table
-title: Advanced
+title: Advanced Tables with Chakra UI
+sidebar_label: Advanced Table
 example-title: Advanced React Table with Chakra UI
 example-tags: [table, chakra-ui, react-table]
 ---

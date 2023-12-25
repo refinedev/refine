@@ -1,6 +1,7 @@
 ---
 id: customThemeAntd
-title: Custom Theme Ant Design
+title: Custom Theme in Ant Design
+sidebar_label: Custom Theme
 example-title: Custom Theme Ant Design
 example-tags: [antd, customization]
 ---

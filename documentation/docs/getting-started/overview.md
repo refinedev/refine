@@ -85,7 +85,7 @@ This means you can use Refine seamlessly in different platforms like React Nativ
 
 💪 Future-proof, **robust architecture**
 
-⌛️ Built-in [CLI](https://refine.dev/docs/packages/documentation/cli/) with time-saving features
+⌛️ Built-in [CLI](/docs/packages/cli) with time-saving features
 
 💻 Refine [Devtools](https://github.com/refinedev/refine/blob/master/packages/devtools/README.md) - dive deeper into your app and provide useful insights
 

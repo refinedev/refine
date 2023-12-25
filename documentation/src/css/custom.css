@@ -1228,7 +1228,7 @@ form.DocSearch-Form label.DocSearch-MagnifierLabel svg.DocSearch-Search-Icon {
 }
 
 .template-detail-markdown a {
-    @apply text-blue-600 font-semibold;
+    @apply dark:text-refine-link-dark text-refine-link-light font-semibold;
 }
 
 .template-detail-markdown strong a {

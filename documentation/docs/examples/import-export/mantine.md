@@ -1,6 +1,7 @@
 ---
 id: mantine
-title: Mantine
+title: Import and Export in Mantine
+sidebar_label: Import / Export
 example-title: Import / Export CSV with Mantine
 example-tags: [csv]
 ---

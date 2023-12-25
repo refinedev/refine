@@ -1,6 +1,7 @@
 ---
 id: refine-themes-antd
-title: Ant Design
+title: Refine Themes in Ant Design
+sidebar_label: Refine Themes
 example-title: Ant Design
 example-tags: [antd, customization]
 ---

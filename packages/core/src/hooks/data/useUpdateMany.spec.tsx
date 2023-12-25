@@ -170,7 +170,7 @@ describe("useUpdateMany Hook", () => {
         await assertMutationSuccess(result);
     });
 
-    fit("should exclude gqlQuery and qqlMutation from query keys", async () => {
+    it("should exclude gqlQuery and qqlMutation from query keys", async () => {
         const catchFn = jest.fn();
 
         jest.spyOn(queryKeys, "queryKeysReplacement").mockImplementationOnce(
@@ -199,7 +199,7 @@ describe("useUpdateMany Hook", () => {
         });
     });
 
-    fit("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
+    it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
         const updateManyMock = jest.fn();
 
         const { result } = renderHook(() => useUpdateMany(), {

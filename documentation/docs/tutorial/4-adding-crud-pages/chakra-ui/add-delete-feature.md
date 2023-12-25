@@ -114,7 +114,7 @@ After setting the `canDelete` property in `meta` to `true`, you will see a delet
 
 You can also use `useDelete` hook provided by Refine to delete a record.
 
-For more information, refer to the [`useDelete` documentation&#8594](/docs/core/hooks/data/use-delete)
+For more information, refer to the [`useDelete` documentation&#8594](/docs/data/hooks/use-delete)
 
 :::
 

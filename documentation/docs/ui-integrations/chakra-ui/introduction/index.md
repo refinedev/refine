@@ -44,7 +44,7 @@ import UsageRemix from "./previews/usage-remix.tsx";
 
 ## Tables
 
-Chakra UI offers styled [table primitives](https://chakra-ui.com/docs/components/table) but lacks the table management solution. Refine recommends using [`@refinedev/react-table`](/docs/packages/list-of-packages) package which is built on top of Refine's [`useTable`](/docs/core/hooks/use-table) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Chakra UI uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
+Chakra UI offers styled [table primitives](https://chakra-ui.com/docs/components/table) but lacks the table management solution. Refine recommends using [`@refinedev/react-table`](/docs/packages/list-of-packages) package which is built on top of Refine's [`useTable`](/docs/data/hooks/use-table) hook and Tanstack Table's [`useTable`](https://tanstack.com/table/v8/docs/adapters/react-table) hook to enable features from pagination to sorting and filtering. Refine's documentations and examples of Chakra UI uses `@refinedev/react-table` package for table management but you have the option to use any table management solution you want.
 
 ```tsx title="pages/products/list.tsx"
 import React from "react";
@@ -204,7 +204,7 @@ export const Pagination: React.FC<PaginationProps> = ({ current, pageCount, setC
 
 ## Forms
 
-Chakra UI offers [form elements](https://chakra-ui.com/docs/components/input) yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) package which is built on top of Refine's [`useForm`](/docs/core/hooks/use-form/) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
+Chakra UI offers [form elements](https://chakra-ui.com/docs/components/input) yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) package which is built on top of Refine's [`useForm`](/docs/data/hooks/use-form/) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
 
 Refine's documentations and examples of Chakra UI uses `@refinedev/react-hook-form` package for form management but you have the option to use any form management solution you want.
 

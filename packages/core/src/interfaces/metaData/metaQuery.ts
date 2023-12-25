@@ -1,10 +1,9 @@
 import { QueryFunctionContext } from "@tanstack/react-query";
 import { QueryBuilderOptions } from "./queryBuilderOptions";
-import type { DocumentNode } from "graphql";
+import { GraphQLQueryOptions } from "./graphqlQueryOptions";
 
 export type MetaQuery = {
     [k: string]: any;
-    gqlQuery?: DocumentNode;
-    gqlMutation?: DocumentNode;
     queryContext?: Omit<QueryFunctionContext, "meta">;
-} & QueryBuilderOptions;
+} & QueryBuilderOptions &
+    GraphQLQueryOptions;

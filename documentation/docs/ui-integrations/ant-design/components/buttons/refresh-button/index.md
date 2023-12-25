@@ -196,4 +196,4 @@ It also accepts all props of Ant Design [Button](https://ant.design/components/b
 
 :::
 
-[use-invalidate]: /docs/core/hooks/data/use-invalidate
+[use-invalidate]: /docs/data/hooks/use-invalidate
