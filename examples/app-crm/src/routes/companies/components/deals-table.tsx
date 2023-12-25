@@ -18,7 +18,7 @@ import {
 import { Button, Card, Input, Select, Skeleton, Space, Table, Tag } from "antd";
 
 import { Participants, Text } from "@/components";
-import { Company, Deal } from "@/interfaces";
+import { Company, Deal } from "@/graphql/schema.types";
 import { currencyNumber } from "@/utilities";
 
 type Props = {

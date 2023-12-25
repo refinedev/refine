@@ -6,6 +6,7 @@ import {
     useSelect,
 } from "@refinedev/antd";
 import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { PhoneOutlined } from "@ant-design/icons";
 import { Button, Input, Select, Space, Table, type TableProps } from "antd";
@@ -17,10 +18,11 @@ import {
     Text,
 } from "@/components";
 import { ContactStatusEnum } from "@/enums";
-import { Contact } from "@/interfaces";
+import { Contact } from "@/graphql/schema.types";
+import { ContactsListQuery } from "@/graphql/types";
 
 type Props = {
-    tableProps: TableProps<Contact>;
+    tableProps: TableProps<GetFieldsFromList<ContactsListQuery>>;
     filters: CrudFilters;
     sorters: CrudSorting;
 };

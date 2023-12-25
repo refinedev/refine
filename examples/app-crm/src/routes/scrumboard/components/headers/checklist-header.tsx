@@ -2,7 +2,7 @@ import { CheckSquareOutlined } from "@ant-design/icons";
 import { Space } from "antd";
 
 import { Text } from "@/components";
-import { Task } from "@/interfaces";
+import { Task } from "@/graphql/schema.types";
 
 type Props = {
     checklist?: Task["checklist"];

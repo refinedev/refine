@@ -6,9 +6,9 @@ import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { AreaConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
 import dayjs from "dayjs";
-import { DealStage } from "interfaces/graphql";
 
 import { Text } from "@/components";
+import { DealStage } from "@/graphql/schema.types";
 
 const Area = lazy(() => import("@ant-design/plots/es/components/area"));
 

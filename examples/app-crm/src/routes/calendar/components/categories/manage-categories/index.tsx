@@ -6,7 +6,7 @@ import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, ModalProps, Popconfirm } from "antd";
 
 import { Text } from "@/components";
-import { EventCategory } from "@/interfaces";
+import { EventCategory } from "@/graphql/schema.types";
 
 import styles from "./index.module.css";
 

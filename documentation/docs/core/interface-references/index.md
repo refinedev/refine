@@ -181,7 +181,19 @@ type OpenNotificationParams = {
 type MetaQuery = {
   queryContext?: Omit<QueryFunctionContext, "meta">;
   [key: string]: any;
-} & QueryBuilderOptions;
+} & QueryBuilderOptions &
+  GraphQLQueryOptions;
+```
+
+### GraphQLQueryOptions
+
+```tsx
+import type { DocumentNode } from "graphql";
+
+type GraphQLQueryOptions = {
+  gqlQuery?: DocumentNode;
+  gqlMutation?: DocumentNode;
+};
 ```
 
 ### QueryFunctionContext

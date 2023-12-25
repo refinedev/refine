@@ -8,6 +8,7 @@ import {
     useGetToPath,
     useGo,
 } from "@refinedev/core";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import {
     DeleteOutlined,
@@ -29,15 +30,19 @@ import {
 } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company, User } from "@/interfaces";
+import { Company, User } from "@/graphql/schema.types";
+import {
+    CreateCompanyMutation,
+    CreateCompanyMutationVariables,
+} from "@/graphql/types";
+
+import { COMPANY_CREATE_MUTATION } from "./queries";
 
 type Props = {
     isOverModal?: boolean;
 };
 
-type FormValues = {
-    name: string;
-    salesOwnerId: string;
+type FormValues = GetVariables<CreateCompanyMutationVariables> & {
     contacts?: {
         name?: string;
         email?: string;
@@ -51,7 +56,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
     const go = useGo();
 
     const { formProps, modalProps, close, onFinish } = useModalForm<
-        Company,
+        GetFields<CreateCompanyMutation>,
         HttpError,
         FormValues
     >({
@@ -62,7 +67,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
         warnWhenUnsavedChanges: !isOverModal,
         mutationMode: "pessimistic",
         meta: {
-            fields: ["id", { salesOwner: ["id"] }],
+            gqlMutation: COMPANY_CREATE_MUTATION,
         },
     });
 

@@ -6,7 +6,7 @@ import { HttpError, useNavigation } from "@refinedev/core";
 import { Modal } from "antd";
 import dayjs from "dayjs";
 
-import { Event, EventCreateInput } from "@/interfaces";
+import { Event, EventCreateInput } from "@/graphql/schema.types";
 
 import { CalendarForm } from "./components";
 
