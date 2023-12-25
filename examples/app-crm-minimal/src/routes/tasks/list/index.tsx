@@ -149,7 +149,10 @@ export const TasksListPage: FC<PropsWithChildren> = ({ children }) => {
                   id={task.id}
                   data={{ ...task, stageId: "unassigned" }}
                 >
-                  <ProjectCardMemo {...task} />
+                  <ProjectCardMemo
+                    {...task}
+                    dueDate={task.dueDate || undefined}
+                  />
                 </KanbanItem>
               );
             })}
@@ -173,7 +176,10 @@ export const TasksListPage: FC<PropsWithChildren> = ({ children }) => {
                   column.tasks.map((task) => {
                     return (
                       <KanbanItem key={task.id} id={task.id} data={task}>
-                        <ProjectCardMemo {...task} />
+                        <ProjectCardMemo
+                          {...task}
+                          dueDate={task.dueDate || undefined}
+                        />
                       </KanbanItem>
                     );
                   })}
