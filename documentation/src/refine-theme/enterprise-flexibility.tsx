@@ -1,15 +1,13 @@
 import React from "react";
 import clsx from "clsx";
-import { useColorMode } from "@docusaurus/theme-common";
 import { LandingPureReactCode } from "./landing-pure-react-code";
+import { CommonThemedImage } from "./common-themed-image";
 
 export const EnterpriseFlexibility = ({
     className,
 }: {
     className?: string;
 }) => {
-    const { colorMode } = useColorMode();
-
     return (
         <div className={clsx("flex flex-col", "not-prose", className)}>
             <div
@@ -52,13 +50,10 @@ export const EnterpriseFlexibility = ({
                         "rounded-2xl landing-sm:rounded-3xl",
                     )}
                 >
-                    <img
+                    <CommonThemedImage
                         className={clsx("rounded-2xl landing-sm:rounded-3xl")}
-                        src={
-                            colorMode === "dark"
-                                ? `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/lego-pieces-dark.png`
-                                : `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/lego-pieces-light.png`
-                        }
+                        srcDark="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/lego-pieces-dark.png"
+                        srcLight="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/lego-pieces-light.png"
                     />
                     <div
                         className={clsx(

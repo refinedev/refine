@@ -1,6 +1,7 @@
 ---
 id: remix-antd
-title: Ant Design
+title: Remix with Ant Design
+sidebar_label: Remix
 example-tags: [remix, antd]
 ---
 

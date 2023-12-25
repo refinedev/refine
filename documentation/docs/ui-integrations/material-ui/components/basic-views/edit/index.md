@@ -260,7 +260,7 @@ render(
 
 `canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property, Refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
-When clicked on, the delete button executes the [`useDelete`](/docs/core/hooks/data/use-delete) method provided by the [`dataProvider`](/docs/core/providers/data-provider).
+When clicked on, the delete button executes the [`useDelete`](/docs/data/hooks/use-delete) method provided by the [`dataProvider`](/docs/data/data-provider).
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 const { default: simpleRest } = RefineSimpleRest;
@@ -357,7 +357,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<DeleteButton>` &#8594](/docs/ui-integrations/material-ui/components/buttons/delete-button) and [`usePermission` &#8594](/docs/core/hooks/auth/use-permissions) documentations
+> For more information, refer to the [`<DeleteButton>` &#8594](/docs/ui-integrations/material-ui/components/buttons/delete-button) and [`usePermission` &#8594](/docs/authentication/hooks/use-permissions) documentations
 
 ### `recordItemId`
 
@@ -1301,11 +1301,11 @@ render(
 wrapperProps-type="[`CardProps`](https://mui.com/material-ui/api/card/#props)"
 contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)"
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"
-headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/mui/components/buttons/list-button/) and [`RefreshButton`](https://refine.dev/docs/api-reference/mui/components/buttons/refresh-button/)"
+headerButtons-default="[`ListButton`](/docs/ui-integrations/material-ui/components/buttons/list-button/) and [`RefreshButton`](/docs/ui-integrations/material-ui/components/buttons/refresh-button/)"
 headerButtonProps-type="[`BoxProps`](https://mui.com/material-ui/api/box/#props)"
 deleteButtonProps-type="[`DeleteButtonProps`](/docs/ui-integrations/material-ui/components/buttons/delete-button)"
-saveButtonProps-type="[`SaveButtonProps`](https://refine.dev/docs/api-reference/mui/components/buttons/save-button/)"
-footerButtons-default="[`SaveButton`](https://refine.dev/docs/api-reference/mui/components/buttons/save-button/) and [`DeleteButton`](https://refine.dev/docs/api-reference/mui/components/buttons/delete-button/)"
+saveButtonProps-type="[`SaveButtonProps`](/docs/ui-integrations/material-ui/components/buttons/save-button/)"
+footerButtons-default="[`SaveButton`](/docs/ui-integrations/material-ui/components/buttons/save-button/) and [`DeleteButton`](/docs/ui-integrations/material-ui/components/buttons/delete-button/)"
 footerButtonsProps-type="[`CardActionsProps`](https://mui.com/material-ui/api/card-actions/#props)"
 breadcrumb-default="[`<Breadcrumb/>`](/docs/ui-integrations/material-ui/components/breadcrumb)"
 goBack-default="`<ArrowLeft />`"

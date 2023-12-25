@@ -357,7 +357,7 @@ render(
 );
 ```
 
-> For more information, refer to the documentations [`<DeleteButton>` &#8594](/docs/ui-integrations/mantine/components/buttons/delete-button) and [`usePermission` &#8594](/docs/core/hooks/auth/use-permissions)
+> For more information, refer to the documentations [`<DeleteButton>` &#8594](/docs/ui-integrations/mantine/components/buttons/delete-button) and [`usePermission` &#8594](/docs/authentication/hooks/use-permissions)
 
 ### `resource`
 

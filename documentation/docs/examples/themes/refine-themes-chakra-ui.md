@@ -1,6 +1,7 @@
 ---
 id: refine-themes-chakra-ui
-title: Chakra UI
+title: Refine Themes in Chakra UI
+sidebar_label: Refine Themes
 example-title: Chakra UI
 example-tags: [chakra-ui, customization]
 ---

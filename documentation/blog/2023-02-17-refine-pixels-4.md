@@ -58,7 +58,7 @@ Behind the scenes, **Supabase** spins up globally distributed **Realtime** serve
 
 We are using **Supabase** **Realtime**'s [**PostgreSQL Change Data Capture**](https://supabase.com/docs/guides/realtime#postgres-cdc) feature which will now allow our app to publish mutation events to the `pixels` channel and also listen to those changes from a subscriber component.
 
-This means mutation hooks such as [`useCreate()`](https://refine.dev/docs/api-reference/core/hooks/data/useCreate/) can now publish events to the `pixels` channel and consumer hooks like [`useList()`](http://localhost:3000/docs/api-reference/core/hooks/data/useList/) are able to get instant updates for any change to `pixels`.
+This means mutation hooks such as [`useCreate()`](https://refine.dev/docs/api-reference/core/hooks/data/useCreate/) can now publish events to the `pixels` channel and consumer hooks like [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) are able to get instant updates for any change to `pixels`.
 
 ## `<Refine />`'s `liveProvider` Prop
 
@@ -188,7 +188,7 @@ export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
 </p>
 </details>
 
-Both methods are concerned with subscription to the changes. That's because the publishing the event is done by mutation methods. In our case, it is done from the [`useCreate()`](/docs/core/hooks/data/use-create) hook we invoke to create a pixel.
+Both methods are concerned with subscription to the changes. That's because the publishing the event is done by mutation methods. In our case, it is done from the [`useCreate()`](/docs/data/hooks/use-create) hook we invoke to create a pixel.
 
 ## Broadcasting
 

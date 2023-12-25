@@ -1,12 +1,10 @@
 import clsx from "clsx";
 import React, { FC } from "react";
-import { useColorMode } from "@docusaurus/theme-common";
+import { CommonThemedImage } from "./common-themed-image";
 
 type Props = { className?: string };
 
 export const TemplatesHero: FC<Props> = ({ className }) => {
-    const { colorMode } = useColorMode();
-
     return (
         <div
             className={clsx(
@@ -23,18 +21,15 @@ export const TemplatesHero: FC<Props> = ({ className }) => {
                 className,
             )}
         >
-            <img
+            <CommonThemedImage
                 className={clsx(
                     "absolute",
                     "hidden landing-md:block",
                     "w-[1200px]",
                     "max-w-[1200px]",
                 )}
-                src={
-                    colorMode === "dark"
-                        ? "https://refine.ams3.cdn.digitaloceanspaces.com/templates/templates-hero-dark.png"
-                        : "https://refine.ams3.cdn.digitaloceanspaces.com/templates/templates-hero-light.png"
-                }
+                srcDark="https://refine.ams3.cdn.digitaloceanspaces.com/templates/templates-hero-dark.png"
+                srcLight="https://refine.ams3.cdn.digitaloceanspaces.com/templates/templates-hero-light.png"
                 alt="Refine Templates"
             />
             <h2
@@ -66,9 +61,10 @@ export const TemplatesHero: FC<Props> = ({ className }) => {
                     "dark:text-gray-400 text-gray-600",
                 )}
             >
-                Browse ready-made templates with different interfaces, database
-                collections, actions & more. Connect your data and start
-                customizing your app interface!
+                Explore a range of pre-designed Refine templates, perfect for
+                everything from admin panels to dashboards and CRMs. Easily
+                integrate these templates with your data sources and begin
+                customizing to jumpstart your projects.
             </p>
         </div>
     );

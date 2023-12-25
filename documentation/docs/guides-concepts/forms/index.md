@@ -6,7 +6,7 @@ In almost every user facing application, forms are a necessity. They are the pri
 
 ## Handling Data
 
-`useForm` hook orchestrates Refine's [`useOne`](/docs/core/hooks/data/use-one), [`useUpdate`](/docs/core/hooks/data/use-update) and [`useCreate`](/docs/core/hooks/data/use-create) hooks internally to provide a single interface for form handling.
+`useForm` hook orchestrates Refine's [`useOne`](/docs/data/hooks/use-one), [`useUpdate`](/docs/data/hooks/use-update) and [`useCreate`](/docs/data/hooks/use-create) hooks internally to provide a single interface for form handling.
 
 While editing or cloning a record, `useOne` will be used to fetch the record to provide values for the form. When creating a new record, `useCreate` will be used for the mutation. When updating a record, `useUpdate` will be used for the mutation.
 
@@ -55,7 +55,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out Core's `useForm` reference page to learn more about the usage and see it in action.](/docs/core/hooks/use-form/)
+[Check out Core's `useForm` reference page to learn more about the usage and see it in action.](/docs/data/hooks/use-form/)
 
 </TabItem>
 <TabItem value="hook-form" label="React Hook Form" default>
@@ -493,7 +493,7 @@ const { formProps } = useForm({
 });
 ```
 
-If you want to disable the invalidation completely and handle it manually, you can pass `false` to the `invalidates` prop. Then, you can use the [`useInvalidate`](/docs/core/hooks/data/use-invalidate) hook to invalidate the queries manually based on your conditions.
+If you want to disable the invalidation completely and handle it manually, you can pass `false` to the `invalidates` prop. Then, you can use the [`useInvalidate`](/docs/data/hooks/use-invalidate) hook to invalidate the queries manually based on your conditions.
 
 ```tsx
 import { useInvalidate } from "@refinedev/core";
@@ -640,7 +640,7 @@ import ServerSideValidationChakraUi from "./server-side-validation-chakra-ui.tsx
 </TabItem>
 </Tabs>
 
-## Notifications <GuideBadge id="api-reference/core/providers/notification-provider" />
+## Notifications <GuideBadge id="notification/notification-provider" />
 
 When forms are submitted, it is a good practice to notify the user about the result of the submission. `useForm` handles this for you, when the mutation succeeds or fails it will show a notification to the user with a proper message. This behavior can be customized or disabled using the `successNotification` and `errorNotification` props.
 

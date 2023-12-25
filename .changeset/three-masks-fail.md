@@ -30,5 +30,8 @@ const PRODUCTS_QUERY = gql`
   }
 `;
 
-const { data } = useList({ resource: "products", meta: gqlQuery: PRODUCTS_QUERY });
+const { data } = useList({
+  resource: "products",
+  meta: { gqlQuery: PRODUCTS_QUERY },
+});
 ```

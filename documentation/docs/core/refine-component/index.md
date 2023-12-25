@@ -4,7 +4,7 @@ title: <Refine>
 
 `<Refine>` component is the entry point of a Refine app. It is where the highest level of configuration of the app occurs.
 
-[`dataProvider`](/docs/core/providers/data-provider) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
+[`dataProvider`](/docs/data/data-provider) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
@@ -25,11 +25,11 @@ const App = () => (
 
 ## dataProvider <PropTag asterisk />
 
-A [`dataProvider`](/docs/core/providers/data-provider) is the place where a Refine app communicates with an API.
+A [`dataProvider`](/docs/data/data-provider) is the place where a Refine app communicates with an API.
 Data providers also act as adapters for Refine, making it possible for it to consume different API's and data services.
-A [`dataProvider`](/docs/core/providers/data-provider) makes HTTP requests and returns response data back using predefined methods.
+A [`dataProvider`](/docs/data/data-provider) makes HTTP requests and returns response data back using predefined methods.
 
-[Refer to the Data Provider documentation for detailed information. &#8594](/docs/core/providers/data-provider)
+[Refer to the Data Provider documentation for detailed information. &#8594](/docs/data/data-provider)
 
 Multiple data providers can be used with Refine, if you have multiple data providers, you can pass them to the `dataProvider` prop as an object.
 
@@ -98,7 +98,7 @@ const App = () => (
 
 :::simple Accessing the Resource
 
-You can use [useResource](/docs/core/hooks/navigation/use-resource) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
+You can use [useResource](/docs/routing/hooks/use-resource) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
 
 :::
 
@@ -214,7 +214,7 @@ There's also a third option, which is to pass an object with the `component` and
 
 ### meta
 
-`meta` can have any kind of property. It is used to store additional information about the resource. This property you pass can be received from the [useResource](/docs/core/hooks/navigation/use-resource). Listed below are the properties that are used by Refine or its libraries.
+`meta` can have any kind of property. It is used to store additional information about the resource. This property you pass can be received from the [useResource](/docs/routing/hooks/use-resource). Listed below are the properties that are used by Refine or its libraries.
 
 #### label
 
@@ -325,31 +325,31 @@ Custom route name for the resource.
 
 `authProvider` handles authentication logic like login, logout flow, and checking user credentials. It is an object with methods that Refine uses when necessary.
 
-[Refer to Auth Provider documentation for detailed information. &#8594](/docs/core/providers/auth-provider)
+[Refer to Auth Provider documentation for detailed information. &#8594](/docs/authentication/auth-provider)
 
 ## i18nProvider
 
 The `i18nProvider` property lets you add i18n support to your app. Making you able to use any i18n framework.
 
-[Refer to i18n documentation for detailed information. &#8594](/docs/core/providers/i18n-provider)
+[Refer to i18n documentation for detailed information. &#8594](/docs/i18n/i18n-provider)
 
 ## accessControlProvider
 
 `accessControlProvider` is the entry point for implementing access control for Refine apps.
 
-[Refer to access control documentation for detailed information. &#8594](/docs/core/providers/access-control-provider)
+[Refer to access control documentation for detailed information. &#8594](/docs/authorization/access-control-provider)
 
 ## liveProvider
 
 Refine lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
 
-[Refer to live provider documentation for detailed information. &#8594](/docs/core/providers/live-provider)
+[Refer to live provider documentation for detailed information. &#8594](/docs/realtime/live-provider)
 
 ## notificationProvider
 
 `notificationProvider` handles notification logic. It is an object with methods that Refine uses when necessary.
 
-[Refer to the Notification Provider documentation for detailed information. &#8594](/docs/core/providers/notification-provider)
+[Refer to the Notification Provider documentation for detailed information. &#8594](/docs/notification/notification-provider)
 
 ## options
 
@@ -471,7 +471,7 @@ This feature also **requires** `UnsavedChangesNotifier` component to be mounted.
 
 `liveMode` controls whether to update data automatically or not, with `auto` and `manual` respectively if a related live event is received. The `off` value can be used to avoid creating a subscription all together.
 
-> For more information, refer to the [live provider documentation &#8594](/docs/core/providers/live-provider#livemode)
+> For more information, refer to the [live provider documentation &#8594](/docs/realtime/live-provider#livemode)
 
 ### disableTelemetry
 
@@ -481,7 +481,7 @@ Refine implements a simple and transparent telemetry module for collecting usage
 
 ### redirect
 
-By default, Refine redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/core/hooks/use-form/#actions), set `redirect` as follows:
+By default, Refine redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/data/hooks/use-form/#actions), set `redirect` as follows:
 
 ```tsx title="App.tsx"
 const App = () => (
@@ -640,7 +640,7 @@ By default, Refine uses the legacy keys for backward compatibility and in the fu
 
 Callback to handle all live events.
 
-> For more information, refer to the [live provider documentation &#8594](/docs/core/providers/live-provider#Refine)
+> For more information, refer to the [live provider documentation &#8594](/docs/realtime/live-provider#Refine)
 
 ## ~~catchAll~~ <PropTag deprecated />
 
@@ -833,5 +833,5 @@ const App = () => (
 
 <PropsTable module="@refinedev/core/Refine"/>
 
-[routerprovider]: /docs/core/providers/router-provider
+[routerprovider]: /docs/routing/router-provider
 [http-error]: /docs/core/interface-references#httperror

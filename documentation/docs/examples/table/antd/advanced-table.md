@@ -1,6 +1,7 @@
 ---
 id: advancedTable
-title: Advanced Table
+title: Advanced Tables with Ant Design
+sidebar_label: Advanced Table
 example-title: Advanced Ant Design Table
 example-tags: [table, antd]
 ---
