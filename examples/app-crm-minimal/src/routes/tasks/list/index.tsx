@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useMemo } from "react";
+import React from "react";
 
 import { HttpError, useList, useNavigation, useUpdate } from "@refinedev/core";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
@@ -22,7 +22,7 @@ import {
 type Task = GetFieldsFromList<TasksQuery>;
 type TaskStage = GetFieldsFromList<TaskStagesQuery> & { tasks: Task[] };
 
-export const TasksListPage: FC<PropsWithChildren> = ({ children }) => {
+export const TasksListPage = ({ children }: React.PropsWithChildren) => {
   const { replace } = useNavigation();
 
   const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
@@ -69,7 +69,7 @@ export const TasksListPage: FC<PropsWithChildren> = ({ children }) => {
   // group tasks by stage
   // it's convert Task[] to TaskStage[] (group by stage) for kanban
   // uses `stages` and `tasks` from useList hooks
-  const taskStages = useMemo(() => {
+  const taskStages = React.useMemo(() => {
     if (!tasks?.data || !stages?.data)
       return {
         unassignedStage: [],

@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import React from "react";
 
 import { useForm } from "@refinedev/antd";
 import { HttpError, useInvalidate } from "@refinedev/core";
@@ -45,7 +45,7 @@ type Props = {
   isLoading?: boolean;
 };
 
-export const TitleForm: FC<Props> = ({ initialValues, isLoading }) => {
+export const TitleForm = ({ initialValues, isLoading }: Props) => {
   const invalidate = useInvalidate();
 
   const { formProps } = useForm<
@@ -69,7 +69,7 @@ export const TitleForm: FC<Props> = ({ initialValues, isLoading }) => {
     },
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     formProps.form?.setFieldsValue(initialValues);
   }, [initialValues.title]);
 

@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import React from "react";
 
 import {
   CheckCircleOutlined,
@@ -10,8 +10,12 @@ import { Tag, TagProps } from "antd";
 
 import { ContactStatus } from "@/graphql/schema.types";
 
-export const ContactStatusTag: FC<{ status: ContactStatus }> = ({ status }) => {
-  let icon: ReactNode = null;
+type Props = {
+  status: ContactStatus;
+};
+
+export const ContactStatusTag = ({ status }: Props) => {
+  let icon: React.ReactNode = null;
   let color: TagProps["color"] = undefined;
 
   switch (status) {

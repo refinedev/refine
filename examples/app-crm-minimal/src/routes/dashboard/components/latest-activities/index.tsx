@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { useList } from "@refinedev/core";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
@@ -18,9 +16,9 @@ import {
   DASHBOARD_LATEST_ACTIVITIES_DEALS_QUERY,
 } from "./queries";
 
-export const DashboardLatestActivities: FC<{ limit?: number }> = ({
-  limit = 5,
-}) => {
+type Props = { limit?: number };
+
+export const DashboardLatestActivities = ({ limit = 5 }: Props) => {
   const {
     data: audit,
     isLoading: isLoadingAudit,

@@ -1,10 +1,8 @@
-import { FC } from "react";
-
 import { AuthPage } from "@refinedev/antd";
 
 import { authCredentials } from "@/providers";
 
-export const LoginPage: FC = () => {
+export const LoginPage = () => {
   return (
     <AuthPage
       type="login"

@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import React from "react";
 
 import type { AvatarProps } from "antd";
 import { Avatar as AntdAvatar } from "antd";
@@ -9,7 +9,7 @@ type Props = AvatarProps & {
   name?: string;
 };
 
-const CustomAvatarComponent: FC<Props> = ({ name = "", style, ...rest }) => {
+const CustomAvatarComponent = ({ name = "", style, ...rest }: Props) => {
   return (
     <AntdAvatar
       alt={name}
@@ -30,7 +30,7 @@ const CustomAvatarComponent: FC<Props> = ({ name = "", style, ...rest }) => {
   );
 };
 
-export const CustomAvatar = memo(
+export const CustomAvatar = React.memo(
   CustomAvatarComponent,
   (prevProps, nextProps) => {
     return prevProps.name === nextProps.name && prevProps.src === nextProps.src;

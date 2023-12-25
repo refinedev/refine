@@ -1,10 +1,10 @@
-import { FC, PropsWithChildren } from "react";
+import React from "react";
 
 import { ThemedLayoutV2, ThemedTitleV2 } from "@refinedev/antd";
 
 import { Header } from "./header";
 
-export const Layout: FC<PropsWithChildren> = ({ children }) => {
+export const Layout = ({ children }: React.PropsWithChildren) => {
   return (
     <ThemedLayoutV2
       Header={Header}

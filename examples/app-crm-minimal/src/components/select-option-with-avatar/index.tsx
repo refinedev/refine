@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { CustomAvatar } from "../custom-avatar";
 import { Text } from "../text";
 
@@ -9,11 +7,7 @@ type Props = {
   shape?: "circle" | "square";
 };
 
-export const SelectOptionWithAvatar: FC<Props> = ({
-  avatarUrl,
-  name,
-  shape,
-}) => {
+export const SelectOptionWithAvatar = ({ avatarUrl, name, shape }: Props) => {
   return (
     <div
       style={{

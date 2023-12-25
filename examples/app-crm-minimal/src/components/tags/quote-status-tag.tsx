@@ -1,4 +1,4 @@
-import { FC, ReactElement } from "react";
+import React from "react";
 
 import {
   CheckCircleOutlined,
@@ -9,7 +9,10 @@ import { Tag } from "antd";
 
 import { QuoteStatus } from "@/graphql/schema.types";
 
-const variant: Record<QuoteStatus, { color: string; icon: ReactElement }> = {
+const variant: Record<
+  QuoteStatus,
+  { color: string; icon: React.ReactElement }
+> = {
   DRAFT: {
     color: "blue",
     icon: <ExpandOutlined />,
@@ -28,7 +31,7 @@ type Props = {
   status: QuoteStatus;
 };
 
-export const QuoteStatusTag: FC<Props> = ({ status }) => {
+export const QuoteStatusTag = ({ status }: Props) => {
   return (
     <Tag
       style={{

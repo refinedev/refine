@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import React from "react";
 
 import { useList } from "@refinedev/core";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
@@ -13,7 +13,7 @@ import { DashboardDealsChartQuery } from "@/graphql/types";
 import { DASHBOARD_DEALS_CHART_QUERY } from "./queries";
 import { mapDealsData } from "./utils";
 
-export const DashboardDealsChart: FC = () => {
+export const DashboardDealsChart = () => {
   const { data } = useList<GetFieldsFromList<DashboardDealsChartQuery>>({
     resource: "dealStages",
     filters: [{ field: "title", operator: "in", value: ["WON", "LOST"] }],
@@ -22,7 +22,7 @@ export const DashboardDealsChart: FC = () => {
     },
   });
 
-  const dealData = useMemo(() => {
+  const dealData = React.useMemo(() => {
     return mapDealsData(data?.data);
   }, [data?.data]);
 

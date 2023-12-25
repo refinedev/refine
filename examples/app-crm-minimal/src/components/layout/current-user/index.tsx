@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React from "react";
 
 import { useGetIdentity } from "@refinedev/core";
 
@@ -11,8 +11,8 @@ import { CustomAvatar } from "../../custom-avatar";
 import { Text } from "../../text";
 import { AccountSettings } from "../account-settings";
 
-export const CurrentUser: FC = () => {
-  const [opened, setOpened] = useState(false);
+export const CurrentUser = () => {
+  const [opened, setOpened] = React.useState(false);
   const { data: user } = useGetIdentity<User>();
 
   const content = (

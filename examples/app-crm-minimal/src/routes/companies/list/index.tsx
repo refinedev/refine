@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import React from "react";
 
 import {
   CreateButton,
@@ -21,7 +21,7 @@ import { currencyNumber } from "@/utilities";
 
 import { COMPANIES_LIST_QUERY } from "./queries";
 
-export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
+export const CompanyListPage = ({ children }: React.PropsWithChildren) => {
   const go = useGo();
 
   const { tableProps, filters } = useTable<

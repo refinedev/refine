@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, ReactNode } from "react";
+import React from "react";
 
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
 import { Area, AreaConfig } from "@ant-design/plots";
@@ -8,11 +8,17 @@ import { Text } from "@/components";
 
 type Type = "companies" | "contacts" | "deals";
 
-export const DashboardTotalCountCard: FC<{
+type Props = {
   resource: Type;
   isLoading: boolean;
   totalCount?: number;
-}> = ({ resource, isLoading, totalCount }) => {
+};
+
+export const DashboardTotalCountCard = ({
+  resource,
+  isLoading,
+  totalCount,
+}: Props) => {
   const { primaryColor, secondaryColor, icon, title } = variants[resource];
 
   const config: AreaConfig = {
@@ -113,10 +119,10 @@ export const DashboardTotalCountCard: FC<{
   );
 };
 
-const IconWrapper: FC<PropsWithChildren<{ color: string }>> = ({
+const IconWrapper = ({
   color,
   children,
-}) => {
+}: React.PropsWithChildren<{ color: string }>) => {
   return (
     <div
       style={{
@@ -138,7 +144,7 @@ const variants: {
   [key in Type]: {
     primaryColor: string;
     secondaryColor?: string;
-    icon: ReactNode;
+    icon: React.ReactNode;
     title: string;
     data: { index: string; value: number }[];
   };

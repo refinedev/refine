@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { useForm } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 import { GetFields, GetVariables } from "@refinedev/nestjs-query";
@@ -22,7 +20,7 @@ type Props = {
   cancelForm: () => void;
 };
 
-export const DescriptionForm: FC<Props> = ({ initialValues, cancelForm }) => {
+export const DescriptionForm = ({ initialValues, cancelForm }: Props) => {
   const { formProps, saveButtonProps } = useForm<
     GetFields<UpdateTaskMutation>,
     HttpError,

@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { useList } from "@refinedev/core";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
@@ -12,7 +10,7 @@ import { DashboardCalendarUpcomingEventsQuery } from "@/graphql/types";
 
 import { DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY } from "./queries";
 
-export const CalendarUpcomingEvents: FC = () => {
+export const CalendarUpcomingEvents = () => {
   const { data, isLoading } = useList<
     GetFieldsFromList<DashboardCalendarUpcomingEventsQuery>
   >({
@@ -132,7 +130,7 @@ export const CalendarUpcomingEvents: FC = () => {
   );
 };
 
-const NoEvent: FC = () => (
+const NoEvent = () => (
   <span
     style={{
       display: "flex",

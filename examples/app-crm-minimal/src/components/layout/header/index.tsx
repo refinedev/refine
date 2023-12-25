@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react";
+import React from "react";
 
 import { Layout, Space, theme } from "antd";
 
@@ -6,10 +6,10 @@ import { CurrentUser } from "../current-user";
 
 const { useToken } = theme;
 
-export const Header: FC = () => {
+export const Header = () => {
   const { token } = useToken();
 
-  const headerStyles: CSSProperties = {
+  const headerStyles: React.CSSProperties = {
     backgroundColor: token.colorBgElevated,
     display: "flex",
     justifyContent: "flex-end",

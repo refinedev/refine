@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, ReactNode } from "react";
+import React from "react";
 
 import { MoreOutlined, PlusOutlined } from "@ant-design/icons";
 import { useDroppable, UseDroppableArguments } from "@dnd-kit/core";
@@ -9,13 +9,13 @@ import { Text } from "@/components";
 type Props = {
   id: string;
   title: string;
-  description?: ReactNode;
+  description?: React.ReactNode;
   count: number;
   data?: UseDroppableArguments["data"];
   onAddClick?: (args: { id: string }) => void;
 };
 
-export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
+export const KanbanColumn = ({
   children,
   id,
   title,
@@ -23,7 +23,7 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
   count,
   data,
   onAddClick,
-}) => {
+}: React.PropsWithChildren<Props>) => {
   const { isOver, setNodeRef, active } = useDroppable({
     id,
     data,
@@ -99,7 +99,7 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
   );
 };
 
-export const KanbanColumnSkeleton: FC<PropsWithChildren> = ({ children }) => {
+export const KanbanColumnSkeleton = ({ children }: React.PropsWithChildren) => {
   return (
     <div
       style={{

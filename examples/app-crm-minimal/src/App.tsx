@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { RefineThemes, useNotificationProvider } from "@refinedev/antd";
@@ -29,7 +28,7 @@ import {
 
 import "@refinedev/antd/dist/reset.css";
 
-const App: FC = () => {
+const App = () => {
   return (
     <BrowserRouter>
       <ConfigProvider theme={RefineThemes.Blue}>

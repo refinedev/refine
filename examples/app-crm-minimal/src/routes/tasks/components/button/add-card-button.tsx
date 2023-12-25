@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import React from "react";
 
 import { PlusSquareOutlined } from "@ant-design/icons";
 import { Button } from "antd";
@@ -9,10 +9,10 @@ interface Props {
   onClick: () => void;
 }
 
-export const KanbanAddCardButton: FC<PropsWithChildren<Props>> = ({
+export const KanbanAddCardButton = ({
   children,
   onClick,
-}) => {
+}: React.PropsWithChildren<Props>) => {
   return (
     <Button
       size="large"

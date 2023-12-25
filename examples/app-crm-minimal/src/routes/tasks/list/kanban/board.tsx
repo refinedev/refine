@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import React from "react";
 
 import {
   DndContext,
@@ -13,10 +13,10 @@ type Props = {
   onDragEnd: (event: DragEndEvent) => void;
 };
 
-export const KanbanBoard: FC<PropsWithChildren<Props>> = ({
+export const KanbanBoard = ({
   onDragEnd,
   children,
-}) => {
+}: React.PropsWithChildren<Props>) => {
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
       distance: 5,
@@ -47,7 +47,7 @@ export const KanbanBoard: FC<PropsWithChildren<Props>> = ({
   );
 };
 
-export const KanbanBoardContainer: FC<PropsWithChildren> = ({ children }) => {
+export const KanbanBoardContainer = ({ children }: React.PropsWithChildren) => {
   return (
     <div
       style={{

@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import React from "react";
 
 import {
   DragOverlay,
@@ -11,11 +11,11 @@ interface Props {
   data?: UseDraggableArguments["data"];
 }
 
-export const KanbanItem: FC<PropsWithChildren<Props>> = ({
+export const KanbanItem = ({
   children,
   id,
   data,
-}) => {
+}: React.PropsWithChildren<Props>) => {
   const { attributes, listeners, setNodeRef, active } = useDraggable({
     id,
     data,

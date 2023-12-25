@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { SaveButton, useForm } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 import { GetFields, GetVariables } from "@refinedev/nestjs-query";
@@ -23,7 +21,7 @@ type Props = {
   userId: string;
 };
 
-export const AccountSettings: FC<Props> = ({ opened, setOpened, userId }) => {
+export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
   const { saveButtonProps, formProps, queryResult } = useForm<
     GetFields<UpdateUserMutation>,
     HttpError,

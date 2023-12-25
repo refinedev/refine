@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { useForm, useSelect } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 import {
@@ -25,7 +23,7 @@ type Props = {
   isLoading?: boolean;
 };
 
-export const StageForm: FC<Props> = ({ isLoading }) => {
+export const StageForm = ({ isLoading }: Props) => {
   const { formProps } = useForm<
     GetFields<UpdateTaskMutation>,
     HttpError,

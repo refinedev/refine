@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { useCustom } from "@refinedev/core";
 
 import { Col, Row } from "antd";
@@ -14,7 +12,7 @@ import {
 } from "./components";
 import { DASHBOARD_TOTAL_COUNTS_QUERY } from "./queries";
 
-export const DashboardPage: FC = () => {
+export const DashboardPage = () => {
   const { data, isLoading } = useCustom<DashboardTotalCountsQuery>({
     url: "",
     method: "get",

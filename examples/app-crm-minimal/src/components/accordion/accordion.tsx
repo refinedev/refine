@@ -1,16 +1,14 @@
-import { FC, PropsWithChildren, ReactNode } from "react";
-
 import { Text } from "@/components";
 
 import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
 
-type Props = PropsWithChildren<{
+type Props = React.PropsWithChildren<{
   accordionKey: string;
   activeKey?: string;
   setActive: (key?: string) => void;
-  fallback: string | ReactNode;
+  fallback: string | React.ReactNode;
   isLoading?: boolean;
-  icon: ReactNode;
+  icon: React.ReactNode;
   label: string;
 }>;
 
@@ -19,7 +17,7 @@ type Props = PropsWithChildren<{
  * when isLoading is true, the <AccordionHeaderSkeleton /> will be rendered
  * when Accordion is clicked, setActive will be called with the accordionKey
  */
-export const Accordion: FC<Props> = ({
+export const Accordion = ({
   accordionKey,
   activeKey,
   setActive,
@@ -28,7 +26,7 @@ export const Accordion: FC<Props> = ({
   label,
   children,
   isLoading,
-}) => {
+}: Props) => {
   if (isLoading) {
     return <AccordionHeaderSkeleton />;
   }
