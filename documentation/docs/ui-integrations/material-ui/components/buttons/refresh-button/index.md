@@ -193,4 +193,4 @@ It also accepts all props of Material UI [Button](https://mui.com/material-ui/ap
 
 :::
 
-[use-invalidate]: /docs/core/hooks/data/use-invalidate
+[use-invalidate]: /docs/data/hooks/use-invalidate

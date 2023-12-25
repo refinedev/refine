@@ -17,28 +17,28 @@ To learn more about UI Libraries and integrations, check out [UI Libraries](/doc
 
 ### Data Provider Packages:
 
-To learn more about Data Providers, check out [Data Provider](/docs/core/providers/data-provider/) docs.
+To learn more about Data Providers, check out [Data Provider](/docs/data/data-provider/) docs.
 
-- [`@refinedev/simple-rest`](/docs/packages/data-providers/simple-rest) - Connect any custom **REST API** backend.
-- [`@refinedev/graphql`](/docs/packages/data-providers/graphql) - Connect any custom **GraphQL** backend.
-- [`@refinedev/nestjsx-crud`](/docs/packages/data-providers/nestjsx-crud) - Consume **REST API**'s built with **NestJs**.
-- [`@refinedev/nestjs-query`](/docs/packages/data-providers/nestjs-query) - Consume **GraphQL API**'s built with **Nestjs-Query**.
-- [`@refinedev/strapi-v4`](/docs/packages/data-providers/strapi-v4) - [Strapi](https://strapi.io/) connector for **v4 REST API.**
-- [`@refinedev/strapi-graphql`](/docs/packages/data-providers/strapi-graphql) - [Strapi](https://strapi.io/) connector for **GraphQL API.**
-- [`@refinedev/strapi`](/docs/packages/data-providers/strapi-v4) - [Strapi](https://strapi.io/) connector for **legacy REST API.**
-- [`@refinedev/supabase`](/docs/packages/data-providers/supabase) -[Supabase](https://supabase.com/) data provider. Supports **Supabase Realtime** for **live/realtime** projects.
-- [`@refinedev/hasura`](/docs/packages/data-providers/hasura) - [Hasura GraphQL](https://hasura.io/) data provider. Supports **GraphQL Subscriptions** for **live/realtime** projects.
-- [`@refinedev/appwrite`](/docs/packages/data-providers/appwrite) - [Appwrite](https://appwrite.io/) data provider. Supports **Appwrite Realtime** for **live/realtime** projects.
-- [`@refinedev/airtable`](/docs/packages/data-providers/airtable) - Use [Airtable](https://airtable.com/) as backend service.
+- [`@refinedev/simple-rest`](/docs/data/packages/simple-rest) - Connect any custom **REST API** backend.
+- [`@refinedev/graphql`](/docs/data/packages/graphql) - Connect any custom **GraphQL** backend.
+- [`@refinedev/nestjsx-crud`](/docs/data/packages/nestjsx-crud) - Consume **REST API**'s built with **NestJs**.
+- [`@refinedev/nestjs-query`](/docs/data/packages/nestjs-query) - Consume **GraphQL API**'s built with **Nestjs-Query**.
+- [`@refinedev/strapi-v4`](/docs/data/packages/strapi-v4) - [Strapi](https://strapi.io/) connector for **v4 REST API.**
+- [`@refinedev/strapi-graphql`](/docs/data/packages/strapi-graphql) - [Strapi](https://strapi.io/) connector for **GraphQL API.**
+- [`@refinedev/strapi`](/docs/data/packages/strapi-v4) - [Strapi](https://strapi.io/) connector for **legacy REST API.**
+- [`@refinedev/supabase`](/docs/data/packages/supabase) -[Supabase](https://supabase.com/) data provider. Supports **Supabase Realtime** for **live/realtime** projects.
+- [`@refinedev/hasura`](/docs/data/packages/hasura) - [Hasura GraphQL](https://hasura.io/) data provider. Supports **GraphQL Subscriptions** for **live/realtime** projects.
+- [`@refinedev/appwrite`](/docs/data/packages/appwrite) - [Appwrite](https://appwrite.io/) data provider. Supports **Appwrite Realtime** for **live/realtime** projects.
+- [`@refinedev/airtable`](/docs/data/packages/airtable) - Use [Airtable](https://airtable.com/) as backend service.
 - `@refinedev/medusa` - [Medusa](https://medusajs.com/) connector for your e-commerce projects.
 
 ### Router Provider Packages
 
 To learn more about Router Providers, check out [Routing](/docs/guides-concepts/routing) guide.
 
-- [`@refinedev/react-router-v6`](/docs/router-integrations/react-router) - Router Provider for [React Router (v6)](https://reactrouter.com)
-- [`@refinedev/nextjs-router`](/docs/router-integrations/next-js) - Router Provider for [Next.js](https://nextjs.org/docs/api-reference/next/router#userouter)
-- [`@refinedev/remix-router`](/docs/router-integrations/remix) - Router Provider for [Remix](https://remix.run/)
+- [`@refinedev/react-router-v6`](/docs/routing/integrations/react-router) - Router Provider for [React Router (v6)](https://reactrouter.com)
+- [`@refinedev/nextjs-router`](/docs/routing/integrations/next-js) - Router Provider for [Next.js](https://nextjs.org/docs/api-reference/next/router#userouter)
+- [`@refinedev/remix-router`](/docs/routing/integrations/remix) - Router Provider for [Remix](https://remix.run/)
 - [`@refinenative/expo-router`](https://www.npmjs.com/package/@refinenative/expo-router) - Router Provider for [Expo](https://docs.expo.dev/)
 - `@pankod/refine-react-router` - Router Provider for [React Router (v5)](https://v5.reactrouter.com/)
 - `@pankod/refine-react-location` - Router Provider for [React Location](https://github.com/tannerlinsley/react-location)

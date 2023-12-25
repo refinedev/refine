@@ -219,7 +219,7 @@ It is a boolean value that indicates whether the import is in progress.
 
 ### `mutationResult`
 
-Result of the [`useCreate`](/docs/core/hooks/data/use-create) or [`useCreateMany`](/docs/core/hooks/data/use-create) method of your data provider.
+Result of the [`useCreate`](/docs/data/hooks/use-create) or [`useCreateMany`](/docs/data/hooks/use-create) method of your data provider.
 
 ## FAQ
 

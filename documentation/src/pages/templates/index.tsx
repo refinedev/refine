@@ -14,9 +14,7 @@ import {
     Mantine,
     Medusa,
     Mui,
-    Rest,
     RestWithoutText,
-    ShadCnUI,
     Strapi,
     Supabase,
 } from "@site/src/assets/integration-icons";
@@ -332,7 +330,7 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
@@ -353,7 +351,7 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
@@ -374,7 +372,7 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
@@ -478,7 +476,7 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
@@ -541,7 +539,7 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
@@ -562,7 +560,7 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
@@ -583,7 +581,7 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
@@ -604,7 +602,7 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],

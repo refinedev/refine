@@ -1,6 +1,7 @@
 ---
 id: refine-themes-mantine
-title: Mantine
+title: Refine Themes in Mantine
+sidebar_label: Refine Themes
 example-title: Mantine
 example-tags: [mantine, customization]
 ---

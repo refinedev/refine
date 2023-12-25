@@ -796,7 +796,7 @@ const UserCreate: React.FC = () => {
 | Property                               | Description                                                         | Type                                                    |
 | -------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
 | modalProps                             | Configuration object for the modal or drawer                        | [`ModalPropsType`](#modalpropstype)                     |
-| refineCoreProps                        | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/docs/core/hooks/use-form/#properties) |
+| refineCoreProps                        | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/docs/data/hooks/use-form/#properties) |
 | `@mantine/form`'s `useForm` properties | See [useForm][use-form-refine-mantine] documentation                |
 
 <br />
@@ -826,7 +826,7 @@ const UserCreate: React.FC = () => {
 | Property                                  | Description                                                     | Type                                                              |
 | ----------------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- |
 | modal                                     | Relevant states and methods to control the modal or drawer      | [`ModalReturnValues`](#modalreturnvalues)                         |
-| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values) |
+| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/data/hooks/use-form/#return-values) |
 | `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |
 | overtime                                  | Overtime loading props                                          | `{ elapsedTime?: number }`                                        |
 
@@ -848,7 +848,7 @@ const UserCreate: React.FC = () => {
 <CodeSandboxExample path="form-mantine-use-drawer-form" />
 
 [use-form-refine-mantine]: /docs/ui-integrations/mantine/hooks/use-form
-[use-form-core]: /docs/core/hooks/use-form/
+[use-form-core]: /docs/data/hooks/use-form/
 [use-modal-form-refine-mantine]: /docs/ui-integrations/mantine/hooks/use-modal-form
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

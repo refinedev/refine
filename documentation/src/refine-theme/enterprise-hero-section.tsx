@@ -1,15 +1,13 @@
 import React from "react";
 import clsx from "clsx";
-import { useColorMode } from "@docusaurus/theme-common";
 import { EnterpriseGetInTouchButton } from "./enterprise-get-in-touch-button";
+import { CommonThemedImage } from "./common-themed-image";
 
 export const EnterpriseHeroSection = ({
     className,
 }: {
     className?: string;
 }) => {
-    const { colorMode } = useColorMode();
-
     return (
         <div
             className={clsx(
@@ -85,16 +83,13 @@ export const EnterpriseHeroSection = ({
                     "mt-12 landing-sm:mt-16 landing-md:mt-0",
                 )}
             >
-                <img
+                <CommonThemedImage
                     className={clsx(
                         "landing-md:h-[360px] landing-md:w-[360px]",
                         "landing-md:h-[360px] landing-md:w-[360px]",
                     )}
-                    src={
-                        colorMode === "dark"
-                            ? `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/enterprise-hero-image-dark.png`
-                            : `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/enterprise-hero-image-light.png`
-                    }
+                    srcDark="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/enterprise-hero-image-dark.png"
+                    srcLight="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/enterprise-hero-image-light.png"
                     alt="refine enterprise image"
                 />
             </div>

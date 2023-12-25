@@ -31,7 +31,7 @@ Traditionally, a web application meant delivery of a [**web service**](https://w
 
 With the advent of the web browser and JavaScript scripting; web applications emerged to provide interactive experiences to users thanks to AJAX. [AJAX or Asynchronus JavaScript and XML](https://developer.mozilla.org/en-US/docs/Glossary/AJAX) is a group of technologies composed of JavaScript, HTML / XML, CSS, and HTTP objects equipped to communicate with a server using the HTTP / HTTPS protocol. AJAX was an effective toolbelt for developing interactive web applications responsive to data transfer.
 
-More recently, the web has been dominated by applications that offer services using resources that are accessible by **Web APIs**. Web APIs are similar to web services but are more flexible as they don't need SOAP or any WSDL description. They can output JSON objects besides HTML / XML. Most Web APIs today follow a set of flexible design principles related to representational state and transfer called **REST conventions**. Web APIs that follow REST principles are called **RESTful Web API**s. RESTful Web APIs are assigned consistently.
+More recently, the web has been dominated by applications that offer services using resources that are accessible by **Web APIs**. Web APIs are similar to web services but are more flexible as they don't need SOAP or any WSDL description. They can output JSON objects besides HTML / XML. Most Web APIs today follow a set of flexible design principles related to representational state and transfer called **REST conventions**. Web APIs that are structured / named consistently according to REST principles are called **RESTful Web API**s. Today, RESTful Web APIs make up the interfaces through which majority of web applications provide their services.
 
 ### Web Application Languages, Stacks And Frameworks
 
@@ -70,27 +70,29 @@ A general outline of steps involved in a web application development life cycle 
 
 ### Web Application Development Methodologies
 
-An application development methodology refers to a well-established system of team and activities organization that facilitates the development of an application within a set timeline and budgetary constraints following a suitable roadmap. Standard methodologies employed in web application development include **Waterfall**, **Kanban**, **Scrum**, and **Agile**. A given methodology is appropriate according to requirements, project size, and team size.
+An application development methodology refers to a well-established system that organizes a team and activities to facilitate the development of an application within a set timeline and budgetary constraints following a suitable roadmap. Standard methodologies employed in web application development include **Waterfall**, **Kanban**, **Scrum**, and **Agile**. A given methodology is appropriate according to the application requirements, project size, and team size.
 
 ## Considerations in Application Development Cycle
 
-Developers need to consider important considerations while following the steps outlined above. For example, one top goal is to achieve the best development speed and efficiency. I aim to design high-quality user experiences and highly performant, flexible UI solutions. Thirdly, to build/use robust data fetching and management mechanisms that support a wide range of backend API integrations. Implementing a state-of-the-art authentication and authorization system is crucial for securing modern web applications. It is also essential to integrate accessibility and internationalization in a web application for greater audience outreach.
+Developers need to take into account important considerations while following the steps outlined above. For example, one top goal is to achieve the best development speed and efficiency. Secondly, to design high-quality user experiences and highly performant, flexible UI solutions. Thirdly, to build/use robust data fetching and management mechanisms that support a wide range of backend API integrations. Implementing a state-of-the-art authentication and authorization system is crucial for securing modern web applications. It is also essential to integrate accessibility and internationalization in a web application for greater audience outreach.
 
-The sections below delve into recent technologies that address the above considerations.
+The sections below delve into the evolution of recent technologies that address the above considerations.
 
-Time and resources redefining/building things that are already out there.
+### Pursuing Development Speed and Efficiency
+
+While going through the planning, designing and stack selection phases, we need to keep in mind that we choose the stacks, components and libraries that give optimal development speed and efficiency. This is important because web applications have been at the heart of global communication and participation since COVID, and well-documented and battle tested solutions are already out there in the open. There are now low-code frameworks and backend API service providers like Airtable, Firebase, Supabase, Strapi and more. There are no good reasons for expending time and resources redefining / building things that are already out there.
 
 **Using Frameworks**
 
 For example, web application frameworks such as Ruby on Rails or Next.js give us the backbone for many of the features and integrations we would have to spend months working on our own. They also have design principles and conventions that enable faster learning and application development.
 
-Low-code frontend frameworks and libraries provide domain-specific solutions and often support integration with external APIs. For example, Clerk offers an advanced authentication and user management solution with a few lines of code. It also has integration support for Next.js, Gatsby, MERN, and Ruby on Rails. So, while contributing to development efficiency by reducing coding time, low code frameworks and libraries offer a range of other options, if applicable, to be used in conjunction with.
+Low-code frontend frameworks and libraries provide domain-specific solutions and often support integration with external APIs. For example, **Clerk** offers an advanced authentication and user management solution with a few lines of code. It also has integration support for Next.js, Gatsby, MERN, and Ruby on Rails. So, while contributing to development efficiency by reducing coding time, low code frameworks and libraries offer a range of integration options, if applicable, to be used in conjunction with.
 
 **Using Existing Libraries**
 
-It is best to research enough to find the correct libraries or packages for a feature and avoid reinventing the wheel. Packages that have reached an end-of-life should be avoided, and so should the ones that are poorly documented and supported. Conversely, technologies that provide loosely coupled integration and feature extension/augmentation should be experimented with and considered in the stack.
+It is best to research enough to find the correct libraries or packages for a feature and avoid reinventing the wheel. Packages that have reached end-of-life should be avoided, and so should the ones that are poorly documented and supported. Conversely, technologies that provide loosely coupled integration and feature extension/augmentation should be experimented with and considered in the stack.
 
-Carefully choosing libraries with scalability and feature extension contributes to development speed and efficiency. For example, **Yup** is an **npm** library commonly used in React forms. Its API surface best covers form field parsing and validation. It can be integrated with any React form and comes baked in with **Formik**. Since its API surface is not tightly coupled to any specific library or framework, it can also be used in **React Hook Form** forms as well as in other frameworks such as **Vue.js** and **Svelte**. In other words, loosely coupled libraries like Yup do their own set of things well and can be plugged in where needed -- saving developers time and effort.
+Carefully choosing libraries with scalability in mind and that offer feature extensions contributes to development speed and efficiency. For example, **Yup** is an **npm** library commonly used in React forms. Its API surface best covers form field parsing and validation. It can be integrated with any React form and comes baked in with **Formik**. Since its API surface is not tightly coupled to any specific library or framework, it can also be used in **React Hook Form** forms as well as in other frameworks such as **Vue.js** and **Svelte**. In other words, loosely coupled libraries like Yup do their own set of things well and can be plugged in where needed -- saving developers time and effort.
 
 ### Optimizing User Experience and Interface Design
 
@@ -112,7 +114,7 @@ For frontend React applications that consume RESTful APIs, client-side state man
 
 Data fetching makes modern RESTful APIs what they are. Until recently, server-side data fetching and state management inside frontend applications has been handled ambitiously by **Redux Thunk**, **Saga**, and similar libraries. They are now addressed by more robust libraries like **Tanstack React Query** and **Redux Toolkit (RTK) Query**. These libraries provide powerful APIs for managing data fetching, caching, request state management, and error handling.
 
-Frameworks such as Next.js and Remix allow easy integrations and management of data with backend APIs built with services like Firebase Supabase, Strapi, etc.
+Frameworks such as Next.js and Remix allow easy integrations and management of data with backend APIs built with services like Firebase, Supabase, Strapi, etc.
 
 ### Secure Applications with Authentication and Authorization
 
@@ -164,23 +166,23 @@ Refine comes with a headless core package that bakes in authentication, authoriz
 
 Refine's core uses state-of-the-art libraries and technologies under the hood: such as [**React Query**](https://tanstack.com/query/v3/docs/react/overview) for querying and data state management, [**React Hook Form**](https://react-hook-form.com/get-started) and [**Yup**](https://github.com/jquense/yup) for handling form actions, field validations and error handling in RESTful APIs. [GraphQL Query Builder](https://github.com/atulmy/gql-query-builder) and [GraphQL Request](https://github.com/jasonkuhrt/graphql-request) APIs are used for achieving the same with GraphQL APIs.
 
-Besides building on top of React Query and React Hook Form, Refine augments its APIs with adapters to interface with supplementary packages. For example, Refine's support package for React Hook Form, [`@refinedev/react-hook-form`](https://refine.dev/docs/packages/react-hook-form/introduction/#installation), is easily hooked to Ant Design and Material UI components via Refine's own adapters for them. This is possible because, on top of the core layer, Refine's core is loosely coupled and offers integration support for a wide range of frontend and backend APIs.
+Besides building on top of React Query and React Hook Form, Refine augments its APIs with adapters to interface with supplementary packages. For example, Refine's support package for React Hook Form, [`@refinedev/react-hook-form`](https://refine.dev/docs/packages/react-hook-form/introduction/#installation), is easily hooked to Ant Design and Material UI components via Refine's own adapters for them. This is possible because Refine's core is loosely coupled and -- on top of the core layer -- it offers integration support for a wide range of frontend and backend APIs.
 
 ### Refine's UX/UI Integrations
 
 Refine supports integration with Next.js and Remix applications by combining their respective router bindings and utilities with Refine's out-of-the-box.
 
-It also integrates, and augments its core set of providers, hooks, and components with packages for [**Ant Design**](https://ant.design/docs/react/introduce), [**Material UI**](https://mui.com/material-ui/getting-started/), [**Chakra UI**](https://chakra-ui.com/) and [**Mantine**](https://ui.mantine.dev/). These integrations make building complex components and user interfaces with each of these UI frameworks extremely easy. For example, complex editable tables in Refine is enabled with a few lines of code with a [`useEditableTable()`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-editable-table/) hook. Whether you prefer Ant Design, Material UI, Chakra UI, or Mantine, because Refine's adapters handle interfacing, it follows a similar logic.
+It also integrates, and augments its core set of providers, hooks, and components with packages for [**Ant Design**](https://ant.design/docs/react/introduce), [**Material UI**](https://mui.com/material-ui/getting-started/), [**Chakra UI**](https://chakra-ui.com/) and [**Mantine**](https://ui.mantine.dev/). These integrations make building complex components and user interfaces with each of these UI frameworks extremely easy. For example, in Refine, sophisticated components like editable tables is enabled with a few lines of code thanks to the [`useEditableTable()`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-editable-table/) hook. Whether you prefer Ant Design, Material UI, Chakra UI, or Mantine, because Refine's adapters handle interfacing, it follows a similar logic.
 
-Apart from these, other UI frameworks such as TailwindCSS and Bootstrap can easily be integrated into a Refine app by installing `npm` packages and their dependencies.
+Apart from these, other UI frameworks such as TailwindCSS and Bootstrap can easily be integrated into a Refine app by installing respective `npm` packages and their dependencies.
 
 ### Refine's Backend Integrations
 
-Refine's support packages for backend integrations is wildly extensive. Refine interfaces with backend services with data providers and auth providers. Refine has data provider packages for REST, Supabase, Strapi, GraphQL, Appwrite, Airtable, Nest.js, and more. Please feel free to find a comprehensive list [here](https://refine.dev/docs/packages/list-of-packages/#data-provider-packages).
+Refine's support packages for backend integrations is wildly extensive. Refine interfaces with backend services with data providers and auth providers. It has data provider packages for REST, Supabase, Strapi, GraphQL, Appwrite, Airtable, Nest.js, and more. Please feel free to find a comprehensive list [here](https://refine.dev/docs/packages/list-of-packages/#data-provider-packages).
 
 ### Refine's Auth Integrations
 
-Refine supports OTP-based authentication besides password-based ones. It also has packages for various OAuth strategies, including Google, Auth0, Keycloak, Kinde, and Auth.js.
+Refine supports OTP-based authentication besides perpetual password-based ones. It also has packages for various OAuth strategies, including Google, Auth0, Keycloak, Kinde, and Auth.js.
 
 Besides authentication, Refine also supports easy integrations with Casbin, Cerbos, and AccessControl.js with their `npm` packages.
 
@@ -192,4 +194,4 @@ Refine supports accessibility that comes with UI frameworks that it integrates w
 
 Being an open-source framework, Refine has a vibrant community of developers and contributors.
 
-Refer to fully-functional [**CRM app**](https://example.crm.refine.dev/) built with Refine to get a better idea of what's possible with Refine.
+Refer to this fully-functional [**CRM app**](https://example.crm.refine.dev/) built with Refine to get a better idea of what's possible with Refine.

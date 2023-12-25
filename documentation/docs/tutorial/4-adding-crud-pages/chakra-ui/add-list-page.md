@@ -159,7 +159,7 @@ This will pass the `resource` and `ids` to the `dataProvider`'s `getMany` funct
 
 We can then use this `data` array to display the `title` of each category in the table.
 
-> For more information, refer to the [`useMany` documentation&#8594](/docs/core/hooks/data/use-many)
+> For more information, refer to the [`useMany` documentation&#8594](/docs/data/hooks/use-many)
 
 ## Adding the List Page to the App
 
