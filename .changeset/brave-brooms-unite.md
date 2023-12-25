@@ -34,7 +34,7 @@ const PRODUCTS_QUERY = gql`
   }
 `;
 
-const { data } = useList({ resource: "products", meta: gqlQuery: PRODUCTS_QUERY });
+const { data } = useList({ resource: "products", meta: { gqlQuery: PRODUCTS_QUERY } });
 ```
 
 Mutation Example:
@@ -52,5 +52,5 @@ const CREATE_PRODUCT_MUTATION = gql`
   }
 `;
 
-const { formProps } = useForm({ resource: "products", meta: gqlMutation: CREATE_PRODUCT_MUTATION });
+const { formProps } = useForm({ resource: "products", meta: { gqlMutation: CREATE_PRODUCT_MUTATION } });
 ```
