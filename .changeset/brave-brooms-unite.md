@@ -34,14 +34,17 @@ const PRODUCTS_QUERY = gql`
   }
 `;
 
-const { data } = useList({ resource: "products", meta: { gqlQuery: PRODUCTS_QUERY } });
+const { data } = useList({
+  resource: "products",
+  meta: { gqlQuery: PRODUCTS_QUERY },
+});
 ```
 
 Mutation Example:
 
 ```tsx
-import {useForm} from '@refinedev/core';
-import gql from 'graphql-tag';
+import { useForm } from "@refinedev/core";
+import gql from "graphql-tag";
 
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CreateProduct($input: CreateProductInput!) {
@@ -52,5 +55,8 @@ const CREATE_PRODUCT_MUTATION = gql`
   }
 `;
 
-const { formProps } = useForm({ resource: "products", meta: { gqlMutation: CREATE_PRODUCT_MUTATION } });
+const { formProps } = useForm({
+  resource: "products",
+  meta: { gqlMutation: CREATE_PRODUCT_MUTATION },
+});
 ```
