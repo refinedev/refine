@@ -5,12 +5,17 @@ import { useNavigation } from "@refinedev/core";
 
 import { Form, Input, Modal } from "antd";
 
+import { CREATE_TASK_MUTATION } from "./queries";
+
 export const TasksCreatePage = () => {
   const [searchParams] = useSearchParams();
   const { list } = useNavigation();
   const { formProps, modalProps, close } = useModalForm({
     action: "create",
     defaultVisible: true,
+    meta: {
+      gqlMutation: CREATE_TASK_MUTATION,
+    },
   });
 
   return (

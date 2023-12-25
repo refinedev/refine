@@ -184,6 +184,16 @@ export type DashboardTotalCountsQuery = {
   deals: Pick<Types.DealConnection, "totalCount">;
 };
 
+export type CreateTaskMutationVariables = Types.Exact<{
+  input: Types.CreateOneTaskInput;
+}>;
+
+export type CreateTaskMutation = {
+  createOneTask: Pick<Types.Task, "id" | "title"> & {
+    stage?: Types.Maybe<Pick<Types.TaskStage, "id" | "title">>;
+  };
+};
+
 export type UpdateTaskMutationVariables = Types.Exact<{
   input: Types.UpdateOneTaskInput;
 }>;
