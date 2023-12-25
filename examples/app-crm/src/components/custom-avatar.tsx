@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { FC, memo } from "react";
 
 import type { AvatarProps } from "antd";
 import { Avatar as AntdAvatar } from "antd";
@@ -9,7 +9,7 @@ type Props = AvatarProps & {
     name?: string;
 };
 
-const CustomAvatarComponent = ({ name = "", style, ...rest }: Props) => {
+const CustomAvatarComponent: FC<Props> = ({ name = "", style, ...rest }) => {
     return (
         <AntdAvatar
             alt={name}

@@ -32,7 +32,7 @@ import {
 } from "antd";
 
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
-import { Company, Contact, ContactCreateInput } from "@/interfaces";
+import { Company, Contact, ContactCreateInput } from "@/graphql/schema.types";
 
 type Props = {
     style?: React.CSSProperties;

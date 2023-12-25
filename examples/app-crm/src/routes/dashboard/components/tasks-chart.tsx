@@ -5,9 +5,9 @@ import { useList, useNavigation } from "@refinedev/core";
 import { ProjectOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { PieConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
-import { TaskStage } from "interfaces/graphql";
 
 import { Text } from "@/components";
+import { TaskStage } from "@/graphql/schema.types";
 
 const Pie = lazy(() => import("@ant-design/plots/es/components/pie"));
 

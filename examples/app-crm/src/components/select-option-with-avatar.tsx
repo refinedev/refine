@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { Space } from "antd";
 
 import { CustomAvatar } from "./custom-avatar";
@@ -9,7 +11,11 @@ type Props = {
     shape?: "circle" | "square";
 };
 
-export const SelectOptionWithAvatar = ({ avatarUrl, name, shape }: Props) => {
+export const SelectOptionWithAvatar: FC<Props> = ({
+    avatarUrl,
+    name,
+    shape,
+}) => {
     return (
         <Space>
             <CustomAvatar shape={shape} name={name} src={avatarUrl} />
