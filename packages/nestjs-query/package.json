@@ -1,7 +1,7 @@
 {
   "name": "@refinedev/nestjs-query",
   "description": "refine NestJS Query data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -23,7 +23,7 @@
   "module": "dist/esm/index.js",
   "devDependencies": {
     "@refinedev/cli": "^2.16.20",
-    "@refinedev/core": "^4.46.0",
+    "@refinedev/core": "^4.46.1",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/pluralize": "^0.0.29",
     "@types/jest": "^29.2.4",
