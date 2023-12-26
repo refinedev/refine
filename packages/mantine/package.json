@@ -15,7 +15,7 @@
   },
   "peerDependencies": {
     "@refinedev/cli": "^2.0.0",
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^4.40.0",
     "@emotion/react": "^11.8.2",
     "@mantine/core": "^5.10.4",
     "@mantine/hooks": "^5.10.4",
@@ -30,7 +30,7 @@
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@refinedev/cli": "^2.16.20",
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^4.46.0",
     "@refinedev/ui-tests": "^1.14.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",

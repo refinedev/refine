@@ -21,7 +21,7 @@
     "prepare": "npm run build"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^4.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",
@@ -31,7 +31,7 @@
   "module": "dist/esm/index.js",
   "devDependencies": {
     "@refinedev/cli": "^2.16.20",
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^4.46.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/qs": "^6.9.7",
     "@types/jest": "^29.2.4",
