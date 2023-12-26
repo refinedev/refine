@@ -46,7 +46,7 @@
     "graphql-ws": "^5.9.1"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.0.0",
+    "@refinedev/core": "^4.46.1",
     "graphql-request": "^5.2.0",
     "gql-query-builder": "^3.5.5",
     "graphql-ws": "^5.9.1",
