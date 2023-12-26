@@ -6,7 +6,7 @@
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@refinedev/cli": "^2.16.20",
-    "@refinedev/core": "^4.46.0",
+    "@refinedev/core": "^4.46.1",
     "@refinedev/inferencer": "^4.5.15",
     "@refinedev/kbar": "^1.3.4",
     "@refinedev/react-hook-form": "^4.8.12",
