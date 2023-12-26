@@ -13,7 +13,7 @@ const BUILD_ALL_EXAMPLES = process.env.BUILD_ALL_EXAMPLES === "true";
 const getChangedPackages = () => {
     const p = require.resolve("lerna/cli.js");
 
-    const output = execSync(`node ${p} ls --since origin/${BASE_REF} --json`, {
+    const output = execSync(`node ${p} ls --since ${BASE_REF} --json`, {
         stdio: "pipe",
     });
 
@@ -24,6 +24,10 @@ const getChangedPackages = () => {
 
 const isExampleAffected = (example, changedPackages) => {
     const examplePath = path.join(EXAMPLES_DIR, example);
+
+    if (changedPackages.length === 0) {
+        return false;
+    }
 
     const pkgJson = JSON.parse(
         fs.readFileSync(path.join(examplePath, "package.json")),

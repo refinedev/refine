@@ -55,7 +55,10 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: '0'
+
+      - name: Fetch base branch
+        run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
 
       # run npm ci
       - name: Use Node.js ${{ matrix.node-version }}
