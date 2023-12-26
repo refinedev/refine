@@ -62,6 +62,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
+      - name: Install Dependencies
+        run: npm ci
+
       - name: log event name
         run: echo ${{ github.event_name }}
 
