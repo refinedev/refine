@@ -11,9 +11,7 @@ import routerProvider, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 
-import { ConfigProvider, App as AntdApp } from "antd";
-
-import "./utilities/init-dayjs";
+import { App as AntdApp,ConfigProvider } from "antd";
 
 import { resources, themeConfig } from "@/config";
 import {
@@ -25,6 +23,7 @@ import {
 } from "@/providers";
 
 import { FullScreenLoading, Layout } from "./components";
+import { useAutoLoginForDemo } from "./hooks";
 import { AuditLogPage, SettingsPage } from "./routes/administration";
 import {
     CalendarCreatePage,
@@ -68,8 +67,8 @@ import {
     SalesPage,
 } from "./routes/scrumboard/sales";
 import { UpdatePasswordPage } from "./routes/update-password";
-import { useAutoLoginForDemo } from "./hooks";
 
+import "./utilities/init-dayjs";
 import "@refinedev/antd/dist/reset.css";
 import "./styles/antd.css";
 import "./styles/fc.css";

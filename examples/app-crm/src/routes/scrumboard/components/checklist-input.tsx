@@ -1,6 +1,6 @@
 import { Checkbox, Input } from "antd";
 
-import { CheckListItem } from "@/interfaces";
+import { CheckListItem } from "@/graphql/schema.types";
 
 type Props = {
     value?: CheckListItem;

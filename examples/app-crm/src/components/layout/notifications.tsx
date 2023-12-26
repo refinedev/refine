@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 
 import { useList, useMany } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { BellOutlined } from "@ant-design/icons";
 import { Badge, Button, Divider, Popover, Space, Spin } from "antd";
 import dayjs from "dayjs";
 
-import { Audit, Deal } from "@/interfaces";
+import { NotificationsDealsQuery, NotificationsQuery } from "@/graphql/types";
 
 import { CustomAvatar } from "../custom-avatar";
 import { Text } from "../text";
 import { NotificationMessage } from "./notification-message";
+import { NOTIFICATIONS_DEALS_QUERY, NOTIFICATIONS_QUERY } from "./queries";
 
 export const Notifications: React.FC = () => {
     const [open, setOpen] = useState(false);
 
-    const { data, isLoading } = useList<Audit>({
+    const { data, isLoading } = useList<GetFieldsFromList<NotificationsQuery>>({
         resource: "audits",
         pagination: {
             pageSize: 5,
@@ -34,16 +36,7 @@ export const Notifications: React.FC = () => {
             },
         ],
         meta: {
-            fields: [
-                "id",
-                "action",
-                "targetEntity",
-                "targetId",
-                "createdAt",
-                {
-                    user: ["id", "name", "avatarUrl"],
-                },
-            ],
+            gqlQuery: NOTIFICATIONS_QUERY,
         },
         queryOptions: {
             enabled: open,
@@ -51,18 +44,13 @@ export const Notifications: React.FC = () => {
     });
 
     const targetIds = data?.data?.map((audit) => audit.targetId);
-    const { data: dealData } = useMany<Deal>({
+    const { data: dealData } = useMany<
+        GetFieldsFromList<NotificationsDealsQuery>
+    >({
         resource: "deals",
         ids: targetIds ?? [],
         meta: {
-            fields: [
-                "id",
-                "title",
-                { stage: ["id", "title"] },
-                {
-                    company: ["id", "name", "avatarUrl"],
-                },
-            ],
+            gqlQuery: NOTIFICATIONS_DEALS_QUERY,
         },
         queryOptions: {
             enabled: Boolean(targetIds?.length),

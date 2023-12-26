@@ -45,7 +45,7 @@ const ShowPage = () => {
 };
 ```
 
-`<ShowButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `show` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
+`<ShowButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `show` method from [`useNavigation`](/docs/routing/hooks/use-navigation) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 :::simple Good to know
 
@@ -197,7 +197,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `show` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
 
 ### `resource`
 
@@ -240,7 +240,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `show` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
@@ -248,7 +248,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### `meta`
 
-It is used to pass additional parameters to the `show` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation). By default, existing parameters in the route are used by the `show` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+It is used to pass additional parameters to the `show` method of [`useNavigation`](/docs/routing/hooks/use-navigation). By default, existing parameters in the route are used by the `show` method. You can pass additional parameters or override the existing ones using the `meta` prop.
 
 If the `show` action route is defined by the pattern: `/posts/:authorId/show/:id`, the `meta` prop can be used as follows:
 
@@ -298,7 +298,7 @@ render(
 
 ### `accessControl`
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/core/providers/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
 
 ```tsx
 import { ShowButton } from "@refinedev/mantine";

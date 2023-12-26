@@ -16,7 +16,7 @@ We will make a Cake House application using **Refine** and [Strapi-v4](https://d
 
 :::caution
 
-This guide has been prepared to assume you know the basics of **Refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
+This guide has been prepared to assume you know the basics of **Refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](/docs/tutorial/introduction/index/).
 
 :::
 
@@ -304,7 +304,7 @@ const App: React.FC = () => {
 
 ## Using the `tenant` at the other components
 
-You may want to get the `tenant` within the project. This is easily get with the [`useParsed`](/docs/core/hooks/navigation/use-parsed) hook.
+You may want to get the `tenant` within the project. This is easily get with the [`useParsed`](/docs/routing/hooks/use-parsed) hook.
 
 ```tsx
 import { useParsed } from "@refinedev/core";

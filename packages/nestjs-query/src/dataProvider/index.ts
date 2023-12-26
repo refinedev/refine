@@ -1,50 +1,15 @@
-import {
-    BaseKey,
-    BaseRecord,
-    DataProvider,
-    GetManyResponse,
-    LogicalFilter,
-    MetaQuery,
-} from "@refinedev/core";
+import { BaseRecord, DataProvider, LogicalFilter } from "@refinedev/core";
+
 import camelcase from "camelcase";
 import * as gql from "gql-query-builder";
 import VariableOptions from "gql-query-builder/build/VariableOptions";
 import { GraphQLClient } from "graphql-request";
+import gqlTag from "graphql-tag";
 import { singular } from "pluralize";
-import { generatePaging, generateFilters, generateSorting } from "../utils";
 
-const handleGetMany = async <TData>(
-    client: GraphQLClient,
-    {
-        resource,
-        ids,
-        meta,
-    }: { resource: string; ids: BaseKey[]; meta?: MetaQuery },
-): Promise<GetManyResponse<TData>> => {
-    const operation = camelcase(resource);
+import { generateFilters, generatePaging, generateSorting } from "../utils";
 
-    const { query, variables } = gql.query({
-        operation,
-        fields: [{ nodes: meta?.fields || ["id"] }],
-        variables: {
-            filter: {
-                type: camelcase(`${singular(resource)}Filter`, {
-                    pascalCase: true,
-                }),
-                required: true,
-                value: {
-                    id: { in: ids },
-                },
-            },
-        },
-    });
-
-    const response = await client.request<BaseRecord>(query, variables);
-
-    return {
-        data: response[operation].nodes,
-    };
-};
+import { getOperationFields, isMutation } from "../utils/graphql";
 
 const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
     return {
@@ -55,40 +20,58 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
             const queryVariables: VariableOptions = {};
 
-            if (filters) {
-                queryVariables["filter"] = {
-                    type: camelcase(`${singular(resource)}Filter`, {
-                        pascalCase: true,
-                    }),
-                    required: true,
-                    value: generateFilters(filters as LogicalFilter[]),
-                };
-            }
+            let query;
+            let variables;
 
-            if (sorters) {
-                queryVariables["sorting"] = {
-                    type: camelcase(`${singular(resource)}Sort`, {
-                        pascalCase: true,
-                    }),
-                    required: true,
-                    list: [true],
-                    value: generateSorting(sorters),
-                };
-            }
+            if (meta?.gqlQuery) {
+                query = meta?.gqlQuery;
 
-            if (paging) {
-                queryVariables["paging"] = {
-                    type: "OffsetPaging",
-                    required: true,
-                    value: paging,
+                variables = {
+                    filter: filters
+                        ? generateFilters(filters as LogicalFilter[])
+                        : {},
+                    sorting: sorters ? generateSorting(sorters) : [],
+                    paging,
                 };
-            }
+            } else {
+                if (filters) {
+                    queryVariables["filter"] = {
+                        type: camelcase(`${singular(resource)}Filter`, {
+                            pascalCase: true,
+                        }),
+                        required: true,
+                        value: generateFilters(filters as LogicalFilter[]),
+                    };
+                }
 
-            const { query, variables } = gql.query({
-                operation,
-                fields: [{ nodes: meta?.fields }, "totalCount"],
-                variables: queryVariables,
-            });
+                if (sorters) {
+                    queryVariables["sorting"] = {
+                        type: camelcase(`${singular(resource)}Sort`, {
+                            pascalCase: true,
+                        }),
+                        required: true,
+                        list: [true],
+                        value: generateSorting(sorters),
+                    };
+                }
+
+                if (paging) {
+                    queryVariables["paging"] = {
+                        type: "OffsetPaging",
+                        required: true,
+                        value: paging,
+                    };
+                }
+
+                const gqlQuery = gql.query({
+                    operation,
+                    fields: [{ nodes: meta?.fields }, "totalCount"],
+                    variables: queryVariables,
+                });
+
+                query = gqlQuery.query;
+                variables = gqlQuery.variables;
+            }
 
             const response = await client.request<BaseRecord>(query, variables);
 
@@ -99,13 +82,63 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         },
 
         getMany: async ({ resource, ids, meta }) => {
-            return await handleGetMany(client, { resource, ids, meta });
+            const operation = camelcase(resource);
+
+            if (meta?.gqlQuery) {
+                const response = await client.request<BaseRecord>(
+                    meta.gqlQuery,
+                    {
+                        filter: {
+                            id: { in: ids },
+                        },
+                    },
+                );
+
+                return {
+                    data: response[operation].nodes,
+                };
+            }
+
+            const { query, variables } = gql.query({
+                operation,
+                fields: [{ nodes: meta?.fields || ["id"] }],
+                variables: {
+                    filter: {
+                        type: camelcase(`${singular(resource)}Filter`, {
+                            pascalCase: true,
+                        }),
+                        required: true,
+                        value: {
+                            id: { in: ids },
+                        },
+                    },
+                },
+            });
+
+            const response = await client.request<BaseRecord>(query, variables);
+
+            return {
+                data: response[operation].nodes,
+            };
         },
 
         create: async ({ resource, variables, meta }) => {
             const operation = `createOne${camelcase(singular(resource), {
                 pascalCase: true,
             })}`;
+
+            const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+            if (gqlOperation) {
+                const response = await client.request<BaseRecord>(
+                    gqlOperation,
+                    { input: { [camelcase(singular(resource))]: variables } },
+                );
+
+                return {
+                    data: response[operation],
+                };
+            }
 
             const { query, variables: queryVariables } = gql.mutation({
                 operation,
@@ -134,9 +167,25 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         },
 
         createMany: async ({ resource, variables, meta }) => {
-            const operation = `createMany${camelcase(resource, {
-                pascalCase: true,
-            })}`;
+            const pascalResource = camelcase(resource, { pascalCase: true });
+            const operation = `createMany${pascalResource}`;
+
+            const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+            if (gqlOperation) {
+                const response = await client.request<BaseRecord>(
+                    gqlOperation,
+                    {
+                        input: {
+                            [camelcase(resource)]: variables,
+                        },
+                    },
+                );
+
+                return {
+                    data: response[operation],
+                };
+            }
 
             const { query, variables: queryVariables } = gql.mutation({
                 operation,
@@ -168,6 +217,24 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 pascalCase: true,
             })}`;
 
+            const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+            if (gqlOperation) {
+                const response = await client.request<BaseRecord>(
+                    gqlOperation,
+                    {
+                        input: {
+                            id,
+                            update: variables,
+                        },
+                    },
+                );
+
+                return {
+                    data: response[operation],
+                };
+            }
+
             const { query, variables: queryVariables } = gql.mutation({
                 operation,
                 fields: meta?.fields || ["id"],
@@ -194,37 +261,106 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 data: response[operation],
             };
         },
-
         updateMany: async ({ resource, ids, variables, meta }) => {
-            const operation = `updateMany${camelcase(resource, {
+            const pascalResource = camelcase(resource, {
                 pascalCase: true,
-            })}`;
-
-            const { query, variables: queryVariables } = gql.mutation({
-                operation,
-                fields: ["updatedCount"],
-                variables: {
-                    input: {
-                        type: `UpdateMany${camelcase(resource, {
-                            pascalCase: true,
-                        })}Input`,
-                        required: true,
-                        value: {
-                            filter: {
-                                id: { in: ids },
-                            },
-                            update: variables,
-                        },
-                    },
-                },
             });
 
-            await client.request<BaseRecord>(query, queryVariables);
+            const mutationOperation = `updateMany${pascalResource}`;
 
-            return await handleGetMany(client, { resource, ids, meta });
+            const mutation = gqlTag`
+                mutation UpdateMany${pascalResource}($input: UpdateMany${pascalResource}Input!) {
+                    ${mutationOperation}(input: $input) {
+                        updatedCount
+                    }
+                }
+            `;
+
+            await client.request<BaseRecord>(mutation, {
+                input: { filter: { id: { in: ids } }, update: variables },
+            });
+
+            const operation = camelcase(resource);
+
+            let query, queryVariables;
+
+            if (meta?.fields) {
+                const gqlQuery = gql.query({
+                    operation,
+                    fields: [{ nodes: meta?.fields || ["id"] }],
+                    variables: {
+                        filter: {
+                            type: camelcase(`${singular(resource)}Filter`, {
+                                pascalCase: true,
+                            }),
+                            required: true,
+                            value: {
+                                id: { in: ids },
+                            },
+                        },
+                    },
+                });
+                query = gqlQuery.query;
+                queryVariables = gqlQuery.variables;
+            } else {
+                query = gqlTag`
+                    query GetMany${pascalResource}($filter: ${singular(
+                    pascalResource,
+                )}Filter!) {
+                        ${operation}(filter: $filter) {
+                            nodes {
+                                id
+                            }
+                        }
+                    }
+                `;
+
+                queryVariables = {
+                    filter: { id: { in: ids } },
+                };
+            }
+
+            const response = await client.request<BaseRecord>(
+                query,
+                queryVariables,
+            );
+
+            return {
+                data: response[operation].nodes,
+            };
         },
         getOne: async ({ resource, id, meta }) => {
             const operation = camelcase(singular(resource));
+
+            const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
+
+            if (gqlOperation) {
+                let query = gqlOperation;
+                const variables = { id };
+
+                if (isMutation(gqlOperation)) {
+                    const stringFields = getOperationFields(gqlOperation);
+
+                    query = gqlTag`
+                        query Get${camelcase(singular(resource), {
+                            pascalCase: true,
+                        })}($id: ID!) {
+                            ${operation}(id: $id) {
+                            ${stringFields}
+                            }
+                        }
+                    `;
+                }
+
+                const response = await client.request<BaseRecord>(
+                    query,
+                    variables,
+                );
+
+                return {
+                    data: response[operation],
+                };
+            }
 
             const { query, variables } = gql.query({
                 operation,
@@ -245,54 +381,60 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
         deleteOne: async ({ resource, id, meta }) => {
-            const operation = `deleteOne${camelcase(singular(resource), {
+            const pascalResource = camelcase(singular(resource), {
                 pascalCase: true,
-            })}`;
-
-            const { query, variables } = gql.mutation({
-                operation,
-                fields: meta?.fields || ["id"],
-                variables: {
-                    input: {
-                        type: `DeleteOne${camelcase(singular(resource), {
-                            pascalCase: true,
-                        })}Input`,
-                        required: true,
-                        value: {
-                            id,
-                        },
-                    },
-                },
             });
 
-            const response = await client.request<BaseRecord>(query, variables);
+            const operation = `deleteOne${pascalResource}`;
+
+            if (meta?.gqlMutation) {
+                const response = await client.request<BaseRecord>(
+                    meta.gqlMutation,
+                    { input: { id } },
+                );
+
+                return {
+                    data: response[operation],
+                };
+            }
+
+            const query = gqlTag`
+                    mutation DeleteOne${pascalResource}($input: DeleteOne${pascalResource}Input!) {
+                        ${operation}(input: $input) {
+                            id
+                        }
+                    }
+                `;
+
+            const response = await client.request<BaseRecord>(query, {
+                input: { id },
+            });
 
             return {
                 data: response[operation],
             };
         },
-        deleteMany: async ({ resource, ids, meta }) => {
-            const operation = `deleteMany${camelcase(resource, {
+        deleteMany: async ({ resource, ids }) => {
+            const pascalResource = camelcase(resource, {
                 pascalCase: true,
-            })}`;
+            });
+            const operation = `deleteMany${pascalResource}`;
 
-            const { query, variables } = gql.mutation({
-                operation,
-                fields: ["deletedCount"],
-                variables: {
-                    input: {
-                        type: `DeleteMany${camelcase(resource, {
-                            pascalCase: true,
-                        })}Input`,
-                        required: true,
-                        value: {
-                            filter: {
-                                id: { in: ids },
-                            },
-                        },
+            const query = gqlTag`
+                mutation DeleteMany${pascalResource}($input: DeleteMany${pascalResource}Input!) {
+                    ${operation}(input: $input) {
+                        deletedCount
+                    }
+                }
+            `;
+
+            const variables = {
+                input: {
+                    filter: {
+                        id: { in: ids },
                     },
                 },
-            });
+            };
 
             await client.request<BaseRecord>(query, variables);
 
@@ -309,7 +451,21 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             if (url) {
                 client.setEndpoint(url);
             }
-            client.setHeaders(headers);
+
+            if (headers) {
+                client.setHeaders(headers);
+            }
+
+            const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+            if (gqlOperation) {
+                const response: any = await client.request(
+                    gqlOperation,
+                    meta?.variables ?? {},
+                );
+
+                return { data: response };
+            }
 
             if (meta?.rawQuery) {
                 const response = await client.request<BaseRecord>(
@@ -322,37 +478,36 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
             if (meta) {
                 if (meta.operation) {
+                    let query, variables;
+
                     if (method === "get") {
-                        const { query, variables } = gql.query({
+                        const gqlQuery = gql.query({
                             operation: meta.operation,
                             fields: meta.fields,
                             variables: meta.variables,
                         });
 
-                        const response = await client.request<BaseRecord>(
-                            query,
-                            variables,
-                        );
-
-                        return {
-                            data: response[meta.operation],
-                        };
+                        query = gqlQuery.query;
+                        variables = gqlQuery.variables;
                     } else {
-                        const { query, variables } = gql.mutation({
+                        const gqlMutation = gql.mutation({
                             operation: meta.operation,
                             fields: meta.fields,
                             variables: meta.variables,
                         });
 
-                        const response = await client.request<BaseRecord>(
-                            query,
-                            variables,
-                        );
-
-                        return {
-                            data: response[meta.operation],
-                        };
+                        query = gqlMutation.query;
+                        variables = gqlMutation.variables;
                     }
+
+                    const response = await client.request<BaseRecord>(
+                        query,
+                        variables,
+                    );
+
+                    return {
+                        data: response[meta.operation],
+                    };
                 } else {
                     throw Error("GraphQL operation name required.");
                 }

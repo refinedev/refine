@@ -1,6 +1,7 @@
 ---
 id: basic
-title: Basic
+title: Tables with Chakra UI
+sidebar_label: Basic Table
 example-title: Basic React Table with Chakra UI
 example-tags: [table, chakra-ui, react-table]
 ---

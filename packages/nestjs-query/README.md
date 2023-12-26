@@ -9,11 +9,11 @@
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
     <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/examples/">Examples</a> | 
-    <a href="https://refine.dev/blog/">Blog</a> | 
+    <a href="https://refine.dev/examples/">Examples</a> |
+    <a href="https://refine.dev/blog/">Blog</a> |
     <a href="https://refine.dev/docs/">Documentation</a>
 
-<br/>   
+<br/>
 <br/>
 
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
@@ -35,7 +35,7 @@ It eliminates repetitive tasks in CRUD operations and provides industry-standard
 
 # NestJS Query data provider integration for refine
 
-[NestJS](https://nestjs.com/) is a progressive Node.js framework for building efficient, reliable and scalable server-side applications.
+[Nestjs-query](https://doug-martin.github.io/nestjs-query/docs)
 
 [refine](https://refine.dev/) is **headless by design**, offering unlimited styling and customization options. Moreover, refine ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
 
@@ -44,7 +44,7 @@ refine has connectors for 15+ backend services, including REST API, [GraphQL](ht
 ## Installation & Usage
 
 ```
-npm install @refinedev/nestjs-query graphql-ws
+npm install @refinedev/nestjs-query graphql-tag graphql-ws
 ```
 
 ```tsx

@@ -1,15 +1,9 @@
 import dataProvider from "./dataProvider";
-export default dataProvider;
 
+export * from "./dataProvider";
+export * from "./interfaces";
+export * from "./liveProvider";
 export * as qqlQueryBuilder from "gql-query-builder";
-export {
-    batchRequests,
-    gql,
-    GraphQLClient,
-    rawRequest,
-    request,
-    resolveRequestDocument,
-} from "graphql-request";
 export type {
     BatchRequestDocument,
     BatchRequestsExtendedOptions,
@@ -23,6 +17,14 @@ export type {
     RequestOptions,
     Variables,
 } from "graphql-request";
+export {
+    batchRequests,
+    gql,
+    GraphQLClient,
+    rawRequest,
+    request,
+    resolveRequestDocument,
+} from "graphql-request";
 export * as graphqlWS from "graphql-ws";
-export * from "./dataProvider";
-export * from "./liveProvider";
+
+export default dataProvider;

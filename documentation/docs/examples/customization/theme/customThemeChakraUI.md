@@ -1,6 +1,7 @@
 ---
 id: customThemeChakraUI
-title: Custom Theme Chakra UI
+title: Custom Theme in Chakra UI
+sidebar_label: Custom Theme
 example-title: Custom Theme Chakra UI
 example-tags: [chakra-ui, customization]
 ---

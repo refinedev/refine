@@ -230,4 +230,4 @@ Use `resource` prop instead.
 
 <PropsTable module="@refinedev/chakra-ui/RefreshButton" />
 
-[use-invalidate]: /docs/core/hooks/data/use-invalidate
+[use-invalidate]: /docs/data/hooks/use-invalidate

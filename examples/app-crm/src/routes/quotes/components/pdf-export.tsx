@@ -15,7 +15,7 @@ import {
 } from "@react-pdf/renderer";
 import { Button, Modal } from "antd";
 
-import { Quote } from "@/interfaces";
+import { Quote } from "@/graphql/schema.types";
 import { currencyNumber } from "@/utilities";
 
 const PdfExport = () => {

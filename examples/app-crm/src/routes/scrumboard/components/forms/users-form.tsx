@@ -3,7 +3,7 @@ import { HttpError } from "@refinedev/core";
 
 import { Button, Form, Select, Space } from "antd";
 
-import { Task } from "@/interfaces";
+import { Task } from "@/graphql/schema.types";
 
 type Props = {
     initialValues: {

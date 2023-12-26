@@ -84,7 +84,7 @@ import authProvider from "./authProvider";
 
 The above snippet lists a few of the props and their objects.
 
-However, rather than precisely being a component, `<Refine />` is largely a monolith of provider configurations backed by a context for each. Hence, inside [`dataProvider`](http://localhost:3000/docs/api-reference/core/providers/data-provider/), we have a standard set of methods for making API requests; inside [`authProvider`](http://localhost:3000/docs/api-reference/core/providers/auth-provider/), we have methods for dealing with authentication and authorization; inside [`routerProvider`](http://localhost:3000/docs/api-reference/core/providers/router-provider/), we have _exact_ definitions of routes and the components to render for that route, etc. And each provider comes with its own set of conventions and type definitions.
+However, rather than precisely being a component, `<Refine />` is largely a monolith of provider configurations backed by a context for each. Hence, inside [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/), we have a standard set of methods for making API requests; inside [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/), we have methods for dealing with authentication and authorization; inside [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/), we have _exact_ definitions of routes and the components to render for that route, etc. And each provider comes with its own set of conventions and type definitions.
 
 For example, a `dataProvider` object has the following signature to which any definition of a data provider conform:
 

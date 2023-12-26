@@ -479,7 +479,7 @@ If you still want to use the `useNavigation` hook and its returned functions in 
 
 ### `useRouterContext` hook
 
-This hook is now deprecated and will only work with the legacy router provider. While it was primarily used internally, you might have used it if you had a custom `<Sider>` component in your layout. If this is the case, you should replace it with the appropriate replacement hooks based on your use case: [`useGo`](/docs/core/hooks/navigation/use-go), [`useParsed`](/docs/core/hooks/navigation/use-parsed), [`useBack`](/docs/core/hooks/navigation/use-back) or [`useLink`](/docs/core/hooks/navigation/use-link).
+This hook is now deprecated and will only work with the legacy router provider. While it was primarily used internally, you might have used it if you had a custom `<Sider>` component in your layout. If this is the case, you should replace it with the appropriate replacement hooks based on your use case: [`useGo`](/docs/routing/hooks/use-go), [`useParsed`](/docs/routing/hooks/use-parsed), [`useBack`](/docs/routing/hooks/use-back) or [`useLink`](/docs/routing/hooks/use-link).
 
 ```diff
 + import { useRouterContext } from "@pankod/refine-core";
@@ -1475,5 +1475,5 @@ After that, you can import them from `react-hook-form` package directly.
 [refine-codemod]: https://github.com/refinedev/refine/tree/master/packages/codemod
 [Refine]: /docs/core/refine-component
 [resources]: /docs/core/refine-component#resources
-[routerprovider]: /docs/core/providers/router-provider
-[auth-provider]: /docs/core/providers/auth-provider
+[routerprovider]: /docs/routing/router-provider
+[auth-provider]: /docs/authentication/auth-provider
