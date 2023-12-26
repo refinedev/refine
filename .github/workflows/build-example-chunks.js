@@ -21,7 +21,7 @@ const getChangedPackages = () => {
     return changedPackages.map((pkg) => pkg.name);
 };
 
-const isExampleChanged = (example, changedPackages) => {
+const isExampleAffected = (example, changedPackages) => {
     const examplePath = path.join(EXAMPLES_DIR, example);
 
     const pkgJson = JSON.parse(
@@ -36,6 +36,15 @@ const isExampleChanged = (example, changedPackages) => {
     return allDependencies.some((dependency) => {
         return changedPackages.includes(dependency);
     });
+};
+
+const isExampleModified = (example) => {
+    const output = execSync(
+        `git diff --quiet HEAD ${BASE_REF} -- ${EXAMPLES_DIR}/${example} || echo changed`,
+        { stdio: "pipe" },
+    );
+
+    return output.toString().includes("changed");
 };
 
 const hasPackageJson = (example) => {
@@ -67,8 +76,8 @@ const getExamples = () => {
 //
 const changedPackages = getChangedPackages();
 
-const examples = getExamples().filter((dir) =>
-    isExampleChanged(dir, changedPackages),
+const examples = getExamples().filter(
+    (dir) => isExampleAffected(dir, changedPackages) || isExampleModified(dir),
 );
 
 console.log(
