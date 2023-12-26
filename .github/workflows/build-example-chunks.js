@@ -13,7 +13,7 @@ const BUILD_ALL_EXAMPLES = process.env.BUILD_ALL_EXAMPLES === "true";
 const getChangedPackages = () => {
     const p = require.resolve("lerna/cli.js");
 
-    const output = execSync(`node ${p} ls --since ${BASE_REF} --json`, {
+    const output = execSync(`node ${p} ls --since origin/master --json`, {
         stdio: "pipe",
     });
 
@@ -45,7 +45,7 @@ const isExampleAffected = (example, changedPackages) => {
 
 const isExampleModified = (example) => {
     const output = execSync(
-        `git diff --quiet HEAD ${BASE_REF} -- ${EXAMPLES_DIR}/${example} || echo changed`,
+        `git diff --quiet HEAD origin/master -- ${EXAMPLES_DIR}/${example} || echo changed`,
         { stdio: "pipe" },
     );
 
