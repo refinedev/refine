@@ -45,7 +45,7 @@ const isExampleAffected = (example, changedPackages) => {
 
 const isExampleModified = (example) => {
     const output = execSync(
-        `git diff --quiet HEAD ${BASE_REF} -- ${EXAMPLES_DIR}/${example} || echo changed`,
+        `git diff --quiet HEAD origin/${BASE_REF} -- ${EXAMPLES_DIR}/${example} || echo changed`,
         { stdio: "pipe" },
     );
 
