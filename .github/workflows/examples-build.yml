@@ -54,6 +54,8 @@ jobs:
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       # run npm ci
       - name: Use Node.js ${{ matrix.node-version }}
