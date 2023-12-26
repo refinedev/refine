@@ -5,6 +5,7 @@ on:
     branches:
       - master
     types:
+      - labeled
       - synchronize
       - opened
       - reopened
@@ -61,9 +62,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
+      - name: log event name
+        run: echo ${{ github.event_name }}
+
       - name: Split Into Chunks
         id: chunkstep
-        run: CHUNKS=8 node ./.github/workflows/build-example-chunks.js
+        run: CHUNKS=8 BASE_REF=${{ github.base_ref }} BUILD_ALL_EXAMPLES=${{ (contains(steps.pr-labels.outputs.labels, ' build-examples ') || github.event_name == 'schedule' ) && 'true' || 'false' }} node ./.github/workflows/build-example-chunks.js
 
   build-chunk-1:
     runs-on: ubuntu-latest

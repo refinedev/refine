@@ -8,6 +8,7 @@ const EXAMPLES_DIR = "./examples";
 const ignoredRegexes = [/^monorepo-/, /^with-nx/];
 const CHUNK_COUNT = Number(process.env.CHUNKS ? process.env.CHUNKS : 1);
 const BASE_REF = process.env.BASE_REF ? process.env.BASE_REF : "master";
+const BUILD_ALL_EXAMPLES = process.env.BUILD_ALL_EXAMPLES === "true";
 
 const getChangedPackages = () => {
     const p = require.resolve("lerna/cli.js");
@@ -76,8 +77,10 @@ const getExamples = () => {
 //
 const changedPackages = getChangedPackages();
 
-const examples = getExamples().filter(
-    (dir) => isExampleAffected(dir, changedPackages) || isExampleModified(dir),
+const examples = getExamples().filter((dir) =>
+    BUILD_ALL_EXAMPLES
+        ? true
+        : isExampleAffected(dir, changedPackages) || isExampleModified(dir),
 );
 
 console.log(
