@@ -57,8 +57,8 @@ jobs:
         with:
           fetch-depth: '0'
 
-      - name: Fetch base branch
-        run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
+      - name: Prune branches
+        run: git fetch --prune
 
       # run npm ci
       - name: Use Node.js ${{ matrix.node-version }}
