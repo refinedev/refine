@@ -58,7 +58,7 @@ jobs:
           fetch-depth: '0'
 
       - name: Prune branches
-        run: git fetch --prune
+        run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
 
       # run npm ci
       - name: Use Node.js ${{ matrix.node-version }}
