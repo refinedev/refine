@@ -23,7 +23,7 @@
   "author": "refine",
   "module": "dist/esm/index.js",
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^4.40.0",
     "react-hook-form": "^7.30.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^4.44.11",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/jest": "^29.2.4",
     "@types/lodash": "^4.14.171",

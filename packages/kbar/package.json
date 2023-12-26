@@ -21,14 +21,14 @@
     "prepare": "npm run build"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^4.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
   "author": "refine",
   "module": "dist/esm/index.js",
   "devDependencies": {
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^4.42.4",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",

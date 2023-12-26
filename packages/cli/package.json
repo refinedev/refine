@@ -34,7 +34,7 @@
     "ts-jest": "^29.0.3",
     "tsup": "^6.7.0",
     "typescript": "^4.7.4",
-    "@refinedev/core": "^4.46.1"
+    "@refinedev/core": "^4.46.0"
   },
   "dependencies": {
     "@refinedev/devtools-server": "1.1.22",
