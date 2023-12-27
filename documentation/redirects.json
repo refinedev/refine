@@ -262,11 +262,11 @@
     },
     {
       "from": "/docs/guides-and-concepts/import-export/csv-export/",
-      "to": "/docs/advanced-tutorials/import-export/csv-export/"
+      "to": "/docs/guides-concepts/import-export/#export"
     },
     {
       "from": "/docs/guides-and-concepts/import-export/csv-import/",
-      "to": "/docs/advanced-tutorials/import-export/csv-import/"
+      "to": "/docs/guides-concepts/import-export/#import"
     },
     {
       "from": "/docs/guides-and-concepts/multi-level-menu/",
@@ -2059,7 +2059,15 @@
     },
     {
       "from": "/blog/javascript-vs-ts/",
-      "to":  "/blog/javascript-vs-typescript/"
+      "to": "/blog/javascript-vs-typescript/"
+    },
+    {
+      "from": "/docs/guides-concepts/import-export/#import",
+      "to": "/docs/guides-concepts/import-export/#import"
+    },
+    {
+      "from": "/docs/advanced-tutorials/import-export/csv-export/",
+      "to": "/docs/guides-concepts/import-export/#export"
     }
   ]
 }
