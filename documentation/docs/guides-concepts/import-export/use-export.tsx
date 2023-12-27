@@ -5,7 +5,6 @@ export default function UseExportExample() {
   return (
     <Sandpack
       height={460}
-      showOpenInCodeSandbox={false}
       dependencies={{
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
