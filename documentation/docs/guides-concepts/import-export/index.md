@@ -23,9 +23,9 @@ You can use the following `CSV` file to test the import feature.
 
 ```csv title="products.csv"
 name,material,description,price,category
-"Test Product 1","Test Materil 1","Test Description 1","100","{""id"":1}"
-"Test Product 2","Test Materil 2","Test Description 2","200","{""id"":2}"
-"Test Product 3","Test Materil 3","Test Description 3","300","{""id"":3}"
+"Test Product 1","Test Material 1","Test Description 1","100","{""id"":1}"
+"Test Product 2","Test Material 2","Test Description 2","200","{""id"":2}"
+"Test Product 3","Test Material 3","Test Description 3","300","{""id"":3}"
 ```
 
 Refine also provides `<ImportButton />`. It's compatible with `useImport` hook to easily handle the import process.
