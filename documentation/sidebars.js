@@ -555,7 +555,7 @@ module.exports = {
                     collapsed: false,
                     items: [
                         // TODO: add doc
-                        // "core/components/auto-save-indicator/index",
+                        "core/components/auto-save-indicator/index",
                         "core/components/inferencer/index",
                     ],
                 },

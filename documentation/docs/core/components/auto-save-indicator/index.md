@@ -1,0 +1,63 @@
+---
+title: <AutoSaveIndicator />
+description: <AutoSaveIndicator> component shows `autoSave` status on edit actions.
+source: packages/core/src/components/autoSaveIndicator/index.tsx
+---
+
+Refine's forms provide a built-in auto-save feature. This allows you to automatically save the form when the user makes changes to the form which can be useful for forms that are long or complex and the user may not want to lose their progress.
+
+The `<AutoSaveIndicator />` component is a utility component that can be used to show a visual indicator to the user about the auto-save status of the form.
+
+:::simple Good to know
+
+- Refine's core [`useForm`](/docs/data/hooks/use-form) hook does not automatically trigger the auto-save feature. You need to manually trigger the `onFinishAutoSave` function returned from the `useForm` hook to trigger the auto-save feature.
+
+- Extended implementations of Refine's `useForm` such as; [@refinedev/antd`'s `useForm`](/docs/ui-integrations/ant-design/hooks/use-form), [`@refinedev/react-hook-form`'s `useForm`](/docs/packages/react-hook-form/use-form) and [`@refinedev/mantine`'s `useForm`](/docs/ui-integrations/mantine/hooks/use-form) automatically trigger the auto-save feature when a form value changes.
+
+- The `<AutoSaveIndicator />` component is only designed to display a visual feedback to the user about the auto-save status of the form. It does not contain any logic to trigger the auto-save feature.
+
+- To learn more about the auto-save feature check out [Auto Save section in Forms guide](/docs/guides-concepts/forms/#auto-save)
+
+:::
+
+## Usage
+
+Usage is as simple as spreading the `autoSaveProps` object returned from the [`useForm`](/docs/data/hooks/use-form) hook into the `<AutoSaveIndicator />` component. It will automatically determine the auto-save status and display the appropriate indicator.
+
+```tsx
+import { AutoSaveIndicator, useForm } from "@refinedev/core";
+
+const EditPage = () => {
+  const { autoSaveProps } = useForm({
+    autoSave: {
+      enabled: true,
+    },
+  });
+
+  return (
+    <div>
+      {/* highlight-start */}
+      {/* We'll pass the autoSaveProps from useForm's response to the <AutoSaveIndicator /> component. */}
+      <AutoSaveIndicator {...autoSaveProps} />
+      {/* highlight-end */}
+      <form
+      // ...
+      >
+        {/* ... */}
+      </form>
+    </div>
+  );
+};
+```
+
+Example below shows the `<AutoSaveIndicator />` component in action.
+
+import Usage from "./usage.tsx";
+
+<Usage />
+
+## API Reference
+
+### Properties
+
+<PropsTable module="@refinedev/core/AutoSaveIndicator" />
