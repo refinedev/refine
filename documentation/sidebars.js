@@ -307,7 +307,7 @@ module.exports = {
                         "data/packages/supabase/index",
                         "data/packages/nestjs-query/index",
                         "data/packages/nestjsx-crud/index",
-                        // "data/packages/hasura/index",
+                        "data/packages/hasura/index",
                         "data/packages/community-data-providers/index",
                     ],
                 },

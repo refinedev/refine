@@ -27,7 +27,7 @@ To learn more about Data Providers, check out [Data Provider](/docs/data/data-pr
 - [`@refinedev/strapi-graphql`](/docs/data/packages/strapi-graphql) - [Strapi](https://strapi.io/) connector for **GraphQL API.**
 - [`@refinedev/strapi`](/docs/data/packages/strapi-v4) - [Strapi](https://strapi.io/) connector for **legacy REST API.**
 - [`@refinedev/supabase`](/docs/data/packages/supabase) -[Supabase](https://supabase.com/) data provider. Supports **Supabase Realtime** for **live/realtime** projects.
-- [`@refinedev/hasura`](#) - [Hasura GraphQL](https://hasura.io/) data provider. Supports **GraphQL Subscriptions** for **live/realtime** projects.
+- [`@refinedev/hasura`](/docs/data/packages/hasura) - [Hasura GraphQL](https://hasura.io/) data provider. Supports **GraphQL Subscriptions** for **live/realtime** projects.
 - [`@refinedev/appwrite`](/docs/data/packages/appwrite) - [Appwrite](https://appwrite.io/) data provider. Supports **Appwrite Realtime** for **live/realtime** projects.
 - [`@refinedev/airtable`](/docs/data/packages/airtable) - Use [Airtable](https://airtable.com/) as backend service.
 - `@refinedev/medusa` - [Medusa](https://medusajs.com/) connector for your e-commerce projects.
