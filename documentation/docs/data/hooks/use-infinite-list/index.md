@@ -5,9 +5,9 @@ source: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/
 description: useInfiniteList data hook from Refine is a modified version of TanStack Query's useInfiniteQuery for retrieving items from a resource with pagination, search, sort, and filter configurations.
 ---
 
-import BasicUsageLivePreview from "./basic-usage-live-preview.md";
-import SortingLivePreview from "./sorting-live-preview.md";
-import FilteringLivePreview from "./filtering-live-preview.md";
+import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
+import SortingLivePreview from "./\_sorting-live-preview.md";
+import FilteringLivePreview from "./\_filtering-live-preview.md";
 
 The `useInfiniteList` hook is an extended version of TanStack Query's [`useInfiniteQuery`](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) used for retrieving items from a `resource` with pagination, sort, and filter configurations. It is ideal for lists where the total number of records is unknown and the user loads the next pages with a button.
 

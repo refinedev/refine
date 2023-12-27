@@ -166,6 +166,7 @@ module.exports = {
                 "guides-concepts/notifications/index",
                 "guides-concepts/realtime/index",
                 "guides-concepts/audit-logs/index",
+                "guides-concepts/multi-tenancy/index",
                 "guides-concepts/import-export/index",
                 {
                     type: "category",
@@ -202,14 +203,6 @@ module.exports = {
                         },
                         "advanced-tutorials/real-time",
                         "advanced-tutorials/multi-level-menu/multi-level-menu",
-                        {
-                            type: "category",
-                            label: "Multitenancy",
-                            items: [
-                                "advanced-tutorials/multi-tenancy/appwrite",
-                                "advanced-tutorials/multi-tenancy/strapi-v4",
-                            ],
-                        },
                         "advanced-tutorials/mutation-mode",
                         {
                             type: "category",

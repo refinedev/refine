@@ -274,11 +274,11 @@
     },
     {
       "from": "/docs/guides-and-concepts/multi-tenancy/appwrite/",
-      "to": "/docs/advanced-tutorials/multi-tenancy/appwrite/"
+      "to": "/docs/guides-concepts/multi-tenancy"
     },
     {
       "from": "/docs/guides-and-concepts/multi-tenancy/strapi-v4/",
-      "to": "/docs/advanced-tutorials/multi-tenancy/strapi-v4/"
+      "to": "/docs/guides-concepts/multi-tenancy"
     },
     {
       "from": "/docs/guides-and-concepts/mutation-mode/",
@@ -2062,7 +2062,15 @@
       "to": "/blog/javascript-vs-typescript/"
     },
     {
-      "from": "/docs/guides-concepts/import-export/#import",
+      "from": "/docs/advanced-tutorials/multi-tenancy/appwrite",
+      "to": "/docs/guides-concepts/multi-tenancy"
+    },
+    {
+      "from": "/docs/advanced-tutorials/multi-tenancy/strapi-v4",
+      "to": "/docs/guides-concepts/multi-tenancy"
+    },
+    {
+      "from": "/docs/advanced-tutorials/import-export/csv-import/",
       "to": "/docs/guides-concepts/import-export/#import"
     },
     {
