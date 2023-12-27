@@ -82,4 +82,4 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 15
       - name: Check Existing Links in Documentation
-        run: DEPLOY_URL=${{ steps.netlify-deploy.outputs.deploy-url }} SITEMAP_URL=https://refine.dev/sitemap.xml node check-existing-doc-links.js
+        run: DEPLOY_URL=${{ steps.netlify-deploy.outputs.deploy-url }} SITEMAP_URL=https://refine.dev/sitemap.xml node ./.github/workflows/check-existing-doc-links.js
