@@ -749,9 +749,9 @@ const apps = [
     },
     {
         name: "HR Application",
-        link: "https://refine.dev/docs/examples",
+        link: "https://refine.dev/templates",
         showcase: ShowcaseHR,
-        label: "Examples",
+        label: "Templates",
     },
     {
         name: "E-Commerce Application",
@@ -761,9 +761,9 @@ const apps = [
     },
     {
         name: "DevOps Dashboard",
-        link: "https://refine.dev/docs/examples",
+        link: "https://refine.dev/templates",
         showcase: ShowcaseDevOps,
         dark: true,
-        label: "Examples",
+        label: "Templates",
     },
 ];
