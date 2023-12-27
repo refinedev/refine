@@ -41,7 +41,7 @@ Refine also provides `<ImportButton />`. It's compatible with `useImport` hook t
 
 Internally, it uses [`export-to-csv`][export-to-csv] to create the `CSV` file.
 
-> 🚨 `CSV` The download feature for CSV files does not function within an iframe (live-previews). You can copy the code and run it in your own project to see it in action.
+> 🚨 The download feature for `CSV` files does not function within an iframe (live-previews). You can copy the code and run it in your own project to see it in action.
 
 <UseExportExample />
 
