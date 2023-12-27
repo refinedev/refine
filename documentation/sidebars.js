@@ -163,6 +163,7 @@ module.exports = {
                 "guides-concepts/authentication/index",
                 "guides-concepts/authorization/index",
                 "guides-concepts/ui-libraries/index",
+                "guides-concepts/notifications/index",
                 "guides-concepts/realtime/index",
                 "guides-concepts/audit-logs/index",
                 {
