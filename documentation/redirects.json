@@ -2046,10 +2046,6 @@
       "to": "/docs/data/packages/airtable"
     },
     {
-      "from": "/docs/packages/data-providers/hasura",
-      "to": "/docs/data/packages/hasura"
-    },
-    {
       "from": "/docs/packages/data-providers/community-data-providers",
       "to": "/docs/data/packages/community-data-providers"
     },

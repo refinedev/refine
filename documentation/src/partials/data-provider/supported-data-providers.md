@@ -8,7 +8,7 @@
 - [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](/docs/data/packages/strapi-v4)
 - [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
 - [Supabase](/docs/data/packages/supabase)
-- [Hasura](/docs/data/packages/hasura)
+- [Hasura](#)
 - [Appwrite](/docs/data/packages/appwrite)
 - [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
 
