@@ -2,7 +2,7 @@
 title: useShow
 ---
 
-import BasicUsageLivePreview from "./basic-usage-live-preview.md";
+import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
 `useShow` is an extended version of [`useOne`](/docs/data/hooks/use-one) that supports all of its features and adds some more.

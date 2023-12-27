@@ -4,7 +4,7 @@ siderbar_label: useMany
 source: packages/core/src/hooks/data/useMany.ts
 ---
 
-import BasicUsageLivePreview from "./basic-usage-live-preview.md";
+import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 
 `useMany` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) that supports all of its features and adds some more.
 

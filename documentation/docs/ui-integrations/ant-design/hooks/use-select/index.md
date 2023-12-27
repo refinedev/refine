@@ -4,11 +4,11 @@ siderbar_label: useSelect
 source: https://github.com/refinedev/refine/blob/master/packages/antd/src/hooks/fields/useSelect/index.ts
 ---
 
-import BasicUsageLivePreview from "./basic-usage-live-preview.md";
-import OnSearchLivePreview from "./on-search-live-preview.md";
-import SortLivePreview from "./sort-live-preview.md";
-import DefaultValueLivePreview from "./default-value-live-preview.md";
-import CrudLivePreview from "./crud-live-preview.md";
+import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
+import OnSearchLivePreview from "./\_on-search-live-preview.md";
+import SortLivePreview from "./\_sort-live-preview.md";
+import DefaultValueLivePreview from "./\_default-value-live-preview.md";
+import CrudLivePreview from "./\_crud-live-preview.md";
 
 `useSelect` hook allows you to manage Ant Design's [`<Select>`](https://ant.design/components/select) component when the records in a resource needs to be used as select options.
 

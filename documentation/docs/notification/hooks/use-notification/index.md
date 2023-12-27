@@ -5,7 +5,7 @@ source: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import BasicUsageLivePreview from "./basic-usage-live-preview.md";
+import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 
 `useNotification` can be used to `open` or `close` notification at any time. It returns the `open` and `close` method from [`notificationProvider`](/docs/notification/notification-provider) under the hood.
 

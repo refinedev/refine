@@ -3,10 +3,10 @@ title: useSimpleList
 source: https://github.com/refinedev/refine/blob/master/packages/antd/src/hooks/list/useSimpleList/useSimpleList.ts
 ---
 
-import BasicUsageLivePreview from "./basic-usage-live-preview.md";
-import SortingLivePreview from "./sorting-live-preview.md";
-import FilteringLivePreview from "./filtering-live-preview.md";
-import SearchLivePreview from "./search-live-preview.md";
+import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
+import SortingLivePreview from "./\_sorting-live-preview.md";
+import FilteringLivePreview from "./\_filtering-live-preview.md";
+import SearchLivePreview from "./\_search-live-preview.md";
 
 By using `useSimpleList`, you can get properties that are compatible with the Ant Design's [`<List>`](https://ant.design/components/list/) component. All features such as sorting, filtering, and pagination come out of the box. `useSimpleList` uses [`useTable`](/docs/data/hooks/use-table) under the hood for the fetch.
 
