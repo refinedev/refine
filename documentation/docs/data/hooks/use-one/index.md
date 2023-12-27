@@ -4,7 +4,7 @@ siderbar_label: useOne
 source: packages/core/src/hooks/data/useOne.ts
 ---
 
-import BasicUsageLivePreview from "./basic-usage-live-preview.md";
+import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 
 `useOne` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) that supports all of its features and adds some more.
 

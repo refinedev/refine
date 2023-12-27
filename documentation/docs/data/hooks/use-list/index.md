@@ -4,10 +4,10 @@ siderbar_label: useList
 source: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/data/useList.ts
 ---
 
-import BasicUsageLivePreview from "./basic-usage-live-preview.md";
-import PaginationLivePreview from "./pagination-live-preview.md";
-import FilteringLivePreview from "./filtering-live-preview.md";
-import SortingLivePreview from "./sorting-live-preview.md";
+import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
+import PaginationLivePreview from "./\_pagination-live-preview.md";
+import FilteringLivePreview from "./\_filtering-live-preview.md";
+import SortingLivePreview from "./\_sorting-live-preview.md";
 
 `useList` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) that supports all of its features and also adds some more.
 

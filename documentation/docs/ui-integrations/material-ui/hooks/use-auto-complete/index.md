@@ -4,11 +4,11 @@ siderbar_label: useAutocomplete
 source: https://github.com/refinedev/refine/blob/master/packages/mui/src/hooks/useAutocomplete/index.ts
 ---
 
-import BasicUsageLivePreview from "./basic-usage-live-preview.md";
-import DefaultValueLivePreview from "./default-value-live-preview.md";
-import CrudLivePreview from "./crud-live-preview.md";
-import SortLivePreview from "./sort-live-preview.md";
-import OnSearchLivePreview from "./on-search-live-preview.md";
+import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
+import DefaultValueLivePreview from "./\_default-value-live-preview.md";
+import CrudLivePreview from "./\_crud-live-preview.md";
+import SortLivePreview from "./\_sort-live-preview.md";
+import OnSearchLivePreview from "./\_on-search-live-preview.md";
 
 `useAutocomplete` hook allows you to manage Material UI's [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/) component when records in a resource needs to be used as select options.
 
