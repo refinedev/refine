@@ -166,6 +166,7 @@ module.exports = {
                 "guides-concepts/notifications/index",
                 "guides-concepts/realtime/index",
                 "guides-concepts/audit-logs/index",
+                "guides-concepts/multi-tenancy/index",
                 {
                     type: "category",
                     label: "Advanced Tutorials",
