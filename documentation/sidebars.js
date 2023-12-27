@@ -210,14 +210,6 @@ module.exports = {
                         },
                         "advanced-tutorials/real-time",
                         "advanced-tutorials/multi-level-menu/multi-level-menu",
-                        {
-                            type: "category",
-                            label: "Multitenancy",
-                            items: [
-                                "advanced-tutorials/multi-tenancy/appwrite",
-                                "advanced-tutorials/multi-tenancy/strapi-v4",
-                            ],
-                        },
                         "advanced-tutorials/mutation-mode",
                         {
                             type: "category",

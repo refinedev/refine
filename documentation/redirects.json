@@ -2060,6 +2060,14 @@
     {
       "from": "/blog/javascript-vs-ts/",
       "to":  "/blog/javascript-vs-typescript/"
+    },
+    {
+      "from": "/docs/advanced-tutorials/multi-tenancy/appwrite",
+      "to": "/docs/guides-concepts/multi-tenancy"
+    },
+    {
+      "from": "/docs/advanced-tutorials/multi-tenancy/strapi-v4",
+      "to": "/docs/guides-concepts/multi-tenancy"
     }
   ]
 }
