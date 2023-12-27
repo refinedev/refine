@@ -323,7 +323,7 @@ Since the source code of this RealWorld app is open-source, you have the freedom
         liveDemo: "https://multi-tenancy-strapi.refine.dev",
         github: "https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-strapi",
         tutorial:
-            "https://refine.dev/docs/advanced-tutorials/multi-tenancy/strapi-v4/",
+            "https://refine.dev/docs/guides-concepts/multi-tenancy/#strapi",
         reactPlatform: "Vite",
         uiFramework: "Ant Design",
         dataProvider: "Strapi",
@@ -346,7 +346,7 @@ The source code of this multitenancy app is open-source, allowing you to use or 
         liveDemo: "https://multi-tenancy-appwrite.refine.dev",
         github: "https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-appwrite",
         tutorial:
-            "https://refine.dev/docs/advanced-tutorials/multi-tenancy/appwrite/",
+            "https://refine.dev/docs/guides-concepts/multi-tenancy/#appwrite",
         reactPlatform: "Vite",
         uiFramework: "Ant Design",
         dataProvider: "Appwrite",

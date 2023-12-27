@@ -21,7 +21,7 @@ Just be aware that the source code example in this post have been updated to ver
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/basket.gif" alt="basket" />
 <br />
 
-In this article, we will create the e-commerce client of our [Strapi-Multitenancy](/docs/advanced-tutorials/multi-tenancy/strapi-v4) admin panel that we have done before.
+In this article, we will create the e-commerce client of our [Strapi-Multitenancy](/docs/guides-concepts/multi-tenancy/#strapi) admin panel that we have done before.
 
 It is now used **headless** with the **refine** 3 version. You can use any UI library you want with the **headless** feature.
 
