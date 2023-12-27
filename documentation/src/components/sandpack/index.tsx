@@ -41,6 +41,7 @@ type Props = React.ComponentProps<SandpackInternal> & {
     className?: string;
     wrapperClassName?: string;
     showFiles?: boolean;
+    showReadOnly?: boolean;
     showConsole?: boolean;
     hidePreview?: boolean;
 };
@@ -74,6 +75,7 @@ const SandpackBase = ({
     showOpenInCodeSandbox,
     initialPercentage = 50,
     dependencies,
+    showReadOnly,
     options = {
         showTabs: true,
         initMode: "lazy",
@@ -114,7 +116,7 @@ const SandpackBase = ({
         extensions: options.codeEditor?.extensions,
         extensionsKeymap: options.codeEditor?.extensionsKeymap,
         readOnly: options.readOnly,
-        showReadOnly: options.showReadOnly,
+        showReadOnly: showReadOnly ?? options.showReadOnly,
         additionalLanguages: options.codeEditor?.additionalLanguages,
     };
 
