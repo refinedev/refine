@@ -262,11 +262,11 @@
     },
     {
       "from": "/docs/guides-and-concepts/import-export/csv-export/",
-      "to": "/docs/guides-concepts/import-export/#export"
+      "to": "/docs/guides-concepts/import-export/"
     },
     {
       "from": "/docs/guides-and-concepts/import-export/csv-import/",
-      "to": "/docs/guides-concepts/import-export/#import"
+      "to": "/docs/guides-concepts/import-export/"
     },
     {
       "from": "/docs/guides-and-concepts/multi-level-menu/",
@@ -2071,11 +2071,11 @@
     },
     {
       "from": "/docs/advanced-tutorials/import-export/csv-import/",
-      "to": "/docs/guides-concepts/import-export/#import"
+      "to": "/docs/guides-concepts/import-export"
     },
     {
       "from": "/docs/advanced-tutorials/import-export/csv-export/",
-      "to": "/docs/guides-concepts/import-export/#export"
+      "to": "/docs/guides-concepts/import-export"
     }
   ]
 }
