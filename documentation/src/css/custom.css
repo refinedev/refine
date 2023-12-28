@@ -956,6 +956,7 @@ html[data-theme="dark"]:not([data-customized="true"])
 .props-table__description-cell *,
 .props-table__default-value-cell *,
 .props-list__info-item * {
+    @apply 2xl:my-0;
     margin-bottom: 0;
 }
 

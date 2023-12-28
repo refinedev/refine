@@ -740,7 +740,7 @@ const { autoSaveProps } = useForm({
 
 ### `<AutoSaveIndicator />`
 
-Refine's core and ui integrations are shipped with an `<AutoSaveIndicator />` component that can be used to show a visual indicator to the user when the auto save is triggered. The `autoSaveProps` value from the `useForm`'s return value can be passed to the `<AutoSaveIndicator />` to show the auto save status to the user. It will automatically show the loading, success and error states to the user.
+Refine's core and ui integrations are shipped with an [`<AutoSaveIndicator />`](/docs/core/components/auto-save-indicator) component that can be used to show a visual indicator to the user when the auto save is triggered. The `autoSaveProps` value from the `useForm`'s return value can be passed to the `<AutoSaveIndicator />` to show the auto save status to the user. It will automatically show the loading, success and error states to the user.
 
 ```tsx title="edit.tsx"
 import { AutoSaveIndicator } from "@refinedev/core";
