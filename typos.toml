@@ -27,7 +27,7 @@ extend-ignore-re = [
 ]
 
 [files]
-extend-exclude = ["documentation/docs/partial/_partial-translation-file-de.md", "documentation/versioned_docs", "documentation/versioned_sidebars", "*.ts", "*.tsx", "refine-*"]
+extend-exclude = ["documentation/docs/partials/_partial-translation-file-de.md", "documentation/versioned_docs", "documentation/versioned_sidebars", "*.ts", "*.tsx", "refine-*"]
 ignore-vcs = true
 
 [default.extend-words]
