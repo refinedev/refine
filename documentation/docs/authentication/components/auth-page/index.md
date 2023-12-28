@@ -469,7 +469,7 @@ const authProvider: AuthBindings = {
 
 ## Props
 
-### `hideForm`
+### hideForm
 
 When you set `hideForm` to `true`, the form will be hidden. You can use this property to show only providers.
 
@@ -496,7 +496,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `providers`
+### providers
 
 `providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type. This property is only available for `login` and `register` types.
 
@@ -523,7 +523,7 @@ const LoginPage = () => {
 
 > For more information, refer to the [Interface section down below](#interface)
 
-### `rememberMe`
+### rememberMe
 
 `rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it. This property is only available for `login` type.
 
@@ -549,7 +549,7 @@ const LoginPage = () => {
 };
 ```
 
-### `loginLink`
+### loginLink
 
 `loginLink` property defines the link to the login page and also you can give a node to render. The default value is `"/login"`. This property is only available for `register` and `forgotPassword` types.
 
@@ -575,7 +575,7 @@ const MyRegisterPage = () => {
 };
 ```
 
-### `registerLink`
+### registerLink
 
 `registerLink` property defines the link to the registration page and also you can give a node to render. The default value is `"/register"`. This property is only available for `login` type.
 
@@ -602,7 +602,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `forgotPasswordLink`
+### forgotPasswordLink
 
 `forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. The default value is `"/forgot-password"`. This property is only available for `login` type.
 
@@ -629,7 +629,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `wrapperProps`
+### wrapperProps
 
 `wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
 
@@ -655,7 +655,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `contentProps`
+### contentProps
 
 `contentProps` uses for passing props to the content component which is the card component. In the example below you can see that the title, header, and content styles are changed with `contentProps`.
 
@@ -676,7 +676,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `formProps`
+### formProps
 
 `formProps` uses for passing props to the form component.
 
@@ -707,7 +707,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `renderContent`
+### renderContent
 
 `renderContent` is used to render the form content. You can use this property to render your own content. `renderContent` gives you default content you can use to add some extra elements to the content.
 

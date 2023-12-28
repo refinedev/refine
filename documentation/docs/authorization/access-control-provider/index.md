@@ -117,7 +117,7 @@ If your response from the `can` method has a `reason` property, it will be shown
 
 Refine provides a hook and a component to use the `can` method from the `accessControlProvider`.
 
-### `useCan`
+### useCan
 
 `useCan` uses the `can` for the query function for **react-query**'s `useQuery`. It takes the parameters that `can` takes, can be configured with `queryOptions` of `useQuery` and returns the result of `useQuery`.
 

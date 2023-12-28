@@ -537,7 +537,7 @@ Refine supports route parameters defined with `:param` syntax. You can use these
 
 `@refinedev/react-router-v6` package also includes some additional components that can be useful in some cases.
 
-### `NavigateToResource`
+### NavigateToResource
 
 A basic component that extends the `Navigate` component from **react-router-dom** to navigate to a resource page. It is useful when you want to navigate to a resource page at the index route of your app.
 
@@ -573,7 +573,7 @@ const App = () => {
 
 `meta` (optional) - The meta object to use if the route has parameters in it. The parameters in the current location will also be used to compose the route but `meta` will take precedence.
 
-### `UnsavedChangesNotifier`
+### UnsavedChangesNotifier
 
 This component enables the `warnWhenUnsavedChanges` feature of Refine. It will show a warning message when user tries to navigate away from the current page without saving the changes. Also checks for `beforeunload` event to warn the user when they try to close the browser tab or window.
 
@@ -605,7 +605,7 @@ const App = () => {
 
 `message` (optional) - The warning message. Default value is `Are you sure you want to leave? You have unsaved changes.` Useful when you don't use an i18n provider.
 
-### `CatchAllNavigate`
+### CatchAllNavigate
 
 It will redirect to the given path and keep the current location in `to` query parameter to redirect back when needed. In some cases you may not want to use the `<Authenticated>` component's `redirectOnFail` prop to redirect and have a catch-all route to redirect to the desired page. This is useful when handling the 404 pages with authentication.
 
@@ -647,7 +647,7 @@ const App = () => {
 
 `to` (required) - The path to redirect to.
 
-### `DocumentTitleHandler`
+### DocumentTitleHandler
 
 This component will generate the document title for the current page.By default, it follows a set of predefined rules to generate titles based on the provided props. However, it also offers the flexibility to customize the title generation process by providing a custom `handler` function.
 The default title generation rules are as follows:
@@ -704,7 +704,7 @@ const customTitleHandler = ({ resource, action, params }) => {
 
 ## Hooks
 
-### `useDocumentTitle`
+### useDocumentTitle
 
 This hook allows you to set the document title for the current page. It can be used in any component that is a child of the `<Refine>` component.
 

@@ -38,7 +38,7 @@ const { data } = useCan({
 
 ## Properties
 
-### `resource` <PropTag required />
+### resource <PropTag required />
 
 Passes to [Access Control Provider's][access-control-provider] `can` function's `resource` parameter
 
@@ -48,7 +48,7 @@ useCan({
 });
 ```
 
-### `action` <PropTag required />
+### action <PropTag required />
 
 Passes to [Access Control Provider's][access-control-provider] `can` function's `action` parameter
 
@@ -58,7 +58,7 @@ useCan({
 });
 ```
 
-### `params`
+### params
 
 Passes to [Access Control Provider's][access-control-provider] `can` function's `params` parameter
 
@@ -68,7 +68,7 @@ useCan({
 });
 ```
 
-### `queryOptions`
+### queryOptions
 
 Query options for [TanStack Query's][tanstack-query] [`useQuery`][use-query].
 

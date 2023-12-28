@@ -7,7 +7,7 @@ tutorial:
 
 # 2. Create a data provider with `swizzle`
 
-## What is `swizzle`?
+## What is swizzle?
 
 In some cases, **Refine's** built-in data providers may not fully meet your API needs, and you may want to edit the existing data provider logic. If that is the case, you should use `swizzle`.
 
@@ -15,7 +15,7 @@ The [`swizzle`](/docs/packages/list-of-packages/#swizzle) is a command in [`refi
 
 This also allows you to use the ejected file code logic as a starting point for your modifications instead of starting from scratch.
 
-## How do you use `swizzle` to create an data provider?
+## How do you use swizzle to create an data provider?
 
 1. Run the `swizzle` command in the project directory:
 

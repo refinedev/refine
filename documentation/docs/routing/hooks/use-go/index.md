@@ -82,17 +82,17 @@ const MyComponent = () => {
 
 ## Parameters
 
-### `to`
+### to
 
 The `to` parameter is the path you want to navigate to. If left empty, it will navigate to the current path, which is useful for updating the query parameters.
 
 Also, you can pass a `resource` object to the `to` parameter. The `routerProvider` will convert the resource object to the path.
 
-### `query`
+### query
 
 The `query` parameter is the query parameters you want to add to the path. It is an object which the `routerProvider` will convert to the query string.
 
-### `type`
+### type
 
 The `type` parameter is the type of navigation you want to perform. It can be one of the following:
 
@@ -100,15 +100,15 @@ The `type` parameter is the type of navigation you want to perform. It can be on
 - `replace`: It replaces the current entry on the history stack.
 - `path`: Returns the navigation path for the given config. Doesn't mutate the history stack.
 
-### `hash`
+### hash
 
 The `hash` parameter is the hash you want to add to the path.
 
-### `options.keepQuery`
+### options.keepQuery
 
 The `options.keepQuery` parameter is a boolean that determines whether the current query parameters should be kept or not. If it is `true`, the current query parameters will be merged with the new query parameters. If it is `false`, the current query parameters will be ignored.
 
-### `options.keepHash`
+### options.keepHash
 
 The `options.keepHash` parameter is a boolean that determines whether the current hash should be kept or not. If it is `true`, the current hash will be kept in the URL. If it is `false`, the current hash will be ignored.
 

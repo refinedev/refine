@@ -64,7 +64,7 @@ All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>
 
 ## Options
 
-### `resource`
+### resource
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
@@ -80,7 +80,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [Ant Design's `Radio.Group` component documentation &#8594](https://ant.design/components/radio)
 
-### `defaultValue`
+### defaultValue
 
 ```tsx
 const { selectProps } = useRadioGroup({
@@ -92,7 +92,7 @@ const { selectProps } = useRadioGroup({
 
 The easiest way to selecting a default value for an radio button field is by passing in `defaultValue`.
 
-### `optionLabel` and `optionValue`
+### optionLabel and `optionValue`
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
@@ -118,7 +118,7 @@ const { options } = useSelect({
 });
 ```
 
-### `filters`
+### filters
 
 `filters` allows us to add filters while fetching the data. For example, if you want to list only the `titles` that are equal to "German":
 
@@ -137,7 +137,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-### `sorters`
+### sorters
 
 `sorters` allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending:
 
@@ -155,7 +155,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-### `fetchSize`
+### fetchSize
 
 `fetchSize` is the amount of records to fetch in checkboxes.
 
@@ -167,7 +167,7 @@ const { selectProps } = useRadioGroup({
 });
 ```
 
-### `queryOptions`
+### queryOptions
 
 Passing the `queryOptions` property allows us to set the [useQuery](https://react-query.tanstack.com/reference/useQuery) options
 
@@ -184,7 +184,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-### `pagination`
+### pagination
 
 `pagination` allows us to set page and items per page values.
 
@@ -200,7 +200,7 @@ const { selectProps } = useSelect({
 
 The listing will start from page 3, showing 8 records per page.
 
-### ~~`sort`~~ <PropTag deprecated />
+### ~~sort~~ <PropTag deprecated />
 
 Use `sorters` instead.
 

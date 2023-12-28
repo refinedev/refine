@@ -76,7 +76,7 @@ The `useForm` hook exposes `saveButtonProps` to be passed to `<SaveButton>` comp
 
 ## Properties
 
-### `hideText`
+### hideText
 
 `hideText` is used to show or hide the text of the button. When `true`, only the button icon is visible.
 

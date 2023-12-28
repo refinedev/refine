@@ -28,7 +28,7 @@ const MyPage = () => (
 
 ## Properties
 
-### `key` <PropTag required />
+### key <PropTag required />
 
 A differentiator prop for the `<Authenticated />` component. This is crucial for the authentication logic to work properly in certain scenarios where `<Authenticated />` is used multiple times in same tree level. key prop will signal React to remount the component rather than updating the current props.
 
@@ -50,7 +50,7 @@ const MyPage = () => (
 );
 ```
 
-### `redirectOnFail`
+### redirectOnFail
 
 The path to redirect to if the user is not logged in. If left empty, the user will be redirected to the value in the `redirectTo` property of the `check` function of the `AuthProvider`.
 
@@ -60,11 +60,11 @@ This property only works if the `fallback` prop is not provided.
 
 :::
 
-### `appendCurrentPathToQuery`
+### appendCurrentPathToQuery
 
 If `true`, the current path will be appended to the `to` query parameter. This is useful when you want to redirect the user to the page they were trying to access after they log in.
 
-### `fallback`
+### fallback
 
 Component to render if the user is not logged in. If `undefined`, the page will be redirected to `/login`.
 
@@ -74,7 +74,7 @@ Component to render if the user is not logged in. If `undefined`, the page will 
 </Authenticated>
 ```
 
-### `loading`
+### loading
 
 Component to render while checking whether the user is logged in.
 

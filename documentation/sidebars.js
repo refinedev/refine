@@ -168,6 +168,7 @@ module.exports = {
                 "guides-concepts/audit-logs/index",
                 "guides-concepts/multi-tenancy/index",
                 "guides-concepts/import-export/index",
+                "guides-concepts/i18n/index",
                 {
                     type: "category",
                     label: "Advanced Tutorials",
@@ -548,7 +549,7 @@ module.exports = {
                     collapsed: false,
                     items: [
                         // TODO: add doc
-                        // "core/components/auto-save-indicator/index",
+                        "core/components/auto-save-indicator/index",
                         "core/components/inferencer/index",
                     ],
                 },
