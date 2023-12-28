@@ -271,7 +271,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 ## Properties
 
-### `hideOnMissingParameter`
+### hideOnMissingParameter
 
 It only affects menu items that require additional parameters to generate their URL. If the parameters are missing in the current URL neither in the `meta` property of the `useMenu` or in the `meta` property of the resource definition, the menu items that require a parameter will be hidden. By default, this property is set to `true`.
 
@@ -279,7 +279,7 @@ For example, suppose you have a resource with a list path defined as `/authors/:
 
 However, if you set `hideOnMissingParameter` to `false` when calling `useMenu`, the menu item for this resource will still be shown, even if the `authorId` parameter is missing.
 
-### `meta`
+### meta
 
 An object of parameters to use when additional parameters are present in the resource paths. For example, if you have a resource with list path defined as `/:authorId/posts` and want to show this resource in your menu:
 
@@ -291,15 +291,15 @@ If there is already an `authorId` parameter in the current URL or in the `meta` 
 
 ## Return Values
 
-### `selectedKey`
+### selectedKey
 
 If the current URL matches a resource path, the key of the resource will be returned. Otherwise, `undefined` will be returned.
 
-### `menuItems`
+### menuItems
 
 List of the menu tems returned based on the `resources` prop of the `<Refine/>` component.
 
-### `defaultOpenKeys`
+### defaultOpenKeys
 
 Array with the keys of default opened menus.
 

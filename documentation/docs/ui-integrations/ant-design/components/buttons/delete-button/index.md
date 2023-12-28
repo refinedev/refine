@@ -68,7 +68,7 @@ render(
 
 ## Properties
 
-### `recordItemId`
+### recordItemId
 
 `recordItemId` allows us to manage which record will be deleted. By default, the `recordItemId` is inferred from the route params.
 
@@ -107,7 +107,7 @@ render(
 
 Clicking the button will trigger the [`useDelete`](/docs/data/hooks/use-delete) method and then the record whose resource is "posts" and whose id is "123" will be deleted.
 
-### `resource`
+### resource
 
 `resource` allows us to manage which resource's record is going to be deleted. By default, the `resource` is inferred from the route params.
 
@@ -151,7 +151,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `onSuccess`
+### onSuccess
 
 `onSuccess` can be used if you want to do something based on the results returned after the delete request.
 
@@ -208,7 +208,7 @@ const App = () => {
 render(<App />);
 ```
 
-### `mutationMode`
+### mutationMode
 
 Determines which mode mutation will have while executing `<DeleteButton>`.
 
@@ -244,7 +244,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-### `hideText`
+### hideText
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
@@ -279,7 +279,7 @@ render(
 );
 ```
 
-### `accessControl`
+### accessControl
 
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
 
@@ -291,7 +291,7 @@ export const MyListComponent = () => {
 };
 ```
 
-### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+### ~~resourceNameOrRouteName~~ <PropTag deprecated />
 
 Use `resource` prop instead.
 

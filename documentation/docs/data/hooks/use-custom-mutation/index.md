@@ -44,7 +44,7 @@ mutate({
 
 ## Properties
 
-### `mutationOptions`
+### mutationOptions
 
 `mutationOptions` is used to pass options to the `useMutation` hook. It is useful when you want to pass additional options to the `useMutation` hook.
 
@@ -84,7 +84,7 @@ mutate(
 
 ## Mutation Parameters
 
-### `url` <PropTag required />
+### url <PropTag required />
 
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It is usually used to specify the endpoint of the request.
 
@@ -96,7 +96,7 @@ mutate({
 });
 ```
 
-### `method` <PropTag required />
+### method <PropTag required />
 
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It is usually used to specify the HTTP method of the request.
 
@@ -108,7 +108,7 @@ mutate({
 });
 ```
 
-### `values` <PropTag required />
+### values <PropTag required />
 
 It will be passed to the `custom` method from the `dataProvider` as a parameter. The parameter is usually used as the data to be sent with the request.
 
@@ -123,7 +123,7 @@ mutate({
 });
 ```
 
-### `config.headers`
+### config.headers
 
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It can be used to specify the headers of the request.
 
@@ -139,7 +139,7 @@ mutate({
 });
 ```
 
-### `successNotification`
+### successNotification
 
 > [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
@@ -159,7 +159,7 @@ mutate({
 });
 ```
 
-### `errorNotification`
+### errorNotification
 
 > [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
@@ -179,7 +179,7 @@ mutate({
 });
 ```
 
-### `meta`
+### meta
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
@@ -212,7 +212,7 @@ const myDataProvider = {
 
 > For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
-### `dataProviderName`
+### dataProviderName
 
 If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
 
@@ -224,7 +224,7 @@ mutate({
 });
 ```
 
-### `overtimeOptions`
+### overtimeOptions
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
 `interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
@@ -258,7 +258,7 @@ Returns an object with TanStack Query's `useMutation` return values.
 
 ### Additional Values
 
-#### `overtime`
+#### overtime
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 

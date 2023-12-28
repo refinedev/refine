@@ -115,7 +115,7 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ## Properties
 
-### `title`
+### title
 
 `title` allows the addition of titles inside the `<Create>` component. If you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the `/posts/create` resource, it would be "Create post".
 
@@ -155,7 +155,7 @@ render(
 );
 ```
 
-### `resource`
+### resource
 
 The `<Create>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Create>` component, you can use the `resource` prop.
 
@@ -212,7 +212,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `saveButtonProps`
+### saveButtonProps
 
 The `<Create>` component has a default button that submits the form. If you want to customize this button you can use the `saveButtonProps` property like the code below:
 
@@ -251,7 +251,7 @@ render(
 
 > For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/material-ui/components/buttons/save-button)
 
-### `goBack`
+### goBack
 
 To customize the back button or to disable it, you can use the `goBack` property.
 
@@ -317,7 +317,7 @@ render(
 );
 ```
 
-### `isLoading`
+### isLoading
 
 To toggle the loading state of the `<Create/>` component, you can use the `isLoading` property.
 
@@ -358,7 +358,7 @@ render(
 );
 ```
 
-### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
+### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
 
@@ -409,7 +409,7 @@ render(
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/material-ui/components/breadcrumb)
 
-### `wrapperProps`
+### wrapperProps
 
 If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property.
 
@@ -457,7 +457,7 @@ render(
 
 > For more information, refer to the [`Card` documentation from Material UI &#8594](https://mui.com/material-ui/api/card/)
 
-### `headerProps`
+### headerProps
 
 If you want to customize the header of the `<Create/>` component, you can use the `headerProps` property.
 
@@ -505,7 +505,7 @@ render(
 
 > For more information, refer to the [`CardHeader` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-header/)
 
-### `contentProps`
+### contentProps
 
 If you want to customize the content of the `<Create/>` component, you can use the `contentProps` property.
 
@@ -553,7 +553,7 @@ render(
 
 > For more information, refer to the [`CardContent` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-content/)
 
-### `headerButtons`
+### headerButtons
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
@@ -601,7 +601,7 @@ render(
 );
 ```
 
-### `headerButtonProps`
+### headerButtonProps
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
@@ -656,7 +656,7 @@ render(
 
 > For more information, refer to the [`Box` documentation from Material UI &#8594](https://mui.com/material-ui/api/box/)
 
-### `footerButtons`
+### footerButtons
 
 By default, the `<Create/>` component has a [`<SaveButton>`][save-button] at the header.
 
@@ -754,7 +754,7 @@ render(
 );
 ```
 
-### `footerButtonProps`
+### footerButtonProps
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 

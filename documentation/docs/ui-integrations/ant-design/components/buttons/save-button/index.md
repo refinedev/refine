@@ -74,7 +74,7 @@ The [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) hook exposes `s
 
 ## Properties
 
-### `hideText`
+### hideText
 
 `hideText` is used to hide the text of the button. When its `true`, only the button icon will be visible.
 

@@ -446,7 +446,7 @@ export default function IndexPage() {
 
 `@refinedev/nextjs-router` package also includes some additional components that can be useful in some cases.
 
-### `NavigateToResource`
+### NavigateToResource
 
 A basic component to navigate to a resource page. It is useful when you want to navigate to a resource page at the index route of your app.
 
@@ -478,7 +478,7 @@ export default function IndexPage() {
 
 `meta` (optional) - The meta object to use if the route has parameters in it. The parameters in the current location will also be used to compose the route but `meta` will take precedence.
 
-### `UnsavedChangesNotifier`
+### UnsavedChangesNotifier
 
 This component enables the `warnWhenUnsavedChanges` feature of Refine. It will show a warning message when user tries to navigate away from the current page without saving the changes. Also checks for `beforeunload` event to warn the user when they try to close the browser tab or window.
 
@@ -513,11 +513,11 @@ This feature is not working in experimental `appDir` mode in Next.js due to limi
 
 `message` (optional) - The warning message. Default value is `Are you sure you want to leave? You have unsaved changes.` Useful when you don't use an i18n provider.
 
-### `parseTableParams`
+### parseTableParams
 
 This function can be used to parse the query parameters of a table page. It can be useful when you want to use the query parameters in your server side functions (`loader`) to fetch the data such as [persisting the table state](#how-to-persist-syncwithlocation-in-ssr)
 
-### `DocumentTitleHandler`
+### DocumentTitleHandler
 
 Note that this component currently only works in the `pages` directory.
 
@@ -576,7 +576,7 @@ const customTitleHandler = ({ resource, action, params }) => {
 
 ## Hooks
 
-### `useDocumentTitle`
+### useDocumentTitle
 
 Note that this hook doesn't support SSR. It will only set the document title in the client side.
 

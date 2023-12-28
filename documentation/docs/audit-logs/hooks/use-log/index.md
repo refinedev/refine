@@ -10,7 +10,7 @@ import { useLog } from "@refinedev/core";
 const { log, rename } = useLog();
 ```
 
-## `log`
+## log
 
 The `log` mutation is used to create an audit log event using the `create` method from [`auditLogProvider`](/docs/audit-logs/audit-log-provider#create) under the hood.
 
@@ -61,7 +61,7 @@ mutate({
 | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result of the `react-query`'s useMutation | [`UseMutationResult<{ data: TData}, TError, { id: BaseKey; name: string; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 
-## `rename`
+## rename
 
 The `rename` mutation is used to update an audit log event using the `update` method from [`auditLogProvider`](/docs/audit-logs/audit-log-provider#update) under the hood.
 

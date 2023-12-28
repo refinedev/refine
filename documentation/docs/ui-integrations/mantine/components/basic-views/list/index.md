@@ -149,7 +149,7 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ## Properties
 
-### `title`
+### title
 
 `title` allows adding a title for the `<List>` component. If you don't pass title props, it uses plural form of resource name by default.
 
@@ -194,7 +194,7 @@ render(
 );
 ```
 
-### `resource`
+### resource
 
 `<List>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<List>` component, you can use the `resource` prop.
 
@@ -249,7 +249,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `canCreate` and `createButtonProps`
+### canCreate and createButtonProps
 
 `canCreate` allows us to add the create button inside the `<List>` component. If resource is passed a create component, Refine adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
 
@@ -352,7 +352,7 @@ render(
 );
 ```
 
-### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
+### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mantine` package.
 
@@ -414,7 +414,7 @@ render(
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/mantine/components/breadcrumb)
 
-### `wrapperProps`
+### wrapperProps
 
 If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property. For `@refinedev/mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
 
@@ -468,7 +468,7 @@ render(
 
 > For more information, refer to the [`Card` documentation from Mantine &#8594](https://mantine.dev/core/card/)
 
-### `headerProps`
+### headerProps
 
 If you want to customize the header of the `<List/>` component, you can use the `headerProps` property.
 
@@ -522,7 +522,7 @@ render(
 
 > For more information, refer to the [`Group` documentation from Mantine &#8594](https://mantine.dev/core/group/)
 
-### `contentProps`
+### contentProps
 
 If you want to customize the content of the `<List/>` component, you can use the `contentProps` property.
 
@@ -576,7 +576,7 @@ render(
 
 > For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/box/)
 
-### `headerButtons`
+### headerButtons
 
 By default, the `<List/>` component has a [`<CreateButton>`][create-button] at the header.
 
@@ -688,7 +688,7 @@ render(
 );
 ```
 
-### `headerButtonProps`
+### headerButtonProps
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 

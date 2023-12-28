@@ -1451,7 +1451,7 @@ const { tableProps, sorter } = useTable<IUser>({
 });
 ```
 
-### `id`
+### id
 
 `meta` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 

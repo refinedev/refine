@@ -146,7 +146,7 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Properties
 
-### `title`
+### title
 
 It allows adding a title for the `<List>` component. if you don't pass title props, it uses plural form of resource name by default.
 
@@ -189,7 +189,7 @@ render(
 );
 ```
 
-### `resource`
+### resource
 
 `<List>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<List>` component, you can use the `resource` prop.
 
@@ -244,7 +244,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `canCreate` and `createButtonProps`
+### canCreate and createButtonProps
 
 `canCreate` allows us to add the create button inside the `<List>` component. If resource is passed a create component, Refine adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
 
@@ -345,7 +345,7 @@ render(
 );
 ```
 
-### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
+### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/chakra-ui` package.
 
@@ -401,7 +401,7 @@ render(
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/chakra-ui/components/breadcrumb)
 
-### `wrapperProps`
+### wrapperProps
 
 If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property. For `@refinedev/chakra-ui` wrapper element is `<Box>`s and `wrapperProps` can get every attribute that `<Box>` can get.
 
@@ -453,7 +453,7 @@ render(
 
 > For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
 
-### `headerProps`
+### headerProps
 
 If you want to customize the header of the `<List/>` component, you can use the `headerProps` property.
 
@@ -505,7 +505,7 @@ render(
 
 > For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
 
-### `contentProps`
+### contentProps
 
 If you want to customize the content of the `<List/>` component, you can use the `contentProps` property.
 
@@ -557,7 +557,7 @@ render(
 
 > For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
 
-### `headerButtons`
+### headerButtons
 
 By default, the `<List/>` component has a [`<CreateButton>`][create-button] at the header.
 
@@ -669,7 +669,7 @@ render(
 );
 ```
 
-### `headerButtonProps`
+### headerButtonProps
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 

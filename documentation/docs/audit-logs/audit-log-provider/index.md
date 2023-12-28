@@ -67,7 +67,7 @@ Refine provides the `useLog` and `useLogList` hooks that can be used to access y
 
 Let's create an `auditLogProvider` to understand how it works better. Though we will be using `dataProvider` to handle events, you can do it however you want thanks to Refine providing an agnostic API.
 
-### `get`
+### get
 
 This method is used to get a list of audit log events.
 
@@ -100,7 +100,7 @@ export const auditLogProvider: AuditLogProvider = {
 };
 ```
 
-### `create`
+### create
 
 :::simple Caution
 
@@ -290,7 +290,7 @@ export const auditLogProvider: AuditLogProvider = {
 
 For more information, refer to the [`useLog` documentation&#8594](/docs/audit-logs/hooks/use-log)
 
-### `update`
+### update
 
 This method is used to update an audit log event.
 

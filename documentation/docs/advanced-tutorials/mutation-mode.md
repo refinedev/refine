@@ -225,7 +225,7 @@ Each mode corresponds to a different type of user experience.
 
 We'll show usages of modes with editing a record examples.
 
-### `pessimistic`
+### pessimistic
 
 The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfully.
 
@@ -284,7 +284,7 @@ render(<App />);
 
 <br />
 
-### `optimistic`
+### optimistic
 
 The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is successful. If mutation returns with error, UI updates to show data prior to the mutation.
 
@@ -342,7 +342,7 @@ render(<App />);
 
 <br />
 
-### `undoable`
+### undoable
 
 The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is successful. Waits for a customizable amount of timeout period before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
 
