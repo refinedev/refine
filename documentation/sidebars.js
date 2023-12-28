@@ -167,6 +167,7 @@ module.exports = {
                 "guides-concepts/realtime/index",
                 "guides-concepts/audit-logs/index",
                 "guides-concepts/multi-tenancy/index",
+                "guides-concepts/import-export/index",
                 "guides-concepts/i18n/index",
                 {
                     type: "category",
@@ -199,14 +200,6 @@ module.exports = {
                             label: "Form",
                             items: [
                                 "advanced-tutorials/forms/custom-form-validation",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Import - Export",
-                            items: [
-                                "advanced-tutorials/import-export/csv-export",
-                                "advanced-tutorials/import-export/csv-import",
                             ],
                         },
                         "advanced-tutorials/real-time",
