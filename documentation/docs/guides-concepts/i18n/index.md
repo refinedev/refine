@@ -23,7 +23,7 @@ Here is the basic example `i18nProvider` with [react-i18next](https://react.i18n
 - We will use the [Ant Design](https://ant.design/) UI library in this example. You can use any UI library you want.
 - We recommend using [`create refine-app`][create-refine-app] to initialize your Refine projects as it configures the project according to your needs, i18n support included if you choose it in the CLI
 - For more information, refer to the [react-i18next documentation&#8594](https://react.i18next.com/getting-started)
-- This example is for SPA react apps, for Next.js refer to [i18n Nextjs example&#8594][i18nnextjs]
+- This example is for SPA react apps, for Next.js refer to [i18n Next.js example&#8594][i18nnextjs]
 
 :::
 
