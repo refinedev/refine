@@ -47,6 +47,7 @@ type ToWithResource = {
   resource: string; // resource name or identifier
   id?: BaseKey; // required when `action` is `"edit"`, `"show"`, or `"clone"`.
   action: "list" | "create" | "edit" | "show" | "clone"; // action name
+  meta?: Record<string, unknown>; // meta data to be used when composing the path (use if you have additional path parameters)
 };
 ```
 
