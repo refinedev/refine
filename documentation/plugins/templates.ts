@@ -47,7 +47,7 @@ const templates = [
         dataProvider: "Nestjs-query",
         authProvider: "Custom",
         description: `
-This  CRM app example, built with Refine, demonstrates a complete solution for enterprise-level CRM internal tool needs. It has a wide range of functionalities for real-use cases, which are extensively utilized by enterprise companies.
+This CRM app example, built with Refine, demonstrates a complete solution for enterprise-level CRM internal tool needs. It has a wide range of functionalities for real-use cases, which are extensively utilized by enterprise companies.
 
 The app connected to GraphQL API through Refine's Nestjs-query data provider, and its user interface is developed using Ant Design, which Refine offers built-in UI framework support. 
 
@@ -69,7 +69,7 @@ The source code of the CRM app is also open-source; feel free to use or inspect 
 - **Administration**: Customize CRM settings, user roles, and permissions.
 
 
-This CRM app template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard and all CRUD applications, providing a comprehensive platform for: 
+This CRM app template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard. Such as:
 
 - Human Resource Management (HRM) Tools
 - IT Service Management (ITSM) Tools
@@ -78,7 +78,8 @@ This CRM app template can be used in for various app requirements like B2B appli
 - Customer Support Tools
 - Financial Planning Systems
 - Customer Analytics Tools
-- Inventory Management Systems
+- Inventory Management Systems,
+- Sales and Marketing Tools,
 - Supply Chain Management Tools
 - Retail Management Systems
 - Business Intelligence Tools
@@ -144,7 +145,22 @@ The template is open-source, so you can freely use or examine it to understand h
 -   **Couriers**: Monitor and manage courier activity and interactions.
 -   **Reviews**: Handle customer feedback, review ratings, and respond to comments.
 
-This admin panel template can be used for various app requirements like B2B applications, internal tools, admin panel, dashboard, and all CRUD applications, providing a comprehensive platform for managing order interactions, restaurant management, and sales processes.`,
+This admin panel template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard. Such as:
+
+- Food Ordering Systems
+- Restaurant management Systems
+- Portfolio Management Software
+- Data Integration Tools 
+- Healthcare Analytics Software
+- Telemedicine Platforms
+- Customer Support Tools
+- Financial Planning Systems
+- Customer Analytics Tools
+- Inventory Management Systems
+- Workforce Management Systems
+- Electronic Health Record (EHR) Systems
+- Patient Management Systems
+`,
     },
     {
         slug: "react-admin-panel-ant-design",
@@ -179,7 +195,23 @@ The template is open-source, so you can freely use or examine it to understand h
 - **Couriers**: Monitor and manage courier activity and interactions.
 - **Reviews**: Handle customer feedback, review ratings, and respond to comments.
 
-This admin panel template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard and all CRUD applications, providing a comprehensive platform for managing order interactions, restaurant management, and sales processes.`,
+This admin panel template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard. Such as:
+
+- Food Ordering Systems
+- Restaurant management Systems
+- Portfolio Management Software
+- Data Integration Tools 
+- Healthcare Analytics Software
+- Telemedicine Platforms
+- Customer Support Tools
+- Financial Planning Systems
+- Customer Analytics Tools
+- Inventory Management Systems
+- Workforce Management Systems
+- Electronic Health Record (EHR) Systems
+- Patient Management Systems
+
+`,
     },
     {
         slug: "next-js-ecommerce-store",
