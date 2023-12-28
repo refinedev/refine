@@ -139,6 +139,9 @@ export const Edit: React.FC = () => {
 
   return (
     <div className="page">
+      <div className="auto-save-wrapper">
+        <AutoSaveIndicator {...autoSaveProps} />
+      </div>
       <form
         onChange={(event) => {
           const formData = new FormData(event.currentTarget);
@@ -175,9 +178,6 @@ export const Edit: React.FC = () => {
           </select>
         </label>
         <button type="submit">Submit</button>
-        <div className="auto-save-wrapper">
-          <AutoSaveIndicator {...autoSaveProps} />
-        </div>
       </form>
     </div>
   );

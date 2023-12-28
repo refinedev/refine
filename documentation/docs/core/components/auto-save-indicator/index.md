@@ -12,7 +12,7 @@ The `<AutoSaveIndicator />` component is a utility component that can be used to
 
 - Refine's core [`useForm`](/docs/data/hooks/use-form) hook does not automatically trigger the auto-save feature. You need to manually trigger the `onFinishAutoSave` function returned from the `useForm` hook to trigger the auto-save feature.
 
-- Extended implementations of Refine's `useForm` such as; [@refinedev/antd`'s `useForm`](/docs/ui-integrations/ant-design/hooks/use-form), [`@refinedev/react-hook-form`'s `useForm`](/docs/packages/react-hook-form/use-form) and [`@refinedev/mantine`'s `useForm`](/docs/ui-integrations/mantine/hooks/use-form) automatically trigger the auto-save feature when a form value changes.
+- Extended implementations of Refine's `useForm` such as; [`@refinedev/antd`'s `useForm`](/docs/ui-integrations/ant-design/hooks/use-form), [`@refinedev/react-hook-form`'s `useForm`](/docs/packages/react-hook-form/use-form) and [`@refinedev/mantine`'s `useForm`](/docs/ui-integrations/mantine/hooks/use-form) automatically trigger the auto-save feature when a form value changes.
 
 - The `<AutoSaveIndicator />` component is only designed to display a visual feedback to the user about the auto-save status of the form. It does not contain any logic to trigger the auto-save feature.
 
@@ -33,6 +33,15 @@ const EditPage = () => {
       enabled: true,
     },
   });
+
+  console.log(autoSaveProps);
+  /*
+    {
+      status: "success",  // "loading" | "error" | "idle" | "success"
+      error: null,        // HttpError | null
+      data: { ... },      // UpdateResponse | undefined,
+    }
+  */
 
   return (
     <div>
@@ -56,8 +65,41 @@ import Usage from "./usage.tsx";
 
 <Usage />
 
+### Customizing the indicator
+
+The `<AutoSaveIndicator />` component accepts an `elements` prop which can be used to customize the indicator for each status.
+
+```tsx
+import { AutoSaveIndicator, useForm } from "@refinedev/core";
+
+const EditPage = () => {
+  const { autoSaveProps } = useForm({
+    autoSave: {
+      enabled: true,
+    },
+  });
+
+  return (
+    <div>
+      <AutoSaveIndicator
+        {...autoSaveProps}
+        // highlight-start
+        elements={{
+          loading: <span>saving...</span>,
+          error: <span>auto save error.</span>,
+          idle: <span>waiting for changes.</span>,
+          success: <span>saved.</span>,
+        }}
+        // highlight-end
+      />
+      {/* ... */}
+    </div>
+  );
+};
+```
+
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@refinedev/core/AutoSaveIndicator" />
+<PropsTable module="@refinedev/core/AutoSaveIndicator" elements-type={'Partial<Record<"loading" \\| "error" \\| "idle" \\| "success", ReactNode>>'} />

@@ -24,6 +24,15 @@ const MyComponent = () => {
     },
   });
 
+  console.log(autoSaveProps);
+  /*
+    {
+      status: "success",  // "loading" | "error" | "idle" | "success"
+      error: null,        // HttpError | null
+      data: { ... },      // UpdateResponse | undefined,
+    }
+  */
+
   return <AutoSaveIndicator {...autoSaveProps} />;
 };
 ```
