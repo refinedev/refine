@@ -47,7 +47,7 @@ To demonstrate the `close` function, we created a `<button>` that uses it in its
 
 ## Properties
 
-### `defaultVisible`
+### defaultVisible
 
 `defaultVisible` is a boolean value that determines whether the modal is visible by default. By default, it is `false`.
 
@@ -59,15 +59,15 @@ useModal({
 
 ## Return Values
 
-### `visible`
+### visible
 
 Visible state of the modal.
 
-### `show`
+### show
 
 A function that can change the `visible` state to `true`.
 
-### `close`
+### close
 
 A function that can change the `visible` state to `false`.
 

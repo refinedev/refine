@@ -119,7 +119,7 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ## Properties
 
-### `title`
+### title
 
 `title` allows the addition of titles inside the `<Edit>` component. If you don't pass title props it uses "Edit" prefix and singular resource name by default. For example, for the `/posts/edit` resource, it will be "Edit post".
 
@@ -159,7 +159,7 @@ render(
 );
 ```
 
-### `resource`
+### resource
 
 The `<Edit>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Edit>` component, you can use the `resource` prop.
 
@@ -217,7 +217,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `saveButtonProps`
+### saveButtonProps
 
 The `<Edit>` component has a save button that submits the form by default. If you want to customize this button you can use the `saveButtonProps` property like the code below:
 
@@ -256,7 +256,7 @@ render(
 
 > For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/material-ui/components/buttons/save-button)
 
-### `canDelete` and `deleteButtonProps`
+### canDelete and deleteButtonProps
 
 `canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property, Refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
@@ -359,7 +359,7 @@ render(
 
 > For more information, refer to the [`<DeleteButton>` &#8594](/docs/ui-integrations/material-ui/components/buttons/delete-button) and [`usePermission` &#8594](/docs/authentication/hooks/use-permissions) documentations
 
-### `recordItemId`
+### recordItemId
 
 The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL, like when its used on a custom page, modal or drawer.
 
@@ -411,7 +411,7 @@ render(
 
 The `<Edit>` component needs the `id` information for the [`<RefreshButton>`](/docs/ui-integrations/material-ui/components/buttons/refresh-button) to work properly.
 
-### `mutationMode`
+### mutationMode
 
 Determines which mode mutation will have while executing [`<DeleteButton>`](/docs/ui-integrations/material-ui/components/buttons/delete-button).
 
@@ -527,7 +527,7 @@ render(
 
 > For more information, refer to the [mutation mode documentation &#8594](/advanced-tutorials/mutation-mode.md)
 
-### `dataProviderName`
+### dataProviderName
 
 If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
@@ -559,7 +559,7 @@ export const App: React.FC = () => {
 };
 ```
 
-### `goBack`
+### goBack
 
 To customize the back button or to disable it, you can use the `goBack` property.
 
@@ -625,7 +625,7 @@ render(
 );
 ```
 
-### `isLoading`
+### isLoading
 
 To toggle the loading state of the `<Edit/>` component, you can use the `isLoading` property.
 
@@ -666,7 +666,7 @@ render(
 );
 ```
 
-### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
+### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
 
@@ -717,7 +717,7 @@ render(
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/material-ui/components/breadcrumb)
 
-### `wrapperProps`
+### wrapperProps
 
 If you want to customize the wrapper of the `<Edit/>` component, you can use the `wrapperProps` property.
 
@@ -765,7 +765,7 @@ render(
 
 > For more information, refer to the [`Card` documentation from Material UI &#8594](https://mui.com/material-ui/api/card/)
 
-### `headerProps`
+### headerProps
 
 If you want to customize the header of the `<Edit/>` component, you can use the `headerProps` property.
 
@@ -813,7 +813,7 @@ render(
 
 > For more information, refer to the [`CardHeader` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-header/)
 
-### `contentProps`
+### contentProps
 
 If you want to customize the content of the `<Edit/>` component, you can use the `contentProps` property.
 
@@ -861,7 +861,7 @@ render(
 
 > For more information, refer to the [`CardContent` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-content/)
 
-### `headerButtons`
+### headerButtons
 
 By default, the `<Edit/>` component has a [`<ListButton>`][list-button] and a [`<RefreshButton>`][refresh-button] at the header.
 
@@ -960,7 +960,7 @@ render(
 );
 ```
 
-### `headerButtonProps`
+### headerButtonProps
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
@@ -1015,7 +1015,7 @@ render(
 
 > For more information, refer to the [`Box` documentation from Material UI &#8594](https://mui.com/material-ui/api/box/)
 
-### `footerButtons`
+### footerButtons
 
 By default, the `<Edit/>` component has a [`<SaveButton>`][save-button] and a [`<DeleteButton>`][delete-button] at the footer.
 
@@ -1114,7 +1114,7 @@ render(
 );
 ```
 
-### `footerButtonProps`
+### footerButtonProps
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
@@ -1169,7 +1169,7 @@ render(
 
 > For more information, refer to the [`CardActions` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-actions/)
 
-### `autoSaveProps`
+### autoSaveProps
 
 You can use the auto save feature of the `<Edit/>` component by using the `autoSaveProps` property.
 

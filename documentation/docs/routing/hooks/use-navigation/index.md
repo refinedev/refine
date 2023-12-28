@@ -19,7 +19,7 @@ const { list, create, edit, show, clone, push, replace, goBack, listUrl, createU
 
 All functions the `useNavigation` hook returns, except `push`, `replace` and `goBack`, accept a `meta` parameter. This is an optional parameter that can be used to pass additional parameters to the routes if they contain multiple parameters other than `id`.
 
-### `list`
+### list
 
 This method navigates to the list page of the given resource.
 
@@ -33,7 +33,7 @@ list("posts"); // It navigates to the `/posts` page
 
 You can also give a `type` property as a second parameter to the `list` method.
 
-### `create`
+### create
 
 This method navigates to the create page of the given resource.
 
@@ -47,7 +47,7 @@ create("posts"); // It navigates to the `/posts/create` page
 
 You can also give a `type` property as a second parameter to the `create` method.
 
-### `edit`
+### edit
 
 This method navigates to the edit page of the given `resource` and `id`. When you use this method, you need to give it the `id` of the record you want to edit.
 
@@ -61,7 +61,7 @@ edit("posts", "1"); // It navigates to the `/posts/edit/1` page
 
 You can also give a `type` property as a third parameter to the `edit` method.
 
-### `show`
+### show
 
 This method navigates to the show page of the given `resource` and `id`. When you use this method, you need to give the `id` of the record you want to show.
 
@@ -75,7 +75,7 @@ show("posts", "1"); // It navigates to the `/posts/show/1` page
 
 You can also give a `type` property as a third parameter to the `show` method.
 
-### `clone`
+### clone
 
 This method navigates to the clone page of the given `resource` and `id`. When you use this method, you need to give the `id` of the record you want to clone.
 
@@ -89,7 +89,7 @@ clone("posts", "1"); // It navigates to the `/posts/clone/1` page
 
 You can also give a `type` property as a third parameter to the `clone` method.
 
-### `push`
+### push
 
 This method pushes a new entry onto the history stack. It uses the `push` method of the `useHistory` from the [`routerProvider`][routerprovider].
 
@@ -103,7 +103,7 @@ push("custom-page"); // It navigates to the `/custom-page` page
 
 `push` method parameters are dependent on your router provider.
 
-### `replace`
+### replace
 
 This method replaces the current entry on the history stack. It uses the `replace` method of the `useHistory` from the [`routerProvider`][routerprovider].
 
@@ -117,7 +117,7 @@ replace("custom-page"); // It navigates to the `/custom-page` page
 
 `replace` method parameters are dependent on your router provider.
 
-### `goBack`
+### goBack
 
 This method navigates to the previous page. It uses the `goBack` method of the `useHistory` from the [`routerProvider`][routerprovider].
 
@@ -131,7 +131,7 @@ goBack(); // It navigates to the previous page
 
 `goBack` method parameters are dependent on your router provider.
 
-### `listUrl`
+### listUrl
 
 This method returns the list page URL of the given resource.
 
@@ -143,7 +143,7 @@ const { listUrl } = useNavigation();
 listUrl("posts"); // It returns the `/posts` URL
 ```
 
-### `createUrl`
+### createUrl
 
 This method returns the create page URL of the given resource.
 
@@ -155,7 +155,7 @@ const { createUrl } = useNavigation();
 createUrl("posts"); // It returns the `/posts/create` URL
 ```
 
-### `editUrl`
+### editUrl
 
 This method returns the edit page URL of the given resource and id.
 
@@ -167,7 +167,7 @@ const { editUrl } = useNavigation();
 editUrl("posts", "1"); // It returns the `/posts/edit/1` URL
 ```
 
-### `showUrl`
+### showUrl
 
 This method returns the show page URL of the given resource and id.
 
@@ -179,7 +179,7 @@ const { showUrl } = useNavigation();
 showUrl("posts", "1"); // It returns the `/posts/show/1` URL
 ```
 
-### `cloneUrl`
+### cloneUrl
 
 This method returns the clone page URL of the given resource and id.
 

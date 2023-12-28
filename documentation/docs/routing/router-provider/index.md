@@ -171,7 +171,7 @@ export default function App() {
 
 The `routerProvider` methods are designed to be as simple as possible and to be compatible with any router library. Refine also exports some helper functions to make it easier to create a customized `routerProvider`.
 
-### `go`
+### go
 
 The `go` method is used to navigate to a specific page. It accepts a `to` parameter, which is the path of the page to navigate to; the `query`, `hash`, and `options` parameters to customize the navigation; and the `type` parameter is used to specify the type of navigation, which can be either `push`, `replace` or `path`.
 
@@ -181,11 +181,11 @@ The `to` parameter is `undefined` by default. In this case, we expect the `go` f
 
 The `query` parameter is passed as an object to let the router library handle the query string. In our implementations, we use the `qs` library to stringify the query object, which supports nested objects. The `query` is also parsed in the `parse` method of the `routerProvider`, which allows us to implement custom ways of stringifying and parsing the queries.
 
-### `back`
+### back
 
 The `back` method is used to navigate back to the previous page. It has no parameters and has no return value.
 
-### `parse`
+### parse
 
 The `parse` method is used to parse the current path and return the current `resource`, `id` and `action` of the page as well as the `pathname` and the `params`.
 
@@ -199,7 +199,7 @@ Matching the resource route can be done with the help of the `matchResourceFromR
 
 `action` is the name of the action that is used in the current page. This can be `undefined` if there's no matching route for a resource action.
 
-### `Link`
+### Link
 
 The `Link` component is used to create links to other pages. It accepts a `to` parameter which is the path of the page to navigate to. It's meant to be used internally in UI packages and other parts of Refine to complement the router library. It's not meant to be used directly in the application.
 

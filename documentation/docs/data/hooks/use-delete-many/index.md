@@ -41,7 +41,7 @@ When the `useDeleteMany` mutation runs successfully, it will invalidate the foll
 
 ## Properties
 
-### `mutationOptions`
+### mutationOptions
 
 `mutationOptions` is used to pass options to the `useMutation` hook. It is useful when you want to pass additional options to the `useMutation` hook.
 
@@ -76,7 +76,7 @@ mutate(
 );
 ```
 
-### `overtimeOptions`
+### overtimeOptions
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
 `interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
@@ -104,7 +104,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ## Mutation Parameters
 
-### `resource` <PropTag required />
+### resource <PropTag required />
 
 This parameter will be passed to the `deleteMany` method from the `dataProvider` as a parameter. It is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `deleteMany` method.
 
@@ -122,7 +122,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `ids` <PropTag required />
+### ids <PropTag required />
 
 This parameter will be passed to the `deleteMany` method from the `dataProvider` as a parameter. It is used to determine which records to deleted.
 
@@ -134,7 +134,7 @@ mutate({
 });
 ```
 
-### `mutationMode`
+### mutationMode
 
 Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic`, and `undoable`. The default mode is `pessimistic`.
 Each mode corresponds to a different type of user experience.
@@ -149,7 +149,7 @@ mutate({
 });
 ```
 
-### `undoableTimeout`
+### undoableTimeout
 
 When `mutationMode` is set to `undoable`, `undoableTimeout` is used to determine the duration to wait before executing the mutation. The default value is `5000` milliseconds.
 
@@ -162,7 +162,7 @@ mutate({
 });
 ```
 
-### `onCancel`
+### onCancel
 
 The `onCancel` property can be utilized when the `mutationMode` is set to `"undoable"`. It provides a function that can be used to cancel the ongoing mutation.
 
@@ -199,7 +199,7 @@ const MyComponent = () => {
 };
 ```
 
-### `successNotification`
+### successNotification
 
 > [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
@@ -219,7 +219,7 @@ mutate({
 });
 ```
 
-### `errorNotification`
+### errorNotification
 
 > [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
@@ -239,7 +239,7 @@ mutate({
 });
 ```
 
-### `meta`
+### meta
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
@@ -288,7 +288,7 @@ const myDataProvider = {
 
 > For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
-### `dataProviderName`
+### dataProviderName
 
 This prop allows you to specify which `dataProvider` if you have more than one. Just pass it like in the example:
 
@@ -300,7 +300,7 @@ mutate({
 });
 ```
 
-### `invalidates`
+### invalidates
 
 `invalidates` is used to specify which queries should be invalidated after the mutation is completed.
 
@@ -322,7 +322,7 @@ Returns an object with TanStack Query's `useMutation` return values.
 
 ### Additional Values
 
-#### `overtime`
+#### overtime
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 

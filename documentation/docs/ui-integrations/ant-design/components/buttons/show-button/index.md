@@ -67,7 +67,7 @@ render(
 
 ## Properties
 
-### `recordItemId`
+### recordItemId
 
 `recordItemId` is used to append the record id to the end of the route path. By default, the `recordItemId` is inferred from the route params.
 
@@ -109,7 +109,7 @@ render(
 
 Clicking the button will trigger the `show` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
 
-### `resource`
+### resource
 
 The redirection endpoint is defined by the `resource`'s `show` action path. By default, `<ShowButton>` uses the inferred resource from the route.
 
@@ -165,7 +165,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `meta`
+### meta
 
 It is used to pass additional parameters to the `show` method of [`useNavigation`](/docs/routing/hooks/use-navigation). By default, existing parameters in the route are used by the `show` method. You can pass additional parameters or override the existing ones using the `meta` prop.
 
@@ -177,7 +177,7 @@ const MyComponent = () => {
 };
 ```
 
-### `hideText`
+### hideText
 
 `hideText` is used to hide the text of the button. When its `true`, only the button icon will be visible.
 
@@ -215,7 +215,7 @@ render(
 );
 ```
 
-### `accessControl`
+### accessControl
 
 This prop can be used to skip the access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with its `hideIfUnauthorized` property. However, this only works when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
 
@@ -236,7 +236,7 @@ export const MyListComponent = () => {
 };
 ```
 
-### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+### ~~resourceNameOrRouteName~~ <PropTag deprecated />
 
 Use `resource` prop instead.
 

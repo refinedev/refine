@@ -144,7 +144,7 @@ Since the following hooks are derivative of `useList` hook, they will subscribe 
 | @refinedev/mui         | [useDataGrid](/docs/ui-integrations/material-ui/hooks/use-data-grid), [useAutoComplete](/docs/ui-integrations/material-ui/hooks/use-auto-complete)                                                                                                                                                                                                                                                                                           |
 | @refinedev/mantine     | [useSelect](/docs/ui-integrations/mantine/hooks/use-select)                                                                                                                                                                                                                                                                                                                                                                                  |
 
-### `useOne`
+### useOne
 
 ```ts
 useOne({ resource: "posts", id: "1" });
@@ -166,7 +166,7 @@ Since the following hooks are derivative of `useOne` hook, they will subscribe t
 | @refinedev/antd    | [useForm](/docs/ui-integrations/ant-design/hooks/use-form), [useModalForm](/docs/ui-integrations/ant-design/hooks/use-modal-form), [useDrawerForm](/docs/ui-integrations/ant-design/hooks/use-drawer-form), [useStepsForm](/docs/ui-integrations/ant-design/hooks/use-steps-form) |
 | @refinedev/mantine | [useForm](/docs/ui-integrations/mantine/hooks/use-form), [useDrawerForm](/docs/ui-integrations/mantine/hooks/use-drawer-form), [useModalForm](/docs/ui-integrations/mantine/hooks/use-modal-form), [useStepsForm](/docs/ui-integrations/mantine/hooks/use-steps-form)             |
 
-### `useMany`
+### useMany
 
 ```ts
 useMany({ resource: "posts", ids: ["1", "2"] });
@@ -189,7 +189,7 @@ Since the following hooks are using `useMany` hook, they will subscribe to the s
 
 Refine publishes these events in the hooks. Let's see the usage of hooks and what kind of events are published:
 
-### `useCreate`
+### useCreate
 
 ```ts
 const { mutate } = useCreate();
@@ -212,7 +212,7 @@ mutate({
 }
 ```
 
-### `useCreateMany`
+### useCreateMany
 
 ```ts
 const { mutate } = useCreateMany();
@@ -240,7 +240,7 @@ mutate({
 }
 ```
 
-### `useDelete`
+### useDelete
 
 ```ts
 const { mutate } = useDelete();
@@ -261,7 +261,7 @@ mutate({
 }
 ```
 
-### `useDeleteMany`
+### useDeleteMany
 
 ```ts
 const { mutate } = useDeleteMany();
@@ -282,7 +282,7 @@ mutate({
 }
 ```
 
-### `useUpdate`
+### useUpdate
 
 ```ts
 const { mutate } = useUpdate();
@@ -304,7 +304,7 @@ mutate({
 }
 ```
 
-### `useUpdateMany`
+### useUpdateMany
 
 ```ts
 const { mutate } = useUpdateMany();

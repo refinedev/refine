@@ -29,7 +29,7 @@ close?.("notification-key");
 
 ## Properties
 
-### `open`
+### open
 
 You can call this method to open a new notification box.
 
@@ -45,7 +45,7 @@ open?.({
 
 > For more information, refer to the [`Open Notification Params` interface→](/docs/core/interface-references#open-notification-params)
 
-### `close`
+### close
 
 You can close a notification with a `key`.
 

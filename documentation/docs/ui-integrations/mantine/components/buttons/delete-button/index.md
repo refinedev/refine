@@ -142,7 +142,7 @@ render(
 
 ## Properties
 
-### `recordItemId`
+### recordItemId
 
 `recordItemId` allows us to manage which record will be deleted. By default, `recordItemId` is read from the route parameters.
 
@@ -195,7 +195,7 @@ render(
 
 Clicking the button will trigger the [`useDelete`](/docs/data/hooks/use-delete) method and then the record whose resource is "post" and whose id is "123" gets deleted.
 
-### `resource`
+### resource
 
 `resource` allows us to manage which resource's record is going to be deleted. By default, `resource` is read from the current route.
 
@@ -256,7 +256,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `onSuccess`
+### onSuccess
 
 `onSuccess` can be used if you want to do anything based on the result returned after the delete request.
 
@@ -317,7 +317,7 @@ render(
 );
 ```
 
-### `mutationMode`
+### mutationMode
 
 Determines which mode mutation will have while executing `<DeleteButton>`.
 
@@ -370,7 +370,7 @@ render(
 );
 ```
 
-### `hideText`
+### hideText
 
 `hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
@@ -421,7 +421,7 @@ render(
 );
 ```
 
-### `accessControl`
+### accessControl
 
 `accessControl` prop can be used to skip the access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
 
@@ -433,7 +433,7 @@ export const MyListComponent = () => {
 };
 ```
 
-### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+### ~~resourceNameOrRouteName~~ <PropTag deprecated />
 
 Use `resource` prop instead.
 

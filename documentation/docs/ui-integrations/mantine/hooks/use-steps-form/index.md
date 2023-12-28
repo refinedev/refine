@@ -735,7 +735,7 @@ const PostCreatePage: React.FC = () => {
 
 ## Properties
 
-### `refineCoreProps`
+### refineCoreProps
 
 All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#properties) docs.
 
@@ -749,9 +749,9 @@ const stepsForm = useStepsForm({
 });
 ```
 
-### `stepsProps`
+### stepsProps
 
-#### `defaultStep`
+#### defaultStep
 
 Sets the default starting step number. Counting starts from `0`.
 
@@ -763,7 +763,7 @@ const stepsForm = useStepsForm({
 });
 ```
 
-#### `isBackValidate`
+#### isBackValidate
 
 When is `true`, validates a form fields when the user navigates to a previous step. It is `false` by default.
 
@@ -775,7 +775,7 @@ const stepsForm = useStepsForm({
 });
 ```
 
-### `overtimeOptions`
+### overtimeOptions
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
 
@@ -802,7 +802,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### `autoSave`
+### autoSave
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
@@ -814,7 +814,7 @@ It also supports `onMutationSuccess` and `onMutationError` callback functions. Y
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
-#### `enabled`
+#### enabled
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`. Default is `false`.
 
@@ -828,7 +828,7 @@ useStepsForm({
 });
 ```
 
-#### `debounce`
+#### debounce
 
 `debounce` sets the debounce time for the `autoSave` prop. Default is `1000` milliseconds.
 
@@ -844,7 +844,7 @@ useStepsForm({
 });
 ```
 
-#### `invalidateOnUnmount`
+#### invalidateOnUnmount
 
 This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. Default is `false`.
 
@@ -864,20 +864,20 @@ useStepsForm({
 
 All [`useForm`](/docs/ui-integrations/mantine/hooks/use-form) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/mantine/hooks/use-form#return-values) docs.
 
-### `steps`
+### steps
 
 The props needed by the `<Stepper>` component.
 
-#### `currentStep`
+#### currentStep
 
 Current step, counting from `0`.
 
-#### `gotoStep`
+#### gotoStep
 
 Is a function that allows you to programmatically change the current step of a form.
 It takes in one argument, step, which is a number representing the index of the step you want to navigate to.
 
-### `overtime`
+### overtime
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -887,7 +887,7 @@ const { overtime } = useStepsForm();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-### `autoSaveProps`
+### autoSaveProps
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
