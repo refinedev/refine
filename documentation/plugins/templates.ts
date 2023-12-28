@@ -47,7 +47,7 @@ const templates = [
         dataProvider: "Nestjs-query",
         authProvider: "Custom",
         description: `
-This  CRM app example, built with Refine, demonstrates a complete solution for enterprise-level CRM internal tool needs. It has a wide range of functionalities for real-use cases, which are extensively utilized by enterprise companies.
+This CRM app example, built with Refine, demonstrates a complete solution for enterprise-level CRM internal tool needs. It has a wide range of functionalities for real-use cases, which are extensively utilized by enterprise companies.
 
 The app connected to GraphQL API through Refine's Nestjs-query data provider, and its user interface is developed using Ant Design, which Refine offers built-in UI framework support. 
 
@@ -69,7 +69,25 @@ The source code of the CRM app is also open-source; feel free to use or inspect 
 - **Administration**: Customize CRM settings, user roles, and permissions.
 
 
-This CRM app template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard and all CRUD applications, providing a comprehensive platform for managing customer interactions, project management, and sales processes.`,
+This CRM app template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard. Such as:
+
+- Human Resource Management (HRM) Tools
+- IT Service Management (ITSM) Tools
+- Network Monitoring Tools
+- Risk Management Tools
+- Customer Support Tools
+- Financial Planning Systems
+- Customer Analytics Tools
+- Inventory Management Systems,
+- Sales and Marketing Tools,
+- Supply Chain Management Tools
+- Retail Management Systems
+- Business Intelligence Tools
+- Electronic Health Record (EHR) Systems
+- Patient Management Systems
+- Health Information Exchange (HIE) Systems
+- Pharmacy Management Systems
+`,
     },
     {
         slug: "next-js-tailwind",
@@ -97,7 +115,7 @@ The source code is also open-source; feel free to use or inspect it to discover 
     },
     {
         slug: "react-admin-panel",
-        title: "Finefoods Material UI Admin Panel",
+        title: "B2B Admin Panel with Material UI",
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-material-ui.jpg",
         ],
@@ -127,11 +145,26 @@ The template is open-source, so you can freely use or examine it to understand h
 -   **Couriers**: Monitor and manage courier activity and interactions.
 -   **Reviews**: Handle customer feedback, review ratings, and respond to comments.
 
-This admin panel template can be used for various app requirements like B2B applications, internal tools, admin panel, dashboard, and all CRUD applications, providing a comprehensive platform for managing order interactions, restaurant management, and sales processes.`,
+This admin panel template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard. Such as:
+
+- Food Ordering Systems
+- Restaurant management Systems
+- Portfolio Management Software
+- Data Integration Tools 
+- Healthcare Analytics Software
+- Telemedicine Platforms
+- Customer Support Tools
+- Financial Planning Systems
+- Customer Analytics Tools
+- Inventory Management Systems
+- Workforce Management Systems
+- Electronic Health Record (EHR) Systems
+- Patient Management Systems
+`,
     },
     {
         slug: "react-admin-panel-ant-design",
-        title: "Finefoods Ant Design Admin Panel",
+        title: "B2B Internal tool with Ant Design",
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-ant-design.jpg",
         ],
@@ -143,7 +176,7 @@ This admin panel template can be used for various app requirements like B2B appl
         dataProvider: "Rest API",
         authProvider: "Custom",
         description: `
-This example of a React admin panel, built with Refine, provides a comprehensive solution for the needs of enterprise-level admin panels. It features a full range of functionalities typical in products used by enterprise companies.
+This example of a B2B React admin panel, built with Refine, provides a comprehensive solution for the needs of enterprise-level internal tools. It features a full range of functionalities typical in products used by enterprise companies.
 
 The admin panel connects to a REST API using a Simple REST data provider. Its user interface is developed with Ant Design, which Refine offers built-in UI framework support.
 
@@ -162,7 +195,23 @@ The template is open-source, so you can freely use or examine it to understand h
 - **Couriers**: Monitor and manage courier activity and interactions.
 - **Reviews**: Handle customer feedback, review ratings, and respond to comments.
 
-This admin panel template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard and all CRUD applications, providing a comprehensive platform for managing order interactions, restaurant management, and sales processes.`,
+This admin panel template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard. Such as:
+
+- Food Ordering Systems
+- Restaurant management Systems
+- Portfolio Management Software
+- Data Integration Tools 
+- Healthcare Analytics Software
+- Telemedicine Platforms
+- Customer Support Tools
+- Financial Planning Systems
+- Customer Analytics Tools
+- Inventory Management Systems
+- Workforce Management Systems
+- Electronic Health Record (EHR) Systems
+- Patient Management Systems
+
+`,
     },
     {
         slug: "next-js-ecommerce-store",
@@ -359,7 +408,7 @@ The source code of this multitenancy app is open-source, allowing you to use or 
     },
     {
         slug: "ant-design-template",
-        title: "Ant Design template",
+        title: "Internal tool template with Ant Design ",
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-ant-design-template.jpg",
         ],
@@ -373,12 +422,12 @@ The source code of this multitenancy app is open-source, allowing you to use or 
         dataProvider: "Rest API",
         authProvider: "Custom",
         description: `
-Complete admin panel template built with Material UI. Features authentication and CRUD screens.
+Complete internal tool template built with Material UI. Features authentication and CRUD screens.
         `,
     },
     {
         slug: "material-ui-template",
-        title: "Material UI template",
+        title: "Generic Internal Tool Template with Material UI",
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-material-ui-template.jpg",
         ],
@@ -392,12 +441,12 @@ Complete admin panel template built with Material UI. Features authentication an
         dataProvider: "Rest API",
         authProvider: "Custom",
         description: `
-Complete admin panel template built with Material UI. Features authentication and CRUD screens.
+Complete internal tool template built with Material UI. Features authentication and CRUD screens.
         `,
     },
     {
         slug: "mantine-template",
-        title: "Mantine template",
+        title: "Generic Internal Tool Template with Mantine",
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-mantine-template.jpg",
         ],
@@ -411,12 +460,12 @@ Complete admin panel template built with Material UI. Features authentication an
         dataProvider: "Rest API",
         authProvider: "Custom",
         description: `
-Complete admin panel template built with Mantine. Features authentication and CRUD screens.
+Complete internal tool template built with Mantine. Features authentication and CRUD screens.
         `,
     },
     {
         slug: "chakra-ui-template",
-        title: "Chakra UI template",
+        title: "Generic Internal Tool Template with Chakra UI",
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-chakra-ui-template.jpg",
         ],
