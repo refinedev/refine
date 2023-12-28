@@ -211,7 +211,7 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
 </TabItem>
 </Tabs>
 
-All of Refine's components support i18n, meaning that if you want to change their text, you can create your own translation files with the reference to the keys above. We can override refine's default texts by changing the `common.json` files in the example above.
+All of Refine's components support i18n, meaning that if you want to change their text, you can create your own translation files with the reference to the keys above. We can override Refine's default texts by changing the `common.json` files in the example above.
 
 ### Changing The Locale
 
