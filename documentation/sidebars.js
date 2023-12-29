@@ -275,6 +275,7 @@ module.exports = {
                         "data/hooks/use-update-many/index",
                         "data/hooks/use-delete/index",
                         "data/hooks/use-delete-many/index",
+                        "data/hooks/use-custom-method/index",
                         "data/hooks/use-custom/index",
                         "data/hooks/use-custom-mutation/index",
                         "data/hooks/use-data-provider/index",
