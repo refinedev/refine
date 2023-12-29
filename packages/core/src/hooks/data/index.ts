@@ -16,3 +16,5 @@ export { useCustomMutation } from "./useCustomMutation";
 
 export { useDataProvider } from "./useDataProvider";
 export { useInfiniteList } from "./useInfiniteList";
+
+export { useCustomMethod } from "./use-custom-method";
