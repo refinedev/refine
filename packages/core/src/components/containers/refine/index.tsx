@@ -294,7 +294,7 @@ export const Refine: React.FC<RefineProps> = ({
                         {...(authProvider ?? {})}
                         isProvided={Boolean(authProvider)}
                     >
-                        <DataContextProvider {...dataProvider}>
+                        <DataContextProvider dataProvider={dataProvider}>
                             <LiveContextProvider liveProvider={liveProvider}>
                                 <RouterPickerProvider
                                     value={

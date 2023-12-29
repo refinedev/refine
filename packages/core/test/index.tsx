@@ -134,7 +134,7 @@ export const TestWrapper: (
             withRouterBindings
         );
         const withData = dataProvider ? (
-            <DataContextProvider {...dataProvider}>
+            <DataContextProvider dataProvider={dataProvider}>
                 {withResource}
             </DataContextProvider>
         ) : (

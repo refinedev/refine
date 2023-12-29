@@ -260,6 +260,21 @@ export interface CustomParams<TQuery = unknown, TPayload = unknown> {
     metaData?: MetaQuery;
 }
 
+export interface CustomMethodParams<TVariables = {}> {
+    params?: TVariables;
+    meta?: MetaQuery;
+}
+
+export interface CustomMethodResponse<TData = any> {
+    data: TData;
+}
+
+export type CustomMethodDefinitions = {
+    [customMethod: string]: <TData = any, TVariables = {}>(
+        params: CustomMethodParams<TVariables>,
+    ) => Promise<CustomMethodResponse<TData>>;
+};
+
 export interface IDataContextProvider {
     getList: <TData extends BaseRecord = BaseRecord>(
         params: GetListParams,
@@ -306,11 +321,13 @@ export interface IDataContextProvider {
     >(
         params: CustomParams<TQuery, TPayload>,
     ) => Promise<CustomResponse<TData>>;
+
+    customMethods?: CustomMethodDefinitions;
 }
 
 export type IDataContext = IDataContextProvider;
 
 export interface IDataMultipleContextProvider {
     default: IDataContextProvider;
-    [key: string]: IDataContextProvider | any;
+    [key: string]: IDataContextProvider;
 }
