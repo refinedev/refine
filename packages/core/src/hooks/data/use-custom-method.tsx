@@ -3,8 +3,8 @@ import { useDataProvider } from "./useDataProvider";
 import {
     CustomMethodDefinitions,
     CustomMethodResponse,
-    DataProviderMethods,
     HttpError,
+    IDataContextProvider,
     MetaQuery,
 } from "src/interfaces";
 import {
@@ -73,15 +73,18 @@ type MutationReturnType<
     MutationVariables<TVariables>
 >;
 
+type ForbiddenMethodNames = Exclude<
+    keyof Required<IDataContextProvider>,
+    "customMethods"
+>;
+
 export function useCustomMethod<
     TData = any,
     TError extends HttpError = HttpError,
     TVariables = {},
     TMethodName extends string = string,
 >(
-    methodName: TMethodName extends keyof DataProviderMethods
-        ? never
-        : TMethodName,
+    methodName: TMethodName extends ForbiddenMethodNames ? never : TMethodName,
     props?: QueryProps<TData, TError, TVariables>,
 ): QueryReturnType<TData, TError>;
 export function useCustomMethod<
@@ -90,9 +93,7 @@ export function useCustomMethod<
     TVariables = {},
     TMethodName extends string = string,
 >(
-    methodName: TMethodName extends keyof DataProviderMethods
-        ? never
-        : TMethodName,
+    methodName: TMethodName extends ForbiddenMethodNames ? never : TMethodName,
     props: MutationProps<TData, TError, TVariables>,
 ): MutationReturnType<TData, TVariables, TError>;
 export function useCustomMethod<
@@ -101,9 +102,7 @@ export function useCustomMethod<
     TVariables = {},
     TMethodName extends string = string,
 >(
-    methodName: TMethodName extends keyof DataProviderMethods
-        ? never
-        : TMethodName,
+    methodName: TMethodName extends ForbiddenMethodNames ? never : TMethodName,
     {
         dataProviderName,
         as,
