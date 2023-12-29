@@ -5,11 +5,15 @@
 // TODO
 data provider custom methods
 
+**Example Usage**
+
 ```tsx
 const { mutate } = useCustomMethod("myCustomMethod", { as: "mutation" });
-const { mutate } = useCustomMethod("myCustomMethod", { as: "query" });
-const { mutate } = useCustomMethod("myCustomMethod");
+const { data, isLoading } = useCustomMethod("myCustomMethod", { as: "query" });
+const { data, isLoading } = useCustomMethod("myCustomMethod");
 ```
+
+**Example Implementation**
 
 ```tsx
 import simpleRestDataProvider from "@refinedev/simple-rest";
