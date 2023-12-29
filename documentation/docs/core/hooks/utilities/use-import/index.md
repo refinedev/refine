@@ -28,7 +28,7 @@ export const PostList: React.FC = () => {
 
 ## Properties
 
-### `resource`
+### resource
 
 Determines which resource is passed to the `create` or `createMany` method of your data provider. By default, it reads the resource name from the current route.
 
@@ -42,7 +42,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `mapData`
+### mapData
 
 If you want to map the data before sending it to a data provider method, you can use the `mapData` property.
 
@@ -57,7 +57,7 @@ useImport({
 });
 ```
 
-### `paparseOptions`
+### paparseOptions
 
 You can pass any Papa Parse [options](https://www.papaparse.com/docs#config) to the `paparseOptions` property.
 
@@ -69,7 +69,7 @@ useImport({
 });
 ```
 
-### `batchSize`
+### batchSize
 
 If you want to send the data in batches, you can use the `batchSize` property. When the `batchSize` is 1, it calls the `create` method of your data provider for each row in the file. When the `batchSize` is greater than 1, it calls the `createMany` method of your data provider for each batch. By default, it is set to [`Number.MAX_SAFE_INTEGER`][number.max_safe_integer]
 
@@ -79,7 +79,7 @@ useImport({
 });
 ```
 
-### `onFinish`
+### onFinish
 
 If you want to do something after the import is finished, you can use the `onFinish` property. It returns an object with two properties: `succeeded` and `errored`, which contain the responses of the successful and failed requests.
 
@@ -99,7 +99,7 @@ useImport({
 });
 ```
 
-### `meta`
+### meta
 
 If you want to send additional data to the `create` or `createMany` method of your data provider, you can use the `meta` property.
 
@@ -111,7 +111,7 @@ useImport({
 });
 ```
 
-### `onProgress`
+### onProgress
 
 A callback function that is called when the import progress changes. It returns an object with two properties: `totalAmount` and `processedAmount` which contain the total amount of rows and the processed amount of rows.
 
@@ -124,7 +124,7 @@ useImport({
 });
 ```
 
-### `dataProviderName`
+### dataProviderName
 
 If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
 
@@ -134,13 +134,13 @@ useImport({
 });
 ```
 
-### ~~`resourceName`~~ <PropTag deprecated />
+### ~~resourceName~~ <PropTag deprecated />
 
 Use `resource` instead.
 
 ## Return Values
 
-### `inputProps`
+### inputProps
 
 `inputProps` is an object that contains the props of the `input` element. You can spread it to the `input` element.
 
@@ -150,19 +150,19 @@ const { inputProps } = useImport();
 return <input {...inputProps} />;
 ```
 
-#### `type`
+#### type
 
 It is set to `file` by default.
 
-#### `accept`
+#### accept
 
 It is set to `.csv` by default.
 
-#### `onChange`
+#### onChange
 
 It handles the file change event. If the file exists, it will call the `handleChange` method with the file as an argument.
 
-### `handleChange`
+### handleChange
 
 `handleChange` is a function that handles the file change event. It accepts an object with a `file` property which is the file that is selected by the user.
 
@@ -183,11 +183,11 @@ return (
 );
 ```
 
-### `isLoading`
+### isLoading
 
 `isLoading` is a boolean that indicates whether the import is in progress or not.
 
-### `mutationResult`
+### mutationResult
 
 Returns the result of either the [`useCreate`](/docs/data/hooks/use-create) or the [`useCreateMany`](/docs/data/hooks/use-create) hook.
 

@@ -77,11 +77,11 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
 
 ## Properties
 
-### `selectedKeys`, `setSelectedKeys`, `confirm`, `clearFilters`
+### selectedKeys, setSelectedKeys, confirm, clearFilters
 
 These are to be passed from [`<Table.Column>`'s filterDropdown](https://ant.design/components/table/#Column) prop.
 
-### `mapValue`
+### mapValue
 
 Determines the value passed to children. `mapValue` takes `selectedKeys` as an argument.
 

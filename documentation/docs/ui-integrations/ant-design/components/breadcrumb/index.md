@@ -121,7 +121,7 @@ render(
 
 :::
 
-### `breadcrumbProps`
+### breadcrumbProps
 
 The `<Breadcrumb>` component uses the Ant Design [Breadcrumb][antd-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
 
@@ -140,7 +140,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-### `showHome`
+### showHome
 
 If you have a page with route `/`, it will be used as the root of the hierarchy and shown in the `Breadcrumb` with a home icon. To hide the root item, set `showHome` to `false.`
 
@@ -159,7 +159,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-### `meta`
+### meta
 
 If your routes has additional parameters in their paths, you can pass the `meta` property to the `<Breadcrumb>` component to use them while creating the paths and filling the parameters in the paths. By default, the existing URL parameters are used. You can use `meta` to override them or add new ones.
 
@@ -178,7 +178,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-### `hideIcons`
+### hideIcons
 
 If you don't want to show the resource icons on the breadcrumb, you can set `hideIcons` to `true`.
 

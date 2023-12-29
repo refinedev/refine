@@ -57,6 +57,7 @@ const siteConfig = {
                                   "simple",
                               ],
                           },
+                          exclude: ["**/**/_*.md"],
                       },
                 blog: false,
                 theme: {
@@ -70,6 +71,9 @@ const siteConfig = {
                 },
                 gtag: {
                     trackingID: "G-27Z1WY952H",
+                },
+                sitemap: {
+                    ignorePatterns: ["**/_*.md"],
                 },
             },
         ],

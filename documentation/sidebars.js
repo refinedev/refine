@@ -163,8 +163,12 @@ module.exports = {
                 "guides-concepts/authentication/index",
                 "guides-concepts/authorization/index",
                 "guides-concepts/ui-libraries/index",
+                "guides-concepts/notifications/index",
                 "guides-concepts/realtime/index",
                 "guides-concepts/audit-logs/index",
+                "guides-concepts/multi-tenancy/index",
+                "guides-concepts/import-export/index",
+                "guides-concepts/i18n/index",
                 {
                     type: "category",
                     label: "Advanced Tutorials",
@@ -198,24 +202,8 @@ module.exports = {
                                 "advanced-tutorials/forms/custom-form-validation",
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Import - Export",
-                            items: [
-                                "advanced-tutorials/import-export/csv-export",
-                                "advanced-tutorials/import-export/csv-import",
-                            ],
-                        },
                         "advanced-tutorials/real-time",
                         "advanced-tutorials/multi-level-menu/multi-level-menu",
-                        {
-                            type: "category",
-                            label: "Multitenancy",
-                            items: [
-                                "advanced-tutorials/multi-tenancy/appwrite",
-                                "advanced-tutorials/multi-tenancy/strapi-v4",
-                            ],
-                        },
                         "advanced-tutorials/mutation-mode",
                         {
                             type: "category",
@@ -561,7 +549,7 @@ module.exports = {
                     collapsed: false,
                     items: [
                         // TODO: add doc
-                        // "core/components/auto-save-indicator/index",
+                        "core/components/auto-save-indicator/index",
                         "core/components/inferencer/index",
                     ],
                 },

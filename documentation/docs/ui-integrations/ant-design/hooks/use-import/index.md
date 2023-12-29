@@ -45,7 +45,7 @@ export const PostList: React.FC = () => {
 
 ## Properties
 
-### `resource`
+### resource
 
 `resource` determines which resource is passed to the `create` or `createMany` method of your data provider. It reads from the URL by default.
 
@@ -59,7 +59,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation #8594](/docs/core/refine-component#identifier)
 
-### `mapData`
+### mapData
 
 If you want to map the data before sending it to a data provider method, you can use the `mapData` property.
 
@@ -74,7 +74,7 @@ useImport({
 });
 ```
 
-### `paparseOptions`
+### paparseOptions
 
 You can pass any Papa Parse [options](https://www.papaparse.com/docs#config) to the `paparseOptions` property.
 
@@ -86,7 +86,7 @@ useImport({
 });
 ```
 
-### `batchSize`
+### batchSize
 
 If you want to send the data in batches, you can use the `batchSize` property. When the `batchSize` is 1, it calls the `create` method of your data provider for each row in the file. When the `batchSize` is greater than 1, it calls the `createMany` method of your data provider for each batch. By default, it is [`Number.MAX_SAFE_INTEGER`][number.max_safe_integer]
 
@@ -96,7 +96,7 @@ useImport({
 });
 ```
 
-### `onFinish`
+### onFinish
 
 If you want to do something after the import is finished, you can use the `onFinish` property. It returns an object with two properties: `succeeded` and `errored` which contain the responses of the successful and failed requests.
 
@@ -116,7 +116,7 @@ useImport({
 });
 ```
 
-### `meta`
+### meta
 
 If you want to send additional data to the `create` or `createMany` method of your data provider, you can use the `meta` property.
 
@@ -128,7 +128,7 @@ useImport({
 });
 ```
 
-### `onProgress`
+### onProgress
 
 A callback function that is called when the import progress changes. It returns an object with two properties: `totalAmount` and `processedAmount` which contain the total amount of rows and the processed amount of rows.
 
@@ -143,7 +143,7 @@ useImport({
 
 By default, it shows a notification with the progress percentage. You can override this behavior by passing a custom `onProgress` function.
 
-### `dataProviderName`
+### dataProviderName
 
 If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
 
@@ -153,13 +153,13 @@ useImport({
 });
 ```
 
-### ~~`resourceName`~~ <PropTag deprecated />
+### ~~resourceName~~ <PropTag deprecated />
 
 Use `resource` instead.
 
 ## Return Values
 
-### `buttonProps`
+### buttonProps
 
 `buttonProps` are button properties that are compatible with Ant Design [`<Button>`](https://ant.design/components/button/) component.
 
@@ -174,15 +174,15 @@ export const PostList: React.FC = () => {
 };
 ```
 
-#### `type`
+#### type
 
 It is set to `default` by default.
 
-#### `loading`
+#### loading
 
 `loading` sets the loading state of the button if the import is in progress.
 
-### `uploadProps`
+### uploadProps
 
 Upload properties that are compatible with Ant Design [`<Upload>`](https://ant.design/components/upload/) component.
 
@@ -197,27 +197,27 @@ export const PostList: React.FC = () => {
 };
 ```
 
-#### `onChange`
+#### onChange
 
 Handles the file upload.
 
-#### `beforeUpload`
+#### beforeUpload
 
 By default, `() => false` is set to prevent the file from being uploaded automatically.
 
-#### `showUploadList`
+#### showUploadList
 
 By default, `false` is set to hide the upload list.
 
-#### `accept`
+#### accept
 
 By default, `".csv"` is set to accept only CSV files.
 
-### `isLoading`
+### isLoading
 
 It is a boolean value that indicates whether the import is in progress.
 
-### `mutationResult`
+### mutationResult
 
 Result of the [`useCreate`](/docs/data/hooks/use-create) or [`useCreateMany`](/docs/data/hooks/use-create) method of your data provider.
 

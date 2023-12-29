@@ -4,7 +4,7 @@ siderbar_label: useMany
 source: packages/core/src/hooks/data/useMany.ts
 ---
 
-import BasicUsageLivePreview from "./basic-usage-live-preview.md";
+import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 
 `useMany` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) that supports all of its features and adds some more.
 
@@ -32,7 +32,7 @@ When the `useMany` hook is mounted, it will call the `subscribe` method from the
 
 ## Properties
 
-### `resource` <PropTag required />
+### resource <PropTag required />
 
 This parameter will be passed to the `getMany` method from the `dataProvider` as a parameter. t is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `getMany` method.
 
@@ -48,7 +48,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `ids` <PropTag required />
+### ids <PropTag required />
 
 This prop will be passed to the `getMany` method from the `dataProvider` as a parameter. It is used to determine which records to fetch.
 
@@ -58,7 +58,7 @@ useMany({
 });
 ```
 
-### `dataProviderName`
+### dataProviderName
 
 This prop allows you to specify which `dataProvider` if you have more than one. Just pass it like in the example:
 
@@ -68,7 +68,7 @@ useMany({
 });
 ```
 
-### `queryOptions`
+### queryOptions
 
 `queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
 
@@ -83,7 +83,7 @@ useMany({
 
 > For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
-### `meta`
+### meta
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
@@ -131,7 +131,7 @@ const myDataProvider = {
 
 > For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
-### `successNotification`
+### successNotification
 
 > [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
@@ -149,7 +149,7 @@ useMany({
 });
 ```
 
-### `errorNotification`
+### errorNotification
 
 > [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
@@ -167,7 +167,7 @@ useMany({
 });
 ```
 
-### `liveMode`
+### liveMode
 
 > [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
@@ -179,7 +179,7 @@ useMany({
 });
 ```
 
-### `onLiveEvent`
+### onLiveEvent
 
 > [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
@@ -193,13 +193,13 @@ useMany({
 });
 ```
 
-### `liveParams`
+### liveParams
 
 > [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
 
-### `overtimeOptions`
+### overtimeOptions
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
 `interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
@@ -233,7 +233,7 @@ Returns an object with TanStack Query's `useQuery` return values.
 
 ### Additional Values
 
-#### `overtime`
+#### overtime
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 

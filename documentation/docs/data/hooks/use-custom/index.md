@@ -48,7 +48,7 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
 
 ## Properties
 
-### `url` <PropTag required />
+### url <PropTag required />
 
 This prop will be passed to the `custom` method from the `dataProvider` as a parameter. It is usually used to specify the endpoint of the request.
 
@@ -58,7 +58,7 @@ useCustom({
 });
 ```
 
-### `method` <PropTag required />
+### method <PropTag required />
 
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It is usually used to specify the HTTP method of the request.
 
@@ -68,7 +68,7 @@ useCustom({
 });
 ```
 
-### `config.headers`
+### config.headers
 
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It can be used to specify the headers of the request.
 
@@ -82,7 +82,7 @@ useCustom({
 });
 ```
 
-### `config.query`
+### config.query
 
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It can be used to specify the query parameters of the request.
 
@@ -96,7 +96,7 @@ useCustom({
 });
 ```
 
-### `config.payload`
+### config.payload
 
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It can be used to specify the payload of the request.
 
@@ -110,7 +110,7 @@ useCustom({
 });
 ```
 
-### `config.sorters`
+### config.sorters
 
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It can be used to send the sort query parameters of the request.
 
@@ -127,7 +127,7 @@ useCustom({
 });
 ```
 
-### `config.filters`
+### config.filters
 
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It can be used to send the filter query parameters of the request.
 
@@ -149,7 +149,7 @@ useCustom({
 
 Use `config.sorters` instead.
 
-### `queryOptions`
+### queryOptions
 
 `queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
 
@@ -164,7 +164,7 @@ useCustom({
 });
 ```
 
-### `meta`
+### meta
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
@@ -195,7 +195,7 @@ const myDataProvider = {
 
 > For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
-### `dataProviderName`
+### dataProviderName
 
 This prop allows you to specify which `dataProvider` if you have more than one. Just pass it like in the example:
 
@@ -205,7 +205,7 @@ useCustom({
 });
 ```
 
-### `successNotification`
+### successNotification
 
 > [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
@@ -223,7 +223,7 @@ useCustom({
 });
 ```
 
-### `errorNotification`
+### errorNotification
 
 > [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
@@ -241,7 +241,7 @@ useCustom({
 });
 ```
 
-### `overtimeOptions`
+### overtimeOptions
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
 `interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.

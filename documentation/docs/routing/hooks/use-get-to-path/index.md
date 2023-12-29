@@ -49,18 +49,18 @@ The `authorId` and `id` parameters will be inferred from the route if they are p
 
 ## Parameters
 
-### `resource`
+### resource
 
 This is the name of the resource that you want to navigate to.
 
-### `action`
+### action
 
 This is the name of the action that you want to navigate to.
 
-### `meta`
+### meta
 
 This is the meta object that you want to use to compose the URL. It will be merged with the `params` object that is parsed from the URL.
 
-### `legacy`
+### legacy
 
 This is a boolean value that indicates whether the legacy URL format should be used or not. If it is set to `true`, the URL will be composed for the legacy routers. Default value is `false`.

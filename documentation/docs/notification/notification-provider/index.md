@@ -174,7 +174,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-### `open`
+### open
 
 Refine calls this method when it wants to open a notification. It also helps you to get the right notification by sending some parameters to the Refine open method. For example, `message`, `description`, etc.
 
@@ -317,7 +317,7 @@ open?.({
 });
 ```
 
-### `close`
+### close
 
 Refine calls this method when it wants to close a notification. Refine pass the `key` of the notification to the `close` method. So, we can handle the notification close logic with this `key`.
 

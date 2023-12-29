@@ -20,7 +20,7 @@ export const SHOW_CASES: Examples = [
         source: "https://github.com/refinedev/refine/tree/master/examples/app-crm",
     },
     {
-        title: "Finefoods Ant Design Admin Panel",
+        title: "B2B Internal tool with Ant Design",
         description:
             "Complete admin panel example built with Ant Design. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
         image: "/examples/antd-finefoods.jpg",
@@ -35,7 +35,7 @@ export const SHOW_CASES: Examples = [
         source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-antd",
     },
     {
-        title: "Finefoods Material UI Admin Panel",
+        title: "B2B Admin Panel with Material UI",
         description:
             "Complete admin panel example built with Material UI. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
         image: "/examples/mui-finefoods.jpg",
@@ -166,7 +166,7 @@ export const EXAMPLES: Examples = [
         buttons: [
             {
                 text: "Blog",
-                link: "https://refine.dev/docs/advanced-tutorials/multi-tenancy/strapi-v4/",
+                link: "https://refine.dev/docs/guides-concepts/multi-tenancy/#strapi",
                 icon: (props) => <PageIcon {...props} />,
             },
             {
@@ -186,7 +186,7 @@ export const EXAMPLES: Examples = [
         buttons: [
             {
                 text: "Blog",
-                link: "https://refine.dev/docs/advanced-tutorials/multi-tenancy/appwrite/",
+                link: "https://refine.dev/docs/guides-concepts/multi-tenancy/#appwrite",
                 icon: (props) => <PageIcon {...props} />,
             },
             {

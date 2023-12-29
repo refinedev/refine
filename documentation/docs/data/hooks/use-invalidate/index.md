@@ -79,19 +79,19 @@ invalidate({
 
 ## Invalidation Parameters
 
-### `resource`
+### resource
 
 A `resource` represents an entity in an endpoint in the API (e.g. https://api.fake-rest.refine.dev/posts). It is used to invalidate the state of a particular resource.
 
-### `id`
+### id
 
 The `id` to use when invalidating the `"detail"` state.
 
-### `dataProviderName`
+### dataProviderName
 
 If there is more than one [`dataProvider`][data-provider], you should specify which one to use by passing the `dataProviderName` prop.
 
-### `invalidates` <PropTag required />
+### invalidates <PropTag required />
 
 The scope of the invalidation process. These scopes can be provided in an array.
 
@@ -101,7 +101,7 @@ The scope of the invalidation process. These scopes can be provided in an array.
 - `"detail"`: Invalidates the `"detail"` state of the given `resource` and `id`.
 - `"many"`: Invalidates the `"many"` state of the given `resource`.
 
-### `invalidationFilters` and `invalidationOptions`
+### invalidationFilters and invalidationOptions
 
 The filters and options applied to the invalidation process when picking which queries to invalidate. By default Refine applies some filters and options to fine-tune the invalidation process.
 

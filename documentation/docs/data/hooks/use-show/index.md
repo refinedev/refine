@@ -2,7 +2,7 @@
 title: useShow
 ---
 
-import BasicUsageLivePreview from "./basic-usage-live-preview.md";
+import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
 `useShow` is an extended version of [`useOne`](/docs/data/hooks/use-one) that supports all of its features and adds some more.
@@ -25,7 +25,7 @@ When the `useShow` hook is mounted, it will call the `subscribe` method from the
 
 ## Properties
 
-### `resource`
+### resource
 
 <PropResource
 hook={{
@@ -76,7 +76,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `id`
+### id
 
 It will be passed to the `getOne` method from the `dataProvider` as a parameter. It is used to determine which record to fetch. By default, it will try to read the `id` value from the current URL.
 
@@ -86,7 +86,7 @@ useShow({
 });
 ```
 
-### `meta`
+### meta
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
@@ -132,7 +132,7 @@ const myDataProvider = {
 
 > For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
-### `dataProviderName`
+### dataProviderName
 
 If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
 
@@ -142,7 +142,7 @@ useShow({
 });
 ```
 
-### `queryOptions`
+### queryOptions
 
 `queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
 
@@ -157,7 +157,7 @@ useShow({
 
 > For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
-### `successNotification`
+### successNotification
 
 > [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
@@ -175,7 +175,7 @@ useShow({
 });
 ```
 
-### `errorNotification`
+### errorNotification
 
 > [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
@@ -193,7 +193,7 @@ useShow({
 });
 ```
 
-### `liveMode`
+### liveMode
 
 > [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
@@ -207,7 +207,7 @@ useShow({
 
 > For more information, refer to the [Live / Realtime page&#8594](/docs/realtime/live-provider#livemode)
 
-### `onLiveEvent`
+### onLiveEvent
 
 > [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
@@ -221,13 +221,13 @@ useShow({
 });
 ```
 
-### `liveParams`
+### liveParams
 
 > [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
 
-### `overtimeOptions`
+### overtimeOptions
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
 `interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
@@ -255,17 +255,17 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ## Return Values
 
-### `queryResult`
+### queryResult
 
 It is TanStack Query's `useQuery` return values.
 
 > For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
-### `showId`
+### showId
 
 It is the `id` value that is used on the `useShow` hook.
 
-### `setShowId`
+### setShowId
 
 When you want to change the `showId` value, you can use this setter. It is useful when you want to change the `showId` value based on the user's action.
 
@@ -273,7 +273,7 @@ It will trigger new request to fetch the data when the `showId` value is changed
 
 ### Additional Values
 
-#### `overtime`
+#### overtime
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 

@@ -30,27 +30,27 @@ const { resource } = useResource("posts");
 
 ## Return Values
 
-### `resources`
+### resources
 
 An array of resources that you defined in `<Refine>`.
 
-### `resource`
+### resource
 
 The `resource` object.
 
-### `resourceName`
+### resourceName
 
 Resource name of the `resource` object.
 
-### `id`
+### id
 
 `id` parameter of the current route.
 
-### `action`
+### action
 
 `action` from the current route if there is a match.
 
-### `select`
+### select
 
 The function allows you to retrieve a `resource` object and matched `identifier` by providing either a resource `name` or `identifier`. By default, if there is no match for the given `name` or `identifier`, the function will return the `resource` object and `identifier` associated with the provided value.
 
@@ -58,7 +58,7 @@ If you don't pass any parameter to `useResource`, it will try to infer the `reso
 
 The function also accepts a second parameter `force` which is `true` by default. If you set it to `false`, it will not return a `resource` object and `identifier` if there is no match.
 
-### `identifier`
+### identifier
 
 Identifier value for the current resource, this can either be the `identifier` property or the `name` property of the resource.
 

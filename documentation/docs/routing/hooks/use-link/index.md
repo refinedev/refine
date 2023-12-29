@@ -26,7 +26,7 @@ const MyComponent = () => {
 
 ## Parameters
 
-### `to`
+### to
 
 This is the path that the link will navigate to. It should be a string.
 

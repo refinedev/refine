@@ -87,7 +87,7 @@ const SampleEdit = () => {
 
 ## Views
 
-### `List`
+### List
 
 Generates a sample list view for your resources according to the API response. It uses the `List` and `Table` components with the `useTable` hook from `@refinedev/antd`.
 
@@ -146,7 +146,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `Show`
+### Show
 
 Generates a sample show view for your resources according to the API response. It uses the `Show` and field components from `@refinedev/antd` with the `useShow` hook from `@refinedev/core`.
 
@@ -205,7 +205,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `Create`
+### Create
 
 Generates a sample create view for your resources according to the first record in list API response. It uses the `Create` component and the `useForm` hook from `@refinedev/antd`.
 
@@ -264,7 +264,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `Edit`
+### Edit
 
 Generates a sample edit view for your resources according to the API response. It uses the `Edit` component and the `useForm` hook from `@refinedev/antd`.
 
