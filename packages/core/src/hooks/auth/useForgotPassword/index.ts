@@ -121,76 +121,73 @@ export function useForgotPassword<TVariables = {}>({
         Error | RefineError,
         TVariables,
         unknown
-    >(
-        keys().auth().action("forgotPassword").get(preferLegacyKeys),
-        forgotPasswordFromContext,
-        {
-            onSuccess: ({ success, redirectTo, error }) => {
-                if (success) {
-                    close?.("forgot-password-error");
-                }
+    >({
+        mutationKey: keys()
+            .auth()
+            .action("forgotPassword")
+            .get(preferLegacyKeys),
+        mutationFn: forgotPasswordFromContext,
+        onSuccess: ({ success, redirectTo, error }) => {
+            if (success) {
+                close?.("forgot-password-error");
+            }
 
-                if (error || !success) {
-                    open?.(buildNotification(error));
-                }
-
-                if (redirectTo) {
-                    if (routerType === "legacy") {
-                        replace(redirectTo);
-                    } else {
-                        go({ to: redirectTo, type: "replace" });
-                    }
-                }
-            },
-            onError: (error: any) => {
+            if (error || !success) {
                 open?.(buildNotification(error));
-            },
-            ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
-            meta: {
-                ...(v3LegacyAuthProviderCompatible === true
-                    ? {}
-                    : mutationOptions?.meta),
-                ...getXRay("useForgotPassword", preferLegacyKeys),
-            },
+            }
+
+            if (redirectTo) {
+                if (routerType === "legacy") {
+                    replace(redirectTo);
+                } else {
+                    go({ to: redirectTo, type: "replace" });
+                }
+            }
         },
-    );
+        onError: (error: any) => {
+            open?.(buildNotification(error));
+        },
+        ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
+        meta: {
+            ...(v3LegacyAuthProviderCompatible === true
+                ? {}
+                : mutationOptions?.meta),
+            ...getXRay("useForgotPassword", preferLegacyKeys),
+        },
+    });
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TForgotPasswordData,
         Error | RefineError,
         TVariables,
         unknown
-    >(
-        [
+    >({
+        mutationKey: [
             ...keys().auth().action("forgotPassword").get(preferLegacyKeys),
             "v3LegacyAuthProviderCompatible",
         ],
-        v3LegacyAuthProviderCompatibleForgotPasswordFromContext,
-        {
-            onSuccess: (redirectPathFromAuth) => {
-                if (redirectPathFromAuth !== false) {
-                    if (redirectPathFromAuth) {
-                        if (routerType === "legacy") {
-                            replace(redirectPathFromAuth);
-                        } else {
-                            go({ to: redirectPathFromAuth, type: "replace" });
-                        }
+        mutationFn: v3LegacyAuthProviderCompatibleForgotPasswordFromContext,
+        onSuccess: (redirectPathFromAuth) => {
+            if (redirectPathFromAuth !== false) {
+                if (redirectPathFromAuth) {
+                    if (routerType === "legacy") {
+                        replace(redirectPathFromAuth);
+                    } else {
+                        go({ to: redirectPathFromAuth, type: "replace" });
                     }
                 }
-                close?.("forgot-password-error");
-            },
-            onError: (error: any) => {
-                open?.(buildNotification(error));
-            },
-            ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
-            meta: {
-                ...(v3LegacyAuthProviderCompatible
-                    ? mutationOptions?.meta
-                    : {}),
-                ...getXRay("useForgotPassword", preferLegacyKeys),
-            },
+            }
+            close?.("forgot-password-error");
         },
-    );
+        onError: (error: any) => {
+            open?.(buildNotification(error));
+        },
+        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
+        meta: {
+            ...(v3LegacyAuthProviderCompatible ? mutationOptions?.meta : {}),
+            ...getXRay("useForgotPassword", preferLegacyKeys),
+        },
+    });
 
     return v3LegacyAuthProviderCompatible
         ? v3LegacyAuthProviderCompatibleMutation

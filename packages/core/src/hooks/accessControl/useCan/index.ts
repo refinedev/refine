@@ -45,8 +45,8 @@ export const useCan = ({
     const sanitizedResource = sanitizeResource(_resource);
 
     /* eslint-enable @typescript-eslint/no-unused-vars */
-    const queryResponse = useQuery<CanReturnType>(
-        keys()
+    const queryResponse = useQuery<CanReturnType>({
+        queryKey: keys()
             .access()
             .resource(resource)
             .action(action)
@@ -56,22 +56,20 @@ export const useCan = ({
             })
             .get(preferLegacyKeys),
         // Enabled check for `can` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
-        () =>
+        queryFn: () =>
             can?.({
                 action,
                 resource,
                 params: { ...paramsRest, resource: sanitizedResource },
             }) ?? Promise.resolve({ can: true }),
-        {
-            enabled: typeof can !== "undefined",
-            ...queryOptions,
-            meta: {
-                ...queryOptions?.meta,
-                ...getXRay("useCan", preferLegacyKeys),
-            },
-            retry: false,
+        enabled: typeof can !== "undefined",
+        ...queryOptions,
+        meta: {
+            ...queryOptions?.meta,
+            ...getXRay("useCan", preferLegacyKeys),
         },
-    );
+        retry: false,
+    });
 
     return typeof can === "undefined"
         ? ({ data: { can: true } } as typeof queryResponse)

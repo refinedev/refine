@@ -118,7 +118,9 @@ export function useLogout<TVariables = {}>({
         Error | RefineError,
         (TVariables & Variables) | void,
         unknown
-    >(keys().auth().action("logout").get(preferLegacyKeys), logoutFromContext, {
+    >({
+        mutationKey: keys().auth().action("logout").get(preferLegacyKeys),
+        mutationFn: logoutFromContext,
         onSuccess: async (data, variables) => {
             const { success, error, redirectTo } = data;
             const { redirectPath } = variables ?? {};
@@ -162,49 +164,45 @@ export function useLogout<TVariables = {}>({
         Error | RefineError,
         (TVariables & Variables) | void,
         unknown
-    >(
-        [
+    >({
+        mutationKey: [
             ...keys().auth().action("logout").get(preferLegacyKeys),
             "v3LegacyAuthProviderCompatible",
         ],
-        legacyLogoutFromContext,
-        {
-            onSuccess: async (data, variables) => {
-                const redirectPath = variables?.redirectPath ?? data;
+        mutationFn: legacyLogoutFromContext,
+        onSuccess: async (data, variables) => {
+            const redirectPath = variables?.redirectPath ?? data;
 
-                if (redirectPath === false) {
-                    return;
-                }
+            if (redirectPath === false) {
+                return;
+            }
 
-                if (redirectPath) {
-                    if (routerType === "legacy") {
-                        push(redirectPath);
-                    } else {
-                        go({ to: redirectPath });
-                    }
-                    return;
-                }
-
+            if (redirectPath) {
                 if (routerType === "legacy") {
-                    push("/login");
+                    push(redirectPath);
                 } else {
-                    go({ to: "/login" });
+                    go({ to: redirectPath });
                 }
+                return;
+            }
 
-                await invalidateAuthStore();
-            },
-            onError: (error: any) => {
-                open?.(buildNotification(error));
-            },
-            ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
-            meta: {
-                ...(v3LegacyAuthProviderCompatible
-                    ? mutationOptions?.meta
-                    : {}),
-                ...getXRay("useLogout", preferLegacyKeys),
-            },
+            if (routerType === "legacy") {
+                push("/login");
+            } else {
+                go({ to: "/login" });
+            }
+
+            await invalidateAuthStore();
         },
-    );
+        onError: (error: any) => {
+            open?.(buildNotification(error));
+        },
+        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
+        meta: {
+            ...(v3LegacyAuthProviderCompatible ? mutationOptions?.meta : {}),
+            ...getXRay("useLogout", preferLegacyKeys),
+        },
+    });
 
     return v3LegacyAuthProviderCompatible
         ? v3LegacyAuthProviderCompatibleMutation

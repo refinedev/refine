@@ -44,14 +44,14 @@ export const useLogList = <
     const { get } = useContext(AuditLogContext);
     const { keys, preferLegacyKeys } = useKeys();
 
-    const queryResponse = useQuery<TQueryFnData, TError, TData>(
-        keys()
+    const queryResponse = useQuery<TQueryFnData, TError, TData>({
+        queryKey: keys()
             .audit()
             .resource(resource)
             .action("list")
             .params(meta)
             .get(preferLegacyKeys),
-        () =>
+        queryFn: () =>
             get?.({
                 resource,
                 action,
@@ -59,16 +59,14 @@ export const useLogList = <
                 meta,
                 metaData,
             }) ?? Promise.resolve([]),
-        {
-            enabled: typeof get !== "undefined",
-            ...queryOptions,
-            retry: false,
-            meta: {
-                ...queryOptions?.meta,
-                ...getXRay("useLogList", preferLegacyKeys),
-            },
+        enabled: typeof get !== "undefined",
+        ...queryOptions,
+        retry: false,
+        meta: {
+            ...queryOptions?.meta,
+            ...getXRay("useLogList", preferLegacyKeys),
         },
-    );
+    });
 
     return queryResponse;
 };

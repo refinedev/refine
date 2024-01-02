@@ -56,20 +56,22 @@ export function useIsAuthenticated({
     const { check } = useAuthBindingsContext();
     const { keys, preferLegacyKeys } = useKeys();
 
-    const queryResponse = useQuery(
-        keys().auth().action("check").params(params).get(preferLegacyKeys),
-        async () => (await check?.(params)) ?? {},
-        {
-            retry: false,
-            enabled: !v3LegacyAuthProviderCompatible,
-            meta: {
-                ...getXRay("useIsAuthenticated", preferLegacyKeys),
-            },
+    const queryResponse = useQuery({
+        queryKey: keys()
+            .auth()
+            .action("check")
+            .params(params)
+            .get(preferLegacyKeys),
+        queryFn: async () => (await check?.(params)) ?? {},
+        retry: false,
+        enabled: !v3LegacyAuthProviderCompatible,
+        meta: {
+            ...getXRay("useIsAuthenticated", preferLegacyKeys),
         },
-    );
+    });
 
-    const legacyQueryResponse = useQuery(
-        [
+    const legacyQueryResponse = useQuery({
+        queryKey: [
             ...keys()
                 .auth()
                 .action("check")
@@ -77,15 +79,13 @@ export function useIsAuthenticated({
                 .get(preferLegacyKeys),
             "v3LegacyAuthProviderCompatible",
         ],
-        async () => (await checkAuth?.(params)) ?? {},
-        {
-            retry: false,
-            enabled: v3LegacyAuthProviderCompatible,
-            meta: {
-                ...getXRay("useIsAuthenticated", preferLegacyKeys),
-            },
+        queryFn: async () => (await checkAuth?.(params)) ?? {},
+        retry: false,
+        enabled: v3LegacyAuthProviderCompatible,
+        meta: {
+            ...getXRay("useIsAuthenticated", preferLegacyKeys),
         },
-    );
+    });
 
     return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
 }
