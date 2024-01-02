@@ -15,6 +15,7 @@ type Props = {
 // if they submit rating feedback, we show the text feedback input
 // after they submit text feedback, we show a thank you message
 export const DocSurveyWidget = ({ className }: Props) => {
+    const refWidget = React.useRef<HTMLDivElement>(null);
     const location = useLocation();
     // users can change their rating feedback, so we need to keep track of the survey response
     const [survey, setSurvey] = useState<DocSurveyResponse | null>(null);
@@ -30,6 +31,13 @@ export const DocSurveyWidget = ({ className }: Props) => {
     const handleSurveyOptionClick = async (option: SurveyOption) => {
         setSelectedOption(option);
         setIsSurveyTextVisible(true);
+        // setTimeout is needed because the text view has a transition
+        // we need to scroll to the bottom after the transition is finished so that the text input is visible
+        setTimeout(() => {
+            refWidget.current?.scrollIntoView({
+                behavior: "smooth",
+            });
+        }, 100);
 
         if (survey) {
             const data = await updateSurvey({
