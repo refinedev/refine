@@ -7,6 +7,6 @@ example-tags: [mui]
 
 This example shows how to use the **useAutocomplete** hook.
 
-[Refer to the **refine** useAutocomplete hook documentation for more information. →](/docs/ui-integrations/material-ui/hooks/use-auto-complete)
+[Refer to the Refine useAutocomplete hook documentation for more information. →](/docs/ui-integrations/material-ui/hooks/use-auto-complete)
 
 <CodeSandboxExample path="field-material-ui-use-autocomplete" />

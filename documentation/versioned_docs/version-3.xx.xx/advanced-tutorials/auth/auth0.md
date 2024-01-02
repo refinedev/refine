@@ -11,9 +11,7 @@ We will show you how to use Auth0 with refine
 
 Run the following command within your project directory to install the Auth0 React SDK:
 
-```
-npm install @auth0/auth0-react
-```
+<InstallPackagesCommand args="@auth0/auth0-react"/>
 
 #### Configure the Auth0Provider component
 
@@ -31,17 +29,17 @@ import App from "./App";
 const container = document.getElementById("root");
 const root = createRoot(container!);
 root.render(
-    <React.StrictMode>
-        // highlight-start
-        <Auth0Provider
-            domain="YOUR_DOMAIN"
-            clientId="YOUR_CLIENT_ID"
-            redirectUri={window.location.origin}
-        >
-            <App />
-        </Auth0Provider>
-        // highlight-end
-    </React.StrictMode>,
+  <React.StrictMode>
+    // highlight-start
+    <Auth0Provider
+      domain="YOUR_DOMAIN"
+      clientId="YOUR_CLIENT_ID"
+      redirectUri={window.location.origin}
+    >
+      <App />
+    </Auth0Provider>
+    // highlight-end
+  </React.StrictMode>,
 );
 ```
 
@@ -58,34 +56,34 @@ import { AntdLayout, Button } from "@pankod/refine-antd";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Login: React.FC = () => {
-    // highlight-next-line
-    const { loginWithRedirect } = useAuth0();
+  // highlight-next-line
+  const { loginWithRedirect } = useAuth0();
 
-    return (
-        <AntdLayout
-            style={{
-                background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
-                backgroundSize: "cover",
-            }}
-        >
-            <div style={{ height: "100vh", display: "flex" }}>
-                <div style={{ maxWidth: "200px", margin: "auto" }}>
-                    <div style={{ marginBottom: "28px" }}>
-                        <img src="./refine.svg" alt="Refine" />
-                    </div>
-                    <Button
-                        type="primary"
-                        size="large"
-                        block
-                        //highlight-next-line
-                        onClick={() => loginWithRedirect()}
-                    >
-                        Sign in
-                    </Button>
-                </div>
-            </div>
-        </AntdLayout>
-    );
+  return (
+    <AntdLayout
+      style={{
+        background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
+        backgroundSize: "cover",
+      }}
+    >
+      <div style={{ height: "100vh", display: "flex" }}>
+        <div style={{ maxWidth: "200px", margin: "auto" }}>
+          <div style={{ marginBottom: "28px" }}>
+            <img src="./refine.svg" alt="Refine" />
+          </div>
+          <Button
+            type="primary"
+            size="large"
+            block
+            //highlight-next-line
+            onClick={() => loginWithRedirect()}
+          >
+            Sign in
+          </Button>
+        </div>
+      </div>
+    </AntdLayout>
+  );
 };
 ```
 
@@ -101,10 +99,10 @@ In refine, authentication and authorization processes are performed with the aut
 ```tsx title="App.tsx"
 import { Refine, AuthProvider } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  notificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -119,65 +117,65 @@ import axios from "axios";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App = () => {
-    const { isLoading, isAuthenticated, user, logout, getIdTokenClaims } =
-        useAuth0();
+  const { isLoading, isAuthenticated, user, logout, getIdTokenClaims } =
+    useAuth0();
 
-    if (isLoading) {
-        return <span>loading...</span>;
+  if (isLoading) {
+    return <span>loading...</span>;
+  }
+
+  const authProvider: AuthProvider = {
+    login: () => {
+      return Promise.resolve();
+    },
+    logout: () => {
+      logout({ returnTo: window.location.origin });
+      return Promise.resolve("/");
+    },
+    checkError: () => Promise.resolve(),
+    checkAuth: () => {
+      if (isAuthenticated) {
+        return Promise.resolve();
+      }
+
+      return Promise.reject();
+    },
+    getPermissions: () => Promise.resolve(),
+    getUserIdentity: () => {
+      if (user) {
+        return Promise.resolve({
+          ...user,
+          avatar: user.picture,
+        });
+      }
+    },
+  };
+
+  getIdTokenClaims().then((token) => {
+    if (token) {
+      axios.defaults.headers.common = {
+        Authorization: `Bearer ${token.__raw}`,
+      };
     }
+  });
 
-    const authProvider: AuthProvider = {
-        login: () => {
-            return Promise.resolve();
+  return (
+    <Refine
+      LoginPage={Login}
+      routerProvider={routerProvider}
+      authProvider={authProvider}
+      dataProvider={dataProvider(API_URL, axios)}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={notificationProvider}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "posts",
         },
-        logout: () => {
-            logout({ returnTo: window.location.origin });
-            return Promise.resolve("/");
-        },
-        checkError: () => Promise.resolve(),
-        checkAuth: () => {
-            if (isAuthenticated) {
-                return Promise.resolve();
-            }
-
-            return Promise.reject();
-        },
-        getPermissions: () => Promise.resolve(),
-        getUserIdentity: () => {
-            if (user) {
-                return Promise.resolve({
-                    ...user,
-                    avatar: user.picture,
-                });
-            }
-        },
-    };
-
-    getIdTokenClaims().then((token) => {
-        if (token) {
-            axios.defaults.headers.common = {
-                Authorization: `Bearer ${token.__raw}`,
-            };
-        }
-    });
-
-    return (
-        <Refine
-            LoginPage={Login}
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            dataProvider={dataProvider(API_URL, axios)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "posts",
-                },
-            ]}
-        />
-    );
+      ]}
+    />
+  );
 };
 
 export default App;

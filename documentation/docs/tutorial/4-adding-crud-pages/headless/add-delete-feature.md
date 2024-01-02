@@ -7,7 +7,7 @@ tutorial:
   next: tutorial/adding-crud-pages/{preferredUI}/adding-sort-and-filters
 ---
 
-`useDelete` is a **refine** hook that is used to delete a record. It returns mutation functions that can be used to delete a record, and when the mutation function is called, the parameters of the function are passed to the `delete` method of the data provider.
+`useDelete` is a Refine hook that is used to delete a record. It returns mutation functions that can be used to delete a record, and when the mutation function is called, the parameters of the function are passed to the `delete` method of the data provider.
 
 We will now add a delete button to the list page by using the `useDelete` hook; for this, follow these steps:
 
@@ -27,7 +27,7 @@ We will now add a delete button to the list page by using the `useDelete` hook; 
    };
    ```
 
-   > You can check the parameters of the `deleteBlogPost` mutation function in the [`useDelete` documentation](/docs/core/hooks/data/use-delete#properties).
+   > You can check the parameters of the `deleteBlogPost` mutation function in the [`useDelete` documentation](/docs/data/hooks/use-delete#properties).
 
 4. Add the `<button/>` component to the `actions` column of the table as shown below:
 
@@ -84,9 +84,9 @@ You can now delete a record from the list page by clicking on the delete button 
 
 :::tip
 
-You can also use `useDelete` hook provided by **refine** to delete a record.
+You can also use `useDelete` hook provided by Refine to delete a record.
 
-For more information, refer to the [`useDelete` documentation&#8594](/docs/core/hooks/data/use-delete)
+For more information, refer to the [`useDelete` documentation&#8594](/docs/data/hooks/use-delete)
 
 :::
 

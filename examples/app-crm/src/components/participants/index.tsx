@@ -1,15 +1,17 @@
 import { FC } from "react";
 
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
+
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Space, Tooltip } from "antd";
 
-import { User } from "@/interfaces";
+import { UsersSelectQuery } from "@/graphql/types";
 
 import { CustomAvatar } from "../custom-avatar";
 
 type Props = {
-    userOne: Pick<User, "id" | "name" | "avatarUrl">;
-    userTwo: Pick<User, "id" | "name" | "avatarUrl">;
+    userOne: GetFieldsFromList<UsersSelectQuery>;
+    userTwo: GetFieldsFromList<UsersSelectQuery>;
 };
 
 export const Participants: FC<Props> = ({ userOne, userTwo }) => {

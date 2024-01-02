@@ -20,9 +20,9 @@ const Wrapper = ({ children }) => {
 
 This field is used to display dates. It uses [`Day.js`](https://day.js.org/docs/en/display/format) to display date format.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -139,7 +139,7 @@ render(
 
 <PropsTable module="@refinedev/chakra-ui/DateField" format-default="`L`" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Chakra UI's [Text](https://chakra-ui.com/docs/components/text/usage) component.
 

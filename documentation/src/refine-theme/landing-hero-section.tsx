@@ -36,6 +36,7 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
             >
                 <div
                     className={clsx(
+                        "landing-sm:pl-10",
                         "flex",
                         "flex-col",
                         "justify-center",

@@ -4,7 +4,19 @@ import { projectScripts } from "../projectScripts";
 
 export const getRunnerDescription = (runner: "dev" | "start" | "build") => {
     let projectType = getProjectType();
-    const command = projectScripts[projectType][runner];
+
+    let command: string[] = [];
+    switch (runner) {
+        case "dev":
+            command = projectScripts[projectType].getDev([""]);
+            break;
+        case "start":
+            command = projectScripts[projectType].getStart([""]);
+            break;
+        case "build":
+            command = projectScripts[projectType].getBuild([""]);
+            break;
+    }
 
     if (projectType === ProjectTypes.REMIX && runner === "start") {
         projectType = "remix-serve" as ProjectTypes;

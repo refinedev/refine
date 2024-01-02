@@ -15,9 +15,9 @@ Here's a quick rundown of the features we'll work on:
 1. Allow multiple users to draw pixels on a canvas.
 2. All contributors can see realtime updates on the canvas.
 
-This is Day 4 in the series titled [**refineWeek**](https://refine.dev/week-of-refine/). **refineWeek** is a quickfire tutorial guide that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
+This is Day 4 in the series titled [**RefineWeek**](https://refine.dev/week-of-refine/). **RefineWeek** is a quickfire tutorial guide that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
 
-### refineWeek series
+### RefineWeek series
 
 - Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
 - Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
@@ -58,7 +58,7 @@ Behind the scenes, **Supabase** spins up globally distributed **Realtime** serve
 
 We are using **Supabase** **Realtime**'s [**PostgreSQL Change Data Capture**](https://supabase.com/docs/guides/realtime#postgres-cdc) feature which will now allow our app to publish mutation events to the `pixels` channel and also listen to those changes from a subscriber component.
 
-This means mutation hooks such as [`useCreate()`](https://refine.dev/docs/api-reference/core/hooks/data/useCreate/) can now publish events to the `pixels` channel and consumer hooks like [`useList()`](http://localhost:3000/docs/api-reference/core/hooks/data/useList/) are able to get instant updates for any change to `pixels`.
+This means mutation hooks such as [`useCreate()`](https://refine.dev/docs/api-reference/core/hooks/data/useCreate/) can now publish events to the `pixels` channel and consumer hooks like [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) are able to get instant updates for any change to `pixels`.
 
 ## `<Refine />`'s `liveProvider` Prop
 
@@ -188,7 +188,7 @@ export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
 </p>
 </details>
 
-Both methods are concerned with subscription to the changes. That's because the publishing the event is done by mutation methods. In our case, it is done from the [`useCreate()`](/docs/core/hooks/data/use-create) hook we invoke to create a pixel.
+Both methods are concerned with subscription to the changes. That's because the publishing the event is done by mutation methods. In our case, it is done from the [`useCreate()`](/docs/data/hooks/use-create) hook we invoke to create a pixel.
 
 ## Broadcasting
 

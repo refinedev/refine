@@ -5,9 +5,9 @@ swizzle: true
 
 This field lets you display a value in a tag. It uses Ant Design's [`<Tag>`](https://ant.design/components/tag/) component.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -69,7 +69,7 @@ render(
 
 <PropsTable module="@refinedev/antd/TagField" value-description="Tag content" />
 
-:::tip External Props
+:::simple External Props
 
 This field also accepts all props of Ant Design's [Tag](https://ant.design/components/tag/#API) component.
 

@@ -9,7 +9,7 @@ tutorial:
 
 ## Adding Delete Feature to List Page
 
-`<DeleteButton/>` is a **refine** component that is used for deleting records. When you click on the delete button, it will show a confirmation modal and delete the record upon confirmation. To add it to the "blog_posts" table:
+`<DeleteButton/>` is a Refine component that is used for deleting records. When you click on the delete button, it will show a confirmation modal and delete the record upon confirmation. To add it to the "blog_posts" table:
 
 1.  Open the `src/pages/blog-posts/list.tsx` file on your editor.
 
@@ -107,9 +107,9 @@ After setting the `canDelete` property in `meta` to `true`, you will see a delet
 
 :::tip
 
-You can also use `useDelete` hook provided by **refine** to delete a record.
+You can also use `useDelete` hook provided by Refine to delete a record.
 
-For more information, refer to the [`useDelete` documentation&#8594](/docs/core/hooks/data/use-delete)
+For more information, refer to the [`useDelete` documentation&#8594](/docs/data/hooks/use-delete)
 
 :::
 

@@ -10,6 +10,7 @@ export const TopAnnouncement = () => {
                 "bg-top-announcement",
                 "not-prose",
                 "font-inter",
+                "z-top-announcement",
             )}
         >
             <div
@@ -132,7 +133,7 @@ const Text = () => {
         >
             <div className={clsx("ml-2", "not-prose")}>
                 Unlock powerful debugging and effortless query monitoring with{" "}
-                <span className={clsx("font-semibold")}>refine Devtools</span>
+                <span className={clsx("font-semibold")}>Refine Devtools</span>
                 <span
                     className={clsx(
                         "text-refine-cyan-alt hover:text-refine-cyan-alt",

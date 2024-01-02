@@ -4,11 +4,11 @@ title: Custom Layout
 sidebar_label: Custom Layout
 ---
 
-**refine** supports any layout you want with no restrictions and also provides default layouts with its UI packages. You are free to use them or create your own with the help of **refine**'s hooks and components. You can also use the [`swizzle`][cli] command to customize the default layouts and adapt them to your needs.
+**Refine** supports any layout you want with no restrictions and also provides default layouts with its UI packages. You are free to use them or create your own with the help of **Refine**'s hooks and components. You can also use the [`swizzle`][cli] command to customize the default layouts and adapt them to your needs.
 
 ## Layout Elements
 
-### `Layout`
+### Layout
 
 `<Layout>` components are designed to wrap your pages and provide a dashboard-like layout. `<Layout>` accepts rest of the layout elements in props.
 
@@ -21,7 +21,7 @@ sidebar_label: Custom Layout
 | [`OffLayoutArea`](#offlayoutarea) | `React.FC`  | Component to render outside of the layout       |
 | `children`                        | `ReactNode` | Page content.                                   |
 
-### `Sider`
+### Sider
 
 `<Sider>` components are designed to render menu items according to the resources you have defined in `<Refine>` components. [`useMenu`][usemenu] hook is used under the hood to generate menu items.
 
@@ -31,7 +31,7 @@ sidebar_label: Custom Layout
 | `render`          | [`SiderRenderFunction`](#siderrenderfunction) | Function to render the menu items and other elements inside the `<Sider>` |
 | `meta`            | `Record<string,any>`                          | Meta data to use when creating routes for the menu items                  |
 
-### `SiderRenderFunction`
+### SiderRenderFunction
 
 ```tsx
 type SiderRenderFunction = (props: {
@@ -64,30 +64,30 @@ const CustomSider = () => {
 };
 ```
 
-### `Header`
+### Header
 
 `<Header>` components are designed to render a header at the top of the layout.
 
-### `Title`
+### Title
 
-`<Title>` components are designed to render a title inside the `<Sider>` component. By default, it renders the **refine** logo with a link to the index page.
+`<Title>` components are designed to render a title inside the `<Sider>` component. By default, it renders the **Refine** logo with a link to the index page.
 
-### `Footer`
+### Footer
 
 `<Footer>` components are designed to render a footer at the bottom of the layout.
 
-### `OffLayoutArea`
+### OffLayoutArea
 
 `<OffLayoutArea>` components are designed to render elements outside of the layout.
 
 ## Example
 
-Here's an example of a custom layout, made with help of **refine**'s hooks and components.
+Here's an example of a custom layout, made with help of **Refine**'s hooks and components.
 
 You can find more examples about custom layouts for different UI packages in the [examples](/docs/examples) section.
 
 <CodeSandboxExample path="customization-top-menu-layout" />
 
-[refine]: /docs/core/refine-component
+[Refine]: /docs/core/refine-component
 [cli]: /docs/packages/list-of-packages#swizzle
 [usemenu]: /docs/core/hooks/utilities/use-menu

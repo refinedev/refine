@@ -2,304 +2,328 @@
 title: Interface References
 ---
 
-## CrudFilters
+### CrudFilters
 
-[`CrudFilter[]`](#crudfilter)
+```tsx
+type CrudFilters = CrudFilter[];
+```
 
 ### CrudFilter
 
-| Key      | Type                              |
-| -------- | --------------------------------- |
-| field    | `string`                          |
-| operator | [`CrudOperators`](#crudoperators) |
-| value    | `any`                             |
-
-#### CrudOperators
-
-```ts
-"eq" |
-  "ne" |
-  "lt" |
-  "gt" |
-  "lte" |
-  "gte" |
-  "in" |
-  "nin" |
-  "contains" |
-  "ncontains" |
-  "containss" |
-  "ncontainss" |
-  "between" |
-  "nbetween" |
-  "null" |
-  "nnull" |
-  "startswith" |
-  "nstartswith" |
-  "startswiths" |
-  "nstartswiths" |
-  "endswith" |
-  "nendswith" |
-  "endswiths" |
-  "nendswiths";
+```tsx
+type CrudFilter = LogicalFilter | ConditionalFilter;
 ```
 
-| Type             | Description                        |
-| ---------------- | ---------------------------------- |
-| `"eq"`           | Equal                              |
-| `"ne"`           | Not equal                          |
-| `"lt"`           | Less than                          |
-| `"gt"`           | Greater than                       |
-| `"lte"`          | Less than or equal to              |
-| `"gte"`          | Greater than or equal to           |
-| `"in"`           | Included in an array               |
-| `"nin"`          | Not included in an array           |
-| `"contains"`     | Contains                           |
-| `"ncontains"`    | Doesn't contain                    |
-| `"containss"`    | Contains, case sensitive           |
-| `"ncontainss"`   | Doesn't contain, case sensitive    |
-| `"between"`      | Between                            |
-| `"nbetween"`     | Doesn't between                    |
-| `"null"`         | Is null                            |
-| `"nnull"`        | Is not null                        |
-| `"startswith"`   | Starts with                        |
-| `"nstartswith"`  | Doesn't start with                 |
-| `"startswiths"`  | Starts with, case sensitive        |
-| `"nstartswiths"` | Doesn't start with, case sensitive |
-| `"endswith"`     | Ends with                          |
-| `"nendswith"`    | Doesn't end with                   |
-| `"endswiths"`    | Ends with, case sensitive          |
-| `"nendswiths"`   | Doesn't end with, case sensitive   |
+### LogicalFilter
 
-## CrudSorting
+```tsx
+type LogicalFilter = {
+  field: string;
+  operator: Exclude<CrudOperators, "or" | "and">;
+  value: any;
+};
+```
 
-[`CrudSort[]`](#crudsort)
+### ConditionalFilter
+
+```tsx
+type ConditionalFilter = {
+  key?: string;
+  operator: Extract<CrudOperators, "or" | "and">;
+  value: (LogicalFilter | ConditionalFilter)[];
+};
+```
+
+### CrudOperators
+
+```tsx
+type CrudOperators =
+  | "eq" // Equal
+  | "ne" // Not equal
+  | "lt" // Less than
+  | "gt" // Greater than
+  | "lte" // Less than or equal to
+  | "gte" // Greater than or equal to
+  | "in" // Included in an array
+  | "nin" // Not included in an array
+  | "contains" // Contains
+  | "ncontains" // Doesn't contain
+  | "containss" // Contains, case sensitive
+  | "ncontainss" // Doesn't contain, case sensitive
+  | "between" // Between
+  | "nbetween" // Doesn't between
+  | "null" // Is null
+  | "nnull" // Is not null
+  | "startswith" // Starts with
+  | "nstartswith" // Doesn't start with
+  | "startswiths" // Starts with, case sensitive
+  | "nstartswiths" // Doesn't start with, case sensitive
+  | "endswith" // Ends with
+  | "nendswith" // Doesn't end with
+  | "endswiths" // Ends with, case sensitive
+  | "nendswiths" // Doesn't end with, case sensitive
+  | "or" // Logical OR
+  | "and"; // Logical AND
+```
+
+### CrudSorting
+
+```tsx
+type CrudSorting = CrudSort[];
+```
 
 ### CrudSort
 
-| Key   | Type                 |
-| ----- | -------------------- |
-| field | `string`             |
-| order | `"asc"` \| ` "desc"` |
-
-| `order` type | Description      |
-| ------------ | ---------------- |
-| `"asc"`      | Ascending order  |
-| `"desc"`     | Descending order |
-
-## SortOrder
-
-```ts
-"desc" | "asc" | "null";
+```tsx
+type CrudSort = {
+  field: string;
+  order:
+    | "asc" // Ascending order
+    | "desc"; // Descending order
+};
 ```
 
-## Pagination
+### Pagination
 
-| Key      | Type                                |
-| -------- | ----------------------------------- |
-| current  | `number`                            |
-| pageSize | `number`                            |
-| mode     | `"client"` \| `"server"` \| `"off"` |
-
-## BaseKey
-
-| Type                 |
-| -------------------- |
-| `string` \| `number` |
-
-## BaseRecord
-
-| Key             | Type                  |
-| --------------- | --------------------- |
-| id?             | [`BaseKey`](#basekey) |
-| `[key: string]` | `any`                 |
-
-## HttpError
-
-| Key        | Type                                    |
-| ---------- | --------------------------------------- |
-| message    | `string`                                |
-| statusCode | `number`                                |
-| errors     | [`ValidationErrors`](#validationerrors) |
-
-## ValidationErrors
-
-| Key               | Type                                                                      |
-| ----------------- | ------------------------------------------------------------------------- |
-| `[field: string]` | `string` \| `string[]` \| `boolean` \| `{ key: string; message: string }` |
-
-## Delete Button Props
-
-ButtonProps
-
-| Key           | Type                                                     |
-| ------------- | -------------------------------------------------------- |
-| resourceName? | `string`                                                 |
-| recordItemId? | [`BaseKey`](#basekey)                                    |
-| onSuccess?    | `<TData = BaseRecord>(value: { data: TData; }) => void;` |
-| mutationMode? | [`MutationMode`](#mutationmode)                          |
-| hideText?     | `boolean`                                                |
-
-## MutationMode
-
-```ts
-"pessimistic" | "optimistic" | "undoable";
+```tsx
+type Pagination = {
+  current?: number; // Initial page index
+  pageSize?: number; // Initial number of items per page
+  mode?: "client" | "server" | "off"; // Whether to use server side pagination or not.
+};
 ```
 
-## UploadedFile
+### BaseKey
 
-| Key     | Type                                                                 |
-| ------- | -------------------------------------------------------------------- |
-| uid     | `string`                                                             |
-| name    | `string`                                                             |
-| url     | `string`                                                             |
-| type    | `string`                                                             |
-| size    | `number`                                                             |
-| percent | `number`                                                             |
-| status  | `"error"` \| `"success"` \| `"done" `\| `"uploading"` \| `"removed"` |
+```tsx
+type BaseKey = string | number;
+```
 
-## UseImportInputPropsType
+### BaseRecord
 
-| Key      | Type                                                   |
-| -------- | ------------------------------------------------------ |
-| type     | `"file"`                                               |
-| accept   | `".cvs"`                                               |
-| onChange | `(event: React.ChangeEvent<HTMLInputElement>) => void` |
+```tsx
+type BaseRecord = {
+  id?: BaseKey;
+  [key: string]: any;
+};
+```
 
-## SuccessErrorNotification
+### HttpError
 
-| Key                 | Type                                                                                                                                                                                     |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| successNotification | [OpenNotificationParams](#opennotificationparams) \| `false` \| `(data?: TData, values?: TVariables, resource?: string) => `[OpenNotificationParams](#opennotificationparams) \| `false` |
-| errorNotification   | [OpenNotificationParams](#opennotificationparams) \| `false` \| `(data?: TData, values?: TVariables, resource?: string) => `[OpenNotificationParams](#opennotificationparams) \| `false` |
+```tsx
+type HttpError = {
+  message: string;
+  statusCode: number;
+  errors?: ValidationErrors;
+  [key: string]: any;
+};
+```
 
-## OpenNotificationParams
+### ValidationErrors
 
-| Key              | Type                                     |
-| ---------------- | ---------------------------------------- |
-| key?             | `string`                                 |
-| type             | `"success"` \| `"error"` \| `"progress"` |
-| description?     | `string`                                 |
-| cancelMutation?  | `() => void`                             |
-| undoableTimeout? | `number`                                 |
+```tsx
+type ValidationErrors = {
+  [field: string]:
+    | string // Single error message
+    | string[] // Multiple error messages
+    | boolean // `true` if there is an error
+    | { key: string; message: string }; // Error message with a translation key and a default message
+};
+```
 
-## MetaDataQuery
+### MutationMode
 
-| Key           | Type                                                                                                                 |
-| ------------- | -------------------------------------------------------------------------------------------------------------------- |
-| [k: string]   | `any`                                                                                                                |
-| operation?    | `string`                                                                                                             |
-| fields?       | `Array<string` \| `object` \| [NestedField](#nestedfield)>                                                           |
-| variables?    | [VariableOptions](#variableoptions)                                                                                  |
-| queryContext? | [Omit<QueryFunctionContext, "meta">](https://tanstack.com/query/v4/docs/guides/query-functions#queryfunctioncontext) |
+```tsx
+type MutationMode = "pessimistic" | "optimistic" | "undoable";
+```
 
-### NestedField
+### UseImportInputPropsType
 
-| Key       | Type                                                       |
-| --------- | ---------------------------------------------------------- |
-| operation | `string`                                                   |
-| variables | [VariableOptions[]](#querybuilderoptions)                  |
-| fields    | `Array<string` \| `object` \| [NestedField](#nestedfield)> |
+```tsx
+type UseImportInputPropsType = {
+  type: "file";
+  accept: string; // ".cvs"
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
+```
+
+### SuccessErrorNotification
+
+```tsx
+type SuccessErrorNotification<TData = unknown, TError = unknown, TVariables = unknown> = {
+  successNotification?:
+    | OpenNotificationParams
+    | false
+    | ((data?: TData, values?: TVariables, resource?: string) => OpenNotificationParams | false);
+  errorNotification?:
+    | OpenNotificationParams
+    | false
+    | ((error?: TError, values?: TVariables, resource?: string) => OpenNotificationParams | false);
+};
+```
+
+### OpenNotificationParams
+
+```tsx
+type OpenNotificationParams = {
+  key?: string; // The key of the notification, used to manage the notification state.
+  message: string; // The title of the notification.
+  type: "success" | "error" | "progress"; // The type of the notification.
+  description?: string; // The description of the notification.
+  cancelMutation?: () => void; // If the notification is undoable, the function to call when the user clicks on the undo button.
+  undoableTimeout?: number; // If the notification is undoable, the timeout in milliseconds after which the notification will be automatically closed.
+};
+```
+
+### MetaQuery
+
+```tsx
+type MetaQuery = {
+  queryContext?: Omit<QueryFunctionContext, "meta">;
+  [key: string]: any;
+} & QueryBuilderOptions &
+  GraphQLQueryOptions;
+```
+
+### GraphQLQueryOptions
+
+```tsx
+import type { DocumentNode } from "graphql";
+
+type GraphQLQueryOptions = {
+  gqlQuery?: DocumentNode;
+  gqlMutation?: DocumentNode;
+};
+```
+
+### QueryFunctionContext
+
+Context to be passed to the query function. Refer to [Query Function Context](https://tanstack.com/query/v4/docs/guides/query-functions#queryfunctioncontext) for more information.
 
 ### QueryBuilderOptions
 
-| Key       | Type                                         |
-| --------- | -------------------------------------------- |
-| operation | `string`                                     |
-| variables | [VariableOptions](#variableoptions)          |
-| fields    | `Array<string` \| `object` \| `NestedField>` |
+```tsx
+type QueryBuilderOptions = {
+  operation?: string;
+  fields?: Array<string | object | NestedField>;
+  variables?: VariableOptions;
+};
+```
+
+### NestedField
+
+```tsx
+type NestedField = {
+  operation: string;
+  variables: QueryBuilderOptions[];
+  fields: Array<string | object | NestedField>;
+};
+```
 
 ### VariableOptions
 
-| Key         | Type     |
-| ----------- | -------- |
-| type?       | `string` |
-| name?       | `string` |
-| value?      | `any`    |
-| list?       | `bool`   |
-| required?   | `bool`   |
-| [k: string] | `any`    |
+```tsx
+type VariableOptions = {
+  type?: string;
+  name?: string;
+  value: any;
+  list?: boolean;
+  required?: boolean;
+  [key: string]: any;
+};
+```
 
-## PromptProps
+### CanParams
 
-| Key          | Type                          |
-| ------------ | ----------------------------- |
-| message      | `string`                      |
-| when?        | `boolean`                     |
-| setWarnWhen? | `(warnWhen: boolean) => void` |
+```tsx
+type CanParams = {
+  resource: string; // Resource name
+  action: string; // Intended action name
+  params?: {
+    resource?: IResourceItem; // Resource item if can be determined
+    id?: BaseKey; // Id of the record if the check is for a specific record
+    [key: string]: unknown;
+  };
+};
+```
 
-## CanParams
+### CanResponse
 
-| Key      | Type                                                                                                                                                                 |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| resource | `string`                                                                                                                                                             |
-| action   | `string`                                                                                                                                                             |
-| params?  | { `resource`?: [IResourceItem](/docs/core/interface-references#resourceitemprops), `id`?: [BaseKey](/docs/core/interface-references#basekey), `[key: string]: any` } |
+```tsx
+type CanResponse = {
+  can: boolean;
+  reason?: string;
+  [key: string]: unknown;
+};
+```
 
-## CanReturnType
+### LiveEvent
 
-| Key     | Type      |
-| ------- | --------- |
-| can     | `boolean` |
-| reason? | `string`  |
+```tsx
+type LiveEvent = {
+  channel: string;
+  type: "deleted" | "updated" | "created" | "*" | string;
+  payload: {
+    ids?: BaseKey[];
+    [x: string]: any;
+  };
+  date: Date;
+  meta?: MetaQuery & {
+    dataProviderName?: string;
+  };
+};
+```
 
-## LiveEvent
+### LiveModeProps
 
-| Key     | Type                                                           |
-| ------- | -------------------------------------------------------------- | --- |
-| channel | `string`                                                       |
-| type    | `"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string` |
-| payload | `{ids?: BaseKey[]; [x: string]: any; }`                        |
-| date    | `Date`                                                         |
-| meta    | [MetaQuery](#metadataquery) & `{ dataProviderName?: string }`  |     |
+```tsx
+type LiveModeProps = {
+  liveMode?: "auto" | "manual" | "off";
+  onLiveEvent?: (event: LiveEvent) => void;
+  liveParams?: {
+    ids?: BaseKey[];
+    [key: string]: any;
+  };
+};
+```
 
-## LiveModeProps
+### ResourceProps
 
-| Key          | Type                                    |
-| ------------ | --------------------------------------- |
-| liveMode?    | `"auto"` \| `"manual"` \| `"off"`       |
-| liveParams?  | `{ids?: BaseKey[]; [x: string]: any; }` |
-| onLiveEvent? | `(event: LiveEvent) => void`            |
+```tsx
+type ResourceProps = {
+  name: string;
+  identifier?: string;
+  meta?: ResourceMeta;
+};
+```
 
-## MetaProps
+### ResourceMeta
 
-| Key               | Type              |
-| ----------------- | ----------------- |
-| label?            | `string`          |
-| icon?             | `React.ReactNode` |
-| audit?            | `string[]`        |
-| parent?:          | `string`          |
-| dataProviderName? | `string`          |
-| [key: string]     | `any`             |
+```tsx
+type ResourceMeta = {
+  label?: string; // Label of the resource, can be used to pretty print the resource name.
+  hide?: boolean; // Whether to hide the resource from the menus or not. Used by the <Sider /> components.
+  dataProviderName?: string; // Dedicated data provider name for the resource.
+  parent?: string; // To nest a resource under another resource.
+  canDelete?: boolean; // To determine if the resource has ability to delete or not.
+  audit?: ResourceAuditLogPermissions[]; // To permit the audit log for actions on the resource.
+  icon?: ReactNode; // Icon of the resource, used in the menus and breadcrumbs
+  [key: string]: any;
+};
+```
 
-## ResourceItemProps
+### ResourceAuditLogPermissions
 
-| Key         | Type        |
-| ----------- | ----------- |
-| name        | `string`    |
-| identifier? | `string`    |
-| meta?       | `MetaProps` |
+```tsx
+type ResourceAuditLogPermissions = "create" | "update" | "delete" | string;
+```
 
-## SyncWithLocationParams
+### SyncWithLocationParams
 
-| Key         | Type                                      |
-| ----------- | ----------------------------------------- |
-| pagination? | `{ current?: number; pageSize?: number }` |
-| sorter?     | [`CrudSorting`](#crudsorting)             |
-| filters?    | [`CrudSCrudFiltersorting`](#crudfilters)  |
-
-## Open Notification Params
-
-| Key              | Type                                     |
-| ---------------- | ---------------------------------------- |
-| key?             | `string`                                 |
-| type             | `"success"` \| `"error"` \| `"progress"` |
-| message          | `string`                                 |
-| description?     | `string`                                 |
-| cancelMutation?  | `() => void`                             |
-| undoableTimeout? | `number`                                 |
-
-## Close Notification Params
-
-| Key | Type     |
-| --- | -------- |
-| key | `string` |
+```tsx
+type SyncWithLocationParams = {
+  pagination: { current?: number; pageSize?: number };
+  sorters: CrudSorting;
+  filters: CrudFilters;
+};
+```

@@ -137,6 +137,7 @@ const Tablet = (props: { className?: string }) => {
     return (
         <div className={clsx(props.className)}>
             {MENU_ITEMS.map((item, i) => {
+                const Icon = "icon" in item && item.icon;
                 return (
                     <div
                         key={i}
@@ -156,7 +157,10 @@ const Tablet = (props: { className?: string }) => {
                                 "font-bold",
                             )}
                         >
-                            {item.label}
+                            <div className={clsx("flex items-center gap-2")}>
+                                <div>{item.label}</div>
+                                {Icon && <Icon />}
+                            </div>
                         </Link>
                         {"items" in item && (
                             <div
@@ -199,7 +203,13 @@ const Phone = (props: { className?: string }) => {
                                             open={open}
                                         />
 
-                                        <Disclosure.Panel>
+                                        <Disclosure.Panel
+                                            className={clsx(
+                                                open && "pb-4",
+                                                open &&
+                                                    "border-b border-gray-200 dark:border-gray-700",
+                                            )}
+                                        >
                                             {item.items.map((subItem) => (
                                                 <MenuItem
                                                     key={subItem.label}
@@ -218,6 +228,7 @@ const Phone = (props: { className?: string }) => {
                             key={`modal-${item.label}`}
                             label={item.label}
                             href={(item as NavbarItemType).href}
+                            icon={(item as NavbarItemType).icon}
                         />
                     );
                 })}

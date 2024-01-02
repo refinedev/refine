@@ -45,12 +45,12 @@ const ClonePage = () => {
 };
 ```
 
-`<CloneButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `clone` method from [useNavigation](/docs/core/hooks/navigation/use-navigation) under the hood.
+`<CloneButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `clone` method from [useNavigation](/docs/routing/hooks/use-navigation) under the hood.
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -168,9 +168,9 @@ render(
 
 ## Properties
 
-### `recordItemId`
+### recordItemId
 
-`recordItemId` is used to append the record id to the end of the route path.
+`recordItemId` is used to append the record id to the end of the route path. By default `id` will be read from the route parameters.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -205,15 +205,9 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
-:::note
-
-**`<CloneButton>`** component reads the id information from the route by default.
-
-:::
-
-### `resource`
+### resource
 
 It is used to redirect the app to the `clone` action of the given resource name. By default, the app redirects to the inferred resource's `clone` action path.
 
@@ -254,11 +248,11 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
-### `meta`
+### meta
 
-It is used to pass additional parameters to the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation). By default, existing parameters in the route are used by the `clone` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+It is used to pass additional parameters to the `clone` method of [`useNavigation`](/docs/routing/hooks/use-navigation). By default, existing parameters in the route are used by the `clone` method. You can pass additional parameters or override the existing ones using the `meta` prop.
 
 If the `clone` action route is defined by the pattern: `/posts/:authorId/clone/:id`, the `meta` prop can be used as follows:
 
@@ -272,7 +266,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `hideText`
+### hideText
 
 `hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
@@ -310,9 +304,9 @@ render(
 );
 ```
 
-### `accessControl`
+### accessControl
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/core/providers/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
 
 ```tsx
 import { CloneButton } from "@refinedev/mantine";
@@ -322,50 +316,9 @@ export const MyListComponent = () => {
 };
 ```
 
-### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+### ~~resourceNameOrRouteName~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-`resourceNameOrRouteName` is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
-
-// visible-block-start
-import { CloneButton } from "@refinedev/mantine";
-
-const MyCloneComponent = () => {
-  return <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />;
-};
-// visible-block-end
-
-const App = () => {
-  return (
-    <RefineHeadlessDemo
-      resources={[
-        {
-          name: "posts",
-          list: MyCloneComponent,
-        },
-        {
-          name: "categories",
-          create: ClonePage,
-        },
-      ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
-```
-
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to `/categories/clone/2`.
+Use `resource` prop instead.
 
 ## API Reference
 

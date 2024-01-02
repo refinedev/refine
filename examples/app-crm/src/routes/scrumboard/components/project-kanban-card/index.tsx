@@ -25,7 +25,7 @@ import {
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text, TextIcon } from "@/components";
-import { User } from "@/interfaces";
+import { User } from "@/graphql/schema.types";
 import { getDateColor } from "@/utilities";
 
 type ProjectCardProps = {

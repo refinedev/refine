@@ -1,15 +1,10 @@
-import { gql, request } from "@refinedev/nestjs-query";
+import { request } from "@refinedev/nestjs-query";
 
 import { AxiosResponse } from "axios";
 
-const mutationRefrehToken = gql`
-    mutation refreshToken($refreshToken: String!) {
-        refreshToken(refreshToken: $refreshToken) {
-            accessToken
-            refreshToken
-        }
-    }
-`;
+import { RefreshTokenMutation } from "@/graphql/types";
+
+import { REFRESH_TOKEN_MUTATION } from "./queries";
 
 export const shouldRefreshToken = (response: AxiosResponse) => {
     const errors = response?.data?.errors;
@@ -31,14 +26,13 @@ export const refreshTokens = async () => {
     if (!currentRefreshToken) return null;
 
     try {
-        const response = await request<{
-            refreshToken: {
-                accessToken: string;
-                refreshToken: string;
-            };
-        }>("https://api.crm.refine.dev/graphql", mutationRefrehToken, {
-            refreshToken: currentRefreshToken,
-        });
+        const response = await request<RefreshTokenMutation>(
+            "https://api.crm.refine.dev/graphql",
+            REFRESH_TOKEN_MUTATION,
+            {
+                refreshToken: currentRefreshToken,
+            },
+        );
 
         localStorage.setItem("access_token", response.refreshToken.accessToken);
         localStorage.setItem(

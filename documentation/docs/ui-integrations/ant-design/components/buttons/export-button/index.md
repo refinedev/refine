@@ -7,9 +7,9 @@ swizzle: true
 
 > For more information, refer to the [`useExport` documentation &#8594][useexport]
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -71,7 +71,7 @@ render(
 
 ## Properties
 
-### `hideText`
+### hideText
 
 `hideText` is used to hide the text of the button. When its `true`, only the button icon will be visible.
 
@@ -111,7 +111,7 @@ render(
 
 <PropsTable module="@refinedev/antd/ExportButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
 

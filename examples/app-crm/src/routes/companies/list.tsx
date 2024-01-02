@@ -2,6 +2,7 @@ import { FC, PropsWithChildren, useState } from "react";
 
 import { List, useTable } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
     AppstoreOutlined,
@@ -12,9 +13,10 @@ import { Form, Grid, Input, Radio, Space, Spin } from "antd";
 import debounce from "lodash/debounce";
 
 import { ListTitleButton } from "@/components";
-import { Company } from "@/interfaces";
+import { CompaniesTableQuery } from "@/graphql/types";
 
 import { CompaniesCardView, CompaniesTableView } from "./components";
+import { COMPANIES_TABLE_QUERY } from "./queries";
 
 type View = "card" | "table";
 
@@ -31,7 +33,11 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
         setCurrent,
         setPageSize,
         setFilters,
-    } = useTable<Company, HttpError, { name: string }>({
+    } = useTable<
+        GetFieldsFromList<CompaniesTableQuery>,
+        HttpError,
+        { name: string }
+    >({
         resource: "companies",
         onSearch: (values) => {
             return [
@@ -68,21 +74,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
             pageSize: 12,
         },
         meta: {
-            to: "undefined",
-            fields: [
-                "id",
-                "name",
-                "avatarUrl",
-                {
-                    dealsAggregate: [
-                        {
-                            sum: ["value"],
-                        },
-                    ],
-                },
-                { salesOwner: ["id", "name", "avatarUrl"] },
-                { contacts: [{ nodes: ["id", "name", "avatarUrl"] }] },
-            ],
+            gqlQuery: COMPANIES_TABLE_QUERY,
         },
     });
 

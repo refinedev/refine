@@ -1,6 +1,5 @@
 ---
 title: Command Palette
-sidebar_label: Command Palette
 ---
 
 ```tsx live shared
@@ -208,24 +207,22 @@ const PostShow: React.FC = () => {
 };
 ```
 
-**refine** supports the command palette feature and use the
+Refine supports the command palette feature and use the
 [**kbar**][kbar]. **kbar** is a fully extensible `cmd` + `k`(MacOS) or `ctrl` + `k`(Linux/Windows) interface for your site.
 
 ## Installation
 
 Install the [@refinedev/kbar][refine-kbar] library.
 
-```bash
-npm i @refinedev/kbar
-```
+<InstallPackagesCommand args="@refinedev/kbar"/>
 
-## Basic Usage
+## Usage
 
 First of all, you need to import the `@refinedev/kbar` library and we will use `RefineKbarProvider` to wrap the whole application.
 
 After that, we should mount the `RefineKbar` component inside the `<Refine>` component.
 
-```tsx tile="src/App.tsx"
+```tsx tile="app.tsx"
 // highlight-next-line
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -360,7 +357,7 @@ const customAction = createAction({
 useRegisterActions(customAction);
 ```
 
-:::tip
+:::simple Good to know
 
 Since `refine-kbar` exports the [`kbar`](https://github.com/timc1/kbar), you use all of its features
 
@@ -373,6 +370,6 @@ Since `refine-kbar` exports the [`kbar`](https://github.com/timc1/kbar), you use
 [kbar]: https://github.com/timc1/kbar
 [kbar-actions]: https://kbar.vercel.app/docs/concepts/actions
 [refine-kbar]: https://github.com/refinedev/refine/tree/master/packages/kbar
-[access-control]: /docs/core/providers/access-control-provider
+[access-control]: /docs/authorization/access-control-provider
 [usecanwithoutcache]: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/accessControl/useCanWithoutCache.ts
 [refine-finefoods]: https://github.com/refinedev/refine/blob/master/examples/finefoods-material-ui/src/hooks/useOrderCustomKbarActions/index.tsx

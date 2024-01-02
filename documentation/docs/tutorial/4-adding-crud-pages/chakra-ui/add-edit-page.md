@@ -96,7 +96,7 @@ render(<App />);
 
 ### Hooks and Components in Edit Page
 
-- `<Edit/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
+- `<Edit/>` is a Refine component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
 
   > For more information, refer to the [`<Edit/>` documentation&#8594](/docs/ui-integrations/chakra-ui/components/basic-views/edit)
 
@@ -112,7 +112,7 @@ render(<App />);
 
 On the edit page, we may need to select a record from another resource.
 
-For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the `options` to be used in the `<Select/>` component.
+For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by Refine. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the `options` to be used in the `<Select/>` component.
 
 In the auto-generated edit page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 
@@ -131,7 +131,7 @@ const { options: categoryOptions } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect`](/docs/core/hooks/use-select) and the[**Chakra UI** `<Select/>` documentations&#8594](https://chakra-ui.com/docs/components/select/usage)
+> For more information, refer to the [`useSelect`](/docs/data/hooks/use-select) and the[**Chakra UI** `<Select/>` documentations&#8594](https://chakra-ui.com/docs/components/select/usage)
 
 ## Adding the Edit Page to the App
 

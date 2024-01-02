@@ -246,11 +246,11 @@ const Header = ({ role }) => {
 
 ## Introduction
 
-Access control is a broad topic where there are lots of advanced solutions that provide a different sets of features. **refine** is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries ([Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/), [AccessControl.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
+Access control is a broad topic where there are lots of advanced solutions that provide a different sets of features. **Refine** is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries ([Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/), [AccessControl.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
 
-[Refer to the Access Control Provider documentation for detailed information. &#8594](/docs/core/providers/access-control-provider)
+[Refer to the Access Control Provider documentation for detailed information. &#8594](/docs/authorization/access-control-provider)
 
-**refine** provides an agnostic API via the `accessControlProvider` to manage access control throughout your app.
+**Refine** provides an agnostic API via the `accessControlProvider` to manage access control throughout your app.
 
 An `accessControlProvider` must implement only one async method named `can` to be used to check if the desired access will be granted.
 
@@ -260,13 +260,11 @@ We will be using **[Casbin](https://casbin.org/)** in this guide for users with 
 
 We need to install Casbin.
 
-```bash
-npm install casbin
-```
+<InstallPackagesCommand args="casbin"/>
 
 :::caution
 
-To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package. If you are using refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package.
 
 :::
 
@@ -437,7 +435,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-Whenever a part of the app checks for access control, refine passes `resource`, `action`, and `params` parameters to `can` and then we can use these parameters to integrate our specific access control solution which is **Casbin** in this case.
+Whenever a part of the app checks for access control, Refine passes `resource`, `action`, and `params` parameters to `can` and then we can use these parameters to integrate our specific access control solution which is **Casbin** in this case.
 
 Our model provides that user with role **editor** have access for **list** action on **posts** resource. Even though we have two other resources, since our policy doesn't include them, they will not appear on the sidebar menu. Also in the list page of `posts`, buttons for **create**, **edit** and **show** buttons will be disabled since they are not included in the policy.
 
@@ -942,7 +940,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-Then it can be used with [`useCan`](/docs/core/hooks/use-can) in the related area:
+Then it can be used with [`useCan`](/docs/authorization/hooks/use-can) in the related area:
 
 ```tsx title="src/pages/posts/list.tsx"
 import {
@@ -979,7 +977,7 @@ export const PostList: React.FC = () => {
 
 :::tip
 
-[`<CanAccess />`](/docs/core/components/can-access) can be used too to check access control in custom places in your app.
+[`<CanAccess />`](/docs/authorization/components/can-access) can be used too to check access control in custom places in your app.
 
 :::
 

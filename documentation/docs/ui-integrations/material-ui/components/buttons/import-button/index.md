@@ -7,9 +7,9 @@ swizzle: true
 
 > For more information, refer to the [`useImport` documentation &#8594][useimport]
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -69,7 +69,7 @@ render(
 
 ## Properties
 
-### `hideText`
+### hideText
 
 `hideText` is used to show and hide the text of the button. When `true`, only the button icon is visible.
 
@@ -108,7 +108,7 @@ render(
 
 <PropsTable module="@refinedev/mui/ImportButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [LoadingButton](https://mui.com/material-ui/api/loading-button/#main-content).
 

@@ -21,9 +21,9 @@ const Wrapper = ({ children }) => {
 
 `<RefreshButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component to update the data shown on the page via the [`useInvalidate`][use-invalidate] hook.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -102,9 +102,9 @@ render(
 
 ## Properties
 
-### `recordItemId`
+### recordItemId
 
-`recordItemId` allows us to manage which data is going to be refreshed.
+`recordItemId` allows us to manage which data is going to be refreshed. By default it will read the id information from the route.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -140,15 +140,9 @@ render(
 
 Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetch the record whose resource is "post" and whose id is "123".
 
-:::note
+### resource
 
-`<RefreshButton>` component reads the id information from the route by default.
-
-:::
-
-### `resource`
-
-`resource` allows us to manage which resource is going to be refreshed.
+`resource` allows us to manage which resource is going to be refreshed. By default it will read the id information from the route.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -185,17 +179,11 @@ render(
 
 Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetches the record whose resource is "categories" and whose id is "2".
 
-:::note
-
-`<RefreshButton>` component reads the resource name from the route by default.
-
-:::
-
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `hideText`
+### hideText
 
 `hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
@@ -232,52 +220,9 @@ render(
 );
 ```
 
-### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+### ~~resourceNameOrRouteName~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
-
-// visible-block-start
-import { RefreshButton } from "@refinedev/chakra-ui";
-
-const MyRefreshComponent = () => {
-  return <RefreshButton colorScheme="black" resourceNameOrRouteName="categories" recordItemId="2" />;
-};
-// visible-block-end
-
-const App = () => {
-  return (
-    <Refine
-      resources={[
-        {
-          name: "posts",
-          list: MyRefreshComponent,
-        },
-      ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
-```
-
-Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetches the record whose resource is "categories" and whose id is "2".
-
-:::note
-
-`<RefreshButton>` component reads the resource name from the route by default.
-
-:::
+Use `resource` prop instead.
 
 ## API Reference
 
@@ -285,4 +230,4 @@ Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and 
 
 <PropsTable module="@refinedev/chakra-ui/RefreshButton" />
 
-[use-invalidate]: /docs/core/hooks/data/use-invalidate
+[use-invalidate]: /docs/data/hooks/use-invalidate

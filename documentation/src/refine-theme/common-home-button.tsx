@@ -21,7 +21,7 @@ export const CommonHomeButton = ({ className }: Props) => {
                 className,
             )}
         >
-            refine Home
+            Refine Home
         </Link>
     );
 };

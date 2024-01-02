@@ -7,9 +7,9 @@ swizzle: true
 
 It uses Ant Design's [`<Button>`][button] and [`<Upload>`][upload] components. It wraps a [`<Button>`][button] component with an [`<Upload>`][upload] component and accepts properties for [`<Button>`][button] and [`<Upload>`][upload] components separately.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -72,7 +72,7 @@ render(
 
 ## Properties
 
-### `hideText`
+### hideText
 
 `hideText` is used to hide the text of the button. When its `true`, only the button icon will be visible.
 

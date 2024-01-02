@@ -1,18 +1,17 @@
 ---
-title: <AuthPage>
-sidebar_label: <AuthPage>
-description: <AuthPage> component from refine is an authentication page that can be used to login, register, forgot password, and update password.
+title: <AuthPage />
+description: <AuthPage> component from Refine is an authentication page that can be used to login, register, forgot password, and update password.
 swizzle: true
 source: packages/antd/src/components/pages/auth/index.tsx
 ---
 
-`<AuthPage>` component from **refine** for **Ant Design** contains authentication pages that can be used for the login, register, forgot password, and update password actions.
+`<AuthPage>` component from Refine for **Ant Design** contains authentication pages that can be used for the login, register, forgot password, and update password actions.
 
-Before using `<AuthPage>` component you need to add [authProvider](/docs/core/providers/auth-provider) that will be used to handle authentication.
+Before using `<AuthPage>` component you need to add [authProvider](/docs/authentication/auth-provider) that will be used to handle authentication.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -553,7 +552,7 @@ const authProvider: AuthBindings = {
 
 ## Props
 
-### `hideForm`
+### hideForm
 
 When you set `hideForm` to `true`, the form will be hidden. You can use this property to show only providers.
 
@@ -580,15 +579,9 @@ const MyLoginPage = () => {
 };
 ```
 
-### `providers`
+### providers
 
-:::info
-
-The `providers` property is only available for types `login` and `register`.
-
-:::
-
-The `providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type.
+The `providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type. This property is only available for types `login` and `register`.
 
 ```tsx
 const MyLoginPage = () => {
@@ -614,21 +607,11 @@ const MyLoginPage = () => {
 
 > For more information, refer to the [Interface section &#8594](#interface)
 
-### `rememberMe`
+### rememberMe
 
-:::info
-
-The `rememberMe` property is only available for type `login`.
-
-:::
-
-The `rememberMe` property defines to render your custom `<RememberMe>` component or you can pass `false` to don't render it.
-
-:::info
+The `rememberMe` property defines to render your custom `<RememberMe>` component or you can pass `false` to don't render it. This property is only available for type `login`.
 
 You have to wrap your custom `<RememberMe>` component with the `Form.Item` component from **Ant Design** and pass the `name` prop to it then you can access its value from the `formProps` `onFinish` function with `formValues`.
-
-:::
 
 ```tsx
 const MyLoginPage = () => {
@@ -654,15 +637,9 @@ const MyLoginPage = () => {
 };
 ```
 
-### `loginLink`
+### loginLink
 
-:::info
-
-The `loginLink` property is only available for types `register` and `forgotPassword`.
-
-:::
-
-The `loginLink` property defines the link to the login page and also you can give a node to render. The default value is `"/login"`.
+The `loginLink` property defines the link to the login page and also you can give a node to render. The default value is `"/login"`. This property is only available for type `register` and `forgotPassword`.
 
 ```tsx
 const MyRegisterPage = () => {
@@ -686,15 +663,9 @@ const MyRegisterPage = () => {
 };
 ```
 
-### `registerLink`
+### registerLink
 
-:::info
-
-The `registerLink` property is only available for type `login`.
-
-:::
-
-The `registerLink` property defines the link to the registration page and also you can give a node to render. The default value is `"/register"`.
+The `registerLink` property defines the link to the registration page and also you can give a node to render. The default value is `"/register"`. This property is only available for type `login`.
 
 ```tsx
 const MyLoginPage = () => {
@@ -719,15 +690,9 @@ const MyLoginPage = () => {
 };
 ```
 
-### `forgotPasswordLink`
+### forgotPasswordLink
 
-:::info
-
-The `forgotPasswordLink` property is only available for type `login`.
-
-:::
-
-The `forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. Its default value is `"/forgot-password"`.
+The `forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. Its default value is `"/forgot-password"`. This property is only available for type `login`.
 
 ```tsx
 const MyLoginPage = () => {
@@ -752,7 +717,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `wrapperProps`
+### wrapperProps
 
 The `wrapperProps` is used for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
 
@@ -773,7 +738,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `contentProps`
+### contentProps
 
 The `contentProps` is used for passing props to the content component which is the card component. In the example below, you can see that the title, header, and content styles are changed with `contentProps`.
 
@@ -799,7 +764,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `formProps`
+### formProps
 
 The `formProps` is used for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
 
@@ -822,12 +787,12 @@ const MyLoginPage = () => {
 };
 ```
 
-### `title`
+### title
 
 By default, `AuthPage` uses text with icon on top of page. You can use this property to change the default title.
 
-- Default text is: refine Project
-- Default icon is: refine Logo
+- Default text is: Refine Project
+- Default icon is: Refine Logo
 
 ```tsx
 import { AuthPage, ThemedTitle } from "@refinedev/antd";
@@ -852,7 +817,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `renderContent`
+### renderContent
 
 `renderContent` is used to render the form content and the [title](#title). You can use this property to render your own content, or change the default content and title that it gives you.
 
@@ -951,8 +916,8 @@ interface OAuthProvider {
 }
 ```
 
-[auth-provider]: /docs/core/providers/auth-provider
-[login]: /docs/core/providers/auth-provider#login-
-[register]: /docs/core/providers/auth-provider#register
-[forgot-password]: /docs/core/providers/auth-provider#forgotpassword
-[update-password]: /docs/core/providers/auth-provider#updatepassword
+[auth-provider]: /docs/authentication/auth-provider
+[login]: /docs/authentication/auth-provider#login-
+[register]: /docs/authentication/auth-provider#register
+[forgot-password]: /docs/authentication/auth-provider#forgotpassword
+[update-password]: /docs/authentication/auth-provider#updatepassword

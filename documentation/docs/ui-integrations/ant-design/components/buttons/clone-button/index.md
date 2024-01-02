@@ -3,13 +3,13 @@ title: Clone
 swizzle: true
 ---
 
-`<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component and the `clone` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood.
+`<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component and the `clone` method from [`useNavigation`](/docs/routing/hooks/use-navigation) under the hood.
 
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -67,9 +67,9 @@ render(
 
 ## Properties
 
-### `recordItemId`
+### recordItemId
 
-`recordItemId` is used to append the record id to the end of the route path.
+`recordItemId` is used to append the record id to the end of the route path. By default, the `recordItemId` is inferred from the route params.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -101,15 +101,9 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
-:::note
-
-The **`<CloneButton>`** component reads the id information from the route by default.
-
-:::
-
-### `resource`
+### resource
 
 `resource` is used to redirect the app to the `clone` action of the given resource name. By default, the app redirects to the inferred resource's `clone` action path.
 
@@ -147,15 +141,15 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `meta`
+### meta
 
-It is used to pass additional parameters to the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation). By default, the existing parameters in the route are used by the `clone` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+It is used to pass additional parameters to the `clone` method of [`useNavigation`](/docs/routing/hooks/use-navigation). By default, the existing parameters in the route are used by the `clone` method. You can pass additional parameters or override the existing ones using the `meta` prop.
 
 If the `clone` action route is defined by the pattern: `/posts/:authorId/clone/:id`, the `meta` prop can be used as follows:
 
@@ -165,7 +159,7 @@ const MyComponent = () => {
 };
 ```
 
-### `hideText`
+### hideText
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
@@ -205,9 +199,9 @@ render(
 );
 ```
 
-### `accessControl`
+### accessControl
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/core/providers/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
 
 ```tsx
 import { CloneButton } from "@refinedev/antd";
@@ -224,47 +218,9 @@ export const MyListComponent = () => {
 };
 ```
 
-### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+### ~~resourceNameOrRouteName~~ <PropTag deprecated />
 
-> The`resourceNameOrRouteName` prop is deprecated. Use the `resource` prop instead.
-
-It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
-
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { CloneButton } from "@refinedev/antd";
-
-const MyCloneComponent = () => {
-  return <CloneButton resourceNameOrRouteName="categories" recordItemId="1" />;
-};
-
-// visible-block-end
-
-const ClonedPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
-};
-
-render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        create: ClonedPage,
-      },
-    ]}
-    DashboardPage={MyCloneComponent}
-  />,
-);
-```
-
-Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to `/categories/clone/2`.
+Use the `resource` prop instead.
 
 ## API Reference
 
@@ -272,7 +228,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/c
 
 <PropsTable module="@refinedev/antd/CloneButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
 

@@ -129,7 +129,7 @@ export const Admonition = ({ type, title, children }: Props) => {
                     </div>
                 )}
                 <div className={clsx("text-gray-0", "text-base", "last:mb-0")}>
-                    {title} {children}
+                    {children}
                 </div>
             </div>
         </div>

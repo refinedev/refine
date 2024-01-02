@@ -8,27 +8,7 @@ The package exports components for **List**, **Show**, **Create** and **Edit** v
 
 ## Installation
 
-<Tabs
-defaultValue="npm"
-values={[
-{label: 'use npm', value: 'npm'},
-{label: 'use yarn', value: 'yarn'}
-]}>
-<TabItem value="npm">
-
-```bash
-npm i @refinedev/inferencer
-```
-
-  </TabItem>
-    <TabItem value="yarn">
-
-```bash
-yarn add @refinedev/inferencer
-```
-
-  </TabItem>
-</Tabs>
+<InstallPackagesCommand args="@refinedev/inferencer"/>
 
 ## Available UI Inferencers
 
@@ -38,15 +18,11 @@ yarn add @refinedev/inferencer
 - [Chakra UI](/docs/ui-integrations/chakra-ui/components/inferencer)
 - [Headless](/docs/core/components/inferencer)
 
-:::info
+:::simple Good to know
 
 `@refinedev/inferencer` is an experimental package and it is now in the early stages of development. We are working on improving the package and adding new features.
 
 If you have any suggestions or feedback, please let us know in the [**GitHub Discussions**](https://github.com/refinedev/refine/discussions/3046)
-
-:::
-
-:::caution Warning
 
 `@refinedev/inferencer` components are meant to be used in development environments. They are not meant to be used in production environments.
 
@@ -68,27 +44,43 @@ Properties with multiple values are identified as `array` type but also repeats 
 
 If the property is an `object` type, we try to pick a key to represent that property. For example, if we have a `category` field with `{ label: string; id: string; }` type, we pick `label` as the key to represent the property. These `object` fields with keys to represent them have the property `fieldable` set to `true` in the return value.
 
-:::tip Available field types and functions
+#### Available field types and functions
 
+```ts
+type Types =
+  | "relation"
+  | "array"
+  | "object"
+  | "date"
+  | "email"
+  | "image"
+  | "url"
+  | "richtext"
+  | "text"
+  | "number"
+  | "boolean"
+  | "unknown"
+  | `custom_${string}`;
 ```
-"relation" | "array" | "object" | "date" | "email" | "image" | "url" | "richtext" | "text" | "number" | "boolean" | "unknown" | "custom_{string}"
-```
-
-:::
-
-:::note List of keys that can be used to represent an `object` type property
-
-```
-"name" | "label" | "title" | "count" | "content" | "username" | "nickname" | "login" | "firstName" | "lastName" | "url"
-```
-
-:::
-
-:::note
 
 `custom_${string}` is used by the inferencer components of UI packages when they have custom representations, for now users can't pass custom types and functions to the inferencer components.
 
-:::
+#### Keys to represent `object` type properties
+
+```ts
+type PresentationalKeys =
+  | "name"
+  | "label"
+  | "title"
+  | "count"
+  | "content"
+  | "username"
+  | "nickname"
+  | "login"
+  | "firstName"
+  | "lastName"
+  | "url";
+```
 
 ### How the relations are determined?
 
@@ -110,7 +102,7 @@ To determine the relations;
 - If any of these requests succeed with `200` status code, we consider the property as a `relation` type and set the resource as the related resource.
 - If none of these requests succeed, we remove the `relation` mark from the property and consider it as a normal field. If it's an `object` type, then we will try to find the best suitable property to represent it.
 
-:::tip Manually setting relations and resources
+:::simple Manually setting relations and resources
 
 If your `dataProvider` and `resources` has a different way of work that makes it impossible for Inferencer to find the `relation` resources. You can manually modify the inferred fields by using the `fieldTransformer` function. You can find more information about it in the [**Modifying the inferred fields**](#modifying-the-inferred-fields) section.
 
@@ -118,25 +110,17 @@ If your `dataProvider` and `resources` has a different way of work that makes it
 
 ### How the components are rendered and the code is generated?
 
-:::tip rendering
-
 To render the components we use a [fork](https://github.com/aliemir/react-live) of [`react-live`](https://github.com/FormidableLabs/react-live) package with Typescript support.
-
-:::
 
 After the fields are determined, we use the `renderer` functions to create the code for the components and also use the same code to render the components in the view. `renderer` functions are constructed per action type and the UI package. This means, `@refinedev/inferencer/antd` and other UI scopes has different `renderer` functions for `list`, `show`, `edit` and `create` actions.
 
 `renderer` function returns a `string` that includes the code for the component which is presented to user to copy and paste to their project. The same code is also used to render the component in the view.
 
-:::note
-
 Component name is determined by the active `resource` element and the active action. If the resource has `option.label` field, it will be used as the part of the component name. Otherwise, the `resource.name` will be used. For example, if the resource name is `categories` and the action is `list`, the component name will be `CategoryList`.
-
-:::
 
 ### Usage with GraphQL backends and `meta` values
 
-\*_refine_ handles the GraphQL backends by using the `meta` properties in its data hooks. Inferencer lets you define meta values for your resources and methods in a single prop and uses it when generating the code and inferring the fields. Unlike the `meta` property of the data hooks, Inferencer components uses the `meta` property with a nested structure, letting you define the `meta` values per resource and action.
+Refine handles the GraphQL backends by using the `meta` properties in its data hooks. Inferencer lets you define meta values for your resources and methods in a single prop and uses it when generating the code and inferring the fields. Unlike the `meta` property of the data hooks, Inferencer components uses the `meta` property with a nested structure, letting you define the `meta` values per resource and action.
 
 Here's the syntax for defining the `meta` values in Inferencer components:
 

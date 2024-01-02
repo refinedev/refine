@@ -1,17 +1,12 @@
 ---
 title: useModalForm
-sidebar_label: useModalForm
 ---
 
 The `useModalForm` hook allows you to manage a form within a [`<Modal>`][antd-modal]. It returns Ant Design [`<Form>`][antd-form] and [Modal][antd-modal] components props.
 
-:::info
-
 `useModalForm` hook is extended from [`useForm`][antd-use-form] from the [`@refinedev/antd`][@refinedev/antd] package. This means that you can use all the features of [`useForm`][antd-use-form] hook.
 
-:::
-
-## Basic Usage
+## Usage
 
 We'll show three examples, `"create"`, `"edit"` and `"clone"`. Let's see how `useModalForm` is used in all.
 
@@ -250,9 +245,7 @@ setRefineProps({
 render(<RefineAntdDemo />);
 ```
 
-:::caution
-
-**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens the edit form in `<Modal>` when clicked.
+Refine doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens the edit form in `<Modal>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by the record `id`.
 
@@ -265,13 +258,7 @@ So, we have to put the `<EditButton/>` on our list. In that way, `<Edit>` form i
 />
 ```
 
-:::
-
-:::caution
-
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
-
-:::
 
 </TabItem>
 
@@ -387,9 +374,7 @@ setRefineProps({
 render(<RefineAntdDemo />);
 ```
 
-:::caution
-
-**refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens clone form in `<Modal>` when clicked.
+Refine doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens clone form in `<Modal>` when clicked.
 
 So, we have to put the `<CloneButton/>` on our list. In that way, `<Clone>` form in `<Modal>` can fetch data by the record `id`.
 
@@ -402,13 +387,7 @@ So, we have to put the `<CloneButton/>` on our list. In that way, `<Clone>` form
 />
 ```
 
-:::
-
-:::caution
-
 Don't forget to pass the record id to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
-
-:::
 
 </TabItem>
 
@@ -416,13 +395,9 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 
 ## Properties
 
-:::tip
-
 All [`useForm`][antd-use-form] props are also available in `useModalForm`. You can find descriptions on the [`useForm` documentation](/docs/ui-integrations/ant-design/hooks/use-form#properties).
 
-:::
-
-### `syncWithLocation`
+### syncWithLocation
 
 When `syncWithLocation` is `true`, the drawers visibility state and the `id` of the record will be synced with the URL. It is `false` by default.
 
@@ -434,15 +409,9 @@ const modalForm = useModalForm({
 });
 ```
 
-### `defaultFormValues`
+### defaultFormValues
 
-:::caution
-
-`defaultFormValues` is only available in `"create"` form.
-
-:::
-
-Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed. This property is only available for `"create"` action.
 
 ```tsx
 const modalForm = useModalForm({
@@ -452,7 +421,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `defaultVisible`
+### defaultVisible
 
 When `defaultVisible` is `true`, the modal will be visible by default. It is `false` by default.
 
@@ -462,7 +431,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `autoSubmitClose`
+### autoSubmitClose
 
 `autoSubmitClose` will make the modal close after a successful submit. It is `true` by default.
 
@@ -472,7 +441,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `autoResetForm`
+### autoResetForm
 
 `autoResetForm` will reset the form after a successful submit. It is `true` by default.
 
@@ -482,7 +451,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `warnWhenUnsavedChanges`
+### warnWhenUnsavedChanges
 
 When set to true, `warnWhenUnsavedChanges` shows a warning when the user tries to leave the page with unsaved changes. It is used to prevent the user from accidentally leaving the page. It is `false` by default
 
@@ -494,7 +463,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `overtimeOptions`
+### overtimeOptions
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
 `interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
@@ -520,7 +489,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### `autoSave`
+### autoSave
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
@@ -528,19 +497,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
-#### `enabled`
+#### enabled
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. By default, it is `false`.
 
 ```tsx
 useModalForm({
@@ -550,11 +513,9 @@ useModalForm({
 });
 ```
 
-#### `debounce`
+#### debounce
 
-> Default: `1000`
-
-Set the debounce time for the `autoSave` prop.
+Set the debounce time for the `autoSave` prop. By default, it is `1000` milliseconds.
 
 ```tsx
 useModalForm({
@@ -566,7 +527,7 @@ useModalForm({
 });
 ```
 
-#### `onFinish`
+#### onFinish
 
 If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
 
@@ -586,11 +547,9 @@ useModalForm({
 });
 ```
 
-#### `invalidateOnUnmount`
+#### invalidateOnUnmount
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default, it is `false`.
 
 ```tsx
 useModalForm({
@@ -602,11 +561,9 @@ useModalForm({
 });
 ```
 
-#### `invalidateOnClose`
+#### invalidateOnClose
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default, it is `false`.
 
 ```tsx
 useModalForm({
@@ -620,65 +577,59 @@ useModalForm({
 
 ## Return Values
 
-### `formProps`
+### formProps
 
 It's required to manage `<Form>` state and actions. Under the hood the `formProps` came from [`useForm`][antd-use-form].
 
 It contains the props to manage the [Antd `<Form>`](https://ant.design/components/form#api) components such as [`onValuesChange`, `initialValues`, `onFieldsChange`, `onFinish` etc.](/docs/ui-integrations/ant-design/hooks/use-form#return-values)
 
-### `modalProps`
+### modalProps
 
 The props needed by the [`<Modal>`][antd-modal] component.
 
-#### `title`
-
-> Default when url is `"/posts/create"`: "Create Post"
+#### title
 
 Title of the modal. Value is based on resource and action values.
 
-#### `okText`
+#### okText
 
 `okText` is the text of the `"submit"` button within the modal. It is "Save" by default.
 
-#### `cancelText`
+#### cancelText
 
 `cancelText` is the text of the `"cancel"` button within the modal. It is "Cancel" by default.
 
-#### `width`
+#### width
 
 Width of the `<Modal>`. It is `1000px` by default.
 
-#### `forceRender`
+#### forceRender
 
 `forceRender` renders the `<Modal>` instead of lazy rendering it. It is `true` by default.
 
-#### `okButtonProps`
+#### okButtonProps
 
 `okButtonProps` contains all the props needed by the `"submit"` button within the modal (disabled,loading etc.). When `okButtonProps.onClick` is called, it triggers `form.submit()`. You can manually pass these props to your custom button.
 
-#### `onOk`
+#### onOk
 
 A function that can submit the `<Form>` inside `<Modal>`. It's useful when you want to submit the form manually.
 
-#### `onCancel`
+#### onCancel
 
 > Same as `close`
 
 A function that can close the `<Modal>`. It's useful when you want to close the modal manually.
 
-#### ~~`visible`~~ <PropTag deprecated />
+#### ~~visible~~ <PropTag deprecated />
 
-> This prop is deprecated. Please use `open` instead.
+Please use `open` instead.
 
-Current visible state of `<Modal>`. Default value depends on `defaultVisible` prop.
-
-### `open`
+### open
 
 Current visible state of `<Modal>`. Default value depends on `defaultVisible` prop.
 
-### `close`
-
-> Same as `onCancel`
+### close
 
 A function that can close the `<Modal>`. It's useful when you want to close the modal manually.
 
@@ -703,7 +654,7 @@ return (
 );
 ```
 
-### `submit`
+### submit
 
 `submit` is a function that can submit the form. It's useful when you want to submit the form manually.
 
@@ -730,7 +681,7 @@ return (
 );
 ```
 
-### `show`
+### show
 
 `show` is a function that can show the modal.
 
@@ -787,7 +738,7 @@ return (
 );
 ```
 
-### `overtime`
+### overtime
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -797,7 +748,7 @@ const { overtime } = useModalForm();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-### `autoSaveProps`
+### autoSaveProps
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 

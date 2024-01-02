@@ -12,9 +12,7 @@ import Example from "./previews/example.tsx";
 
 Installing the package is as simple as just by running the following command without any additional configuration:
 
-```bash
-npm install @refinedev/mui @refinedev/react-hook-form @emotion/react @emotion/styled @mui/lab @mui/material @mui/x-data-grid react-hook-form
-```
+<InstallPackagesCommand args="@refinedev/mui @refinedev/react-hook-form @emotion/react @emotion/styled @mui/lab @mui/material @mui/x-data-grid react-hook-form"/>
 
 ## Usage
 
@@ -46,7 +44,7 @@ import UsageRemix from "./previews/usage-remix.tsx";
 
 ## Tables
 
-Refine provides a seamless integration with the [`<DataGrid />`](https://mui.com/x/react-data-grid/) component of Material UI from pagination to sorting and filtering via the [`useDataGrid`](/docs/ui-integrations/material-ui/hooks/use-data-grid) hook exported from the `@refinedev/mui` package. This `useDataGrid` hook extends the [`useTable`](/docs/core/hooks/use-table) hook of `@refinedev/core` package and provides a set of additional features and transformations to make it work with Material UI's `<DataGrid />` component without any additional configuration.
+Refine provides a seamless integration with the [`<DataGrid />`](https://mui.com/x/react-data-grid/) component of Material UI from pagination to sorting and filtering via the [`useDataGrid`](/docs/ui-integrations/material-ui/hooks/use-data-grid) hook exported from the `@refinedev/mui` package. This `useDataGrid` hook extends the [`useTable`](/docs/data/hooks/use-table) hook of `@refinedev/core` package and provides a set of additional features and transformations to make it work with Material UI's `<DataGrid />` component without any additional configuration.
 
 ```tsx title="pages/products/list.tsx"
 // highlight-next-line
@@ -81,7 +79,7 @@ interface IProduct {
 
 ## Forms
 
-Material UI offers form elements yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) package which is built on top of Refine's [`useForm`](/docs/core/hooks/use-form/) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
+Material UI offers form elements yet it does not provide a form management solution. To have a complete solution, Refine recommends using [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) package which is built on top of Refine's [`useForm`](/docs/data/hooks/use-form/) hook and React Hook Form's [`useForm`](https://react-hook-form.com/docs/useform) hook.
 
 Refine's documentations and examples of Material UI uses `@refinedev/react-hook-form` package for form management but you have the option to use any form management solution you want.
 
@@ -146,7 +144,7 @@ interface IProduct {
 }
 ```
 
-`@refinedev/mui` also provides [`useAutocomplete`](/docs/ui-integrations/material-ui/hooks/use-auto-complete) hook which can be used to implement autocomplete fields with relational data. This hook leverages the [`useSelect`](/docs/core/hooks/use-select) hook from the `@refinedev/core` package.
+`@refinedev/mui` also provides [`useAutocomplete`](/docs/ui-integrations/material-ui/hooks/use-auto-complete) hook which can be used to implement autocomplete fields with relational data. This hook leverages the [`useSelect`](/docs/data/hooks/use-select) hook from the `@refinedev/core` package.
 
 Additional hooks of `@refinedev/react-hook-form` such as [`useStepsForm`](/docs/packages/list-of-packages) and [`useModalForm`](/docs/packages/list-of-packages) can also be used together with Refine's Material UI integration with ease.
 
@@ -204,7 +202,7 @@ import LayoutRemix from "./previews/layout-remix.tsx";
 
 [`<ThemedLayoutV2 />`](/docs/ui-integrations/material-ui/components/themed-layout) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
 
-Additionally, Refine also provides a [`<Breadcrumb />`](https://refine.dev/docs/api-reference/mui/components/mui-breadcrumb/) component that uses the Material UI's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Material UI package automatically.
+Additionally, Refine also provides a [`<Breadcrumb />`](/docs/ui-integrations/material-ui/components/breadcrumb/) component that uses the Material UI's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Material UI package automatically.
 
 ### Buttons
 

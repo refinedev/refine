@@ -90,7 +90,7 @@ const Integrations: React.FC = () => {
                         "mt-4 sm:mt-8",
                     )}
                 >
-                    List of packages to extend your refine prject with UI
+                    List of packages to extend your Refine project with UI
                     frameworks, backend connectors and other powerful tools.
                 </div>
             </div>

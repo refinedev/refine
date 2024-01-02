@@ -1,6 +1,5 @@
 ---
 title: useStepsForm
-sidebar_label: useStepsForm
 ---
 
 ```css live shared
@@ -318,13 +317,9 @@ const PostEdit: React.FC = () => {
 
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
-:::info
-
 `useStepsForm` hook is extended from [`useForm`][refine-react-hook-form-use-form] from the [`@refinedev/react-hook-form`][@refinedev/react-hook-form] package. This means you can use all the features of [`useForm`][refine-react-hook-form-use-form].
 
-:::
-
-## Basic Usage
+## Usage
 
 We'll show two examples, one for creating and one for editing a post. Let's see how `useStepsForm` is used in both.
 
@@ -796,7 +791,7 @@ interface IPost {
 }
 ```
 
-:::tip
+:::simple Relational Data
 
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
@@ -945,7 +940,7 @@ interface IPost {
 
 ## Properties
 
-### `refineCoreProps`
+### refineCoreProps
 
 All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) docs.
 
@@ -959,13 +954,11 @@ const stepsForm = useStepsForm({
 });
 ```
 
-### `stepsProps`
+### stepsProps
 
 The props needed by the manage state steps.
 
-#### `defaultStep`
-
-> Default: `0`
+#### defaultStep
 
 Sets the default starting step number. Counting starts from `0`.
 
@@ -977,11 +970,9 @@ const stepsForm = useStepsForm({
 });
 ```
 
-#### `isBackValidate`
+#### isBackValidate
 
-> Default: `false`
-
-When is `true`, validates a form fields when the user navigates to a previous step.
+When is `true`, validates a form fields when the user navigates to a previous step. Default is `false`.
 
 ```tsx
 const stepsForm = useStepsForm({
@@ -991,7 +982,7 @@ const stepsForm = useStepsForm({
 });
 ```
 
-### `autoSave`
+### autoSave
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
@@ -999,19 +990,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
-#### `enabled`
+#### enabled
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. By default, it is set to `false`.
 
 ```tsx
 useStepsForm({
@@ -1023,11 +1008,9 @@ useStepsForm({
 });
 ```
 
-#### `debounce`
+#### debounce
 
-> Default: `1000`
-
-Set the debounce time for the `autoSave` prop.
+Set the debounce time for the `autoSave` prop. By default, it is set to `1000` milliseconds.
 
 ```tsx
 useStepsForm({
@@ -1041,7 +1024,7 @@ useStepsForm({
 });
 ```
 
-#### `onFinish`
+#### onFinish
 
 If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
 
@@ -1063,11 +1046,9 @@ useStepsForm({
 });
 ```
 
-#### `invalidateOnUnmount`
+#### invalidateOnUnmount
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default, it is set to `false`.
 
 ```tsx
 useStepsForm({
@@ -1083,21 +1064,17 @@ useStepsForm({
 
 ## Return Values
 
-:::tip
-
 All [`useForm`](/docs/packages/list-of-packages) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/packages/list-of-packages#return-values) docs.
 
-:::
-
-### `steps`
+### steps
 
 The return values needed by the manage state steps.
 
-#### `currentStep`
+#### currentStep
 
 Current step, counting from `0`.
 
-#### `gotoStep`
+#### gotoStep
 
 Is a function that allows you to programmatically change the current step of a form.
 It takes in one argument, step, which is a number representing the index of the step you want to navigate to.
@@ -1108,9 +1085,7 @@ It takes in one argument, step, which is a number representing the index of the 
 
 <PropsTable module="@refinedev/react-hook-form/useStepsForm" />
 
-> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/docs/core/refine-component)>** component.
-
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of [useForm](https://react-hook-form.com/api/useform) hook available in the [React Hook Form](https://react-hook-form.com/).
 
@@ -1133,7 +1108,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 | Property                      | Description                                                     | Type                                                              |
 | ----------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- |
 | steps                         | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                     |
-| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values) |
+| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/data/hooks/use-form/#return-values) |
 | React Hook Form Return Values | See [React Hook Form][react-hook-form-use-form] documentation   |
 
 ## Example
@@ -1143,6 +1118,6 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 [@refinedev/react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [refine-react-hook-form-use-form]: /docs/packages/list-of-packages
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
-[use-form-core]: /docs/core/hooks/use-form/
+[use-form-core]: /docs/data/hooks/use-form/
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

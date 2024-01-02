@@ -1,7 +1,6 @@
 ---
-title: <ThemedLayout>
-sidebar_label: <ThemedLayout>
-description: <ThemedLayoutV2> component from refine, defines the overall structure and layout of a web page.
+title: <ThemedLayout />
+description: <ThemedLayoutV2> component from Refine, defines the overall structure and layout of a web page.
 swizzle: true
 source: packages/mui/src/components/themedLayoutV2/index.tsx
 ---
@@ -106,13 +105,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-:::note
-
 `<ThemedLayoutV2>` is designed to be responsive. In the live-preview, it appears in tablet mode and toggle [`<Drawer>`][mui-drawer]. On larger screens, it will use fixed open [`<Drawer>`][mui-drawer].
-
-:::
-
-:::info
 
 Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/list-of-packages). You can see these examples for other routers:
 
@@ -120,13 +113,9 @@ Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](
 - [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs-auth/pages/_app.tsx#L31)
 - [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-material-ui/app/routes/_layout.tsx#L13)
 
-⚠️ Next.js examples are using `<ThemedLayout`> from `@refinedev/antd` package. But you can use `<ThemedLayoutV2>` from `@refinedev/mui` as same.
-
-:::
-
 ## Props
 
-### `Sider`
+### Sider
 
 In `<ThemedLayoutV2>`, the sidebar section is rendered using the [`<ThemedSiderV2>`][themed-sider] component by default. This component is specifically designed to generate menu items based on the resources defined in [`<Refine>`][refine-component] components, using the [`useMenu`][use-menu] hook. However, if desired, it's possible to replace the default [`<ThemedSiderV2>`][themed-sider] component by passing a custom component to the `Sider` prop.
 
@@ -192,7 +181,7 @@ const App: React.FC = () => {
 };
 ```
 
-#### `Sider Props`
+#### Sider Props
 
 | Prop                 | Type                                          | Description                                                                     |
 | -------------------- | --------------------------------------------- | ------------------------------------------------------------------------------- |
@@ -210,7 +199,7 @@ type SiderRenderFunction = (props: {
 }) => React.ReactNode;
 ```
 
-### `initialSiderCollapsed`
+### initialSiderCollapsed
 
 This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][themed-sider] component. If it is `true`, It will be collapsed by default.
 
@@ -223,9 +212,9 @@ This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][
 </ThemedLayoutV2>
 ```
 
-### `Header`
+### Header
 
-In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeaderV2>`][themed-header] component by default. It uses [`useGetIdentity`](/docs/core/hooks/auth/use-get-identity) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeaderV2>`][themed-header] component by passing a custom component to the `Header` prop.
+In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeaderV2>`][themed-header] component by default. It uses [`useGetIdentity`](/docs/authentication/hooks/use-get-identity) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeaderV2>`][themed-header] component by passing a custom component to the `Header` prop.
 
 Here is an example of how to replace the default [`<ThemedHeaderV2>`][themed-header] component:
 
@@ -279,7 +268,7 @@ const App: React.FC = () => {
 };
 ```
 
-### `Title`
+### Title
 
 In `<ThemedLayoutV2>`, the title section is rendered using the [`<ThemedTitleV2V2>`][themed-title] component by default. However, if desired, it's possible to replace the default [`<ThemedTitleV2V2>`][themed-title] component by passing a custom component to the `Title` prop.
 
@@ -317,9 +306,9 @@ const App: React.FC = () => {
 };
 ```
 
-### `Footer`
+### Footer
 
-The footer section of the layout is displayed at the bottom of the page. **refine** doesn't provide a default footer component. However, you can pass a custom component to the `Footer` prop to display a footer section.
+The footer section of the layout is displayed at the bottom of the page. Refine doesn't provide a default footer component. However, you can pass a custom component to the `Footer` prop to display a footer section.
 
 Here is an example of how to display a footer section:
 
@@ -437,9 +426,9 @@ const App: React.FC = () => {
 };
 ```
 
-### `OffLayoutArea`
+### OffLayoutArea
 
-Used to component is rendered outside of the main layout component, allowing it to be placed anywhere on the page while still being part of the overall layout .**refine** doesn't provide a default off-layout area component. However, you can pass a custom component to the `OffLayoutArea` prop to display a custom off-layout area.
+Used to component is rendered outside of the main layout component, allowing it to be placed anywhere on the page while still being part of the overall layout .Refine doesn't provide a default off-layout area component. However, you can pass a custom component to the `OffLayoutArea` prop to display a custom off-layout area.
 
 Here is an example of how to display a custom off-layout area:
 
@@ -559,11 +548,7 @@ const App: React.FC = () => {
 
 ## Customizing with swizzle
 
-:::note
-
 🚨 This feature is available with `@refine/cli`. Please refer to [CLI documentation](/docs/packages/list-of-packages#swizzle) for more information.
-
-:::
 
 `<ThemedLayoutV2>` component source code can be ejecting using the `swizzle` command. This will create a copy of the component in your project's `src` directory, allowing you to customize as your needs.
 
@@ -584,11 +569,7 @@ UI Framework
 
 First, you need to select the package you want to swizzle. In this example, we will swizzle the `@refinedev/mui` package.
 
-:::info
-
-**refine** CLI will only show the packages that are installed in your project.
-
-:::
+Refine CLI will only show the packages that are installed in your project.
 
 ```bash
 ? Which component do you want to swizzle?
@@ -669,13 +650,9 @@ const App = () => {
 };
 ```
 
-:::info
+:::simple Good to know
 
-**refine** CLI determines the path to create a new folder according to the framework you are using. For example, if you are using the `remix`, the path will be `app/components/layout`.
-
-:::
-
-:::caution
+Refine CLI determines the path to create a new folder according to the framework you are using. For example, if you are using the `remix`, the path will be `app/components/layout`.
 
 If there is already a file with the same name in the directory, the swizzle command will not overwrite it.
 

@@ -2,7 +2,7 @@ import nock from "nock";
 
 nock("http://localhost:3003", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: UpdateManyBlogPostsInput!) {\n      updateManyBlogPosts (input: $input) {\n    updatedCount\n  }\n    }",
+        query: "mutation UpdateManyBlogPosts($input: UpdateManyBlogPostsInput!) {\n  updateManyBlogPosts(input: $input) {\n    updatedCount\n  }\n}\n",
         variables: {
             input: {
                 filter: { id: { in: ["1", "2"] } },
@@ -14,6 +14,7 @@ nock("http://localhost:3003", { encodedQueryParams: true })
                 },
             },
         },
+        operationName: "UpdateManyBlogPosts",
     })
     .reply(200, { data: { updateManyBlogPosts: { updatedCount: 2 } } }, [
         "X-Powered-By",
@@ -81,7 +82,7 @@ nock("http://localhost:3003", { encodedQueryParams: true })
 
 nock("http://localhost:3003", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: UpdateManyBlogPostsInput!) {\n      updateManyBlogPosts (input: $input) {\n    updatedCount\n  }\n    }",
+        query: "mutation UpdateManyBlogPosts($input: UpdateManyBlogPostsInput!) {\n  updateManyBlogPosts(input: $input) {\n    updatedCount\n  }\n}\n",
         variables: {
             input: {
                 filter: { id: { in: ["1", "2"] } },
@@ -93,6 +94,7 @@ nock("http://localhost:3003", { encodedQueryParams: true })
                 },
             },
         },
+        operationName: "UpdateManyBlogPosts",
     })
     .reply(200, { data: { updateManyBlogPosts: { updatedCount: 2 } } }, [
         "X-Powered-By",
@@ -113,8 +115,9 @@ nock("http://localhost:3003", { encodedQueryParams: true })
 
 nock("http://localhost:3003", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "query ($filter: BlogPostFilter!) { blogPosts (filter: $filter) { nodes { id } } }",
+        query: "query GetManyBlogPosts($filter: BlogPostFilter!) {\n  blogPosts(filter: $filter) {\n    nodes {\n      id\n    }\n  }\n}\n",
         variables: { filter: { id: { in: ["1", "2"] } } },
+        operationName: "GetManyBlogPosts",
     })
     .reply(
         200,

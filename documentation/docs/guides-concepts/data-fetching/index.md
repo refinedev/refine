@@ -17,17 +17,15 @@ import DataProviderInterface from "./data-provider-interface.md";
 
 Data is essential for any UI Application and these applications are a bridge between users and the underlying data source(s), making it possible for users to interact with data in a meaningful way.
 
-To manage data, **refine** needs a `data provider`, which is a function that implements the [`DataProvider`](/docs/core/interface-references#dataprovider) interface. It is responsible for communicating with your API and making data available to **refine** applications. While you can use one of our built-in data providers, you can also easily create your own data provider matching your API.
+To manage data, Refine needs a `data provider`, which is a function that implements the [`DataProvider`](/docs/core/interface-references#dataprovider) interface. It is responsible for communicating with your API and making data available to Refine applications. While you can use one of our built-in data providers, you can also easily create your own data provider matching your API.
 
-**refine** passes relevant parameters like `resource` name, or the `id` of the record to your data provider, so data provider can make API calls to appropriate endpoints.
+Refine passes relevant parameters like `resource` name, or the `id` of the record to your data provider, so data provider can make API calls to appropriate endpoints.
 
-Once you provide `data provider` to **refine**, you can utilize our data hooks (`useOne`, `useList`, `useUpdate`) to easily manage your data from various sources, including REST, GraphQL, RPC, and SOAP.
+Once you provide `data provider` to Refine, you can utilize our data hooks (`useOne`, `useList`, `useUpdate`) to easily manage your data from various sources, including REST, GraphQL, RPC, and SOAP.
 
-Moreover, refine offers support for multiple data providers, allowing you to use different data providers for different resources. For instance, you can use **REST** for the `posts` endpoint and **GraphQL** for the `users` query.
+Moreover, Refine offers support for multiple data providers, allowing you to use different data providers for different resources. For instance, you can use **REST** for the `posts` endpoint and **GraphQL** for the `users` query.
 
-<div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.png" />
-</div>
+<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.png" />
 
 ## Fetching Data
 
@@ -43,15 +41,15 @@ In this example, we are updating product's price with a random value.
 
 <UseUpdate />
 
-**refine** offers various data hooks for CRUD operations, you can see the list of these hooks below:
+Refine offers various data hooks for CRUD operations, you can see the list of these hooks below:
 
 <DataHooks />
 
-## How refine treats data and state?
+## How Refine treats data and state?
 
 Data hooks uses [TanStack Query](https://tanstack.com/query) under the hood. It takes care of managing the state for you. It provides `data`, `isLoading`, and `error` states to help you handle loading, success, and error scenarios gracefully.
 
-**refine** treats data and state in a structured and efficient manner, providing developers with powerful tools to manage data seamlessly within their applications. Here are some key aspects of how **refine** treats data and state:
+Refine treats data and state in a structured and efficient manner, providing developers with powerful tools to manage data seamlessly within their applications. Here are some key aspects of how Refine treats data and state:
 
 1. **Resource-Based Approach:** Organizes data around resources, which are essentially models representing different data entities or API endpoints. These resources help structure your application's data management.
 
@@ -61,7 +59,7 @@ Data hooks uses [TanStack Query](https://tanstack.com/query) under the hood. It 
 
 4. **Optimistic Updates:** Supports optimistic updates, which means it will update the UI optimistically before the actual API call is complete. This enhances the user experience by reducing perceived latency.
 
-5. **Hooks for CRUD Operations:** Offers a collection of hooks that align with common data operations like listing, creating, updating, and deleting data (`useList`, `useCreate`, `useUpdate`, `useDelete`). In addition to these basic hooks, **refine** provides advanced hooks that are a composition of these fundamental ones for handling more complex tasks (`useForm`, `useTable`, `useSelect`).
+5. **Hooks for CRUD Operations:** Offers a collection of hooks that align with common data operations like listing, creating, updating, and deleting data (`useList`, `useCreate`, `useUpdate`, `useDelete`). In addition to these basic hooks, Refine provides advanced hooks that are a composition of these fundamental ones for handling more complex tasks (`useForm`, `useTable`, `useSelect`).
 
 6. **Integration with UI Libraries:** Works seamlessly with popular UI libraries. It provides a structured approach to represent data within these libraries.
 
@@ -161,11 +159,11 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 };
 ```
 
-Also, you can check **refine**'s built-in [GraphQL data providers](#supported-data-providers) to handle communication with your GraphQL APIs or use them as a starting point.
+Also, you can check Refine's built-in [GraphQL data providers](#supported-data-providers) to handle communication with your GraphQL APIs or use them as a starting point.
 
 ## Multiple Data Providers
 
-Using multiple data providers in **refine** allows you to work with various APIs or data sources in a single application. You might use different data providers for different parts of your app.
+Using multiple data providers in Refine allows you to work with various APIs or data sources in a single application. You might use different data providers for different parts of your app.
 
 Each data provider can have its own configuration, making it easier to manage complex data scenarios within a single application.
 This flexibility is handy when dealing with various data structures and APIs.
@@ -184,11 +182,11 @@ As you can see the example below:
 
 ## Handling errors
 
-**refine** expects errors to be extended from [HttpError](/docs/core/interface-references#httperror). We believe that having consistent error interface makes it easier to handle errors coming from your API.
+Refine expects errors to be extended from [HttpError](/docs/core/interface-references#httperror). We believe that having consistent error interface makes it easier to handle errors coming from your API.
 
-When implemented correctly, **refine** offers several advantages in error handling:
+When implemented correctly, Refine offers several advantages in error handling:
 
-- **Notification**: If you have [`notificationProvider` ](/docs/core/providers/notification-provider), **refine** will automatically show a notification when an error occurs.
+- **Notification**: If you have [`notificationProvider` ](/docs/notification/notification-provider), Refine will automatically show a notification when an error occurs.
 - **Server-Side Validation**: Shows [errors coming from the API](/docs/advanced-tutorials/forms/server-side-form-validation/) on the corresponding form fields.
 - **Optimistic Updates**: Instantly update UI when you send a mutation and automatically revert the changes if an error occurs during the mutation.
 
@@ -204,7 +202,7 @@ Imagine we need to fetch a list of records from the `products` endpoint. For thi
 
 We fetched all the products from the `products` endpoint in the previous example. But in real world, we usually need to fetch a subset of the data.
 
-**refine** provides a unified [`filters`][crud-filters], [`sorters`][crud-sorting], and [`pagination`][pagination] parameters in data hooks to pass your `data provider` methods, making it possible to fetch the data you need with any complexity. It's data provider's responsibility to handle these parameters and modify the request sent to your API.
+Refine provides a unified [`filters`][crud-filters], [`sorters`][crud-sorting], and [`pagination`][pagination] parameters in data hooks to pass your `data provider` methods, making it possible to fetch the data you need with any complexity. It's data provider's responsibility to handle these parameters and modify the request sent to your API.
 
 Now let's make it more realistic example by adding filters, sorters, and pagination.
 
@@ -258,7 +256,7 @@ useList({
 
 ## Relationships
 
-**refine** handles data relations with data hooks(eg: `useOne`, `useMany`, etc.). This compositional design allows you to flexibly and efficiently manage data relationships to suit your specific requirements.
+Refine handles data relations with data hooks(eg: `useOne`, `useMany`, etc.). This compositional design allows you to flexibly and efficiently manage data relationships to suit your specific requirements.
 
 ### One-to-One
 
@@ -363,7 +361,7 @@ const { data: categories } = useMany({
 
 Imagine you want to fetch a data from a protected API. To do this, you will first need to obtain your authentication token and you will need to send this token with every request.
 
-In **refine** we handle [authentication](/docs/guides-concepts/authentication/) with [Auth Provider](/docs/core/providers/auth-provider/). To get token from the API, we will use the `authProvider.login` method. Then, we will use [`<Authenticated />`](/docs/core/components/authenticated) component to to render the appropriate components.
+In Refine we handle [authentication](/docs/guides-concepts/authentication/) with [Auth Provider](/docs/authentication/auth-provider/). To get token from the API, we will use the `authProvider.login` method. Then, we will use [`<Authenticated />`](/docs/authentication/components/authenticated) component to to render the appropriate components.
 
 After obtaining the token, we'll use Axios interceptors to include the token in the headers of all requests.
 
@@ -381,7 +379,7 @@ To better understand the data provider interface, we have created an example tha
 
 <DataProviderInterface />
 
-[To learn more about the `dataProvider` interface, check out the reference page.](/docs/core/providers/data-provider)
+[To learn more about the `dataProvider` interface, check out the reference page.](/docs/data/data-provider)
 
 ## Supported data providers
 
@@ -395,23 +393,23 @@ To better understand the data provider interface, we have created an example tha
 [create-a-data-provider]: /docs/tutorial/understanding-dataprovider/create-dataprovider/
 [swizzle-a-data-provider]: /docs/tutorial/understanding-dataprovider/swizzle/
 [data-provider-tutorial]: /docs/tutorial/understanding-dataprovider/
-[use-api-url]: /docs/core/hooks/data/use-api-url
-[use-create]: /docs/core/hooks/data/use-create
-[use-create-many]: /docs/core/hooks/data/use-create
-[use-custom]: /docs/core/hooks/data/use-custom
-[use-delete]: /docs/core/hooks/data/use-delete
-[use-delete-many]: /docs/core/hooks/data/use-delete
-[use-list]: /docs/core/hooks/data/use-list
-[use-infinite-list]: /docs/core/hooks/data/use-infinite-list
-[use-many]: /docs/core/hooks/data/use-many
-[use-one]: /docs/core/hooks/data/use-one
-[use-update]: /docs/core/hooks/data/use-update
-[use-update-many]: /docs/core/hooks/data/use-update
+[use-api-url]: /docs/data/hooks/use-api-url
+[use-create]: /docs/data/hooks/use-create
+[use-create-many]: /docs/data/hooks/use-create
+[use-custom]: /docs/data/hooks/use-custom
+[use-delete]: /docs/data/hooks/use-delete
+[use-delete-many]: /docs/data/hooks/use-delete
+[use-list]: /docs/data/hooks/use-list
+[use-infinite-list]: /docs/data/hooks/use-infinite-list
+[use-many]: /docs/data/hooks/use-many
+[use-one]: /docs/data/hooks/use-one
+[use-update]: /docs/data/hooks/use-update
+[use-update-many]: /docs/data/hooks/use-update
 [crud-sorting]: /docs/core/interface-references#crudsorting
 [crud-filters]: /docs/core/interface-references#crudfilters
 [pagination]: /docs/core/interface-references#pagination
 [http-error]: /docs/core/interface-references#httperror
-[meta-data]: /docs/core/interface-references#metadataquery
-[meta]: /docs/core/interface-references#metadataquery
-[use-login]: /docs/core/hooks/auth/use-login
-[use-register]: /docs/core/hooks/auth/use-register
+[meta-data]: /docs/core/interface-references#metaquery
+[meta]: /docs/core/interface-references#metaquery
+[use-login]: /docs/authentication/hooks/use-login
+[use-register]: /docs/authentication/hooks/use-register

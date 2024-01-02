@@ -9,7 +9,11 @@ export const LandingHeroNextjsIcon = (props: React.SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
-        <g opacity={0.5} filter="url(#filter0_f_1305_2573)">
+        <g
+            opacity={0.5}
+            className="hidden dark:block"
+            filter="url(#filter0_f_1305_2573)"
+        >
             <path
                 d="M32 44C34.4668 44 36.7598 43.2556 38.6666 41.9793L28.8153 29.2511V36.796H27.2001V27.2H29.2191L35.3336 35.0762V27.2H36.9336V36.8H36.6719L39.9345 41.0026C42.4275 38.8037 44 35.5855 44 32C44 25.3726 38.6274 20 32 20C25.3726 20 20 25.3726 20 32C20 38.6274 25.3726 44 32 44Z"
                 fill="currentColor"

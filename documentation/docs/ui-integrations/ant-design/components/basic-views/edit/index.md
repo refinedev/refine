@@ -115,15 +115,15 @@ render(
 );
 ```
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
 ## Properties
 
-### `title`
+### title
 
 `title` allows you to add a title inside the `<Edit>` component. If you don't pass title props, it uses the "Edit" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Edit post".
 
@@ -174,7 +174,7 @@ render(
 );
 ```
 
-### `saveButtonProps`
+### saveButtonProps
 
 The `<Edit>` component has a save button that submits the form by default. If you want to customize this button you can use the `saveButtonProps` property:
 
@@ -215,7 +215,7 @@ render(
 
 > For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/ant-design/components/buttons/save-button)
 
-### `canDelete` and `deleteButtonProps`
+### canDelete and deleteButtonProps
 
 `canDelete` allows you to add a delete button inside the `<Edit>` component. This button uses the `useDelete` method provided by the `dataProvider`
 
@@ -315,9 +315,9 @@ render(
 
 > For more information, refer to the [`<DeleteButton>` documentation &#8594](/docs/ui-integrations/ant-design/components/buttons/delete-button)
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/authentication/hooks/use-permissions)
 
-### `resource`
+### resource
 
 The `<Edit>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Edit>` component, you can use the `resource` prop:
 
@@ -367,7 +367,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `recordItemId`
+### recordItemId
 
 The `<Edit>` component reads the `id` information from the route by default. When it cannot be read from the URL, which happens when it's used on a custom page, modal or drawer, `recordItemId` is used.
 
@@ -416,13 +416,9 @@ render(
 );
 ```
 
-:::note
-
 The `<Edit>` component needs the `id` information for the `<RefreshButton>` to work properly.
 
-:::
-
-### `mutationMode`
+### mutationMode
 
 Determines which mode mutation will have while executing `<DeleteButton>` .
 
@@ -541,9 +537,9 @@ render(
 
 > For more information, refer to the [mutation mode documentation &#8594](/advanced-tutorials/mutation-mode.md)
 
-### `dataProviderName`
+### dataProviderName
 
-If not specified, **refine** will use the default data provider. If you have multiple data providers, you can use the `dataProviderName` property to specify which one you want to use:
+If not specified, Refine will use the default data provider. If you have multiple data providers, you can use the `dataProviderName` property to specify which one you want to use:
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -573,7 +569,7 @@ export const App: React.FC = () => {
 };
 ```
 
-### `goBack`
+### goBack
 
 To customize the back button or to disable it, you can use the `goBack` property:
 
@@ -614,8 +610,6 @@ render(
 );
 ```
 
-:::caution
-
 If your route has no `:action` parameter or your action is `list`, the back button will not be shown even if you pass a `goBack` property. You can override this behavior by using the `headerProps` property:
 
 ```tsx
@@ -638,9 +632,7 @@ const PostEdit: React.FC = () => {
 };
 ```
 
-:::
-
-### `isLoading`
+### isLoading
 
 To toggle the loading state of the `<Edit/>` component, you can use the `isLoading` property:
 
@@ -679,7 +671,7 @@ render(
 );
 ```
 
-### `breadcrumb`
+### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default the `Breadcrumb` component from the `@refinedev/antd` package is used for breadcrumbs.
 
@@ -730,15 +722,9 @@ render(
 );
 ```
 
-:::tip
-
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
-
-:::
-
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/ant-design/components/breadcrumb)
 
-### `wrapperProps`
+### wrapperProps
 
 You can use the `wrapperProps` property if you want to customize the wrapper of the `<Edit/>` component. The `@refinedev/antd` wrapper elements are simply `<div/>`s and `wrapperProps` and can get every attribute that `<div/>` can get.
 
@@ -785,7 +771,7 @@ render(
 );
 ```
 
-### `headerProps`
+### headerProps
 
 You can use the `headerProps` property to customize the header of the `<Edit/>` component:
 
@@ -835,7 +821,7 @@ render(
 
 > For more information, refer to the [`PageHeader` documentation &#8594](https://procomponents.ant.design/en-US/components/page-header)
 
-### `contentProps`
+### contentProps
 
 You can use the `contentProps` property to customize the content of the `<Edit/>` component:
 
@@ -884,17 +870,13 @@ render(
 
 > For more information, refer to the [`Card` documentation &#8594](https://ant.design/components/card/)
 
-### `headerButtons`
+### headerButtons
 
 By default, the `<Edit/>` component has a [`<ListButton>`][list-button] and a [`<RefreshButton>`][refresh-button] at the header.
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, refreshButtonProps, listButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-:::caution
-
 If the "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
-
-:::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -987,7 +969,7 @@ render(
 );
 ```
 
-### `headerButtonProps`
+### headerButtonProps
 
 You can use the `headerButtonProps` property to customize the wrapper element of the buttons at the header:
 
@@ -1038,17 +1020,13 @@ render(
 
 > For more information, refer to the [`Space` documentation &#8594](https://ant.design/components/space/)
 
-### `footerButtons`
+### footerButtons
 
 By default, the `<Edit/>` component has a [`<SaveButton>`][save-button] and a [`<DeleteButton>`][delete-button] at the footer.
 
 You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, saveButtonProps, deleteButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-:::caution
-
 If [`canDelete`](#candelete-and-deletebuttonprops) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
-
-:::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
@@ -1141,7 +1119,7 @@ render(
 );
 ```
 
-### `footerButtonProps`
+### footerButtonProps
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
@@ -1194,7 +1172,7 @@ render(
 
 > For more information, refer to the [`Space` documentation &#8594](https://ant.design/components/space/)
 
-### `autoSaveProps`
+### autoSaveProps
 
 You can use the auto save feature of the `<Edit/>` component by using the `autoSaveProps` property.
 
@@ -1327,11 +1305,11 @@ render(
 <PropsTable module="@refinedev/antd/Edit"
 contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
 headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)"
-headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/antd/components/buttons/list-button/) and [`RefreshButton`](https://refine.dev/docs/api-reference/antd/components/buttons/refresh-button/)"
+headerButtons-default="[`ListButton`](/docs/ui-integrations/ant-design/components/buttons/list-button/) and [`RefreshButton`](/docs/ui-integrations/ant-design/components/buttons/refresh-button/)"
 headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
 deleteButtonProps-type="[`DeleteButtonProps`](/docs/ui-integrations/ant-design/components/buttons/delete-button)"
-saveButtonProps-type="[`SaveButtonProps`](https://refine.dev/docs/api-reference/antd/components/buttons/save-button/)"
-footerButtons-default="[`SaveButton`](https://refine.dev/docs/api-reference/antd/components/buttons/save-button/) and [`DeleteButton`](https://refine.dev/docs/api-reference/antd/components/buttons/delete-button/)"
+saveButtonProps-type="[`SaveButtonProps`](/docs/ui-integrations/ant-design/components/buttons/save-button/)"
+footerButtons-default="[`SaveButton`](/docs/ui-integrations/ant-design/components/buttons/save-button/) and [`DeleteButton`](/docs/ui-integrations/ant-design/components/buttons/delete-button/)"
 footerButtonsProps-type="[`SpaceProps`](https://ant.design/components/space/)"
 breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
 goBack-default="`<ArrowLeft />`"

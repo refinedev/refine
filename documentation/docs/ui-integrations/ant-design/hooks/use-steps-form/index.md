@@ -293,13 +293,9 @@ const PostCreate = () => {
 
 The `useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful functionalities that will help you manage your form.
 
-:::info
-
 The `useStepsForm` hook is extended from [`useForm`][antd-use-form] under the hood. This means that you can use all the functionalities of [`useForm`][antd-use-form] in your `useStepsForm`.
 
-:::
-
-## Basic Usage
+## Usage
 
 We will show two examples, one for creating a post and one for editing it. Let's see how `useStepsForm` is used in both.
 
@@ -732,7 +728,7 @@ interface IPost {
 }
 ```
 
-:::tip
+:::simple Relational Data
 
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
@@ -825,7 +821,7 @@ interface IPost {
 }
 ```
 
-:::danger Important
+:::simple Implementation Tips
 
 Make sure to add as much `<Steps.Step>` components as the number of steps in the `formList` array.
 
@@ -946,13 +942,9 @@ interface IPost {
 
 ## Properties
 
-:::tip
-
 All of the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) props are also available in `useStepsForm`. You can find descriptions on [`useForm` documentation](/docs/ui-integrations/ant-design/hooks/use-form#properties).
 
-:::
-
-### `defaultCurrent`
+### defaultCurrent
 
 `defaultCurrent` sets the default starting step number. Counting starts from `0`.
 
@@ -962,7 +954,7 @@ const stepsForm = useStepsForm({
 });
 ```
 
-### `total`
+### total
 
 `total` is the maximum number of steps. `<Steps>` cannot go beyond this number.
 
@@ -972,7 +964,7 @@ const stepsForm = useStepsForm({
 });
 ```
 
-### `isBackValidate`
+### isBackValidate
 
 When `isBackValidate` is `true`, it validates a form fields when the user navigates to a previous step. It is `false` by default.
 
@@ -984,7 +976,7 @@ const stepsForm = useStepsForm({
 
 <br/>
 
-### `overtimeOptions`
+### overtimeOptions
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
 `interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
@@ -1010,7 +1002,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### `autoSave`
+### autoSave
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
@@ -1018,19 +1010,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
-#### `enabled`
+#### enabled
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. By default, it is `false`.
 
 ```tsx
 useStepsForm({
@@ -1040,11 +1026,9 @@ useStepsForm({
 });
 ```
 
-#### `debounce`
+#### debounce
 
-> Default: `1000`
-
-Set the debounce time for the `autoSave` prop.
+Set the debounce time for the `autoSave` prop. By default, it is `1000` milliseconds.
 
 ```tsx
 useStepsForm({
@@ -1056,7 +1040,7 @@ useStepsForm({
 });
 ```
 
-#### `onFinish`
+#### onFinish
 
 If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
 
@@ -1076,11 +1060,9 @@ useStepsForm({
 });
 ```
 
-#### `invalidateOnUnmount`
+#### invalidateOnUnmount
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default, it is `false`.
 
 ```tsx
 useStepsForm({
@@ -1094,42 +1076,38 @@ useStepsForm({
 
 ## Return Values
 
-:::tip
-
 All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) docs.
 
-:::
-
-### `stepsProps`
+### stepsProps
 
 `stepsProps` is the props needed by the `<Steps>` component.
 
-#### `current`
+#### current
 
 `current` is the current step, counting from `0`.
 
-#### `onChange`
+#### onChange
 
 Callback function that is triggered when the current step of the form changes. The function takes in one argument, `currentStep`, which is a number representing the index of the current step.
 
-### `current`
+### current
 
 The Current step, counting from `0`.
 
-### `gotoStep`
+### gotoStep
 
 `gotoStep` is a function that allows you to programmatically change the current step of a form.
 It takes in one argument, step, which is a number representing the index of the step you want to navigate to.
 
-### `submit`
+### submit
 
 `submit` is a function that can submit the form. It's useful when you want to submit the form manually.
 
-### `defaultFormValuesLoading`
+### defaultFormValuesLoading
 
 When `action` is `"edit"` or `"clone"`, `useStepsForm` will fetch the data from the API and set it as default values. This prop is `true` when the data is being fetched.
 
-### `overtime`
+### overtime
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -1139,7 +1117,7 @@ const { overtime } = useStepsForm();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-### `autoSaveProps`
+### autoSaveProps
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
@@ -1176,10 +1154,6 @@ const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } = 
 ### Properties
 
 <PropsTable module="@refinedev/antd/useStepsForm"/>
-
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/docs/core/refine-component)>** component. `useModalForm` will use what is passed to `<Refine>` as default but a local value will override it.
-
-> `**`: If not explicitly configured, default value of `redirect` depends on which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). if `action` is `edit` instead, `redirect`s default value is `list`.
 
 ### Type Parameters
 

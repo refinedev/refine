@@ -8,13 +8,13 @@ tutorial:
 
 ## Get the dev tools you need
 
-Before you can create a **refine** app, you need to set up a development environment on your local machine. This includes installing a few tools that you will use to create your project, and run key commands to build, develop, and test your site.
+Before you can create a Refine app, you need to set up a development environment on your local machine. This includes installing a few tools that you will use to create your project, and run key commands to build, develop, and test your site.
 
 ### Terminal
 
 You will use a terminal (also known as a command line interface) to run commands and interact with your operating system. You can access the terminal through a local program of your operating system, such as Terminal (MacOS/Linux) or Command Prompt (Windows).
 
-In order to run **refine** applications on your system, you will also need to have [Node.js](https://nodejs.org/en/) installed. Node.js is a JavaScript runtime that allows developers to run JavaScript code outside of a web browser. It is required to run **refine** applications because it is a JavaScript-based tool.
+In order to run Refine applications on your system, you will also need to have [Node.js](https://nodejs.org/en/) installed. Node.js is a JavaScript runtime that allows developers to run JavaScript code outside of a web browser. It is required to run Refine applications because it is a JavaScript-based tool.
 
 To check if you already have a compatible version of Node.js (v.16.0.0 or higher) installed:
 

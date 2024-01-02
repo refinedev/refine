@@ -4,29 +4,19 @@ siderbar_label: useSelect
 source: https://github.com/refinedev/refine/blob/master/packages/antd/src/hooks/fields/useSelect/index.ts
 ---
 
-import BasicUsageLivePreview from "./basic-usage-live-preview.md";
-import OnSearchLivePreview from "./on-search-live-preview.md";
-import SortLivePreview from "./sort-live-preview.md";
-import DefaultValueLivePreview from "./default-value-live-preview.md";
-import CrudLivePreview from "./crud-live-preview.md";
+import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
+import OnSearchLivePreview from "./\_on-search-live-preview.md";
+import SortLivePreview from "./\_sort-live-preview.md";
+import DefaultValueLivePreview from "./\_default-value-live-preview.md";
+import CrudLivePreview from "./\_crud-live-preview.md";
 
 `useSelect` hook allows you to manage Ant Design's [`<Select>`](https://ant.design/components/select) component when the records in a resource needs to be used as select options.
 
 This hook uses the `useList` hook for fetching data.
 
-:::info-tip DERIVATIVES
+> For more information, refer to the [useList documentation &#8594](/docs/data/hooks/use-list)
 
-If you're looking for a complete select library, refine has out-of-the-box support for the libraries below:
-
-- refine's `useSelect` (for Headless users) - [Documentation](/docs/core/hooks/use-select) - [Example](/docs/examples/core/useSelect)
-- [Material UI Autocomplete](https://mui.com/material-ui/react-autocomplete) (for Material UI users) - [Documentation](/docs/ui-integrations/material-ui/hooks/use-auto-complete)
-- [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/ui-integrations/mantine/hooks/use-select)
-
-:::
-
-> For more information, refer to the [useList documentation &#8594](/docs/core/hooks/data/use-list)
-
-## Basic Usage
+## Usage
 
 Here is a basic example that uses the `useSelect` hook.
 
@@ -34,19 +24,13 @@ Here is a basic example that uses the `useSelect` hook.
 
 ## Realtime Updates
 
-:::caution
-
-This feature is only available if you use a [Live Provider](/docs/core/providers/live-provider)
-
-:::
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 When the `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider` that allow you to subscribe to live updates.
 
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider)
-
 ## Properties
 
-### `resource` <PropTag required />
+### resource <PropTag required />
 
 `resource` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `getList` method.
 
@@ -62,7 +46,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `optionLabel` and `optionValue`
+### optionLabel and `optionValue`
 
 Allows you to change the `value` and `label` of your options.
 Default values are `optionLabel = "title"` and `optionValue = "id"`
@@ -75,9 +59,7 @@ useSelect<ICategory>({
 });
 ```
 
-:::tip
-
-You can put nested properties with the optional [Object path](https://lodash.com/docs/4.17.15#get) syntax.
+These properties also support nested property access with [Object path](https://lodash.com/docs/4.17.15#get) syntax.
 
 ```tsx
 const { options } = useSelect({
@@ -87,9 +69,7 @@ const { options } = useSelect({
 });
 ```
 
-:::
-
-### `sorters`
+### sorters
 
 `sorters` prop allows you to show the options in the desired order. It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook and used to send sort query parameters to the API.
 
@@ -108,7 +88,7 @@ useSelect({
 
 > For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references#crudsorting)
 
-### `filters`
+### filters
 
 `filters` is used to filter the options you are showing. `filters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook and used to send filter query parameters to the API.
 
@@ -126,7 +106,7 @@ useSelect({
 
 > For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references#crudfilters)
 
-### `defaultValue`
+### defaultValue
 
 The `defaultValue` is a property that can be used to not only set default options for a `<select>` component but also add extra options.
 
@@ -142,9 +122,9 @@ useSelect({
 });
 ```
 
-> For more information, refer to the [`useMany` documentation &#8594](/docs/core/hooks/data/use-many)
+> For more information, refer to the [`useMany` documentation &#8594](/docs/data/hooks/use-many)
 
-### `debounce`
+### debounce
 
 This prop allows us to `debounce` the `onSearch` function.
 
@@ -155,7 +135,7 @@ useSelect({
 });
 ```
 
-### `queryOptions`
+### queryOptions
 
 `queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
 
@@ -169,11 +149,11 @@ useSelect({
 
 > For more information, refer to the [`useQuery` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
-### `pagination`
+### pagination
 
 `pagination` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to send pagination query parameters to the API.
 
-#### `current`
+#### current
 
 You can pass the `current` page number to the `pagination` property.
 
@@ -185,7 +165,7 @@ useSelect({
 });
 ```
 
-#### `pageSize`
+#### pageSize
 
 You can pass the `pageSize` to the `pagination` property.
 
@@ -197,7 +177,7 @@ useSelect({
 });
 ```
 
-#### `mode`
+#### mode
 
 It can be `"off"`, `"client"` or `"server"`. It is used to determine whether to use server-side pagination or not.
 
@@ -209,7 +189,7 @@ useSelect({
 });
 ```
 
-### `defaultValueQueryOptions`
+### defaultValueQueryOptions
 
 When the `defaultValue` property is given, the `useMany` data hook is called for the selected records. `defaultValueQueryOptions` allows you to change the options of this query.
 
@@ -226,17 +206,13 @@ const { options } = useSelect({
 });
 ```
 
-### `onSearch`
+### onSearch
 
 `onSearch` allows the addittion of `AutoComplete` to the `options`.
 
 <OnSearchLivePreview />
 
-:::caution
-
 If `onSearch` is used, it will override the existing `filters`.
-
-:::
 
 > For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references#crudfilters)
 
@@ -257,7 +233,7 @@ const { selectProps } = useSelect({
 />;
 ```
 
-### `meta`
+### meta
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
@@ -302,7 +278,7 @@ const myDataProvider = {
 
 > For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
 
-### `dataProviderName`
+### dataProviderName
 
 If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have different data providers for different resources.
 
@@ -312,13 +288,9 @@ useSelect({
 });
 ```
 
-### `successNotification`
+### successNotification
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useSelect` can call the `open` function from `NotificationProvider` to show a success notification. This prop allows you to customize the success notification message
 
@@ -334,13 +306,9 @@ useSelect({
 });
 ```
 
-### `errorNotification`
+### errorNotification
 
-:::caution
-
-[`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
-
-:::
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useSelect` will call the `open` function from `NotificationProvider` to show an error notification. This prop allows you to customize the error notification message
 
@@ -356,13 +324,9 @@ useSelect({
 });
 ```
 
-### `liveMode`
+### liveMode
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 This property determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -372,15 +336,11 @@ useSelect({
 });
 ```
 
-> For more information, refer to the [Live / Realtime documentation &#8594](/docs/core/providers/live-provider#livemode)
+> For more information, refer to the [Live / Realtime documentation &#8594](/docs/realtime/live-provider#livemode)
 
-### `onLiveEvent`
+### onLiveEvent
 
-:::caution
-
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
-
-:::
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 The callback function that is executed when new events from a subscription are arrived.
 
@@ -392,17 +352,13 @@ useSelect({
 });
 ```
 
-### `liveParams`
+### liveParams
 
-:::caution
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
-[`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
 
-:::
-
-Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
-
-### `overtimeOptions`
+### overtimeOptions
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
 `interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval.
@@ -428,49 +384,31 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### ~~`sort`~~
-
-:::caution Deprecated
+### ~~sort~~ <PropTag deprecated />
 
 Use `sorters` instead.
 
-:::
-
-### ~~`hasPagination`~~
-
-:::caution Deprecated
+### ~~hasPagination~~ <PropTag deprecated />
 
 Use `pagination.mode` instead.
-
-:::
-
-> Default: `false`
-
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
-
-```tsx
-useSelect({
-  hasPagination: true,
-});
-```
 
 ## FAQ
 
 ### How to add search to options (Autocomplete)?
 
-[`onSearch`](/docs/core/hooks/use-select#onsearch) is a function that is used to set the search value. It is useful when you want to search for a specific value. A simple example of this is shown below.
+[`onSearch`](/docs/data/hooks/use-select#onsearch) is a function that is used to set the search value. It is useful when you want to search for a specific value. A simple example of this is shown below.
 
 <OnSearchLivePreview />
 
 ### How to ensure `defaultValue` is included in the options?
 
-In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/core/hooks/data/use-many), gets the data and mark as selected.
+In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/data/hooks/use-many), gets the data and mark as selected.
 
 <DefaultValueLivePreview />
 
 ### How to change the `label` and `value` properties in options?
 
-[`optionLabel` and `optionValue`](/docs/core/hooks/use-select#optionlabel-and-optionvalue) are used to change the value of your options.
+[`optionLabel` and `optionValue`](/docs/data/hooks/use-select#optionlabel-and-optionvalue) are used to change the value of your options.
 The default values are `optionsLabel="title"` and `optionsValue="id"`.
 
 To change to `name` and `categoryId`;

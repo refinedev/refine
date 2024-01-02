@@ -8,7 +8,7 @@ tutorial:
 
 ## Introduction
 
-The standards and usage of APIs can vary significantly, so it is possible that **refine's** built-in data providers may not be suitable for your needs. If that is the case, you will need to develop your own data provider.
+The standards and usage of APIs can vary significantly, so it is possible that **Refine's** built-in data providers may not be suitable for your needs. If that is the case, you will need to develop your own data provider.
 
 Data providers function like an adapter system infrastructure, communicating with the `REST`, `GraphQL`, `RPC` and `SOAP` based APIs. Libraries like `fetch`, `axios` and `Apollo-Client` can be used for this communication.
 
@@ -22,15 +22,11 @@ We will begin developing our data provider by creating a file and adding additio
 
 To get started, install `axios` in your project.
 
-```bash
-npm install axios
-```
+<InstallPackagesCommand args="axios"/>
 
 Using the `stringify` library will allow us to convert the query parameters into a string format. This can be useful when we need to pass query parameters as part of an HTTP request.
 
-```bash
-npm install query-string@7
-```
+<InstallPackagesCommand args="query-string@7"/>
 
 After that, create the following file.
 
@@ -45,7 +41,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ## Error Handling
 
-When the API returns an error, you need to extend **refine** from [HttpError](/docs/core/interface-references#httperror) to handle it. To transform the error from the response before `axios` returns the response to your code, you can use the `axios` interceptor.
+When the API returns an error, you need to extend Refine from [HttpError](/docs/core/interface-references#httperror) to handle it. To transform the error from the response before `axios` returns the response to your code, you can use the `axios` interceptor.
 
 To do this, create an `axiosInstance` in a `utility` file, define an `interceptor` to handle errors, and then export it.
 
@@ -152,7 +148,7 @@ We can then add the pagination feature. For this, the API takes the following pa
 [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2
 ```
 
-**refine** uses the `pagination` parameter for pagination. For this parameter, `current` refers to the page number, and `pageSize` refers to the number of records on each page.
+Refine uses the `pagination` parameter for pagination. For this parameter, `current` refers to the page number, and `pageSize` refers to the number of records on each page.
 
 ```bash
 {
@@ -198,7 +194,7 @@ Now let's add the sorting feature. The API expects the following parameters for 
 [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc
 ```
 
-**refine** uses the `sorters` parameter for sorting. This parameter includes the `field` and `order` values.
+Refine uses the `sorters` parameter for sorting. This parameter includes the `field` and `order` values.
 Supports multiple field sorting. [CrudSort[]](/docs/core/interface-references#crudsorting) type, it comes in the data provider as follows.
 
 ```bash
@@ -256,7 +252,7 @@ Now let's add the filtering feature. The API expects the following parameters fo
 [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc&title_like
 ```
 
-**refine** uses the `filters` parameter for filtering. This parameter contains the `field`, `operator` and `value` values with the [CrudFilters []](/docs/core/interface-references#crudfilters) type.
+Refine uses the `filters` parameter for filtering. This parameter contains the `field`, `operator` and `value` values with the [CrudFilters []](/docs/core/interface-references#crudfilters) type.
 
 ```bash
 [
@@ -276,7 +272,7 @@ Now let's add the filtering feature. The API expects the following parameters fo
 The `operator` data comes with the [CrudOperators](/docs/core/interface-references#crudoperators) type and needs to be mapped to the API. For this, the following `mapOperator` function needs to be written:
 
 ```ts
-// Map refine operators to API operators
+// Map Refine operators to API operators
 const mapOperator = (operator: CrudOperators): string => {
   switch (operator) {
     case "ne":
@@ -403,7 +399,7 @@ The conditional filters can also be made using `and` and `or`. For example:
 
 <br/>
 
-**refine** will consume the `getList` method using the `useList` or `useInfiniteList` data hook.
+Refine will consume the `getList` method using the `useList` or `useInfiniteList` data hook.
 
 ```ts
 import { useList } from "@refinedev/core";
@@ -426,7 +422,7 @@ const { data } = useList({
 });
 ```
 
-> [Refer to the useList documentation for more information. &#8594](/docs/core/hooks/data/use-list)
+> [Refer to the useList documentation for more information. &#8594](/docs/data/hooks/use-list)
 
 ### create
 
@@ -457,13 +453,13 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useCreate`](/docs/core/hooks/data/use-create#type-parameters) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useCreate`](/docs/data/hooks/use-create#type-parameters) to type `variables`
 
 :::
 
 <br/>
 
-**refine** will consume the `create` method using the `useCreate` data hook.
+Refine will consume the `create` method using the `useCreate` data hook.
 
 ```ts
 import { useCreate } from "@refinedev/core";
@@ -478,7 +474,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreate documentation for more information. &#8594](/docs/core/hooks/data/use-create)
+> [Refer to the useCreate documentation for more information. &#8594](/docs/data/hooks/use-create)
 
 ### update
 
@@ -510,13 +506,13 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/core/hooks/data/use-update#type-parameters) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/data/hooks/use-update#type-parameters) to type `variables`
 
 :::
 
 <br/>
 
-**refine** will consume the `update` method using the `useUpdate` data hook.
+Refine will consume the `update` method using the `useUpdate` data hook.
 
 ```ts
 import { useUpdate } from "@refinedev/core";
@@ -530,7 +526,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdate documentation for more information. &#8594](/docs/core/hooks/data/use-update)
+> [Refer to the useUpdate documentation for more information. &#8594](/docs/data/hooks/use-update)
 
 ### deleteOne
 
@@ -564,13 +560,13 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useDelete`](/docs/core/hooks/data/use-delete) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useDelete`](/docs/data/hooks/use-delete) to type `variables`
 
 :::
 
 <br/>
 
-**refine** will consume the `deleteOne` method using the `useDelete` data hook.
+Refine will consume the `deleteOne` method using the `useDelete` data hook.
 
 ```ts
 import { useDelete } from "@refinedev/core";
@@ -580,7 +576,7 @@ const { mutate } = useDelete();
 mutate({ resource: "posts", id: 2 });
 ```
 
-> [Refer to the useDelete documentation for more information. &#8594](/docs/core/hooks/data/use-delete)
+> [Refer to the useDelete documentation for more information. &#8594](/docs/data/hooks/use-delete)
 
 ### getOne
 
@@ -611,7 +607,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 <br/>
 
-**refine** will consume the `getOne` method using the `useOne` data hook.
+Refine will consume the `getOne` method using the `useOne` data hook.
 
 ```ts
 import { useOne } from "@refinedev/core";
@@ -619,7 +615,7 @@ import { useOne } from "@refinedev/core";
 const { data } = useOne({ resource: "posts", id: 1 });
 ```
 
-> [Refer to the useOne documentation for more information. &#8594](/docs/core/hooks/data/use-one)
+> [Refer to the useOne documentation for more information. &#8594](/docs/data/hooks/use-one)
 
 <br/>
 
@@ -637,7 +633,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 });
 ```
 
-**refine** will consume the `getApiUrl` method using the `useApiUrl` data hook.
+Refine will consume the `getApiUrl` method using the `useApiUrl` data hook.
 
 ```ts
 import { useApiUrl } from "@refinedev/core";
@@ -645,7 +641,7 @@ import { useApiUrl } from "@refinedev/core";
 const { data } = useApiUrl();
 ```
 
-> [Refer to the useApiUrl documentation for more information. &#8594](/docs/core/hooks/data/use-api-url)
+> [Refer to the useApiUrl documentation for more information. &#8594](/docs/data/hooks/use-api-url)
 
 ### custom
 
@@ -719,7 +715,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 <br/>
 
-**refine** will consume the `custom` method using the `useCustom` data hook.
+Refine will consume the `custom` method using the `useCustom` data hook.
 
 ```ts
 import { useCustom, useApiUrl } from "@refinedev/core";
@@ -735,7 +731,7 @@ const { data, isLoading } = useCustom({
 });
 ```
 
-> [Refer to the useCustom documentation for more information. &#8594](/docs/core/hooks/data/use-custom)
+> [Refer to the useCustom documentation for more information. &#8594](/docs/data/hooks/use-custom)
 
 ## Bulk Actions
 
@@ -745,7 +741,7 @@ If your API supports bulk actions, you can implement them in your data provider.
 
 ### getMany
 
-The `getMany` method gets the records with the `resource` and `ids` parameters. This method is optional, and refine will use the [`getOne`](#getone) method to handle multiple requests if you don't implement it.
+The `getMany` method gets the records with the `resource` and `ids` parameters. This method is optional, and Refine will use the [`getOne`](#getone) method to handle multiple requests if you don't implement it.
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
@@ -770,7 +766,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 <br/>
 
-**refine** will consume the `getMany` method using the `useMany` data hook.
+Refine will consume the `getMany` method using the `useMany` data hook.
 
 ```ts
 import { useMany } from "@refinedev/core";
@@ -778,11 +774,11 @@ import { useMany } from "@refinedev/core";
 const { data } = useMany({ resource: "posts", ids: [1, 2] });
 ```
 
-> [Refer to the useMany documentation for more information. &#8594](/docs/core/hooks/data/use-many)
+> [Refer to the useMany documentation for more information. &#8594](/docs/data/hooks/use-many)
 
 ### createMany
 
-This method allows us to create multiple items in a resource. This method is optional, and refine will use the [`create`](#create) method to handle multiple requests if you don't implement it.
+This method allows us to create multiple items in a resource. This method is optional, and Refine will use the [`create`](#create) method to handle multiple requests if you don't implement it.
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
@@ -808,13 +804,13 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/core/hooks/data/use-create) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/data/hooks/use-create) to type `variables`
 
 :::
 
 <br/>
 
-**refine** will consume the `createMany` method using the `useCreateMany` data hook.
+Refine will consume the `createMany` method using the `useCreateMany` data hook.
 
 ```ts
 import { useCreateMany } from "@refinedev/core";
@@ -834,11 +830,11 @@ mutate({
 });
 ```
 
-> [Refer to the useCreateMany documentation for more information. &#8594](/docs/core/hooks/data/use-create)
+> [Refer to the useCreateMany documentation for more information. &#8594](/docs/data/hooks/use-create)
 
 ### deleteMany
 
-This method allows us to delete multiple items in a resource. This method is optional, and refine will use the [`deleteOne`](#deleteone) method to handle multiple requests if you don't implement it.
+This method allows us to delete multiple items in a resource. This method is optional, and Refine will use the [`deleteOne`](#deleteone) method to handle multiple requests if you don't implement it.
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
@@ -865,13 +861,13 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 :::note
 
-`TVariables` is a user defined type which can be passed to [`useDeleteMany`](/docs/core/hooks/data/use-delete) to type `variables`
+`TVariables` is a user defined type which can be passed to [`useDeleteMany`](/docs/data/hooks/use-delete) to type `variables`
 
 :::
 
 <br/>
 
-**refine** will consume the `deleteMany` method using the `useDeleteMany` data hook.
+Refine will consume the `deleteMany` method using the `useDeleteMany` data hook.
 
 ```ts
 import { useDeleteMany } from "@refinedev/core";
@@ -884,11 +880,11 @@ mutate({
 });
 ```
 
-> [Refer to the useDeleteMany documentation for more information. &#8594](/docs/core/hooks/data/use-delete)
+> [Refer to the useDeleteMany documentation for more information. &#8594](/docs/data/hooks/use-delete)
 
 ### updateMany
 
-This method allows us to update multiple items in a resource. This method is optional, and refine will use the [`update`](#update) method to handle multiple requests if you don't implement it.
+This method allows us to update multiple items in a resource. This method is optional, and Refine will use the [`update`](#update) method to handle multiple requests if you don't implement it.
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
@@ -905,7 +901,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 });
 ```
 
-**refine** will consume the `updateMany` method using the `useUpdateMany` data hook.
+Refine will consume the `updateMany` method using the `useUpdateMany` data hook.
 
 ```ts
 import { useUpdateMany } from "@refinedev/core";
@@ -919,7 +915,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdateMany documentation for more information. &#8594](/docs/core/hooks/data/use-update)
+> [Refer to the useUpdateMany documentation for more information. &#8594](/docs/data/hooks/use-update)
 
 ## meta usage
 

@@ -59,13 +59,13 @@ interface ITag {
 All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component.
 `useCheckboxGroup` uses the `useList` hook for fetching data.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useCheckboxGroup/basic.png" alt="Tags" />
+<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useCheckboxGroup/basic.png" alt="Tags" />
 
-> For more information, refer to the [`useList` documentation &#8594](/docs/core/hooks/data/use-list)
+> For more information, refer to the [`useList` documentation &#8594](/docs/data/hooks/use-list)
 
 ## Options
 
-### `resource`
+### resource
 
 ```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
@@ -73,7 +73,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-`resource` property determines which API resource endpoint to fetch records from [`dataProvider`](/docs/core/providers/data-provider). It returns properly configured `options` values for checkboxes.
+`resource` property determines which API resource endpoint to fetch records from [`dataProvider`](/docs/data/data-provider). It returns properly configured `options` values for checkboxes.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
@@ -81,7 +81,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [Ant Design's Checkbox.Group component documentation &#8594](https://ant.design/components/checkbox)
 
-### `defaultValue`
+### defaultValue
 
 ```tsx
 const { selectProps } = useCheckboxGroup({
@@ -93,7 +93,7 @@ const { selectProps } = useCheckboxGroup({
 
 The easiest way to select default values for checkbox fields is by passing in `defaultValue`.
 
-### `optionLabel` and `optionValue`
+### optionLabel and `optionValue`
 
 ```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
@@ -107,9 +107,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 `optionLabel` and `optionValue` allows you to change the values and appearances of your options. Default values are `optionLabel = "title"` and `optionValue = "id"`.
 
-:::tip
-
-Supports use with `optionLabel` and `optionValue` [Object path](https://lodash.com/docs/4.17.15#get) syntax.
+These properties also support nested property access with [Object path](https://lodash.com/docs/4.17.15#get) syntax.
 
 ```tsx
 const { options } = useSelect({
@@ -121,9 +119,7 @@ const { options } = useSelect({
 });
 ```
 
-:::
-
-### `filters`
+### filters
 
 `filters` allows us to add filters while fetching the data. For example, if you want to list only the `titles` that are equal to "Driver Deposit":
 
@@ -142,7 +138,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-### `sorters`
+### sorters
 
 `sorters` allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending:
 
@@ -160,7 +156,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-### `fetchSize`
+### fetchSize
 
 `fetchSize` is the amount of records to fetch in checkboxes.
 
@@ -172,7 +168,7 @@ const { selectProps } = useCheckboxGroup({
 });
 ```
 
-### `queryOptions`
+### queryOptions
 
 Passing the `queryOptions` property allows us to set the [useQuery](https://react-query.tanstack.com/reference/useQuery) options
 
@@ -189,7 +185,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-### `pagination`
+### pagination
 
 `pagination` allows us to set page and items per page values.
 
@@ -205,13 +201,9 @@ const { selectProps } = useSelect({
 
 The listing will start from page 3, showing 8 records per page.
 
-### ~~`sort`~~
-
-:::caution Deprecated
+### ~~sort~~ <PropTag deprecated />
 
 Use `sorters` instead.
-
-:::
 
 ## API Reference
 

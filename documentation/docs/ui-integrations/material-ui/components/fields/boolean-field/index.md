@@ -5,9 +5,9 @@ swizzle: true
 
 This field is used to display boolean values. It uses the [`<Tooltip>`](https://mui.com/material-ui/react-tooltip/#main-content) values from Material UI.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -92,7 +92,7 @@ trueIcon-default="[`<CheckOutlined />`](https://mui.com/material-ui/material-ico
 falseIcon-default="[`<CloseOutlined />`](https://mui.com/material-ui/material-icons/)"
 />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Tooltip](https://mui.com/material-ui/react-tooltip/#main-content).
 

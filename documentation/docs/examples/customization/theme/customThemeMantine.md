@@ -1,10 +1,11 @@
 ---
 id: customThemeMantine
-title: Custom Theme Mantine
+title: Custom Theme in Mantine
+sidebar_label: Custom Theme
 example-title: Custom Theme Mantine
-example-tags: [mantine,customization]
+example-tags: [mantine, customization]
 ---
 
-You can customize design and theme in your project with **refine**. In this example, we have created an example application by customizing the default theme of **refine**. You can easily customize your theme as you wish in your refine project.
+You can customize design and theme in your project with Refine. In this example, we have created an example application by customizing the default theme of Refine. You can easily customize your theme as you wish in your Refine project.
 
 <CodeSandboxExample path="customization-theme-mantine" />

@@ -1,6 +1,5 @@
 ---
 title: useModalForm
-sidebar_label: useModalForm
 ---
 
 ```tsx live shared
@@ -93,13 +92,9 @@ textarea {
 
 `useModalForm` hook allows you to manage a form within a modal. It provides some useful methods to handle the form modal.
 
-:::info
-
 `useModalForm` hook is extended from [`useForm`][refine-react-hook-form-use-form] from the [`@refinedev/react-hook-form`][@refinedev/react-hook-form] package. This means that you can use all the features of [`useForm`][refine-react-hook-form-use-form] hook.
 
-:::
-
-## Basic Usage
+## Usage
 
 We'll show three examples, `"create"`, `"edit"` and `"clone"`. Let's see how `useModalForm` is used in all.
 
@@ -342,9 +337,9 @@ setRefineProps({
 render(<RefineHeadlessDemo />);
 ```
 
-:::caution
+:::simple Implementation Tips
 
-**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
+Refine doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by the record `id`.
 
@@ -355,10 +350,6 @@ So, we have to put the `<EditButton/>` on our list. In that way, `<Edit>` form i
   {/* highlight-end */}
 </td>
 ```
-
-:::
-
-:::caution
 
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
 
@@ -481,9 +472,9 @@ setRefineProps({
 render(<RefineHeadlessDemo />);
 ```
 
-:::caution
+:::simple Implementation Tips
 
-**refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
+Refine doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
 
 So, we have to put the `<CloneButton/>` on our list. In that way, `<Clone>` form in `<Modal>` can fetch data by the record `id`.
 
@@ -494,10 +485,6 @@ So, we have to put the `<CloneButton/>` on our list. In that way, `<Clone>` form
   {/* highlight-end */}
 </td>
 ```
-
-:::
-
-:::caution
 
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
 
@@ -606,19 +593,13 @@ textarea {
 
 ## Properties
 
-:::tip
-
 All [`useForm`][refine-react-hook-form-use-form] props also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/list-of-packages#properties) docs.
 
 All [`React Hook Form useForm`][react-hook-form-use-form] props also available in `useModalForm`. You can find descriptions on [`React Hook Form`][react-hook-form-use-form] docs.
 
-:::
+### defaultValues
 
-### `defaultValues`
-
-> Only available in `"create"` form.
-
-Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed. This property is only available with `"create"` action.
 
 ```tsx
 const modalForm = useModalForm({
@@ -628,11 +609,9 @@ const modalForm = useModalForm({
 });
 ```
 
-### `defaultVisible`
+### defaultVisible
 
-> Default: `false`
-
-When `true`, modal will be visible by default.
+When `true`, modal will be visible by default. Defaults to `false`.
 
 ```tsx
 const modalForm = useModalForm({
@@ -642,11 +621,9 @@ const modalForm = useModalForm({
 });
 ```
 
-### `autoSubmitClose`
+### autoSubmitClose
 
-> Default: `true`
-
-When `true`, modal will be closed after successful submit.
+When `true`, modal will be closed after successful submit. Defaults to `true`.
 
 ```tsx
 const modalForm = useModalForm({
@@ -656,11 +633,9 @@ const modalForm = useModalForm({
 });
 ```
 
-### `autoResetForm`
+### autoResetForm
 
-> Default: `true`
-
-When `true`, form will be reset after successful submit.
+When `true`, form will be reset after successful submit. Defaults to `true`.
 
 ```tsx
 const modalForm = useModalForm({
@@ -670,11 +645,9 @@ const modalForm = useModalForm({
 });
 ```
 
-### `warnWhenUnsavedChanges`
+### warnWhenUnsavedChanges
 
-> Default: `false`
-
-When you have unsaved changes and try to leave the current page, refine shows a confirmation modal box. To activate this feature.
+When you have unsaved changes and try to leave the current page, Refine shows a confirmation modal box. To activate this feature. By default, this feature is disabled.
 
 You can also set this value in [`<Refine>`](/docs/core/refine-component#warnwhenunsavedchanges) component.
 
@@ -684,11 +657,9 @@ const modalForm = useModalForm({
 });
 ```
 
-### `syncWithLocation`
+### syncWithLocation
 
-> Default: `false`
-
-When `true`, the modals visibility state and the `id` of the record will be synced with the URL.
+When `true`, the modals visibility state and the `id` of the record will be synced with the URL. By default, this feature is disabled.
 
 This property can also be set as an object `{ key: string; syncId?: boolean }` to customize the key of the URL query parameter. `id` will be synced with the URL only if `syncId` is `true`.
 
@@ -698,7 +669,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `autoSave`
+### autoSave
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
@@ -706,19 +677,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
-#### `enabled`
+#### enabled
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. By default, it is set to `false`.
 
 ```tsx
 useModalForm({
@@ -730,11 +695,9 @@ useModalForm({
 });
 ```
 
-#### `debounce`
+#### debounce
 
-> Default: `1000`
-
-Set the debounce time for the `autoSave` prop.
+Set the debounce time for the `autoSave` prop. Default value is `1000` milliseconds.
 
 ```tsx
 useModalForm({
@@ -748,7 +711,7 @@ useModalForm({
 });
 ```
 
-#### `onFinish`
+#### onFinish
 
 If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
 
@@ -770,11 +733,9 @@ useModalForm({
 });
 ```
 
-#### `invalidateOnUnmount`
+#### invalidateOnUnmount
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default it is set to `false`.
 
 ```tsx
 useDrawerForm({
@@ -788,11 +749,9 @@ useDrawerForm({
 });
 ```
 
-#### `invalidateOnClose`
+#### invalidateOnClose
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default it is set to `false`.
 
 ```tsx
 useDrawerForm({
@@ -808,15 +767,11 @@ useDrawerForm({
 
 ## Return Values
 
-:::tip
-
 All [`useForm`][refine-react-hook-form-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/list-of-packages#return-values) docs.
 
 All [`React Hook Form useForm`][react-hook-form-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/list-of-packages#return-values) docs.
 
-:::
-
-### `visible`
+### visible
 
 Current visibility state of the modal.
 
@@ -828,7 +783,7 @@ const modalForm = useModalForm({
 console.log(modalForm.modal.visible); // true
 ```
 
-### `title`
+### title
 
 Title of the modal. Based on resource and action values
 
@@ -845,7 +800,7 @@ const {
 console.log(title); // "Create Post"
 ```
 
-### `close`
+### close
 
 A function that can close the modal. It's useful when you want to close the modal manually.
 
@@ -881,7 +836,7 @@ return (
 );
 ```
 
-### `submit`
+### submit
 
 A function that can submit the form. It's useful when you want to submit the form manually.
 
@@ -916,7 +871,7 @@ return (
 );
 ```
 
-### `show`
+### show
 
 A function that can show the modal.
 
@@ -949,7 +904,7 @@ return (
 );
 ```
 
-### `saveButtonProps`
+### saveButtonProps
 
 It contains all the props needed by the "submit" button within the modal (disabled,loading etc.). You can manually pass these props to your custom button.
 
@@ -995,9 +950,7 @@ return (
 
 <PropsTable module="@refinedev/react-hook-form/useModalForm" />
 
-> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/docs/core/refine-component)>** component.
-
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of [useForm](https://react-hook-form.com/api/useform) hook available in the [React Hook Form](https://react-hook-form.com/).
 
@@ -1020,21 +973,19 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 | Property                      | Description                                                     | Type                                                              |
 | ----------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- |
 | modal                         | Relevant states and methods to control the modal                | [`ModalReturnValues`](#modalreturnvalues)                         |
-| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values) |
+| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/data/hooks/use-form/#return-values) |
 | React Hook Form Return Values | See [React Hook Form][react-hook-form-use-form] documentation   |
 
-<br />
+#### ModalReturnValues
 
-> - #### ModalReturnValues
->
-> | Property        | Description                                    | Type                                                                     |
-> | --------------- | ---------------------------------------------- | ------------------------------------------------------------------------ |
-> | visible         | State of modal visibility                      | `boolean`                                                                |
-> | show            | Sets the visible state to true                 | `(id?: BaseKey) => void`                                                 |
-> | close           | Sets the visible state to false                | `() => void`                                                             |
-> | submit          | Submits the form                               | `(values: TVariables) => void`                                           |
-> | title           | Modal title based on resource and action value | `string`                                                                 |
-> | saveButtonProps | Props for a submit button                      | `{ disabled: boolean, onClick: (e: React.BaseSyntheticEvent) => void; }` |
+| Property        | Description                                    | Type                                                                     |
+| --------------- | ---------------------------------------------- | ------------------------------------------------------------------------ |
+| visible         | State of modal visibility                      | `boolean`                                                                |
+| show            | Sets the visible state to true                 | `(id?: BaseKey) => void`                                                 |
+| close           | Sets the visible state to false                | `() => void`                                                             |
+| submit          | Submits the form                               | `(values: TVariables) => void`                                           |
+| title           | Modal title based on resource and action value | `string`                                                                 |
+| saveButtonProps | Props for a submit button                      | `{ disabled: boolean, onClick: (e: React.BaseSyntheticEvent) => void; }` |
 
 ## Example
 
@@ -1043,6 +994,6 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 [@refinedev/react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [refine-react-hook-form-use-form]: /docs/packages/list-of-packages
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
-[use-form-core]: /docs/core/hooks/use-form/
+[use-form-core]: /docs/data/hooks/use-form/
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

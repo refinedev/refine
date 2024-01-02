@@ -101,13 +101,13 @@ render(<App />);
 
 ### Hooks and Components in Create Page
 
-- `<Create/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button etc.
+- `<Create/>` is a Refine component that is used for presentation purposes like showing the title of the page, save button etc.
 
   > For more information, refer to the [`<Create/>` documentation&#8594](/docs/ui-integrations/material-ui/components/basic-views/create)
 
-- The `useForm` hook is imported from `@refinedev/mantine` package and has been developed by using the **Mantine** `useForm` hook and `@refinedev/core` `useForm` hook. When used in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted. It also offers `saveButtonProps` for the form's submit button.
+- The `useForm` hook is imported from `@refinedev/react-hook-form` package and has been developed by using the **React Hook Form** `useForm` hook and `@refinedev/core` `useForm` hook. When used in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted. It also offers `saveButtonProps` for the form's submit button.
 
-  > For more information, refer to the [`useForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/) and [**Mantine** documentations&#8594](https://mantine.dev/form/use-form/)
+  > For more information, refer to the [`useForm`](/docs/packages/react-hook-form/use-form/) and [**React Hook Form** documentations&#8594](https://react-hook-form.com/get-started)
 
 - All other components provided by **Material UI** are used to display the form fields.
 
@@ -117,7 +117,7 @@ render(<App />);
 
 In the create page, we may need to select a record from another resource.
 
-For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useAutocomplete` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the necessary props to be used in the `<Autocomplete/>` component.
+For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useAutocomplete` hook provided by Refine. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the necessary props to be used in the `<Autocomplete/>` component.
 
 In the auto-generated create page code, Inferencer used the `useAutocomplete` hook to select a category from the `categories` resource like below:
 

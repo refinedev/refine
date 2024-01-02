@@ -92,7 +92,7 @@ export default function plugin(): Plugin {
         },
         async contentLoaded({ allContent, actions }): Promise<void> {
             if (!process.env.DISABLE_CHECKLISTS) {
-                console.log("Composing refine tutorial checklists...");
+                console.log("Composing Refine tutorial checklists...");
 
                 const { createData } = actions;
 

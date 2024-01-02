@@ -1,6 +1,5 @@
 ---
 title: Inferencer
-sidebar_label: Inferencer
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `MuiListInferencer`, `MuiShowInferencer`, `MuiEditInferencer`, `MuiCreateInferencer` components and finally the `MuiInferencer` component, which combines all in one place.
@@ -103,15 +102,11 @@ const SampleEdit = () => {
   </TabItem>
 </Tabs>
 
-:::info
-
 To learn more about `@refinedev/inferencer` package, please check out [Docs](/docs/packages/list-of-packages)
-
-:::
 
 ## Views
 
-### `List`
+### List
 
 Generates a sample list view for your resources according to the API response. It uses the `List` component and `useDatagrid` hook from `@refinedev/mui`.
 
@@ -176,7 +171,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `Show`
+### Show
 
 Generates a sample show view for your resources according to the API response. It uses `Show` and field components from `@refinedev/mui` with `useShow` hook from `@refinedev/core`.
 
@@ -241,7 +236,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `Create`
+### Create
 
 Generates a sample create view for your resources according to the first record in list API response. It uses the `Create` component from `@refinedev/mui` and `useForm` hook from `@refinedev/react-hook-form`.
 
@@ -306,7 +301,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `Edit`
+### Edit
 
 Generates a sample edit view for your resources according to the API response. It uses `Edit` component from `@refinedev/mui` and `useForm` hook from `@refinedev/react-hook-form`.
 

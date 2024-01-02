@@ -56,8 +56,8 @@ export const NavbarItem: React.FC<NavbarItemProps> = ({ item }) => {
                     : ["hover:text-gray-900 dark:hover:text-white"],
             )}
         >
-            {item.icon && <Icon />}
             {item.label}
+            {item.icon && <Icon />}
         </Link>
     );
 };

@@ -1,5 +1,11 @@
 # @refinedev/ui-types
 
+## 1.22.4
+
+### Patch Changes
+
+-   [#5425](https://github.com/refinedev/refine/pull/5425) [`190af9fce2`](https://github.com/refinedev/refine/commit/190af9fce292bc46b169e3e121be6bf1c2a939a5) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@refinedev/core` peer dependencies to latest (`^4.46.1`)
+
 ## 1.22.3
 
 ### Patch Changes

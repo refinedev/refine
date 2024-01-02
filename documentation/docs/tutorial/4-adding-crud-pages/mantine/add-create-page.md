@@ -100,13 +100,13 @@ render(<App />);
 
 ### Hooks and Components in Create Page
 
-- `<Create/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button etc.
+- `<Create/>` is a Refine component that is used for presentation purposes like showing the title of the page, save button etc.
 
   > For more information, refer to the [`<Create/>` documentation&#8594](/docs/ui-integrations/mantine/components/basic-views/create)
 
 - The `useForm` hook is imported from `@refinedev/mantine` package and has been developed by using the **Mantine** `useForm` hook and `@refinedev/core` `useForm` hook. When used in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted. It also offers `saveButtonProps` for the form's submit button.
 
-  > For more information, refer to the [`useForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/) and [**Mantine** documentations&#8594](https://mantine.dev/form/use-form/)
+  > For more information, refer to the [`useForm`](/docs/ui-integrations/mantine/hooks/use-form/) and [**Mantine** documentations&#8594](https://mantine.dev/form/use-form/)
 
 - All other components provided by **Mantine** are used to display the form fields.
 
@@ -116,7 +116,7 @@ render(<App />);
 
 In the create page, we may need to select a record from another resource.
 
-For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the necessary props to be used in the `<Select/>` component.
+For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by Refine. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the necessary props to be used in the `<Select/>` component.
 
 In the auto-generated create page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 

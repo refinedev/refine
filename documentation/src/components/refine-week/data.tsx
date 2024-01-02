@@ -17,13 +17,13 @@ const hashtags = "opensource";
 const supabaseShareTweetURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
     "https://refine.dev/week-of-refine-supabase/",
 )}&text=${encodeURIComponent(
-    `📚 refineWeek ft Supabase: A week-long journey of building a complete CRUD app with @refine_dev and @supabase!\n\n`,
+    `📚 RefineWeek ft Supabase: A week-long journey of building a complete CRUD app with @refine_dev and @supabase!\n\n`,
 )}&hashtags=${hashtags}`;
 
 const strapiShareTweetURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
     "https://refine.dev/week-of-refine-strapi/",
 )}&text=${encodeURIComponent(
-    `📚 refineWeek ft Strapi: A week-long journey of building a complete CRUD app with @refine_dev and @strapijs!\n\n`,
+    `📚 RefineWeek ft Strapi: A week-long journey of building a complete CRUD app with @refine_dev and @strapijs!\n\n`,
 )}&hashtags=${hashtags}`;
 
 export const data = {
@@ -34,13 +34,13 @@ export const data = {
         coverAlt: "refine week",
         title: "supabase",
         description:
-            "Stay tuned all week and learn the basics of creating a CRUD app via <strong>refine & supabase</strong> on a fun project in a week.",
+            "Stay tuned all week and learn the basics of creating a CRUD app via <strong>Refine & Supabase</strong> on a fun project in a week.",
         date: "February 14 - February 20, 2023",
         timeline: [
             {
                 date: "February 14, Monday",
-                title: "Pilot & refine architecture",
-                description: `Overview about <strong className="font-bold">refine</strong> and <strong className="font-bold">supabase</strong> the app we built during the article series.`,
+                title: "Pilot & Refine architecture",
+                description: `Overview about <strong className="font-bold">Refine</strong> and <strong className="font-bold">Supabase</strong> the app we built during the article series.`,
                 link: "https://refine.dev/blog/refine-pixels-1/",
                 image: "/week-of-refine/supabase-timeline-1.jpg",
                 image2x: "/week-of-refine/supabase-timeline-1-2x.jpg",
@@ -73,7 +73,7 @@ export const data = {
             {
                 date: "Februrary 18, Friday",
                 title: "Initialize and Build Pixels Admin App",
-                description: `We'll implement an admin dashboard app and explore how refine's Ant Design support module is geared to rapidly build CRUD pages for a <strong className="font-bold">refine</strong> app.`,
+                description: `We'll implement an admin dashboard app and explore how Refine's Ant Design support module is geared to rapidly build CRUD pages for a <strong className="font-bold">Refine</strong> app.`,
                 link: "https://refine.dev/blog/refine-pixels-5/",
                 image: "/week-of-refine/supabase-timeline-5.jpg",
                 image2x: "/week-of-refine/supabase-timeline-5-2x.jpg",
@@ -116,16 +116,16 @@ export const data = {
         logo: StrapiWithText,
         cover: "/week-of-refine/strapi-cover.png",
         cover2x: "/week-of-refine/strapi-cover-2x.png",
-        coverAlt: "refine week",
+        coverAlt: "Refine week",
         title: "strapi",
         description:
-            "Stay tuned all week and learn the basics of creating a CRUD app via <strong>refine & strapi</strong> on a fun project in a week.",
+            "Stay tuned all week and learn the basics of creating a CRUD app via <strong>Refine & strapi</strong> on a fun project in a week.",
         date: "April 10 - April 14, 2023",
         timeline: [
             {
                 date: "April 10, Monday",
-                title: "Pilot & refine architecture",
-                description: `Overview about <strong className="font-bold">refine</strong> and <strong className="font-bold">Strapi</strong> the app we built during the article series.`,
+                title: "Pilot & Refine architecture",
+                description: `Overview about <strong className="font-bold">Refine</strong> and <strong className="font-bold">Strapi</strong> the app we built during the article series.`,
                 link: "https://refine.dev/blog/refine-react-invoice-generator-1/",
                 image: "/week-of-refine/strapi-timeline-1.png",
                 image2x: "/week-of-refine/strapi-timeline-1-2x.png",
@@ -149,7 +149,7 @@ export const data = {
             {
                 date: "April 13, Thursday",
                 title: "Creating Mission and Invoices Pages",
-                description: `We add more CRUD views to the PDF Invoice Generator app we have been building using refine and Strapi last few days.`,
+                description: `We add more CRUD views to the PDF Invoice Generator app we have been building using Refine and Strapi last few days.`,
                 link: "https://refine.dev/blog/refine-react-invoice-generator-4/",
                 image: "/week-of-refine/strapi-timeline-4.png",
                 image2x: "/week-of-refine/strapi-timeline-4-2x.png",
@@ -157,7 +157,7 @@ export const data = {
             {
                 date: "April 14, Friday",
                 title: "Adding PDF Renderer",
-                description: `We come past the refine features and add a pdf renderer to display our invoices in a PDF screen.`,
+                description: `We come past the Refine features and add a pdf renderer to display our invoices in a PDF screen.`,
                 link: "https://refine.dev/blog/refine-react-invoice-generator-5/",
                 image: "/week-of-refine/strapi-timeline-5.png",
                 image2x: "/week-of-refine/strapi-timeline-5-2x.png",

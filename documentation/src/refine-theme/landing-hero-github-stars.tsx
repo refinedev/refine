@@ -21,6 +21,9 @@ export const LandingHeroGithubStars = () => {
                 "w-auto",
                 "bg-gray-200 dark:bg-gray-700",
             )}
+            style={{
+                transform: "translateZ(0)",
+            }}
         >
             <div
                 className={clsx(
@@ -30,6 +33,9 @@ export const LandingHeroGithubStars = () => {
                     "rounded-3xl",
                     "",
                 )}
+                style={{
+                    transform: "translateZ(0)",
+                }}
             >
                 <div
                     className={clsx(

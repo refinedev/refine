@@ -8,7 +8,7 @@ import { BlogFooter } from "@site/src/refine-theme/blog-footer";
 const IntegrationsLayout = ({ children }: React.PropsWithChildren<{}>) => {
     return (
         <CommonLayout>
-            <Head title="Integrations | refine">
+            <Head title="Integrations | Refine">
                 <html data-page="integrations" data-customized="true" />
             </Head>
             <div className={clsx("refine-prose, pb-16")}>

@@ -5,11 +5,11 @@ swizzle: true
 
 `<DeleteButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) and [`<Popconfirm>`](https://ant.design/components/popconfirm/) components.
 
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/core/hooks/data/use-delete) method provided by your [`dataProvider`](/docs/core/providers/data-provider).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/data/hooks/use-delete) method provided by your [`dataProvider`](/docs/data/data-provider).
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -68,9 +68,9 @@ render(
 
 ## Properties
 
-### `recordItemId`
+### recordItemId
 
-`recordItemId` allows us to manage which record will be deleted.
+`recordItemId` allows us to manage which record will be deleted. By default, the `recordItemId` is inferred from the route params.
 
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
@@ -105,17 +105,11 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete) method and then the record whose resource is "posts" and whose id is "123" will be deleted.
+Clicking the button will trigger the [`useDelete`](/docs/data/hooks/use-delete) method and then the record whose resource is "posts" and whose id is "123" will be deleted.
 
-:::note
+### resource
 
-The **`<DeleteButton>`** component reads the id information from the route by default.
-
-:::
-
-### `resource`
-
-`resource` allows us to manage which resource's record is going to be deleted.
+`resource` allows us to manage which resource's record is going to be deleted. By default, the `resource` is inferred from the route params.
 
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
@@ -151,19 +145,13 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete) method and then the record whose resource is "categories" and whose id is "2" will be deleted.
-
-:::note
-
-**`<DeleteButton>`** component reads the resource name from the route by default.
-
-:::
+Clicking the button will trigger the [`useDelete`](/docs/data/hooks/use-delete) method and then the record whose resource is "categories" and whose id is "2" will be deleted.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `onSuccess`
+### onSuccess
 
 `onSuccess` can be used if you want to do something based on the results returned after the delete request.
 
@@ -220,7 +208,7 @@ const App = () => {
 render(<App />);
 ```
 
-### `mutationMode`
+### mutationMode
 
 Determines which mode mutation will have while executing `<DeleteButton>`.
 
@@ -256,7 +244,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-### `hideText`
+### hideText
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
@@ -291,9 +279,9 @@ render(
 );
 ```
 
-### `accessControl`
+### accessControl
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/core/providers/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
 
 ```tsx
 import { DeleteButton } from "@refinedev/antd";
@@ -303,53 +291,9 @@ export const MyListComponent = () => {
 };
 ```
 
-### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+### ~~resourceNameOrRouteName~~ <PropTag deprecated />
 
-> The `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
-
-```tsx live disableScroll previewHeight=150px disableScroll
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { DeleteButton } from "@refinedev/antd";
-
-const MyDeleteComponent = () => {
-  return <DeleteButton resourceNameOrRouteName="categories" recordItemId="123" />;
-};
-
-// visible-block-end
-
-render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
-        },
-      },
-      {
-        name: "categories",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
-        },
-      },
-    ]}
-    DashboardPage={MyDeleteComponent}
-  />,
-);
-```
-
-Clicking the button will trigger the [`useDelete`](/docs/core/hooks/data/use-delete) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
-
-:::note
-
-**`<DeleteButton>`** component reads the resource name from the route by default.
-
-:::
+Use `resource` prop instead.
 
 ## How to override confirm texts?
 
@@ -395,7 +339,7 @@ render(
 
 <PropsTable module="@refinedev/antd/DeleteButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
 

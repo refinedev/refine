@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import { BadgeTooltip } from "../badge-tooltip";
 
 type Props = {
     asterisk?: boolean;
@@ -22,15 +23,20 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
             <div
                 className={clsx(
                     "inline",
-                    "text-gray-0",
                     "text-xs",
                     "leading-6",
                     "py-0.5",
                     "px-2",
-                    "rounded",
-                    "bg-refine-orange",
+                    "rounded-xl",
+                    // "bg-refine-orange",
+                    "border-refine-orange",
+                    "bg-refine-orange dark:bg-refine-orange",
+                    "text-gray-0 dark:text-refine-orange",
+                    "bg-opacity-100 dark:bg-opacity-20",
+                    "border",
                     "tracking-wide",
                     "align-middle",
+                    "font-semibold",
                 )}
                 title={alt}
             >
@@ -43,7 +49,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
         return (
             <div
                 className={clsx(
-                    "flex justify-center items-center",
+                    "inline-flex justify-center items-center",
                     "text-sm",
                     "text-gray-0",
                     "rounded-full",
@@ -52,7 +58,6 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
                     "w-4 h-4",
                     "align-middle",
                 )}
-                title={alt}
             >
                 {children ?? "﹡"}
             </div>
@@ -64,15 +69,19 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
             <div
                 className={clsx(
                     "inline",
-                    "text-gray-0",
                     "text-xs",
                     "leading-6",
                     "py-0.5",
                     "px-2",
-                    "rounded",
-                    "bg-refine-red",
+                    "rounded-xl",
+                    "border-refine-red",
+                    "bg-refine-red dark:bg-refine-red",
+                    "text-gray-0 dark:text-refine-red",
+                    "bg-opacity-100 dark:bg-opacity-20",
+                    "border",
                     "tracking-wide",
                     "align-middle",
+                    "font-semibold",
                 )}
                 title={alt}
             >

@@ -1,5 +1,5 @@
 ---
-title: React-admin vs refine - Which React Framework is Best for B2B Apps?
+title: React-admin vs Refine - Which React Framework is Best for B2B Apps?
 description: We'll compare the architectural structures of two web development frameworks - refine and React-admin.
 slug: react-admin-vs-refine
 authors: ali_emir
@@ -25,58 +25,27 @@ Whether you are an experienced developer seeking a powerful and adaptable framew
 
 Steps we'll cover:
 
-- [Introduction](#introduction)
 - [About refine](#about-refine)
 - [About react-admin](#about-react-admin)
 - [Architecture](#architecture)
   - [refine's advantages on architecture](#refines-advantages-on-architecture)
 - [Bundle Size and Performance](#bundle-size-and-performance)
-  - [Bundle Size](#bundle-size)
-  - [Performance](#performance)
 - [Headless Architecture](#headless-architecture)
-  - [Headless in Routing](#headless-in-routing)
 - [Routing and SSR (Server Side Rendering)](#routing-and-ssr-server-side-rendering)
-  - [Routing](#routing)
-  - [Server Side Rendering](#server-side-rendering)
 - [Multitenancy](#multitenancy)
 - [Differences in supported UI frameworks between refine and react-admin,](#differences-in-supported-ui-frameworks-between-refine-and-react-admin)
   - [refine has built-in support for four UI Frameworks:](#refine-has-built-in-support-for-four-ui-frameworks)
   - [React-admin's Limitations:](#react-admins-limitations)
-    - [Supporting Only Material-UI:](#supporting-only-material-ui)
-    - [No Headless Architecture:](#no-headless-architecture)
-    - [Many Features are Behind a Paywall:](#many-features-are-behind-a-paywall)
 - [Unique refine Features: Differentiating From React-admin](#unique-refine-features-differentiating-from-react-admin)
 - [Common Features: Free in refine, Requires enterprise package in react-admin](#common-features-free-in-refine-requires-enterprise-package-in-react-admin)
 - [refine App Scaffolder: Simplify Your Project Setup](#refine-app-scaffolder-simplify-your-project-setup)
 - [CLI](#cli)
-  - [Check and Update refine Packages](#check-and-update-refine-packages)
-  - [Creating Resources](#creating-resources)
-  - [Swizzling Built-in Components](#swizzling-built-in-components)
 - [refine Devtools](#refine-devtools)
 - [Customization](#customization)
 - [Backward Compatibility](#backward-compatibility)
-  - [Ease of Migration](#ease-of-migration)
 - [Documentation and and Learning Resources](#documentation-and-and-learning-resources)
 - [Community Engagement](#community-engagement)
 - [Enterprise features](#enterprise-features)
-- [Conclusion](#conclusion)
-- [Bonus Section - Key Features: A Concise Overview for the Curious Minds](#bonus-section---key-features-a-concise-overview-for-the-curious-minds)
-  - [Sorting and Filtering](#sorting-and-filtering)
-    - [Sorting](#sorting)
-    - [Filtering](#filtering)
-  - [Realtime](#realtime)
-  - [Undoable mode](#undoable-mode)
-    - [`optimistic` mode](#optimistic-mode)
-    - [`pessimistic` mode](#pessimistic-mode)
-    - [`undoable` mode](#undoable-mode-1)
-  - [GraphQL](#graphql)
-  - [Forms](#forms)
-  - [CSV Import/Export](#csv-importexport)
-    - [Export](#export)
-    - [Import](#import)
-  - [Access Control](#access-control)
-  - [Server Side Validation](#server-side-validation)
-  - [Auto Save](#auto-save)
 
 ## About refine
 
@@ -88,7 +57,7 @@ This traction from the open-source community led to the establishment of refine 
 
 In 2023, refine also backed by YCombinator, solidifying its position as a promising venture.
 
-With over 15K monthly active developers using it and an impressive 13,500 GitHub stars earned in just a year and a half, refine has gained significant popularity within the developer community.
+With over 15K monthly active developers using it and an impressive 17K+ GitHub stars earned in just a year and a half, refine has gained significant popularity within the developer community.
 
 According to [OSS Insight data](https://ossinsight.io/collections/react-framework/), since the beginning of 2023, it has consistently ranked in the top three of trending React frameworks and web frameworks.
 
@@ -219,8 +188,8 @@ These small features lead to a huge difference in the development experience, yo
 
 Check out the following examples of multitenant apps built with refine:
 
-- [Multitenancy with refine + Appwrite](https://refine.dev/docs/advanced-tutorials/multi-tenancy/appwrite/)
-- [Multitenancy with refine + Strapi](https://refine.dev/docs/advanced-tutorials/multi-tenancy/strapi-v4/#introduction)
+- [Multitenancy with refine + Appwrite](/docs/guides-concepts/multi-tenancy/#appwrite)
+- [Multitenancy with refine + Strapi](/docs/guides-concepts/multi-tenancy/#strapi)
 
 ## Differences in supported UI frameworks between refine and react-admin,
 
@@ -278,7 +247,7 @@ While both react-admin and refine offer access control features, refine takes it
 
 6. **Multitenancy Support:**
 
-refine provides built-in support for [multitenancy](https://refine.dev/docs/advanced-tutorials/multi-tenancy/strapi-v4/#what-is-multitenancy), allowing developers to create applications that serve multiple tenants with separate data and settings.
+refine provides built-in support for [multitenancy](/docs/guides-concepts/multi-tenancy/#strapi), allowing developers to create applications that serve multiple tenants with separate data and settings.
 
 Refer to [this](#multitenancy) section for details.
 
@@ -430,7 +399,7 @@ When it comes to documentation, refine has more useful resources.
 
 **Advanced Integration Guides**: refine's guides enable smooth integration with other tools and platforms, amplifying its utility in your projects.
 
-**refineWeek Tutorial Series**: The refineWeek initiative brings you a week-long tutorial series, collaborating with prominent open-source projects like Strapi and Supabase. Dive into hands-on experiences that showcase refine's potential in building complete CRUD applications.
+**RefineWeek Tutorial Series**: The RefineWeek initiative brings you a week-long tutorial series, collaborating with prominent open-source projects like Strapi and Supabase. Dive into hands-on experiences that showcase refine's potential in building complete CRUD applications.
 
 **Technical Blog**: refine's technical blog is a valuable resource for staying updated on refine, front-end trends, and web development insights. Gain deep insights into complex concepts, emerging trends, and practical tips.
 

@@ -3,9 +3,9 @@ title: Migration Guide from v4 to v5
 sidebar_label: Migration Guide
 ---
 
-Material UI released a new major version for `@mui/x-data-grid` package as v6. This document will guide you through the migration process for the refine related parts. While this document won't cover all the changes, it will help you get started with the migration process.
+Material UI released a new major version for `@mui/x-data-grid` package as v6. This document will guide you through the migration process for the Refine related parts. While this document won't cover all the changes, it will help you get started with the migration process.
 
-:::info-tip Official Migration Guide
+:::simple Official Migration Guide
 
 Check out the official [MUI X Migration Guide for `DataGrid`](https://mui.com/x/migration/migration-data-grid-v5/) for detailed information and all the changes.
 
@@ -17,7 +17,7 @@ The changes in the `DataGrid` API are included in the `@refinedev/mui`'s latest 
 
 ## Required Changes
 
-The changes listed below are required to use `@mui/x-data-grid` with **refine**. It doesn't cover all the changes in the `DataGrid` API. To see all the changes, please follow the [official migration guide for MUI X](https://mui.com/x/migration/migration-data-grid-v5/).
+The changes listed below are required to use `@mui/x-data-grid` with Refine. It doesn't cover all the changes in the `DataGrid` API. To see all the changes, please follow the [official migration guide for MUI X](https://mui.com/x/migration/migration-data-grid-v5/).
 
 ### Updating the packages
 
@@ -25,7 +25,7 @@ To use `@mui/x-data-grid` with version 6, [`@refinedev/mui`](https://github.com/
 
 Since there are some changes in the return values of the `useDataGrid` and the common usage of the `DataGrid` component with TypeScript, we've also released a major release to [`@refinedev/inferencer`](https://github.com/refinedev/refine/tree/master/packages/inferencer) package. If you're using the Inferencer package, you'll need to update it to `4.x.x` as well.
 
-### `useDataGrid`
+### useDataGrid
 
 We've updated the `useDataGrid` hook to return `paginationModel` and `onPaginationModelChange` instead of `page`, `pageSize`, `onPageChange` and `onPageSizeChange`. If you've modified these props, you'll need to update them to use the new API.
 

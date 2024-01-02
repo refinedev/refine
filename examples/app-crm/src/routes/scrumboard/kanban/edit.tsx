@@ -10,7 +10,7 @@ import {
 } from "@ant-design/icons";
 import { Modal } from "antd";
 
-import { Task } from "@/interfaces";
+import { Task } from "@/graphql/schema.types";
 
 import {
     Accordion,

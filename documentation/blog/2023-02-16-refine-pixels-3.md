@@ -8,13 +8,13 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pix
 hide_table_of_contents: false
 ---
 
-In this post, we build on our existing understanding of [`dataProvider`](https://refine.dev/docs/tutorial/understanding-dataprovider/index/) and [`authProvider`](https://refine.dev/docs/tutorial/understanding-authprovider/index/) props of [`<Refine />`](http://localhost:3000/docs/api-reference/core/components/refine-config/) to implement CRUD operations in our **Pixels** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/) and `routerProvider` props as well.
+In this post, we build on our existing understanding of [`dataProvider`](https://refine.dev/docs/tutorial/understanding-dataprovider/index/) and [`authProvider`](https://refine.dev/docs/tutorial/understanding-authprovider/index/) props of [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) to implement CRUD operations in our **Pixels** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/) and `routerProvider` props as well.
 
-CRUD actions are supported by the [**Supabase**](https://supabase.com/) data provider we chose for our project and in this post we use them to build a public gallery of canvases. We implement creation and displaying of individual canvases as well as drawing on them. We also add authentication features supported by the `supabaseClient` we discussed on Day Two of the [**refineWeek**](https://refine.dev/week-of-refine-supabase/) series.
+CRUD actions are supported by the [**Supabase**](https://supabase.com/) data provider we chose for our project and in this post we use them to build a public gallery of canvases. We implement creation and displaying of individual canvases as well as drawing on them. We also add authentication features supported by the `supabaseClient` we discussed on Day Two of the [**RefineWeek**](https://refine.dev/week-of-refine-supabase/) series.
 
-This is Day Three and **refineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
+This is Day Three and **RefineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
 
-### refineWeek series
+### RefineWeek series
 
 - Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
 - Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
@@ -263,7 +263,7 @@ function App() {
 export default App;
 ```
 
-Focusing on the top, in order to add a resource to our app, we have to introduce the [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/) prop to [`<Refine />`](http://localhost:3000/docs/api-reference/core/components/refine-config/). The value of `resources` prop should be an **array** of resource items with RESTful routes in our app. A typical resource object contains properties and values related to the resource `name`, `options`, and intended actions:
+Focusing on the top, in order to add a resource to our app, we have to introduce the [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/) prop to [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/). The value of `resources` prop should be an **array** of resource items with RESTful routes in our app. A typical resource object contains properties and values related to the resource `name`, `options`, and intended actions:
 
 ```json title="Typical resource object inside resources array"
 {
@@ -625,7 +625,7 @@ check: async () => {
 </p>
 </details>
 
-**refine** provides [`<Authenticated/>`](/docs/core/components/authenticated) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/docs/core/components/authenticated) component.
+**refine** provides [`<Authenticated/>`](/docs/authentication/components/authenticated) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/docs/authentication/components/authenticated) component.
 
 Let's look at the routes implementation:
 
@@ -704,9 +704,9 @@ const App = () => {
 </p>
 </details>
 
-In this example we didn't wrap our `canvases` resource routes with [`<Authenticated/>`](/docs/core/components/authenticated) component. This means that we can access the `canvases` resource routes without being authenticated.
+In this example we didn't wrap our `canvases` resource routes with [`<Authenticated/>`](/docs/authentication/components/authenticated) component. This means that we can access the `canvases` resource routes without being authenticated.
 
-However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/docs/core/components/authenticated) component. This means that we can not access these routes if we are authenticated.
+However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/docs/authentication/components/authenticated) component. This means that we can not access these routes if we are authenticated.
 
 [Refer to the Auth Provider tutorial for more information. →](/docs/tutorial/understanding-authprovider/index)
 

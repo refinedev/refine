@@ -90,13 +90,13 @@ render(<App />);
 
 - The `useNavigation` hook is used for navigating between pages. In this case, we are using it to navigate to the `edit` and `show` pages when the user clicks on their respective buttons in the table.
 
-  > For more information, refer to the [`useNavigation` documentation &#8594](/docs/core/hooks/navigation/use-navigation)
+  > For more information, refer to the [`useNavigation` documentation &#8594](/docs/routing/hooks/use-navigation)
 
 ### Handling Relationships
 
 Each blog post includes the `category` field, which has an `id` property. This is a foreign key that points to the `categories` resource, which is different from the `blog_posts` resource.
 
-There is a `title` field in the `categories` resource; to display it in the table, we can use the `useMany` hook provided by **refine**.
+There is a `title` field in the `categories` resource; to display it in the table, we can use the `useMany` hook provided by Refine.
 
 This hook allows us to fetch data for multiple records in a single request by providing the `id`'s of the related records. In this case, we need to provide the `id`'s of the blog posts categories. It is particularly useful when we need to fetch related data for multiple records.
 
@@ -147,7 +147,7 @@ This will pass the `resource` and `ids` to the `dataProvider`'s `getMany` funct
 
 We can then use this `data` array to display the `title` of each category in the table.
 
-> For more information, refer to the [`useMany` documentation&#8594](/docs/core/hooks/data/use-many)
+> For more information, refer to the [`useMany` documentation&#8594](/docs/data/hooks/use-many)
 
 ## Adding the List Page to the App
 

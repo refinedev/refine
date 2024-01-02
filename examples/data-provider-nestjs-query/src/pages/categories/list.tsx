@@ -1,5 +1,4 @@
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -8,10 +7,14 @@ import {
     getDefaultSortOrder,
     DeleteButton,
 } from "@refinedev/antd";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { Space, Table } from "antd";
 
-import { ICategory } from "../../interfaces";
+import { CATEGORIES_LIST_QUERY } from "./queries";
+import { CategoriesListQuery } from "graphql/types";
+
+type ICategory = GetFieldsFromList<CategoriesListQuery>;
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorters } = useTable<ICategory>({
@@ -22,7 +25,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
             },
         ],
         metaData: {
-            fields: ["id", "title", "createdAt"],
+            gqlQuery: CATEGORIES_LIST_QUERY,
         },
     });
 

@@ -15,45 +15,15 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
 
 1. Launch your terminal and type the following command using your preferred package manager:
 
-   <Tabs
-   defaultValue="npm"
-   values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+<CreateRefineAppCommand args="-o refine-headless tutorial" />
 
-   <TabItem value="npm">
+1. Confirm `y` to installation of `create-refine-app`
 
-   ```bash
-   npm create refine-app@latest -- -o refine-headless tutorial
-   ```
-
-   </TabItem>
-
-   <TabItem value="pnpm">
-
-   ```bash
-   pnpm create refine-app@latest -- -o refine-headless tutorial
-   ```
-
-   </TabItem>
-
-   <TabItem value="yarn">
-
-   ```bash
-   yarn create refine-app -- -o refine-headless tutorial
-   ```
-
-   > Only support yarn@1 version.
-
-   </TabItem>
-
-   </Tabs>
-
-2. Confirm `y` to installation of `create-refine-app`
-
-3. The `-o refine-headless` flag in the command above tells the CLI to install the project with the `refine-headless` preset. This preset selects some options for you in accordance with this tutorial.
+2. The `-o refine-headless` flag in the command above tells the CLI to install the project with the `refine-headless` preset. This preset selects some options for you in accordance with this tutorial.
 
    > We use a preset here to sync the tutorial content with the code. Outside of the tutorial, you can skip this flag and select your own options.
 
-4. The CLI will ask if you agree to share your selection anonymously with the **refine** team. You can choose whatever you prefer.
+3. The CLI will ask if you agree to share your selection anonymously with the **refine** team. You can choose whatever you prefer.
 
 Once the installation wizard is finished, you can close this terminal window and open VS Code to continue your journey.
 

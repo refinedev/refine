@@ -1,109 +1,65 @@
 import { LiveProvider } from "@refinedev/core";
+
 import { Client } from "graphql-ws";
-import {
-    generateCreatedSubscription,
-    generateDeletedSubscription,
-    generateUpdatedSubscription,
-} from "../utils";
 
-const generateSubscription = (
-    client: Client,
-    { callback, params }: any,
-    type: string,
-) => {
-    const generatorMap: any = {
-        created: generateCreatedSubscription,
-        updated: generateUpdatedSubscription,
-        deleted: generateDeletedSubscription,
-    };
+import { generateSubscription } from "../utils";
 
-    const { resource, meta, filters, subscriptionType, id, ids } = params ?? {};
-
-    const generator = generatorMap[type];
-
-    const { operation, query, variables } = generator({
-        ids,
-        id,
-        resource,
-        filters,
-        meta,
-        subscriptionType,
-    });
-
-    const onNext = (payload: any) => {
-        callback(payload.data[operation]);
-    };
-
-    const unsubscribe = client.subscribe(
-        { query, variables },
-        {
-            next: onNext,
-            error: console.error,
-            complete: () => null,
-        },
-    );
-
-    return unsubscribe;
-};
+type SubscriptionAction = "created" | "updated" | "deleted";
 
 export const liveProvider = (client: Client): LiveProvider => {
+    const subscribeToResource = (
+        client: Client,
+        callback: Function,
+        params: any,
+        meta: any,
+        action: SubscriptionAction,
+        resource: string,
+        unsubscribes: Function[],
+    ) => {
+        const unsubscribe = generateSubscription(
+            client,
+            { callback, params, meta },
+            action,
+        );
+        unsubscribes.push(unsubscribe);
+    };
+
     return {
-        subscribe({ callback, params }) {
-            const { resource, meta, filters, subscriptionType, id, ids } =
-                params ?? {};
+        subscribe({ callback, params, meta }) {
+            const { resource, subscriptionType } = params ?? {};
 
-            if (!meta) {
+            if (!meta || !subscriptionType || !resource) {
                 throw new Error(
-                    "[useSubscription]: `meta` is required in `params` for graphql subscriptions",
-                );
-            }
-
-            if (!subscriptionType) {
-                throw new Error(
-                    "[useSubscription]: `subscriptionType` is required in `params` for graphql subscriptions",
-                );
-            }
-
-            if (!resource) {
-                throw new Error(
-                    "[useSubscription]: `resource` is required in `params` for graphql subscriptions",
+                    "[useSubscription]: `meta`, `subscriptionType` and `resource` are required in `params` for graphql subscriptions",
                 );
             }
 
             const unsubscribes: any[] = [];
 
             if (params?.subscriptionType === "useList") {
-                const createdUnsubscribe = generateSubscription(
-                    client,
-                    { callback, params },
-                    "created",
+                ["created", "updated", "deleted"].forEach((action) =>
+                    subscribeToResource(
+                        client,
+                        callback,
+                        params,
+                        meta,
+                        action as SubscriptionAction,
+                        resource,
+                        unsubscribes,
+                    ),
                 );
-
-                const updatedUnsubscribe = generateSubscription(
-                    client,
-                    { callback, params },
-                    "updated",
-                );
-
-                const deletedUnsubscribe = generateSubscription(
-                    client,
-                    { callback, params },
-                    "deleted",
-                );
-
-                unsubscribes.push(createdUnsubscribe);
-                unsubscribes.push(updatedUnsubscribe);
-                unsubscribes.push(deletedUnsubscribe);
             }
 
             if (params?.subscriptionType === "useOne") {
-                const updatedUnsubscribe = generateSubscription(
+                subscribeToResource(
                     client,
-                    { callback, params },
+                    callback,
+                    params,
+                    meta,
                     "updated",
+                    resource,
+                    unsubscribes,
                 );
-
-                unsubscribes.push(updatedUnsubscribe);
             }
 
             const unsubscribe = () => {

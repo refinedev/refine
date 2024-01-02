@@ -4,9 +4,9 @@ title: Realtime
 
 Realtime data is an important part of modern applications. Seeing the changes in the details page, without refreshing the page not only improves the user experience but also increases the productivity of the users by preventing accidental updates.
 
-**Refine** handles realtime data operations through [Live Provider](/docs/core/providers/live-provider) which provides a common interface for any integration. Once integrated, you'll get realtime updates across your app out of the box, without needing a further configuration.
+Refine handles realtime data operations through [Live Provider](/docs/realtime/live-provider) which provides a common interface for any integration. Once integrated, you'll get realtime updates across your app out of the box, without needing a further configuration.
 
-Once a **Live Provider** is integrated, **Refine** takes care of the **invalidation**, **refetching** logic for your resources.
+Once a **Live Provider** is integrated, Refine takes care of the **invalidation**, **refetching** logic for your resources.
 
 For example if a new record is created for `products` resource, a page where you use `useList` hook will automatically refetch the latest `products` data.
 
@@ -42,9 +42,9 @@ const { data } = useList({
 
 ## Supported Hooks
 
-**Refine** hooks works out-of-the-box with **Live Provider**, means if the data these hooks consume is updated, they will automatically refetch.
+Refine hooks works out-of-the-box with **Live Provider**, means if the data these hooks consume is updated, they will automatically refetch.
 
-See the [Integrated Hooks](/docs/core/providers/live-provider#integrated-hooks) section for more information.
+See the [Integrated Hooks](/docs/realtime/live-provider#integrated-hooks) section for more information.
 
 ## Built-in Integrations
 
@@ -58,7 +58,7 @@ We have the following built-in integrations:
 
 ## Live Provider
 
-The **Live Provider** is an object that contains `subscribe`, `unsubscribe` and `publish` methods. These methods are utilized by **Refine** to subscribe, unsubscribe to a certain resource updates and publish updates.
+The **Live Provider** is an object that contains `subscribe`, `unsubscribe` and `publish` methods. These methods are utilized by Refine to subscribe, unsubscribe to a certain resource updates and publish updates.
 
 A basic **Live Provider** looks like this:
 
@@ -144,7 +144,7 @@ We will build the **"Ably Live Provider"** of [`@refinedev/ably`](https://github
 
 ### Implementing `subscribe` method
 
-This method is used to subscribe to a Realtime channel. **refine** subscribes to the related channels using subscribe method in supported hooks to be aware of the data changes.
+This method is used to subscribe to a Realtime channel. Refine subscribes to the related channels using subscribe method in supported hooks to be aware of the data changes.
 
 ```ts title="liveProvider.ts"
 import { LiveProvider, LiveEvent } from "@refinedev/core";
@@ -192,7 +192,7 @@ interface MessageType extends Types.Message {
 }
 ```
 
-**refine** will use this subscribe method in the [`useSubscription`](/docs/core/hooks/realtime/use-subscription) hook.
+Refine will use this subscribe method in the [`useSubscription`](/docs/realtime/hooks/use-subscription) hook.
 
 ```ts
 import { useSubscription } from "@refinedev/core";
@@ -203,7 +203,7 @@ useSubscription({
 });
 ```
 
-> For more information, refer to the [useSubscription documentation&#8594](/docs/core/hooks/realtime/use-subscription)
+> For more information, refer to the [useSubscription documentation&#8594](/docs/realtime/hooks/use-subscription)
 
 ### Implementing `unsubscribe` method
 
@@ -230,7 +230,7 @@ If you don't handle unsubscription, it could lead to memory leaks.
 
 This method is used to publish an event on client side. Beware that publishing events on client side is not recommended and the best practice is to publish events from server side. You can refer [Publish Events from API](#publish-events-from-api) to see which events must be published from the server.
 
-This `publish` is used in [realated hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notified. You can also publish your custom events using [`usePublish`](/docs/core/hooks/realtime/use-publish).
+This `publish` is used in [realated hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notified. You can also publish your custom events using [`usePublish`](/docs/realtime/hooks/use-publish).
 
 ```ts title="liveProvider.ts"
 export const liveProvider = (client: Ably.Realtime): LiveProvider => {
@@ -250,7 +250,7 @@ If `publish` is used on client side you must handle the security of it by yourse
 
 :::
 
-**refine** will provide this publish method via the [`usePublish`](/docs/core/hooks/realtime/use-publish) hook.
+Refine will provide this publish method via the [`usePublish`](/docs/realtime/hooks/use-publish) hook.
 
 ```ts
 import { usePublish } from "@refinedev/core";
@@ -313,7 +313,7 @@ As you can see, the only difference between queries and subscriptions is the `su
 
 ### Implementing `subscribe` method
 
-When you call the [`useList`](/docs/core/hooks/data/use-list), [`useOne`](/docs/core/hooks/data/use-one) or [`useMany`](/docs/core/hooks/data/use-many) hooks, they will call the `subscribe` method of the live provider.
+When you call the [`useList`](/docs/data/hooks/use-list), [`useOne`](/docs/data/hooks/use-one) or [`useMany`](/docs/data/hooks/use-many) hooks, they will call the `subscribe` method of the live provider.
 
 Thus, we will be able to create subscription queries using the parameters of these hooks. After creating the subscription query, we will listen it using the [`graphql-ws`](https://github.com/enisdenjo/graphql-ws) client and return the unsubscribe method to use in the `unsubscribe` method of the live provider.
 
@@ -387,7 +387,7 @@ export const liveProvider = (client: Client): LiveProvider => {
 
 :::
 
-**Refine** hooks will create a subscription query using the parameters of the [useSubscription](/docs/core/hooks/realtime/use-subscription) hook and listen to it. When a live event is received, it will call the `onLiveEvent` method of the `useSubscription` hook.
+Refine hooks will create a subscription query using the parameters of the [useSubscription](/docs/realtime/hooks/use-subscription) hook and listen to it. When a live event is received, it will call the `onLiveEvent` method of the `useSubscription` hook.
 
 ```ts
 import { useSubscription } from "@refinedev/core";

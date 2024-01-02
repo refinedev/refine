@@ -94,7 +94,7 @@ render(<App />);
 
 ### Hooks and Components in Edit Page
 
-- `<Edit/>` is a **refine** component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
+- `<Edit/>` is a Refine component that is used for presentation purposes like showing the title of the page, save button, refresh button etc.
 
   > For more information, refer to the [`<Edit/>` documentation&#8594](/docs/ui-integrations/ant-design/components/basic-views/edit)
 
@@ -102,7 +102,7 @@ render(<App />);
 
   > For more information, refer to the [**Ant Design** `<Form/>` documentation&#8594](https://ant.design/components/form/)
 
-- `useForm` is a **refine** hook that provides the necessary props for the form. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
+- `useForm` is a Refine hook that provides the necessary props for the form. When used the in the edit page, it fetches record data with the URL's `id`, populating and submitting the form with `dataProvider`'s `update` method. It also offers `saveButtonProps` for the form's submit button.
 
   > For more information, refer to the [`useForm` documentation&#8594](/docs/ui-integrations/ant-design/hooks/use-form)
 
@@ -110,7 +110,7 @@ render(<App />);
 
 On the edit page, we may need to select a record from another resource.
 
-For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the necessary props to be used in the `<Select/>` component.
+For example, if we need to select a category from the `categories` resource to assign the blog post to the category, we can use the `useSelect` hook provided by Refine. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method and then returns the necessary props to be used in the `<Select/>` component.
 
 In the auto-generated edit page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 
@@ -129,7 +129,7 @@ const { selectProps: categorySelectProps } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect`](/docs/core/hooks/use-select) and the [**Ant Design** `<Select/>` documentations&#8594](https://ant.design/components/select)
+> For more information, refer to the [`useSelect`](/docs/data/hooks/use-select) and the [**Ant Design** `<Select/>` documentations&#8594](https://ant.design/components/select)
 
 ## Adding the Edit Page to the App
 

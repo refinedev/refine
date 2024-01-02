@@ -3,17 +3,17 @@ title: Save
 swizzle: true
 ---
 
-`<SaveButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
+`<SaveButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses it for presantation purposes only. Some of the hooks that Refine has adds features to this button.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
 ## Usage
 
-For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/core/hooks/use-form) hook.
+For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/data/hooks/use-form) hook.
 
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
@@ -76,7 +76,7 @@ The `useForm` hook exposes `saveButtonProps` to be passed to `<SaveButton>` comp
 
 ## Properties
 
-### `hideText`
+### hideText
 
 `hideText` is used to show or hide the text of the button. When `true`, only the button icon is visible.
 
@@ -116,7 +116,7 @@ render(
 
 <PropsTable module="@refinedev/mui/SaveButton" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
 

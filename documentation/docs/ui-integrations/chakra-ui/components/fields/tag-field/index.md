@@ -20,9 +20,9 @@ const Wrapper = ({ children }) => {
 
 This field lets you display a value in a tag. It uses Chakra UI's [`<Tag>`](https://chakra-ui.com/docs/components/tag/usage) component.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -139,7 +139,7 @@ render(
 
 <PropsTable module="@refinedev/chakra-ui/TagField" value-description="Tag content" />
 
-:::tip External Props
+:::simple External Props
 
 It also accepts all props of Chakra UI's [Tag](https://chakra-ui.com/docs/components/tag/usage) component.
 

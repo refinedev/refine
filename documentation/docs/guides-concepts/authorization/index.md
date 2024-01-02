@@ -2,9 +2,9 @@
 title: Authorization
 ---
 
-Authorization is a key aspect of security and user experience in web applications. Whether you are building a complex **enterprise-level** application or a simple CRUD interface, **Refine**'s authorization system provides the necessary infrastructure to protect your resources and ensure that users interact with your application in a secure and controlled manner.
+Authorization is a key aspect of security and user experience in web applications. Whether you are building a complex **enterprise-level** application or a simple CRUD interface, Refine's authorization system provides the necessary infrastructure to protect your resources and ensure that users interact with your application in a secure and controlled manner.
 
-refine's **flexible architecture** allows you to easily implement various authorization strategies:
+Refine's **flexible architecture** allows you to easily implement various authorization strategies:
 
 - Role-Based Access Control (**RBAC**)
 - Attribute-Based Access Control (**ABAC**)
@@ -22,7 +22,7 @@ In order to enable these features, Refine uses the **Access Control Provider** a
 
 ## Access Control Provider
 
-The [Access Control Provider](/docs/core/providers/access-control-provider) is an object that contains a `can` method. This method is called by **Refine** to understand if the user can see a certain resource or perform an action.
+The [Access Control Provider](/docs/authorization/access-control-provider) is an object that contains a `can` method. This method is called by Refine to understand if the user can see a certain resource or perform an action.
 
 A basic **Access Control Provider** looks like this:
 
@@ -66,7 +66,7 @@ export const App = () => {
 };
 ```
 
-[To learn more about the `Access Control Provider`, check out the reference page.](/docs/core/providers/access-control-provider)
+[To learn more about the `Access Control Provider`, check out the reference page.](/docs/authorization/access-control-provider)
 
 ## CanAccess Component
 
@@ -93,11 +93,11 @@ export const ListPage = () => {
 };
 ```
 
-[To learn more about the `CanAccess` component, check out the reference page.](/docs/core/components/can-access)
+[To learn more about the `CanAccess` component, check out the reference page.](/docs/authorization/components/can-access)
 
 ### Router Integrations
 
-**Refine**'s router integrations can infer `resource`, `action`, and `params.id` props from the current route and pass them to the `<CanAccess />` component.
+Refine's router integrations can infer `resource`, `action`, and `params.id` props from the current route and pass them to the `<CanAccess />` component.
 
 This means you can wrap all of your routes with a single `<CanAccess />` component, instead of wrapping each page individually.
 
@@ -130,7 +130,7 @@ export const ListPage = () => {
 };
 ```
 
-[To learn more about the `useCan` hook, check out the reference page.](/docs/core/hooks/use-can)
+[To learn more about the `useCan` hook, check out the reference page.](/docs/authorization/hooks/use-can)
 
 ## Handling Authorization
 
@@ -140,7 +140,7 @@ import { AccessControlExample } from "./example";
 
 ## UI Integrations
 
-When Access Control Provider is provided, **Refine**'s UI Integrations automatically manages the **visibility** of their components like **buttons** and **menu items**, simplifying the management of UI.
+When Access Control Provider is provided, Refine's UI Integrations automatically manages the **visibility** of their components like **buttons** and **menu items**, simplifying the management of UI.
 
 These UI Integrations uses the Access Control Provider to check if a user has the necessary permissions. This check is performed without requiring manual implementation for each component, streamlining the development process.
 

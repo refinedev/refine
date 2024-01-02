@@ -65,15 +65,15 @@ render(
 );
 ```
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
 ## Properties
 
-### `title`
+### title
 
 `title` allows the addition of titles inside the `<Show>` component. if you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it would be "Show post".
 
@@ -113,7 +113,7 @@ render(
 );
 ```
 
-### `resource`
+### resource
 
 The `<Show>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Show>` component, you can use the `resource` prop.
 
@@ -169,11 +169,11 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `canDelete` and `canEdit`
+### canDelete and canEdit
 
-`canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
+`canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property Refine adds the buttons by default.
 
-When clicked on, delete button executes the [`useDelete`](/docs/core/hooks/data/use-delete) method provided by the [`dataProvider`](/docs/core/providers/data-provider) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the [`useDelete`](/docs/data/hooks/use-delete) method provided by the [`dataProvider`](/docs/data/data-provider) and the edit button redirects the user to the record edit page.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 const { default: simpleRest } = RefineSimpleRest;
@@ -269,9 +269,9 @@ render(
 );
 ```
 
-> For more information, refer to the [`<DeleteButton>` &#8594](/docs/ui-integrations/material-ui/components/buttons/delete-button), [`<EditButton>` &#8594](/docs/ui-integrations/material-ui/components/buttons/edit-button) and [`usePermission` &#8594](/docs/core/hooks/auth/use-permissions) documentations.
+> For more information, refer to the [`<DeleteButton>` &#8594](/docs/ui-integrations/material-ui/components/buttons/delete-button), [`<EditButton>` &#8594](/docs/ui-integrations/material-ui/components/buttons/edit-button) and [`usePermission` &#8594](/docs/authentication/hooks/use-permissions) documentations.
 
-### `recordItemId`
+### recordItemId
 
 `<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
 
@@ -322,21 +322,11 @@ render(
 );
 ```
 
-:::note
-
 `<Show>` component needs the `id` information for [`<RefreshButton>`](/docs/ui-integrations/material-ui/components/buttons/refresh-button) to work properly.
 
-:::
+### dataProviderName
 
-:::caution
-
-The `<Show>` component needs the `id` information for work properly, so if you use the `<Show>` component in custom pages, you should pass the `recordItemId` property.
-
-:::
-
-### `dataProviderName`
-
-If not specified, **refine** will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
+If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -366,7 +356,7 @@ export const App: React.FC = () => {
 };
 ```
 
-### `goBack`
+### goBack
 
 To customize the back button or to disable it, you can use the `goBack` property.
 
@@ -432,7 +422,7 @@ render(
 );
 ```
 
-### `isLoading`
+### isLoading
 
 To toggle the loading state of the `<Show/>` component, you can use the `isLoading` property.
 
@@ -473,15 +463,9 @@ render(
 );
 ```
 
-### `breadcrumb`
+### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
-
-:::tip
-
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
-
-:::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 // visible-block-start
@@ -530,7 +514,7 @@ render(
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/material-ui/components/breadcrumb)
 
-### `wrapperProps`
+### wrapperProps
 
 If you want to customize the wrapper of the `<Show/>` component, you can use the `wrapperProps` property.
 
@@ -578,7 +562,7 @@ render(
 
 > For more information, refer to the [`Card` documentation from Material UI &#8594](https://mui.com/material-ui/api/card/)
 
-### `headerProps`
+### headerProps
 
 If you want to customize the header of the `<Show/>` component, you can use the `headerProps` property.
 
@@ -626,7 +610,7 @@ render(
 
 > For more information, refer to the [`CardHeader` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-header/)
 
-### `contentProps`
+### contentProps
 
 If you want to customize the content of the `<Show/>` component, you can use the `contentProps` property.
 
@@ -674,21 +658,17 @@ render(
 
 > For more information, refer to the [`CardContent` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-content/)
 
-### `headerButtons`
+### headerButtons
 
 By default, the `<Show/>` component has a [`<ListButton>`][list-button], [`<EditButton>`][edit-button], [`<DeleteButton>`][delete-button], and, [`<RefreshButton>`][refresh-button] at the header.
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, deleteButtonProps, editButtonProps, listButtonProps, refreshButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
-
-:::caution
 
 If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
 
 If [`canDelete`](#candelete-and-canedit) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
 
 If [`canEdit`](#candelete-and-canedit) is `false`, [`<EditButton>`][edit-button] will not render and `editButtonProps` will be `undefined`.
-
-:::
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 // visible-block-start
@@ -783,7 +763,7 @@ render(
 );
 ```
 
-### `headerButtonProps`
+### headerButtonProps
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
@@ -838,7 +818,7 @@ render(
 
 > For more information, refer to the [`Box` documentation from Material UI &#8594](https://mui.com/material-ui/api/box/)
 
-### `footerButtons`
+### footerButtons
 
 You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
@@ -886,7 +866,7 @@ render(
 );
 ```
 
-### `footerButtonProps`
+### footerButtonProps
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
@@ -950,7 +930,7 @@ wrapperProps-type="[`CardProps`](https://mui.com/material-ui/api/card/#props)"
 contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)"
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"
 headerButtonProps-type="[`BoxProps`](https://mui.com/material-ui/api/box/#props)"
-headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/mui/components/buttons/list-button/), [`EditButton`](https://refine.dev/docs/api-reference/mui/components/buttons/edit-button/), [`DeleteButton`](https://refine.dev/docs/api-reference/mui/components/buttons/delete-button/), [`RefreshButton`](https://refine.dev/docs/api-reference/mui/components/buttons/refresh-button/)"
+headerButtons-default="[`ListButton`](/docs/ui-integrations/material-ui/components/buttons/list-button/), [`EditButton`](/docs/ui-integrations/material-ui/components/buttons/edit-button/), [`DeleteButton`](/docs/ui-integrations/material-ui/components/buttons/delete-button/), [`RefreshButton`](/docs/ui-integrations/material-ui/components/buttons/refresh-button/)"
 footerButtonProps-type="[`CardActionsProps`](https://mui.com/material-ui/api/card-actions/#props)"
 breadcrumb-default="[`<Breadcrumb/>`](/docs/ui-integrations/material-ui/components/breadcrumb)"
 goBack-default="`<ArrowLeft />`"

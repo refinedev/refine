@@ -122,7 +122,7 @@ export const useMenu = (
                     ),
             };
         },
-        [routerType, meta, translate, hideOnMissingParameter],
+        [routerType, meta, getToPath, translate, hideOnMissingParameter],
     );
 
     const treeItems = React.useMemo(() => {

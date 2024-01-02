@@ -54,18 +54,17 @@ interface ILanguage {
 }
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useRadioGroup/basic-usage.png" alt="Radio group" />
-<br/>
+<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useRadioGroup/basic-usage.png" alt="Radio group" />
 
 All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>` component.
 
 `useRadioGroup` uses the `useList` hook for fetching data.
 
-> For more information, refer to the [Refine Core's `useList` hook documentation &#8594](/docs/core/hooks/data/use-list)
+> For more information, refer to the [Refine Core's `useList` hook documentation &#8594](/docs/data/hooks/use-list)
 
 ## Options
 
-### `resource`
+### resource
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
@@ -73,7 +72,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/docs/core/providers/data-provider). It returns properly configured `options` values for radio buttons.
+`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/docs/data/data-provider). It returns properly configured `options` values for radio buttons.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
@@ -81,7 +80,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [Ant Design's `Radio.Group` component documentation &#8594](https://ant.design/components/radio)
 
-### `defaultValue`
+### defaultValue
 
 ```tsx
 const { selectProps } = useRadioGroup({
@@ -93,7 +92,7 @@ const { selectProps } = useRadioGroup({
 
 The easiest way to selecting a default value for an radio button field is by passing in `defaultValue`.
 
-### `optionLabel` and `optionValue`
+### optionLabel and `optionValue`
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
@@ -107,9 +106,7 @@ const { radioGroupProps } = useRadioGroup({
 
 `optionLabel` and `optionValue` allows you to change the values and appearances of your options. Default values are `optionLabel = "title"` and `optionValue = "id"`.
 
-:::tip
-
-Supports use with `optionLabel` and `optionValue` [Object path](https://lodash.com/docs/4.17.15#get) syntax.
+These properties also support nested property access with [Object path](https://lodash.com/docs/4.17.15#get) syntax.
 
 ```tsx
 const { options } = useSelect({
@@ -121,9 +118,7 @@ const { options } = useSelect({
 });
 ```
 
-:::
-
-### `filters`
+### filters
 
 `filters` allows us to add filters while fetching the data. For example, if you want to list only the `titles` that are equal to "German":
 
@@ -142,7 +137,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-### `sorters`
+### sorters
 
 `sorters` allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending:
 
@@ -160,7 +155,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-### `fetchSize`
+### fetchSize
 
 `fetchSize` is the amount of records to fetch in checkboxes.
 
@@ -172,7 +167,7 @@ const { selectProps } = useRadioGroup({
 });
 ```
 
-### `queryOptions`
+### queryOptions
 
 Passing the `queryOptions` property allows us to set the [useQuery](https://react-query.tanstack.com/reference/useQuery) options
 
@@ -189,7 +184,7 @@ const { radioGroupProps } = useRadioGroup({
 });
 ```
 
-### `pagination`
+### pagination
 
 `pagination` allows us to set page and items per page values.
 
@@ -205,13 +200,9 @@ const { selectProps } = useSelect({
 
 The listing will start from page 3, showing 8 records per page.
 
-### ~~`sort`~~
-
-:::caution Deprecated
+### ~~sort~~ <PropTag deprecated />
 
 Use `sorters` instead.
-
-:::
 
 ## API Reference
 

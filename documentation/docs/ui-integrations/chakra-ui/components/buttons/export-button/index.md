@@ -140,15 +140,15 @@ render(
 );
 ```
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
 ## Properties
 
-### `hideText`
+### hideText
 
 `hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 

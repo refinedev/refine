@@ -1,13 +1,18 @@
 ---
-title: <AutoSaveIndicator>
-sidebar_label: <AutoSaveIndicator>
+title: <AutoSaveIndicator />
 description: <AutoSaveIndicator> component shows `autoSave` status on edit actions.
 source: packages/antd/src/components/autoSaveIndicator/index.tsx
 ---
 
-`<AutoSaveIndicator>` component from **refine** for **Mantine** can be used to communicate auto-save status to the user.
+`<AutoSaveIndicator>` component from Refine for **Mantine** can be used to communicate auto-save status to the user.
 
-Simple usage is as follows:
+:::simple Good to know
+
+This component is an extended version of the [`<AutoSaveIndicator>`](/docs/core/components/auto-save-indicator) component from Refine's core package. It provides a set of elements which align with Mantine's components and styling.
+
+:::
+
+## Usage
 
 ```tsx
 import { AutoSaveIndicator, useForm } from "@refinedev/mantine";
@@ -22,6 +27,15 @@ const MyComponent = () => {
       },
     },
   });
+
+  console.log(autoSaveProps);
+  /*
+    {
+      status: "success",  // "loading" | "error" | "idle" | "success"
+      error: null,        // HttpError | null
+      data: { ... },      // UpdateResponse | undefined,
+    }
+  */
 
   return <AutoSaveIndicator {...autoSaveProps} />;
 };

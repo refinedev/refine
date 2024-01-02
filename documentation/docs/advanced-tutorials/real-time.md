@@ -4,19 +4,17 @@ title: Live / Realtime
 sidebar_label: Live / Realtime
 ---
 
-**refine** lets you add Realtime support to your app via the `liveProvider` prop for [`<Refine />`](/docs/core/refine-component). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
+**Refine** lets you add Realtime support to your app via the `liveProvider` prop for [`<Refine />`](/docs/core/refine-component). It can be used to update and show data in Realtime throughout your app. **Refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
 
-[Refer to the Live Provider documentation for detailed information. &#8594](/docs/core/providers/live-provider)
+[Refer to the Live Provider documentation for detailed information. &#8594](/docs/realtime/live-provider)
 
 We will be using [Ably](https://ably.com) in this guide to provide Realtime features.
 
 ## Installation
 
-We need to install the Ably live provider package from **refine**.
+We need to install the Ably live provider package from **Refine**.
 
-```bash
-npm install @refinedev/ably
-```
+<InstallPackagesCommand args="@refinedev/ably"/>
 
 :::caution
 
@@ -117,7 +115,7 @@ export default App;
 
 For live features to work automatically we added `liveMode: "auto"` in the `options` prop.
 
-[Refer to the Live Provider documentation for detailed information. &#8594](/docs/core/providers/live-provider#livemode)
+[Refer to the Live Provider documentation for detailed information. &#8594](/docs/realtime/live-provider#livemode)
 
 :::
 
@@ -201,7 +199,7 @@ We can also implement a similar thing on the show page.
 
 ## Custom Subscriptions
 
-You can subscribe to events emitted within **refine** in any place in your app with `useSubscription`.
+You can subscribe to events emitted within **Refine** in any place in your app with `useSubscription`.
 
 For example, we can subscribe to **_create_** event for **_posts_** resource and we can show a badge for the number of events in the sider menu.
 

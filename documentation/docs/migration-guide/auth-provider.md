@@ -5,7 +5,7 @@ sidebar_label: Migrating Auth Provider
 
 ## Motivation behind the changes
 
-Our motivation for modifying the `authProvider` prop in **refine v4** was to improve its flexibility and customization options, allowing it to handle a wider range of use cases without becoming overly complicated.
+Our motivation for modifying the `authProvider` prop in **Refine v4** was to improve its flexibility and customization options, allowing it to handle a wider range of use cases without becoming overly complicated.
 
 We aimed to create a more standardized interface for the `authProvider` methods that would improve transparency and enable easier debugging for developers.
 
@@ -51,7 +51,7 @@ Furthermore, the auth hooks no longer have default redirection paths, which had 
 
 ## Methods
 
-### `login`
+### login
 
 Promises must now be resolved in all cases when using the `login` method, with a return type of `AuthActionResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
@@ -92,7 +92,7 @@ type AuthActionResponse = {
 };
 ```
 
-### `logout`
+### logout
 
 Promises must now be resolved in all cases when using the `logout` method, with a return type of `AuthActionResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
@@ -120,7 +120,7 @@ type AuthActionResponse = {
 };
 ```
 
-### `register`
+### register
 
 Promises must now be resolved in all cases when using the `register` method, with a return type of `AuthActionResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
@@ -153,7 +153,7 @@ const authProvider = {
 }
 ```
 
-### `forgotPassword`
+### forgotPassword
 
 Promises must now be resolved in all cases when using the `forgotPassword` method, with a return type of `AuthActionResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
@@ -193,7 +193,7 @@ type AuthActionResponse = {
 };
 ```
 
-### `updatePassword`
+### updatePassword
 
 Promises must now be resolved in all cases when using the `updatePassword` method, with a return type of `AuthActionResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
@@ -233,7 +233,7 @@ type AuthActionResponse = {
 };
 ```
 
-### `check`
+### check
 
 The `checkAuth` method of the `authProvider` was changed to `check`. It now requires promises to be resolved in all cases, with a return type of `CheckResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
@@ -275,7 +275,7 @@ type CheckResponse = {
 };
 ```
 
-### `onError`
+### onError
 
 The `checkError` method of the `authProvider` was changed to `onError`. It now requires promises to be resolved in all cases, with a return type of `OnErrorResponse`. When resolving the promise, you must always include a `success` key, and in the case of a failure, an additional `error` key.
 
@@ -308,7 +308,7 @@ type OnErrorResponse = {
 };
 ```
 
-### `getPermissions`
+### getPermissions
 
 The `getPermissions` method now requires promises to be resolved in all cases, with a return type of `PermissionResponse`
 
@@ -333,7 +333,7 @@ const authProvider = {
 type PermissionResponse = unknown;
 ```
 
-### `getIdentity`
+### getIdentity
 
 `authProvider`'s `getUserIdentity` method was renamed to `getIdentity`, which requires promises to be resolved in all cases, with a return type of `IdentityResponse`
 
@@ -427,11 +427,11 @@ export const Authenticated: React.FC = ({ children }) => {
 
 Though auth hooks should be familiar, they need to updated according to the new system.
 
-[Please refer to the hooks documentation for more information.](/docs/core/providers/auth-provider#hooks-and-components)
+[Please refer to the hooks documentation for more information.](/docs/authentication/auth-provider#hooks-and-components)
 
 ## Backward compatibility
 
-**refine** still supports the `authProvider@v3` for backward compatibility. We changed its name to `legacyAuthProvider` and it will be removed in the next major version. If you want to continue using the `authProvider@v3` you can use it as `legacyAuthProvider` in your project.
+**Refine** still supports the `authProvider@v3` for backward compatibility. We changed its name to `legacyAuthProvider` and it will be removed in the next major version. If you want to continue using the `authProvider@v3` you can use it as `legacyAuthProvider` in your project.
 
 ```diff
 - import { AuthProvider } from "@refinedev/core";

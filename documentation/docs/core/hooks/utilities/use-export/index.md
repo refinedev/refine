@@ -6,7 +6,7 @@ title: useExport
 
 Internally, it uses [`export-to-csv`][export-to-csv] to create the `CSV` file.
 
-## Basic Usage
+## Usage
 
 Here is a basic usage example of the `useExport` hook:
 
@@ -29,11 +29,9 @@ export const PostList: React.FC = () => {
 
 ## Properties
 
-### `resource`
+### resource
 
-> Default: Read from the current route
-
-Determines which resource is passed to the `getList` method of your data provider.
+Determines which resource is passed to the `getList` method of your data provider. By default, it reads the resource name from the current route.
 
 ```ts
 useExport({
@@ -45,7 +43,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `mapData`
+### mapData
 
 If you want to map the data before exporting it, you can use the `mapData` property.
 
@@ -73,7 +71,7 @@ useExport<IPost>({
 });
 ```
 
-### `sorters`
+### sorters
 
 If you want to sort the data before exporting it, you can use the `sorters` property. It will be passed to the `getList` method of your data provider.
 
@@ -90,7 +88,7 @@ useExport({
 });
 ```
 
-### `filters`
+### filters
 
 If you want to filter the data before exporting it, you can use the `filters` property. It will be passed to the `getList` method of your data provider.
 
@@ -108,7 +106,7 @@ useExport({
 });
 ```
 
-### `maxItemCount`
+### maxItemCount
 
 By default, the `useExport` hook will export all the data. If you want to limit the number of items to be exported, you can use the `maxItemCount` property.
 
@@ -118,7 +116,7 @@ useExport({
 });
 ```
 
-### `pageSize`
+### pageSize
 
 Requests to fetch data are made in batches of 20 by default. The `pageSize` property determines the number of items to be fetched in each request.
 
@@ -128,7 +126,7 @@ useExport({
 });
 ```
 
-### `exportOptions`
+### exportOptions
 
 You can pass additional options to the `export-to-csv` package by using the `exportOptions` property.
 
@@ -142,7 +140,7 @@ useExport({
 });
 ```
 
-### `meta`
+### meta
 
 If you want to send additional data to the `create` or `createMany` method of your data provider, you can use the `meta` property.
 
@@ -154,7 +152,7 @@ useExport({
 });
 ```
 
-### `dataProviderName`
+### dataProviderName
 
 If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
 
@@ -164,7 +162,7 @@ useExport({
 });
 ```
 
-### `onError`
+### onError
 
 Callback function that is called when an error occurs while fetching data.
 
@@ -176,25 +174,17 @@ useExport({
 });
 ```
 
-### ~~`resourceName`~~
-
-:::caution Deprecated
+### ~~resourceName~~ <PropTag deprecated />
 
 Use `resource` instead.
 
-:::
-
-### ~~`sorter`~~
-
-:::caution Deprecated
+### ~~sorter~~ <PropTag deprecated />
 
 Use `sorters` instead.
 
-:::
-
 ## Return Values
 
-### `triggerExport`
+### triggerExport
 
 A function that triggers the export process.
 
@@ -204,7 +194,7 @@ const { triggerExport } = useExport();
 return <button onClick={triggerExport}>Export Button</button>;
 ```
 
-### `isLoading`
+### isLoading
 
 A boolean value that indicates whether the export process is in progress.
 

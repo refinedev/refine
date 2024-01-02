@@ -170,9 +170,9 @@ useTable({
 });
 ```
 
-### Sync with Location <RouterBadge id="guides-concepts/routing/#usetable" /> <GlobalConfigBadge id="api-reference/core/components/refine-config/#syncwithlocation" />
+### Sync with Location <RouterBadge id="guides-concepts/routing/#usetable" /> <GlobalConfigBadge id="core/refine-component/#syncwithlocation" />
 
-When you use the [`syncWithLocation`](/docs/core/hooks/use-table#syncwithlocation) feature, the `useTable`'s state (e.g., sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
+When you use the [`syncWithLocation`](/docs/data/hooks/use-table#syncwithlocation) feature, the `useTable`'s state (e.g., sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
 
 ## Relationships <GuideBadge id="guides-concepts/data-fetching/#relationships" />
 
@@ -182,14 +182,14 @@ For example imagine each post has a many category. We can fetch the categories o
 
  <Relationship />
 
-[use-table-core]: /docs/core/hooks/use-table
-[use-list]: /docs/core/hooks/data/use-list
+[use-table-core]: /docs/data/hooks/use-table
+[use-list]: /docs/data/hooks/use-list
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [baserecord]: /docs/core/interface-references#baserecord
 [crudsorting]: /docs/core/interface-references#crudsorting
 [crudfilters]: /docs/core/interface-references#crudfilters
 [httperror]: /docs/core/interface-references#httperror
-[refine swl]: /docs/core/refine-component#syncwithlocation
+[Refine swl]: /docs/core/refine-component#syncwithlocation
 [syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
-[notification-provider]: /docs/core/providers/notification-provider
-[data-provider]: /docs/core/providers/data-provider
+[notification-provider]: /docs/notification/notification-provider
+[data-provider]: /docs/data/data-provider

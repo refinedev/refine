@@ -1,6 +1,5 @@
 ---
 title: List
-sidebar_label: List
 swizzle: true
 ---
 
@@ -75,15 +74,15 @@ const SampleList = () => {
 render(<RefineMuiDemo initialRoutes={["/samples"]} resources={[{ name: "samples", list: SampleList }]} />);
 ```
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component with the [**refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
 
 :::
 
 ## Properties
 
-### `title`
+### title
 
 `title` allows the addition of titles inside the `<List>` component. If you don't pass title props it uses the plural resource name by default. For example, for the `/posts` resource, it will be "Posts".
 
@@ -117,7 +116,7 @@ render(
 );
 ```
 
-### `resource`
+### resource
 
 The `<List>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<List>` component, you can use the `resource` prop.
 
@@ -174,9 +173,9 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `canCreate` and `createButtonProps`
+### canCreate and createButtonProps
 
-`canCreate` allows us to add the create button inside the `<List>` component. If resource is passed a create component, **refine** adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
+`canCreate` allows us to add the create button inside the `<List>` component. If resource is passed a create component, Refine adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
 
 Create button redirects to the create page of the resource according to the value it reads from the URL.
 
@@ -259,17 +258,11 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/authentication/hooks/use-permissions)
 
-### `breadcrumb`
+### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
-
-:::tip
-
-This feature can be managed globally via the `<Refine>` component's [options](/docs/core/refine-component#breadcrumb)
-
-:::
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
@@ -320,7 +313,7 @@ render(
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/material-ui/components/breadcrumb)
 
-### `wrapperProps`
+### wrapperProps
 
 If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property.
 
@@ -362,7 +355,7 @@ render(
 
 > For more information, refer to the [`Card` documentation from Material UI &#8594](https://mui.com/material-ui/api/card/)
 
-### `headerProps`
+### headerProps
 
 If you want to customize the header of the `<List/>` component, you can use the `headerProps` property.
 
@@ -404,7 +397,7 @@ render(
 
 > For more information, refer to the [`CardHeader` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-header/)
 
-### `contentProps`
+### contentProps
 
 If you want to customize the content of the `<List/>` component, you can use the `contentProps` property.
 
@@ -446,17 +439,13 @@ render(
 
 > For more information, refer to the [`CardContent` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-content/)
 
-### `headerButtons`
+### headerButtons
 
 By default, the `<List/>` component has a [`<CreateButton>`][create-button] at the header.
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, createButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-:::caution
-
 If "create" resource is not defined or [`canCreate`](#cancreate-and-createbuttonprops) is `false`, the [`<CreateButton>`][create-button] will not render and `createButtonProps` will be `undefined`.
-
-:::
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
@@ -536,7 +525,7 @@ render(
 );
 ```
 
-### `headerButtonProps`
+### headerButtonProps
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
@@ -593,10 +582,10 @@ render(
 wrapperProps-type="[`CardProps`](https://mui.com/material-ui/api/card/#props)"
 contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)"
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"
-headerButtons-default="[`CreateButton`](https://refine.dev/docs/api-reference/mui/components/buttons/create-button/)"
+headerButtons-default="[`CreateButton`](/docs/ui-integrations/material-ui/components/buttons/create-button/)"
 headerButtonProps-type="[`BoxProps`](https://mui.com/material-ui/api/box/#props)"
 breadcrumb-default="[`<Breadcrumb/>`](/docs/ui-integrations/material-ui/components/breadcrumb)"
-createButtonProps-type="[`CreateButtonProps`](https://refine.dev/docs/api-reference/mui/components/buttons/create-button/)"
+createButtonProps-type="[`CreateButtonProps`](/docs/ui-integrations/material-ui/components/buttons/create-button/)"
 />
 
 ```tsx live shared

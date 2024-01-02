@@ -96,13 +96,13 @@ render(<App />);
 
 - The `useResource` is hook is used to get current resource information and `resources` that are defined in `<Refine/>`.
 
-  > For more information, refer to the [`useShow`](/docs/core/hooks/use-show),[`useNavigation`](/docs/core/hooks/navigation/use-navigation) and [`useResource` documentations&#8594](/docs/core/hooks/navigation/use-resource)
+  > For more information, refer to the [`useShow`](/docs/data/hooks/use-show),[`useNavigation`](/docs/routing/hooks/use-navigation) and [`useResource` documentations&#8594](/docs/routing/hooks/use-resource)
 
 ### Handling Relationships
 
 On the show page, we have a single record, and it may have relationships with other resources.
 
-For example, the `blog_posts` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **refine**, which allows us to fetch single record data by using the `id` and `resource` parameters.
+For example, the `blog_posts` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by Refine, which allows us to fetch single record data by using the `id` and `resource` parameters.
 
 In the auto-generated show page code, Inferencer used the `useOne` hook to fetch the category data of the blog post record like below:
 
@@ -125,7 +125,7 @@ const { data: categoryData, isLoading: categoryIsLoading } = useOne({
 });
 ```
 
-> For more information, refer to the [`useOne` documentation&#8594](/docs/core/hooks/data/use-one)
+> For more information, refer to the [`useOne` documentation&#8594](/docs/data/hooks/use-one)
 
 ## Adding the Show Page to the App
 

@@ -45,11 +45,11 @@ const EditPage = () => {
 };
 ```
 
-`<EditButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `edit` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
+`<EditButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `edit` method from [`useNavigation`](/docs/routing/hooks/use-navigation) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -160,7 +160,7 @@ render(
 
 ## Properties
 
-### `recordItemId`
+### recordItemId
 
 `recordItemId` is used to append the record id to the end of the route path.
 
@@ -198,7 +198,7 @@ render(
 );
 ```
 
-### `resource`
+### resource
 
 Redirection endpoint is defined by the `resource` property and its `edit` action path. By default, `<EditButton>` uses the inferred resource from the route.
 
@@ -239,16 +239,16 @@ render(
 );
 ```
 
-Clicking the button will trigger the `edit` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `edit` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `edit` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `edit` action path of the resource, filling the necessary parameters in the route.
 
 If you have multiple resources with the same name, you can
 pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `meta`
+### meta
 
-It is used to pass additional parameters to the `edit` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation). By default, existing parameters in the route are used by the `edit` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+It is used to pass additional parameters to the `edit` method of [`useNavigation`](/docs/routing/hooks/use-navigation). By default, existing parameters in the route are used by the `edit` method. You can pass additional parameters or override the existing ones using the `meta` prop.
 
 If the `edit` action route is defined by the pattern: `/posts/:authorId/edit/:id`, the `meta` prop can be used as follows:
 
@@ -258,7 +258,7 @@ const MyComponent = () => {
 };
 ```
 
-### `hideText`
+### hideText
 
 `hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
@@ -296,9 +296,9 @@ render(
 );
 ```
 
-### `accessControl`
+### accessControl
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/core/providers/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
 
 ```tsx
 import { EditButton } from "@refinedev/mantine";
@@ -308,50 +308,9 @@ export const MyListComponent = () => {
 };
 ```
 
-### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+### ~~resourceNameOrRouteName~~ <PropTag deprecated />
 
-> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
-
-Redirection endpoint(`resourceNameOrRouteName/edit`) is defined by `resourceNameOrRouteName` property. By default, `<EditButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
-
-// visible-block-start
-import { EditButton } from "@refinedev/mantine";
-
-const MyEditComponent = () => {
-  return <EditButton resourceNameOrRouteName="categories" recordItemId="2" />;
-};
-// visible-block-end
-
-const App = () => {
-  return (
-    <Refine
-      resources={[
-        {
-          name: "posts",
-          list: MyEditComponent,
-        },
-        {
-          name: "categories",
-          edit: EditPage,
-        },
-      ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
-```
-
-Clicking the button will trigger the `edit` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to `/categories/edit/2`.
+Use `resource` prop instead.
 
 ## API Reference
 

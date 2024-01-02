@@ -19,11 +19,11 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<SaveButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
+`<SaveButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses it for presantation purposes only. Some of the hooks that Refine has adds features to this button.
 
-:::info-tip Swizzle
+:::simple Good to know
 
-You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
 
 :::
 
@@ -149,7 +149,7 @@ interface IPost {
 
 ## Properties
 
-### `hideText`
+### hideText
 
 `hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 

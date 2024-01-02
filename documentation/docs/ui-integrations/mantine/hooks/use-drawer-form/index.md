@@ -1,19 +1,14 @@
 ---
 title: useDrawerForm
-sidebar_label: useDrawerForm
 ---
 
 The [`useModalForm`][use-modal-form-refine-mantine] hook allows you to manage a form within a `<Modal>` as well as a `<Drawer>`. It provides some useful methods to handle the form `<Modal>` or form `<Drawer>`.
 
 We will use [`useModalForm`][use-modal-form-refine-mantine] hook as a `useDrawerForm` to manage a form within a `<Drawer>`.
 
-:::info
-
 The `useDrawerForm` hook is extended from the [`useForm`][use-form-refine-mantine] hook from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/master/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
 
-:::
-
-## Basic Usage
+## Usage
 
 We will show two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
 
@@ -390,9 +385,7 @@ setRefineProps({
 render(<RefineMantineDemo />);
 ```
 
-:::caution
-
-**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Drawer>` when clicked.
+Refine doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Drawer>` when clicked.
 
 So, we have to put the `<EditButton/>` on our list. In that way, `"edit"` form in `<Drawer>` can fetch data by the record `id`.
 
@@ -423,11 +416,7 @@ const table = useTable({
 });
 ```
 
-:::caution
-
 Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
-
-:::
 
 </TabItem>
 
@@ -435,7 +424,7 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 
 ## Properties
 
-### `refineCoreProps`
+### refineCoreProps
 
 All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) properties are also available in `useStepsForm`. You can find descriptions on the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#properties) documentation.
 
@@ -449,15 +438,9 @@ const drawerForm = useDrawerForm({
 });
 ```
 
-### `initialValues`
+### initialValues
 
-:::caution
-
-Only available in `"create"` form.
-
-:::
-
-Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed. This property is only available in `"create"` action.
 
 ```tsx
 const drawerForm = useDrawerForm({
@@ -467,7 +450,7 @@ const drawerForm = useDrawerForm({
 });
 ```
 
-### `defaultVisible`
+### defaultVisible
 
 When `true`, drawer will be visible by default. It is `false` by default.
 
@@ -479,7 +462,7 @@ const drawerForm = useDrawerForm({
 });
 ```
 
-### `autoSubmitClose`
+### autoSubmitClose
 
 When `true`, drawer will be closed after successful submit. It is `true` by default.
 
@@ -491,7 +474,7 @@ const drawerForm = useDrawerForm({
 });
 ```
 
-### `autoResetForm`
+### autoResetForm
 
 When `true`, form will be reset after successful submit. It is `true` by default.
 
@@ -503,7 +486,7 @@ const drawerForm = useDrawerForm({
 });
 ```
 
-### `syncWithLocation`
+### syncWithLocation
 
 When `true`, the drawers visibility state and the `id` of the record will be synced with the URL. It is `false` by default.
 
@@ -515,7 +498,7 @@ const drawerForm = useDrawerForm({
 });
 ```
 
-### `overtimeOptions`
+### overtimeOptions
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
 `interval` is the time interval in milliseconds while `onInterval` is the function that will be called on each interval. `elapsedTime` is the elapsed time in milliseconds.
@@ -541,7 +524,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### `autoSave`
+### autoSave
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
@@ -549,19 +532,13 @@ By default the `autoSave` feature does not invalidate queries. However, you can 
 
 It also supports `onMutationSuccess` and `onMutationError` callback functions. You can use `isAutoSave` parameter to determine whether the mutation is triggered by `autoSave` or not.
 
-:::caution
-
 `autoSave` feature operates exclusively in `edit` mode. Users can take advantage of this feature while editing data, as changes are automatically saved in editing mode. However, when creating new data, manual saving is still required.
-
-:::
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
-#### `enabled`
+#### enabled
 
-> Default: `false`
-
-To enable the `autoSave` feature, set the `enabled` parameter to `true`.
+To enable the `autoSave` feature, set the `enabled` parameter to `true`. Default value is `false`.
 
 ```tsx
 useDrawerForm({
@@ -573,11 +550,9 @@ useDrawerForm({
 });
 ```
 
-#### `debounce`
+#### debounce
 
-> Default: `1000`
-
-Set the debounce time for the `autoSave` prop.
+Set the debounce time for the `autoSave` prop. Default value is `1000` milliseconds.
 
 ```tsx
 useDrawerForm({
@@ -591,11 +566,9 @@ useDrawerForm({
 });
 ```
 
-#### `invalidateOnUnmount`
+#### invalidateOnUnmount
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. Default value is `false`.
 
 ```tsx
 useDrawerForm({
@@ -609,11 +582,9 @@ useDrawerForm({
 });
 ```
 
-#### `invalidateOnClose`
+#### invalidateOnClose
 
-> Default: `false`
-
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the drawer is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the drawer is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. Default value is `false`.
 
 ```tsx
 useDrawerForm({
@@ -629,15 +600,11 @@ useDrawerForm({
 
 ## Return Values
 
-:::tip
-
 All [`useForm`][use-form-refine-mantine] return values are also available in `useDrawerForm`. You can find descriptions on the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) documentation.
 
 All [`mantine useForm`](https://mantine.dev/form/use-form/) return values also available in `useDrawerForm`. You can find descriptions on [`mantine`](https://mantine.dev/form/use-form/) docs.
 
-:::
-
-### `visible`
+### visible
 
 Current visibility state of the drawer.
 
@@ -649,7 +616,7 @@ const drawerForm = useDrawerForm({
 console.log(drawerForm.modal.visible); // true
 ```
 
-### `title`
+### title
 
 Title of the drawer. Based on resource and action values
 
@@ -666,7 +633,7 @@ const {
 console.log(title); // "Create Post"
 ```
 
-### `close`
+### close
 
 `close` is a function that can close the drawer. It's useful when you want to close the drawer manually.
 
@@ -687,7 +654,7 @@ return (
 );
 ```
 
-### `submit`
+### submit
 
 `submit` is a function that can submit the form. It's useful when you want to submit the form manually.
 
@@ -708,7 +675,7 @@ return (
 );
 ```
 
-### `show`
+### show
 
 `shows` is a function that can show the drawer.
 
@@ -736,7 +703,7 @@ return (
 );
 ```
 
-### `saveButtonProps`
+### saveButtonProps
 
 `saveButtonProps` contains all the props needed by the "submit" button within the drawer (disabled,loading etc.). You can manually pass these props to your custom button.
 
@@ -759,7 +726,7 @@ return (
 );
 ```
 
-### `overtime`
+### overtime
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -769,7 +736,7 @@ const { overtime } = useDrawerForm();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-### `autoSaveProps`
+### autoSaveProps
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
@@ -829,7 +796,7 @@ const UserCreate: React.FC = () => {
 | Property                               | Description                                                         | Type                                                    |
 | -------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
 | modalProps                             | Configuration object for the modal or drawer                        | [`ModalPropsType`](#modalpropstype)                     |
-| refineCoreProps                        | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/docs/core/hooks/use-form/#properties) |
+| refineCoreProps                        | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/docs/data/hooks/use-form/#properties) |
 | `@mantine/form`'s `useForm` properties | See [useForm][use-form-refine-mantine] documentation                |
 
 <br />
@@ -859,7 +826,7 @@ const UserCreate: React.FC = () => {
 | Property                                  | Description                                                     | Type                                                              |
 | ----------------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- |
 | modal                                     | Relevant states and methods to control the modal or drawer      | [`ModalReturnValues`](#modalreturnvalues)                         |
-| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values) |
+| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/data/hooks/use-form/#return-values) |
 | `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |
 | overtime                                  | Overtime loading props                                          | `{ elapsedTime?: number }`                                        |
 
@@ -881,7 +848,7 @@ const UserCreate: React.FC = () => {
 <CodeSandboxExample path="form-mantine-use-drawer-form" />
 
 [use-form-refine-mantine]: /docs/ui-integrations/mantine/hooks/use-form
-[use-form-core]: /docs/core/hooks/use-form/
+[use-form-core]: /docs/data/hooks/use-form/
 [use-modal-form-refine-mantine]: /docs/ui-integrations/mantine/hooks/use-modal-form
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

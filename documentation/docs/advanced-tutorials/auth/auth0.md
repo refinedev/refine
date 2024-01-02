@@ -6,15 +6,13 @@ sidebar_label: Auth0 Login
 
 [Auth0](https://auth0.com/) is a flexible, drop-in solution for adding authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [Auth0 document](https://auth0.com/docs) for details.
 
-We will show you how to use Auth0 with refine
+We will show you how to use Auth0 with Refine
 
 ### Installation
 
 Run the following command within your project directory to install the Auth0 React SDK:
 
-```
-npm install @auth0/auth0-react
-```
+<InstallPackagesCommand args="@auth0/auth0-react"/>
 
 #### Configure the Auth0Provider component
 
@@ -50,7 +48,7 @@ Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-
 
 ### Override `/login` page
 
-First, we need to override the **refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
+First, we need to override the **Refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
 
 ```tsx title="/pages/login.tsx"
 import { Layout, Button, Space, Typography } from "antd";
@@ -99,7 +97,7 @@ After clicking the `Login` button, you will be directed to the auth0 login scree
 
 ## Auth Provider
 
-In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Auth0.
+In Refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Auth0.
 
 <details>
 <summary>Show Code</summary>

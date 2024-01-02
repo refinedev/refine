@@ -6,7 +6,7 @@ import { HttpError } from "@refinedev/core";
 
 import { Form, Spin } from "antd";
 
-import { Quote, QuoteUpdateInput } from "@/interfaces";
+import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
 
 const MDEditor = lazy(() => import("@uiw/react-md-editor"));
 

@@ -241,7 +241,7 @@ const PostShow: React.FC = () => {
 };
 ```
 
-We will demonstrate how to perform a multipart upload with **refine**.
+We will demonstrate how to perform a multipart upload with **Refine**.
 
 Let's start with the `creation form` first.
 
@@ -327,7 +327,7 @@ interface IPost {
 
 :::tip
 
-We can reach the API URL by using the [`useApiUrl`](/docs/core/hooks/data/use-api-url) hook.
+We can reach the API URL by using the [`useApiUrl`](/docs/data/hooks/use-api-url) hook.
 
 :::
 
