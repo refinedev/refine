@@ -1,6 +1,7 @@
 ---
 id: advanced
-title: Advanced
+title: Advanced Tables with Material UI
+sidebar_label: Advanced Table
 example-title: Advanced Material UI Table
 example-tags: [table, mui]
 ---

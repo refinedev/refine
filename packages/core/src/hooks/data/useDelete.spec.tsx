@@ -16,6 +16,7 @@ import {
 } from "@test/mutation-helpers";
 import * as UseInvalidate from "../invalidate/index";
 import { useDelete } from "./useDelete";
+import * as queryKeys from "@definitions/helpers/queryKeys";
 
 describe("useDelete Hook", () => {
     it("should work with pessimistic update", async () => {
@@ -127,6 +128,34 @@ describe("useDelete Hook", () => {
         await assertMutationSuccess(result);
     });
 
+    it("should exclude gqlQuery and qqlMutation from query keys", async () => {
+        const catchFn = jest.fn();
+
+        jest.spyOn(queryKeys, "queryKeysReplacement").mockImplementationOnce(
+            () => catchFn,
+        );
+
+        const { result } = renderHook(() => useDelete(), {
+            wrapper: TestWrapper({}),
+        });
+
+        const resource = "posts";
+
+        result.current.mutate({
+            resource,
+            id: 1,
+            meta: {
+                foo: "bar",
+                gqlQuery: "gqlQuery" as any,
+                gqlMutation: "gqlMutation" as any,
+            },
+        });
+
+        await waitFor(() => {
+            expect(catchFn).toBeCalledWith(resource, "default", { foo: "bar" });
+        });
+    });
+
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
         const deleteMock = jest.fn();
 
@@ -148,7 +177,11 @@ describe("useDelete Hook", () => {
         result.current.mutate({
             resource: "posts",
             id: "1",
-            meta: { foo: "bar" },
+            meta: {
+                foo: "bar",
+                gqlQuery: "gqlQuery" as any,
+                gqlMutation: "gqlMutation" as any,
+            },
         });
 
         await waitFor(() => {
@@ -160,6 +193,8 @@ describe("useDelete Hook", () => {
                 meta: expect.objectContaining({
                     foo: "bar",
                     baz: "qux",
+                    gqlQuery: "gqlQuery",
+                    gqlMutation: "gqlMutation",
                 }),
             }),
         );

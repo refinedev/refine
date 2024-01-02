@@ -16,6 +16,7 @@ type ResourceWithoutId = {
     resource: string;
     action: Extract<Action, "create" | "list">;
     id?: never;
+    meta?: Record<string, unknown>;
 };
 
 type ResourceWithId = {
@@ -25,6 +26,7 @@ type ResourceWithId = {
     resource: string;
     action: Extract<Action, "edit" | "show" | "clone">;
     id: BaseKey;
+    meta?: Record<string, unknown>;
 };
 
 export type Resource = ResourceWithoutId | ResourceWithId;
@@ -60,6 +62,7 @@ export const useGo = () => {
                 action: config.to.action,
                 meta: {
                     id: config.to.id,
+                    ...config.to.meta,
                 },
             });
 

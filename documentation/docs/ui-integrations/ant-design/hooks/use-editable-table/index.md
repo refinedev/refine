@@ -266,7 +266,7 @@ export const PostList: React.FC = () => {
 
 All `useForm` and [`useTable`][usetable] properties are available in `useEditableTable`. You can read the documentation of [`useForm`][useform] and [`useTable`][usetable] for more information.
 
-### `autoSubmitClose`
+### autoSubmitClose
 
 `autoSubmitClose` makes the table's row close after a successful submit. It is `true` by default.
 
@@ -282,7 +282,7 @@ const editableTable = useEditableTable({
 
 All `useForm` and [`useTable`][usetable] return values are available in `useEditableTable`. You can read the documentation of [`useForm`][useform] and [`useTable`][usetable] for more information.
 
-### `cancelButtonProps`
+### cancelButtonProps
 
 `cancelButtonProps` returns the props for needed by the `<EditButton>`.
 
@@ -292,7 +292,7 @@ By default, the `onClick` function is overridden by `useEditableTable`. Which wi
 cancelButtonProps: () => ButtonProps;
 ```
 
-### `editButtonProps`
+### editButtonProps
 
 `editButtonProps` takes `id` as a parameter and returns the props needed by the `<EditButton>`.
 
@@ -304,7 +304,7 @@ editButtonProps: (id: BaseKey) => ButtonProps;
 
 It also returns a function that takes an `id` as a parameter and returns the props for the edit button.
 
-### `isEditing`
+### isEditing
 
 ```tsx
 isEditing: (id: BaseKey) => boolean;

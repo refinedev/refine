@@ -188,8 +188,8 @@ These small features lead to a huge difference in the development experience, yo
 
 Check out the following examples of multitenant apps built with refine:
 
-- [Multitenancy with refine + Appwrite](https://refine.dev/docs/advanced-tutorials/multi-tenancy/appwrite/)
-- [Multitenancy with refine + Strapi](https://refine.dev/docs/advanced-tutorials/multi-tenancy/strapi-v4/#introduction)
+- [Multitenancy with refine + Appwrite](/docs/guides-concepts/multi-tenancy/#appwrite)
+- [Multitenancy with refine + Strapi](/docs/guides-concepts/multi-tenancy/#strapi)
 
 ## Differences in supported UI frameworks between refine and react-admin,
 
@@ -247,7 +247,7 @@ While both react-admin and refine offer access control features, refine takes it
 
 6. **Multitenancy Support:**
 
-refine provides built-in support for [multitenancy](https://refine.dev/docs/advanced-tutorials/multi-tenancy/strapi-v4/#what-is-multitenancy), allowing developers to create applications that serve multiple tenants with separate data and settings.
+refine provides built-in support for [multitenancy](/docs/guides-concepts/multi-tenancy/#strapi), allowing developers to create applications that serve multiple tenants with separate data and settings.
 
 Refer to [this](#multitenancy) section for details.
 

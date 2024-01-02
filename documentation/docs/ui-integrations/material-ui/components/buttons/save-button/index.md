@@ -13,7 +13,7 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ## Usage
 
-For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/core/hooks/use-form) hook.
+For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/data/hooks/use-form) hook.
 
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
@@ -76,7 +76,7 @@ The `useForm` hook exposes `saveButtonProps` to be passed to `<SaveButton>` comp
 
 ## Properties
 
-### `hideText`
+### hideText
 
 `hideText` is used to show or hide the text of the button. When `true`, only the button icon is visible.
 

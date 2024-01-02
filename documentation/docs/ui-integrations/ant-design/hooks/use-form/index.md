@@ -110,7 +110,7 @@ const PostCreate = () => {
 };
 ```
 
-`useForm` is used to manage forms. It returns the necessary properties and methods to control the [Antd Form](https://ant.design/components/form/). It has been developed by using [`useForm`](/docs/core/hooks/use-form/) imported from the [@refinedev/core](https://github.com/refinedev/refine/tree/master/packages/core) package.
+`useForm` is used to manage forms. It returns the necessary properties and methods to control the [Antd Form](https://ant.design/components/form/). It has been developed by using [`useForm`](/docs/data/hooks/use-form/) imported from the [@refinedev/core](https://github.com/refinedev/refine/tree/master/packages/core) package.
 
 <GeneralConceptsLink />
 
@@ -181,7 +181,7 @@ If you want to show a form in a modal or drawer where necessary route params mig
 
 ## Properties
 
-### `action`
+### action
 
 `useForm` can handle `edit`, `create` and `clone` actions.
 
@@ -198,7 +198,7 @@ values={[
 ]}>
 <TabItem value="create">
 
-`action: "create"` is used for creating new records. `useForm` uses [`useCreate`](/docs/core/hooks/data/use-create) under the hood for mutations on create mode.
+`action: "create"` is used for creating new records. `useForm` uses [`useCreate`](/docs/data/hooks/use-create) under the hood for mutations on create mode.
 
 In the following example, we will show how to use `useForm` with `action: "create"`:
 
@@ -271,7 +271,7 @@ render(<RefineAntdDemo />);
 
 `action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route but that can be changed with the `setId` function or `id` property.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/core/hooks/data/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/core/hooks/data/use-update).
+It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/data/hooks/use-update).
 
 In the following example, we will show how to use `useForm` with `action: "edit"`.
 
@@ -346,7 +346,7 @@ render(<RefineAntdDemo />);
 
 You can think `action:clone` like "save as". It is also similar to `action:edit` but it creates a new record instead of updating the existing one.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/core/hooks/data/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/core/hooks/data/use-create).
+It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/data/hooks/use-create).
 
 ```tsx live url=http://localhost:3000/clone/123 previewHeight=420px
 setInitialRoutes(["/posts/clone/123"]);
@@ -415,11 +415,11 @@ render(<RefineAntdDemo />);
 
 </Tabs>
 
-### `resource`
+### resource
 
 `resource` will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path but it all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. By default it uses the inferred resource name from the route.
 
-> For more information on how `resource` is handled, refer to the [`creating a data provider` section](/docs/core/providers/data-provider#creating-a-data-provider)
+> For more information on how `resource` is handled, refer to the [`creating a data provider` section](/docs/data/data-provider#creating-a-data-provider)
 
 - When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
 - When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
@@ -461,7 +461,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `id`
+### id
 
 `id` is used for determining the record to `edit` or `clone`. By default the `id` is determinted from the route. It can be changed with the `setId` function or the `id` property. Keep in mind that `id` is required for `action: "edit"` and `action: "clone"`.
 
@@ -475,7 +475,7 @@ useForm({
 });
 ```
 
-### `redirect`
+### redirect
 
 `redirect` is used for determining the page to redirect after the form is submitted. By default, it uses the `list`. It can be changed with the `redirect` property.
 
@@ -487,13 +487,13 @@ useForm({
 });
 ```
 
-### `onMutationSuccess`
+### onMutationSuccess
 
 `onMutationSuccess` is a callback function that will be called after a successful mutation.
 
 It receives the following parameters:
 
-- `data`: Returned value from [`useCreate`](/docs/core/hooks/data/use-create) or [`useUpdate`](/docs/core/hooks/data/use-update) depending on the `action`.
+- `data`: Returned value from [`useCreate`](/docs/data/hooks/use-create) or [`useUpdate`](/docs/data/hooks/use-update) depending on the `action`.
 - `variables`: The variables passed to the mutation.
 - `context`: react-query context.
 - `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
@@ -506,13 +506,13 @@ useForm({
 });
 ```
 
-### `onMutationError`
+### onMutationError
 
 It's a callback function that will be called after a mutation fails.
 
 It receives the following parameters:
 
-- `data`: Returned value from [`useCreate`](/docs/core/hooks/data/use-create) or [`useUpdate`](/docs/core/hooks/data/use-update) depending on the `action`.
+- `data`: Returned value from [`useCreate`](/docs/data/hooks/use-create) or [`useUpdate`](/docs/data/hooks/use-update) depending on the `action`.
 - `variables`: The variables passed to the mutation.
 - `context`: react-query context.
 - `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
@@ -525,7 +525,7 @@ useForm({
 });
 ```
 
-### `invalidates`
+### invalidates
 
 You can use `invalidates` to manage the invalidations that will occur at the end of the mutation.
 
@@ -540,7 +540,7 @@ useForm({
 });
 ```
 
-### `dataProviderName`
+### dataProviderName
 
 If there is more than one `dataProvider`, you should pass the name of the `dataProvider` you are going to use to `dataProviderName`.
 
@@ -552,7 +552,7 @@ useForm({
 });
 ```
 
-### `mutationMode`
+### mutationMode
 
 Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`. Default mode is `pessimistic`.
 Each mode corresponds to a different type of user experience.
@@ -565,9 +565,9 @@ useForm({
 
 > For more information about mutation modes, refer to the [Mutation Mode documentation](/docs/advanced-tutorials/mutation-mode)
 
-### `successNotification`
+### successNotification
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 `successNotification` allows you to customize the success notification that pops up after the form is submitted, and `useForm` calls the `open` function from [`NotificationProvider`][notification-provider]:
 
@@ -583,9 +583,9 @@ useForm({
 });
 ```
 
-### `errorNotification`
+### errorNotification
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 `errorNotification` allows you to customize the error notification that pops up after the form submission fails, and `useForm` calls the `open` function from [`NotificationProvider`][notification-provider]:
 
@@ -611,7 +611,7 @@ useForm({
 }
 ```
 
-### `meta`
+### meta
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
@@ -649,7 +649,7 @@ const myDataProvider = {
 };
 ```
 
-### `queryMeta`
+### queryMeta
 
 In addition to the [`meta`](#meta) property, you can also pass the `queryMeta` property to the `useForm` hook. This property is used to pass additional information to the `useOne` hook that is used to fetch the data in the `edit` and `clone` modes. This is useful when you have to apply different values to the `useOne` hook from the `useCreate` or `useUpdate` hook mutations.
 
@@ -663,7 +663,7 @@ useForm({
 
 If you have overlapping properties in both `meta` and `queryMeta`, the `queryMeta` property will be used.
 
-### `mutationMeta`
+### mutationMeta
 
 In addition to the [`meta`](#meta) property, you can also pass the `mutationMeta` property to the `useForm` hook. This property is used to pass additional information to the `useCreate` or `useUpdate` hook mutations. This is useful when you have to apply different values to the `useCreate` or `useUpdate` hooks from the `useOne` hook query.
 
@@ -677,9 +677,9 @@ useForm({
 
 If you have overlapping properties in both `meta` and `mutationMeta`, the `mutationMeta` property will be used.
 
-### `queryOptions`
+### queryOptions
 
-In the `edit` and `clone` modes, Refine uses [`useOne`](/docs/core/hooks/data/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property. This property will only work in the `edit` and `clone` actions.
+In the `edit` and `clone` modes, Refine uses [`useOne`](/docs/data/hooks/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property. This property will only work in the `edit` and `clone` actions.
 
 ```tsx
 useForm({
@@ -689,9 +689,9 @@ useForm({
 });
 ```
 
-### `createMutationOptions`
+### createMutationOptions
 
-In the `create` and `clone` modes, Refine uses the [`useCreate`](/docs/core/hooks/data/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing the `createMutationOptions` property. This property will only work in the `create` and `clone` actions.
+In the `create` and `clone` modes, Refine uses the [`useCreate`](/docs/data/hooks/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing the `createMutationOptions` property. This property will only work in the `create` and `clone` actions.
 
 ```tsx
 useForm({
@@ -701,9 +701,9 @@ useForm({
 });
 ```
 
-### `updateMutationOptions`
+### updateMutationOptions
 
-In the `edit` mode, Refine uses [`useUpdate`](/docs/core/hooks/data/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property. This property will only work in the `edit` action.
+In the `edit` mode, Refine uses [`useUpdate`](/docs/data/hooks/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property. This property will only work in the `edit` action.
 
 ```tsx
 useForm({
@@ -713,7 +713,7 @@ useForm({
 });
 ```
 
-### `warnWhenUnsavedChanges`
+### warnWhenUnsavedChanges
 
 When set to true, `warnWhenUnsavedChanges` shows a warning when the user tries to leave the page with unsaved changes. It is used to prevent the user from accidentally leaving the page. It is `false` by default
 
@@ -725,7 +725,7 @@ useForm({
 });
 ```
 
-### `submitOnEnter`
+### submitOnEnter
 
 When it's true, `submitOnEnter` will submit the form when the enter key is pressed. It can be used to prevent the user from accidentally leaving the page. It is `false` by default
 
@@ -735,9 +735,9 @@ useForm({
 });
 ```
 
-### `liveMode`
+### liveMode
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 `liveMode` is where you can choose whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in real time throughout your app.
 
@@ -747,9 +747,9 @@ useForm({
 });
 ```
 
-### `onLiveEvent`
+### onLiveEvent
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 `onLiveEvent` is the callback function that is executed when new events from a subscription are arrived.
 
@@ -761,13 +761,13 @@ useForm({
 });
 ```
 
-### `liveParams`
+### liveParams
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
-Params to pass to [liveProvider](/docs/core/providers/live-provider#subscribe)'s subscribe method.
+Params to pass to [liveProvider](/docs/realtime/live-provider#subscribe)'s subscribe method.
 
-### `overtimeOptions`
+### overtimeOptions
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
 `interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
@@ -793,7 +793,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### `autoSave`
+### autoSave
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
@@ -805,7 +805,7 @@ It also supports [`onMutationSuccess`](#onmutationsuccess) and [`onMutationError
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
-#### `enabled`
+#### enabled
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`. By default, it is `false`.
 
@@ -817,7 +817,7 @@ useForm({
 });
 ```
 
-#### `debounce`
+#### debounce
 
 Set the debounce time for the `autoSave` prop. By default, it is `1000` milliseconds.
 
@@ -831,7 +831,7 @@ useForm({
 });
 ```
 
-#### `onFinish`
+#### onFinish
 
 If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
 
@@ -851,7 +851,7 @@ useForm({
 });
 ```
 
-#### `invalidateOnUnmount`
+#### invalidateOnUnmount
 
 This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default, it is `false`.
 
@@ -867,45 +867,45 @@ useForm({
 
 ## Return Values
 
-All [`Refine Core's useForm`](/docs/core/hooks/use-form/) return values also available in `useForm`.
+All [`Refine Core's useForm`](/docs/data/hooks/use-form/) return values also available in `useForm`.
 
-### `form`
+### form
 
 It's a [`<Form>`](https://ant.design/components/form) instance. You can refer to [Antd `<Form>` documentation](https://ant.design/components/form#api) for more information.
 
-### `formProps`
+### formProps
 
 It's required to manage [`<Form>`](https://ant.design/components/form) state and actions.
 
-#### `onFinish`
+#### onFinish
 
 `onFinish` is called when the form is submitted. It will call the appropriate mutation based on the `action` property.
 
 The only difference between `onFinish` and `formProps.onFinish` is that passing a value to `formProps.onFinish`is mandatory, whereas `onFinish` can automatically retrieve values from the form state.
 
-#### `onValuesChange`
+#### onValuesChange
 
 The `warnWhenUnsavedChanges` feature requires this function to work. If you want to override the form's `onValuesChange`, keep this in mind.
 
-#### `onKeyUp`
+#### onKeyUp
 
 `onKeyUp` is a function that will be called when a key is pressed. By default, it will call `form.submit()` function when the pressed key is `Enter`.
 
-#### `initialValues`
+#### initialValues
 
-When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/docs/core/hooks/data/use-one) hook.
+When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/docs/data/hooks/use-one) hook.
 
-### `saveButtonProps`
+### saveButtonProps
 
 It contains all the props needed by the `"submit"` button within the form (disabled,loading etc.). When `saveButtonProps.onClick` is called, it triggers `form.submit()`. You can manually pass these props to your custom button.
 
-### `formLoading`
+### formLoading
 
 `formLoading` is the loading state of a modal. It's `true` when `useForm` is currently being submitted or data is being fetched for the `"edit"` or `"clone"` mode.
 
-### `queryResult`
+### queryResult
 
-If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/core/hooks/data/use-one) and set the returned values as the `queryResult` property.
+If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/data/hooks/use-one) and set the returned values as the `queryResult` property.
 
 ```tsx
 const { queryResult } = useForm();
@@ -913,9 +913,9 @@ const { queryResult } = useForm();
 const { data } = queryResult;
 ```
 
-### `mutationResult`
+### mutationResult
 
-When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/core/hooks/data/use-create). When in `"edit"` mode, it will call [`useUpdate`](/docs/core/hooks/data/use-update) and set the resulting values as the `mutationResult` property.
+When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/data/hooks/use-create). When in `"edit"` mode, it will call [`useUpdate`](/docs/data/hooks/use-update) and set the resulting values as the `mutationResult` property.
 
 ```tsx
 const { mutationResult } = useForm();
@@ -923,7 +923,7 @@ const { mutationResult } = useForm();
 const { data } = mutationResult;
 ```
 
-### `setId`
+### setId
 
 `useForm` determine the `id` from the router. If you want to change the `id` dynamically, you can use the `setId` function.
 
@@ -941,9 +941,9 @@ return (
 );
 ```
 
-### `redirect`
+### redirect
 
-By default, after a successful mutation, `useForm` will redirect to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the `redirect` [property](/docs/core/hooks/use-form/#redirect) in the hook's options.
+By default, after a successful mutation, `useForm` will redirect to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the `redirect` [property](/docs/data/hooks/use-form/#redirect) in the hook's options.
 
 In the following example, we redirect to the `"show"` page after a successful mutation:
 
@@ -961,14 +961,14 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 // --
 ```
 
-### `onFinish`
+### onFinish
 
 `onFinish` is a function that is called when the form is submitted. It will call the appropriate mutation based on the `action` property.
 You can override the default behavior by passing an `onFinish` function in the hook's options.
 
 For example you can [change values before sending to the API](/docs/ui-integrations/ant-design/hooks/use-form#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
 
-### `overtime`
+### overtime
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -978,7 +978,7 @@ const { overtime } = useForm();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-### `autoSaveProps`
+### autoSaveProps
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
@@ -986,7 +986,7 @@ If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, 
 
 ### How can Invalidate other resources?
 
-You can invalidate other resources with help of [`useInvalidate`](/docs/core/hooks/data/use-invalidate) hook.
+You can invalidate other resources with help of [`useInvalidate`](/docs/data/hooks/use-invalidate) hook.
 
 It is useful when you want to `invalidate` other resources don't have relation with the current resource.
 
@@ -1098,8 +1098,8 @@ You can use the `meta` property to pass common values to the mutation and the qu
 
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
-[notification-provider]: /docs/core/providers/notification-provider
-[get-one]: /docs/core/providers/data-provider#getone-
-[create]: /docs/core/providers/data-provider#create-
-[update]: /docs/core/providers/data-provider#update-
-[data-provider]: /docs/core/providers/data-provider
+[notification-provider]: /docs/notification/notification-provider
+[get-one]: /docs/data/data-provider#getone-
+[create]: /docs/data/data-provider#create-
+[update]: /docs/data/data-provider#update-
+[data-provider]: /docs/data/data-provider

@@ -6,7 +6,7 @@ In almost every user facing application, forms are a necessity. They are the pri
 
 ## Handling Data
 
-`useForm` hook orchestrates Refine's [`useOne`](/docs/core/hooks/data/use-one), [`useUpdate`](/docs/core/hooks/data/use-update) and [`useCreate`](/docs/core/hooks/data/use-create) hooks internally to provide a single interface for form handling.
+`useForm` hook orchestrates Refine's [`useOne`](/docs/data/hooks/use-one), [`useUpdate`](/docs/data/hooks/use-update) and [`useCreate`](/docs/data/hooks/use-create) hooks internally to provide a single interface for form handling.
 
 While editing or cloning a record, `useOne` will be used to fetch the record to provide values for the form. When creating a new record, `useCreate` will be used for the mutation. When updating a record, `useUpdate` will be used for the mutation.
 
@@ -55,7 +55,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out Core's `useForm` reference page to learn more about the usage and see it in action.](/docs/core/hooks/use-form/)
+[Check out Core's `useForm` reference page to learn more about the usage and see it in action.](/docs/data/hooks/use-form/)
 
 </TabItem>
 <TabItem value="hook-form" label="React Hook Form" default>
@@ -433,6 +433,56 @@ Used for editing an existing record. This action mode requires an `id` prop to b
 
 Used for cloning an existing record. This action mode requires an `id` prop to be passed to the form. The record with the given `id` will be fetched and the values will be used as the initial values for the form fields and the mutation will be performed to create a new record.
 
+## Relationships <GuideBadge id="guides-concepts/data-fetching/#relationships" />
+
+Refine handles [data relations](/docs/guides-concepts/data-fetching/#relationships) with data hooks(eg: `useOne`, `useMany`, etc.). This compositional design allows you to easily display other resources' data in your components.
+
+However, when it comes to forms, we may want to add fields that are related to other resources. For instance, you may want to add a `category` field to the `products` resource. This field will be a select input that will display the categories fetched from the `categories` resource. Refine offers [`useSelect`](/docs/core/hooks/use-select) hook to easily manage select (like a [Html `<select>` tag](https://www.w3schools.com/tags/tag_select.asp), [React Select](https://react-select.com/home), etc.) components.
+
+You can find more information and usage examples on following `useSelect` documentation pages:
+
+- [Headless](/docs/core/hooks/use-select)
+- [Ant Design Select](/docs/ui-integrations/ant-design/hooks/use-select/)
+- [Material UI Autocomplete](/docs/ui-integrations/material-ui/hooks/use-auto-complete/)
+- [Mantine Select](/docs/ui-integrations/mantine/hooks/use-select/)
+
+In the following example, we will add a `category` field to the `products` resource. This field will be a select input populated with categories using the `useSelect` hook.
+
+<Tabs wrapContent={false}>
+<TabItem value="headless" label="Headless">
+
+import UseSelectHeadless from "./use-select-headless";
+
+<UseSelectHeadless />
+
+</TabItem>
+
+<TabItem  value="antd" label="Ant Design">
+
+import UseSelectAntd from "./use-select-antd";
+
+<UseSelectAntd />
+
+</TabItem>
+
+<TabItem value="material-ui" label="Material UI">
+
+import UseSelectMaterialUI from "./use-select-material-ui";
+
+<UseSelectMaterialUI />
+
+</TabItem>
+
+<TabItem value="mantine" label="Mantine">
+
+import UseSelectMantine from "./use-select-mantine";
+
+<UseSelectMantine />
+
+</TabItem>
+
+</Tabs>
+
 ## Mutation Modes <GlobalConfigBadge id="core/refine-component/#mutationmode" />
 
 `useForm` provides 3 mutation modes to choose from, you may need each of them in different scenarios throughout your application.
@@ -493,7 +543,7 @@ const { formProps } = useForm({
 });
 ```
 
-If you want to disable the invalidation completely and handle it manually, you can pass `false` to the `invalidates` prop. Then, you can use the [`useInvalidate`](/docs/core/hooks/data/use-invalidate) hook to invalidate the queries manually based on your conditions.
+If you want to disable the invalidation completely and handle it manually, you can pass `false` to the `invalidates` prop. Then, you can use the [`useInvalidate`](/docs/data/hooks/use-invalidate) hook to invalidate the queries manually based on your conditions.
 
 ```tsx
 import { useInvalidate } from "@refinedev/core";
@@ -640,7 +690,7 @@ import ServerSideValidationChakraUi from "./server-side-validation-chakra-ui.tsx
 </TabItem>
 </Tabs>
 
-## Notifications <GuideBadge id="api-reference/core/providers/notification-provider" />
+## Notifications <GuideBadge id="notification/notification-provider" />
 
 When forms are submitted, it is a good practice to notify the user about the result of the submission. `useForm` handles this for you, when the mutation succeeds or fails it will show a notification to the user with a proper message. This behavior can be customized or disabled using the `successNotification` and `errorNotification` props.
 
@@ -690,7 +740,7 @@ const { autoSaveProps } = useForm({
 
 ### `<AutoSaveIndicator />`
 
-Refine's core and ui integrations are shipped with an `<AutoSaveIndicator />` component that can be used to show a visual indicator to the user when the auto save is triggered. The `autoSaveProps` value from the `useForm`'s return value can be passed to the `<AutoSaveIndicator />` to show the auto save status to the user. It will automatically show the loading, success and error states to the user.
+Refine's core and ui integrations are shipped with an [`<AutoSaveIndicator />`](/docs/core/components/auto-save-indicator) component that can be used to show a visual indicator to the user when the auto save is triggered. The `autoSaveProps` value from the `useForm`'s return value can be passed to the `<AutoSaveIndicator />` to show the auto save status to the user. It will automatically show the loading, success and error states to the user.
 
 ```tsx title="edit.tsx"
 import { AutoSaveIndicator } from "@refinedev/core";

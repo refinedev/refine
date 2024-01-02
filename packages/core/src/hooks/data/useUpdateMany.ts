@@ -288,12 +288,16 @@ export const useUpdateMany = <
             optimisticUpdateMap = { list: true, many: true, detail: true },
         }) => {
             const { identifier } = select(resourceName);
-            const preferredMeta = pickNotDeprecated(meta, metaData);
+            const {
+                gqlMutation: _,
+                gqlQuery: __,
+                ...preferredMeta
+            } = pickNotDeprecated(meta, metaData) ?? {};
 
             const queryKey = queryKeysReplacement(preferLegacyKeys)(
                 identifier,
                 pickDataProvider(identifier, dataProviderName, resources),
-                pickNotDeprecated(meta, metaData),
+                preferredMeta,
             );
 
             const resourceKeys = keys()

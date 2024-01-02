@@ -2,8 +2,9 @@ import nock from "nock";
 
 nock("http://localhost:3003", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: DeleteManyBlogPostsInput!) {\n      deleteManyBlogPosts (input: $input) {\n    deletedCount\n  }\n    }",
+        query: "mutation DeleteManyBlogPosts($input: DeleteManyBlogPostsInput!) {\n  deleteManyBlogPosts(input: $input) {\n    deletedCount\n  }\n}\n",
         variables: { input: { filter: { id: { in: ["37", "38"] } } } },
+        operationName: "DeleteManyBlogPosts",
     })
     .reply(200, { data: { deleteManyBlogPosts: { deletedCount: 2 } } }, [
         "X-Powered-By",

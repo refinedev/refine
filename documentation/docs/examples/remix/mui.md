@@ -1,6 +1,7 @@
 ---
 id: remix-material-ui
-title: Material UI
+title: Remix with Material UI
+sidebar_label: Remix
 example-tags: [remix, mui]
 ---
 

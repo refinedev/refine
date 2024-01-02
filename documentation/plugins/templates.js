@@ -71,7 +71,24 @@ The source code of the CRM app is also open-source; feel free to use or inspect 
 - **Administration**: Customize CRM settings, user roles, and permissions.
 
 
-This CRM app template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard and all CRUD applications, providing a comprehensive platform for managing customer interactions, project management, and sales processes.`,
+This CRM app template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard and all CRUD applications, providing a comprehensive platform for: 
+
+- Human Resource Management (HRM) Tools
+- IT Service Management (ITSM) Tools
+- Network Monitoring Tools
+- Risk Management Tools
+- Customer Support Tools
+- Financial Planning Systems
+- Customer Analytics Tools
+- Inventory Management Systems
+- Supply Chain Management Tools
+- Retail Management Systems
+- Business Intelligence Tools
+- Electronic Health Record (EHR) Systems
+- Patient Management Systems
+- Health Information Exchange (HIE) Systems
+- Pharmacy Management Systems
+`,
     },
     {
         slug: "next-js-tailwind",
@@ -99,7 +116,7 @@ The source code is also open-source; feel free to use or inspect it to discover 
     },
     {
         slug: "react-admin-panel",
-        title: "Finefoods Material UI Admin Panel",
+        title: "B2B Admin Panel with Material UI",
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-material-ui.jpg",
         ],
@@ -133,7 +150,7 @@ This admin panel template can be used for various app requirements like B2B appl
     },
     {
         slug: "react-admin-panel-ant-design",
-        title: "Finefoods Ant Design Admin Panel",
+        title: "B2B Internal tool with Ant Design",
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-ant-design.jpg",
         ],
@@ -145,7 +162,7 @@ This admin panel template can be used for various app requirements like B2B appl
         dataProvider: "Rest API",
         authProvider: "Custom",
         description: `
-This example of a React admin panel, built with Refine, provides a comprehensive solution for the needs of enterprise-level admin panels. It features a full range of functionalities typical in products used by enterprise companies.
+This example of a B2B React admin panel, built with Refine, provides a comprehensive solution for the needs of enterprise-level internal tools. It features a full range of functionalities typical in products used by enterprise companies.
 
 The admin panel connects to a REST API using a Simple REST data provider. Its user interface is developed with Ant Design, which Refine offers built-in UI framework support.
 
@@ -323,7 +340,7 @@ Since the source code of this RealWorld app is open-source, you have the freedom
         liveDemo: "https://multi-tenancy-strapi.refine.dev",
         github: "https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-strapi",
         tutorial:
-            "https://refine.dev/docs/advanced-tutorials/multi-tenancy/strapi-v4/",
+            "https://refine.dev/docs/guides-concepts/multi-tenancy/#strapi",
         reactPlatform: "Vite",
         uiFramework: "Ant Design",
         dataProvider: "Strapi",
@@ -346,7 +363,7 @@ The source code of this multitenancy app is open-source, allowing you to use or 
         liveDemo: "https://multi-tenancy-appwrite.refine.dev",
         github: "https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-appwrite",
         tutorial:
-            "https://refine.dev/docs/advanced-tutorials/multi-tenancy/appwrite/",
+            "https://refine.dev/docs/guides-concepts/multi-tenancy/#appwrite",
         reactPlatform: "Vite",
         uiFramework: "Ant Design",
         dataProvider: "Appwrite",
@@ -361,7 +378,7 @@ The source code of this multitenancy app is open-source, allowing you to use or 
     },
     {
         slug: "ant-design-template",
-        title: "Ant Design template",
+        title: "Internal tool template with Ant Design ",
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-ant-design-template.jpg",
         ],
@@ -375,12 +392,12 @@ The source code of this multitenancy app is open-source, allowing you to use or 
         dataProvider: "Rest API",
         authProvider: "Custom",
         description: `
-Complete admin panel template built with Material UI. Features authentication and CRUD screens.
+Complete internal tool template built with Material UI. Features authentication and CRUD screens.
         `,
     },
     {
         slug: "material-ui-template",
-        title: "Material UI template",
+        title: "Generic Internal Tool Template with Material UI",
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-material-ui-template.jpg",
         ],
@@ -394,12 +411,12 @@ Complete admin panel template built with Material UI. Features authentication an
         dataProvider: "Rest API",
         authProvider: "Custom",
         description: `
-Complete admin panel template built with Material UI. Features authentication and CRUD screens.
+Complete internal tool template built with Material UI. Features authentication and CRUD screens.
         `,
     },
     {
         slug: "mantine-template",
-        title: "Mantine template",
+        title: "Generic Internal Tool Template with Mantine",
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-mantine-template.jpg",
         ],
@@ -413,12 +430,12 @@ Complete admin panel template built with Material UI. Features authentication an
         dataProvider: "Rest API",
         authProvider: "Custom",
         description: `
-Complete admin panel template built with Mantine. Features authentication and CRUD screens.
+Complete internal tool template built with Mantine. Features authentication and CRUD screens.
         `,
     },
     {
         slug: "chakra-ui-template",
-        title: "Chakra UI template",
+        title: "Generic Internal Tool Template with Chakra UI",
         images: [
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-chakra-ui-template.jpg",
         ],

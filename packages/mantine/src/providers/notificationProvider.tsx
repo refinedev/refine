@@ -148,6 +148,7 @@ export const notificationProvider = (): NotificationProvider => {
                 } else {
                     addNotification(key);
                     showNotification({
+                        id: key!,
                         color: type === "success" ? "primary" : "red",
                         icon:
                             type === "success" ? (

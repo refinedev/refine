@@ -630,7 +630,7 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 
 ## Properties
 
-### `refineCoreProps`
+### refineCoreProps
 
 All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) properties are also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#properties) documentation.
 
@@ -644,7 +644,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `initialValues`
+### initialValues
 
 Default values for the form. Use this to pre-populate the form with data that needs to be displayed. This property is only available for `"create"` action.
 
@@ -656,7 +656,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `defaultVisible`
+### defaultVisible
 
 When `true`, modal will be visible by default. It is `false` by default.
 
@@ -668,7 +668,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `autoSubmitClose`
+### autoSubmitClose
 
 When `true`, modal will be closed after successful submit. It is `true` by default.
 
@@ -680,7 +680,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `autoResetForm`
+### autoResetForm
 
 When `true`, form will be reset after successful submit. It is `true` by default.
 
@@ -692,7 +692,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `syncWithLocation`
+### syncWithLocation
 
 When `true`, the modals visibility state and the `id` of the record will be synced with the URL. It is `false` by default.
 
@@ -704,7 +704,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `overtimeOptions`
+### overtimeOptions
 
 If you want loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
 `interval` is the time interval in milliseconds. `onInterval` is the function that will be called on each interval.
@@ -730,7 +730,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### `autoSave`
+### autoSave
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
@@ -742,7 +742,7 @@ It also supports `onMutationSuccess` and `onMutationError` callback functions. Y
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
-#### `enabled`
+#### enabled
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`. Default value is `false`.
 
@@ -756,7 +756,7 @@ useModalForm({
 });
 ```
 
-#### `debounce`
+#### debounce
 
 Set the debounce time for the `autoSave` prop. Default value is `1000` milliseconds.
 
@@ -772,7 +772,7 @@ useModalForm({
 });
 ```
 
-#### `invalidateOnUnmount`
+#### invalidateOnUnmount
 
 This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. Default value is `false`.
 
@@ -788,7 +788,7 @@ useModalForm({
 });
 ```
 
-#### `invalidateOnClose`
+#### invalidateOnClose
 
 This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. Default value is `false`.
 
@@ -810,7 +810,7 @@ All [`useForm`][use-form-refine-mantine] return values also available in `useMod
 
 All [`mantine useForm`](https://mantine.dev/form/use-form/) return values also available in `useModalForm`. You can find descriptions on [`mantine`](https://mantine.dev/form/use-form/) docs.
 
-### `visible`
+### visible
 
 Current visibility state of the modal.
 
@@ -822,7 +822,7 @@ const modalForm = useModalForm({
 console.log(modalForm.modal.visible); // true
 ```
 
-### `title`
+### title
 
 Title of the modal. Based on resource and action values
 
@@ -839,7 +839,7 @@ const {
 console.log(title); // "Create Post"
 ```
 
-### `close`
+### close
 
 A function that can close the modal. It's useful when you want to close the modal manually.
 
@@ -860,7 +860,7 @@ return (
 );
 ```
 
-### `submit`
+### submit
 
 `submit` is a function that can submit the form. It's useful when you want to submit the form manually.
 
@@ -881,7 +881,7 @@ return (
 );
 ```
 
-### `show`
+### show
 
 `show` is a function that can show the modal.
 
@@ -909,7 +909,7 @@ return (
 );
 ```
 
-### `saveButtonProps`
+### saveButtonProps
 
 `saveButtonProps` contains all the props needed by the "submit" button within the modal (disabled,loading etc.). You can manually pass these props to your custom button.
 
@@ -932,7 +932,7 @@ return (
 );
 ```
 
-### `overtime`
+### overtime
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -942,7 +942,7 @@ const { overtime } = useModalForm();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-### `autoSaveProps`
+### autoSaveProps
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
@@ -1012,7 +1012,7 @@ const UserCreate: React.FC = () => {
 | Property                               | Description                                                         | Type                                                    |
 | -------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
 | modalProps                             | Configuration object for the modal or drawer                        | [`ModalPropsType`](#modalpropstype)                     |
-| refineCoreProps                        | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/docs/core/hooks/use-form/#properties) |
+| refineCoreProps                        | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/docs/data/hooks/use-form/#properties) |
 | `@mantine/form`'s `useForm` properties | See [useForm][use-form-refine-mantine] documentation                |
 
 <br />
@@ -1042,7 +1042,7 @@ const UserCreate: React.FC = () => {
 | Property                                  | Description                                                     | Type                                                                                                                                    |
 | ----------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | modal                                     | Relevant states and methods to control the modal or drawer      | [`ModalReturnValues`](#modalreturnvalues)                                                                                               |
-| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values)                                                                       |
+| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/data/hooks/use-form/#return-values)                                                                       |
 | `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |                                                                                                                                         |
 | overtime                                  | Overtime loading props                                          | `{ elapsedTime?: number }`                                                                                                              |
 | autoSaveProps                             | Auto save props                                                 | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }` |
@@ -1065,6 +1065,6 @@ const UserCreate: React.FC = () => {
 <CodeSandboxExample path="form-mantine-use-modal-form" />
 
 [use-form-refine-mantine]: /docs/ui-integrations/mantine/hooks/use-form
-[use-form-core]: /docs/core/hooks/use-form/
+[use-form-core]: /docs/data/hooks/use-form/
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

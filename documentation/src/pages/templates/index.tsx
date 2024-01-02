@@ -14,9 +14,7 @@ import {
     Mantine,
     Medusa,
     Mui,
-    Rest,
     RestWithoutText,
-    ShadCnUI,
     Strapi,
     Supabase,
 } from "@site/src/assets/integration-icons";
@@ -332,14 +330,14 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
     },
     {
         to: "/templates/react-admin-panel",
-        title: "Finefoods Material UI Admin Panel",
+        title: "B2B Admin Panel with Material UI",
         description:
             "A comprehensive Admin panel template built using Refine and Material UI demonstrating a food ordering system. It includes features such as authentication, a dashboard, and over 10 CRUD interfaces, ranging from orders to user management.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-material-ui.jpg",
@@ -353,14 +351,14 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
     },
     {
         to: "/templates/react-admin-panel-ant-design",
-        title: "Finefoods Ant Design Admin Panel",
+        title: "B2B Internal tool with Ant Design",
         description:
             "A comprehensive Admin panel template built using Refine and Ant design demonstrating a food ordering system. It includes features such as authentication, a dashboard, and over 10 CRUD interfaces, ranging from orders to user management.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-ant-design.jpg",
@@ -374,7 +372,7 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
@@ -478,7 +476,7 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
@@ -527,9 +525,9 @@ const dataTemplates: {
     },
     {
         to: "/templates/ant-design-template",
-        title: "Ant Design Template",
+        title: "Generic Internal Tool Template with Ant Design",
         description:
-            "Complete admin panel template built with Ant Design. Features authentication and CRUD screens.",
+            "Complete internal tool template built with Ant Design. Features authentication and CRUD screens.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/ant-design-template.jpg",
         integrations: [
             {
@@ -541,16 +539,16 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
     },
     {
         to: "/templates/material-ui-template",
-        title: "Material UI Template",
+        title: "Generic Internal Tool Template with Material UI",
         description:
-            "Complete admin panel template built with Material UI. Features authentication and CRUD screens.",
+            "Complete internal tool template built with Material UI. Features authentication and CRUD screens.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/material-ui-template.jpg",
         integrations: [
             {
@@ -562,16 +560,16 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
     },
     {
         to: "/templates/chakra-ui-template",
-        title: "Chakra UI Template",
+        title: "Generic Internal Tool Template with Chakra UI",
         description:
-            "Complete admin panel template built with Chakra UI. Features authentication and CRUD screens.",
+            "Complete internal tool template built with Chakra UI. Features authentication and CRUD screens.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/chakra-ui-template.jpg",
         integrations: [
             {
@@ -583,16 +581,16 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],
     },
     {
         to: "/templates/mantine-template",
-        title: "Mantine Template",
+        title: "Generic Internal Tool Template with Mantine",
         description:
-            "Complete admin panel template built with Mantine. Features authentication and CRUD screens.",
+            "Complete internal tool template built with Mantine. Features authentication and CRUD screens.",
         image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/mantine-template.jpg",
         integrations: [
             {
@@ -604,7 +602,7 @@ const dataTemplates: {
             {
                 label: "Rest API",
                 icon: (props: SVGProps<SVGSVGElement>) => (
-                    <Rest width={16} height={16} {...props} />
+                    <RestWithoutText width={16} height={16} {...props} />
                 ),
             },
         ],

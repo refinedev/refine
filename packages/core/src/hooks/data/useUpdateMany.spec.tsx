@@ -17,6 +17,7 @@ import {
 
 import * as UseInvalidate from "../invalidate/index";
 import { useUpdateMany } from "./useUpdateMany";
+import * as queryKeys from "@definitions/helpers/queryKeys";
 
 describe("useUpdateMany Hook", () => {
     it("with rest json server", async () => {
@@ -174,6 +175,35 @@ describe("useUpdateMany Hook", () => {
         await assertMutationSuccess(result);
     });
 
+    it("should exclude gqlQuery and qqlMutation from query keys", async () => {
+        const catchFn = jest.fn();
+
+        jest.spyOn(queryKeys, "queryKeysReplacement").mockImplementationOnce(
+            () => catchFn,
+        );
+
+        const { result } = renderHook(() => useUpdateMany(), {
+            wrapper: TestWrapper({}),
+        });
+
+        const resource = "posts";
+
+        result.current.mutate({
+            resource,
+            ids: [1],
+            values: {},
+            meta: {
+                foo: "bar",
+                gqlQuery: "gqlQuery" as any,
+                gqlMutation: "gqlMutation" as any,
+            },
+        });
+
+        await waitFor(() => {
+            expect(catchFn).toBeCalledWith(resource, "default", { foo: "bar" });
+        });
+    });
+
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
         const updateManyMock = jest.fn();
 
@@ -196,7 +226,11 @@ describe("useUpdateMany Hook", () => {
             resource: "posts",
             ids: [],
             values: {},
-            meta: { foo: "bar" },
+            meta: {
+                foo: "bar",
+                gqlQuery: "gqlQuery" as any,
+                gqlMutation: "gqlMutation" as any,
+            },
         });
 
         await waitFor(() => {
@@ -208,6 +242,8 @@ describe("useUpdateMany Hook", () => {
                 meta: expect.objectContaining({
                     foo: "bar",
                     baz: "qux",
+                    gqlQuery: "gqlQuery",
+                    gqlMutation: "gqlMutation",
                 }),
             }),
         );

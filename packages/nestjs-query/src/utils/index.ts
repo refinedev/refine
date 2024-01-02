@@ -1,15 +1,59 @@
 import {
-    CrudOperators,
-    LogicalFilter,
-    CrudSorting,
-    Pagination,
     CrudFilter,
+    CrudOperators,
+    CrudSorting,
+    LogicalFilter,
+    Pagination,
 } from "@refinedev/core";
+
 import camelcase from "camelcase";
-import VariableOptions from "gql-query-builder/build/VariableOptions";
 import * as gql from "gql-query-builder";
-import { singular } from "pluralize";
+import VariableOptions from "gql-query-builder/build/VariableOptions";
+import { Client } from "graphql-ws";
 import set from "lodash/set";
+import { singular } from "pluralize";
+
+import { getOperationFields } from "./graphql";
+
+export const generateSubscription = (
+    client: Client,
+    { callback, params, meta }: any,
+    type: string,
+) => {
+    const generatorMap: any = {
+        created: generateCreatedSubscription,
+        updated: generateUpdatedSubscription,
+        deleted: generateDeletedSubscription,
+    };
+
+    const { resource, filters, subscriptionType, id, ids } = params ?? {};
+
+    const generator = generatorMap[type];
+
+    const { operation, query, variables, operationName } = generator({
+        ids,
+        id,
+        resource,
+        filters,
+        meta,
+        subscriptionType,
+    });
+
+    const onNext = (payload: any) => {
+        callback(payload.data[operation]);
+    };
+
+    const unsubscribe = client.subscribe(
+        { query, variables, operationName },
+        {
+            next: onNext,
+            error: console.error,
+            complete: () => null,
+        },
+    );
+
+    return unsubscribe;
+};
 
 const operatorMap: { [key: string]: string } = {
     eq: "eq",
@@ -131,6 +175,40 @@ export const generateCreatedSubscription = ({
     filters,
     meta,
 }: any) => {
+    const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
+
+    if (gqlOperation) {
+        const singularResourceName = camelcase(singular(resource), {
+            pascalCase: true,
+        });
+
+        const operationName = `Created${singularResourceName}`;
+
+        const operation = `created${singularResourceName}`;
+
+        const query = `
+            subscription ${operationName}($input: Create${singularResourceName}SubscriptionFilterInput) {
+                ${operation}(input: $input) {
+                    ${getOperationFields(gqlOperation)}
+                }
+            }
+        `;
+
+        const variables: VariableOptions = {};
+
+        if (filters) {
+            variables["input"] = {
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
+            };
+        }
+
+        return { query, variables, operation, operationName };
+    }
+
     const operation = `created${camelcase(singular(resource), {
         pascalCase: true,
     })}`;
@@ -166,10 +244,53 @@ export const generateCreatedSubscription = ({
 };
 
 export const generateUpdatedSubscription = ({
+    id,
     resource,
     filters,
     meta,
 }: any) => {
+    const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
+
+    if (gqlOperation) {
+        const singularResourceName = camelcase(singular(resource), {
+            pascalCase: true,
+        });
+
+        const operationName = `Updated${singularResourceName}`;
+
+        const operation = `updatedOne${singularResourceName}`;
+
+        const query = `
+            subscription ${operationName}($input: UpdateOne${singularResourceName}SubscriptionFilterInput) {
+                ${operation}(input: $input) {
+                   ${getOperationFields(gqlOperation)}
+                }
+            }
+        `;
+
+        const variables: VariableOptions = {};
+
+        if (filters) {
+            variables["input"] = {
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
+            };
+        }
+
+        if (id) {
+            variables["input"] = {
+                filter: {
+                    id: { eq: id },
+                },
+            };
+        }
+
+        return { query, variables, operation, operationName };
+    }
+
     const operation = `updatedOne${camelcase(singular(resource), {
         pascalCase: true,
     })}`;
@@ -195,6 +316,23 @@ export const generateUpdatedSubscription = ({
         };
     }
 
+    if (id) {
+        queryVariables["input"] = {
+            type: camelcase(
+                `update_one_${singular(resource)}_subscription_filter_input`,
+                {
+                    pascalCase: true,
+                },
+            ),
+            required: true,
+            value: {
+                filter: {
+                    id: { eq: id },
+                },
+            },
+        };
+    }
+
     const { query, variables } = gql.subscription({
         operation,
         fields: meta.fields,
@@ -209,6 +347,38 @@ export const generateDeletedSubscription = ({
     filters,
     meta,
 }: any) => {
+    if (meta?.gqlQuery) {
+        const singularResourceName = camelcase(singular(resource), {
+            pascalCase: true,
+        });
+
+        const operationName = `Deleted${singularResourceName}`;
+
+        const operation = `deletedOne${singularResourceName}`;
+
+        const query = `
+            subscription ${operationName}($input: DeleteOne${singularResourceName}SubscriptionFilterInput) {
+                ${operation}(input: $input) {
+                    id
+                }
+            }
+        `;
+
+        const variables: VariableOptions = {};
+
+        if (filters) {
+            variables["input"] = {
+                filter: generateFilters(
+                    filters.filter(
+                        (filter: LogicalFilter) => !filter.field.includes("."),
+                    ),
+                ),
+            };
+        }
+
+        return { query, variables, operation, operationName };
+    }
+
     const operation = `deletedOne${camelcase(singular(resource), {
         pascalCase: true,
     })}`;

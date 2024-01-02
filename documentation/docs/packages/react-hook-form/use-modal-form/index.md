@@ -597,7 +597,7 @@ All [`useForm`][refine-react-hook-form-use-form] props also available in `useMod
 
 All [`React Hook Form useForm`][react-hook-form-use-form] props also available in `useModalForm`. You can find descriptions on [`React Hook Form`][react-hook-form-use-form] docs.
 
-### `defaultValues`
+### defaultValues
 
 Default values for the form. Use this to pre-populate the form with data that needs to be displayed. This property is only available with `"create"` action.
 
@@ -609,7 +609,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `defaultVisible`
+### defaultVisible
 
 When `true`, modal will be visible by default. Defaults to `false`.
 
@@ -621,7 +621,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `autoSubmitClose`
+### autoSubmitClose
 
 When `true`, modal will be closed after successful submit. Defaults to `true`.
 
@@ -633,7 +633,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `autoResetForm`
+### autoResetForm
 
 When `true`, form will be reset after successful submit. Defaults to `true`.
 
@@ -645,7 +645,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `warnWhenUnsavedChanges`
+### warnWhenUnsavedChanges
 
 When you have unsaved changes and try to leave the current page, Refine shows a confirmation modal box. To activate this feature. By default, this feature is disabled.
 
@@ -657,7 +657,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `syncWithLocation`
+### syncWithLocation
 
 When `true`, the modals visibility state and the `id` of the record will be synced with the URL. By default, this feature is disabled.
 
@@ -669,7 +669,7 @@ const modalForm = useModalForm({
 });
 ```
 
-### `autoSave`
+### autoSave
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
@@ -681,7 +681,7 @@ It also supports `onMutationSuccess` and `onMutationError` callback functions. Y
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
-#### `enabled`
+#### enabled
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`. By default, it is set to `false`.
 
@@ -695,7 +695,7 @@ useModalForm({
 });
 ```
 
-#### `debounce`
+#### debounce
 
 Set the debounce time for the `autoSave` prop. Default value is `1000` milliseconds.
 
@@ -711,7 +711,7 @@ useModalForm({
 });
 ```
 
-#### `onFinish`
+#### onFinish
 
 If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
 
@@ -733,7 +733,7 @@ useModalForm({
 });
 ```
 
-#### `invalidateOnUnmount`
+#### invalidateOnUnmount
 
 This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default it is set to `false`.
 
@@ -749,7 +749,7 @@ useDrawerForm({
 });
 ```
 
-#### `invalidateOnClose`
+#### invalidateOnClose
 
 This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the modal is closed. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default it is set to `false`.
 
@@ -771,7 +771,7 @@ All [`useForm`][refine-react-hook-form-use-form] return values also available in
 
 All [`React Hook Form useForm`][react-hook-form-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/list-of-packages#return-values) docs.
 
-### `visible`
+### visible
 
 Current visibility state of the modal.
 
@@ -783,7 +783,7 @@ const modalForm = useModalForm({
 console.log(modalForm.modal.visible); // true
 ```
 
-### `title`
+### title
 
 Title of the modal. Based on resource and action values
 
@@ -800,7 +800,7 @@ const {
 console.log(title); // "Create Post"
 ```
 
-### `close`
+### close
 
 A function that can close the modal. It's useful when you want to close the modal manually.
 
@@ -836,7 +836,7 @@ return (
 );
 ```
 
-### `submit`
+### submit
 
 A function that can submit the form. It's useful when you want to submit the form manually.
 
@@ -871,7 +871,7 @@ return (
 );
 ```
 
-### `show`
+### show
 
 A function that can show the modal.
 
@@ -904,7 +904,7 @@ return (
 );
 ```
 
-### `saveButtonProps`
+### saveButtonProps
 
 It contains all the props needed by the "submit" button within the modal (disabled,loading etc.). You can manually pass these props to your custom button.
 
@@ -973,7 +973,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 | Property                      | Description                                                     | Type                                                              |
 | ----------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- |
 | modal                         | Relevant states and methods to control the modal                | [`ModalReturnValues`](#modalreturnvalues)                         |
-| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values) |
+| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/data/hooks/use-form/#return-values) |
 | React Hook Form Return Values | See [React Hook Form][react-hook-form-use-form] documentation   |
 
 #### ModalReturnValues
@@ -994,6 +994,6 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 [@refinedev/react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [refine-react-hook-form-use-form]: /docs/packages/list-of-packages
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
-[use-form-core]: /docs/core/hooks/use-form/
+[use-form-core]: /docs/data/hooks/use-form/
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

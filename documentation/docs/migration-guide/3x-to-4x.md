@@ -59,7 +59,7 @@ You must make this change for all packages that start with `@pankod`.
 
 ## **`@pankod/refine-core` changes**
 
-### `routerProvider`
+### routerProvider
 
 **Refine v4** includes a new interface for the `routerProvider` prop. It is now smaller and more flexible, as it leaves the control of the routes to the user and only constructs the communication and bindings of the router and **Refine**.
 
@@ -89,7 +89,7 @@ While this will allow you to use the old router provider, we do not recommend it
 
 :::
 
-### `resources`
+### resources
 
 With the new `routerProvider` interface, we also made changes to the `resources` prop, which now works more like an interaction and connection point between your API and the app rather than a necessity for the router to work. Your router can work without `resources`, in the same way your `resources` can work without a router.
 
@@ -154,7 +154,7 @@ resources={[
 ]}
 ```
 
-### `authProvider`
+### authProvider
 
 **Refine** still supports the `authProvider@v3` for backward compatibility. We changed its name to `legacyAuthProvider` and it will be removed in the next major version. If you want to continue using the `authProvider@v3` you can use it as `legacyAuthProvider` in your project.
 
@@ -479,7 +479,7 @@ If you still want to use the `useNavigation` hook and its returned functions in 
 
 ### `useRouterContext` hook
 
-This hook is now deprecated and will only work with the legacy router provider. While it was primarily used internally, you might have used it if you had a custom `<Sider>` component in your layout. If this is the case, you should replace it with the appropriate replacement hooks based on your use case: [`useGo`](/docs/core/hooks/navigation/use-go), [`useParsed`](/docs/core/hooks/navigation/use-parsed), [`useBack`](/docs/core/hooks/navigation/use-back) or [`useLink`](/docs/core/hooks/navigation/use-link).
+This hook is now deprecated and will only work with the legacy router provider. While it was primarily used internally, you might have used it if you had a custom `<Sider>` component in your layout. If this is the case, you should replace it with the appropriate replacement hooks based on your use case: [`useGo`](/docs/routing/hooks/use-go), [`useParsed`](/docs/routing/hooks/use-parsed), [`useBack`](/docs/routing/hooks/use-back) or [`useLink`](/docs/routing/hooks/use-link).
 
 ```diff
 + import { useRouterContext } from "@pankod/refine-core";
@@ -491,7 +491,7 @@ const MyComponent = () => {
 }
 ```
 
-### `metaData` to `meta`
+### metaData to meta
 
 `metaData` is deprecated in all hooks and components. Use `meta` instead.
 
@@ -1475,5 +1475,5 @@ After that, you can import them from `react-hook-form` package directly.
 [refine-codemod]: https://github.com/refinedev/refine/tree/master/packages/codemod
 [Refine]: /docs/core/refine-component
 [resources]: /docs/core/refine-component#resources
-[routerprovider]: /docs/core/providers/router-provider
-[auth-provider]: /docs/core/providers/auth-provider
+[routerprovider]: /docs/routing/router-provider
+[auth-provider]: /docs/authentication/auth-provider

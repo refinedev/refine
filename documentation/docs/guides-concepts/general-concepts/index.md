@@ -91,7 +91,7 @@ const myDataProvider: DataProvider = {
 };
 ```
 
-> Refine offers various built-in data providers for popular data sources like REST, Strapi, AirTable, Supabase, GraphQL, and more. See the [Data Providers](/docs/core/providers/data-provider) page for more information.
+> Refine offers various built-in data providers for popular data sources like REST, Strapi, AirTable, Supabase, GraphQL, and more. See the [Data Providers](/docs/data/data-provider) page for more information.
 
 > See the [Data Fetching](/docs/guides-concepts/data-fetching/) guide for more information.
 
@@ -300,7 +300,7 @@ For example, after creating, updating, or deleting a record for `products` resou
 
 Refine has out-of-the-box notification providers for popular UI libraries like **Ant Design**, **Material UI**, **Chakra UI**, and **Mantine**.
 
-> See the [Notifications](/docs/core/providers/notification-provider) guide for more information.
+> See the [Notifications](/docs/notification/notification-provider) guide for more information.
 
 #### Hooks
 
@@ -426,7 +426,7 @@ When provided, our UI Integrations work out-of-the-box with I18n Provider.
 
 For example, it will automatically translate menu items, button texts, table columns, page titles, and more.
 
-> See the [Internationalization](/docs/core/providers/i18n-provider) guide for more information.
+> See the [Internationalization](/docs/i18n/i18n-provider) guide for more information.
 
 ### Router Provider
 

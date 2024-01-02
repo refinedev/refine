@@ -188,6 +188,26 @@ export const renderer = ({
                     val = valViewableSingle;
                 }
 
+                if (
+                    field?.relationInfer &&
+                    field?.relationInfer?.type === "object" &&
+                    !field?.relationInfer?.accessor
+                ) {
+                    console.log(
+                        "@refinedev/inferencer: Inferencer failed to render this field",
+                        {
+                            key: field.key,
+                            relation: field.relationInfer,
+                        },
+                    );
+
+                    return `renderCell: function render({ getValue }) {
+                        return (
+                            <span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>
+                        )
+                    }`;
+                }
+
                 renderCell = `
                 renderCell: function render({ value }) {
                     return ${loadingCondition} (
@@ -212,11 +232,31 @@ export const renderer = ({
                         field?.relationInfer?.accessor,
                     );
 
-                    renderCell = `
+                    const cannotRender =
+                        field?.relationInfer?.type === "object" &&
+                        !field?.relationInfer?.accessor;
+
+                    if (cannotRender) {
+                        console.log(
+                            "@refinedev/inferencer: Inferencer failed to render this field",
+                            {
+                                key: field.key,
+                                relation: field.relationInfer,
+                            },
+                        );
+
+                        renderCell = `
+                        renderCell: function render({ value }) {
+                            return <span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>;
+                        }
+                        `;
+                    } else {
+                        renderCell = `
                     renderCell: function render({ value }) {
                         return ${loadingCondition} ${valViewableSingle};
                     }
                     `;
+                    }
                 } else {
                     renderCell = "";
                 }
@@ -705,6 +745,11 @@ export const renderer = ({
         return undefined;
     };
 
+    const customId = fields?.[0]?.key ?? "id";
+    const getRowIdProp = fields?.find((field) => field?.key === "id")
+        ? ""
+        : `getRowId={(row) => row?.${customId}}`;
+
     const {
         canEdit,
         canShow,
@@ -824,7 +869,7 @@ export const renderer = ({
 
         return (
             <List>
-                <DataGrid {...dataGridProps} columns={columns} autoHeight />
+                <DataGrid {...dataGridProps} ${getRowIdProp} columns={columns} autoHeight />
             </List>
         );
     };

@@ -1,35 +1,33 @@
 import React from "react";
 
 import { useList } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";
-import { Audit, Deal } from "@/interfaces";
+import {
+    LatestActivitiesAuditsQuery,
+    LatestActivitiesDealsQuery,
+} from "@/graphql/types";
 
 import styles from "./index.module.css";
+import { AUDITS_QUERY, DEALS_QUERY } from "./queries";
 
 export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
     limit = 5,
 }) => {
-    const { data: deals, isLoading: isLoadingDeals } = useList<Deal>({
+    const { data: deals, isLoading: isLoadingDeals } = useList<
+        GetFieldsFromList<LatestActivitiesDealsQuery>
+    >({
         resource: "deals",
         pagination: {
             mode: "off",
         },
         meta: {
-            fields: [
-                "id",
-                "title",
-                {
-                    stage: ["id", "title"],
-                },
-                {
-                    company: ["id", "name", "avatarUrl"],
-                },
-            ],
+            gqlQuery: DEALS_QUERY,
         },
     });
     const {
@@ -37,7 +35,7 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
         isLoading: isLoadingAudit,
         isError,
         error,
-    } = useList<Audit>({
+    } = useList<GetFieldsFromList<LatestActivitiesAuditsQuery>>({
         resource: "audits",
         pagination: {
             pageSize: limit,
@@ -61,19 +59,7 @@ export const DashboardLatestActivities: React.FC<{ limit?: number }> = ({
             },
         ],
         meta: {
-            fields: [
-                "id",
-                "action",
-                "targetEntity",
-                "targetId",
-                {
-                    changes: ["field", "from", "to"],
-                },
-                "createdAt",
-                {
-                    user: ["id", "name", "avatarUrl"],
-                },
-            ],
+            gqlQuery: AUDITS_QUERY,
         },
     });
 

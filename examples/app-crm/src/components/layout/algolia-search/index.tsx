@@ -8,10 +8,17 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Input, List, Popover, Tag, Typography } from "antd";
 import cn from "classnames";
 
-import { Company, Contact, Deal, Event, Quote, Task, User } from "@/interfaces";
+import {
+    Company,
+    Contact,
+    Deal,
+    Event,
+    Quote,
+    Task,
+    User,
+} from "@/graphql/schema.types";
 
 import { CustomAvatar } from "../../custom-avatar";
-
 import styles from "./index.module.css";
 
 export const AlgoliaSearch: React.FC = () => {
