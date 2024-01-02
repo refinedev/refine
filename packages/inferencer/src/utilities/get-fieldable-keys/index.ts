@@ -1,4 +1,5 @@
 const urlLikeKeyRegexp = /(image|photo|avatar|url|logo|cover|thumbnail|icon)/i;
+const nameLikeRegexp = /^(\w|\d|_|-|)*?(name|label){1}$/i;
 
 /**
  * Returns a list of keys that are likely to be fieldable.
@@ -21,6 +22,12 @@ export const getFieldableKeys = (
         "lastName",
         "url",
     ];
+
+    const objectKeys = Object.keys(data);
+
+    const nameLikeKeys = objectKeys.filter((k) => nameLikeRegexp.test(k));
+
+    fieldableProperties.push(...nameLikeKeys);
 
     if (urlLikeKeyRegexp.test(key)) {
         fieldableProperties.unshift("url");
