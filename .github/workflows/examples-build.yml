@@ -5,13 +5,11 @@ on:
     branches:
       - master
     types:
+      - labeled
       - synchronize
       - opened
       - reopened
       - ready_for_review
-    paths:
-      - "packages/**"
-      - "examples/**"
   push:
     branches:
       - master
@@ -53,6 +51,11 @@ jobs:
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+
+      - name: Fetch commits
+        run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
 
       # run npm ci
       - name: Use Node.js ${{ matrix.node-version }}
@@ -61,9 +64,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
+      - name: Install Dependencies
+        run: npm ci
+
       - name: Split Into Chunks
         id: chunkstep
-        run: CHUNKS=8 node ./.github/workflows/build-example-chunks.js
+        run: CHUNKS=8 BASE_REF=${{ github.base_ref }} BUILD_ALL_EXAMPLES=${{ (contains(steps.pr-labels.outputs.labels, ' build-examples ') || github.event_name == 'schedule' ) && 'true' || 'false' }} node ./.github/workflows/build-example-chunks.js
 
   build-chunk-1:
     runs-on: ubuntu-latest
@@ -85,9 +91,6 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v3
 
-      - name: Fetch commits
-        run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -98,10 +101,10 @@ jobs:
         run: npm ci
 
       - name: Bootstrap
-        run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Get short SHA
         id: slug
@@ -130,9 +133,6 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v3
 
-      - name: Fetch commits
-        run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -143,10 +143,10 @@ jobs:
         run: npm ci
 
       - name: Bootstrap
-        run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Get short SHA
         id: slug
@@ -175,9 +175,6 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v3
 
-      - name: Fetch commits
-        run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -188,10 +185,10 @@ jobs:
         run: npm ci
 
       - name: Bootstrap
-        run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_3 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_3 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_3 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_3 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Get short SHA
         id: slug
@@ -220,9 +217,6 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v3
 
-      - name: Fetch commits
-        run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -233,10 +227,10 @@ jobs:
         run: npm ci
 
       - name: Bootstrap
-        run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_4 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_4 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_4 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_4 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Get short SHA
         id: slug
@@ -265,9 +259,6 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v3
 
-      - name: Fetch commits
-        run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -278,10 +269,10 @@ jobs:
         run: npm ci
 
       - name: Bootstrap
-        run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_5 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_5 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_5 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_5 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Get short SHA
         id: slug
@@ -310,9 +301,6 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v3
 
-      - name: Fetch commits
-        run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -323,10 +311,10 @@ jobs:
         run: npm ci
 
       - name: Bootstrap
-        run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_6 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_6 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_6 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_6 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Get short SHA
         id: slug
@@ -355,9 +343,6 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v3
 
-      - name: Fetch commits
-        run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -368,10 +353,10 @@ jobs:
         run: npm ci
 
       - name: Bootstrap
-        run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_7 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_7 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_7 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_7 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Get short SHA
         id: slug
@@ -400,9 +385,6 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v3
 
-      - name: Fetch commits
-        run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -413,10 +395,10 @@ jobs:
         run: npm ci
 
       - name: Bootstrap
-        run: npm run bootstrap -- --scope={${{ needs.chunks.outputs.CHUNK_8 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_8 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Build
-        run: npm run build -- --no-bail --scope={${{ needs.chunks.outputs.CHUNK_8 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_8 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
 
       - name: Get short SHA
         id: slug

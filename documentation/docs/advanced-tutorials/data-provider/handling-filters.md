@@ -5,7 +5,7 @@ title: Handling Filters
 
 **Refine** expects an array of type `CrudFilters` to filter results based on some field’s values. So you can use more than one filter. Even the `or` operator can be used to combine multiple filters.
 
-## `CrudFilters`
+## CrudFilters
 
 `CrudFilters` is an array of objects with the following properties:
 
@@ -55,7 +55,7 @@ type CrudFilter = LogicalFilter | ConditionalFilter;
 type CrudFilters = CrudFilter[];
 ```
 
-## `LogicalFilters`
+## LogicalFilters
 
 `LogicalFilter` works with `AND` logic. For example, if you want to filter by `name` field and `age` field, you can use the following filter:
 
@@ -76,7 +76,7 @@ const filter = [
 
 Here the query will look like: `"name" = "John" AND "age" < 30`
 
-## `ConditionalFilters`
+## ConditionalFilters
 
 `ConditionalFilter` works `or` / `and` operator and expects an array of `LogicalFilter` objects in the `value` property. For example, if you want to filter multiple `OR` by `name` field and `age` field, you can use the following filter:
 

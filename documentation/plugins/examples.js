@@ -82,7 +82,9 @@ const addColorToTags = (tags) => {
 
     const selectedColorIndexes = [];
     const tagsWithColor = tags.map((tag) => {
+        // pick a random color
         let randomColorIndex = Math.floor(Math.random() * colors.length);
+        // if the color is already used, pick another one
         while (selectedColorIndexes.includes(randomColorIndex)) {
             randomColorIndex = Math.floor(Math.random() * colors.length);
         }
@@ -125,7 +127,7 @@ function plugin() {
         },
         async contentLoaded({ allContent, actions }) {
             if (!process.env.DISABLE_EXAMPLES) {
-                console.log("Composing refine examples...");
+                console.log("Composing Refine examples...");
 
                 const { createData } = actions;
 

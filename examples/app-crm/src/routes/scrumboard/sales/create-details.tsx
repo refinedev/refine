@@ -6,7 +6,7 @@ import { HttpError, useInvalidate, useNavigation } from "@refinedev/core";
 import { DatePicker, Form, Input, Modal } from "antd";
 import dayjs from "dayjs";
 
-import { Deal } from "@/interfaces";
+import { Deal } from "@/graphql/schema.types";
 
 type FormValues = {
     notes?: string;

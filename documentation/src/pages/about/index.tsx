@@ -17,12 +17,13 @@ import { backedBy } from "../../assets/backed-by";
 import { team } from "../../assets/team";
 import { useColorMode } from "@docusaurus/theme-common";
 import { YCombinatorCircleIcon } from "@site/src/refine-theme/icons/ycombinator-circle";
+import { CommonThemedImage } from "@site/src/refine-theme/common-themed-image";
 
 const About: React.FC = () => {
     const { colorMode } = useColorMode();
     return (
         <>
-            <Head title="About | refine">
+            <Head title="About | Refine">
                 <html data-page="about" data-customized="true" />
             </Head>
             <div className="refine-prose">
@@ -509,11 +510,13 @@ const About: React.FC = () => {
                                 key={name}
                                 className="flex justify-start flex-col text-center"
                             >
-                                <img
-                                    srcSet={`${avatar[colorMode]} 1500w`}
-                                    src={avatar[colorMode]}
-                                    alt={name}
+                                <CommonThemedImage
                                     className="w-full not-prose m-0 mb-6"
+                                    srcDark={avatar.dark}
+                                    srcLight={avatar.light}
+                                    srcSetDark={`${avatar.dark} 1500w`}
+                                    srcSetLight={`${avatar.light} 1500w`}
+                                    alt={name}
                                 />
                                 <span
                                     className={clsx(

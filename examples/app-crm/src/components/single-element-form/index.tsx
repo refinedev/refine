@@ -8,7 +8,6 @@ import type { FormItemProps, FormProps } from "antd";
 import { Button, Form, Skeleton } from "antd";
 
 import { Text } from "../text";
-
 import styles from "./index.module.css";
 
 type SingleElementFormProps = {

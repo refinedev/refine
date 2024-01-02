@@ -1,6 +1,6 @@
 ---
 title: Pilot & refine architecture
-description: We'll be taking a look at the architecture of refine and how week of refineWeek series will be structured.
+description: We'll be taking a look at the architecture of refine and how week of RefineWeek series will be structured.
 slug: refine-react-invoice-generator-1
 authors: abdullah_numan
 tags: [refine-week, refine, strapi, ant-design]
@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-10-refine-i
 hide_table_of_contents: false
 ---
 
-This is the opening post of another 2023 [**#refineWeek**](https://refine.dev/week-of-refine-strapi/) series. It is intended to provide an introduction to the series itself as well as to present [**refine**](https://github.com/refinedev/refine), a React framework that is used to rapidly build any data heavy CRUD apps like dashboards, admin panels and e-commerce storefronts.
+This is the opening post of another 2023 [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) series. It is intended to provide an introduction to the series itself as well as to present [**refine**](https://github.com/refinedev/refine), a React framework that is used to rapidly build any data heavy CRUD apps like dashboards, admin panels and e-commerce storefronts.
 
 This five part guide aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
 
@@ -207,7 +207,7 @@ As far as our features and functionalities go, we will cover some key concepts i
 
 Here are the detailed outlines split per day:
 
-### Day One - On This #refineWeek
+### Day One - On This #RefineWeek
 
 This opening post. Hello! :wave: :wave: We are here! :smile: :smile:
 
@@ -247,7 +247,7 @@ We then wrap up the series by discussing the accomplishments we are about to ach
 
 ## Summary
 
-In this post, we introduced the **refine** framework and the [**#refineWeek**](https://refine.dev/week-of-refine-strapi/) series itself. We talked about **refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
+In this post, we introduced the **refine** framework and the [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) series itself. We talked about **refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
 
 We laid out the plans for building a **React Pdf Invoice Generator** app in considerable depth.
 

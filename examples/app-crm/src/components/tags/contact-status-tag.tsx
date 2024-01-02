@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Tag, TagProps } from "antd";
 
-import { ContactStatus } from "@/interfaces";
+import { ContactStatus } from "@/graphql/schema.types";
 
 export const ContactStatusTag: React.FC<{ status: ContactStatus }> = ({
     status,

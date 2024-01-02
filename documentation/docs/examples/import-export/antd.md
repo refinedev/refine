@@ -1,6 +1,7 @@
 ---
 id: antd
-title: Ant Design
+title: Import and Export in Ant Design
+sidebar_label: Import / Export
 example-title: Import / Export CSV with Ant Design
 example-tags: [csv]
 ---

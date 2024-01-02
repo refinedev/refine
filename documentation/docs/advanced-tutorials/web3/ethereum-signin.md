@@ -15,10 +15,7 @@ We will show you how to log in to your Metamask wallet with **Refine**.
 
 We will need [web3](https://github.com/ChainSafe/web3.js) and [web3-modal](https://github.com/web3modal/web3modal) packages in our project. Let's start by downloading these packages.
 
-```bash
-npm install web3
-npm install --save web3modal
-```
+<InstallPackagesCommand args="web3 web3modal"/>
 
 :::caution
 

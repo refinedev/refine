@@ -7,16 +7,12 @@ title: Remix
 
 ## Setup
 
-```bash
-npm i @pankod/refine-core @pankod/refine-remix-router @pankod/refine-simple-rest
-```
+<InstallPackagesCommand args="@refinedev/remix-router"/>
 
 :::tip
 We recommend using `create refine-app` to initialize your refine projects. It configures the project according to your needs including SSR with Remix!
 
-```sh
-npm create refine-app@latest -- -o refine-remix my-refine-remix-app
-```
+<CreateRefineAppCommand args="-o refine-remix my-refine-remix-app" />
 
 :::
 
@@ -690,12 +686,9 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 First, let's install the `js-cookie` and `cookie` packages in our project.
 
-```sh
-npm i js-cookie cookie
+<InstallPackagesCommand args="js-cookie cookie"/>
 
-# typescript types
-npm i -D @types/js-cookie
-```
+<InstallPackagesCommand args="-D @types/js-cookie"/>
 
 We will set/destroy cookies in the `login`, `logout` and `checkAuth` functions of our `AuthProvider`.
 

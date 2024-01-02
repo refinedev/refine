@@ -447,3 +447,7 @@ h4 > del:has(code:only-child) {
 h4 > del:has(code:only-child) code {
     @apply line-through;
 }
+
+.sp-tab-button[data-active="true"] {
+    @apply font-medium;
+}

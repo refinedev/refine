@@ -7,7 +7,7 @@ import { DollarOutlined } from "@ant-design/icons";
 import { Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company, Deal, User } from "@/interfaces";
+import { Company, Deal, User } from "@/graphql/schema.types";
 
 type FormValues = {
     stageId?: string | null;

@@ -85,7 +85,7 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Properties
 
-### `title`
+### title
 
 `title` allows you to add a title to the `<List>` component. If you don't pass the title props, it uses plural form of resource name by default.
 
@@ -116,7 +116,7 @@ render(
 );
 ```
 
-### `resource`
+### resource
 
 The `<List>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<List>` component, you can use the `resource` prop:
 
@@ -166,7 +166,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `canCreate` and `createButtonProps`
+### canCreate and createButtonProps
 
 `canCreate` allows us to add the create button inside the `<List>` component. If you want to customize this button you can use `createButtonProps` property like the code below:
 
@@ -263,9 +263,9 @@ render(
 
 The create button redirects to the create page of the resource according to the value it reads from the URL.
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/authentication/hooks/use-permissions)
 
-### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
+### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/antd` package.
 
@@ -314,7 +314,7 @@ render(
 );
 ```
 
-### `wrapperProps`
+### wrapperProps
 
 You can use the `wrapperProps` property if you want to customize the wrapper of the `<List/>` component. The `@refinedev/antd` wrapper elements are simply `<div/>`s and `wrapperProps` and can get every attribute that `<div/>` can get.
 
@@ -353,7 +353,7 @@ render(
 );
 ```
 
-### `headerProps`
+### headerProps
 
 You can use the `headerProps` property to customize the header of the `<List/>` component:
 
@@ -395,7 +395,7 @@ render(
 
 > For more information, refer to the [`PageHeader` documentation &#8594](https://procomponents.ant.design/en-US/components/page-header)
 
-### `contentProps`
+### contentProps
 
 You can use the `contentProps` property to customize the content of the `<Create/>` component. The `<List/>` components content is wrapped with a `<div/>` and `contentProps` can get every attribute that `<div/>` can get.
 
@@ -434,7 +434,7 @@ render(
 );
 ```
 
-### `headerButtons`
+### headerButtons
 
 By default, the `<List/>` component has a [`<CreateButton>`][create-button] at the header.
 
@@ -516,7 +516,7 @@ render(
 );
 ```
 
-### `headerButtonProps`
+### headerButtonProps
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 

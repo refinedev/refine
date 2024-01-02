@@ -64,6 +64,7 @@ export const notificationProvider = (): NotificationProvider => {
                         </Typography>
                     </Box>,
                     {
+                        key,
                         variant: type,
                         anchorOrigin: {
                             vertical: "top",

@@ -107,7 +107,7 @@ render(<App />);
 
 - The `useShow` hook is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
 
-  > For more information, refer to the [`useShow` documentation&#8594](/docs/core/hooks/use-show)
+  > For more information, refer to the [`useShow` documentation&#8594](/docs/data/hooks/use-show)
 
 - All other components are **Material UI** components that are used to show the record data.
 
@@ -140,7 +140,7 @@ const { data: categoryData, isLoading: categoryIsLoading } = useOne({
 });
 ```
 
-> For more information, refer to the [`useOne` documentation&#8594](/docs/core/hooks/data/use-one)
+> For more information, refer to the [`useOne` documentation&#8594](/docs/data/hooks/use-one)
 
 ## Adding the Show Page to the App
 

@@ -10,7 +10,7 @@ import SearchPreview from "./\_partial-use-table-search-live-preview.md";
 import RelationalLivePreview from "./\_partial-use-table-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-By using `useTable`, you can get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/core/hooks/data/use-list) for the fetch.
+By using `useTable`, you can get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/data/hooks/use-list) for the fetch.
 
 For all the other features, you can refer to the Ant Design [`<Table>`][table] documentation.
 
@@ -135,24 +135,24 @@ We can use the [`onSearch`](#onsearch) and [`searchFormProps`](#searchformprops)
 
 ## Realtime Updates
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-> For more information, refer to the [`liveProvider` documentation &#8594](/docs/core/providers/live-provider)
+> For more information, refer to the [`liveProvider` documentation &#8594](/docs/realtime/live-provider)
 
 ## Properties
 
-### `resource`
+### resource
 
 <PropResource
 hook={{
     name:"useList",
-    URL:"/docs/api-reference/core/hooks/data/useList/"
+    URL:"/docs/data/hooks/use-list"
 }}
 method={{
     name:"getList",
-    URL:"/docs/api-reference/core/providers/data-provider/#getlist"
+    URL:"/docs/data/data-provider/#getlist"
 }}
 hasDefault={false}
 />
@@ -169,7 +169,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `onSearch`
+### onSearch
 
 When [`searchFormProps.onFinish`](#searchformprops) is called, the `onSearch` function is called with the values of the form. The `onSearch` function should return [`CrudFilters | Promise<CrudFilters>`][crudfilters].
 Also, `onSearch` will set the current page to 1.
@@ -206,7 +206,7 @@ const { searchFormProps, tableProps } = useTable({
 // ---
 ```
 
-### `dataProviderName`
+### dataProviderName
 
 If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. It is useful when you want to use a different `dataProvider` for a specific resource.
 
@@ -216,7 +216,7 @@ useTable({
 });
 ```
 
-### `pagination.current`
+### pagination.current
 
 Sets the initial value of the page index. It is set to `1` by default.
 
@@ -228,7 +228,7 @@ useTable({
 });
 ```
 
-### `pagination.pageSize`
+### pagination.pageSize
 
 Sets the initial value of the page size. It is set to `10` by default.
 
@@ -240,7 +240,7 @@ useTable({
 });
 ```
 
-### `pagination.mode`
+### pagination.mode
 
 It can be `"off"`, `"server"` or `"client"`. It is set to `"server"` by default.
 
@@ -256,7 +256,7 @@ useTable({
 });
 ```
 
-### `sorters.initial`
+### sorters.initial
 
 Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
 
@@ -275,7 +275,7 @@ useTable({
 });
 ```
 
-### `sorters.permanent`
+### sorters.permanent
 
 Sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
 
@@ -294,7 +294,7 @@ useTable({
 });
 ```
 
-### `sorters.mode`
+### sorters.mode
 
 It can be `"off"`, or `"server"`. It is `"server"` by default.
 
@@ -309,7 +309,7 @@ useTable({
 });
 ```
 
-### `filters.initial`
+### filters.initial
 
 Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
 
@@ -329,7 +329,7 @@ useTable({
 });
 ```
 
-### `filters.permanent`
+### filters.permanent
 
 Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
 
@@ -349,7 +349,7 @@ useTable({
 });
 ```
 
-### `filters.defaultBehavior`
+### filters.defaultBehavior
 
 The filtering behavior can be set to either `"merge"` or `"replace"`. By default, it is set to `"merge"`.
 
@@ -367,7 +367,7 @@ useTable({
 });
 ```
 
-### `filters.mode`
+### filters.mode
 
 It can be `"off"` or `"server"`. It is `"server"` by default.
 
@@ -382,7 +382,7 @@ useTable({
 });
 ```
 
-### `syncWithLocation` <GlobalConfigBadge id="api-reference/core/components/refine-config/#syncwithlocation" />
+### syncWithLocation <GlobalConfigBadge id="core/refine-component/#syncwithlocation" />
 
 When you use the `syncWithLocation` feature, the `useTable`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views. It is set to `false` by default.
 
@@ -392,9 +392,9 @@ useTable({
 });
 ```
 
-### `queryOptions`
+### queryOptions
 
-`useTable` uses the [`useList`](/docs/core/hooks/data/use-list) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
+`useTable` uses the [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
 
 ```tsx
 useTable({
@@ -404,7 +404,7 @@ useTable({
 });
 ```
 
-### `meta`
+### meta
 
 `meta` is a special property that can be used to pass additional information to data provider methods for the following purposes:
 
@@ -452,9 +452,9 @@ const myDataProvider = {
 };
 ```
 
-### `successNotification`
+### successNotification
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -470,9 +470,9 @@ useTable({
 });
 ```
 
-### `errorNotification`
+### errorNotification
 
-> [`NotificationProvider`](/docs/core/providers/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
@@ -488,13 +488,13 @@ useTable({
 });
 ```
 
-### `liveMode`
+### liveMode
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 `liveMode` determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
-> For more information, refer to the [Live / Realtime documentation &#8594](/docs/core/providers/live-provider#livemode)
+> For more information, refer to the [Live / Realtime documentation &#8594](/docs/realtime/live-provider#livemode)
 
 ```tsx
 useTable({
@@ -502,9 +502,9 @@ useTable({
 });
 ```
 
-### `onLiveEvent`
+### onLiveEvent
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -516,13 +516,13 @@ useTable({
 });
 ```
 
-### `liveParams`
+### liveParams
 
-> [`LiveProvider`](/docs/core/providers/live-provider) is required for this prop to work.
+> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
-Params to pass to liveProvider's [subscribe](/docs/core/providers/live-provider#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
 
-### `overtimeOptions`
+### overtimeOptions
 
 If you want the loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful when you want to show a loading indicator when the request takes too long.
 
@@ -549,45 +549,45 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### ~~`initialCurrent`~~ <PropTag deprecated />
+### ~~initialCurrent~~ <PropTag deprecated />
 
 Use `pagination.current` instead.
 
-### ~~`initialPageSize`~~ <PropTag deprecated />
+### ~~initialPageSize~~ <PropTag deprecated />
 
 Use `pagination.pageSize` instead.
 
-### ~~`hasPagination`~~ <PropTag deprecated />
+### ~~hasPagination~~ <PropTag deprecated />
 
 Use `pagination.mode` instead.
 
-### ~~`initialSorter`~~ <PropTag deprecated />
+### ~~initialSorter~~ <PropTag deprecated />
 
 Use `sorters.initial` instead.
 
-### ~~`permanentSorter`~~ <PropTag deprecated />
+### ~~permanentSorter~~ <PropTag deprecated />
 
 Use `sorters.permanent` instead.
 
-### ~~`initialFilter`~~ <PropTag deprecated />
+### ~~initialFilter~~ <PropTag deprecated />
 
 Use `filters.initial` instead.
 
-### ~~`permanentFilter`~~ <PropTag deprecated />
+### ~~permanentFilter~~ <PropTag deprecated />
 
 Use `filters.permanent` instead.
 
-### ~~`defaultSetFilterBehavior`~~ <PropTag deprecated />
+### ~~defaultSetFilterBehavior~~ <PropTag deprecated />
 
 Use `filters.defaultBehavior` instead.
 
 ## Return Values
 
-### `tableProps`
+### tableProps
 
 `tableProps` are the props needed by the [`<Table>`][table] component.
 
-#### `onChange`
+#### onChange
 
 The `onChange` callback function is executed when a user interacts(filter, sort, etc.) with the table.
 
@@ -605,23 +605,23 @@ const { tableProps } = useTable()
 </Table>
 ```
 
-#### `dataSource`
+#### dataSource
 
-`dataSource` contains the data to be displayed in the table. Values fetched with [`useList`](/docs/core/hooks/data/use-list) hook.
+`dataSource` contains the data to be displayed in the table. Values fetched with [`useList`](/docs/data/hooks/use-list) hook.
 
-#### `loading`
+#### loading
 
 `loading` indicates whether the data is being fetched.
 
-#### `pagination`
+#### pagination
 
 `pagination` returns the pagination configuration values(pageSize, current, position, etc.).
 
-#### `scroll`
+#### scroll
 
 `scroll` is for making the table scrollable or not. It is set to `{ x: true }` by default.
 
-### `searchFormProps`
+### searchFormProps
 
 `searchFormProps` returns [`<Form>`](https://ant.design/components/form/) instance of Ant Design. When `searchFormProps.onFinish` is called, it will trigger [`onSearch`](#onsearch) function.
 You can also use `searchFormProps.form.submit` to submit the form manually.
@@ -673,15 +673,15 @@ const PostList: React.FC = () => {
 };
 ```
 
-### `tableQueryResult`
+### tableQueryResult
 
-`tableQueryResult` are the returned values from [`useList`](/docs/core/hooks/data/use-list) hook.
+`tableQueryResult` are the returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
-### `sorters`
+### sorters
 
 `sorters` is the current [sorters state][crudsorting].
 
-### `setSorters`
+### setSorters
 
 `setSorters` is a function to set current [sorters state][crudsorting].
 
@@ -689,11 +689,11 @@ const PostList: React.FC = () => {
  (sorters: CrudSorting) => void;
 ```
 
-### `filters`
+### filters
 
 `filters` is the current [filters state][crudfilters].
 
-### `setFilters`
+### setFilters
 
 ```tsx
 ((filters: CrudFilters, behavior?: SetFilterBehavior) => void) & ((setter: (prevFilters: CrudFilters) => CrudFilters) => void)
@@ -701,11 +701,11 @@ const PostList: React.FC = () => {
 
 `setFilters` is a function to set current [filters state][crudfilters].
 
-### `current`
+### current
 
 `current` is the current page index state. If pagination is disabled, it will be `undefined`.
 
-### `setCurrent`
+### setCurrent
 
 ```tsx
 React.Dispatch<React.SetStateAction<number>> | undefined;
@@ -713,11 +713,11 @@ React.Dispatch<React.SetStateAction<number>> | undefined;
 
 `setCurrent` is a function to set the current page index state. If pagination is disabled, it will be `undefined`.
 
-### `pageSize`
+### pageSize
 
 `pageSize` is the current page size state. If pagination is disabled, it will be `undefined`.
 
-### `setPageSize`
+### setPageSize
 
 ```tsx
 React.Dispatch<React.SetStateAction<number>> | undefined;
@@ -725,11 +725,11 @@ React.Dispatch<React.SetStateAction<number>> | undefined;
 
 `setPageSize` is a function to set the current page size state. If pagination is disabled, it will be `undefined`.
 
-### `pageCount`
+### pageCount
 
 `pageCount` is the total page count state. If pagination is disabled, it will be `undefined`.
 
-### `createLinkForSyncWithLocation`
+### createLinkForSyncWithLocation
 
 ```tsx
 (params: SyncWithLocationParams) => string;
@@ -737,7 +737,7 @@ React.Dispatch<React.SetStateAction<number>> | undefined;
 
 `createLinkForSyncWithLocation` is a function creates accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
-### `overtime`
+### overtime
 
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
@@ -747,11 +747,11 @@ const { overtime } = useTable();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-### ~~`sorter`~~ <PropTag deprecated />
+### ~~sorter~~ <PropTag deprecated />
 
 Use `sorters` instead.
 
-### ~~`setSorter`~~ <PropTag deprecated />
+### ~~setSorter~~ <PropTag deprecated />
 
 Use `setSorters` instead.
 
@@ -759,7 +759,7 @@ Use `setSorters` instead.
 
 ### How can I handle relational data?
 
-You can use the [`useMany`](/docs/core/hooks/data/use-many) hook to fetch relational data and filter `<Table>` by categories with the help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
+You can use the [`useMany`](/docs/data/hooks/use-many) hook to fetch relational data and filter `<Table>` by categories with the help of [`useSelect`](/docs/ui-integrations/ant-design/hooks/use-select/)
 
 <RelationalLivePreview/>
 
@@ -870,7 +870,7 @@ const ListPage = () => {
 
 <CodeSandboxExample path="table-antd-use-table" />
 
-[use-table-core]: /docs/core/hooks/use-table
+[use-table-core]: /docs/data/hooks/use-table
 [table]: https://ant.design/components/table/#API
 [table-column]: https://ant.design/components/table#column
 [form]: https://ant.design/components/form/#API
@@ -883,4 +883,4 @@ const ListPage = () => {
 [Refine swl]: /docs/core/refine-component#syncwithlocation
 [filter-dropdown]: /docs/ui-integrations/ant-design/components/filter-dropdown
 [syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
-[notification-provider]: /docs/core/providers/notification-provider
+[notification-provider]: /docs/notification/notification-provider

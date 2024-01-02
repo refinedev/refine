@@ -64,9 +64,9 @@ export const MENU_ITEMS: MenuItemType[] = [
                 icon: IntegrationsIcon,
             },
             {
-                label: "Examples",
-                description: "Ready-made snippets for your projects.",
-                link: "/examples",
+                label: "Templates",
+                description: "Ready-made examples for your project",
+                link: "/templates",
                 icon: ExamplesIcon,
             },
             {
@@ -90,11 +90,11 @@ export const MENU_ITEMS: MenuItemType[] = [
             {
                 label: "Contributing",
                 description: "Join open-source contributors.",
-                link: "/docs/further-readings/contributing/",
+                link: "/docs/guides-concepts/contributing/",
                 icon: ContributeIcon,
             },
             {
-                label: "refineWeek",
+                label: "RefineWeek",
                 description: "Weekly projects to practice refine.",
                 link: "/week-of-refine",
                 icon: RefineWeekIcon,

@@ -6,7 +6,7 @@ import { HttpError, useInvalidate } from "@refinedev/core";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Form } from "antd";
 
-import { Task, TaskUpdateInput } from "@/interfaces";
+import { Task, TaskUpdateInput } from "@/graphql/schema.types";
 
 import { AccordionHeaderSkeleton, ChecklistHeader, CheckListInput } from "../";
 

@@ -11,6 +11,7 @@ import {
     useTable,
 } from "@refinedev/antd";
 import { getDefaultFilter, HttpError } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { SearchOutlined } from "@ant-design/icons";
 import { Form, Grid, Input, Select, Space, Spin, Table } from "antd";
@@ -25,8 +26,12 @@ import {
     QuoteStatusTag,
     Text,
 } from "@/components";
-import { Quote, QuoteStatus } from "@/interfaces";
+import { Quote, QuoteStatus } from "@/graphql/schema.types";
+import { COMPANIES_SELECT_QUERY, USERS_SELECT_QUERY } from "@/graphql/queries";
 import { currencyNumber } from "@/utilities";
+
+import { QUOTES_TABLE_QUERY } from "./queries";
+import { QuotesTableQuery } from "@/graphql/types";
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [
     {
@@ -47,7 +52,11 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
     const screens = Grid.useBreakpoint();
 
     const { tableProps, searchFormProps, filters, sorters, tableQueryResult } =
-        useTable<Quote, HttpError, { title: string }>({
+        useTable<
+            GetFieldsFromList<QuotesTableQuery>,
+            HttpError,
+            { title: string }
+        >({
             resource: "quotes",
             onSearch: (values) => {
                 return [
@@ -81,16 +90,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                 ],
             },
             meta: {
-                fields: [
-                    "id",
-                    "title",
-                    "status",
-                    "total",
-                    "createdAt",
-                    { company: ["id", "name", "avatarUrl"] },
-                    { contact: ["id", "name", "avatarUrl"] },
-                    { salesOwner: ["id", "name", "avatarUrl"] },
-                ],
+                gqlQuery: QUOTES_TABLE_QUERY,
             },
         });
 
@@ -101,7 +101,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
             mode: "off",
         },
         meta: {
-            fields: ["id", "name"],
+            gqlQuery: COMPANIES_SELECT_QUERY,
         },
     });
 
@@ -112,7 +112,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
             mode: "off",
         },
         meta: {
-            fields: ["id", "name"],
+            gqlQuery: USERS_SELECT_QUERY,
         },
     });
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

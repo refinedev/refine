@@ -73,7 +73,7 @@ const RefineWeek = () => {
     return (
         <CommonLayout>
             <div className="not-prose">
-                <Head title="refineWeek | refine">
+                <Head title="RefineWeek | Refine">
                     <html data-page="week-of-refine" data-customized="true" />
                 </Head>
 
@@ -98,7 +98,7 @@ const RefineWeek = () => {
                         >
                             <RefineWeekLogoXL className="flex-shrink-0 landing-xl:mr-[116px]" />
                             <p className="text-[32px] leading-10 font-semibold text-gray-800 dark:text-gray-100">
-                                Participate in refineWeek series and discover
+                                Participate in RefineWeek series and discover
                                 the full potential of Refine as you craft
                                 complete CRUD apps - a practical and engaging
                                 learning experience

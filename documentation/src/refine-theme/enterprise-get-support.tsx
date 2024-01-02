@@ -1,12 +1,10 @@
 import React from "react";
 import clsx from "clsx";
-import { useColorMode } from "@docusaurus/theme-common";
 import { ClockIcon } from "./icons/clock";
 import { SlackIcon } from "../assets/integration-icons";
+import { CommonThemedImage } from "./common-themed-image";
 
 export const EnterpriseGetSupport = ({ className }: { className?: string }) => {
-    const { colorMode } = useColorMode();
-
     return (
         <div className={clsx("flex flex-col", "not-prose", className)}>
             <div
@@ -56,16 +54,13 @@ export const EnterpriseGetSupport = ({ className }: { className?: string }) => {
                         "rounded-2xl landing-sm:rounded-3xl",
                     )}
                 >
-                    <img
+                    <CommonThemedImage
                         className={clsx(
                             "rounded-2xl landing-sm:rounded-3xl",
                             "landing-lg:h-[360px]",
                         )}
-                        src={
-                            colorMode === "dark"
-                                ? `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/priority-support-dark.png`
-                                : `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/priority-support-light.png`
-                        }
+                        srcDark="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/priority-support-dark.png"
+                        srcLight="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/priority-support-light.png"
                     />
                     <div
                         className={clsx(
@@ -147,12 +142,13 @@ export const EnterpriseGetSupport = ({ className }: { className?: string }) => {
                         "rounded-2xl landing-sm:rounded-3xl",
                     )}
                 >
-                    <img
+                    <CommonThemedImage
                         className={clsx(
                             "rounded-2xl landing-sm:rounded-3xl",
                             "landing-lg:h-[360px]",
                         )}
-                        src={`https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/onboarding-${colorMode}.png`}
+                        srcDark="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/onboarding-dark.png"
+                        srcLight="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/onboarding-light.png"
                     />
                     <div
                         className={clsx(

@@ -1,6 +1,7 @@
 ---
 id: advanced-react-table
-title: Advanced
+title: Advanced Tables with Mantine
+sidebar_label: Advanced Table
 example-title: Advanced React Table with Mantine
 example-tags: [table, mantine, react-table]
 ---

@@ -15,37 +15,7 @@ The easiest way to create a new project is using the **Refine CLI**. This tool w
 
 1. Launch your terminal and type the following command using your preferred package manager:
 
-   <Tabs
-   defaultValue="npm"
-   values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
-
-   <TabItem value="npm">
-
-   ```bash
-   npm create refine-app@latest -- -o refine-antd tutorial
-   ```
-
-   </TabItem>
-
-   <TabItem value="pnpm">
-
-   ```bash
-   pnpm create refine-app@latest -- -o refine-antd tutorial
-   ```
-
-   </TabItem>
-
-   <TabItem value="yarn">
-
-   ```bash
-   yarn create refine-app -- -o refine-antd tutorial
-   ```
-
-   > Only supports yarn@1 version.
-
-   </TabItem>
-
-   </Tabs>
+   <CreateRefineAppCommand args="-o refine-antd tutorial" />
 
 2. Confirm `y` to installation of `create-refine-app`
 

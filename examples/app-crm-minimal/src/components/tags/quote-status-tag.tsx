@@ -1,43 +1,46 @@
-import { FC } from "react";
+import React from "react";
 
 import {
-    CheckCircleOutlined,
-    ExpandOutlined,
-    SendOutlined,
+  CheckCircleOutlined,
+  ExpandOutlined,
+  SendOutlined,
 } from "@ant-design/icons";
 import { Tag } from "antd";
 
-import { QuoteStatus } from "@/interfaces";
+import { QuoteStatus } from "@/graphql/schema.types";
 
-const variant: Record<QuoteStatus, any> = {
-    DRAFT: {
-        color: "blue",
-        icon: <ExpandOutlined />,
-    },
-    SENT: {
-        color: "cyan",
-        icon: <SendOutlined />,
-    },
-    ACCEPTED: {
-        color: "green",
-        icon: <CheckCircleOutlined />,
-    },
+const variant: Record<
+  QuoteStatus,
+  { color: string; icon: React.ReactElement }
+> = {
+  DRAFT: {
+    color: "blue",
+    icon: <ExpandOutlined />,
+  },
+  SENT: {
+    color: "cyan",
+    icon: <SendOutlined />,
+  },
+  ACCEPTED: {
+    color: "green",
+    icon: <CheckCircleOutlined />,
+  },
 };
 
 type Props = {
-    status: QuoteStatus;
+  status: QuoteStatus;
 };
 
-export const QuoteStatusTag: FC<Props> = ({ status }) => {
-    return (
-        <Tag
-            style={{
-                textTransform: "capitalize",
-            }}
-            color={variant[status].color}
-            icon={variant[status].icon}
-        >
-            {status.toLowerCase()}
-        </Tag>
-    );
+export const QuoteStatusTag = ({ status }: Props) => {
+  return (
+    <Tag
+      style={{
+        textTransform: "capitalize",
+      }}
+      color={variant[status].color}
+      icon={variant[status].icon}
+    >
+      {status.toLowerCase()}
+    </Tag>
+  );
 };

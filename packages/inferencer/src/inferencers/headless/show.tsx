@@ -151,7 +151,15 @@ export const renderer = ({
                                             field.relationInfer.accessor,
                                         )
                                     ) {
-                                        return "";
+                                        console.log(
+                                            "@refinedev/inferencer: Inferencer failed to render this field",
+                                            {
+                                                key: field.key,
+                                                relation: field.relationInfer,
+                                            },
+                                        );
+
+                                        return `<span title="Inferencer failed to render this field. (Unsupported nesting)">Cannot Render</span>`;
                                     } else {
                                         const mapItemName = getVariableName(
                                             field.key,
@@ -166,10 +174,26 @@ export const renderer = ({
                                         `;
                                     }
                                 } else {
-                                    return "";
+                                    console.log(
+                                        "@refinedev/inferencer: Inferencer failed to render this field",
+                                        {
+                                            key: field.key,
+                                            relation: field.relationInfer,
+                                        },
+                                    );
+
+                                    return `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`;
                                 }
                             } else {
-                                return "";
+                                console.log(
+                                    "@refinedev/inferencer: Inferencer failed to render this field",
+                                    {
+                                        key: field.key,
+                                        relation: field.relationInfer,
+                                    },
+                                );
+
+                                return `<span title="Inferencer failed to render this field (Cannot find relation)">Cannot Render</span>`;
                             }
                         })()}
                         </>
@@ -226,7 +250,24 @@ export const renderer = ({
                                         return `{${variableName}?.data?.${field.relationInfer.accessor}}`;
                                     }
                                 } else {
-                                    return `{${variableName}?.data}`;
+                                    const cannotRender =
+                                        field?.relationInfer?.type ===
+                                            "object" &&
+                                        !field?.relationInfer?.accessor;
+
+                                    if (cannotRender) {
+                                        console.log(
+                                            "@refinedev/inferencer: Inferencer failed to render this field",
+                                            {
+                                                key: field.key,
+                                                relation: field.relationInfer,
+                                            },
+                                        );
+                                    }
+
+                                    return cannotRender
+                                        ? `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`
+                                        : `{${variableName}?.data}`;
                                 }
                             } else {
                                 return `{${variableName}?.data?.id}`;

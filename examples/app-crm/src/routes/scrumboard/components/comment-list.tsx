@@ -11,7 +11,7 @@ import { Button, Form, Input, Space, Typography } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";
-import { TaskComment, User } from "@/interfaces";
+import { TaskComment, User } from "@/graphql/schema.types";
 
 const CommentListItem = ({ item }: { item: TaskComment }) => {
     const invalidate = useInvalidate();

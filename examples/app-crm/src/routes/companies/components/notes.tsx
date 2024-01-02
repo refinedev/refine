@@ -15,7 +15,7 @@ import { Button, Card, Form, Input, Space, Typography } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text, TextIcon } from "@/components";
-import { CompanyNote, User } from "@/interfaces";
+import { CompanyNote, User } from "@/graphql/schema.types";
 
 type Props = {
     style?: React.CSSProperties;

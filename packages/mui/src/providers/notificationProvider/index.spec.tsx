@@ -63,6 +63,7 @@ describe("Notistack notificationProvider", () => {
                 </Typography>
             </Box>,
             {
+                key: mockNotification.key,
                 variant: "success",
                 anchorOrigin: {
                     vertical: "top",
@@ -87,6 +88,7 @@ describe("Notistack notificationProvider", () => {
                 </Typography>
             </Box>,
             {
+                key: mockNotification.key,
                 variant: "error",
                 anchorOrigin: {
                     vertical: "top",

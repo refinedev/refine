@@ -1,5 +1,5 @@
 {
-  "version": "1.1.28",
+  "version": "1.1.29",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -35,8 +35,8 @@
     "@types/react": "^17.0.0 || ^18.0.0",
     "@types/react-dom": "^17.0.0 || ^18.0.0",
     "@refinedev/devtools-server": "1.1.22",
-    "@refinedev/cli": "2.16.20",
-    "@refinedev/core": "^4.42.0"
+    "@refinedev/cli": "2.16.21",
+    "@refinedev/core": "^4.46.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",

@@ -1,373 +1,13 @@
 ---
-title: FAQ
+title: Frequently Asked Questions
+sidebar_label: FAQ
 ---
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## How can I change the form data before submitting it to the API?
 
-You may need to modify the form data before it is sent to the API.
+You may need to modify the form data before it is sent to the API for various reasons. For example, you may want to add a field to the form data or change the value of a field before submitting it to the API. This can be achieved easily by Refine's `useForm` implementations.
 
-For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
-
-<Tabs
-defaultValue="core"
-values={[
-{label: 'Core Form', value: 'core'},
-{label: 'Ant Design Form', value: 'antd'},
-{label: 'React Hook Form', value: 'react-hook-form'},
-{label: 'Material UI + React Hook Form', value: 'mui-react-hook-form'},
-{label: 'Chakra UI + React Hook Form', value: 'chakra-ui-react-hook-form'}
-]}>
-<TabItem value="core">
-
-[Refer to the `useForm` documentation for more information. &#8594][use-form-core]
-
-```tsx
-import React, { useState } from "react";
-import { useForm } from "@refinedev/core";
-
-export const UserCreate: React.FC = () => {
-  const [name, setName] = useState();
-  const [surname, setSurname] = useState();
-
-  const { onFinish } = useForm();
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const fullName = `${name} ${surname}`;
-    onFinish({
-      fullName: fullName,
-      name,
-      surname,
-    });
-  };
-
-  return (
-    <form onSubmit={onSubmit}>
-      <input onChange={(e) => setName(e.target.value)} />
-      <input onChange={(e) => setSurname(e.target.value)} />
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
-```
-
-</TabItem>
-<TabItem value="antd">
-
-[Refer to the `useForm` documentation for more information. &#8594][use-form-antd]
-
-```tsx
-import React from "react";
-import { useForm } from "@refinedev/antd";
-import { Form, Input } from "antd";
-
-export const UserCreate: React.FC = () => {
-  const { formProps } = useForm();
-
-  return (
-    <Form
-      {...formProps}
-      onFinish={(values) => {
-        const { name, surname } = values;
-        const fullName = `${name} ${surname}`;
-
-        return (
-          formProps.onFinish &&
-          formProps.onFinish({
-            ...values,
-            fullName,
-          })
-        );
-      }}
-    >
-      <Form.Item label="Name" name="name">
-        <Input />
-      </Form.Item>
-      <Form.Item label="Surname" name="surname">
-        <Input />
-      </Form.Item>
-    </Form>
-  );
-};
-```
-
-</TabItem>
-<TabItem value="react-hook-form">
-
-[Refer to the `useForm` documentation for more information. &#8594][use-form-react-hook-form]
-
-```tsx
-import React from "react";
-import { useForm } from "@refinedev/react-hook-form";
-
-export const UserCreate: React.FC = () => {
-  const {
-    refineCore: { onFinish, formLoading },
-    register,
-    handleSubmit,
-  } = useForm();
-
-  const handleSubmitPostCreate = (values) => {
-    const { name, surname } = values;
-    const fullName = `${name} ${surname}`;
-    onFinish({
-      ...value,
-      fullName,
-    });
-  };
-
-  return (
-    <form onSubmit={handleSubmit(handleSubmitPostCreate)}>
-      <input {...register("name")} />
-      <input {...register("surname")} />
-    </form>
-  );
-};
-```
-
-</TabItem>
-
-<TabItem value="mui-react-hook-form">
-
-[Refer to the `useForm` documentation for more information. &#8594][use-form-react-hook-form]
-
-```tsx
-import React from "react";
-import { HttpError } from "@refinedev/core";
-import { useForm } from "@refinedev/react-hook-form";
-import { Button, Box, TextField } from "@mui/material";
-
-type FormValues = {
-  name: string;
-  surname: string;
-};
-
-export const UserCreate: React.FC = () => {
-  const {
-    refineCore: { onFinish },
-    register,
-    handleSubmit,
-  } = useForm<FormValues, HttpError, FormValues>();
-
-  const handleSubmitPostCreate = (values: FormValues) => {
-    const { name, surname } = values;
-    const fullName = `${name} ${surname}`;
-    onFinish({
-      ...value,
-      fullName,
-    });
-  };
-
-  return (
-    <Box component="form" onSubmit={handleSubmit(handleSubmitPostCreate)}>
-      <TextField
-        {...register("name", {
-          required: "This field is required",
-        })}
-        name="name"
-        label="Name"
-        error={!!errors.name}
-        helperText={errors.name?.message}
-      />
-      <TextField
-        {...register("surname", {
-          required: "This field is required",
-        })}
-        name="surname"
-        label="Surname"
-        error={!!errors.surname}
-        helperText={errors.surname?.message}
-      />
-      <Button type="submit">Submit</Button>
-    </Box>
-  );
-};
-```
-
-If you use [`<Create>`](/docs/ui-integrations/material-ui/components/basic-views/create#savebuttonprops) component, you can override the [`saveButtonProps`](/docs/packages/list-of-packages#savebuttonprops) prop to modify the form data before submitting it to the API.
-
-```tsx
-import React from "react";
-import { HttpError } from "@refinedev/core";
-import { Create } from "@refinedev/mui";
-import { useForm } from "@refinedev/react-hook-form";
-import { Button, Box, TextField } from "@mui/material";
-
-type FormValues = {
-  name: string;
-  surname: string;
-};
-
-export const UserCreate: React.FC = () => {
-  const {
-    saveButtonProps,
-    refineCore: { onFinish },
-    handleSubmit,
-  } = useForm<FormValues, HttpError, FormValues>();
-
-  const handleSubmitPostCreate = (values: FormValues) => {
-    const { name, surname } = values;
-    const fullName = `${name} ${surname}`;
-    onFinish({
-      ...value,
-      fullName,
-    });
-  };
-
-  return (
-    <Create
-      saveButtonProps={{
-        ...saveButtonProps,
-        onClick: handleSubmit(handleSubmitForm),
-      }}
-    >
-      <Box component="form">
-        <TextField
-          {...register("name", {
-            required: "This field is required",
-          })}
-          name="name"
-          label="Name"
-          error={!!errors.name}
-          helperText={errors.name?.message}
-        />
-        <TextField
-          {...register("surname", {
-            required: "This field is required",
-          })}
-          name="surname"
-          label="Surname"
-          error={!!errors.surname}
-          helperText={errors.surname?.message}
-        />
-      </Box>
-    </Create>
-  );
-};
-```
-
-</TabItem>
-
-<TabItem value="chakra-ui-react-hook-form">
-
-[Refer to the `useForm` documentation for more information. &#8594][use-form-react-hook-form]
-
-```tsx
-import React from "react";
-import { HttpError } from "@refinedev/core";
-import { useForm } from "@refinedev/react-hook-form";
-import { FormControl, FormErrorMessage, FormLabel, Input, Button } from "@chakra-ui/react";
-
-type FormValues = {
-  name: string;
-  surname: string;
-};
-
-export const UserCreate: React.FC = () => {
-  const {
-    refineCore: { onFinish },
-    register,
-    handleSubmit,
-  } = useForm<FormValues, HttpError, FormValues>();
-
-  const handleSubmitPostCreate = (values: FormValues) => {
-    const { name, surname } = values;
-    const fullName = `${name} ${surname}`;
-    onFinish({
-      ...value,
-      fullName,
-    });
-  };
-
-  return (
-    <form onSubmit={handleSubmit(handleSubmitPostCreate)}>
-      <FormControl mb="3" isInvalid={!!errors?.name}>
-        <FormLabel>Name</FormLabel>
-        <Input id="name" type="text" {...register("name", { required: "Name is required" })} />
-        <FormErrorMessage>{`${errors.name?.message}`}</FormErrorMessage>
-      </FormControl>
-      <FormControl mb="3" isInvalid={!!errors?.surname}>
-        <FormLabel>Surname</FormLabel>
-        <Input
-          id="surname"
-          type="text"
-          {...register("surname", {
-            required: "Surname is required",
-          })}
-        />
-        <FormErrorMessage>{`${errors.title?.surname}`}</FormErrorMessage>
-        <Button type="submit">Submit</Button>
-      </FormControl>
-    </form>
-  );
-};
-```
-
-If you use [`<Create>`](/docs/ui-integrations/chakra-ui/components/basic-views/create#savebuttonprops) component, you can override the [`saveButtonProps`](/docs/packages/list-of-packages#savebuttonprops) prop to modify the form data before submitting it to the API.
-
-```tsx
-import React from "react";
-import { HttpError } from "@refinedev/core";
-import { Create } from "@refinedev/chakra-ui";
-import { useForm } from "@refinedev/react-hook-form";
-import { FormControl, FormErrorMessage, FormLabel, Input, Button } from "@chakra-ui/react";
-
-type FormValues = {
-  name: string;
-  surname: string;
-};
-
-export const UserCreate: React.FC = () => {
-  const {
-    saveButtonProps,
-    refineCore: { onFinish },
-    handleSubmit,
-  } = useForm<FormValues, HttpError, FormValues>();
-
-  const handleSubmitPostCreate = (values: FormValues) => {
-    const { name, surname } = values;
-    const fullName = `${name} ${surname}`;
-    onFinish({
-      ...value,
-      fullName,
-    });
-  };
-
-  return (
-    <Create
-      saveButtonProps={{
-        ...saveButtonProps,
-        onClick: handleSubmit(handleSubmitForm),
-      }}
-    >
-      <form>
-        <FormControl mb="3" isInvalid={!!errors?.name}>
-          <FormLabel>Name</FormLabel>
-          <Input id="name" type="text" {...register("name", { required: "Name is required" })} />
-          <FormErrorMessage>{`${errors.name?.message}`}</FormErrorMessage>
-        </FormControl>
-        <FormControl mb="3" isInvalid={!!errors?.surname}>
-          <FormLabel>Surname</FormLabel>
-          <Input
-            id="surname"
-            type="text"
-            {...register("surname", {
-              required: "Surname is required",
-            })}
-          />
-          <FormErrorMessage>{`${errors.title?.surname}`}</FormErrorMessage>
-        </FormControl>
-      </form>
-    </Create>
-  );
-};
-```
-
-</TabItem>
-</Tabs>
+Check out the [Modifying Data Before Submission section in Forms guide](/docs/guides-concepts/forms/#modifying-data-before-submission) to learn how to achieve this.
 
 ## How can I refetch data?
 
@@ -467,15 +107,13 @@ useMany({
 
 ## Can I work with JavaScript?
 
-**Yes!** You can work with JavaScript!
-
-[Refer to **Refine JavaScript** example → ](https://github.com/refinedev/refine/tree/master/examples/with-javascript)
+Although Refine is written in TypeScript and it is recommended to use TypeScript, you can also work with Javascript without any problems. Check out the [Refine with Javascript example →](https://github.com/refinedev/refine/tree/master/examples/with-javascript)
 
 ## How I can override specific function of Data Providers?
 
 In some cases, you may need to override functions of Refine data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
-For example, Let's override the `update` function of the [`@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/master/packages/simple-rest). `@refinedev/simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
+Below code sample, overrides the `update` function of the [`@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/master/packages/simple-rest). You can apply custom logic to the data provider methods or handle a custom `meta` property for your needs.
 
 ```tsx
 import dataProvider from "@refinedev/simple-rest";
@@ -483,89 +121,26 @@ import dataProvider from "@refinedev/simple-rest";
 const simpleRestProvider = dataProvider("API_URL");
 const myDataProvider = {
   ...simpleRestProvider,
-  update: async ({ resource, id, variables }) => {
-    const url = `${apiUrl}/${resource}/${id}`;
+  update: async ({ resource, id, variables, meta }) => {
+    console.log("Overriding the update function");
 
-    const { data } = await httpClient.put(url, variables);
-
-    return {
-      data,
-    };
+    // You can either send a request from scratch or use the original function
+    return await simpleRestProvider.update({ resource, id, variables, meta });
   },
 };
 
 <Refine dataProvider={myDataProvider} />;
 ```
 
-What if we want to select `PUT` or `PATCH` on a request basis?
+## Why are API calls triggering twice?
 
-💥 We can use `meta` for this. Remember, `meta` can be used in all `data`, `form` and `table` hooks
-
-```tsx
-// PATCH Request
-const { mutate } = useUpdate();
-
-mutate({
-  resource: "this-is-patch",
-  id: 1,
-  values: {
-    foo: "bar",
-  },
-  meta: {
-    httpMethod: "patch",
-  },
-});
-
-// PUT Request
-const { mutate } = useUpdate();
-
-mutate({
-  resource: "this-is-put",
-  id: 1,
-  values: {
-    foo: "bar",
-  },
-  meta: {
-    httpMethod: "put",
-  },
-});
-
-const simpleRestProvider = dataProvider("API_URL");
-const myDataProvider = {
-  ...simpleRestProvider,
-  update: async ({ resource, id, variables, meta }) => {
-    const method = meta.httpMethod ?? "patch";
-
-    const url = `${apiUrl}/${resource}/${id}`;
-
-    const { data } = await httpClient[method](url, variables);
-
-    return {
-      data,
-    };
-  },
-};
-```
-
-## Why are API calls triggering twice
-
-This is the expected behavior if you use [`<React.StrictMode>`][react-strict-mode]. In this mode, React will render the components twice in development mode to identify unsafe life cycles, unexpected side effects, and legacy or deprecated APIs. It's used for highlighting possible problems.
-
-:::caution note
-
-[`<React.StrictMode>`][react-strict-mode] checks are run in development mode only; they do not impact the production build.
-
-:::
-
-> Refer to [`<React.StrictMode>` documentation][react-strict-mode] for more information. &#8594
-
-> Refer to [TanStack Query issue](https://github.com/TanStack/query/issues/3633) for more information. &#8594
-
-[react-strict-mode]: https://beta.reactjs.org/reference/react/StrictMode
+This is the expected behavior if you use [`<React.StrictMode>`][https://react.dev/reference/react/StrictMode]. In this mode, React will render the components twice in **development mode** to identify unsafe life cycles, unexpected side effects, and legacy or deprecated APIs. It's used for highlighting possible problems. You can also check out the related issue on the [TanStack Query repository](https://github.com/TanStack/query/issues/3633).
 
 ## How can I add an item to the Sider component?
 
-There are three ways to add an extra navigation link to the sider.
+`<Sider />` components use the `resources` property of the `<Refine>` component to render the navigation links. If a resource has a `list` property, it will be rendered as a navigation link in the sider. To add a custom item to the sider, you can use three different approaches:
+
+#### Using Resource Definitions
 
 The first and simplest way is to use the `resources` property on the `<Refine>` component. The `<Sider>` component shows the resources whose `list` property is set. So, you can have an extra navigation link by adding a resource with the `list` attribute.
 
@@ -587,7 +162,7 @@ import { Refine } from "@refinedev/core";
 />;
 ```
 
-<br/>
+#### Using `render` property of `<Sider>` component
 
 The second way is to use the `render` property of the `<Sider>` component. The `render` property is a function that receives an object with the `items` and `logout` properties. The `items` property is the list of navigation items and the `logout` property is the logout button.
 
@@ -709,13 +284,45 @@ const CustomLayout = () => {
 </TabItem>
 </Tabs>
 
-<br/>
+#### Using `swizzle` command
 
 The third way is to use the `swizzle` command.
 
 You can use the command to copy the default `Sider` component to your project. This will allow you to customize the sider as you want.
 
-[Refer to the swizzle documentation for more information. &#8594](/docs/packages/list-of-packages#swizzle)
+[Refer to the swizzle section of Development guide. &#8594](/docs/guides-concepts/development/#using-swizzle)
+
+## How to hide items from the Sider component?
+
+Refine's [`useMenu`](/docs/core/hooks/utilities/use-menu/) hook and `<Sider />` components use the `resources` property of the `<Refine>` component to render the navigation links. If a resource has a `list` property, it will be rendered as a navigation link in the sider. To hide a resource from the menu, you can use the `meta.hide` property of the resource.
+
+```tsx title="App.tsx"
+import { Refine } from "@refinedev/core";
+
+const App = () => (
+  <Refine
+    ...
+    resources={[
+      {
+        name: "posts",
+        list: "/posts",
+        meta: {
+          label: "Posts",
+          icon: "📝",
+        },
+      },
+      {
+        name: "users",
+        list: "/users",
+        meta: {
+          // Users resource will be hidden from the menu but will be accessible via the URL
+          hide: true,
+        },
+      },
+    ]}
+  />
+);
+```
 
 ## How can I remove GitHub Banner?
 
@@ -723,11 +330,11 @@ To remove the GitHub Banner, you need to find and remove the `<GitHubBanner />` 
 
 Here are the locations where you can find and remove the `<GitHubBanner />` component based on different React platforms:
 
-- Vite: [`src/App.tsx`](https://github.com/refinedev/refine/blob/master/examples/auth-antd/src/App.tsx#L161)
-- Next.js: [`pages/_app.tsx`](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/pages/_app.tsx#L47)
-- Remix: [`app/root.tsx`](https://github.com/refinedev/refine/blob/master/examples/with-remix-antd/app/root.tsx#L37)
+- Vite: `src/App.tsx` - [See an example](https://github.com/refinedev/refine/blob/master/examples/auth-antd/src/App.tsx#L161)
+- Next.js: `pages/_app.tsx` - [See an example](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/pages/_app.tsx#L47)
+- Remix: `app/root.tsx` - [See an example](https://github.com/refinedev/refine/blob/master/examples/with-remix-antd/app/root.tsx#L37)
 
-## Module "X" has no exported member "Y"
+## How to solve "Module 'X' has no exported member 'Y'" error?
 
 The error message "Module 'X' has no exported member 'Y'" typically occurs when using `pnpm` due to its cache system. We are aware of this issue and are actively working on resolving it by updating our peer dependencies with each version release. However, this is still a work in progress. In the meantime, you can resolve this error by using the `npm i <module-name>@latest` command.
 
@@ -744,36 +351,23 @@ By following these steps and updating to the latest module versions, you should 
 
 ## How to use React Query DevTools with Refine?
 
-Until `@refinedev/core`'s version `4.28.2`, Refine had the `@tanstack/react-query-devtools` package available by default. However, this package has been removed from the core package and is no longer available by default. If you want to use the dev tools, you can install the package (`@tanstack/react-query-devtools`) and use it in your app directly.
+Until `@refinedev/core`'s version `4.28.2`, Refine had the `@tanstack/react-query-devtools` package available by default. However, this package has been removed from the core package and is no longer available by default.
 
-```tsx
-import { Refine } from "@refinedev/core";
-// highlight-next-line
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
-const App = () => {
-  return (
-    <Refine>
-      ... // highlight-next-line
-      <ReactQueryDevtools />
-    </Refine>
-  );
-};
-```
+We're recommending [`@refinedev/devtools`](/docs/guides-concepts/development/#using-devtools) as an alternative to `@tanstack/react-query-devtools`. `@refinedev/devtools` is tailored for Refine and provides more detailed information about the queries and mutations with its monitoring panel and much more.
 
 ## How do invalidation works in queries?
 
-Refine invalidates for the specific scope of queries after a successful mutation. The scope of the invalidation can be customized by the `invalidates` prop in the mutation hooks.
+Refine invalidates and refetches the related queries after a successful mutation. To have a better understanding of how invalidation works in Refine, check out the [State Management section of General Concepts guide.](docs/guides-concepts/general-concepts/#state-management)
 
-By default, Refine invalidates all the queries that are in the defined scope and only triggers a refetch for the active queries (mounted and enabled). This is done to prevent unnecessary refetches and for more precise invalidation.
-
-In realtime updates, Refine will invalidate and refetch all the active queries that are in the defined scope.
-
-In both cases, if there are any ongoing queries, Refine will keep them as they are and will not invalidate or refetch them.
-
-## Handling client side pagination along with client side filtering and sorting
+## How to handle filters and sorters when using client side pagination?
 
 When you're implementing client side pagination with the `pagination.mode` set to "client," you might run into issues when applying client side filtering and sorting. This is due to the fact that client side filtering and sorting are applied to the sliced data, not the whole data. To ensure that the client side filtering and sorting are applied to the whole data, you need to use the `pagination.mode: "off"` prop.
+
+## How to handle server side validation errors?
+
+When working with forms and mutations, using only client side validation might not be enough. You may also need to validate the data on the server side. Refine provides an interface [`HttpError`](/docs/core/interface-references/#httperror) to propagate the server side validation errors to the form values. You can use this interface to handle server side validation errors.
+
+To learn more about server side validation and see an example, check out the [Server Side Validation section of the Forms guide.](/docs/guides-concepts/forms/#server-side-validation-)
 
 [use-form-core]: /docs/core/hooks/use-form/
 [use-form-react-hook-form]: /docs/packages/list-of-packages

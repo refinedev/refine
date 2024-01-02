@@ -68,6 +68,7 @@ jobs:
           cd documentation
           LIVE_PREVIEW_URL=${{ steps.waitForDeployment.outputs.url }}/preview npm run build
       - name: Deploy to Netlify
+        id: netlify-deploy
         uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: "./documentation/build"
@@ -80,3 +81,5 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 15
+      - name: Check Existing Links in Documentation
+        run: DEPLOY_URL=${{ steps.netlify-deploy.outputs.deploy-url }} SITEMAP_URL=https://refine.dev/sitemap.xml node ./.github/workflows/check-existing-doc-links.js

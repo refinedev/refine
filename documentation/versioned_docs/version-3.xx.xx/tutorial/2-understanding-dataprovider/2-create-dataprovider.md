@@ -18,15 +18,11 @@ As shown below, we will begin by creating a file and adding additional methods a
 Using `axios` as our HTTP client will allow us to make efficient and reliable HTTP requests to our server. Interceptors provide several benefits, such as centralized error handling, the ability to modify request or response data, and show global loading indicators.  
 To get started, install the `axios` to our project.
 
-```bash
-npm install axios
-```
+<InstallPackagesCommand args="axios"/>
 
 Using the `stringify` library will allow us to convert the query parameters into a string format. This can be useful when we need to pass query parameters as part of an HTTP request.
 
-```bash
-npm install query-string@7
-```
+<InstallPackagesCommand args="query-string@7"/>
 
 For our own data provider, the first step is to create the following file.
 
