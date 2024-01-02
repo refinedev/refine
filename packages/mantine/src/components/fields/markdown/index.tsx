@@ -15,7 +15,10 @@ export const MarkdownField: React.FC<MarkdownFieldProps> = ({
 }) => {
     return (
         // There's an issue related with the type inconsistency of the `remark-gfm` and `remark-rehype` packages, we need to cast the `gfm` as any. (https://github.com/orgs/rehypejs/discussions/63)
-        <ReactMarkdown remarkPlugins={[gfm]} {...rest}>
+        <ReactMarkdown
+            remarkPlugins={[gfm] as unknown as ReactMarkdown.PluggableList}
+            {...rest}
+        >
             {value}
         </ReactMarkdown>
     );
