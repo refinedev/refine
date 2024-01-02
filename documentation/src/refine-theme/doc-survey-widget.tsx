@@ -6,6 +6,7 @@ import { EmojiSadFace } from "./icons/emoji-sad-face";
 import { EmojiNeutralFace } from "./icons/emoji-neutral-face";
 import { EmojiSlightlySimilingFace } from "./icons/emoji-slightly-smiling-face";
 import { EmojiStarStructFace } from "./icons/emoji-star-struct-face";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Props = {
     className?: string;
@@ -84,6 +85,7 @@ export const DocSurveyWidget = ({ className }: Props) => {
 
     return (
         <div
+            ref={refWidget}
             className={clsx(
                 "w-full max-w-[432px]",
                 "flex flex-col",
@@ -100,7 +102,9 @@ export const DocSurveyWidget = ({ className }: Props) => {
             )}
         >
             {isFinished ? (
-                <SurveyFinished selectedOption={selectedOption} />
+                <AnimatePresence>
+                    <SurveyFinished selectedOption={selectedOption} />
+                </AnimatePresence>
             ) : (
                 <>
                     <SurveyOptions
@@ -267,9 +271,31 @@ const SurveyFinished = (props: {
                 props.className,
             )}
         >
-            {OptionIcon && <OptionIcon className={clsx("block", "w-8 h-8")} />}
-            <div className={clsx("mt-6")}>Thank you!</div>
-            <div className={clsx("mt-1")}>Your feedback has been recieved.</div>
+            {OptionIcon && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
+                    <OptionIcon className={clsx("block", "w-8 h-8")} />
+                </motion.div>
+            )}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { delay: 0.1 } }}
+                exit={{ opacity: 0 }}
+            >
+                <div className={clsx("mt-6")}>Thank you!</div>
+            </motion.div>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { delay: 0.2 } }}
+                exit={{ opacity: 0 }}
+            >
+                <div className={clsx("mt-1")}>
+                    Your feedback has been recieved.
+                </div>
+            </motion.div>
         </div>
     );
 };
