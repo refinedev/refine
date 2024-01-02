@@ -164,6 +164,10 @@ const SurveyOptions = (props: {
                     return (
                         <button
                             key={value}
+                            className={clsx(
+                                isSelected && "scale-[1.33]",
+                                "transition-all duration-200 ease-in-out",
+                            )}
                             onClick={() => props.onOptionClick(value)}
                         >
                             <Icon
@@ -171,12 +175,10 @@ const SurveyOptions = (props: {
                                     "flex-shrink-0",
                                     "w-8 h-8 sm:w-6 sm:h-6",
                                     isSelected && "mix-blend-normal",
-                                    isSelected && "scale-[1.33]",
                                     !isSelected && "mix-blend-luminosity",
                                     !isSelected &&
                                         hasSelectedOption &&
                                         "opacity-50",
-                                    "transition-all duration-200 ease-in-out",
                                 )}
                             />
                         </button>
