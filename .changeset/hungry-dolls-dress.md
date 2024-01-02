@@ -5,4 +5,4 @@
 "@refinedev/mui": patch
 ---
 
-Fixed the type issue between `remark-gfm` and `react-markdown`.
+Fixed the type issue between `remark-gfm` and `react-markdown`. #5463
