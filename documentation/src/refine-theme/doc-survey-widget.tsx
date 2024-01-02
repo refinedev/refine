@@ -94,8 +94,8 @@ export const DocSurveyWidget = ({ className }: Props) => {
                 "bg-gray-100",
                 "border dark:border-gray-700 border-transparent",
                 "rounded-[28px]",
-                (isSurveyTextVisible || isFinished) && "h-[240px]",
-                !isSurveyTextVisible && !isFinished && "h-[56px]",
+                (isSurveyTextVisible || isFinished) && "h-[278px] sm:h-[240px]",
+                !isSurveyTextVisible && !isFinished && "h-[96px] sm:h-[56px]",
                 "transition-all duration-200 ease-in-out",
                 "overflow-hidden",
                 className,
@@ -108,7 +108,6 @@ export const DocSurveyWidget = ({ className }: Props) => {
             ) : (
                 <>
                     <SurveyOptions
-                        className={clsx("sm:pl-4")}
                         options={surveyOptions}
                         selectedOption={selectedOption}
                         onOptionClick={handleSurveyOptionClick}
@@ -146,9 +145,10 @@ const SurveyOptions = (props: {
         <div
             className={clsx(
                 "w-full",
-                "flex",
+                "flex flex-col sm:flex-row",
                 "items-center justify-between",
                 "gap-2",
+                "sm:pl-4",
                 props.className,
             )}
         >
@@ -169,6 +169,7 @@ const SurveyOptions = (props: {
                             <Icon
                                 className={clsx(
                                     "flex-shrink-0",
+                                    "w-8 h-8 sm:w-6 sm:h-6",
                                     isSelected && "mix-blend-normal",
                                     isSelected && "scale-[1.33]",
                                     !isSelected && "mix-blend-luminosity",
