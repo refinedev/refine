@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { SVGProps, useState } from "react";
+import React, { useState } from "react";
 import { useLocation } from "@docusaurus/router";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -89,8 +89,8 @@ export const DocSurveyWidget = ({ className }: Props) => {
                 "bg-gray-100",
                 "border dark:border-gray-700 border-transparent",
                 "rounded-[28px]",
-                (isSurveyTextVisible || isFinished) && "h-[286px] sm:h-[240px]",
-                !isSurveyTextVisible && !isFinished && "h-[104px] sm:h-[56px]",
+                (isSurveyTextVisible || isFinished) && "h-[286px] sm:h-[242px]",
+                !isSurveyTextVisible && !isFinished && "h-[104px] sm:h-[58px]",
                 "transition-all duration-200 ease-in-out",
                 "overflow-hidden",
                 className,
