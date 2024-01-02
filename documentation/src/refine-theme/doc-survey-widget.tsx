@@ -1,11 +1,6 @@
 import clsx from "clsx";
 import React, { SVGProps, useState } from "react";
 import { useLocation } from "@docusaurus/router";
-import { EmojiCryingFace } from "./icons/emoji-crying-face";
-import { EmojiSadFace } from "./icons/emoji-sad-face";
-import { EmojiNeutralFace } from "./icons/emoji-neutral-face";
-import { EmojiSlightlySimilingFace } from "./icons/emoji-slightly-smiling-face";
-import { EmojiStarStructFace } from "./icons/emoji-star-struct-face";
 import { AnimatePresence, motion } from "framer-motion";
 
 type Props = {
@@ -38,7 +33,7 @@ export const DocSurveyWidget = ({ className }: Props) => {
             refWidget.current?.scrollIntoView({
                 behavior: "smooth",
             });
-        }, 100);
+        }, 150);
 
         if (survey) {
             const data = await updateSurvey({
@@ -134,7 +129,7 @@ const SurveyOptions = (props: {
     className?: string;
     options: {
         value: SurveyOption;
-        icon: (props: SVGProps<SVGSVGElement>) => JSX.Element;
+        img: string;
     }[];
     selectedOption: SurveyOption | null;
     onOptionClick: (option: SurveyOption) => void;
@@ -158,27 +153,29 @@ const SurveyOptions = (props: {
                 Was this helpful?
             </div>
             <div className={clsx("flex", "items-center", "gap-6 sm:gap-3")}>
-                {props.options.map(({ value, icon: Icon }) => {
+                {props.options.map(({ value, img }) => {
                     const isSelected = props.selectedOption === value;
 
                     return (
                         <button
                             key={value}
-                            className={clsx(
-                                isSelected && "scale-[1.33]",
-                                "transition-all duration-200 ease-in-out",
-                            )}
                             onClick={() => props.onOptionClick(value)}
                         >
-                            <Icon
+                            <img
+                                src={img}
+                                alt={img.split("/").pop()}
+                                loading="lazy"
                                 className={clsx(
+                                    "block",
                                     "flex-shrink-0",
                                     "w-8 h-8 sm:w-6 sm:h-6",
                                     isSelected && "mix-blend-normal",
+                                    isSelected && "scale-[1.33]",
                                     !isSelected && "mix-blend-luminosity",
                                     !isSelected &&
                                         hasSelectedOption &&
                                         "opacity-50",
+                                    "transition-all duration-200 ease-in-out",
                                 )}
                             />
                         </button>
@@ -260,7 +257,6 @@ const SurveyFinished = (props: {
     const option = surveyOptions.find(
         (option) => option.value === props.selectedOption,
     );
-    const OptionIcon = option?.icon;
 
     return (
         <div
@@ -274,15 +270,11 @@ const SurveyFinished = (props: {
                 props.className,
             )}
         >
-            {OptionIcon && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                >
-                    <OptionIcon className={clsx("block", "w-8 h-8")} />
-                </motion.div>
-            )}
+            <img
+                src={option?.img}
+                className={clsx("w-8 h-8", "block")}
+                alt="emoji"
+            />
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { delay: 0.1 } }}
@@ -351,35 +343,27 @@ const updateSurvey = async ({
 
 const surveyOptions: {
     value: SurveyOption;
-    icon: (props: SVGProps<SVGSVGElement>) => JSX.Element;
+    img: string;
 }[] = [
     {
         value: 1,
-        icon: (props: SVGProps<SVGSVGElement>) => (
-            <EmojiCryingFace {...props} />
-        ),
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/icons/emoji-crying-face.png",
     },
     {
         value: 2,
-        icon: (props: SVGProps<SVGSVGElement>) => <EmojiSadFace {...props} />,
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/icons/emoji-sad-face.png",
     },
     {
         value: 3,
-        icon: (props: SVGProps<SVGSVGElement>) => (
-            <EmojiNeutralFace {...props} />
-        ),
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/icons/emoji-neutral-face.png",
     },
     {
         value: 4,
-        icon: (props: SVGProps<SVGSVGElement>) => (
-            <EmojiSlightlySimilingFace {...props} />
-        ),
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/icons/emoji-slightly-smiling-face.png",
     },
     {
         value: 5,
-        icon: (props: SVGProps<SVGSVGElement>) => (
-            <EmojiStarStructFace {...props} />
-        ),
+        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/icons/emoji-star-struct-face.png",
     },
 ];
 
