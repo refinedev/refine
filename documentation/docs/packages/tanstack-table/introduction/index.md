@@ -15,39 +15,7 @@ Refine provides an integration package for [TanStack Table][tanstack-table] libr
 
 Install the [`@refinedev/react-table`][refine-react-table] library.
 
-<Tabs
-defaultValue="npm"
-values={[
-{label: 'npm', value: 'npm'},
-{label: 'yarn', value: 'yarn'},
-{label: 'pnpm', value: 'pnpm'}
-]}>
-
-<TabItem value="npm">
-
-```bash
-npm i @refinedev/react-table
-```
-
-</TabItem>
-
-<TabItem value="yarn">
-
-```bash
-yarn add @refinedev/react-table
-```
-
-</TabItem>
-
-<TabItem value="pnpm">
-
-```bash
-pnpm add @refinedev/react-table
-```
-
-</TabItem>
-
-</Tabs>
+<InstallPackagesCommand args="@refinedev/react-table"/>
 
 ## Usage
 
@@ -79,12 +47,12 @@ We provide implementation examples for the Mantine and Chakra UI. If you using a
 
 [tanstack-table]: https://tanstack.com/table/v8
 [refine-react-table]: https://github.com/refinedev/refine/tree/master/packages/react-table
-[use-table-core]: /docs/core/hooks/use-table
+[use-table-core]: /docs/data/hooks/use-table
 [use-table-tanstack]: /docs/packages/list-of-packages
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
 [syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
-[notification-provider]: /docs/core/providers/notification-provider
+[notification-provider]: /docs/notification/notification-provider
 [crudsorting]: /docs/core/interface-references#crudsorting
 [crudfilters]: /docs/core/interface-references#crudfilters
 [Refine swl]: /docs/core/refine-component#syncwithlocation

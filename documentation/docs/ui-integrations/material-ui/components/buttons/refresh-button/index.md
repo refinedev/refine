@@ -68,7 +68,7 @@ render(
 
 ## Properties
 
-### `recordItemId`
+### recordItemId
 
 `recordItemId` allows us to manage which data is going to be refreshed. By default, `recordItemId` will be inferred from the route.
 
@@ -103,7 +103,7 @@ render(
 
 Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetch the record whose resource is "post" and whose id is "1".
 
-### `resource`
+### resource
 
 `resource` allows us to manage which resource is going to be refreshed. By default, `<RefreshButton>` uses the inferred resource from the route.
 
@@ -143,7 +143,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `hideText`
+### hideText
 
 `hideText` is used to show and hide the text of the button. When `true`, only the button icon is visible.
 
@@ -177,7 +177,7 @@ render(
 );
 ```
 
-### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+### ~~resourceNameOrRouteName~~ <PropTag deprecated />
 
 Use the `resource` prop instead.
 
@@ -193,4 +193,4 @@ It also accepts all props of Material UI [Button](https://mui.com/material-ui/ap
 
 :::
 
-[use-invalidate]: /docs/core/hooks/data/use-invalidate
+[use-invalidate]: /docs/data/hooks/use-invalidate

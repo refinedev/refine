@@ -1,18 +1,19 @@
 import React from "react";
 
 import { useList, useNavigation } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { CalendarOutlined, RightCircleOutlined } from "@ant-design/icons";
 import type { CardProps } from "antd";
 import { Button, Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
-import { Event } from "@/interfaces";
+import { UpcomingEventsQuery } from "@/graphql/types";
 
 import { Text } from "../../text";
 import { CalendarUpcomingEvent } from "./event";
-
 import styles from "./index.module.css";
+import { CALENDAR_UPCOMING_EVENTS_QUERY } from "./queries";
 
 type CalendarUpcomingEventsProps = {
     limit?: number;
@@ -71,28 +72,30 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
 }) => {
     const { list } = useNavigation();
 
-    const { data, isLoading } = useList<Event>({
-        resource: "events",
-        pagination: {
-            pageSize: limit,
-        },
-        sorters: [
-            {
-                field: "startDate",
-                order: "asc",
+    const { data, isLoading } = useList<GetFieldsFromList<UpcomingEventsQuery>>(
+        {
+            resource: "events",
+            pagination: {
+                pageSize: limit,
             },
-        ],
-        filters: [
-            {
-                field: "startDate",
-                operator: "gte",
-                value: dayjs().format("YYYY-MM-DD"),
+            sorters: [
+                {
+                    field: "startDate",
+                    order: "asc",
+                },
+            ],
+            filters: [
+                {
+                    field: "startDate",
+                    operator: "gte",
+                    value: dayjs().format("YYYY-MM-DD"),
+                },
+            ],
+            meta: {
+                gqlQuery: CALENDAR_UPCOMING_EVENTS_QUERY,
             },
-        ],
-        meta: {
-            fields: ["id", "title", "color", "startDate", "endDate"],
         },
-    });
+    );
 
     return (
         <Card

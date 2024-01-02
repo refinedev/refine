@@ -36,16 +36,10 @@ export const POPOVERMENUS: NavMenu[] = [
                 link: "/docs/tutorial/introduction/index/",
                 icon: TutorialIcon,
             },
-            // {
-            //     label: "UI Frameworks",
-            //     description: "Ant Design, Material UI, Mantine, Chakra UI...",
-            //     link: "/",
-            //     icon: UIFrameworksIcon,
-            // },
             {
-                label: "Examples",
-                description: "Ready-made snippets for your project",
-                link: "/examples",
+                label: "Templates",
+                description: "Ready-made examples for your project",
+                link: "/templates",
                 icon: ExamplesIcon,
             },
             {

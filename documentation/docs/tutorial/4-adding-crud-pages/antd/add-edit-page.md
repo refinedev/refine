@@ -129,7 +129,7 @@ const { selectProps: categorySelectProps } = useSelect({
 });
 ```
 
-> For more information, refer to the [`useSelect`](/docs/core/hooks/use-select) and the [**Ant Design** `<Select/>` documentations&#8594](https://ant.design/components/select)
+> For more information, refer to the [`useSelect`](/docs/data/hooks/use-select) and the [**Ant Design** `<Select/>` documentations&#8594](https://ant.design/components/select)
 
 ## Adding the Edit Page to the App
 

@@ -1,6 +1,7 @@
 ---
 id: basic
-title: Basic
+title: Tables with Mantine
+sidebar_label: Basic Table
 example-title: Basic React Table with Mantine
 example-tags: [table, mantine, react-table]
 ---

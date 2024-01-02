@@ -214,9 +214,7 @@ Refine supports the command palette feature and use the
 
 Install the [@refinedev/kbar][refine-kbar] library.
 
-```bash
-npm i @refinedev/kbar
-```
+<InstallPackagesCommand args="@refinedev/kbar"/>
 
 ## Usage
 
@@ -372,6 +370,6 @@ Since `refine-kbar` exports the [`kbar`](https://github.com/timc1/kbar), you use
 [kbar]: https://github.com/timc1/kbar
 [kbar-actions]: https://kbar.vercel.app/docs/concepts/actions
 [refine-kbar]: https://github.com/refinedev/refine/tree/master/packages/kbar
-[access-control]: /docs/core/providers/access-control-provider
+[access-control]: /docs/authorization/access-control-provider
 [usecanwithoutcache]: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/accessControl/useCanWithoutCache.ts
 [refine-finefoods]: https://github.com/refinedev/refine/blob/master/examples/finefoods-material-ui/src/hooks/useOrderCustomKbarActions/index.tsx

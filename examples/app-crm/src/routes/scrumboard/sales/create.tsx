@@ -27,7 +27,7 @@ import {
 } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company, Contact, Deal, User } from "@/interfaces";
+import { Company, Contact, Deal, User } from "@/graphql/schema.types";
 
 type FormValues = {
     stageId?: string | null;

@@ -102,17 +102,15 @@ const replacementProps = {
     "{ [key: string]: any; ids?: BaseKey[]; }":
         "{ [key]: any; ids?: BaseKey[]; }",
     "BaseKey | BaseKey[]":
-        "[BaseKey](/docs/api-reference/core/interfaceReferences/#basekey) | [BaseKey[]](/docs/api-reference/core/interfaceReferences/#basekey)",
-    BaseKey: "[BaseKey](/docs/api-reference/core/interfaceReferences/#basekey)",
+        "[BaseKey](/docs/core/interface-references/#basekey) | [BaseKey[]](/docs/core/interface-references/#basekey)",
+    BaseKey: "[BaseKey](/docs/core/interface-references/#basekey)",
     MetaDataQuery:
-        "[MetaDataQuery](/docs/api-reference/core/interfaceReferences/#metadataquery)",
-    CrudFilters:
-        "[CrudFilters](/docs/api-reference/core/interfaceReferences/#crudfilters)",
-    CrudSorting:
-        "[CrudSorting](/docs/api-reference/core/interfaceReferences/#crudsorting)",
+        "[MetaDataQuery](/docs/core/interface-references/#metadataquery)",
+    CrudFilters: "[CrudFilters](/docs/core/interface-references/#crudfilters)",
+    CrudSorting: "[CrudSorting](/docs/core/interface-references/#crudsorting)",
 };
 
-const spinner = _ora2.default.call(void 0, "Generating refine declarations...");
+const spinner = _ora2.default.call(void 0, "Generating Refine declarations...");
 
 /** HELPERS */
 const getPackageNamePathMap = async (directory) => {
@@ -425,7 +423,7 @@ function plugin() {
         async contentLoaded({ content, actions }) {
             if (!process.env.DISABLE_DOCGEN) {
                 _ora2.default
-                    .call(void 0, "Creating refine declaration files...")
+                    .call(void 0, "Creating Refine declaration files...")
                     .succeed();
 
                 const { createData } = actions;

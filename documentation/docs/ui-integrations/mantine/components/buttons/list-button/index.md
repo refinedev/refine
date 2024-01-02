@@ -27,7 +27,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<ListButton>` is uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `list` method from [`useNavigation`](/docs/core/hooks/navigation/use-navigation) under the hood. It can be useful when redirecting the app to the list page route of resource.
+`<ListButton>` is uses Mantine's [`<Button>`](https://mantine.dev/core/button) component. It uses the `list` method from [`useNavigation`](/docs/routing/hooks/use-navigation) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::simple Good to know
 
@@ -106,7 +106,7 @@ The button text is defined automatically by Refine based on resource definition.
 
 ## Properties
 
-### `resource`
+### resource
 
 Redirection endpoint is defined by the `resource`'s `list` action path. By default, `<ListButton>` uses the inferred resource from the route.
 
@@ -166,13 +166,13 @@ render(
 );
 ```
 
-Clicking the button will trigger the `list` method of [`useNavigation`](/docs/core/hooks/navigation/use-navigation) and then redirect the app to the `list` action path of the resource, filling the necessary parameters in the route.
+Clicking the button will trigger the `list` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `list` action path of the resource, filling the necessary parameters in the route.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `hideText`
+### hideText
 
 `hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
@@ -209,9 +209,9 @@ render(
 );
 ```
 
-### `accessControl`
+### accessControl
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/core/providers/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
 
 ```tsx
 import { ListButton } from "@refinedev/mantine";
@@ -221,7 +221,7 @@ export const MyListComponent = () => {
 };
 ```
 
-### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+### ~~resourceNameOrRouteName~~ <PropTag deprecated />
 
 Use `resource` prop instead.
 

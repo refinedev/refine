@@ -102,7 +102,7 @@ render(
 
 ## Properties
 
-### `recordItemId`
+### recordItemId
 
 `recordItemId` allows us to manage which data is going to be refreshed. By default it will read the id information from the route.
 
@@ -140,7 +140,7 @@ render(
 
 Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetch the record whose resource is "post" and whose id is "123".
 
-### `resource`
+### resource
 
 `resource` allows us to manage which resource is going to be refreshed. By default it will read the id information from the route.
 
@@ -183,7 +183,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `hideText`
+### hideText
 
 `hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
@@ -220,7 +220,7 @@ render(
 );
 ```
 
-### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+### ~~resourceNameOrRouteName~~ <PropTag deprecated />
 
 Use `resource` prop instead.
 
@@ -230,4 +230,4 @@ Use `resource` prop instead.
 
 <PropsTable module="@refinedev/chakra-ui/RefreshButton" />
 
-[use-invalidate]: /docs/core/hooks/data/use-invalidate
+[use-invalidate]: /docs/data/hooks/use-invalidate

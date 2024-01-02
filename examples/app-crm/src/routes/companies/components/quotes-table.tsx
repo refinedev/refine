@@ -18,7 +18,7 @@ import {
 import { Button, Card, Input, Select, Space, Table } from "antd";
 
 import { Participants, QuoteStatusTag, Text } from "@/components";
-import { Quote, QuoteStatus } from "@/interfaces";
+import { Quote, QuoteStatus } from "@/graphql/schema.types";
 import { currencyNumber } from "@/utilities";
 
 type Props = {

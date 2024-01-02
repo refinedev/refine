@@ -86,9 +86,8 @@ export const DocBreadcrumbs = () => {
                     const isLast = idx === breadcrumbs.length - 1;
 
                     return (
-                        <>
+                        <React.Fragment key={idx}>
                             <li
-                                key={idx}
                                 className={clsx(
                                     "flex-row flex-nowrap",
                                     item.hideOnMobile ? "none" : "flex",
@@ -139,7 +138,6 @@ export const DocBreadcrumbs = () => {
                             breadcrumbList.length > 1 &&
                             renderDots ? (
                                 <li
-                                    key={idx}
                                     className={clsx(
                                         "flex flex-row flex-nowrap",
                                     )}
@@ -150,7 +148,7 @@ export const DocBreadcrumbs = () => {
                                     </div>
                                 </li>
                             ) : null}
-                        </>
+                        </React.Fragment>
                     );
                 })}
             </ul>

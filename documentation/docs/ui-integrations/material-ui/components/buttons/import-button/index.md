@@ -69,7 +69,7 @@ render(
 
 ## Properties
 
-### `hideText`
+### hideText
 
 `hideText` is used to show and hide the text of the button. When `true`, only the button icon is visible.
 

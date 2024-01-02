@@ -5,6 +5,7 @@ const config: CodegenConfig = {
     generates: {
         "./src/interfaces/graphql.ts": {
             plugins: ["typescript"],
+            documents: ["./src/**/*.tsx"],
             config: {
                 skipTypename: true,
                 enumsAsTypes: true,

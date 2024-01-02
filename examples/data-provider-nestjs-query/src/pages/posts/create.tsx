@@ -1,21 +1,24 @@
-import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { Create, useForm, useSelect } from "@refinedev/antd";
-
-import { Form, Input, Select } from "antd";
+import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import MDEditor from "@uiw/react-md-editor";
+import { Form, Input, Select } from "antd";
 
-import { IPost, ICategory } from "../../interfaces";
+import { CategoriesSelectQuery, PostCreateMutation } from "graphql/types";
+import { CATEGORIES_SELECT_QUERY, POST_CREATE_MUTATION } from "./queries";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+    const { formProps, saveButtonProps } = useForm<
+        GetFields<PostCreateMutation>
+    >({ meta: { gqlMutation: POST_CREATE_MUTATION } });
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    const { selectProps: categorySelectProps } = useSelect<
+        GetFieldsFromList<CategoriesSelectQuery>
+    >({
         resource: "categories",
         metaData: {
-            fields: ["id", "title"],
+            gqlQuery: CATEGORIES_SELECT_QUERY,
         },
     });
 

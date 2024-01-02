@@ -13,7 +13,7 @@ import { DragEndEvent } from "@dnd-kit/core";
 import { MenuProps } from "antd";
 
 import { Text } from "@/components";
-import { Deal, DealStage } from "@/interfaces";
+import { Deal, DealStage } from "@/graphql/schema.types";
 import { currencyNumber } from "@/utilities";
 
 import {

@@ -1,14 +1,12 @@
 import React from "react";
 import clsx from "clsx";
-import { useColorMode } from "@docusaurus/theme-common";
+import { CommonThemedImage } from "./common-themed-image";
 
 export const EnterpriseFrequentUpdates = ({
     className,
 }: {
     className?: string;
 }) => {
-    const { colorMode } = useColorMode();
-
     return (
         <div className={clsx("flex flex-col", "not-prose", className)}>
             <div
@@ -100,18 +98,15 @@ export const EnterpriseFrequentUpdates = ({
                     </div>
                 </div>
 
-                <img
+                <CommonThemedImage
                     className={clsx(
                         "block",
                         "object-cover",
                         "w-[232px] landing-sm:w-[360px]",
                         "h-[232px] landing-sm:h-[360px]",
                     )}
-                    src={
-                        colorMode === "dark"
-                            ? `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/refine-git-history-logo-dark.png`
-                            : `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/refine-git-history-logo-light.png`
-                    }
+                    srcDark="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/refine-git-history-logo-dark.png"
+                    srcLight="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/refine-git-history-logo-light.png"
                 />
             </div>
         </div>

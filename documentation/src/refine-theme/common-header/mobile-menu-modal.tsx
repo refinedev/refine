@@ -203,7 +203,13 @@ const Phone = (props: { className?: string }) => {
                                             open={open}
                                         />
 
-                                        <Disclosure.Panel>
+                                        <Disclosure.Panel
+                                            className={clsx(
+                                                open && "pb-4",
+                                                open &&
+                                                    "border-b border-gray-200 dark:border-gray-700",
+                                            )}
+                                        >
                                             {item.items.map((subItem) => (
                                                 <MenuItem
                                                     key={subItem.label}

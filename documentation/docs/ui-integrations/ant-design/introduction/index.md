@@ -12,9 +12,7 @@ import Example from "./previews/example.tsx";
 
 Installing the package is as simple as just by running the following command without any additional configuration:
 
-```bash
-npm install @refinedev/antd antd
-```
+<InstallPackagesCommand args="@refinedev/antd antd"/>
 
 ## Usage
 
@@ -46,7 +44,7 @@ import UsageRemix from "./previews/usage-remix.tsx";
 
 ## Tables
 
-Refine provides a seamless integration with the [`<Table />`](https://ant.design/components/table) component of Ant Design from pagination to sorting and filtering via the [`useTable`](/docs/ui-integrations/ant-design/hooks/use-table) hook exported from the `@refinedev/antd` package. This hook is an extension of the `@refinedev/core`'s [`useTable`](/docs/core/hooks/use-table) and provides a set of additional features and transformations to make it work with Ant Design's `<Table />` component without any additional configuration.
+Refine provides a seamless integration with the [`<Table />`](https://ant.design/components/table) component of Ant Design from pagination to sorting and filtering via the [`useTable`](/docs/ui-integrations/ant-design/hooks/use-table) hook exported from the `@refinedev/antd` package. This hook is an extension of the `@refinedev/core`'s [`useTable`](/docs/data/hooks/use-table) and provides a set of additional features and transformations to make it work with Ant Design's `<Table />` component without any additional configuration.
 
 ```tsx title="pages/products/list.tsx"
 import { useTable } from "@refinedev/antd";
@@ -81,7 +79,7 @@ interface IProduct {
 
 ## Forms
 
-Refine provides a seamless integration with the [`<Form />`](https://ant.design/components/form) component of Ant Design from validation to submission via the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) hook exported from the `@refinedev/antd` package. This hook is an extension of the `@refinedev/core`'s [`useForm`](/docs/core/hooks/use-form/) and provides a set of additional features and transformations to make it work with Ant Design's `<Form />` component.
+Refine provides a seamless integration with the [`<Form />`](https://ant.design/components/form) component of Ant Design from validation to submission via the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) hook exported from the `@refinedev/antd` package. This hook is an extension of the `@refinedev/core`'s [`useForm`](/docs/data/hooks/use-form/) and provides a set of additional features and transformations to make it work with Ant Design's `<Form />` component.
 
 ```tsx title="pages/products/create.tsx"
 import { useForm, SaveButton } from "@refinedev/antd";
@@ -130,7 +128,7 @@ interface IProduct {
 }
 ```
 
-`@refinedev/antd` also offers hooks to implement different types of forms such as [`useDrawerForm`](/docs/ui-integrations/ant-design/hooks/use-drawer-form), [`useModalForm`](/docs/ui-integrations/ant-design/hooks/use-modal-form) and [`useStepsForm`](/docs/ui-integrations/ant-design/hooks/use-steps-form) hooks. Additionally [`useSelect`](/docs/ui-integrations/ant-design/hooks/use-select), [`useCheckboxGroup`](/docs/ui-integrations/ant-design/hooks/use-checkbox-group) and [`useRadioGroup`](/docs/ui-integrations/ant-design/hooks/use-radio-group) hooks are also provided to make it easier to implement form fields with relational data. These hooks leverage the [`useSelect`](/docs/core/hooks/use-select) hook from the `@refinedev/core` package.
+`@refinedev/antd` also offers hooks to implement different types of forms such as [`useDrawerForm`](/docs/ui-integrations/ant-design/hooks/use-drawer-form), [`useModalForm`](/docs/ui-integrations/ant-design/hooks/use-modal-form) and [`useStepsForm`](/docs/ui-integrations/ant-design/hooks/use-steps-form) hooks. Additionally [`useSelect`](/docs/ui-integrations/ant-design/hooks/use-select), [`useCheckboxGroup`](/docs/ui-integrations/ant-design/hooks/use-checkbox-group) and [`useRadioGroup`](/docs/ui-integrations/ant-design/hooks/use-radio-group) hooks are also provided to make it easier to implement form fields with relational data. These hooks leverage the [`useSelect`](/docs/data/hooks/use-select) hook from the `@refinedev/core` package.
 
 ## Notifications
 

@@ -6,7 +6,7 @@ import { useNavigation, useResource } from "@refinedev/core";
 import { Modal } from "antd";
 import dayjs from "dayjs";
 
-import { Event } from "@/interfaces";
+import { Event } from "@/graphql/schema.types";
 
 import { CalendarForm } from "./components";
 

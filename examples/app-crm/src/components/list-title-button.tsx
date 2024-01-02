@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { useLocation } from "react-router-dom";
 
 import { useGo, useNavigation } from "@refinedev/core";
@@ -12,7 +13,7 @@ interface ListTitleButtonProps {
     buttonText: string;
 }
 
-export const ListTitleButton: React.FC<ListTitleButtonProps> = ({
+export const ListTitleButton: FC<ListTitleButtonProps> = ({
     buttonText,
     toPath,
 }) => {

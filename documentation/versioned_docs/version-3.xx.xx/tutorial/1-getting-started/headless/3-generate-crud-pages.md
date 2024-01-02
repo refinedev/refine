@@ -36,35 +36,7 @@ The `@pankod/refine-inferencer` package provides the `<HeadlessInferencer/>` com
 
 Before we start using Inferencer, we need to add `@pankod/refine-react-hook-form` and `@pankod/refine-react-table` packages to our project. Since these packages are used by Inferencer to generate forms and tables, they need to be installed in our project.
 
-<Tabs
-defaultValue="npm"
-values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
-
-<TabItem value="npm">
-
-```bash
-npm i @pankod/refine-react-table @pankod/refine-react-hook-form
-```
-
-</TabItem>
-
-<TabItem value="pnpm">
-
-```bash
-pnpm i @pankod/refine-react-table @pankod/refine-react-hook-form
-```
-
-</TabItem>
-
-<TabItem value="yarn">
-
-```bash
-yarn add @pankod/refine-react-table @pankod/refine-react-hook-form
-```
-
-</TabItem>
-
-</Tabs>
+<InstallPackagesCommand args="@pankod/refine-react-table @pankod/refine-react-hook-form"/>
 
 Then, we need to add the `<HeadlessInferencer/>` component is used by passing to appropriate values in the `resources` prop of the `<Refine/>` component in `App.tsx` as shown below:
 

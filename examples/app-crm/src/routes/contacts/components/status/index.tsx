@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useUpdate } from "@refinedev/core";
+import { GetFields } from "@refinedev/nestjs-query";
 
 import {
     CheckCircleFilled,
@@ -13,12 +14,13 @@ import { Dropdown } from "antd";
 
 import { Text } from "@/components";
 import { ContactStageEnum, ContactStatusEnum } from "@/enums";
-import { Contact, ContactStatus as ContactStatusType } from "@/interfaces";
+import { ContactStatus as ContactStatusType } from "@/graphql/schema.types";
+import { ContactShowQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
 
 type ContactStatusProps = {
-    contact: Contact;
+    contact: GetFields<ContactShowQuery>;
 };
 
 const statusToStage = (status: ContactStatusEnum): ContactStageEnum => {

@@ -10,6 +10,7 @@ export const TopAnnouncement = () => {
                 "bg-top-announcement",
                 "not-prose",
                 "font-inter",
+                "z-top-announcement",
             )}
         >
             <div

@@ -5,7 +5,7 @@ import { HttpError } from "@refinedev/core";
 
 import { Button, Form, Space } from "antd";
 
-import { Task } from "@/interfaces";
+import { Task } from "@/graphql/schema.types";
 
 const MDEditor = lazy(() => import("@uiw/react-md-editor"));
 

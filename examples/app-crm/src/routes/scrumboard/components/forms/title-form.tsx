@@ -6,7 +6,7 @@ import { HttpError, useInvalidate } from "@refinedev/core";
 import { Form, Skeleton } from "antd";
 
 import { Text } from "@/components";
-import { Task, TaskUpdateInput } from "@/interfaces";
+import { Task, TaskUpdateInput } from "@/graphql/schema.types";
 
 const TitleInput = ({
     value,

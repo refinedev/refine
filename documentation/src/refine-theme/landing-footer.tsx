@@ -26,7 +26,7 @@ export const LandingFooter = () => {
                     "text-gray-900 dark:text-gray-0",
                 )}
             >
-                Refine Inc.
+                Refine Development Inc.
             </div>
             <div
                 className={clsx(
@@ -330,7 +330,7 @@ export const LandingFooter = () => {
                         )}
                     >
                         {
-                            "© 2023, Refine from San Francisco to wherever you're with "
+                            "© 2024, Refine from San Francisco to wherever you're with "
                         }
                         <HeartOutlinedIcon
                             className={clsx(

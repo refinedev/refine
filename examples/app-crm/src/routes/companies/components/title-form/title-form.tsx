@@ -2,28 +2,32 @@ import { useState } from "react";
 
 import { useForm, useSelect } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { EditOutlined } from "@ant-design/icons";
 import { Button, Form, Select, Skeleton, Space } from "antd";
 
 import { CustomAvatar, SelectOptionWithAvatar, Text } from "@/components";
-import { Company, User } from "@/interfaces";
+import { User } from "@/graphql/schema.types";
+import {
+    CompanyTitleFormMutation,
+    CompanyTitleFormMutationVariables,
+} from "@/graphql/types";
 import { getNameInitials } from "@/utilities";
 
+import { COMPANY_TITLE_FORM_MUTATION, COMPANY_TITLE_QUERY } from "./queries";
 import styles from "./title-form.module.css";
 
 export const CompanyTitleForm = () => {
-    const { formProps, queryResult, onFinish } = useForm<Company, HttpError>({
+    const { formProps, queryResult, onFinish } = useForm<
+        GetFields<CompanyTitleFormMutation>,
+        HttpError,
+        GetVariables<CompanyTitleFormMutationVariables>
+    >({
         redirect: false,
         meta: {
-            fields: [
-                "id",
-                "name",
-                "avatarUrl",
-                {
-                    salesOwner: ["id", "name", "avatarUrl"],
-                },
-            ],
+            gqlMutation: COMPANY_TITLE_FORM_MUTATION,
+            gqlQuery: COMPANY_TITLE_QUERY,
         },
     });
 
@@ -110,7 +114,7 @@ const SalesOwnerInput = ({
     loading,
 }: {
     onChange?: (value: string) => void;
-    salesOwner?: Company["salesOwner"];
+    salesOwner?: Partial<User>;
     loading?: boolean;
 }) => {
     const [isEdit, setIsEdit] = useState(false);

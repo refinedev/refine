@@ -1,6 +1,7 @@
 ---
 id: basic-tanstack-table
-title: Basic
+title: Tables with Tanstack Table
+sidebar_label: Basic Table
 example-title: Basic TanStack Table
 example-tags: [table, react-table, tanstack-table]
 ---

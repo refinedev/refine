@@ -13,7 +13,7 @@ import { ClearOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { DragEndEvent } from "@dnd-kit/core";
 import { MenuProps } from "antd";
 
-import { Task, TaskStage, TaskUpdateInput } from "@/interfaces";
+import { Task, TaskStage, TaskUpdateInput } from "@/graphql/schema.types";
 
 import {
     KanbanAddCardButton,

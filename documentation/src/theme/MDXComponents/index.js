@@ -24,6 +24,8 @@ import CommonTabItem from "@site/src/refine-theme/common-tab-item";
 import CommonTabs from "@site/src/refine-theme/common-tabs";
 import { Image } from "@site/src/components/image";
 import { Table } from "@site/src/refine-theme/common-table";
+import { CreateRefineAppCommand } from "@site/src/partials/npm-scripts/create-refine-app-command.tsx";
+import { InstallPackagesCommand } from "@site/src/partials/npm-scripts/install-packages-commands";
 
 export default {
     ...MDXComponents,
@@ -51,4 +53,6 @@ export default {
     GlobalConfigBadge,
     Image,
     table: Table,
+    CreateRefineAppCommand: CreateRefineAppCommand,
+    InstallPackagesCommand: InstallPackagesCommand,
 };

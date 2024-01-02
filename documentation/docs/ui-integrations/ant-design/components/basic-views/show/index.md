@@ -73,7 +73,7 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Properties
 
-### `title`
+### title
 
 `title` allows you to add a title inside the `<Show>` component. If you don't pass title props, it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Show post".
 
@@ -124,7 +124,7 @@ render(
 );
 ```
 
-### `resource`
+### resource
 
 The `<Show>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Show>` component, you can use the `resource` prop:
 
@@ -173,11 +173,11 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `canDelete` and `canEdit`
+### canDelete and canEdit
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component.
 
-When clicked on, the delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/core/providers/data-provider) and the edit button redirects the user to the record edit page.
+When clicked on, the delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/data/data-provider) and the edit button redirects the user to the record edit page.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
 const { ShowButton, Edit } = RefineAntd;
@@ -277,11 +277,11 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/authentication/hooks/use-permissions)
 
 > For more information, refer to the [`<DeleteButton>`](/docs/ui-integrations/ant-design/components/buttons/delete-button) and the [`<EditButton>`](/docs/ui-integrations/ant-design/components/buttons/edit-button) documentations.
 
-### `recordItemId`
+### recordItemId
 
 The`<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
 
@@ -332,7 +332,7 @@ render(
 
 The `<Show>` component needs the `id` information for `<RefreshButton>` to work properly.
 
-### `dataProviderName`
+### dataProviderName
 
 If not specified, Refine will use the default data provider. If you have multiple data providers, you can use the `dataProviderName` property to specify which one you want to use:
 
@@ -364,7 +364,7 @@ export const App: React.FC = () => {
 };
 ```
 
-### `goBack`
+### goBack
 
 To customize the back button or to disable it, you can use the `goBack` property:
 
@@ -427,7 +427,7 @@ const PostShow: React.FC = () => {
 };
 ```
 
-### `isLoading`
+### isLoading
 
 Since `<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card/) component, the `isLoading` property can be set like the below:
 
@@ -466,7 +466,7 @@ render(
 );
 ```
 
-### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
+### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default the `Breadcrumb` component from the `@refinedev/antd` package is used for breadcrumbs.
 
@@ -519,7 +519,7 @@ render(
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/ant-design/components/breadcrumb)
 
-### `wrapperProps`
+### wrapperProps
 
 You can use the `wrapperProps` property if you want to customize the wrapper of the `<Show/>` component. The `@refinedev/antd` wrapper elements are simply `<div/>`s and `wrapperProps` and can get every attribute that `<div/>` can get.
 
@@ -566,7 +566,7 @@ render(
 );
 ```
 
-### `headerProps`
+### headerProps
 
 You can use the `headerProps` property to customize the header of the `<Show/>` component:
 
@@ -616,7 +616,7 @@ render(
 
 > For more information, refer to the [`PageHeader` documentation &#8594](https://procomponents.ant.design/en-US/components/page-header)
 
-### `contentProps`
+### contentProps
 
 You can use the `contentProps` property to customize the content of the `<Show/>` component:
 
@@ -665,7 +665,7 @@ render(
 
 > For more information, refer to the [`Card` documentation &#8594](https://ant.design/components/card/)
 
-### `headerButtons`
+### headerButtons
 
 By default, the `<Show/>` component has a [`<ListButton>`][list-button], [`<EditButton>`][edit-button], [`<DeleteButton>`][delete-button], and a [`<RefreshButton>`][refresh-button] at the header.
 
@@ -770,7 +770,7 @@ render(
 );
 ```
 
-### `headerButtonProps`
+### headerButtonProps
 
 You can use the `headerButtonProps` property to customize the wrapper element of the buttons at the header:
 
@@ -821,7 +821,7 @@ render(
 
 > For more information, refer to the [`Space` documentation &#8594](https://ant.design/components/space/)
 
-### `footerButtons`
+### footerButtons
 
 You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
@@ -869,7 +869,7 @@ render(
 );
 ```
 
-### `footerButtonProps`
+### footerButtonProps
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
@@ -936,10 +936,10 @@ render(
 <PropsTable module="@refinedev/antd/Show"
 contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
 headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)"
-headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/antd/components/buttons/list-button/), [`RefreshButton`](https://refine.dev/docs/api-reference/antd/components/buttons/refresh-button/), [`EditButton`](https://refine.dev/docs/api-reference/antd/components/buttons/edit-button/) and [`DeleteButton`](https://refine.dev/docs/api-reference/antd/components/buttons/delete-button/)"
+headerButtons-default="[`ListButton`](/docs/ui-integrations/ant-design/components/buttons/list-button/), [`RefreshButton`](/docs/ui-integrations/ant-design/components/buttons/refresh-button/), [`EditButton`](/docs/ui-integrations/ant-design/components/buttons/edit-button/) and [`DeleteButton`](/docs/ui-integrations/ant-design/components/buttons/delete-button/)"
 headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
 deleteButtonProps-type="[`DeleteButtonProps`](/docs/ui-integrations/ant-design/components/buttons/delete-button)"
-saveButtonProps-type="[`SaveButtonProps`](https://refine.dev/docs/api-reference/antd/components/buttons/save-button/)"
+saveButtonProps-type="[`SaveButtonProps`](/docs/ui-integrations/ant-design/components/buttons/save-button/)"
 footerButtonsProps-type="[`SpaceProps`](https://ant.design/components/space/)"
 breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
 goBack-default="`<ArrowLeft />`"

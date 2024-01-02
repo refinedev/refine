@@ -19,9 +19,7 @@ This guide has been prepared assuming you know the basics of **refine**. If you 
 
 ## Setup
 
-```bash
-npm install @pankod/refine-appwrite
-```
+<InstallPackagesCommand args="@pankod/refine-appwrite"/>
 
 :::caution
 To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/v3/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/v3/packages/refine-antd) package.

@@ -47,7 +47,7 @@ Instead of being limited to a set of pre-styled components, **Refine** provides 
 
 It means, **Refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_. Thanks to it's headless architecture, you can use popular CSS frameworks like [TailwindCSS](https://tailwindcss.com/) or even create your own styles from scratch.
 
-Refine also provides integrations with [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/)to get you started quickly. These libraries are set of components which are nicely integrated with headless `@refinedev/core` package.
+Refine also provides integrations with [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) to get you started quickly. These libraries are set of components which are nicely integrated with headless `@refinedev/core` package.
 
 ### Headless in Routing
 
@@ -85,7 +85,7 @@ This means you can use Refine seamlessly in different platforms like React Nativ
 
 💪 Future-proof, **robust architecture**
 
-⌛️ Built-in [CLI](https://refine.dev/docs/packages/documentation/cli/) with time-saving features
+⌛️ Built-in [CLI](/docs/packages/cli) with time-saving features
 
 💻 Refine [Devtools](https://github.com/refinedev/refine/blob/master/packages/devtools/README.md) - dive deeper into your app and provide useful insights
 

@@ -15,7 +15,7 @@ import {
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";
-import { User } from "@/interfaces";
+import { User } from "@/graphql/schema.types";
 
 type Props = {
     id: string;
