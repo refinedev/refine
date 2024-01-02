@@ -11,9 +11,9 @@
     "cypress:run": "cypress run -C ./cypress.config.ts"
   },
   "dependencies": {
-    "@remix-run/node": "^1.6.7",
-    "@remix-run/react": "^1.6.7",
-    "@remix-run/serve": "^1.6.7",
+    "@remix-run/node": "^2.4.0",
+    "@remix-run/react": "^2.4.0",
+    "@remix-run/serve": "^2.4.0",
     "@refinedev/core": "^4.46.1",
     "@refinedev/cli": "^2.16.21",
     "@refinedev/simple-rest": "^5.0.1",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
-    "@remix-run/dev": "^1.6.7",
+    "@remix-run/dev": "^2.3.1",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "typescript": "^4.7.4",
