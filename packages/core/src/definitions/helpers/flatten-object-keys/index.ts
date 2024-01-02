@@ -28,6 +28,8 @@ export const flattenObjectKeys = (obj: any, prefix = "") => {
                     flattenObjectKeys(obj[key], currentPrefix + key),
                 );
             }
+            // Even if it's a nested object, it should be treated as a key as well
+            acc[currentPrefix + key] = obj[key];
         } else {
             acc[currentPrefix + key] = obj[key];
         }
