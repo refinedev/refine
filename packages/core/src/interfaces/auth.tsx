@@ -51,12 +51,6 @@ export type AuthPageProps<
            */
           providers?: OAuthProvider[];
           /**
-           * @description Render a redirect to login page button node. If set to false, login button will not be rendered.
-           * @default `"/login"`
-           * @optional
-           */
-          loginLink?: React.ReactNode;
-          /**
            * @description Render a redirect to register page button node. If set to false, register button will not be rendered.
            * @default `"/register"`
            * @optional
@@ -90,6 +84,12 @@ export type AuthPageProps<
            * @optional
            */
           providers?: OAuthProvider[];
+          /**
+           * @description Render a redirect to login page button node. If set to false, login button will not be rendered.
+           * @default `"/login"`
+           * @optional
+           */
+          loginLink?: React.ReactNode;
           /**
            * @description Can be used to hide the form components
            * @optional

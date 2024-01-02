@@ -25,7 +25,7 @@ export function RemixRouteComponent(
         ...rest
     }: PropsWithChildren<RemixRouteComponentProps>,
 ): React.ReactNode {
-    const loaderData = useLoaderData();
+    const loaderData = useLoaderData<any>();
     const { resources } = useResource();
     const { push } = useHistory();
     const {

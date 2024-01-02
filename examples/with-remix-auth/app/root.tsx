@@ -21,11 +21,11 @@ import resetStyle from "@refinedev/antd/dist/reset.css";
 import { API_URL } from "./constants";
 import { authenticator } from "./utils/auth.server";
 
-export const meta: MetaFunction = () => ({
+export const meta: MetaFunction = () => ([{
     charset: "utf-8",
     title: "New Remix + Refine App",
     viewport: "width=device-width,initial-scale=1",
-});
+}]);
 
 export default function App(): JSX.Element {
     const { profile, to } = useLoaderData<typeof loader>();
