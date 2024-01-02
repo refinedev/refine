@@ -10,5 +10,6 @@ import { MarkdownFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/chakra-ui/components/fields/markdown} for more details.
  */
 export const MarkdownField: React.FC<MarkdownFieldProps> = ({ value = "" }) => {
-    return <ReactMarkdown plugins={[gfm]}>{value}</ReactMarkdown>;
+    // There's an issue related with the type inconsistency of the `remark-gfm` and `remark-rehype` packages, we need to cast the `gfm` as any. (https://github.com/orgs/rehypejs/discussions/63)
+    return <ReactMarkdown plugins={[gfm as any]}>{value}</ReactMarkdown>;
 };
