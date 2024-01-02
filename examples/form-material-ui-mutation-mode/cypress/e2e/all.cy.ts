@@ -111,10 +111,12 @@ describe("form-material-ui-mutation-mode", () => {
             expect(loc.pathname).to.eq("/posts");
         });
         // should show notification
-        cy.getMaterialUINotification().contains(/seconds to undo/gi);
+        cy.getMaterialUINotification()
+            .contains(/seconds to undo/gi)
+            .should("exist");
         // notification should disappear after certain time
         cy.getMaterialUINotification()
-            .contains("seconds to undo", { timeout: 10000 })
+            .contains(/seconds to undo/gi)
             .should("not.exist");
 
         // should sent a PATCH request after certain time
@@ -223,10 +225,12 @@ describe("form-material-ui-mutation-mode", () => {
             .getMaterialUIDeletePopoverButton()
             .click();
         // should show notification
-        cy.getMaterialUINotification().contains(/seconds to undo/gi);
+        cy.getMaterialUINotification()
+            .contains(/seconds to undo/gi)
+            .should("exist");
         // notification should disappear after certain time
         cy.getMaterialUINotification()
-            .contains("seconds to undo", { timeout: 10000 })
+            .contains(/seconds to undo/gi)
             .should("not.exist");
         cy.wait("@deletePost").then((interception) => {
             const response = interception?.response;
