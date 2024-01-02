@@ -94,8 +94,8 @@ export const DocSurveyWidget = ({ className }: Props) => {
                 "bg-gray-100",
                 "border dark:border-gray-700 border-transparent",
                 "rounded-[28px]",
-                (isSurveyTextVisible || isFinished) && "h-[278px] sm:h-[240px]",
-                !isSurveyTextVisible && !isFinished && "h-[96px] sm:h-[56px]",
+                (isSurveyTextVisible || isFinished) && "h-[286px] sm:h-[240px]",
+                !isSurveyTextVisible && !isFinished && "h-[104px] sm:h-[56px]",
                 "transition-all duration-200 ease-in-out",
                 "overflow-hidden",
                 className,
@@ -147,7 +147,7 @@ const SurveyOptions = (props: {
                 "w-full",
                 "flex flex-col sm:flex-row",
                 "items-center justify-between",
-                "gap-2",
+                "gap-4 sm:gap-2",
                 "sm:pl-4",
                 props.className,
             )}
@@ -157,7 +157,7 @@ const SurveyOptions = (props: {
             >
                 Was this helpful?
             </div>
-            <div className={clsx("flex", "items-center", "gap-3")}>
+            <div className={clsx("flex", "items-center", "gap-6 sm:gap-3")}>
                 {props.options.map(({ value, icon: Icon }) => {
                     const isSelected = props.selectedOption === value;
 
