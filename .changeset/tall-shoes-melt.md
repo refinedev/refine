@@ -32,10 +32,10 @@ Other than the changes mentioned above, `@refinedev/remix-router` and rest of th
 
 **Migration Guide for `@refinedev/remix-router`**
 
-Install the latest version of `@refinedev/remix-router`:
+Install the latest version of `@refinedev/remix-router` and `@refinedev/cli`:
 
 ```bash
-npm i @refinedev/remix-router@latest
+npm i @refinedev/remix-router@latest @refinedev/cli@latest
 ```
 
 You'll also need to update your remix dependencies:
