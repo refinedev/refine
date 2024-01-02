@@ -161,6 +161,7 @@ You might need to give necessary permissions/add role to this service account (e
 
 - Modify your Pod specification to include `imagePullSecrets`:
 
+```
   apiVersion: v1
   kind: Pod
   metadata:
@@ -169,6 +170,7 @@ You might need to give necessary permissions/add role to this service account (e
   containers: - name: mycontainer
   image: myimage
   imagePullSecrets: - name: <my-registry-key>
+```
 
 - Apply this configuration using `kubectl apply -f podspec.yaml`.
 
