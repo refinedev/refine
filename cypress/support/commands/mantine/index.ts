@@ -21,7 +21,9 @@ export const fillMantineForm = () => {
         cy.get("#title").clear().type(mockPost.title);
         cy.get("#content textarea")
             .clear({ force: true })
-            .type(mockPost.content);
+            .type(mockPost.content, {
+                delay: 32,
+            });
         cy.get("#status").click().get("#status-0").click();
         cy.get("#categoryId").clear().get("#categoryId-1").click();
     });
