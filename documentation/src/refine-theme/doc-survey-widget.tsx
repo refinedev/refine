@@ -297,11 +297,11 @@ const SurveyFinished = (props: {
 
 const createSurvey = async ({ body }: { body: DocSurveyCreateDto }) => {
     const response = await fetch(`${DOC_SURVEY_URL}/responses`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body),
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
     });
 
     if (!response.ok) {
@@ -320,11 +320,11 @@ const updateSurvey = async ({
     body: DocSurveyUpdateDto;
 }) => {
     const response = await fetch(`${DOC_SURVEY_URL}/responses/${surveyId}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body),
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
     });
 
     if (!response.ok) {
@@ -341,23 +341,23 @@ const surveyOptions: {
 }[] = [
     {
         value: 1,
-        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/icons/emoji-crying-face.png",
+        img: "/icons/emoji/emoji-crying-face.png",
     },
     {
         value: 2,
-        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/icons/emoji-sad-face.png",
+        img: "/icons/emoji/emoji-sad-face.png",
     },
     {
         value: 3,
-        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/icons/emoji-neutral-face.png",
+        img: "/icons/emoji/emoji-neutral-face.png",
     },
     {
         value: 4,
-        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/icons/emoji-slightly-smiling-face.png",
+        img: "/icons/emoji/emoji-slightly-smiling-face.png",
     },
     {
         value: 5,
-        img: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/icons/emoji-star-struct-face.png",
+        img: "/icons/emoji/emoji-star-struct-face.png",
     },
 ];
 
