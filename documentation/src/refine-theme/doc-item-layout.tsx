@@ -13,6 +13,7 @@ import { SwizzleBadge } from "./doc-swizzle-badge";
 import { DocTOC } from "./doc-toc";
 import { DocTOCMobile } from "./doc-toc-mobile";
 import { DocVersionBadge } from "./doc-version-badge";
+import { DocSurveyWidget } from "./doc-survey-widget";
 
 export const DocItemLayout = ({ children }) => {
     const docTOC = useDocTOCwithTutorial();
@@ -65,6 +66,7 @@ export const DocItemLayout = ({ children }) => {
                 </div>
                 <div className={clsx("max-w-screen-content", "w-full")}>
                     <DocItemPaginator />
+                    <DocSurveyWidget className={clsx("mx-auto", "mt-14")} />
                 </div>
             </div>
             {tutorial?.isTutorial ? (
