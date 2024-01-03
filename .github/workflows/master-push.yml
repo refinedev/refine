@@ -25,6 +25,8 @@ jobs:
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.PANKOD_BOT_TOKEN }}
+      - run: git config --global user.email "bot@refine.dev"
+      - run: git config --global user.name "Refine Community Bot"
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -46,10 +48,6 @@ jobs:
         run: npm run lint
       - name: Test
         run: npm run test:all
-      - name: Set Git User
-        run: |
-          git config --global user.email "bot@refine.dev"
-          git config --global user.name "Refine Community Bot"
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
