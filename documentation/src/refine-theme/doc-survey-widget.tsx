@@ -61,7 +61,7 @@ export const DocSurveyWidget = ({ className }: Props) => {
 
         const data = await updateSurvey({
             surveyId: survey.id,
-            body: { response: selectedOption },
+            body: { response: selectedOption, responseText: text },
         });
         if (!data) return;
 
