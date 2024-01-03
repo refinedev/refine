@@ -1,5 +1,12 @@
 # @refinedev/devtools
 
+## 1.1.30
+
+### Patch Changes
+
+-   Updated dependencies [[`fda3494215`](https://github.com/refinedev/refine/commit/fda349421509197b5a2be225bd3794adb2a7925c)]:
+    -   @refinedev/cli@2.16.22
+
 ## 1.1.29
 
 ### Patch Changes
