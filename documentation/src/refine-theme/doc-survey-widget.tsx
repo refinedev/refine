@@ -296,16 +296,13 @@ const SurveyFinished = (props: {
 };
 
 const createSurvey = async ({ body }: { body: DocSurveyCreateDto }) => {
-    const response = await fetch(
-        "https://develop.cloud.refine.dev/.refine/surveys/documentation-pages-survey/responses",
-        {
+    const response = await fetch(`${DOC_SURVEY_URL}/responses`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(body),
-        },
-    );
+    });
 
     if (!response.ok) {
         return null;
@@ -322,16 +319,13 @@ const updateSurvey = async ({
     surveyId?: string;
     body: DocSurveyUpdateDto;
 }) => {
-    const response = await fetch(
-        `https://develop.cloud.refine.dev/.refine/surveys/documentation-pages-survey/responses/${surveyId}`,
-        {
+    const response = await fetch(`${DOC_SURVEY_URL}/responses/${surveyId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(body),
-        },
-    );
+    });
 
     if (!response.ok) {
         return null;
@@ -410,3 +404,5 @@ export type DocSurveyResponse = {
 };
 
 export type SurveyMetaData = Record<string, any>;
+
+const DOC_SURVEY_URL = `https://cloud2.refine.dev/.refine/surveys/documentation-pages-survey`;
