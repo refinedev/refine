@@ -1284,10 +1284,6 @@ form.DocSearch-Form label.DocSearch-MagnifierLabel svg.DocSearch-Search-Icon {
     @apply text-base pl-8 list-decimal;
 }
 
-.template-detail-markdown li {
-    @apply leading-none;
-}
-
 .template-detail-markdown kbd {
     @apply text-xs inline-block rounded border px-1 py-[0.125rem] align-middle font-normal shadow;
 }
