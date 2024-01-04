@@ -110,54 +110,68 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ## GraphQL
 
-As mentioned above, `meta` property can also be used to generate GraphQL queries.
+Refine's `meta` property has `gqlQuery` and `gqlMutation` fields, which accepts **GraphQL** operation as `graphql`'s [`DocumentNode`](https://graphql.org/graphql-js/type/#documentnode) type.
 
-`meta.fields`, `meta.variables`, and `meta.operation` fields implements [gql-query-builder](https://github.com/atulmy/gql-query-builder) interface, so this interface can be used to easily generate GraphQL queries.
+You can use these fields to pass **GraphQL** queries or mutations to your data provider methods through data hooks like `useOne`, `useList`, `useForm` from anywhere across your application.
+
+Easiest way to generate GraphQL queries is to use [graphql-tag](https://www.npmjs.com/package/graphql-tag) package.
 
 ```tsx
-import { DataProvider, useOne } from "@refinedev/core";
-import * as gql from "gql-query-builder";
-import { GraphQLClient } from "graphql-request";
+import gql from "graphql-tag";
+
+const GET_PRODUCT_QUERY = gql`
+  query GetProduct($id: ID!) {
+    product(id: $id) {
+      id
+      title
+      category {
+        title
+      }
+    }
+  }
+`;
 
 useOne({
-    resource: "products",
-    id: 1,
-    meta: {
-        fields: [
-            "id",
-            "title",
-            {
-                category: ["title"],
-            },
-        ],
-    },
+  resource: "products",
+  id: 1,
+  meta: {
+    gqlQuery: GET_PRODUCT_QUERY,
+  },
 });
 
-const dataProvider = (client: GraphQLClient): DataProvider => {
-    getOne: async ({ resource, id, meta }) => {
-        const operation = meta?.operation || resource;
+const UPDATE_PRODUCT_MUTATION = gql`
+  mutation UpdateOneProduct($id: ID!, $input: UpdateOneProductInput!) {
+    updateOneProduct(id: $id, input: $input) {
+      id
+      title
+      category {
+        title
+      }
+    }
+  }
+`;
 
-        const { query, variables } = gql.query({
-            operation,
-            variables: {
-                id: { value: id, type: "ID", required: true },
-            },
-            fields: meta?.fields,
-            variables: meta?.variables,
-        });
+const { mutate } = useUpdate();
 
-        console.log(query);
-        // "query ($id: ID!) { products (id: $id) { id, title, category { title } } }"
-
-        const response = await client.request(query, variables);
-
-        return {
-            data: response[resource],
-        };
-    };
-    ...
-};
+mutate({
+  resource: "products",
+  id: 1,
+  values: {
+    title: "New Title",
+  },
+  meta: {
+    gqlMutation: UPDATE_PRODUCT_MUTATION,
+  },
+});
 ```
+
+:::simple
+
+**Nest.js Query** data provider implements full support for `gqlQuery` and `gqlMutation` fields.
+
+See [Nest.js Query Docs](/docs/data/packages/nestjs-query) for more information.
+
+:::
 
 Also, you can check Refine's built-in [GraphQL data providers](#supported-data-providers) to handle communication with your GraphQL APIs or use them as a starting point.
 
