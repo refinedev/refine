@@ -46,15 +46,10 @@ jobs:
         run: npm run lint
       - name: Test
         run: npm run test:all
-      - name: Set Git User
-        run: |
-          git config --global user.email "bot@refine.dev"
-          git config --global user.name "Refine Community Bot"
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          setupGitUser: false
           version: npm run changeset version
           publish: npm run changeset publish
           commit: "ci(changesets): version packages"
