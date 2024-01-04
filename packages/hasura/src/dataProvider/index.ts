@@ -202,27 +202,29 @@ const dataProvider = (
                     {
                         operation,
                         fields: meta?.fields,
-                        ...hasuraPagination,
-                        ...(hasuraSorting &&
-                            (namingConvention === "graphql-default"
-                                ? {
-                                      orderBy: {
-                                          value: hasuraSorting,
-                                          type: hasuraSortingType,
-                                      },
-                                  }
-                                : {
-                                      order_by: {
-                                          value: hasuraSorting,
-                                          type: hasuraSortingType,
-                                      },
-                                  })),
-                        ...(hasuraFilters && {
-                            where: {
-                                value: hasuraFilters,
-                                type: hasuraFiltersType,
-                            },
-                        }),
+                        variables: {
+                            ...hasuraPagination,
+                            ...(hasuraSorting &&
+                                (namingConvention === "graphql-default"
+                                    ? {
+                                          orderBy: {
+                                              value: hasuraSorting,
+                                              type: hasuraSortingType,
+                                          },
+                                      }
+                                    : {
+                                          order_by: {
+                                              value: hasuraSorting,
+                                              type: hasuraSortingType,
+                                          },
+                                      })),
+                            ...(hasuraFilters && {
+                                where: {
+                                    value: hasuraFilters,
+                                    type: hasuraFiltersType,
+                                },
+                            }),
+                        },
                     },
                     {
                         operation: aggregateOperation,
