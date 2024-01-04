@@ -2,7 +2,7 @@ import nock from "nock";
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($where: posts_bool_exp!) {\n      delete_posts (where: $where) {\n    returning { id, title }\n  }\n    }",
+        query: "mutation DeleteManyPosts($where: posts_bool_exp!) {\n  delete_posts(where: $where) {\n    returning {\n      id\n      id\n      title\n    }\n  }\n}\n",
         variables: {
             where: {
                 id: {
@@ -13,6 +13,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
                 },
             },
         },
+        operationName: "DeleteManyPosts",
     })
     .reply(
         200,
@@ -55,7 +56,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($where: posts_bool_exp!) {\n      delete_posts (where: $where) {\n    returning { id }\n  }\n    }",
+        query: "mutation DeleteManyPosts($where: posts_bool_exp!) {\n  delete_posts(where: $where) {\n    returning {\n      id\n    }\n  }\n}\n",
         variables: {
             where: {
                 id: {
@@ -66,6 +67,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
                 },
             },
         },
+        operationName: "DeleteManyPosts",
     })
     .reply(
         200,
@@ -108,7 +110,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
 
 nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($where: PostsBoolExp!) {\n      deletePosts (where: $where) {\n    returning { id, title }\n  }\n    }",
+        query: "mutation DeleteManyPosts($where: PostsBoolExp!) {\n  deletePosts(where: $where) {\n    returning {\n      id\n      id\n      title\n    }\n  }\n}\n",
         variables: {
             where: {
                 id: {
@@ -119,6 +121,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
                 },
             },
         },
+        operationName: "DeleteManyPosts",
     })
     .reply(
         200,
@@ -161,7 +164,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
 
 nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($where: PostsBoolExp!) {\n      deletePosts (where: $where) {\n    returning { id }\n  }\n    }",
+        query: "mutation DeleteManyPosts($where: PostsBoolExp!) {\n  deletePosts(where: $where) {\n    returning {\n      id\n    }\n  }\n}\n",
         variables: {
             where: {
                 id: {
@@ -172,6 +175,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
                 },
             },
         },
+        operationName: "DeleteManyPosts",
     })
     .reply(
         200,
