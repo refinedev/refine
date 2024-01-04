@@ -5,11 +5,12 @@ import { Edit, ListButton, RefreshButton, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 import { ICategory } from "../../interfaces";
+import { CATEGORY_UPDATE_MUTATION } from "./queries";
 
 export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<ICategory>({
         metaData: {
-            fields: ["id", "title"],
+            gqlMutation: CATEGORY_UPDATE_MUTATION,
         },
     });
 

@@ -14,23 +14,17 @@ import { Form, Input, Select } from "antd";
 import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "../../interfaces";
+import { POST_CATEGORIES_SELECT_QUERY, POST_UPDATE_MUTATION } from "./queries";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<
+    const { formProps, saveButtonProps, queryResult, formLoading } = useForm<
         IPost,
         HttpError,
         IPost
     >({
+        queryOptions: {},
         metaData: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["id", "title"],
-                },
-                "category_id",
-                "content",
-            ],
+            gqlMutation: POST_UPDATE_MUTATION,
         },
     });
 
@@ -39,12 +33,13 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
         defaultValue: postData?.category_id,
         metaData: {
-            fields: ["id", "title"],
+            gqlQuery: POST_CATEGORIES_SELECT_QUERY,
         },
     });
 
     return (
         <Edit
+            isLoading={formLoading}
             headerProps={{
                 extra: (
                     <>

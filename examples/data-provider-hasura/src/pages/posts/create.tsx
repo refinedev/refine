@@ -8,14 +8,19 @@ import { Form, Input, Select } from "antd";
 import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "../../interfaces";
+import { POST_CATEGORIES_SELECT_QUERY, POST_CREATE_MUTATION } from "./queries";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+    const { formProps, saveButtonProps } = useForm<IPost>({
+        metaData: {
+            gqlMutation: POST_CREATE_MUTATION,
+        },
+    });
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         metaData: {
-            fields: ["id", "title"],
+            gqlQuery: POST_CATEGORIES_SELECT_QUERY,
         },
     });
 

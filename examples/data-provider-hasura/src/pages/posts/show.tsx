@@ -5,23 +5,15 @@ import { Show, MarkdownField, RefreshButton } from "@refinedev/antd";
 import { Typography } from "antd";
 
 import { IPost } from "../../interfaces";
+import { POST_QUERY } from "./queries";
 
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const metaData = {
-        fields: [
-            "id",
-            "title",
-            {
-                category: ["title"],
-            },
-            "content",
-        ],
-    };
-
     const { queryResult } = useShow<IPost>({
-        metaData,
+        metaData: {
+            gqlQuery: POST_QUERY,
+        },
     });
 
     const { data, isLoading } = queryResult;

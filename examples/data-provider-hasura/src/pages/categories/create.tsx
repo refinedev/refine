@@ -5,9 +5,14 @@ import { Create, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 import { ICategory } from "../../interfaces";
+import { CATEGORY_CREATE_MUTATION } from "./queries";
 
 export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<ICategory>();
+    const { formProps, saveButtonProps } = useForm<ICategory>({
+        metaData: {
+            gqlMutation: CATEGORY_CREATE_MUTATION,
+        },
+    });
 
     return (
         <Create saveButtonProps={saveButtonProps}>

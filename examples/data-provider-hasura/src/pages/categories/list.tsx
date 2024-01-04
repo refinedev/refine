@@ -11,6 +11,7 @@ import {
 import { Table } from "antd";
 
 import { ICategory } from "../../interfaces";
+import { CATEGORIES_QUERY } from "./queries";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<ICategory>({
@@ -21,7 +22,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
             },
         ],
         metaData: {
-            fields: ["id", "title", "created_at"],
+            gqlQuery: CATEGORIES_QUERY,
         },
     });
 
