@@ -3,12 +3,12 @@
 import React from "react";
 
 import { Refine } from "@refinedev/core";
-import { RefineThemes, notificationProvider } from "@refinedev/antd";
+import { RefineThemes, useNotificationProvider } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/nextjs-router/app";
 import "@refinedev/antd/dist/reset.css";
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@styles/global.css";
 
 import { authProvider } from "src/authProvider";
@@ -23,29 +23,31 @@ export default function RootLayout({
         <ConfigProvider theme={RefineThemes.Blue}>
             <html lang="en">
                 <body>
-                    <Refine
-                        authProvider={authProvider}
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(API_URL)}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                create: "/posts/create",
-                                edit: "/posts/edit/:id",
-                                show: "/posts/show/:id",
-                                meta: {
-                                    canDelete: true,
+                    <AntdApp>
+                        <Refine
+                            authProvider={authProvider}
+                            routerProvider={routerProvider}
+                            dataProvider={dataProvider(API_URL)}
+                            resources={[
+                                {
+                                    name: "posts",
+                                    list: "/posts",
+                                    create: "/posts/create",
+                                    edit: "/posts/edit/:id",
+                                    show: "/posts/show/:id",
+                                    meta: {
+                                        canDelete: true,
+                                    },
                                 },
-                            },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                        }}
-                        notificationProvider={notificationProvider}
-                    >
-                        {children}
-                    </Refine>
+                            ]}
+                            options={{
+                                syncWithLocation: true,
+                            }}
+                            notificationProvider={useNotificationProvider}
+                        >
+                            {children}
+                        </Refine>
+                    </AntdApp>
                 </body>
             </html>
         </ConfigProvider>
