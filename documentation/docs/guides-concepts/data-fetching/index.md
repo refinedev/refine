@@ -118,6 +118,7 @@ Easiest way to generate GraphQL queries is to use [graphql-tag](https://www.npmj
 
 ```tsx
 import gql from "graphql-tag";
+import { useOne, useUpdate } from "@refinedev/core";
 
 const GET_PRODUCT_QUERY = gql`
   query GetProduct($id: ID!) {
