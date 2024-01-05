@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
-
+import {
+    useQuery,
+    UseQueryOptions,
+    UseQueryResult,
+} from "@tanstack/react-query";
 import { useCan, useResource } from "@hooks";
 import { BaseKey, IResourceItem, ITreeMenu } from "../../interfaces";
 
@@ -39,6 +43,7 @@ type CanAccessBaseProps = {
      */
     onUnauthorized?: (props: OnUnauthorizedProps) => void;
     children: React.ReactNode;
+    queryOptions?: UseQueryOptions<CanReturnType>;
 };
 
 type CanAccessWithoutParamsProps = {
@@ -59,6 +64,7 @@ export const CanAccess: React.FC<CanAccessProps> = ({
     fallback,
     onUnauthorized,
     children,
+    queryOptions,
     ...rest
 }) => {
     const {
