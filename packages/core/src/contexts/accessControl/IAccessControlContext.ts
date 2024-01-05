@@ -1,4 +1,9 @@
 import { BaseKey, IResourceItem, ITreeMenu } from "../../interfaces";
+import {
+    useQuery,
+    UseQueryOptions,
+    UseQueryResult,
+} from "@tanstack/react-query";
 
 export type CanParams = {
     /**
@@ -28,6 +33,7 @@ export type CanReturnType = {
 export interface IAccessControlContext {
     can?: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
     options?: {
+        queryOptions?: UseQueryOptions<CanReturnType>;
         buttons?: {
             enableAccessControl?: boolean;
             hideIfUnauthorized?: boolean;
