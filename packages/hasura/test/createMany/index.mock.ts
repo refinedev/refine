@@ -2,7 +2,7 @@ import nock from "nock";
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($objects: [posts_insert_input!]!) {\n      insert_posts (objects: $objects) {\n    returning { id, title, content, category { id } }\n  }\n    }",
+        query: "mutation CreateManyPosts($objects: [posts_insert_input!]!) {\n  insert_posts(objects: $objects) {\n    returning {\n      id\n      id\n      title\n      content\n      category {\n        id\n      }\n    }\n  }\n}\n",
         variables: {
             objects: [
                 {
@@ -17,6 +17,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
                 },
             ],
         },
+        operationName: "CreateManyPosts",
     })
     .reply(
         200,
@@ -59,7 +60,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($objects: [posts_insert_input!]!) {\n      insert_posts (objects: $objects) {\n    returning { id, title }\n  }\n    }",
+        query: "mutation CreateManyPosts($objects: [posts_insert_input!]!) {\n  insert_posts(objects: $objects) {\n    returning {\n      id\n      id\n      title\n    }\n  }\n}\n",
         variables: {
             objects: [
                 {
@@ -74,6 +75,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
                 },
             ],
         },
+        operationName: "CreateManyPosts",
     })
     .reply(
         200,
@@ -116,7 +118,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
 
 nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($objects: [PostsInsertInput!]!) {\n      insertPosts (objects: $objects) {\n    returning { id, title, content, category { id } }\n  }\n    }",
+        query: "mutation CreateManyPosts($objects: [PostsInsertInput!]!) {\n  insertPosts(objects: $objects) {\n    returning {\n      id\n      id\n      title\n      content\n      category {\n        id\n      }\n    }\n  }\n}\n",
         variables: {
             objects: [
                 {
@@ -131,6 +133,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
                 },
             ],
         },
+        operationName: "CreateManyPosts",
     })
     .reply(
         200,
@@ -173,7 +176,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
 
 nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($objects: [PostsInsertInput!]!) {\n      insertPosts (objects: $objects) {\n    returning { id, title }\n  }\n    }",
+        query: "mutation CreateManyPosts($objects: [PostsInsertInput!]!) {\n  insertPosts(objects: $objects) {\n    returning {\n      id\n      id\n      title\n    }\n  }\n}\n",
         variables: {
             objects: [
                 {
@@ -188,6 +191,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
                 },
             ],
         },
+        operationName: "CreateManyPosts",
     })
     .reply(
         200,

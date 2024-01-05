@@ -8,6 +8,7 @@ import {
     generateSorting,
     getOperationFields,
     isMutation,
+    metaFieldsToGqlFields,
     upperCaseValues,
 } from "../utils";
 import camelcase from "camelcase";
@@ -297,6 +298,10 @@ const dataProvider = (
             };
         },
 
+        // "mutation ($objects: [posts_insert_input!]!) {\n      insert_posts (objects: $objects) {\n    returning { id }\n  }\n    }"
+
+        // "mutation CreateManyPosts($objects: [posts_insert_input!]!) {\n  insert_posts(objects: $objects) {\n    returning {\n      id\n    }\n  }\n}\n"
+
         createMany: async ({
             resource,
             variables: variablesFromParams,
@@ -333,7 +338,7 @@ const dataProvider = (
                       ${insertOperation}(objects: $objects) {
                           returning {
                               id
-                              ${meta?.fields?.join("\n") || ""}
+                              ${metaFieldsToGqlFields(meta?.fields)}
                           }
                       }
                   }
@@ -462,7 +467,7 @@ const dataProvider = (
                     ${updateOperation}(where: $where, _set: $_set) {
                         returning {
                             id
-                            ${meta?.fields?.join("\n") || ""}
+                             ${metaFieldsToGqlFields(meta?.fields)}
                         }
                     }
                 }
@@ -556,7 +561,7 @@ const dataProvider = (
                     ${deleteOperation}(where: $where) {
                         returning {
                             id
-                            ${meta?.fields?.join("\n") || ""}
+                             ${metaFieldsToGqlFields(meta?.fields)}
                         }
                     }
                 }

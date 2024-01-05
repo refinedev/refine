@@ -2,7 +2,7 @@ import nock from "nock";
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($where: posts_bool_exp!, $_set: posts_set_input!) {\n      update_posts (where: $where, _set: $_set) {\n    returning { id, title, content }\n  }\n    }",
+        query: "mutation UpdateManyPosts($where: posts_bool_exp!, $_set: posts_set_input!) {\n  update_posts(where: $where, _set: $_set) {\n    returning {\n      id\n      id\n      title\n      content\n    }\n  }\n}\n",
         variables: {
             where: {
                 id: {
@@ -14,6 +14,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             },
             _set: { content: "Updated Content" },
         },
+        operationName: "UpdateManyPosts",
     })
     .reply(
         200,
@@ -56,7 +57,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($where: posts_bool_exp!, $_set: posts_set_input!) {\n      update_posts (where: $where, _set: $_set) {\n    returning { id }\n  }\n    }",
+        query: "mutation UpdateManyPosts($where: posts_bool_exp!, $_set: posts_set_input!) {\n  update_posts(where: $where, _set: $_set) {\n    returning {\n      id\n    }\n  }\n}\n",
         variables: {
             where: {
                 id: {
@@ -71,6 +72,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
                 content: "Multiple Updated Content",
             },
         },
+        operationName: "UpdateManyPosts",
     })
     .reply(
         200,
@@ -113,7 +115,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
 
 nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($where: PostsBoolExp!, $_set: PostsSetInput!) {\n      updatePosts (where: $where, _set: $_set) {\n    returning { id, title, content }\n  }\n    }",
+        query: "mutation UpdateManyPosts($where: PostsBoolExp!, $_set: PostsSetInput!) {\n  updatePosts(where: $where, _set: $_set) {\n    returning {\n      id\n      id\n      title\n      content\n    }\n  }\n}\n",
         variables: {
             where: {
                 id: {
@@ -125,6 +127,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             },
             _set: { content: "Updated Content" },
         },
+        operationName: "UpdateManyPosts",
     })
     .reply(
         200,
@@ -167,7 +170,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
 
 nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($where: PostsBoolExp!, $_set: PostsSetInput!) {\n      updatePosts (where: $where, _set: $_set) {\n    returning { id }\n  }\n    }",
+        query: "mutation UpdateManyPosts($where: PostsBoolExp!, $_set: PostsSetInput!) {\n  updatePosts(where: $where, _set: $_set) {\n    returning {\n      id\n    }\n  }\n}\n",
         variables: {
             where: {
                 id: {
@@ -182,6 +185,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
                 content: "Multiple Updated Content",
             },
         },
+        operationName: "UpdateManyPosts",
     })
     .reply(
         200,

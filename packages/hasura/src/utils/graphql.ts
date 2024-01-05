@@ -1,3 +1,4 @@
+import { MetaQuery } from "@refinedev/core";
 import { DocumentNode, visit, SelectionSetNode } from "graphql";
 
 export const getOperationFields = (documentNode: DocumentNode) => {
@@ -59,4 +60,21 @@ export const isMutation = (documentNode: DocumentNode) => {
     });
 
     return isMutation;
+};
+
+export const metaFieldsToGqlFields = (metaFields: MetaQuery["fields"]) => {
+    if (!metaFields) return "";
+
+    const fields: string[] = [];
+
+    metaFields.forEach((field) => {
+        if (typeof field === "string") {
+            fields.push(field);
+        } else {
+            const [key, value] = Object.entries(field)[0];
+            fields.push(`${key} { ${metaFieldsToGqlFields(value)} }`);
+        }
+    });
+
+    return fields.join("\n");
 };
