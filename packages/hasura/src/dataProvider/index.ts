@@ -115,9 +115,8 @@ const dataProvider = (
                         }),
                     },
                 );
-
                 return {
-                    data: response[operation].nodes,
+                    data: response[operation],
                 };
             }
 
@@ -255,6 +254,9 @@ const dataProvider = (
             const operation = defaultNamingConvention
                 ? meta?.operation ?? resource
                 : camelCase(meta?.operation ?? resource);
+            const insertOperation = defaultNamingConvention
+                ? `insert_${operation}_one`
+                : camelCase(`insert_${operation}_one`);
 
             const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
             if (gqlOperation) {
@@ -266,13 +268,10 @@ const dataProvider = (
                 );
 
                 return {
-                    data: response[operation],
+                    data: response[insertOperation],
                 };
             }
 
-            const insertOperation = defaultNamingConvention
-                ? `insert_${operation}_one`
-                : camelCase(`insert_${operation}_one`);
             const insertType = defaultNamingConvention
                 ? `${operation}_insert_input`
                 : camelCase(`${operation}_insert_input`, { pascalCase: true });
