@@ -351,3 +351,95 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "gzip",
         ],
     );
+
+// with gqlQuery correct response hasura-default
+nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query GetPost($id: uuid!) {\n  posts_by_pk(id: $id) {\n    id\n    title\n    content\n    category {\n      id\n    }\n  }\n}\n",
+        variables: { id: "6379bbda-0857-40f2-a277-b401ea6134d7" },
+        operationName: "GetPost",
+    })
+    .reply(
+        200,
+        [
+            "1f8b08000000000000033cce318ec3201040d1aba0a9c3ca066c6c777b896dadc18c231402c40c91a2c8778fd26cf9a557fc37786484e50d2557aeab7bade5f6cde0618151dbd9398fb29b062b4db72b89ca5ae94cd7138ebd36dec20538702458e0971261122df211b64055a49c440c8e8e2c6a608177625128464a4cf5d1082eb0e5c4941816f8a3cac1b5d8eee2d962698c4ca2620994041e5bfbf96a64bae6e3f57f48caf6c3b86939cff3248d36bb747e7052b9ce4e6ad2fbae4638cff3fc000000ffff0300d3bd6b9ee9000000",
+        ],
+        [
+            "Date",
+            "Fri, 04 Aug 2023 11:34:58 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "x-request-id",
+            "1ead1aa1cc0eb61cd866c57ffb2a3930",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "7f167e872c3f5488-IST",
+            "Content-Encoding",
+            "gzip",
+        ],
+    );
+
+// with gqlQuery correct response graphql-default
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query GetUser($id: id!) {\n  usersByPk(id: $id) {\n    id\n    name\n    email\n  }\n}\n",
+        variables: { id: 1 },
+        operationName: "GetUser",
+    })
+    .reply(
+        200,
+        [
+            "1f8b0800000000000003aa564a492c4954b2aa562a2d4e2d2a76aa0cc80671325394ac0c7594f212735395ac948252d332f352957494527313337394ac944094431158542f25b54ca9b6b616000000ffff0300450073ea49000000",
+        ],
+        [
+            "Date",
+            "Fri, 04 Aug 2023 11:35:00 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "x-request-id",
+            "d07368aa9b4ac4f1f0551c1b099d98a3",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "7f167e931c1a92cf-IST",
+            "Content-Encoding",
+            "gzip",
+        ],
+    );

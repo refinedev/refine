@@ -557,3 +557,121 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "7f0f3f67283c92db-IST",
         ],
     );
+
+// with gqlQuery "correct filter and sort response with hasura-default"
+nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query GetPosts($offset: Int!, $limit: Int!, $order_by: [posts_order_by!], $where: posts_bool_exp) {\n  posts(offset: $offset, limit: $limit, order_by: $order_by, where: $where) {\n    id\n    title\n    category_id\n    created_at\n    category {\n      id\n      title\n    }\n  }\n  posts_aggregate(where: $where) {\n    aggregate {\n      count\n    }\n  }\n}\n",
+        variables: {
+            limit: 10,
+            offset: 0,
+            order_by: { title: "asc" },
+            where: {
+                _and: [
+                    {
+                        category_id: {
+                            _eq: "6869be25-7189-40a0-9e3c-12164c1929ec",
+                        },
+                    },
+                ],
+            },
+        },
+        operationName: "GetPosts",
+    })
+    .reply(
+        200,
+        [
+            "1f8b0800000000000403b5925b6ec3201045b782f8ce48060630d94a5555038c5d4b7ed5d81f5594bd17f7a16603e18b2be0e888b93799692779bdc975297b91d7979b1cb2bc4a0aaa0dd138e8081d603216626c14241fb0b5e4c9519217b90ffbc8e7f55decc7b60e45e465e6f324d1cefdb27d9eec6fa26b5d88ac2df84a066ca881c02681d2ca61524187ef777fc4b4cc853f8e0a9e8f712479bf5fc42fc944568134022766409d03040c116c87ca691343b4f4e0c6db524439caca731e4a6141291d53a1f9b996ce61eebad683cdc9027a6fa0f59e2022920a816c67f9c1725c369ec4b09663aa7f58d373ed7c87adebb40254e801eb44810c6bf086283a6e7262f360b7bd2f733a8aa071a83399c448353dc5f0f5f253c537eafb8dfbdaa2b341ff415c6b0dd272ccbbac5bbcd7f5055cbcdb94c5020000",
+        ],
+        [
+            "Date",
+            "Thu, 03 Aug 2023 13:49:51 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "499",
+            "Connection",
+            "close",
+            "x-request-id",
+            "82a4dfe0892d78db3928e6421559b780",
+            "Content-Encoding",
+            "gzip",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "7f0f06bca8e192d5-IST",
+        ],
+    );
+
+// with gqlQuery "correct filter and sort response with graphql-default"
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query GetPosts($offset: Int!, $limit: Int!, $orderBy: [PostsOrderBy!], $where: PostsBoolExp) {\n  posts(offset: $offset, limit: $limit, orderBy: $orderBy, where: $where) {\n    id\n    title\n    category_id\n    created_at\n    category {\n      id\n      title\n    }\n  }\n  postsAggregate(where: $where) {\n    aggregate {\n      count\n    }\n  }\n}\n",
+        variables: {
+            limit: 10,
+            offset: 0,
+            orderBy: { title: "ASC" },
+            where: {
+                _and: [
+                    {
+                        categoryId: {
+                            _eq: "6869be25-7189-40a0-9e3c-12164c1929ec",
+                        },
+                    },
+                ],
+            },
+        },
+        operationName: "GetPosts",
+    })
+    .reply(
+        200,
+        [
+            "1f8b0800000000000403b592496ec4201045af82587749060a30bdcb39a22c0a283b963cc5d88ba8d5770fcea4be40b3e20b787aa2fe4d66da495e6f725dca5ee4f5f526872caf92826a43340e3a4207988c85181b05c9076c2d797294e445eec33ef2797d17fbb1ad43117999f93c49b473bf6c9f27fb9be85a17226b0bbe92011b6a20b049a0b4729854d0e1fbdd1f312d73e18fa382e7631c49deef17f14b329155208dc0891950e700014304dba172dac4102d3db8f1b614518eb2f29c875258504ac754687eaea57398bbaef56073b280de1b68bd278888a44220db597eb01c978d2731ace598ea1fd6f45c3bdf61eb3aad00157ac03a5120c31abc218a8e9b9cd83cd86defcb9c8e22681cea4c2631524d4f317cbbfc54f1a5ef37ee6b89ce02d17f10d7da82b41cf32eeb16ef757d013a67cc9ac4020000",
+        ],
+        [
+            "Date",
+            "Thu, 03 Aug 2023 14:28:32 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "315",
+            "Connection",
+            "close",
+            "x-request-id",
+            "b7060435b7c63168ca8060cac8150424",
+            "Content-Encoding",
+            "gzip",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "7f0f3f67283c92db-IST",
+        ],
+    );
