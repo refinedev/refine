@@ -17,18 +17,18 @@ export const CommonGithubStarButton = ({ className }: Props) => {
             target="_blank"
             rel="noreferrer"
             className={clsx(
-                "text-base",
+                "text-sm",
                 "text-gray-500 dark:text-gray-400",
+                "rounded-[32px]",
+                "border border-solid border-gray-300 dark:border-gray-700",
                 "flex gap-2 items-center",
+                "py-2 pl-2.5 pr-4",
                 "no-underline",
-                "transition-colors",
-                "duration-200",
-                "ease-in-out",
                 className,
             )}
         >
-            <GithubIcon className={clsx("w-6 h-6")} />
-            <div className={clsx("flex items-center", "w-[86px] h-6")}>
+            <GithubIcon className={clsx("w-5 h-5")} />
+            <div className={clsx("flex items-center", "min-w-[76px] h-6")}>
                 Star:&nbsp;
                 {loading ? (
                     <Spinner
@@ -38,7 +38,11 @@ export const CommonGithubStarButton = ({ className }: Props) => {
                         }}
                     />
                 ) : (
-                    <span className={clsx("tabular-nums font-semibold")}>
+                    <span
+                        className={clsx(
+                            "tabular-nums text-gray-800 dark:text-gray-100",
+                        )}
+                    >
                         {githubStarCountText}
                     </span>
                 )}
