@@ -147,7 +147,7 @@ module.exports = {
             type: "link",
             href: "https://s.refine.dev/devtools-beta",
             label: "Refine Devtools",
-            className: "sidebar-item-shiny mt-6 -ml-2",
+            className: "sidebar-item-shiny",
         },
         // Guides & Concepts
         {
