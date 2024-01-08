@@ -38,11 +38,7 @@ import { CompanyContactsQuery } from "@/graphql/types";
 
 import { COMPANY_CONTACTS_QUERY } from "./queries";
 
-type Props = {
-    style?: React.CSSProperties;
-};
-
-export const CompanyContactsTable: FC<Props> = ({ style }) => {
+export const CompanyContactsTable: FC = () => {
     const params = useParams();
 
     const { tableProps, filters, setFilters } = useTable<
@@ -109,7 +105,6 @@ export const CompanyContactsTable: FC<Props> = ({ style }) => {
 
     return (
         <Card
-            style={style}
             headStyle={{
                 borderBottom: "1px solid #D9D9D9",
                 marginBottom: "1px",
