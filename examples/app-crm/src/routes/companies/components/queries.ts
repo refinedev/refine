@@ -75,3 +75,17 @@ export const COMPANY_TOTAL_DEALS_AMOUNT_QUERY = gql`
         }
     }
 `;
+
+export const COMPANY_INFO_QUERY = gql`
+    query CompanyInfo($id: ID!) {
+        company(id: $id) {
+            id
+            totalRevenue
+            industry
+            companySize
+            businessType
+            country
+            website
+        }
+    }
+`;

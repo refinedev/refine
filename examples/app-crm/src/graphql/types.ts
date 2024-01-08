@@ -346,6 +346,23 @@ export type CompanyTotalDealsAmountQuery = {
     };
 };
 
+export type CompanyInfoQueryVariables = Types.Exact<{
+    id: Types.Scalars["ID"]["input"];
+}>;
+
+export type CompanyInfoQuery = {
+    company: Pick<
+        Types.Company,
+        | "id"
+        | "totalRevenue"
+        | "industry"
+        | "companySize"
+        | "businessType"
+        | "country"
+        | "website"
+    >;
+};
+
 export type CompanyTitleFormMutationVariables = Types.Exact<{
     input: Types.UpdateOneCompanyInput;
 }>;
