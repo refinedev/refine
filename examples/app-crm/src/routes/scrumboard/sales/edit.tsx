@@ -2,12 +2,23 @@ import { useEffect } from "react";
 
 import { useModalForm, useSelect } from "@refinedev/antd";
 import { HttpError, useNavigation } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DollarOutlined } from "@ant-design/icons";
 import { Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company, Deal, User } from "@/graphql/schema.types";
+import { Deal } from "@/graphql/schema.types";
+import {
+    SalesCompaniesSelectQuery,
+    SalesDealStagesSelectQuery,
+} from "@/graphql/types";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
+
+import {
+    SALES_COMPANIES_SELECT_QUERY,
+    SALES_DEAL_STAGES_SELECT_QUERY,
+} from "./queries";
 
 type FormValues = {
     stageId?: string | null;
@@ -42,35 +53,26 @@ export const SalesEditPage = () => {
         },
     });
 
-    const { selectProps, queryResult: companyQueryResult } = useSelect<Company>(
-        {
-            resource: "companies",
-            meta: {
-                fields: [
-                    "name",
-                    "id",
-                    "avatarUrl",
-                    { contacts: [{ nodes: ["name", "id", "avatarUrl"] }] },
-                ],
-            },
-            optionLabel: "name",
+    const { selectProps, queryResult: companyQueryResult } = useSelect<
+        GetFieldsFromList<SalesCompaniesSelectQuery>
+    >({
+        resource: "companies",
+        optionLabel: "name",
+        meta: {
+            gqlQuery: SALES_COMPANIES_SELECT_QUERY,
         },
-    );
+    });
 
-    const { selectProps: stageSelectProps } = useSelect({
+    const { selectProps: stageSelectProps } = useSelect<
+        GetFieldsFromList<SalesDealStagesSelectQuery>
+    >({
         resource: "dealStages",
         meta: {
-            fields: ["title", "id"],
+            gqlQuery: SALES_DEAL_STAGES_SELECT_QUERY,
         },
     });
 
-    const { queryResult: userQueryResult } = useSelect<User>({
-        resource: "users",
-        meta: {
-            fields: ["name", "id", "avatarUrl"],
-        },
-        optionLabel: "name",
-    });
+    const { queryResult: userQueryResult } = useUsersSelect();
 
     const company = Form.useWatch("company", formProps.form);
     const companyId = company?.id;
