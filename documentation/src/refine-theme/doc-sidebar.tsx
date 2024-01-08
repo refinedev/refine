@@ -132,8 +132,7 @@ const SidebarCategory = ({
                     "focus:outline-none",
                     !isHeader && "text-gray-600 dark:text-gray-300",
                     isHeader && "text-gray-500 dark:text-gray-400",
-                    !isHeader &&
-                        "hover:text-refine-react-light-link dark:hover:text-refine-react-dark-link",
+                    !isHeader && "hover:text-gray-600 dark:hover:text-gray-300",
                     isHeader ? "uppercase" : "",
                     "font-normal",
                     "flex items-center",
@@ -148,30 +147,6 @@ const SidebarCategory = ({
                     !isHeader && "no-underline",
                 )}
             >
-                <div
-                    className={clsx(
-                        "absolute",
-                        "opacity-0",
-                        "rounded-lg",
-                        "transition-opacity",
-                        "duration-200 ease-in-out",
-                        "top-0",
-                        "group-hover:bg-refine-blue-2-light dark:group-hover:bg-refine-blue-2 dark:group-hover:bg-opacity-10",
-                        {
-                            "bg-refine-blue-2-light dark:bg-refine-blue-2 dark:bg-opacity-10":
-                                isActive && isSame,
-                            "right-0": variant === "desktop",
-                            // "-right-2": variant === "mobile",
-                        },
-                        "h-full",
-                    )}
-                    style={{
-                        width:
-                            variant === "desktop"
-                                ? `calc(${SIDEBAR_WIDTH}px-32px)`
-                                : `100%`,
-                    }}
-                />
                 {!isHeader && (
                     <ChevronDownIcon
                         className={clsx(
@@ -183,7 +158,7 @@ const SidebarCategory = ({
                             "flex-shrink-0",
                             "z-[1]",
                             "transition-transform duration-200 ease-in-out",
-                            "group-hover:text-refine-react-light-link dark:group-hover:text-refine-react-dark-link",
+                            "group-hover:text-gray-600 dark:group-hover:text-gray-300",
                             {
                                 "-rotate-90 transform": collapsed,
                             },
@@ -198,8 +173,9 @@ const SidebarCategory = ({
                         "transition-opacity",
                         "duration-200 ease-in-out",
                         "top-0",
-                        "group-hover:bg-refine-blue-2-light dark:group-hover:bg-refine-blue-2 dark:group-hover:bg-opacity-10",
                         {
+                            "group-hover:bg-gray-100 dark:group-hover:bg-gray-700":
+                                !isActive && !isSame,
                             "bg-refine-blue-2-light dark:bg-refine-blue-2 dark:bg-opacity-10":
                                 isActive && isSame,
                             "right-0": variant === "desktop",
@@ -334,7 +310,7 @@ const SidebarLink = ({
                 "relative",
                 "min-h-[28px]",
                 !isActive && "text-gray-600 dark:text-gray-300",
-                "hover:dark:text-refine-react-dark-link hover:text-refine-react-light-link",
+                !isActive && "hover:text-gray-600 dark:hover:text-gray-300",
                 isActive &&
                     "text-refine-react-light-link dark:text-refine-react-dark-link",
                 "px-4 py-2",
@@ -357,7 +333,6 @@ const SidebarLink = ({
                         "text-gray-300 dark:text-gray-600",
                         isActive &&
                             "text-refine-react-light-link dark:text-refine-react-dark-link text-opacity-50 dark:text-opacity-50",
-                        "group-hover:text-refine-react-light-link dark:group-hover:text-refine-react-dark-link group-hover:text-opacity-50 dark:group-hover:text-opacity-50",
                     )}
                 />
             )}
@@ -375,8 +350,9 @@ const SidebarLink = ({
                     "rounded-[18px]",
                     "transition-opacity",
                     "duration-200 ease-in-out",
-                    "group-hover:bg-refine-blue-2-light dark:group-hover:bg-refine-blue-2 dark:group-hover:bg-opacity-10",
                     {
+                        "group-hover:bg-gray-100 dark:group-hover:bg-gray-700":
+                            !isActive && !isSame,
                         "bg-refine-blue-2-light dark:bg-refine-blue-2 dark:bg-opacity-10":
                             isActive && isSame,
                         "right-0": variant === "desktop",

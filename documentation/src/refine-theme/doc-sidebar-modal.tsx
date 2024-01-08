@@ -55,7 +55,7 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
                         >
                             <Dialog.Panel
                                 className={clsx(
-                                    "w-full h-screen",
+                                    "w-full h-[100dvh]",
                                     "flex flex-col",
                                     "px-2",
                                 )}
