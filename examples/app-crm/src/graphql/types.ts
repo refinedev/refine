@@ -206,6 +206,27 @@ export type CalendarEventsQuery = {
     };
 };
 
+export type UpdateEventMutationVariables = Types.Exact<{
+    input: Types.UpdateOneEventInput;
+}>;
+
+export type UpdateEventMutation = {
+    updateOneEvent: Pick<
+        Types.Event,
+        | "id"
+        | "title"
+        | "description"
+        | "startDate"
+        | "endDate"
+        | "color"
+        | "createdAt"
+    > & {
+        createdBy: Pick<Types.User, "id" | "name">;
+        category: Pick<Types.EventCategory, "id" | "title">;
+        participants: Array<Pick<Types.User, "id" | "name">>;
+    };
+};
+
 export type CompanyTitleFormMutationVariables = Types.Exact<{
     input: Types.UpdateOneCompanyInput;
 }>;

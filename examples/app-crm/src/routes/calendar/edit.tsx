@@ -9,6 +9,7 @@ import dayjs from "dayjs";
 import { Event } from "@/graphql/schema.types";
 
 import { CalendarForm } from "./components";
+import { CALENDAR_UPDATE_EVENT_MUTATION } from "./queries";
 
 export const CalendarEditPage: React.FC = () => {
     const [isAllDayEvent, setIsAllDayEvent] = useState(false);
@@ -23,24 +24,7 @@ export const CalendarEditPage: React.FC = () => {
                 enabled: true,
             },
             queryMeta: {
-                fields: [
-                    "id",
-                    "title",
-                    "description",
-                    "startDate",
-                    "endDate",
-                    "color",
-                    "createdAt",
-                    {
-                        createdBy: ["id", "name"],
-                    },
-                    {
-                        category: ["id", "title"],
-                    },
-                    {
-                        participants: ["id", "name"],
-                    },
-                ],
+                gqlMutation: CALENDAR_UPDATE_EVENT_MUTATION,
             },
         });
 
