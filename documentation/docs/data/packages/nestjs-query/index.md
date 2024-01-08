@@ -182,15 +182,18 @@ Once you write your query, you can generate types for it with `GraphQL Code Gene
 npm run codegen
 ```
 
-```simple
+:::simple Good to know
+
 `@refinedev/nestjs-query` also exports 2 utility types:
-  - GetFields: Get fields from your non-list queries and mutations.
-  - GetFieldsFromList: Get fields from your offset-paginated list queries.
+
+- GetFields: Get fields from your non-list queries and mutations.
+- GetFieldsFromList: Get fields from your offset-paginated list queries.
 
 You can use these types to extract the type of selected fields of your queries/mutations.
 
 See the [Utility Types](#utility-types) section for more information.
-```
+
+:::
 
 And then you can use it with hooks:
 
