@@ -8,6 +8,7 @@ import {
     useTable,
 } from "@refinedev/antd";
 import { HttpError, useCreateMany, useOne } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
     DeleteOutlined,
@@ -33,6 +34,9 @@ import {
 
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
 import { Company, Contact, ContactCreateInput } from "@/graphql/schema.types";
+import { CompanyContactsQuery } from "@/graphql/types";
+
+import { COMPANY_CONTACTS_QUERY } from "./queries";
 
 type Props = {
     style?: React.CSSProperties;
@@ -41,7 +45,9 @@ type Props = {
 export const CompanyContactsTable: FC<Props> = ({ style }) => {
     const params = useParams();
 
-    const { tableProps, filters, setFilters } = useTable<Contact>({
+    const { tableProps, filters, setFilters } = useTable<
+        GetFieldsFromList<CompanyContactsQuery>
+    >({
         resource: "contacts",
         syncWithLocation: false,
         sorters: {
@@ -79,15 +85,7 @@ export const CompanyContactsTable: FC<Props> = ({ style }) => {
             ],
         },
         meta: {
-            fields: [
-                "id",
-                "name",
-                "avatarUrl",
-                "jobTitle",
-                "email",
-                "phone",
-                "status",
-            ],
+            gqlQuery: COMPANY_CONTACTS_QUERY,
         },
     });
 

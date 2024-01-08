@@ -271,6 +271,29 @@ export type GetEventQuery = {
     };
 };
 
+export type CompanyContactsQueryVariables = Types.Exact<{
+    filter: Types.ContactFilter;
+    sorting?: Types.InputMaybe<Array<Types.ContactSort> | Types.ContactSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type CompanyContactsQuery = {
+    contacts: Pick<Types.ContactConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<
+                Types.Contact,
+                | "id"
+                | "name"
+                | "avatarUrl"
+                | "jobTitle"
+                | "email"
+                | "phone"
+                | "status"
+            >
+        >;
+    };
+};
+
 export type CompanyTitleFormMutationVariables = Types.Exact<{
     input: Types.UpdateOneCompanyInput;
 }>;
