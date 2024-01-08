@@ -139,6 +139,7 @@
     @apply bg-center bg-no-repeat bg-[size:0.875rem];
     @apply top-1/2 -translate-y-1/2;
     @apply transition-all duration-200 ease-in-out;
+    @apply -left-px;
 }
 
 .refine-prose a.hash-link:hover::before {

@@ -39,7 +39,7 @@ export const InfoBadge = ({ id, icon, color, text, description }: Props) => {
                 to={`/docs/${id}`}
                 className={clsx(
                     "-mt-px",
-                    "mr-1.5",
+                    // "mr-1.5",
                     "rounded-[10px]",
                     "inline-flex",
                     "items-center",
