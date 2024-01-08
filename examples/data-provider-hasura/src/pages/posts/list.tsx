@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
     IResourceComponentsProps,
     getDefaultFilter,
@@ -20,16 +21,21 @@ import {
 
 import { Table, Space, Select, Input } from "antd";
 
-import { useState } from "react";
+import type {
+    GetPostCategoriesSelectQuery,
+    GetPostsQuery,
+} from "graphql/types";
+import { GetFieldsFromList } from "@refinedev/hasura";
 import {
     POST_CATEGORIES_SELECT_QUERY,
     POSTS_QUERY,
     POST_DELETE_MUTATION,
 } from "./queries";
-import { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters, sorters } = useTable<IPost>({
+    const { tableProps, filters, sorters } = useTable<
+        GetFieldsFromList<GetPostsQuery>
+    >({
         initialSorter: [
             {
                 field: "id",
@@ -50,7 +56,9 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
-    const { selectProps } = useSelect<ICategory>({
+    const { selectProps } = useSelect<
+        GetFieldsFromList<GetPostCategoriesSelectQuery>
+    >({
         resource: "categories",
         metaData: {
             gqlQuery: POST_CATEGORIES_SELECT_QUERY,
@@ -81,7 +89,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         </FilterDropdown>
                     )}
                 />
-                <Table.Column<IPost>
+                <Table.Column<GetFieldsFromList<GetPostsQuery>>
                     dataIndex="category_id"
                     title="Category"
                     filterDropdown={(props) => (
@@ -111,7 +119,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     )}
                     sorter
                 />
-                <Table.Column<IPost>
+                <Table.Column<GetFieldsFromList<GetPostsQuery>>
                     title="Actions"
                     dataIndex="actions"
                     render={(_, record) => (
@@ -142,3 +150,33 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     );
 };
 
+const DeleteManyComponent = () => {
+    const [ids, setIds] = useState<string>("");
+    const { mutate } = useDeleteMany();
+
+    return (
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                marginBottom: 20,
+            }}
+        >
+            <textarea
+                value={ids}
+                placeholder="enter coma seperated ids"
+                onChange={(e) => setIds(e.target.value)}
+            />
+            <button
+                onClick={() => {
+                    mutate({
+                        resource: "posts",
+                        ids: ids.split(","),
+                    });
+                }}
+            >
+                delete many
+            </button>
+        </div>
+    );
+};

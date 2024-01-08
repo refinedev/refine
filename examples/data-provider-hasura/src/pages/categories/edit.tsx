@@ -1,14 +1,22 @@
-import { IResourceComponentsProps } from "@refinedev/core";
+import { HttpError, IResourceComponentsProps } from "@refinedev/core";
 
 import { Edit, ListButton, RefreshButton, useForm } from "@refinedev/antd";
 
 import { Form, Input } from "antd";
 
-import { ICategory } from "../../interfaces";
+import { GetFields, GetVariables } from "@refinedev/hasura";
+import {
+    UpdateCategoryMutation,
+    UpdateCategoryMutationVariables,
+} from "graphql/types";
 import { CATEGORY_UPDATE_MUTATION } from "./queries";
 
 export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<ICategory>({
+    const { formProps, saveButtonProps, queryResult } = useForm<
+        GetFields<UpdateCategoryMutation>,
+        HttpError,
+        GetVariables<UpdateCategoryMutationVariables>
+    >({
         metaData: {
             gqlMutation: CATEGORY_UPDATE_MUTATION,
         },

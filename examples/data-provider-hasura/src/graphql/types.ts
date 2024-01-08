@@ -63,7 +63,7 @@ export type GetPostQueryVariables = Types.Exact<{
 }>;
 
 export type GetPostQuery = {
-    posts_by_pk?: Types.Maybe<
+    posts_by_pk: Types.Maybe<
         Pick<Types.Posts, "id" | "title" | "content"> & {
             category?: Types.Maybe<Pick<Types.Categories, "id" | "title">>;
         }

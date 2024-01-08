@@ -13,14 +13,19 @@ import { Form, Input, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "../../interfaces";
+import {
+    GetPostCategoriesSelectQuery,
+    UpdatePostMutation,
+    UpdatePostMutationVariables,
+} from "graphql/types";
+import { GetFields, GetFieldsFromList, GetVariables } from "@refinedev/hasura";
 import { POST_CATEGORIES_SELECT_QUERY, POST_UPDATE_MUTATION } from "./queries";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult, formLoading } = useForm<
-        IPost,
+        GetFields<UpdatePostMutation>,
         HttpError,
-        IPost
+        GetVariables<UpdatePostMutationVariables>
     >({
         queryOptions: {},
         metaData: {
@@ -29,7 +34,9 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     });
 
     const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    const { selectProps: categorySelectProps } = useSelect<
+        GetFieldsFromList<GetPostCategoriesSelectQuery>
+    >({
         resource: "categories",
         defaultValue: postData?.category_id,
         metaData: {
