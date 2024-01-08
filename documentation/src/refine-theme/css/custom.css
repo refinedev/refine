@@ -525,3 +525,15 @@ h4 > del:has(code:only-child) code {
     font-variant-ligatures: none;
     font-feature-settings: "liga" 0;
 }
+
+h1 del,
+h2 del,
+h3 del,
+h4 del,
+h1 del code,
+h2 del code,
+h3 del code,
+h4 del code {
+    @apply !line-through;
+    @apply !text-gray-400 dark:!text-gray-500;
+}
