@@ -33,6 +33,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
                     "tracking-wide",
                     "align-middle",
                     "font-normal",
+                    "mr-1",
                 )}
                 title={alt}
             >
@@ -76,6 +77,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
                     "tracking-wide",
                     "align-middle",
                     "font-normal",
+                    "mr-1",
                 )}
                 title={alt}
             >
@@ -99,6 +101,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
                     "tracking-wide",
                     "align-middle",
                     "font-normal",
+                    "mr-1",
                 )}
                 title={alt}
             >
@@ -121,6 +124,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
                     "bg-gray-800",
                     "tracking-wide",
                     "align-middle",
+                    "mr-1",
                 )}
                 title={alt}
             >
