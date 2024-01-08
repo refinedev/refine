@@ -206,6 +206,14 @@ export type CalendarEventsQuery = {
     };
 };
 
+export type CreateEventCategoriesMutationVariables = Types.Exact<{
+    input: Types.CreateManyEventCategoriesInput;
+}>;
+
+export type CreateEventCategoriesMutation = {
+    createManyEventCategories: Array<Pick<Types.EventCategory, "id" | "title">>;
+};
+
 export type EventFragmentFragment = Pick<
     Types.Event,
     | "id"

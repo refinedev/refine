@@ -11,6 +11,7 @@ import { EVENT_CATEGORIES_QUERY } from "@/graphql/queries";
 import { EventCategoriesQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
+import { CALENDAR_CREATE_EVENT_CATEGORIES_MUTATION } from "./queries";
 
 type CalendarManageCategoriesProps = {
     saveSuccces?: () => void;
@@ -20,13 +21,7 @@ export const CalendarManageCategories: React.FC<
     CalendarManageCategoriesProps
 > = ({ saveSuccces, ...rest }) => {
     const [form] = Form.useForm();
-    const { mutate: createManyMutation } = useCreateMany({
-        mutationOptions: {
-            meta: {
-                fields: ["id", "title"],
-            },
-        },
-    });
+    const { mutate: createManyMutation } = useCreateMany();
     const { mutate: deleteMutation } = useDelete();
     const { data } = useList<GetFieldsFromList<EventCategoriesQuery>>({
         resource: "eventCategories",
@@ -102,7 +97,8 @@ export const CalendarManageCategories: React.FC<
                             {
                                 resource: "eventCategories",
                                 meta: {
-                                    fields: ["id", "title"],
+                                    gqlMutation:
+                                        CALENDAR_CREATE_EVENT_CATEGORIES_MUTATION,
                                 },
                                 values,
                                 successNotification: () => ({
