@@ -124,6 +124,18 @@ export type ContactsSelectQuery = {
     };
 };
 
+export type DealStagesSelectQueryVariables = Types.Exact<{
+    filter: Types.DealStageFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.DealStageSort> | Types.DealStageSort
+    >;
+    paging: Types.OffsetPaging;
+}>;
+
+export type DealStagesSelectQuery = {
+    dealStages: { nodes: Array<Pick<Types.DealStage, "id" | "title">> };
+};
+
 export type UsersSelectQueryVariables = Types.Exact<{
     filter: Types.UserFilter;
     sorting?: Types.InputMaybe<Array<Types.UserSort> | Types.UserSort>;
@@ -271,13 +283,13 @@ export type GetEventQuery = {
     };
 };
 
-export type CompanyContactsQueryVariables = Types.Exact<{
+export type CompanyContactsTableQueryVariables = Types.Exact<{
     filter: Types.ContactFilter;
     sorting?: Types.InputMaybe<Array<Types.ContactSort> | Types.ContactSort>;
     paging: Types.OffsetPaging;
 }>;
 
-export type CompanyContactsQuery = {
+export type CompanyContactsTableQuery = {
     contacts: Pick<Types.ContactConnection, "totalCount"> & {
         nodes: Array<
             Pick<
@@ -290,6 +302,34 @@ export type CompanyContactsQuery = {
                 | "phone"
                 | "status"
             >
+        >;
+    };
+};
+
+export type CompanyContactsGetCompanyQueryVariables = Types.Exact<{
+    id: Types.Scalars["ID"]["input"];
+}>;
+
+export type CompanyContactsGetCompanyQuery = {
+    company: Pick<Types.Company, "id" | "name"> & {
+        salesOwner: Pick<Types.User, "id">;
+    };
+};
+
+export type CompanyDealsTableQueryVariables = Types.Exact<{
+    filter: Types.DealFilter;
+    sorting?: Types.InputMaybe<Array<Types.DealSort> | Types.DealSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type CompanyDealsTableQuery = {
+    deals: Pick<Types.DealConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<Types.Deal, "id" | "title" | "value"> & {
+                stage?: Types.Maybe<Pick<Types.DealStage, "id" | "title">>;
+                dealOwner: Pick<Types.User, "id" | "name" | "avatarUrl">;
+                dealContact: Pick<Types.Contact, "id" | "name" | "avatarUrl">;
+            }
         >;
     };
 };

@@ -29,16 +29,11 @@ import {
 
 import { SelectOptionWithAvatar } from "@/components";
 import { Contact, Deal, User } from "@/graphql/schema.types";
-import {
-    SalesCompaniesSelectQuery,
-    SalesDealStagesSelectQuery,
-} from "@/graphql/types";
+import { SalesCompaniesSelectQuery } from "@/graphql/types";
+import { useDealStagesSelect } from "@/hooks/useDealStagesSelect";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 
-import {
-    SALES_COMPANIES_SELECT_QUERY,
-    SALES_DEAL_STAGES_SELECT_QUERY,
-} from "./queries";
+import { SALES_COMPANIES_SELECT_QUERY } from "./queries";
 
 type FormValues = {
     stageId?: string | null;
@@ -91,14 +86,7 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
         },
     });
 
-    const { selectProps: stageSelectProps } = useSelect<
-        GetFieldsFromList<SalesDealStagesSelectQuery>
-    >({
-        resource: "dealStages",
-        meta: {
-            gqlQuery: SALES_DEAL_STAGES_SELECT_QUERY,
-        },
-    });
+    const { selectProps: stageSelectProps } = useDealStagesSelect();
 
     const { selectProps: userSelectProps, queryResult: userQueryResult } =
         useUsersSelect();
