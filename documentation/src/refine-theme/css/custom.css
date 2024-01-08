@@ -518,3 +518,9 @@ h4 > del:has(code:only-child) code {
     margin-left: calc((-1 * ((var(--applied-full-table-width, 100%) - 100%) / 2)) + 16px);
     margin-right: calc((-1 * ((var(--applied-full-table-width, 100%) - 100%) / 2)) + 16px);
 }
+
+.font-mono,
+.font-jetBrains-mono {
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0;
+}
