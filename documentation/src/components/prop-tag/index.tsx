@@ -22,21 +22,17 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
         return (
             <div
                 className={clsx(
-                    "inline",
-                    "text-xs",
-                    "leading-6",
+                    "inline-flex",
+                    "text-sm",
                     "py-0.5",
                     "px-2",
                     "rounded-xl",
-                    // "bg-refine-orange",
-                    "border-refine-orange",
-                    "bg-refine-orange dark:bg-refine-orange",
-                    "text-gray-0 dark:text-refine-orange",
-                    "bg-opacity-100 dark:bg-opacity-20",
-                    "border",
+                    "bg-refine-orange",
+                    "bg-opacity-10",
+                    "text-refine-orange",
                     "tracking-wide",
                     "align-middle",
-                    "font-semibold",
+                    "font-normal",
                 )}
                 title={alt}
             >
@@ -49,13 +45,14 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
         return (
             <div
                 className={clsx(
-                    "inline-flex justify-center items-center",
+                    "inline-flex",
+                    "justify-center items-center",
                     "text-sm",
-                    "text-gray-0",
+                    "text-refine-red",
                     "rounded-full",
-                    "bg-refine-red",
+                    "bg-refine-red bg-opacity-10",
                     "ml-1",
-                    "w-4 h-4",
+                    "w-6 h-6",
                     "align-middle",
                 )}
             >
@@ -68,20 +65,17 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
         return (
             <div
                 className={clsx(
-                    "inline",
-                    "text-xs",
-                    "leading-6",
+                    "inline-flex",
+                    "text-sm",
                     "py-0.5",
                     "px-2",
                     "rounded-xl",
-                    "border-refine-red",
-                    "bg-refine-red dark:bg-refine-red",
-                    "text-gray-0 dark:text-refine-red",
-                    "bg-opacity-100 dark:bg-opacity-20",
-                    "border",
+                    "bg-refine-red",
+                    "bg-opacity-10",
+                    "text-refine-red",
                     "tracking-wide",
                     "align-middle",
-                    "font-semibold",
+                    "font-normal",
                 )}
                 title={alt}
             >
@@ -94,16 +88,17 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
         return (
             <div
                 className={clsx(
-                    "inline",
-                    "text-gray-0",
-                    "text-xs",
-                    "leading-6",
+                    "inline-flex",
+                    "text-sm",
                     "py-0.5",
                     "px-2",
-                    "rounded",
+                    "rounded-xl",
                     "bg-refine-green",
+                    "bg-opacity-10",
+                    "text-refine-green",
                     "tracking-wide",
                     "align-middle",
+                    "font-normal",
                 )}
                 title={alt}
             >

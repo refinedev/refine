@@ -6,16 +6,7 @@ import { BadgeTooltip } from "../badge-tooltip";
 type Props = {
     id: string;
     icon: React.ReactNode;
-    color:
-        | "orange"
-        | "yellow"
-        | "blue"
-        | "cyan"
-        | "green"
-        | "indigo"
-        | "purple"
-        | "pink"
-        | "black";
+    color: "orange" | "green" | "purple";
     text?: string;
     description: React.ReactNode;
 };
@@ -23,23 +14,23 @@ type Props = {
 export const InfoBadge = ({ id, icon, color, text, description }: Props) => {
     const classes = clsx(
         color === "orange" &&
-            "bg-refine-orange hover:ring-refine-orange text-gray-0 dark:text-gray-0 hover:text-gray-0 dark:hover:text-gray-0",
-        color === "yellow" &&
-            "bg-refine-yellow hover:ring-refine-yellow text-gray-900 dark:text-gray-900 hover:text-gray-900 dark:hover:text-gray-900",
-        color === "blue" &&
-            "bg-refine-blue hover:ring-refine-blue text-gray-0 dark:text-gray-0 hover:text-gray-0 dark:hover:text-gray-0",
-        color === "cyan" &&
-            "bg-refine-cyan hover:ring-refine-cyan text-gray-0 dark:text-gray-0 hover:text-gray-0 dark:hover:text-gray-0",
+            clsx(
+                "bg-refine-react-light-orange-bg dark:bg-refine-react-dark-orange",
+                "dark:bg-opacity-[0.15]",
+                "text-refine-react-light-orange dark:text-refine-react-dark-orange",
+            ),
         color === "green" &&
-            "bg-refine-green hover:ring-refine-green text-gray-0 dark:text-gray-0 hover:text-gray-0 dark:hover:text-gray-0",
-        color === "indigo" &&
-            "bg-refine-indigo hover:ring-refine-indigo text-gray-0 dark:text-gray-0 hover:text-gray-0 dark:hover:text-gray-0",
+            clsx(
+                "bg-refine-react-light-green-bg dark:bg-refine-react-dark-green",
+                "dark:bg-opacity-[0.15]",
+                "text-refine-react-light-green dark:text-refine-react-dark-green",
+            ),
         color === "purple" &&
-            "bg-refine-purple hover:ring-refine-purple text-gray-0 dark:text-gray-0 hover:text-gray-0 dark:hover:text-gray-0",
-        color === "pink" &&
-            "bg-refine-pink hover:ring-refine-pink text-gray-900 dark:text-gray-900 hover:text-gray-900 dark:hover:text-gray-900",
-        color === "black" &&
-            "bg-gray-1000 hover:ring-refine-gray-1000 text-gray-0 dark:text-gray-0 hover:text-gray-0 dark:hover:text-gray-0",
+            clsx(
+                "bg-refine-react-light-purple-bg dark:bg-refine-react-dark-purple",
+                "dark:bg-opacity-[0.15]",
+                "text-refine-react-light-purple dark:text-refine-react-dark-purple",
+            ),
     );
 
     return (
@@ -47,18 +38,17 @@ export const InfoBadge = ({ id, icon, color, text, description }: Props) => {
             <Link
                 to={`/docs/${id}`}
                 className={clsx(
-                    "mr-1",
-                    "rounded",
-                    "py-1.5",
-                    "px-1.5",
+                    "-mt-px",
+                    "mr-1.5",
+                    "rounded-[10px]",
                     "inline-flex",
                     "items-center",
                     "justify-center",
                     "text-sm",
                     "no-underline",
                     "gap-1.5",
-                    "hover:ring",
-                    "hover:ring-opacity-30",
+                    "[&>svg]:hover:scale-110",
+                    "[&>svg]:transition-transform [&>svg]:duration-200 [&>svg]:ease-in-out",
                     classes,
                 )}
             >
