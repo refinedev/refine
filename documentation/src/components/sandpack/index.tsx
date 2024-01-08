@@ -23,8 +23,6 @@ import {
 
 import { useColorMode } from "@docusaurus/theme-common";
 
-import { BugReportButton } from "./bug-report-button";
-import { BugReportModal } from "./bug-report-modal";
 import { DragHandle } from "./drag-handle";
 import { useResizable } from "./use-resizable";
 
@@ -80,7 +78,28 @@ const SandpackBase = ({
         showTabs: true,
         initMode: "lazy",
         classes: {
-            "sp-cm": "p-0 bg-transparent",
+            "sp-layout": "!rounded-lg !border-gray-300 dark:!border-gray-700",
+            "sp-editor":
+                "!gap-0 border-r !border-r-gray-300 dark:!border-r-gray-700",
+            "sp-tabs":
+                "!border-b-gray-300 dark:!border-b-gray-700 !bg-gray-0 dark:!bg-gray-800",
+            "sp-tabs-scrollable-container": "!min-h-[32px]",
+            "sp-cm": clsx(
+                "p-0 bg-transparent",
+                "[&>.cm-editor]:!bg-refine-react-light-code",
+                "[&>.cm-editor]:dark:!bg-refine-react-dark-code",
+                "[&_.cm-activeLine]:!bg-gray-100 [&_.cm-activeLine]:dark:!bg-gray-800",
+            ),
+            "sp-icon-standalone":
+                "!bg-gray-300 dark:!bg-gray-700 !text-gray-400 dark:!text-gray-500",
+            "sp-tab-button": clsx(
+                "!h-8",
+                "!px-2 !pb-2 !pt-1.5",
+                "!text-gray-800 dark:!text-gray-100",
+                "!border !border-solid !border-b-0 !border-x-gray-300 dark:!border-x-gray-700",
+                "-ml-px first:ml-0",
+                "!border-t-2 !border-t-transparent [&[data-active='true']]:!border-t-refine-react-light-link dark:[&[data-active='true']]:!border-t-refine-react-dark-link",
+            ),
         },
     },
     template = "react-ts",
@@ -185,18 +204,18 @@ const SandpackBase = ({
                                       colors: {
                                           ...aquaBlue.colors,
                                           accent: "#1D1E30",
-                                          surface1: "#F4F8FB",
-                                          surface2: "rgb(222, 229, 237)",
-                                          surface3: "rgb(222, 229, 237)",
+                                          surface1: "transparent",
+                                          surface2: "transparent",
+                                          surface3: "transparent",
                                       },
                                   }
                                 : {
                                       ...nightOwl,
                                       colors: {
                                           ...nightOwl.colors,
-                                          surface1: "#1D1E30",
-                                          surface2: "#303450",
-                                          surface3: "#303450",
+                                          surface1: "transparent",
+                                          surface2: "transparent",
+                                          surface3: "transparent",
                                       },
                                   }
                         }
