@@ -23,7 +23,7 @@ export const CalendarEditPage: React.FC = () => {
             queryOptions: {
                 enabled: true,
             },
-            queryMeta: {
+            meta: {
                 gqlMutation: CALENDAR_UPDATE_EVENT_MUTATION,
             },
         });
