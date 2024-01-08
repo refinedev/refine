@@ -63,3 +63,15 @@ export const COMPANY_DEALS_TABLE_QUERY = gql`
         }
     }
 `;
+
+export const COMPANY_TOTAL_DEALS_AMOUNT_QUERY = gql`
+    query CompanyTotalDealsAmount($id: ID!) {
+        company(id: $id) {
+            dealsAggregate {
+                sum {
+                    value
+                }
+            }
+        }
+    }
+`;

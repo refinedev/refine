@@ -334,6 +334,18 @@ export type CompanyDealsTableQuery = {
     };
 };
 
+export type CompanyTotalDealsAmountQueryVariables = Types.Exact<{
+    id: Types.Scalars["ID"]["input"];
+}>;
+
+export type CompanyTotalDealsAmountQuery = {
+    company: {
+        dealsAggregate: Array<{
+            sum?: Types.Maybe<Pick<Types.CompanyDealsSumAggregate, "value">>;
+        }>;
+    };
+};
+
 export type CompanyTitleFormMutationVariables = Types.Exact<{
     input: Types.UpdateOneCompanyInput;
 }>;
@@ -592,16 +604,4 @@ export type SalesCompaniesSelectQuery = {
             }
         >;
     };
-};
-
-export type SalesDealStagesSelectQueryVariables = Types.Exact<{
-    filter: Types.DealStageFilter;
-    sorting?: Types.InputMaybe<
-        Array<Types.DealStageSort> | Types.DealStageSort
-    >;
-    paging: Types.OffsetPaging;
-}>;
-
-export type SalesDealStagesSelectQuery = {
-    dealStages: { nodes: Array<Pick<Types.DealStage, "id" | "title">> };
 };

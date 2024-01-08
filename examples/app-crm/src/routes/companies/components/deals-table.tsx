@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { EditButton, FilterDropdown, useTable } from "@refinedev/antd";
 import { useNavigation, useOne } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
     AuditOutlined,
@@ -14,13 +14,18 @@ import {
 import { Button, Card, Input, Select, Skeleton, Space, Table, Tag } from "antd";
 
 import { Participants, Text } from "@/components";
-import { Company } from "@/graphql/schema.types";
-import { CompanyDealsTableQuery } from "@/graphql/types";
+import {
+    CompanyDealsTableQuery,
+    CompanyTotalDealsAmountQuery,
+} from "@/graphql/types";
 import { useDealStagesSelect } from "@/hooks/useDealStagesSelect";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { currencyNumber } from "@/utilities";
 
-import { COMPANY_DEALS_TABLE_QUERY } from "./queries";
+import {
+    COMPANY_DEALS_TABLE_QUERY,
+    COMPANY_TOTAL_DEALS_AMOUNT_QUERY,
+} from "./queries";
 
 type Props = {
     style?: React.CSSProperties;
@@ -69,11 +74,13 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
         },
     });
 
-    const { data: companyData, isLoading: isLoadingCompany } = useOne<Company>({
+    const { data: companyData, isLoading: isLoadingCompany } = useOne<
+        GetFields<CompanyTotalDealsAmountQuery>
+    >({
         resource: "companies",
         id: params.id,
         meta: {
-            fields: [{ dealsAggregate: [{ sum: ["value"] }] }],
+            gqlQuery: COMPANY_TOTAL_DEALS_AMOUNT_QUERY,
         },
     });
 
