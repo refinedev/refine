@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { EditButton, FilterDropdown, useTable } from "@refinedev/antd";
 import { useNavigation, useOne } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
     AuditOutlined,
@@ -13,13 +14,19 @@ import {
 import { Button, Card, Input, Select, Skeleton, Space, Table, Tag } from "antd";
 
 import { Participants, Text } from "@/components";
-import { Company, Deal } from "@/graphql/schema.types";
+import { Company } from "@/graphql/schema.types";
+import { CompanyDealsTableQuery } from "@/graphql/types";
+import { useDealStagesSelect } from "@/hooks/useDealStagesSelect";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { currencyNumber } from "@/utilities";
+
+import { COMPANY_DEALS_TABLE_QUERY } from "./queries";
 
 type Props = {
     style?: React.CSSProperties;
 };
+
+type Deal = GetFieldsFromList<CompanyDealsTableQuery>;
 
 export const CompanyDealsTable: FC<Props> = ({ style }) => {
     const { listUrl } = useNavigation();
@@ -44,9 +51,9 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                     operator: "contains",
                 },
                 {
-                    field: "stage.title",
+                    field: "stage.id",
                     value: "",
-                    operator: "contains",
+                    operator: "in",
                 },
             ],
             permanent: [
@@ -58,14 +65,7 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
             ],
         },
         meta: {
-            fields: [
-                "id",
-                "title",
-                "value",
-                { stage: ["id", "title"] },
-                { dealOwner: ["id", "name", "avatarUrl"] },
-                { dealContact: ["id", "name", "avatarUrl"] },
-            ],
+            gqlQuery: COMPANY_DEALS_TABLE_QUERY,
         },
     });
 
@@ -77,7 +77,8 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
         },
     });
 
-    const { selectProps: selectPropsUsers } = useUsersSelect();
+    const { selectProps: usersSelectProps } = useUsersSelect();
+    const { selectProps: dealStagesSelectProps } = useDealStagesSelect();
 
     const hasData = tableProps.loading
         ? true
@@ -187,7 +188,7 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                     />
                     <Table.Column<Deal>
                         title="Stage"
-                        dataIndex={["stage", "title"]}
+                        dataIndex={["stage", "id"]}
                         render={(_, record) => {
                             if (!record.stage) return null;
 
@@ -196,7 +197,12 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                         filterIcon={<SearchOutlined />}
                         filterDropdown={(props) => (
                             <FilterDropdown {...props}>
-                                <Input placeholder="Search Title" />
+                                <Select
+                                    {...dealStagesSelectProps}
+                                    style={{ width: "200px" }}
+                                    mode="multiple"
+                                    placeholder="Select Stage"
+                                />
                             </FilterDropdown>
                         )}
                     />
@@ -217,7 +223,7 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                                     <Select
                                         style={{ width: "200px" }}
                                         placeholder="Select Sales Owner"
-                                        {...selectPropsUsers}
+                                        {...usersSelectProps}
                                     />
                                 </FilterDropdown>
                             );
