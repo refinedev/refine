@@ -57,7 +57,7 @@ function TabList({
             className={clsx(
                 className,
                 "!my-0",
-                "flex-nowrap",
+                "flex-wrap",
                 "list-none",
                 "m-0 mb-0 mt-0",
                 "px-4",
