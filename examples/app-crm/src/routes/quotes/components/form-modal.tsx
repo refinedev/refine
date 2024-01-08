@@ -1,12 +1,15 @@
 import { FC, useEffect } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
-import { useModalForm, useSelect } from "@refinedev/antd";
+import { useModalForm } from "@refinedev/antd";
 import { RedirectAction, useNavigation } from "@refinedev/core";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select, Spin } from "antd";
 
+import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
+import { useContactsSelect } from "@/hooks/useContactsSelect";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { Quote } from "@/interfaces";
 
 type Props = {
@@ -67,47 +70,17 @@ export const QuotesFormModal: FC<Props> = ({
     const {
         selectProps: selectPropsCompanies,
         queryResult: { isLoading: isLoadingCompanies },
-    } = useSelect({
-        resource: "companies",
-        pagination: {
-            mode: "off",
-        },
-        optionLabel: "name",
-        optionValue: "id",
-        meta: {
-            fields: ["id", "name"],
-        },
-    });
+    } = useCompaniesSelect();
 
     const {
         selectProps: selectPropsContacts,
         queryResult: { isLoading: isLoadingContact },
-    } = useSelect({
-        resource: "contacts",
-        pagination: {
-            mode: "off",
-        },
-        optionLabel: "name",
-        optionValue: "id",
-        meta: {
-            fields: ["id", "name"],
-        },
-    });
+    } = useContactsSelect();
 
     const {
         selectProps: selectPropsSalesOwners,
         queryResult: { isLoading: isLoadingSalesOwners },
-    } = useSelect({
-        resource: "users",
-        pagination: {
-            mode: "off",
-        },
-        optionLabel: "name",
-        optionValue: "id",
-        meta: {
-            fields: ["id", "name"],
-        },
-    });
+    } = useUsersSelect();
 
     useEffect(() => {
         const companyId = searchParams.get("companyId");

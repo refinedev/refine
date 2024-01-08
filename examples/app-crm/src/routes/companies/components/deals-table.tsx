@@ -1,12 +1,7 @@
 import { FC, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import {
-    EditButton,
-    FilterDropdown,
-    useSelect,
-    useTable,
-} from "@refinedev/antd";
+import { EditButton, FilterDropdown, useTable } from "@refinedev/antd";
 import { useNavigation, useOne } from "@refinedev/core";
 
 import {
@@ -19,6 +14,7 @@ import { Button, Card, Input, Select, Skeleton, Space, Table, Tag } from "antd";
 
 import { Participants, Text } from "@/components";
 import { Company, Deal } from "@/graphql/schema.types";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { currencyNumber } from "@/utilities";
 
 type Props = {
@@ -81,16 +77,7 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
         },
     });
 
-    const { selectProps: selectPropsUsers } = useSelect({
-        resource: "users",
-        optionLabel: "name",
-        pagination: {
-            mode: "off",
-        },
-        meta: {
-            fields: ["id", "name"],
-        },
-    });
+    const { selectProps: selectPropsUsers } = useUsersSelect();
 
     const hasData = tableProps.loading
         ? true

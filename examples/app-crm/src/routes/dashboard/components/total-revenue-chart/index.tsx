@@ -1,20 +1,21 @@
 import React, { Suspense } from "react";
 
 import { useList } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DollarOutlined } from "@ant-design/icons";
 import { GaugeConfig } from "@ant-design/plots";
 import { Card, Skeleton, Space } from "antd";
 
 import { Text } from "@/components";
-import { currencyNumber } from "@/utilities";
-import { TOTAL_REVENUE_CHART_QUERY } from "./queries";
 import { TotalRevenueChartQuery } from "@/graphql/types";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { currencyNumber } from "@/utilities";
+
+import { TOTAL_REVENUE_CHART_QUERY } from "./queries";
 
 const Gauge = React.lazy(() => import("@ant-design/plots/es/components/gauge"));
 
-export const DashboardTotalRevenueChart: React.FC<{}> = () => {
+export const DashboardTotalRevenueChart: React.FC = () => {
     const {
         data: expectedRevenueData,
         isError: expectedRevenueIsError,

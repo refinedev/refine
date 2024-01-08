@@ -12,7 +12,7 @@ import { DealStage } from "@/graphql/schema.types";
 
 const Area = lazy(() => import("@ant-design/plots/es/components/area"));
 
-export const DashboardDealsChart: React.FC<{}> = () => {
+export const DashboardDealsChart: React.FC = () => {
     const { list } = useNavigation();
     const { data, isError, error } = useList<DealStage>({
         resource: "dealStages",

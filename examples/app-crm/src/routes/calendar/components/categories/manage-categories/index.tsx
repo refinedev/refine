@@ -1,12 +1,14 @@
 import React from "react";
 
 import { useCreateMany, useDelete, useList } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, ModalProps, Popconfirm } from "antd";
 
 import { Text } from "@/components";
-import { EventCategory } from "@/graphql/schema.types";
+import { EVENT_CATEGORIES_QUERY } from "@/graphql/queries";
+import { EventCategoriesQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
 
@@ -26,10 +28,10 @@ export const CalendarManageCategories: React.FC<
         },
     });
     const { mutate: deleteMutation } = useDelete();
-    const { data } = useList<EventCategory>({
+    const { data } = useList<GetFieldsFromList<EventCategoriesQuery>>({
         resource: "eventCategories",
         meta: {
-            fields: ["id", "title"],
+            gqlQuery: EVENT_CATEGORIES_QUERY,
         },
     });
 

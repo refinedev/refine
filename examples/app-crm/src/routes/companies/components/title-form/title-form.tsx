@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useForm, useSelect } from "@refinedev/antd";
+import { useForm } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
@@ -13,6 +13,7 @@ import {
     CompanyTitleFormMutation,
     CompanyTitleFormMutationVariables,
 } from "@/graphql/types";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { getNameInitials } from "@/utilities";
 
 import { COMPANY_TITLE_FORM_MUTATION, COMPANY_TITLE_QUERY } from "./queries";
@@ -119,16 +120,7 @@ const SalesOwnerInput = ({
 }) => {
     const [isEdit, setIsEdit] = useState(false);
 
-    const { selectProps, queryResult } = useSelect<User>({
-        resource: "users",
-        optionLabel: "name",
-        pagination: {
-            mode: "off",
-        },
-        meta: {
-            fields: ["id", "name", "avatarUrl"],
-        },
-    });
+    const { selectProps, queryResult } = useUsersSelect();
 
     return (
         <div

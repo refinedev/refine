@@ -12,7 +12,7 @@ import { currencyNumber } from "@/utilities";
 
 const Gauge = React.lazy(() => import("@ant-design/plots/es/components/gauge"));
 
-export const DashboardTotalRevenueChart: React.FC<{}> = () => {
+export const DashboardTotalRevenueChart: React.FC = () => {
     const {
         data: expectedRevenueData,
         isError: expectedRevenueIsError,

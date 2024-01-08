@@ -11,7 +11,7 @@ import { TaskStage } from "@/graphql/schema.types";
 
 const Pie = lazy(() => import("@ant-design/plots/es/components/pie"));
 
-export const DashboardTasksChart: React.FC<{}> = () => {
+export const DashboardTasksChart: React.FC = () => {
     const { list } = useNavigation();
 
     const { data, isError, error } = useList<TaskStage>({

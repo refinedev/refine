@@ -15,7 +15,7 @@ import { App as AntdApp, ConfigProvider } from "antd";
 import { resources, themeConfig } from "@/config";
 import { authProvider, dataProvider, liveProvider } from "@/providers";
 
-import { FullScreenLoading, Layout, AlgoliaSearchWrapper } from "./components";
+import { AlgoliaSearchWrapper, FullScreenLoading, Layout } from "./components";
 import { useAutoLoginForDemo } from "./hooks";
 import { AuditLogPage, SettingsPage } from "./routes/administration";
 import {

@@ -1,9 +1,10 @@
-import { useForm, useSelect } from "@refinedev/antd";
+import { useForm } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 
 import { Button, Form, Select, Space } from "antd";
 
 import { Task } from "@/graphql/schema.types";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
 
 type Props = {
     initialValues: {
@@ -23,13 +24,7 @@ export const UsersForm = ({ initialValues, cancelForm }: Props) => {
         },
     });
 
-    const { selectProps } = useSelect({
-        resource: "users",
-        meta: {
-            fields: ["name", "id"],
-        },
-        optionLabel: "name",
-    });
+    const { selectProps } = useUsersSelect();
 
     return (
         <div

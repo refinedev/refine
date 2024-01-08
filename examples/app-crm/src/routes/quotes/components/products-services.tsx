@@ -20,13 +20,13 @@ import {
 
 import { FullScreenLoading, Text } from "@/components";
 import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
-import { currencyNumber } from "@/utilities";
-
-import { QUOTE_USE_FORM_MUTATION } from "./queries";
 import {
     ProductsServicesQuoteFormMutation,
     ProductsServicesQuoteFormMutationVariables,
 } from "@/graphql/types";
+import { currencyNumber } from "@/utilities";
+
+import { QUOTE_USE_FORM_MUTATION } from "./queries";
 
 const columns = [
     {

@@ -1,12 +1,7 @@
 import { FC, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import {
-    FilterDropdown,
-    ShowButton,
-    useSelect,
-    useTable,
-} from "@refinedev/antd";
+import { FilterDropdown, ShowButton, useTable } from "@refinedev/antd";
 import { useNavigation } from "@refinedev/core";
 
 import {
@@ -19,6 +14,7 @@ import { Button, Card, Input, Select, Space, Table } from "antd";
 
 import { Participants, QuoteStatusTag, Text } from "@/components";
 import { Quote, QuoteStatus } from "@/graphql/schema.types";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { currencyNumber } from "@/utilities";
 
 type Props = {
@@ -74,16 +70,7 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
         },
     });
 
-    const { selectProps: selectPropsUsers } = useSelect({
-        resource: "users",
-        optionLabel: "name",
-        pagination: {
-            mode: "off",
-        },
-        meta: {
-            fields: ["id", "name"],
-        },
-    });
+    const { selectProps: selectPropsUsers } = useUsersSelect();
 
     const showResetFilters = useMemo(() => {
         return filters?.filter((filter) => {

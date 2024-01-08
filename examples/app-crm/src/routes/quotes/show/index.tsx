@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import { useModal,useOne } from "@refinedev/core";
+import { useModal, useOne } from "@refinedev/core";
 
 import { EditOutlined, LeftOutlined } from "@ant-design/icons";
 import { Button, Space } from "antd";

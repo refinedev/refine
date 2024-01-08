@@ -87,6 +87,19 @@ export type NotificationsDealsQuery = {
     };
 };
 
+export type EventCategoriesQueryVariables = Types.Exact<{
+    filter: Types.EventCategoryFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.EventCategorySort> | Types.EventCategorySort
+    >;
+}>;
+
+export type EventCategoriesQuery = {
+    eventCategories: Pick<Types.EventCategoryConnection, "totalCount"> & {
+        nodes: Array<Pick<Types.EventCategory, "id" | "title">>;
+    };
+};
+
 export type CompaniesSelectQueryVariables = Types.Exact<{
     filter: Types.CompanyFilter;
     sorting?: Types.InputMaybe<Array<Types.CompanySort> | Types.CompanySort>;
@@ -99,16 +112,6 @@ export type CompaniesSelectQuery = {
     };
 };
 
-export type UsersSelectQueryVariables = Types.Exact<{
-    filter: Types.UserFilter;
-    sorting?: Types.InputMaybe<Array<Types.UserSort> | Types.UserSort>;
-    paging: Types.OffsetPaging;
-}>;
-
-export type UsersSelectQuery = {
-    users: { nodes: Array<Pick<Types.User, "id" | "name" | "avatarUrl">> };
-};
-
 export type ContactsSelectQueryVariables = Types.Exact<{
     filter: Types.ContactFilter;
     sorting?: Types.InputMaybe<Array<Types.ContactSort> | Types.ContactSort>;
@@ -119,6 +122,16 @@ export type ContactsSelectQuery = {
     contacts: {
         nodes: Array<Pick<Types.Contact, "id" | "name" | "avatarUrl">>;
     };
+};
+
+export type UsersSelectQueryVariables = Types.Exact<{
+    filter: Types.UserFilter;
+    sorting?: Types.InputMaybe<Array<Types.UserSort> | Types.UserSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type UsersSelectQuery = {
+    users: { nodes: Array<Pick<Types.User, "id" | "name" | "avatarUrl">> };
 };
 
 export type RefreshTokenMutationVariables = Types.Exact<{
@@ -190,19 +203,6 @@ export type CalendarEventsQuery = {
                 category: Pick<Types.EventCategory, "id" | "title">;
             }
         >;
-    };
-};
-
-export type CalendarEventCategoriesQueryVariables = Types.Exact<{
-    filter: Types.EventCategoryFilter;
-    sorting?: Types.InputMaybe<
-        Array<Types.EventCategorySort> | Types.EventCategorySort
-    >;
-}>;
-
-export type CalendarEventCategoriesQuery = {
-    eventCategories: Pick<Types.EventCategoryConnection, "totalCount"> & {
-        nodes: Array<Pick<Types.EventCategory, "id" | "title">>;
     };
 };
 
@@ -432,4 +432,48 @@ export type QuotesTableQuery = {
             }
         >;
     };
+};
+
+export type TaskStagesSelectQueryVariables = Types.Exact<{
+    filter: Types.TaskStageFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.TaskStageSort> | Types.TaskStageSort
+    >;
+    paging: Types.OffsetPaging;
+}>;
+
+export type TaskStagesSelectQuery = {
+    taskStages: { nodes: Array<Pick<Types.TaskStage, "id" | "title">> };
+};
+
+export type SalesCompaniesSelectQueryVariables = Types.Exact<{
+    filter: Types.CompanyFilter;
+    sorting?: Types.InputMaybe<Array<Types.CompanySort> | Types.CompanySort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type SalesCompaniesSelectQuery = {
+    companies: {
+        nodes: Array<
+            Pick<Types.Company, "id" | "name" | "avatarUrl"> & {
+                contacts: {
+                    nodes: Array<
+                        Pick<Types.Contact, "name" | "id" | "avatarUrl">
+                    >;
+                };
+            }
+        >;
+    };
+};
+
+export type SalesDealStagesSelectQueryVariables = Types.Exact<{
+    filter: Types.DealStageFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.DealStageSort> | Types.DealStageSort
+    >;
+    paging: Types.OffsetPaging;
+}>;
+
+export type SalesDealStagesSelectQuery = {
+    dealStages: { nodes: Array<Pick<Types.DealStage, "id" | "title">> };
 };
