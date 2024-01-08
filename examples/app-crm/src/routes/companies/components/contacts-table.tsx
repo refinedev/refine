@@ -8,7 +8,7 @@ import {
     useTable,
 } from "@refinedev/antd";
 import { HttpError, useCreateMany, useOne } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
     DeleteOutlined,
@@ -33,17 +33,23 @@ import {
 } from "antd";
 
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
-import { Company, Contact, ContactCreateInput } from "@/graphql/schema.types";
-import { CompanyContactsQuery } from "@/graphql/types";
+import { ContactCreateInput } from "@/graphql/schema.types";
+import {
+    CompanyContactsGetCompanyQuery,
+    CompanyContactsTableQuery,
+} from "@/graphql/types";
 
-import { COMPANY_CONTACTS_QUERY } from "./queries";
+import {
+    COMPANY_CONTACTS_GET_COMPANY_QUERY,
+    COMPANY_CONTACTS_TABLE_QUERY,
+} from "./queries";
+
+type Contact = GetFieldsFromList<CompanyContactsTableQuery>;
 
 export const CompanyContactsTable: FC = () => {
     const params = useParams();
 
-    const { tableProps, filters, setFilters } = useTable<
-        GetFieldsFromList<CompanyContactsQuery>
-    >({
+    const { tableProps, filters, setFilters } = useTable<Contact>({
         resource: "contacts",
         syncWithLocation: false,
         sorters: {
@@ -81,7 +87,7 @@ export const CompanyContactsTable: FC = () => {
             ],
         },
         meta: {
-            gqlQuery: COMPANY_CONTACTS_QUERY,
+            gqlQuery: COMPANY_CONTACTS_TABLE_QUERY,
         },
     });
 
@@ -205,7 +211,7 @@ export const CompanyContactsTable: FC = () => {
                                     mode="multiple"
                                     placeholder="Select Stage"
                                     options={statusOptions}
-                                ></Select>
+                                />
                             </FilterDropdown>
                         )}
                     />
@@ -249,17 +255,11 @@ type ContactFormValues = {
 const ContactForm = () => {
     const { id = "" } = useParams();
 
-    const { data } = useOne<Company>({
+    const { data } = useOne<GetFields<CompanyContactsGetCompanyQuery>>({
         id,
         resource: "companies",
         meta: {
-            fields: [
-                "id",
-                "name",
-                {
-                    salesOwner: ["id"],
-                },
-            ],
+            gqlQuery: COMPANY_CONTACTS_GET_COMPANY_QUERY,
         },
     });
 
