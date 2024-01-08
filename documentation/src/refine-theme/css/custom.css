@@ -125,6 +125,7 @@
     width: 0;
     padding: 0;
     display: inline-flex;
+    margin-left: 6px;
 }
 
 .refine-prose a.hash-link::before {
