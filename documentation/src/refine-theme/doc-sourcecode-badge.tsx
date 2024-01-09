@@ -16,11 +16,11 @@ export const SourceCodeBadge = ({ path }: { path?: string }) => {
             rel="noreferrer noopener"
             className={clsx(
                 "text-xs",
-                "text-gray-0",
-                "py-2 pl-2 pr-3",
-                "rounded",
-                "bg-refine-pink",
                 "font-mono",
+                "text-gray-0",
+                "bg-refine-purple",
+                "py-2 pl-2 pr-4",
+                "rounded-[32px]",
                 "flex gap-2 items-center",
                 "hover:no-underline hover:text-gray-0",
             )}

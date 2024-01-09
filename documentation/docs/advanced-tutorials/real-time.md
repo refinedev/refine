@@ -203,7 +203,7 @@ You can subscribe to events emitted within **Refine** in any place in your app w
 
 For example, we can subscribe to **_create_** event for **_posts_** resource and we can show a badge for the number of events in the sider menu.
 
-Firstly, let's implement a custom sider like in [this example](/examples/customization/customSider.md).
+Firstly, let's implement a custom sider like in [this example](https://github.com/refinedev/refine/tree/master/examples/customization-sider).
 
 <details>
 <summary>Custom Sider Menu</summary>

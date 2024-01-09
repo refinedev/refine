@@ -10,8 +10,11 @@ import React from "react";
 import { HEADER_HEIGHT } from "./doc-header";
 import { ChevronDownIcon } from "./icons/chevron-down";
 import { DashIcon } from "./icons/dash";
-import { NewBadgeShiny } from "./icons/new-badge-shiny";
-import { RefineLogoShiny } from "./icons/refine-logo-shiny";
+import { NewBadgePurple } from "./icons/new-badge-purple";
+
+const SIDEBAR_WIDTH = 260;
+
+const componentRegexp = /<([A-Z][a-z]+)\s?\/>/gi;
 
 type Variant = "desktop" | "mobile";
 
@@ -103,9 +106,11 @@ const SidebarCategory = ({
         <div
             className={clsx(
                 !line && "pl-0",
-                line && "pl-5",
-                line && "ml-[11px]",
-                line && "border-l-2 border-l-gray-200 dark:border-l-gray-600",
+                // SPACING
+                line && "pl-2",
+                line && "ml-[12px]",
+                "relative",
+                // line && "border-l border-l-gray-200 dark:border-l-gray-600",
             )}
         >
             <Comp
@@ -118,62 +123,43 @@ const SidebarCategory = ({
                       })}
                 href={item.href}
                 className={clsx(
-                    isHeader && item.label !== "Getting Started" && "mt-6",
+                    // isHeader && item.label !== "Getting Started" && "mt-6",
                     isHeader && "cursor-default",
                     "w-full",
                     "min-h-[28px]",
                     "border-0",
                     "appearance-none",
                     "focus:outline-none",
-                    isActive && !isHeader
-                        ? "dark:text-gray-0 text-gray-900"
-                        : "text-gray-500 dark:text-gray-400",
-                    isHeader ? "uppercase" : "",
+                    !isHeader && "text-gray-400 dark:text-gray-300",
+                    isHeader && "text-gray-500 dark:text-gray-400",
+                    isHeader && "font-semibold",
+
+                    !isHeader && "hover:text-gray-600 dark:hover:text-gray-300",
                     "font-normal",
                     "flex items-center",
-                    "py-1",
-                    "pr-0.5",
-                    isHeader
-                        ? "text-xs leading-4 tracking-widest"
-                        : "text-sm leading-6",
+                    isHeader ? "pt-2 pb-4" : "py-2",
+                    "pr-2",
+                    isHeader && "pl-2",
+                    !isHeader && "pl-0.5",
+                    isHeader ? "text-base" : "text-sm",
                     "relative",
                     !isHeader && "group",
                     "transition-colors duration-200 ease-in-out",
-                    !isHeader && "hover:dark:text-gray-0 hover:text-gray-900",
                     !isHeader && "no-underline",
                 )}
             >
-                <div
-                    className={clsx(
-                        "absolute",
-                        "opacity-0",
-                        "rounded-lg",
-                        "transition-opacity",
-                        "duration-200 ease-in-out",
-                        "top-0",
-                        "group-hover:bg-gray-200/40 dark:group-hover:bg-gray-700/80",
-                        {
-                            "bg-gray-100/50 dark:bg-gray-700/50":
-                                isActive && isSame,
-                            "right-0": variant === "desktop",
-                            "-right-2": variant === "mobile",
-                            "w-[calc(280px-24px)]": variant === "desktop",
-                            "w-[calc(480px-16px)]": variant === "mobile",
-                        },
-                        "h-full",
-                    )}
-                />
                 {!isHeader && (
                     <ChevronDownIcon
                         className={clsx(
                             "opacity-70",
                             isActive
-                                ? "dark:text-gray-0 text-gray-900"
+                                ? "text-gray-500 dark:text-gray-400"
                                 : "text-gray-500 dark:text-gray-400",
-                            "h-6 w-6",
+                            "h-5 w-5",
                             "flex-shrink-0",
                             "z-[1]",
                             "transition-transform duration-200 ease-in-out",
+                            "group-hover:text-gray-600 dark:group-hover:text-gray-300",
                             {
                                 "-rotate-90 transform": collapsed,
                             },
@@ -184,23 +170,31 @@ const SidebarCategory = ({
                 <div
                     className={clsx(
                         "absolute",
-                        "rounded-lg",
+                        "rounded-[18px]",
                         "transition-opacity",
                         "duration-200 ease-in-out",
                         "top-0",
-                        "group-hover:bg-gray-200/40 dark:group-hover:bg-gray-700/80",
                         {
-                            "bg-gray-100/50 dark:bg-gray-700/50":
+                            "group-hover:bg-gray-100 dark:group-hover:bg-gray-700":
+                                !isActive && !isSame,
+                            "bg-refine-blue-2-light dark:bg-refine-blue-2 dark:bg-opacity-10":
                                 isActive && isSame,
                             "right-0": variant === "desktop",
                             "-right-2": variant === "mobile",
-                            "w-[calc(280px-24px)]": variant === "desktop",
-                            "w-[calc(480px-16px)]": variant === "mobile",
                         },
                         "h-full",
                     )}
+                    style={{
+                        width:
+                            variant === "desktop"
+                                ? `calc(${SIDEBAR_WIDTH}px - 32px)`
+                                : `calc(480px - 16px)`,
+                    }}
                 />
             </Comp>
+            {line && (
+                <div className="z-[1] absolute left-0 top-1/2 -translate-y-1/2 border-l border-l-gray-300 dark:border-l-gray-600 h-full w-px" />
+            )}
             <div
                 className={clsx(
                     collapsed && "max-h-0 opacity-0",
@@ -228,6 +222,62 @@ const SidebarCategory = ({
     );
 };
 
+const EnterpriseEditionItem = ({
+    item,
+    onClick,
+}: {
+    item: SidebarLinkItem;
+    onClick?: () => void;
+}) => {
+    return (
+        <Link
+            href={item.href}
+            isNavLink
+            onClick={onClick}
+            className={clsx(
+                "flex-shrink-0",
+                "relative",
+                "min-h-[28px]",
+                "rounded-[18px]",
+                "bg-refine-enterprise-purple-2 bg-opacity-10",
+                "dark-bg-refine-enterprise-purple-2 dark:bg-opacity-30",
+                "text-refine-enterprise-purple",
+                "dark:text-refine-enterprise-purple-3",
+                "pl-6 pr-3 py-2",
+                "text-sm font-normal",
+                "flex items-start justify-start",
+                "group",
+                "transition-colors duration-200 ease-in-out",
+                "no-underline",
+                item.className,
+            )}
+        >
+            <div className={"flex items-center flex-1"}>
+                <span className="z-[1] flex-shrink-0">{item.label}</span>
+                <NewBadgePurple className="flex-shrink-0 ml-auto" />
+            </div>
+        </Link>
+    );
+};
+
+const ExternalIcon = (props: React.SVGProps<SVGSVGElement>) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={12}
+            height={12}
+            viewBox="0 0 12 12"
+            fill="none"
+            {...props}
+        >
+            <g fill="currentColor">
+                <path d="M1 2.65C1 1.739 1.739 1 2.65 1H5.5a.5.5 0 0 0 0-1H2.65A2.65 2.65 0 0 0 0 2.65v6.7A2.65 2.65 0 0 0 2.65 12h6.7A2.65 2.65 0 0 0 12 9.35V6.5a.5.5 0 0 0-1 0v2.85A1.65 1.65 0 0 1 9.35 11h-6.7A1.65 1.65 0 0 1 1 9.35v-6.7Z" />
+                <path d="M8.5 0a.5.5 0 0 0 0 1h1.793L5.646 5.646a.5.5 0 1 0 .708.708L11 1.707V3.5a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 10.5 0h-2Z" />
+            </g>
+        </svg>
+    );
+};
+
 const SidebarLink = ({
     item,
     path,
@@ -248,7 +298,7 @@ const SidebarLink = ({
     const ref = React.useRef<HTMLAnchorElement>(null);
     const isActive = isActiveSidebarItem(item, path);
     const isSame = isSamePath(item.href, path);
-    const isShiny = item.className?.includes("sidebar-item-shiny") || false;
+    const isEnterprise = item.className?.includes("enterprise-badge") || false;
 
     React.useEffect(() => {
         if (isActive && !once.current) {
@@ -265,6 +315,12 @@ const SidebarLink = ({
         once.current = true;
     }, [isActive]);
 
+    if (isEnterprise) {
+        return <EnterpriseEditionItem item={item} onClick={onClick} />;
+    }
+
+    const isComponentLabel = componentRegexp.test(item.label);
+
     return (
         <Link
             ref={ref}
@@ -274,22 +330,17 @@ const SidebarLink = ({
             className={clsx(
                 "relative",
                 "min-h-[28px]",
-                isShiny &&
-                    "bg-sidebar-item-shiny-light dark:bg-sidebar-item-shiny-dark rounded-xl",
-                isShiny
-                    ? "text-refine-blue dark:text-refine-cyan-alt"
-                    : isActive
-                    ? "dark:text-gray-0 text-gray-900"
-                    : "text-gray-500 dark:text-gray-400",
-                !isShiny && "hover:dark:text-gray-0 hover:text-gray-900",
-                isShiny ? "px-4 py-3" : "px-0.5 py-1",
-                "text-sm font-normal leading-6",
+                !isActive && "text-gray-600 dark:text-gray-300",
+                !isActive && "hover:text-gray-600 dark:hover:text-gray-300",
+                isActive &&
+                    "text-refine-react-light-link dark:text-refine-react-dark-link",
+                "px-4 py-2",
+                "text-sm font-normal",
                 "flex items-start justify-start",
-                dashed && !line && "pl-0",
-                line && !dashed && "pl-5",
-                line && dashed && "pl-5",
-                line && "ml-[11px]",
-                line && "border-l-2 border-l-gray-200 dark:border-l-gray-600",
+                dashed && !line && "pl-0.5",
+                // SPACING
+                line && dashed && "pl-2",
+                line && "ml-[12px]",
                 "group",
                 "transition-colors duration-200 ease-in-out",
                 "no-underline",
@@ -297,33 +348,60 @@ const SidebarLink = ({
             )}
         >
             {dashed && (
-                <DashIcon className="z-[1] h-6 w-6 flex-shrink-0 opacity-70" />
-            )}
-            <div className={"flex items-center"}>
-                {isShiny && <RefineLogoShiny className="mr-2 flex-shrink-0" />}
-                <span className="z-[1] flex-shrink-0">{item.label}</span>
-                {isShiny && <NewBadgeShiny className="ml-3 flex-shrink-0" />}
-            </div>
-            {!isShiny && (
-                <div
+                <DashIcon
                     className={clsx(
-                        "absolute",
-                        "rounded-lg",
-                        "transition-opacity",
-                        "duration-200 ease-in-out",
-                        "group-hover:bg-gray-200/40 dark:group-hover:bg-gray-700/80",
-                        {
-                            "bg-gray-100/50 dark:bg-gray-700/50":
-                                isActive && isSame,
-                            "right-0": variant === "desktop",
-                            "-right-2": variant === "mobile",
-                            "w-[calc(280px-24px)]": variant === "desktop",
-                            "w-[calc(480px-16px)]": variant === "mobile",
-                        },
-                        "top-0",
-                        "h-full",
+                        "z-[1] h-5 w-5 flex-shrink-0",
+                        "text-gray-300 dark:text-gray-600",
+                        isActive &&
+                            "text-refine-react-light-link dark:text-refine-react-dark-link text-opacity-50 dark:text-opacity-50",
                     )}
                 />
+            )}
+            <div
+                className={clsx(
+                    "flex items-center",
+                    isComponentLabel && "break-all",
+                )}
+            >
+                <span className="z-[1]">{item.label}</span>
+            </div>
+            {item.customProps?.external && (
+                <ExternalIcon
+                    className={clsx(
+                        "z-[1]",
+                        "text-inherit",
+                        "w-5 h-5",
+                        "p-1",
+                        "ml-1",
+                    )}
+                />
+            )}
+            <div
+                className={clsx(
+                    "absolute",
+                    "rounded-[18px]",
+                    "transition-opacity",
+                    "duration-200 ease-in-out",
+                    {
+                        "group-hover:bg-gray-100 dark:group-hover:bg-gray-700":
+                            !isActive && !isSame,
+                        "bg-refine-blue-2-light dark:bg-refine-blue-2 dark:bg-opacity-10":
+                            isActive && isSame,
+                        "right-0": variant === "desktop",
+                        // "-right-2": variant === "mobile",
+                    },
+                    "top-0",
+                    "h-full",
+                )}
+                style={{
+                    width:
+                        variant === "desktop"
+                            ? `calc(${SIDEBAR_WIDTH}px - 32px)`
+                            : `100%`,
+                }}
+            />
+            {line && (
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 border-l border-l-gray-300 dark:border-l-gray-600 h-full w-px" />
             )}
         </Link>
     );
@@ -344,23 +422,20 @@ const SidebarHtml = ({
         <div
             className={clsx(
                 "relative",
-                "text-[10px]",
-                "font-normal leading-4",
-                "uppercase",
-                "tracking-widest",
+                "text-xs",
                 "flex items-start justify-start",
                 "px-0.5 py-1",
-                line && "pl-5",
-                line && "ml-[11px]",
-                line && "border-l-2 border-l-gray-200 dark:border-l-gray-600",
+                // SPACING
+                line && "pl-2",
+                line && "ml-[12px]",
                 "group",
                 "transition-colors duration-200 ease-in-out",
                 "no-underline",
                 "text-gray-500 dark:text-gray-400",
                 "after:content-['']",
-                "after:w-[calc(100%-9px)]",
-                "after:h-0.5",
-                "after:bg-gray-200",
+                "after:w-[calc(100%)]",
+                "after:h-px",
+                "after:bg-gray-300",
                 "dark:after:bg-gray-600",
                 "after:absolute",
                 "after:left-0",
@@ -368,6 +443,9 @@ const SidebarHtml = ({
                 "after:-translate-y-1/2",
             )}
         >
+            {line && (
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 border-l border-l-gray-300 dark:border-l-gray-600 h-full w-px" />
+            )}
             <span
                 className={clsx(
                     "z-[1]",
@@ -464,20 +542,20 @@ export const DocSidebar = () => {
                 "left-0",
                 "overflow-auto",
                 "w-full",
-                "max-w-[280px]",
                 // "scrollbar-slim",
             )}
             style={{
+                maxWidth: `${SIDEBAR_WIDTH}px`,
                 top: `${HEADER_HEIGHT}px`,
                 height: `calc(100vh - ${HEADER_HEIGHT}px)`,
             }}
         >
             <div
                 className={clsx(
-                    "pl-5",
-                    "pr-3",
-                    "py-12",
-                    "border-r border-r-gray-200 dark:border-r-gray-700",
+                    "px-4",
+                    "py-4",
+                    "border-r border-r-gray-300 dark:border-r-gray-700",
+                    "flex flex-col gap-6",
                 )}
             >
                 {renderItems({
