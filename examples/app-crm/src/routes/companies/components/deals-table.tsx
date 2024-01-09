@@ -201,7 +201,6 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
 
                             return <Tag>{record.stage.title}</Tag>;
                         }}
-                        filterIcon={<SearchOutlined />}
                         filterDropdown={(props) => (
                             <FilterDropdown {...props}>
                                 <Select
