@@ -359,6 +359,7 @@ const dataProvider = (
                 : camelCase(`update_${operation}_by_pk`);
 
             const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
             if (gqlOperation) {
                 const response = await client.request<BaseRecord>(
                     gqlOperation,
@@ -593,6 +594,7 @@ const dataProvider = (
             }
 
             const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
             if (gqlOperation) {
                 const response: any = await client.request(
                     gqlOperation,
