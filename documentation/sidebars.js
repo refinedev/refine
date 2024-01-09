@@ -736,6 +736,9 @@ module.exports = {
                             type: "category",
                             label: "Examples",
                             items: [
+                                "examples/authentication/chakra-ui",
+                                "examples/table/chakra-ui/basic",
+                                "examples/table/chakra-ui/advanced-react-table",
                                 "examples/form/chakra-ui/useForm",
                                 "examples/form/chakra-ui/useModalForm",
                                 "examples/form/chakra-ui/useDrawerForm",
