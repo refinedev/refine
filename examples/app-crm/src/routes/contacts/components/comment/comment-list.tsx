@@ -15,7 +15,10 @@ import { CustomAvatar, Text } from "@/components";
 import { User } from "@/graphql/schema.types";
 import { ContactsContactNotesListQuery } from "@/graphql/types";
 
-import { CONTACTS_CONTACT_NOTES_LIST_QUERY } from "./queries";
+import {
+    CONTACTS_CONTACT_NOTES_LIST_QUERY,
+    CONTACTS_UPDATE_CONTACT_NOTE_MUTATION,
+} from "./queries";
 
 type ContactNote = GetFieldsFromList<ContactsContactNotesListQuery>;
 
@@ -45,6 +48,9 @@ const ContactCommentListItem = ({ item }: { item: ContactNote }) => {
             description: "Successful",
             type: "success",
         }),
+        meta: {
+            gqlMutation: CONTACTS_UPDATE_CONTACT_NOTE_MUTATION,
+        },
     });
     const { data: me } = useGetIdentity<User>();
 

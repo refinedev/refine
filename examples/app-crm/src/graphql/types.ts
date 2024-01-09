@@ -474,6 +474,22 @@ export type CompaniesTableQuery = {
     };
 };
 
+export type ContactsCreateContactNoteMutationVariables = Types.Exact<{
+    input: Types.CreateOneContactNoteInput;
+}>;
+
+export type ContactsCreateContactNoteMutation = {
+    createOneContactNote: Pick<Types.ContactNote, "id" | "note">;
+};
+
+export type ContactsUpdateContactNoteMutationVariables = Types.Exact<{
+    input: Types.UpdateOneContactNoteInput;
+}>;
+
+export type ContactsUpdateContactNoteMutation = {
+    updateOneContactNote: Pick<Types.ContactNote, "id" | "note">;
+};
+
 export type ContactsContactNotesListQueryVariables = Types.Exact<{
     filter: Types.ContactNoteFilter;
     sorting?: Types.InputMaybe<
