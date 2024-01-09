@@ -474,6 +474,24 @@ export type CompaniesTableQuery = {
     };
 };
 
+export type ContactsContactNotesListQueryVariables = Types.Exact<{
+    filter: Types.ContactNoteFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.ContactNoteSort> | Types.ContactNoteSort
+    >;
+    paging: Types.OffsetPaging;
+}>;
+
+export type ContactsContactNotesListQuery = {
+    contactNotes: Pick<Types.ContactNoteConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<Types.ContactNote, "id" | "note" | "createdAt"> & {
+                createdBy: Pick<Types.User, "id" | "name" | "avatarUrl">;
+            }
+        >;
+    };
+};
+
 export type ContactsListQueryVariables = Types.Exact<{
     filter: Types.ContactFilter;
     sorting?: Types.InputMaybe<Array<Types.ContactSort> | Types.ContactSort>;
