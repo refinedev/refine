@@ -12,10 +12,10 @@ import { Quote } from "@/graphql/schema.types";
 import {
     ProductsServices,
     QuotesFormModal,
-    quotesFragment,
     ShowDescription,
     StatusIndicator,
 } from "../components";
+import { QUOTES_GET_QUOTE_QUERY } from "../queries";
 import styles from "./index.module.css";
 
 const PdfExport = lazy(() => import("../components/pdf-export"));
@@ -30,7 +30,7 @@ export const QuotesShowPage = () => {
         id: params.id,
         liveMode: "off",
         meta: {
-            fields: quotesFragment,
+            gqlQuery: QUOTES_GET_QUOTE_QUERY,
         },
     });
 

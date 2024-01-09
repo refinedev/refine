@@ -19,7 +19,7 @@ import { Button, Modal } from "antd";
 import { QuotePdfExportQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
-import { QUOTE_PDF_EXPORT_QUERY } from "./queries";
+import { QUOTES_GET_QUOTE_QUERY } from "../queries";
 
 const PdfExport = () => {
     const { modalProps, show } = useModal();
@@ -32,7 +32,7 @@ const PdfExport = () => {
         id: params.id,
         liveMode: "off",
         meta: {
-            gqlQuery: QUOTE_PDF_EXPORT_QUERY,
+            gqlQuery: QUOTES_GET_QUOTE_QUERY,
         },
     });
 

@@ -16,7 +16,10 @@ import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 import { useContactsSelect } from "@/hooks/useContactsSelect";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 
-import { QUOTE_CREATE_MUTATION, QUOTE_UPDATE_MUTATION } from "./queries";
+import {
+    QUOTES_CREATE_QUOTE_MUTATION,
+    QUOTES_UPDATE_QUOTE_MUTATION,
+} from "../../queries";
 
 type Props = {
     action: "create" | "edit";
@@ -49,8 +52,8 @@ export const QuotesFormModal: FC<Props> = ({
         meta: {
             gqlMutation:
                 action === "create"
-                    ? QUOTE_CREATE_MUTATION
-                    : QUOTE_UPDATE_MUTATION,
+                    ? QUOTES_CREATE_QUOTE_MUTATION
+                    : QUOTES_UPDATE_QUOTE_MUTATION,
         },
         onMutationSuccess: () => {
             onMutationSuccess?.();

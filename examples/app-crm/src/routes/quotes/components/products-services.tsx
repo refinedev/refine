@@ -26,7 +26,7 @@ import {
 } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
-import { QUOTE_USE_FORM_MUTATION } from "./queries";
+import { QUOTES_UPDATE_QUOTE_MUTATION } from "../queries";
 
 const columns = [
     {
@@ -147,7 +147,7 @@ export const ProductsServices = () => {
             refetch?.();
         },
         meta: {
-            gqlMutation: QUOTE_USE_FORM_MUTATION,
+            gqlMutation: QUOTES_UPDATE_QUOTE_MUTATION,
         },
     });
 
@@ -464,7 +464,7 @@ const TaxForm = (props: {
             enabled: true,
         },
         meta: {
-            fields: ["id", "tax"],
+            gqlMutation: QUOTES_UPDATE_QUOTE_MUTATION,
         },
         onMutationSuccess: () => {
             props.onMutationSuccess?.();
