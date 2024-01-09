@@ -6,26 +6,25 @@ export const CommonFooter = () => {
     return (
         <footer
             className={clsx(
-                "py-5",
-                "px-6",
-                "dark:bg-gray-800 bg-gray-100",
-                "border-t dark:border-t-gray-700 border-t-gray-100",
+                "py-4",
+                "px-4",
+                "dark:bg-gray-800 bg-gray-0",
+                "border-t dark:border-t-gray-700 border-t-gray-300",
             )}
         >
             <div
                 className={clsx(
-                    // "max-w-[1644px]",
                     "mx-auto",
                     "flex w-full items-center justify-between",
-                    "flex-col-reverse sm:flex-row",
+                    "flex-col-reverse sm:flex-row gap-8",
                 )}
             >
                 <div
                     className={clsx(
-                        "text-base",
-                        "font-light",
-                        "dark:text-gray-400 text-gray-700",
-                        "mt-4 sm:mt-0",
+                        "text-sm",
+                        "leading-6",
+                        "dark:text-gray-400 text-gray-500",
+                        // "mt-4 sm:mt-0",
                     )}
                 >
                     Refine © 2023
@@ -38,9 +37,8 @@ export const CommonFooter = () => {
                 >
                     <div
                         className={clsx(
-                            "dark:text-gray-400 text-gray-700",
-                            "text-xs sm:text-base",
-                            "font-light",
+                            "dark:text-gray-100 text-gray-800",
+                            "text-sm leading-6",
                             "sm:mr-4",
                         )}
                     >
@@ -48,8 +46,8 @@ export const CommonFooter = () => {
                     </div>
                     <div
                         className={clsx(
-                            "flex gap-10 sm:gap-5",
-                            "dark:text-gray-500 text-gray-400",
+                            "flex gap-4",
+                            "dark:text-gray-400 text-gray-500",
                             "mt-4 sm:mt-0",
                         )}
                     >
@@ -61,7 +59,7 @@ export const CommonFooter = () => {
                                     target="_blank"
                                     rel="noreferrer"
                                     className={clsx(
-                                        "flex items-center gap-4 no-underline",
+                                        "flex items-center no-underline",
                                     )}
                                 >
                                     <Icon

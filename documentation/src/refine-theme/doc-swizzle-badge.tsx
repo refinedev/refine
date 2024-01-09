@@ -1,19 +1,22 @@
 import clsx from "clsx";
 import React from "react";
+import { TerminalIcon } from "./icons/terminal";
 
 export const SwizzleBadge = () => {
     return (
         <div
             className={clsx(
                 "text-xs",
-                "text-gray-0",
-                "py-2 px-3",
-                "rounded",
-                "bg-refine-blue",
                 "font-mono",
+                "text-gray-0",
+                "bg-refine-indigo",
+                "py-2 pl-2 pr-4",
+                "rounded-[32px]",
+                "flex gap-2 items-center",
             )}
         >
-            Swizzle Ready
+            <TerminalIcon className="w-4 h-4" />
+            <span>Swizzle Ready</span>
         </div>
     );
 };

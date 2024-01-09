@@ -55,9 +55,6 @@ export const CommonLayout = (props: any) => {
                     "min-h-[100dvh]",
                     "flex flex-col",
                     "dark:bg-gray-900 bg-gray-0",
-                    "transition-colors",
-                    "duration-150",
-                    "ease-in-out",
                 )}
             >
                 <ErrorBoundary

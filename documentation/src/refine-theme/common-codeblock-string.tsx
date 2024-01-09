@@ -14,9 +14,27 @@ import { CommonCodeBlockContainer } from "./common-codeblock-container";
 import { CommonCopyButton } from "./common-copy-button";
 import { CommonWordWrapButton } from "./common-wordwrap-button";
 
+const DefaultDocumentIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={12}
+        height={14}
+        viewBox="0 0 12 14"
+        fill="none"
+        {...props}
+    >
+        <path
+            fill="currentColor"
+            fillRule="evenodd"
+            d="M11 4.994V11.6A1.4 1.4 0 0 1 9.6 13H2.4A1.4 1.4 0 0 1 1 11.6V2.4A1.4 1.4 0 0 1 2.4 1h4.606a1.4 1.4 0 0 1 .99.41l2.594 2.594a1.4 1.4 0 0 1 .41.99ZM0 2.4A2.4 2.4 0 0 1 2.4 0h4.606a2.4 2.4 0 0 1 1.697.703l2.594 2.594A2.4 2.4 0 0 1 12 4.994V11.6A2.4 2.4 0 0 1 9.6 14H2.4A2.4 2.4 0 0 1 0 11.6V2.4ZM3.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"
+            clipRule="evenodd"
+        />
+    </svg>
+);
+
 const CodeBlockTitle = ({
     children,
-    icon,
+    icon = <DefaultDocumentIcon />,
 }: {
     children?: React.ReactNode;
     icon?: React.ReactNode;
@@ -26,33 +44,17 @@ const CodeBlockTitle = ({
             className={clsx(
                 "py-3",
                 "px-4",
-                "text-[13px]",
-                "leading-5",
-                "text-gray-600",
-                "dark:text-gray-300",
-
-                "border-b",
-                "dark:border-b-gray-700",
-                "font-mono",
+                "bg-gray-100 dark:bg-gray-700",
+                "text-gray-800",
+                "dark:text-gray-100",
+                "text-xs",
                 "flex items-center",
                 "gap-2",
+                "rounded-tl-lg",
+                "rounded-tr-lg",
             )}
         >
-            {icon && (
-                <div
-                    className={clsx(
-                        "-mt-1",
-                        "-ml-2",
-                        "-mb-1",
-                        "w-8 h-8",
-                        "rounded",
-                        // "bg-gray-800 bg-opacity-50",
-                        "flex items-center justify-center",
-                    )}
-                >
-                    {icon}
-                </div>
-            )}
+            {icon}
             {children}
         </div>
     );
@@ -93,15 +95,17 @@ export const CodeBlockString = ({
         <CommonCodeBlockContainer
             as="div"
             className={clsx(
+                "refine-common-code-block",
                 language && `language-${language}`,
-                "rounded-md",
-                // "bg-gray-700",
-                "bg-gray-50",
-                "dark:bg-gray-800",
+                "rounded-lg",
+                "bg-refine-react-light-code",
+                "dark:bg-refine-react-dark-code",
                 "border",
-                "dark:border-gray-700",
+                "border-gray-300",
+                "dark:border-0",
                 "mb-6",
                 "relative",
+                "refine-wider-container",
             )}
             style={style}
         >
@@ -125,12 +129,13 @@ export const CodeBlockString = ({
                                 "m-0",
                                 "px-0",
                                 "pt-0",
-                                "font-mono",
+                                "font-jetBrains-mono",
                                 "pb-3",
                             )}
                         >
                             <code
                                 className={clsx(
+                                    "font-[inherit]",
                                     "bg-transparent",
                                     "inline-block",
                                     "min-w-full",
@@ -159,7 +164,7 @@ export const CodeBlockString = ({
                 className={clsx(
                     "absolute",
                     "right-3",
-                    title ? "top-1.5" : "top-[9px]",
+                    title ? "top-[52px]" : "top-3",
                     "flex items-center gap-2",
                 )}
             >

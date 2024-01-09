@@ -15,29 +15,24 @@ export const DocPaginator = (props) => {
                     className={clsx(
                         "group",
                         "flex-1",
-                        "p-4 2xl:p-6",
+                        "p-4",
                         "rounded-lg",
-                        "border border-gray-200 dark:border-gray-700",
+                        "border border-gray-300 dark:border-gray-600",
                         "hover:bg-gray-100 hover:dark:bg-gray-700",
                         "hover:no-underline",
                     )}
                 >
-                    <div className="flex-1 flex items-start justify-center flex-col gap-2 2xl:gap-4 text-left">
+                    <div className="flex-1 flex items-start justify-center flex-col gap-2 text-left">
                         <div
                             className={clsx(
                                 "flex items-center gap-2",
-                                "text-xs leading-3 content-md:text-sm content-md:leading-6",
-                                "text-gray-500 dark:text-gray-300",
-                                "text-xs content-md:text-sm content-4xl:text-lg",
+                                "text-base",
+                                "text-gray-800 dark:text-gray-100",
                             )}
                         >
                             <span
                                 className={clsx(
-                                    "bg-gray-100 dark:bg-gray-800",
-                                    "dark:bg-opacity-50",
-                                    "group-hover:bg-gray-50 dark:group-hover:bg-gray-800 dark:group-hover:bg-opacity-100",
                                     "flex items-center justify-center",
-                                    "rounded",
                                     "w-6 h-6",
                                 )}
                             >
@@ -47,9 +42,8 @@ export const DocPaginator = (props) => {
                         </div>
                         <span
                             className={clsx(
-                                "text-xs content-md:text-base content-4xl:text-xl",
-                                "text-refine-link-light dark:text-refine-link-dark",
-                                "underline",
+                                "text-base",
+                                "text-refine-react-light-link dark:text-refine-react-dark-link",
                                 "ml-8",
                             )}
                         >
@@ -66,29 +60,24 @@ export const DocPaginator = (props) => {
                         "flex-1",
                         "p-4",
                         "rounded-lg",
-                        "border border-gray-200 dark:border-gray-700",
+                        "border border-gray-300 dark:border-gray-600",
                         "hover:bg-gray-100 hover:dark:bg-gray-700",
                         "hover:no-underline",
                         !previous && "col-start-2",
                     )}
                 >
-                    <div className="flex-1 flex items-end justify-center flex-col gap-2 2xl:gap-4 text-right">
+                    <div className="flex-1 flex items-end justify-center flex-col gap-2 text-right">
                         <div
                             className={clsx(
                                 "flex items-center gap-2",
-                                "text-xs leading-3 content-md:text-sm content-md:leading-6",
-                                "text-gray-500 dark:text-gray-300",
-                                "text-xs content-md:text-sm content-4xl:text-lg",
+                                "text-base",
+                                "text-gray-800 dark:text-gray-100",
                             )}
                         >
                             Next
                             <span
                                 className={clsx(
-                                    "bg-gray-100 dark:bg-gray-800",
-                                    "dark:bg-opacity-50",
-                                    "group-hover:bg-gray-50 dark:group-hover:bg-gray-800 dark:group-hover:bg-opacity-100",
                                     "flex items-center justify-center",
-                                    "rounded",
                                     "w-6 h-6",
                                 )}
                             >
@@ -98,9 +87,8 @@ export const DocPaginator = (props) => {
 
                         <span
                             className={clsx(
-                                "text-xs content-md:text-base content-4xl:text-xl",
-                                "text-refine-link-light dark:text-refine-link-dark",
-                                "underline",
+                                "text-base",
+                                "text-refine-react-light-link dark:text-refine-react-dark-link",
                                 "mr-8",
                             )}
                         >

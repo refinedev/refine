@@ -137,8 +137,8 @@ We'll go ahead and update the `supabaseClient.ts` file:
 ```tsx title="src/utility/supabaseClient.ts"
 import { createClient } from "@refinedev/supabase";
 
-const SUPABASE_URL = import.meta.env.SUPABASE_URL ?? "";
-const SUPABASE_KEY = import.meta.env.SUPABASE_KEY ?? "";
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL ?? "";
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY ?? "";
 
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 ```
