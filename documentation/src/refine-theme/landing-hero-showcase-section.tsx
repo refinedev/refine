@@ -42,6 +42,8 @@ export const LandingHeroShowcaseSection = ({}) => {
                         className={clsx(
                             "rounded-3xl",
                             "flex",
+                            "w-auto",
+                            "landing-lg:w-full",
                             "items-center",
                             "justify-start",
                             "gap-2",
@@ -52,7 +54,7 @@ export const LandingHeroShowcaseSection = ({}) => {
                         <div
                             className={clsx(
                                 "hidden landing-sm:block",
-                                "w-[244px]",
+                                "flex-1",
                                 "rounded-3xl",
                                 "h-full",
                                 "bg-gray-200 dark:bg-gray-700",
@@ -64,12 +66,11 @@ export const LandingHeroShowcaseSection = ({}) => {
                                 "ease-out",
                             )}
                             style={{
-                                transform: `translateX(${
-                                    apps.findIndex(
-                                        (f) => f.name === activeApp.name,
-                                    ) *
-                                    (244 + 8)
-                                }px) translateZ(0px)`,
+                                width: `calc((100% - (3 * 8px)) / 4)`,
+                                minWidth: "244px",
+                                transform: `translateX(calc((100% + 8px) * ${apps.findIndex(
+                                    (f) => f.name === activeApp.name,
+                                )})) translateZ(0px)`,
                             }}
                         />
                         {apps.map((app, index) => (
@@ -128,43 +129,6 @@ export const LandingHeroShowcaseSection = ({}) => {
                             </button>
                         ))}
                     </div>
-                    <a
-                        href="/templates"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={clsx(
-                            "box-content",
-                            "snap-start",
-                            "snap-end",
-                            "whitespace-nowrap",
-                            "break-keep",
-                            "hover:!no-underline",
-                            "w-40",
-                            "py-[5px]",
-                            "landing-sm:py-3.5",
-                            "pl-7",
-                            "pr-4",
-                            "rounded-3xl",
-                            "flex",
-                            "items-center",
-                            "justify-center",
-                            "gap-4",
-                            "bg-transparent",
-                            "border border-solid",
-                            "hover:bg-gray-200 dark:hover:bg-gray-700",
-                            "duration-150",
-                            "transition-colors",
-                            "ease-in-out",
-                            "text-sm",
-                            "landing-sm:text-base",
-                            "border-gray-200 dark:border-gray-700",
-                            "text-gray-900 dark:text-gray-0",
-                            "hover:text-gray-900 dark:hover:text-gray-0",
-                        )}
-                    >
-                        <span className="text-sm">See more</span>
-                        <LandingArrowRightIcon />
-                    </a>
                 </div>
             </div>
             <div

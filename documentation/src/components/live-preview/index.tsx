@@ -73,7 +73,6 @@ const LivePreviewFrameBase = ({
                 width="100%"
                 height="100%"
                 style={{
-                    borderRadius: "3px",
                     position: "absolute",
                     left: 0,
                     top: 0,
@@ -94,6 +93,26 @@ const LivePreviewFrame = React.memo(LivePreviewFrameBase, (prev, next) => {
         prev.css === next.css
     );
 });
+
+const CircleChevronDownIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={16}
+        height={16}
+        viewBox="0 0 16 16"
+        fill="none"
+        {...props}
+    >
+        <g fill="currentColor">
+            <path d="M5.854 6.646a.5.5 0 1 0-.708.708l2.5 2.5a.5.5 0 0 0 .708 0l2.5-2.5a.5.5 0 0 0-.708-.708L8 8.793 5.854 6.646Z" />
+            <path
+                fillRule="evenodd"
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1 0A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                clipRule="evenodd"
+            />
+        </g>
+    </svg>
+);
 
 /**
  * Editor with header
@@ -130,48 +149,37 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
                     "w-full",
                     "focus:outline-none",
                     "appearance-none",
-                    "p-2",
-                    "border-b",
-                    "border-b-gray-200 dark:border-b-gray-900",
+                    "px-4",
+                    "py-2",
+                    "border",
+                    "border-t-0",
+                    "border-gray-300 dark:border-gray-700",
                     "flex items-center gap-2",
                     "bg-gray-100 dark:bg-gray-700",
+                    visible && "border-b-0",
                     !visible && "rounded-bl-lg",
                     !visible && "rounded-br-lg",
-                    "transition-all ease-in-out duration-200",
+                    "transition-[border-radius] ease-in-out duration-200",
                     !visible && "delay-200",
                     "group",
+                    "text-gray-800 dark:text-gray-100",
                 )}
                 onClick={onToggle}
             >
-                <div
+                <CircleChevronDownIcon
                     className={clsx(
-                        "w-8 h-8",
-                        "rounded",
-                        "bg-gray-0 dark:bg-gray-800",
-                        "dark:bg-opacity-50",
-                        "flex items-center justify-center",
+                        visible && "rotate-180",
+                        "transition-transform",
+                        "duration-200",
+                        "ease-in-out",
                     )}
-                >
-                    <ArrowUpIcon
-                        className={clsx(
-                            "transition-transform duration-200 ease-in-out",
-                            "text-gray-500",
-                            !visible && "rotate-180",
-                            "w-3 h-3",
-                            "group-hover:w-4 group-hover:h-4",
-                            "transition-all duration-200 ease-in-out",
-                        )}
-                    />
-                </div>
+                />
                 <span
                     className={clsx(
-                        "text-sm leading-6",
-                        "h-6",
-                        "text-gray-700 dark:text-gray-400",
-                        "uppercase",
-                        "font-semibold",
+                        "text-base",
                         "block",
                         "overflow-hidden",
+                        "h-6",
                     )}
                 >
                     <span
@@ -196,11 +204,7 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
                 </span>
             </button>
             <div
-                className={clsx(
-                    "bg-gray-700",
-                    "rounded-bl-lg",
-                    "rounded-br-lg",
-                )}
+                className={clsx("rounded-bl-lg", "rounded-br-lg")}
                 style={{
                     maxHeight: visible ? (settled ? "unset" : "100vh") : "0px",
                     transition: "0.3s all ease-in-out",
@@ -211,8 +215,13 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
                 <CodeBlock
                     language="tsx"
                     style={{
-                        borderRadius: 0,
                         marginBottom: 0,
+                        marginRight: "0",
+                        marginLeft: "0",
+                        borderTopLeftRadius: "0",
+                        borderTopRightRadius: "0",
+                        borderBottomLeftRadius: "0.5rem",
+                        borderBottomRightRadius: "0.5rem",
                     }}
                 >
                     {code}
@@ -265,7 +274,13 @@ const LivePreviewBase = ({
     const { isLast } = useDocsVersion();
 
     return (
-        <div className={clsx("overflow-hidden", "mb-6")}>
+        <div
+            className={clsx(
+                "overflow-hidden",
+                "mb-6",
+                "refine-wider-container",
+            )}
+        >
             <>
                 <BrowserWindow url={url} hasBottom={!previewOnly}>
                     <div

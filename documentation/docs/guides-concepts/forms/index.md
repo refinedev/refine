@@ -18,7 +18,7 @@ The usage of the `useForm` hooks may slightly differ between libraries, the core
 
 To learn more about the usage and see `useForm` in action, check out the reference pages for each library:
 
-<Tabs>
+<Tabs smallTabs>
 <TabItem value="core" label="Refine's Core">
 
 ```tsx title="edit.tsx"
@@ -645,7 +645,7 @@ const error: HttpError = {
 
 Examples below demonstrates the server-side validation and error propagation:
 
-<Tabs wrapContent={false}>
+<Tabs smallTabs wrapContent={false}>
 <TabItem value="core" label="Refine's Core">
 
 import ServerSideValidationCore from "./server-side-validation-core.tsx";

@@ -44,8 +44,8 @@ const LinkWithId = ({
             className={clsx(
                 className,
                 isCurrent
-                    ? "text-gray-900 dark:text-white"
-                    : "text-gray-500 hover:!text-refine-link-light active:!text-refine-link-light dark:hover:!text-refine-link-dark dark:active:!text-refine-link-dark",
+                    ? "text-gray-800 dark:text-gray-0"
+                    : " hover:!text-refine-link-light active:!text-refine-link-light dark:hover:!text-refine-link-dark dark:active:!text-refine-link-dark",
             )}
             dangerouslySetInnerHTML={dangerouslySetInnerHTML}
         />
@@ -157,7 +157,7 @@ const TocLink: React.FC<TocLinkProps> = ({ item, activeId, setActiveId }) => {
             href={`#${item.id}`}
             dangerouslySetInnerHTML={{ __html: item.value }}
             className={clsx(
-                "text-gray-500 hover:!text-refine-link active:!text-refine-link dark:hover:!text-refine-link-dark dark:active:!text-refine-link-dark",
+                "text-gray-800 dark:text-gray-0 hover:!text-refine-link active:!text-refine-link dark:hover:!text-refine-link-dark dark:active:!text-refine-link-dark",
                 activeId === item.id &&
                     "!text-refine-link-light dark:!text-refine-link-dark",
             )}
@@ -280,7 +280,7 @@ export const TutorialTOC = () => {
                 className={clsx(
                     "tutorial-unit",
                     unit.unit === selectedUnit &&
-                        "bg-gradient-to-t from-gray-50 dark:from-gray-800 from-40% to-gray-200 dark:to-gray-700",
+                        "bg-gradient-to-t from-gray-50 dark:from-gray-700 from-40% to-gray-200 dark:to-gray-600",
                     "-mb-1",
                     "flex items-center justify-center",
                     "w-[40px] h-[44px]",
@@ -325,7 +325,7 @@ export const TutorialTOC = () => {
                 className={clsx(
                     "rounded",
                     "pt-6 px-3 pb-2",
-                    "bg-gray-50 dark:bg-gray-800",
+                    "bg-gray-50 dark:bg-gray-700",
                 )}
             >
                 {/* <div className={clsx("mb-2", "text-sm font-bold")}>
