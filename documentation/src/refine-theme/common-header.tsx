@@ -43,9 +43,6 @@ export const CommonHeader = ({ trackProgress }: Props) => {
                         "bg-gray-0 dark:bg-gray-900",
                         "bg-opacity-80 dark:bg-opacity-80",
                         "pointer-events-none",
-                        "transition-colors",
-                        "duration-150",
-                        "ease-in-out",
                     )}
                     style={{
                         top: "-20px",

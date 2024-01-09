@@ -15,139 +15,29 @@ module.exports = {
                     label: "Tutorial",
                 },
                 {
-                    type: "category",
+                    type: "link",
+                    href: "https://s.refine.dev/examples",
                     label: "Examples",
-                    link: {
-                        type: "doc",
-                        id: "examples/index",
+                    customProps: {
+                        external: true,
                     },
-                    items: [
-                        {
-                            type: "category",
-                            label: "Build Systems",
-                            items: [
-                                "examples/build-systems/turbo",
-                                "examples/build-systems/lerna",
-                                "examples/build-systems/nx",
-                            ],
-                        },
-                        "examples/command-palette",
-                        {
-                            type: "category",
-                            label: "Core",
-                            items: [
-                                "examples/core/useImport",
-                                "examples/core/useMenu",
-                                "examples/core/useModal",
-                                "examples/core/useSelect",
-                                "examples/core/useInfiniteList",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Customization",
-                            items: [
-                                "examples/customization/customFooter",
-                                "examples/customization/customLogin",
-                                "examples/customization/customSider",
-                                "examples/customization/offLayoutArea",
-                                "examples/customization/rtl",
-                                "examples/customization/topMenuLayout",
-                            ],
-                        },
-                        "examples/customPages",
-                        {
-                            type: "category",
-                            label: "Field",
-                            items: [
-                                "examples/field/useCheckboxGroup",
-                                "examples/field/useRadioGroup",
-                                "examples/field/useSelect",
-                                "examples/field/useSelect-with-infinite-list",
-                                "examples/field/useAutocomplete",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Form",
-                            items: [
-                                {
-                                    type: "category",
-                                    label: "Headless",
-                                    items: [
-                                        "examples/form/headless/save-and-continue",
-                                        "examples/form/headless/useForm",
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Inputs",
-                            items: [
-                                "examples/inputs/customInput",
-                                "examples/inputs/datePicker",
-                            ],
-                        },
-                        "examples/javascript",
-                        {
-                            type: "category",
-                            label: "List",
-                            items: ["examples/list/useSimpleList"],
-                        },
-                        "examples/module-federation/vite",
-                        "examples/multi-level-menu/multi-level-menu",
-                        "examples/mutation-mode",
-                        "examples/persistQuery",
-                        {
-                            type: "category",
-                            label: "Search",
-                            items: ["examples/search/search"],
-                        },
-                        {
-                            type: "category",
-                            label: "Table",
-                            items: [
-                                {
-                                    type: "category",
-                                    label: "Handson Table",
-                                    items: [
-                                        "examples/table/handsontable/handsontable",
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "UI",
-                            items: ["examples/ui/useModal"],
-                        },
-                        {
-                            type: "category",
-                            label: "Tutorial",
-                            items: [
-                                "examples/tutorial/antd-tutorial",
-                                "examples/tutorial/headless-tutorial",
-                                "examples/tutorial/mantine-tutorial",
-                                "examples/tutorial/mui-tutorial",
-                            ],
-                        },
-
-                        {
-                            type: "category",
-                            label: "Web3",
-                            items: ["examples/web3/web3Login"],
-                        },
-                    ],
+                },
+                {
+                    type: "link",
+                    href: "https://refine.dev/templates",
+                    label: "Templates",
+                    customProps: {
+                        external: true,
+                    },
                 },
             ],
         },
         // Devtools
         {
             type: "link",
-            href: "https://s.refine.dev/devtools-beta",
-            label: "Refine Devtools",
-            className: "sidebar-item-shiny mt-6 -ml-2",
+            href: "/enterprise",
+            label: "Enterprise Edition",
+            className: "enterprise-badge",
         },
         // Guides & Concepts
         {
@@ -438,6 +328,7 @@ module.exports = {
                     items: [
                         "examples/access-control/casbin",
                         "examples/access-control/cerbos",
+                        "examples/access-control/permify",
                     ],
                 },
             ],
@@ -846,10 +737,15 @@ module.exports = {
                             type: "category",
                             label: "Examples",
                             items: [
+                                "examples/authentication/chakra-ui",
+                                "examples/table/chakra-ui/basic",
+                                "examples/table/chakra-ui/advanced-react-table",
                                 "examples/form/chakra-ui/useForm",
                                 "examples/form/chakra-ui/useModalForm",
                                 "examples/form/chakra-ui/useDrawerForm",
                                 "examples/form/chakra-ui/serverSideFormValidation",
+                                "examples/upload/chakra-ui/base64",
+                                "examples/upload/chakra-ui/multipart",
                                 "examples/customization/theme/customThemeChakraUI",
                                 "examples/themes/refine-themes-chakra-ui",
                             ],

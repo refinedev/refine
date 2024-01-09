@@ -69,6 +69,67 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
     );
 };
 
+export const LandingSectionCtaButtonAlt: FC<PropsWithChildren<Props>> = ({
+    children,
+    className,
+    to,
+    onClick,
+    icon,
+}) => {
+    return (
+        <Link
+            to={to}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onClick}
+            className={clsx(
+                className,
+                "select-none",
+                "landing-sm:max-w-[293px]",
+                "mx-auto",
+                "group/cta-button",
+                "relative",
+                "no-underline",
+                "rounded-full",
+                "flex",
+                "items-center",
+                "justify-center",
+                "gap-2",
+                "py-3 pr-4 pl-6",
+                "text-base",
+                "font-semibold",
+                "dark:text-refine-cyan-alt text-refine-blue",
+                "dark:bg-refine-cyan-alt/10 bg-refine-blue/10",
+                "overflow-hidden",
+            )}
+        >
+            {children}
+            {icon || <DefaultIcon />}
+            <div
+                className={clsx(
+                    "select-none",
+                    "rounded-3xl",
+                    "absolute",
+                    "left-0",
+                    "top-0",
+                    "w-full",
+                    "h-full",
+                    "scale-[2]",
+                    "origin-center",
+                    "transition-[opacity,transform]",
+                    "duration-300",
+                    "ease-in-out",
+                    "opacity-0",
+                    "group-hover/cta-button:opacity-100",
+                    "group-hover/cta-button:scale-100",
+                    "pointer-events-none",
+                    "bg-landing-copy-command-hover-bg-light dark:bg-landing-copy-command-hover-bg-dark",
+                )}
+            />
+        </Link>
+    );
+};
+
 const DefaultIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"

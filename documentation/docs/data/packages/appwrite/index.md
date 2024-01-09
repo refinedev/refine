@@ -1150,7 +1150,7 @@ render(<App />);
 
 ## Example
 
-:::additional
+:::simple
 
 Username: `demo@refine.dev`
 

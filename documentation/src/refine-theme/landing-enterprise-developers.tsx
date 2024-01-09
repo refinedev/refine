@@ -9,6 +9,8 @@ import {
     SupportIcon,
 } from "../components/landing/icons";
 
+import { LandingSectionCtaButtonAlt } from "./landing-section-cta-button";
+
 const list = [
     {
         icon: <SelfHostedIcon />,
@@ -105,6 +107,7 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
                     "grid",
                     "grid-cols-1 landing-md:grid-cols-2 landing-lg:grid-cols-3",
                     "gap-4 landing-sm:gap-12 landing-md:gap-6",
+                    "mb-4 landing-sm:mb-12 landing-md:mb-6",
                 )}
             >
                 {list.map((item, index) => {
@@ -147,6 +150,10 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
                     );
                 })}
             </div>
+
+            <LandingSectionCtaButtonAlt to="/enterprise">
+                Check out Enterprise Edition
+            </LandingSectionCtaButtonAlt>
         </div>
     );
 };

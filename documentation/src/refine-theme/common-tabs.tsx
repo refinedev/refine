@@ -13,6 +13,7 @@ function TabList({
     selectValue,
     tabValues,
     wrapContent = true,
+    smallTabs = false,
 }) {
     const tabRefs = [];
     const { blockElementScrollPositionUntilNextRender } =
@@ -48,6 +49,7 @@ function TabList({
         }
         focusElement?.focus();
     };
+
     return (
         <ul
             role="tablist"
@@ -58,15 +60,11 @@ function TabList({
                 "flex-wrap",
                 "list-none",
                 "m-0 mb-0 mt-0",
-                "px-2",
-                "py-[7px]",
-                "flex gap-2",
-                wrapContent
-                    ? "border-b border-b-gray-200 dark:border-b-gray-700"
-                    : "border border-gray-200 dark:border-gray-700",
-                "bg-gray-50 dark:bg-gray-800",
-                "rounded-tl-md rounded-tr-md",
-                !wrapContent && "rounded-bl-md rounded-br-md",
+                "px-4",
+                "flex gap-4",
+                "bg-gray-100 dark:bg-gray-700",
+                "rounded-tl-lg rounded-tr-lg",
+                !wrapContent && "rounded-bl-lg rounded-br-lg",
                 "items-stretch",
             )}
         >
@@ -83,26 +81,26 @@ function TabList({
                     className={clsx(
                         "!my-0",
                         "mx-0 mt-0",
-                        "px-2 py-1",
+                        "px-2 py-3",
                         "flex items-center justify-center",
-                        "!leading-5",
-                        "!text-[13px]",
                         "min-w-[60px]",
                         "cursor-pointer",
                         "transition-all duration-200 ease-in-out",
-                        "rounded",
-                        "border border-solid",
+                        "border-b border-solid",
                         "select-none",
-                        selectedValue !== value && "border-transparent",
-                        selectedValue === value &&
-                            "border-gray-300 dark:border-gray-700",
-                        selectedValue === value && "bg-gray-0 dark:bg-gray-900",
-                        selectedValue === value &&
-                            "text-gray-900 dark:text-gray-0",
+                        smallTabs && "!text-xs",
+                        !smallTabs && "!text-base",
                         selectedValue !== value &&
-                            "hover:border-gray-300 dark:hover:border-gray-700 hover:text-gray-900 dark:hover:text-gray-0",
+                            "text-gray-800 dark:text-gray-100",
+                        selectedValue === value &&
+                            "text-refine-react-light-link dark:text-refine-react-dark-link",
                         selectedValue !== value &&
-                            "text-gray-500 dark:text-gray-400",
+                            "hover:text-refine-react-light-link dark:hover:text-refine-react-dark-link",
+                        selectedValue !== value && "border-b-transparent",
+                        selectedValue === value &&
+                            "border-b-refine-react-light-link dark:border-b-refine-react-dark-link",
+                        selectedValue !== value &&
+                            "hover:border-b-refine-react-light-link dark:hover:border-b-refine-react-dark-link",
                     )}
                 >
                     {label ?? value}
@@ -112,7 +110,7 @@ function TabList({
     );
 }
 
-function TabContent({ lazy, children, selectedValue }) {
+function TabContent({ lazy, children, selectedValue, smallTabs }) {
     const childTabs = (Array.isArray(children) ? children : [children]).filter(
         Boolean,
     );
@@ -153,10 +151,11 @@ function TabsComponent(props) {
         <div
             className={clsx(
                 "tabs-container",
-                "rounded-md",
-                "border-gray-200 dark:border-gray-700",
+                "rounded-lg",
+                "border-gray-300 dark:border-gray-700",
                 wrapContent ? "border" : "border-0",
                 "mb-6",
+                "refine-wider-container",
             )}
         >
             <TabList {...props} {...tabs} />
