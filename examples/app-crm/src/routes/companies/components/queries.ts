@@ -89,3 +89,44 @@ export const COMPANY_INFO_QUERY = gql`
         }
     }
 `;
+
+export const COMPANY_CREATE_COMPANY_NOTE_MUTATION = gql`
+    mutation CompanyCreateCompanyNote($input: CreateOneCompanyNoteInput!) {
+        createOneCompanyNote(input: $input) {
+            id
+            note
+        }
+    }
+`;
+
+export const COMPANY_COMPANY_NOTES_QUERY = gql`
+    query CompanyCompanyNotes(
+        $filter: CompanyNoteFilter!
+        $sorting: [CompanyNoteSort!]
+        $paging: OffsetPaging!
+    ) {
+        companyNotes(filter: $filter, sorting: $sorting, paging: $paging) {
+            nodes {
+                id
+                note
+                createdAt
+                createdBy {
+                    id
+                    name
+                    updatedAt
+                    avatarUrl
+                }
+            }
+            totalCount
+        }
+    }
+`;
+
+export const COMPANY_UPDATE_COMPANY_NOTE_MUTATION = gql`
+    mutation CompanyUpdateCompanyNote($input: UpdateOneCompanyNoteInput!) {
+        updateOneCompanyNote(input: $input) {
+            id
+            note
+        }
+    }
+`;

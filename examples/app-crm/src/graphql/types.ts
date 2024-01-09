@@ -363,6 +363,43 @@ export type CompanyInfoQuery = {
     >;
 };
 
+export type CompanyCreateCompanyNoteMutationVariables = Types.Exact<{
+    input: Types.CreateOneCompanyNoteInput;
+}>;
+
+export type CompanyCreateCompanyNoteMutation = {
+    createOneCompanyNote: Pick<Types.CompanyNote, "id">;
+};
+
+export type CompanyCompanyNotesQueryVariables = Types.Exact<{
+    filter: Types.CompanyNoteFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.CompanyNoteSort> | Types.CompanyNoteSort
+    >;
+    paging: Types.OffsetPaging;
+}>;
+
+export type CompanyCompanyNotesQuery = {
+    companyNotes: Pick<Types.CompanyNoteConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<Types.CompanyNote, "id" | "note" | "createdAt"> & {
+                createdBy: Pick<
+                    Types.User,
+                    "id" | "name" | "updatedAt" | "avatarUrl"
+                >;
+            }
+        >;
+    };
+};
+
+export type CompanyUpdateCompanyNoteMutationVariables = Types.Exact<{
+    input: Types.UpdateOneCompanyNoteInput;
+}>;
+
+export type CompanyUpdateCompanyNoteMutation = {
+    updateOneCompanyNote: Pick<Types.CompanyNote, "id">;
+};
+
 export type CompanyTitleFormMutationVariables = Types.Exact<{
     input: Types.UpdateOneCompanyInput;
 }>;
