@@ -7,7 +7,23 @@ export const getOperationFields = (documentNode: DocumentNode) => {
     let depth = 0;
     let isNestedField = false;
 
-    visit(documentNode, {
+    // remove `<name>_aggregate` or `<name>Aggregate` object from query
+    const newDocumentNode = visit(documentNode, {
+        Field: {
+            enter(node) {
+                if (
+                    node.name.value.includes("aggregate") ||
+                    node.name.value.includes("Aggregate")
+                ) {
+                    return null;
+                }
+
+                return node;
+            },
+        },
+    });
+
+    visit(newDocumentNode, {
         Field: {
             enter(node): SelectionSetNode | void {
                 if (isInitialEnter) {
@@ -43,6 +59,7 @@ export const getOperationFields = (documentNode: DocumentNode) => {
         },
     });
 
+    console.log(fieldLines.join("\n").trim());
     return fieldLines.join("\n").trim();
 };
 

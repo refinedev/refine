@@ -2,7 +2,7 @@
 "@refinedev/hasura": minor
 ---
 
-feat: add `gqlQuery` and `gqlMutation` support.
+feat: add `gqlQuery` and `gqlMutation` support. #5489
 
 Previously, `@refinedev/hasura` package only supported GraphQL operations through `meta.fields`.
 
