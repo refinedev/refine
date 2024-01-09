@@ -1,16 +1,21 @@
 import React, { Suspense } from "react";
 
 import { useList } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DollarOutlined } from "@ant-design/icons";
 import { GaugeConfig } from "@ant-design/plots";
 import { Card, Skeleton, Space } from "antd";
-import { DealStage } from "interfaces/graphql";
 
 import { Text } from "@/components";
+import { DashboardTotalRevenueQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
+import { DASHBOARD_TOTAL_REVENUE_QUERY } from "./queries";
+
 const Gauge = React.lazy(() => import("@ant-design/plots/es/components/gauge"));
+
+type DealStage = GetFieldsFromList<DashboardTotalRevenueQuery>;
 
 export const DashboardTotalRevenueChart: React.FC = () => {
     const {
@@ -28,7 +33,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
             },
         ],
         meta: {
-            fields: ["title", { dealsAggregate: [{ sum: ["value"] }] }],
+            gqlQuery: DASHBOARD_TOTAL_REVENUE_QUERY,
         },
     });
 
@@ -47,7 +52,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
             },
         ],
         meta: {
-            fields: ["title", { dealsAggregate: [{ sum: ["value"] }] }],
+            gqlQuery: DASHBOARD_TOTAL_REVENUE_QUERY,
         },
     });
 

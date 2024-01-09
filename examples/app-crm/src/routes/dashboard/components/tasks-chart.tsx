@@ -1,25 +1,30 @@
 import React, { lazy, Suspense, useMemo } from "react";
 
 import { useList, useNavigation } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { ProjectOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { PieConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
 
 import { Text } from "@/components";
-import { TaskStage } from "@/graphql/schema.types";
+import { DashboardTasksChartQuery } from "@/graphql/types";
+
+import { DASHBOARD_TASKS_CHART_QUERY } from "./queries";
 
 const Pie = lazy(() => import("@ant-design/plots/es/components/pie"));
 
 export const DashboardTasksChart: React.FC = () => {
     const { list } = useNavigation();
 
-    const { data, isError, error } = useList<TaskStage>({
+    const { data, isError, error } = useList<
+        GetFieldsFromList<DashboardTasksChartQuery>
+    >({
         resource: "taskStages",
         pagination: {
-            pageSize: 6,
+            pageSize: 4,
         },
-        meta: { fields: ["title", { tasksAggregate: [{ count: ["id"] }] }] },
+        meta: { gqlQuery: DASHBOARD_TASKS_CHART_QUERY },
     });
 
     if (isError) {

@@ -588,6 +588,78 @@ export type LatestActivitiesAuditsQuery = {
     };
 };
 
+export type DashboardDealsChartQueryVariables = Types.Exact<{
+    filter: Types.DealStageFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.DealStageSort> | Types.DealStageSort
+    >;
+    paging: Types.OffsetPaging;
+}>;
+
+export type DashboardDealsChartQuery = {
+    dealStages: {
+        nodes: Array<
+            Pick<Types.DealStage, "title"> & {
+                dealsAggregate: Array<{
+                    groupBy?: Types.Maybe<
+                        Pick<
+                            Types.DealStageDealsAggregateGroupBy,
+                            "closeDateMonth" | "closeDateYear"
+                        >
+                    >;
+                    sum?: Types.Maybe<
+                        Pick<Types.DealStageDealsSumAggregate, "value">
+                    >;
+                }>;
+            }
+        >;
+    };
+};
+
+export type DashboardTasksChartQueryVariables = Types.Exact<{
+    filter: Types.TaskStageFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.TaskStageSort> | Types.TaskStageSort
+    >;
+    paging: Types.OffsetPaging;
+}>;
+
+export type DashboardTasksChartQuery = {
+    taskStages: {
+        nodes: Array<
+            Pick<Types.TaskStage, "title"> & {
+                tasksAggregate: Array<{
+                    count?: Types.Maybe<
+                        Pick<Types.TaskStageTasksCountAggregate, "id">
+                    >;
+                }>;
+            }
+        >;
+    };
+};
+
+export type DashboardTotalRevenueQueryVariables = Types.Exact<{
+    filter: Types.DealStageFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.DealStageSort> | Types.DealStageSort
+    >;
+    paging: Types.OffsetPaging;
+}>;
+
+export type DashboardTotalRevenueQuery = {
+    dealStages: {
+        nodes: Array<
+            Pick<Types.DealStage, "title"> & {
+                dealsAggregate: Array<{
+                    sum?: Types.Maybe<
+                        Pick<Types.DealStageDealsSumAggregate, "value">
+                    >;
+                }>;
+            }
+        >;
+    };
+};
+
 export type TotalRevenueChartQueryVariables = Types.Exact<{
     filter: Types.DealStageFilter;
     sorting?: Types.InputMaybe<
