@@ -25,6 +25,10 @@ module.exports = {
                     cyan: "#0F8A8A",
                     "cyan-alt": "#47EBEB",
                     blue: "#0080FF",
+                    "enterprise-purple": "#4D0099",
+                    "enterprise-purple-2": "#8000ff",
+                    "enterprise-purple-3": "#E6CCFF",
+                    "enterprise-purple-4": "#3C216A",
                     "blue-alt": "#6EB3F7",
                     "blue-2": "#58AFDF",
                     "blue-2-light": "#E6F7FF",
@@ -433,6 +437,30 @@ module.exports = {
                     #b7dbff,
                     #b7dbff,
                     #b7dbff
+                )`,
+                "purple-new-badge-border-dark": `conic-gradient(
+                    from 45deg at 50% 50%,
+                    #4D0099,
+                    #E6CCFF,
+                    #4D0099,
+                    #4D0099,
+                    #4D0099,
+                    #E6CCFF,
+                    #4D0099,
+                    #4D0099,
+                    #4D0099
+                )`,
+                "purple-new-badge-border-light": `conic-gradient(
+                    from 45deg at 50% 50%,
+                    #E6CCFF,
+                    #4D0099,
+                    #E6CCFF,
+                    #E6CCFF,
+                    #E6CCFF,
+                    #4D0099,
+                    #E6CCFF,
+                    #E6CCFF,
+                    #E6CCFF
                 )`,
             },
             backgroundPosition: {

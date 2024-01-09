@@ -10,7 +10,7 @@ import React from "react";
 import { HEADER_HEIGHT } from "./doc-header";
 import { ChevronDownIcon } from "./icons/chevron-down";
 import { DashIcon } from "./icons/dash";
-import { NewBadgeShiny } from "./icons/new-badge-shiny";
+import { NewBadgePurple } from "./icons/new-badge-purple";
 
 const SIDEBAR_WIDTH = 260;
 
@@ -130,17 +130,18 @@ const SidebarCategory = ({
                     "border-0",
                     "appearance-none",
                     "focus:outline-none",
-                    !isHeader && "text-gray-600 dark:text-gray-300",
+                    !isHeader && "text-gray-400 dark:text-gray-300",
                     isHeader && "text-gray-500 dark:text-gray-400",
+                    isHeader && "font-semibold",
+
                     !isHeader && "hover:text-gray-600 dark:hover:text-gray-300",
-                    isHeader ? "uppercase" : "",
                     "font-normal",
                     "flex items-center",
                     isHeader ? "pt-2 pb-4" : "py-2",
                     "pr-2",
                     isHeader && "pl-2",
                     !isHeader && "pl-0.5",
-                    isHeader ? "text-xs tracking-[2px]" : "text-sm",
+                    isHeader ? "text-base" : "text-sm",
                     "relative",
                     !isHeader && "group",
                     "transition-colors duration-200 ease-in-out",
@@ -221,7 +222,7 @@ const SidebarCategory = ({
     );
 };
 
-const DevtoolsItem = ({
+const EnterpriseEditionItem = ({
     item,
     onClick,
 }: {
@@ -238,8 +239,10 @@ const DevtoolsItem = ({
                 "relative",
                 "min-h-[28px]",
                 "rounded-[18px]",
-                "bg-refine-blue dark:bg-refine-cyan bg-opacity-10 dark:bg-opacity-10",
-                "text-refine-blue dark:text-refine-cyan-alt",
+                "bg-refine-enterprise-purple-2 bg-opacity-10",
+                "dark-bg-refine-enterprise-purple-2 dark:bg-opacity-30",
+                "text-refine-enterprise-purple",
+                "dark:text-refine-enterprise-purple-3",
                 "pl-6 pr-3 py-2",
                 "text-sm font-normal",
                 "flex items-start justify-start",
@@ -251,9 +254,27 @@ const DevtoolsItem = ({
         >
             <div className={"flex items-center flex-1"}>
                 <span className="z-[1] flex-shrink-0">{item.label}</span>
-                <NewBadgeShiny className="flex-shrink-0 ml-auto" />
+                <NewBadgePurple className="flex-shrink-0 ml-auto" />
             </div>
         </Link>
+    );
+};
+
+const ExternalIcon = (props: React.SVGProps<SVGSVGElement>) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={12}
+            height={12}
+            viewBox="0 0 12 12"
+            fill="none"
+            {...props}
+        >
+            <g fill="currentColor">
+                <path d="M1 2.65C1 1.739 1.739 1 2.65 1H5.5a.5.5 0 0 0 0-1H2.65A2.65 2.65 0 0 0 0 2.65v6.7A2.65 2.65 0 0 0 2.65 12h6.7A2.65 2.65 0 0 0 12 9.35V6.5a.5.5 0 0 0-1 0v2.85A1.65 1.65 0 0 1 9.35 11h-6.7A1.65 1.65 0 0 1 1 9.35v-6.7Z" />
+                <path d="M8.5 0a.5.5 0 0 0 0 1h1.793L5.646 5.646a.5.5 0 1 0 .708.708L11 1.707V3.5a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 10.5 0h-2Z" />
+            </g>
+        </svg>
     );
 };
 
@@ -277,7 +298,7 @@ const SidebarLink = ({
     const ref = React.useRef<HTMLAnchorElement>(null);
     const isActive = isActiveSidebarItem(item, path);
     const isSame = isSamePath(item.href, path);
-    const isShiny = item.className?.includes("sidebar-item-shiny") || false;
+    const isEnterprise = item.className?.includes("enterprise-badge") || false;
 
     React.useEffect(() => {
         if (isActive && !once.current) {
@@ -294,8 +315,8 @@ const SidebarLink = ({
         once.current = true;
     }, [isActive]);
 
-    if (isShiny) {
-        return <DevtoolsItem item={item} onClick={onClick} />;
+    if (isEnterprise) {
+        return <EnterpriseEditionItem item={item} onClick={onClick} />;
     }
 
     const isComponentLabel = componentRegexp.test(item.label);
@@ -344,6 +365,17 @@ const SidebarLink = ({
             >
                 <span className="z-[1]">{item.label}</span>
             </div>
+            {item.customProps?.external && (
+                <ExternalIcon
+                    className={clsx(
+                        "z-[1]",
+                        "text-inherit",
+                        "w-5 h-5",
+                        "p-1",
+                        "ml-1",
+                    )}
+                />
+            )}
             <div
                 className={clsx(
                     "absolute",
