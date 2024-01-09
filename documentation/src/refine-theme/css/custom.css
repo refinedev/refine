@@ -520,9 +520,10 @@ h4 > del:has(code:only-child) code {
     margin-right: calc((-1 * ((var(--applied-full-table-width, 100%) - 100%) / 2)) + 16px);
 }
 
+.refine-prose code,
 .font-mono,
 .font-jetBrains-mono {
-    font-variant-ligatures: none;
+    font-variant-ligatures: none !important;
     font-feature-settings: "liga" 0;
 }
 
