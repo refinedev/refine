@@ -2,6 +2,8 @@
 "@refinedev/chakra-ui": patch
 ---
 
+---
+
 ## "@refinedev/refine/packages/chakra-ui": patch
 
 fix: issue with Chakra-UI sider that overflows when collapsed
