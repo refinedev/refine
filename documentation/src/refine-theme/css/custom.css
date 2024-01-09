@@ -70,7 +70,7 @@
     @apply prose-blockquote:bg-gray-100 prose-blockquote:text-gray-800 prose-blockquote:border-l-gray-400;
     @apply prose-blockquote:dark:bg-gray-700 prose-blockquote:dark:text-gray-100 prose-blockquote:dark:border-l-gray-500;
 
-    @apply prose-code:text-base;
+    @apply prose-code:text-base 2xl:prose-code:text-base;
     @apply prose-code:translate-y-0.5;
     @apply prose-code:inline-flex;
     @apply prose-code:text-gray-700 prose-code:bg-gray-400 prose-code:bg-opacity-10;
