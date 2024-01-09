@@ -1,11 +1,4 @@
-import { useState } from "react";
-import {
-    IResourceComponentsProps,
-    getDefaultFilter,
-    useCreateMany,
-    useDeleteMany,
-    useUpdateMany,
-} from "@refinedev/core";
+import { IResourceComponentsProps, getDefaultFilter } from "@refinedev/core";
 
 import {
     List,
@@ -147,36 +140,5 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 />
             </Table>
         </List>
-    );
-};
-
-const DeleteManyComponent = () => {
-    const [ids, setIds] = useState<string>("");
-    const { mutate } = useDeleteMany();
-
-    return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                marginBottom: 20,
-            }}
-        >
-            <textarea
-                value={ids}
-                placeholder="enter coma seperated ids"
-                onChange={(e) => setIds(e.target.value)}
-            />
-            <button
-                onClick={() => {
-                    mutate({
-                        resource: "posts",
-                        ids: ids.split(","),
-                    });
-                }}
-            >
-                delete many
-            </button>
-        </div>
     );
 };
