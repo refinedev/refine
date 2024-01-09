@@ -129,6 +129,10 @@
       "to": "https://github.com/refinedev/refine/tree/master/examples/multi-level-menu"
     },
     {
+      "from": "/docs/examples/meta-properties",
+      "to": "https://github.com/refinedev/refine/tree/master/examples/with-meta-properties"
+    },
+    {
       "from": "/docs/examples/mutation-mode",
       "to": "https://github.com/refinedev/refine/tree/master/examples"
     },
