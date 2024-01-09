@@ -740,6 +740,8 @@ module.exports = {
                                 "examples/form/chakra-ui/useModalForm",
                                 "examples/form/chakra-ui/useDrawerForm",
                                 "examples/form/chakra-ui/serverSideFormValidation",
+                                "examples/upload/chakra-ui/base64",
+                                "examples/upload/chakra-ui/multipart",
                                 "examples/customization/theme/customThemeChakraUI",
                                 "examples/themes/refine-themes-chakra-ui",
                             ],
