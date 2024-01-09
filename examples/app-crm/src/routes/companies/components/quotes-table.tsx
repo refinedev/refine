@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { FilterDropdown, ShowButton, useTable } from "@refinedev/antd";
 import { useNavigation } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
     ContainerOutlined,
@@ -13,13 +14,18 @@ import {
 import { Button, Card, Input, Select, Space, Table } from "antd";
 
 import { Participants, QuoteStatusTag, Text } from "@/components";
-import { Quote, QuoteStatus } from "@/graphql/schema.types";
+import { QuoteStatus } from "@/graphql/schema.types";
+import { CompanyQuotesTableQuery } from "@/graphql/types";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { currencyNumber } from "@/utilities";
+
+import { COMPANY_QUOTES_TABLE_QUERY } from "./queries";
 
 type Props = {
     style?: React.CSSProperties;
 };
+
+type Quote = GetFieldsFromList<CompanyQuotesTableQuery>;
 
 export const CompanyQuotesTable: FC<Props> = ({ style }) => {
     const { listUrl } = useNavigation();
@@ -58,15 +64,7 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
             ],
         },
         meta: {
-            fields: [
-                "id",
-                "title",
-                "status",
-                "total",
-                { company: ["id", "name"] },
-                { contact: ["id", "name", "avatarUrl"] },
-                { salesOwner: ["id", "name", "avatarUrl"] },
-            ],
+            gqlQuery: COMPANY_QUOTES_TABLE_QUERY,
         },
     });
 

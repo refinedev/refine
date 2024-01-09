@@ -368,7 +368,7 @@ export type CompanyCreateCompanyNoteMutationVariables = Types.Exact<{
 }>;
 
 export type CompanyCreateCompanyNoteMutation = {
-    createOneCompanyNote: Pick<Types.CompanyNote, "id">;
+    createOneCompanyNote: Pick<Types.CompanyNote, "id" | "note">;
 };
 
 export type CompanyCompanyNotesQueryVariables = Types.Exact<{
@@ -397,7 +397,25 @@ export type CompanyUpdateCompanyNoteMutationVariables = Types.Exact<{
 }>;
 
 export type CompanyUpdateCompanyNoteMutation = {
-    updateOneCompanyNote: Pick<Types.CompanyNote, "id">;
+    updateOneCompanyNote: Pick<Types.CompanyNote, "id" | "note">;
+};
+
+export type CompanyQuotesTableQueryVariables = Types.Exact<{
+    filter: Types.QuoteFilter;
+    sorting?: Types.InputMaybe<Array<Types.QuoteSort> | Types.QuoteSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type CompanyQuotesTableQuery = {
+    quotes: Pick<Types.QuoteConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<Types.Quote, "id" | "title" | "status" | "total"> & {
+                company: Pick<Types.Company, "id" | "name">;
+                contact: Pick<Types.Contact, "id" | "name" | "avatarUrl">;
+                salesOwner: Pick<Types.User, "id" | "name" | "avatarUrl">;
+            }
+        >;
+    };
 };
 
 export type CompanyTitleFormMutationVariables = Types.Exact<{

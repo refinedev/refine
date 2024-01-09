@@ -130,3 +130,35 @@ export const COMPANY_UPDATE_COMPANY_NOTE_MUTATION = gql`
         }
     }
 `;
+
+export const COMPANY_QUOTES_TABLE_QUERY = gql`
+    query CompanyQuotesTable(
+        $filter: QuoteFilter!
+        $sorting: [QuoteSort!]
+        $paging: OffsetPaging!
+    ) {
+        quotes(filter: $filter, sorting: $sorting, paging: $paging) {
+            totalCount
+            nodes {
+                id
+                title
+                status
+                total
+                company {
+                    id
+                    name
+                }
+                contact {
+                    id
+                    name
+                    avatarUrl
+                }
+                salesOwner {
+                    id
+                    name
+                    avatarUrl
+                }
+            }
+        }
+    }
+`;
