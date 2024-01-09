@@ -180,7 +180,7 @@ const SidebarCategory = ({
                             "bg-refine-blue-2-light dark:bg-refine-blue-2 dark:bg-opacity-10":
                                 isActive && isSame,
                             "right-0": variant === "desktop",
-                            "-right-2": variant === "mobile",
+                            "-left-2": variant === "mobile",
                         },
                         "h-full",
                     )}
@@ -188,7 +188,7 @@ const SidebarCategory = ({
                         width:
                             variant === "desktop"
                                 ? `calc(${SIDEBAR_WIDTH}px - 32px)`
-                                : `calc(480px - 16px)`,
+                                : `calc(100% + 16px)`,
                     }}
                 />
             </Comp>
@@ -389,6 +389,7 @@ const SidebarLink = ({
                             isActive && isSame,
                         "right-0": variant === "desktop",
                         // "-right-2": variant === "mobile",
+                        "-left-2": variant === "mobile",
                     },
                     "top-0",
                     "h-full",
@@ -397,7 +398,7 @@ const SidebarLink = ({
                     width:
                         variant === "desktop"
                             ? `calc(${SIDEBAR_WIDTH}px - 32px)`
-                            : `100%`,
+                            : `calc(100% + 16px)`,
                 }}
             />
             {line && (

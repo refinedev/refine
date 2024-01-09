@@ -90,7 +90,7 @@ export const DocBreadcrumbs = () => {
                             <li
                                 className={clsx(
                                     "flex-row flex-nowrap",
-                                    item.hideOnMobile ? "none" : "flex",
+                                    item.hideOnMobile ? "hidden" : "flex",
                                 )}
                                 itemScope={true}
                                 itemProp="itemListElement"
