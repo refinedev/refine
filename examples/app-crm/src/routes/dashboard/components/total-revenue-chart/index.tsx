@@ -8,12 +8,14 @@ import { GaugeConfig } from "@ant-design/plots";
 import { Card, Skeleton, Space } from "antd";
 
 import { Text } from "@/components";
-import { TotalRevenueChartQuery } from "@/graphql/types";
+import { DashboardTotalRevenueQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
-import { TOTAL_REVENUE_CHART_QUERY } from "./queries";
+import { DASHBOARD_TOTAL_REVENUE_QUERY } from "./queries";
 
 const Gauge = React.lazy(() => import("@ant-design/plots/es/components/gauge"));
+
+type DealStage = GetFieldsFromList<DashboardTotalRevenueQuery>;
 
 export const DashboardTotalRevenueChart: React.FC = () => {
     const {
@@ -21,7 +23,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
         isError: expectedRevenueIsError,
         error: expectedRevenueError,
         isLoading: expectedRevenueIsLoading,
-    } = useList<GetFieldsFromList<TotalRevenueChartQuery>>({
+    } = useList<DealStage>({
         resource: "dealStages",
         filters: [
             {
@@ -31,7 +33,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
             },
         ],
         meta: {
-            gqlQuery: TOTAL_REVENUE_CHART_QUERY,
+            gqlQuery: DASHBOARD_TOTAL_REVENUE_QUERY,
         },
     });
 
@@ -40,7 +42,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
         isError: realizedRevenueIsError,
         error: realizedRevenueError,
         isLoading: realizedRevenueIsLoading,
-    } = useList<GetFieldsFromList<TotalRevenueChartQuery>>({
+    } = useList<DealStage>({
         resource: "dealStages",
         filters: [
             {
@@ -50,7 +52,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
             },
         ],
         meta: {
-            gqlQuery: TOTAL_REVENUE_CHART_QUERY,
+            gqlQuery: DASHBOARD_TOTAL_REVENUE_QUERY,
         },
     });
 

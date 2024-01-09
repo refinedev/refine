@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
-export const TOTAL_REVENUE_CHART_QUERY = gql`
-    query TotalRevenueChart(
+export const DASHBOARD_TOTAL_REVENUE_QUERY = gql`
+    query DashboardTotalRevenue(
         $filter: DealStageFilter!
         $sorting: [DealStageSort!]
         $paging: OffsetPaging!
@@ -15,7 +15,6 @@ export const TOTAL_REVENUE_CHART_QUERY = gql`
                     }
                 }
             }
-            totalCount
         }
     }
 `;
