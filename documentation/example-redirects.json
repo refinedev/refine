@@ -157,6 +157,10 @@
       "to": "https://github.com/refinedev/refine/tree/master/examples/with-web3"
     },
     {
+      "from": "/docs/examples/tutorial/antd-tutorial",
+      "to": "https://github.com/refinedev/refine/tree/master/examples/tutorial-antd"
+    },
+    {
       "from": "/docs/examples/tutorial/chakra-ui-tutorial",
       "to": "https://github.com/refinedev/refine/tree/master/examples/tutorial-chakra-ui"
     },
