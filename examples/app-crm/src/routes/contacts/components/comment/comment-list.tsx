@@ -88,9 +88,9 @@ const ContactCommentListItem = ({ item }: { item: ContactNote }) => {
                             rules={[
                                 {
                                     required: true,
-                                    pattern: new RegExp(
-                                        /^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i,
-                                    ),
+                                    transform(value) {
+                                        return value?.trim();
+                                    },
                                     message: "Please enter a note",
                                 },
                             ]}
