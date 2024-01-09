@@ -106,64 +106,73 @@ describe("with meta.fields", () => {
     );
 });
 
-describe("with gqlQuery", () => {
-    it("correct response hasura-default", async () => {
-        const client = createClient("hasura-default");
+describe("with gql", () => {
+    it.each(["gqlQuery", "gqlMutation"] as const)(
+        "correct response with hasura-default & %s",
+        async (gqlOperation) => {
+            const client = createClient("hasura-default");
 
-        const { data } = await dataProvider(client, {
-            namingConvention: "hasura-default",
-        }).getOne({
-            resource: "posts",
-            id: "6379bbda-0857-40f2-a277-b401ea6134d7",
-            meta: {
-                gqlQuery: gql`
-                    query GetPost($id: uuid!) {
-                        posts_by_pk(id: $id) {
-                            id
-                            title
-                            content
-                            category {
+            const { data } = await dataProvider(client, {
+                namingConvention: "hasura-default",
+            }).getOne({
+                resource: "posts",
+                id: "6379bbda-0857-40f2-a277-b401ea6134d7",
+                meta: {
+                    [gqlOperation]: gql`
+                        query GetPost($id: uuid!) {
+                            posts_by_pk(id: $id) {
                                 id
+                                title
+                                content
+                                category {
+                                    id
+                                }
                             }
                         }
-                    }
-                `,
-            },
-        });
+                    `,
+                },
+            });
 
-        expect(data["id"]).toEqual("6379bbda-0857-40f2-a277-b401ea6134d7");
-        expect(data["title"]).toEqual(
-            "Aenean ultricies non libero sit amet pellentesque",
-        );
-        expect(data["content"]).toEqual("Vestibulum vulputate sapien arcu.");
-        expect(data["category"].id).toEqual(
-            "e27156c3-9998-434f-bd5b-2b078283ff26",
-        );
-    });
+            expect(data["id"]).toEqual("6379bbda-0857-40f2-a277-b401ea6134d7");
+            expect(data["title"]).toEqual(
+                "Aenean ultricies non libero sit amet pellentesque",
+            );
+            expect(data["content"]).toEqual(
+                "Vestibulum vulputate sapien arcu.",
+            );
+            expect(data["category"].id).toEqual(
+                "e27156c3-9998-434f-bd5b-2b078283ff26",
+            );
+        },
+    );
 
-    it("correct response graphql-default", async () => {
-        const client = createClient("graphql-default");
+    it.each(["gqlQuery", "gqlMutation"] as const)(
+        "correct response with graphql-default & %s",
+        async (gqlOperation) => {
+            const client = createClient("graphql-default");
 
-        const { data } = await dataProvider(client, {
-            namingConvention: "graphql-default",
-        }).getOne({
-            resource: "users",
-            id: 1,
-            meta: {
-                gqlQuery: gql`
-                    query GetUser($id: id!) {
-                        usersByPk(id: $id) {
-                            id
-                            name
-                            email
+            const { data } = await dataProvider(client, {
+                namingConvention: "graphql-default",
+                idType: "Int",
+            }).getOne({
+                resource: "users",
+                id: 1,
+                meta: {
+                    [gqlOperation]: gql`
+                        query GetUser($id: Int!) {
+                            usersByPk(id: $id) {
+                                id
+                                name
+                                email
+                            }
                         }
-                    }
-                `,
-            },
-        });
+                    `,
+                },
+            });
 
-        expect(data["id"]).toEqual(1);
-        expect(data["name"]).toEqual("Refine");
-        expect(data["email"]).toEqual("mail@refine.dev");
-    });
+            expect(data["id"]).toEqual(1);
+            expect(data["name"]).toEqual("Refine");
+            expect(data["email"]).toEqual("mail@refine.dev");
+        },
+    );
 });

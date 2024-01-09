@@ -352,7 +352,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
         ],
     );
 
-// with gqlQuery correct response hasura-default
+// correct response with hasura-default & gqlQuery
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
         query: "query GetPost($id: uuid!) {\n  posts_by_pk(id: $id) {\n    id\n    title\n    content\n    category {\n      id\n    }\n  }\n}\n",
@@ -366,7 +366,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
         ],
         [
             "Date",
-            "Fri, 04 Aug 2023 11:34:58 GMT",
+            "Tue, 09 Jan 2024 10:47:44 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -374,7 +374,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "1ead1aa1cc0eb61cd866c57ffb2a3930",
+            "440df9fd73ffd8de753193ca789d7d1c",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -392,7 +392,53 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "7f167e872c3f5488-IST",
+            "842c1a8f7d4368b3-BUD",
+            "Content-Encoding",
+            "gzip",
+        ],
+    );
+
+// correct response with hasura-default & gqlMutation
+nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query GetPost($id: uuid!) {\n  posts_by_pk(id: $id) {\n    id\n    title\n    content\n    category {\n      id\n    }\n  }\n}\n",
+        variables: { id: "6379bbda-0857-40f2-a277-b401ea6134d7" },
+        operationName: "GetPost",
+    })
+    .reply(
+        200,
+        [
+            "1f8b08000000000000033cce318ec3201040d1aba0a9c3ca066c6c777b896dadc18c231402c40c91a2c8778fd26cf9a557fc37786484e50d2557aeab7bade5f6cde0618151dbd9398fb29b062b4db72b89ca5ae94cd7138ebd36dec20538702458e0971261122df211b64055a49c440c8e8e2c6a608177625128464a4cf5d1082eb0e5c4941816f8a3cac1b5d8eee2d962698c4ca2620994041e5bfbf96a64bae6e3f57f48caf6c3b86939cff3248d36bb747e7052b9ce4e6ad2fbae4638cff3fc000000ffff0300d3bd6b9ee9000000",
+        ],
+        [
+            "Date",
+            "Tue, 09 Jan 2024 10:47:44 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "x-request-id",
+            "847223d54e0652d5ce248eaeb4cf024c",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "842c1a9778a9c1cb-BUD",
             "Content-Encoding",
             "gzip",
         ],
@@ -441,5 +487,101 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "7f167e931c1a92cf-IST",
             "Content-Encoding",
             "gzip",
+        ],
+    );
+
+// correct response with graphql-default & gqlQuery
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query GetUser($id: Int!) {\n  usersByPk(id: $id) {\n    id\n    name\n    email\n  }\n}\n",
+        variables: { id: 1 },
+        operationName: "GetUser",
+    })
+    .reply(
+        200,
+        {
+            data: {
+                usersByPk: { id: 1, name: "Refine", email: "mail@refine.dev" },
+            },
+        },
+        [
+            "Date",
+            "Tue, 09 Jan 2024 11:19:28 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "27",
+            "Connection",
+            "close",
+            "x-request-id",
+            "5125c8a5b015dd5354ff921007246c25",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "842c490a683f1ce6-BUD",
+        ],
+    );
+
+// correct response with graphql-default & gqlMutation
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query GetUser($id: Int!) {\n  usersByPk(id: $id) {\n    id\n    name\n    email\n  }\n}\n",
+        variables: { id: 1 },
+        operationName: "GetUser",
+    })
+    .reply(
+        200,
+        {
+            data: {
+                usersByPk: {
+                    id: 1,
+                    name: "Refine",
+                    email: "mail@refine.dev",
+                },
+            },
+        },
+        [
+            "Date",
+            "Tue, 09 Jan 2024 11:19:29 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "27",
+            "Connection",
+            "close",
+            "x-request-id",
+            "392ec718c4da72894eb86740e800cae4",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "842c4911bebe7339-BUD",
         ],
     );
