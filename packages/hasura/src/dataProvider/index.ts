@@ -44,6 +44,7 @@ const dataProvider = (
                 : camelCase(`${meta?.operation ?? resource}_by_pk`);
 
             const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
+
             if (gqlOperation) {
                 let query = gqlOperation;
                 const variables = {
@@ -55,7 +56,7 @@ const dataProvider = (
                     const stringFields = getOperationFields(gqlOperation);
 
                     query = gqlTag`
-                        query Get${operation}($id: uuid!) {
+                        query Get${operation}($id: ${getIdType(resource)}!) {
                             ${operation}(id: $id) {
                             ${stringFields}
                             }
@@ -259,6 +260,7 @@ const dataProvider = (
                 : camelCase(`insert_${operation}_one`);
 
             const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
             if (gqlOperation) {
                 const response = await client.request<BaseRecord>(
                     gqlOperation,
@@ -296,10 +298,6 @@ const dataProvider = (
                 data: response[insertOperation],
             };
         },
-
-        // "mutation ($objects: [posts_insert_input!]!) {\n      insert_posts (objects: $objects) {\n    returning { id }\n  }\n    }"
-
-        // "mutation CreateManyPosts($objects: [posts_insert_input!]!) {\n  insert_posts(objects: $objects) {\n    returning {\n      id\n    }\n  }\n}\n"
 
         createMany: async ({
             resource,

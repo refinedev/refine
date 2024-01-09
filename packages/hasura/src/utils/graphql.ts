@@ -59,7 +59,6 @@ export const getOperationFields = (documentNode: DocumentNode) => {
         },
     });
 
-    console.log(fieldLines.join("\n").trim());
     return fieldLines.join("\n").trim();
 };
 
