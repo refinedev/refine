@@ -50,11 +50,9 @@
     @apply sm:prose-h3:text-[1.25rem] sm:prose-h3:leading-[1.75rem];
     @apply prose-h3:mb-4 sm:prose-h3:mb-6;
 
-    @apply prose-h4:font-normal;
+    @apply prose-h4:font-semibold;
     @apply prose-h4:text-gray-800 prose-h4:dark:text-gray-100;
-    @apply prose-h4:text-[0.75rem] prose-h4:leading-[1.33rem];
-    @apply sm:prose-h4:text-xs sm:prose-h4:leading-4;
-    @apply sm:prose-h4:uppercase sm:prose-h4:tracking-[2px];
+    @apply prose-h4:text-base;
     @apply prose-h4:mb-4 sm:prose-h4:mb-6;
 
     @apply prose-p:dark:text-gray-100 prose-p:text-gray-800 prose-p:mb-5 prose-p:mt-0;
