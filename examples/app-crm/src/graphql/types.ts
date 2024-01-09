@@ -670,38 +670,87 @@ export type DashboardTotalCountsQuery = {
     deals: Pick<Types.DealConnection, "totalCount">;
 };
 
-export type QuoteCreateMutationVariables = Types.Exact<{
-    input: Types.CreateOneQuoteInput;
+export type QuoteFieldsFragment = Pick<
+    Types.Quote,
+    | "id"
+    | "title"
+    | "status"
+    | "description"
+    | "subTotal"
+    | "total"
+    | "tax"
+    | "createdAt"
+> & {
+    items: Array<
+        Pick<
+            Types.QuoteItem,
+            "title" | "unitPrice" | "quantity" | "discount" | "totalPrice"
+        >
+    >;
+    company: Pick<
+        Types.Company,
+        "id" | "name" | "country" | "website" | "avatarUrl"
+    >;
+    salesOwner: Pick<Types.User, "id" | "name">;
+    contact: Pick<Types.Contact, "id" | "name">;
+};
+
+export type QuotesTableQueryVariables = Types.Exact<{
+    filter: Types.QuoteFilter;
+    sorting: Array<Types.QuoteSort> | Types.QuoteSort;
+    paging: Types.OffsetPaging;
 }>;
 
-export type QuoteCreateMutation = {
-    createOneQuote: Pick<Types.Quote, "id" | "title"> & {
-        salesOwner: Pick<Types.User, "id" | "name">;
-        company: Pick<Types.Company, "id" | "name">;
-        contact: Pick<Types.Contact, "id" | "name">;
+export type QuotesTableQuery = {
+    quotes: Pick<Types.QuoteConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<
+                Types.Quote,
+                | "id"
+                | "title"
+                | "status"
+                | "description"
+                | "subTotal"
+                | "total"
+                | "tax"
+                | "createdAt"
+            > & {
+                items: Array<
+                    Pick<
+                        Types.QuoteItem,
+                        | "title"
+                        | "unitPrice"
+                        | "quantity"
+                        | "discount"
+                        | "totalPrice"
+                    >
+                >;
+                company: Pick<
+                    Types.Company,
+                    "id" | "name" | "country" | "website" | "avatarUrl"
+                >;
+                salesOwner: Pick<Types.User, "id" | "name">;
+                contact: Pick<Types.Contact, "id" | "name">;
+            }
+        >;
     };
 };
 
-export type QuoteUpdateMutationVariables = Types.Exact<{
-    input: Types.UpdateOneQuoteInput;
-}>;
-
-export type QuoteUpdateMutation = {
-    updateOneQuote: Pick<Types.Quote, "id" | "title"> & {
-        salesOwner: Pick<Types.User, "id" | "name">;
-        company: Pick<Types.Company, "id" | "name">;
-        contact: Pick<Types.Contact, "id" | "name">;
-    };
-};
-
-export type QuotePdfExportQueryVariables = Types.Exact<{
+export type QuotesGetQuoteQueryVariables = Types.Exact<{
     id: Types.Scalars["ID"]["input"];
 }>;
 
-export type QuotePdfExportQuery = {
+export type QuotesGetQuoteQuery = {
     quote: Pick<
         Types.Quote,
-        "id" | "title" | "description" | "subTotal" | "total" | "tax"
+        | "id"
+        | "title"
+        | "status"
+        | "description"
+        | "subTotal"
+        | "total"
+        | "tax"
+        | "createdAt"
     > & {
         items: Array<
             Pick<
@@ -718,39 +767,65 @@ export type QuotePdfExportQuery = {
     };
 };
 
-export type ProductsServicesQuoteFormMutationVariables = Types.Exact<{
-    input: Types.UpdateOneQuoteInput;
+export type QuotesCreateQuoteMutationVariables = Types.Exact<{
+    input: Types.CreateOneQuoteInput;
 }>;
 
-export type ProductsServicesQuoteFormMutation = {
-    updateOneQuote: Pick<Types.Quote, "id" | "title" | "total" | "subTotal"> & {
+export type QuotesCreateQuoteMutation = {
+    createOneQuote: Pick<
+        Types.Quote,
+        | "id"
+        | "title"
+        | "status"
+        | "description"
+        | "subTotal"
+        | "total"
+        | "tax"
+        | "createdAt"
+    > & {
         items: Array<
             Pick<
                 Types.QuoteItem,
-                "totalPrice" | "title" | "unitPrice" | "quantity" | "discount"
+                "title" | "unitPrice" | "quantity" | "discount" | "totalPrice"
             >
         >;
+        company: Pick<
+            Types.Company,
+            "id" | "name" | "country" | "website" | "avatarUrl"
+        >;
+        salesOwner: Pick<Types.User, "id" | "name">;
+        contact: Pick<Types.Contact, "id" | "name">;
     };
 };
 
-export type QuotesTableQueryVariables = Types.Exact<{
-    filter: Types.QuoteFilter;
-    sorting: Array<Types.QuoteSort> | Types.QuoteSort;
-    paging: Types.OffsetPaging;
+export type QuotesUpdateQuoteMutationVariables = Types.Exact<{
+    input: Types.UpdateOneQuoteInput;
 }>;
 
-export type QuotesTableQuery = {
-    quotes: Pick<Types.QuoteConnection, "totalCount"> & {
-        nodes: Array<
+export type QuotesUpdateQuoteMutation = {
+    updateOneQuote: Pick<
+        Types.Quote,
+        | "id"
+        | "title"
+        | "status"
+        | "description"
+        | "subTotal"
+        | "total"
+        | "tax"
+        | "createdAt"
+    > & {
+        items: Array<
             Pick<
-                Types.Quote,
-                "id" | "title" | "status" | "total" | "createdAt"
-            > & {
-                company: Pick<Types.Company, "id" | "name" | "avatarUrl">;
-                contact: Pick<Types.Contact, "id" | "name" | "avatarUrl">;
-                salesOwner: Pick<Types.User, "id" | "name" | "avatarUrl">;
-            }
+                Types.QuoteItem,
+                "title" | "unitPrice" | "quantity" | "discount" | "totalPrice"
+            >
         >;
+        company: Pick<
+            Types.Company,
+            "id" | "name" | "country" | "website" | "avatarUrl"
+        >;
+        salesOwner: Pick<Types.User, "id" | "name">;
+        contact: Pick<Types.Contact, "id" | "name">;
     };
 };
 
@@ -764,6 +839,60 @@ export type TaskStagesSelectQueryVariables = Types.Exact<{
 
 export type TaskStagesSelectQuery = {
     taskStages: { nodes: Array<Pick<Types.TaskStage, "id" | "title">> };
+};
+
+export type KanbanCreateStageMutationVariables = Types.Exact<{
+    input: Types.CreateOneTaskStageInput;
+}>;
+
+export type KanbanCreateStageMutation = {
+    createOneTaskStage: Pick<Types.TaskStage, "id" | "title" | "createdAt">;
+};
+
+export type KanbanCreateTaskMutationVariables = Types.Exact<{
+    input: Types.CreateOneTaskInput;
+}>;
+
+export type KanbanCreateTaskMutation = {
+    createOneTask: Pick<Types.Task, "id">;
+};
+
+export type KanbanUpdateStageMutationVariables = Types.Exact<{
+    input: Types.UpdateOneTaskStageInput;
+}>;
+
+export type KanbanUpdateStageMutation = {
+    updateOneTaskStage: Pick<Types.TaskStage, "id" | "title">;
+};
+
+export type KanbanGetTaskQueryVariables = Types.Exact<{
+    id: Types.Scalars["ID"]["input"];
+}>;
+
+export type KanbanGetTaskQuery = {
+    task: Pick<
+        Types.Task,
+        "id" | "title" | "completed" | "description" | "dueDate"
+    > & {
+        stage?: Types.Maybe<Pick<Types.TaskStage, "id" | "title">>;
+        users: Array<Pick<Types.User, "id" | "name" | "avatarUrl">>;
+        checklist: Array<Pick<Types.CheckListItem, "title" | "checked">>;
+    };
+};
+
+export type KanbanUpdateTaskMutationVariables = Types.Exact<{
+    input: Types.UpdateOneTaskInput;
+}>;
+
+export type KanbanUpdateTaskMutation = {
+    updateOneTask: Pick<
+        Types.Task,
+        "id" | "title" | "completed" | "description" | "dueDate"
+    > & {
+        stage?: Types.Maybe<Pick<Types.TaskStage, "id" | "title">>;
+        users: Array<Pick<Types.User, "id" | "name" | "avatarUrl">>;
+        checklist: Array<Pick<Types.CheckListItem, "title" | "checked">>;
+    };
 };
 
 export type SalesCompaniesSelectQueryVariables = Types.Exact<{

@@ -6,6 +6,8 @@ import { Button, Form, Select, Space } from "antd";
 import { Task } from "@/graphql/schema.types";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 
+import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
+
 type Props = {
     initialValues: {
         userIds?: { label: string; value: string }[];
@@ -21,6 +23,9 @@ export const UsersForm = ({ initialValues, cancelForm }: Props) => {
         redirect: false,
         onMutationSuccess: () => {
             cancelForm();
+        },
+        meta: {
+            gqlMutation: KANBAN_UPDATE_TASK_MUTATION,
         },
     });
 
