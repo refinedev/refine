@@ -660,28 +660,6 @@ export type DashboardTotalRevenueQuery = {
     };
 };
 
-export type TotalRevenueChartQueryVariables = Types.Exact<{
-    filter: Types.DealStageFilter;
-    sorting?: Types.InputMaybe<
-        Array<Types.DealStageSort> | Types.DealStageSort
-    >;
-    paging: Types.OffsetPaging;
-}>;
-
-export type TotalRevenueChartQuery = {
-    dealStages: Pick<Types.DealStageConnection, "totalCount"> & {
-        nodes: Array<
-            Pick<Types.DealStage, "title"> & {
-                dealsAggregate: Array<{
-                    sum?: Types.Maybe<
-                        Pick<Types.DealStageDealsSumAggregate, "value">
-                    >;
-                }>;
-            }
-        >;
-    };
-};
-
 export type DashboardTotalCountsQueryVariables = Types.Exact<{
     [key: string]: never;
 }>;
@@ -712,6 +690,30 @@ export type QuoteUpdateMutation = {
     updateOneQuote: Pick<Types.Quote, "id" | "title"> & {
         salesOwner: Pick<Types.User, "id" | "name">;
         company: Pick<Types.Company, "id" | "name">;
+        contact: Pick<Types.Contact, "id" | "name">;
+    };
+};
+
+export type QuotePdfExportQueryVariables = Types.Exact<{
+    id: Types.Scalars["ID"]["input"];
+}>;
+
+export type QuotePdfExportQuery = {
+    quote: Pick<
+        Types.Quote,
+        "id" | "title" | "description" | "subTotal" | "total" | "tax"
+    > & {
+        items: Array<
+            Pick<
+                Types.QuoteItem,
+                "title" | "unitPrice" | "quantity" | "discount" | "totalPrice"
+            >
+        >;
+        company: Pick<
+            Types.Company,
+            "id" | "name" | "country" | "website" | "avatarUrl"
+        >;
+        salesOwner: Pick<Types.User, "id" | "name">;
         contact: Pick<Types.Contact, "id" | "name">;
     };
 };
