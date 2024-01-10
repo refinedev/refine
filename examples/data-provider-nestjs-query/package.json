@@ -10,9 +10,9 @@
   },
   "private": true,
   "dependencies": {
-    "@refinedev/antd": "^5.37.1",
-    "@refinedev/cli": "^2.16.21",
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/antd": "^5.37.2",
+    "@refinedev/cli": "^2.16.22",
+    "@refinedev/core": "^4.46.2",
     "@refinedev/react-router-v6": "^4.5.5",
     "@refinedev/nestjs-query": "^1.1.1",
     "@uiw/react-md-editor": "^3.19.5",

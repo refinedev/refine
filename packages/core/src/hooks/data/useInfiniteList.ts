@@ -230,8 +230,8 @@ export const useInfiniteList = <
         GetListResponse<TQueryFnData>,
         TError,
         GetListResponse<TData>
-    >(
-        keys()
+    >({
+        queryKey: keys()
             .data(pickedDataProvider)
             .resource(identifier)
             .action("infinite")
@@ -250,7 +250,7 @@ export const useInfiniteList = <
                 }),
             })
             .get(preferLegacyKeys),
-        ({ queryKey, pageParam, signal }) => {
+        queryFn: ({ queryKey, pageParam, signal }) => {
             const paginationProperties = {
                 ...prefferedPagination,
                 current: pageParam,
@@ -288,50 +288,44 @@ export const useInfiniteList = <
                 };
             });
         },
-        {
-            getNextPageParam: (lastPage) => getNextPageParam(lastPage),
-            getPreviousPageParam: (lastPage) => getPreviousPageParam(lastPage),
-            ...queryOptions,
-            onSuccess: (data) => {
-                queryOptions?.onSuccess?.(data);
+        getNextPageParam: (lastPage) => getNextPageParam(lastPage),
+        getPreviousPageParam: (lastPage) => getPreviousPageParam(lastPage),
+        ...queryOptions,
+        onSuccess: (data) => {
+            queryOptions?.onSuccess?.(data);
 
-                const notificationConfig =
-                    typeof successNotification === "function"
-                        ? successNotification(
-                              data,
-                              notificationValues,
-                              identifier,
-                          )
-                        : successNotification;
+            const notificationConfig =
+                typeof successNotification === "function"
+                    ? successNotification(data, notificationValues, identifier)
+                    : successNotification;
 
-                handleNotification(notificationConfig);
-            },
-            onError: (err: TError) => {
-                checkError(err);
-                queryOptions?.onError?.(err);
-
-                const notificationConfig =
-                    typeof errorNotification === "function"
-                        ? errorNotification(err, notificationValues, identifier)
-                        : errorNotification;
-
-                handleNotification(notificationConfig, {
-                    key: `${identifier}-useInfiniteList-notification`,
-                    message: translate(
-                        "notifications.error",
-                        { statusCode: err.statusCode },
-                        `Error (status code: ${err.statusCode})`,
-                    ),
-                    description: err.message,
-                    type: "error",
-                });
-            },
-            meta: {
-                ...queryOptions?.meta,
-                ...getXRay("useInfiniteList", preferLegacyKeys),
-            },
+            handleNotification(notificationConfig);
         },
-    );
+        onError: (err: TError) => {
+            checkError(err);
+            queryOptions?.onError?.(err);
+
+            const notificationConfig =
+                typeof errorNotification === "function"
+                    ? errorNotification(err, notificationValues, identifier)
+                    : errorNotification;
+
+            handleNotification(notificationConfig, {
+                key: `${identifier}-useInfiniteList-notification`,
+                message: translate(
+                    "notifications.error",
+                    { statusCode: err.statusCode },
+                    `Error (status code: ${err.statusCode})`,
+                ),
+                description: err.message,
+                type: "error",
+            });
+        },
+        meta: {
+            ...queryOptions?.meta,
+            ...getXRay("useInfiniteList", preferLegacyKeys),
+        },
+    });
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: queryResponse.isFetching,

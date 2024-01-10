@@ -120,91 +120,85 @@ export function useRegister<TVariables = {}>({
         Error | RefineError,
         TVariables,
         unknown
-    >(
-        keys().auth().action("register").get(preferLegacyKeys),
-        registerFromContext,
-        {
-            onSuccess: async ({ success, redirectTo, error }) => {
-                if (success) {
-                    close?.("register-error");
-                }
+    >({
+        mutationKey: keys().auth().action("register").get(preferLegacyKeys),
+        mutationFn: registerFromContext,
+        onSuccess: async ({ success, redirectTo, error }) => {
+            if (success) {
+                close?.("register-error");
+            }
 
-                if (error || !success) {
-                    open?.(buildNotification(error));
-                }
-
-                if (redirectTo) {
-                    if (routerType === "legacy") {
-                        replace(redirectTo);
-                    } else {
-                        go({ to: redirectTo, type: "replace" });
-                    }
-                } else {
-                    if (routerType === "legacy") {
-                        replace("/");
-                    }
-                }
-
-                await invalidateAuthStore();
-            },
-            onError: (error: any) => {
+            if (error || !success) {
                 open?.(buildNotification(error));
-            },
-            ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
-            meta: {
-                ...(v3LegacyAuthProviderCompatible === true
-                    ? {}
-                    : mutationOptions?.meta),
-                ...getXRay("useRegister", preferLegacyKeys),
-            },
+            }
+
+            if (redirectTo) {
+                if (routerType === "legacy") {
+                    replace(redirectTo);
+                } else {
+                    go({ to: redirectTo, type: "replace" });
+                }
+            } else {
+                if (routerType === "legacy") {
+                    replace("/");
+                }
+            }
+
+            await invalidateAuthStore();
         },
-    );
+        onError: (error: any) => {
+            open?.(buildNotification(error));
+        },
+        ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
+        meta: {
+            ...(v3LegacyAuthProviderCompatible === true
+                ? {}
+                : mutationOptions?.meta),
+            ...getXRay("useRegister", preferLegacyKeys),
+        },
+    });
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TRegisterData,
         Error | RefineError,
         TVariables,
         unknown
-    >(
-        [
+    >({
+        mutationKey: [
             ...keys().auth().action("register").get(preferLegacyKeys),
             "v3LegacyAuthProviderCompatible",
         ],
-        legacyRegisterFromContext,
-        {
-            onSuccess: async (redirectPathFromAuth) => {
-                if (redirectPathFromAuth !== false) {
-                    if (redirectPathFromAuth) {
-                        if (routerType === "legacy") {
-                            replace(redirectPathFromAuth);
-                        } else {
-                            go({ to: redirectPathFromAuth, type: "replace" });
-                        }
+        mutationFn: legacyRegisterFromContext,
+        onSuccess: async (redirectPathFromAuth) => {
+            if (redirectPathFromAuth !== false) {
+                if (redirectPathFromAuth) {
+                    if (routerType === "legacy") {
+                        replace(redirectPathFromAuth);
                     } else {
-                        if (routerType === "legacy") {
-                            replace("/");
-                        } else {
-                            go({ to: "/", type: "replace" });
-                        }
+                        go({ to: redirectPathFromAuth, type: "replace" });
                     }
-
-                    await invalidateAuthStore();
-
-                    close?.("register-error");
+                } else {
+                    if (routerType === "legacy") {
+                        replace("/");
+                    } else {
+                        go({ to: "/", type: "replace" });
+                    }
                 }
-            },
-            onError: (error: any) => {
-                open?.(buildNotification(error));
-            },
-            ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
-            meta: {
-                ...(v3LegacyAuthProviderCompatible
-                    ? mutationOptions?.meta
-                    : {}),
-                ...getXRay("useRegister", preferLegacyKeys),
-            },
+
+                await invalidateAuthStore();
+
+                close?.("register-error");
+            }
         },
-    );
+        onError: (error: any) => {
+            open?.(buildNotification(error));
+        },
+        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
+        meta: {
+            ...(v3LegacyAuthProviderCompatible ? mutationOptions?.meta : {}),
+            ...getXRay("useRegister", preferLegacyKeys),
+        },
+    });
 
     return v3LegacyAuthProviderCompatible
         ? v3LegacyAuthProviderCompatibleMutation

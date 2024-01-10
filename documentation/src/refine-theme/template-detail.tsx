@@ -81,6 +81,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                     </div>
                     <div
                         className={clsx(
+                            "flex",
                             "mt-8 landing-sm:mt-12 landing-md:mt-16",
                             "rounded-lg landing-md:rounded-xl landing-lg:rounded-3xl",
                             "-mx-4 landing-sm:-mx-0",
@@ -105,7 +106,8 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                             "items-start",
                             "gap-6",
                             "mt-8 landing-sm:mt-12 landing-md:mt-16",
-                            "px-0 landing-sm:px-10 landing-md:px-14 landing-lg:px-10",
+                            "px-0 landing-sm:pl-10 landing-md:pl-14 landing-lg:pl-10",
+                            "px-0 landing-sm:pr-10 landing-md:pr-10 landing-lg:pr-10",
                             "not-prose",
                         )}
                     >
@@ -170,7 +172,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                                 svgId="mobile"
                                 className={clsx(
                                     "grid landing-md:hidden",
-                                    "grid-cols-2 landing-sm:grid-cols-4",
+                                    "grid-cols-2 sm:grid-cols-4",
                                     "gap-6",
                                     "flex-shrink-0",
                                 )}
@@ -183,9 +185,14 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                                 className={clsx(
                                     "flex",
                                     "flex-col",
-                                    "landing-lg:pl-4",
+                                    "landing-lg:pl-4 landing-lg:pr-6",
                                 )}
                             >
+                                <div className={clsx("mb-2 landing-sm:mb-4")}>
+                                    <CommonRunLocalPrompt
+                                        path={data.runOnYourLocalPath}
+                                    />
+                                </div>
                                 <div className={clsx("not-prose")}>
                                     <h2
                                         className={clsx(
@@ -210,11 +217,6 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                                     {data.description}
                                 </ReactMarkdown>
                             </div>
-                            <div className={clsx()}>
-                                <CommonRunLocalPrompt
-                                    path={data.runOnYourLocalPath}
-                                />
-                            </div>
                         </div>
                         <Integrations
                             svgId="desktop"
@@ -222,7 +224,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                                 "hidden landing-md:grid",
                                 "grid-cols-1 landing-lg:grid-cols-2",
                                 "landing-md:gap-10",
-                                "px-0 landing-lg:px-10",
+                                "pl-0 landing-lg:pl-10",
                                 "landing-md:ml-6 landing-lg:ml-0",
                                 "flex-shrink-0",
                                 "justify-self-end",
@@ -350,7 +352,8 @@ const IntegrationBadge = (props: {
                 className={clsx(
                     "flex",
                     "items-center",
-                    "py-2 pl-2 pr-4",
+                    "h-8",
+                    "pl-2 pr-4",
                     "gap-2",
                     "rounded-full",
                     "border dark:border-gray-700 border-gray-200",

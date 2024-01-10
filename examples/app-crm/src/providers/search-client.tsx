@@ -1,8 +1,13 @@
 import algoliasearch from "algoliasearch/lite";
 
-const APP_ID = "SIY27MS63R";
-const API_KEY = "7fd59a730930ed2490543821e632aa91";
+const ALGOLIA_APP_ID = import.meta.env.VITE_ALGOLIA_APP_ID;
 
-export const searchClient = algoliasearch(APP_ID, API_KEY);
+const ALGOLIA_API_KEY = import.meta.env.VITE_ALGOLIA_API_KEY;
+
+const isAlgoliaEnabled = ALGOLIA_APP_ID && ALGOLIA_API_KEY;
+
+export const searchClient = isAlgoliaEnabled
+    ? algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY)
+    : false;
 
 export const indexName = "refine-crm";

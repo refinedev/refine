@@ -148,8 +148,8 @@ export const UnitCircle: React.FC<Props> = ({
                 //         : "var(--tutorial-toc-text-color-light)",
                 // }}
                 className={clsx("text-[2.5rem]", {
-                    "text-gray-500": !isSelected,
-                    "text-gray-900 dark:text-white": isSelected,
+                    "text-gray-500 dark:text-gray-400": !isSelected,
+                    "text-gray-800 dark:text-gray-0": isSelected,
                 })}
             >
                 {unit.no}

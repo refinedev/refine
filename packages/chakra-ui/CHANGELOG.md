@@ -1,5 +1,11 @@
 # @refinedev/chakra-ui
 
+## 2.27.2
+
+### Patch Changes
+
+-   [#5465](https://github.com/refinedev/refine/pull/5465) [`00e00cbd98`](https://github.com/refinedev/refine/commit/00e00cbd98c34046ab83b299ede83401ae74fec1) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the type issue between `remark-gfm` and `react-markdown`. #5463
+
 ## 2.27.1
 
 ### Patch Changes

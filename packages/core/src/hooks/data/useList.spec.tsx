@@ -1,6 +1,11 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
+import {
+    MockJSONServer,
+    mockRouterBindings,
+    queryClient,
+    TestWrapper,
+} from "@test";
 
 import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineContextProvider } from "../../interfaces";
@@ -727,6 +732,91 @@ describe("useList Hook", () => {
             });
 
             expect(onErrorMock).toBeCalledWith(new Error("Error"));
+        });
+
+        it("should override `queryKey` with `queryOptions.queryKey`", async () => {
+            const getListMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useList({
+                        resource: "posts",
+                        queryOptions: {
+                            queryKey: ["foo", "bar"],
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getList: getListMock,
+                            },
+                        },
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getListMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        queryContext: expect.objectContaining({
+                            queryKey: ["foo", "bar"],
+                        }),
+                    }),
+                }),
+            );
+
+            expect(
+                queryClient.getQueryCache().findAll({
+                    queryKey: ["foo", "bar"],
+                }),
+            ).toHaveLength(1);
+        });
+
+        it("should override `queryFn` with `queryOptions.queryFn`", async () => {
+            const getListMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const queryFnMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useList({
+                        resource: "posts",
+                        queryOptions: {
+                            queryFn: queryFnMock,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getList: getListMock,
+                            },
+                        },
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getListMock).not.toBeCalled();
+            expect(queryFnMock).toBeCalled();
         });
     });
 

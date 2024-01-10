@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { TestWrapper } from "@test";
+import { TestWrapper, queryClient } from "@test";
 
 import { useCan } from ".";
 import { useCanWithoutCache } from "..";
@@ -173,6 +173,77 @@ describe("useCan Hook", () => {
         await waitFor(() => {
             expect(result.current.data).toEqual({ can: true });
         });
+    });
+
+    it("should override `queryKey` with `queryOptions.queryKey`", async () => {
+        const canMock = jest.fn().mockResolvedValue({
+            can: true,
+            reason: "Access granted",
+        });
+
+        const { result } = renderHook(
+            () =>
+                useCan({
+                    action: "list",
+                    resource: "posts",
+                    queryOptions: {
+                        queryKey: ["foo", "bar"],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    accessControlProvider: {
+                        can: canMock,
+                    },
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(
+            queryClient.getQueryCache().findAll({
+                queryKey: ["foo", "bar"],
+            }),
+        ).toHaveLength(1);
+    });
+
+    it("should override `queryFn` with `queryOptions.queryFn`", async () => {
+        const canMock = jest.fn().mockResolvedValue({
+            can: true,
+            reason: "Access granted",
+        });
+        const queryFnMock = jest.fn().mockResolvedValue({
+            can: true,
+            reason: "Access granted",
+        });
+
+        const { result } = renderHook(
+            () =>
+                useCan({
+                    action: "list",
+                    resource: "posts",
+                    queryOptions: {
+                        queryFn: queryFnMock,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    accessControlProvider: {
+                        can: canMock,
+                    },
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(canMock).not.toBeCalled();
+        expect(queryFnMock).toBeCalled();
     });
 });
 

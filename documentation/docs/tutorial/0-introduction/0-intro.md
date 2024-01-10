@@ -33,7 +33,7 @@ You can take a look at the similar app that we'll be constructing in this tutori
 
 You will learn all the necessary steps to get started with Refine, from setting up your development environment to launching your app. 🚀
 
-> If you would rather start exploring Refine with some examples before diving in, visit our [examples](/docs/examples/) page and choose an example to open and explore it in an online editor.
+> If you would rather start exploring Refine with some examples before diving in, visit our [examples](/templates/) page and choose an example to open and explore it in an online editor.
 
 :::note Thank you Astro Community! ❤️
 

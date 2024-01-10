@@ -174,8 +174,8 @@ export const useDelete = <
         TError,
         DeleteParams<TData, TError, TVariables>,
         DeleteContext<TData>
-    >(
-        ({
+    >({
+        mutationFn: ({
             id,
             mutationMode,
             undoableTimeout,
@@ -255,263 +255,248 @@ export const useDelete = <
             );
             return deletePromise;
         },
-        {
-            onMutate: async ({
-                id,
-                resource: resourceName,
-                mutationMode,
-                dataProviderName,
-                meta,
-                metaData,
-            }) => {
-                const { identifier } = select(resourceName);
+        onMutate: async ({
+            id,
+            resource: resourceName,
+            mutationMode,
+            dataProviderName,
+            meta,
+            metaData,
+        }) => {
+            const { identifier } = select(resourceName);
 
-                const {
-                    gqlMutation: _,
-                    gqlQuery: __,
-                    ...preferredMeta
-                } = pickNotDeprecated(meta, metaData) ?? {};
+            const {
+                gqlMutation: _,
+                gqlQuery: __,
+                ...preferredMeta
+            } = pickNotDeprecated(meta, metaData) ?? {};
 
-                const queryKey = queryKeysReplacement(preferLegacyKeys)(
-                    identifier,
-                    pickDataProvider(identifier, dataProviderName, resources),
-                    preferredMeta,
-                );
+            const queryKey = queryKeysReplacement(preferLegacyKeys)(
+                identifier,
+                pickDataProvider(identifier, dataProviderName, resources),
+                preferredMeta,
+            );
 
-                const resourceKeys = keys()
-                    .data(
-                        pickDataProvider(
-                            identifier,
-                            dataProviderName,
-                            resources,
-                        ),
-                    )
-                    .resource(identifier);
+            const resourceKeys = keys()
+                .data(pickDataProvider(identifier, dataProviderName, resources))
+                .resource(identifier);
 
-                const mutationModePropOrContext =
-                    mutationMode ?? mutationModeContext;
+            const mutationModePropOrContext =
+                mutationMode ?? mutationModeContext;
 
-                await queryClient.cancelQueries(
-                    resourceKeys.get(preferLegacyKeys),
-                    undefined,
-                    {
-                        silent: true,
+            await queryClient.cancelQueries(
+                resourceKeys.get(preferLegacyKeys),
+                undefined,
+                {
+                    silent: true,
+                },
+            );
+
+            const previousQueries: PreviousQuery<TData>[] =
+                queryClient.getQueriesData(resourceKeys.get(preferLegacyKeys));
+
+            if (mutationModePropOrContext !== "pessimistic") {
+                // Set the previous queries to the new ones:
+                queryClient.setQueriesData(
+                    resourceKeys
+                        .action("list")
+                        .params(preferredMeta ?? {})
+                        .get(preferLegacyKeys),
+                    (previous?: GetListResponse<TData> | null) => {
+                        if (!previous) {
+                            return null;
+                        }
+                        const data = previous.data.filter(
+                            (record: TData) =>
+                                record.id?.toString() !== id.toString(),
+                        );
+
+                        return {
+                            data,
+                            total: previous.total - 1,
+                        };
                     },
                 );
 
-                const previousQueries: PreviousQuery<TData>[] =
-                    queryClient.getQueriesData(
-                        resourceKeys.get(preferLegacyKeys),
-                    );
+                queryClient.setQueriesData(
+                    resourceKeys.action("many").get(preferLegacyKeys),
+                    (previous?: GetListResponse<TData> | null) => {
+                        if (!previous) {
+                            return null;
+                        }
+                        const data = previous.data.filter((record: TData) => {
+                            return record.id?.toString() !== id?.toString();
+                        });
 
-                if (mutationModePropOrContext !== "pessimistic") {
-                    // Set the previous queries to the new ones:
-                    queryClient.setQueriesData(
-                        resourceKeys
-                            .action("list")
-                            .params(preferredMeta ?? {})
-                            .get(preferLegacyKeys),
-                        (previous?: GetListResponse<TData> | null) => {
-                            if (!previous) {
-                                return null;
-                            }
-                            const data = previous.data.filter(
-                                (record: TData) =>
-                                    record.id?.toString() !== id.toString(),
-                            );
+                        return {
+                            ...previous,
+                            data,
+                        };
+                    },
+                );
+            }
 
-                            return {
-                                data,
-                                total: previous.total - 1,
-                            };
-                        },
-                    );
-
-                    queryClient.setQueriesData(
-                        resourceKeys.action("many").get(preferLegacyKeys),
-                        (previous?: GetListResponse<TData> | null) => {
-                            if (!previous) {
-                                return null;
-                            }
-                            const data = previous.data.filter(
-                                (record: TData) => {
-                                    return (
-                                        record.id?.toString() !== id?.toString()
-                                    );
-                                },
-                            );
-
-                            return {
-                                ...previous,
-                                data,
-                            };
-                        },
-                    );
-                }
-
-                return {
-                    previousQueries,
-                    queryKey,
-                };
+            return {
+                previousQueries,
+                queryKey,
+            };
+        },
+        onSettled: (
+            _data,
+            _error,
+            {
+                id,
+                resource: resourceName,
+                dataProviderName,
+                invalidates = ["list", "many"],
             },
-            onSettled: (
-                _data,
-                _error,
-                {
-                    id,
-                    resource: resourceName,
+        ) => {
+            const { identifier } = select(resourceName);
+
+            // invalidate the cache for the list and many queries:
+            invalidateStore({
+                resource: identifier,
+                dataProviderName: pickDataProvider(
+                    identifier,
                     dataProviderName,
-                    invalidates = ["list", "many"],
-                },
-            ) => {
-                const { identifier } = select(resourceName);
+                    resources,
+                ),
+                invalidates,
+            });
 
-                // invalidate the cache for the list and many queries:
-                invalidateStore({
-                    resource: identifier,
-                    dataProviderName: pickDataProvider(
-                        identifier,
-                        dataProviderName,
-                        resources,
-                    ),
-                    invalidates,
-                });
-
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: { id, resource: identifier },
-                });
+            notificationDispatch({
+                type: ActionTypes.REMOVE,
+                payload: { id, resource: identifier },
+            });
+        },
+        onSuccess: (
+            _data,
+            {
+                id,
+                resource: resourceName,
+                successNotification,
+                dataProviderName: dataProviderNameFromProp,
+                meta,
+                metaData,
             },
-            onSuccess: (
-                _data,
-                {
-                    id,
-                    resource: resourceName,
-                    successNotification,
-                    dataProviderName: dataProviderNameFromProp,
-                    meta,
-                    metaData,
+            context,
+        ) => {
+            const { resource, identifier } = select(resourceName);
+            const resourceSingular = textTransformers.singular(identifier);
+
+            const dataProviderName = pickDataProvider(
+                identifier,
+                dataProviderNameFromProp,
+                resources,
+            );
+
+            const combinedMeta = getMeta({
+                resource,
+                meta: pickNotDeprecated(meta, metaData),
+            });
+
+            // Remove the queries from the cache:
+            queryClient.removeQueries(context?.queryKey.detail(id));
+
+            const notificationConfig =
+                typeof successNotification === "function"
+                    ? successNotification(_data, id, identifier)
+                    : successNotification;
+
+            handleNotification(notificationConfig, {
+                key: `${id}-${identifier}-notification`,
+                description: translate("notifications.success", "Success"),
+                message: translate(
+                    "notifications.deleteSuccess",
+                    {
+                        resource: translate(
+                            `${identifier}.${identifier}`,
+                            resourceSingular,
+                        ),
+                    },
+                    `Successfully deleted a ${resourceSingular}`,
+                ),
+                type: "success",
+            });
+
+            publish?.({
+                channel: `resources/${resource.name}`,
+                type: "deleted",
+                payload: {
+                    ids: [id],
                 },
-                context,
-            ) => {
-                const { resource, identifier } = select(resourceName);
+                date: new Date(),
+                meta: {
+                    ...combinedMeta,
+                    dataProviderName,
+                },
+            });
+
+            const {
+                fields: _fields,
+                operation: _operation,
+                variables: _variables,
+                ...rest
+            } = combinedMeta || {};
+            log?.mutate({
+                action: "delete",
+                resource: resource.name,
+                meta: {
+                    id,
+                    dataProviderName,
+                    ...rest,
+                },
+            });
+
+            // Remove the queries from the cache:
+            queryClient.removeQueries(context?.queryKey.detail(id));
+        },
+        onError: (
+            err: TError,
+            { id, resource: resourceName, errorNotification },
+            context,
+        ) => {
+            const { identifier } = select(resourceName);
+
+            // set back the queries to the context:
+            if (context) {
+                for (const query of context.previousQueries) {
+                    queryClient.setQueryData(query[0], query[1]);
+                }
+            }
+
+            if (err.message !== "mutationCancelled") {
+                checkError(err);
+
                 const resourceSingular = textTransformers.singular(identifier);
 
-                const dataProviderName = pickDataProvider(
-                    identifier,
-                    dataProviderNameFromProp,
-                    resources,
-                );
-
-                const combinedMeta = getMeta({
-                    resource,
-                    meta: pickNotDeprecated(meta, metaData),
-                });
-
-                // Remove the queries from the cache:
-                queryClient.removeQueries(context?.queryKey.detail(id));
-
                 const notificationConfig =
-                    typeof successNotification === "function"
-                        ? successNotification(_data, id, identifier)
-                        : successNotification;
+                    typeof errorNotification === "function"
+                        ? errorNotification(err, id, identifier)
+                        : errorNotification;
 
                 handleNotification(notificationConfig, {
                     key: `${id}-${identifier}-notification`,
-                    description: translate("notifications.success", "Success"),
                     message: translate(
-                        "notifications.deleteSuccess",
+                        "notifications.deleteError",
                         {
-                            resource: translate(
-                                `${identifier}.${identifier}`,
-                                resourceSingular,
-                            ),
+                            resource: resourceSingular,
+                            statusCode: err.statusCode,
                         },
-                        `Successfully deleted a ${resourceSingular}`,
+                        `Error (status code: ${err.statusCode})`,
                     ),
-                    type: "success",
+                    description: err.message,
+                    type: "error",
                 });
-
-                publish?.({
-                    channel: `resources/${resource.name}`,
-                    type: "deleted",
-                    payload: {
-                        ids: [id],
-                    },
-                    date: new Date(),
-                    meta: {
-                        ...combinedMeta,
-                        dataProviderName,
-                    },
-                });
-
-                const {
-                    fields: _fields,
-                    operation: _operation,
-                    variables: _variables,
-                    ...rest
-                } = combinedMeta || {};
-                log?.mutate({
-                    action: "delete",
-                    resource: resource.name,
-                    meta: {
-                        id,
-                        dataProviderName,
-                        ...rest,
-                    },
-                });
-
-                // Remove the queries from the cache:
-                queryClient.removeQueries(context?.queryKey.detail(id));
-            },
-            onError: (
-                err: TError,
-                { id, resource: resourceName, errorNotification },
-                context,
-            ) => {
-                const { identifier } = select(resourceName);
-
-                // set back the queries to the context:
-                if (context) {
-                    for (const query of context.previousQueries) {
-                        queryClient.setQueryData(query[0], query[1]);
-                    }
-                }
-
-                if (err.message !== "mutationCancelled") {
-                    checkError(err);
-
-                    const resourceSingular =
-                        textTransformers.singular(identifier);
-
-                    const notificationConfig =
-                        typeof errorNotification === "function"
-                            ? errorNotification(err, id, identifier)
-                            : errorNotification;
-
-                    handleNotification(notificationConfig, {
-                        key: `${id}-${identifier}-notification`,
-                        message: translate(
-                            "notifications.deleteError",
-                            {
-                                resource: resourceSingular,
-                                statusCode: err.statusCode,
-                            },
-                            `Error (status code: ${err.statusCode})`,
-                        ),
-                        description: err.message,
-                        type: "error",
-                    });
-                }
-            },
-            mutationKey: keys().data().mutation("delete").get(preferLegacyKeys),
-            ...mutationOptions,
-            meta: {
-                ...mutationOptions?.meta,
-                ...getXRay("useDelete", preferLegacyKeys),
-            },
+            }
         },
-    );
+        mutationKey: keys().data().mutation("delete").get(preferLegacyKeys),
+        ...mutationOptions,
+        meta: {
+            ...mutationOptions?.meta,
+            ...getXRay("useDelete", preferLegacyKeys),
+        },
+    });
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: mutation.isLoading,

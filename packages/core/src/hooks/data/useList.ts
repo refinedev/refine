@@ -227,8 +227,8 @@ export const useList = <
         GetListResponse<TQueryFnData>,
         TError,
         GetListResponse<TData>
-    >(
-        keys()
+    >({
+        queryKey: keys()
             .data(pickedDataProvider)
             .resource(identifier ?? "")
             .action("list")
@@ -247,7 +247,7 @@ export const useList = <
                 }),
             })
             .get(preferLegacyKeys),
-        ({ queryKey, pageParam, signal }) => {
+        queryFn: ({ queryKey, pageParam, signal }) => {
             return getList<TQueryFnData>({
                 resource: resource?.name ?? "",
                 pagination: prefferedPagination,
@@ -273,74 +273,68 @@ export const useList = <
                 },
             });
         },
-        {
-            ...queryOptions,
-            enabled:
-                typeof queryOptions?.enabled !== "undefined"
-                    ? queryOptions?.enabled
-                    : !!resource?.name,
-            select: (rawData) => {
-                let data = rawData;
+        ...queryOptions,
+        enabled:
+            typeof queryOptions?.enabled !== "undefined"
+                ? queryOptions?.enabled
+                : !!resource?.name,
+        select: (rawData) => {
+            let data = rawData;
 
-                const { current, mode, pageSize } = prefferedPagination;
+            const { current, mode, pageSize } = prefferedPagination;
 
-                if (mode === "client") {
-                    data = {
-                        ...data,
-                        data: data.data.slice(
-                            (current - 1) * pageSize,
-                            current * pageSize,
-                        ),
-                        total: data.total,
-                    };
-                }
-
-                if (queryOptions?.select) {
-                    return queryOptions?.select?.(data);
-                }
-
-                return data as unknown as GetListResponse<TData>;
-            },
-            onSuccess: (data) => {
-                queryOptions?.onSuccess?.(data);
-
-                const notificationConfig =
-                    typeof successNotification === "function"
-                        ? successNotification(
-                              data,
-                              notificationValues,
-                              identifier,
-                          )
-                        : successNotification;
-
-                handleNotification(notificationConfig);
-            },
-            onError: (err: TError) => {
-                checkError(err);
-                queryOptions?.onError?.(err);
-
-                const notificationConfig =
-                    typeof errorNotification === "function"
-                        ? errorNotification(err, notificationValues, identifier)
-                        : errorNotification;
-
-                handleNotification(notificationConfig, {
-                    key: `${identifier}-useList-notification`,
-                    message: translate(
-                        "notifications.error",
-                        { statusCode: err.statusCode },
-                        `Error (status code: ${err.statusCode})`,
+            if (mode === "client") {
+                data = {
+                    ...data,
+                    data: data.data.slice(
+                        (current - 1) * pageSize,
+                        current * pageSize,
                     ),
-                    description: err.message,
-                    type: "error",
-                });
-            },
-            meta: {
-                ...queryOptions?.meta,
-                ...getXRay("useList", preferLegacyKeys),
-            },
+                    total: data.total,
+                };
+            }
+
+            if (queryOptions?.select) {
+                return queryOptions?.select?.(data);
+            }
+
+            return data as unknown as GetListResponse<TData>;
         },
-    );
+        onSuccess: (data) => {
+            queryOptions?.onSuccess?.(data);
+
+            const notificationConfig =
+                typeof successNotification === "function"
+                    ? successNotification(data, notificationValues, identifier)
+                    : successNotification;
+
+            handleNotification(notificationConfig);
+        },
+        onError: (err: TError) => {
+            checkError(err);
+            queryOptions?.onError?.(err);
+
+            const notificationConfig =
+                typeof errorNotification === "function"
+                    ? errorNotification(err, notificationValues, identifier)
+                    : errorNotification;
+
+            handleNotification(notificationConfig, {
+                key: `${identifier}-useList-notification`,
+                message: translate(
+                    "notifications.error",
+                    { statusCode: err.statusCode },
+                    `Error (status code: ${err.statusCode})`,
+                ),
+                description: err.message,
+                type: "error",
+            });
+        },
+        meta: {
+            ...queryOptions?.meta,
+            ...getXRay("useList", preferLegacyKeys),
+        },
+    });
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: queryResponse.isFetching,
