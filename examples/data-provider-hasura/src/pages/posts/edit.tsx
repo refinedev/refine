@@ -27,7 +27,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         GetVariables<UpdatePostMutationVariables>
     >({
-        queryOptions: {},
         metaData: {
             gqlMutation: POST_UPDATE_MUTATION,
         },

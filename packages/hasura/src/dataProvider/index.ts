@@ -42,6 +42,9 @@ const dataProvider = (
             const operation = defaultNamingConvention
                 ? `${meta?.operation ?? resource}_by_pk`
                 : camelCase(`${meta?.operation ?? resource}_by_pk`);
+            const pascalOperation = camelcase(operation, {
+                pascalCase: true,
+            });
 
             const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
 
@@ -55,7 +58,9 @@ const dataProvider = (
                     const stringFields = getOperationFields(gqlOperation);
 
                     query = gqlTag`
-                        query Get${operation}($id: ${getIdType(resource)}!) {
+                        query Get${pascalOperation}($id: ${getIdType(
+                        resource,
+                    )}!) {
                             ${operation}(id: $id) {
                             ${stringFields}
                             }
@@ -143,6 +148,14 @@ const dataProvider = (
         },
 
         getList: async ({ resource, sorters, filters, pagination, meta }) => {
+            const operation = defaultNamingConvention
+                ? meta?.operation ?? resource
+                : camelCase(meta?.operation ?? resource);
+
+            const aggregateOperation = defaultNamingConvention
+                ? `${operation}_aggregate`
+                : camelCase(`${operation}_aggregate`);
+
             const {
                 current = 1,
                 pageSize: limit = 10,
@@ -159,24 +172,6 @@ const dataProvider = (
                 : upperCaseValues(camelizeKeys(generateSorting(sorters)));
 
             const hasuraFilters = generateFilters(filters, namingConvention);
-
-            const operation = defaultNamingConvention
-                ? meta?.operation ?? resource
-                : camelCase(meta?.operation ?? resource);
-
-            const aggregateOperation = defaultNamingConvention
-                ? `${operation}_aggregate`
-                : camelCase(`${operation}_aggregate`);
-
-            const hasuraSortingType = defaultNamingConvention
-                ? `[${operation}_order_by!]`
-                : `[${camelCase(`${operation}_order_by!`, {
-                      pascalCase: true,
-                  })}]`;
-
-            const hasuraFiltersType = defaultNamingConvention
-                ? `${operation}_bool_exp`
-                : camelCase(`${operation}_bool_exp`, { pascalCase: true });
 
             let query;
             let variables;
@@ -198,6 +193,16 @@ const dataProvider = (
                     }),
                 };
             } else {
+                const hasuraSortingType = defaultNamingConvention
+                    ? `[${operation}_order_by!]`
+                    : `[${camelCase(`${operation}_order_by!`, {
+                          pascalCase: true,
+                      })}]`;
+
+                const hasuraFiltersType = defaultNamingConvention
+                    ? `${operation}_bool_exp`
+                    : camelCase(`${operation}_bool_exp`, { pascalCase: true });
+
                 const gqlQuery = gql.query([
                     {
                         operation,
