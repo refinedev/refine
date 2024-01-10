@@ -111,13 +111,11 @@ const dataProvider = (
                 const response = await client.request<BaseRecord>(
                     meta.gqlQuery,
                     {
-                        ...(meta?.variables ?? {
-                            where: {
-                                id: {
-                                    _in: ids,
-                                },
+                        where: {
+                            id: {
+                                _in: ids,
                             },
-                        }),
+                        },
                     },
                 );
                 return {
