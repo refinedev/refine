@@ -60,21 +60,26 @@ const Checklist: React.FC<Props> = ({ children }) => {
                     "flex flex-col",
                 )}
             >
-                <div className="border-b border-gray-200 dark:border-gray-600">
+                <div className="border-b border-gray-400 dark:border-gray-500 border-opacity-50 dark:border-opacity-50">
                     <div
                         className={clsx(
                             "not-prose",
-                            "mt-0 mb-3",
+                            "mt-0 mb-4",
                             "flex items-center",
                             "gap-2",
                         )}
                     >
-                        <CheckListIcon className="w-4 h-4" />
+                        <CheckListIcon
+                            className={clsx(
+                                "w-4 h-4",
+                                "dark:text-gray-100 text-gray-800",
+                            )}
+                        />
                         <h3
                             className={clsx(
                                 "m-0 p-0",
                                 "font-semibold",
-                                "dark:text-gray-300 text-gray-500",
+                                "dark:text-gray-100 text-gray-800",
                                 "uppercase",
                                 "text-base leading-6",
                             )}

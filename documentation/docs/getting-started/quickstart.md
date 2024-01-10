@@ -94,4 +94,4 @@ You will see the output as a table populated with `blog_posts` and `category` da
 
 👉 Read more on [Advanced Tutorials](/docs/advanced-tutorials/) for different usage scenarios.
 
-👉 See [real-life examples](/docs/examples/) built using **Refine**
+👉 See [real-life examples](/templates) built using **Refine**

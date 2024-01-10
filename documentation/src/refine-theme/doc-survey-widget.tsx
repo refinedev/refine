@@ -82,15 +82,14 @@ export const DocSurveyWidget = ({ className }: Props) => {
         <div
             ref={refWidget}
             className={clsx(
-                "w-full max-w-[432px]",
+                "w-full max-w-[416px]",
                 "flex flex-col",
-                "p-4",
-                "dark:bg-gray-800",
-                "bg-gray-100",
-                "border dark:border-gray-700 border-transparent",
+                "p-3",
+                "bg-gray-100 dark:bg-gray-700",
+                "border border-gray-300 dark:border-gray-700",
                 "rounded-[28px]",
                 (isSurveyTextVisible || isFinished) && "h-[286px] sm:h-[242px]",
-                !isSurveyTextVisible && !isFinished && "h-[104px] sm:h-[58px]",
+                !isSurveyTextVisible && !isFinished && "h-[114px] sm:h-[58px]",
                 "transition-all duration-200 ease-in-out",
                 "overflow-hidden",
                 className,
@@ -148,11 +147,14 @@ const SurveyOptions = (props: {
             )}
         >
             <div
-                className={clsx("dark:text-gray-300 text-gray-600", "text-sm")}
+                className={clsx(
+                    "dark:text-gray-100 text-gray-800",
+                    "text-base",
+                )}
             >
                 Was this helpful?
             </div>
-            <div className={clsx("flex", "items-center", "gap-6 sm:gap-3")}>
+            <div className={clsx("flex", "items-center", "gap-3 sm:gap-1")}>
                 {props.options.map(({ value, img }) => {
                     const isSelected = props.selectedOption === value;
 
@@ -160,6 +162,7 @@ const SurveyOptions = (props: {
                         <button
                             key={value}
                             onClick={() => props.onOptionClick(value)}
+                            className="p-1.5 sm:p-1"
                         >
                             <img
                                 src={img}
@@ -168,7 +171,8 @@ const SurveyOptions = (props: {
                                 className={clsx(
                                     "block",
                                     "flex-shrink-0",
-                                    "w-8 h-8 sm:w-6 sm:h-6",
+                                    "sm:w-6 sm:h-6",
+                                    "w-9 h-9",
                                     isSelected && "mix-blend-normal",
                                     isSelected && "scale-[1.33]",
                                     !isSelected && "mix-blend-luminosity",

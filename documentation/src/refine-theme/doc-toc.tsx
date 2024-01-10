@@ -47,27 +47,24 @@ export const TOCItem = ({
             href={`#${id}`}
             className={clsx(
                 "refine-toc-item",
-                level === 2 && "pl-3",
-                level === 3 && "pl-7",
-                level === 4 && "pl-11",
-                level === 5 && "pl-11",
-                "py-1 pr-3",
-                "hover:bg-gray-200/40 dark:hover:bg-gray-700/80",
+                "py-2 pr-4",
+                level === 2 && "pl-4",
+                level === 3 && "pl-6",
+                level === 4 && "pl-8",
+                level === 5 && "pl-8",
                 activeId === id &&
-                    `dark:text-gray-0 text-gray-900 hover:text-gray-900 
-                    bg-gray-100/50 dark:bg-gray-700/50
-                    `,
+                    "bg-refine-blue-2-light dark:bg-refine-blue-2 dark:bg-opacity-10",
+                activeId === id &&
+                    "text-refine-react-light-link dark:text-refine-react-dark-link",
+                activeId !== id && "text-refine-600 dark:text-refine-300",
+                activeId !== id && "hover:bg-gray-100 dark:hover:bg-gray-700",
                 activeId !== id &&
-                    `dark:hover:text-gray-0 text-gray-500 hover:text-gray-900 dark:text-gray-500
-                      bg-opacity-0 dark:bg-opacity-0
-                    `,
-                "hover:!text-gray-900 dark:hover:!text-gray-0",
-                "rounded-lg",
-                "transition-colors duration-200 ease-in-out",
+                    "hover:text-gray-600 dark:hover:text-gray-300",
+                "rounded-[18px]",
                 "block",
                 "text-sm",
-                "leading-6",
                 "no-underline hover:no-underline",
+                "transition-colors duration-200 ease-in-out",
             )}
             dangerouslySetInnerHTML={{
                 __html: value,
@@ -98,14 +95,13 @@ export const DocTOC = () => {
             className={clsx(
                 "hidden xl:block",
                 "w-full",
-                "sticky right-0 top-[67px]",
-                "max-w-[280px]",
+                "sticky right-0 top-[65px]",
+                "max-w-[260px]",
                 "overflow-auto",
-                "h-[calc(100vh-67px)]",
-                "pl-3",
-                "pr-3",
-                "py-12",
-                "border-l border-l-gray-100 dark:border-l-gray-700",
+                "h-[calc(100vh-65px)]",
+                "px-4",
+                "py-4",
+                "border-l border-l-gray-300 dark:border-l-gray-700",
                 !hasTOC && "invisible",
             )}
         >

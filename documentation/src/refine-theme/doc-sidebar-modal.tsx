@@ -7,6 +7,9 @@ import { RefineLogo } from "./common-refine-logo";
 import { CommonHamburgerIcon } from "./common-hamburger-icon";
 import { useSidebarItems } from "./doc-sidebar";
 import { DocVersionTabs } from "./doc-version-tabs";
+import { DocRefineLogo } from "./doc-refine-logo";
+import { DocVersionDropdown } from "./doc-version-dropdown";
+import { CommonThemeToggleAlt } from "./common-theme-toggle";
 
 type Props = {
     isOpen: boolean;
@@ -22,7 +25,11 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
 
     return (
         <Transition appear show={isOpen} as={Fragment}>
-            <Dialog as="div" className="relative z-modal" onClose={onClose}>
+            <Dialog
+                as="div"
+                className="relative z-mobileNavbar"
+                onClose={onClose}
+            >
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-75"
@@ -32,7 +39,7 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="fixed inset-0 bg-gray-50 dark:bg-gray-800" />
+                    <div className="fixed inset-0 bg-gray-0 dark:bg-gray-800" />
                 </Transition.Child>
 
                 <div className="fixed inset-0 overflow-y-auto">
@@ -48,20 +55,20 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
                         >
                             <Dialog.Panel
                                 className={clsx(
-                                    "w-full h-screen",
+                                    "w-full h-[100dvh]",
                                     "flex flex-col",
-                                    "py-2 sm:py-3",
-                                    "px-2 sm:px-6",
+                                    "px-2",
                                 )}
                             >
                                 <div
                                     className={clsx(
-                                        "w-full h-8 sm:h-10",
-                                        "px-2 sm:px-0",
+                                        "py-4",
+                                        "px-2",
+                                        "w-full h-16",
                                         "flex items-center justify-between",
                                     )}
                                 >
-                                    <RefineLogo title="Documentation" />
+                                    <DocRefineLogo />
                                     <div
                                         className={clsx(
                                             "flex items-center gap-4",
@@ -77,56 +84,101 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
                                 <div
                                     className={clsx(
                                         "relative",
-                                        "bg-gray-0 dark:bg-gray-900",
-                                        "w-full max-w-[480px] h-full",
-                                        "mx-auto mt-4 mb-4 sm:mt-4 sm:mb-8",
-                                        "overflow-scroll",
+                                        "w-full max-w-[480px]",
+                                        "flex",
+                                        "flex-col",
+                                        "flex-1",
+                                        "mx-auto",
                                         "rounded-lg",
-                                        "border border-gray-200 dark:border-gray-600",
+                                        "border border-gray-300 dark:border-gray-600",
                                     )}
                                 >
                                     <div
                                         className={clsx(
-                                            "sticky top-0 left-0 right-0",
-                                            "z-10",
                                             "h-12",
-                                            "bg-gray-50 dark:bg-gray-700",
-                                            "border-b border-gray-200 dark:border-gray-600",
-                                            "flex items-center gap-5",
-                                            "px-4 py-3",
+                                            "rounded-tl-lg rounded-tr-lg",
+                                            "bg-gray-100 dark:bg-gray-700",
+                                            "border-b border-gray-300 dark:border-gray-600",
+                                            "flex items-center gap-2",
+                                            "px-4 py-2",
+                                            "justify-end",
                                         )}
                                     >
                                         <span
                                             className={clsx(
+                                                "text-sm",
                                                 "text-gray-500 dark:text-gray-400",
                                             )}
                                         >
                                             Version
                                         </span>
-                                        <DocVersionTabs />
+                                        <DocVersionDropdown />
+                                        {/* <DocVersionTabs /> */}
                                     </div>
 
                                     <div
                                         className={clsx(
-                                            "px-4",
-                                            "py-4",
+                                            "flex-1",
+                                            "overflow-hidden",
                                             "relative",
                                         )}
                                     >
-                                        {items}
+                                        <div
+                                            className={clsx(
+                                                "inset-0",
+                                                "overflow-scroll",
+                                                "h-full",
+                                                "px-8",
+                                                "absolute",
+                                                "flex flex-col gap-6",
+                                                "py-6",
+                                            )}
+                                        >
+                                            {items}
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div
                                     className={clsx(
-                                        "flex items-center justify-between",
-                                        "mt-2",
-                                        "px-2 sm:px-0",
-                                        "pb-6 sm:pb-3",
+                                        "flex",
+                                        "flex-col",
+                                        "gap-0",
                                     )}
                                 >
-                                    <CommonHomeButton />
-                                    <CommonGithubStarButton />
+                                    <div
+                                        className={clsx(
+                                            "flex items-center justify-start",
+                                            "gap-10",
+                                            "px-2",
+                                            "py-4",
+                                        )}
+                                    >
+                                        <span
+                                            className={clsx(
+                                                "text-sm",
+                                                "text-gray-800",
+                                                "dark:text-gray-100",
+                                            )}
+                                        >
+                                            Appearance
+                                        </span>
+                                        <CommonThemeToggleAlt />
+                                    </div>
+                                    <div
+                                        className={clsx(
+                                            "border-t",
+                                            "border-t-gray-300 dark:border-t-gray-700",
+                                            "px-4",
+                                            "py-2",
+                                            "flex",
+                                            "items-center",
+                                            "justify-between",
+                                        )}
+                                    >
+                                        <CommonHomeButton />
+                                        <CommonGithubStarButton />
+                                    </div>
                                 </div>
                             </Dialog.Panel>
                         </Transition.Child>

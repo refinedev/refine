@@ -63,7 +63,7 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 [gh-refine]: https://github.com/refinedev/refine
 [bpl-refine]: https://bundlephobia.com/result?p=@refinedev/core
 [bp-refine]: https://badgen.net/bundlephobia/minzip/@refinedev/core?label=💾
-[command-palette]: /docs/examples/command-palette.md
+[command-palette]: https://github.com/refinedev/refine/tree/master/examples/command-palette-kbar
 
 <!-- -->
 
