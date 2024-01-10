@@ -24,12 +24,12 @@ describe("with meta.fields", () => {
                 });
 
                 expect(data[0]["id"]).toBe(
-                    "a376eb2a-f743-4921-a656-8d0d13fe7d24",
+                    "4ec22cb3-b679-4891-a489-3d19cf275ab3",
                 );
                 expect(data[0]["title"]).toBe(
-                    "Vivamus in felis eu sapien cursus vestibulum.",
+                    "Aenean ultricies non libero sit amet pellentesque",
                 );
-                expect(total).toBe(92);
+                expect(total).toBe(526);
             });
 
             it("correct sorting response", async () => {
@@ -49,10 +49,12 @@ describe("with meta.fields", () => {
                 });
 
                 expect(data[0]["id"]).toBe(
-                    "27e2d9a9-6c00-4dac-9f8c-e5010c41cd85",
+                    "00c688e2-a1bd-40dd-9f58-1e41d53386d2",
                 );
-                expect(data[0]["title"]).toBe("Rameeesss");
-                expect(total).toBe(92);
+                expect(data[0]["title"]).toBe(
+                    "Aenean ultricies non libero sit amet pellentesque",
+                );
+                expect(total).toBe(526);
             });
 
             it("correct filter response", async () => {
@@ -73,14 +75,16 @@ describe("with meta.fields", () => {
                 });
 
                 expect(data[0]["id"]).toBe(
-                    "4ba59c71-d560-45b4-bdbe-2a11d3dfa54a",
+                    "48a5591e-4ab0-45f8-950e-aee8a63769df",
                 );
-                expect(data[0]["title"]).toBe("nascetur ridiculus");
-                expect(total).toBe(4);
+                expect(data[0]["title"]).toBe(
+                    "velit eu est congue elementum in",
+                );
+                expect(total).toBe(3);
             });
 
             it("correct nested filter response", async () => {
-                const { data } = await dataProvider(client, {
+                const { data, total } = await dataProvider(client, {
                     namingConvention,
                 }).getList({
                     resource: "posts",
@@ -97,8 +101,9 @@ describe("with meta.fields", () => {
                 });
 
                 expect(data[0]["id"]).toBe(
-                    "4ba59c71-d560-45b4-bdbe-2a11d3dfa54a",
+                    "48a5591e-4ab0-45f8-950e-aee8a63769df",
                 );
+                expect(total).toBe(3);
             });
 
             it("correct filter and sort response", async () => {
@@ -125,10 +130,10 @@ describe("with meta.fields", () => {
                 });
 
                 expect(data[0]["id"]).toBe(
-                    "a9189b36-fa46-4c35-bb01-c79485a7a6ac",
+                    "3be19a24-ecee-42d9-949b-5f41623b9b5a",
                 );
                 expect(data[0]["category"].title).toBe("consequat nulla");
-                expect(total).toBe(4);
+                expect(total).toBe(3);
             });
         },
     );
@@ -188,9 +193,9 @@ describe("with gqlQuery", () => {
             },
         });
 
-        expect(data[0]["id"]).toBe("a9189b36-fa46-4c35-bb01-c79485a7a6ac");
+        expect(data[0]["id"]).toBe("3be19a24-ecee-42d9-949b-5f41623b9b5a");
         expect(data[0]["category"].title).toBe("consequat nulla");
-        expect(total).toBe(4);
+        expect(total).toBe(3);
     });
 
     it("correct filter and sort response with graphql-default", async () => {
@@ -229,8 +234,8 @@ describe("with gqlQuery", () => {
                         ) {
                             id
                             title
-                            category_id
-                            created_at
+                            categoryId
+                            createdAt
                             category {
                                 id
                                 title
@@ -246,8 +251,8 @@ describe("with gqlQuery", () => {
             },
         });
 
-        expect(data[0]["id"]).toBe("a9189b36-fa46-4c35-bb01-c79485a7a6ac");
+        expect(data[0]["id"]).toBe("3be19a24-ecee-42d9-949b-5f41623b9b5a");
         expect(data[0]["category"].title).toBe("consequat nulla");
-        expect(total).toBe(4);
+        expect(total).toBe(3);
     });
 });

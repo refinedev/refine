@@ -3,7 +3,31 @@ import dataProvider from "../../src/index";
 import { createClient } from "../gqlClient";
 import "./index.mock";
 
-describe("with meta.fields", () => {
+const mockData = {
+    post: {
+        "hasura-default": {
+            id: "572708c7-840d-430a-befd-1416bdee799a",
+            title: "Aenean ultricies non libero sit amet pellentesque",
+            content: "Vestibulum vulputate sapien arcu.",
+            category: { id: "e27156c3-9998-434f-bd5b-2b078283ff26" },
+        },
+        "graphql-default": {
+            id: "4ec22cb3-b679-4891-a489-3d19cf275ab3",
+            title: "Aenean ultricies non libero sit amet pellentesque",
+            content: "Vestibulum vulputate sapien arcu.",
+            category: {
+                id: "e27156c3-9998-434f-bd5b-2b078283ff26",
+            },
+        },
+    },
+    user: {
+        id: 1,
+        name: "Refine",
+        email: "mail@refine.dev",
+    },
+} as const;
+
+describe.only("with meta.fields", () => {
     describe.each(["hasura-default", "graphql-default"] as const)(
         "updateOne with %s naming convention",
         (namingConvention) => {
@@ -13,7 +37,7 @@ describe("with meta.fields", () => {
                     namingConvention,
                 }).getOne({
                     resource: "posts",
-                    id: "6379bbda-0857-40f2-a277-b401ea6134d7",
+                    id: mockData.post[namingConvention].id,
                     meta: {
                         fields: [
                             "id",
@@ -24,17 +48,15 @@ describe("with meta.fields", () => {
                     },
                 });
 
-                expect(data["id"]).toEqual(
-                    "6379bbda-0857-40f2-a277-b401ea6134d7",
-                );
+                expect(data["id"]).toEqual(mockData.post[namingConvention].id);
                 expect(data["title"]).toEqual(
-                    "Aenean ultricies non libero sit amet pellentesque",
+                    mockData.post[namingConvention].title,
                 );
                 expect(data["content"]).toEqual(
-                    "Vestibulum vulputate sapien arcu.",
+                    mockData.post[namingConvention].content,
                 );
                 expect(data["category"].id).toEqual(
-                    "e27156c3-9998-434f-bd5b-2b078283ff26",
+                    mockData.post[namingConvention].category.id,
                 );
             });
 
@@ -44,15 +66,15 @@ describe("with meta.fields", () => {
                     idType: "Int",
                 }).getOne({
                     resource: "users",
-                    id: 1,
+                    id: mockData["user"].id,
                     meta: {
                         fields: ["id", "name", "email"],
                     },
                 });
 
-                expect(data["id"]).toEqual(1);
-                expect(data["name"]).toEqual("Refine");
-                expect(data["email"]).toEqual("mail@refine.dev");
+                expect(data["id"]).toEqual(mockData["user"].id);
+                expect(data["name"]).toEqual(mockData["user"].name);
+                expect(data["email"]).toEqual(mockData["user"].email);
             });
 
             it("correct response with meta and dynamic idType", async () => {
@@ -66,19 +88,19 @@ describe("with meta.fields", () => {
                 });
                 const { data: userData } = await cDataProvider.getOne({
                     resource: "users",
-                    id: 1,
+                    id: mockData["user"].id,
                     meta: {
                         fields: ["id", "name", "email"],
                     },
                 });
 
-                expect(userData["id"]).toEqual(1);
-                expect(userData["name"]).toEqual("Refine");
-                expect(userData["email"]).toEqual("mail@refine.dev");
+                expect(userData["id"]).toEqual(mockData["user"].id);
+                expect(userData["name"]).toEqual(mockData["user"].name);
+                expect(userData["email"]).toEqual(mockData["user"].email);
 
                 const { data: postData } = await cDataProvider.getOne({
                     resource: "posts",
-                    id: "6379bbda-0857-40f2-a277-b401ea6134d7",
+                    id: mockData.post[namingConvention].id,
                     meta: {
                         fields: [
                             "id",
@@ -90,16 +112,16 @@ describe("with meta.fields", () => {
                 });
 
                 expect(postData["id"]).toEqual(
-                    "6379bbda-0857-40f2-a277-b401ea6134d7",
+                    mockData.post[namingConvention].id,
                 );
                 expect(postData["title"]).toEqual(
-                    "Aenean ultricies non libero sit amet pellentesque",
+                    mockData.post[namingConvention].title,
                 );
                 expect(postData["content"]).toEqual(
-                    "Vestibulum vulputate sapien arcu.",
+                    mockData.post[namingConvention].content,
                 );
                 expect(postData["category"].id).toEqual(
-                    "e27156c3-9998-434f-bd5b-2b078283ff26",
+                    mockData.post[namingConvention].category.id,
                 );
             });
         },
@@ -116,7 +138,7 @@ describe("with gql", () => {
                 namingConvention: "hasura-default",
             }).getOne({
                 resource: "posts",
-                id: "6379bbda-0857-40f2-a277-b401ea6134d7",
+                id: mockData.post["hasura-default"].id,
                 meta: {
                     [gqlOperation]: gql`
                         query GetPost($id: uuid!) {
@@ -133,15 +155,15 @@ describe("with gql", () => {
                 },
             });
 
-            expect(data["id"]).toEqual("6379bbda-0857-40f2-a277-b401ea6134d7");
+            expect(data["id"]).toEqual(mockData.post["hasura-default"].id);
             expect(data["title"]).toEqual(
-                "Aenean ultricies non libero sit amet pellentesque",
+                mockData.post["hasura-default"].title,
             );
             expect(data["content"]).toEqual(
-                "Vestibulum vulputate sapien arcu.",
+                mockData.post["hasura-default"].content,
             );
             expect(data["category"].id).toEqual(
-                "e27156c3-9998-434f-bd5b-2b078283ff26",
+                mockData.post["hasura-default"].category.id,
             );
         },
     );
@@ -156,7 +178,7 @@ describe("with gql", () => {
                 idType: "Int",
             }).getOne({
                 resource: "users",
-                id: 1,
+                id: mockData.user.id,
                 meta: {
                     [gqlOperation]: gql`
                         query GetUser($id: Int!) {
@@ -170,9 +192,9 @@ describe("with gql", () => {
                 },
             });
 
-            expect(data["id"]).toEqual(1);
-            expect(data["name"]).toEqual("Refine");
-            expect(data["email"]).toEqual("mail@refine.dev");
+            expect(data["id"]).toEqual(mockData["user"].id);
+            expect(data["name"]).toEqual(mockData["user"].name);
+            expect(data["email"]).toEqual(mockData["user"].email);
         },
     );
 });

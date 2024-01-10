@@ -8,11 +8,11 @@ describe("with meta.fields", () => {
         "updateOne with %s naming convention",
         (namingConvention) => {
             const client = createClient(namingConvention);
-            let id = `6379bbda-0857-40f2-a277-b401ea6134d7`;
+            let id = `572708c7-840d-430a-befd-1416bdee799a`;
             let categoryFieldName = "category_id";
 
             if (namingConvention === "graphql-default") {
-                id = `c7ba5e30-8c5f-46bb-862d-e2bcf6487749`;
+                id = `2a0d531e-ad15-440f-bf0b-7d23e7e21131`;
                 categoryFieldName = "categoryId";
             }
 
@@ -26,7 +26,7 @@ describe("with meta.fields", () => {
                         title: "Updated Title",
                         content: "Updated Content",
                         [categoryFieldName]:
-                            "0e0c9acc-5ade-42d3-b0ca-f762565e24ef",
+                            "e27156c3-9998-434f-bd5b-2b078283ff26",
                     },
                     meta: {
                         fields: [
@@ -42,7 +42,7 @@ describe("with meta.fields", () => {
                 expect(data["title"]).toEqual("Updated Title");
                 expect(data["content"]).toEqual("Updated Content");
                 expect(data["category"].id).toEqual(
-                    "0e0c9acc-5ade-42d3-b0ca-f762565e24ef",
+                    "e27156c3-9998-434f-bd5b-2b078283ff26",
                 );
             });
 
@@ -67,7 +67,7 @@ describe("with gql", () => {
     it.each(["gqlQuery", "gqlMutation"] as const)(
         "correct response with hasura-default & %s",
         async (gqlOperation) => {
-            const id = `6379bbda-0857-40f2-a277-b401ea6134d7`;
+            const id = `572708c7-840d-430a-befd-1416bdee799a`;
 
             const client = createClient("hasura-default");
             const { data } = await dataProvider(client, {
@@ -78,7 +78,7 @@ describe("with gql", () => {
                 variables: {
                     title: "Updated Title",
                     content: "Updated Content",
-                    category_id: "0e0c9acc-5ade-42d3-b0ca-f762565e24ef",
+                    category_id: "e27156c3-9998-434f-bd5b-2b078283ff26",
                 },
                 meta: {
                     [gqlOperation]: gql`
@@ -108,7 +108,7 @@ describe("with gql", () => {
             expect(data["title"]).toEqual("Updated Title");
             expect(data["content"]).toEqual("Updated Content");
             expect(data["category"].id).toEqual(
-                "0e0c9acc-5ade-42d3-b0ca-f762565e24ef",
+                "e27156c3-9998-434f-bd5b-2b078283ff26",
             );
         },
     );
@@ -116,7 +116,7 @@ describe("with gql", () => {
     it.each(["gqlQuery", "gqlMutation"] as const)(
         "correct response with graphql-default & %s",
         async (gqlOperation) => {
-            const id = `c7ba5e30-8c5f-46bb-862d-e2bcf6487749`;
+            const id = `2a0d531e-ad15-440f-bf0b-7d23e7e21131`;
 
             const client = createClient("graphql-default");
             const { data } = await dataProvider(client, {
@@ -127,7 +127,7 @@ describe("with gql", () => {
                 variables: {
                     title: "Updated Title",
                     content: "Updated Content",
-                    categoryId: "0e0c9acc-5ade-42d3-b0ca-f762565e24ef",
+                    categoryId: "e27156c3-9998-434f-bd5b-2b078283ff26",
                 },
                 meta: {
                     [gqlOperation]: gql`
@@ -157,7 +157,7 @@ describe("with gql", () => {
             expect(data["title"]).toEqual("Updated Title");
             expect(data["content"]).toEqual("Updated Content");
             expect(data["category"].id).toEqual(
-                "0e0c9acc-5ade-42d3-b0ca-f762565e24ef",
+                "e27156c3-9998-434f-bd5b-2b078283ff26",
             );
         },
     );
