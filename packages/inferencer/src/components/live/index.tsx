@@ -1,5 +1,6 @@
 import React from "react";
 import * as RefineCore from "@refinedev/core";
+import * as gql from "graphql-tag";
 
 import { LivePreview, LiveProvider, ContextProps } from "@aliemir/react-live";
 
@@ -9,6 +10,7 @@ import { AdditionalScopeType, LiveComponentProps } from "../../types";
 const defaultScope: Array<AdditionalScopeType> = [
     ["react", "React", React],
     ["@refinedev/core", "RefineCore", RefineCore],
+    ["graphql-tag", "GraphqlTag", gql],
 ];
 
 const InferencerLiveContext = React.createContext<ContextProps>(
