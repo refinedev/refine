@@ -60,7 +60,7 @@ module.exports = {
                 items: [
                     "routing/intro/index",
                     "routing/resource-definition/index",
-                    "routing/infering-parameters/index",
+                    "routing/inferring-parameters/index",
                     "routing/redirects/:routerSelection/index",
                     "routing/syncing-state/:routerSelection/index",
                     "routing/authentication/:routerSelection/index",
@@ -74,7 +74,17 @@ module.exports = {
                     "ui-libraries/layout/:uiSelection/:routerSelection/index",
                     "ui-libraries/crud-components/:uiSelection/:routerSelection/index",
                     "ui-libraries/refactoring/:uiSelection/:routerSelection/index",
-                    "ui-libraries/summary/:uiSelection/:routerSelection/index",
+                ],
+            },
+            {
+                title: "Next Steps",
+                id: "next-steps",
+                items: [
+                    "next-steps/intro/index",
+                    "next-steps/inferencer/:uiSelection/index",
+                    "next-steps/devtools/:routerSelection/index",
+                    "next-steps/cli/:routerSelection/index",
+                    "next-steps/summary/index",
                 ],
             },
         ],
