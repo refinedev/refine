@@ -4,75 +4,64 @@ export type Action = keyof NonNullable<
     InferencerComponentProps["meta"]
 >[string];
 
+/**
+ * @returns meta props for a given identifier by actions
+ * @description Searchs actions in meta[identifier] and returns first founded meta[identifier][action] and disgards the rest
+ * if no action is found, returns meta[identifier]["default"]
+ *
+ * @param identifier
+ * @param meta
+ * @param actions keys of meta[identifier]. actions order is important. first founded action will be returned from meta[`identifier`]
+ */
 export const getMetaProps = (
     identifier?: string,
     meta?: InferencerComponentProps["meta"],
     actions?: Action[],
 ) => {
-    if (meta && actions && identifier) {
-        const metaByIdentifier = identifier ? meta[identifier] : {};
-        const metaByActions: string[] = [];
+    if (!(meta && actions && identifier)) return "";
 
-        // get meta values for each action
-        actions.forEach((action) => {
-            const { gqlQuery, gqlMutation, ...metaValue } =
-                metaByIdentifier?.[action] || {};
+    const metaByIdentifier = identifier ? meta[identifier] : {};
+    const metaByActions: string[] = [];
 
-            // add all meta values besides gqlQuery, gqlMutation, and default
-            Object.keys(metaValue).forEach((key) => {
-                metaByActions.push(`${key}: ${JSON.stringify(metaValue[key])}`);
-            });
+    // we need to return first founded action in metaByIdentifier and disgard the rest.
+    const firstFoundedActionInMeta = actions.find(
+        (action) => action in metaByIdentifier,
+    );
 
-            // manipulate gqlQuery and add
-            if (gqlQuery) {
-                metaByActions.push(
-                    `gqlQuery: gql\`${gqlQuery?.loc?.source?.body}\``,
-                );
-            }
+    // if actions is not found, we need to return metaByIdentifier["default"]
+    const metaByAction =
+        metaByIdentifier?.[firstFoundedActionInMeta || "default"];
 
-            // manipulate gqlQuery and add
-            if (gqlMutation) {
-                metaByActions.push(
-                    `gqlMutation: gql\`${gqlMutation?.loc?.source?.body}\``,
-                );
-            }
-
-            // if no action, use default
-            const defaultKey = metaByIdentifier?.["default"];
-            if (defaultKey) {
-                // manipulate gqlQuery and add
-                if (defaultKey?.gqlQuery) {
-                    metaByActions.push(
-                        `gqlQuery: gql\`${defaultKey.gqlQuery?.loc?.source?.body}\``,
-                    );
-                }
-
-                // manipulate gqlMutation and add
-                if (defaultKey?.gqlMutation) {
-                    metaByActions.push(
-                        `gqlMutation: gql\`${defaultKey.gqlQuery?.loc?.source?.body}\``,
-                    );
-                }
-
-                // if not gqlQuery or gqlMutation, add without manipulation
-                Object.keys(defaultKey).forEach((key) => {
-                    if (key !== "gqlQuery" && key !== "gqlMutation") {
-                        metaByActions.push(
-                            `${key}: ${JSON.stringify(defaultKey[key])}`,
-                        );
-                    }
-                });
-            }
-        });
-
-        const metaValues = metaByActions.join(", ");
-        if (!!metaValues.length) {
-            return `meta:{${metaValues}}`;
-        }
-
+    // if neither actions or default is found, we need to return empty string
+    if (!metaByAction) {
         return "";
     }
-    return "";
+
+    const { gqlQuery, gqlMutation, ...metaValueByAction } = metaByAction;
+
+    // add founded action's all meta values besides gqlQuery, gqlMutation.
+    Object.keys(metaValueByAction).forEach((key) => {
+        metaByActions.push(`${key}: ${JSON.stringify(metaValueByAction[key])}`);
+    });
+
+    // manipulate and add gqlQuery
+    if (gqlQuery) {
+        metaByActions.push(`gqlQuery: gql\`${gqlQuery?.loc?.source?.body}\``);
+    }
+
+    // manipulate and add gqlMutation
+    if (gqlMutation) {
+        metaByActions.push(
+            `gqlMutation: gql\`${gqlMutation?.loc?.source?.body}\``,
+        );
+    }
+
+    const metaValues = metaByActions.join(", ");
+    if (!!metaValues.length) {
+        return `meta:{${metaValues}}`;
+    } else {
+        return "";
+    }
 };
 
 export const pickMeta = (
