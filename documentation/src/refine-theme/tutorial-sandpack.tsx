@@ -41,11 +41,15 @@ type SandpackProps = React.ComponentProps<SandpackInternal> & {
     parentResizing?: boolean;
 };
 
-type Props = React.PropsWithChildren<SandpackProps>;
+type Props = React.PropsWithChildren<SandpackProps & { contentOnly?: boolean }>;
 
 const maxPercentage = 70;
 
-export const TutorialSandpack = ({ children, ...sandpackProps }: Props) => {
+export const TutorialSandpack = ({
+    children,
+    contentOnly,
+    ...sandpackProps
+}: Props) => {
     const [viewPercentage, setViewPercentage] = React.useState(45);
     const [resizing, setResizing] = React.useState(false);
     const containerRef = React.useRef<HTMLDivElement>(null);
@@ -160,7 +164,9 @@ export const TutorialSandpack = ({ children, ...sandpackProps }: Props) => {
                             "min-w-full tutorial-md:min-w-0",
                     )}
                     style={{
-                        width: `calc(${viewPercentage}% - (0.625rem / 2))`,
+                        width: contentOnly
+                            ? "100%"
+                            : `calc(${viewPercentage}% - (0.625rem / 2))`,
                     }}
                 >
                     <div
@@ -181,7 +187,7 @@ export const TutorialSandpack = ({ children, ...sandpackProps }: Props) => {
                 <button
                     type="button"
                     className={clsx(
-                        "hidden tutorial-md:flex",
+                        contentOnly ? "hidden" : "hidden tutorial-md:flex",
                         "w-2",
                         "appearance-none",
                         "outline-none",
@@ -206,6 +212,7 @@ export const TutorialSandpack = ({ children, ...sandpackProps }: Props) => {
                 </button>
                 <div
                     className={clsx(
+                        contentOnly ? "hidden" : "",
                         "overflow-hidden",
                         mobileVisiblePanel === "tutorial" &&
                             "max-w-0 tutorial-md:max-w-none",
@@ -277,6 +284,7 @@ export const TutorialSandpack = ({ children, ...sandpackProps }: Props) => {
                         type="button"
                         onClick={() => setMobileVisiblePanel("editor")}
                         className={clsx(
+                            contentOnly ? "hidden" : "",
                             "appearance-none",
                             "outline-none",
                             "border-none",
