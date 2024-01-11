@@ -8,6 +8,8 @@ import dayjs from "dayjs";
 
 import { Deal } from "@/graphql/schema.types";
 
+import { SALES_FINALIZE_DEAL_MUTATION } from "./queries";
+
 type FormValues = {
     notes?: string;
     closeDate?: dayjs.Dayjs;
@@ -28,12 +30,7 @@ export const SalesFinalizeDeal = () => {
         action: "edit",
         defaultVisible: true,
         meta: {
-            fields: [
-                "notes",
-                "closeDateMonth",
-                "closeDateDay",
-                "closeDateYear",
-            ],
+            gqlMutation: SALES_FINALIZE_DEAL_MUTATION,
         },
         onMutationSuccess: () => {
             invalidate({ invalidates: ["list"], resource: "deals" });

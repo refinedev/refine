@@ -72,3 +72,64 @@ export const SALES_UPDATE_DEAL_MUTATION = gql`
         }
     }
 `;
+
+export const SALES_FINALIZE_DEAL_MUTATION = gql`
+    mutation SalesFinalizeDeal($input: UpdateOneDealInput!) {
+        updateOneDeal(input: $input) {
+            id
+            notes
+            closeDateYear
+            closeDateMonth
+            closeDateDay
+        }
+    }
+`;
+
+export const SALES_DEAL_STAGES_QUERY = gql`
+    query SalesDealStages(
+        $filter: DealStageFilter!
+        $sorting: [DealStageSort!]
+        $paging: OffsetPaging
+    ) {
+        dealStages(filter: $filter, sorting: $sorting, paging: $paging) {
+            nodes {
+                id
+                title
+                dealsAggregate {
+                    sum {
+                        value
+                    }
+                }
+            }
+            totalCount
+        }
+    }
+`;
+
+export const SALES_DEALS_QUERY = gql`
+    query SalesDeals(
+        $filter: DealFilter!
+        $sorting: [DealSort!]
+        $paging: OffsetPaging!
+    ) {
+        deals(filter: $filter, sorting: $sorting, paging: $paging) {
+            nodes {
+                id
+                title
+                value
+                createdAt
+                stageId
+                company {
+                    id
+                    name
+                    avatarUrl
+                }
+                dealOwner {
+                    id
+                    name
+                    avatarUrl
+                }
+            }
+        }
+    }
+`;

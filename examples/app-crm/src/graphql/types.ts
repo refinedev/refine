@@ -1016,3 +1016,56 @@ export type SalesUpdateDealMutation = {
         dealContact: Pick<Types.Contact, "id">;
     };
 };
+
+export type SalesFinalizeDealMutationVariables = Types.Exact<{
+    input: Types.UpdateOneDealInput;
+}>;
+
+export type SalesFinalizeDealMutation = {
+    updateOneDeal: Pick<
+        Types.Deal,
+        "id" | "notes" | "closeDateYear" | "closeDateMonth" | "closeDateDay"
+    >;
+};
+
+export type SalesDealStagesQueryVariables = Types.Exact<{
+    filter: Types.DealStageFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.DealStageSort> | Types.DealStageSort
+    >;
+    paging?: Types.InputMaybe<Types.OffsetPaging>;
+}>;
+
+export type SalesDealStagesQuery = {
+    dealStages: Pick<Types.DealStageConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<Types.DealStage, "id" | "title"> & {
+                dealsAggregate: Array<{
+                    sum?: Types.Maybe<
+                        Pick<Types.DealStageDealsSumAggregate, "value">
+                    >;
+                }>;
+            }
+        >;
+    };
+};
+
+export type SalesDealsQueryVariables = Types.Exact<{
+    filter: Types.DealFilter;
+    sorting?: Types.InputMaybe<Array<Types.DealSort> | Types.DealSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type SalesDealsQuery = {
+    deals: {
+        nodes: Array<
+            Pick<
+                Types.Deal,
+                "id" | "title" | "value" | "createdAt" | "stageId"
+            > & {
+                company: Pick<Types.Company, "id" | "name" | "avatarUrl">;
+                dealOwner: Pick<Types.User, "id" | "name" | "avatarUrl">;
+            }
+        >;
+    };
+};
