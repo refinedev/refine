@@ -191,7 +191,9 @@ Let's say they are rendered where `resource` is `posts` and `id` is `1` where ap
 
 These buttons will be disabled if access control returns `{ can: false }`
 
+<!-- prettier-ignore-start -->
 ```tsx title=my-page.tsx
+
 import { EditButton, ShowButton, ListButton, CreateButton, CloneButton, DeleteButton } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
 
 export const MyPage = () => {
@@ -201,16 +203,16 @@ export const MyPage = () => {
       {/* These buttons will be disabled if access control returns { can: false } */}
       <ListButton resource="posts" /> {/* { resource: "posts", action: "list", params: { *resource } } */}
       <CreateButton resource="posts" /> {/* { resource: "posts", action: "create", params: { *resource } } */}
-      <CloneButton resource="posts" recordItemId={1} />{" "}
-      {/* { resource: "posts", action: "create", params: { id: 1, *resource } } */}
+      <CloneButton resource="posts" recordItemId={1} /> {/* { resource: "posts", action: "create", params: { id: 1, *resource } } */}
       <EditButton resource="posts" recordItemId={1} /> {/* { resource: "posts", action: "edit", params: { id: 1, *resource } } */}
-      <DeleteButton resource="posts" recordItemId={1} />{" "}
-      {/* { resource: "posts, action: "delete", params: { id: 1, *resource } } */}
+      <DeleteButton resource="posts" recordItemId={1} /> {/* { resource: "posts, action: "delete", params: { id: 1, *resource } } */}
       <ShowButton resource="posts" recordItemId={1} /> {/* { resource: "posts", action: "show", params: { id: 1, *resource } } */}
     </>
   );
 };
+
 ```
+<!-- prettier-ignore-end -->
 
 :::simple
 If you want to hide buttons instead of disabling them, you can pass `hideIfUnauthorized: true` to the `options` of the `accessControlProvider`
