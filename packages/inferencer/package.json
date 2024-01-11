@@ -185,8 +185,7 @@
     "react-test-renderer": "^18.2.0",
     "ts-jest": "^29.0.3",
     "tsup": "^6.7.0",
-    "typescript": "^4.7.4",
-    "graphql-tag": "^2.12.6"
+    "typescript": "^4.7.4"
   },
   "dependencies": {
     "@tabler/icons": "^1.119.0",
@@ -200,7 +199,8 @@
     "remark-gfm": "^1.0.0",
     "tslib": "^2.3.1",
     "prettier": "^2.7.1",
-    "@aliemir/react-live": "^4.0.0"
+    "@aliemir/react-live": "^4.0.0",
+    "graphql-tag": "^2.12.6"
   },
   "author": "Refine",
   "license": "MIT",
