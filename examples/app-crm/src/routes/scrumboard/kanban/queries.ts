@@ -76,3 +76,73 @@ export const KANBAN_UPDATE_TASK_MUTATION = gql`
         }
     }
 `;
+
+export const KANBAN_TASK_COMMENTS_QUERY = gql`
+    query KanbanTaskComments(
+        $filter: TaskCommentFilter!
+        $sorting: [TaskCommentSort!]
+        $paging: OffsetPaging!
+    ) {
+        taskComments(filter: $filter, sorting: $sorting, paging: $paging) {
+            nodes {
+                id
+                comment
+                createdAt
+                createdBy {
+                    id
+                    name
+                    avatarUrl
+                }
+            }
+            totalCount
+        }
+    }
+`;
+
+export const KANBAN_TASK_STAGES_QUERY = gql`
+    query KanbanTaskStages(
+        $filter: TaskStageFilter!
+        $sorting: [TaskStageSort!]
+        $paging: OffsetPaging!
+    ) {
+        taskStages(filter: $filter, sorting: $sorting, paging: $paging) {
+            nodes {
+                id
+                title
+            }
+            totalCount
+        }
+    }
+`;
+
+export const KANBAN_TASKS_QUERY = gql`
+    query KanbanTasks(
+        $filter: TaskFilter!
+        $sorting: [TaskSort!]
+        $paging: OffsetPaging!
+    ) {
+        tasks(filter: $filter, sorting: $sorting, paging: $paging) {
+            nodes {
+                id
+                title
+                description
+                dueDate
+                completed
+                stageId
+                checklist {
+                    title
+                    checked
+                }
+                users {
+                    id
+                    name
+                    avatarUrl
+                }
+                comments {
+                    totalCount
+                }
+            }
+            totalCount
+        }
+    }
+`;

@@ -895,6 +895,66 @@ export type KanbanUpdateTaskMutation = {
     };
 };
 
+export type KanbanTaskCommentsQueryVariables = Types.Exact<{
+    filter: Types.TaskCommentFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.TaskCommentSort> | Types.TaskCommentSort
+    >;
+    paging: Types.OffsetPaging;
+}>;
+
+export type KanbanTaskCommentsQuery = {
+    taskComments: Pick<Types.TaskCommentConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<Types.TaskComment, "id" | "comment" | "createdAt"> & {
+                createdBy: Pick<Types.User, "id" | "name" | "avatarUrl">;
+            }
+        >;
+    };
+};
+
+export type KanbanTaskStagesQueryVariables = Types.Exact<{
+    filter: Types.TaskStageFilter;
+    sorting?: Types.InputMaybe<
+        Array<Types.TaskStageSort> | Types.TaskStageSort
+    >;
+    paging: Types.OffsetPaging;
+}>;
+
+export type KanbanTaskStagesQuery = {
+    taskStages: Pick<Types.TaskStageConnection, "totalCount"> & {
+        nodes: Array<Pick<Types.TaskStage, "id" | "title">>;
+    };
+};
+
+export type KanbanTasksQueryVariables = Types.Exact<{
+    filter: Types.TaskFilter;
+    sorting?: Types.InputMaybe<Array<Types.TaskSort> | Types.TaskSort>;
+    paging: Types.OffsetPaging;
+}>;
+
+export type KanbanTasksQuery = {
+    tasks: Pick<Types.TaskConnection, "totalCount"> & {
+        nodes: Array<
+            Pick<
+                Types.Task,
+                | "id"
+                | "title"
+                | "description"
+                | "dueDate"
+                | "completed"
+                | "stageId"
+            > & {
+                checklist: Array<
+                    Pick<Types.CheckListItem, "title" | "checked">
+                >;
+                users: Array<Pick<Types.User, "id" | "name" | "avatarUrl">>;
+                comments: Pick<Types.TaskCommentsConnection, "totalCount">;
+            }
+        >;
+    };
+};
+
 export type SalesCompaniesSelectQueryVariables = Types.Exact<{
     filter: Types.CompanyFilter;
     sorting?: Types.InputMaybe<Array<Types.CompanySort> | Types.CompanySort>;
