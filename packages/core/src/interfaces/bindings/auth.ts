@@ -72,3 +72,5 @@ export type AuthBindings = {
 export interface IAuthBindingsContext extends Partial<AuthBindings> {
     isProvided: boolean;
 }
+
+export type AuthProvider = AuthBindings;
