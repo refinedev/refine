@@ -420,6 +420,7 @@ html[data-active-page="index"] body {
 }
 
 .sp-preview .sp-loading + .sp-custom-loading {
+    @apply bg-gray-0 dark:bg-gray-800;
     display: flex;
     position: absolute;
     left: 0;
