@@ -189,14 +189,31 @@ These buttons will be checked for access control.
 
 Let's say they are rendered where `resource` is `posts` and `id` is `1` where applicable. The `can` function will receive the `resource`([ResourceProps][iresourceitem]) object you passed to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
 
-- [**List**](/docs/ui-integrations/ant-design/components/buttons/list-button): `{ resource: "posts", action: "list", params: { *resource } }`
-- [**Create**](/docs/ui-integrations/ant-design/components/buttons/create-button): `{ resource: "posts", action: "create", params: { *resource } }`
-- [**Clone**](/docs/ui-integrations/ant-design/components/buttons/clone-button): `{ resource: "posts", action: "create", params: { id: 1, *resource } }`
-- [**Edit**](/docs/ui-integrations/ant-design/components/buttons/edit-button): `{ resource: "posts", action: "edit", params: { id: 1, *resource } }`
-- [**Delete**](/docs/ui-integrations/ant-design/components/buttons/delete-button): `{ resource: "posts, action: "delete", params: { id: 1, *resource } }`
-- [**Show**](/docs/ui-integrations/ant-design/components/buttons/show-button): `{ resource: "posts", action: "show", params: { id: 1, *resource } }`
-
 These buttons will be disabled if access control returns `{ can: false }`
+
+```tsx title=my-page.tsx
+// or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
+import { EditButton, ShowButton, ListButton, CreateButton, CloneButton, DeleteButton } from "@refinedev/antd";
+
+export const MyPage = () => {
+  return (
+    <>
+      My Page
+      {/* These buttons will be disabled if access control returns { can: false } */}
+      <ListButton resource="posts" />
+      <CreateButton resource="posts" />
+      <CloneButton resource="posts" recordItemId={1} />
+      <EditButton resource="posts" recordItemId={1} />
+      <DeleteButton resource="posts" recordItemId={1} />
+      <ShowButton resource="posts" recordItemId={1} />
+    </>
+  );
+};
+```
+
+:::simple
+If you want to hide buttons instead of disabling them, you can pass `hideIfUnauthorized: true` to the `options` of the `accessControlProvider`
+:::
 
 ## Examples
 
