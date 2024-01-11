@@ -211,7 +211,7 @@ const App: React.FC = () => {
                                                     element={<SalesEditStage />}
                                                 />
                                                 <Route
-                                                    path="details/edit/:id"
+                                                    path=":id/finalize"
                                                     element={
                                                         <SalesFinalizeDeal />
                                                     }
