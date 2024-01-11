@@ -38,7 +38,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
         },
         [
             "Date",
-            "Wed, 10 Jan 2024 21:14:40 GMT",
+            "Thu, 11 Jan 2024 06:15:04 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Content-Length",
@@ -46,7 +46,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "8d90a177333ffad71c6840457ec8ea26",
+            "ee9bab5c488b2f420080329c67dd6ef8",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -64,9 +64,11 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "8437ee4aaac01cc0-BUD",
+            "843b05e92e5068bb-BUD",
         ],
     );
+
+console.log;
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
@@ -101,7 +103,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
         },
         [
             "Date",
-            "Wed, 10 Jan 2024 21:14:41 GMT",
+            "Thu, 11 Jan 2024 06:15:06 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Content-Length",
@@ -109,7 +111,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "2a574a8d222b73ef5304d10adf395d2b",
+            "8582699cf0f3e6a5aed4ae39cba6fdbd",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -127,7 +129,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "8437ee53dc7268b3-BUD",
+            "843b05f20c2d684c-BUD",
         ],
     );
 
@@ -169,7 +171,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
         },
         [
             "Date",
-            "Wed, 10 Jan 2024 21:14:42 GMT",
+            "Thu, 11 Jan 2024 06:15:07 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Content-Length",
@@ -177,7 +179,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "e0863cdcff3c7bfabd2d4dc2675d83ad",
+            "78ef5ca6e5468114245e0cbf5a6d45a5",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -195,9 +197,11 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "8437ee58bc4e1cfa-BUD",
+            "843b05fa0e97c1cd-BUD",
         ],
     );
+
+console.log;
 
 nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
@@ -232,7 +236,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
         },
         [
             "Date",
-            "Wed, 10 Jan 2024 21:14:43 GMT",
+            "Thu, 11 Jan 2024 06:15:09 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Content-Length",
@@ -240,7 +244,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "6f993810d1589312e8eb2d33d8ddb1da",
+            "0bd52cc399544193096d3fa046e6c6c1",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -258,18 +262,22 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "8437ee6248101cee-BUD",
+            "843b06038bc568b6-BUD",
         ],
     );
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation UpdateManyPosts($ids: [uuid!]!, $_set: posts_set_input!) {\n  update_posts(where: {id: {_in: $ids}}, _set: $_set) {\n    returning {\n      id\n      title\n      content\n    }\n  }\n}\n",
+        query: "mutation UpdateManyPosts($where: posts_bool_exp!, $_set: posts_set_input!) {\n  update_posts(where: $where, _set: $_set) {\n    returning {\n      id\n      title\n      content\n    }\n  }\n}\n",
         variables: {
-            ids: [
-                "85e2f56d-53e9-4d43-8099-4c7622c8e8e1",
-                "881a45fd-a5da-46f4-a045-58eeb647862f",
-            ],
+            where: {
+                id: {
+                    _in: [
+                        "85e2f56d-53e9-4d43-8099-4c7622c8e8e1",
+                        "881a45fd-a5da-46f4-a045-58eeb647862f",
+                    ],
+                },
+            },
             _set: { content: "Updated Content" },
         },
         operationName: "UpdateManyPosts",
@@ -296,7 +304,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
         },
         [
             "Date",
-            "Wed, 10 Jan 2024 21:14:44 GMT",
+            "Thu, 11 Jan 2024 06:15:49 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Content-Length",
@@ -304,7 +312,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "2d88db3eecc9b580d37abeb167d4f79d",
+            "4d43d1e6215ee62450c38cba8386ea10",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -322,18 +330,22 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "8437ee67dbdb733b-BUD",
+            "843b06fca96cc1a8-BUD",
         ],
     );
 
 nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation UpdateManyPosts($ids: [uuid!]!, $_set: PostsSetInput!) {\n  updatePosts(where: {id: {_in: $ids}}, _set: $_set) {\n    returning {\n      id\n      title\n      content\n    }\n  }\n}\n",
+        query: "mutation UpdateManyPosts($where: PostsBoolExp!, $_set: PostsSetInput!) {\n  updatePosts(where: $where, _set: $_set) {\n    returning {\n      id\n      title\n      content\n    }\n  }\n}\n",
         variables: {
-            ids: [
-                "4ec22cb3-b679-4891-a489-3d19cf275ab3",
-                "ae316d48-025a-47db-b4c0-ff4694f52c85",
-            ],
+            where: {
+                id: {
+                    _in: [
+                        "4ec22cb3-b679-4891-a489-3d19cf275ab3",
+                        "ae316d48-025a-47db-b4c0-ff4694f52c85",
+                    ],
+                },
+            },
             _set: { content: "Updated Content" },
         },
         operationName: "UpdateManyPosts",
@@ -360,7 +372,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
         },
         [
             "Date",
-            "Wed, 10 Jan 2024 21:14:45 GMT",
+            "Thu, 11 Jan 2024 06:15:50 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Content-Length",
@@ -368,7 +380,7 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "01ff0dc515ac47da068721acc83ed799",
+            "87926d08abd83ccb70dc141eebd4761e",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -386,6 +398,6 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "8437ee6c186a6847-BUD",
+            "843b0705d87e03bf-BUD",
         ],
     );
