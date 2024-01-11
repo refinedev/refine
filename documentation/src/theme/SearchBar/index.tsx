@@ -202,7 +202,7 @@ function DocSearch({
     );
 }
 
-export default function SearchBar({ CustomButton }) {
+export default function SearchBar({ CustomButton }: { CustomButton?: any }) {
     const { siteConfig } = useDocusaurusContext();
     return (
         <DocSearch
