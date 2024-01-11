@@ -19,14 +19,16 @@ export const getMetaProps = (
     actions?: Action[],
 ) => {
     if (!(meta && actions && identifier)) return "";
+    if (!Object.keys(meta).length) return "";
 
     const metaByIdentifier = identifier ? meta[identifier] : {};
     const metaByActions: string[] = [];
 
     // we need to return first founded action in metaByIdentifier and disgard the rest.
-    const firstFoundedActionInMeta = actions.find((action) => {
-        return action && action in metaByIdentifier;
-    });
+    const metaKeys = Object.keys(metaByIdentifier);
+    const firstFoundedActionInMeta = actions.find((action) =>
+        metaKeys.includes(action),
+    );
 
     // if actions is not found, we need to return metaByIdentifier["default"]
     const metaByAction =
