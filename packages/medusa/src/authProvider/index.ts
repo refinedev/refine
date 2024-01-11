@@ -1,7 +1,7 @@
-import { AuthBindings, HttpError } from "@refinedev/core";
+import { AuthProvider, HttpError } from "@refinedev/core";
 import axios from "axios";
 
-export const authProvider = (API_URL: string): AuthBindings => {
+export const authProvider = (API_URL: string): AuthProvider => {
     const axiosInstance = axios.create();
 
     axiosInstance.interceptors.response.use(

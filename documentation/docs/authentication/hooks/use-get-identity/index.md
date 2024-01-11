@@ -19,9 +19,9 @@ Let's say that you want to show the user's name.
 We have a logic in [`authProvider`](/docs/authentication/auth-provider)'s `getIdentity` method like below:
 
 ```tsx
-import type { AuthBindings } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ...
   // highlight-start
   getIdentity: async () => {

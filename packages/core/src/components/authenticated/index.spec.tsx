@@ -9,7 +9,7 @@ import {
 } from "@test";
 
 import { Authenticated } from "./";
-import { AuthBindings } from "src/interfaces";
+import { AuthProvider } from "src/interfaces";
 
 const legacyMockAuthProvider = {
     login: () => Promise.resolve(),
@@ -33,7 +33,7 @@ const mockLegacyRouter = {
     }),
 };
 
-const mockAuthProvider: AuthBindings = {
+const mockAuthProvider: AuthProvider = {
     login: () =>
         Promise.resolve({
             success: true,

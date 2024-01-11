@@ -39,9 +39,9 @@ const App = () => {
 An `authProvider` can contain the following methods:
 
 ```tsx
-import type { AuthBindings } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
     // required methods
     login: async (params: any): AuthActionResponse,
     check: async (params: any): CheckResponse,
@@ -83,11 +83,11 @@ type AuthActionResponse = {
 As an example, let's create a simple `login` method that checks if the user exists in the mock data. If the user exists, we will save the user's data to the local storage and redirect the user to the home page. If the user doesn't exist, we will return an error.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 const mockUsers = [{ email: "john@mail.com" }, { email: "jane@mail.com" }];
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
     // Suppose we actually send a request to the back end here.
     const user = mockUsers.find((item) => item.email === email);
@@ -152,7 +152,7 @@ const { mutate } = useLogin<{
 If you want to redirect the user to a specific page, you can resolve the promise with an object that has the `redirectTo` property.
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   login: async () => {
     // ---
@@ -182,7 +182,7 @@ mutate({ redirectPath: "/custom-page" });
 Then use the `redirectPath` parameter in the `login` method to redirect the user to the specific page:
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   login: async ({ redirectPath }) => {
     //---
@@ -197,7 +197,7 @@ const authProvider: AuthBindings = {
 If you don't want to redirect the user anywhere, you can resolve the `login` method's promise with `redirectTo: undefined`.
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   login: async () => {
     // ---
@@ -217,9 +217,9 @@ const authProvider: AuthBindings = {
 Refine automatically displays an error notification when the `login` method resolves the promise with `success: false`. If you want to customize the error message, you can resolve the promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
     // ---
     return {
@@ -259,9 +259,9 @@ type CheckResponse = {
 Since we saved the user data to the local storage in the `login` method, we will check that to determine if the user is authenticated:
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   check: async () => {
     const user = localStorage.getItem("auth");
@@ -306,7 +306,7 @@ const { data, isSuccess, isLoading, isError } = useIsAuthenticated();
 If you want to redirect the user to a specific page, you can resolve the Promise with an object that has `redirectTo` property.
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   check: async () => {
     // ---
@@ -343,9 +343,9 @@ type AuthActionResponse = {
 Opposite to what we did in the `login` method, we now need to remove the user data from the local storage upon log out:
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   logout: async () => {
     localStorage.removeItem("auth");
@@ -398,7 +398,7 @@ const { mutate } = useLogout<{
 If you want to redirect the user to a specific page, you can resolve the promise with an object that has the `redirectTo` property.
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   logout: async () => {
     // ---
@@ -421,7 +421,7 @@ mutate({ redirectPath: "/custom-page" });
 Then use the `redirectPath` parameter in the `logout` method to redirect the user to the specific page:
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   logout: ({ redirectPath }) => {
     // ---
@@ -436,7 +436,7 @@ const authProvider: AuthBindings = {
 If you don't want to redirect the user to anywhere, you can resolve the `logout` method's Promise with `redirectTo: undefined`.
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   logout: async () => {
     // ---
@@ -456,9 +456,9 @@ const authProvider: AuthBindings = {
 Refine automatically displays an error notification when the `logout` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   logout: async () => {
     // ---
     return {
@@ -498,9 +498,9 @@ type OnErrorResponse = {
 We'll use the `onError` method to log out the user if the API returns a `401` or `403` error. If `redirectTo` is set, `logout` method will be called with the `redirectTo` value.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   onError: async (error) => {
     if (error.status === 401 || error.status === 403) {
@@ -541,7 +541,7 @@ fetch("http://example.com/payment")
 If you want to redirect the user to a specific page, you can resolve the promise with an object that has `redirectTo` property.
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   onError: async (error) => {
     if (error.status === 401 || error.status === 403) {
@@ -567,14 +567,14 @@ const authProvider: AuthBindings = {
 We will use the `getPermissions` method to get the user's permissions from the `localStorage`.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 const mockUsers = [
   { email: "john@mail.com", roles: ["admin"] },
   { email: "jane@mail.com", roles: ["editor"] },
 ];
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   getPermissions: () => {
     const user = localStorage.getItem("auth");
@@ -624,14 +624,14 @@ For more information, refer to the [`accessControlProvider` documentation&#8594]
 To get the user's identity from the local storage and resolve the promise:
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 const mockUsers = [
   { email: "john@mail.com", roles: ["admin"] },
   { email: "jane@mail.com", roles: ["editor"] },
 ];
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   getIdentity: async () => {
     const user = localStorage.getItem("auth");
@@ -687,11 +687,11 @@ type AuthActionResponse = {
 We'll register a new user and resolve the promise.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 const mockUsers = [{ email: "john@mail.com" }, { email: "jane@mail.com" }];
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   register: async ({ email }) => {
     const user = mockUsers.find((user) => user.email === email);
@@ -760,7 +760,7 @@ const { mutate } = useRegister<{
 If you want to redirect the user to a specific page, you can resolve the Promise with an object that has `redirectTo` property.
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   register: async () => {
     // ---
@@ -783,7 +783,7 @@ mutate({ redirectPath: "/custom-page" });
 Then use the `redirectPath` parameter in the `register` method to redirect the user to the specific page:
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   register: async ({ redirectPath }) => {
     // ---
@@ -798,7 +798,7 @@ const authProvider: AuthBindings = {
 If you don't want to redirect the user to anywhere, you can resolve the `register` method's Promise with `redirectTo: undefined`.
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   register: async () => {
     // ---
@@ -818,7 +818,7 @@ const authProvider: AuthBindings = {
 Refine automatically displays an error notification when the `register` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   register: async () => {
     // ---
@@ -858,9 +858,9 @@ type AuthActionResponse = {
 To send a password reset link to the user's email address and resolve the promise:
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   forgotPassword: async ({ email }) => {
     // send password reset link to the user's email address here
@@ -923,7 +923,7 @@ const { mutate } = useForgotPassword<{
 If you want to redirect the user to a specific page, you can resolve the `forgotPassword` method's Promise with the path of the page.
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   forgotPassword: async () => {
     // ---
@@ -946,7 +946,7 @@ useForgotPassword({ redirectPath: "/custom-page" });
 Then, you can use the `redirectPath` parameter in the `forgotPassword` method to redirect the user to the specific page.
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   forgotPassword: async ({ redirectPath }) => {
     // ---
@@ -966,7 +966,7 @@ const authProvider: AuthBindings = {
 Refine automatically displays an error notification when the `forgotPassword` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   forgotPassword: async () => {
     // ---
@@ -1006,9 +1006,9 @@ type AuthActionResponse = {
 To update the user's password and resolve the promise:
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   updatePassword: async ({ password }) => {
     // update the user's password here
@@ -1051,7 +1051,7 @@ Additionally, the `updatePassword` method will take query parameters as argument
 If we assume that the URL is `http://localhost:3000/reset-password?token=123`, the `updatePassword` method will get the mutation's parameters as arguments and the `token` query parameter as well.
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   updatePassword: async ({ password, confirmPassword, token }) => {
     console.log(token); // 123
@@ -1089,7 +1089,7 @@ const { mutate } = useUpdatePassword<{
 If you want to redirect the user to a specific page, you can resolve the Promise with an object that has `redirectTo` property.
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   updatePassword: async () => {
     // ---
@@ -1112,7 +1112,7 @@ useUpdatePassword({ redirectPath: "/custom-page" });
 Then use the `redirectPath` parameter in the `updatePassword` method to redirect the user to the specific page:
 
 ```ts
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   updatePassword: async ({ redirectPath }) => {
     // ---
@@ -1132,7 +1132,7 @@ const authProvider: AuthBindings = {
 Refine automatically displays an error notification when the `updatePassword` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ---
   updatePassword: async () => {
     // ---

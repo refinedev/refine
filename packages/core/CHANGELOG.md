@@ -2207,9 +2207,9 @@
     Example for `login` method:
 
     ```ts
-    import { AuthBindings } from "@refinedev/core";
+    import { AuthProvider } from "@refinedev/core";
 
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ email, password }) => {
             ...
             return {
@@ -2236,9 +2236,9 @@
     Example for `login` method:
 
     ```ts
-    import { AuthBindings } from "@refinedev/core";
+    import { AuthProvider } from "@refinedev/core";
 
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ email, password }) => {
             ...
             return {

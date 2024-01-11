@@ -1,4 +1,4 @@
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 import type { User } from "@/graphql/schema.types";
 import { disableAutoLogin, enableAutoLogin } from "@/hooks";
@@ -30,7 +30,7 @@ export const demoCredentials = {
     password: "demodemo",
 };
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
     login: async ({ email, providerName, accessToken, refreshToken }) => {
         if (accessToken && refreshToken) {
             client.setHeaders({

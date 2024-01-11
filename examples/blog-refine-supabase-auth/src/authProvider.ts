@@ -1,8 +1,8 @@
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 import { supabaseClient } from "./utility";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
     login: async ({ mobileNo, otp }) => {
         const { data, error } = await supabaseClient.auth.verifyOtp({
             phone: mobileNo,

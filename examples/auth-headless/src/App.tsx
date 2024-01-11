@@ -1,6 +1,6 @@
 import {
     AuthPage,
-    AuthBindings,
+    AuthProvider,
     GitHubBanner,
     Refine,
     Authenticated,
@@ -22,7 +22,7 @@ import { Layout } from "./components/layout";
 import "./App.css";
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ providerName, email }) => {
             if (providerName === "google") {
                 window.location.href =

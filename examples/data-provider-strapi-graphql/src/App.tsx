@@ -1,5 +1,5 @@
 import {
-    AuthBindings,
+    AuthProvider,
     Authenticated,
     GitHubBanner,
     Refine,
@@ -30,7 +30,7 @@ const API_URL = "https://api.strapi.refine.dev/graphql";
 const client = new GraphQLClient(API_URL);
 const gqlDataProvider = dataProvider(client);
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         try {
             // eslint-disable-next-line

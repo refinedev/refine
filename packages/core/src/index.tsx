@@ -7,7 +7,7 @@ export {
     AccessControlProvider,
     AuditLogProvider,
     LegacyAuthProvider,
-    AuthBindings,
+    AuthProvider,
     AuthProvider,
     BaseKey,
     BaseRecord,
