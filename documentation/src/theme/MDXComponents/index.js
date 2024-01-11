@@ -16,7 +16,6 @@ import { GuideBadge } from "@site/src/components/guide-badge";
 import PropTag from "@site/src/components/prop-tag";
 import PropsTable from "@site/src/components/props-table";
 import { RouterBadge } from "@site/src/components/router-badge";
-import { Sandpack } from "@site/src/components/sandpack";
 import UIConditional from "@site/src/components/ui-conditional";
 import CommonDetails from "@site/src/refine-theme/common-details";
 import CommonSummary from "@site/src/refine-theme/common-summary";
@@ -27,6 +26,7 @@ import { Image } from "@site/src/components/image";
 import { Table, FullTable } from "@site/src/refine-theme/common-table";
 import { CreateRefineAppCommand } from "@site/src/partials/npm-scripts/create-refine-app-command.tsx";
 import { InstallPackagesCommand } from "@site/src/partials/npm-scripts/install-packages-commands";
+import { TutorialConditional } from "@site/src/refine-theme/tutorial-conditional";
 
 export default {
     ...MDXComponents,
@@ -49,7 +49,6 @@ export default {
     ExampleLocalPrompt,
     ExampleSourcePrompt,
     BannerRandom,
-    Sandpack,
     GuideBadge,
     RouterBadge,
     GlobalConfigBadge,
@@ -58,4 +57,5 @@ export default {
     CreateRefineAppCommand: CreateRefineAppCommand,
     InstallPackagesCommand: InstallPackagesCommand,
     FullTable: FullTable,
+    TutorialConditional,
 };
