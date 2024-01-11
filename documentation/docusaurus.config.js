@@ -143,6 +143,19 @@ const siteConfig = {
         "./plugins/clarity.js",
         "./plugins/templates.js",
         "./plugins/example-redirects.js",
+        "./plugins/tutorial-navigation.js",
+        [
+            "@docusaurus/plugin-content-docs",
+            {
+                id: "tutorial",
+                path: "tutorial",
+                routeBasePath: "tutorial",
+                sidebarPath: false,
+                docLayoutComponent: "@theme/TutorialPage",
+                docItemComponent: "@theme/TutorialItem",
+                include: ["**/index.md"],
+            },
+        ],
     ],
     themeConfig: {
         prism: {
