@@ -24,9 +24,9 @@ export const getMetaProps = (
     const metaByActions: string[] = [];
 
     // we need to return first founded action in metaByIdentifier and disgard the rest.
-    const firstFoundedActionInMeta = actions.find(
-        (action) => action in metaByIdentifier,
-    );
+    const firstFoundedActionInMeta = actions.find((action) => {
+        return action && action in metaByIdentifier;
+    });
 
     // if actions is not found, we need to return metaByIdentifier["default"]
     const metaByAction =

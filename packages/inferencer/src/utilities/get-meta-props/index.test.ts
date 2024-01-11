@@ -247,4 +247,15 @@ describe("getMetaProps", () => {
         );
         expect(result).toBe('meta:{getOneFoo:"getOneBar"}');
     });
+
+    it("should return empty string when params are undefined ", () => {
+        expect(getMetaPropsForTest(undefined, undefined, undefined)).toBe("");
+        expect(getMetaPropsForTest(undefined, {}, [])).toBe("");
+        expect(getMetaPropsForTest("foo", undefined, undefined)).toBe("");
+        expect(getMetaPropsForTest("foo", {}, undefined)).toBe("");
+        expect(getMetaPropsForTest("foo", {}, [])).toBe("");
+        expect(getMetaPropsForTest("foo", undefined, [undefined as any])).toBe(
+            "",
+        );
+    });
 });
