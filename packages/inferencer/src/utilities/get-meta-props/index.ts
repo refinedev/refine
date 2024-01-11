@@ -25,9 +25,8 @@ export const getMetaProps = (
     const metaByActions: string[] = [];
 
     // we need to return first founded action in metaByIdentifier and disgard the rest.
-    const metaKeys = Object.keys(metaByIdentifier);
-    const firstFoundedActionInMeta = actions.find((action) =>
-        metaKeys.includes(action),
+    const firstFoundedActionInMeta = actions.find(
+        (action) => metaByIdentifier[action],
     );
 
     // if actions is not found, we need to return metaByIdentifier["default"]
@@ -58,12 +57,12 @@ export const getMetaProps = (
         );
     }
 
-    const metaValues = metaByActions.join(", ");
+    const metaValues = metaByActions.join(",");
     if (!!metaValues.length) {
         return `meta:{${metaValues}}`;
-    } else {
-        return "";
     }
+
+    return "";
 };
 
 export const pickMeta = (
