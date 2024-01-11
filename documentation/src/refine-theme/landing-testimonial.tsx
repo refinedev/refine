@@ -38,7 +38,7 @@ export const LandingTestimonial: FC<Props> = ({ className }) => {
                         "dark:text-gray-0 text-gray-900",
                     )}
                 >
-                    The Refine experience{", "}
+                    The{" "}
                     <span
                         className={clsx(
                             "font-semibold",
@@ -46,9 +46,9 @@ export const LandingTestimonial: FC<Props> = ({ className }) => {
                             "text-refine-blue drop-shadow-[0_0_30px_rgba(0,128,255,0.3)]",
                         )}
                     >
-                        in their words
-                    </span>
-                    .
+                        difference
+                    </span>{" "}
+                    that Refine makes
                 </h2>
             </div>
 

@@ -735,7 +735,7 @@ const { data, isLoading } = useCustom({
 
 ## Bulk Actions
 
-Bulk actions are actions that can be performed on multiple items at once to improve speed and efficiency. They are commonly used in admin panels. They can be used for data [`import`](../../examples/core/useImport.md) and [`export`](/docs/core/hooks/utilities/use-export), and are also atomic, meaning that they are treated as a single unit.
+Bulk actions are actions that can be performed on multiple items at once to improve speed and efficiency. They are commonly used in admin panels. They can be used for data [`import`](/docs/core/hooks/utilities/use-import) and [`export`](/docs/core/hooks/utilities/use-export), and are also atomic, meaning that they are treated as a single unit.
 
 If your API supports bulk actions, you can implement them in your data provider.
 

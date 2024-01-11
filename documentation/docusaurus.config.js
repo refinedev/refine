@@ -62,6 +62,7 @@ const siteConfig = {
                 blog: false,
                 theme: {
                     customCss: [
+                        require.resolve("./src/refine-theme/css/colors.css"),
                         require.resolve("./src/refine-theme/css/fonts.css"),
                         require.resolve("./src/refine-theme/css/custom.css"),
                         require.resolve("./src/css/custom.css"),
@@ -141,10 +142,11 @@ const siteConfig = {
         "./plugins/intercom.js",
         "./plugins/clarity.js",
         "./plugins/templates.js",
+        "./plugins/example-redirects.js",
     ],
     themeConfig: {
         prism: {
-            theme: require("prism-react-renderer/themes/nightOwlLight"),
+            theme: require("prism-react-renderer/themes/github"),
             darkTheme: require("prism-react-renderer/themes/vsDark"),
             magicComments: [
                 // Remember to extend the default highlight class name as well!

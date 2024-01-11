@@ -96,8 +96,8 @@ export const TutorialCircle: React.FC<Props> = ({
                     textAnchor="middle"
                     fill="currentColor"
                     className={clsx("text-[2.5rem]", {
-                        "text-gray-500": !isCurrent,
-                        "text-gray-900 dark:text-white": isCurrent,
+                        "text-gray-500 dark:text-gray-400": !isCurrent,
+                        "text-gray-800 dark:text-gray-0": isCurrent,
                     })}
                 >
                     {unitNo}

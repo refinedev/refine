@@ -74,3 +74,56 @@ export const CommonThemeToggle = ({ className }: Props) => {
         </button>
     );
 };
+
+const themes = [
+    { name: "light", icon: LightModeIcon, label: "Light" },
+    { name: "dark", icon: DarkModeIcon, label: "Dark" },
+];
+
+export const CommonThemeToggleAlt = ({ className }: Props) => {
+    const { colorMode, setColorMode } = useColorMode();
+
+    const toggle = (next: string) => {
+        setColorMode(next as typeof colorMode);
+    };
+
+    return (
+        <div
+            className={clsx(
+                "flex",
+                "items-center",
+                "gap-4",
+                "justify-start",
+                className,
+            )}
+        >
+            {themes.map(({ name, label, icon: Icon }) => (
+                <button
+                    type="button"
+                    key={name}
+                    className={clsx(
+                        "appearance-none",
+                        "focus:outline-none",
+                        "py-1",
+                        "pl-1.5",
+                        "pr-3",
+                        "flex",
+                        "items-center",
+                        "justify-center",
+                        "gap-1",
+                        "rounded-[40px]",
+                        "text-gray-400",
+                        "border border-solid",
+                        "border-gray-200",
+                        "dark:border-gray-600",
+                        colorMode === name && "bg-gray-100 dark:bg-gray-700",
+                    )}
+                    onClick={() => toggle(name)}
+                >
+                    <Icon className={clsx("w-4 h-4")} />
+                    <span className={clsx("text-sm")}>{label}</span>
+                </button>
+            ))}
+        </div>
+    );
+};

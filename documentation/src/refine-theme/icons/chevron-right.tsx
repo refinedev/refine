@@ -10,10 +10,11 @@ export const ChevronRightIcon = (props: React.SVGProps<SVGSVGElement>) => (
         {...props}
     >
         <path
-            fill="currentColor"
-            fillRule="evenodd"
-            d="M9.793 8.293a1 1 0 0 0 0 1.414L12.086 12l-2.293 2.293a1 1 0 1 0 1.414 1.414l3-3a1 1 0 0 0 0-1.414l-3-3a1 1 0 0 0-1.414 0Z"
-            clipRule="evenodd"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.25}
+            d="M10.438 8.875 13.562 12l-3.124 3.125"
         />
     </svg>
 );
