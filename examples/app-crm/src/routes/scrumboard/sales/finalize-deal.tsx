@@ -16,7 +16,7 @@ type FormValues = {
     closeDateYear?: number;
 };
 
-export const SalesCreateDetails = () => {
+export const SalesFinalizeDeal = () => {
     const invalidate = useInvalidate();
     const { list } = useNavigation();
 

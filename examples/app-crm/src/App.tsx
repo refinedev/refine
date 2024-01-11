@@ -52,11 +52,11 @@ import {
     KanbanPage,
 } from "./routes/scrumboard/kanban";
 import {
-    SalesCreateDetails,
     SalesCreatePage,
     SalesCreateStage,
     SalesEditPage,
     SalesEditStage,
+    SalesFinalizeDeal,
     SalesPage,
 } from "./routes/scrumboard/sales";
 import { UpdatePasswordPage } from "./routes/update-password";
@@ -213,7 +213,7 @@ const App: React.FC = () => {
                                                 <Route
                                                     path="details/edit/:id"
                                                     element={
-                                                        <SalesCreateDetails />
+                                                        <SalesFinalizeDeal />
                                                     }
                                                 />
                                             </Route>

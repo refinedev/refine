@@ -198,7 +198,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
                 onSuccess: () => {
                     const stage = event.over?.id as undefined | string | null;
                     if (stage === "won" || stage === "lost") {
-                        edit("deals", dealId, "replace");
+                        edit("deals-2", dealId, "replace");
                     }
                 },
             },
