@@ -9,8 +9,8 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select, Spin } from "antd";
 
 import {
-    QuoteCreateMutation,
-    QuoteCreateMutationVariables,
+    QuotesCreateQuoteMutation,
+    QuotesCreateQuoteMutationVariables,
 } from "@/graphql/types";
 import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 import { useContactsSelect } from "@/hooks/useContactsSelect";
@@ -40,9 +40,9 @@ export const QuotesFormModal: FC<Props> = ({
     const [searchParams] = useSearchParams();
 
     const { formProps, modalProps, close } = useModalForm<
-        GetFields<QuoteCreateMutation>,
+        GetFields<QuotesCreateQuoteMutation>,
         HttpError,
-        GetVariables<QuoteCreateMutationVariables>
+        GetVariables<QuotesCreateQuoteMutationVariables>
     >({
         resource: "quotes",
         action,

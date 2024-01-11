@@ -974,3 +974,45 @@ export type SalesCompaniesSelectQuery = {
         >;
     };
 };
+
+export type SalesCreateDealStageMutationVariables = Types.Exact<{
+    input: Types.CreateOneDealStageInput;
+}>;
+
+export type SalesCreateDealStageMutation = {
+    createOneDealStage: Pick<Types.DealStage, "id">;
+};
+
+export type SalesCreateContactMutationVariables = Types.Exact<{
+    input: Types.CreateOneContactInput;
+}>;
+
+export type SalesCreateContactMutation = {
+    createOneContact: Pick<Types.Contact, "id">;
+};
+
+export type SalesUpdateDealStageMutationVariables = Types.Exact<{
+    input: Types.UpdateOneDealStageInput;
+}>;
+
+export type SalesUpdateDealStageMutation = {
+    updateOneDealStage: Pick<Types.DealStage, "id" | "title">;
+};
+
+export type SalesUpdateDealMutationVariables = Types.Exact<{
+    input: Types.UpdateOneDealInput;
+}>;
+
+export type SalesUpdateDealMutation = {
+    updateOneDeal: Pick<
+        Types.Deal,
+        "id" | "title" | "stageId" | "value" | "dealOwnerId"
+    > & {
+        company: Pick<Types.Company, "id"> & {
+            contacts: {
+                nodes: Array<Pick<Types.Contact, "id" | "name" | "avatarUrl">>;
+            };
+        };
+        dealContact: Pick<Types.Contact, "id">;
+    };
+};

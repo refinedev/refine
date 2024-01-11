@@ -33,7 +33,10 @@ import { SalesCompaniesSelectQuery } from "@/graphql/types";
 import { useDealStagesSelect } from "@/hooks/useDealStagesSelect";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 
-import { SALES_COMPANIES_SELECT_QUERY } from "./queries";
+import {
+    SALES_COMPANIES_SELECT_QUERY,
+    SALES_CREATE_CONTACT_MUTATION,
+} from "./queries";
 
 type FormValues = {
     stageId?: string | null;
@@ -197,7 +200,7 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
                                     companyId,
                                 },
                                 meta: {
-                                    fields: ["id"],
+                                    gqlMutation: SALES_CREATE_CONTACT_MUTATION,
                                 },
                             });
 
