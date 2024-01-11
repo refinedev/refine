@@ -10,33 +10,25 @@ describe("with meta.fields", () => {
             const client = createClient(namingConvention);
             let posts = [
                 {
-                    id: "6379bbda-0857-40f2-a277-b401ea6134d7",
+                    id: "572708c7-840d-430a-befd-1416bdee799a",
                     title: "Aenean ultricies non libero sit amet pellentesque",
                     content: "Vestibulum vulputate sapien arcu.",
                     category: { id: "e27156c3-9998-434f-bd5b-2b078283ff26" },
                 },
                 {
-                    id: "c7ba5e30-8c5f-46bb-862d-e2bcf6487749",
+                    id: "478212ed-9a78-428c-b418-306bd88e0790",
                     title: "Etiam tincidunt ex ut auctor faucibus",
                     content: "Aliquam nibh erat.",
                     category: { id: "e27156c3-9998-434f-bd5b-2b078283ff26" },
                 },
             ];
 
-            let ids = [
-                "6379bbda-0857-40f2-a277-b401ea6134d7",
-                "c7ba5e30-8c5f-46bb-862d-e2bcf6487749",
-            ];
+            let ids = posts.map((post) => post.id);
 
             if (namingConvention === "graphql-default") {
-                ids = [
-                    "4ef4ba41-92d5-4d1f-b1a5-fc91c9a08284",
-                    "4040c05e-c4c8-4314-aafd-0baf3faae354",
-                ];
-
                 posts = [
                     {
-                        id: "4ef4ba41-92d5-4d1f-b1a5-fc91c9a08284",
+                        id: "4ec22cb3-b679-4891-a489-3d19cf275ab3",
                         title: "Aenean ultricies non libero sit amet pellentesque",
                         content: "Vestibulum vulputate sapien arcu.",
                         category: {
@@ -44,7 +36,7 @@ describe("with meta.fields", () => {
                         },
                     },
                     {
-                        id: "4040c05e-c4c8-4314-aafd-0baf3faae354",
+                        id: "ae316d48-025a-47db-b4c0-ff4694f52c85",
                         title: "Etiam tincidunt ex ut auctor faucibus",
                         content: "Aliquam nibh erat.",
                         category: {
@@ -52,6 +44,8 @@ describe("with meta.fields", () => {
                         },
                     },
                 ];
+
+                ids = posts.map((post) => post.id);
             }
 
             it("correct response with meta", async () => {
@@ -93,13 +87,13 @@ describe("with gqlQuery", () => {
         const client = createClient("hasura-default");
         const posts = [
             {
-                id: "6379bbda-0857-40f2-a277-b401ea6134d7",
+                id: "572708c7-840d-430a-befd-1416bdee799a",
                 title: "Aenean ultricies non libero sit amet pellentesque",
                 content: "Vestibulum vulputate sapien arcu.",
                 category: { id: "e27156c3-9998-434f-bd5b-2b078283ff26" },
             },
             {
-                id: "c7ba5e30-8c5f-46bb-862d-e2bcf6487749",
+                id: "478212ed-9a78-428c-b418-306bd88e0790",
                 title: "Etiam tincidunt ex ut auctor faucibus",
                 content: "Aliquam nibh erat.",
                 category: { id: "e27156c3-9998-434f-bd5b-2b078283ff26" },
@@ -112,7 +106,6 @@ describe("with gqlQuery", () => {
             resource: "posts",
             ids: posts.map((post) => post.id),
             meta: {
-                // fields: ["id", "title", "content", { category: ["id"] }],
                 gqlQuery: gql`
                     query GetPosts($where: posts_bool_exp!) {
                         posts(where: $where) {
@@ -148,7 +141,7 @@ describe("with gqlQuery", () => {
         const client = createClient("graphql-default");
         const posts = [
             {
-                id: "4ef4ba41-92d5-4d1f-b1a5-fc91c9a08284",
+                id: "4ec22cb3-b679-4891-a489-3d19cf275ab3",
                 title: "Aenean ultricies non libero sit amet pellentesque",
                 content: "Vestibulum vulputate sapien arcu.",
                 category: {
@@ -156,7 +149,7 @@ describe("with gqlQuery", () => {
                 },
             },
             {
-                id: "4040c05e-c4c8-4314-aafd-0baf3faae354",
+                id: "ae316d48-025a-47db-b4c0-ff4694f52c85",
                 title: "Etiam tincidunt ex ut auctor faucibus",
                 content: "Aliquam nibh erat.",
                 category: {

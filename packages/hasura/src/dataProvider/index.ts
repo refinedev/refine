@@ -539,7 +539,7 @@ const dataProvider = (
             if (meta?.gqlMutation) {
                 const response = await client.request<BaseRecord>(
                     meta?.gqlMutation,
-                    meta?.variables ?? {
+                    {
                         where: {
                             id: {
                                 _in: ids,

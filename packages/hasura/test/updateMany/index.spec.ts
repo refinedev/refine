@@ -10,44 +10,44 @@ describe("with meta.fields", () => {
             const client = createClient(namingConvention);
             let postsWithMeta = [
                 {
-                    id: "cf43a199-e791-4b81-a1fd-3ccf8e7f6166",
-                    title: "velit id pretium iaculis",
+                    id: "85e2f56d-53e9-4d43-8099-4c7622c8e8e1",
+                    title: "Aenean ultricies non libero sit amet pellentesque",
                 },
                 {
-                    id: "9cd924d2-de3b-479a-9882-23feeb0fd80f",
-                    title: "habitasse platea dictumst aliquam",
+                    id: "881a45fd-a5da-46f4-a045-58eeb647862f",
+                    title: "Etiam tincidunt ex ut auctor faucibus",
                 },
             ];
             let postsWithoutMeta = [
                 {
-                    id: "e890344b-d7b6-4793-b375-b3c2a7f6deea",
-                    title: "id pretium iaculis",
+                    id: "b8a4c5ee-16a0-4c90-bc8d-84ae7085c575",
+                    title: "Aenean ultricies non libero sit amet pellentesque",
                 },
                 {
-                    id: "3be19a24-ecee-42d9-949b-5f41623b9b5a",
-                    title: "eros suspendisse accumsan",
+                    id: "71cc13bf-6261-4cd4-a892-22250eb0f6b3",
+                    title: "Etiam tincidunt ex ut auctor faucibus",
                 },
             ];
 
             if (namingConvention === "graphql-default") {
                 postsWithMeta = [
                     {
-                        id: "9fb231b7-a2e6-4602-85a4-7ddab73cd05e",
-                        title: "elit proin interdum mauris non",
+                        id: "4ec22cb3-b679-4891-a489-3d19cf275ab3",
+                        title: "Aenean ultricies non libero sit amet pellentesque",
                     },
                     {
-                        id: "48a5591e-4ab0-45f8-950e-aee8a63769df",
-                        title: "velit eu est congue elementum in",
+                        id: "ae316d48-025a-47db-b4c0-ff4694f52c85",
+                        title: "Etiam tincidunt ex ut auctor faucibus",
                     },
                 ];
                 postsWithoutMeta = [
                     {
-                        id: "7086ba36-9746-4f0a-90a1-96d93056d706",
-                        title: "porttitor lorem id ligula",
+                        id: "3d71a408-ac30-41f2-b530-3fe951b16b86",
+                        title: "Aenean ultricies non libero sit amet pellentesque",
                     },
                     {
-                        id: "d682533d-9abe-4dcb-bfa5-801acd0ef5ab",
-                        title: "integer ac neque duis bibendum morbi",
+                        id: "9cff1379-349e-4a4c-b436-b18d12857c5c",
+                        title: "Etiam tincidunt ex ut auctor faucibus",
                     },
                 ];
             }
@@ -98,12 +98,12 @@ describe("with gqlFields", () => {
     it("correct response with hasura-default", async () => {
         const posts = [
             {
-                id: "cf43a199-e791-4b81-a1fd-3ccf8e7f6166",
-                title: "velit id pretium iaculis",
+                id: "85e2f56d-53e9-4d43-8099-4c7622c8e8e1",
+                title: "Aenean ultricies non libero sit amet pellentesque",
             },
             {
-                id: "9cd924d2-de3b-479a-9882-23feeb0fd80f",
-                title: "habitasse platea dictumst aliquam",
+                id: "881a45fd-a5da-46f4-a045-58eeb647862f",
+                title: "Etiam tincidunt ex ut auctor faucibus",
             },
         ];
 
@@ -119,13 +119,10 @@ describe("with gqlFields", () => {
             meta: {
                 gqlMutation: gql`
                     mutation UpdateManyPosts(
-                        $ids: [uuid!]!
+                        $where: posts_bool_exp!
                         $_set: posts_set_input!
                     ) {
-                        update_posts(
-                            where: { id: { _in: $ids } }
-                            _set: $_set
-                        ) {
+                        update_posts(where: $where, _set: $_set) {
                             returning {
                                 id
                                 title
@@ -149,12 +146,12 @@ describe("with gqlFields", () => {
     it("correct response with  graphql-default", async () => {
         const posts = [
             {
-                id: "9fb231b7-a2e6-4602-85a4-7ddab73cd05e",
-                title: "elit proin interdum mauris non",
+                id: "4ec22cb3-b679-4891-a489-3d19cf275ab3",
+                title: "Aenean ultricies non libero sit amet pellentesque",
             },
             {
-                id: "48a5591e-4ab0-45f8-950e-aee8a63769df",
-                title: "velit eu est congue elementum in",
+                id: "ae316d48-025a-47db-b4c0-ff4694f52c85",
+                title: "Etiam tincidunt ex ut auctor faucibus",
             },
         ];
 
@@ -170,10 +167,10 @@ describe("with gqlFields", () => {
             meta: {
                 gqlMutation: gql`
                     mutation UpdateManyPosts(
-                        $ids: [uuid!]!
+                        $where: PostsBoolExp!
                         $_set: PostsSetInput!
                     ) {
-                        updatePosts(where: { id: { _in: $ids } }, _set: $_set) {
+                        updatePosts(where: $where, _set: $_set) {
                             returning {
                                 id
                                 title
