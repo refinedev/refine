@@ -57,8 +57,11 @@ export const TutorialParameterProvider: React.FC = ({ children }) => {
 
             if (storedParameters) {
                 _setParameters(JSON.parse(storedParameters));
+            } else {
+                _setParameters(defaultParameters);
             }
         } catch (e) {
+            _setParameters(defaultParameters);
             console.error(e);
         }
 
