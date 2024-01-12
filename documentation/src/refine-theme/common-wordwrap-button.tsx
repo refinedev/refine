@@ -11,12 +11,12 @@ export const CommonWordWrapButton = ({ onClick, isEnabled }) => {
             type="button"
             onClick={() => onClick()}
             className={clsx(
-                "w-8 h-8",
+                "w-6 h-6",
                 "flex justify-center items-center",
-                "bg-gray-50",
-                "hover:bg-gray-100",
+                "bg-gray-200",
                 "dark:bg-gray-800",
-                "dark:hover:bg-gray-900",
+                "hover:bg-gray-300",
+                "dark:hover:bg-refine-react-dark-code",
                 "rounded",
                 "group",
                 "transition-[background-color] duration-200 ease-in-out",
@@ -26,9 +26,9 @@ export const CommonWordWrapButton = ({ onClick, isEnabled }) => {
         >
             <Icon
                 className={clsx(
-                    "w-4 h-4",
-                    "text-gray-400",
-                    "dark:text-gray-500",
+                    "w-3 h-3",
+                    "text-gray-500",
+                    "dark:text-gray-400",
                     isEnabled && "rotate-[360deg]",
                     "transition-all duration-200 ease-in-out",
                 )}
