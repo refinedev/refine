@@ -3,36 +3,24 @@ title: Introduction
 ---
 
 import { Sandpack, ChangeAppTsxSpan, AddFileSpan, UpdateFileSpan } from "./sandpack.tsx";
+import { TutorialParameterDropdown } from "@site/src/refine-theme/tutorial-parameter-dropdown";
 
 <Sandpack>
 
-test
+This tutorial will walk you through from essentials of Refine to advanced topics. You'll learn how to build a full-featured CRUD applications with Refine.
 
-main tutorial
-first unit
-first article
-introduction
+Refine is router agnostic and you're free to choose the routing library you're most familiar with. Refine officially supports [React Router DOM](#), [Next.js](#) and [Remix](#). In the further steps of the tutorial, you'll be presented with the related content based on your routing selection. You can always change your selection and see the content for the other libraries throughout the tutorial.
 
-<TutorialConditional parameter="uiSelection" value="material-ui">
+Pick the Routing library you want to continue with:
 
-deneme mui
+<TutorialParameterDropdown parameter="routerSelection" label="Routing" className="w-min pb-4" />
 
-</TutorialConditional>
+In the further units of this tutorial, you'll be selecting a UI framework integration of Refine and learn more about how UI integrations are made and where they can be useful. While Refine provides official support for Ant Design, Material UI, Mantine and Chakra UI, the tutorial is prepared for the top two most used UI frameworks; [Ant Design](#) and [Material UI](#).
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros at ligula luctus lobortis. Vivamus a sem sit amet ante scelerisque volutpat ac in diam. Quisque id sem eget tortor
+Pick the UI framework you want to continue with:
 
-<ChangeAppTsxSpan>change app.tsx now!</ChangeAppTsxSpan>
+<TutorialParameterDropdown parameter="uiSelection" label="UI Framework" className="w-min pb-4" />
 
-Aliquam gravida pretium ligula, in sollicitudin ipsum finibus ac. Nam tempus, turpis id consectetur dictum, purus ipsum pulvinar turpis, et mollis urna ex eget est. **<AddFileSpan>add component</AddFileSpan>** Maecenas et <UpdateFileSpan>update it</UpdateFileSpan> ullamcorper risus, vel auctor magna.
-
-Aliquam gravida pretium ligula, in sollicitudin ipsum finibus ac. Nam tempus, turpis id consectetur dictum, purus ipsum pulvinar turpis, et mollis urna ex eget est. Maecenas et ullamcorper risus, vel auctor magna.
-
-## test
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros at ligula luctus lobortis. Vivamus a sem sit amet ante scelerisque volutpat ac in diam. Quisque id sem eget tortor faucibus congue non quis metus. Aenean eros augue, finibus et cursus nec, vulputate ullamcorper ligula. Aliquam tempus aliquet massa, id placerat dolor sagittis eget. Donec accumsan laoreet ipsum. Mauris ac quam eget odio semper posuere quis ac urna. Nullam eget tempus nisi. Nulla maximus, metus sit amet eleifend iaculis, eros lorem suscipit purus, vel maximus lacus dui dapibus sapien. Aenean quam diam, ultricies sit amet dui id, varius dictum erat.
-
-Sed semper ultricies ultricies. Aliquam gravida pretium ligula, in sollicitudin ipsum finibus ac. Nam tempus, turpis id consectetur dictum, purus ipsum pulvinar turpis, et mollis urna ex eget est. Maecenas et ullamcorper risus, vel auctor magna. Sed elementum ex et massa vulputate, eu fermentum ante pellentesque. Quisque at tristique augue. Aliquam sodales consectetur massa, pharetra tempus magna porta vitae.
-
-Duis hendrerit nulla leo, ac tincidunt lorem congue eget. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur turpis justo, fermentum quis est ut, congue maximus quam. Maecenas varius dui eu fermentum dapibus. Curabitur fermentum elit vitae libero commodo ultrices. In enim tellus, efficitur sed vulputate nec, consequat condimentum ipsum. Proin ultrices faucibus nunc, eu ornare velit. Proin pulvinar orci vel dui euismod ullamcorper. Nunc quis egestas purus. Integer dictum mattis quam id tempor. Fusce dictum, sem in consequat faucibus, eros odio ullamcorper diam, vel scelerisque ligula eros quis erat. Duis in libero hendrerit, maximus quam sit amet, lobortis sem. Sed ac ante urna. Quisque sagittis massa nec mauris finibus, ut mollis sapien vestibulum. Aenean euismod ex vel massa semper, vitae luctus libero commodo.
+You can find the corresponding material that is taught in this tutorial for the other UI frameworks in the [documentation](#).
 
 </Sandpack>
