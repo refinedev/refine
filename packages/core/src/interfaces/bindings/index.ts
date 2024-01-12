@@ -1,6 +1,6 @@
 export { AccessControlBindings } from "./access-control";
 export {
-    AuthProvider,
+    AuthBindings,
     IAuthBindingsContext,
     AuthActionResponse,
     IdentityResponse,

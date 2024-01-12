@@ -57,7 +57,7 @@ export type PermissionResponse = unknown;
 
 export type IdentityResponse = unknown;
 
-export type AuthProvider = {
+export type AuthBindings = {
     login: (params: any) => Promise<AuthActionResponse>;
     logout: (params: any) => Promise<AuthActionResponse>;
     check: (params?: any) => Promise<CheckResponse>;
@@ -73,4 +73,4 @@ export interface IAuthBindingsContext extends Partial<AuthProvider> {
     isProvided: boolean;
 }
 
-export type AuthProvider = AuthProvider;
+export type AuthProvider = AuthBindings;
