@@ -189,14 +189,34 @@ These buttons will be checked for access control.
 
 Let's say they are rendered where `resource` is `posts` and `id` is `1` where applicable. The `can` function will receive the `resource`([ResourceProps][iresourceitem]) object you passed to the `<Refine/>` component, which allows you to use Attribute Based Access Control (ABAC), which allows you to grant permissions based on the value of a field in the resource object.
 
-- [**List**](/docs/ui-integrations/ant-design/components/buttons/list-button): `{ resource: "posts", action: "list", params: { *resource } }`
-- [**Create**](/docs/ui-integrations/ant-design/components/buttons/create-button): `{ resource: "posts", action: "create", params: { *resource } }`
-- [**Clone**](/docs/ui-integrations/ant-design/components/buttons/clone-button): `{ resource: "posts", action: "create", params: { id: 1, *resource } }`
-- [**Edit**](/docs/ui-integrations/ant-design/components/buttons/edit-button): `{ resource: "posts", action: "edit", params: { id: 1, *resource } }`
-- [**Delete**](/docs/ui-integrations/ant-design/components/buttons/delete-button): `{ resource: "posts, action: "delete", params: { id: 1, *resource } }`
-- [**Show**](/docs/ui-integrations/ant-design/components/buttons/show-button): `{ resource: "posts", action: "show", params: { id: 1, *resource } }`
-
 These buttons will be disabled if access control returns `{ can: false }`
+
+<!-- prettier-ignore-start -->
+```tsx title=my-page.tsx
+
+import { EditButton, ShowButton, ListButton, CreateButton, CloneButton, DeleteButton } from "@refinedev/antd"; // or @refinedev/mui, @refinedev/chakra-ui, @refinedev/mantine
+
+export const MyPage = () => {
+  return (
+    <>
+      My Page
+      {/* These buttons will be disabled if access control returns { can: false } */}
+      <ListButton resource="posts" /> {/* { resource: "posts", action: "list", params: { *resource } } */}
+      <CreateButton resource="posts" /> {/* { resource: "posts", action: "create", params: { *resource } } */}
+      <CloneButton resource="posts" recordItemId={1} /> {/* { resource: "posts", action: "create", params: { id: 1, *resource } } */}
+      <EditButton resource="posts" recordItemId={1} /> {/* { resource: "posts", action: "edit", params: { id: 1, *resource } } */}
+      <DeleteButton resource="posts" recordItemId={1} /> {/* { resource: "posts, action: "delete", params: { id: 1, *resource } } */}
+      <ShowButton resource="posts" recordItemId={1} /> {/* { resource: "posts", action: "show", params: { id: 1, *resource } } */}
+    </>
+  );
+};
+
+```
+<!-- prettier-ignore-end -->
+
+:::simple
+If you want to hide buttons instead of disabling them, you can pass `hideIfUnauthorized: true` to the `options` of the `accessControlProvider`
+:::
 
 ## Examples
 
