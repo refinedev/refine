@@ -1,7 +1,10 @@
 import React from "react";
 
-/* @ts-expect-error Imports through webpack aliases does not work */
-import data from "@tutorial-navigation/tutorial-navigation-data.json";
+/* @ts-expect-error `/internal` is not directly exported but required in this case */
+import { useDoc } from "@docusaurus/theme-common/internal";
+
+import { useLocation } from "@docusaurus/router";
+import { DocElement, tutorialData } from "../refine-theme/tutorial-utils";
 
 type Tutorial = {
     label: string;
@@ -19,8 +22,6 @@ type Tutorial = {
         items: Array<string>;
     }>;
 };
-
-const { defaultParameters } = data as Tutorial;
 
 type TutorialParameterContextType = {
     parameters?: Record<string, string>;
@@ -42,31 +43,48 @@ export const TutorialParameterContext =
 
 export const TUTORIAL_PARAMETER_LOCAL_STORAGE_KEY = "tutorial-parameters";
 
+const getCurrentParameterFromDocumentId = (
+    id: string,
+    options: (typeof tutorialData.parameterOptions)[string],
+) => {
+    for (const option of options) {
+        if (id.includes(`/${option.value}`)) {
+            return option.value;
+        }
+    }
+    return undefined;
+};
+
+const getCurrentParametersFromDocumentId = (id: string) => {
+    const parameters: Record<string, string> = {};
+    for (const [key, options] of Object.entries(
+        tutorialData.parameterOptions,
+    )) {
+        const currentParameter = getCurrentParameterFromDocumentId(id, options);
+        if (currentParameter) {
+            parameters[key] = currentParameter;
+        }
+    }
+    return parameters;
+};
+
+const useCurrentParameters = () => {
+    const { pathname } = useLocation();
+
+    const currentParameters = React.useMemo(
+        () => getCurrentParametersFromDocumentId(pathname),
+        [pathname],
+    );
+
+    return currentParameters;
+};
+
 export const TutorialParameterProvider: React.FC = ({ children }) => {
     const [parameters, _setParameters] = React.useState<
         Record<string, string> | undefined
     >(undefined);
     const [settled, setSettled] = React.useState(false);
-
-    React.useEffect(() => {
-        // read from local storage
-        try {
-            const storedParameters = localStorage.getItem(
-                TUTORIAL_PARAMETER_LOCAL_STORAGE_KEY,
-            );
-
-            if (storedParameters) {
-                _setParameters(JSON.parse(storedParameters));
-            } else {
-                _setParameters(defaultParameters);
-            }
-        } catch (e) {
-            _setParameters(defaultParameters);
-            console.error(e);
-        }
-
-        setSettled(true);
-    }, []);
+    const currentParameters = useCurrentParameters();
 
     const setParameters = React.useCallback((next: Record<string, string>) => {
         _setParameters((p) => {
@@ -83,13 +101,41 @@ export const TutorialParameterProvider: React.FC = ({ children }) => {
         });
     }, []);
 
+    React.useEffect(() => {
+        try {
+            const storedParameters = localStorage.getItem(
+                TUTORIAL_PARAMETER_LOCAL_STORAGE_KEY,
+            );
+
+            if (storedParameters) {
+                setParameters({
+                    ...tutorialData.defaultParameters,
+                    ...JSON.parse(storedParameters),
+                    ...currentParameters,
+                });
+            } else {
+                setParameters({
+                    ...tutorialData.defaultParameters,
+                    ...currentParameters,
+                });
+            }
+        } catch (e) {
+            setParameters({
+                ...tutorialData.defaultParameters,
+                ...currentParameters,
+            });
+        }
+
+        setSettled(true);
+    }, []);
+
     return (
         <TutorialParameterContext.Provider
             value={{
                 parameters,
                 setParameters,
                 settled,
-                options: data.parameterOptions,
+                options: tutorialData.parameterOptions,
             }}
         >
             {children}
