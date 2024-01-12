@@ -7,19 +7,21 @@ export type GenerateSortingType = {
     (sorting?: CrudSorting): HasuraSortingType | undefined;
 };
 
-export const generateSorting: GenerateSortingType = (sorters?: CrudSorting) => {
-    if (!sorters) {
-        return undefined;
-    }
+const generateNestedSorting = (sorter) => {
+  if (!sorter) {
+    return undefined;
+  }
 
-    const sortingQueryResult: Record<
-        string,
-        "asc" | "desc" | HasuraSortingType
-    > = {};
+  const { field, order } = sorter;
+  const fieldsArray = field.split(".");
 
-    sorters.forEach((sortItem) => {
-        set(sortingQueryResult, sortItem.field, sortItem.order);
-    });
+  return fieldsArray.reduceRight((acc, curr) => ({ [curr]: acc }), order);
+};
 
-    return sortingQueryResult as HasuraSortingType;
+export const generateSorting = (sorters) => {
+  if (!sorters) {
+    return undefined;
+  }
+
+  return sorters.map(generateNestedSorting);
 };
