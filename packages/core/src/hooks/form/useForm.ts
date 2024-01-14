@@ -578,7 +578,7 @@ export const useForm = <
                         },
                         onError: (error: TResponseError, _, context) => {
                             if (onMutationError) {
-                                return onMutationError(error, values, context);
+                                onMutationError(error, values, context);
                             }
                             reject();
                         },
