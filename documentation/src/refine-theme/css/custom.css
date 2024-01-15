@@ -536,3 +536,7 @@ h4 del code {
     @apply !line-through;
     @apply !text-gray-400 dark:!text-gray-500;
 }
+
+.docs-wrapper *::selection {
+    @apply bg-refine-selection text-gray-800;
+}
