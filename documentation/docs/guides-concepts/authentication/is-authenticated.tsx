@@ -63,12 +63,12 @@ export default function App() {
 
 const AuthProviderCode = `
 import React from "react";
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 
 // to keep the example short and simple, we didn't send a request, and we save the token in localStorage.
 // in real world, you should send a request and token should be saved in more secure place.
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
     login: async ({ email }) => {
         localStorage.setItem("email", email);
 

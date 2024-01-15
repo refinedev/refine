@@ -338,7 +338,7 @@ For page level access control, server-side approach is recommended.
 First, let's create our `AuthProvider`. For more information on `AuthProvider`, visit our [AuthProvider documentation][authprovider].
 
 ```tsx title="app/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 const mockUsers = [
   {
@@ -351,7 +351,7 @@ const mockUsers = [
   },
 ];
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   login: async ({ username, password, remember }) => {
     // Suppose we actually send a request to the back end here.
     const user = mockUsers.find((item) => item.username === username);
@@ -604,7 +604,7 @@ First, let's install the `js-cookie` and `cookie` packages in our project.
 We will set/destroy cookies in the `login`, `logout` and `check` functions of our `AuthProvider`.
 
 ```tsx title="app/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 // highlight-start
 import Cookies from "js-cookie";
 import * as cookie from "cookie";
@@ -624,7 +624,7 @@ const mockUsers = [
 // highlight-next-line
 const COOKIE_NAME = "user";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   login: ({ username, password, remember }) => {
     // Suppose we actually send a request to the back end here.
     const user = mockUsers.find((item) => item.username === username);

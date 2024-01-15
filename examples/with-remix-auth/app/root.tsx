@@ -8,7 +8,7 @@ import {
     ScrollRestoration,
     useLoaderData,
 } from "@remix-run/react";
-import { AuthBindings, GitHubBanner, Refine } from "@refinedev/core";
+import { AuthProvider, GitHubBanner, Refine } from "@refinedev/core";
 import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
@@ -21,16 +21,18 @@ import resetStyle from "@refinedev/antd/dist/reset.css";
 import { API_URL } from "./constants";
 import { authenticator } from "./utils/auth.server";
 
-export const meta: MetaFunction = () => ([{
-    charset: "utf-8",
-    title: "New Remix + Refine App",
-    viewport: "width=device-width,initial-scale=1",
-}]);
+export const meta: MetaFunction = () => [
+    {
+        charset: "utf-8",
+        title: "New Remix + Refine App",
+        viewport: "width=device-width,initial-scale=1",
+    },
+];
 
 export default function App(): JSX.Element {
     const { profile, to } = useLoaderData<typeof loader>();
 
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ providerName }) => {
             if (providerName) {
                 window.location.href = `/auth/${providerName}?to=${to}`;

@@ -35,7 +35,7 @@ We will demonstrate a similar basic implementation below. Imagine that you have 
 We have a logic in [`authProvider`](/docs/authentication/auth-provider)'s `check` method like below:
 
 ```tsx
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ...
   // highlight-start
   check: () => {

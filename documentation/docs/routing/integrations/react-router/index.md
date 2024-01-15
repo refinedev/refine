@@ -757,9 +757,9 @@ In the below example, you'll find different cases for route definitions, we've u
 For optional authentication, in our `authProvider` implementation's `check` method, we can pass `authentication: false` and `redirectTo: undefined` to indicate that the current user is not authenticated but we don't want to redirect them to the login page. This is useful, when some pages in our app are public and don't require authentication and some pages are private and require authentication.
 
 ```tsx title=authProvider.ts
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   check: async () => {
     const isAuthenticated = await yourMethodToCheckIfUserIsAuthenticated();
 

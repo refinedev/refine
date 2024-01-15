@@ -1,5 +1,5 @@
 import {
-    AuthBindings,
+    AuthProvider,
     Authenticated,
     GitHubBanner,
     Refine,
@@ -28,7 +28,7 @@ import { Login } from "./pages/login";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ gsmNumber, code }) => {
             if (code === "1234") {
                 localStorage.setItem("gsmNumber", gsmNumber);

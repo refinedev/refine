@@ -251,9 +251,9 @@ render(<App />);
 After form submission, the [`login`][login] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // --
   login: async ({ email, password, remember, providerName }) => {
     // You can handle the login process according to your needs.
@@ -343,9 +343,9 @@ render(<App />);
 After form submission, the [`register`][register] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // --
   register: async ({ email, password, providerName }) => {
     // You can handle the register process according to your needs.
@@ -434,9 +434,9 @@ render(<App />);
 After form submission, the [`forgotPassword`][forgot-password] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // --
   forgotPassword: async ({ email }) => {
     // You can handle the reset password process according to your needs.
@@ -526,9 +526,9 @@ render(<App />);
 After form submission, the [`updatePassword`][update-password] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // --
   updatePassword: async ({ password, confirmPassword }) => {
     // You can handle the update password process according to your needs.

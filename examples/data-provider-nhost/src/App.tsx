@@ -1,5 +1,5 @@
 import {
-    AuthBindings,
+    AuthProvider,
     Authenticated,
     GitHubBanner,
     Refine,
@@ -28,7 +28,7 @@ import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "./pages/categories";
 import { ConfigProvider, App as AntdApp } from "antd";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         const { error } = await nhost.auth.signIn({
             email,
