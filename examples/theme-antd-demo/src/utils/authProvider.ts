@@ -1,6 +1,6 @@
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
     login: async ({ providerName, email }) => {
         if (providerName === "google") {
             window.location.href =

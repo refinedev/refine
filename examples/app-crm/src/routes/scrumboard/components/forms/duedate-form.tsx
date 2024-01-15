@@ -6,6 +6,8 @@ import dayjs from "dayjs";
 
 import { Task } from "@/graphql/schema.types";
 
+import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
+
 type Props = {
     initialValues: {
         dueDate?: Task["dueDate"];
@@ -21,6 +23,9 @@ export const DueDateForm = ({ initialValues, cancelForm }: Props) => {
         redirect: false,
         onMutationSuccess: () => {
             cancelForm();
+        },
+        meta: {
+            gqlQuery: KANBAN_UPDATE_TASK_MUTATION,
         },
     });
 

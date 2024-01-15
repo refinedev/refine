@@ -645,7 +645,7 @@ First, let's install the `nookies` packages in our project.
 We will set/destroy cookies in the `login`, `logout` and `check` functions of our `AuthProvider`.
 
 ```tsx title="app/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 // highlight-start
 import nookies from "nookies";
 // highlight-end
@@ -664,7 +664,7 @@ const mockUsers = [
 // highlight-next-line
 const COOKIE_NAME = "user";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   login: ({ username, password, remember }) => {
     // Suppose we actually send a request to the back end here.
     const user = mockUsers.find((item) => item.username === username);

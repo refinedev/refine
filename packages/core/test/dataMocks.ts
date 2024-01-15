@@ -9,7 +9,7 @@ import {
     ParsedParams,
     IResourceItem,
     LegacyAuthProvider,
-    AuthBindings,
+    AuthProvider,
 } from "../src/interfaces";
 
 export const posts = [
@@ -165,7 +165,7 @@ export const mockLegacyAuthProvider: LegacyAuthProvider = {
         Promise.resolve({ name: "John Doe", avatar: "localhost:3000" }),
 };
 
-export const mockAuthProvider: AuthBindings = {
+export const mockAuthProvider: AuthProvider = {
     login: async () => ({ success: true }),
     logout: async () => ({ success: true }),
     onError: async () => ({}),

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, TestWrapper, waitFor } from "@test";
 import { ThemedHeaderV2 } from "./index";
-import { AuthBindings, LegacyAuthProvider } from "@refinedev/core";
+import { AuthProvider, LegacyAuthProvider } from "@refinedev/core";
 
 const mockLegacyAuthProvider: LegacyAuthProvider = {
     login: () => Promise.resolve(),
@@ -13,7 +13,7 @@ const mockLegacyAuthProvider: LegacyAuthProvider = {
         Promise.resolve({ name: "John Doe", avatar: "localhost:3000" }),
 };
 
-const mockAuthProvider: AuthBindings = {
+const mockAuthProvider: AuthProvider = {
     login: () =>
         Promise.resolve({
             success: true,

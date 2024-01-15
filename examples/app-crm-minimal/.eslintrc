@@ -23,17 +23,6 @@
     "simple-import-sort/exports": "error",
     "import/first": "error",
     "import/newline-after-import": "error",
-    "import/no-duplicates": "error",
-    "no-restricted-imports": [
-      "error",
-      {
-        "paths": [
-          {
-            "name": "react",
-            "importNames": ["default"]
-          }
-        ]
-      }
-    ]
+    "import/no-duplicates": "error"
   }
 }

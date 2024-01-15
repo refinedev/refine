@@ -1,10 +1,12 @@
+import { GetFields } from "@refinedev/nestjs-query";
+
 import { Space, Typography } from "antd";
 
 import { UserTag } from "@/components";
-import { Task } from "@/graphql/schema.types";
+import { KanbanGetTaskQuery } from "@/graphql/types";
 
 type Props = {
-    users?: Task["users"];
+    users?: GetFields<KanbanGetTaskQuery>["users"];
 };
 
 export const UsersHeader = ({ users = [] }: Props) => {
