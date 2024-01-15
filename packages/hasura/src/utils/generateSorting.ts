@@ -18,7 +18,7 @@ const generateNestedSorting = (sorter) => {
   return fieldsArray.reduceRight((acc, curr) => ({ [curr]: acc }), order);
 };
 
-export const generateSorting = (sorters) => {
+export const generateSorting: GenerateSortingType = (sorters) => {
   if (!sorters) {
     return undefined;
   }
