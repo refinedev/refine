@@ -36,4 +36,23 @@ describe("generateSorting", () => {
         };
         expect(generateSorting(sorters)).toEqual(expectedSorting);
     });
+
+    it("should handle multiple nested fields correctly", () => {
+        const sorters: CrudSorting = [
+            { field: "author.name.first", order: "asc" },
+            { field: "author.name.last", order: "desc" },
+            { field: "createdAt", order: "asc" },
+        ];
+        const expectedSorting = {
+            author: {
+                name: {
+                    first: "asc",
+                    last: "desc",
+                },
+            },
+            createdAt: "asc",
+        };
+        expect(generateSorting(sorters)).toEqual(expectedSorting);
+    });
+    
 });
