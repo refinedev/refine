@@ -16,7 +16,7 @@ import {
 } from "@react-pdf/renderer";
 import { Button, Modal } from "antd";
 
-import { QuotePdfExportQuery } from "@/graphql/types";
+import { QuotesGetQuoteQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
 import { QUOTES_GET_QUOTE_QUERY } from "../queries";
@@ -26,7 +26,7 @@ const PdfExport = () => {
     const params = useParams<{ id: string }>();
 
     const { data, isLoading, isFetching, refetch } = useOne<
-        GetFields<QuotePdfExportQuery>
+        GetFields<QuotesGetQuoteQuery>
     >({
         resource: "quotes",
         id: params.id,

@@ -21,8 +21,8 @@ import {
 import { FullScreenLoading, Text } from "@/components";
 import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
 import {
-    ProductsServicesQuoteFormMutation,
-    ProductsServicesQuoteFormMutationVariables,
+    QuotesUpdateQuoteMutation,
+    QuotesUpdateQuoteMutationVariables,
 } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
@@ -117,9 +117,9 @@ export const ProductsServices = () => {
     const params = useParams<{ id: string }>();
 
     const { formProps, autoSaveProps, queryResult } = useForm<
-        GetFields<ProductsServicesQuoteFormMutation>,
+        GetFields<QuotesUpdateQuoteMutation>,
         HttpError,
-        GetVariables<ProductsServicesQuoteFormMutationVariables>
+        GetVariables<QuotesUpdateQuoteMutationVariables>
     >({
         resource: "quotes",
         action: "edit",
@@ -134,7 +134,7 @@ export const ProductsServices = () => {
                 );
                 items?.forEach((item) => {
                     if ("totalPrice" in item) {
-                        delete item.totalPrice;
+                        delete (item as any).totalPrice;
                     }
                 });
                 return {
