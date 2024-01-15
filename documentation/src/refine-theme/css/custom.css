@@ -541,3 +541,14 @@ h4 del code {
 .docs-wrapper *::selection {
     @apply bg-refine-selection text-gray-800;
 }
+
+.sp-bridge-frame {
+    display: none !important;
+}
+
+.sp-console-list code {
+    @apply !bg-none !bg-transparent !border-none;
+}
+.sp-console-list .sp-console-item {
+    @apply !px-2 !py-px text-gray-600 dark:text-gray-200;
+}
