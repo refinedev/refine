@@ -163,8 +163,7 @@ export const CodeBlockString = ({
             <div
                 className={clsx(
                     "absolute",
-                    "right-3",
-                    title ? "top-[52px]" : "top-3",
+                    title ? "top-2 right-2" : "top-3 right-3",
                     "flex items-center gap-2",
                 )}
             >
