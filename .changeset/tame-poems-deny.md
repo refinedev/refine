@@ -1,10 +1,9 @@
 ---
-"@refinedev/core": minor
+"@refinedev/core": patch
 ---
 
 ---
 
-## "refinedev/core": minor
 
 fix(chore): fix useForm promise settlement in pessimistic mutationMode
 
