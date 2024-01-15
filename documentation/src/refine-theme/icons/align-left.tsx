@@ -3,14 +3,14 @@ import React from "react";
 export const AlignLeftIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={16}
-        height={16}
-        viewBox="0 0 448 512"
+        width={12}
+        height={10}
+        viewBox="0 0 12 10"
+        fill="none"
         {...props}
     >
-        <path
-            fill="currentColor"
-            d="M288 64c0 17.7-14.3 32-32 32H32C14.3 96 0 81.7 0 64s14.3-32 32-32h224c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h224c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zm448 256c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h384c17.7 0 32 14.3 32 32z"
-        />
+        <g fill="currentColor">
+            <path d="M.5 0a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1H.5ZM.5 3a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7ZM0 6.5A.5.5 0 0 1 .5 6h11a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5ZM.5 9a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7Z" />
+        </g>
     </svg>
 );
