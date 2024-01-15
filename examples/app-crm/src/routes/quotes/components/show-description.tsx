@@ -8,6 +8,8 @@ import { Form, Spin } from "antd";
 
 import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
 
+import { QUOTES_UPDATE_QUOTE_MUTATION } from "../queries";
+
 const MDEditor = lazy(() => import("@uiw/react-md-editor"));
 
 export const ShowDescription = () => {
@@ -29,7 +31,7 @@ export const ShowDescription = () => {
         },
         invalidates: [],
         meta: {
-            fields: ["id", "description"],
+            gqlMutation: QUOTES_UPDATE_QUOTE_MUTATION,
         },
     });
 

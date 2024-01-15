@@ -27,7 +27,8 @@
     }
 }
 
-.fc-daygrid-block-event, .fc-timegrid-event {
+.fc-daygrid-block-event,
+.fc-timegrid-event {
     cursor: pointer;
     .fc-event-time {
         width: 35px;
@@ -40,7 +41,9 @@
     }
 }
 
-.fc-timegrid-slot-label-cushion, .fc-list-day-text, .fc-list-day-side-text {
+.fc-timegrid-slot-label-cushion,
+.fc-list-day-text,
+.fc-list-day-side-text {
     color: rgba(0, 0, 0, 0.75);
 }
 
@@ -51,5 +54,5 @@
 
 .fc-event-title-container {
     padding-left: 8px;
-    padding-right: 8px; 
+    padding-right: 8px;
 }

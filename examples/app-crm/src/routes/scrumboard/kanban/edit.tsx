@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-import { useModalForm } from "@refinedev/antd";
-import { useNavigation } from "@refinedev/core";
+import { useModal } from "@refinedev/antd";
+import { useNavigation, useShow } from "@refinedev/core";
+import { GetFields } from "@refinedev/nestjs-query";
 
 import {
     AlignLeftOutlined,
@@ -10,7 +11,7 @@ import {
 } from "@ant-design/icons";
 import { Modal } from "antd";
 
-import { Task } from "@/graphql/schema.types";
+import { KanbanGetTaskQuery } from "@/graphql/types";
 
 import {
     Accordion,
@@ -27,31 +28,24 @@ import {
     UsersForm,
     UsersHeader,
 } from "../components";
+import { KANBAN_GET_TASK_QUERY } from "./queries";
 
 export const KanbanEditPage = () => {
     const [activeKey, setActiveKey] = useState<string | undefined>();
 
     const { list } = useNavigation();
-    const { modalProps, close, queryResult } = useModalForm<Task>({
-        action: "edit",
-        defaultVisible: true,
-        meta: {
-            fields: [
-                "id",
-                "title",
-                "completed",
-                "description",
-                "dueDate",
-                { stage: ["id", "title"] },
-                { users: ["id", "name", "avatarUrl"] },
-                { checklist: ["title", "checked"] },
-            ],
-        },
+    const { modalProps, close } = useModal({
+        modalProps: { open: true },
+    });
+
+    const {
+        queryResult: { data, isLoading },
+    } = useShow<GetFields<KanbanGetTaskQuery>>({
+        meta: { gqlQuery: KANBAN_GET_TASK_QUERY },
     });
 
     const { description, completed, stage, dueDate, users, checklist, title } =
-        queryResult?.data?.data ?? {};
-    const isLoading = queryResult?.isLoading ?? true;
+        data?.data ?? {};
 
     return (
         <Modal
@@ -62,7 +56,10 @@ export const KanbanEditPage = () => {
                 list("tasks", "replace");
             }}
             title={
-                <TitleForm initialValues={{ title }} isLoading={isLoading} />
+                <TitleForm
+                    initialValues={{ title }}
+                    isLoading={isLoading ?? true}
+                />
             }
             width={586}
             footer={<ModalFooter />}
