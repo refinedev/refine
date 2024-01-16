@@ -10,8 +10,8 @@ module.exports = {
                 "getting-started/overview",
                 "getting-started/quickstart",
                 {
-                    type: "doc",
-                    id: "tutorial/introduction/index",
+                    type: "link",
+                    href: "/tutorial/essentials/intro",
                     label: "Tutorial",
                 },
                 {
