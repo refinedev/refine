@@ -23,10 +23,10 @@ const API_URL = "https://api.fake-rest.refine.dev";
 function App() {
   return (
     <ExistingProvider>
-      <ExistingComponent1>
-      <ExistingComponent2>
       <Refine dataProvider={dataProvider(API_URL)}>
         {/* You can use Refine hooks inside here */}
+        <ExistingComponent1>
+        <ExistingComponent2>
         <ComponentWithRefineHooks />
       </Refine>
     </ExistingProvider>
@@ -42,7 +42,7 @@ import { ViteHeadless } from './vite/headless';
 
 <ViteHeadless />
 
-## UI Integration Example
+## UI & Routing Integration Example
 
 In the following example, we have an application that uses Ant Design as UI Library and React Router for routing. We will integrate Refine into this application's `/refine` route.
 

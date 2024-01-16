@@ -54,9 +54,7 @@ export const Home = () => {
 const AboutTsxCode = /* tsx */ `
   export const About = () => {
     return (
-      <>
       <h1>About Page</h1>
-      </>
     )
   }
 `;

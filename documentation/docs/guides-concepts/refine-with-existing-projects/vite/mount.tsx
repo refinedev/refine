@@ -103,15 +103,6 @@ export const RefineProductList: React.FC<IResourceComponentsProps> = () => {
         <Table.Column dataIndex="id" title="Id" />
         <Table.Column dataIndex="name" title="Name" />
         <Table.Column dataIndex="price" title="Price" />
-        <Table.Column
-          title="Actions"
-          dataIndex="actions"
-          render={(_, record: BaseRecord) => (
-            <Space>
-              <ShowButton hideText size="small" recordItemId={record.id} />
-            </Space>
-          )}
-        />
       </Table>
     </List>
   );
