@@ -1,6 +1,6 @@
 ---
-title: React memo guide with examples
-description: Improve the app performance with React.memo()
+title: React Memo Guide with Examples
+description: Improve app performance with React.memo()
 slug: react-memo-guide
 authors: abdullah_numan
 tags: [react]
@@ -8,62 +8,124 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo
 hide_table_of_contents: false
 ---
 
-
-
-
-
+**_This article was last updated on January 16, 2024 to reflect the latest changes to the React memo API and to provide a more detailed explanation of how React.memo() works._**
 
 ## Introduction
-This is the first part of a series on the use of memoization in React. In this series, we'll cover memoizing a React component with `React.memo()` as well as caching functions and values with React's memoization hooks.
 
-We will begin with a progressive example that involves memoizing a functional component, which will be gradually extended to include use cases for the hooks: `useCallback()` and `useMemo()`. `useCallback()` is leveraged for memoizing a callback function, whereas `useMemo()` is used to cache a computed value from an expensive function, for example, a sorting function that processes large amount of data.
+This post introduces the [React Memoization Series](https://refine.dev/blog/react-memo-guide/) and demonstrates the usage of the [`React.memo`](https://react.dev/reference/react/memo) API. `React.memo` memoizes a functional component and its props. Doing so helps prevent unnecessary re-renderings that originate from the re-renderings of the component's parent / ancestors.
 
-In this post, we'll demonstrate the use of `React.memo()`, which is a Higher Order Function, or HOC that adds caching logic to the passed in component. In the upcoming articles, we'll discuss about how to use `useCallback()` and `useMemo()`.
+This is the first post of a three-part series hosted on [Refine blog](https://refine.dev/blog) on the use of memoization in React.
 
+The other two posts in the series cover the usage of React `useMemo()` and `useCallback()` hooks.
 
-Steps we'll cover:
+Steps we'll cover in this post:
+
 - [What is Memoization?](#what-is-memoization)
-- [Project Setup](#project-setup)
-- [Project Content Overview](#project-content-overview)
+- [Why Memoization in React?](#why-memoization-in-react)
+  - [Excessive Re-rendering Due to Ancestor Re-rendering](#excessive-re-rendering-due-to-ancestor-re-rendering)
+  - [Expensive Utilities](#expensive-utilities)
+  - [Passing Callbacks to Children](#passing-callbacks-to-children)
+- [Memoization in React](#memoization-in-react)
+- [About the React Memoization Series](#about-the-react-memoization-series)
 - [Memoizing a Functional Component using `React.memo()`](#memoizing-a-functional-component-using-reactmemo)
-- [Memoizing Props](#memoizing-props)
-- [Comparing Prop Values](#comparing-prop-values)
+  - [What is `React.memo` ?](#what-is-reactmemo-)
+  - [React.memo() - How to Memoize Component Props](#reactmemo---how-to-memoize-component-props)
+  - [When to Use `React.memo`](#when-to-use-reactmemo)
+  - [When Not to Use `React.memo`](#when-not-to-use-reactmemo)
+  - [React.memo: Prop Comparison](#reactmemo-prop-comparison)
+  - [Using React Memo with Custom Comparators](#using-react-memo-with-custom-comparators)
 
 ## What is Memoization?
-Memoization is an optimization technique that allows us to store the last computed value or object from a resource-intensive function. It allows us to bypass the function's costly computations when the function is called with the same parameters repeatedly.
 
-In React, **memoization** is used for optimizing the performance of an app by preventing unnecessary renders of components participating in the component hierarchy and by caching callbacks and values of expensive utility functions.
+Memoization is an performance optimization technique that allows us to minimize the use of memory and time while executing a resource-intensive function. It works by storing the last computed value or object from the function. Memoization lets us bypass the function's costly computations when the function is called with the same parameters repeatedly.
 
-As React is all about rendering components in the virtual DOM prior to updating the actual Document Object Model in the browser, a lot of memory and time is wasted on useless renderings due to unaccounted for state updates. Using memoization in the right way helps in better use of computing resources in an app.
+## Why Memoization in React?
 
-On the other hand, using it the wrong way can rip us off the benefits. Not only that, on the flip side of unnecessary re-renderings, unnecessary memoization can sometimes cost more than ignoring memoization - eventually hurting performance.
+Memoization plays a crucial role in enhancing the performance of a React component. It addresses following shortcomings in React:
 
-## Project Setup
-This series is more of a demo than a coding tutorial, as we've made the code already available at the [here](#live-stackblitz-example). All the components have been coded ahead of time, and we'll highlighting on the existing code to discuss different aspects of the above mentioned memoization methods.
+### Excessive Re-rendering Due to Ancestor Re-rendering
 
-We'll follow the impact of memoization mainly from the browser's console. 
+React is all about re/rendering components in the virtual DOM prior to updating the actual Document Object Model in the browser. Re-render in an ancestor component, by default, triggers a re-render in a descendent component.
 
+For example, a local state update in a parent component causes it to re-render. This, in turn, causes its children to re-render.
 
-## Project Content Overview
-If you look at the project folder, you'll find out that `react-memoization` is created using `create-react-app`.
+Such behavior in React causes a lot of memory and time to be wasted on useless renderings of the descendent components. Excessive re-renderings, therefore impact a React app's performance negatively.
 
-The app is based on the idea of a list of posts on a blog. There are several components involving a user seeing the latest posts and a list of the user's posts. Allow yourself some time to understand the components individually, their relationships, their state changes, and how props are passed through. It is crucial to pay close attention to how the change of a parent's state triggers re-render of its descendants.
+### Expensive Utilities
 
-The focus of this article will be the `<Post />` component, but `<App />`, `<Blog />` and `<LatestPost />` are also involved. Below, we'll delve into what memoizing the `<Post />` component with `React.memo()` does.
+In addition, resource intensive functions such as utilities used in data processing, transformation and manipulation lower a React app's performance. Functions used for sorting, filtering and mapping traverse large sets of data and therefore slows down an application.
 
-`React.memo()` is a **HOC** that memoizes the passed in component. Doing so helps in optimizing its performance by preventing unnecessary re-renders due to state changes it does not depend on, e.g. those coming from ancestor components.
+### Passing Callbacks to Children
 
+Performance of a React app is also adversely effected due to callback functions passed from a parent component to a child. This happens because a new function object from the callback is created in memory every time the child re-renders. So, multiple copies of the same callback function are spun off in runtime and they consume resources unnecessarily.
 
+## Memoization in React
 
+Using **memoization** the right way in React helps in mitigating these drawbacks and facilitates better use of computing resources in a React app.
 
+Memoization can be used in a number of ways for optimizing the performance of a React app. React components can be memoized to prevent unnecessary component re-renders originating from ancestors participating in the component hierarchy. In functional React, component memoization is done using the `React.memo` API.
 
+Caching values of expensive utility functions and memoizing callbacks are two common ways of boosting a React app's performance. Caching function values is done using `useMemo()` hook. And callback functions are memoized with the `useCallback()` hook.
 
-## Memoizing a Functional Component using `React.memo()`
-To begin the example, we have an `<App />` component that houses `<Blog />`.
+<!-- On the other hand, using memoization the wrong way can rip us off the benefits. Not only that, on the flip side of unnecessary re-renderings, unnecessary memoization can sometimes cost more than ignoring memoization - eventually hurting performance. -->
 
-We'll skip both for brevity, but if we look `<App />` in the repository, we're storing a `signedIn` state with `useState()` hook. We also have a toggler function that alters the value of `signedIn`.  
+## About the React Memoization Series
 
-In the component, we pass `signedIn` to `<Blog />`:
+The **React Memoization Series** is a three part guide on how to implement memoization in a React app. Each part demonstrates in the browser console how memoization contributes to performance optimization.
+
+The three parts are:
+
+1. [React Memo Guide with Examples](https://refine.dev/blog/react-memo-guide/)
+2. [React useMemo Hook Guide With Examples](https://refine.dev/blog/react-usememo/)
+3. [Memoization in React - How useCallback Works](https://refine.dev/blog/react-usecallback-guide/)
+
+In the first post, we implement memoizing a React component with `React.memo()` and demonstrate how unnecessary re-renders coming from ancestor state updates are prevented. The second post covers how caching the value of an expensive utility function with `useMemo` stops repetitive invocations of data heavy computations that slow down a React app. In the third part, we get an idea on how memoization of callbacks passed to child components helps reduce application memory consumption.
+
+We will begin with an example that involves memoizing a functional component with `React.memo()`. In the subsequent posts, we will gradually extend it to include use cases for the `useMemo()` and `useCallback()` hooks.
+
+## Project Overview
+
+This series is a demo rather than a step-by-step coding tutorial. It is intended to demonstrate how memoization contributes to performance optimization in a React app. We've made the code available [here](#live-stackblitz-example).
+
+All the components have been already coded. We'll be showing how memoization is implemented using `React.memo`, `useMemo()` and `useCallback` APIs by examining relevant code snippets and highlighting lines on the existing components.
+
+We'll follow the impact of memoization mainly from the browser's console.
+
+### Setup
+
+In order to properly follow this tutorial, we recommend you run the app in a browser - since we will be visiting the console to investigate the impact of memoization on our React app.
+
+For this to happen, please follow the below steps as outlined [here](https://github.com/refinedev/refine/tree/master/examples/blog-react-memoization-memo):
+
+1. Clone [this repository](https://github.com/refinedev/refine/tree/master/examples/blog-react-memoization-memo).
+2. Open it in your code editor and install the packages:
+
+```bash
+yarn install
+```
+
+3. Then run the app:
+
+```bash
+yarn start
+```
+
+4. Open Google Chrome and navigate to `http://localhost:3000`.
+5. Use `CTRL` + `Shift` + `J` on Ubuntu or `Command` + `Option` + `J` on Mac to inspect the webpage and open browser's console.
+
+### Investigation
+
+If you look at the project folder in your code editor, you'll find that `react-memoization` is created using `create-react-app`.
+
+The app is based on the idea of a list of posts on a blog. There are several components involving a user presented the latest posts and a list of the user's posts. Allow yourself some time to understand the components individually, their relationships, their state changes, and how props are passed through. It is crucial to pay close attention to how the change of a parent's state triggers re-render of its descendants.
+
+Let's dig into the components and check out what's happening.
+
+**The `<App />` Component**
+
+To begin with, we have an `<App />` component that houses `<Blog />`.
+
+If we look inside `<App />`, we can see that we're storing a `signedIn` state with `useState()` hook. We also have a toggler function that alters the value of `signedIn`:
 
 ```tsx title="src/components/App.jsx"
 import { useState } from "react";
@@ -73,7 +135,7 @@ function App() {
   const [signedIn, setSignedIn] = useState(false);
   const handleClick = () => setSignedIn(!signedIn);
 
-console.log('Rendering App component');
+  console.log("Rendering App component");
 
   return (
     <main>
@@ -83,12 +145,16 @@ console.log('Rendering App component');
       <Blog signedIn={signedIn} setSignedIn={setSignedIn} />
     </main>
   );
-};
+}
 
 export default App;
 ```
 
-Looking at `<Blog />`, it gets a list of posts with a click on the `Get Latest Post`  button and sets the `updatedPosts` state:
+In the JSX, we pass `signedIn` to `<Blog />`.
+
+**The `<Blog />` Component**
+
+Looking inside `<Blog />`, it fetches a list of posts with a click on the `Get Latest Post` button and sets the `updatedPosts` state:
 
 ```tsx title="src/components/Blog.jsx"
 import React, { useEffect, useMemo, useState } from "react";
@@ -110,10 +176,7 @@ const Blog = ({ signedIn }) => {
   const sortedPosts = sortPosts(updatedPosts);
 
   useEffect(() => {
-    const id = setInterval(
-      () => setLocalTime(new Date().toLocaleTimeString()),
-      1000
-    );
+    const id = setInterval(() => setLocalTime(new Date().toLocaleTimeString()), 1000);
     return () => clearInterval(id);
   }, []);
 
@@ -133,14 +196,13 @@ const Blog = ({ signedIn }) => {
 export default Blog;
 ```
 
+We can see that the `updatedPosts` are sorted with the `sortPosts` utility and the first item from the sorted array is then passed to `<LatestPost />` component along with `signedIn`.
 
-We can see that the first item from a sorted array is then passed to `<LatestPost />` component along with `signedIn`.
+**The `<LatestPost />` Component**
 
+Then coming to `<LatestPost />`, it nests the `<Post />` component, which we are going to memoize with `React.memo()`.
 
-
-Then coming to `<LatestPost />`, it nests the `<Post />` component, which we are going to memoize with `React.memo()`. Let's quickly run through `<LatestPost />` in the repository to see what it does.
-
-We can see that `<LatestPost />` changes its local state of `likesCount` every 3 seconds in the `useEffect()` hook:
+Let's quickly run through `<LatestPost />` to see what it does:
 
 ```tsx title="src/components/LatestPost.jsx"
 import React, { useEffect, useState } from "react";
@@ -163,7 +225,7 @@ const LatestPost = ({ signedIn, post }) => {
     <div>
       {post ? (
         <>
-        //highlight-next-line
+          //highlight-next-line
           <Post signedIn={signedIn} post={post} />
           {likesCount && (
             <div className="my-1 p-1">
@@ -179,32 +241,28 @@ const LatestPost = ({ signedIn, post }) => {
 };
 
 export default LatestPost;
-
 ```
 
-Because of this, `<LatestPost />` should re-render every 3 seconds. So should `<Post />` as a consequence of being a child of `<LatestPost />`:
+We can see that `<LatestPost />` changes its local state of `likesCount` every 3 seconds in the `useEffect()` hook. Because of this, `<LatestPost />` should re-render every 3 seconds. So should `<Post />` as a consequence of being a child of `<LatestPost />`:
 
-
+**The `Post />` Component**
 
 Let's now focus on `<Post />`. It receives `signedIn` and `post` as props and displays the content of `post`:
 
 ```tsx title="src/components/Post.jsx"
-import React from 'react';
+import React from "react";
 
 const Post = ({ signedIn, post }) => {
-
-console.log('Rendering Post component');
+  console.log("Rendering Post component");
 
   return (
     <div className="">
-      {
-        post && (
+      {post && (
         <div className="post p-1">
           <h1 className="heading-sm py-1">{post.title}</h1>
           <p>{post.body}</p>
         </div>
-        )
-      }
+      )}
     </div>
   );
 };
@@ -212,23 +270,25 @@ console.log('Rendering Post component');
 export default Post;
 ```
 
-As you can see `<Post />` does not depend on `likesCount` but is re-rendered by the latter's change via `<LatestPost />`. We can see this in the console.
+Notice we are logging to the console the event when `<Post />` gets rendered: `console.log('Rendering Post component');`
 
-If we check our Chrome's console we have `<Post />` rendering again and again following an interval:
+When we check the console, we can expect to see that `<Post />` is re-rendered with a change in `likesCount` from `<LatestPost />`. This would be happening even though `<Post />` does not depend on `likesCount`.
 
- <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo1.png"  alt="memo1" />
+If we examine closely, we can see that this is indeed the case: we have `<Post />` rendering again and again following an interval:
+
+<img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo1.png" alt="memo1" />
 
 <br/>
 
-Notice, rendering `<Post />` is accompanied by `<LatestPost />`, so it is consistent that `<Post />`'s re-renders are happening due to `likesCount` state changes in `<LatestPost />`.
+Notice, rendering `<Post />` is accompanied by `<LatestPost />` at 3 seonds interval, so it is consistent that `<Post />`'s re-renders are happening due to `likesCount` state changes in `<LatestPost />`. That is, they are coming at `3000ms` intervals from `<LatestPost />`'s `useEffect()` hook.
 
- They are coming at `3000ms` intervals from `<LatestPost />`'s `useEffect()` hook.
+All these re-renders are futile for `<Post />` and costly for the app. So we are going to prevent them using component memoization.
 
-All these re-renders are futile for `<Post />` and costly for the app.
+## Memoizing a Functional Component using `React.memo()`
 
-Now, if we memoize `<Post />` with `React.memo()`, the re-renders should stop. 
+Now, if we memoize `<Post />` with `React.memo()`, the re-renders should stop.
 
-So, in `<Post />`, let's the component export with the highlighted code:
+So, in `<Post />`, let's update the component export with the highlighted code:
 
 ```tsx title="src/components/Post.jsx"
 const Post = ({ signedIn, post }) => {
@@ -244,25 +304,41 @@ export default React.memo(Post);
 
 Looking at the console, we can see that `Post` is no longer re-rendered at 3s intervals:
 
-
- <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo2.png" alt="memo2" />
+<img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo2.png" alt="memo2" />
 
 <br/>
 
-It is clear that memoizing `<Post />` reduces the number of re-renders. In a realtime app, this does huge a favor because re-renders due to frequent likes coming in turns out to be very costly for the app's performance.
+It is clear that memoizing `<Post />` reduces the number of re-renders. In a real app, this is a huge blessing because re-renders due to frequent likes turn out to be very costly for a social media app's performance.
 
-## Memoizing Props
+But what exactly happened?
+
+### What is `React.memo` ?
+
+Well, with `export default React.memo(Post);`, we produced a new component that re-renders only when its props and internal state is changed.
+
+`React.memo()` is a Higher Order Component (HOC) that memoizes the passed in component along with the value of its props. Doing so helps in optimizing its performance by preventing unnecessary re-renders due to changes it does not depend on, e.g. the unrelated state changes in ancestor components.
+
+`React.memo` does this by memoizing the component function itself and the accepted props. When the values of the props change, the component re-renders.
+
+### React.memo() - How to Memoize Component Props
+
 We can see that `<Post />` receives `signedIn` and `post` props.
 
- Now, unlike with `likesCount`, `<Post />` **depends on** `signIn` and `post`. And **React memo** caches these props and checks for incoming changes in them. Incoming changes to them triggers a re-render. So, altering any of `signedIn` or `post` re-renders `Post`.
+Now, unlike with `likesCount`, `<Post />` **depends on** `signIn` and `post`. And **React memo** caches these props and checks for incoming changes in them. Incoming changes to them triggers a re-render. So, altering any of `signedIn` or `post` re-renders `Post`.
 
-If you look at `<App />`, we see that `signedIn` originated from there and gets relayed via `<Blog />` and `<LatestPost />` to `<Post />` as props. We have a button in the navbar that toggles the value of `signedIn`.
+If we look back inside `<App />`, we see that `signedIn` originated from there and gets relayed via `<Blog />` and `<LatestPost />` to `<Post />` as props. We have a button in the navbar that toggles the value of `signedIn`:
 
-Let's try toggling its value to see the effect on memoized `<Post />`:
+```jsx
+<nav className="navbar">
+  <button className="btn btn-danger" onClick={handleClick}>
+    Sign Out
+  </button>
+</nav>
+```
 
+In the browser, let's try toggling its value to see the effect on memoized `<Post />`.
 
-
-Add the following console log in `<Post />` in order to log the value of `signedIn` to the console:
+Add the following console log statement to `<Post />` in order to log the value of `signedIn` to the console:
 
 ```tsx
 //highlight-next-line
@@ -271,35 +347,43 @@ console.log(signedIn);
 
 When we click on the `Sign Out` button in the navbar, we can see in the console that `<Post />` re-renders after `<LatestPost />`:
 
-
 <img width="400px" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo3.png" style={{alignSelf:"center"}} alt="memo3" />
 
 <br/>
 
-This is because **React memo**  caches the props passed to the component and checks for incoming changes. Do notice the Boolean value of `signedIn` printed to the console. A change in `signedIn` 's state renews the memoization and a re-render of the component is triggered.
+This is now because **React memo** caches the props passed to the component and checks for incoming changes. Notice the Boolean value of `signedIn` printed to the console. A change in `signedIn`'s state renews the memoization and a re-render of the component is triggered.
+
+### When to Use `React.memo`
 
 This is actually what we want. Because we don't want `<Post />` to re-render when we don't need it to, and we want to re-render it when we need it to.
 
 If value of `signedIn` never changed, we know `<Post />` will never be re-rendered because of `signedIn`. In that case, caching `signedIn` doesn't do us any favor.
 
-In our example, had we resorted to `React.memo()` solely to retain the value of `signedIn` and **not** to prevent re-renders due to changes in `likesCount` or `post`, we would not get much performance benefit. Instead, we would be bringing the comparison function into the scene for no reason, which adds to the cost. So it is not recommended to memoize a component if its prop values don't change often.
+So, typically we should use `React.memo` when we want to prevent re-renderings due to state changes that do not concern our component and only allow re-renderings due to prop changes that happen often or are driven by an event.
+
+### When Not to Use `React.memo`
+
+In our example, had we resorted to `React.memo()` solely to retain the value of `signedIn` and **not** to prevent re-renders due to changes in `likesCount` or `post`, we would not get much performance benefit.
+
+Instead, we would be bringing the comparison function into the scene for no reason, which adds to the performance cost. So, it is **not** recommended to memoize a component if its prop values **don't** change often.
 
 It is therefore important to figure out the performance gains by measuring and analyzing runtime performance using browser utilities like Chrome DevTools.
 
-## Comparing Prop Values
- **React memo** checks for changes between the previous and current values for a given prop passed to the component. The default function carries out a shallow comparison on each passed in prop. It checks for equality of incoming values with the existing ones.
+### React.memo: Prop Comparison
 
- In our `React.memo(Post)` memo, the current states of `signedIn` and `post` are checked for equality to their incoming states. If both values for each prop are equal, the memoized value is retained and re-render prevented. If they are not equal, the new value is cached and `<Post />` re-renders.
+**React memo** checks for changes between the previous and current values for a given prop passed to the component. The default function carries out a shallow comparison on each passed in prop. It checks for equality of incoming values with the existing ones.
 
-**Custom Comparators**
+In our `React.memo(Post)` memo, the current states of `signedIn` and `post` are checked for equality to their incoming states. If both values for each prop are equal, the memoized value is retained and re-render prevented. If they are not equal, the new value is cached and `<Post />` re-renders.
 
- It is also possible to customize the comparison by passing in a comparator function as a second argument:
+### Using React Memo with Custom Comparators
+
+It is possible to customize the comparison by passing in a comparator function to the `React.memo()` HOC as a second argument:
 
 ```tsx
 React.memo(Post, customComparator);
- ```
+```
 
-We can specify dependencies for `React.memo()` and choose to compare only the props we want to:
+For example, we can specify dependencies for `React.memo()` and choose to compare only the props we want to:
 
 ```tsx title="src/components/Post.jsx"
 import React from "react";
@@ -320,31 +404,23 @@ const customComparator = (prevProps, nextProps) => {
 export default React.memo(Post, customComparator);
 //highlight-end
 ```
-Here, we are omitting `signedIn` from being compared by comparing only `post` 's values. Now, if we click on `Sign Out` button, `Post` is not being re-rendered:
 
+Here, we are omitting `signedIn` from the comparison by including only `post`. Now, if we click on `Sign Out` button, `Post` is not being re-rendered:
 
 <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo/memo4.png" alt="memo4" />
 
 <br/>
 
-`customComparator` checks for equality of incoming values of only `post` with its current value and returns `true` if they are equal. Memoization will renew if the incoming value of'post` is unequal to its cached value.
+This is because, our `customComparator` checks for equality of incoming values of only `post` and excludes `signedIn` from the comparison.
 
-## Conclusion
-In this post, we found out that `React.memo()` is very useful in preventing unnecessary, frequent re-renders of a component due to changes in states that it does not depend on. A good example involves a component that accepts props whose values change frequently and/or on demand. We can also choose to specify only the props we want in a custom comparator function.
+## Summary
 
-In the next article, we will turn our attention back to the `<Blog />` component and memoize a sorting function with `useMemo()` hook.
+In this post, we acknowledged what memoization is and why it is important in React. We learned about the use of `React.memo()`, `useMemo` and `useCallback` APIs for implementing memoization in a React app.
 
+By investigating a demo blog post app, we observed in the browser console that `React.memo()` is very useful in preventing unnecessary, frequent re-renders of a component due to ancestor state changes that it does not depend on. A good example involves a component that accepts props whose values change often and/or on demand. With a `React.memo` custom comparator function, we can choose to specify only the props we want to track for triggering a re-render of our component.
 
+In the next article, we will turn our attention to the `<Blog />` component and memoize a sorting function with `useMemo()` hook.
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
-
-## Example
+## Live Example
 
 <CodeSandboxExample path="blog-react-memoization-memo" />
-
-

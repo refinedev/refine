@@ -1,17 +1,24 @@
 import { useModalForm } from "@refinedev/antd";
 import { useInvalidate, useNavigation } from "@refinedev/core";
+import { GetFields } from "@refinedev/nestjs-query";
 
 import { Form, Input, Modal } from "antd";
+
+import { KanbanCreateStageMutation } from "@/graphql/types";
+
+import { KANBAN_CREATE_STAGE_MUTATION } from "./queries";
 
 export const KanbanCreateStage = () => {
     const invalidate = useInvalidate();
     const { list } = useNavigation();
-    const { formProps, modalProps, close } = useModalForm({
+    const { formProps, modalProps, close } = useModalForm<
+        GetFields<KanbanCreateStageMutation>
+    >({
         action: "create",
         defaultVisible: true,
         resource: "taskStages",
         meta: {
-            fields: ["id"],
+            gqlMutation: KANBAN_CREATE_STAGE_MUTATION,
         },
         onMutationSuccess: () => {
             invalidate({ invalidates: ["list"], resource: "tasks" });

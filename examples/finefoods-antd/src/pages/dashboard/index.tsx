@@ -1,11 +1,10 @@
-import { Row, Col, Card, Typography } from "antd";
+import { Card, Col, Row, Typography } from "antd";
 import { useTranslation } from "react-i18next";
 
 import {
-    DailyRevenue,
     DailyOrders,
+    DailyRevenue,
     NewCustomers,
-    DeliveryMap,
     OrderTimeline,
     RecentOrders,
     TrendingMenu,
@@ -84,7 +83,7 @@ export const DashboardPage: React.FC = () => {
                         </Text>
                     }
                 >
-                    <DeliveryMap />
+                    {/* <DeliveryMap /> */}
                 </Card>
             </Col>
             <Col xl={7} lg={8} md={24} sm={24} xs={24}>

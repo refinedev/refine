@@ -1049,25 +1049,23 @@ interface ChartProps {
 }
 
 export const TaskChart: React.FC<ChartProps> = ({ data }) => {
-  var config = {
+  const config = {
     data: data,
     angleField: "value",
     colorField: "type",
     radius: 0.9,
     label: {
-      type: "inner",
-      offset: "-30%",
-      content: function content(_ref: any) {
-        var percent = _ref.percent;
-        return "".concat((percent * 100).toFixed(0), "%");
-      },
-      style: {
-        fontSize: 14,
-        textAlign: "center",
-      },
+      text: "value",
+      fontSize: 14,
+      textAlign: "center",
+      position: "inside",
+      render: (_, datum) => `${datum.value}`,
     },
-    interactions: [{ type: "element-active" }],
-  };
+    interaction: {
+      tooltip: true,
+      elementHighlight: true,
+    },
+  } as PieConfig;
   return <Pie {...config} />;
 };
 ```

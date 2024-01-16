@@ -1,5 +1,5 @@
 import {
-    AuthBindings,
+    AuthProvider,
     Authenticated,
     GitHubBanner,
     Refine,
@@ -34,7 +34,7 @@ const authCredentials = {
 };
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ providerName, email }) => {
             if (providerName === "google") {
                 window.location.href =

@@ -1,4 +1,4 @@
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 import { User } from "@/graphql/schema.types";
 
@@ -12,7 +12,7 @@ export const authCredentials = {
   password: "demodemo",
 };
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   login: async ({ email }) => {
     try {
       const { data } = await dataProvider.custom({

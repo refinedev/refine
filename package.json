@@ -73,6 +73,7 @@
     "node": ">=16"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "pidtree": "^0.6.0",
     "wait-on": "^7.0.1"
   }

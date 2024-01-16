@@ -1,20 +1,19 @@
-import { useMemo, useState } from "react";
-import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
+import { Line, LineConfig } from "@ant-design/charts";
 import { NumberField } from "@refinedev/antd";
+import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
 import { Typography } from "antd";
-import { Line } from "@ant-design/charts";
-import { LineConfig } from "@ant-design/plots/lib/components/line";
 import dayjs, { Dayjs } from "dayjs";
+import { useMemo, useState } from "react";
 
-import { IncreaseIcon, DecreaseIcon } from "../../../components/icons";
+import { DecreaseIcon, IncreaseIcon } from "../../../components/icons";
 
 import { ISalesChart } from "../../../interfaces";
 import {
     DailyRevenueWrapper,
+    RangePicker,
     TitleAreNumber,
     TitleArea,
     TitleAreaAmount,
-    RangePicker,
 } from "./styled";
 
 export const DailyRevenue: React.FC = () => {
@@ -46,32 +45,42 @@ export const DailyRevenue: React.FC = () => {
     });
 
     const config = useMemo(() => {
-        const config: LineConfig = {
+        const config = {
             data: data?.data.data || [],
-            loading: isLoading,
-            padding: "auto",
+            padding: 0,
+            paddingBottom: 10,
             xField: "date",
             yField: "value",
-            color: "rgba(255, 255, 255, 0.5)",
-            tooltip: {
-                customContent: (title, data) => {
-                    return `<div style="padding: 8px 4px; font-size:16px; font-weight:600">${data[0]?.value} $</div>`;
-                },
-            },
-
-            xAxis: {
-                label: null,
-                line: null,
-            },
-            yAxis: {
-                label: null,
-                grid: null,
-            },
-            smooth: true,
-            lineStyle: {
+            height: 135,
+            shapeField: "smooth",
+            style: {
                 lineWidth: 4,
             },
-        };
+            colorField: "rgba(255, 255, 255, 0.5)",
+            axis: {
+                x: { label: null, line: null },
+                y: { label: null, grid: null },
+            },
+            // todo: problem here
+            // interaction: {
+            //     tooltip: {
+            //         render: (event, options) => {
+            //             console.log("R DATA: ", options.items[0].value);
+            //             return (
+            //                 <div
+            //                     style={{
+            //                         padding: "8px 4px",
+            //                         fontSize: "16px",
+            //                         fontWeight: 600,
+            //                     }}
+            //                 >
+            //                     {options.items[0].value} $
+            //                 </div>
+            //             );
+            //         },
+            //     },
+            // },
+        } as LineConfig;
 
         return config;
     }, [data]);
@@ -139,13 +148,7 @@ export const DailyRevenue: React.FC = () => {
                     format="YYYY/MM/DD"
                 />
             </TitleArea>
-            <Line
-                padding={0}
-                appendPadding={10}
-                height={135}
-                style={{ maxHeight: "135px" }}
-                {...config}
-            />
+            <Line {...config} />
         </DailyRevenueWrapper>
     );
 };

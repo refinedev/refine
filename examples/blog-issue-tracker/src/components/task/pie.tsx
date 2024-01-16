@@ -1,5 +1,5 @@
+import { Pie, PieConfig } from "@ant-design/charts";
 import React from "react";
-import { Pie } from "@ant-design/charts";
 
 interface ChartProps {
     data: {
@@ -15,19 +15,21 @@ export const TaskChart: React.FC<ChartProps> = ({ data }) => {
         colorField: "type",
         radius: 0.9,
         label: {
-            type: "inner",
-            offset: "-30%",
-            // eslint-disable-next-line
-            content: function content(_ref: any) {
-                const percent = _ref.percent;
-                return "".concat((percent * 100).toFixed(0), "%");
-            },
-            style: {
-                fontSize: 14,
-                textAlign: "center",
-            },
+            text: "value",
+            fontSize: 14,
+            textAlign: "center",
+            position: "inside",
+            render: (_, datum) => `${datum.value}`,
+            // render: (_, datum) => {
+            //     const percent = (datum.value / data.length) * 100;
+            //     console.log("percent: ", percent);
+            //     return `${percent.toFixed(2)} %`;
+            // },
         },
-        interactions: [{ type: "element-active" }],
-    };
+        interaction: {
+            tooltip: true,
+            elementHighlight: true,
+        },
+    } as PieConfig;
     return <Pie {...config} />;
 };

@@ -2,18 +2,23 @@ import { useEffect } from "react";
 
 import { useForm, useSelect } from "@refinedev/antd";
 import { HttpError, useInvalidate } from "@refinedev/core";
+import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { FlagOutlined } from "@ant-design/icons";
 import { Checkbox, Form, Select, Space } from "antd";
 
 import { Task } from "@/graphql/schema.types";
+import { KanbanGetTaskQuery, TaskStagesSelectQuery } from "@/graphql/types";
 
 import { AccordionHeaderSkeleton } from "../accordion-header-skeleton";
+import { TASK_STAGES_SELECT_QUERY } from "./queries";
+
+type KanbanTask = GetFields<KanbanGetTaskQuery>;
 
 type Props = {
     initialValues: {
-        completed: Task["completed"];
-        stage: Task["stage"];
+        completed: KanbanTask["completed"];
+        stage: KanbanTask["stage"];
     };
     isLoading?: boolean;
 };
@@ -40,12 +45,14 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
         },
     });
 
-    const { selectProps } = useSelect({
-        resource: "taskStages",
-        meta: {
-            fields: ["title", "id"],
+    const { selectProps } = useSelect<GetFieldsFromList<TaskStagesSelectQuery>>(
+        {
+            resource: "taskStages",
+            meta: {
+                gqlQuery: TASK_STAGES_SELECT_QUERY,
+            },
         },
-    });
+    );
 
     useEffect(() => {
         formProps.form?.setFieldsValue(initialValues);

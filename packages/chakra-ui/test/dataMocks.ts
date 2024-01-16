@@ -1,4 +1,4 @@
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 
 export const posts = [
@@ -77,7 +77,7 @@ export const MockLiveProvider: any = {
     publish: () => ({}),
 };
 
-export const MockAuthProvider: AuthBindings = {
+export const MockAuthProvider: AuthProvider = {
     login: async () => ({ success: true }),
     check: async () => ({ authenticated: true }),
     onError: async () => ({}),

@@ -2,10 +2,11 @@ import React from "react";
 
 import { Layout, Space, theme } from "antd";
 
+import { searchClient } from "@/providers";
+
 import { AlgoliaSearch } from "./algolia-search";
 import { CurrentUser } from "./current-user";
 import { Notifications } from "./notifications";
-import { searchClient } from "@/providers";
 
 const { useToken } = theme;
 
