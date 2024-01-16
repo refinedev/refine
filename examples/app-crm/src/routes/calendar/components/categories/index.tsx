@@ -9,12 +9,11 @@ import { Button, Card, Checkbox, Skeleton, theme } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 
 import { Text } from "@/components";
-import { CalendarEventCategoriesQuery } from "@/graphql/types";
-
-import { CalendarManageCategories } from "./manage-categories";
-import { CALENDAR_EVENT_CATEGORIES_QUERY } from "./queries";
+import { EVENT_CATEGORIES_QUERY } from "@/graphql/queries";
+import { EventCategoriesQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
+import { CalendarManageCategories } from "./manage-categories";
 
 type CalendarCategoriesProps = {
     onChange?: (e: CheckboxChangeEvent) => void;
@@ -27,11 +26,11 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
     const { token } = theme.useToken();
     const { modalProps, show, close } = useModal();
     const { data, isLoading } = useList<
-        GetFieldsFromList<CalendarEventCategoriesQuery>
+        GetFieldsFromList<EventCategoriesQuery>
     >({
         resource: "eventCategories",
         meta: {
-            gqlQuery: CALENDAR_EVENT_CATEGORIES_QUERY,
+            gqlQuery: EVENT_CATEGORIES_QUERY,
         },
     });
 

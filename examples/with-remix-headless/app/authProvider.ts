@@ -1,4 +1,4 @@
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 import Cookies from "js-cookie";
 import * as cookie from "cookie";
 
@@ -19,7 +19,7 @@ const mockUsers = [
 
 const COOKIE_NAME = "user";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
     login: async ({ email }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.email === email);

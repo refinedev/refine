@@ -26,9 +26,9 @@ Refer to the [Auth Provider Examples &#8594](#auth-provider-examples)
 The typical auth provider has the following methods:
 
 ```ts
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // required methods
   login: async (params: any) => ({}),
   check: async (params: any) => ({}),
@@ -51,10 +51,10 @@ When creating a new auth provider, you need to pass it to the `<Refine/>` compon
 
 ```tsx
 // ---
-import { AuthBindings, Refine } from "@refinedev/core";
+import { AuthProvider, Refine } from "@refinedev/core";
 
 // It is a mock auth provider.
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // required methods
   login: async (params: any) => ({}),
   check: async (params: any) => ({}),
@@ -94,9 +94,9 @@ const handleLogin = async (values) => {
 As you can see, the `useLogin` hook returns a `mutate` function. When you call this function, it calls the `login` method of auth provider like the below:
 
 ```ts
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   login: ({ email, password }) => {
     const response = await axios.post("/api/login", { email, password });
 

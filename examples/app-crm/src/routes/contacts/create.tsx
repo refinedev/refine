@@ -1,14 +1,15 @@
 import React, { PropsWithChildren, useEffect } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 
-import { useForm, useSelect } from "@refinedev/antd";
+import { useForm } from "@refinedev/antd";
 import { useGetIdentity, useNavigation } from "@refinedev/core";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company, User } from "@/graphql/schema.types";
+import { User } from "@/graphql/schema.types";
+import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 
 export const ContactCreatePage: React.FC<PropsWithChildren> = ({
     children,
@@ -20,13 +21,7 @@ export const ContactCreatePage: React.FC<PropsWithChildren> = ({
     const { formProps, saveButtonProps, onFinish } = useForm({
         redirect: "list",
     });
-    const { selectProps, queryResult } = useSelect<Company>({
-        resource: "companies",
-        optionLabel: "name",
-        meta: {
-            fields: ["id", "name", "avatarUrl"],
-        },
-    });
+    const { selectProps, queryResult } = useCompaniesSelect();
 
     useEffect(() => {
         const companyId = searchParams.get("companyId");

@@ -167,7 +167,7 @@ export default LoginPage;
 In Refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Azure AD.
 
 ```tsx title="src/App.tsx"
-import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
+import { Refine, AuthProvider, Authenticated } from "@refinedev/core";
 import { Layout, ErrorComponent } from "@refinedev/antd";
 import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -216,7 +216,7 @@ const App: React.FC = () => {
     account,
   };
 
-  const authProvider: AuthBindings = {
+  const authProvider: AuthProvider = {
     login: async () => {
       instance.loginRedirect(); // Pick the strategy you prefer i.e. redirect or popup
       return {

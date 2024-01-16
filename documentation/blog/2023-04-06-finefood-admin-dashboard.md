@@ -173,9 +173,9 @@ In the course of the tutorial, we will be using refine's demo finefoodsAPI (http
 An [Auth Provider](https://refine.dev/docs/tutorial/understanding-authprovider/index/) in refine contains predefined methods that handle authentication and access control on the application. the predefined methods are shown below:
 
 ```tsx
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // required methods
   login: async (params: any) => ({}),
   check: async (params: any) => ({}),
@@ -197,12 +197,12 @@ In order to add an authProvider to our application, we create a file `authProvid
 <p>
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 import { notification } from "antd";
 
 export const TOKEN_KEY = "refine-auth";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
     localStorage.setItem(TOKEN_KEY, `${email}-${password}`);
     return {

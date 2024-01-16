@@ -3,6 +3,8 @@ import { useInvalidate, useNavigation } from "@refinedev/core";
 
 import { Form, Input, Modal } from "antd";
 
+import { SALES_UPDATE_DEAL_STAGE_MUTATION } from "./queries";
+
 export const SalesEditStage = () => {
     const invalidate = useInvalidate();
     const { list } = useNavigation();
@@ -12,7 +14,7 @@ export const SalesEditStage = () => {
         defaultVisible: true,
         resource: "dealStages",
         meta: {
-            fields: ["id", "title"],
+            gqlMutation: SALES_UPDATE_DEAL_STAGE_MUTATION,
         },
         onMutationSuccess: () => {
             invalidate({ invalidates: ["list"], resource: "deals" });

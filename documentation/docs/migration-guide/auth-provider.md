@@ -17,14 +17,14 @@ Furthermore, the auth hooks no longer have default redirection paths, which had 
 
 ## Naming changes
 
-- The `AuthPovider` interface was changed to `AuthBindings`.
+- The `AuthPovider` interface was changed to `AuthProvider`.
 
   ```diff
   - import { AuthProvider } from "@refinedev/core";
-  + import { AuthBindings } from "@refinedev/core";
+  + import { AuthProvider } from "@refinedev/core";
 
   - const authProvider: AuthProvider = {/* ... */}
-  + const authProvider: AuthBindings = {/* ... */}
+  + const authProvider: AuthProvider = {/* ... */}
   ```
 
 - The `getUserIdentity` method of the `authProvider` was changed to `getIdentity`.

@@ -8,7 +8,7 @@ import { Banner } from "./banner";
 import { Header } from "./header";
 import { Sider } from "./sider";
 
-export const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+export const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
     const breakpoint = Grid.useBreakpoint();
     const isSmall = typeof breakpoint.sm === "undefined" ? true : breakpoint.sm;
 

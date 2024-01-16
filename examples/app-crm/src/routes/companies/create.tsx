@@ -1,6 +1,6 @@
 import { useLocation, useSearchParams } from "react-router-dom";
 
-import { useModalForm, useSelect } from "@refinedev/antd";
+import { useModalForm } from "@refinedev/antd";
 import {
     CreateResponse,
     HttpError,
@@ -30,11 +30,12 @@ import {
 } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company, User } from "@/graphql/schema.types";
+import { Company } from "@/graphql/schema.types";
 import {
     CreateCompanyMutation,
     CreateCompanyMutationVariables,
 } from "@/graphql/types";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
 
 import { COMPANY_CREATE_MUTATION } from "./queries";
 
@@ -71,13 +72,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
         },
     });
 
-    const { selectProps, queryResult } = useSelect<User>({
-        resource: "users",
-        meta: {
-            fields: ["name", "id", "avatarUrl"],
-        },
-        optionLabel: "name",
-    });
+    const { selectProps, queryResult } = useUsersSelect();
 
     const { mutateAsync: createManyMutateAsync } = useCreateMany();
 

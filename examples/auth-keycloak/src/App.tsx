@@ -1,7 +1,7 @@
 import {
     GitHubBanner,
     Refine,
-    AuthBindings,
+    AuthProvider,
     Authenticated,
 } from "@refinedev/core";
 import {
@@ -37,7 +37,7 @@ const App: React.FC = () => {
         return <div>Loading...</div>;
     }
 
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async () => {
             const urlSearchParams = new URLSearchParams(window.location.search);
             const { to } = Object.fromEntries(urlSearchParams.entries());

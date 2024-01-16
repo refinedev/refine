@@ -4,7 +4,7 @@ import {
     IResourceItem,
     Action,
     RouterBindings,
-    AuthBindings,
+    AuthProvider,
     LegacyAuthProvider,
 } from "@refinedev/core";
 import { IRouterContext } from "@refinedev/core/dist/interfaces";
@@ -103,7 +103,7 @@ export const mockLegacyAuthProvider: LegacyAuthProvider = {
         Promise.resolve({ name: "John Doe", avatar: "localhost:3000" }),
 };
 
-export const mockAuthProvider: AuthBindings = {
+export const mockAuthProvider: AuthProvider = {
     login: async () => ({ success: true }),
     check: async () => ({ authenticated: true }),
     onError: async () => ({}),
