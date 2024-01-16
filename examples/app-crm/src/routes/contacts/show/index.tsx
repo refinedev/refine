@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-import { useSelect } from "@refinedev/antd";
 import { useDelete, useNavigation, useShow, useUpdate } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { GetFields } from "@refinedev/nestjs-query/dist/interfaces";
 
 import {
@@ -37,13 +35,10 @@ import {
     TextIcon,
 } from "@/components";
 import { TimezoneEnum } from "@/enums";
-import { COMPANIES_SELECT_QUERY, USERS_SELECT_QUERY } from "@/graphql/queries";
 import type { Contact } from "@/graphql/schema.types";
-import {
-    CompaniesSelectQuery,
-    ContactShowQuery,
-    UsersSelectQuery,
-} from "@/graphql/types";
+import { ContactShowQuery } from "@/graphql/types";
+import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
 
 import { ContactComment, ContactStatus } from "../components";
 import styles from "./index.module.css";
@@ -69,24 +64,12 @@ export const ContactShowPage: React.FC = () => {
     const {
         selectProps: companySelectProps,
         queryResult: companySelectQueryResult,
-    } = useSelect<GetFieldsFromList<CompaniesSelectQuery>>({
-        resource: "companies",
-        meta: {
-            gqlQuery: COMPANIES_SELECT_QUERY,
-        },
+    } = useCompaniesSelect();
 
-        optionLabel: "name",
-    });
     const {
         selectProps: usersSelectProps,
         queryResult: usersSelectQueryResult,
-    } = useSelect<GetFieldsFromList<UsersSelectQuery>>({
-        resource: "users",
-        meta: {
-            gqlQuery: USERS_SELECT_QUERY,
-        },
-        optionLabel: "name",
-    });
+    } = useUsersSelect();
 
     const closeModal = () => {
         setActiveForm(undefined);

@@ -64,7 +64,7 @@ const client = new GraphQLClient("<API_URL>");
 
 const strapiDataProvider = dataProvider(client);
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
     try {
       const { data } = await gqlDataProvider.custom!({

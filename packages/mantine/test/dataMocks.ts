@@ -1,6 +1,6 @@
 import {
     Action,
-    AuthBindings,
+    AuthProvider,
     IResourceItem,
     ParsedParams,
     RouterBindings,
@@ -135,7 +135,7 @@ export const MockLiveProvider: any = {
     publish: () => ({}),
 };
 
-export const MockAuthProvider: AuthBindings = {
+export const MockAuthProvider: AuthProvider = {
     login: async () => ({ success: true }),
     check: async () => ({ authenticated: true }),
     onError: async () => ({}),

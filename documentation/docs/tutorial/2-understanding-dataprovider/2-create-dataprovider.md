@@ -145,7 +145,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 We can then add the pagination feature. For this, the API takes the following parameters.
 
 ```bash
-[GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2
+[GET] https://api.fake-rest.refine.dev/posts?_start=0&_end=10
 ```
 
 Refine uses the `pagination` parameter for pagination. For this parameter, `current` refers to the page number, and `pageSize` refers to the number of records on each page.
@@ -191,7 +191,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 Now let's add the sorting feature. The API expects the following parameters for sorting:
 
 ```bash
-[GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc
+[GET] https://api.fake-rest.refine.dev/posts?_start=0&_end=10&_sort=id&_order=desc
 ```
 
 Refine uses the `sorters` parameter for sorting. This parameter includes the `field` and `order` values.
@@ -249,7 +249,7 @@ Now let's add the filtering feature. The API expects the following parameters fo
 
 ```bash
 
-[GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc&title_like
+[GET] https://api.fake-rest.refine.dev/posts?_start=0&_end=10&_sort=id&_order=desc&title_like
 ```
 
 Refine uses the `filters` parameter for filtering. This parameter contains the `field`, `operator` and `value` values with the [CrudFilters []](/docs/core/interface-references#crudfilters) type.

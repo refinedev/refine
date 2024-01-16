@@ -44,7 +44,7 @@ If your API uses authentication, you can easily provide an axios instance with t
 <TabItem value="headers" label="Using Headers" default>
 
 ```tsx title="App.tsx"
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, AuthProvider } from "@refinedev/core";
 /**
  * We're using the `axiosInstance` exported from the package
  * But you are free to use your own instance with your own configuration.
@@ -52,7 +52,7 @@ import { Refine, AuthBindings } from "@refinedev/core";
 // highlight-next-line
 import dataProvider, { axiosInstance } from "@refinedev/nestjsx-crud";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   login: async () => {
     // ...
     // We're setting the Authorization header when the user logs in.
@@ -86,7 +86,7 @@ const App = () => {
 <TabItem value="axios" label="Using Interceptors">
 
 ```tsx title="App.tsx"
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, AuthProvider } from "@refinedev/core";
 /**
  * We're using the `axiosInstance` exported from the package
  * But you are free to use your own instance with your own configuration.

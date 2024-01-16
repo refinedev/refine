@@ -1,7 +1,7 @@
 ```ts
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   register: async (params) => {
     if (params.email === authCredentials.email && params.password) {
       localStorage.setItem("email", params.email);

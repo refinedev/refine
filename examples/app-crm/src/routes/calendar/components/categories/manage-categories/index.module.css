@@ -1,9 +1,9 @@
 .container {
     border: 1px solid rgba(217, 217, 217, 1);
-    border-radius: .5rem;
-    
+    border-radius: 0.5rem;
+
     .category {
-        padding: .3rem .8rem;
+        padding: 0.3rem 0.8rem;
         border-bottom: 1px solid rgba(217, 217, 217, 1);
         display: flex;
         justify-content: space-between;
@@ -18,7 +18,6 @@
         padding: 0;
     }
     .new-category-input {
-        padding: .3rem 0;
+        padding: 0.3rem 0;
     }
-    
 }
