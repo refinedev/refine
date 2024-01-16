@@ -3,7 +3,7 @@
   "version": "3.25.0",
   "private": true,
   "dependencies": {
-    "@ant-design/charts": "^1.2.0",
+    "@ant-design/charts": "^2.0.0",
     "@refinedev/antd": "^5.37.2",
     "@refinedev/core": "^4.46.2",
     "@refinedev/cli": "^2.16.22",

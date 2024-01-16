@@ -1,10 +1,9 @@
-import { useMemo } from "react";
+import { Column, ColumnConfig } from "@ant-design/charts";
 import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
 import { Typography } from "antd";
-import { Column } from "@ant-design/charts";
-import { ColumnConfig } from "@ant-design/plots/lib/components/column";
+import { useMemo } from "react";
 
-import { IncreaseIcon, DecreaseIcon } from "../../../components/icons";
+import { DecreaseIcon, IncreaseIcon } from "../../../components/icons";
 
 import { ISalesChart } from "../../../interfaces";
 import { DailyOrderWrapper, TitleAreNumber, TitleArea } from "./styled";
@@ -23,34 +22,44 @@ export const DailyOrders: React.FC = () => {
     const { Text, Title } = Typography;
 
     const config = useMemo(() => {
-        const config: ColumnConfig = {
+        const config = {
             data: data?.data.data || [],
-            loading: isLoading,
             padding: 0,
+            paddingBottom: 5,
+            height: 135,
             xField: "date",
             yField: "value",
-            maxColumnWidth: 16,
-            columnStyle: {
-                radius: [4, 4, 0, 0],
+            style: {
+                maxWidth: 10,
+                radiusTopLeft: 4,
+                radiusTopRight: 4,
             },
-            color: "rgba(255, 255, 255, 0.5)",
-            tooltip: {
-                customContent: (title, data) => {
-                    return `<div style="padding: 8px 4px; font-size:16px; font-weight:600">${data[0]?.value}</div>`;
-                },
+            colorField: "rgba(255, 255, 255, 0.5)",
+            //* here
+            // todo: problem here
+            // interaction: {
+            //     tooltip: {
+            //         render: (event, options) => {
+            //             console.log("R DATA: ", options.items[0].value);
+            //             return (
+            //                 <div
+            //                     style={{
+            //                         padding: "8px 4px",
+            //                         fontSize: "16px",
+            //                         fontWeight: 600,
+            //                     }}
+            //                 >
+            //                     {options.items[0].value} $
+            //                 </div>
+            //             );
+            //         },
+            //     },
+            // },
+            axis: {
+                x: { label: null, line: null, tickLineWidth: 0 },
+                y: { label: null, grid: null, tickLineWidth: 0 },
             },
-
-            xAxis: {
-                label: null,
-                line: null,
-                tickLine: null,
-            },
-            yAxis: {
-                label: null,
-                grid: null,
-                tickLine: null,
-            },
-        };
+        } as ColumnConfig;
 
         return config;
     }, [data]);
@@ -69,11 +78,7 @@ export const DailyOrders: React.FC = () => {
                     )}
                 </TitleAreNumber>
             </TitleArea>
-            <Column
-                style={{ padding: 0, height: 135 }}
-                appendPadding={10}
-                {...config}
-            />
+            <Column {...config} />
         </DailyOrderWrapper>
     );
 };

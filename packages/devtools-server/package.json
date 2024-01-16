@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start:client": "vite build --watch --force --config src/client/vite.config.ts",
-    "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
+    "build:client": "cross-env NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
     "start:server": "node dist/cli.js",
     "start": "npm run start:client & tsup --watch --format esm,cjs,iife --legacy-output",
     "build": "npm run build:client && tsup --format esm,cjs,iife --minify --legacy-output",
