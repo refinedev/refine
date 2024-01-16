@@ -13,6 +13,7 @@ import {
     TLogoutData,
 } from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
+import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 import { useKeys } from "@hooks/useKeys";
 
@@ -122,13 +123,17 @@ export function useLogout<TVariables = {}>({
         mutationKey: keys().auth().action("logout").get(preferLegacyKeys),
         mutationFn: logoutFromContext,
         onSuccess: async (data, variables) => {
-            const { success, error, redirectTo } = data;
+            const { success, error, redirectTo, successNotification } = data;
             const { redirectPath } = variables ?? {};
 
             const redirect = redirectPath ?? redirectTo;
 
             if (success) {
                 close?.("useLogout-error");
+
+                if (successNotification) {
+                    open?.(buildSuccessNotification(successNotification));
+                }
             }
 
             if (error || !success) {
@@ -217,5 +222,16 @@ const buildNotification = (
         type: "error",
         message: error?.name || "Logout Error",
         description: error?.message || "Something went wrong during logout",
+    };
+};
+
+const buildSuccessNotification = (
+    successNotification: SuccessNotificationResponse,
+  ): OpenNotificationParams => {
+    return {
+      message: successNotification.message || "Success",
+      description: successNotification.description || "Operation completed successfully",
+      key: "success-notification",
+      type: "success",
     };
 };

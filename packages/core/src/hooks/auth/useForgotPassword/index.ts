@@ -127,9 +127,13 @@ export function useForgotPassword<TVariables = {}>({
             .action("forgotPassword")
             .get(preferLegacyKeys),
         mutationFn: forgotPasswordFromContext,
-        onSuccess: ({ success, redirectTo, error }) => {
+        onSuccess: ({ success, redirectTo, error, successNotification }) => {
             if (success) {
                 close?.("forgot-password-error");
+
+                if (successNotification) {
+                    open?.(buildSuccessNotification(successNotification));
+                }
             }
 
             if (error || !success) {
@@ -155,6 +159,17 @@ export function useForgotPassword<TVariables = {}>({
             ...getXRay("useForgotPassword", preferLegacyKeys),
         },
     });
+
+    const buildSuccessNotification = (
+        successNotification: SuccessNotificationResponse,
+      ): OpenNotificationParams => {
+        return {
+          message: successNotification.message || "Success",
+          description: successNotification.description || "Operation completed successfully",
+          key: "success-notification",
+          type: "success",
+        };
+    };
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TForgotPasswordData,
