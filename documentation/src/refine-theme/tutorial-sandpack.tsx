@@ -41,16 +41,20 @@ type SandpackProps = React.ComponentProps<SandpackInternal> & {
     parentResizing?: boolean;
 };
 
-type Props = React.PropsWithChildren<SandpackProps & { contentOnly?: boolean }>;
+type Props = React.PropsWithChildren<
+    SandpackProps & { contentOnly?: boolean; contentPercentage?: number }
+>;
 
 const maxPercentage = 70;
 
 export const TutorialSandpack = ({
     children,
     contentOnly,
+    contentPercentage = 45,
     ...sandpackProps
 }: Props) => {
-    const [viewPercentage, setViewPercentage] = React.useState(45);
+    const [viewPercentage, setViewPercentage] =
+        React.useState(contentPercentage);
     const [resizing, setResizing] = React.useState(false);
     const containerRef = React.useRef<HTMLDivElement>(null);
 
@@ -175,7 +179,7 @@ export const TutorialSandpack = ({
                             "max-h-full",
                             "h-full",
                             "overflow-scroll",
-                            "px-4 tutorial-sm:px-6",
+                            "px-6 tutorial-sm:px-8",
                             "pb-6",
                         )}
                     >
@@ -543,7 +547,7 @@ const SandpackRightSide = ({
                             }}
                         >
                             {showFiles ? (
-                                <SandpackFileExplorer autoHiddenFiles={false} />
+                                <SandpackFileExplorer autoHiddenFiles={true} />
                             ) : null}
                             <SandpackCodeEditor
                                 {...codeEditorOptions}
