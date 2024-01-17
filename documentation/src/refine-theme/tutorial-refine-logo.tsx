@@ -11,7 +11,6 @@ export const TutorialRefineLogo = ({ className }: Props) => {
     return (
         <div
             className={clsx(
-                "flex-shrink-0",
                 "flex",
                 "items-center justify-start",
                 "gap-2",
@@ -20,11 +19,11 @@ export const TutorialRefineLogo = ({ className }: Props) => {
             )}
         >
             <Link
-                to="/tutorial"
+                to="/"
                 className={clsx("no-underline", "flex items-center gap-2")}
-                // onContextMenu={openFigma}
+                onContextMenu={openFigma}
             >
-                <Logo className="text-refine-tutorial-green" />
+                <Logo className="text-refine-tutorial-green dark:text-refine-green-alt" />
                 <span
                     className={clsx(
                         "text-gray-1000 dark:text-gray-0",
@@ -32,10 +31,10 @@ export const TutorialRefineLogo = ({ className }: Props) => {
                         "font-semibold",
                     )}
                 >
-                    Refine Tutorial
+                    Refine
                 </span>
             </Link>
-            {/* <span
+            <span
                 className={clsx(
                     "block",
                     "h-6",
@@ -44,16 +43,16 @@ export const TutorialRefineLogo = ({ className }: Props) => {
                     "bg-gray-300 dark:bg-gray-600",
                 )}
             />
-            <Link to="/docs" className={clsx("no-underline")}>
+            <Link to="/tutorial" className={clsx("no-underline")}>
                 <span
                     className={clsx(
                         "text-gray-1000 dark:text-gray-0",
                         "text-base font-normal",
                     )}
                 >
-                    Documentation
+                    Tutorial
                 </span>
-            </Link> */}
+            </Link>
         </div>
     );
 };
