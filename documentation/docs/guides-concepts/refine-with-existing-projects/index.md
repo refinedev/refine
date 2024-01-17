@@ -68,21 +68,35 @@ In the following example, we have an application that uses Ant Design as UI Libr
 
 <InstallPackagesCommand args="@refinedev/core @refinedev/simple-rest @refinedev/antd" />
 
-<Tabs wrapContent={false} defaultValue="nextjs">
+<Tabs wrapContent={false} defaultValue="nextjs-app">
 
 <TabItem value="vite" label="Vite">
 
 import { ViteAntdLayout } from './vite/layout/antd';
 
+<InstallPackagesCommand args="@refinedev/react-router-v6" />
+
 <ViteAntdLayout />
 
 </TabItem>
 
-<TabItem value="nextjs" label="Next.js">
+<TabItem value="nextjs-app" label="Next.js App">
 
-import { NextJSAntdLayout } from './nextjs/layout/antd';
+import { NextJSAppAntdLayout } from './nextjs/app/layout/antd';
 
-<NextJSAntdLayout />
+<InstallPackagesCommand args="@refinedev/nextjs-router" />
+
+<NextJSAppAntdLayout />
+
+</TabItem>
+
+<TabItem value="nextjs-pages" label="Next.js Pages">
+
+import { NextJSPagesAntdLayout } from './nextjs/pages/layout/antd';
+
+<InstallPackagesCommand args="@refinedev/nextjs-router" />
+
+<NextJSPagesAntdLayout />
 
 </TabItem>
 

@@ -406,10 +406,6 @@ const SandpackNextJS = (props: Props) => {
                   ...props.dependencies,
               },
               files: {
-                  "/pages/index.tsx": {
-                      code: NextJSPagesIndexTsxCode,
-                      hidden: true,
-                  },
                   ...(props.files as any),
               },
           }

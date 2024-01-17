@@ -1,7 +1,7 @@
 import React from "react";
 import { Sandpack } from "@site/src/components/sandpack";
 
-export function NextJSAntdLayout() {
+export function NextJSPagesAntdLayout() {
   return (
     <Sandpack
       template="nextjs"
