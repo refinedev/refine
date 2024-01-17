@@ -266,7 +266,7 @@ export const dataProvider: DataProvider = {
     }
 
     if (filters && filters.length > 0) {
-      if (filters[0].operator === "eq") {
+      if ("field" in filters[0] && filters[0].operator === "eq") {
         // Our fake API supports "eq" operator by simply appending the field name and value to the query string.
         params.append(filters[0].field, filters[0].value);
       }
@@ -519,7 +519,9 @@ export const CreateListProductsFile = ({
                 "appearance-none",
                 "focus:outline-none",
                 "py-2 px-3",
-                "bg-refine-link-light bg:text-refine-link-dark",
+                "[&>p]:!text-gray-0",
+                "[&>p>code]:!text-gray-0",
+                "bg-refine-link-light",
                 "hover:brightness-110",
                 "[&>p]:!mb-0",
             )}

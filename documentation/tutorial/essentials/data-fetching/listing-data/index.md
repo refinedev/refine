@@ -281,7 +281,7 @@ export const dataProvider: DataProvider = {
 
     // highlight-start
     if (filters && filters.length > 0) {
-      if (filters[0].operator === "eq") {
+      if ("field" in filters[0] && filters[0].operator === "eq") {
         // Our fake API supports "eq" operator by simply appending the field name and value to the query string.
         params.append(filters[0].field, filters[0].value);
       }
@@ -330,6 +330,12 @@ If you're having hard time updating file, <AddFiltersToListProducts>Click to upd
 In this chapter, we've learned about the Refine's `useList` hook to fetch a list of records from our API. We've also learned about pagination, sorting and filtering through the `useList` hook.
 
 Refine also offers `useInfiniteList` hook to fetch a list of records with infinite scrolling and `useTable` hook to fetch a list of records with additional features on top of `useList` hook. You can check the [Hooks](#) section of the Data Fetching guide and [Tables](#) guide to learn more about these hooks and their usages.
+
+:::simple Implementation Tips
+
+To see the full implementation of a REST data provider, please check the [source code of `@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/master/packages/simple-rest).
+
+:::
 
 In the next chapters, we'll learn about how to handle forms and tables with Refine.
 
