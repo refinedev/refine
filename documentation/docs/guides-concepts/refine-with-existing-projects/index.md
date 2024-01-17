@@ -38,9 +38,29 @@ function App() {
 
 The following example shows how to use Refine's `useShow` hook with an existing application.
 
+<Tabs wrapContent={false}>
+
+<TabItem value="vite" label="Vite">
+
 import { ViteHeadless } from './vite/headless';
 
+As you can see in the example below, wrapping `App.tsx` file with `Refine` component is enough to use Refine hooks inside your application.
+
 <ViteHeadless />
+
+</TabItem>
+
+<TabItem value="nextjs" label="Next.js">
+
+import { NextJSHeadless } from './nextjs/headless'
+
+As you can see in the example below, wrapping `_app.tsx` file with `Refine` component is enough to use Refine hooks inside your application.
+
+<NextJSHeadless />
+
+</TabItem>
+
+</Tabs>
 
 ## UI & Routing Integration Example
 

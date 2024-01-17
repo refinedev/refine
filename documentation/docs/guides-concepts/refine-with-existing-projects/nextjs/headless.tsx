@@ -22,7 +22,6 @@ export function NextJSHeadless() {
       files={{
         "pages/index.tsx": {
           code: IndexTsxCode.trim(),
-          active: true,
         },
         "pages/refine-page.tsx": {
           code: RefinePageTsxCode.trim(),
@@ -32,6 +31,7 @@ export function NextJSHeadless() {
         },
         "pages/_app.tsx": {
           code: AppTsxCode.trim(),
+          active: true,
         },
       }}
     />
@@ -43,8 +43,9 @@ export default function Home({ data }) {
   return (
     <div>
       <h1>Hello From Home</h1>
-      <a href="/refine-page">Go to Refine Page</a>
       <a href="/other-page">Go to Other Page</a>
+      <br />
+      <a href="/refine-page">Go to Refine Page</a>
     </div>
   );
 }
@@ -54,13 +55,13 @@ const AppTsxCode = /* tsx */ `
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 
+const API_URL = "https://api.fake-rest.refine.dev";
+
 export default function MyApp({ Component, pageProps }) {
   return (
-    <>
-        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-        <Component {...pageProps} />
-        </Refine>
-    </>
+    <Refine dataProvider={dataProvider(API_URL)}>
+      <Component {...pageProps} />
+    </Refine>
   );
 }
 
@@ -78,6 +79,8 @@ export default function RefinePage() {
       <hr />
       <p>useShow hook queryResult:</p>
       <code>{JSON.stringify(queryResult.data, null, 2)}</code>
+      <hr />
+      <a href="/">Go to Home Page</a>
     </div>
   );
 }
@@ -88,6 +91,7 @@ export default function OtherPage() {
   return (
     <div>
       <h1>Hello From Other Page</h1>
+      <a href="/">Go to Home Page</a>
     </div>
   );
 }

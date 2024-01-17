@@ -34,9 +34,9 @@ const API_URL = "https://api.fake-rest.refine.dev";
 export default function App() {
   return (
     <>
-      <OtherComponent />
       <Refine dataProvider={dataProvider(API_URL)}>
         {/* You can use Refine hooks here */}
+        <OtherComponent />
         <RefineComponent />
       </Refine>
     </>
