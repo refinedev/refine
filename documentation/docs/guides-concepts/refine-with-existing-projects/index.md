@@ -64,10 +64,26 @@ As you can see in the example below, wrapping `_app.tsx` file with `Refine` comp
 
 ## UI & Routing Integration Example
 
-In the following example, we have an application that uses Ant Design as UI Library and React Router for routing. We will integrate Refine into this application's `/refine` route.
+In the following example, we have an application that uses Ant Design as UI Library. We will integrate Refine into this application's `/refine` route.
 
 <InstallPackagesCommand args="@refinedev/core @refinedev/simple-rest @refinedev/antd" />
 
-import {AntdLayout} from './vite/layout/antd';
+<Tabs wrapContent={false} defaultValue="nextjs">
 
-<AntdLayout />
+<TabItem value="vite" label="Vite">
+
+import { ViteAntdLayout } from './vite/layout/antd';
+
+<ViteAntdLayout />
+
+</TabItem>
+
+<TabItem value="nextjs" label="Next.js">
+
+import { NextJSAntdLayout } from './nextjs/layout/antd';
+
+<NextJSAntdLayout />
+
+</TabItem>
+
+</Tabs>

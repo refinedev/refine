@@ -397,13 +397,13 @@ const SandpackNextJS = (props: Props) => {
               showConsole: true,
               showNavigator: true,
               dependencies: {
-                  ...props.dependencies,
                   "@refinedev/core": "latest",
                   "@refinedev/simple-rest": "latest",
                   "@refinedev/nextjs-router": "latest",
                   "@types/react": "^18.0.0",
                   "@types/node": "^16.0.0",
                   typescript: "^4.7.4",
+                  ...props.dependencies,
               },
               files: {
                   "/pages/index.tsx": {

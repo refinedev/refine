@@ -1,7 +1,7 @@
-import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
+import { Sandpack } from "@site/src/components/sandpack";
 
-export function AntdLayout() {
+export function ViteAntdLayout() {
   return (
     <Sandpack
       showNavigator
@@ -83,7 +83,6 @@ export function RefineContext({ children }) {
             {
               name: "products",
               list: "/refine/my-products",
-              show: "/refine/my-products/:id",
             },
           ]}
           options={{ syncWithLocation: true }}
@@ -148,15 +147,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         <Table.Column dataIndex="id" title="Id" />
         <Table.Column dataIndex="name" title="Name" />
         <Table.Column dataIndex="price" title="Price" />
-        <Table.Column
-          title="Actions"
-          dataIndex="actions"
-          render={(_, record: BaseRecord) => (
-            <Space>
-              <ShowButton hideText size="small" recordItemId={record.id} />
-            </Space>
-          )}
-        />
       </Table>
     </List>
   );
