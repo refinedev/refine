@@ -26,7 +26,7 @@ export const ConfigErrorPage = () => {
             >
                 <div
                     style={{
-                        maxWidth: "400px",
+                        maxWidth: "500px",
                         width: "100%",
                         background: "rgb(52 58 70 / 100%)",
                         borderRadius: "8px",
@@ -78,26 +78,96 @@ export const ConfigErrorPage = () => {
                                     borderRadius: "4px",
                                 }}
                             >{`<Refine />`}</code>{" "}
-                            is not initialized. Please check your configuration.
+                            is not initialized. Please make sure you have it
+                            mounted in your app and placed your components
+                            inside it.
                         </p>
-                        <p style={{ marginBottom: 0 }}>
-                            To learn more about this error, please visit{" "}
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                href="https://refine.dev/docs"
-                                style={{
-                                    color: "#149ECA",
-                                }}
-                            >
-                                Refine Documentation
-                            </a>
-                            .
-                        </p>
+                        <div>
+                            <ExampleImplementation />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    );
+};
+
+const ExampleImplementation = () => {
+    return (
+        <pre
+            style={{
+                display: "block",
+                overflowX: "auto",
+                borderRadius: "8px",
+                fontSize: "12px",
+                backgroundColor: "rgb(29, 31, 33)",
+                color: "rgb(197, 200, 198)",
+                padding: "0.5em",
+            }}
+        >
+            <span style={{ color: "rgb(178, 148, 187)" }}>import</span> {"{"}{" "}
+            Refine, WelcomePage {"}"}{" "}
+            <span style={{ color: "rgb(178, 148, 187)" }}>from</span>{" "}
+            <span style={{ color: "rgb(181, 189, 104)" }}>
+                {'"@refinedev/core"'}
+            </span>
+            ;{"\n"}
+            {"\n"}
+            <span style={{ color: "rgb(178, 148, 187)" }}>export</span>{" "}
+            <span style={{ color: "rgb(178, 148, 187)" }}>default</span>{" "}
+            <span>
+                <span style={{ color: "rgb(178, 148, 187)" }}>function</span>{" "}
+                <span style={{ color: "rgb(129, 162, 190)" }}>App</span>
+                (
+                <span style={{ color: "rgb(222, 147, 95)" }} />){" "}
+            </span>
+            {"{"}
+            {"\n"}
+            {"  "}
+            <span style={{ color: "rgb(178, 148, 187)" }}>return</span> ({"\n"}
+            {"    "}
+            <span>
+                <span style={{ color: "rgb(204, 102, 102)" }}>
+                    &lt;
+                    <span style={{ color: "rgb(204, 102, 102)" }}>Refine</span>
+                    {"\n"}
+                    {"      "}
+                    {"// "}
+                    <span>...</span>
+                    {"\n"}
+                    {"    "}&gt;
+                </span>
+                {"\n"}
+                {"      "}
+                {"{"}
+                {"/* ... */"}
+                {"}"}
+                {"\n"}
+                {"      "}
+                <span style={{ color: "rgb(204, 102, 102)" }}>
+                    &lt;
+                    <span style={{ color: "rgb(204, 102, 102)" }}>
+                        WelcomePage
+                    </span>{" "}
+                    /&gt;
+                </span>
+                {"\n"}
+                {"      "}
+                {"{"}
+                {"/* ... */"}
+                {"}"}
+                {"\n"}
+                {"    "}
+                <span style={{ color: "rgb(204, 102, 102)" }}>
+                    &lt;/
+                    <span style={{ color: "rgb(204, 102, 102)" }}>Refine</span>
+                    &gt;
+                </span>
+            </span>
+            {"\n"}
+            {"  "});{"\n"}
+            {"}"}
+        </pre>
     );
 };
 
