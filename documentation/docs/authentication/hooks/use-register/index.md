@@ -11,11 +11,17 @@ It returns the result of `react-query`'s [useMutation](https://react-query.tanst
 Data that is resolved from `register` will be returned as the `data` in the query result with the following type:
 
 ```ts
+type SuccessNotificationResponse = {
+  message: string;
+  description?: string;
+};
+
 type AuthActionResponse = {
   success: boolean;
   redirectTo?: string;
   error?: Error;
   [key: string]: unknown;
+  successNotification?: SuccessNotificationResponse;
 };
 ```
 
@@ -24,6 +30,14 @@ type AuthActionResponse = {
 - `redirectTo`: If has a value, the app will be redirected to the given URL.
 - `error`: If has a value, a notification will be shown with the error message and name.
 - `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
+- `successNotification`: If provided, a success notification will be shown. The structure is as follows:
+
+```ts
+type SuccessNotificationResponse = {
+  message: string;
+  description?: string;
+};
+```
 
 ## Usage
 
@@ -138,6 +152,10 @@ const authProvider: AuthProvider = {
     return {
       success: true,
       redirectTo: redirectPath,
+      successNotification: {
+        message: "Registration Successful",
+        description: "You have successfully registered.",
+      },
     };
   },
 };
