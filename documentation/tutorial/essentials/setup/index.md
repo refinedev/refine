@@ -8,13 +8,9 @@ import { Sandpack } from "./sandpack.tsx";
 
 Creating a new Refine app is super simple and takes only a few steps to generate a fully functional app. For the sake of this tutorial, we will not be using the `create-refine-app` at its full potential. Instead, we will be creating an empty app and installing the required dependencies and configuring the app manually.
 
-:::tip Tailored App Generation
+<Tabs wrapContent={false}>
 
-`create-refine-app` by default walks you through a few steps to create a new app tailored to your needs from data providers to authentication, UI libraries and more. You can read more about it in the [quickstart](/docs/getting-started/quickstart) section.
-
-:::
-
-## Quick Setup (Using `create-refine-app`)
+<TabItem value="quick" label="Quick Setup">
 
 To follow this tutorial along, you can use the starter templates provided by `create-refine-app`. Below commands will create a new empty project for you with `@refinedev/core` and `@refinedev/cli` packages.
 
@@ -40,7 +36,9 @@ npm create refine-app@latest -- --example starter-nextjs
 
 Above command will create an empty project for us that has everything we need to get started with the tutorial.
 
-## Manual Setup
+</TabItem>
+
+<TabItem value="manual" label="Manual Setup">
 
 We'll need to create our app using the appropriate templates. Then, we'll move on to installing the Refine dependencies and configuring the app.
 
@@ -78,7 +76,7 @@ npm install @refinedev/core @refinedev/cli
 
 We're installing `@refinedev/core` which provides all the core functionalities of Refine and `@refinedev/cli` which although optional, provides a lot of useful features for the development process. To learn more about `@refinedev/cli`, you can visit [its documentation](/docs/packages/cli).
 
-## Configuring the Scripts
+### Configuring the Scripts
 
 We'll replace our `dev`, `build` and `serve` scripts with the following:
 
@@ -94,7 +92,7 @@ We'll replace our `dev`, `build` and `serve` scripts with the following:
 
 While `refine`'s runner commands will use the same commands as the ones provided by the bundler, it will provide some useful features such as version checks for the dependencies and announcements from Refine team.
 
-## Configuring the App
+### Configuring the App
 
 We'll need to mount `<Refine />` component to our app. We'll mount it to the root of our app.
 
@@ -149,5 +147,15 @@ npm run dev
 ```
 
 When you open your browser and navigate to localhost, you should the page at right. If everything is working as expected, move on to the next section.
+
+</TabItem>
+
+</Tabs>
+
+:::tip Tailored App Generation
+
+`create-refine-app` by default walks you through a few steps to create a new app tailored to your needs from data providers to authentication, UI libraries and more. You can read more about it in the [quickstart](/docs/getting-started/quickstart) section.
+
+:::
 
 </Sandpack>
