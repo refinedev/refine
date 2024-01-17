@@ -264,7 +264,7 @@ const buildSuccessNotification = (
     return {
       message: successNotification.message || "Success",
       description: successNotification.description || "Operation completed successfully",
-      key: "success-notification",
+      key: "update-password-success",
       type: "success",
     };
 };

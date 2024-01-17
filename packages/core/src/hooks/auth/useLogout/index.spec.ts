@@ -690,6 +690,42 @@ describe("useLogout Hook", () => {
             }),
         ).toHaveLength(1);
     });
+
+    it('should open success notification when successNotification is passed', async () => {
+
+        const openNotificationMock = jest.fn();
+      
+        const successNotification = {
+          message: 'Logged out successfully!'
+        };
+      
+        const { result } = renderHook(() => useLogout(), {
+          wrapper: TestWrapper({
+            notificationProvider: {
+              open: openNotificationMock  
+            },
+            authProvider: {
+                ...mockAuthProvider,
+                logout: () => Promise.resolve({
+                    success: true,
+                    successNotification
+                })
+            }
+          })
+        });
+      
+        await act(async() => {
+          await result.current.mutateAsync();
+        });
+      
+        expect(openNotificationMock).toHaveBeenCalledWith({
+          key: 'logout-success',
+          type: 'success',
+          message: 'Logged out successfully!', 
+          description: 'Operation completed successfully'
+        });
+      
+      });
 });
 
 // NOTE : Will be removed in v5

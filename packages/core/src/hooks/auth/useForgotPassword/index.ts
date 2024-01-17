@@ -7,6 +7,7 @@ import { getXRay } from "@refinedev/devtools-internal";
 
 import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
+import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
 
 import {
     AuthActionResponse,
@@ -166,7 +167,7 @@ export function useForgotPassword<TVariables = {}>({
         return {
           message: successNotification.message || "Success",
           description: successNotification.description || "Operation completed successfully",
-          key: "success-notification",
+          key: "forgot-password-success",
           type: "success",
         };
     };
