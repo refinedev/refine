@@ -232,7 +232,9 @@ export const CreateEditProductFile = ({
                 "appearance-none",
                 "focus:outline-none",
                 "py-2 px-3",
-                "bg-refine-link-light bg:text-refine-link-dark",
+                "[&>p]:!text-gray-0",
+                "[&>p>code]:!text-gray-0",
+                "bg-refine-link-light",
                 "hover:brightness-110",
                 "[&>p]:!mb-0",
             )}
