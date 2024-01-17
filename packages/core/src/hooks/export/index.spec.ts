@@ -22,7 +22,12 @@ beforeEach(() => {
 
 describe("useExport Hook", () => {
     it("should render", () => {
-        renderHook(() => useExport());
+        renderHook(() => useExport(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
+            }),
+        });
     });
 
     it("should trigger export correctly", async () => {

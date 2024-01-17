@@ -21,7 +21,9 @@ import { useForm } from "./useForm";
 import { posts } from "@test/dataMocks";
 import { mockRouterBindings } from "@test";
 
-const SimpleWrapper = TestWrapper({});
+const SimpleWrapper = TestWrapper({
+    dataProvider: MockJSONServer,
+});
 
 const EditWrapper = TestWrapper({
     dataProvider: MockJSONServer,
