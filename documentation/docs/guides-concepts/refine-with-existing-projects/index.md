@@ -25,9 +25,8 @@ function App() {
     <ExistingProvider>
       <Refine dataProvider={dataProvider(API_URL)}>
         {/* You can use Refine hooks inside here */}
-        <ExistingComponent1>
-        <ExistingComponent2>
         <ComponentWithRefineHooks />
+        <ExistingComponent1>
       </Refine>
     </ExistingProvider>
   );
