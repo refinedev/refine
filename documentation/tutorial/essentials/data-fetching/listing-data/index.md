@@ -57,7 +57,9 @@ Try to add the following lines to your `src/list-products.tsx` file:
 import { useList } from "@refinedev/core";
 
 export const ListProducts = () => {
+  // highlight-start
   const { data, isLoading } = useList({ resource: "products" });
+  // highlight-end
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -67,6 +69,7 @@ export const ListProducts = () => {
     <div>
       <h1>Products</h1>
       <ul>
+        {/* highlight-next-line */}
         {data?.data?.map((product) => (
           <li key={product.id}>
             <p>
