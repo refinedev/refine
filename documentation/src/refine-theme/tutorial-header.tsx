@@ -235,6 +235,7 @@ const Header = () => {
                     "items-center",
                     "gap-6",
                     "tutorial-md:gap-12",
+                    "max-w-[656px]",
                 )}
             >
                 <TutorialRefineLogo />
@@ -245,6 +246,7 @@ const Header = () => {
             <div
                 className={clsx(
                     "flex-shrink-0",
+                    "ml-auto",
                     "tutorial-lg:flex-1",
                     "flex",
                     "justify-end",
