@@ -7,6 +7,7 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
         <TutorialSandpack
             showFiles={false}
+            contentPercentage={50}
             dependencies={{
                 "@refinedev/core": "latest",
             }}
