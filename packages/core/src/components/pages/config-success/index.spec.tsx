@@ -2,18 +2,18 @@ import React from "react";
 
 import { render } from "@test";
 
-import { WelcomePage } from "./index";
+import { ConfigSuccessPage } from "./index";
 
-describe("WelcomePage", () => {
+describe("ConfigSuccessPage", () => {
     it("should render page successfuly", async () => {
-        const { getByText } = render(<WelcomePage />);
+        const { getByText } = render(<ConfigSuccessPage />);
 
         getByText("Welcome Aboard!");
         getByText("Your configuration is completed.");
     });
 
     it("should render 4 buttons", async () => {
-        const { getByText } = render(<WelcomePage />);
+        const { getByText } = render(<ConfigSuccessPage />);
 
         expect(getByText("Documentation").closest("a")).toHaveAttribute(
             "href",
