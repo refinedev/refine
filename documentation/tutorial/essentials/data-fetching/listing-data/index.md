@@ -185,7 +185,9 @@ Our fake API supports sorting through the `_sort` and `_order` query parameters.
 
 :::simple Implementation Details
 
-Even though Refine and our fake API supports sorting through multiple fields, we'll be implementing sorting through a single field for simplicity.
+Refine supports multiple sorters to be passed to the `useList` hook. Fortunately, our fake API also supports multiple sorters. But, if your API doesn't support multiple sorters, you can simply use the first sorter in the `sorters` array.
+
+Our fake API requires multiple sorters and orders to be passed with a comma separated string. So, we'll be mapping the `sorters` array to a comma separated string.
 
 :::
 
@@ -207,8 +209,8 @@ export const dataProvider: DataProvider = {
 
     // highlight-start
     if (sorters && sorters.length > 0) {
-      params.append("_sort", sorters[0].field);
-      params.append("_order", sorters[0].order);
+      params.append("_sort", sorters.map((sorter) => sorter.field).join(","));
+      params.append("_order", sorters.map((sorter) => sorter.order).join(","));
     }
     // highlight-end
 
@@ -256,7 +258,17 @@ We've added sorting to our `getList` method. But, we're not able to filter the l
 
 `useList`'s `filters` property implements the [`CrudFilters`](#) interface which accepts various operators for fields. To learn more about the operators, you can check the [Filters](#) section of the Data Fetching guide.
 
-Our fake API supports filtering multiple fields with various operators but for sake of simplicity, we'll be implementing filtering through a single field with `"eq"` operator.
+:::simple Implementation Details
+
+- Refine supports multiple filters to be passed to the `useList` hook. Fortunately, our fake API also supports multiple filters. But, if your API doesn't support multiple filters, you can simply use the first filter in the `filters` array.
+
+- Our fake API supports filtering with various operators but for sake of simplicity, we'll be implementing filtering through with `"eq"` operator.
+
+- `URLSearchParams`'s `append` method accepts duplicate keys and appends them to the query string. So, we'll be mapping through the `filters` array and appending the field name and value to the query string.
+
+- Refine also supports conditional filtering operators `"and"` and `"or"`. But, our fake API doesn't support these operators. So, we'll be ignoring these operators in our implementation.
+
+:::
 
 Try to add the following lines to your `src/data-provider.ts` file:
 
@@ -275,16 +287,18 @@ export const dataProvider: DataProvider = {
     }
 
     if (sorters && sorters.length > 0) {
-      params.append("_sort", sorters[0].field);
-      params.append("_order", sorters[0].order);
+      params.append("_sort", sorters.map((sorter) => sorter.field).join(","));
+      params.append("_order", sorters.map((sorter) => sorter.order).join(","));
     }
 
     // highlight-start
     if (filters && filters.length > 0) {
-      if ("field" in filters[0] && filters[0].operator === "eq") {
-        // Our fake API supports "eq" operator by simply appending the field name and value to the query string.
-        params.append(filters[0].field, filters[0].value);
-      }
+      filters.forEach((filter) => {
+        if ("field" in filter && filter.operator === "eq") {
+          // Our fake API supports "eq" operator by simply appending the field name and value to the query string.
+          params.append(filter.field, filter.value);
+        }
+      });
     }
     // highlight-end
 

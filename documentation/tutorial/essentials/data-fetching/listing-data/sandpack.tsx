@@ -210,13 +210,13 @@ export const dataProvider: DataProvider = {
     const params = new URLSearchParams();
 
     if (pagination) {
-        params.append("_start", (pagination.current - 1) * pagination.pageSize);
-        params.append("_end", pagination.current * pagination.pageSize);
+      params.append("_start", (pagination.current - 1) * pagination.pageSize);
+      params.append("_end", pagination.current * pagination.pageSize);
     }
 
     if (sorters && sorters.length > 0) {
-        params.append("_sort", sorters[0].field);
-        params.append("_order", sorters[0].order);
+      params.append("_sort", sorters.map((sorter) => sorter.field).join(","));
+      params.append("_order", sorters.map((sorter) => sorter.order).join(","));
     }
 
     const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
@@ -256,20 +256,22 @@ export const dataProvider: DataProvider = {
     const params = new URLSearchParams();
 
     if (pagination) {
-        params.append("_start", (pagination.current - 1) * pagination.pageSize);
-        params.append("_end", pagination.current * pagination.pageSize);
+      params.append("_start", (pagination.current - 1) * pagination.pageSize);
+      params.append("_end", pagination.current * pagination.pageSize);
     }
 
     if (sorters && sorters.length > 0) {
-        params.append("_sort", sorters[0].field);
-        params.append("_order", sorters[0].order);
+      params.append("_sort", sorters.map((sorter) => sorter.field).join(","));
+      params.append("_order", sorters.map((sorter) => sorter.order).join(","));
     }
 
     if (filters && filters.length > 0) {
-      if ("field" in filters[0] && filters[0].operator === "eq") {
-        // Our fake API supports "eq" operator by simply appending the field name and value to the query string.
-        params.append(filters[0].field, filters[0].value);
-      }
+      filters.forEach((filter) => {
+        if ("field" in filter && filter.operator === "eq") {
+          // Our fake API supports "eq" operator by simply appending the field name and value to the query string.
+          params.append(filter.field, filter.value);
+        }
+      });
     }
 
     const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
