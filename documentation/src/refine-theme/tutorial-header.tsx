@@ -342,7 +342,7 @@ export const TutorialHeader = React.memo(function TutorialHeaderComponent() {
                 "z-10",
                 "sticky",
                 "top-0",
-                "py-4 pb-[15px] tutorial-sm:py-3 px-4 tutorial-md:px-6",
+                "py-4 pb-[15px] tutorial-sm:pt-[15px] tutorial-sm:pb-[16px] px-4 tutorial-md:px-6 tutorial-md:pt-[11px] tutorial-md:pb-[10px]",
                 "bg-gray-0 dark:bg-gray-800",
                 "border-b border-gray-300 dark:border-gray-700",
             )}
