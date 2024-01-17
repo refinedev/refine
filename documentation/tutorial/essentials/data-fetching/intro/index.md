@@ -33,6 +33,12 @@ export default function App(): JSX.Element {
 
 If you're having hard time updating file, <AddDataProviderToRefine>Click to update the file</AddDataProviderToRefine>.
 
+:::tip
+
+It's also possible to use multiple data providers with Refine. You can learn more about it in the [Multiple Data Providers](/docs/guides-concepts/data-fetching/#multiple-data-providers) section of the Data Fetching guide.
+
+:::
+
 In the next chapter, we'll be learning about the fetching a record using Refine's `useOne` hook and implementing the `getOne` method in our data provider.
 
 </Sandpack>
