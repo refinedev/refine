@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import { socialLinks } from "./footer-data";
+import Link from "@docusaurus/Link";
 
 export const TutorialFooter = () => {
     return (
@@ -33,44 +34,77 @@ export const TutorialFooter = () => {
 
                 <div
                     className={clsx(
-                        "flex flex-col sm:flex-row justify-center items-center",
+                        "flex",
+                        "flex-row",
+                        "items-center",
+                        "justify-end",
+                        "flex-1",
+                        "gap-12",
                     )}
                 >
-                    <div
+                    <Link
+                        to="/"
                         className={clsx(
-                            "dark:text-gray-100 text-gray-800",
-                            "text-sm leading-6",
-                            "sm:mr-4",
+                            "hover:no-underline",
+                            "hover:text-refine-link-light",
+                            "dark:hover:text-refine-link-dark",
                         )}
                     >
-                        Join us on
-                    </div>
-                    <div
+                        Refine Home
+                    </Link>
+                    <Link
+                        to="/docs"
                         className={clsx(
-                            "flex gap-4",
-                            "dark:text-gray-400 text-gray-500",
-                            "mt-4 sm:mt-0",
+                            "hover:no-underline",
+                            "hover:text-refine-link-light",
+                            "dark:hover:text-refine-link-dark",
                         )}
                     >
-                        {socialLinks.map(({ href, icon: Icon }, i) => {
-                            return (
-                                <a
-                                    key={i}
-                                    href={href}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className={clsx(
-                                        "flex items-center no-underline",
-                                    )}
-                                >
-                                    <Icon
+                        Documentation
+                    </Link>
+                    <div
+                        className={clsx(
+                            "flex flex-col sm:flex-row justify-center items-center",
+                        )}
+                    >
+                        <div
+                            className={clsx(
+                                "dark:text-gray-100 text-gray-800",
+                                "text-sm leading-6",
+                                "sm:mr-4",
+                            )}
+                        >
+                            Join us on
+                        </div>
+                        <div
+                            className={clsx(
+                                "flex gap-4",
+                                "dark:text-gray-400 text-gray-500",
+                                "mt-4 sm:mt-0",
+                            )}
+                        >
+                            {socialLinks.map(({ href, icon: Icon }, i) => {
+                                return (
+                                    <a
+                                        key={i}
+                                        href={href}
+                                        target="_blank"
+                                        rel="noreferrer"
                                         className={clsx(
-                                            "w-9 h-9 sm:w-6 sm:h-6",
+                                            "flex items-center no-underline",
+                                            "hover:text-refine-link-light",
+                                            "dark:hover:text-refine-link-dark",
                                         )}
-                                    />
-                                </a>
-                            );
-                        })}
+                                    >
+                                        <Icon
+                                            className={clsx(
+                                                "w-9 h-9 sm:w-6 sm:h-6",
+                                            )}
+                                        />
+                                    </a>
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>
