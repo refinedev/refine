@@ -1,0 +1,106 @@
+---
+title: Fetching a Record
+---
+
+import { Sandpack, AddGetOneMethod, CreateShowProductFile, AddUseOneToShowProduct, AddShowProductToAppTsx } from "./sandpack.tsx";
+
+<Sandpack>
+
+In this chapter, we'll be learning about the Refine's `useOne` hook to fetch a single record from our API and implement the `getOne` method in our data provider.
+
+## Implementing the `getOne` Method
+
+To fetch a record using Refine's hooks, first we need to implement the `getOne` method in our data provider. This method will be called when we use the `useOne` hook or its extensions in our components.
+
+The `getOne` method will receive `resource`, `id` and `meta` properties. `resource` will be the name of the entity we're fetching. `id` will be the id of the record we're fetching. `meta` will be an object containing any additional data we're passing to the hook.
+
+Our fake API has `products` entity and expects us to fetch a single record using the `/products/:id` endpoint. So, we'll be using the `resource` and `id` properties to make our request.
+
+Try to add the following lines to your `src/data-provider.ts` file:
+
+```ts title="src/data-provider.ts"
+import type { DataProvider } from "@refinedev/core";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export const dataProvider: DataProvider = {
+  // highlight-start
+  getOne: async ({ resource, id, meta }) => {
+    const response = await fetch(`${API_URL}/${resource}/${id}`);
+    const data = await response.json();
+
+    return { data };
+  },
+  // highlight-end
+  update: () => {
+    throw new Error("Not implemented");
+  },
+  getList: () => {
+    throw new Error("Not implemented");
+  },
+  /* ... */
+};
+```
+
+If you're having hard time updating file, <AddGetOneMethod>Click to update the file</AddGetOneMethod>.
+
+## Using the `useOne` Hook
+
+After implementing the `getOne` method, we'll be able to call `useOne` hook and fetch a single record from our API. Let's create a component called `ShowProduct` and mount it inside our `<Refine />` component. Then, we'll use the `useOne` hook inside our `ShowProduct` to fetch a single record of `products` entity from our API.
+
+<CreateShowProductFile>
+
+Create `/show-product.tsx`
+
+</CreateShowProductFile>
+
+Then, we'll import `useOne` hook and use it inside our `ShowProduct` component.
+
+Try to add the following lines to your `src/show-product.tsx` file:
+
+```tsx title="src/show-product.tsx"
+// highlight-next-line
+import { useOne } from "@refinedev/core";
+
+export const ShowProduct = () => {
+  // highlight-next-line
+  const { data, isLoading } = useOne({ resource: "products", id: 123 });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return <div>Product name: {data?.data.name}</div>;
+};
+```
+
+If you're having hard time updating file, <AddUseOneToShowProduct>Click to update the file</AddUseOneToShowProduct>.
+
+Finally, we'll mount our `ShowProduct` component inside our `<Refine />` component.
+
+Try to add the following lines to your `src/App.tsx` file:
+
+```tsx title="src/App.tsx"
+import { Refine } from "@refinedev/core";
+
+import { dataProvider } from "./data-provider";
+// highlight-next-line
+import { ShowProduct } from "./show-product";
+
+export default function App(): JSX.Element {
+  return (
+    <Refine dataProvider={dataProvider}>
+      {/* highlight-next-line */}
+      <ShowProduct />
+    </Refine>
+  );
+}
+```
+
+If you're having hard time updating file, <AddShowProductToAppTsx>Click to update the file</AddShowProductToAppTsx>.
+
+We should be able to see the product name on our screen now.
+
+In the next chapter, we'll be learning about the Refine's `useUpdate` hook to update a single record from our API and implement the `update` method in our data provider.
+
+</Sandpack>
