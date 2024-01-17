@@ -10,7 +10,7 @@ Creating a new Refine app is super simple and takes only a few steps to generate
 
 :::tip Tailored App Generation
 
-`create-refine-app` by default walks you through a few steps to create a new app tailored to your needs from data providers to authentication, UI libraries and more. You can read more about it in the [quickstart](/docs/quickstart) section.
+`create-refine-app` by default walks you through a few steps to create a new app tailored to your needs from data providers to authentication, UI libraries and more. You can read more about it in the [quickstart](/docs/getting-started/quickstart) section.
 
 :::
 
