@@ -72,7 +72,7 @@
 
     @apply prose-code:text-base 2xl:prose-code:text-base;
     /* @apply prose-code:translate-y-0.5; */
-    @apply prose-code:inline-flex;
+    @apply prose-code:inline-block;
     @apply prose-code:text-gray-700 prose-code:bg-gray-400 prose-code:bg-opacity-10;
     @apply prose-code:dark:text-gray-0 prose-code:dark:bg-gray-400 prose-code:dark:bg-opacity-10;
     @apply prose-code:px-1 prose-code:py-0 prose-code:rounded prose-code:font-jetBrains-mono prose-code:before:content-none prose-code:after:content-none;
