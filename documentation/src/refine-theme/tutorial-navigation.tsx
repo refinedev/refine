@@ -203,27 +203,22 @@ const NavigationDropdown = () => {
             <div
                 ref={dropdownRef}
                 className={clsx(
-                    "overflow-hidden",
+                    "overflow-scroll",
+                    "scrollbar-hidden",
                     "absolute",
                     "top-full",
                     !dropdownOpen
                         ? "opacity-0 max-h-0 -translate-y-8"
-                        : "opacity-100 max-h-[400px] translate-y-2",
+                        : "opacity-100 max-h-[calc(100dvh-104px-64px-8px)] tutorial-sm:max-h-[calc(100dvh-55px-64px-8px)] tutorial-md:max-h-[calc(100dvh-60px-57px-8px)] translate-y-2",
                     "transition-all ease-in-out duration-200",
                     "shadow",
                     "w-full",
-                    "h-[400px]",
+                    "h-fit",
                     "bg-gray-100 dark:bg-gray-700",
                     "rounded-[20px]",
                 )}
             >
-                <div
-                    className={clsx(
-                        "h-full",
-                        "overflow-scroll",
-                        "scrollbar-hidden",
-                    )}
-                >
+                <div className={clsx("h-full")}>
                     <div
                         className={clsx(
                             "py-8",
