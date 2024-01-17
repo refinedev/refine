@@ -145,7 +145,7 @@ export const TutorialSandpack = ({
         <TutorialSandpackBase parentResizing={resizing} {...sandpackProps}>
             <div
                 className={clsx(
-                    "h-[calc(100dvh-120px-57px)]",
+                    "h-[calc(100dvh-112px-57px)]",
                     "tutorial-sm:h-[calc(100dvh-64px-57px)]",
                     "flex-1",
                     "flex",
