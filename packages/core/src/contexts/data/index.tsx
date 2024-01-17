@@ -7,33 +7,18 @@ import {
 } from "../../interfaces";
 
 export const defaultDataProvider = () => {
-    return {
-        default: {
-            create: () => Promise.resolve({ data: { id: 1 } }),
-            createMany: () => Promise.resolve({ data: [] }),
-            deleteOne: () => Promise.resolve({ data: { id: 1 } }),
-            deleteMany: () => Promise.resolve({ data: [] }),
-            getList: () => Promise.resolve({ data: [], total: 0 }),
-            getMany: () => Promise.resolve({ data: [] }),
-            getOne: () => Promise.resolve({ data: { id: 1 } }),
-            update: () => Promise.resolve({ data: { id: 1 } }),
-            updateMany: () => Promise.resolve({ data: [] }),
-            custom: () => Promise.resolve({ data: {} }),
-            getApiUrl: () => "",
-        },
-    };
+    return {};
 };
 
-export const DataContext = React.createContext<IDataMultipleContextProvider>(
-    defaultDataProvider() as IDataMultipleContextProvider,
-);
+export const DataContext = React.createContext<
+    Partial<IDataMultipleContextProvider>
+>(defaultDataProvider());
 
-export const DataContextProvider: React.FC<
-    | IDataMultipleContextProvider
-    | (IDataContextProvider & {
-          children: ReactNode;
-      })
-> = ({ children, ...rest }) => {
+type Props = React.PropsWithChildren<
+    Partial<IDataMultipleContextProvider> | IDataContextProvider
+>;
+
+export const DataContextProvider: React.FC<Props> = ({ children, ...rest }) => {
     let dataProviders;
     if (!rest.getList || !rest.getOne) {
         dataProviders = rest as IDataMultipleContextProvider;
