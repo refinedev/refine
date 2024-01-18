@@ -17,13 +17,13 @@ export function ViteAntdLayout() {
       }}
       startRoute="/"
       files={{
+        "/refine/refine-context.tsx": {
+          code: RefineContextTsxCode.trim(),
+          active: true,
+        },
         "/App.tsx": {
           code: AppTsxCode.trim(),
         },
-        "/refine/refine-context.tsx": {
-          code: RefineContextTsxCode.trim(),
-        },
-
         "/refine/pages/products/list.tsx": {
           code: ListTsxCode.trim(),
         },
@@ -45,7 +45,9 @@ export const Home = () => {
       <h1>Home Page</h1>
       <p>This file represents your existing page.</p>
       <p>This component isn't wrapped with Refine context.</p>
-      <a href="/refine">Go to Refine route</a>
+      <a href="/about">Go to About page</a>
+      <br />
+      <a href="/refine">Go to Refine page</a>
     </>
   );
 };
@@ -54,7 +56,10 @@ export const Home = () => {
 const AboutTsxCode = /* tsx */ `
   export const About = () => {
     return (
-      <h1>About Page</h1>
+      <div>
+        <h1>About Page</h1>
+        <a href="/">Go to Home page</a>
+      </div>
     )
   }
 `;
@@ -82,7 +87,7 @@ export function RefineContext({ children }) {
           resources={[
             {
               name: "products",
-              list: "/refine/my-products",
+              list: "/refine/products",
             },
           ]}
           options={{ syncWithLocation: true }}
@@ -123,7 +128,7 @@ export default function App() {
           }
         >
           <Route index element={<NavigateToResource />} />
-          <Route path="my-products" element={<ProductList />} />
+          <Route path="products" element={<ProductList />} />
           <Route path="*" element={<ErrorComponent />} />
         </Route>
       </Routes>

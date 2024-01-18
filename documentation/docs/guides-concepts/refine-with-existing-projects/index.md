@@ -63,17 +63,28 @@ As you can see in the example below, wrapping `_app.tsx` file with `Refine` comp
 
 ## UI & Routing Integration Example
 
-In the following example, we have an application that uses Ant Design as UI Library. We will integrate Refine into this application's `/refine` route.
+In the following examples below, we will integrate Refine into `/refine` route of an existing application.
 
-<InstallPackagesCommand args="@refinedev/core @refinedev/simple-rest @refinedev/antd" />
-
-<Tabs wrapContent={false} defaultValue="nextjs-app">
+<Tabs wrapContent={false} defaultValue="vite">
 
 <TabItem value="vite" label="Vite">
 
 import { ViteAntdLayout } from './vite/layout/antd';
 
-<InstallPackagesCommand args="@refinedev/react-router-v6" />
+First, we need to install necessary packages:
+
+<InstallPackagesCommand args="@refinedev/core @refinedev/react-router-v6 @refinedev/antd @refinedev/simple-rest" />
+
+:::simple
+
+- We start by creating `RefineContext` component in `refine/refine-context.tsx` file.
+  This file will be used to wrap `/refine` routes of our application.
+
+- And then in `App.tsx` file, we are adding a new `Route` component with `path="/refine"` and wrapping it with `RefineContext` component.
+
+- Finally, we create `refine/pages/products/list.tsx` file, here we can use Refine features, since it's layout is wrapped with `Refine` component.
+
+:::
 
 <ViteAntdLayout />
 
@@ -83,7 +94,16 @@ import { ViteAntdLayout } from './vite/layout/antd';
 
 import { NextJSAppAntdLayout } from './nextjs/app/layout/antd';
 
-<InstallPackagesCommand args="@refinedev/nextjs-router" />
+First, we need to install necessary packages:
+
+<InstallPackagesCommand args="@refinedev/core @refinedev/nextjs-router @refinedev/antd @refinedev/simple-rest" />
+
+:::simple
+
+- We start by creating `app/refine/layout.tsx` file, this layout will be used by all pages under `/refine` folder.
+- Then we create `app/refine/products/page.tsx` file, here we can use Refine features, since it's layout is wrapped with `Refine` component.
+
+:::
 
 <NextJSAppAntdLayout />
 
@@ -93,7 +113,17 @@ import { NextJSAppAntdLayout } from './nextjs/app/layout/antd';
 
 import { NextJSPagesAntdLayout } from './nextjs/pages/layout/antd';
 
-<InstallPackagesCommand args="@refinedev/nextjs-router" />
+First, we need to install necessary packages:
+
+<InstallPackagesCommand args="@refinedev/core @refinedev/nextjs-router @refinedev/antd @refinedev/simple-rest" />
+
+:::simple
+
+- We start by creating `src/components/layout.tsx` file, this component will be conditionally rendered by `pages/_app.tsx` file.
+- Then we create `pages/_app.tsx` file, here we are checking if the current file has `getLayout` function, if it does, we are rendering it by wrapping it with `getLayout` function.
+- Then we create `pages/refine/products.tsx` file, here we are adding `Page.getLayout` to our component, so it will be wrapped with `Refine` context. Then we can use Refine features, since it's layout is wrapped with `Refine` component.
+
+:::
 
 <NextJSPagesAntdLayout />
 

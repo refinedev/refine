@@ -13,11 +13,15 @@ export function NextJSPagesAntdLayout() {
       }}
       startRoute="/"
       files={{
-        "/next.config.js": {
-          code: NextConfigJsCode.trim(),
+        "/src/components/refine-layout.tsx": {
+          code: RefineLayoutTsxCode.trim(),
+          active: true,
         },
         "/pages/_app.tsx": {
           code: AppTsxCode.trim(),
+        },
+        "/pages/refine/products.tsx": {
+          code: RefineProductsTsxCode.trim(),
         },
         "/pages/about.tsx": {
           code: AboutTsxCode.trim(),
@@ -25,11 +29,8 @@ export function NextJSPagesAntdLayout() {
         "/pages/index.tsx": {
           code: IndexTsxCode.trim(),
         },
-        "/pages/refine/products.tsx": {
-          code: RefineProductsTsxCode.trim(),
-        },
-        "/src/components/refine-layout.tsx": {
-          code: RefineLayoutTsxCode.trim(),
+        "/next.config.js": {
+          code: NextConfigJsCode.trim(),
         },
       }}
     />

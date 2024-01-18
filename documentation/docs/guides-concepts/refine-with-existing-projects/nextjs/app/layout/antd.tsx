@@ -13,21 +13,22 @@ export function NextJSAppAntdLayout() {
       }}
       startRoute="/"
       files={{
-        "/app/layout.tsx": {
-          code: LayoutTsxCode.trim(),
-        },
-        "/app/about/page.tsx": {
-          code: AboutPageTsxCode.trim(),
-        },
-        "/app/page.tsx": {
-          code: IndexPageTsxCode.trim(),
+        "/app/refine/layout.tsx": {
+          code: RefineLayoutTsxCode.trim(),
+          active: true,
         },
         "/app/refine/products/page.tsx": {
           code: RefineProductsPageTsxCode.trim(),
         },
-        "/app/refine/layout.tsx": {
-          code: RefineLayoutTsxCode.trim(),
-          active: true,
+        "/app/layout.tsx": {
+          code: LayoutTsxCode.trim(),
+          hidden: true,
+        },
+        "/app/page.tsx": {
+          code: IndexPageTsxCode.trim(),
+        },
+        "/app/about/page.tsx": {
+          code: AboutPageTsxCode.trim(),
         },
       }}
     />
