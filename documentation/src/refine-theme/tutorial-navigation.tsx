@@ -218,7 +218,7 @@ const NavigationDropdown = () => {
                     "rounded-[20px]",
                 )}
             >
-                <div className={clsx("h-full")}>
+                <div className={clsx("inline")}>
                     <div
                         className={clsx(
                             "py-8",
