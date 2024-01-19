@@ -22,7 +22,7 @@ export const CSSRules = [
     `
     .banner {
         display: flex;
-        @media (max-width: 1000px) {
+        @media (max-width: 1100px) {
             display: none;
         }
     }`,
