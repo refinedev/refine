@@ -145,13 +145,74 @@ First, we need to install necessary packages:
 
 If want to use Refine with your existing application, probably you already have authentication in-place. In this case, in order to enable Authentication features of `Refine`, only thing you need to do is to implement `AuthProvider`'s [check](/docs/authentication/auth-provider/#check) method.
 
-Once you provide the `check` method, you can use [Authenticated](/docs/authentication/components/authenticated/index.md) component in your application. Refine will redirect user to given login page for unauthorized users.
+:::simple
 
-If you want to handle Authentication with Refine, you can check [Authentication Guide](/documentation/docs/guides-concepts/authentication/index.md)
+If you want to handle Authentication with Refine from scratch, check the [Authentication Guide](/documentation/docs/guides-concepts/authentication/index.md)
 
-Optionally, you can also implement [getIdentity](/docs/authentication/auth-provider/#getidentity) method to enable [useGetIdentity hook](/docs/authentication/hooks/use-get-identity/index.md). This hook is also used to render current user information in the header of UI Integration layouts.
+:::
 
-- [AntD Header Docs](/docs/ui-integrations/ant-design/components/themed-layout/#header)
-- [Material UI Header Docs](/docs/ui-integrations/material-ui/components/themed-layout/#header)
-- [Chakra UI Header Docs](/docs/ui-integrations/chakra-ui/components/themed-layout/#header)
-- [Mantine Header Docs](/docs/ui-integrations/mantine/components/themed-layout/#header)
+### check Method
+
+Once you provide the `check` method, you can use [Authenticated component](/docs/authentication/components/authenticated/index.md) and/or [useIsAuthenticated hook](/documentation/docs/authentication/hooks/use-is-authenticated/) in your application. Refine will redirect user to given login page for unauthenticated users.
+
+```tsx
+import { AuthProvider } from "@refinedev/core";
+
+export const authProvider: AuthProvider = {
+  check: async () => {
+    const isAuthenticated = myCheckLogic();
+
+    if (isAuthenticated) {
+      return { authenticated: true };
+    }
+
+    return {
+      authenticated: false,
+      redirectTo: "/my-login-page",
+      error: {
+        name: "Authentication Failed.",
+        message: "User not found.",
+      },
+    };
+  },
+  login: async () => {
+    throw new Error("Method not implemented.");
+  },
+  logout: async () => {
+    throw new Error("Method not implemented.");
+  },
+  onError: async () => {
+    throw new Error("Method not implemented.");
+  },
+};
+```
+
+### Optional Methods
+
+Following methods are optional, but could be useful for various use-cases.
+
+#### getIdentity Method
+
+[getIdentity method](/docs/authentication/auth-provider/#getidentity) can be used to enable [useGetIdentity hook](/docs/authentication/hooks/use-get-identity/index.md).
+
+This hook is also used to rendering current user information in the header of UI Integration layouts.
+
+- [AntD Header Docs Header Section](/docs/ui-integrations/ant-design/components/themed-layout/#header)
+- [Material UI Header Docs Header Section](/docs/ui-integrations/material-ui/components/themed-layout/#header)
+- [Chakra UI Header Docs Header Section](/docs/ui-integrations/chakra-ui/components/themed-layout/#header)
+- [Mantine Header Docs Header Section](/docs/ui-integrations/mantine/components/themed-layout/#header)
+
+#### onError
+
+See [Error Handling section in Authentication Guide](/docs/guides-concepts/authentication/#error-handling) and [AuthProvider's onError documentation](/docs/authentication/auth-provider/#onerror)
+
+#### logout
+
+[logout method](/docs/authentication/auth-provider/#logout) can be used to enable [useLogout hook](/documentation/docs/authentication/hooks/use-logout/index.md)
+
+This hook is also used to render `Logout` button in the sider of UI Integration layouts.
+
+- [AntD Header Docs Sider Section](/docs/ui-integrations/ant-design/components/themed-layout/#sider)
+- [Material UI Header Docs Sider Section](/docs/ui-integrations/material-ui/components/themed-layout/#sider)
+- [Chakra UI Header Docs Sider Section](/docs/ui-integrations/chakra-ui/components/themed-layout/#sider)
+- [Mantine Header Docs Sider Section](/docs/ui-integrations/mantine/components/themed-layout/#sider)
