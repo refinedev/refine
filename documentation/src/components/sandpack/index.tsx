@@ -409,7 +409,7 @@ const SandpackNextJS = (props: Props) => {
                   ...(props.files as any),
               },
           }
-        : { hidePreview: true };
+        : { hidePreview: true, showConsole: false };
 
     return (
         <SandpackBase
