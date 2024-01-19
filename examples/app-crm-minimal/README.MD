@@ -28,7 +28,7 @@
 
 ## About
 
-⭐ **Checkout the live demo of the application [here](https://example.crm.refine.dev/).**
+⭐ **Checkout the live demo of the application [here](https://example.minimal-crm.refine.dev).**
 
 The source code for the video tutorial of an enterprise-grade and production-ready internal tool example named "Real-Time CRM Dashboard" has been developed using [Refine](https://refine.dev/), [Ant Design](https://ant.design/), and [GraphQL](https://graphql.org/).
 
@@ -39,7 +39,7 @@ The repository also open-source; feel free to use or inspect it to discover how 
 Being production-ready, you can either build your own **B2B applications**, **internal tools**, **admin panels**, **dashboards** and all type of **CRUD** applications. using it as a code base or directly implement it as is.
 
 
-👉 You can find a more comprehensive CRM example [here](https://example.minimal-crm.refine.dev).
+👉 You can find a more comprehensive CRM example [here](https://example.crm.refine.dev/).
 
 
 ##  Tutorial
@@ -79,7 +79,7 @@ This repository contains the code corresponding to an in-depth tutorial availabl
 
 <br>
 
-![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/CRM-Minimal/crm-demo.gif "Demo GIF")
+![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/CRM-Minimal/minimal-crm-demo.gif "Product Edit Page")
 
 <br>
 
