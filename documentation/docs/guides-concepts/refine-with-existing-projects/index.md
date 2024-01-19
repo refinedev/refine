@@ -2,9 +2,9 @@
 title: Refine with existing projects
 ---
 
-Integrating Refine into an existing project is as simple as installing `@refinedev/core` package, importing `Refine` component into your application.
+Integrating Refine into an existing project is as simple as installing `@refinedev/core` package and importing `Refine` component into your application.
 
-Once imported, `Refine` component provides necessary context to all children components for **Refine hooks** to work.
+Once imported, `Refine` component provides necessary context to all children components for **Refine** hooks and components to work.
 
 Only required prop for `Refine` component is `dataProvider`. You can read more about data provider [here](/docs/data/data-provider).
 

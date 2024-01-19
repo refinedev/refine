@@ -20,18 +20,18 @@ export function NextJSHeadless() {
       showFiles
       showConsole
       files={{
-        "pages/index.tsx": {
-          code: IndexTsxCode.trim(),
+        "pages/_app.tsx": {
+          code: AppTsxCode.trim(),
+          active: true,
         },
         "pages/refine-page.tsx": {
           code: RefinePageTsxCode.trim(),
         },
+        "pages/index.tsx": {
+          code: IndexTsxCode.trim(),
+        },
         "pages/other-page.tsx": {
           code: OtherPageTsxCode.trim(),
-        },
-        "pages/_app.tsx": {
-          code: AppTsxCode.trim(),
-          active: true,
         },
       }}
     />
