@@ -1,11 +1,6 @@
-## Minimal CRM app README
 
-
- 
 <div align="center" style="margin: 30px;">
-<a href="https://refine.dev/">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/CRM-Minimal/minimal-crm-cover.png" alt="Refine Logo" width="150" />
-</a>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/CRM-Minimal/minimal-crm-cover.png" alt="Refine Logo"  />
 <br />
 <br />
 
@@ -18,10 +13,9 @@
 </div>
 </div>
 
+<br />
 
-
-<div align="center">Build your React-based internal tools, admin panels, dashboards, B2B apps with flexibility in mind.<br>An open source, headless web application framework developed with flexibility in mind.
-
+<div align="center">Build your React-based internal tools, admin panels, dashboards, B2B apps with flexibility in mind.<br>An open-source, headless React meta-framework, developed with a commitment to best practices, flexibility, minimal tech debt, and team alignment, could be a perfect fit for dynamic environments.
 <br />
 <br />
 
@@ -51,10 +45,9 @@ Being production-ready, you can either build your own **B2B applications**, **in
 
 <br>
 
-## 🚨 Tutorial
+##  Tutorial
 
-This repository contains the code corresponding to an in-depth tutorial available on  <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a> YouTube channel, 
-d projects like these step-by-step in a beginner-friendly manner!
+This repository contains the code corresponding to an in-depth tutorial available on  <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a> YouTube channel.
 
 <a href="https://youtu.be/6a3Dz8gwjdg" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/1736fca5-a031-4854-8c09-bc110e3bc16d" /></a>
 
@@ -85,7 +78,6 @@ d projects like these step-by-step in a beginner-friendly manner!
 
  **Responsive**: Full responsiveness across devices for consistent user experience; fluid design adapts seamlessly to various screen sizes, ensuring accessibility.
 
-and many more, including code architecture and reusability 
 
 
 <br>
