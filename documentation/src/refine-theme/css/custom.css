@@ -552,3 +552,7 @@ h4 del code {
 .sp-console-list .sp-console-item {
     @apply !px-2 !py-px text-gray-600 dark:text-gray-200;
 }
+
+.cm-gutter.cm-lineNumbers {
+    @apply !text-xs !leading-5;
+}
