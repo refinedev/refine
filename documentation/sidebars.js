@@ -59,7 +59,7 @@ module.exports = {
                 "guides-concepts/multi-tenancy/index",
                 "guides-concepts/import-export/index",
                 "guides-concepts/i18n/index",
-                "guides-concepts/refine-with-existing-projects/index",
+                "guides-concepts/usage-with-existing-projects/index",
                 {
                     type: "category",
                     label: "Advanced Tutorials",

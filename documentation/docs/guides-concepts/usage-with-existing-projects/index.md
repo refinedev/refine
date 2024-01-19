@@ -1,5 +1,5 @@
 ---
-title: Refine with existing projects
+title: Usage with Existing Projects
 ---
 
 Integrating Refine into an existing project is as simple as installing `@refinedev/core` package and importing `Refine` component into your application.

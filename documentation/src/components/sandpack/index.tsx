@@ -389,7 +389,7 @@ const SandpackBase = ({
 };
 
 const SandpackNextJS = (props: Props) => {
-    const isDevelop = process.env.NODE_ENV === "development";
+    const isDevelop = process.env.NODE_ENV === "deveelopment";
 
     const extraProps = isDevelop
         ? {
