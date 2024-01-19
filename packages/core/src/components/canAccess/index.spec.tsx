@@ -456,4 +456,33 @@ describe("CanAccess Component", () => {
             });
         });
     });
+
+    it("should respect queryOptions from component prop", async () => {
+        const onUnauthorized = jest.fn();
+    
+        const { container, queryByText } = render(
+            <CanAccess
+                action="list"
+                resource="posts"
+                queryOptions={{ cacheTime: 10000 }} 
+                onUnauthorized={(args) => onUnauthorized(args)}
+            >
+                Accessible
+            </CanAccess>,
+            {
+                wrapper: TestWrapper({
+                    accessControlProvider: {
+                        can: async () => ({
+                            can: true,
+                        }),
+                    },
+                }),
+            },
+        );
+    
+        expect(container).toBeTruthy();
+        await waitFor(() => {
+            expect(queryByText("Accessible")).toBeInTheDocument();
+        });
+    });
 });

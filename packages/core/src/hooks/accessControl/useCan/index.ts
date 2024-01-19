@@ -30,10 +30,17 @@ export const useCan = ({
     action,
     resource,
     params,
-    queryOptions,
+    queryOptions: userQueryOptions, // Rename to avoid conflict with internal queryOptions
 }: UseCanProps): UseQueryResult<CanReturnType> => {
     const { can } = useContext(AccessControlContext);
     const { keys, preferLegacyKeys } = useKeys();
+
+    const { queryOptions: globalQueryOptions } = useContext(AccessControlContext)?.options || {};
+
+    const mergedQueryOptions = {
+        ...globalQueryOptions,
+        ...userQueryOptions,
+    };
 
     /**
      * Since `react-query` stringifies the query keys, it will throw an error for a circular dependency if we include `React.ReactNode` elements inside the keys.
@@ -52,7 +59,7 @@ export const useCan = ({
             .action(action)
             .params({
                 params: { ...paramsRest, resource: sanitizedResource },
-                enabled: queryOptions?.enabled,
+                enabled: mergedQueryOptions?.enabled,
             })
             .get(preferLegacyKeys),
         // Enabled check for `can` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
@@ -63,9 +70,9 @@ export const useCan = ({
                 params: { ...paramsRest, resource: sanitizedResource },
             }) ?? Promise.resolve({ can: true }),
         enabled: typeof can !== "undefined",
-        ...queryOptions,
+        ...mergedQueryOptions,
         meta: {
-            ...queryOptions?.meta,
+            ...mergedQueryOptions?.meta,
             ...getXRay("useCan", preferLegacyKeys),
         },
         retry: false,

@@ -34,12 +34,14 @@ export const AccessControlContextProvider: React.FC<
                               hideIfUnauthorized: false,
                               ...options.buttons,
                           },
+                          queryOptions: options.queryOptions,
                       }
                     : {
                           buttons: {
                               enableAccessControl: true,
                               hideIfUnauthorized: false,
                           },
+                          queryOptions: undefined,
                       },
             }}
         >
