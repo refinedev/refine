@@ -34,8 +34,6 @@ The source code for the video tutorial of an enterprise-grade and production-rea
 
 Refine is an open-source React-meta framework specifically designed to meet the requirements of enterprise companies dev teams. It comes with a core package that simplifies app requirements like data handling, authentication, access control, etc.
 
-Refine, with its commitment to best practices, flexibility, minimal tech debt, and team alignment, could be a perfect fit for the dynamic environments
-
 The repository also open-source; feel free to use or inspect it to discover how Refine works. 
 
 Being production-ready, you can either build your own **B2B applications**, **internal tools**, **admin panels**, **dashboards** and all type of **CRUD** applications. using it as a code base or directly implement it as is.
@@ -43,7 +41,6 @@ Being production-ready, you can either build your own **B2B applications**, **in
 
 👉 You can find a more comprehensive CRM example [here](https://example.minimal-crm.refine.dev).
 
-<br>
 
 ##  Tutorial
 
@@ -95,4 +92,12 @@ This repository contains the code corresponding to an in-depth tutorial availabl
 npm create refine-app@latest -- --example app-crm-minimal
 ```
 
+This will download the files and install the necessary dependencies automatically.
 
+Once it's done, go to the directory and run the following command to start the project:
+
+```bash
+npm run start
+```
+
+Open http://localhost:5173 in your browser to view the project.
