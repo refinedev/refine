@@ -33,7 +33,7 @@ function App() {
 }
 ```
 
-## Headless Example
+## Headless Examples
 
 The following example shows how to use Refine's `useShow` hook with an existing application.
 
@@ -49,13 +49,23 @@ As you can see in the example below, wrapping `App.tsx` file with `Refine` compo
 
 </TabItem>
 
-<TabItem value="nextjs" label="Next.js">
+<TabItem value="nextjs-app" label="Next.js App">
 
-import { NextJSHeadless } from './nextjs/headless'
+import { NextJSAppHeadless } from './nextjs/app/headless'
 
-As you can see in the example below, wrapping `_app.tsx` file with `Refine` component is enough to use Refine hooks inside your application.
+As you can see in the example below, wrapping `layout.tsx` file with `Refine` component is enough to use Refine hooks & components inside your application.
 
-<NextJSHeadless />
+<NextJSAppHeadless />
+
+</TabItem>
+
+<TabItem value="nextjs-pages" label="Next.js Pages">
+
+import { NextJSPagesHeadless } from './nextjs/pages/headless'
+
+As you can see in the example below, wrapping `_app.tsx` file with `Refine` component is enough to use Refine hooks & components inside your application.
+
+<NextJSPagesHeadless />
 
 </TabItem>
 
