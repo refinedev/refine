@@ -1,7 +1,7 @@
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { ErrorComponent, useNotificationProvider } from "@refinedev/antd";
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import routerProvider, {
     CatchAllNavigate,
@@ -78,6 +78,10 @@ const App: React.FC = () => {
 
     return (
         <AlgoliaSearchWrapper>
+            <GitHubBanner
+                variant="example-app"
+                href="https://github.com/refinedev/refine/tree/master/examples/app-crm"
+            />
             <BrowserRouter>
                 <ConfigProvider theme={themeConfig}>
                     <AntdApp>

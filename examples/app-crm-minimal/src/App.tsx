@@ -1,7 +1,12 @@
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { RefineThemes, useNotificationProvider } from "@refinedev/antd";
-import { Authenticated, ErrorComponent, Refine } from "@refinedev/core";
+import {
+  Authenticated,
+  ErrorComponent,
+  GitHubBanner,
+  Refine,
+} from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import routerProvider, {
   CatchAllNavigate,
@@ -31,6 +36,10 @@ import "@refinedev/antd/dist/reset.css";
 const App = () => {
   return (
     <BrowserRouter>
+      <GitHubBanner
+        variant="example-app"
+        href="https://github.com/refinedev/refine/tree/master/examples/app-crm-minimal"
+      />
       <ConfigProvider theme={RefineThemes.Blue}>
         <AntdApp>
           <DevtoolsProvider>

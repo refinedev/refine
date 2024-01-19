@@ -1,10 +1,15 @@
 import React, { SVGProps, useEffect } from "react";
 import { CSSRules } from "./styles";
 
-const text =
-    "If you find Refine useful, you can contribute to its growth by giving it a star on GitHub";
+type Props = {
+    href?: string;
+    variant?: "example-app" | "give-star";
+};
 
-export const GitHubBanner = () => {
+export const GitHubBanner = ({
+    variant = "give-star",
+    href = "https://s.refine.dev/github-support",
+}: Props) => {
     useEffect(() => {
         const styleTag = document.createElement("style");
         document.head.appendChild(styleTag);
@@ -127,71 +132,29 @@ export const GitHubBanner = () => {
                         </div>
                     </div>
                 </div>
-                <Text text={text} />
+                <a
+                    className="gh-link"
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                        position: "absolute",
+                        height: "100%",
+                        padding: "0 60px",
+                        display: "flex",
+                        flexWrap: "nowrap",
+                        whiteSpace: "nowrap",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundImage:
+                            "linear-gradient(90deg, rgba(31, 63, 72, 0.00) 0%, #1F3F48 10%, #1F3F48 90%, rgba(31, 63, 72, 0.00) 100%)",
+                    }}
+                >
+                    {variant === "example-app" && <ExampleAppText />}
+                    {variant === "give-star" && <GiveStarText />}
+                </a>
             </div>
         </div>
-    );
-};
-
-const Text = ({ text }: { text: string }) => {
-    return (
-        <a
-            className="gh-link"
-            href="https://s.refine.dev/github-support"
-            target="_blank"
-            rel="noreferrer"
-            style={{
-                position: "absolute",
-                height: "100%",
-                padding: "0 60px",
-                display: "flex",
-                flexWrap: "nowrap",
-                whiteSpace: "nowrap",
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundImage:
-                    "linear-gradient(90deg, rgba(31, 63, 72, 0.00) 0%, #1F3F48 10%, #1F3F48 90%, rgba(31, 63, 72, 0.00) 100%)",
-            }}
-        >
-            <div
-                style={{
-                    color: "#fff",
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: "8px",
-                }}
-            >
-                <span
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    ⭐️
-                </span>
-                <span
-                    className="text"
-                    style={{
-                        fontSize: "16px",
-                        lineHeight: "24px",
-                    }}
-                >
-                    {text}
-                </span>
-                <span
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    ⭐️
-                </span>
-            </div>
-        </a>
     );
 };
 
@@ -268,3 +231,74 @@ const GlowBig = ({ style, ...props }: SVGProps<SVGSVGElement>) => (
         </defs>
     </svg>
 );
+
+const ExampleAppText = () => {
+    return (
+        <div
+            style={{
+                color: "#fff",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+                fontSize: "16px",
+            }}
+        >
+            <span
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    fontSize: "32px",
+                }}
+            >
+                💡
+            </span>
+            <span className="text">
+                This example is open-source! Get the full source code.
+            </span>
+        </div>
+    );
+};
+
+const GiveStarText = () => {
+    return (
+        <div
+            style={{
+                color: "#fff",
+                display: "flex",
+                flexDirection: "row",
+                gap: "8px",
+                fontSize: "16px",
+                lineHeight: "24px",
+            }}
+        >
+            <span
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
+                ⭐️
+            </span>
+            <span className="text">
+                If you find Refine useful, you can contribute to its growth by
+                giving it a star on GitHub
+            </span>
+            <span
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
+                ⭐️
+            </span>
+        </div>
+    );
+};
