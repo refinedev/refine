@@ -31,7 +31,10 @@ export const dataProvider: DataProvider = {
     const response = await fetch(`${API_URL}/${resource}`);
     const data = await response.json();
 
-    return { data };
+    return {
+      data,
+      total: 0, // We'll cover this in the next chapters.
+    };
   },
   // highlight-end
   /* ... */
@@ -146,7 +149,10 @@ export const dataProvider: DataProvider = {
     // highlight-end
     const data = await response.json();
 
-    return { data };
+    return {
+      data,
+      total: 0, // We'll cover this in the next chapters.
+    };
   },
   /* ... */
 };
@@ -220,7 +226,10 @@ export const dataProvider: DataProvider = {
     const response = await fetch(`${API_URL}/${resource}?${params.toString()}`);
     const data = await response.json();
 
-    return { data };
+    return {
+      data,
+      total: 0, // We'll cover this in the next chapters.
+    };
   },
   /* ... */
 };
@@ -308,7 +317,10 @@ export const dataProvider: DataProvider = {
     const response = await fetch(`${API_URL}/${resource}?${params.toString()}`);
     const data = await response.json();
 
-    return { data };
+    return {
+      data,
+      total: 0, // We'll cover this in the next chapters.
+    };
   },
   /* ... */
 };

@@ -136,7 +136,10 @@ export const dataProvider: DataProvider = {
     const response = await fetch(\`\${API_URL}/\${resource}\`);
     const data = await response.json();
 
-    return { data };
+    return {
+      data,
+      total: 0, // We'll cover this in the next chapters.
+    };
   },
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
@@ -177,7 +180,10 @@ export const dataProvider: DataProvider = {
     const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
     const data = await response.json();
 
-    return { data };
+    return {
+      data,
+      total: 0, // We'll cover this in the next chapters.
+    };
   },
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
@@ -223,7 +229,10 @@ export const dataProvider: DataProvider = {
     const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
     const data = await response.json();
 
-    return { data };
+    return {
+      data,
+      total: 0, // We'll cover this in the next chapters.
+    };
   },
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
@@ -278,7 +287,10 @@ export const dataProvider: DataProvider = {
     const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
     const data = await response.json();
 
-    return { data };
+    return {
+      data,
+      total: 0, // We'll cover this in the next chapters.
+    };
   },
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
