@@ -140,3 +140,18 @@ First, we need to install necessary packages:
 </TabItem>
 
 </Tabs>
+
+## Authentication
+
+If want to use Refine with your existing application, probably you already have authentication in-place. In this case, in order to enable Authentication features of `Refine`, only thing you need to do is to implement `AuthProvider`'s [check](/docs/authentication/auth-provider/#check) method.
+
+Once you provide the `check` method, you can use [Authenticated](/docs/authentication/components/authenticated/index.md) component in your application. Refine will redirect user to given login page for unauthorized users.
+
+If you want to handle Authentication with Refine, you can check [Authentication Guide](/documentation/docs/guides-concepts/authentication/index.md)
+
+Optionally, you can also implement [getIdentity](/docs/authentication/auth-provider/#getidentity) method to enable [useGetIdentity hook](/docs/authentication/hooks/use-get-identity/index.md). This hook is also used to render current user information in the header of UI Integration layouts.
+
+- [AntD Header Docs](/docs/ui-integrations/ant-design/components/themed-layout/#header)
+- [Material UI Header Docs](/docs/ui-integrations/material-ui/components/themed-layout/#header)
+- [Chakra UI Header Docs](/docs/ui-integrations/chakra-ui/components/themed-layout/#header)
+- [Mantine Header Docs](/docs/ui-integrations/mantine/components/themed-layout/#header)

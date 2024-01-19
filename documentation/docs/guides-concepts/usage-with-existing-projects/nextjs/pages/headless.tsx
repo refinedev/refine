@@ -54,7 +54,6 @@ export default function MyApp({ Component, pageProps }) {
     </Refine>
   );
 }
-
 `;
 
 const RefinePageTsxCode = /* tsx */ `
