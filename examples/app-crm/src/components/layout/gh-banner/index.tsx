@@ -25,7 +25,6 @@ export const GitHubBanner = () => {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    paddingLeft: "200px",
                     width: "100%",
                     maxWidth: "100vw",
                     height: "100%",
