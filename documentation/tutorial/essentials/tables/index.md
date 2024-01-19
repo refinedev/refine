@@ -2,10 +2,519 @@
 title: Tables
 ---
 
-import { Sandpack } from "./sandpack.tsx";
+import { Sandpack, MountListProductsInAppTsx, RefactorToUseTableInListProducts, AddRelationHandlingToUseTableInListProducts, AddGetManyMethodToDataProvider, AddTotalToGetListMethodInDataProvider, AddPaginationToUseTableInListProducts, AddHeaderSortersToUseTableInListProducts } from "./sandpack.tsx";
 
 <Sandpack>
 
-Your content here.
+In this chapter, we'll be learning about the Refine's `useTable` hook to manage tables in our application.
+
+:::simple Implementation Tips
+
+Refine's `useTable` has extended versions for UI libraries like Ant Design, Material UI and table libraries like Tanstack Table. To learn more about them, please refer to the [Tables](/docs/guides-concepts/tables) guide.
+
+:::
+
+`useTable` hook is an extended version of the `useList` hook. It internally manages the search, filters, sorters and pagination for us and also has a built-in integration with the router options to persist the state of the table in the URL.
+
+In this chapter, we'll be refactoring our `<ListProducts />` component to use the `useTable` hook.
+
+Let's start with mounting our `<ListProducts />` in our `/src/App.tsx` file:
+
+```tsx title="src/App.tsx"
+import { Refine } from "@refinedev/core";
+
+import { dataProvider } from "./data-provider";
+
+import { ShowProduct } from "./show-product";
+import { EditProduct } from "./edit-product";
+import { ListProducts } from "./list-products";
+import { CreateProduct } from "./create-product";
+
+export default function App(): JSX.Element {
+  return (
+    <Refine dataProvider={dataProvider}>
+      {/* <ShowProduct /> */}
+      {/* <EditProduct /> */}
+      {/* highlight-next-line */}
+      <ListProducts />
+      {/* <CreateProduct /> */}
+    </Refine>
+  );
+}
+```
+
+If you're having hard time updating file, <MountListProductsInAppTsx>Click to update the file</MountListProductsInAppTsx>.
+
+## Refactoring to use `useTable`
+
+We'll be using the `useTable` hook in our `<ListProducts />` component and add fields `id`, `name`, `category`, `material` and `price`.
+
+Let's add the following lines to our `src/list-products.tsx` file:
+
+```tsx title="src/list-products.tsx"
+// highlight-next-line
+import { useTable } from "@refinedev/core";
+
+export const ListProducts = () => {
+  // highlight-start
+  const {
+    tableQueryResult: { data, isLoading },
+  } = useTable({
+    resource: "products",
+    pagination: { current: 1, pageSize: 10 },
+    sorters: { initial: [{ field: "id", order: "asc" }] },
+  });
+  // highlight-end
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <h1>Products</h1>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Material</th>
+          <th>Price</th>
+        </tr>
+        {/* highlight-start */}
+        {data.data?.map((product) => (
+          <tr key={product.id}>
+            <td>{product.id}</td>
+            <td>{product.name}</td>
+            <td>{product.category?.id}</td>
+            <td>{product.material}</td>
+            <td>{product.price}</td>
+          </tr>
+        ))}
+        {/* highlight-end */}
+      </table>
+    </div>
+  );
+};
+```
+
+If you're having hard time updating file, <RefactorToUseTableInListProducts>Click to update the file</RefactorToUseTableInListProducts>.
+
+## Handling Relationships
+
+Notice that we're now only displaying the `category.id` in our table. Similar to the `useSelect` hook, Refine offers `useMany` hook that we can use to fetch multiple records with their ids at once.
+
+Let's update our code to use `useMany` hook to fetch the categories in the table and display the `category.title` instead of `category.id`:
+
+```tsx title="src/list-products.tsx"
+// highlight-next-line
+import { useTable, useMany } from "@refinedev/core";
+
+export const ListProducts = () => {
+  const {
+    tableQueryResult: { data, isLoading },
+  } = useTable({
+    resource: "products",
+    pagination: { current: 1, pageSize: 10 },
+    sorters: { initial: [{ field: "id", order: "asc" }] },
+  });
+
+  // highlight-start
+  const { data: categories } = useMany({
+    resource: "categories",
+    ids: data?.data?.map((product) => product.category?.id) ?? [],
+  });
+  // highlight-end
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <h1>Products</h1>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Material</th>
+          <th>Price</th>
+        </tr>
+        {data.data?.map((product) => (
+          <tr key={product.id}>
+            <td>{product.id}</td>
+            <td>{product.name}</td>
+            {/* highlight-start */}
+            <td>
+              {
+                categories?.data?.find(
+                  (category) => category.id == product.category?.id,
+                )?.title
+              }
+            </td>
+            {/* highlight-end */}
+            <td>{product.material}</td>
+            <td>{product.price}</td>
+          </tr>
+        ))}
+      </table>
+    </div>
+  );
+};
+```
+
+If you're having hard time updating file, <AddRelationHandlingToUseTableInListProducts>Click to update the file</AddRelationHandlingToUseTableInListProducts>.
+
+## Adding `getMany` to the Data Provider
+
+We're now fetching the categories in our `<ListProducts />` component. However, we're fetching them one-by-one using the `getOne` method. We can implement the `getMany` method in our data provider to fetch multiple records at once.
+
+:::simple Implementation Tips
+
+If `getMany` method is not implemented in the data provider, Refine will automatically fetch the records one-by-one using the `getOne` method.
+
+:::
+
+Our fake API supports fetching multiple records at once by passing multiple ids to the url like; `/products?id=1&id=2&id=3`. Let's add the `getMany` method to our data provider:
+
+```tsx title="src/data-provider.ts"
+import type { DataProvider } from "@refinedev/core";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export const dataProvider: DataProvider = {
+  // highlight-start
+  getMany: async ({ resource, ids, meta }) => {
+    const params = new URLSearchParams();
+
+    if (ids) {
+      ids.forEach((id) => params.append("id", id));
+    }
+
+    const response = await fetch(`${API_URL}/${resource}?${params.toString()}`);
+    const data = await response.json();
+
+    return { data };
+  },
+  // highlight-end
+  getOne: async ({ resource, id, meta }) => {
+    const response = await fetch(`${API_URL}/${resource}/${id}`);
+    const data = await response.json();
+
+    return { data };
+  },
+  create: async ({ resource, variables }) => {
+    /* ... */
+  },
+  update: async ({ resource, id, variables }) => {
+    /* ... */
+  },
+  getList: async ({ resource, pagination, filters, sorters, meta }) => {
+    /* ... */
+  },
+  /* ... */
+};
+```
+
+If you're having hard time updating file, <AddGetManyMethodToDataProvider>Click to update the file</AddGetManyMethodToDataProvider>.
+
+Now our `useMany` method will be able to fetch the categories in a single request and prevent us from bloating our network.
+
+## Adding `total` to the Data Provider
+
+In order to make the pagination work properly, we need to return a proper `total` value from the `getList` method in our data provider.
+
+Our fake API sends the total number of records in the `X-Total-Count` header.
+
+Let's update our `getList` method to return the `total` value:
+
+```tsx title="src/data-provider.ts"
+import type { DataProvider } from "@refinedev/core";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export const dataProvider: DataProvider = {
+  // highlight-next-line
+  getList: async ({ resource, pagination, filters, sorters, meta }) => {
+    const params = new URLSearchParams();
+
+    if (pagination) {
+      params.append("_start", (pagination.current - 1) * pagination.pageSize);
+      params.append("_end", pagination.current * pagination.pageSize);
+    }
+
+    if (sorters && sorters.length > 0) {
+      params.append("_sort", sorters.map((sorter) => sorter.field).join(","));
+      params.append("_order", sorters.map((sorter) => sorter.order).join(","));
+    }
+
+    if (filters && filters.length > 0) {
+      filters.forEach((filter) => {
+        if ("field" in filter && filter.operator === "eq") {
+          // Our fake API supports "eq" operator by simply appending the field name and value to the query string.
+          params.append(filter.field, filter.value);
+        }
+      });
+    }
+
+    const response = await fetch(`${API_URL}/${resource}?${params.toString()}`);
+    const data = await response.json();
+
+    // highlight-next-line
+    const total = Number(response.headers.get("x-total-count"));
+
+    return {
+      data,
+      // highlight-next-line
+      total,
+    };
+  },
+  getMany: async ({ resource, ids, meta }) => {
+    /* ... */
+  },
+  getOne: async ({ resource, id, meta }) => {
+    /* ... */
+  },
+  create: async ({ resource, variables }) => {
+    /* ... */
+  },
+  update: async ({ resource, id, variables }) => {
+    /* ... */
+  },
+  /* ... */
+};
+```
+
+If you're having hard time updating file, <AddTotalToGetListMethodInDataProvider>Click to update the file</AddTotalToGetListMethodInDataProvider>.
+
+## Adding Pagination to the Table
+
+Now we're ready to add pagination to our table. By using the `total`, Refine's `useTable` will calculate the `pageCount` values for us.
+
+We'll use the `current`, `setCurrent` and `pageCount` values from the `useTable`'s response to implement the pagination.
+
+Let's update our `<ListProducts />` component to display a simple pagination under the table:
+
+```tsx title="src/list-products.tsx"
+import { useTable, useMany } from "@refinedev/core";
+
+export const ListProducts = () => {
+  const {
+    tableQueryResult: { data, isLoading },
+    // highlight-start
+    current,
+    setCurrent,
+    pageCount,
+    // highlight-end
+  } = useTable({
+    resource: "products",
+    pagination: { current: 1, pageSize: 10 },
+    sorters: { initial: [{ field: "id", order: "asc" }] },
+  });
+
+  const { data: categories } = useMany({
+    resource: "categories",
+    ids: data?.data?.map((product) => product.category?.id) ?? [],
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  // highlight-start
+  const onPrevious = () => {
+    if (current > 1) {
+      setCurrent(current - 1);
+    }
+  };
+  // highlight-end
+
+  // highlight-start
+  const onNext = () => {
+    if (current < pageCount) {
+      setCurrent(current + 1);
+    }
+  };
+  // highlight-end
+
+  // highlight-start
+  const onPage = (page: number) => {
+    setCurrent(page);
+  };
+  // highlight-end
+
+  return (
+    <div>
+      <h1>Products</h1>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Material</th>
+          <th>Price</th>
+        </tr>
+        {data.data?.map((product) => (
+          <tr key={product.id}>
+            <td>{product.id}</td>
+            <td>{product.name}</td>
+            <td>
+              {
+                categories?.data?.find(
+                  (category) => category.id == product.category?.id,
+                )?.title
+              }
+            </td>
+            <td>{product.material}</td>
+            <td>{product.price}</td>
+          </tr>
+        ))}
+      </table>
+      {/* highlight-start */}
+      <div className="pagination">
+        <button type="button" onClick={onPrevious}>
+          {"<"}
+        </button>
+        <div>
+          {current - 1 > 0 && (
+            <span onClick={() => onPage(current - 1)}>{current - 1}</span>
+          )}
+          <span className="current">{current}</span>
+          {current + 1 < pageCount && (
+            <span onClick={() => onPage(current + 1)}>{current + 1}</span>
+          )}
+        </div>
+        <button type="button" onClick={onNext}>
+          {">"}
+        </button>
+      </div>
+      {/* highlight-end */}
+    </div>
+  );
+};
+```
+
+If you're having hard time updating file, <AddPaginationToUseTableInListProducts>Click to update the file</AddPaginationToUseTableInListProducts>.
+
+Now when we change the page, `useTable` will automatically fetch the new page and update the table.
+
+## Adding Sorters to the Table
+
+As the last step, we'll implement sorters in our table which will allow us to sort the table by clicking on the table headers. We'll use the `sorters` and `setSorters` values from the `useTable`'s response to implement this.
+
+Let's update our `<ListProducts />` component to allow sorting by clicking on the table headers and display a visual indicator for the sorters:
+
+```tsx title="src/list-products.tsx"
+import { useTable, useMany } from "@refinedev/core";
+
+export const ListProducts = () => {
+  const {
+    tableQueryResult: { data, isLoading },
+    current,
+    setCurrent,
+    pageCount,
+    // highlight-start
+    sorters,
+    setSorters,
+    // highlight-end
+  } = useTable({
+    resource: "products",
+    pagination: { current: 1, pageSize: 10 },
+    sorters: { initial: [{ field: "id", order: "asc" }] },
+  });
+
+  const { data: categories } = useMany({
+    resource: "categories",
+    ids: data?.data?.map((product) => product.category?.id) ?? [],
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const onPrevious = () => { /* ... */ };
+
+  const onNext = () => { /* ... */ };
+
+  const onPage = (page: number) => { /* ... */ };
+
+  // highlight-start
+  // We'll use this function to get the current sorter for a field.
+  const getSorter = (field: string) => {
+    const sorter = sorters?.find((sorter) => sorter.field === field);
+
+    if (sorter) {
+      return sorter.order;
+    }
+  }
+  // highlight-end
+
+  // highlight-start
+  // We'll use this function to toggle the sorters when the user clicks on the table headers.
+  const onSort = (field: string) => {
+    const sorter = getSorter(field);
+    setSorters(
+        sorter === "desc" ? [] : [
+        {
+            field,
+            order: sorter === "asc" ? "desc" : "asc",
+        },
+        ]
+    );
+  }
+  // highlight-end
+
+  // highlight-start
+  // We'll use this object to display visual indicators for the sorters.
+  const indicator = { asc: "⬆️", desc: "⬇️" };
+  // highlight-end
+
+  return (
+    <div>
+      <h1>Products</h1>
+      <table>
+        <tr>
+          {/* highlight-start */}
+          <th onClick={() => onSort("id")}>
+            ID {indicator[getSorter("id")]}
+          </th>
+          <th onClick={() => onSort("name")}>
+            Name {indicator[getSorter("name")]}
+          </th>
+          <th>
+            Category
+          </th>
+          <th onClick={() => onSort("material")}>
+            Material {indicator[getSorter("material")]}
+          </th>
+          <th onClick={() => onSort("price")}>
+            Price {indicator[getSorter("price")]}
+          </th>
+          {/* highlight-end */}
+        </tr>
+        {data.data?.map((product) => (/* ... */))}
+      </table>
+      <div className="pagination">
+        {/* ... */}
+      </div>
+    </div>
+  );
+};
+```
+
+If you're having hard time updating file, <AddHeaderSortersToUseTableInListProducts>Click to update the file</AddHeaderSortersToUseTableInListProducts>.
+
+## Summary
+
+In this chapter, we've learned about the `useTable` hook and how to use it to manage tables in our application.
+
+It provides many utilities to manage filters, sorters, paginations and also has a built-in integration with the router options to persist the state of the table in the URL.
+
+Notice that the interfaces are almost identical to the `useList` hook. The only difference is that `useTable` has the implementations for wider range of use cases.
+
+To learn more about the Tables in Refine, please refer to the [Tables](/docs/guides-concepts/tables) guide.
+
+In the next chapters, we'll be learning about the Authentication and Routing in Refine.
 
 </Sandpack>

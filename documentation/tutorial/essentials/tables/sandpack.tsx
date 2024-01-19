@@ -91,6 +91,49 @@ form select {
     display: block;
     margin-bottom: 12px;
 }
+
+table th {
+  font-weight: 600;
+}
+
+table, th, td {
+  border: 0px solid;
+  border-spacing: 0;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+table th, table td {
+  padding: 5px;
+  text-align: left;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination div {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.pagination span {
+  cursor: pointer;
+}
+
+.pagination .current {
+  font-weight: bold;
+  cursor: default;
+}
+
 `.trim();
 
 const DataProviderTsCode = /* ts */ `
@@ -99,6 +142,12 @@ import type { DataProvider } from "@refinedev/core";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 export const dataProvider: DataProvider = {
+  getOne: async ({ resource, id, meta }) => {
+    const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
+    const data = await response.json();
+
+    return { data };
+  },
   create: async ({ resource, variables }) => {
     const response = await fetch(\`\${API_URL}/\${resource}\`, {
       method: "POST",
@@ -152,12 +201,6 @@ export const dataProvider: DataProvider = {
         data,
         total: 0, // We'll cover this in the next chapters.
     };
-  },
-  getOne: async ({ resource, id, meta }) => {
-    const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
-    const data = await response.json();
-
-    return { data };
   },
   /* ... */
 };
@@ -367,17 +410,472 @@ export default function App(): JSX.Element {
 }
 `.trim();
 
-const ListProductsWithUseTableTsxCode = /* tsx */ ``.trim();
+const ListProductsWithUseTableTsxCode = /* tsx */ `
+import { useTable } from "@refinedev/core";
 
-const ListProductsWithUseTableAndUseManyTsxCode = /* tsx */ ``.trim();
+export const ListProducts = () => {
+  const { tableQueryResult: { data, isLoading } } = useTable({
+    resource: "products",
+    pagination: { current: 1, pageSize: 10 },
+    sorters: { initial: [{ field: "id", order: "asc" }] },
+  });
 
-const DataProviderWithGetManyMethodTsCode = /* ts */ ``.trim();
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-const DataProviderWithTotalInGetListMethodTsCode = /* ts */ ``.trim();
+  return (
+    <div>
+      <h1>Products</h1>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Material</th>
+          <th>Price</th>
+        </tr>
+        {data.data?.map((product) => (
+          <tr key={product.id}>
+            <td>{product.id}</td>
+            <td>{product.name}</td>
+            <td>{product.category?.id}</td>
+            <td>{product.material}</td>
+            <td>{product.price}</td>
+          </tr>
+        ))}
+      </table>
+    </div>
+  );
+};
+`.trim();
 
-const ListProductsWithPaginationTsxCode = /* tsx */ ``.trim();
+const ListProductsWithUseTableAndUseManyTsxCode = /* tsx */ `
+import { useTable, useMany } from "@refinedev/core";
 
-const ListProductsWithHeaderSortersTsxCode = /* tsx */ ``.trim();
+export const ListProducts = () => {
+  const {
+    tableQueryResult: { data, isLoading },
+  } = useTable({
+    resource: "products",
+    pagination: { current: 1, pageSize: 10 },
+    sorters: { initial: [{ field: "id", order: "asc" }] },
+  });
+
+  const { data: categories } = useMany({
+    resource: "categories",
+    ids: data?.data?.map((product) => product.category?.id) ?? [],
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <h1>Products</h1>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Material</th>
+          <th>Price</th>
+        </tr>
+        {data.data?.map((product) => (
+          <tr key={product.id}>
+            <td>{product.id}</td>
+            <td>{product.name}</td>
+            <td>
+              {
+                categories?.data?.find(
+                  (category) => category.id == product.category?.id,
+                )?.title
+              }
+            </td>
+            <td>{product.material}</td>
+            <td>{product.price}</td>
+          </tr>
+        ))}
+      </table>
+    </div>
+  );
+};
+`.trim();
+
+const DataProviderWithGetManyMethodTsCode = /* ts */ `
+import type { DataProvider } from "@refinedev/core";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export const dataProvider: DataProvider = {
+  getMany: async ({ resource, ids, meta }) => {
+    const params = new URLSearchParams();
+
+    if (ids) {
+      ids.forEach((id) => params.append("id", id));
+    }
+
+    const response = await fetch(
+      \`\${API_URL}/\${resource}?\${params.toString()}\`,
+    );
+    const data = await response.json();
+
+    return { data };
+  },
+  getOne: async ({ resource, id, meta }) => {
+    const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
+    const data = await response.json();
+
+    return { data };
+  },
+  create: async ({ resource, variables }) => {
+    const response = await fetch(\`\${API_URL}/\${resource}\`, {
+      method: "POST",
+      body: JSON.stringify(variables),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    return { data };
+  },
+  update: async ({ resource, id, variables }) => {
+    const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`, {
+      method: "PATCH",
+      body: JSON.stringify(variables),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    return { data };
+  },
+  getList: async ({ resource, pagination, filters, sorters, meta }) => {
+    const params = new URLSearchParams();
+
+    if (pagination) {
+      params.append("_start", (pagination.current - 1) * pagination.pageSize);
+      params.append("_end", pagination.current * pagination.pageSize);
+    }
+
+    if (sorters && sorters.length > 0) {
+      params.append("_sort", sorters.map((sorter) => sorter.field).join(","));
+      params.append("_order", sorters.map((sorter) => sorter.order).join(","));
+    }
+
+    if (filters && filters.length > 0) {
+      filters.forEach((filter) => {
+        if ("field" in filter && filter.operator === "eq") {
+          // Our fake API supports "eq" operator by simply appending the field name and value to the query string.
+          params.append(filter.field, filter.value);
+        }
+      });
+    }
+
+    const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
+    const data = await response.json();
+
+    return {
+        data,
+        total: 0, // We'll cover this in the next chapters.
+    };
+  },
+  /* ... */
+};
+`.trim();
+
+const DataProviderWithTotalInGetListMethodTsCode = /* ts */ `
+import type { DataProvider } from "@refinedev/core";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export const dataProvider: DataProvider = {
+  getList: async ({ resource, pagination, filters, sorters, meta }) => {
+    const params = new URLSearchParams();
+
+    if (pagination) {
+      params.append("_start", (pagination.current - 1) * pagination.pageSize);
+      params.append("_end", pagination.current * pagination.pageSize);
+    }
+
+    if (sorters && sorters.length > 0) {
+      params.append("_sort", sorters.map((sorter) => sorter.field).join(","));
+      params.append("_order", sorters.map((sorter) => sorter.order).join(","));
+    }
+
+    if (filters && filters.length > 0) {
+      filters.forEach((filter) => {
+        if ("field" in filter && filter.operator === "eq") {
+          // Our fake API supports "eq" operator by simply appending the field name and value to the query string.
+          params.append(filter.field, filter.value);
+        }
+      });
+    }
+
+    const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
+    const data = await response.json();
+
+    const total = Number(response.headers.get("x-total-count"));
+
+    return {
+        data,
+        total,
+    };
+  },
+  getMany: async ({ resource, ids, meta }) => {
+    const params = new URLSearchParams();
+
+    if (ids) {
+      ids.forEach((id) => params.append("id", id));
+    }
+
+    const response = await fetch(
+      \`\${API_URL}/\${resource}?\${params.toString()}\`,
+    );
+    const data = await response.json();
+
+    return { data };
+  },
+  getOne: async ({ resource, id, meta }) => {
+    const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
+    const data = await response.json();
+
+    return { data };
+  },
+  create: async ({ resource, variables }) => {
+    const response = await fetch(\`\${API_URL}/\${resource}\`, {
+      method: "POST",
+      body: JSON.stringify(variables),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    return { data };
+  },
+  update: async ({ resource, id, variables }) => {
+    const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`, {
+      method: "PATCH",
+      body: JSON.stringify(variables),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    return { data };
+  },
+  /* ... */
+};
+`.trim();
+
+const ListProductsWithPaginationTsxCode = /* tsx */ `
+import { useTable, useMany } from "@refinedev/core";
+
+export const ListProducts = () => {
+  const {
+    tableQueryResult: { data, isLoading },
+    current,
+    setCurrent,
+    pageCount,
+  } = useTable({
+    resource: "products",
+    pagination: { current: 1, pageSize: 10 },
+    sorters: { initial: [{ field: "id", order: "asc" }] },
+  });
+
+  const { data: categories } = useMany({
+    resource: "categories",
+    ids: data?.data?.map((product) => product.category?.id) ?? [],
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const onPrevious = () => {
+    if (current > 1) {
+      setCurrent(current - 1);
+    }
+  };
+
+  const onNext = () => {
+    if (current < pageCount) {
+      setCurrent(current + 1);
+    }
+  };
+
+  const onPage = (page: number) => {
+    setCurrent(page);
+  };
+
+  return (
+    <div>
+      <h1>Products</h1>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Material</th>
+          <th>Price</th>
+        </tr>
+        {data.data?.map((product) => (
+          <tr key={product.id}>
+            <td>{product.id}</td>
+            <td>{product.name}</td>
+            <td>
+              {
+                categories?.data?.find(
+                  (category) => category.id == product.category?.id,
+                )?.title
+              }
+            </td>
+            <td>{product.material}</td>
+            <td>{product.price}</td>
+          </tr>
+        ))}
+      </table>
+      <div className="pagination">
+        <button type="button" onClick={onPrevious}>
+          {"<"}
+        </button>
+        <div>
+          {current - 1 > 0 && <span onClick={() => onPage(current - 1)}>{current - 1}</span>}
+          <span className="current">{current}</span>
+          {current + 1 < pageCount && <span onClick={() => onPage(current + 1)}>{current + 1}</span>}
+        </div>
+        <button type="button" onClick={onNext}>
+          {">"}
+        </button>
+      </div>
+    </div>
+  );
+};
+`.trim();
+
+const ListProductsWithHeaderSortersTsxCode = /* tsx */ `
+import { useTable, useMany } from "@refinedev/core";
+
+export const ListProducts = () => {
+  const {
+    tableQueryResult: { data, isLoading },
+    current,
+    setCurrent,
+    pageCount,
+    sorters,
+    setSorters,
+  } = useTable({
+    resource: "products",
+    pagination: { current: 1, pageSize: 10 },
+    sorters: { initial: [{ field: "id", order: "asc" }] },
+  });
+
+  const { data: categories } = useMany({
+    resource: "categories",
+    ids: data?.data?.map((product) => product.category?.id) ?? [],
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const onPrevious = () => {
+    if (current > 1) {
+      setCurrent(current - 1);
+    }
+  };
+
+  const onNext = () => {
+    if (current < pageCount) {
+      setCurrent(current + 1);
+    }
+  };
+
+  const onPage = (page: number) => {
+    setCurrent(page);
+  };
+
+  const getSorter = (field: string) => {
+    const sorter = sorters?.find((sorter) => sorter.field === field);
+
+    if (sorter) {
+      return sorter.order;
+    }
+  }
+
+  const onSort = (field: string) => {
+    const sorter = getSorter(field);
+    setSorters(
+        sorter === "desc" ? [] : [
+        {
+            field,
+            order: sorter === "asc" ? "desc" : "asc",
+        },
+        ]
+    );
+  }
+
+  const indicator = { asc: "⬆️", desc: "⬇️" };
+
+  return (
+    <div>
+      <h1>Products</h1>
+      <table>
+        <tr>
+          <th onClick={() => onSort("id")}>
+            ID {indicator[getSorter("id")]}
+          </th>
+          <th onClick={() => onSort("name")}>
+            Name {indicator[getSorter("name")]}
+          </th>
+          <th>
+            Category
+          </th>
+          <th onClick={() => onSort("material")}>
+            Material {indicator[getSorter("material")]}
+          </th>
+          <th onClick={() => onSort("price")}>
+            Price {indicator[getSorter("price")]}
+          </th>
+        </tr>
+        {data.data?.map((product) => (
+          <tr key={product.id}>
+            <td>{product.id}</td>
+            <td>{product.name}</td>
+            <td>
+              {
+                categories?.data?.find(
+                  (category) => category.id == product.category?.id,
+                )?.title
+              }
+            </td>
+            <td>{product.material}</td>
+            <td>{product.price}</td>
+          </tr>
+        ))}
+      </table>
+      <div className="pagination">
+        <button type="button" onClick={onPrevious}>
+          {"<"}
+        </button>
+        <div>
+          {current - 1 > 0 && <span onClick={() => onPage(current - 1)}>{current - 1}</span>}
+          <span className="current">{current}</span>
+          {current + 1 < pageCount && <span onClick={() => onPage(current + 1)}>{current + 1}</span>}
+        </div>
+        <button type="button" onClick={onNext}>
+          {">"}
+        </button>
+      </div>
+    </div>
+  );
+};
+`.trim();
 
 export const MountListProductsInAppTsx = ({
     children,
@@ -524,8 +1022,7 @@ export const AddPaginationToUseTableInListProducts = ({
     const { sandpack } = useSandpack();
 
     return (
-        <button
-            type="button"
+        <span
             onClick={() => {
                 sandpack.updateFile(
                     "/list-products.tsx",
@@ -534,21 +1031,14 @@ export const AddPaginationToUseTableInListProducts = ({
                 sandpack.setActiveFile("/list-products.tsx");
             }}
             className={clsx(
-                "mb-4",
-                "rounded-md",
                 "cursor-pointer",
-                "appearance-none",
-                "focus:outline-none",
-                "py-2 px-3",
-                "[&>p]:!text-gray-0",
-                "[&>p>code]:!text-gray-0",
-                "bg-refine-link-light",
-                "hover:brightness-110",
-                "[&>p]:!mb-0",
+                "text-refine-link-light dark:text-refine-link-dark",
+                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
+                "hover:underline",
             )}
         >
             {children}
-        </button>
+        </span>
     );
 };
 
@@ -560,8 +1050,7 @@ export const AddHeaderSortersToUseTableInListProducts = ({
     const { sandpack } = useSandpack();
 
     return (
-        <button
-            type="button"
+        <span
             onClick={() => {
                 sandpack.updateFile(
                     "/list-products.tsx",
@@ -570,20 +1059,13 @@ export const AddHeaderSortersToUseTableInListProducts = ({
                 sandpack.setActiveFile("/list-products.tsx");
             }}
             className={clsx(
-                "mb-4",
-                "rounded-md",
                 "cursor-pointer",
-                "appearance-none",
-                "focus:outline-none",
-                "py-2 px-3",
-                "[&>p]:!text-gray-0",
-                "[&>p>code]:!text-gray-0",
-                "bg-refine-link-light",
-                "hover:brightness-110",
-                "[&>p]:!mb-0",
+                "text-refine-link-light dark:text-refine-link-dark",
+                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
+                "hover:underline",
             )}
         >
             {children}
-        </button>
+        </span>
     );
 };
