@@ -79,7 +79,7 @@ This repository contains the code corresponding to an in-depth tutorial availabl
 
 <br>
 
-![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/dashboard.png "Product Edit Page")
+![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/CRM-Minimal/minimal-crm-demo.gif "Demo GIF")
 
 <br>
 
