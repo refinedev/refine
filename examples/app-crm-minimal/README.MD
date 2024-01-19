@@ -103,7 +103,7 @@ npm run start
 Open http://localhost:5173 in your browser to view the project.
 
 
-# Code Snippets
+## Code Snippets
 
 <details>
 <summary><code>providers/auth.ts</code></summary>
@@ -2009,6 +2009,6 @@ export const UserTag = ({ user }: Props) => {
 
 </details>
 
-## <a name="links">🔗 Links</a>
+## Links
 
 Other components (Kanban Edit Forms, Skeletons and utilities) used in the project can be found [here](https://drive.google.com/drive/folders/1oDFoI-a8qSJqHde6doUtM9NCHlYpWdNW?usp=sharing)
