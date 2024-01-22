@@ -75,6 +75,8 @@ As you can see in the example below, wrapping `_app.tsx` file with `Refine` comp
 
 In the following examples below, we will integrate Refine into `/refine` route of an existing application.
 
+See the [Routing Guide](/docs/guides-concepts/routing) for more information.
+
 <Tabs wrapContent={false} defaultValue="react-router">
 
 <TabItem value="react-router" label="React Router">
@@ -144,6 +146,8 @@ First, we need to install necessary packages:
 ## Adding UI to Router Examples
 
 In the following examples below, as a follow-up from the previous router examples, we will add AntD layout from `@refinedev/antd` package.
+
+See the [UI Libraries guide](/docs/guides-concepts/ui-libraries) for more information.
 
 <Tabs wrapContent={false} defaultValue="vite">
 
