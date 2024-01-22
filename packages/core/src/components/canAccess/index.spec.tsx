@@ -459,7 +459,7 @@ describe("CanAccess Component", () => {
 
     it("should respect queryOptions from component prop", async () => {
         const onUnauthorized = jest.fn();
-    
+
         const { container, queryByText } = render(
             <CanAccess
                 action="list"
@@ -479,10 +479,22 @@ describe("CanAccess Component", () => {
                 }),
             },
         );
-    
+
         expect(container).toBeTruthy();
         await waitFor(() => {
             expect(queryByText("Accessible")).toBeInTheDocument();
+        });
+
+        const useCanSpy = jest.spyOn(UseCanHook, "useCan");
+
+        await waitFor(() => {
+            expect(useCanSpy).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    queryOptions: expect.objectContaining({
+                        cacheTime: 10000,
+                    }),
+                }),
+            );
         });
     });
 });

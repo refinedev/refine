@@ -63,7 +63,7 @@ export const CanAccess: React.FC<CanAccessProps> = ({
     fallback,
     onUnauthorized,
     children,
-    queryOptions,
+    queryOptions: componentQueryOptions, // Rename queryOptions to avoid 
     ...rest
 }) => {
     const {
@@ -95,7 +95,7 @@ export const CanAccess: React.FC<CanAccessProps> = ({
         resource: resourceName,
         action,
         params,
-        queryOptions: queryOptions, 
+        queryOptions: componentQueryOptions, 
     });
 
     useEffect(() => {
