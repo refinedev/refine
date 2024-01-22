@@ -9,7 +9,7 @@ import {
     DataProvider,
     NotificationProvider,
     IResourceItem,
-    AuthBindings,
+    AuthProvider,
     IRouterProvider,
     RouterBindings,
 } from "@refinedev/core";
@@ -24,7 +24,7 @@ export interface ITestWrapperProps {
     routerProvider?: RouterBindings;
     legacyRouterProvider?: IRouterProvider;
     dataProvider?: DataProvider;
-    authProvider?: AuthBindings;
+    authProvider?: AuthProvider;
     legacyAuthProvider?: LegacyAuthProvider;
     resources?: IResourceItem[];
     notificationProvider?: NotificationProvider;

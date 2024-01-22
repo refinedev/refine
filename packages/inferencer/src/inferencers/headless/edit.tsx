@@ -103,7 +103,7 @@ export const renderer = ({
                         field.key,
                         undefined,
                         field.accessor,
-                    )}", ${recordName}?.${field.key}?.id);
+                    )}", ${val});
                 }, [${getVariableName(field.key, "Options")}]);
             `;
             }

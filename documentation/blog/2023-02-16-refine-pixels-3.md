@@ -196,8 +196,8 @@ First, we need to get the access credentials for our server from the **Supabase*
 I recommend storing these credentials in a [`.env` file](https://vitejs.dev/guide/env-and-mode.html):
 
 ```bash title=".env"
-SUPABASE_URL=YOUR_SUPABASE_URL
-SUPABASE_KEY=YOUR_SUPABASE_KEY
+VITE_SUPABASE_URL=YOUR_SUPABASE_URL
+VITE_SUPABASE_KEY=YOUR_SUPABASE_KEY
 ```
 
 Doing so will let us use these credentials to update the `supabaseClient.ts` file created by `refine ` at initialization:
@@ -205,8 +205,8 @@ Doing so will let us use these credentials to update the `supabaseClient.ts` fil
 ```tsx title="supabaseClient.ts"
 import { createClient } from "@refinedev/supabase";
 
-const SUPABASE_URL = import.meta.env.SUPABASE_URL ?? "";
-const SUPABASE_KEY = import.meta.env.SUPABASE_KEY ?? "";
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL ?? "";
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY ?? "";
 
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 ```

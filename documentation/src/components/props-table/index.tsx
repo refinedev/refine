@@ -237,7 +237,7 @@ const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
     const props = [...Object.values(data.props)];
 
     return (
-        <>
+        <div className="table-container">
             <table className="props-table">
                 <thead>
                     <tr>
@@ -272,7 +272,7 @@ const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
                 </tbody>
             </table>
             {children}
-        </>
+        </div>
     );
 };
 

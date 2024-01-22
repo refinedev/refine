@@ -34,12 +34,11 @@ import {
 import { CustomAvatar } from "../../custom-avatar";
 import { SingleElementForm } from "../../single-element-form";
 import { Text } from "../../text";
+import styles from "./index.module.css";
 import {
     ACCOUNT_SETTINGS_GET_USER_QUERY,
     ACCOUNT_SETTINGS_UPDATE_USER_MUTATION,
 } from "./queries";
-
-import styles from "./index.module.css";
 
 const timezoneOptions = Object.keys(TimezoneEnum).map((key) => ({
     label: TimezoneEnum[key as keyof typeof TimezoneEnum],

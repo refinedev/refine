@@ -68,18 +68,17 @@ export const resources: IResourceItem[] = [
         },
     },
     {
-        name: "dealStages",
-        create: "/scrumboard/sales/stages/create",
-        edit: "/scrumboard/sales/stages/edit/:id",
-        list: "/scrumboard/sales",
+        name: "deals",
+        identifier: "finalize-deals",
+        edit: "/scrumboard/sales/:id/finalize",
         meta: {
             hide: true,
         },
     },
     {
-        name: "deals",
-        identifier: "deals-2",
-        edit: "/scrumboard/sales/details/edit/:id",
+        name: "dealStages",
+        create: "/scrumboard/sales/stages/create",
+        edit: "/scrumboard/sales/stages/edit/:id",
         list: "/scrumboard/sales",
         meta: {
             hide: true,

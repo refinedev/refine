@@ -1,5 +1,13 @@
 # @refinedev/mantine
 
+## 2.29.2
+
+### Patch Changes
+
+-   [#5429](https://github.com/refinedev/refine/pull/5429) [`3bc130e475`](https://github.com/refinedev/refine/commit/3bc130e47502c7cf994225a369b3806a570a5d7a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `useNotification.close("notification-key")` not working. Resolves [#5433](https://github.com/refinedev/refine/issues/5433)
+
+-   [#5465](https://github.com/refinedev/refine/pull/5465) [`00e00cbd98`](https://github.com/refinedev/refine/commit/00e00cbd98c34046ab83b299ede83401ae74fec1) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the type issue between `remark-gfm` and `react-markdown`. #5463
+
 ## 2.29.1
 
 ### Patch Changes

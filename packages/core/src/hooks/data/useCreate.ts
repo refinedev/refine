@@ -140,8 +140,8 @@ export const useCreate = <
         TError,
         useCreateParams<TData, TError, TVariables>,
         unknown
-    >(
-        ({
+    >({
+        mutationFn: ({
             resource: resourceName,
             values,
             meta,
@@ -164,134 +164,132 @@ export const useCreate = <
                 metaData: combinedMeta,
             });
         },
-        {
-            onSuccess: (
-                data,
-                {
-                    resource: resourceName,
-                    successNotification: successNotificationFromProp,
-                    dataProviderName: dataProviderNameFromProp,
-                    invalidates = ["list", "many"],
-                    values,
-                    meta,
-                    metaData,
+        onSuccess: (
+            data,
+            {
+                resource: resourceName,
+                successNotification: successNotificationFromProp,
+                dataProviderName: dataProviderNameFromProp,
+                invalidates = ["list", "many"],
+                values,
+                meta,
+                metaData,
+            },
+        ) => {
+            const { resource, identifier } = select(resourceName);
+            const resourceSingular = textTransformers.singular(identifier);
+
+            const dataProviderName = pickDataProvider(
+                identifier,
+                dataProviderNameFromProp,
+                resources,
+            );
+
+            const combinedMeta = getMeta({
+                resource,
+                meta: pickNotDeprecated(meta, metaData),
+            });
+
+            const notificationConfig =
+                typeof successNotificationFromProp === "function"
+                    ? successNotificationFromProp(data, values, identifier)
+                    : successNotificationFromProp;
+
+            handleNotification(notificationConfig, {
+                key: `create-${identifier}-notification`,
+                message: translate(
+                    "notifications.createSuccess",
+                    {
+                        resource: translate(
+                            `${identifier}.${identifier}`,
+                            resourceSingular,
+                        ),
+                    },
+                    `Successfully created ${resourceSingular}`,
+                ),
+                description: translate("notifications.success", "Success"),
+                type: "success",
+            });
+
+            invalidateStore({
+                resource: identifier,
+                dataProviderName,
+                invalidates,
+            });
+
+            publish?.({
+                channel: `resources/${resource.name}`,
+                type: "created",
+                payload: {
+                    ids: data?.data?.id ? [data.data.id] : undefined,
                 },
-            ) => {
-                const { resource, identifier } = select(resourceName);
-                const resourceSingular = textTransformers.singular(identifier);
-
-                const dataProviderName = pickDataProvider(
-                    identifier,
-                    dataProviderNameFromProp,
-                    resources,
-                );
-
-                const combinedMeta = getMeta({
-                    resource,
-                    meta: pickNotDeprecated(meta, metaData),
-                });
-
-                const notificationConfig =
-                    typeof successNotificationFromProp === "function"
-                        ? successNotificationFromProp(data, values, identifier)
-                        : successNotificationFromProp;
-
-                handleNotification(notificationConfig, {
-                    key: `create-${identifier}-notification`,
-                    message: translate(
-                        "notifications.createSuccess",
-                        {
-                            resource: translate(
-                                `${identifier}.${identifier}`,
-                                resourceSingular,
-                            ),
-                        },
-                        `Successfully created ${resourceSingular}`,
-                    ),
-                    description: translate("notifications.success", "Success"),
-                    type: "success",
-                });
-
-                invalidateStore({
-                    resource: identifier,
+                date: new Date(),
+                meta: {
+                    ...combinedMeta,
                     dataProviderName,
-                    invalidates,
-                });
-
-                publish?.({
-                    channel: `resources/${resource.name}`,
-                    type: "created",
-                    payload: {
-                        ids: data?.data?.id ? [data.data.id] : undefined,
-                    },
-                    date: new Date(),
-                    meta: {
-                        ...combinedMeta,
-                        dataProviderName,
-                    },
-                });
-
-                const {
-                    fields: _fields,
-                    operation: _operation,
-                    variables: _variables,
-                    ...rest
-                } = combinedMeta || {};
-                log?.mutate({
-                    action: "create",
-                    resource: resource.name,
-                    data: values,
-                    meta: {
-                        dataProviderName,
-                        id: data?.data?.id ?? undefined,
-                        ...rest,
-                    },
-                });
-            },
-            onError: (
-                err: TError,
-                {
-                    resource: resourceName,
-                    errorNotification: errorNotificationFromProp,
-                    values,
                 },
-            ) => {
-                checkError(err);
+            });
 
-                const { identifier } = select(resourceName);
-
-                const resourceSingular = textTransformers.singular(identifier);
-
-                const notificationConfig =
-                    typeof errorNotificationFromProp === "function"
-                        ? errorNotificationFromProp(err, values, identifier)
-                        : errorNotificationFromProp;
-
-                handleNotification(notificationConfig, {
-                    key: `create-${identifier}-notification`,
-                    description: err.message,
-                    message: translate(
-                        "notifications.createError",
-                        {
-                            resource: translate(
-                                `${identifier}.${identifier}`,
-                                resourceSingular,
-                            ),
-                            statusCode: err.statusCode,
-                        },
-                        `There was an error creating ${resourceSingular} (status code: ${err.statusCode})`,
-                    ),
-                    type: "error",
-                });
-            },
-            mutationKey: keys().data().mutation("create").get(preferLegacyKeys),
-            ...mutationOptions,
-            meta: {
-                ...mutationOptions?.meta,
-                ...getXRay("useCreate", preferLegacyKeys),
-            },
+            const {
+                fields: _fields,
+                operation: _operation,
+                variables: _variables,
+                ...rest
+            } = combinedMeta || {};
+            log?.mutate({
+                action: "create",
+                resource: resource.name,
+                data: values,
+                meta: {
+                    dataProviderName,
+                    id: data?.data?.id ?? undefined,
+                    ...rest,
+                },
+            });
         },
-    );
+        onError: (
+            err: TError,
+            {
+                resource: resourceName,
+                errorNotification: errorNotificationFromProp,
+                values,
+            },
+        ) => {
+            checkError(err);
+
+            const { identifier } = select(resourceName);
+
+            const resourceSingular = textTransformers.singular(identifier);
+
+            const notificationConfig =
+                typeof errorNotificationFromProp === "function"
+                    ? errorNotificationFromProp(err, values, identifier)
+                    : errorNotificationFromProp;
+
+            handleNotification(notificationConfig, {
+                key: `create-${identifier}-notification`,
+                description: err.message,
+                message: translate(
+                    "notifications.createError",
+                    {
+                        resource: translate(
+                            `${identifier}.${identifier}`,
+                            resourceSingular,
+                        ),
+                        statusCode: err.statusCode,
+                    },
+                    `There was an error creating ${resourceSingular} (status code: ${err.statusCode})`,
+                ),
+                type: "error",
+            });
+        },
+        mutationKey: keys().data().mutation("create").get(preferLegacyKeys),
+        ...mutationOptions,
+        meta: {
+            ...mutationOptions?.meta,
+            ...getXRay("useCreate", preferLegacyKeys),
+        },
+    });
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: mutation.isLoading,

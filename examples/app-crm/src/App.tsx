@@ -1,4 +1,3 @@
-import { InstantSearch } from "react-instantsearch";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { ErrorComponent, useNotificationProvider } from "@refinedev/antd";
@@ -11,18 +10,12 @@ import routerProvider, {
     UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 
-import { App as AntdApp,ConfigProvider } from "antd";
+import { App as AntdApp, ConfigProvider } from "antd";
 
 import { resources, themeConfig } from "@/config";
-import {
-    authProvider,
-    dataProvider,
-    indexName,
-    liveProvider,
-    searchClient,
-} from "@/providers";
+import { authProvider, dataProvider, liveProvider } from "@/providers";
 
-import { FullScreenLoading, Layout } from "./components";
+import { AlgoliaSearchWrapper, FullScreenLoading, Layout } from "./components";
 import { useAutoLoginForDemo } from "./hooks";
 import { AuditLogPage, SettingsPage } from "./routes/administration";
 import {
@@ -59,11 +52,11 @@ import {
     KanbanPage,
 } from "./routes/scrumboard/kanban";
 import {
-    SalesCreateDetails,
     SalesCreatePage,
     SalesCreateStage,
     SalesEditPage,
     SalesEditStage,
+    SalesFinalizeDeal,
     SalesPage,
 } from "./routes/scrumboard/sales";
 import { UpdatePasswordPage } from "./routes/update-password";
@@ -84,7 +77,7 @@ const App: React.FC = () => {
     }
 
     return (
-        <InstantSearch searchClient={searchClient} indexName={indexName}>
+        <AlgoliaSearchWrapper>
             <BrowserRouter>
                 <ConfigProvider theme={themeConfig}>
                     <AntdApp>
@@ -218,9 +211,9 @@ const App: React.FC = () => {
                                                     element={<SalesEditStage />}
                                                 />
                                                 <Route
-                                                    path="details/edit/:id"
+                                                    path=":id/finalize"
                                                     element={
-                                                        <SalesCreateDetails />
+                                                        <SalesFinalizeDeal />
                                                     }
                                                 />
                                             </Route>
@@ -374,7 +367,7 @@ const App: React.FC = () => {
                     </AntdApp>
                 </ConfigProvider>
             </BrowserRouter>
-        </InstantSearch>
+        </AlgoliaSearchWrapper>
     );
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import {
-    AuthBindings,
+    AuthProvider,
     Refine,
     I18nProvider,
     AccessControlProvider,
@@ -31,7 +31,7 @@ const List = () => {
 };
 export interface ITestWrapperProps {
     dataProvider?: DataProvider;
-    authProvider?: AuthBindings;
+    authProvider?: AuthProvider;
     legacyAuthProvider?: LegacyAuthProvider;
     resources?: IResourceItem[];
     notificationProvider?: NotificationProvider;

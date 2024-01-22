@@ -5,6 +5,7 @@ import {
     act,
     mockRouterBindings,
     mockLegacyRouterProvider,
+    queryClient,
 } from "@test";
 
 import { useRegister } from ".";
@@ -506,6 +507,73 @@ describe("useRegister Hook", () => {
                 description: "Unhandled error",
             });
         });
+    });
+
+    it("should override `mutationFn` with mutationOptions.mutationFn", async () => {
+        const registerMock = jest.fn().mockResolvedValue({ data: {} });
+        const mutationFnMock = jest.fn().mockResolvedValue({ data: {} });
+
+        const { result } = renderHook(
+            () =>
+                useRegister({
+                    mutationOptions: {
+                        // mutationFn is omitted in types. So we need to use @ts-ignore test it.
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        mutationFn: mutationFnMock,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    authProvider: {
+                        ...mockAuthProvider,
+                        register: registerMock,
+                    },
+                }),
+            },
+        );
+
+        result.current.mutate({});
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(registerMock).not.toBeCalled();
+        expect(mutationFnMock).toBeCalled();
+    });
+
+    it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
+        const registerMock = jest.fn().mockResolvedValue({ data: {} });
+
+        const { result } = renderHook(
+            () =>
+                useRegister({
+                    mutationOptions: {
+                        mutationKey: ["foo", "bar"],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    authProvider: {
+                        ...mockAuthProvider,
+                        register: registerMock,
+                    },
+                }),
+            },
+        );
+
+        result.current.mutate({});
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(
+            queryClient.getMutationCache().findAll({
+                mutationKey: ["foo", "bar"],
+            }),
+        ).toHaveLength(1);
     });
 });
 

@@ -1,7 +1,7 @@
 import {
     GitHubBanner,
     Refine,
-    AuthBindings,
+    AuthProvider,
     Authenticated,
 } from "@refinedev/core";
 import {
@@ -40,7 +40,7 @@ const authCredentials = {
 };
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ providerName, email }) => {
             if (providerName === "google") {
                 window.location.href =

@@ -621,10 +621,6 @@
       "to": "/docs/ui-integrations/material-ui/hooks/use-data-grid"
     },
     {
-      "from": "/demo/",
-      "to": "/examples/"
-    },
-    {
       "from": "/headset/",
       "to": "/"
     },
@@ -654,7 +650,7 @@
     },
     {
       "from": "/docs/benchmarks/",
-      "to": "/docs/further-readings/benchmarks/"
+      "to": "/docs/"
     },
     {
       "from": "/docs/general-concepts/",
@@ -788,10 +784,6 @@
     {
       "from": "/docs/api-reference/",
       "to": "/docs/guides-concepts/general-concepts/"
-    },
-    {
-      "from": "/examples/",
-      "to": "/docs/examples/"
     },
     {
       "from": "/become-a-refine-expert/",
@@ -2076,6 +2068,10 @@
     {
       "from": "/docs/advanced-tutorials/import-export/csv-export/",
       "to": "/docs/guides-concepts/import-export"
+    },
+    {
+      "from": "/docs/further-readings/benchmarks/",
+      "to": "/docs"
     }
   ]
 }

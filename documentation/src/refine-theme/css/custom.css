@@ -29,54 +29,74 @@
     max-width: 100% !important;
     @apply prose prose-invert font-normal;
     @apply 2xl:prose-base;
-    @apply prose-strong:dark:text-gray-300 prose-strong:text-gray-700;
-    @apply prose-a:text-refine-link-light prose-a:dark:text-refine-link-dark  prose-a:font-normal;
+    @apply prose-strong:dark:text-gray-100 prose-strong:text-gray-800;
+    @apply prose-a:text-refine-react-light-link prose-a:dark:text-refine-react-dark-link  prose-a:font-normal prose-a:no-underline;
 
     @apply prose-h1:font-semibold;
-    @apply prose-h1:text-gray-900 prose-h1:dark:text-gray-0;
+    @apply prose-h1:text-gray-800 prose-h1:dark:text-gray-100;
     @apply prose-h1:text-[1.25rem] prose-h1:leading-[1.75rem];
-    @apply sm:prose-h1:text-[2.5rem] sm:prose-h1:leading-[3rem];
+    @apply sm:prose-h1:text-[2rem] sm:prose-h1:leading-[2.5rem];
     @apply prose-h1:mb-4 sm:prose-h1:mb-8;
 
     @apply prose-h2:font-semibold;
     @apply prose-h2:text-gray-800 prose-h2:dark:text-gray-100;
     @apply prose-h2:text-[1rem] prose-h2:leading-[1.5rem];
-    @apply sm:prose-h2:text-[2rem] sm:prose-h2:leading-[2.5rem];
+    @apply sm:prose-h2:text-[1.5rem] sm:prose-h2:leading-[2rem];
     @apply prose-h2:mb-4 sm:prose-h2:mb-6;
 
     @apply prose-h3:font-semibold;
-    @apply prose-h3:text-gray-700 prose-h3:dark:text-gray-200;
+    @apply prose-h3:text-gray-800 prose-h3:dark:text-gray-100;
     @apply prose-h3:text-[0.875rem] prose-h3:leading-[2.5rem];
-    @apply sm:prose-h3:text-[1.5rem] sm:prose-h3:leading-[2rem];
+    @apply sm:prose-h3:text-[1.25rem] sm:prose-h3:leading-[1.75rem];
     @apply prose-h3:mb-4 sm:prose-h3:mb-6;
 
     @apply prose-h4:font-semibold;
-    @apply prose-h4:text-gray-600 prose-h4:dark:text-gray-300;
-    @apply prose-h4:text-[0.75rem] prose-h4:leading-[1.33rem];
-    @apply sm:prose-h4:text-[1.33rem] sm:prose-h4:leading-[1.75rem];
+    @apply prose-h4:text-gray-800 prose-h4:dark:text-gray-100;
+    @apply prose-h4:text-base;
     @apply prose-h4:mb-4 sm:prose-h4:mb-6;
 
-    @apply prose-p:dark:text-gray-300 prose-p:text-gray-700 prose-p:mb-5 prose-p:mt-0;
+    @apply prose-p:dark:text-gray-100 prose-p:text-gray-800 prose-p:mb-5 prose-p:mt-0;
     @apply prose-p:text-base sm:prose-p:leading-7;
 
     @apply prose-li:text-sm sm:prose-li:text-base;
     @apply prose-li:my-0 2xl:prose-li:text-base;
-    @apply prose-ul:pl-8 prose-ul:ml-0 prose-ul:dark:text-gray-300 prose-ul:text-gray-700;
-    @apply prose-ol:pl-8 prose-ol:ml-0 prose-ol:dark:text-gray-300 prose-ol:text-gray-700;
+    @apply prose-li:pl-0;
+    @apply prose-ul:pl-[18px] prose-ul:ml-0 prose-ul:dark:text-gray-100 prose-ul:text-gray-800;
+    @apply prose-ol:pl-[18px] prose-ol:ml-0 prose-ol:dark:text-gray-100 prose-ol:text-gray-800;
 
-    @apply prose-blockquote:last:mb-0 prose-blockquote:border-l-4 prose-blockquote:rounded-lg prose-blockquote:p-4 prose-blockquote:font-normal prose-blockquote:not-italic;
-    @apply prose-blockquote:bg-gray-50 prose-blockquote:text-gray-700 prose-blockquote:border-l-gray-400;
-    @apply prose-blockquote:dark:bg-gray-800 prose-blockquote:dark:text-gray-0 prose-blockquote:dark:border-l-gray-600;
+    @apply prose-pre:font-jetBrains-mono;
 
-    @apply prose-code:text-[0.625rem] prose-code:leading-[0.75rem] sm:prose-code:text-[0.75rem] sm:prose-code:leading-[1.0625rem] lg:prose-code:text-[0.875rem] lg:prose-code:leading-[1.125rem];
-    @apply prose-code:text-gray-700 prose-code:bg-gray-200;
-    @apply prose-code:dark:text-gray-0 prose-code:dark:bg-gray-700;
-    @apply prose-code:px-1.5 prose-code:pt-[2px] prose-code:pb-[3px] prose-code:rounded prose-code:font-mono prose-code:before:content-none prose-code:after:content-none;
+    @apply prose-blockquote:last:mb-0 prose-blockquote:border-l-4 prose-blockquote:rounded-lg prose-blockquote:py-4 prose-blockquote:pr-4 prose-blockquote:pl-3 prose-blockquote:font-normal prose-blockquote:not-italic;
+    @apply prose-blockquote:bg-gray-100 prose-blockquote:text-gray-800 prose-blockquote:border-l-gray-400;
+    @apply prose-blockquote:dark:bg-gray-700 prose-blockquote:dark:text-gray-100 prose-blockquote:dark:border-l-gray-500;
+
+    @apply prose-code:text-base 2xl:prose-code:text-base;
+    /* @apply prose-code:translate-y-0.5; */
+    @apply prose-code:inline-block;
+    @apply prose-code:text-gray-700 prose-code:bg-gray-400 prose-code:bg-opacity-10;
+    @apply prose-code:dark:text-gray-0 prose-code:dark:bg-gray-400 prose-code:dark:bg-opacity-10;
+    @apply prose-code:px-1 prose-code:py-0 prose-code:rounded prose-code:font-jetBrains-mono prose-code:before:content-none prose-code:after:content-none;
     @apply prose-code:font-normal;
     @apply prose-code:decoration-clone;
     @apply prose-code:border-none;
 
     @apply max-w-none;
+}
+
+.refine-prose li code {
+    @apply align-baseline;
+}
+
+.refine-prose table code {
+    @apply !align-baseline;
+}
+
+.refine-prose li::marker {
+    @apply text-gray-500;
+}
+
+.refine-prose ul li::marker {
+    @apply text-xl leading-7;
 }
 
 /* .refine-prose *:last-child:not(header h1) {
@@ -85,10 +105,47 @@
 
 .refine-prose h1 code,
 .refine-prose h2 code,
-.refine-prose h3 code {
+.refine-prose h3 code,
+.refine-prose h4 code {
     font-size: inherit;
     line-height: inherit;
     vertical-align: bottom;
+    transform: translateY(0);
+}
+
+.refine-prose h4 code {
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.refine-prose a.hash-link {
+    position: relative;
+    width: 0;
+    padding: 0;
+    display: inline-flex;
+    margin-left: 6px;
+}
+
+.refine-prose a.hash-link::before {
+    content: "";
+    background-size: 12px 12px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"><path fill="%23667084" fill-rule="evenodd" d="M9.172 1.172a4 4 0 1 1 5.656 5.656l-2 2a.5.5 0 1 1-.707-.707l2-2A3 3 0 1 0 9.88 1.88l-2 2a.5.5 0 0 1-.707-.707l2-2Zm2.182 3.474a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708l6-6a.5.5 0 0 1 .708 0ZM3.879 7.172a.5.5 0 0 1 0 .707l-2 2A3 3 0 1 0 6.12 14.12l2-2a.5.5 0 0 1 .707.707l-2 2a4 4 0 0 1-5.656-5.656l2-2a.5.5 0 0 1 .707 0Z" clip-rule="evenodd"/></svg>');
+    @apply bg-gray-400 bg-opacity-10;
+    @apply leading-7;
+    @apply absolute;
+    @apply w-7 h-7 inline-flex rounded-[10px];
+    @apply bg-center bg-no-repeat bg-[size:0.875rem];
+    @apply top-1/2 -translate-y-1/2;
+    @apply transition-all duration-200 ease-in-out;
+    @apply -left-px;
+}
+
+.refine-prose a.hash-link:hover::before {
+    @apply bg-[size:1rem];
+}
+
+html[data-theme="dark"] .refine-prose a.hash-link::before {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"><path fill="%2399A1B3" fill-rule="evenodd" d="M9.172 1.172a4 4 0 1 1 5.656 5.656l-2 2a.5.5 0 1 1-.707-.707l2-2A3 3 0 1 0 9.88 1.88l-2 2a.5.5 0 0 1-.707-.707l2-2Zm2.182 3.474a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708l6-6a.5.5 0 0 1 .708 0ZM3.879 7.172a.5.5 0 0 1 0 .707l-2 2A3 3 0 1 0 6.12 14.12l2-2a.5.5 0 0 1 .707.707l-2 2a4 4 0 0 1-5.656-5.656l2-2a.5.5 0 0 1 .707 0Z" clip-rule="evenodd"/></svg>');
 }
 
 .refine-prose blockquote,
@@ -106,30 +163,31 @@
 
 .refine-prose table th,
 .refine-prose table td {
-    @apply border border-gray-200 px-2 py-2 text-gray-900 dark:border-gray-700 dark:text-gray-100;
-    @apply text-sm;
+    @apply border border-gray-300 px-2 py-2 text-gray-800 dark:border-gray-600 dark:text-gray-100;
+    @apply text-base leading-6;
+    @apply align-top;
 }
 
 .refine-prose table th {
-    @apply font-semibold text-gray-900 dark:text-gray-200;
-    @apply text-sm;
+    @apply font-semibold;
+    @apply text-gray-800 dark:text-gray-100;
+    @apply text-base leading-7;
 }
 
 .refine-prose table th code {
-    @apply text-sm;
+    @apply text-base;
 }
 
 .refine-prose table tbody tr:nth-child(odd) {
-    @apply dark:bg-gray-700 dark:bg-opacity-30;
-    @apply bg-gray-50 bg-opacity-10;
+    @apply bg-gray-400 bg-opacity-10;
 }
 
 .refine-prose table tbody tr:nth-child(even) {
-    @apply bg-gray-50 dark:bg-gray-900;
+    @apply bg-gray-0 dark:bg-gray-800;
 }
 
 .refine-prose table thead {
-    @apply bg-gray-50 dark:bg-gray-900;
+    @apply bg-gray-0 dark:bg-gray-800;
 }
 
 .refine-prose table thead tr {
@@ -154,7 +212,7 @@
 }
 
 .refine-toc-item code {
-    @apply rounded !border-none py-0.5 px-1 !align-bottom font-mono !text-inherit dark:bg-gray-600 dark:bg-opacity-30 dark:!text-inherit;
+    @apply rounded !border-none py-0.5 px-1 !align-bottom font-jetBrains-mono !text-inherit dark:bg-gray-600 dark:bg-opacity-30 dark:!text-inherit;
     font-size: 12px;
 }
 
@@ -163,108 +221,76 @@ a:has(> code) {
 }
 
 a:has(> code) code {
-    @apply !text-refine-link-light dark:!text-refine-link-dark !align-text-bottom;
+    @apply !text-refine-react-light-link dark:!text-refine-react-dark-link !align-baseline;
 }
 
 p:has(> code) code {
-    @apply mx-0.5 !align-text-bottom;
+    @apply mx-0.5 !align-baseline;
 }
 
 li a:has(> code) code {
-    @apply !mx-0 !align-text-bottom;
+    @apply !mx-0 !align-baseline;
 }
 
-.admonition.admonition-caution code {
-    @apply dark:bg-refine-orange/10 bg-[#F2800D] bg-opacity-[15%] dark:bg-opacity-[15%];
-}
+/* admonition overrides */
 
-.admonition.admonition-caution a {
-    @apply dark:text-refine-orange text-[#CC6600];
-}
-
-.admonition.admonition-caution a code {
-    @apply dark:!text-refine-orange !text-[#CC6600];
+.admonition.admonition-caution code:not(pre>code) {
+    @apply dark:bg-refine-react-dark-orange dark:bg-opacity-[0.15] bg-refine-react-dark-orange bg-opacity-[15%];
 }
 
 .admonition.admonition-caution li::marker {
-    @apply dark:text-refine-orange text-[#CC6600] text-opacity-50 dark:text-opacity-50;
+    @apply dark:text-refine-react-dark-orange text-refine-react-light-orange text-xl leading-7;
 }
 
-.admonition.admonition-danger code {
-    @apply bg-refine-red bg-opacity-[15%];
+.admonition.admonition-danger code:not(pre>code) {
+    @apply dark:bg-refine-red dark:bg-opacity-[0.15] bg-refine-red bg-opacity-[15%];
 }
 
-.admonition.admonition-danger a {
-    @apply text-refine-red;
+.admonition.admonition-danger li::marker {
+    @apply dark:text-refine-red text-refine-red text-xl leading-7;
 }
 
-.admonition.admonition-danger a code {
-    @apply !text-refine-red;
-}
-
-.admonition.admonition-info code {
-    @apply bg-refine-blue/10 bg-opacity-[15%] dark:bg-[#6EB3F7]/10 dark:bg-opacity-[15%];
-}
-
-.admonition.admonition-info a {
-    @apply text-refine-blue dark:text-refine-link-dark;
+.admonition.admonition-info code:not(pre>code) {
+    @apply dark:bg-refine-react-dark-purple dark:bg-opacity-[0.15] bg-refine-react-light-purple bg-opacity-[15%];
 }
 
 .admonition.admonition-info li::marker {
-    @apply text-refine-blue dark:text-refine-link-dark text-opacity-50 dark:text-opacity-50;
+    @apply dark:text-refine-react-dark-purple text-refine-react-light-purple text-xl leading-7;
 }
 
-.admonition.admonition-tip code {
-    @apply bg-refine-green bg-opacity-[15%];
-}
-
-.admonition.admonition-tip a {
-    @apply text-refine-green;
-}
-
-.admonition.admonition-tip a code {
-    @apply !text-refine-green;
+.admonition.admonition-tip code:not(pre>code) {
+    @apply dark:bg-refine-react-dark-green-alt dark:bg-opacity-[0.15] bg-refine-react-light-green-alt bg-opacity-[15%];
 }
 
 .admonition.admonition-tip li::marker {
-    @apply text-refine-green text-opacity-50;
+    @apply dark:text-refine-react-dark-green-alt text-refine-react-light-green-alt text-xl leading-7;
 }
 
-.admonition.admonition-note code {
-    @apply bg-refine-cyan bg-opacity-[15%];
-}
-
-.admonition.admonition-note a {
-    @apply text-refine-cyan;
-}
-
-.admonition.admonition-note a code {
-    @apply !text-refine-cyan;
+.admonition.admonition-note code:not(pre>code) {
+    @apply dark:bg-refine-react-dark-green dark:bg-opacity-[0.15] bg-refine-react-light-green bg-opacity-[15%];
 }
 
 .admonition.admonition-note li::marker {
-    @apply text-refine-cyan text-opacity-50;
-}
-
-.admonition.admonition-additional code {
-    @apply bg-refine-cyan bg-opacity-20;
-}
-
-.admonition.admonition-additional a {
-    @apply text-refine-cyan;
-}
-
-.admonition.admonition-info-tip code {
-    @apply bg-refine-blue bg-opacity-20;
-}
-
-.admonition.admonition-info-tip a {
-    @apply text-refine-blue;
+    @apply dark:text-refine-react-dark-green text-refine-react-light-green text-xl leading-7;
 }
 
 .admonition pre.prism-code code {
     @apply bg-transparent;
 }
+
+.refine-prose blockquote li::marker {
+    @apply dark:text-gray-500 text-gray-400 text-xl leading-7;
+}
+
+.refine-prose blockquote code:not(pre>code) {
+    @apply dark:bg-gray-500 dark:bg-opacity-[0.10] bg-gray-400 bg-opacity-[15%];
+}
+
+.refine-prose blockquote .refine-common-code-block {
+    @apply mx-0;
+}
+
+/*  */
 
 .refine-details > summary + div > div {
     @apply mt-0 border-t-0 pt-0;
@@ -428,6 +454,11 @@ button.sp-button.sp-icon-standalone[title="Open in CodeSandbox"]:has(svg + span)
     list-style-type: "-   ";  
 }
 
+.admonition .refine-common-code-block {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .admonition-simple * {
     @apply text-sm leading-4 sm:leading-5;
 }
@@ -448,6 +479,64 @@ h4 > del:has(code:only-child) code {
     @apply line-through;
 }
 
-.sp-tab-button[data-active="true"] {
-    @apply font-medium;
+.theme-code-block-highlighted-line {
+    @apply !bg-refine-react-light-link !bg-opacity-[0.07] dark:!bg-refine-react-dark-link dark:!bg-opacity-[0.05];
+    @apply relative;
+}
+
+.theme-code-block-highlighted-line::after,
+.theme-code-block-highlighted-line::before {
+    content: "";
+    @apply block absolute top-0;
+    @apply w-0.5 h-full;
+    @apply bg-refine-react-light-link bg-opacity-75 dark:!bg-refine-react-dark-link dark:bg-opacity-50;
+}
+
+.theme-code-block-highlighted-line::after {
+    @apply left-0;
+}
+
+.theme-code-block-highlighted-line::before {
+    @apply right-0;
+}
+
+.refine-prose .refine-wider-container {
+    @apply widening-start:-mx-4;
+}
+
+.refine-prose .refine-wider-container .refine-wider-container {
+    @apply mx-0;
+}
+
+.refine-prose .table-full-width .table-container,
+.refine-prose .table-full-width .props-table {
+    /* --preferred-full-table-width */
+    --full-width-limit: 1280px;
+    --applied-full-table-width: min(var(--preferred-full-table-width, 100%), var(--full-width-limit));
+    max-width: var(--applied-full-table-width);
+    margin-left: calc((-1 * ((var(--applied-full-table-width, 100%) - 100%) / 2)) + 16px);
+    margin-right: calc((-1 * ((var(--applied-full-table-width, 100%) - 100%) / 2)) + 16px);
+}
+
+.refine-prose code,
+.font-mono,
+.font-jetBrains-mono {
+    font-variant-ligatures: none !important;
+    font-feature-settings: "liga" 0;
+}
+
+h1 del,
+h2 del,
+h3 del,
+h4 del,
+h1 del code,
+h2 del code,
+h3 del code,
+h4 del code {
+    @apply !line-through;
+    @apply !text-gray-400 dark:!text-gray-500;
+}
+
+.docs-wrapper *::selection {
+    @apply bg-refine-selection text-gray-800;
 }

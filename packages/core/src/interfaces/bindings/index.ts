@@ -7,6 +7,7 @@ export {
     CheckResponse,
     OnErrorResponse,
     PermissionResponse,
+    AuthProvider,
 } from "./auth";
 export { DataBindings } from "./data";
 export { i18nBindings } from "./i18n";

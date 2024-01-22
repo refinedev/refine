@@ -465,7 +465,7 @@ Update the `login` property in `authProvider` to accept the mobile number and OT
 ```tsx title="src/authProvider.ts"
 // ...
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   login: async ({ mobileNo, otp }) => {
     const { data, error } = await supabaseClient.auth.verifyOtp({
       type: "sms",

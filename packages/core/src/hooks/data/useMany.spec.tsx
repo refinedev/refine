@@ -1,6 +1,11 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
+import {
+    MockJSONServer,
+    mockRouterBindings,
+    queryClient,
+    TestWrapper,
+} from "@test";
 
 import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineContextProvider } from "../../interfaces";
@@ -610,6 +615,93 @@ describe("useMany Hook", () => {
             });
 
             expect(onErrorMock).toBeCalledWith(new Error("Error"));
+        });
+
+        it("should override `queryKey` with `queryOptions.queryKey`", async () => {
+            const getManyMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useMany({
+                        resource: "posts",
+                        ids: ["1", "2"],
+                        queryOptions: {
+                            queryKey: ["foo", "bar"],
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getMany: getManyMock,
+                            },
+                        },
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getManyMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: expect.objectContaining({
+                        queryContext: expect.objectContaining({
+                            queryKey: ["foo", "bar"],
+                        }),
+                    }),
+                }),
+            );
+
+            expect(
+                queryClient.getQueryCache().findAll({
+                    queryKey: ["foo", "bar"],
+                }),
+            ).toHaveLength(1);
+        });
+
+        it("should override `queryFn` with `queryOptions.queryFn`", async () => {
+            const getManyMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const queryFnMock = jest.fn().mockResolvedValue({
+                data: [{ id: 1, title: "foo" }],
+            });
+
+            const { result } = renderHook(
+                () =>
+                    useMany({
+                        resource: "posts",
+                        ids: ["1", "2"],
+                        queryOptions: {
+                            queryFn: queryFnMock,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getMany: getManyMock,
+                            },
+                        },
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(getManyMock).not.toBeCalled();
+            expect(queryFnMock).toBeCalled();
         });
     });
 

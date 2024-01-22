@@ -1,15 +1,22 @@
 import { useForm } from "@refinedev/antd";
-import { BaseKey, HttpError, useGetIdentity, useParsed } from "@refinedev/core";
+import { HttpError, useGetIdentity, useParsed } from "@refinedev/core";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { LoadingOutlined } from "@ant-design/icons";
 import { Form, Input } from "antd";
 
 import { CustomAvatar } from "@/components";
-import { ContactNote, User } from "@/graphql/schema.types";
+import { User } from "@/graphql/schema.types";
+import {
+    ContactsCreateContactNoteMutation,
+    ContactsCreateContactNoteMutationVariables,
+} from "@/graphql/types";
 
-type FormValues = ContactNote & {
-    contactId: BaseKey;
-};
+import { CONTACTS_CREATE_CONTACT_NOTE_MUTATION } from "./queries";
+
+type FormValues = GetVariables<ContactsCreateContactNoteMutationVariables>;
+
+type ContactNote = GetFields<ContactsCreateContactNoteMutation>;
 
 export const ContactCommentForm = () => {
     const { id: contactId } = useParsed();
@@ -27,7 +34,7 @@ export const ContactCommentForm = () => {
             enabled: false,
         },
         meta: {
-            operation: "contactNotes",
+            gqlMutation: CONTACTS_CREATE_CONTACT_NOTE_MUTATION,
         },
         redirect: false,
         mutationMode: "optimistic",
@@ -39,7 +46,7 @@ export const ContactCommentForm = () => {
         }),
     });
 
-    const handleOnFinish = async (values: ContactNote) => {
+    const handleOnFinish = async (values: FormValues) => {
         if (!contactId) {
             return;
         }
@@ -52,7 +59,7 @@ export const ContactCommentForm = () => {
         try {
             await onFinish({
                 ...values,
-                contactId,
+                contactId: contactId as string,
             });
 
             form.resetFields();
@@ -85,9 +92,9 @@ export const ContactCommentForm = () => {
                     rules={[
                         {
                             required: true,
-                            pattern: new RegExp(
-                                /^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i,
-                            ),
+                            transform(value) {
+                                return value?.trim();
+                            },
                             message: "Please enter a note",
                         },
                     ]}

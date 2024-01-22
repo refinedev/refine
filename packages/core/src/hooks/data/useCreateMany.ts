@@ -113,8 +113,8 @@ export const useCreateMany = <
         CreateManyResponse<TData>,
         TError,
         useCreateManyParams<TData, TError, TVariables>
-    >(
-        ({
+    >({
+        mutationFn: ({
             resource: resourceName,
             values,
             meta,
@@ -152,132 +152,127 @@ export const useCreateMany = <
                 );
             }
         },
-        {
-            onSuccess: (
-                response,
-                {
-                    resource: resourceName,
-                    successNotification,
-                    dataProviderName: dataProviderNameFromProp,
-                    invalidates = ["list", "many"],
-                    values,
-                    meta,
-                    metaData,
+        onSuccess: (
+            response,
+            {
+                resource: resourceName,
+                successNotification,
+                dataProviderName: dataProviderNameFromProp,
+                invalidates = ["list", "many"],
+                values,
+                meta,
+                metaData,
+            },
+        ) => {
+            const { resource, identifier } = select(resourceName);
+            const resourcePlural = textTransformers.plural(identifier);
+
+            const dataProviderName = pickDataProvider(
+                identifier,
+                dataProviderNameFromProp,
+                resources,
+            );
+
+            const combinedMeta = getMeta({
+                resource,
+                meta: pickNotDeprecated(meta, metaData),
+            });
+
+            const notificationConfig =
+                typeof successNotification === "function"
+                    ? successNotification(response, values, identifier)
+                    : successNotification;
+
+            handleNotification(notificationConfig, {
+                key: `createMany-${identifier}-notification`,
+                message: translate(
+                    "notifications.createSuccess",
+                    {
+                        resource: translate(
+                            `${identifier}.${identifier}`,
+                            identifier,
+                        ),
+                    },
+                    `Successfully created ${resourcePlural}`,
+                ),
+                description: translate("notifications.success", "Success"),
+                type: "success",
+            });
+
+            invalidateStore({
+                resource: identifier,
+                dataProviderName,
+                invalidates,
+            });
+
+            const ids = response?.data
+                .filter((item) => item?.id !== undefined)
+                .map((item) => item.id!);
+            publish?.({
+                channel: `resources/${resource.name}`,
+                type: "created",
+                payload: {
+                    ids,
                 },
-            ) => {
-                const { resource, identifier } = select(resourceName);
-                const resourcePlural = textTransformers.plural(identifier);
-
-                const dataProviderName = pickDataProvider(
-                    identifier,
-                    dataProviderNameFromProp,
-                    resources,
-                );
-
-                const combinedMeta = getMeta({
-                    resource,
-                    meta: pickNotDeprecated(meta, metaData),
-                });
-
-                const notificationConfig =
-                    typeof successNotification === "function"
-                        ? successNotification(response, values, identifier)
-                        : successNotification;
-
-                handleNotification(notificationConfig, {
-                    key: `createMany-${identifier}-notification`,
-                    message: translate(
-                        "notifications.createSuccess",
-                        {
-                            resource: translate(
-                                `${identifier}.${identifier}`,
-                                identifier,
-                            ),
-                        },
-                        `Successfully created ${resourcePlural}`,
-                    ),
-                    description: translate("notifications.success", "Success"),
-                    type: "success",
-                });
-
-                invalidateStore({
-                    resource: identifier,
+                date: new Date(),
+                meta: {
+                    ...combinedMeta,
                     dataProviderName,
-                    invalidates,
-                });
+                },
+            });
 
-                const ids = response?.data
-                    .filter((item) => item?.id !== undefined)
-                    .map((item) => item.id!);
-                publish?.({
-                    channel: `resources/${resource.name}`,
-                    type: "created",
-                    payload: {
-                        ids,
-                    },
-                    date: new Date(),
-                    meta: {
-                        ...combinedMeta,
-                        dataProviderName,
-                    },
-                });
-
-                const {
-                    fields: _fields,
-                    operation: _operation,
-                    variables: _variables,
-                    ...rest
-                } = combinedMeta || {};
-                log?.mutate({
-                    action: "createMany",
-                    resource: resource.name,
-                    data: values,
-                    meta: {
-                        dataProviderName,
-                        ids,
-                        ...rest,
-                    },
-                });
-            },
-            onError: (
-                err: TError,
-                { resource: resourceName, errorNotification, values },
-            ) => {
-                const { identifier } = select(resourceName);
-
-                const notificationConfig =
-                    typeof errorNotification === "function"
-                        ? errorNotification(err, values, identifier)
-                        : errorNotification;
-
-                handleNotification(notificationConfig, {
-                    key: `createMany-${identifier}-notification`,
-                    description: err.message,
-                    message: translate(
-                        "notifications.createError",
-                        {
-                            resource: translate(
-                                `${identifier}.${identifier}`,
-                                identifier,
-                            ),
-                            statusCode: err.statusCode,
-                        },
-                        `There was an error creating ${identifier} (status code: ${err.statusCode}`,
-                    ),
-                    type: "error",
-                });
-            },
-            mutationKey: keys()
-                .data()
-                .mutation("createMany")
-                .get(preferLegacyKeys),
-            ...mutationOptions,
-            meta: {
-                ...mutationOptions?.meta,
-                ...getXRay("useCreateMany", preferLegacyKeys),
-            },
+            const {
+                fields: _fields,
+                operation: _operation,
+                variables: _variables,
+                ...rest
+            } = combinedMeta || {};
+            log?.mutate({
+                action: "createMany",
+                resource: resource.name,
+                data: values,
+                meta: {
+                    dataProviderName,
+                    ids,
+                    ...rest,
+                },
+            });
         },
-    );
+        onError: (
+            err: TError,
+            { resource: resourceName, errorNotification, values },
+        ) => {
+            const { identifier } = select(resourceName);
+
+            const notificationConfig =
+                typeof errorNotification === "function"
+                    ? errorNotification(err, values, identifier)
+                    : errorNotification;
+
+            handleNotification(notificationConfig, {
+                key: `createMany-${identifier}-notification`,
+                description: err.message,
+                message: translate(
+                    "notifications.createError",
+                    {
+                        resource: translate(
+                            `${identifier}.${identifier}`,
+                            identifier,
+                        ),
+                        statusCode: err.statusCode,
+                    },
+                    `There was an error creating ${identifier} (status code: ${err.statusCode}`,
+                ),
+                type: "error",
+            });
+        },
+        mutationKey: keys().data().mutation("createMany").get(preferLegacyKeys),
+        ...mutationOptions,
+        meta: {
+            ...mutationOptions?.meta,
+            ...getXRay("useCreateMany", preferLegacyKeys),
+        },
+    });
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: mutation.isLoading,

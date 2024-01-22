@@ -1,5 +1,11 @@
 # @refinedev/supabase
 
+## 5.7.5
+
+### Patch Changes
+
+-   [#5358](https://github.com/refinedev/refine/pull/5358) [`124a035cb7`](https://github.com/refinedev/refine/commit/124a035cb7f7e59444ac6a89f35d8616eb6189c6) Thanks [@jimsmart](https://github.com/jimsmart)! - fix: Support multiple events on Supabase's liveProvider's subscribe method. #5357
+
 ## 5.7.4
 
 ### Patch Changes

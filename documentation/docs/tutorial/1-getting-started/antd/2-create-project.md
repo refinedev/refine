@@ -77,7 +77,7 @@ You should see confirmation in the terminal that the Refine app is running in de
 
 Your project files contain all the code you need to run your app. To see a preview of your app in the browser:
 
-1. Click on the <a href="http://localhost:3000" rel="noopener noreferrer nofollow">localhost:3000</a> link in the terminal. This will open a new browser tab with your app running in dev mode.
+1. Click on the <a href="http://localhost:5173" rel="noopener noreferrer nofollow">localhost:5173</a> link in the terminal. This will open a new browser tab with your app running in dev mode.
 
 2. You will be redirected to the welcome page as we have not added any pages yet. We will take care of that in the [Next section](/docs/tutorial/getting-started/antd/generate-crud-pages)
 

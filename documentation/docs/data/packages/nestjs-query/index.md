@@ -36,7 +36,7 @@ import Refine from "@refinedev/core";
 import dataProvider, { GraphQLClient } from "@refinedev/nestjs-query";
 
 // highlight-next-line
-const client = new GraphQLClient("https://api.example.com/graphql");
+const client = new GraphQLClient("https://api.nestjs-query.refine.dev/graphql");
 
 const App = () => (
   <Refine
@@ -331,9 +331,9 @@ import dataProvider, { GraphQLClient, liveProvider } from "@refinedev/nestjs-que
 // highlight-next-line
 import { createClient } from "graphql-ws";
 
-const client = new GraphQLClient("https://api.example.com/graphql");
+const client = new GraphQLClient("https://api.nestjs-query.refine.dev/graphql");
 // highlight-next-line
-const wsClient = createClient({ url: "wss://api.example.com/graphql" });
+const wsClient = createClient({ url: "wss://api.nestjs-query.refine.dev/graphql" });
 
 const App = () => (
   <Refine

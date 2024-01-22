@@ -6,6 +6,7 @@ import {
     mockLegacyAuthProvider,
     mockLegacyRouterProvider,
     mockRouterBindings,
+    queryClient,
 } from "@test";
 
 import { useUpdatePassword } from "./";
@@ -579,6 +580,73 @@ describe("useUpdatePassword Hook", () => {
         await waitFor(() => {
             expect(onSuccessMock).toBeCalledTimes(2);
         });
+    });
+
+    it("should override `mutationFn` with mutationOptions.mutationFn", async () => {
+        const updatePasswordMock = jest.fn().mockResolvedValue({ data: {} });
+        const mutationFnMock = jest.fn().mockResolvedValue({ data: {} });
+
+        const { result } = renderHook(
+            () =>
+                useUpdatePassword({
+                    mutationOptions: {
+                        // mutationFn is omitted in types. So we need to use @ts-ignore test it.
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        mutationFn: mutationFnMock,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    authProvider: {
+                        ...mockAuthProvider,
+                        updatePassword: updatePasswordMock,
+                    },
+                }),
+            },
+        );
+
+        result.current.mutate({});
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(updatePasswordMock).not.toBeCalled();
+        expect(mutationFnMock).toBeCalled();
+    });
+
+    it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
+        const updatePasswordMock = jest.fn().mockResolvedValue({ data: {} });
+
+        const { result } = renderHook(
+            () =>
+                useUpdatePassword({
+                    mutationOptions: {
+                        mutationKey: ["foo", "bar"],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    authProvider: {
+                        ...mockAuthProvider,
+                        updatePassword: updatePasswordMock,
+                    },
+                }),
+            },
+        );
+
+        result.current.mutate({});
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(
+            queryClient.getMutationCache().findAll({
+                mutationKey: ["foo", "bar"],
+            }),
+        ).toHaveLength(1);
     });
 });
 

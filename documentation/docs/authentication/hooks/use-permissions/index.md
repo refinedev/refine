@@ -17,9 +17,9 @@ Data that is resolved from the `getPermissions` will be returned as the `data` i
 For example, if you want only the users with the admin role to see the create button in a list page, we have a logic in [`authProvider`](/docs/authentication/auth-provider)'s `getPermissions` method like below:
 
 ```tsx
-import type { AuthBindings } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ...
   // highlight-start
   getPermissions: async () => {

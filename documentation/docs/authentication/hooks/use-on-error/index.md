@@ -31,9 +31,9 @@ Refine uses `useOnError` internally in the data hooks to handle errors in a unif
 When an error is thrown by any data hook, the `useOnError` function is triggered with the error object. Afterward, the error object is passed to the [`onError`][on-error] method of the [`authProvider`][auth-provider], which can be utilized to redirect the user or to log them out.
 
 ```tsx
-import type { AuthBindings } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ...
   // highlight-start
   onError: (error) => {
@@ -73,9 +73,9 @@ fetch("http://example.com/payment")
 We have a logic in [`authProvider`](/docs/authentication/auth-provider)'s `onError` method like below.
 
 ```tsx
-import type { AuthBindings } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // highlight-start
   onError: (error) => {
     const status = error.status;

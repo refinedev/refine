@@ -213,11 +213,11 @@ Since we preferred refine-supabase as the data provider during the CLI project i
 <p>
 
 ```ts title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 import { supabaseClient } from "utility";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   login: async ({ email, password, providerName }) => {
     // sign in with oauth
     try {
@@ -1346,12 +1346,6 @@ function App() {
 For live features to work automatically, we set `liveMode: "auto"` in the options prop.
 
 [Refer to Live Provider docs for more information &#8594](/docs/realtime/live-provider#livemode)
-
-:::
-
-:::caution
-
-With [Supabase JS client v2](#), multiple subscription calls are not supported. Check out the related issue, [supabase/realtime#271](https://github.com/supabase/realtime/issues/271). Multiple subscriptions needs to be made in a single call, which is not supported by the current version of the `@refinedev/supabase` data provider. You can check out the related documentation in [Supabase Realtime Guides](https://supabase.com/docs/guides/realtime/postgres-changes#combination-changes).
 
 :::
 

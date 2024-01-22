@@ -51,7 +51,7 @@ export { appwriteClient, account, storage };
 `.trim();
 
 const AuthProviderTsxCode = `
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 import { account } from "./appwriteClient";
 
@@ -60,7 +60,7 @@ import { account } from "./appwriteClient";
  * This will be in sync with our appwrite client.
  */
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
     try {
       await account.createEmailSession(email, password);
