@@ -26,8 +26,8 @@ const AppTsxCode = /* tsx */ `
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 
-import { OtherComponent } from './src/other-component'
-import { RefineComponent } from './src/refine-component'
+import { OtherComponent } from "./src/other-component";
+import { RefineComponent } from "./src/refine-component";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -54,6 +54,7 @@ export const OtherComponent = () => {
     </div>
   );
 };
+
 `;
 
 const RefineComponentCode = /* tsx */ `

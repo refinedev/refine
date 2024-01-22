@@ -54,24 +54,25 @@ export const Home = () => {
 `;
 
 const AboutTsxCode = /* tsx */ `
-  export const About = () => {
-    return (
-      <div>
-        <h1>About Page</h1>
-        <a href="/">Go to Home page</a>
-      </div>
-    )
-  }
+export const About = () => {
+  return (
+    <div>
+      <h1>About Page</h1>
+      <a href="/">Go to Home page</a>
+    </div>
+  );
+};
 `;
 
 const RefineContextTsxCode = /* tsx */ `
-import { App as AntdApp, ConfigProvider } from "antd";
-import "@refinedev/antd/dist/reset.css";
-
-import { RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import { RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
+
+import { App as AntdApp, ConfigProvider } from "antd";
+
+import "@refinedev/antd/dist/reset.css";
 
 export function RefineContext({ children }) {
   return (
@@ -80,10 +81,6 @@ export function RefineContext({ children }) {
         <Refine
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          authProvider={{
-            check: async () => ({ authenticated: true }),
-            getIdentity: async () => ({ id: 1, name: "John Doe", avatar: "https://i.pravatar.cc/300" }),
-          }}
           resources={[
             {
               name: "products",
@@ -138,12 +135,10 @@ export default function App() {
 `;
 
 const ListTsxCode = `
-import { List, ShowButton, useTable } from "@refinedev/antd";
-import { BaseRecord, IResourceComponentsProps } from "@refinedev/core";
-import { Space, Table } from "antd";
-import React from "react";
+import { List, useTable } from "@refinedev/antd";
+import { Table } from "antd";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const { tableProps } = useTable();
 
   return (

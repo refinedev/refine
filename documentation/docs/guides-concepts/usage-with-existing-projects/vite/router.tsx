@@ -52,14 +52,14 @@ export const Home = () => {
 `;
 
 const AboutTsxCode = /* tsx */ `
-  export const About = () => {
-    return (
-      <div>
-        <h1>About Page</h1>
-        <a href="/">Go to Home page</a>
-      </div>
-    )
-  }
+export const About = () => {
+  return (
+    <div>
+      <h1>About Page</h1>
+      <a href="/">Go to Home page</a>
+    </div>
+  );
+};
 `;
 
 const RefineContextTsxCode = /* tsx */ `
@@ -69,19 +69,19 @@ import dataProvider from "@refinedev/simple-rest";
 
 export function RefineContext({ children }) {
   return (
-        <Refine
-          routerProvider={routerProvider}
-          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          resources={[
-            {
-              name: "products",
-              list: "/refine/products",
-            },
-          ]}
-          options={{ syncWithLocation: true }}
-        >
-          {children}
-        </Refine>
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "products",
+          list: "/refine/products",
+        },
+      ]}
+      options={{ syncWithLocation: true }}
+    >
+      {children}
+    </Refine>
   );
 }
 `;
@@ -89,7 +89,7 @@ export function RefineContext({ children }) {
 const AppTsxCode = /* tsx */ `
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 
-import {ErrorComponent} from '@refinedev/core'
+import { ErrorComponent } from "@refinedev/core";
 import { NavigateToResource } from "@refinedev/react-router-v6";
 
 import { Home } from "./pages/home.tsx";
@@ -127,16 +127,16 @@ const ListTsxCode = `
 import { useList } from "@refinedev/core";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-  const { data: products } = useList()
+  const { data: products } = useList();
 
   return (
     <div>
-    <h1>Refine Products Page</h1>
-    <ul>
-    {products?.data?.map((record) => (
-      <li key={record.id}>{record.name}</li>
-    ))}
-    </ul>
+      <h1>Refine Products Page</h1>
+      <ul>
+        {products?.data?.map((record) => (
+          <li key={record.id}>{record.name}</li>
+        ))}
+      </ul>
     </div>
   );
 };
