@@ -20,12 +20,15 @@ export interface SandpackFileExplorerProp {
     autoHiddenFiles?: boolean;
 
     initialCollapsedFolder?: string[];
+
+    hasSolve?: boolean;
 }
 
 export const TutorialFileExplorer = ({
     className,
     autoHiddenFiles = false,
     initialCollapsedFolder = [],
+    hasSolve,
     ...props
 }: SandpackFileExplorerProp &
     React.HTMLAttributes<HTMLDivElement>): JSX.Element | null => {
@@ -98,7 +101,7 @@ export const TutorialFileExplorer = ({
                 "border-r border-r-gray-300 dark:border-r-gray-700",
                 "flex-shrink-0",
                 "!w-40",
-                "pb-12",
+                hasSolve && "pb-12",
             )}
             {...props}
         >

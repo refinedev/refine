@@ -331,8 +331,6 @@ const TutorialSandpackBase = ({
         showTabs: true,
         initMode: "lazy",
         classes: {
-            "sp-file-explorer":
-                "!h-full border-r border-r-gray-300 dark:border-r-gray-700 flex-shrink-0 !w-40 pb-12",
             "sp-layout": "!rounded-lg !border-gray-300 dark:!border-gray-700",
             "sp-close-button": "!visible",
             "sp-editor":
@@ -559,7 +557,10 @@ const SandpackRightSide = ({
                             }}
                         >
                             {showFiles ? (
-                                <TutorialFileExplorer autoHiddenFiles={true} />
+                                <TutorialFileExplorer
+                                    autoHiddenFiles={true}
+                                    hasSolve={!!finalFiles}
+                                />
                             ) : null}
                             {finalFiles ? (
                                 <SolveButton finalFiles={finalFiles} />
