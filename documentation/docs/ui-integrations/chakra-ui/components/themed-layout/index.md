@@ -284,7 +284,7 @@ Here is an example of how to replace the default [`<ThemedTitleV2>`][themed-titl
 ```tsx
 import { Refine } from "@refinedev/core";
 // highlight-next-line
-import { ThemedLayoutV2, ThemedTitle } from "@refinedev/chakra-ui";
+import { ThemedLayoutV2, ThemedTitleV2 } from "@refinedev/chakra-ui";
 
 // highlight-next-line
 import { MyLargeIcon, MySmallIcon } from "./MyIcon";
