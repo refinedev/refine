@@ -125,7 +125,7 @@ import { NextJSPagesRouter } from './nextjs/pages/router';
 
 First, we need to install necessary packages:
 
-<InstallPackagesCommand args="@refinedev/core @refinedev/nextjs-router @refinedev/antd @refinedev/simple-rest" />
+<InstallPackagesCommand args="@refinedev/core @refinedev/nextjs-router @refinedev/simple-rest" />
 
 :::simple
 
@@ -143,7 +143,7 @@ First, we need to install necessary packages:
 
 ## Adding UI to Router Examples
 
-In the following examples below, we will integrate AntD layout from `@refinedev/antd` package.
+In the following examples below, as a follow-up from the previous router examples, we will add AntD layout from `@refinedev/antd` package.
 
 <Tabs wrapContent={false} defaultValue="vite">
 
@@ -199,7 +199,7 @@ First, we need to install necessary packages:
 :::simple
 
 - We start by updating `src/components/layout.tsx` file, adding necessary imports from `@refinedev/antd` package.
-- Then we modify `pages/refine/products.tsx` file, here we are using `List` component and `useTable` hook from `@refinedev/antd` pacakge.
+- Then we modify `pages/refine/products.tsx` file, here we are using `List` component and `useTable` hook from `@refinedev/antd` package.
 
 :::
 
