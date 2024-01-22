@@ -31,7 +31,7 @@ export default function App(): JSX.Element {
 }
 ```
 
-If you're having hard time updating file, <AddDataProviderToRefine>Click to update the file</AddDataProviderToRefine>.
+<AddDataProviderToRefine />
 
 :::tip
 

@@ -43,7 +43,7 @@ export default function App(): JSX.Element {
 }
 ```
 
-If you're having hard time updating file, <MountListProductsInAppTsx>Click to update the file</MountListProductsInAppTsx>.
+<MountListProductsInAppTsx />
 
 ## Refactoring to use `useTable`
 
@@ -98,7 +98,7 @@ export const ListProducts = () => {
 };
 ```
 
-If you're having hard time updating file, <RefactorToUseTableInListProducts>Click to update the file</RefactorToUseTableInListProducts>.
+<RefactorToUseTableInListProducts />
 
 ## Handling Relationships
 
@@ -164,7 +164,7 @@ export const ListProducts = () => {
 };
 ```
 
-If you're having hard time updating file, <AddRelationHandlingToUseTableInListProducts>Click to update the file</AddRelationHandlingToUseTableInListProducts>.
+<AddRelationHandlingToUseTableInListProducts />
 
 ## Adding `getMany` to the Data Provider
 
@@ -217,7 +217,7 @@ export const dataProvider: DataProvider = {
 };
 ```
 
-If you're having hard time updating file, <AddGetManyMethodToDataProvider>Click to update the file</AddGetManyMethodToDataProvider>.
+<AddGetManyMethodToDataProvider />
 
 Now our `useMany` method will be able to fetch the categories in a single request and prevent us from bloating our network.
 
@@ -286,7 +286,7 @@ export const dataProvider: DataProvider = {
 };
 ```
 
-If you're having hard time updating file, <AddTotalToGetListMethodInDataProvider>Click to update the file</AddTotalToGetListMethodInDataProvider>.
+<AddTotalToGetListMethodInDataProvider />
 
 ## Adding Pagination to the Table
 
@@ -395,7 +395,7 @@ export const ListProducts = () => {
 };
 ```
 
-If you're having hard time updating file, <AddPaginationToUseTableInListProducts>Click to update the file</AddPaginationToUseTableInListProducts>.
+<AddPaginationToUseTableInListProducts />
 
 Now when we change the page, `useTable` will automatically fetch the new page and update the table.
 
@@ -503,7 +503,7 @@ export const ListProducts = () => {
 };
 ```
 
-If you're having hard time updating file, <AddHeaderSortersToUseTableInListProducts>Click to update the file</AddHeaderSortersToUseTableInListProducts>.
+<AddHeaderSortersToUseTableInListProducts />
 
 ## Summary
 

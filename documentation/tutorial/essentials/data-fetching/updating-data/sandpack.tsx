@@ -1,7 +1,8 @@
 import React from "react";
 import { TutorialSandpack } from "@site/src/refine-theme/tutorial-sandpack";
 import { useSandpack } from "@codesandbox/sandpack-react";
-import clsx from "clsx";
+import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
+import { TutorialCreateFileButton } from "@site/src/refine-theme/tutorial-create-file-button";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -178,15 +179,11 @@ export default function App(): JSX.Element {
 }
 `.trim();
 
-export const AddUpdateMethod = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddUpdateMethod = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/data-provider.ts",
@@ -194,28 +191,15 @@ export const AddUpdateMethod = ({
                 );
                 sandpack.setActiveFile("/data-provider.ts");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const CreateEditProductFile = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const CreateEditProductFile = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <button
-            type="button"
+        <TutorialCreateFileButton
             onClick={() => {
                 sandpack.addFile({
                     "/edit-product.tsx": {
@@ -225,34 +209,16 @@ export const CreateEditProductFile = ({
                 sandpack.openFile("/edit-product.tsx");
                 sandpack.setActiveFile("/edit-product.tsx");
             }}
-            className={clsx(
-                "mb-4",
-                "rounded-md",
-                "cursor-pointer",
-                "appearance-none",
-                "focus:outline-none",
-                "py-2 px-3",
-                "[&>p]:!text-gray-0",
-                "[&>p>code]:!text-gray-0",
-                "bg-refine-link-light",
-                "hover:brightness-110",
-                "[&>p]:!mb-0",
-            )}
-        >
-            {children}
-        </button>
+            name="edit-product.tsx"
+        />
     );
 };
 
-export const AddUseUpdateToEditProduct = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddUseUpdateToEditProduct = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/edit-product.tsx",
@@ -260,39 +226,19 @@ export const AddUseUpdateToEditProduct = ({
                 );
                 sandpack.setActiveFile("/edit-product.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddEditProductToAppTsx = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddEditProductToAppTsx = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile("/App.tsx", AppTsxWithEditProductCode);
                 sandpack.setActiveFile("/App.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };

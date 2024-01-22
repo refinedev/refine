@@ -1,12 +1,13 @@
 import React from "react";
 import { TutorialSandpack } from "@site/src/refine-theme/tutorial-sandpack";
 import { useSandpack } from "@codesandbox/sandpack-react";
-import clsx from "clsx";
+import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
+import { TutorialCreateFileButton } from "@site/src/refine-theme/tutorial-create-file-button";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
         <TutorialSandpack
-            showFiles={false}
+            showFiles={true}
             dependencies={{
                 "@refinedev/core": "latest",
             }}
@@ -33,6 +34,35 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
                     code: ListProductTsxCode,
                     active: true,
                     // hidden: true,
+                },
+            }}
+            finalFiles={{
+                "App.tsx": {
+                    code: AppTsxWithEditProductCode,
+                },
+                "styles.css": {
+                    code: StylesCssCode,
+                    hidden: true,
+                },
+                "data-provider.ts": {
+                    code: DataProviderWithCreateMethodTsCode,
+                },
+                "show-product.tsx": {
+                    code: ShowProductTsxCode,
+                    // hidden: true,
+                },
+                "edit-product.tsx": {
+                    code: RefactorEditProductTsxWithFormCode,
+                    // hidden: true,
+                },
+                "list-products.tsx": {
+                    code: ListProductTsxCode,
+                    active: true,
+                    // hidden: true,
+                },
+                "create-product.tsx": {
+                    code: CreateProductFormWithCategoryRelationTsxCode,
+                    hidden: false,
                 },
             }}
         >
@@ -558,15 +588,11 @@ export const EditProduct = () => {
 };
 `.trim();
 
-export const AddCreateMethod = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddCreateMethod = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/data-provider.ts",
@@ -574,28 +600,16 @@ export const AddCreateMethod = ({
                 );
                 sandpack.setActiveFile("/data-provider.ts");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const CreateCreateProductFile = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const CreateCreateProductFile = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <button
-            type="button"
+        <TutorialCreateFileButton
+            name="/create-product.tsx"
             onClick={() => {
                 sandpack.addFile({
                     "/create-product.tsx": {
@@ -605,59 +619,28 @@ export const CreateCreateProductFile = ({
                 sandpack.openFile("/create-product.tsx");
                 sandpack.setActiveFile("/create-product.tsx");
             }}
-            className={clsx(
-                "mb-4",
-                "rounded-md",
-                "cursor-pointer",
-                "appearance-none",
-                "focus:outline-none",
-                "py-2 px-3",
-                "[&>p]:!text-gray-0",
-                "[&>p>code]:!text-gray-0",
-                "bg-refine-link-light",
-                "hover:brightness-110",
-                "[&>p]:!mb-0",
-            )}
-        >
-            {children}
-        </button>
+        />
     );
 };
 
-export const AddCreateProductToAppTsx = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddCreateProductToAppTsx = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile("/App.tsx", AppTsxWithCreateProductCode);
                 sandpack.setActiveFile("/App.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddUseFormToCreateProduct = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddUseFormToCreateProduct = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/create-product.tsx",
@@ -665,27 +648,15 @@ export const AddUseFormToCreateProduct = ({
                 );
                 sandpack.setActiveFile("/create-product.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddPriceUpdateToCreateProduct = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddPriceUpdateToCreateProduct = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/create-product.tsx",
@@ -693,27 +664,15 @@ export const AddPriceUpdateToCreateProduct = ({
                 );
                 sandpack.setActiveFile("/create-product.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddCategoryRelationToCreateProduct = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddCategoryRelationToCreateProduct = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/create-product.tsx",
@@ -721,52 +680,28 @@ export const AddCategoryRelationToCreateProduct = ({
                 );
                 sandpack.setActiveFile("/create-product.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const MountEditProductInAppTsx = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const MountEditProductInAppTsx = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile("/App.tsx", AppTsxWithEditProductCode);
                 sandpack.setActiveFile("/App.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const RefactorToUseFormInEditProduct = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const RefactorToUseFormInEditProduct = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/edit-product.tsx",
@@ -774,14 +709,6 @@ export const RefactorToUseFormInEditProduct = ({
                 );
                 sandpack.setActiveFile("/edit-product.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };

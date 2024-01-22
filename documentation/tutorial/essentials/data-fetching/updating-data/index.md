@@ -51,17 +51,13 @@ export const dataProvider: DataProvider = {
 };
 ```
 
-If you're having hard time updating file, <AddUpdateMethod>Click to update the file</AddUpdateMethod>.
+<AddUpdateMethod />
 
 ## Using the `useUpdate` Hook
 
 After implementing the `update` method, we'll be able to call `useUpdate` hook and fetch a single record from our API. Let's create a component called `EditProduct` and mount it inside our `<Refine />` component. Then, we'll use the `useUpdate` hook inside our `EditProduct` to update a single record of `products` entity from our API.
 
-<CreateEditProductFile>
-
-Create `/edit-product.tsx`
-
-</CreateEditProductFile>
+<CreateEditProductFile />
 
 Initially, we'll include a `useOne` hook call in our `EditProduct` component to fetch the record we want to update. Then, we'll use the `useUpdate` hook to update the record.
 
@@ -102,7 +98,7 @@ export const EditProduct = () => {
 };
 ```
 
-If you're having hard time updating file, <AddUseUpdateToEditProduct>Click to update the file</AddUseUpdateToEditProduct>.
+<AddUseUpdateToEditProduct />
 
 Finally, we'll mount our `EditProduct` component inside our `<Refine />` component.
 
@@ -128,7 +124,7 @@ export default function App(): JSX.Element {
 }
 ```
 
-If you're having hard time updating file, <AddEditProductToAppTsx>Click to update the file</AddEditProductToAppTsx>.
+<AddEditProductToAppTsx />
 
 We should be able to see the product name and price on our screen now. When we click the `Update Price` button, we'll be able to see the price of the product is updated.
 

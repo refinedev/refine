@@ -42,17 +42,13 @@ export const dataProvider: DataProvider = {
 };
 ```
 
-If you're having hard time updating file, <AddGetOneMethod>Click to update the file</AddGetOneMethod>.
+<AddGetOneMethod />
 
 ## Using the `useOne` Hook
 
 After implementing the `getOne` method, we'll be able to call `useOne` hook and fetch a single record from our API. Let's create a component called `ShowProduct` and mount it inside our `<Refine />` component. Then, we'll use the `useOne` hook inside our `ShowProduct` to fetch a single record of `products` entity from our API.
 
-<CreateShowProductFile>
-
-Create `/show-product.tsx`
-
-</CreateShowProductFile>
+<CreateShowProductFile />
 
 Then, we'll import `useOne` hook and use it inside our `ShowProduct` component.
 
@@ -74,7 +70,7 @@ export const ShowProduct = () => {
 };
 ```
 
-If you're having hard time updating file, <AddUseOneToShowProduct>Click to update the file</AddUseOneToShowProduct>.
+<AddUseOneToShowProduct />
 
 Finally, we'll mount our `ShowProduct` component inside our `<Refine />` component.
 
@@ -97,7 +93,7 @@ export default function App(): JSX.Element {
 }
 ```
 
-If you're having hard time updating file, <AddShowProductToAppTsx>Click to update the file</AddShowProductToAppTsx>.
+<AddShowProductToAppTsx />
 
 We should be able to see the product name on our screen now.
 

@@ -1,7 +1,8 @@
 import React from "react";
 import { TutorialSandpack } from "@site/src/refine-theme/tutorial-sandpack";
 import { useSandpack } from "@codesandbox/sandpack-react";
-import clsx from "clsx";
+import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
+import { TutorialCreateFileButton } from "@site/src/refine-theme/tutorial-create-file-button";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -480,15 +481,11 @@ export default function App(): JSX.Element {
 }
 `.trim();
 
-export const AddGetListMethod = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddGetListMethod = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/data-provider.ts",
@@ -496,28 +493,15 @@ export const AddGetListMethod = ({
                 );
                 sandpack.setActiveFile("/data-provider.ts");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const CreateListProductsFile = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const CreateListProductsFile = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <button
-            type="button"
+        <TutorialCreateFileButton
             onClick={() => {
                 sandpack.addFile({
                     "/list-products.tsx": {
@@ -527,34 +511,16 @@ export const CreateListProductsFile = ({
                 sandpack.openFile("/list-products.tsx");
                 sandpack.setActiveFile("/list-products.tsx");
             }}
-            className={clsx(
-                "mb-4",
-                "rounded-md",
-                "cursor-pointer",
-                "appearance-none",
-                "focus:outline-none",
-                "py-2 px-3",
-                "[&>p]:!text-gray-0",
-                "[&>p>code]:!text-gray-0",
-                "bg-refine-link-light",
-                "hover:brightness-110",
-                "[&>p]:!mb-0",
-            )}
-        >
-            {children}
-        </button>
+            name="list-products.tsx"
+        />
     );
 };
 
-export const AddUseListToListProducts = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddUseListToListProducts = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/list-products.tsx",
@@ -562,52 +528,28 @@ export const AddUseListToListProducts = ({
                 );
                 sandpack.setActiveFile("/list-products.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddListProductsToAppTsx = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddListProductsToAppTsx = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile("/App.tsx", AppTsxWithListProductsCode);
                 sandpack.setActiveFile("/App.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddPaginationToGetList = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddPaginationToGetList = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/data-provider.ts",
@@ -615,27 +557,15 @@ export const AddPaginationToGetList = ({
                 );
                 sandpack.setActiveFile("/data-provider.ts");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddPaginationToListProducts = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddPaginationToListProducts = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/list-products.tsx",
@@ -643,27 +573,15 @@ export const AddPaginationToListProducts = ({
                 );
                 sandpack.setActiveFile("/list-products.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddSortingToGetList = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddSortingToGetList = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/data-provider.ts",
@@ -671,27 +589,15 @@ export const AddSortingToGetList = ({
                 );
                 sandpack.setActiveFile("/data-provider.ts");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddSortingToListProducts = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddSortingToListProducts = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/list-products.tsx",
@@ -699,27 +605,15 @@ export const AddSortingToListProducts = ({
                 );
                 sandpack.setActiveFile("/list-products.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddFiltersToGetList = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddFiltersToGetList = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/data-provider.ts",
@@ -727,27 +621,15 @@ export const AddFiltersToGetList = ({
                 );
                 sandpack.setActiveFile("/data-provider.ts");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddFiltersToListProducts = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddFiltersToListProducts = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/list-products.tsx",
@@ -755,14 +637,6 @@ export const AddFiltersToListProducts = ({
                 );
                 sandpack.setActiveFile("/list-products.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };

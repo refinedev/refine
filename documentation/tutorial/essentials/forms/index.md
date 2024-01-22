@@ -65,17 +65,13 @@ export const dataProvider: DataProvider = {
 };
 ```
 
-If you're having hard time updating file, <AddCreateMethod>Click to update the file</AddCreateMethod>.
+<AddCreateMethod />
 
 ## Using the `useForm` Hook
 
 After implementing the `create` method, we'll be able to call `useForm` hook and create a single record from our API. Let's create a component called `CreateProduct` and mount it inside our `<Refine />` component. Then, we'll use the `useForm` hook inside our `CreateProduct` to create a record of `products` entity from our API.
 
-<CreateCreateProductFile>
-
-Create `/create-product.tsx`
-
-</CreateCreateProductFile>
+<CreateCreateProductFile />
 
 Now, we'll mount our `CreateProduct` component inside our `<Refine />` component. Let's add the following lines to our `src/App.tsx` file:
 
@@ -103,7 +99,7 @@ export default function App(): JSX.Element {
 }
 ```
 
-If you're having hard time updating file, <AddCreateProductToAppTsx>Click to update the file</AddCreateProductToAppTsx>.
+<AddCreateProductToAppTsx />
 
 We'll be using the `useForm` hook and have form fields for `name`, `description`, `price`, `material` and `category`.
 
@@ -150,7 +146,7 @@ export const CreateProduct = () => {
 };
 ```
 
-If you're having hard time updating file, <AddUseFormToCreateProduct>Click to update the file</AddUseFormToCreateProduct>.
+<AddUseFormToCreateProduct />
 
 Now, we'll be able to create a record using our `CreateProduct` component.
 
@@ -189,7 +185,7 @@ export const CreateProduct = () => {
 };
 ```
 
-If you're having hard time updating file, <AddPriceUpdateToCreateProduct>Click to update the file</AddPriceUpdateToCreateProduct>.
+<AddPriceUpdateToCreateProduct />
 
 We're now able to create a record with the `price` value properly formatted.
 
@@ -252,7 +248,7 @@ export const CreateProduct = () => {
 };
 ```
 
-If you're having hard time updating file, <AddCategoryRelationToCreateProduct>Click to update the file</AddCategoryRelationToCreateProduct>.
+<AddCategoryRelationToCreateProduct />
 
 And we'll finally be able to create a proper record with all the necessary fields in right format and with the correct relationships.
 
@@ -291,7 +287,7 @@ export default function App(): JSX.Element {
 }
 ```
 
-If you're having hard time updating file, <MountEditProductInAppTsx>Click to update the file</MountEditProductInAppTsx>.
+<MountEditProductInAppTsx />
 
 Now, we should be seeing our `EditProduct` component, let's import our `useForm` hook to replace both `useOne` and `useUpdate` hooks.
 
@@ -394,7 +390,7 @@ export const EditProduct = () => {
 };
 ```
 
-If you're having hard time updating file, <RefactorToUseFormInEditProduct>Click to update the file</RefactorToUseFormInEditProduct>.
+<RefactorToUseFormInEditProduct />
 
 Now we'll be able to update a record using our `EditProduct` component with `useForm` and provide all the necessary fields with the correct formats and relationships.
 

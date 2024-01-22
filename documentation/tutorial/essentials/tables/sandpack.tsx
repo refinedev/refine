@@ -1,7 +1,7 @@
 import React from "react";
 import { TutorialSandpack } from "@site/src/refine-theme/tutorial-sandpack";
 import { useSandpack } from "@codesandbox/sandpack-react";
-import clsx from "clsx";
+import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -877,40 +877,24 @@ export const ListProducts = () => {
 };
 `.trim();
 
-export const MountListProductsInAppTsx = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const MountListProductsInAppTsx = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile("/App.tsx", AppTsxWithListProductsTsxCode);
                 sandpack.setActiveFile("/App.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const RefactorToUseTableInListProducts = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const RefactorToUseTableInListProducts = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/list-products.tsx",
@@ -918,27 +902,15 @@ export const RefactorToUseTableInListProducts = ({
                 );
                 sandpack.setActiveFile("/list-products.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddRelationHandlingToUseTableInListProducts = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddRelationHandlingToUseTableInListProducts = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/list-products.tsx",
@@ -946,27 +918,15 @@ export const AddRelationHandlingToUseTableInListProducts = ({
                 );
                 sandpack.setActiveFile("/list-products.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddGetManyMethodToDataProvider = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddGetManyMethodToDataProvider = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/data-provider.ts",
@@ -974,27 +934,15 @@ export const AddGetManyMethodToDataProvider = ({
                 );
                 sandpack.setActiveFile("/data-provider.ts");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddTotalToGetListMethodInDataProvider = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddTotalToGetListMethodInDataProvider = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/data-provider.ts",
@@ -1002,27 +950,15 @@ export const AddTotalToGetListMethodInDataProvider = ({
                 );
                 sandpack.setActiveFile("/data-provider.ts");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddPaginationToUseTableInListProducts = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddPaginationToUseTableInListProducts = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/list-products.tsx",
@@ -1030,27 +966,15 @@ export const AddPaginationToUseTableInListProducts = ({
                 );
                 sandpack.setActiveFile("/list-products.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddHeaderSortersToUseTableInListProducts = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddHeaderSortersToUseTableInListProducts = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/list-products.tsx",
@@ -1058,14 +982,6 @@ export const AddHeaderSortersToUseTableInListProducts = ({
                 );
                 sandpack.setActiveFile("/list-products.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };

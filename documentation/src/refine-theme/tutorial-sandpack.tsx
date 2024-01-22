@@ -15,12 +15,13 @@ import { nightOwl, aquaBlue } from "@codesandbox/sandpack-themes";
 
 import {
     SandpackCodeEditor,
-    SandpackFileExplorer,
     SandpackPreview,
     SandpackProvider,
+    useSandpack,
 } from "@codesandbox/sandpack-react";
 
 import { useColorMode } from "@docusaurus/theme-common";
+import { TutorialFileExplorer } from "./tutorial-file-explorer";
 
 type SandpackProps = React.ComponentProps<SandpackInternal> & {
     startRoute?: string;
@@ -42,7 +43,11 @@ type SandpackProps = React.ComponentProps<SandpackInternal> & {
 };
 
 type Props = React.PropsWithChildren<
-    SandpackProps & { contentOnly?: boolean; contentPercentage?: number }
+    SandpackProps & {
+        contentOnly?: boolean;
+        contentPercentage?: number;
+        finalFiles?: SandpackFiles;
+    }
 >;
 
 const maxPercentage = 70;
@@ -51,6 +56,7 @@ export const TutorialSandpack = ({
     children,
     contentOnly,
     contentPercentage = 45,
+    finalFiles,
     ...sandpackProps
 }: Props) => {
     const [viewPercentage, setViewPercentage] =
@@ -234,6 +240,7 @@ export const TutorialSandpack = ({
                         startRoute={sandpackProps.startRoute}
                         parentResizing={resizing}
                         codeEditorOptions={codeEditorOptions}
+                        finalFiles={finalFiles}
                     />
                 </div>
             </div>
@@ -325,20 +332,22 @@ const TutorialSandpackBase = ({
         initMode: "lazy",
         classes: {
             "sp-file-explorer":
-                "!h-full !w-[200px] border-r border-r-gray-300 dark:border-r-gray-700",
+                "!h-full border-r border-r-gray-300 dark:border-r-gray-700 flex-shrink-0 !w-40 pb-12",
             "sp-layout": "!rounded-lg !border-gray-300 dark:!border-gray-700",
             "sp-close-button": "!visible",
             "sp-editor":
-                "!h-full !gap-0 border-r !border-r-gray-300 dark:!border-r-gray-700",
+                "!h-full !gap-0 border-r !border-r-gray-300 dark:!border-r-gray-700 overflow-hidden",
             "sp-stack": "!h-full",
             "sp-tabs":
                 "!border-b-gray-300 dark:!border-b-gray-700 !bg-gray-0 dark:!bg-gray-800",
-            "sp-tabs-scrollable-container": "!min-h-[32px]",
+            "sp-tabs-scrollable-container": "!min-h-[32px] scrollbar-hidden",
             "sp-input": "!text-gray-800 dark:!text-gray-100",
             "sp-cm": clsx(
                 "p-0 bg-transparent",
                 "[&>.cm-editor]:!bg-refine-react-light-code",
                 "[&>.cm-editor]:dark:!bg-refine-react-dark-code",
+                "[&_.cm-gutters]:!bg-refine-react-light-code",
+                "[&_.cm-gutters]:dark:!bg-refine-react-dark-code",
                 "[&_.cm-activeLine]:!bg-gray-100 [&_.cm-activeLine]:dark:!bg-gray-800",
             ),
             "sp-icon-standalone":
@@ -434,11 +443,13 @@ const SandpackRightSide = ({
     startRoute,
     parentResizing,
     sandpackProps,
+    finalFiles,
 }: {
     parentResizing: boolean;
     startRoute: string;
     codeEditorOptions: CodeEditorProps;
     sandpackProps: SandpackProps;
+    finalFiles?: SandpackFiles;
 }) => {
     const [viewPercentage, setViewPercentage] = React.useState(50);
     const [resizing, setResizing] = React.useState(false);
@@ -539,6 +550,7 @@ const SandpackRightSide = ({
                                 "rounded-[4px]",
                                 "border border-gray-300 dark:border-gray-700",
                                 "flex",
+                                "relative",
                             )}
                             style={{
                                 height: hidePreview
@@ -547,12 +559,15 @@ const SandpackRightSide = ({
                             }}
                         >
                             {showFiles ? (
-                                <SandpackFileExplorer autoHiddenFiles={true} />
+                                <TutorialFileExplorer autoHiddenFiles={true} />
+                            ) : null}
+                            {finalFiles ? (
+                                <SolveButton finalFiles={finalFiles} />
                             ) : null}
                             <SandpackCodeEditor
                                 {...codeEditorOptions}
-                                showTabs={true}
-                                showLineNumbers={true}
+                                showTabs={false}
+                                showLineNumbers
                                 closableTabs={true}
                                 initMode="lazy"
                                 style={{}}
@@ -636,6 +651,97 @@ const SandpackRightSide = ({
     );
 };
 
+const SolveButton = ({ finalFiles }: { finalFiles: SandpackFiles }) => {
+    const { sandpack } = useSandpack();
+    const [solved, setSolved] = React.useState(false);
+
+    const onClick = () => {
+        if (solved) {
+            sandpack?.resetAllFiles();
+        } else {
+            sandpack?.updateFile(finalFiles);
+        }
+        setSolved((p) => !p);
+    };
+
+    return (
+        <div
+            className={clsx(
+                "absolute",
+                "left-0",
+                "bottom-0",
+                "w-40",
+                "px-4",
+                "pb-4",
+                "flex",
+                "items-center",
+                "justify-center",
+            )}
+        >
+            <button
+                type="button"
+                onClick={onClick}
+                className={clsx(
+                    "appearance-none",
+                    "focus:outline-none",
+                    "border-none",
+                    "relative",
+                    "p-2",
+                    "flex",
+                    "justify-center",
+                    "items-center",
+                    solved && [
+                        "text-gray-800 dark:text-gray-100",
+                        "bg-gray-300",
+                        "hover:bg-gray-200",
+                        "dark:bg-gray-600",
+                    ],
+                    !solved && [
+                        "text-gray-100",
+                        "bg-refine-react-light-link",
+                        "dark:bg-refine-react-dark-link",
+                        "hover:text-gray-0",
+                        "hover:brightness-110",
+                    ],
+                    "active:brightness-90",
+                    "rounded-[32px]",
+                    "group/solve-button",
+                    "w-full",
+                    "transition-[filter,color,background-color] duration-200 ease-in-out",
+                )}
+            >
+                <ResetIcon
+                    className={clsx(
+                        solved ? "scale-100" : "scale-0",
+                        "absolute",
+                        "top-1/2",
+                        "left-2",
+                        "-translate-y-1/2",
+                        "transition-transform duration-200 ease-in-out",
+                    )}
+                />
+                <span
+                    className={clsx(
+                        "transition-colors duration-200 ease-in-out",
+                    )}
+                >
+                    {solved ? "Reset" : "Solve"}
+                </span>
+                <ChevronRightIcon
+                    className={clsx(
+                        solved ? "scale-0" : "scale-100",
+                        "absolute",
+                        "top-1/2",
+                        "right-2",
+                        "-translate-y-1/2",
+                        "transition-transform duration-200 ease-in-out",
+                    )}
+                />
+            </button>
+        </div>
+    );
+};
+
 const ResizeHandleIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -648,5 +754,45 @@ const ResizeHandleIcon = (props: React.SVGProps<SVGSVGElement>) => (
         <g fill="currentColor" strokeWidth={0}>
             <path d="M4 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM4 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM2 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
         </g>
+    </svg>
+);
+
+const ChevronRightIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={16}
+        height={16}
+        viewBox="0 0 16 16"
+        fill="none"
+        {...props}
+    >
+        <path
+            fill="currentColor"
+            d="M6.646 5.854a.5.5 0 1 1 .708-.708l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L8.793 8 6.646 5.854Z"
+        />
+        <path
+            fill="currentColor"
+            fillRule="evenodd"
+            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16Zm0-1A7 7 0 1 0 8 1a7 7 0 0 0 0 14Z"
+            clipRule="evenodd"
+        />
+    </svg>
+);
+
+const ResetIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={16}
+        height={16}
+        viewBox="0 0 16 16"
+        fill="none"
+        {...props}
+    >
+        <path
+            fill="currentColor"
+            fillRule="evenodd"
+            d="M1.993 4.403A6.996 6.996 0 0 1 8 1a6.995 6.995 0 0 1 5.923 3.267.5.5 0 0 0 .845-.534A7.995 7.995 0 0 0 8 0a7.999 7.999 0 0 0-8 8 .5.5 0 0 0 .724.447l3-1.5a.5.5 0 0 0 .118-.812L1.993 4.403Zm13.77 3.172A.5.5 0 0 1 16 8a8 8 0 0 1-8 8 7.995 7.995 0 0 1-6.768-3.733.5.5 0 1 1 .845-.534A6.995 6.995 0 0 0 8 15a6.996 6.996 0 0 0 6.007-3.403l-1.849-1.732a.5.5 0 0 1 .118-.812l3-1.5a.5.5 0 0 1 .487.022Z"
+            clipRule="evenodd"
+        />
     </svg>
 );

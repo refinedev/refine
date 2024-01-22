@@ -41,17 +41,13 @@ export const dataProvider: DataProvider = {
 };
 ```
 
-If you're having hard time updating file, <AddGetListMethod>Click to update the file</AddGetListMethod>.
+<AddGetListMethod />
 
 ## Using the `useList` Hook
 
 After implementing the `getList` method, we'll be able to call `useList` hook and fetch a list of records from our API. Let's create a component called `ListProducts` and mount it inside our `<Refine />` component. Then, we'll use the `useList` hook inside our `ListProducts` to fetch a list of records of `products` entity from our API.
 
-<CreateListProductsFile>
-
-Create `/list-products.tsx`
-
-</CreateListProductsFile>
+<CreateListProductsFile />
 
 Try to add the following lines to your `src/list-products.tsx` file:
 
@@ -90,7 +86,7 @@ export const ListProducts = () => {
 };
 ```
 
-If you're having hard time updating file, <AddUseListToListProducts>Click to update the file</AddUseListToListProducts>.
+<AddUseListToListProducts />
 
 Finally, we'll mount our `ListProducts` component inside our `<Refine />` component.
 
@@ -118,7 +114,7 @@ export default function App(): JSX.Element {
 }
 ```
 
-If you're having hard time updating file, <AddListProductsToAppTsx>Click to update the file</AddListProductsToAppTsx>.
+<AddListProductsToAppTsx />
 
 We should be able to see the list of products on our screen now.
 
@@ -158,7 +154,7 @@ export const dataProvider: DataProvider = {
 };
 ```
 
-If you're having hard time updating file, <AddPaginationToGetList>Click to update the file</AddPaginationToGetList>.
+<AddPaginationToGetList />
 
 Now, we'll be able to paginate the list of products. Let's add pagination to our `ListProducts` component.
 
@@ -182,7 +178,7 @@ export const ListProducts = () => {
 };
 ```
 
-If you're having hard time updating file, <AddPaginationToListProducts>Click to update the file</AddPaginationToListProducts>.
+<AddPaginationToListProducts />
 
 We should be able to see the first 10 products on our screen now.
 
@@ -235,7 +231,7 @@ export const dataProvider: DataProvider = {
 };
 ```
 
-If you're having hard time updating file, <AddSortingToGetList>Click to update the file</AddSortingToGetList>.
+<AddSortingToGetList />
 
 Now, we'll be able to sort the list of products. Let's add sorting to our `ListProducts` component.
 
@@ -260,7 +256,7 @@ export const ListProducts = () => {
 };
 ```
 
-If you're having hard time updating file, <AddSortingToListProducts>Click to update the file</AddSortingToListProducts>.
+<AddSortingToListProducts />
 
 We should be able to see the first 10 products sorted by name on our screen now.
 
@@ -326,7 +322,7 @@ export const dataProvider: DataProvider = {
 };
 ```
 
-If you're having hard time updating file, <AddFiltersToGetList>Click to update the file</AddFiltersToGetList>.
+<AddFiltersToGetList />
 
 Now, we'll be able to filter the list of products. Let's add filtering to our `ListProducts` component.
 
@@ -352,7 +348,7 @@ export const ListProducts = () => {
 };
 ```
 
-If you're having hard time updating file, <AddFiltersToListProducts>Click to update the file</AddFiltersToListProducts>.
+<AddFiltersToListProducts />
 
 ## Summary
 

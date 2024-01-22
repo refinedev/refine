@@ -1,7 +1,8 @@
 import React from "react";
 import { TutorialSandpack } from "@site/src/refine-theme/tutorial-sandpack";
 import { useSandpack } from "@codesandbox/sandpack-react";
-import clsx from "clsx";
+import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
+import { TutorialCreateFileButton } from "@site/src/refine-theme/tutorial-create-file-button";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -110,15 +111,11 @@ export default function App(): JSX.Element {
 }
 `.trim();
 
-export const AddGetOneMethod = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddGetOneMethod = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/data-provider.ts",
@@ -126,28 +123,15 @@ export const AddGetOneMethod = ({
                 );
                 sandpack.setActiveFile("/data-provider.ts");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const CreateShowProductFile = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const CreateShowProductFile = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <button
-            type="button"
+        <TutorialCreateFileButton
             onClick={() => {
                 sandpack.addFile({
                     "/show-product.tsx": {
@@ -157,34 +141,16 @@ export const CreateShowProductFile = ({
                 sandpack.openFile("/show-product.tsx");
                 sandpack.setActiveFile("/show-product.tsx");
             }}
-            className={clsx(
-                "mb-4",
-                "rounded-md",
-                "cursor-pointer",
-                "appearance-none",
-                "focus:outline-none",
-                "py-2 px-3",
-                "[&>p]:!text-gray-0",
-                "[&>p>code]:!text-gray-0",
-                "bg-refine-link-light",
-                "hover:brightness-110",
-                "[&>p]:!mb-0",
-            )}
-        >
-            {children}
-        </button>
+            name="show-product.tsx"
+        />
     );
 };
 
-export const AddUseOneToShowProduct = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddUseOneToShowProduct = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
                     "/show-product.tsx",
@@ -192,39 +158,19 @@ export const AddUseOneToShowProduct = ({
                 );
                 sandpack.setActiveFile("/show-product.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
 
-export const AddShowProductToAppTsx = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const AddShowProductToAppTsx = () => {
     const { sandpack } = useSandpack();
 
     return (
-        <span
+        <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile("/App.tsx", AppTsxWithShowProductCode);
                 sandpack.setActiveFile("/App.tsx");
             }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
+        />
     );
 };
