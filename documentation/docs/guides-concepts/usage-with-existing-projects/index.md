@@ -71,9 +71,79 @@ As you can see in the example below, wrapping `_app.tsx` file with `Refine` comp
 
 </Tabs>
 
-## UI & Routing Integration Example
+## Router Examples
 
 In the following examples below, we will integrate Refine into `/refine` route of an existing application.
+
+<Tabs wrapContent={false} defaultValue="react-router">
+
+<TabItem value="react-router" label="React Router">
+
+import { ViteRouter } from './vite/router';
+
+First, we need to install necessary packages:
+
+<InstallPackagesCommand args="@refinedev/core @refinedev/react-router-v6 @refinedev/simple-rest" />
+
+:::simple
+
+- We start by creating `RefineContext` component in `refine/refine-context.tsx` file.
+  This file will be used to wrap `/refine` routes of our application.
+
+- And then in `App.tsx` file, we are adding a new `Route` component with `path="/refine"` and wrapping it with `RefineContext` component.
+
+- Finally, we create `refine/pages/products/list.tsx` file, here we can use Refine features, since it's layout is wrapped with `Refine` component.
+
+:::
+
+<ViteRouter />
+
+</TabItem>
+
+<TabItem value="nextjs-app-router" label="Next.js App">
+
+import { NextJSAppRouter } from './nextjs/app/router';
+
+First, we need to install necessary packages:
+
+<InstallPackagesCommand args="@refinedev/core @refinedev/nextjs-router @refinedev/simple-rest" />
+
+:::simple
+
+- We start by creating `app/refine/layout.tsx` file, this layout will be used by all pages under `/refine` folder.
+- Then we create `app/refine/products/page.tsx` file, here we can use Refine features, since it's layout is wrapped with `Refine` component.
+
+:::
+
+<NextJSAppRouter />
+
+</TabItem>
+
+<TabItem value="nextjs-pages-router" label="Next.js Pages">
+
+import { NextJSPagesRouter } from './nextjs/pages/router';
+
+First, we need to install necessary packages:
+
+<InstallPackagesCommand args="@refinedev/core @refinedev/nextjs-router @refinedev/antd @refinedev/simple-rest" />
+
+:::simple
+
+- We start by creating `src/components/layout.tsx` file, this component will be conditionally rendered by `pages/_app.tsx` file.
+- Then we create `pages/_app.tsx` file, here we are checking if the current file has `getLayout` function, if it does, we are rendering it by wrapping it with `getLayout` function.
+- Then we create `pages/refine/products.tsx` file, here we are adding `Page.getLayout` to our component, so it will be wrapped with `Refine` context. Then we can use Refine features, since it's layout is wrapped with `Refine` component.
+
+:::
+
+<NextJSPagesRouter />
+
+</TabItem>
+
+</Tabs>
+
+## Adding UI to Router Examples
+
+In the following examples below, we will integrate AntD layout from `@refinedev/antd` package.
 
 <Tabs wrapContent={false} defaultValue="vite">
 
@@ -87,12 +157,11 @@ First, we need to install necessary packages:
 
 :::simple
 
-- We start by creating `RefineContext` component in `refine/refine-context.tsx` file.
-  This file will be used to wrap `/refine` routes of our application.
+- We start by modifying `refine-context.tsx` file, adding necessary imports from `@refinedev/antd` package.
 
-- And then in `App.tsx` file, we are adding a new `Route` component with `path="/refine"` and wrapping it with `RefineContext` component.
+- And then in `App.tsx` file, we are updating our `ErrorComponent` import from `@refinedev/core` to `@refinedev/antd`.
 
-- Finally, we create `refine/pages/products/list.tsx` file, here we can use Refine features, since it's layout is wrapped with `Refine` component.
+- Finally, in `refine/pages/products/list.tsx` file, we are importing `List` component and `useTable` hook from `@refinedev/antd` package.
 
 :::
 
@@ -110,8 +179,8 @@ First, we need to install necessary packages:
 
 :::simple
 
-- We start by creating `app/refine/layout.tsx` file, this layout will be used by all pages under `/refine` folder.
-- Then we create `app/refine/products/page.tsx` file, here we can use Refine features, since it's layout is wrapped with `Refine` component.
+- We start by modifying `app/refine/layout.tsx` file, adding necessary imports from `@refinedev/antd` package.
+- Then we modify `app/refine/products/page.tsx` file, here we are using `List` component and `useTable` hook from `@refinedev/antd` package.
 
 :::
 
@@ -129,9 +198,8 @@ First, we need to install necessary packages:
 
 :::simple
 
-- We start by creating `src/components/layout.tsx` file, this component will be conditionally rendered by `pages/_app.tsx` file.
-- Then we create `pages/_app.tsx` file, here we are checking if the current file has `getLayout` function, if it does, we are rendering it by wrapping it with `getLayout` function.
-- Then we create `pages/refine/products.tsx` file, here we are adding `Page.getLayout` to our component, so it will be wrapped with `Refine` context. Then we can use Refine features, since it's layout is wrapped with `Refine` component.
+- We start by updating `src/components/layout.tsx` file, adding necessary imports from `@refinedev/antd` package.
+- Then we modify `pages/refine/products.tsx` file, here we are using `List` component and `useTable` hook from `@refinedev/antd` pacakge.
 
 :::
 
