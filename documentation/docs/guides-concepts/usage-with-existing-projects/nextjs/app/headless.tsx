@@ -47,17 +47,11 @@ import dataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Refine dataProvider={dataProvider(API_URL)}>
-          {children}
-        </Refine>
+        <Refine dataProvider={dataProvider(API_URL)}>{children}</Refine>
       </body>
     </html>
   );

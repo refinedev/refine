@@ -1,17 +1,11 @@
 import React from "react";
 import { Sandpack } from "@site/src/components/sandpack";
 
-export function NextJSAppAntdLayout() {
+export function NextJSAppRouter() {
   return (
     <Sandpack
       template="nextjs"
-      showNavigator
       showFiles
-      dependencies={{
-        "@refinedev/antd": "latest",
-        antd: "^5.0.5",
-      }}
-      startRoute="/"
       files={{
         "/app/refine/layout.tsx": {
           code: RefineLayoutTsxCode.trim(),
@@ -76,54 +70,43 @@ export default function AboutPage() {
 const RefineLayoutTsxCode = /* tsx */ `
 "use client";
 import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/nextjs-router/app";
-import { RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
-
-import { App as AntdApp, ConfigProvider } from "antd";
-
-import "@refinedev/antd/dist/reset.css";
-
+import dataProvider from "@refinedev/simple-rest";
 export default function RefineLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ConfigProvider theme={RefineThemes.Blue}>
-      <AntdApp>
-        <Refine
-          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          routerProvider={routerProvider}
-          resources={[
-            {
-              name: "products",
-              list: "/refine/products",
-            },
-          ]}
-          options={{ syncWithLocation: true }}
-        >
-          <ThemedLayoutV2>{children}</ThemedLayoutV2>
-        </Refine>
-      </AntdApp>
-    </ConfigProvider>
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "products",
+          list: "/refine/products",
+        },
+      ]}
+      options={{ syncWithLocation: true }}
+    >
+      {children}
+    </Refine>
   );
 }
 `;
 
 const RefineProductsPageTsxCode = /* tsx */ `
 "use client";
-import { List, useTable } from "@refinedev/antd";
-
-import { Table } from "antd";
+import { useList } from "@refinedev/core";
 
 export default function Products() {
-  const { tableProps } = useTable();
+  const { data: products } = useList();
 
   return (
-    <List>
-      <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title="Id" />
-        <Table.Column dataIndex="name" title="Name" />
-        <Table.Column dataIndex="price" title="Price" />
-      </Table>
-    </List>
+    <div>
+      <h1>Refine Products Page</h1>
+      <ul>
+        {products?.data?.map((record) => (
+          <li key={record.id}>{record.name}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
 `;
