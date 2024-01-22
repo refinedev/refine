@@ -1,17 +1,11 @@
 import React from "react";
 import { Sandpack } from "@site/src/components/sandpack";
 
-export function NextJSPagesAntdLayout() {
+export function NextJSPagesRouter() {
   return (
     <Sandpack
       template="nextjs"
-      showNavigator
       showFiles
-      dependencies={{
-        "@refinedev/antd": "latest",
-        antd: "^5.0.5",
-      }}
-      startRoute="/"
       files={{
         "/src/components/refine-layout.tsx": {
           code: RefineLayoutTsxCode.trim(),
@@ -29,35 +23,10 @@ export function NextJSPagesAntdLayout() {
         "/pages/index.tsx": {
           code: IndexTsxCode.trim(),
         },
-        "/next.config.js": {
-          code: NextConfigJsCode.trim(),
-        },
       }}
     />
   );
 }
-
-const NextConfigJsCode = /* js */ `
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  transpilePackages: [
-    "@ant-design/icons-svg",
-    "@refinedev/nextjs-router",
-    "@refinedev/antd",
-    "antd",
-    "@ant-design/pro-components",
-    "@ant-design/pro-layout",
-    "@ant-design/pro-utils",
-    "@ant-design/pro-provider",
-    "rc-pagination",
-    "rc-picker",
-    "rc-util",
-  ],
-};
-
-module.exports = nextConfig;
-`;
 
 const AppTsxCode = /* tsx */ `
 import type { ReactElement, ReactNode } from "react";
@@ -110,21 +79,14 @@ export default function AboutPage() {
 
 const RefineLayoutTsxCode = /* tsx */ `
 import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/nextjs-router/pages";
-import { RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
-
-import { App as AntdApp, ConfigProvider } from "antd";
-
-import "@refinedev/antd/dist/reset.css";
+import dataProvider from "@refinedev/simple-rest";
 
 export default function RefineLayout({ children }) {
   return (
-    <ConfigProvider theme={RefineThemes.Blue}>
-      <AntdApp>
         <Refine
-          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           routerProvider={routerProvider}
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           resources={[
             {
               name: "products",
@@ -133,7 +95,7 @@ export default function RefineLayout({ children }) {
           ]}
           options={{ syncWithLocation: true }}
         >
-          <ThemedLayoutV2>{children}</ThemedLayoutV2>
+         {children}
         </Refine>
       </AntdApp>
     </ConfigProvider>
@@ -143,24 +105,23 @@ export default function RefineLayout({ children }) {
 
 const RefineProductsTsxCode = /* tsx */ `
 import type { ReactElement } from "react";
-
-import { List, useTable } from "@refinedev/antd";
-import { Table } from "antd";
+import { useList } from "@refinedev/core";
 
 import RefineLayout from "../../src/components/refine-layout";
 import type { NextPageWithLayout } from "../_app";
 
 const Page: NextPageWithLayout = () => {
-  const { tableProps } = useTable();
+  const { data: products } = useList();
 
   return (
-    <List>
-      <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title="Id" />
-        <Table.Column dataIndex="name" title="Name" />
-        <Table.Column dataIndex="price" title="Price" />
-      </Table>
-    </List>
+    <div>
+      <h1>Refine Products Page</h1>
+      <ul>
+        {products?.data?.map((record) => (
+          <li key={record.id}>{record.name}</li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
