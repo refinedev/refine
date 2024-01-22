@@ -145,7 +145,7 @@ First, we need to install necessary packages:
 
 ## Adding UI to Router Examples
 
-In the following examples below, as a follow-up from the previous router examples, we will add AntD layout from `@refinedev/antd` package.
+In the following examples below, as a follow-up from the previous router examples, we will add Ant Design layout from `@refinedev/antd` package.
 
 See the [UI Libraries guide](/docs/guides-concepts/ui-libraries) for more information.
 
@@ -269,7 +269,7 @@ Following methods are optional, but could be useful for various use-cases.
 
 This hook is also used to rendering current user information in the header of UI Integration layouts.
 
-- [AntD Header Docs Header Section](/docs/ui-integrations/ant-design/components/themed-layout#header)
+- [Ant Design Header Docs Header Section](/docs/ui-integrations/ant-design/components/themed-layout#header)
 - [Material UI Header Docs Header Section](/docs/ui-integrations/material-ui/components/themed-layout#header)
 - [Chakra UI Header Docs Header Section](/docs/ui-integrations/chakra-ui/components/themed-layout#header)
 - [Mantine Header Docs Header Section](/docs/ui-integrations/mantine/components/themed-layout#header)
@@ -284,7 +284,7 @@ See [Error Handling section in Authentication Guide](/docs/guides-concepts/authe
 
 This hook is also used to render `Logout` button in the sider of UI Integration layouts.
 
-- [AntD Header Docs Sider Section](/docs/ui-integrations/ant-design/components/themed-layout#sider)
+- [Ant Design Header Docs Sider Section](/docs/ui-integrations/ant-design/components/themed-layout#sider)
 - [Material UI Header Docs Sider Section](/docs/ui-integrations/material-ui/components/themed-layout#sider)
 - [Chakra UI Header Docs Sider Section](/docs/ui-integrations/chakra-ui/components/themed-layout#sider)
 - [Mantine Header Docs Sider Section](/docs/ui-integrations/mantine/components/themed-layout#sider)
