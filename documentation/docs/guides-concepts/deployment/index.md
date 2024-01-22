@@ -4,7 +4,7 @@ title: Deployment
 
 Refine being a meta-framework, it does not have a specific deployment configuration on its own.
 
-Refine appplications are usually built on top of the following frameworks, and you can follow their deployment guides to deploy your application.
+Refine applications are usually built on top of the following frameworks, and you can follow their deployment guides to deploy your application.
 
 - [Vite deployment guide](https://vitejs.dev/guide/static-deploy.html)
 - [Next.js deployment guide](https://nextjs.org/docs/deployment)
