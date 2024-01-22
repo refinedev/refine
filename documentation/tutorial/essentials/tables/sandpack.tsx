@@ -6,7 +6,6 @@ import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
         <TutorialSandpack
-            showFiles={false}
             dependencies={{
                 "@refinedev/core": "latest",
             }}
@@ -35,6 +34,35 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
                 },
                 "list-products.tsx": {
                     code: ListProductTsxCode,
+                    active: true,
+                    // hidden: true,
+                },
+            }}
+            finalFiles={{
+                "App.tsx": {
+                    code: AppTsxWithListProductsTsxCode,
+                },
+                "styles.css": {
+                    code: StylesCssCode,
+                    hidden: true,
+                },
+                "data-provider.ts": {
+                    code: DataProviderWithTotalInGetListMethodTsCode,
+                },
+                "show-product.tsx": {
+                    code: ShowProductTsxCode,
+                    // hidden: true,
+                },
+                "edit-product.tsx": {
+                    code: EditProductTsxCode,
+                    // hidden: true,
+                },
+                "create-product.tsx": {
+                    code: CreateProductTsxCode,
+                    // hidden: true,
+                },
+                "list-products.tsx": {
+                    code: ListProductsWithHeaderSortersTsxCode,
                     active: true,
                     // hidden: true,
                 },

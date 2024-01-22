@@ -2,7 +2,7 @@
 title: Introduction
 ---
 
-import { Sandpack, ChangeAppTsxSpan, AddFileSpan, UpdateFileSpan } from "./sandpack.tsx";
+import { Sandpack } from "./sandpack.tsx";
 import { TutorialParameterDropdown } from "@site/src/refine-theme/tutorial-parameter-dropdown";
 
 <Sandpack>

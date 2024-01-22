@@ -7,7 +7,6 @@ import { TutorialCreateFileButton } from "@site/src/refine-theme/tutorial-create
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
         <TutorialSandpack
-            showFiles={false}
             dependencies={{
                 "@refinedev/core": "latest",
             }}
@@ -21,6 +20,21 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
                 "show-product.tsx": {
                     code: ShowProductTsxCode,
                     hidden: true,
+                },
+            }}
+            finalFiles={{
+                "App.tsx": {
+                    code: AppTsxWithEditProductCode,
+                },
+                "data-provider.ts": {
+                    code: DataProviderWithUpdateMethodTsCode,
+                },
+                "show-product.tsx": {
+                    code: ShowProductTsxCode,
+                    hidden: true,
+                },
+                "edit-product.tsx": {
+                    code: EditProductWithUseUpdateTsxCode,
                 },
             }}
         >

@@ -7,13 +7,20 @@ import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
         <TutorialSandpack
-            showFiles={false}
             dependencies={{
                 "@refinedev/core": "latest",
             }}
             files={{
                 "App.tsx": {
                     code: AppTsxCode,
+                },
+                "data-provider.ts": {
+                    code: DataProviderTsCode,
+                },
+            }}
+            finalFiles={{
+                "App.tsx": {
+                    code: UpdatedAppTsxCode,
                 },
                 "data-provider.ts": {
                     code: DataProviderTsCode,
