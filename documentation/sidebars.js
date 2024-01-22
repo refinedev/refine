@@ -926,7 +926,6 @@ module.exports = {
             className: "category-as-header",
             items: [
                 "further-readings/testing",
-                "further-readings/benchmarks",
                 "further-readings/telemetry",
                 "further-readings/comparison",
                 "further-readings/license",
