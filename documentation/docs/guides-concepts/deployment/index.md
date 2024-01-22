@@ -11,3 +11,7 @@ Refine applications are usually built on top of the following frameworks, and yo
 - [Remix deployment guide](https://remix.run/docs/en/main/guides/deployment)
 
 For convenience, we've created a [refinedev/Dockerfiles](https://github.com/refinedev/dockerfiles) GitHub repository that contains Dockerfiles for each of the frameworks above.
+
+These Dockerfiles are derived from their respective official Dockerfile examples, using `refinedev/node` as base image, which has a `non-root` `refine:nodejs` user.
+
+The final stage is running the application as `non-root` `refine:nodejs` user for better **security** and only includes necessary production dependencies for smaller image size.
