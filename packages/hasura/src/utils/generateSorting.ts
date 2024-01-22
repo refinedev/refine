@@ -7,7 +7,7 @@ export type GenerateSortingType = {
     (sorting?: CrudSorting): HasuraSortingType | undefined;
 };
 
-const generateNestedSorting = (sorter) => {
+const generateNestedSorting: GenerateSortingType = (sorter) => {
   if (!sorter) {
     return undefined;
   }
