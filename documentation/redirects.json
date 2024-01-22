@@ -650,7 +650,7 @@
     },
     {
       "from": "/docs/benchmarks/",
-      "to": "/docs/further-readings/benchmarks/"
+      "to": "/docs/"
     },
     {
       "from": "/docs/general-concepts/",
@@ -821,7 +821,7 @@
       "from": "/docs/api-reference/mui",
       "to": "/docs/ui-integrations/material-ui/introduction"
     },
-{
+    {
       "from": "/docs/examples/table/react-table/advanced-react-table",
       "to": "/docs/examples/table/tanstack-table/advanced-tanstack-table"
     },
@@ -2068,6 +2068,10 @@
     {
       "from": "/docs/advanced-tutorials/import-export/csv-export/",
       "to": "/docs/guides-concepts/import-export"
+    },
+    {
+      "from": "/docs/further-readings/benchmarks/",
+      "to": "/docs"
     }
   ]
 }
