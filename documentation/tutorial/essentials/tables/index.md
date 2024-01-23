@@ -6,7 +6,7 @@ import { Sandpack, MountListProductsInAppTsx, RefactorToUseTableInListProducts, 
 
 <Sandpack>
 
-In this chapter, we'll be learning about the Refine's `useTable` hook to manage tables in our application.
+In this step, we'll be learning about the Refine's `useTable` hook to manage tables in our application.
 
 :::simple Implementation Tips
 
@@ -16,7 +16,7 @@ Refine's `useTable` has extended versions for UI libraries like Ant Design, Mate
 
 `useTable` hook is an extended version of the `useList` hook. It internally manages the search, filters, sorters and pagination for us and also has a built-in integration with the router options to persist the state of the table in the URL.
 
-In this chapter, we'll be refactoring our `<ListProducts />` component to use the `useTable` hook.
+In this step, we'll be refactoring our `<ListProducts />` component to use the `useTable` hook.
 
 Let's start with mounting our `<ListProducts />` in our `/src/App.tsx` file:
 
@@ -507,7 +507,7 @@ export const ListProducts = () => {
 
 ## Summary
 
-In this chapter, we've learned about the `useTable` hook and how to use it to manage tables in our application.
+In this step, we've learned about the `useTable` hook and how to use it to manage tables in our application.
 
 It provides many utilities to manage filters, sorters, paginations and also has a built-in integration with the router options to persist the state of the table in the URL.
 
@@ -515,6 +515,6 @@ Notice that the interfaces are almost identical to the `useList` hook. The only 
 
 To learn more about the Tables in Refine, please refer to the [Tables](/docs/guides-concepts/tables) guide.
 
-In the next chapters, we'll be learning about the Authentication and Routing in Refine.
+In the next steps, we'll be learning about the Authentication and Routing in Refine.
 
 </Sandpack>

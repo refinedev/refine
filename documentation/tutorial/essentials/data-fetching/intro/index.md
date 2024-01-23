@@ -6,7 +6,7 @@ import { Sandpack, FocusOnDataProviderFile, AddDataProviderToRefine } from "./sa
 
 <Sandpack>
 
-In this chapter, we'll be learning about the basics of data fetching in Refine. `<Refine />` component accepts a `dataProvider` prop which is used to handle all the data fetching and mutation operations with a simple interface. While Refine supports many data providers out of the box, for sake of this tutorial, we'll be creating our own data provider and connecting it to a [fake REST API](https://api.fake-rest.refine.dev/).
+In this step, we'll be learning about the basics of data fetching in Refine. `<Refine />` component accepts a [`dataProvider`](/docs/core/refine-component/#dataprovider-) prop which is used to handle all the data fetching and mutation operations with a simple interface. While Refine supports many data providers out of the box, for sake of this tutorial, we'll be creating our own data provider and connecting it to a [fake REST API](https://api.fake-rest.refine.dev/).
 
 To learn more about the supported data providers, refer to the [Supported Data Providers](/docs/guides-concepts/data-fetching/#supported-data-providers) section in the Data Fetching guide
 
@@ -14,7 +14,7 @@ To learn more about the supported data providers, refer to the [Supported Data P
 
 We'll be implementing each method one-by-one, ensuring thorough coverage of all details. We'll use `fetch` for API requests, but you're free to choose any library.
 
-First, we'll create a `src/data-provider.ts` file in our project, which will contain all the methods we need to implement for our data provider. 
+First, we'll create a `src/data-provider.ts` file in our project, which will contain all the methods we need to implement for our data provider.
 
 To see an empty data provider, <FocusOnDataProviderFile>check out the `data-provider.ts`</FocusOnDataProviderFile> in the right panel.
 
@@ -41,6 +41,6 @@ It's also possible to use multiple data providers with Refine. You can learn mor
 
 :::
 
-In the next chapter, we'll be learning about the fetching a record using Refine's `useOne` hook, and also about implementing the `getOne` method in our data provider.
+In the next step, we'll be learning about the fetching a record using Refine's `useOne` hook, and also about implementing the `getOne` method in our data provider.
 
 </Sandpack>

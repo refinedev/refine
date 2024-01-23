@@ -227,7 +227,7 @@ export const dataProvider: DataProvider = {
 
     return {
         data,
-        total: 0, // We'll cover this in the next chapters.
+        total: 0, // We'll cover this in the next steps.
     };
   },
   /* ... */
@@ -608,7 +608,7 @@ export const dataProvider: DataProvider = {
 
     return {
         data,
-        total: 0, // We'll cover this in the next chapters.
+        total: 0, // We'll cover this in the next steps.
     };
   },
   /* ... */

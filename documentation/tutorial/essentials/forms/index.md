@@ -6,7 +6,7 @@ import { Sandpack, AddCreateMethod, CreateCreateProductFile, AddUseFormToCreateP
 
 <Sandpack>
 
-In this chapter, we'll be learning about the Refine's `useForm` hook to manage forms for creating and updating records.
+In this step, we'll be learning about the Refine's `useForm` hook to manage forms for creating and updating records.
 
 :::simple Implementation Tips
 
@@ -20,7 +20,7 @@ Refine's `useForm` has extended versions with more features and compatibility wi
 - `edit`: To update an existing record for a resource using the data provider's `update` method.
 - `clone`: To create a new record using an existing record's data as a template using the data provider's `create` method.
 
-In this chapter, we'll be covering the `create` and `edit` actions. Check out the [Clone](/docs/guides-concepts/forms/#clone) section of the Forms guide for information about the `clone` action.
+In this step, we'll be covering the `create` and `edit` actions. Check out the [Clone](/docs/guides-concepts/forms/#clone) section of the Forms guide for information about the `clone` action.
 
 ## Implementing the `create` Method
 
@@ -409,6 +409,6 @@ Refine's `useForm` hooks are not limited to these abilities. `useForm` hook will
 
 To learn more about the `useForm` hook, please refer to the [Forms](/docs/guides-concepts/forms) guide.
 
-In the next chapter, we'll be learning about the Refine's `useTable` hook and how to display a list of records in a table.
+In the next step, we'll be learning about the Refine's `useTable` hook and how to display a list of records in a table.
 
 </Sandpack>

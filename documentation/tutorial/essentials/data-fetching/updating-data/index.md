@@ -6,13 +6,18 @@ import { Sandpack, AddUpdateMethod, CreateEditProductFile, AddUseUpdateToEditPro
 
 <Sandpack>
 
-In this chapter, we'll be learning about the Refine's `useUpdate` hook to update a record from our API and implement the `update` method in our data provider.
+In this step, we'll be learning about the Refine's `useUpdate` hook to update a record from our API and implement the `update` method in our data provider.
 
 ## Implementing the `update` Method
 
-To update a record using Refine's hooks, first we need to implement the `update` method in our data provider. This method will be called when we use the `useUpdate` hook or its extensions in our components.
+To update a record using Refine's hooks, first we need to implement the [`update`](/docs/data/data-provider/#update-) method in our data provider. This method will be called when we use the [`useUpdate`](/docs/data/hooks/use-update) hook or its extensions in our components.
 
-The `update` method will receive `resource`, `id`, `variables` and `meta` properties. `resource` will be the name of the entity we're updating. `id` will be the id of the record we're updating. `variables` will be an object containing the data we're sending to the API. `meta` will be an object containing any additional data we're passing to the hook.
+The `update` method accepts `resource`, `id`, `variables` and `meta` properties.
+
+- `resource` refers to the entity we're updating
+- `id` is the ID of the record we're updating
+- `variables` is an object containing the data we're sending to the API.
+- `meta` is an object containing any additional data passed to the hook.
 
 `products` entity of our fake API expects us to update a record using the `/products/:id` endpoint with a `PATCH` request. So, we'll be using the `resource`, `id` and `variables` properties to make our request.
 
@@ -59,7 +64,7 @@ After implementing the `update` method, we'll be able to call `useUpdate` hook a
 
 <CreateEditProductFile />
 
-Initially, we'll include a `useOne` hook call in our `EditProduct` component to fetch the record we want to update. 
+Initially, we'll include a `useOne` hook call in our `EditProduct` component to fetch the record we want to update.
 
 Then, we'll use the `useUpdate` hook inside our `EditProduct` to update a single record of `products` entity from our API.
 
@@ -136,6 +141,6 @@ Notice that when we update the price using `useUpdate`, the `useOne` hook we cal
 
 :::
 
-In the next chapter, we'll be learning about the Refine's `useList` hook to fetch a list of records from our API and implement the `getList` method in our data provider.
+In the next step, we'll be learning about the Refine's `useList` hook to fetch a list of records from our API and implement the `getList` method in our data provider.
 
 </Sandpack>

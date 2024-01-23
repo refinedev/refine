@@ -157,7 +157,7 @@ export const dataProvider: DataProvider = {
 
     return {
       data,
-      total: 0, // We'll cover this in the next chapters.
+      total: 0, // We'll cover this in the next steps.
     };
   },
   getOne: async ({ resource, id, meta }) => {
@@ -201,7 +201,7 @@ export const dataProvider: DataProvider = {
 
     return {
       data,
-      total: 0, // We'll cover this in the next chapters.
+      total: 0, // We'll cover this in the next steps.
     };
   },
   getOne: async ({ resource, id, meta }) => {
@@ -250,7 +250,7 @@ export const dataProvider: DataProvider = {
 
     return {
       data,
-      total: 0, // We'll cover this in the next chapters.
+      total: 0, // We'll cover this in the next steps.
     };
   },
   getOne: async ({ resource, id, meta }) => {
@@ -308,7 +308,7 @@ export const dataProvider: DataProvider = {
 
     return {
       data,
-      total: 0, // We'll cover this in the next chapters.
+      total: 0, // We'll cover this in the next steps.
     };
   },
   getOne: async ({ resource, id, meta }) => {

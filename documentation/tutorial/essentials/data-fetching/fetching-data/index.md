@@ -6,14 +6,15 @@ import { Sandpack, AddGetOneMethod, CreateShowProductFile, AddUseOneToShowProduc
 
 <Sandpack>
 
-In this chapter, we'll be learning about the Refine's `useOne` hook to fetch a single record from our API and implement the `getOne` method in our data provider.
+In this step, we'll be learning about the Refine's `useOne` hook to fetch a single record from our API and implement the `getOne` method in our data provider.
 
 ## Implementing the `getOne` Method
 
-To fetch a record using Refine's hooks, first we need to implement the `getOne` method in our data provider. This method will be called when we use the `useOne` hook or its extensions in our components.
+To fetch a record using Refine's hooks, first we need to implement the [`getOne`](/docs/data/data-provider/#getone-) method in our data provider. This method will be called when we use the [`useOne`](/docs/data/hooks/use-one) hook or its extensions in our components.
 
 The `getOne` method accepts `resource`, `id` and `meta` properties.
-- `resource` refers to the entity we're fetching
+
+- `resource` refers to the entity we're fetching.
 - `id` is the ID of the record we're fetching.
 - `meta` is an object containing any additional data passed to the hook.
 
@@ -49,7 +50,7 @@ export const dataProvider: DataProvider = {
 
 ## Using the `useOne` Hook
 
-After implementing the `getOne` method, we'll be able to call `useOne` hook and fetch a single record from our API. Let's create a component called `ShowProduct` and mount it inside our `<Refine />` component. 
+After implementing the `getOne` method, we'll be able to call `useOne` hook and fetch a single record from our API. Let's create a component called `ShowProduct` and mount it inside our `<Refine />` component.
 
 <CreateShowProductFile />
 
@@ -100,6 +101,6 @@ export default function App(): JSX.Element {
 
 Now, we should be able to see the product name on our screen.
 
-In the next chapter, we'll be learning about the Refine's `useUpdate` hook to update a single record from our API and implement the `update` method in our data provider.
+In the next step, we'll be learning about the Refine's `useUpdate` hook to update a single record from our API and implement the `update` method in our data provider.
 
 </Sandpack>

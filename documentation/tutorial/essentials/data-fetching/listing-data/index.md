@@ -6,13 +6,19 @@ import { Sandpack, AddGetListMethod, CreateListProductsFile, AddUseListToListPro
 
 <Sandpack>
 
-In this chapter, we'll be learning about the Refine's `useList` hook to fetch a list of records from our API. We'll also learn about pagination, sorting and filtering through the `useList` hook.
+In this step, we'll be learning about the Refine's `useList` hook to fetch a list of records from our API. We'll also learn about pagination, sorting and filtering through the `useList` hook.
 
 ## Implementing the `getList` Method
 
-To list records using Refine's hooks, first we need to implement the `getList` method in our data provider. This method will be called when we use the `useList` hook or its extensions in our components.
+To list records using Refine's hooks, first we need to implement the [`getList`](/docs/data/data-provider/#getlist-) method in our data provider. This method will be called when we use the [`useList`](/docs/data/hooks/use-list) hook or its extensions in our components.
 
-The `getList` method will receive `resource`, `pagination`, `sorters`, `filters` and `meta` properties. `resource` will be the name of the entity we're listing. `pagination` will be an object containing the `current` and `pageSize` properties. `sorters` will be an array containing the sorters we're using. `filters` will be an array containing the filters we're using. `meta` will be an object containing any additional data we're passing to the hook.
+The `getList` method accepts `resource`, `pagination`, `sorters`, `filters` and `meta` properties.
+
+- `resource` refers to the entity we're fetching.
+- `pagination` is an object containing the `current` and `pageSize` properties.
+- `sorters` is an array containing the sorters we're using.
+- `filters` is an array containing the filters we're using.
+- `meta` is an object containing any additional data passed to the hook.
 
 Our fake API has `products` entity and expects us to list records using the `/products` endpoint. So, we'll be using the `resource`, `pagination`, `sorters` and `filters` properties to make our request.
 
@@ -33,7 +39,7 @@ export const dataProvider: DataProvider = {
 
     return {
       data,
-      total: 0, // We'll cover this in the next chapters.
+      total: 0, // We'll cover this in the next steps.
     };
   },
   // highlight-end
@@ -45,7 +51,7 @@ export const dataProvider: DataProvider = {
 
 ## Using the `useList` Hook
 
-After implementing the `getList` method, we'll be able to call `useList` hook and fetch a list of records from our API. Let's create a component called `ListProducts` and mount it inside our `<Refine />` component. 
+After implementing the `getList` method, we'll be able to call `useList` hook and fetch a list of records from our API. Let's create a component called `ListProducts` and mount it inside our `<Refine />` component.
 
 <CreateListProductsFile />
 
@@ -149,7 +155,7 @@ export const dataProvider: DataProvider = {
 
     return {
       data,
-      total: 0, // We'll cover this in the next chapters.
+      total: 0, // We'll cover this in the next steps.
     };
   },
   /* ... */
@@ -226,7 +232,7 @@ export const dataProvider: DataProvider = {
 
     return {
       data,
-      total: 0, // We'll cover this in the next chapters.
+      total: 0, // We'll cover this in the next steps.
     };
   },
   /* ... */
@@ -317,7 +323,7 @@ export const dataProvider: DataProvider = {
 
     return {
       data,
-      total: 0, // We'll cover this in the next chapters.
+      total: 0, // We'll cover this in the next steps.
     };
   },
   /* ... */
@@ -354,7 +360,7 @@ export const ListProducts = () => {
 
 ## Summary
 
-In this chapter, we've learned about the Refine's `useList` hook to fetch a list of records from our API. We've also learned about pagination, sorting and filtering through the `useList` hook.
+In this step, we've learned about the Refine's `useList` hook to fetch a list of records from our API. We've also learned about pagination, sorting and filtering through the `useList` hook.
 
 Refine also offers `useInfiniteList` hook to fetch a list of records with infinite scrolling and `useTable` hook to fetch a list of records with additional features on top of `useList` hook. You can check the [Hooks](#) section of the Data Fetching guide and [Tables](#) guide to learn more about these hooks and their usages.
 
@@ -364,6 +370,6 @@ To see the full implementation of a REST data provider, please check the [source
 
 :::
 
-In the next chapters, we'll learn about how to handle forms and tables with Refine.
+In the next steps, we'll learn about how to handle forms and tables with Refine.
 
 </Sandpack>
