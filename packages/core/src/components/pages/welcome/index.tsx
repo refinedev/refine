@@ -6,9 +6,10 @@ import { ConfigErrorPage } from "../config-error";
 export const WelcomePage = () => {
     const { __initialized } = useRefineContext();
 
-    if (!__initialized) {
-        return <ConfigErrorPage />;
-    }
-
-    return <ConfigSuccessPage />;
+    return (
+        <>
+            <ConfigSuccessPage />
+            {!__initialized && <ConfigErrorPage />}
+        </>
+    );
 };

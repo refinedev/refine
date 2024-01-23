@@ -5,7 +5,7 @@ export const ConfigErrorPage = () => {
         <div
             style={{
                 position: "fixed",
-                zIndex: 10,
+                zIndex: 11,
                 inset: 0,
                 overflow: "auto",
                 width: "100dvw",
@@ -19,63 +19,86 @@ export const ConfigErrorPage = () => {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    padding: "20px",
-                    background: "rgb(0 0 0 / 25%)",
-                    backdropFilter: "blur(10px)",
+                    padding: "24px",
+                    background: "#14141FBF",
+                    backdropFilter: "blur(3px)",
                 }}
             >
                 <div
                     style={{
-                        maxWidth: "500px",
+                        maxWidth: "640px",
                         width: "100%",
-                        background: "rgb(52 58 70 / 100%)",
-                        borderRadius: "8px",
-                        border: "1px solid rgb(102 112 132 / 100%)",
+                        background: "#1D1E30",
+                        borderRadius: "16px",
+                        border: "1px solid #303450",
+                        boxShadow: "0px 0px 120px -24px #000000",
                     }}
                 >
                     <div
                         style={{
-                            padding: "8px 16px",
-                            borderBottom: "1px solid rgb(102 112 132 / 100%)",
+                            padding: "16px 20px",
+                            borderBottom: "1px solid #303450",
                             display: "flex",
                             alignItems: "center",
                             gap: "8px",
+                            position: "relative",
                         }}
                     >
-                        <RefineLogo
+                        <ErrorGradient
                             style={{
-                                width: "20px",
-                                height: "20px",
-                                color: "rgb(246 247 249)",
+                                position: "absolute",
+                                left: 0,
+                                top: 0,
                             }}
-                        />{" "}
-                        <span
+                        />
+                        <div
                             style={{
                                 lineHeight: "24px",
                                 fontSize: "16px",
-                                fontWeight: 600,
-                                color: "rgb(246 247 249)",
+                                color: "#FFFFFF",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "16px",
                             }}
                         >
-                            Configuration Error
-                        </span>
+                            <ErrorIcon />
+                            <span
+                                style={{
+                                    fontWeight: 400,
+                                }}
+                            >
+                                Configuration Error
+                            </span>
+                        </div>
                     </div>
                     <div
                         style={{
-                            padding: "16px 16px",
-                            color: "rgb(246 247 249)",
+                            padding: "20px",
+                            color: "#A3ADC2",
                             lineHeight: "20px",
                             fontSize: "14px",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "20px",
                         }}
                     >
-                        <p>
+                        <p
+                            style={{
+                                margin: 0,
+                                padding: 0,
+                                lineHeight: "28px",
+                                fontSize: "16px",
+                            }}
+                        >
                             <code
                                 style={{
-                                    background: "rgb(68 73 85)",
-                                    padding: "2px 4px",
-                                    lineHeight: "20px",
-                                    fontSize: "14px",
+                                    display: "inline-block",
+                                    background: "#30345080",
+                                    padding: "0 4px",
+                                    lineHeight: "24px",
+                                    fontSize: "16px",
                                     borderRadius: "4px",
+                                    color: "#FFFFFF",
                                 }}
                             >{`<Refine />`}</code>{" "}
                             is not initialized. Please make sure you have it
@@ -99,68 +122,72 @@ const ExampleImplementation = () => {
                 display: "block",
                 overflowX: "auto",
                 borderRadius: "8px",
-                fontSize: "12px",
-                backgroundColor: "rgb(29, 31, 33)",
-                color: "rgb(197, 200, 198)",
-                padding: "0.5em",
+                fontSize: "14px",
+                lineHeight: "24px",
+                backgroundColor: "#14141F",
+                color: "#E5ECF2",
+                padding: "16px",
+                margin: "0",
+                maxHeight: "400px",
+                overflow: "auto",
             }}
         >
-            <span style={{ color: "rgb(178, 148, 187)" }}>import</span> {"{"}{" "}
-            Refine, WelcomePage {"}"}{" "}
-            <span style={{ color: "rgb(178, 148, 187)" }}>from</span>{" "}
-            <span style={{ color: "rgb(181, 189, 104)" }}>
-                {'"@refinedev/core"'}
-            </span>
-            ;{"\n"}
+            <span style={{ color: "#FF7B72" }}>import</span> {"{"} Refine,
+            WelcomePage {"}"} <span style={{ color: "#FF7B72" }}>from</span>{" "}
+            <span style={{ color: "#A5D6FF" }}>{'"@refinedev/core"'}</span>;
             {"\n"}
-            <span style={{ color: "rgb(178, 148, 187)" }}>export</span>{" "}
-            <span style={{ color: "rgb(178, 148, 187)" }}>default</span>{" "}
+            {"\n"}
+            <span style={{ color: "#FF7B72" }}>export</span>{" "}
+            <span style={{ color: "#FF7B72" }}>default</span>{" "}
             <span>
-                <span style={{ color: "rgb(178, 148, 187)" }}>function</span>{" "}
-                <span style={{ color: "rgb(129, 162, 190)" }}>App</span>
+                <span style={{ color: "#FF7B72" }}>function</span>{" "}
+                <span style={{ color: "#FFA657" }}>App</span>
                 (
                 <span style={{ color: "rgb(222, 147, 95)" }} />){" "}
             </span>
             {"{"}
             {"\n"}
             {"  "}
-            <span style={{ color: "rgb(178, 148, 187)" }}>return</span> ({"\n"}
+            <span style={{ color: "#FF7B72" }}>return</span> ({"\n"}
             {"    "}
             <span>
-                <span style={{ color: "rgb(204, 102, 102)" }}>
+                <span style={{ color: "#79C0FF" }}>
                     &lt;
-                    <span style={{ color: "rgb(204, 102, 102)" }}>Refine</span>
+                    <span style={{ color: "#79C0FF" }}>Refine</span>
                     {"\n"}
                     {"      "}
-                    {"// "}
-                    <span>...</span>
+                    <span style={{ color: "#E5ECF2", opacity: 0.6 }}>
+                        {"// "}
+                        <span>...</span>
+                    </span>
                     {"\n"}
                     {"    "}&gt;
                 </span>
                 {"\n"}
                 {"      "}
-                {"{"}
-                {"/* ... */"}
-                {"}"}
-                {"\n"}
-                {"      "}
-                <span style={{ color: "rgb(204, 102, 102)" }}>
-                    &lt;
-                    <span style={{ color: "rgb(204, 102, 102)" }}>
-                        WelcomePage
-                    </span>{" "}
-                    /&gt;
+                <span style={{ opacity: 0.6 }}>
+                    {"{"}
+                    {"/* ... */"}
+                    {"}"}
                 </span>
                 {"\n"}
                 {"      "}
-                {"{"}
-                {"/* ... */"}
-                {"}"}
+                <span style={{ color: "#79C0FF" }}>
+                    &lt;
+                    <span style={{ color: "#79C0FF" }}>WelcomePage</span> /&gt;
+                </span>
+                {"\n"}
+                {"      "}
+                <span style={{ opacity: 0.6 }}>
+                    {"{"}
+                    {"/* ... */"}
+                    {"}"}
+                </span>
                 {"\n"}
                 {"    "}
-                <span style={{ color: "rgb(204, 102, 102)" }}>
+                <span style={{ color: "#79C0FF" }}>
                     &lt;/
-                    <span style={{ color: "rgb(204, 102, 102)" }}>Refine</span>
+                    <span style={{ color: "#79C0FF" }}>Refine</span>
                     &gt;
                 </span>
             </span>
@@ -171,22 +198,247 @@ const ExampleImplementation = () => {
     );
 };
 
-const RefineLogo = (props: React.SVGProps<SVGSVGElement>) => (
+const ErrorGradient = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
+        width={204}
+        height={56}
+        viewBox="0 0 204 56"
         fill="none"
         {...props}
     >
-        <g fill="currentColor">
-            <path
-                fillRule="evenodd"
-                d="M13.789.422a4 4 0 0 0-3.578 0l-8 4A4 4 0 0 0 0 8v8a4 4 0 0 0 2.211 3.578l8 4a4 4 0 0 0 3.578 0l8-4A4 4 0 0 0 24 16V8a4 4 0 0 0-2.211-3.578l-8-4ZM8 8a4 4 0 1 1 8 0v8a4 4 0 0 1-8 0V8Z"
-                clipRule="evenodd"
-            />
-            <path d="M14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
-        </g>
+        <path fill="url(#welcome-page-error-gradient-a)" d="M12 0H0v12L12 0Z" />
+        <path
+            fill="url(#welcome-page-error-gradient-b)"
+            d="M28 0h-8L0 20v8L28 0Z"
+        />
+        <path
+            fill="url(#welcome-page-error-gradient-c)"
+            d="M36 0h8L0 44v-8L36 0Z"
+        />
+        <path
+            fill="url(#welcome-page-error-gradient-d)"
+            d="M60 0h-8L0 52v4h4L60 0Z"
+        />
+        <path
+            fill="url(#welcome-page-error-gradient-e)"
+            d="M68 0h8L20 56h-8L68 0Z"
+        />
+        <path
+            fill="url(#welcome-page-error-gradient-f)"
+            d="M92 0h-8L28 56h8L92 0Z"
+        />
+        <path
+            fill="url(#welcome-page-error-gradient-g)"
+            d="M100 0h8L52 56h-8l56-56Z"
+        />
+        <path
+            fill="url(#welcome-page-error-gradient-h)"
+            d="M124 0h-8L60 56h8l56-56Z"
+        />
+        <path
+            fill="url(#welcome-page-error-gradient-i)"
+            d="M140 0h-8L76 56h8l56-56Z"
+        />
+        <path
+            fill="url(#welcome-page-error-gradient-j)"
+            d="M132 0h8L84 56h-8l56-56Z"
+        />
+        <path
+            fill="url(#welcome-page-error-gradient-k)"
+            d="M156 0h-8L92 56h8l56-56Z"
+        />
+        <path
+            fill="url(#welcome-page-error-gradient-l)"
+            d="M164 0h8l-56 56h-8l56-56Z"
+        />
+        <path
+            fill="url(#welcome-page-error-gradient-m)"
+            d="M188 0h-8l-56 56h8l56-56Z"
+        />
+        <path
+            fill="url(#welcome-page-error-gradient-n)"
+            d="M204 0h-8l-56 56h8l56-56Z"
+        />
+        <defs>
+            <radialGradient
+                id="welcome-page-error-gradient-a"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+            <radialGradient
+                id="welcome-page-error-gradient-b"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+            <radialGradient
+                id="welcome-page-error-gradient-c"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+            <radialGradient
+                id="welcome-page-error-gradient-d"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+            <radialGradient
+                id="welcome-page-error-gradient-e"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+            <radialGradient
+                id="welcome-page-error-gradient-f"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+            <radialGradient
+                id="welcome-page-error-gradient-g"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+            <radialGradient
+                id="welcome-page-error-gradient-h"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+            <radialGradient
+                id="welcome-page-error-gradient-i"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+            <radialGradient
+                id="welcome-page-error-gradient-j"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+            <radialGradient
+                id="welcome-page-error-gradient-k"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+            <radialGradient
+                id="welcome-page-error-gradient-l"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+            <radialGradient
+                id="welcome-page-error-gradient-m"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+            <radialGradient
+                id="welcome-page-error-gradient-n"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientTransform="scale(124)"
+                gradientUnits="userSpaceOnUse"
+            >
+                <stop stopColor="#FF4C4D" stopOpacity={0.1} />
+                <stop offset={1} stopColor="#FF4C4D" stopOpacity={0} />
+            </radialGradient>
+        </defs>
+    </svg>
+);
+
+const ErrorIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={16}
+        height={16}
+        viewBox="0 0 16 16"
+        fill="none"
+        {...props}
+    >
+        <path
+            fill="#FF4C4D"
+            fillRule="evenodd"
+            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16Z"
+            clipRule="evenodd"
+        />
+        <path
+            fill="#fff"
+            fillRule="evenodd"
+            d="M7 8a1 1 0 1 0 2 0V5a1 1 0 1 0-2 0v3Zm0 3a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
+            clipRule="evenodd"
+        />
     </svg>
 );
