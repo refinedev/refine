@@ -3,9 +3,10 @@
   "version": "3.25.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env DISABLE_ESLINT_PLUGIN=true refine start",
-    "start": "cross-env DISABLE_ESLINT_PLUGIN=true refine start",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
+    "start": "refine dev",
+    "build": "refine build",
+    "preview": "refine start",
+    "dev": "refine start",
     "test": "jest --passWithNoTests --runInBand",
     "refine": "refine"
   },
