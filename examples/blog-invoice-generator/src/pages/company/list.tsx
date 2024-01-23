@@ -5,7 +5,7 @@ import { useSimpleList, List, useModalForm } from "@refinedev/antd";
 import { List as AntdList } from "antd";
 
 import { ICompany } from "interfaces";
-import { CompanyItem, CreateCompany, EditCompany } from "components/company";
+import { CompanyItem, CreateCompany, EditCompany } from "@/components/company";
 
 export const CompanyList: React.FC<IResourceComponentsProps> = () => {
     const { listProps } = useSimpleList<ICompany>({
