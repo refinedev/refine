@@ -74,3 +74,98 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "kong/2.2.1",
         ],
     );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+    encodedQueryParams: true,
+})
+    .post("/rest/v1/products", [{ name: "foo" }, { name: "foo-2" }])
+    .query({ columns: "%22name%22", select: "%2A" })
+    .reply(
+        201,
+        [
+            { id: 31, name: "foo" },
+            { id: 32, name: "foo-2" },
+        ],
+        [
+            "Date",
+            "Tue, 23 Jan 2024 12:12:53 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "Content-Range",
+            "*/*",
+            "CF-Ray",
+            "849ff2934b0868c1-BUD",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Access-Control-Allow-Origin",
+            "*",
+            "Strict-Transport-Security",
+            "max-age=2592000; includeSubDomains",
+            "Via",
+            "kong/2.8.1",
+            "Content-Profile",
+            "public",
+            "sb-gateway-version",
+            "1",
+            "X-Kong-Proxy-Latency",
+            "1",
+            "X-Kong-Upstream-Latency",
+            "3",
+            "Vary",
+            "Accept-Encoding",
+            "Server",
+            "cloudflare",
+            "alt-svc",
+            'h3=":443"; ma=86400',
+        ],
+    );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+    encodedQueryParams: true,
+})
+    .post("/rest/v1/products", [])
+    .reply(
+        406,
+        {
+            code: "PGRST106",
+            details: null,
+            hint: null,
+            message: "The schema must be one of the following: public, storage",
+        },
+        [
+            "Date",
+            "Tue, 23 Jan 2024 12:12:54 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "CF-Ray",
+            "849ff2957b6b68bb-BUD",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Access-Control-Allow-Origin",
+            "*",
+            "Strict-Transport-Security",
+            "max-age=2592000; includeSubDomains",
+            "Via",
+            "kong/2.8.1",
+            "sb-gateway-version",
+            "1",
+            "X-Kong-Proxy-Latency",
+            "1",
+            "X-Kong-Upstream-Latency",
+            "0",
+            "Vary",
+            "Accept-Encoding",
+            "Server",
+            "cloudflare",
+            "alt-svc",
+            'h3=":443"; ma=86400',
+        ],
+    );

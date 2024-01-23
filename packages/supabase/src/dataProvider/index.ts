@@ -13,7 +13,12 @@ export const dataProvider = (
                 mode = "server",
             } = pagination ?? {};
 
-            const query = supabaseClient
+            const client = meta?.schema
+                ? supabaseClient.schema(meta.schema)
+                : supabaseClient;
+
+            const query = client
+                .schema(meta?.schema ?? "public")
                 .from(resource)
                 .select(meta?.select ?? "*", {
                     count: meta?.count ?? "exact",
@@ -57,9 +62,11 @@ export const dataProvider = (
         },
 
         getMany: async ({ resource, ids, meta }) => {
-            const query = supabaseClient
-                .from(resource)
-                .select(meta?.select ?? "*");
+            const client = meta?.schema
+                ? supabaseClient.schema(meta.schema)
+                : supabaseClient;
+
+            const query = client.from(resource).select(meta?.select ?? "*");
 
             if (meta?.idColumnName) {
                 query.in(meta.idColumnName, ids);
@@ -79,7 +86,11 @@ export const dataProvider = (
         },
 
         create: async ({ resource, variables, meta }) => {
-            const query = supabaseClient.from(resource).insert(variables);
+            const client = meta?.schema
+                ? supabaseClient.schema(meta.schema)
+                : supabaseClient;
+
+            const query = client.from(resource).insert(variables);
 
             if (meta?.select) {
                 query.select(meta.select);
@@ -97,7 +108,11 @@ export const dataProvider = (
         },
 
         createMany: async ({ resource, variables, meta }) => {
-            const query = supabaseClient.from(resource).insert(variables);
+            const client = meta?.schema
+                ? supabaseClient.schema(meta.schema)
+                : supabaseClient;
+
+            const query = client.from(resource).insert(variables);
 
             if (meta?.select) {
                 query.select(meta.select);
@@ -115,7 +130,11 @@ export const dataProvider = (
         },
 
         update: async ({ resource, id, variables, meta }) => {
-            const query = supabaseClient.from(resource).update(variables);
+            const client = meta?.schema
+                ? supabaseClient.schema(meta.schema)
+                : supabaseClient;
+
+            const query = client.from(resource).update(variables);
 
             if (meta?.idColumnName) {
                 query.eq(meta.idColumnName, id);
@@ -140,9 +159,11 @@ export const dataProvider = (
         updateMany: async ({ resource, ids, variables, meta }) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
-                    const query = supabaseClient
-                        .from(resource)
-                        .update(variables);
+                    const client = meta?.schema
+                        ? supabaseClient.schema(meta.schema)
+                        : supabaseClient;
+
+                    const query = client.from(resource).update(variables);
 
                     if (meta?.idColumnName) {
                         query.eq(meta.idColumnName, id);
@@ -169,9 +190,11 @@ export const dataProvider = (
         },
 
         getOne: async ({ resource, id, meta }) => {
-            const query = supabaseClient
-                .from(resource)
-                .select(meta?.select ?? "*");
+            const client = meta?.schema
+                ? supabaseClient.schema(meta.schema)
+                : supabaseClient;
+
+            const query = client.from(resource).select(meta?.select ?? "*");
 
             if (meta?.idColumnName) {
                 query.eq(meta.idColumnName, id);
@@ -190,7 +213,11 @@ export const dataProvider = (
         },
 
         deleteOne: async ({ resource, id, meta }) => {
-            const query = supabaseClient.from(resource).delete();
+            const client = meta?.schema
+                ? supabaseClient.schema(meta.schema)
+                : supabaseClient;
+
+            const query = client.from(resource).delete();
 
             if (meta?.idColumnName) {
                 query.eq(meta.idColumnName, id);
@@ -211,7 +238,11 @@ export const dataProvider = (
         deleteMany: async ({ resource, ids, meta }) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
-                    const query = supabaseClient.from(resource).delete();
+                    const client = meta?.schema
+                        ? supabaseClient.schema(meta.schema)
+                        : supabaseClient;
+
+                    const query = client.from(resource).delete();
 
                     if (meta?.idColumnName) {
                         query.eq(meta.idColumnName, id);

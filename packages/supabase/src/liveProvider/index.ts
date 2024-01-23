@@ -63,9 +63,13 @@ export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
                     .join(",");
             };
 
-            const events = types.map(x => supabaseTypes[x]).sort((a, b) => a.localeCompare(b));
+            const events = types
+                .map((x) => supabaseTypes[x])
+                .sort((a, b) => a.localeCompare(b));
             const filter = mapFilter(params?.filters);
-            const ch = `${channel}:${events.join("|")}${filter ? ":" + filter : ""}`;
+            const ch = `${channel}:${events.join("|")}${
+                filter ? ":" + filter : ""
+            }`;
 
             let client = supabaseClient.channel(ch);
             for (let i = 0; i < events.length; i++) {
@@ -77,7 +81,7 @@ export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
                         table: resource,
                         filter: filter,
                     },
-                    listener
+                    listener,
                 );
             }
 
