@@ -41,7 +41,7 @@
   },
   "scripts": {
     "start": "refine dev",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
+    "build": "refine build",
     "preview": "refine start",
     "refine": "refine"
   },
