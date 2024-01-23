@@ -10,7 +10,7 @@ import {
 import { List as AntdList } from "antd";
 
 import { IClient } from "interfaces";
-import { ClientItem, CreateClient, EditClient } from "components/client";
+import { ClientItem, CreateClient, EditClient } from "@/components/client";
 
 export const ClientList: React.FC<IResourceComponentsProps> = () => {
     const { listProps } = useSimpleList<IClient>({

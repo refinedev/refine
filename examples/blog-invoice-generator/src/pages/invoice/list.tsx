@@ -14,7 +14,7 @@ import { FilePdfOutlined } from "@ant-design/icons";
 import { Table, Space, Button, Modal } from "antd";
 
 import { IInvoice, IMission } from "interfaces";
-import { PdfLayout } from "components/pdf";
+import { PdfLayout } from "@/components/pdf";
 
 export const InvoiceList: React.FC = () => {
     const [record, setRecord] = useState<IInvoice>();
