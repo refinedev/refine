@@ -30,7 +30,7 @@ In this part, we will create a missions part for the services your company provi
 
 :::caution
 
-This article is written as a continuation of our [Develop your Own Customizable Invoice Generator with Refine](https://refine.dev/blog/refine-react-admin-invoice-genarator/) article. If you have not read Part I, we recommend that you read Part I before reading this article.
+This article is written as a continuation of our [Develop your Own Customizable Invoice Generator with Refine](https://refine.dev/blog/refine-react-admin-invoice-generator/) article. If you have not read Part I, we recommend that you read Part I before reading this article.
 
 :::
 
