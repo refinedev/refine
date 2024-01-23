@@ -1,7 +1,7 @@
 ---
 title: Develop your Own Customizable Invoice Generator with Refine and Strapi | Part I
 description: Looking for an invoice generator? Try out Refine. With our custom interface, you can build your own invoice in minutes! Learn more here.
-slug: refine-react-admin-invoice-genarator
+slug: refine-react-admin-invoice-generator
 authors: melih
 tags: [refine, tutorial, react, strapi]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
@@ -36,11 +36,11 @@ Let's start by creating our refine project. You can use the [superplate](https:/
 
 ```bash
 
-npm create refine-app@latest refine-invoice-genarator -- -p refine-react -b v3
+npm create refine-app@latest refine-invoice-generator -- -p refine-react -b v3
 ```
 
 ```bash
-✔ What will be the name of your app ·refine-invoice-genarator
+✔ What will be the name of your app ·refine-invoice-generator
 ✔ Package manager: · Npm
 ✔ Do you want to use a UI Framework? · Ant Design
 ✔ Do you want a customized theme?: Default theme
