@@ -369,7 +369,7 @@ When working with forms and mutations, using only client side validation might n
 
 To learn more about server side validation and see an example, check out the [Server Side Validation section of the Forms guide.](/docs/guides-concepts/forms/#server-side-validation-)
 
-## How to work with Local environtment?
+## How to work offline in local environment?
 
 When working without a network connection, `@tanstack/query` prevents requests from being made until a successful connection is established. You might feel frustrated and wonder,
 
