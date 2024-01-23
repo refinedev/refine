@@ -39,7 +39,10 @@ module.exports = {
                 items: [
                     "essentials/intro/index",
                     "essentials/setup/index",
-                    "essentials/data-fetching/index",
+                    "essentials/data-fetching/intro/index",
+                    "essentials/data-fetching/fetching-data/index",
+                    "essentials/data-fetching/updating-data/index",
+                    "essentials/data-fetching/listing-data/index",
                     "essentials/forms/index",
                     "essentials/tables/index",
                 ],
