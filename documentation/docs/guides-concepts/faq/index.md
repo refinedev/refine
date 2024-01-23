@@ -373,7 +373,7 @@ To learn more about server side validation and see an example, check out the [Se
 
 When working without a network connection, `@tanstack/query` prevents requests from being made until a successful connection is established. You might feel frustrated and wonder,
 
-> WHY!!! can't I work with my own data? Must I use an internet connection to run this library?
+> Why can't I work with my own data? Must I use an internet connection to run this library?
 
 Don't worry; according to the `@tanstack/query` [documentation](https://tanstack.com/query/latest/docs/react/guides/network-mode), you can simply add the `networkMode: "always"` option to the `reactQuery` props on the `<Refine/>` component.
 
@@ -402,4 +402,3 @@ Don't worry; according to the `@tanstack/query` [documentation](https://tanstack
 [use-form-react-hook-form]: /docs/packages/list-of-packages
 [use-form-antd]: /docs/ui-integrations/ant-design/hooks/use-form
 [edit-mui]: /docs/packages/list-of-packages
-
