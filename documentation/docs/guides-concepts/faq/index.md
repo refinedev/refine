@@ -369,7 +369,37 @@ When working with forms and mutations, using only client side validation might n
 
 To learn more about server side validation and see an example, check out the [Server Side Validation section of the Forms guide.](/docs/guides-concepts/forms/#server-side-validation-)
 
+## How to work with Local environtment?
+
+When working without a network connection, `@tanstack/query` prevents requests from being made until a successful connection is established. You might feel frustrated and wonder,
+
+> WHY!!! can't I work with my own data? Must I use an internet connection to run this library?
+
+Don't worry; according to the `@tanstack/query` [documentation](https://tanstack.com/query/latest/docs/react/guides/network-mode), you can simply add the `networkMode: "always"` option to the `reactQuery` props on the `<Refine/>` component.
+
+```javascript
+<Refine
+  // ...
+  options: {
+    // ...
+    reactQuery: {
+      clientConfig: {
+        defaultOptions: {
+          queries: { // For fetching data
+            networkMode: "always", // Apply this to mutations as well, as shown below
+          },
+          mutations: { // For posting data
+            networkMode: "always" // It defaults to "online," preventing requests when there is no connection
+          },
+        },
+      },
+    },
+  }
+/>
+```
+
 [use-form-core]: /docs/core/hooks/use-form/
 [use-form-react-hook-form]: /docs/packages/list-of-packages
 [use-form-antd]: /docs/ui-integrations/ant-design/hooks/use-form
 [edit-mui]: /docs/packages/list-of-packages
+
