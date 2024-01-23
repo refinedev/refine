@@ -43,11 +43,37 @@ const App = () => (
 [Check out React Router documentation for detailed information](/docs/packages/list-of-packages)
 
 </TabItem>
-<TabItem value="next-js" label="Next.js">
+<TabItem value="nextjs-app" label="Next.js App">
+
+```tsx title="app/layout.tsx"
+"use client";
+import { Refine } from "@refinedev/core";
+// highlight-next-line
+import routerProvider from "@refinedev/nextjs-router/app";
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <Refine
+          // highlight-next-line
+          routerProvider={routerProvider}
+        >
+          {children}
+        </Refine>
+      </body>
+    </html>
+  );
+}
+```
+
+</TabItem>
+<TabItem value="next-js" label="Next.js Pages">
 
 ```tsx title="pages/_app.tsx"
+import { Refine } from "@refinedev/core";
 // highlight-next-line
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/nextjs-router/pages";
 
 export function MyApp({ Component, pageProps }) {
   return (
