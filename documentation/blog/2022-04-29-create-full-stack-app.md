@@ -85,7 +85,7 @@ You can develop a full-featured web application by using any your custom backend
 Check out the Full Stack application examples created with **refine** and out-of-the-box data providers:
 
 - [E-commerce Example](/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/)
-- [Invoice Genarator Example | Part I](/blog/refine-react-admin-invoice-genarator/) - [Invoice Genarator Example | Part II](/blog/refine-invoice-generator/)
+- [Invoice Generator Example | Part I](/blog/refine-react-admin-invoice-generator/) - [Invoice Generator Example | Part II](/blog/refine-invoice-generator/)
 - [Windows95 UI Admin Panel](/blog/awesome-react-windows95-ui-with-refine/)
 - [Feedback Admin Panel](/blog/create-a-feedback-admin-panel-with-refine-and-strapi/)
 - [Job Posting Admin Panel](/blog/customizable-admin-panel-with-nestjs/)
