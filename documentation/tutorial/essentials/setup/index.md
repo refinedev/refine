@@ -12,7 +12,7 @@ Creating a new Refine app is super simple and takes only a few steps to generate
 
 <TabItem value="quick" label="Quick Setup">
 
-To follow this tutorial along, you can use the starter templates provided by `create-refine-app`. Below commands will create a new empty project for you with `@refinedev/core` and `@refinedev/cli` packages.
+To follow this tutorial along, you can use the starter templates provided by `create-refine-app`. The following command will create a new empty project for you with `@refinedev/core` and `@refinedev/cli` packages, providing everything needed to get started with the tutorial.
 
 <Tabs>
 
@@ -34,7 +34,6 @@ npm create refine-app@latest -- --example starter-nextjs
 
 </Tabs>
 
-Above command will create an empty project for us that has everything we need to get started with the tutorial.
 
 </TabItem>
 

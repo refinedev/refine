@@ -16,7 +16,7 @@ The `getList` method will receive `resource`, `pagination`, `sorters`, `filters`
 
 Our fake API has `products` entity and expects us to list records using the `/products` endpoint. So, we'll be using the `resource`, `pagination`, `sorters` and `filters` properties to make our request.
 
-To make the implementation process easier, first we'll be implementing the `getList` method without pagination, sorting and filtering. Then, we'll be adding pagination, sorting and filtering to our implementation.
+To make the implementation process easier, we'll start by implementing the `getList` method without pagination, sorting, or filtering, and then gradually add these features to our implementation.
 
 Try to add the following lines to your `src/data-provider.ts` file:
 
@@ -45,9 +45,11 @@ export const dataProvider: DataProvider = {
 
 ## Using the `useList` Hook
 
-After implementing the `getList` method, we'll be able to call `useList` hook and fetch a list of records from our API. Let's create a component called `ListProducts` and mount it inside our `<Refine />` component. Then, we'll use the `useList` hook inside our `ListProducts` to fetch a list of records of `products` entity from our API.
+After implementing the `getList` method, we'll be able to call `useList` hook and fetch a list of records from our API. Let's create a component called `ListProducts` and mount it inside our `<Refine />` component. 
 
 <CreateListProductsFile />
+
+Then, we'll use the `useList` hook inside our `ListProducts` to fetch a list of records of `products` entity from our API.
 
 Try to add the following lines to your `src/list-products.tsx` file:
 
@@ -120,7 +122,7 @@ We should be able to see the list of products on our screen now.
 
 ## Adding Pagination
 
-Now we've listed all the products in our API. But, we're not able to paginate the list. Let's add pagination logic to our `getList` method.
+At this point, we've listed all the products in our API, but we're not able to paginate the list. Let's add pagination logic to our `getList` method.
 
 Our fake API supports pagination through the `_start` and `_end` query parameters. `_start` is the index of the first record we want to fetch and `_end` is the index of the last record we want to fetch. So, we'll be using the `pagination` property to calculate the `_start` and `_end` query parameters.
 
@@ -184,7 +186,7 @@ We should be able to see the first 10 products on our screen now.
 
 ## Adding Sorting
 
-We've added pagination to our `getList` method. But, we're not able to sort the list. Let's add sorting logic to our `getList` method.
+We've added pagination to our `getList` method, but we're not able to sort the list. Let's add sorting logic to our `getList` method.
 
 Our fake API supports sorting through the `_sort` and `_order` query parameters. `_sort` is the name of the field we want to sort and `_order` is the order we want to sort. So, we'll be using the `sorters` property to calculate the `_sort` and `_order` query parameters.
 

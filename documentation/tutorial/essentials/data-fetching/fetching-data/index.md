@@ -12,7 +12,10 @@ In this chapter, we'll be learning about the Refine's `useOne` hook to fetch a s
 
 To fetch a record using Refine's hooks, first we need to implement the `getOne` method in our data provider. This method will be called when we use the `useOne` hook or its extensions in our components.
 
-The `getOne` method will receive `resource`, `id` and `meta` properties. `resource` will be the name of the entity we're fetching. `id` will be the id of the record we're fetching. `meta` will be an object containing any additional data we're passing to the hook.
+The `getOne` method accepts `resource`, `id` and `meta` properties.
+- `resource` refers to the entity we're fetching
+- `id` is the ID of the record we're fetching.
+- `meta` is an object containing any additional data passed to the hook.
 
 Our fake API has `products` entity and expects us to fetch a single record using the `/products/:id` endpoint. So, we'll be using the `resource` and `id` properties to make our request.
 
@@ -46,11 +49,11 @@ export const dataProvider: DataProvider = {
 
 ## Using the `useOne` Hook
 
-After implementing the `getOne` method, we'll be able to call `useOne` hook and fetch a single record from our API. Let's create a component called `ShowProduct` and mount it inside our `<Refine />` component. Then, we'll use the `useOne` hook inside our `ShowProduct` to fetch a single record of `products` entity from our API.
+After implementing the `getOne` method, we'll be able to call `useOne` hook and fetch a single record from our API. Let's create a component called `ShowProduct` and mount it inside our `<Refine />` component. 
 
 <CreateShowProductFile />
 
-Then, we'll import `useOne` hook and use it inside our `ShowProduct` component.
+Then, we'll import `useOne` hook and use it inside our `ShowProduct` component to fetch a single record of `products` entity from our API.
 
 Try to add the following lines to your `src/show-product.tsx` file:
 
@@ -72,7 +75,7 @@ export const ShowProduct = () => {
 
 <AddUseOneToShowProduct />
 
-Finally, we'll mount our `ShowProduct` component inside our `<Refine />` component.
+Finally, we'll mount the `ShowProduct` component inside our `<Refine />` component.
 
 Try to add the following lines to your `src/App.tsx` file:
 
@@ -95,7 +98,7 @@ export default function App(): JSX.Element {
 
 <AddShowProductToAppTsx />
 
-We should be able to see the product name on our screen now.
+Now, we should be able to see the product name on our screen.
 
 In the next chapter, we'll be learning about the Refine's `useUpdate` hook to update a single record from our API and implement the `update` method in our data provider.
 
