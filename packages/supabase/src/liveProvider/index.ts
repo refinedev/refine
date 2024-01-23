@@ -63,16 +63,23 @@ export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
                     .join(",");
             };
 
-            const client = supabaseClient.channel("any").on(
-                "postgres_changes",
-                {
-                    event: supabaseTypes[types[0]] as any,
-                    schema: "public",
-                    table: resource,
-                    filter: mapFilter(params?.filters),
-                },
-                listener,
-            );
+            const events = types.map(x => supabaseTypes[x]).sort((a, b) => a.localeCompare(b));
+            const filter = mapFilter(params?.filters);
+            const ch = `${channel}:${events.join("|")}${filter ? ":" + filter : ""}`;
+
+            let client = supabaseClient.channel(ch);
+            for (let i = 0; i < events.length; i++) {
+                client = client.on(
+                    "postgres_changes",
+                    {
+                        event: events[i] as any,
+                        schema: "public",
+                        table: resource,
+                        filter: filter,
+                    },
+                    listener
+                );
+            }
 
             return client.subscribe();
         },

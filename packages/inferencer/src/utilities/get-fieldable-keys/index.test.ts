@@ -32,4 +32,14 @@ describe("getFieldableKeys", () => {
             }),
         ).toEqual(["firstName", "lastName"]);
     });
+
+    it("should return `team_name`", () => {
+        expect(
+            getFieldableKeys("team", {
+                id: "1",
+                team_name: "Refine",
+                description: "A team",
+            }),
+        ).toEqual("team_name");
+    });
 });

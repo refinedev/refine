@@ -159,86 +159,83 @@ export function useUpdatePassword<
         Error,
         TVariables,
         unknown
-    >(
-        keys().auth().action("updatePassword").get(preferLegacyKeys),
-        async (variables) => {
+    >({
+        mutationKey: keys()
+            .auth()
+            .action("updatePassword")
+            .get(preferLegacyKeys),
+        mutationFn: async (variables) => {
             return updatePasswordFromContext?.({
                 ...params,
                 ...variables,
             }) as Promise<AuthActionResponse>;
         },
-        {
-            onSuccess: ({ success, redirectTo, error }) => {
-                if (success) {
-                    close?.("update-password-error");
-                }
+        onSuccess: ({ success, redirectTo, error }) => {
+            if (success) {
+                close?.("update-password-error");
+            }
 
-                if (error || !success) {
-                    open?.(buildNotification(error));
-                }
-
-                if (redirectTo) {
-                    if (routerType === "legacy") {
-                        replace(redirectTo);
-                    } else {
-                        go({ to: redirectTo, type: "replace" });
-                    }
-                }
-            },
-            onError: (error: any) => {
+            if (error || !success) {
                 open?.(buildNotification(error));
-            },
-            ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
-            meta: {
-                ...(v3LegacyAuthProviderCompatible === true
-                    ? {}
-                    : mutationOptions?.meta),
-                ...getXRay("useUpdatePassword", preferLegacyKeys),
-            },
+            }
+
+            if (redirectTo) {
+                if (routerType === "legacy") {
+                    replace(redirectTo);
+                } else {
+                    go({ to: redirectTo, type: "replace" });
+                }
+            }
         },
-    );
+        onError: (error: any) => {
+            open?.(buildNotification(error));
+        },
+        ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
+        meta: {
+            ...(v3LegacyAuthProviderCompatible === true
+                ? {}
+                : mutationOptions?.meta),
+            ...getXRay("useUpdatePassword", preferLegacyKeys),
+        },
+    });
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TUpdatePasswordData,
         Error | RefineError,
         TVariables,
         unknown
-    >(
-        [
+    >({
+        mutationKey: [
             ...keys().auth().action("updatePassword").get(preferLegacyKeys),
             "v3LegacyAuthProviderCompatible",
         ],
-        async (variables) => {
+        mutationFn: async (variables) => {
             return legacyUpdatePasswordFromContext?.({
                 ...params,
                 ...variables,
             });
         },
-        {
-            onSuccess: (redirectPathFromAuth) => {
-                if (redirectPathFromAuth !== false) {
-                    if (redirectPathFromAuth) {
-                        if (routerType === "legacy") {
-                            replace(redirectPathFromAuth);
-                        } else {
-                            go({ to: redirectPathFromAuth, type: "replace" });
-                        }
+        onSuccess: (redirectPathFromAuth) => {
+            if (redirectPathFromAuth !== false) {
+                if (redirectPathFromAuth) {
+                    if (routerType === "legacy") {
+                        replace(redirectPathFromAuth);
+                    } else {
+                        go({ to: redirectPathFromAuth, type: "replace" });
                     }
                 }
-                close?.("update-password-error");
-            },
-            onError: (error: any) => {
-                open?.(buildNotification(error));
-            },
-            ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
-            meta: {
-                ...(v3LegacyAuthProviderCompatible
-                    ? mutationOptions?.meta
-                    : {}),
-                ...getXRay("useUpdatePassword", preferLegacyKeys),
-            },
+            }
+            close?.("update-password-error");
         },
-    );
+        onError: (error: any) => {
+            open?.(buildNotification(error));
+        },
+        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
+        meta: {
+            ...(v3LegacyAuthProviderCompatible ? mutationOptions?.meta : {}),
+            ...getXRay("useUpdatePassword", preferLegacyKeys),
+        },
+    });
 
     return v3LegacyAuthProviderCompatible
         ? v3LegacyAuthProviderCompatibleMutation

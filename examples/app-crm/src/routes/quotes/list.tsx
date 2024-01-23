@@ -7,10 +7,10 @@ import {
     getDefaultSortOrder,
     List,
     ShowButton,
-    useSelect,
     useTable,
 } from "@refinedev/antd";
 import { getDefaultFilter, HttpError } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { SearchOutlined } from "@ant-design/icons";
 import { Form, Grid, Input, Select, Space, Spin, Table } from "antd";
@@ -25,8 +25,13 @@ import {
     QuoteStatusTag,
     Text,
 } from "@/components";
-import { Quote, QuoteStatus } from "@/interfaces";
+import { Quote, QuoteStatus } from "@/graphql/schema.types";
+import { QuotesTableQuery } from "@/graphql/types";
+import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { currencyNumber } from "@/utilities";
+
+import { QUOTES_TABLE_QUERY } from "./queries";
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [
     {
@@ -47,7 +52,11 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
     const screens = Grid.useBreakpoint();
 
     const { tableProps, searchFormProps, filters, sorters, tableQueryResult } =
-        useTable<Quote, HttpError, { title: string }>({
+        useTable<
+            GetFieldsFromList<QuotesTableQuery>,
+            HttpError,
+            { title: string }
+        >({
             resource: "quotes",
             onSearch: (values) => {
                 return [
@@ -81,40 +90,13 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                 ],
             },
             meta: {
-                fields: [
-                    "id",
-                    "title",
-                    "status",
-                    "total",
-                    "createdAt",
-                    { company: ["id", "name", "avatarUrl"] },
-                    { contact: ["id", "name", "avatarUrl"] },
-                    { salesOwner: ["id", "name", "avatarUrl"] },
-                ],
+                gqlQuery: QUOTES_TABLE_QUERY,
             },
         });
 
-    const { selectProps: selectPropsCompanies } = useSelect({
-        resource: "companies",
-        optionLabel: "name",
-        pagination: {
-            mode: "off",
-        },
-        meta: {
-            fields: ["id", "name"],
-        },
-    });
+    const { selectProps: selectPropsCompanies } = useCompaniesSelect();
 
-    const { selectProps: selectPropsUsers } = useSelect({
-        resource: "users",
-        optionLabel: "name",
-        pagination: {
-            mode: "off",
-        },
-        meta: {
-            fields: ["id", "name"],
-        },
-    });
+    const { selectProps: selectPropsUsers } = useUsersSelect();
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         searchFormProps?.onFinish?.({
             title: e.target.value ?? "",

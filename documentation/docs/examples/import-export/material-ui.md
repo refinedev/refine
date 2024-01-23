@@ -1,6 +1,7 @@
 ---
 id: material-ui
-title: Material UI
+title: Import and Export in Material UI
+sidebar_label: Import / Export
 example-title: Import / Export CSV with Material UI
 example-tags: [csv]
 ---

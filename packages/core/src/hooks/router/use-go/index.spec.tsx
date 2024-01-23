@@ -1,5 +1,5 @@
 import React from "react";
-import { renderHook } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
@@ -141,6 +141,90 @@ describe("useGo Hook", () => {
         expect(mockGo).toBeCalledWith({ to: "/posts/1/clone" });
     });
 
+    it("should return the correct URL for a resource identifier", () => {
+        const mockGo = jest.fn();
+
+        const { result } = renderHook(() => useGo(), {
+            wrapper: TestWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/:id/edit",
+                        show: "/posts/:id",
+                        clone: "/posts/:id/clone",
+                    },
+                    {
+                        name: "posts",
+                        identifier: "id-posts",
+                        list: "/id-posts",
+                        create: "/id-posts/create",
+                        edit: "/id-posts/:id/edit",
+                        show: "/id-posts/:id",
+                        clone: "/id-posts/:id/clone",
+                    },
+                ],
+                dataProvider: MockJSONServer,
+                routerProvider: mockRouterBindings({
+                    fns: {
+                        go: () => mockGo,
+                    },
+                }),
+            }),
+        });
+
+        const go = result.current;
+
+        go({
+            to: {
+                resource: "id-posts",
+                action: "list",
+            },
+        });
+
+        expect(mockGo).toBeCalledWith({ to: "/id-posts" });
+
+        go({
+            to: {
+                resource: "id-posts",
+                action: "create",
+            },
+        });
+
+        expect(mockGo).toBeCalledWith({ to: "/id-posts/create" });
+
+        go({
+            to: {
+                resource: "id-posts",
+                action: "edit",
+                id: 1,
+            },
+        });
+
+        expect(mockGo).toBeCalledWith({ to: "/id-posts/1/edit" });
+
+        go({
+            to: {
+                resource: "id-posts",
+                action: "show",
+                id: 1,
+            },
+        });
+
+        expect(mockGo).toBeCalledWith({ to: "/id-posts/1" });
+
+        go({
+            to: {
+                resource: "id-posts",
+                action: "clone",
+                id: 1,
+            },
+        });
+
+        expect(mockGo).toBeCalledWith({ to: "/id-posts/1/clone" });
+    });
+
     it("should throw an error if the resource is not defined", () => {
         const { result } = renderHook(() => useGo(), {
             wrapper: TestWrapper({
@@ -165,9 +249,180 @@ describe("useGo Hook", () => {
             "[useGo]: [action: list] is not defined for [resource: users]",
         );
     });
+
+    it("should navigate with additional parameters if defined in resource.meta", async () => {
+        const mockGoFn = jest.fn();
+
+        const { result } = renderHook(() => useGo(), {
+            wrapper: TestWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                        edit: "/:tenantId/posts/:id/edit",
+                        list: "/:tenantId/posts",
+                        meta: { tenantId: "foo" },
+                    },
+                ],
+                dataProvider: MockJSONServer,
+                routerProvider: mockRouterBindings({
+                    fns: {
+                        go: () => mockGoFn,
+                    },
+                }),
+            }),
+        });
+
+        act(() => {
+            result.current({
+                to: {
+                    resource: "posts",
+                    action: "edit",
+                    id: "123",
+                },
+            });
+        });
+
+        expect(mockGoFn).toBeCalledWith(
+            expect.objectContaining({
+                to: "/foo/posts/123/edit",
+            }),
+        );
+
+        act(() => {
+            result.current({
+                to: {
+                    resource: "posts",
+                    action: "list",
+                },
+            });
+        });
+
+        expect(mockGoFn).toBeCalledWith(
+            expect.objectContaining({
+                to: "/foo/posts",
+            }),
+        );
+    });
+
+    it("should return with additional parameters if defined in route params", async () => {
+        const mockGoFn = jest.fn();
+
+        const { result } = renderHook(() => useGo(), {
+            wrapper: TestWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                        edit: "/:tenantId/posts/:id/edit",
+                        list: "/:tenantId/posts",
+                    },
+                ],
+                dataProvider: MockJSONServer,
+                routerProvider: mockRouterBindings({
+                    fns: {
+                        go: () => mockGoFn,
+                        parse: () => () => ({
+                            params: {
+                                tenantId: "foo",
+                            },
+                        }),
+                    },
+                }),
+            }),
+        });
+
+        act(() => {
+            result.current({
+                to: {
+                    resource: "posts",
+                    action: "edit",
+                    id: "123",
+                },
+            });
+        });
+
+        expect(mockGoFn).toBeCalledWith(
+            expect.objectContaining({
+                to: "/foo/posts/123/edit",
+            }),
+        );
+
+        act(() => {
+            result.current({
+                to: {
+                    resource: "posts",
+                    action: "list",
+                },
+            });
+        });
+
+        expect(mockGoFn).toBeCalledWith(
+            expect.objectContaining({
+                to: "/foo/posts",
+            }),
+        );
+    });
+
+    it("should return nested parameters if defined in to.meta", async () => {
+        const mockGoFn = jest.fn();
+
+        const { result } = renderHook(() => useGo(), {
+            wrapper: TestWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                        edit: "/:tenantId/posts/:id/edit",
+                        list: "/:tenantId/posts",
+                    },
+                ],
+                dataProvider: MockJSONServer,
+                routerProvider: mockRouterBindings({
+                    fns: {
+                        go: () => mockGoFn,
+                    },
+                }),
+            }),
+        });
+
+        act(() => {
+            result.current({
+                to: {
+                    resource: "posts",
+                    action: "edit",
+                    id: "123",
+                    meta: {
+                        tenantId: "foo",
+                    },
+                },
+            });
+        });
+
+        expect(mockGoFn).toBeCalledWith(
+            expect.objectContaining({
+                to: "/foo/posts/123/edit",
+            }),
+        );
+
+        act(() => {
+            result.current({
+                to: {
+                    resource: "posts",
+                    action: "list",
+                    meta: {
+                        tenantId: "foo",
+                    },
+                },
+            });
+        });
+
+        expect(mockGoFn).toBeCalledWith(
+            expect.objectContaining({
+                to: "/foo/posts",
+            }),
+        );
+    });
 });
 
-describe("findToPathFromResource", () => {
+describe("handleResourceErrors", () => {
     const resource = {
         name: "posts",
         list: "/posts",

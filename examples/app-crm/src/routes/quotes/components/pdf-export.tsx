@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 
 import { useModal } from "@refinedev/antd";
 import { useOne } from "@refinedev/core";
+import { GetFields } from "@refinedev/nestjs-query";
 
 import { FilePdfOutlined } from "@ant-design/icons";
 import {
@@ -15,44 +16,23 @@ import {
 } from "@react-pdf/renderer";
 import { Button, Modal } from "antd";
 
-import { Quote } from "@/interfaces";
+import { QuotesGetQuoteQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
+
+import { QUOTES_GET_QUOTE_QUERY } from "../queries";
 
 const PdfExport = () => {
     const { modalProps, show } = useModal();
     const params = useParams<{ id: string }>();
 
-    const { data, isLoading, isFetching, refetch } = useOne<Quote>({
+    const { data, isLoading, isFetching, refetch } = useOne<
+        GetFields<QuotesGetQuoteQuery>
+    >({
         resource: "quotes",
         id: params.id,
         liveMode: "off",
         meta: {
-            fields: [
-                "id",
-                "title",
-                "description",
-                "subTotal",
-                "total",
-                "tax",
-                {
-                    items: [
-                        "title",
-                        "unitPrice",
-                        "quantity",
-                        "discount",
-                        "totalPrice",
-                    ],
-                },
-                {
-                    company: ["id", "name", "country", "website", "avatarUrl"],
-                },
-                {
-                    salesOwner: ["id", "name"],
-                },
-                {
-                    contact: ["id", "name"],
-                },
-            ],
+            gqlQuery: QUOTES_GET_QUOTE_QUERY,
         },
     });
 

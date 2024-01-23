@@ -25,7 +25,7 @@ To use `@mui/x-data-grid` with version 6, [`@refinedev/mui`](https://github.com/
 
 Since there are some changes in the return values of the `useDataGrid` and the common usage of the `DataGrid` component with TypeScript, we've also released a major release to [`@refinedev/inferencer`](https://github.com/refinedev/refine/tree/master/packages/inferencer) package. If you're using the Inferencer package, you'll need to update it to `4.x.x` as well.
 
-### `useDataGrid`
+### useDataGrid
 
 We've updated the `useDataGrid` hook to return `paginationModel` and `onPaginationModelChange` instead of `page`, `pageSize`, `onPageChange` and `onPageSizeChange`. If you've modified these props, you'll need to update them to use the new API.
 

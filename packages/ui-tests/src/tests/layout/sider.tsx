@@ -2,7 +2,7 @@ import React from "react";
 import { RefineThemedLayoutV2SiderProps } from "@refinedev/ui-types";
 
 import { act, mockRouterBindings, render, TestWrapper, waitFor } from "@test";
-import { AuthBindings, LegacyAuthProvider } from "@refinedev/core";
+import { AuthProvider, LegacyAuthProvider } from "@refinedev/core";
 import { Route, Router, Routes } from "react-router-dom";
 
 const mockLegacyAuthProvider: LegacyAuthProvider & { isProvided: boolean } = {
@@ -15,7 +15,7 @@ const mockLegacyAuthProvider: LegacyAuthProvider & { isProvided: boolean } = {
     isProvided: true,
 };
 
-const mockAuthProvider: AuthBindings = {
+const mockAuthProvider: AuthProvider = {
     check: () => Promise.resolve({ authenticated: true }),
     login: () => Promise.resolve({ success: true }),
     logout: () => Promise.resolve({ success: true }),

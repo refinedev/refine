@@ -61,7 +61,6 @@ function Home() {
                             />
                         </div>
                         <LandingSweetSpot />
-                        <LandingTestimonial />
                         <div
                             className={clsx(
                                 "flex flex-col",
@@ -87,8 +86,9 @@ function Home() {
                                 />
                             </div>
                         </div>
-                        <LandingCommunity />
                         <LandingEnterpriseDevelopers />
+                        <LandingCommunity />
+                        <LandingTestimonial />
                         <LandingTryItSection />
                     </div>
                     <LandingFooter />

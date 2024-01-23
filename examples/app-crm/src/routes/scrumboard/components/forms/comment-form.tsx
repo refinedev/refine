@@ -11,7 +11,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Form, Input } from "antd";
 
 import { CustomAvatar } from "@/components";
-import { TaskComment, User } from "@/interfaces";
+import { TaskComment, User } from "@/graphql/schema.types";
 
 type FormValues = TaskComment & {
     taskId: BaseKey;
@@ -88,9 +88,9 @@ export const CommentForm = () => {
                     rules={[
                         {
                             required: true,
-                            pattern: new RegExp(
-                                /^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i,
-                            ),
+                            transform(value) {
+                                return value?.trim();
+                            },
                             message: "Please enter a comment",
                         },
                     ]}

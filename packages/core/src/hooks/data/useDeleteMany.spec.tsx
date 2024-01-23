@@ -1,6 +1,11 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
+import {
+    MockJSONServer,
+    mockRouterBindings,
+    queryClient,
+    TestWrapper,
+} from "@test";
 
 import {
     assertListLength,
@@ -10,6 +15,7 @@ import {
 } from "@test/mutation-helpers";
 import * as UseInvalidate from "../invalidate/index";
 import { useDeleteMany } from "./useDeleteMany";
+import * as queryKeys from "@definitions/helpers/queryKeys";
 
 describe("useDeleteMany Hook", () => {
     it("should work with pessimistic update", async () => {
@@ -110,6 +116,34 @@ describe("useDeleteMany Hook", () => {
         await assertMutationSuccess(result);
     });
 
+    it("should exclude gqlQuery and qqlMutation from query keys", async () => {
+        const catchFn = jest.fn();
+
+        jest.spyOn(queryKeys, "queryKeysReplacement").mockImplementationOnce(
+            () => catchFn,
+        );
+
+        const { result } = renderHook(() => useDeleteMany(), {
+            wrapper: TestWrapper({}),
+        });
+
+        const resource = "posts";
+
+        result.current.mutate({
+            resource,
+            ids: [1],
+            meta: {
+                foo: "bar",
+                gqlQuery: "gqlQuery" as any,
+                gqlMutation: "gqlMutation" as any,
+            },
+        });
+
+        await waitFor(() => {
+            expect(catchFn).toBeCalledWith(resource, "default", { foo: "bar" });
+        });
+    });
+
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
         const deleteManyMock = jest.fn();
 
@@ -131,7 +165,11 @@ describe("useDeleteMany Hook", () => {
         result.current.mutate({
             resource: "posts",
             ids: ["1"],
-            meta: { foo: "bar" },
+            meta: {
+                foo: "bar",
+                gqlQuery: "gqlQuery" as any,
+                gqlMutation: "gqlMutation" as any,
+            },
         });
 
         await waitFor(() => {
@@ -143,6 +181,8 @@ describe("useDeleteMany Hook", () => {
                 meta: expect.objectContaining({
                     foo: "bar",
                     baz: "qux",
+                    gqlQuery: "gqlQuery",
+                    gqlMutation: "gqlMutation",
                 }),
             }),
         );
@@ -779,5 +819,79 @@ describe("useDeleteMany Hook", () => {
                 }),
             );
         });
+    });
+
+    it("should override `mutationFn` with mutationOptions.mutationFn", async () => {
+        const useDeleteManyMock = jest.fn().mockResolvedValue({ data: {} });
+        const mutationFnMock = jest.fn().mockResolvedValue({ data: {} });
+
+        const { result } = renderHook(
+            () =>
+                useDeleteMany({
+                    mutationOptions: {
+                        // mutationFn is omitted in types. So we need to use @ts-ignore test it.
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        mutationFn: mutationFnMock,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            update: useDeleteManyMock,
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        result.current.mutate({
+            resource: "posts",
+            ids: ["1", "2"],
+            values: {},
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(useDeleteManyMock).not.toBeCalled();
+        expect(mutationFnMock).toBeCalled();
+    });
+
+    it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
+        const { result } = renderHook(
+            () =>
+                useDeleteMany({
+                    mutationOptions: {
+                        mutationKey: ["foo", "bar"],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        result.current.mutate({
+            resource: "posts",
+            ids: ["1", "2"],
+            values: {},
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(
+            queryClient.getMutationCache().findAll({
+                mutationKey: ["foo", "bar"],
+            }),
+        ).toHaveLength(1);
     });
 });

@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/inferencer",
-  "version": "4.5.15",
+  "version": "4.5.17",
   "description": "refine is a React-based framework for building internal tools, rapidly.",
   "private": false,
   "sideEffects": false,
@@ -64,7 +64,7 @@
   "peerDependencies": {
     "@refinedev/antd": "^5.0.0",
     "@refinedev/chakra-ui": "^2.0.0",
-    "@refinedev/core": "^4.40.0",
+    "@refinedev/core": "^4.46.1",
     "@refinedev/mantine": "^2.0.0",
     "@refinedev/mui": "^5.0.0",
     "@refinedev/react-hook-form": "^4.0.0",
@@ -152,14 +152,14 @@
     }
   },
   "devDependencies": {
-    "@refinedev/antd": "^5.37.0",
-    "@refinedev/chakra-ui": "^2.27.0",
-    "@refinedev/core": "^4.46.0",
-    "@refinedev/mantine": "^2.29.0",
-    "@refinedev/mui": "^5.14.0",
+    "@refinedev/antd": "^5.37.2",
+    "@refinedev/chakra-ui": "^2.27.2",
+    "@refinedev/core": "^4.46.2",
+    "@refinedev/mantine": "^2.29.2",
+    "@refinedev/mui": "^5.14.2",
     "@types/lodash": "^4.14.171",
-    "@refinedev/react-hook-form": "^4.8.10",
-    "@refinedev/react-table": "^5.6.4",
+    "@refinedev/react-hook-form": "^4.8.13",
+    "@refinedev/react-table": "^5.6.5",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/react-test-renderer": "^18.0.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -185,7 +185,7 @@
   },
   "dependencies": {
     "@tabler/icons": "^1.119.0",
-    "@refinedev/core": "^4.46.0",
+    "@refinedev/core": "^4.46.2",
     "dayjs": "^1.10.7",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",

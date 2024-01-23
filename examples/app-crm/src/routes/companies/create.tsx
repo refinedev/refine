@@ -1,6 +1,6 @@
 import { useLocation, useSearchParams } from "react-router-dom";
 
-import { useModalForm, useSelect } from "@refinedev/antd";
+import { useModalForm } from "@refinedev/antd";
 import {
     CreateResponse,
     HttpError,
@@ -8,6 +8,7 @@ import {
     useGetToPath,
     useGo,
 } from "@refinedev/core";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import {
     DeleteOutlined,
@@ -29,15 +30,20 @@ import {
 } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company, User } from "@/interfaces";
+import { Company } from "@/graphql/schema.types";
+import {
+    CreateCompanyMutation,
+    CreateCompanyMutationVariables,
+} from "@/graphql/types";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
+
+import { COMPANY_CREATE_MUTATION } from "./queries";
 
 type Props = {
     isOverModal?: boolean;
 };
 
-type FormValues = {
-    name: string;
-    salesOwnerId: string;
+type FormValues = GetVariables<CreateCompanyMutationVariables> & {
     contacts?: {
         name?: string;
         email?: string;
@@ -51,7 +57,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
     const go = useGo();
 
     const { formProps, modalProps, close, onFinish } = useModalForm<
-        Company,
+        GetFields<CreateCompanyMutation>,
         HttpError,
         FormValues
     >({
@@ -62,17 +68,11 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
         warnWhenUnsavedChanges: !isOverModal,
         mutationMode: "pessimistic",
         meta: {
-            fields: ["id", { salesOwner: ["id"] }],
+            gqlMutation: COMPANY_CREATE_MUTATION,
         },
     });
 
-    const { selectProps, queryResult } = useSelect<User>({
-        resource: "users",
-        meta: {
-            fields: ["name", "id", "avatarUrl"],
-        },
-        optionLabel: "name",
-    });
+    const { selectProps, queryResult } = useUsersSelect();
 
     const { mutateAsync: createManyMutateAsync } = useCreateMany();
 

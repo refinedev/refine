@@ -1,5 +1,21 @@
 # @refinedev/chakra-ui
 
+## 2.27.2
+
+### Patch Changes
+
+-   [#5465](https://github.com/refinedev/refine/pull/5465) [`00e00cbd98`](https://github.com/refinedev/refine/commit/00e00cbd98c34046ab83b299ede83401ae74fec1) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the type issue between `remark-gfm` and `react-markdown`. #5463
+
+## 2.27.1
+
+### Patch Changes
+
+-   [#5425](https://github.com/refinedev/refine/pull/5425) [`190af9fce2`](https://github.com/refinedev/refine/commit/190af9fce292bc46b169e3e121be6bf1c2a939a5) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@refinedev/core` peer dependencies to latest (`^4.46.1`)
+
+-   Updated dependencies [[`190af9fce2`](https://github.com/refinedev/refine/commit/190af9fce292bc46b169e3e121be6bf1c2a939a5)]:
+    -   @refinedev/react-hook-form@4.8.13
+    -   @refinedev/ui-types@1.22.4
+
 ## 2.27.0
 
 ### Minor Changes

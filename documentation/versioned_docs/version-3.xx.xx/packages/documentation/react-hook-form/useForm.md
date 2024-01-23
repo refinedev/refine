@@ -192,9 +192,7 @@ The [`@pankod/refine-react-hook-form`][refine-react-hook-form] adapter allows yo
 
 Install the [`@pankod/refine-react-hook-form`][refine-react-hook-form] library.
 
-```bash
-npm i @pankod/refine-react-hook-form
-```
+<InstallPackagesCommand args="@pankod/refine-react-hook-form"/>
 
 ## Basic Usage
 

@@ -2,17 +2,18 @@ import React from "react";
 
 import { useModal } from "@refinedev/antd";
 import { useList } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { FlagOutlined, SettingOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Skeleton, theme } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 
 import { Text } from "@/components";
-import { EventCategory } from "@/interfaces";
-
-import { CalendarManageCategories } from "./manage-categories";
+import { EVENT_CATEGORIES_QUERY } from "@/graphql/queries";
+import { EventCategoriesQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
+import { CalendarManageCategories } from "./manage-categories";
 
 type CalendarCategoriesProps = {
     onChange?: (e: CheckboxChangeEvent) => void;
@@ -24,10 +25,12 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
 }) => {
     const { token } = theme.useToken();
     const { modalProps, show, close } = useModal();
-    const { data, isLoading } = useList<EventCategory>({
+    const { data, isLoading } = useList<
+        GetFieldsFromList<EventCategoriesQuery>
+    >({
         resource: "eventCategories",
         meta: {
-            fields: ["id", "title"],
+            gqlQuery: EVENT_CATEGORIES_QUERY,
         },
     });
 

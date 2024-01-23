@@ -6,12 +6,21 @@ import {
     useList,
     useParsed,
 } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { Button, Form, Input, Space, Typography } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";
-import { ContactNote, User } from "@/interfaces";
+import { User } from "@/graphql/schema.types";
+import { ContactsContactNotesListQuery } from "@/graphql/types";
+
+import {
+    CONTACTS_CONTACT_NOTES_LIST_QUERY,
+    CONTACTS_UPDATE_CONTACT_NOTE_MUTATION,
+} from "./queries";
+
+type ContactNote = GetFieldsFromList<ContactsContactNotesListQuery>;
 
 const ContactCommentListItem = ({ item }: { item: ContactNote }) => {
     const invalidate = useInvalidate();
@@ -39,6 +48,9 @@ const ContactCommentListItem = ({ item }: { item: ContactNote }) => {
             description: "Successful",
             type: "success",
         }),
+        meta: {
+            gqlMutation: CONTACTS_UPDATE_CONTACT_NOTE_MUTATION,
+        },
     });
     const { data: me } = useGetIdentity<User>();
 
@@ -82,9 +94,9 @@ const ContactCommentListItem = ({ item }: { item: ContactNote }) => {
                             rules={[
                                 {
                                     required: true,
-                                    pattern: new RegExp(
-                                        /^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i,
-                                    ),
+                                    transform(value) {
+                                        return value?.trim();
+                                    },
                                     message: "Please enter a note",
                                 },
                             ]}
@@ -171,12 +183,7 @@ export const ContactCommentList = () => {
             mode: "off",
         },
         meta: {
-            fields: [
-                "id",
-                "note",
-                "createdAt",
-                { createdBy: ["id", "name", "avatarUrl"] },
-            ],
+            gqlQuery: CONTACTS_CONTACT_NOTES_LIST_QUERY,
         },
     });
 

@@ -21,9 +21,7 @@ To use the browser-based scaffolding tool, you can visit [refine.dev](https://re
 
 To use the command-line interface, you can simply run the following command in your terminal:
 
-```bash
-npx create refine-app my-refine-app
-```
+<CreateRefineAppCommand args="my-refine-app" />
 
 After running the command, you will be prompted to select the options you want to use for your project. After you are done with the options, the CLI will create your project in the `my-refine-app` directory.
 

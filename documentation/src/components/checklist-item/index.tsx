@@ -58,9 +58,12 @@ const ChecklistItem: React.FC<Props> = ({ children, id: checkId }) => {
                         "flex items-center justify-center",
                         "w-4 h-4",
                         "rounded",
-                        "border border-gray-400 dark:border-gray-500",
+                        "border",
                         {
-                            "bg-refine-blue": checked,
+                            "border-gray-400 dark:border-gray-500": !checked,
+                            "border-refine-react-dark-link dark:border-refine-react-dark-link":
+                                checked,
+                            "bg-refine-react-dark-link": checked,
                         },
                     )}
                 >
@@ -69,8 +72,9 @@ const ChecklistItem: React.FC<Props> = ({ children, id: checkId }) => {
             </div>
             <div
                 className={clsx(
-                    checked && "line-through dark:text-gray-400 text-gray-500",
-                    !checked && "text-gray-900 dark:text-gray-0",
+                    checked &&
+                        "line-through dark:text-gray-100 dark:text-opacity-50 text-gray-800 text-opacity-50",
+                    !checked && "text-gray-800 dark:text-gray-100",
                 )}
             >
                 {children}

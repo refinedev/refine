@@ -1,5 +1,30 @@
 # @refinedev/cli
 
+## 2.16.22
+
+### Patch Changes
+
+-   [#5398](https://github.com/refinedev/refine/pull/5398) [`fda3494215`](https://github.com/refinedev/refine/commit/fda349421509197b5a2be225bd3794adb2a7925c) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: Remix v2 requires build path as argument for `remix-serve` but Refine CLI was not passing it.
+    From now on, Refine CLI will pass the build path as argument to `remix-serve` command and uses the default `./build/index.js` if not provided.
+
+    You can pass the build path as argument to `refine start` command.
+
+    ```json
+    // package.json
+
+    {
+        "scripts": {
+            "start": "refine start ./build/index.js"
+        }
+    }
+    ```
+
+## 2.16.21
+
+### Patch Changes
+
+-   [#5425](https://github.com/refinedev/refine/pull/5425) [`190af9fce2`](https://github.com/refinedev/refine/commit/190af9fce292bc46b169e3e121be6bf1c2a939a5) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@refinedev/core` peer dependencies to latest (`^4.46.1`)
+
 ## 2.16.20
 
 ### Patch Changes

@@ -110,7 +110,7 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ## Properties
 
-### `title`
+### title
 
 `title` allows the addition of titles inside the `<Show>` component. if you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it would be "Show post".
 
@@ -162,7 +162,7 @@ render(
 );
 ```
 
-### `resource`
+### resource
 
 The `<Show>` component reads the `resource` information from the route by default. TIf you want to use a custom resource for the `<Show>` component, you can use the `resource` prop.
 
@@ -219,11 +219,11 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `canDelete` and `canEdit`
+### canDelete and canEdit
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property Refine adds the buttons by default.
 
-When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/core/providers/data-provider) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/data/data-provider) and the edit button redirects the user to the record edit page.
 
 > For more information, refer to the [`<DeleteButton>`](/docs/ui-integrations/ant-design/components/buttons/delete-button) and the [`<EditButton>`](/docs/ui-integrations/ant-design/components/buttons/edit-button) documentation.
 
@@ -333,9 +333,9 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/core/hooks/auth/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/authentication/hooks/use-permissions)
 
-### `recordItemId`
+### recordItemId
 
 The `<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL, such as when it's used on a custom page, modal or drawer.
 
@@ -406,7 +406,7 @@ render(
 );
 ```
 
-### `dataProviderName`
+### dataProviderName
 
 If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
@@ -437,7 +437,7 @@ export const App: React.FC = () => {
 };
 ```
 
-### `goBack`
+### goBack
 
 To customize the back button or to disable it, you can use the `goBack` property. You can pass `false` or `null` to hide the back button.
 
@@ -488,7 +488,7 @@ render(
 );
 ```
 
-### `isLoading`
+### isLoading
 
 To toggle the loading state of the `<Edit/>` component, you can use the `isLoading` property.
 
@@ -539,7 +539,7 @@ render(
 );
 ```
 
-### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
+### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mantine` package.
 
@@ -608,7 +608,7 @@ render(
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/mantine/components/breadcrumb)
 
-### `wrapperProps`
+### wrapperProps
 
 If you want to customize the wrapper of the `<Show/>` component, you can use the `wrapperProps` property. For `@refinedev/mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
 
@@ -669,7 +669,7 @@ render(
 
 > For more information, refer to the [`Card` documentation from Mantine &#8594](https://mantine.dev/core/card/)
 
-### `headerProps`
+### headerProps
 
 If you want to customize the header of the `<Show/>` component, you can use the `headerProps` property.
 
@@ -730,7 +730,7 @@ render(
 
 > For more information, refer to the [`Group` documentation from Mantine &#8594](https://mantine.dev/core/group/)
 
-### `contentProps`
+### contentProps
 
 If you want to customize the content of the `<Show/>` component, you can use the `contentProps` property.
 
@@ -791,7 +791,7 @@ render(
 
 > For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/box/)
 
-### `headerButtons`
+### headerButtons
 
 By default, the `<Show/>` component has a [`<ListButton>`][list-button], [`<EditButton>`][edit-button], [`<DeleteButton>`][delete-button], and, [`<RefreshButton>`][refresh-button] at the header.
 
@@ -924,7 +924,7 @@ render(
 );
 ```
 
-### `headerButtonProps`
+### headerButtonProps
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
@@ -991,7 +991,7 @@ render(
 
 [Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
 
-### `footerButtons`
+### footerButtons
 
 You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
@@ -1051,7 +1051,7 @@ render(
 );
 ```
 
-### `footerButtonProps`
+### footerButtonProps
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 

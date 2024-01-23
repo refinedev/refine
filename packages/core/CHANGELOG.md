@@ -1,5 +1,114 @@
 # @refinedev/core
 
+## 4.46.2
+
+### Patch Changes
+
+-   [#5423](https://github.com/refinedev/refine/pull/5423) [`75bb61dd3b`](https://github.com/refinedev/refine/commit/75bb61dd3b781e69f198f4e928ccffddb997fdc5) Thanks [@aliemir](https://github.com/aliemir)! - Updated `flattenObjectKeys` method to support both nested and non-nested variables when propagating server side errors to form fields. Resolves [#5461](https://github.com/refinedev/refine/issues/5461)
+
+-   [#5401](https://github.com/refinedev/refine/pull/5401) [`93e00fd770`](https://github.com/refinedev/refine/commit/93e00fd7701bce9e7201d04a6dd8f1419baeb68d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `queryKey` is not overrideable. To fix this, `useQuery` overloads refactored with single argument objects.
+
+    ```diff
+    - useQuery(queryKey, queryFn, options);
+    + useQuery({ queryKey, queryFn, ...options });
+    ```
+
+    From now on, you can pass `queryKey` as an object property.
+
+    ```tsx
+    // all data hooks can be used with this syntax.
+    useList({
+        queryOptions: {
+            queryKey: ["my-query-key"],
+        },
+    });
+    ```
+
+-   [#5406](https://github.com/refinedev/refine/pull/5406) [`e5888b6b9c`](https://github.com/refinedev/refine/commit/e5888b6b9c9cc41546152f5b4d9adaf4405aa51c) Thanks [@aliemir](https://github.com/aliemir)! - `useMenu` hook was using outdated `meta` and router `params` due to missing dependency of the callback function. This was causing dynamic menu items to use wrong paths as links. (Resolves [#5432](https://github.com/refinedev/refine/issues/5432))
+
+-   [#5452](https://github.com/refinedev/refine/pull/5452) [`b621223bfb`](https://github.com/refinedev/refine/commit/b621223bfbc2bed569e41766f60b9687ddba9013) Thanks [@aliemir](https://github.com/aliemir)! - Added the ability to pass `meta` properties when using `useGo`'s `go` function with `to` as a resource object. This allows you to pass additional path parameters to the path defined in the resources array within the `<Refine />` component. Resolves [#5451](https://github.com/refinedev/refine/issues/5451)
+
+    Assume we have the following resource defined in the `<Refine />` component:
+
+    ```tsx
+    {
+        name: "posts",
+        list: "/posts",
+        edit: "/:foo/posts/:id/edit",
+    }
+    ```
+
+    ```tsx
+    import { useGo } from "@refinedev/core";
+
+    const MyButton = () => {
+        const go = useGo();
+
+        return (
+            <Button
+                onClick={() => {
+                    go({
+                        to: {
+                            resource: "posts",
+                            action: "edit",
+                            id: "1",
+                            meta: {
+                                foo: "bar",
+                            },
+                        },
+                        type: "push",
+                    });
+                    // generated path will be "/bar/posts/1/edit"
+                }}
+            >
+                Go Posts
+            </Button>
+        );
+    };
+    ```
+
+-   [#5381](https://github.com/refinedev/refine/pull/5381) [`19ceffbe9f`](https://github.com/refinedev/refine/commit/19ceffbe9f217fd354207b96610c25e8a7f3dcf3) Thanks [@aberhamm](https://github.com/aberhamm)! - fix: Missing `loginLink` attribute in `AuthPageProps` for `<AuthPage type="register" />`. #5381
+
+## 4.46.1
+
+### Patch Changes
+
+-   [#5409](https://github.com/refinedev/refine/pull/5409) [`0026fe34d0`](https://github.com/refinedev/refine/commit/0026fe34d0e46209f42e40834c6942ade22f242f) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: exclude `gqlMutation` and `gqlQuery` from building query keys for `useUpdate`, `useUpdateMany`, `useDelete`, and `useDeleteMany` hooks.
+
+-   [#5409](https://github.com/refinedev/refine/pull/5409) [`0026fe34d0`](https://github.com/refinedev/refine/commit/0026fe34d0e46209f42e40834c6942ade22f242f) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: add optional `gqlQuery` and `gqlMutation` fields to `MetaQuery` type to be used in `data hooks`.
+
+    We plan to utilize these fields on our GraphQL data providers in the future.
+
+    You can build your queries/mutations with `graphql-tag` package and pass it to the `gqlQuery`/`gqlMutation` fields.
+
+    For now, only `@refinedev/nestjs-query` package supports it.
+
+    ```tsx
+    import { useList } from "@refinedev/core";
+    import gql from "graphql-tag";
+
+    const PRODUCTS_QUERY = gql`
+        query ProductsList(
+            $paging: OffsetPaging!
+            $filter: BlogPostFilter
+            $sorting: [BlogPostSort!]!
+        ) {
+            products(paging: $paging, filter: $filter, sorting: $sorting) {
+                nodes {
+                    id
+                    name
+                }
+                totalCount
+            }
+        }
+    `;
+
+    const { data } = useList({
+        resource: "products",
+        meta: { gqlQuery: PRODUCTS_QUERY },
+    });
+    ```
+
 ## 4.46.0
 
 ### Minor Changes
@@ -15,7 +124,7 @@
 
 -   [#5323](https://github.com/refinedev/refine/pull/5323) [`17aa8c1cd6`](https://github.com/refinedev/refine/commit/17aa8c1cd6858c5a2b0c996c97230047e049bf3b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - ### Breaking changes
 
-    fix: added required `key` prop to `<Auhtenticated />` component to resolve issues of rendering of the unwanted content and wrongful redirections. #4782
+    fix: added required `key` prop to `<Authenticated />` component to resolve issues of rendering of the unwanted content and wrongful redirections. #4782
 
     #### Why is it required?
 

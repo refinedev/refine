@@ -32,59 +32,19 @@ export default function BrowserWindow({
                     "flex-shrink-0",
                     "rounded-tl-lg",
                     "rounded-tr-lg",
-                    "border-b",
-                    "border-b-gray-200 dark:border-b-gray-900",
-                    "px-4 py-2",
-                    "flex items-center justify-center",
+                    "border",
+                    "border-gray-300 dark:border-gray-700",
+                    "px-4 py-3",
+                    "flex items-center justify-start",
+                    "gap-2",
                     "bg-gray-100 dark:bg-gray-700",
                     "relative",
+                    "text-gray-800 dark:text-gray-100",
+                    "border-b-0",
                 )}
             >
-                <div
-                    className={clsx(
-                        "absolute",
-                        "h-full",
-                        "left-3",
-                        "top-0",
-                        "flex items-center justify-center",
-                        "gap-1",
-                    )}
-                >
-                    <div
-                        className={clsx(
-                            "w-2.5 h-2.5",
-                            "rounded-full",
-                            "bg-refine-red",
-                        )}
-                    />
-                    <div
-                        className={clsx(
-                            "w-2.5 h-2.5",
-                            "rounded-full",
-                            "bg-refine-orange",
-                        )}
-                    />
-                    <div
-                        className={clsx(
-                            "w-2.5 h-2.5",
-                            "rounded-full",
-                            "bg-refine-green",
-                        )}
-                    />
-                </div>
-                <div
-                    className={clsx(
-                        "rounded-lg",
-                        "p-2",
-                        "bg-gray-0 dark:bg-gray-800",
-                        "flex items-center justify-center",
-                        "text-gray-500 dark:text-gray-400",
-                        "text-xs",
-                        "w-full",
-                        "max-w-[260px]",
-                        "md:max-w-[320px]",
-                    )}
-                >
+                <GlobeIcon className="w-4 h-4" />
+                <div className={clsx("text-xs")}>
                     {`${url}`.replace(/^http(s?):\/\//, "")}
                 </div>
             </div>
@@ -92,10 +52,10 @@ export default function BrowserWindow({
                 className={clsx(
                     "flex-1",
                     "overflow-hidden",
-                    "p-1",
                     "bg-gray-100 dark:bg-gray-700",
+                    "border border-gray-300 dark:border-gray-700",
                     !hasBottom && "rounded-bl-lg rounded-br-lg",
-                    hasBottom && "border-b-gray-200 dark:border-b-gray-900",
+                    hasBottom && "border-b-gray-300 dark:border-b-gray-900",
                     hasBottom && "border-b",
                 )}
                 style={{ minHeight }}
@@ -105,3 +65,21 @@ export default function BrowserWindow({
         </div>
     );
 }
+
+const GlobeIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={16}
+        height={16}
+        viewBox="0 0 16 16"
+        fill="none"
+        {...props}
+    >
+        <path
+            fill="currentColor"
+            fillRule="evenodd"
+            d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0Zm-6.066 5.21C9.264 14.55 8.522 15 8 15s-1.263-.449-1.934-1.79c-.59-1.179-.996-2.83-1.058-4.71h5.984c-.062 1.88-.469 3.531-1.058 4.71Zm1.058-5.71H5.008c.062-1.88.469-3.531 1.058-4.71C6.736 1.45 7.478 1 8 1s1.263.449 1.934 1.79c.59 1.179.996 2.83 1.058 4.71Zm1 1c-.079 2.555-.757 4.786-1.757 6.136A7.005 7.005 0 0 0 14.982 8.5h-2.99Zm2.99-1h-2.99c-.079-2.555-.757-4.786-1.757-6.136A7.005 7.005 0 0 1 14.982 7.5Zm-10.974 0c.078-2.555.757-4.786 1.757-6.136A7.005 7.005 0 0 0 1.018 7.5h2.99Zm-2.99 1a7.005 7.005 0 0 0 4.747 6.136c-1-1.35-1.679-3.581-1.757-6.136h-2.99Z"
+            clipRule="evenodd"
+        />
+    </svg>
+);

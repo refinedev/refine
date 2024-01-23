@@ -37,8 +37,8 @@ export const menuItems = [
                 href: "/enterprise",
             },
             {
-                label: "Examples",
-                href: "/docs/examples",
+                label: "Templates",
+                href: "/templates",
             },
             {
                 label: "Integrations",

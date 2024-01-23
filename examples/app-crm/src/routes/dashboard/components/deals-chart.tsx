@@ -1,32 +1,29 @@
 import React, { lazy, Suspense, useMemo } from "react";
 
 import { useList, useNavigation } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { AreaConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
 import dayjs from "dayjs";
-import { DealStage } from "interfaces/graphql";
 
 import { Text } from "@/components";
+import { DashboardDealsChartQuery } from "@/graphql/types";
+
+import { DASHBOARD_DEALS_CHART_QUERY } from "./queries";
 
 const Area = lazy(() => import("@ant-design/plots/es/components/area"));
 
-export const DashboardDealsChart: React.FC<{}> = () => {
+export const DashboardDealsChart: React.FC = () => {
     const { list } = useNavigation();
-    const { data, isError, error } = useList<DealStage>({
+    const { data, isError, error } = useList<
+        GetFieldsFromList<DashboardDealsChartQuery>
+    >({
         resource: "dealStages",
         filters: [{ field: "title", operator: "in", value: ["WON", "LOST"] }],
         meta: {
-            fields: [
-                "title",
-                {
-                    dealsAggregate: [
-                        { groupBy: ["closeDateMonth", "closeDateYear"] },
-                        { sum: ["value"] },
-                    ],
-                },
-            ],
+            gqlQuery: DASHBOARD_DEALS_CHART_QUERY,
         },
     });
 

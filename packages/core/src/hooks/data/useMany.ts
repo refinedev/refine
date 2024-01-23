@@ -103,7 +103,8 @@ export const useMany = <
     dataProviderName,
     overtimeOptions,
 }: UseManyProps<TQueryFnData, TError, TData>): QueryObserverResult<
-    GetManyResponse<TData>, TError
+    GetManyResponse<TData>,
+    TError
 > &
     UseLoadingOvertimeReturnType => {
     const { resources, resource, identifier } = useResource(resourceFromProp);
@@ -155,8 +156,8 @@ export const useMany = <
         GetManyResponse<TQueryFnData>,
         TError,
         GetManyResponse<TData>
-    >(
-        keys()
+    >({
+        queryKey: keys()
             .data(pickedDataProvider)
             .resource(identifier)
             .action("many")
@@ -165,7 +166,7 @@ export const useMany = <
                 ...(preferredMeta || {}),
             })
             .get(preferLegacyKeys),
-        ({ queryKey, pageParam, signal }) => {
+        queryFn: ({ queryKey, pageParam, signal }) => {
             if (getMany) {
                 return getMany({
                     resource: resource?.name,
@@ -214,44 +215,42 @@ export const useMany = <
                 );
             }
         },
-        {
-            ...queryOptions,
-            onSuccess: (data) => {
-                queryOptions?.onSuccess?.(data);
+        ...queryOptions,
+        onSuccess: (data) => {
+            queryOptions?.onSuccess?.(data);
 
-                const notificationConfig =
-                    typeof successNotification === "function"
-                        ? successNotification(data, ids, identifier)
-                        : successNotification;
+            const notificationConfig =
+                typeof successNotification === "function"
+                    ? successNotification(data, ids, identifier)
+                    : successNotification;
 
-                handleNotification(notificationConfig);
-            },
-            onError: (err: TError) => {
-                checkError(err);
-                queryOptions?.onError?.(err);
-
-                const notificationConfig =
-                    typeof errorNotification === "function"
-                        ? errorNotification(err, ids, identifier)
-                        : errorNotification;
-
-                handleNotification(notificationConfig, {
-                    key: `${ids[0]}-${identifier}-getMany-notification`,
-                    message: translate(
-                        "notifications.error",
-                        { statusCode: err.statusCode },
-                        `Error (status code: ${err.statusCode})`,
-                    ),
-                    description: err.message,
-                    type: "error",
-                });
-            },
-            meta: {
-                ...queryOptions?.meta,
-                ...getXRay("useMany", preferLegacyKeys),
-            },
+            handleNotification(notificationConfig);
         },
-    );
+        onError: (err: TError) => {
+            checkError(err);
+            queryOptions?.onError?.(err);
+
+            const notificationConfig =
+                typeof errorNotification === "function"
+                    ? errorNotification(err, ids, identifier)
+                    : errorNotification;
+
+            handleNotification(notificationConfig, {
+                key: `${ids[0]}-${identifier}-getMany-notification`,
+                message: translate(
+                    "notifications.error",
+                    { statusCode: err.statusCode },
+                    `Error (status code: ${err.statusCode})`,
+                ),
+                description: err.message,
+                type: "error",
+            });
+        },
+        meta: {
+            ...queryOptions?.meta,
+            ...getXRay("useMany", preferLegacyKeys),
+        },
+    });
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: queryResponse.isFetching,

@@ -75,46 +75,42 @@ export function useOnError({
         v3LegacyAuthProviderCompatible: Boolean(v3LegacyAuthProviderCompatible),
     });
 
-    const mutation = useMutation(
-        keys().auth().action("onError").get(preferLegacyKeys),
-        onErrorFromContext,
-        {
-            onSuccess: ({ logout: shouldLogout, redirectTo }) => {
-                if (shouldLogout) {
-                    logout({ redirectPath: redirectTo });
-                    return;
-                }
+    const mutation = useMutation({
+        mutationKey: keys().auth().action("onError").get(preferLegacyKeys),
+        mutationFn: onErrorFromContext,
+        onSuccess: ({ logout: shouldLogout, redirectTo }) => {
+            if (shouldLogout) {
+                logout({ redirectPath: redirectTo });
+                return;
+            }
 
-                if (redirectTo) {
-                    if (routerType === "legacy") {
-                        replace(redirectTo);
-                    } else {
-                        go({ to: redirectTo, type: "replace" });
-                    }
-                    return;
+            if (redirectTo) {
+                if (routerType === "legacy") {
+                    replace(redirectTo);
+                } else {
+                    go({ to: redirectTo, type: "replace" });
                 }
-            },
-            meta: {
-                ...getXRay("useOnError", preferLegacyKeys),
-            },
+                return;
+            }
         },
-    );
+        meta: {
+            ...getXRay("useOnError", preferLegacyKeys),
+        },
+    });
 
-    const v3LegacyAuthProviderCompatibleMutation = useMutation(
-        [
+    const v3LegacyAuthProviderCompatibleMutation = useMutation({
+        mutationKey: [
             ...keys().auth().action("onError").get(preferLegacyKeys),
             "v3LegacyAuthProviderCompatible",
         ],
-        legacyCheckErrorFromContext,
-        {
-            onError: (redirectPath?: string) => {
-                legacyLogout({ redirectPath });
-            },
-            meta: {
-                ...getXRay("useOnError", preferLegacyKeys),
-            },
+        mutationFn: legacyCheckErrorFromContext,
+        onError: (redirectPath?: string) => {
+            legacyLogout({ redirectPath });
         },
-    );
+        meta: {
+            ...getXRay("useOnError", preferLegacyKeys),
+        },
+    });
 
     return v3LegacyAuthProviderCompatible
         ? v3LegacyAuthProviderCompatibleMutation

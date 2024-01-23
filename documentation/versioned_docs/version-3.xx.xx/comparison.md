@@ -67,8 +67,8 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 
 <!-- -->
 
-[react-admin]: https://marmelab.com/react-admin/
-[react-enterprise]: https://marmelab.com/ra-enterprise/
+[react-admin]: https://github.com/marmelab/react-admin
+[react-enterprise]: https://github.com/marmelab/react-admin
 [stars-react-admin]: https://img.shields.io/github/stars/marmelab/react-admin?label=%F0%9F%8C%9F
 [gh-react-admin]: https://github.com/marmelab/react-admin
 [bpl-react-admin]: https://bundlephobia.com/result?p=react-admin

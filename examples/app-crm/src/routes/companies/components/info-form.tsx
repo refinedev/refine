@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { useShow } from "@refinedev/core";
+import { GetFields } from "@refinedev/nestjs-query";
 
 import {
     ApiOutlined,
@@ -13,8 +14,13 @@ import {
 import { Card, Input, InputNumber, Select, Space } from "antd";
 
 import { SingleElementForm, Text } from "@/components";
-import { BusinessType, Company, CompanySize, Industry } from "@/interfaces";
+import { BusinessType, CompanySize, Industry } from "@/graphql/schema.types";
+import { CompanyInfoQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
+
+import { COMPANY_INFO_QUERY } from "./queries";
+
+type Company = GetFields<CompanyInfoQuery>;
 
 export const CompanyInfoForm = () => {
     const [activeForm, setActiveForm] = useState<
@@ -28,15 +34,7 @@ export const CompanyInfoForm = () => {
 
     const { queryResult } = useShow<Company>({
         meta: {
-            fields: [
-                "id",
-                "totalRevenue",
-                "industry",
-                "companySize",
-                "businessType",
-                "country",
-                "website",
-            ],
+            gqlQuery: COMPANY_INFO_QUERY,
         },
     });
 

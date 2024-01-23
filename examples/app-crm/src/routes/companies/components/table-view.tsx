@@ -1,50 +1,31 @@
 import { FC } from "react";
 
-import {
-    DeleteButton,
-    EditButton,
-    FilterDropdown,
-    useSelect,
-} from "@refinedev/antd";
+import { DeleteButton, EditButton, FilterDropdown } from "@refinedev/antd";
 import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { Input, Select, Space, Table, TableProps } from "antd";
 
 import { CustomAvatar, PaginationTotal, Text } from "@/components";
-import { Company } from "@/interfaces";
+import { Company } from "@/graphql/schema.types";
+import { CompaniesTableQuery } from "@/graphql/types";
+import { useContactsSelect } from "@/hooks/useContactsSelect";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { currencyNumber } from "@/utilities";
 
 import { AvatarGroup } from "./avatar-group";
 
 type Props = {
-    tableProps: TableProps<Company>;
+    tableProps: TableProps<GetFieldsFromList<CompaniesTableQuery>>;
     filters: CrudFilters;
     sorters: CrudSorting;
 };
 
 export const CompaniesTableView: FC<Props> = ({ tableProps, filters }) => {
-    const { selectProps: selectPropsUsers } = useSelect({
-        resource: "users",
-        optionLabel: "name",
-        pagination: {
-            mode: "off",
-        },
-        meta: {
-            fields: ["id", "name"],
-        },
-    });
+    const { selectProps: selectPropsUsers } = useUsersSelect();
 
-    const { selectProps: selectPropsContacts } = useSelect({
-        resource: "contacts",
-        optionLabel: "name",
-        pagination: {
-            mode: "off",
-        },
-        meta: {
-            fields: ["id", "name"],
-        },
-    });
+    const { selectProps: selectPropsContacts } = useContactsSelect();
 
     return (
         <Table

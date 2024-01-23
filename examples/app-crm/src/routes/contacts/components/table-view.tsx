@@ -3,9 +3,9 @@ import {
     FilterDropdown,
     getDefaultSortOrder,
     ShowButton,
-    useSelect,
 } from "@refinedev/antd";
 import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { PhoneOutlined } from "@ant-design/icons";
 import { Button, Input, Select, Space, Table, type TableProps } from "antd";
@@ -17,10 +17,12 @@ import {
     Text,
 } from "@/components";
 import { ContactStatusEnum } from "@/enums";
-import { Contact } from "@/interfaces";
+import { Contact } from "@/graphql/schema.types";
+import { ContactsListQuery } from "@/graphql/types";
+import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 
 type Props = {
-    tableProps: TableProps<Contact>;
+    tableProps: TableProps<GetFieldsFromList<ContactsListQuery>>;
     filters: CrudFilters;
     sorters: CrudSorting;
 };
@@ -35,13 +37,7 @@ export const TableView: React.FC<Props> = ({
     filters,
     sorters,
 }) => {
-    const { selectProps } = useSelect({
-        resource: "companies",
-        optionLabel: "name",
-        meta: {
-            fields: ["id", "name"],
-        },
-    });
+    const { selectProps } = useCompaniesSelect();
 
     return (
         <Table

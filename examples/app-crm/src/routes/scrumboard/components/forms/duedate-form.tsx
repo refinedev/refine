@@ -4,7 +4,9 @@ import { HttpError } from "@refinedev/core";
 import { Button, DatePicker, Form, Space } from "antd";
 import dayjs from "dayjs";
 
-import { Task } from "@/interfaces";
+import { Task } from "@/graphql/schema.types";
+
+import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
 
 type Props = {
     initialValues: {
@@ -21,6 +23,9 @@ export const DueDateForm = ({ initialValues, cancelForm }: Props) => {
         redirect: false,
         onMutationSuccess: () => {
             cancelForm();
+        },
+        meta: {
+            gqlQuery: KANBAN_UPDATE_TASK_MUTATION,
         },
     });
 

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useSelect } from "@refinedev/antd";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
     Checkbox,
@@ -17,6 +18,10 @@ import {
 } from "antd";
 import dayjs from "dayjs";
 
+import { EVENT_CATEGORIES_QUERY } from "@/graphql/queries";
+import { EventCategoriesQuery } from "@/graphql/types";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
+
 type CalendarFormProps = {
     isAllDayEvent: boolean;
     setIsAllDayEvent: (value: boolean) => void;
@@ -32,20 +37,16 @@ export const CalendarForm: React.FC<CalendarFormProps> = ({
     isAllDayEvent = false,
     setIsAllDayEvent,
 }) => {
-    const { selectProps: categorySelectProps } = useSelect({
+    const { selectProps: categorySelectProps } = useSelect<
+        GetFieldsFromList<EventCategoriesQuery>
+    >({
         resource: "eventCategories",
         meta: {
-            fields: ["id", "title"],
+            gqlQuery: EVENT_CATEGORIES_QUERY,
         },
     });
 
-    const { selectProps: userSelectProps } = useSelect({
-        optionLabel: "name",
-        resource: "users",
-        meta: {
-            fields: ["id", "name"],
-        },
-    });
+    const { selectProps: userSelectProps } = useUsersSelect();
 
     const rangeDate = form.getFieldsValue().rangeDate;
     const date = form.getFieldsValue().date;

@@ -5,6 +5,7 @@ import {
     act,
     mockLegacyRouterProvider,
     mockRouterBindings,
+    queryClient,
 } from "@test";
 
 import { useForgotPassword } from ".";
@@ -418,6 +419,73 @@ describe("useForgotPassword Hook", () => {
                 description: "Unhandled error",
             });
         });
+    });
+
+    it("should override `mutationFn` with mutationOptions.mutationFn", async () => {
+        const forgotPasswordMock = jest.fn().mockResolvedValue({ data: {} });
+        const mutationFnMock = jest.fn().mockResolvedValue({ data: {} });
+
+        const { result } = renderHook(
+            () =>
+                useForgotPassword({
+                    mutationOptions: {
+                        // mutationFn is omitted in types. So we need to use @ts-ignore test it.
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        mutationFn: mutationFnMock,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    authProvider: {
+                        ...mockAuthProvider,
+                        forgotPassword: forgotPasswordMock,
+                    },
+                }),
+            },
+        );
+
+        result.current.mutate({});
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(forgotPasswordMock).not.toBeCalled();
+        expect(mutationFnMock).toBeCalled();
+    });
+
+    it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
+        const forgotPasswordMock = jest.fn().mockResolvedValue({ data: {} });
+
+        const { result } = renderHook(
+            () =>
+                useForgotPassword({
+                    mutationOptions: {
+                        mutationKey: ["foo", "bar"],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    authProvider: {
+                        ...mockAuthProvider,
+                        forgotPassword: forgotPasswordMock,
+                    },
+                }),
+            },
+        );
+
+        result.current.mutate({});
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(
+            queryClient.getMutationCache().findAll({
+                mutationKey: ["foo", "bar"],
+            }),
+        ).toHaveLength(1);
     });
 });
 

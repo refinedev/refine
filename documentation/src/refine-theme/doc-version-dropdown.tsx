@@ -37,42 +37,43 @@ export const DocVersionDropdown = ({ className, wrapperClassName }: Props) => {
             <Menu>
                 {({ open }) => (
                     <>
-                        <span className="rounded-md shadow-sm">
-                            <Menu.Button
+                        <Menu.Button
+                            className={clsx(
+                                "appearance-none",
+                                "focus:outline-none",
+                                "border border-solid border-gray-300 dark:border-gray-600 lg:dark:border-gray-700",
+                                "rounded-[32px]",
+                                "py-1.5",
+                                "pl-3",
+                                "pr-2",
+                                "bg-gray-0 dark:bg-gray-800",
+                                "lg:bg-transparent lg:dark:bg-transparent",
+                                "lg:pl-4 lg:pr-3",
+                                "lg:py-[9px]",
+                                "flex",
+                                "items-center",
+                                "justify-center",
+                                "gap-1",
+                                "lg:gap-2",
+                                "select-none",
+                                className,
+                            )}
+                        >
+                            <span
                                 className={clsx(
-                                    "appearance-none",
-                                    "border-none",
-                                    "focus:outline-none",
-                                    "flex",
-                                    "items-center",
-                                    "justify-center",
-                                    "gap-2",
-                                    "bg-gray-50 dark:bg-gray-800",
-                                    "hover:bg-gray-100 dark:hover:bg-gray-700",
-                                    "transition-colors",
-                                    "duration-200",
-                                    "ease-in-out",
-                                    "select-none",
-                                    "py-2 pl-2",
-                                    "rounded-lg",
-                                    className,
+                                    "text-gray-500 dark:text-gray-100",
+                                    "text-sm leading-5",
+                                    "block",
                                 )}
                             >
-                                <span
-                                    className={clsx(
-                                        "text-gray-500 dark:text-gray-400",
-                                        "text-base",
-                                        "block",
-                                    )}
-                                >
-                                    {docContext.activeVersion.label}
-                                </span>
-                                <TriangleDownIcon className="text-gray-400 dark:text-gray-500" />
-                            </Menu.Button>
-                        </span>
+                                {docContext.activeVersion.label}
+                            </span>
+                            <TriangleDownIcon className="text-gray-400 w-4 h-4" />
+                        </Menu.Button>
 
                         <Transition
                             show={open}
+                            className="relative z-10"
                             enter="transition ease-out duration-100"
                             enterFrom="transform opacity-0 scale-95"
                             enterTo="transform opacity-100 scale-100"
@@ -82,14 +83,14 @@ export const DocVersionDropdown = ({ className, wrapperClassName }: Props) => {
                         >
                             <Triangle
                                 className={clsx(
-                                    "absolute right-[2px] top-[-6px] origin-bottom-right",
+                                    "absolute right-[11px] top-1 origin-bottom-right",
                                     "text-gray-700 dark:text-white",
                                 )}
                             />
                             <Menu.Items
                                 static
                                 className={clsx(
-                                    "absolute right-[-14px] top-[-2px] origin-bottom-right",
+                                    "absolute right-0 top-2 origin-bottom-right",
                                     "flex flex-col gap-2",
                                     "w-[112px]",
                                     "p-2",

@@ -940,7 +940,7 @@ interface IPost {
 
 ## Properties
 
-### `refineCoreProps`
+### refineCoreProps
 
 All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) docs.
 
@@ -954,11 +954,11 @@ const stepsForm = useStepsForm({
 });
 ```
 
-### `stepsProps`
+### stepsProps
 
 The props needed by the manage state steps.
 
-#### `defaultStep`
+#### defaultStep
 
 Sets the default starting step number. Counting starts from `0`.
 
@@ -970,7 +970,7 @@ const stepsForm = useStepsForm({
 });
 ```
 
-#### `isBackValidate`
+#### isBackValidate
 
 When is `true`, validates a form fields when the user navigates to a previous step. Default is `false`.
 
@@ -982,7 +982,7 @@ const stepsForm = useStepsForm({
 });
 ```
 
-### `autoSave`
+### autoSave
 
 If you want to save the form automatically after some delay when user edits the form, you can pass true to `autoSave.enabled` prop.
 
@@ -994,7 +994,7 @@ It also supports `onMutationSuccess` and `onMutationError` callback functions. Y
 
 `onMutationSuccess` and `onMutationError` callbacks will be called after the mutation is successful or failed.
 
-#### `enabled`
+#### enabled
 
 To enable the `autoSave` feature, set the `enabled` parameter to `true`. By default, it is set to `false`.
 
@@ -1008,7 +1008,7 @@ useStepsForm({
 });
 ```
 
-#### `debounce`
+#### debounce
 
 Set the debounce time for the `autoSave` prop. By default, it is set to `1000` milliseconds.
 
@@ -1024,7 +1024,7 @@ useStepsForm({
 });
 ```
 
-#### `onFinish`
+#### onFinish
 
 If you want to modify the data before sending it to the server, you can use `onFinish` callback function.
 
@@ -1046,7 +1046,7 @@ useStepsForm({
 });
 ```
 
-#### `invalidateOnUnmount`
+#### invalidateOnUnmount
 
 This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when the hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate. By default, it is set to `false`.
 
@@ -1066,15 +1066,15 @@ useStepsForm({
 
 All [`useForm`](/docs/packages/list-of-packages) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/packages/list-of-packages#return-values) docs.
 
-### `steps`
+### steps
 
 The return values needed by the manage state steps.
 
-#### `currentStep`
+#### currentStep
 
 Current step, counting from `0`.
 
-#### `gotoStep`
+#### gotoStep
 
 Is a function that allows you to programmatically change the current step of a form.
 It takes in one argument, step, which is a number representing the index of the step you want to navigate to.
@@ -1108,7 +1108,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 | Property                      | Description                                                     | Type                                                              |
 | ----------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- |
 | steps                         | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                     |
-| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/core/hooks/use-form/#return-values) |
+| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/data/hooks/use-form/#return-values) |
 | React Hook Form Return Values | See [React Hook Form][react-hook-form-use-form] documentation   |
 
 ## Example
@@ -1118,6 +1118,6 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 [@refinedev/react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [refine-react-hook-form-use-form]: /docs/packages/list-of-packages
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
-[use-form-core]: /docs/core/hooks/use-form/
+[use-form-core]: /docs/data/hooks/use-form/
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

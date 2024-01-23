@@ -16,11 +16,11 @@ import routerProvider, {
 import { authProvider } from "./authProvider";
 import { API_URL } from "./constants";
 import styles from "~/styles/global.css";
-export const meta: MetaFunction = () => ({
+export const meta: MetaFunction = () => ([{
     charset: "utf-8",
     title: "New Remix + Refine App",
     viewport: "width=device-width,initial-scale=1",
-});
+}]);
 
 export default function App() {
     return (

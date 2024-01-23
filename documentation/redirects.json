@@ -6,11 +6,11 @@
     },
     {
       "from": "/docs/core/components/accessControl/can-access/",
-      "to": "/docs/core/components/can-access"
+      "to": "/docs/authorization/components/can-access"
     },
     {
       "from": "/docs/core/components/auth/authenticated/",
-      "to": "/docs/core/components/authenticated/"
+      "to": "/docs/authentication/components/authenticated"
     },
     {
       "from": "/docs/core/components/layout-wrapper/",
@@ -22,107 +22,107 @@
     },
     {
       "from": "/docs/core/hooks/accessControl/useCan/",
-      "to": "/docs/core/hooks/use-can"
+      "to": "/docs/authorization/hooks/use-can"
     },
     {
       "from": "/docs/core/hooks/audit-log/useLog/",
-      "to": "/docs/core/hooks/audit-log/use-log"
+      "to": "/docs/audit-logs/hooks/use-log"
     },
     {
       "from": "/docs/core/hooks/audit-log/useLogList/",
-      "to": "/docs/core/hooks/audit-log/use-log-list"
+      "to": "/docs/audit-logs/hooks/use-log-list"
     },
     {
       "from": "/docs/core/hooks/auth/useAuthenticated/",
-      "to": "/docs/core/hooks/auth/use-is-authenticated"
+      "to": "/docs/authentication/hooks/use-is-authenticated"
     },
     {
       "from": "/docs/api-reference/core/hooks/auth/useAuthenticated/",
-      "to": "/docs/core/hooks/auth/use-is-authenticated"
+      "to": "/docs/authentication/hooks/use-is-authenticated"
     },
     {
       "from": "/docs/core/hooks/auth/useCheckError/",
-      "to": "/docs/core/hooks/auth/use-on-error"
+      "to": "/docs/authentication/hooks/use-on-error"
     },
     {
       "from": "/docs/api-reference/core/hooks/auth/useCheckError/",
-      "to": "/docs/core/hooks/auth/use-on-error"
+      "to": "/docs/authentication/hooks/use-on-error"
     },
     {
       "from": "/docs/core/hooks/auth/useGetIdentity/",
-      "to": "/docs/core/hooks/auth/use-get-identity"
+      "to": "/docs/authentication/hooks/use-get-identity"
     },
     {
       "from": "/docs/core/hooks/auth/useLogin/",
-      "to": "/docs/core/hooks/auth/use-login"
+      "to": "/docs/authentication/hooks/use-login"
     },
     {
       "from": "/docs/core/hooks/auth/useLogout/",
-      "to": "/docs/core/hooks/auth/use-logout"
+      "to": "/docs/authentication/hooks/use-logout"
     },
     {
       "from": "/docs/core/hooks/auth/usePermissions/",
-      "to": "/docs/core/hooks/auth/use-permissions"
+      "to": "/docs/authentication/hooks/use-permissions"
     },
     {
       "from": "/docs/core/hooks/auth/useRegister/",
-      "to": "/docs/core/hooks/auth/use-register"
+      "to": "/docs/authentication/hooks/use-register"
     },
     {
       "from": "/docs/core/hooks/auth/useUpdatePassword/",
-      "to": "/docs/core/hooks/auth/use-update-password"
+      "to": "/docs/authentication/hooks/use-update-password"
     },
     {
       "from": "/docs/core/hooks/data/useApiUrl/",
-      "to": "/docs/core/hooks/data/use-api-url"
+      "to": "/docs/data/hooks/use-api-url"
     },
     {
       "from": "/docs/core/hooks/data/useCreate/",
-      "to": "/docs/core/hooks/data/use-create"
+      "to": "/docs/data/hooks/use-create"
     },
     {
       "from": "/docs/core/hooks/data/useCreateMany/",
-      "to": "/docs/core/hooks/data/use-create-many"
+      "to": "/docs/data/hooks/use-create-many"
     },
     {
       "from": "/docs/core/hooks/data/useCustom/",
-      "to": "/docs/core/hooks/data/use-custom"
+      "to": "/docs/data/hooks/use-custom"
     },
     {
       "from": "/docs/core/hooks/data/useCustomMutation/",
-      "to": "/docs/core/hooks/data/use-custom-mutation"
+      "to": "/docs/data/hooks/use-custom-mutation"
     },
     {
       "from": "/docs/core/hooks/data/useDataProvider/",
-      "to": "/docs/core/hooks/data/use-data-provider"
+      "to": "/docs/data/hooks/use-data-provider"
     },
     {
       "from": "/docs/core/hooks/data/useDelete/",
-      "to": "/docs/core/hooks/data/use-delete"
+      "to": "/docs/data/hooks/use-delete"
     },
     {
       "from": "/docs/core/hooks/data/useDeleteMany/",
-      "to": "/docs/core/hooks/data/use-delete-many"
+      "to": "/docs/data/hooks/use-delete-many"
     },
     {
       "from": "/docs/core/hooks/data/useList/",
-      "to": "/docs/core/hooks/data/use-list"
+      "to": "/docs/data/hooks/use-list"
     },
     {
       "from": "/docs/core/hooks/data/useMany/",
-      "to": "/docs/core/hooks/data/use-many"
+      "to": "/docs/data/hooks/use-many"
     },
     {
       "from": "/docs/core/hooks/data/useOne/",
-      "to": "/docs/core/hooks/data/use-one"
+      "to": "/docs/data/hooks/use-one"
     },
     {
       "from": "/docs/core/hooks/data/useUpdate/",
-      "to": "/docs/core/hooks/data/use-update"
+      "to": "/docs/data/hooks/use-update"
     },
     {
       "from": "/docs/core/hooks/data/useUpdateMany/",
-      "to": "/docs/core/hooks/data/use-update-many"
+      "to": "/docs/data/hooks/use-update-many"
     },
     {
       "from": "/docs/core/hooks/import-export/useExport/",
@@ -134,19 +134,19 @@
     },
     {
       "from": "/docs/core/hooks/invalidate/useInvalidate/",
-      "to": "/docs/core/hooks/data/use-invalidate"
+      "to": "/docs/data/hooks/use-invalidate"
     },
     {
       "from": "/docs/core/hooks/live/usePublish/",
-      "to": "/docs/core/hooks/realtime/use-publish"
+      "to": "/docs/realtime/hooks/use-publish"
     },
     {
       "from": "/docs/core/hooks/live/useSubscription/",
-      "to": "/docs/core/hooks/realtime/use-subscription"
+      "to": "/docs/realtime/hooks/use-subscription"
     },
     {
       "from": "/docs/core/hooks/navigation/useNavigation/",
-      "to": "/docs/core/hooks/navigation/use-navigation"
+      "to": "/docs/routing/hooks/use-navigation"
     },
     {
       "from": "/docs/core/hooks/refine/useTitle/",
@@ -154,27 +154,27 @@
     },
     {
       "from": "/docs/core/hooks/resource/useResource/",
-      "to": "/docs/core/hooks/navigation/use-resource"
+      "to": "/docs/routing/hooks/use-resource"
     },
     {
       "from": "/docs/core/hooks/resource/useResourceWithRoute/",
-      "to": "/docs/core/hooks/navigation/use-resource"
+      "to": "/docs/routing/hooks/use-resource"
     },
     {
       "from": "/docs/core/hooks/show/useShow/",
-      "to": "/docs/core/hooks/use-show"
+      "to": "/docs/data/hooks/use-show"
     },
     {
       "from": "/docs/core/hooks/translate/useGetLocale/",
-      "to": "/docs/core/hooks/translate/use-get-locale"
+      "to": "/docs/i18n/hooks/use-get-locale"
     },
     {
       "from": "/docs/core/hooks/translate/useSetLocale/",
-      "to": "/docs/core/hooks/translate/use-set-locale"
+      "to": "/docs/i18n/hooks/use-set-locale"
     },
     {
       "from": "/docs/core/hooks/translate/useTranslate/",
-      "to": "/docs/core/hooks/translate/use-translate"
+      "to": "/docs/i18n/hooks/use-translate"
     },
     {
       "from": "/docs/core/hooks/ui/useMenu/",
@@ -190,19 +190,19 @@
     },
     {
       "from": "/docs/core/hooks/useForm/",
-      "to": "/docs/core/hooks/use-form"
+      "to": "/docs/data/hooks/use-form"
     },
     {
       "from": "/docs/core/hooks/useNotification/",
-      "to": "/docs/core/hooks/utilities/use-notification"
+      "to": "/docs/notification/hooks/use-notification"
     },
     {
       "from": "/docs/core/hooks/useSelect/",
-      "to": "/docs/core/hooks/use-select"
+      "to": "/docs/data/hooks/use-select"
     },
     {
       "from": "/docs/core/hooks/useTable/",
-      "to": "/docs/core/hooks/use-table"
+      "to": "/docs/data/hooks/use-table"
     },
     {
       "from": "/docs/core/interfaceReferences/",
@@ -210,27 +210,27 @@
     },
     {
       "from": "/docs/core/providers/accessControl-provider/",
-      "to": "/docs/core/providers/access-control-provider"
+      "to": "/docs/authorization/access-control-provider"
     },
     {
       "from": "/docs/api-reference/core/providers/accessControl-provider/",
-      "to": "/docs/core/providers/access-control-provider"
+      "to": "/docs/authorization/access-control-provider"
     },
     {
       "from": "/docs/advanced-tutorials/data-provider/appwrite/",
-      "to": "/docs/packages/data-providers/appwrite"
+      "to": "/docs/data/packages/appwrite"
     },
     {
       "from": "/docs/advanced-tutorials/data-provider/graphql/",
-      "to": "/docs/packages/data-providers/graphql"
+      "to": "/docs/data/packages/graphql"
     },
     {
       "from": "/docs/advanced-tutorials/data-provider/strapi-v4/",
-      "to": "/docs/packages/data-providers/strapi-v4"
+      "to": "/docs/data/packages/strapi-v4"
     },
     {
       "from": "/docs/advanced-tutorials/data-provider/supabase/",
-      "to": "/docs/packages/data-providers/supabase"
+      "to": "/docs/data/packages/supabase"
     },
     {
       "from": "/docs/guides-and-concepts/access-control/",
@@ -262,11 +262,11 @@
     },
     {
       "from": "/docs/guides-and-concepts/import-export/csv-export/",
-      "to": "/docs/advanced-tutorials/import-export/csv-export/"
+      "to": "/docs/guides-concepts/import-export/"
     },
     {
       "from": "/docs/guides-and-concepts/import-export/csv-import/",
-      "to": "/docs/advanced-tutorials/import-export/csv-import/"
+      "to": "/docs/guides-concepts/import-export/"
     },
     {
       "from": "/docs/guides-and-concepts/multi-level-menu/",
@@ -274,11 +274,11 @@
     },
     {
       "from": "/docs/guides-and-concepts/multi-tenancy/appwrite/",
-      "to": "/docs/advanced-tutorials/multi-tenancy/appwrite/"
+      "to": "/docs/guides-concepts/multi-tenancy"
     },
     {
       "from": "/docs/guides-and-concepts/multi-tenancy/strapi-v4/",
-      "to": "/docs/advanced-tutorials/multi-tenancy/strapi-v4/"
+      "to": "/docs/guides-concepts/multi-tenancy"
     },
     {
       "from": "/docs/guides-and-concepts/mutation-mode/",
@@ -302,11 +302,11 @@
     },
     {
       "from": "/docs/guides-and-concepts/ssr/nextjs/",
-      "to": "/docs/router-integrations/next-js"
+      "to": "/docs/routing/integrations/next-js"
     },
     {
       "from": "/docs/guides-and-concepts/ssr/remix/",
-      "to": "/docs/router-integrations/remix"
+      "to": "/docs/routing/integrations/remix"
     },
     {
       "from": "/docs/guides-and-concepts/upload/base64-upload/",
@@ -621,10 +621,6 @@
       "to": "/docs/ui-integrations/material-ui/hooks/use-data-grid"
     },
     {
-      "from": "/demo/",
-      "to": "/examples/"
-    },
-    {
       "from": "/headset/",
       "to": "/"
     },
@@ -654,7 +650,7 @@
     },
     {
       "from": "/docs/benchmarks/",
-      "to": "/docs/further-readings/benchmarks/"
+      "to": "/docs/"
     },
     {
       "from": "/docs/general-concepts/",
@@ -666,7 +662,7 @@
     },
     {
       "from": "/docs/core/hooks/auth/useResetPassword/",
-      "to": "/docs/core/hooks/auth/use-forgot-password"
+      "to": "/docs/authentication/hooks/use-forgot-password"
     },
     {
       "from": "/docs/examples/authorization/",
@@ -682,11 +678,11 @@
     },
     {
       "from": "/docs/advanced-tutorials/ssr/nextjs",
-      "to": "/docs/router-integrations/next-js"
+      "to": "/docs/routing/integrations/next-js"
     },
     {
       "from": "/docs/advanced-tutorials/ssr/remix",
-      "to": "/docs/router-integrations/remix"
+      "to": "/docs/routing/integrations/remix"
     },
     {
       "from": "/docs/advanced-tutorials/custom-pages/",
@@ -698,7 +694,7 @@
     },
     {
       "from": "/docs/api-reference/core/hooks/resource/useResourceWithRoute/",
-      "to": "/docs/core/hooks/navigation/use-resource"
+      "to": "/docs/routing/hooks/use-resource"
     },
     {
       "from": "/docs/api-reference/core/hooks/refine/useTitle/",
@@ -739,39 +735,39 @@
     },
     {
       "from": "/docs/api-reference/core/hooks/auth/useIsAuthenticated",
-      "to": "/docs/core/hooks/auth/use-is-authenticated"
+      "to": "/docs/authentication/hooks/use-is-authenticated"
     },
     {
       "from": "/docs/api-reference/core/hooks/auth/useOnError",
-      "to": "/docs/core/hooks/auth/use-on-error"
+      "to": "/docs/authentication/hooks/use-on-error"
     },
     {
       "from": "/docs/api-reference/core/hooks/auth/useGetIdentity",
-      "to": "/docs/core/hooks/auth/use-get-identity"
+      "to": "/docs/authentication/hooks/use-get-identity"
     },
     {
       "from": "/docs/api-reference/core/hooks/auth/useLogin",
-      "to": "/docs/core/hooks/auth/use-login"
+      "to": "/docs/authentication/hooks/use-login"
     },
     {
       "from": "/docs/api-reference/core/hooks/auth/useLogout",
-      "to": "/docs/core/hooks/auth/use-logout"
+      "to": "/docs/authentication/hooks/use-logout"
     },
     {
       "from": "/docs/api-reference/core/hooks/auth/usePermissions",
-      "to": "/docs/core/hooks/auth/use-permissions"
+      "to": "/docs/authentication/hooks/use-permissions"
     },
     {
       "from": "/docs/api-reference/core/hooks/auth/useRegister",
-      "to": "/docs/core/hooks/auth/use-register"
+      "to": "/docs/authentication/hooks/use-register"
     },
     {
       "from": "/docs/api-reference/core/hooks/auth/useForgotPassword",
-      "to": "/docs/core/hooks/auth/use-forgot-password"
+      "to": "/docs/authentication/hooks/use-forgot-password"
     },
     {
       "from": "/docs/api-reference/core/hooks/auth/useUpdatePassword",
-      "to": "/docs/core/hooks/auth/use-update-password"
+      "to": "/docs/authentication/hooks/use-update-password"
     },
     {
       "from": "/docs/examples/customization/customTheme",
@@ -788,10 +784,6 @@
     {
       "from": "/docs/api-reference/",
       "to": "/docs/guides-concepts/general-concepts/"
-    },
-    {
-      "from": "/examples/",
-      "to": "/docs/examples/"
     },
     {
       "from": "/become-a-refine-expert/",
@@ -883,100 +875,99 @@
     },
     {
       "from": "/docs/api-reference/core/providers/access-control-provider",
-      "to": "/docs/core/providers/access-control-provider"
+      "to": "/docs/authorization/access-control-provider"
     },
     {
       "from": "/docs/api-reference/core/providers/auth-provider",
-      "to": "/docs/core/providers/auth-provider"
+      "to": "/docs/authentication/auth-provider"
     },
     {
       "from": "/docs/api-reference/core/providers/audit-log-provider",
-      "to": "/docs/core/providers/audit-log-provider"
+      "to": "/docs/audit-logs/audit-log-provider"
     },
     {
       "from": "/docs/api-reference/core/providers/data-provider",
-      "to": "/docs/core/providers/data-provider"
+      "to": "/docs/data/data-provider"
     },
     {
       "from": "/docs/api-reference/core/providers/i18n-provider",
-      "to": "/docs/core/providers/i18n-provider"
+      "to": "/docs/i18n/i18n-provider"
     },
     {
       "from": "/docs/api-reference/core/providers/live-provider",
-      "to": "/docs/core/providers/live-provider"
+      "to": "/docs/realtime/live-provider"
     },
     {
       "from": "/docs/api-reference/core/providers/notification-provider",
-      "to": "/docs/core/providers/notification-provider"
+      "to": "/docs/notification/notification-provider"
     },
     {
       "from": "/docs/api-reference/core/providers/router-provider",
-      "to": "/docs/core/providers/router-provider"
+      "to": "/docs/routing/router-provider"
     },
     {
       "from": "/docs/api-reference/core/components/auth/authenticated",
-      "to": "/docs/core/components/authenticated"
+      "to": "/docs/authentication/components/authenticated"
     },
     {
       "from": "/docs/api-reference/core/components/accessControl/can-access",
-      "to": "/docs/core/components/can-access"
+      "to": "/docs/authorization/components/can-access"
     },
     {
       "from": "/docs/api-reference/core/components/auth-page",
-      "to": "/docs/core/components/auth-page"
+      "to": "/docs/authentication/components/auth-page"
     },
     {
       "from": "/docs/api-reference/core/components/inferencer",
       "to": "/docs/core/components/inferencer"
     },
-
     {
       "from": "/docs/api-reference/core/hooks/accessControl/useCan",
-      "to": "/docs/core/hooks/use-can"
+      "to": "/docs/authorization/hooks/use-can"
     },
     {
       "from": "/docs/api-reference/core/hooks/authentication/useIsAuthenticated",
-      "to": "/docs/core/hooks/auth/use-is-authenticated"
+      "to": "/docs/authentication/hooks/use-is-authenticated"
     },
     {
       "from": "/docs/api-reference/core/hooks/authentication/useOnError",
-      "to": "/docs/core/hooks/auth/use-on-error"
+      "to": "/docs/authentication/hooks/use-on-error"
     },
     {
       "from": "/docs/api-reference/core/hooks/authentication/useGetIdentity",
-      "to": "/docs/core/hooks/auth/use-get-identity"
+      "to": "/docs/authentication/hooks/use-get-identity"
     },
     {
       "from": "/docs/api-reference/core/hooks/authentication/useLogin",
-      "to": "/docs/core/hooks/auth/use-login"
+      "to": "/docs/authentication/hooks/use-login"
     },
     {
       "from": "/docs/api-reference/core/hooks/authentication/useLogout",
-      "to": "/docs/core/hooks/auth/use-logout"
+      "to": "/docs/authentication/hooks/use-logout"
     },
     {
       "from": "/docs/api-reference/core/hooks/authentication/usePermissions",
-      "to": "/docs/core/hooks/auth/use-permissions"
+      "to": "/docs/authentication/hooks/use-permissions"
     },
     {
       "from": "/docs/api-reference/core/hooks/authentication/useRegister",
-      "to": "/docs/core/hooks/auth/use-register"
+      "to": "/docs/authentication/hooks/use-register"
     },
     {
       "from": "/docs/api-reference/core/hooks/authentication/useForgotPassword",
-      "to": "/docs/core/hooks/auth/use-forgot-password"
+      "to": "/docs/authentication/hooks/use-forgot-password"
     },
     {
       "from": "/docs/api-reference/core/hooks/authentication/useUpdatePassword",
-      "to": "/docs/core/hooks/auth/use-update-password"
+      "to": "/docs/authentication/hooks/use-update-password"
     },
     {
       "from": "/docs/api-reference/core/hooks/audit-log/useLog",
-      "to": "/docs/core/hooks/audit-log/use-log"
+      "to": "/docs/audit-logs/hooks/use-log"
     },
     {
       "from": "/docs/api-reference/core/hooks/audit-log/useLogList",
-      "to": "/docs/core/hooks/audit-log/use-log-list"
+      "to": "/docs/audit-logs/hooks/use-log-list"
     },
     {
       "from": "/docs/api-reference/core/hooks/useBreadcrumb",
@@ -984,67 +975,67 @@
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useApiUrl",
-      "to": "/docs/core/hooks/data/use-api-url"
+      "to": "/docs/data/hooks/use-api-url"
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useCreate",
-      "to": "/docs/core/hooks/data/use-create"
+      "to": "/docs/data/hooks/use-create"
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useCreateMany",
-      "to": "/docs/core/hooks/data/use-create-many"
+      "to": "/docs/data/hooks/use-create-many"
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useCustom",
-      "to": "/docs/core/hooks/data/use-custom"
+      "to": "/docs/data/hooks/use-custom"
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useCustomMutation",
-      "to": "/docs/core/hooks/data/use-custom-mutation"
+      "to": "/docs/data/hooks/use-custom-mutation"
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useDataProvider",
-      "to": "/docs/core/hooks/data/use-data-provider"
+      "to": "/docs/data/hooks/use-data-provider"
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useDelete",
-      "to": "/docs/core/hooks/data/use-delete"
+      "to": "/docs/data/hooks/use-delete"
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useDeleteMany",
-      "to": "/docs/core/hooks/data/use-delete-many"
+      "to": "/docs/data/hooks/use-delete-many"
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useList",
-      "to": "/docs/core/hooks/data/use-list"
+      "to": "/docs/data/hooks/use-list"
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useInfiniteList",
-      "to": "/docs/core/hooks/data/use-infinite-list"
+      "to": "/docs/data/hooks/use-infinite-list"
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useMany",
-      "to": "/docs/core/hooks/data/use-many"
+      "to": "/docs/data/hooks/use-many"
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useOne",
-      "to": "/docs/core/hooks/data/use-one"
+      "to": "/docs/data/hooks/use-one"
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useUpdate",
-      "to": "/docs/core/hooks/data/use-update"
+      "to": "/docs/data/hooks/use-update"
     },
     {
       "from": "/docs/api-reference/core/hooks/data/useUpdateMany",
-      "to": "/docs/core/hooks/data/use-update-many"
+      "to": "/docs/data/hooks/use-update-many"
     },
     {
       "from": "/docs/api-reference/core/hooks/useSelect",
-      "to": "/docs/core/hooks/use-select"
+      "to": "/docs/data/hooks/use-select"
     },
     {
       "from": "/docs/api-reference/core/hooks/useForm",
-      "to": "/docs/core/hooks/use-form"
+      "to": "/docs/data/hooks/use-form"
     },
     {
       "from": "/docs/api-reference/core/hooks/import-export/useExport",
@@ -1056,67 +1047,67 @@
     },
     {
       "from": "/docs/api-reference/core/hooks/invalidate/useInvalidate",
-      "to": "/docs/core/hooks/data/use-invalidate"
+      "to": "/docs/data/hooks/use-invalidate"
     },
     {
       "from": "/docs/api-reference/core/hooks/live/usePublish",
-      "to": "/docs/core/hooks/realtime/use-publish"
+      "to": "/docs/realtime/hooks/use-publish"
     },
     {
       "from": "/docs/api-reference/core/hooks/live/useSubscription",
-      "to": "/docs/core/hooks/realtime/use-subscription"
+      "to": "/docs/realtime/hooks/use-subscription"
     },
     {
       "from": "/docs/api-reference/core/hooks/navigation/useGo",
-      "to": "/docs/core/hooks/navigation/use-go"
+      "to": "/docs/routing/hooks/use-go"
     },
     {
       "from": "/docs/api-reference/core/hooks/navigation/useParsed",
-      "to": "/docs/core/hooks/navigation/use-parsed"
+      "to": "/docs/routing/hooks/use-parsed"
     },
     {
       "from": "/docs/api-reference/core/hooks/navigation/useBack",
-      "to": "/docs/core/hooks/navigation/use-back"
+      "to": "/docs/routing/hooks/use-back"
     },
     {
       "from": "/docs/api-reference/core/hooks/navigation/useLink",
-      "to": "/docs/core/hooks/navigation/use-link"
+      "to": "/docs/routing/hooks/use-link"
     },
     {
       "from": "/docs/api-reference/core/hooks/navigation/useGetToPath",
-      "to": "/docs/core/hooks/navigation/use-get-to-path"
+      "to": "/docs/routing/hooks/use-get-to-path"
     },
     {
       "from": "/docs/api-reference/core/hooks/navigation/useNavigation",
-      "to": "/docs/core/hooks/navigation/use-navigation"
+      "to": "/docs/routing/hooks/use-navigation"
     },
     {
       "from": "/docs/api-reference/core/hooks/useNotification",
-      "to": "/docs/core/hooks/utilities/use-notification"
+      "to": "/docs/notification/hooks/use-notification"
     },
     {
       "from": "/docs/api-reference/core/hooks/resource/useResource",
-      "to": "/docs/core/hooks/navigation/use-resource"
+      "to": "/docs/routing/hooks/use-resource"
     },
     {
       "from": "/docs/api-reference/core/hooks/show/useShow",
-      "to": "/docs/core/hooks/use-show"
+      "to": "/docs/data/hooks/use-show"
     },
     {
       "from": "/docs/api-reference/core/hooks/useTable",
-      "to": "/docs/core/hooks/use-table"
+      "to": "/docs/data/hooks/use-table"
     },
     {
       "from": "/docs/api-reference/core/hooks/translate/useGetLocale",
-      "to": "/docs/core/hooks/translate/use-get-locale"
+      "to": "/docs/i18n/hooks/use-get-locale"
     },
     {
       "from": "/docs/api-reference/core/hooks/translate/useSetLocale",
-      "to": "/docs/core/hooks/translate/use-set-locale"
+      "to": "/docs/i18n/hooks/use-set-locale"
     },
     {
       "from": "/docs/api-reference/core/hooks/translate/useTranslate",
-      "to": "/docs/core/hooks/translate/use-translate"
+      "to": "/docs/i18n/hooks/use-translate"
     },
     {
       "from": "/docs/api-reference/core/hooks/ui/useModal",
@@ -1712,23 +1703,23 @@
     },
     {
       "from": "/docs/packages/documentation/data-providers/appwrite",
-      "to": "/docs/packages/data-providers/appwrite"
+      "to": "/docs/data/packages/appwrite"
     },
     {
       "from": "/docs/packages/documentation/data-providers/graphql",
-      "to": "/docs/packages/data-providers/graphql"
+      "to": "/docs/data/packages/graphql"
     },
     {
       "from": "/docs/packages/documentation/data-providers/simple-rest",
-      "to": "/docs/packages/data-providers/simple-rest"
+      "to": "/docs/data/packages/simple-rest"
     },
     {
       "from": "/docs/packages/documentation/data-providers/strapi-v4",
-      "to": "/docs/packages/data-providers/strapi-v4"
+      "to": "/docs/data/packages/strapi-v4"
     },
     {
       "from": "/docs/packages/documentation/data-providers/supabase",
-      "to": "/docs/packages/data-providers/supabase"
+      "to": "/docs/data/packages/supabase"
     },
     {
       "from": "/docs/packages/documentation/inferencer",
@@ -1764,19 +1755,327 @@
     },
     {
       "from": "/docs/packages/documentation/routers/react-router-v6",
-      "to": "/docs/router-integrations/react-router"
+      "to": "/docs/routing/integrations/react-router"
     },
     {
       "from": "/docs/packages/documentation/routers/nextjs",
-      "to": "/docs/router-integrations/next-js"
+      "to": "/docs/routing/integrations/next-js"
     },
     {
       "from": "/docs/packages/documentation/routers/remix",
-      "to": "/docs/router-integrations/remix"
+      "to": "/docs/routing/integrations/remix"
     },
     {
       "from": "/docs/further-readings/contributing",
       "to": "/docs/guides-concepts/contributing"
+    },
+    {
+      "from": "/docs/core/providers/auth-provider",
+      "to": "/docs/authentication/auth-provider"
+    },
+    {
+      "from": "/docs/core/providers/access-control-provider",
+      "to": "/docs/authorization/access-control-provider"
+    },
+    {
+      "from": "/docs/core/providers/audit-log-provider",
+      "to": "/docs/audit-logs/audit-log-provider"
+    },
+    {
+      "from": "/docs/core/providers/data-provider",
+      "to": "/docs/data/data-provider"
+    },
+    {
+      "from": "/docs/core/providers/i18n-provider",
+      "to": "/docs/i18n/i18n-provider"
+    },
+    {
+      "from": "/docs/core/providers/live-provider",
+      "to": "/docs/realtime/live-provider"
+    },
+    {
+      "from": "/docs/core/providers/notification-provider",
+      "to": "/docs/notification/notification-provider"
+    },
+    {
+      "from": "/docs/core/providers/router-provider",
+      "to": "/docs/routing/router-provider"
+    },
+    {
+      "from": "/docs/core/components/authenticated",
+      "to": "/docs/authentication/components/authenticated"
+    },
+    {
+      "from": "/docs/core/components/can-access",
+      "to": "/docs/authorization/components/can-access"
+    },
+    {
+      "from": "/docs/core/components/auth-page",
+      "to": "/docs/authentication/components/auth-page"
+    },
+    {
+      "from": "/docs/core/hooks/use-show",
+      "to": "/docs/data/hooks/use-show"
+    },
+    {
+      "from": "/docs/core/hooks/use-table",
+      "to": "/docs/data/hooks/use-table"
+    },
+    {
+      "from": "/docs/core/hooks/use-select",
+      "to": "/docs/data/hooks/use-select"
+    },
+    {
+      "from": "/docs/core/hooks/use-form",
+      "to": "/docs/data/hooks/use-form"
+    },
+    {
+      "from": "/docs/core/hooks/use-can",
+      "to": "/docs/authorization/hooks/use-can"
+    },
+    {
+      "from": "/docs/core/hooks/auth/use-is-authenticated",
+      "to": "/docs/authentication/hooks/use-is-authenticated"
+    },
+    {
+      "from": "/docs/core/hooks/auth/use-on-error",
+      "to": "/docs/authentication/hooks/use-on-error"
+    },
+    {
+      "from": "/docs/core/hooks/auth/use-get-identity",
+      "to": "/docs/authentication/hooks/use-get-identity"
+    },
+    {
+      "from": "/docs/core/hooks/auth/use-login",
+      "to": "/docs/authentication/hooks/use-login"
+    },
+    {
+      "from": "/docs/core/hooks/auth/use-logout",
+      "to": "/docs/authentication/hooks/use-logout"
+    },
+    {
+      "from": "/docs/core/hooks/auth/use-permissions",
+      "to": "/docs/authentication/hooks/use-permissions"
+    },
+    {
+      "from": "/docs/core/hooks/auth/use-register",
+      "to": "/docs/authentication/hooks/use-register"
+    },
+    {
+      "from": "/docs/core/hooks/auth/use-forgot-password",
+      "to": "/docs/authentication/hooks/use-forgot-password"
+    },
+    {
+      "from": "/docs/core/hooks/auth/use-update-password",
+      "to": "/docs/authentication/hooks/use-update-password"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-one",
+      "to": "/docs/data/hooks/use-one"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-many",
+      "to": "/docs/data/hooks/use-many"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-list",
+      "to": "/docs/data/hooks/use-list"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-infinite-list",
+      "to": "/docs/data/hooks/use-infinite-list"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-create",
+      "to": "/docs/data/hooks/use-create"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-create-many",
+      "to": "/docs/data/hooks/use-create-many"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-update",
+      "to": "/docs/data/hooks/use-update"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-update-many",
+      "to": "/docs/data/hooks/use-update-many"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-delete",
+      "to": "/docs/data/hooks/use-delete"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-delete-many",
+      "to": "/docs/data/hooks/use-delete-many"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-custom",
+      "to": "/docs/data/hooks/use-custom"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-custom-mutation",
+      "to": "/docs/data/hooks/use-custom-mutation"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-invalidate",
+      "to": "/docs/data/hooks/use-invalidate"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-api-url",
+      "to": "/docs/data/hooks/use-api-url"
+    },
+    {
+      "from": "/docs/core/hooks/data/use-data-provider",
+      "to": "/docs/data/hooks/use-data-provider"
+    },
+    {
+      "from": "/docs/core/hooks/audit-log/use-log",
+      "to": "/docs/audit-logs/hooks/use-log"
+    },
+    {
+      "from": "/docs/core/hooks/audit-log/use-log-list",
+      "to": "/docs/audit-logs/hooks/use-log-list"
+    },
+    {
+      "from": "/docs/core/hooks/realtime/use-publish",
+      "to": "/docs/realtime/hooks/use-publish"
+    },
+    {
+      "from": "/docs/core/hooks/realtime/use-subscription",
+      "to": "/docs/realtime/hooks/use-subscription"
+    },
+    {
+      "from": "/docs/core/hooks/navigation/use-resource",
+      "to": "/docs/routing/hooks/use-resource"
+    },
+    {
+      "from": "/docs/core/hooks/navigation/use-go",
+      "to": "/docs/routing/hooks/use-go"
+    },
+    {
+      "from": "/docs/core/hooks/navigation/use-back",
+      "to": "/docs/routing/hooks/use-back"
+    },
+    {
+      "from": "/docs/core/hooks/navigation/use-parsed",
+      "to": "/docs/routing/hooks/use-parsed"
+    },
+    {
+      "from": "/docs/core/hooks/navigation/use-link",
+      "to": "/docs/routing/hooks/use-link"
+    },
+    {
+      "from": "/docs/core/hooks/navigation/use-get-to-path",
+      "to": "/docs/routing/hooks/use-get-to-path"
+    },
+    {
+      "from": "/docs/core/hooks/navigation/use-navigation",
+      "to": "/docs/routing/hooks/use-navigation"
+    },
+    {
+      "from": "/docs/core/hooks/translate/use-get-locale",
+      "to": "/docs/i18n/hooks/use-get-locale"
+    },
+    {
+      "from": "/docs/core/hooks/translate/use-set-locale",
+      "to": "/docs/i18n/hooks/use-set-locale"
+    },
+    {
+      "from": "/docs/core/hooks/translate/use-translate",
+      "to": "/docs/i18n/hooks/use-translate"
+    },
+    {
+      "from": "/docs/core/hooks/utilities/use-notification",
+      "to": "/docs/notification/hooks/use-notification"
+    },
+    {
+      "from": "/docs/router-integrations/react-router",
+      "to": "/docs/routing/integrations/react-router"
+    },
+    {
+      "from": "/docs/router-integrations/next-js",
+      "to": "/docs/routing/integrations/next-js"
+    },
+    {
+      "from": "/docs/router-integrations/remix",
+      "to": "/docs/routing/integrations/remix"
+    },
+    {
+      "from": "/docs/packages/data-providers/appwrite",
+      "to": "/docs/data/packages/appwrite"
+    },
+    {
+      "from": "/docs/packages/data-providers/graphql",
+      "to": "/docs/data/packages/graphql"
+    },
+    {
+      "from": "/docs/packages/data-providers/simple-rest",
+      "to": "/docs/data/packages/simple-rest"
+    },
+    {
+      "from": "/docs/packages/data-providers/strapi-v4",
+      "to": "/docs/data/packages/strapi-v4"
+    },
+    {
+      "from": "/docs/packages/data-providers/strapi-graphql",
+      "to": "/docs/data/packages/strapi-graphql"
+    },
+    {
+      "from": "/docs/packages/data-providers/supabase",
+      "to": "/docs/data/packages/supabase"
+    },
+    {
+      "from": "/docs/packages/data-providers/nestjs-query",
+      "to": "/docs/data/packages/nestjs-query"
+    },
+    {
+      "from": "/docs/packages/data-providers/nestjsx-crud",
+      "to": "/docs/data/packages/nestjsx-crud"
+    },
+    {
+      "from": "/docs/packages/data-providers/airtable",
+      "to": "/docs/data/packages/airtable"
+    },
+    {
+      "from": "/docs/packages/data-providers/hasura",
+      "to": "/docs/data/packages/hasura"
+    },
+    {
+      "from": "/docs/packages/data-providers/community-data-providers",
+      "to": "/docs/data/packages/community-data-providers"
+    },
+    {
+      "from": "/pricing",
+      "to": "/enterprise"
+    },
+    {
+      "from": "/blog/javascript-vs-ts/",
+      "to": "/blog/javascript-vs-typescript/"
+    },
+    {
+      "from": "/docs/advanced-tutorials/multi-tenancy/appwrite",
+      "to": "/docs/guides-concepts/multi-tenancy"
+    },
+    {
+      "from": "/docs/advanced-tutorials/multi-tenancy/strapi-v4",
+      "to": "/docs/guides-concepts/multi-tenancy"
+    },
+    {
+      "from": "/docs/advanced-tutorials/import-export/csv-import/",
+      "to": "/docs/guides-concepts/import-export"
+    },
+    {
+      "from": "/docs/advanced-tutorials/import-export/csv-export/",
+      "to": "/docs/guides-concepts/import-export"
+    },
+    {
+      "from": "/docs/further-readings/benchmarks/",
+      "to": "/docs"
+    },
+    {
+      "from": "/blog/refine-react-admin-invoice-genarator",
+      "to": "/blog/refine-react-admin-invoice-generator"
     }
   ]
 }

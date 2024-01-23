@@ -1,14 +1,12 @@
 import React from "react";
 import clsx from "clsx";
-import { useColorMode } from "@docusaurus/theme-common";
+import { CommonThemedImage } from "./common-themed-image";
 
 export const EnterpriseSSOMultifactorAuth = ({
     className,
 }: {
     className?: string;
 }) => {
-    const { colorMode } = useColorMode();
-
     return (
         <div className={clsx("flex flex-col", "not-prose", className)}>
             <div
@@ -26,13 +24,10 @@ export const EnterpriseSSOMultifactorAuth = ({
                         "rounded-2xl landing-sm:rounded-3xl",
                     )}
                 >
-                    <img
+                    <CommonThemedImage
                         className={clsx("rounded-2xl landing-sm:rounded-3xl")}
-                        src={
-                            colorMode === "dark"
-                                ? `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/sign-in-dark.png`
-                                : `https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/sign-in-light.png`
-                        }
+                        srcDark="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/sign-in-dark.png"
+                        srcLight="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/sign-in-light.png"
                     />
                     <div
                         className={clsx(
@@ -71,9 +66,10 @@ export const EnterpriseSSOMultifactorAuth = ({
                         "rounded-2xl landing-sm:rounded-3xl",
                     )}
                 >
-                    <img
+                    <CommonThemedImage
                         className={clsx("rounded-2xl landing-sm:rounded-3xl")}
-                        src={`https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/multifactor-${colorMode}.png`}
+                        srcDark="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/multifactor-dark.png"
+                        srcLight="https://refine.ams3.cdn.digitaloceanspaces.com/enterprise/multifactor-light.png"
                     />
                     <div
                         className={clsx(

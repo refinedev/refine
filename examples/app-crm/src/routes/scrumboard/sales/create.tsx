@@ -8,6 +8,7 @@ import {
     useGetIdentity,
     useNavigation,
 } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
     DollarOutlined,
@@ -27,7 +28,15 @@ import {
 } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company, Contact, Deal, User } from "@/interfaces";
+import { Contact, Deal, User } from "@/graphql/schema.types";
+import { SalesCompaniesSelectQuery } from "@/graphql/types";
+import { useDealStagesSelect } from "@/hooks/useDealStagesSelect";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
+
+import {
+    SALES_COMPANIES_SELECT_QUERY,
+    SALES_CREATE_CONTACT_MUTATION,
+} from "./queries";
 
 type FormValues = {
     stageId?: string | null;
@@ -70,34 +79,20 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
         }
     }, [searchParams]);
 
-    const { selectProps, queryResult } = useSelect<Company>({
+    const { selectProps, queryResult } = useSelect<
+        GetFieldsFromList<SalesCompaniesSelectQuery>
+    >({
         resource: "companies",
-        meta: {
-            fields: [
-                "name",
-                "id",
-                { contacts: [{ nodes: ["name", "id", "avatarUrl"] }] },
-                "avatarUrl",
-            ],
-        },
         optionLabel: "name",
+        meta: {
+            gqlQuery: SALES_COMPANIES_SELECT_QUERY,
+        },
     });
 
-    const { selectProps: stageSelectProps } = useSelect({
-        resource: "dealStages",
-        meta: {
-            fields: ["title", "id"],
-        },
-    });
+    const { selectProps: stageSelectProps } = useDealStagesSelect();
 
     const { selectProps: userSelectProps, queryResult: userQueryResult } =
-        useSelect<User>({
-            resource: "users",
-            meta: {
-                fields: ["name", "id", "avatarUrl"],
-            },
-            optionLabel: "name",
-        });
+        useUsersSelect();
 
     const { data: user } = useGetIdentity<User>();
 
@@ -205,7 +200,7 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
                                     companyId,
                                 },
                                 meta: {
-                                    fields: ["id"],
+                                    gqlMutation: SALES_CREATE_CONTACT_MUTATION,
                                 },
                             });
 

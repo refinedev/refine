@@ -189,8 +189,8 @@ export const useUpdateMany = <
         TError,
         UpdateManyParams<TData, TError, TVariables>,
         UpdateContext<TData>
-    >(
-        ({
+    >({
+        mutationFn: ({
             ids,
             values,
             resource: resourceName,
@@ -277,386 +277,360 @@ export const useUpdateMany = <
             );
             return updatePromise;
         },
+        onMutate: async ({
+            resource: resourceName,
+            ids,
+            values,
+            mutationMode,
+            dataProviderName,
+            meta,
+            metaData,
+            optimisticUpdateMap = { list: true, many: true, detail: true },
+        }) => {
+            const { identifier } = select(resourceName);
+            const {
+                gqlMutation: _,
+                gqlQuery: __,
+                ...preferredMeta
+            } = pickNotDeprecated(meta, metaData) ?? {};
 
-        {
-            onMutate: async ({
-                resource: resourceName,
-                ids,
-                values,
-                mutationMode,
-                dataProviderName,
-                meta,
-                metaData,
-                optimisticUpdateMap = { list: true, many: true, detail: true },
-            }) => {
-                const { identifier } = select(resourceName);
-                const preferredMeta = pickNotDeprecated(meta, metaData);
+            const queryKey = queryKeysReplacement(preferLegacyKeys)(
+                identifier,
+                pickDataProvider(identifier, dataProviderName, resources),
+                preferredMeta,
+            );
 
-                const queryKey = queryKeysReplacement(preferLegacyKeys)(
-                    identifier,
-                    pickDataProvider(identifier, dataProviderName, resources),
-                    pickNotDeprecated(meta, metaData),
-                );
+            const resourceKeys = keys()
+                .data(pickDataProvider(identifier, dataProviderName, resources))
+                .resource(identifier);
 
-                const resourceKeys = keys()
-                    .data(
-                        pickDataProvider(
-                            identifier,
-                            dataProviderName,
-                            resources,
-                        ),
-                    )
-                    .resource(identifier);
+            const mutationModePropOrContext =
+                mutationMode ?? mutationModeContext;
 
-                const mutationModePropOrContext =
-                    mutationMode ?? mutationModeContext;
+            await queryClient.cancelQueries(
+                resourceKeys.get(preferLegacyKeys),
+                undefined,
+                {
+                    silent: true,
+                },
+            );
 
-                await queryClient.cancelQueries(
-                    resourceKeys.get(preferLegacyKeys),
-                    undefined,
-                    {
-                        silent: true,
-                    },
-                );
+            const previousQueries = queryClient.getQueriesData<
+                QueryResponse<TData>
+            >(resourceKeys.get(preferLegacyKeys));
 
-                const previousQueries = queryClient.getQueriesData<
-                    QueryResponse<TData>
-                >(resourceKeys.get(preferLegacyKeys));
-
-                if (mutationModePropOrContext !== "pessimistic") {
-                    if (optimisticUpdateMap.list) {
-                        // Set the previous queries to the new ones:
-                        queryClient.setQueriesData(
-                            resourceKeys
-                                .action("list")
-                                .params(preferredMeta ?? {})
-                                .get(preferLegacyKeys),
-                            (previous?: GetListResponse<TData> | null) => {
-                                if (
-                                    typeof optimisticUpdateMap.list ===
-                                    "function"
-                                ) {
-                                    return optimisticUpdateMap.list(
-                                        previous,
-                                        values,
-                                        ids,
-                                    );
-                                }
-
-                                if (!previous) {
-                                    return null;
-                                }
-
-                                const data = previous.data.map(
-                                    (record: TData) => {
-                                        if (
-                                            record.id !== undefined &&
-                                            ids
-                                                .filter(
-                                                    (id) => id !== undefined,
-                                                )
-                                                .map(String)
-                                                .includes(record.id.toString())
-                                        ) {
-                                            return {
-                                                ...record,
-                                                ...values,
-                                            };
-                                        }
-
-                                        return record;
-                                    },
+            if (mutationModePropOrContext !== "pessimistic") {
+                if (optimisticUpdateMap.list) {
+                    // Set the previous queries to the new ones:
+                    queryClient.setQueriesData(
+                        resourceKeys
+                            .action("list")
+                            .params(preferredMeta ?? {})
+                            .get(preferLegacyKeys),
+                        (previous?: GetListResponse<TData> | null) => {
+                            if (
+                                typeof optimisticUpdateMap.list === "function"
+                            ) {
+                                return optimisticUpdateMap.list(
+                                    previous,
+                                    values,
+                                    ids,
                                 );
+                            }
 
-                                return {
-                                    ...previous,
-                                    data,
-                                };
-                            },
-                        );
-                    }
+                            if (!previous) {
+                                return null;
+                            }
 
-                    if (optimisticUpdateMap.many) {
-                        queryClient.setQueriesData(
-                            resourceKeys.action("many").get(preferLegacyKeys),
-                            (previous?: GetManyResponse<TData> | null) => {
+                            const data = previous.data.map((record: TData) => {
                                 if (
-                                    typeof optimisticUpdateMap.many ===
-                                    "function"
+                                    record.id !== undefined &&
+                                    ids
+                                        .filter((id) => id !== undefined)
+                                        .map(String)
+                                        .includes(record.id.toString())
                                 ) {
-                                    return optimisticUpdateMap.many(
-                                        previous,
-                                        values,
-                                        ids,
-                                    );
-                                }
-
-                                if (!previous) {
-                                    return null;
-                                }
-
-                                const data = previous.data.map(
-                                    (record: TData) => {
-                                        if (
-                                            record.id !== undefined &&
-                                            ids
-                                                .filter(
-                                                    (id) => id !== undefined,
-                                                )
-                                                .map(String)
-                                                .includes(record.id.toString())
-                                        ) {
-                                            return {
-                                                ...record,
-                                                ...values,
-                                            };
-                                        }
-                                        return record;
-                                    },
-                                );
-                                return {
-                                    ...previous,
-                                    data,
-                                };
-                            },
-                        );
-                    }
-
-                    if (optimisticUpdateMap.detail) {
-                        for (const id of ids) {
-                            queryClient.setQueriesData(
-                                resourceKeys
-                                    .action("one")
-                                    .id(id)
-                                    .params(preferredMeta ?? {})
-                                    .get(preferLegacyKeys),
-                                (previous?: GetOneResponse<TData> | null) => {
-                                    if (
-                                        typeof optimisticUpdateMap.detail ===
-                                        "function"
-                                    ) {
-                                        return optimisticUpdateMap.detail(
-                                            previous,
-                                            values,
-                                            id,
-                                        );
-                                    }
-
-                                    if (!previous) {
-                                        return null;
-                                    }
-
-                                    const data = {
-                                        ...previous.data,
+                                    return {
+                                        ...record,
                                         ...values,
                                     };
-                                    return {
-                                        ...previous,
-                                        data,
-                                    };
-                                },
-                            );
-                        }
-                    }
+                                }
+
+                                return record;
+                            });
+
+                            return {
+                                ...previous,
+                                data,
+                            };
+                        },
+                    );
                 }
 
-                return {
-                    previousQueries,
-                    queryKey,
-                };
-            },
-            onSettled: (
-                _data,
-                _error,
-                { ids, resource: resourceName, dataProviderName },
-            ) => {
-                const { identifier } = select(resourceName);
+                if (optimisticUpdateMap.many) {
+                    queryClient.setQueriesData(
+                        resourceKeys.action("many").get(preferLegacyKeys),
+                        (previous?: GetManyResponse<TData> | null) => {
+                            if (
+                                typeof optimisticUpdateMap.many === "function"
+                            ) {
+                                return optimisticUpdateMap.many(
+                                    previous,
+                                    values,
+                                    ids,
+                                );
+                            }
 
-                // invalidate the cache for the list and many queries:
+                            if (!previous) {
+                                return null;
+                            }
+
+                            const data = previous.data.map((record: TData) => {
+                                if (
+                                    record.id !== undefined &&
+                                    ids
+                                        .filter((id) => id !== undefined)
+                                        .map(String)
+                                        .includes(record.id.toString())
+                                ) {
+                                    return {
+                                        ...record,
+                                        ...values,
+                                    };
+                                }
+                                return record;
+                            });
+                            return {
+                                ...previous,
+                                data,
+                            };
+                        },
+                    );
+                }
+
+                if (optimisticUpdateMap.detail) {
+                    for (const id of ids) {
+                        queryClient.setQueriesData(
+                            resourceKeys
+                                .action("one")
+                                .id(id)
+                                .params(preferredMeta ?? {})
+                                .get(preferLegacyKeys),
+                            (previous?: GetOneResponse<TData> | null) => {
+                                if (
+                                    typeof optimisticUpdateMap.detail ===
+                                    "function"
+                                ) {
+                                    return optimisticUpdateMap.detail(
+                                        previous,
+                                        values,
+                                        id,
+                                    );
+                                }
+
+                                if (!previous) {
+                                    return null;
+                                }
+
+                                const data = {
+                                    ...previous.data,
+                                    ...values,
+                                };
+                                return {
+                                    ...previous,
+                                    data,
+                                };
+                            },
+                        );
+                    }
+                }
+            }
+
+            return {
+                previousQueries,
+                queryKey,
+            };
+        },
+        onSettled: (
+            _data,
+            _error,
+            { ids, resource: resourceName, dataProviderName },
+        ) => {
+            const { identifier } = select(resourceName);
+
+            // invalidate the cache for the list and many queries:
+            invalidateStore({
+                resource: identifier,
+                invalidates: ["list", "many"],
+                dataProviderName: pickDataProvider(
+                    identifier,
+                    dataProviderName,
+                    resources,
+                ),
+            });
+
+            ids.forEach((id) =>
                 invalidateStore({
                     resource: identifier,
-                    invalidates: ["list", "many"],
+                    invalidates: ["detail"],
                     dataProviderName: pickDataProvider(
                         identifier,
                         dataProviderName,
                         resources,
                     ),
-                });
+                    id,
+                }),
+            );
 
-                ids.forEach((id) =>
-                    invalidateStore({
-                        resource: identifier,
-                        invalidates: ["detail"],
-                        dataProviderName: pickDataProvider(
-                            identifier,
-                            dataProviderName,
-                            resources,
-                        ),
-                        id,
-                    }),
-                );
-
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: { id: ids, resource: identifier },
-                });
+            notificationDispatch({
+                type: ActionTypes.REMOVE,
+                payload: { id: ids, resource: identifier },
+            });
+        },
+        onSuccess: (
+            data,
+            {
+                ids,
+                resource: resourceName,
+                meta,
+                metaData,
+                dataProviderName: dataProviderNameFromProp,
+                successNotification,
+                values,
             },
-            onSuccess: (
-                data,
-                {
-                    ids,
-                    resource: resourceName,
-                    meta,
-                    metaData,
-                    dataProviderName: dataProviderNameFromProp,
-                    successNotification,
-                    values,
+            context,
+        ) => {
+            const { resource, identifier } = select(resourceName);
+            const resourceSingular = textTransformers.singular(identifier);
+
+            const dataProviderName = pickDataProvider(
+                identifier,
+                dataProviderNameFromProp,
+                resources,
+            );
+
+            const combinedMeta = getMeta({
+                resource,
+                meta: pickNotDeprecated(meta, metaData),
+            });
+
+            const notificationConfig =
+                typeof successNotification === "function"
+                    ? successNotification(data, { ids, values }, identifier)
+                    : successNotification;
+
+            handleNotification(notificationConfig, {
+                key: `${ids}-${identifier}-notification`,
+                description: translate("notifications.success", "Successful"),
+                message: translate(
+                    "notifications.editSuccess",
+                    {
+                        resource: translate(
+                            `${identifier}.${identifier}`,
+                            identifier,
+                        ),
+                    },
+                    `Successfully updated ${resourceSingular}`,
+                ),
+                type: "success",
+            });
+
+            publish?.({
+                channel: `resources/${resource.name}`,
+                type: "updated",
+                payload: {
+                    ids: ids.map(String),
                 },
-                context,
-            ) => {
-                const { resource, identifier } = select(resourceName);
+                date: new Date(),
+                meta: {
+                    ...combinedMeta,
+                    dataProviderName,
+                },
+            });
+
+            const previousData: any[] = [];
+            if (context) {
+                ids.forEach((id) => {
+                    const queryData = queryClient.getQueryData<
+                        UpdateManyResponse<TData>
+                    >(context.queryKey.detail(id));
+
+                    previousData.push(
+                        Object.keys(values || {}).reduce<any>(
+                            (acc, item: any) => {
+                                acc[item] = queryData?.data?.[item];
+                                return acc;
+                            },
+                            {},
+                        ),
+                    );
+                });
+            }
+
+            const {
+                fields: _fields,
+                operation: _operation,
+                variables: _variables,
+                ...rest
+            } = combinedMeta || {};
+            log?.mutate({
+                action: "updateMany",
+                resource: resource.name,
+                data: values,
+                previousData,
+                meta: {
+                    ids,
+                    dataProviderName,
+                    ...rest,
+                },
+            });
+        },
+        onError: (
+            err: TError,
+            { ids, resource: resourceName, errorNotification, values },
+            context,
+        ) => {
+            const { identifier } = select(resourceName);
+
+            // set back the queries to the context:
+            if (context) {
+                for (const query of context.previousQueries) {
+                    queryClient.setQueryData(query[0], query[1]);
+                }
+            }
+
+            if (err.message !== "mutationCancelled") {
+                checkError?.(err);
+
                 const resourceSingular = textTransformers.singular(identifier);
 
-                const dataProviderName = pickDataProvider(
-                    identifier,
-                    dataProviderNameFromProp,
-                    resources,
-                );
-
-                const combinedMeta = getMeta({
-                    resource,
-                    meta: pickNotDeprecated(meta, metaData),
-                });
-
                 const notificationConfig =
-                    typeof successNotification === "function"
-                        ? successNotification(data, { ids, values }, identifier)
-                        : successNotification;
+                    typeof errorNotification === "function"
+                        ? errorNotification(err, { ids, values }, identifier)
+                        : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${ids}-${identifier}-notification`,
-                    description: translate(
-                        "notifications.success",
-                        "Successful",
-                    ),
+                    key: `${ids}-${identifier}-updateMany-error-notification`,
                     message: translate(
-                        "notifications.editSuccess",
+                        "notifications.editError",
                         {
-                            resource: translate(
-                                `${identifier}.${identifier}`,
-                                identifier,
-                            ),
+                            resource: resourceSingular,
+                            statusCode: err.statusCode,
                         },
-                        `Successfully updated ${resourceSingular}`,
+                        `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
                     ),
-                    type: "success",
+                    description: err.message,
+                    type: "error",
                 });
-
-                publish?.({
-                    channel: `resources/${resource.name}`,
-                    type: "updated",
-                    payload: {
-                        ids: ids.map(String),
-                    },
-                    date: new Date(),
-                    meta: {
-                        ...combinedMeta,
-                        dataProviderName,
-                    },
-                });
-
-                const previousData: any[] = [];
-                if (context) {
-                    ids.forEach((id) => {
-                        const queryData = queryClient.getQueryData<
-                            UpdateManyResponse<TData>
-                        >(context.queryKey.detail(id));
-
-                        previousData.push(
-                            Object.keys(values || {}).reduce<any>(
-                                (acc, item: any) => {
-                                    acc[item] = queryData?.data?.[item];
-                                    return acc;
-                                },
-                                {},
-                            ),
-                        );
-                    });
-                }
-
-                const {
-                    fields: _fields,
-                    operation: _operation,
-                    variables: _variables,
-                    ...rest
-                } = combinedMeta || {};
-                log?.mutate({
-                    action: "updateMany",
-                    resource: resource.name,
-                    data: values,
-                    previousData,
-                    meta: {
-                        ids,
-                        dataProviderName,
-                        ...rest,
-                    },
-                });
-            },
-            onError: (
-                err: TError,
-                { ids, resource: resourceName, errorNotification, values },
-                context,
-            ) => {
-                const { identifier } = select(resourceName);
-
-                // set back the queries to the context:
-                if (context) {
-                    for (const query of context.previousQueries) {
-                        queryClient.setQueryData(query[0], query[1]);
-                    }
-                }
-
-                if (err.message !== "mutationCancelled") {
-                    checkError?.(err);
-
-                    const resourceSingular =
-                        textTransformers.singular(identifier);
-
-                    const notificationConfig =
-                        typeof errorNotification === "function"
-                            ? errorNotification(
-                                  err,
-                                  { ids, values },
-                                  identifier,
-                              )
-                            : errorNotification;
-
-                    handleNotification(notificationConfig, {
-                        key: `${ids}-${identifier}-updateMany-error-notification`,
-                        message: translate(
-                            "notifications.editError",
-                            {
-                                resource: resourceSingular,
-                                statusCode: err.statusCode,
-                            },
-                            `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
-                        ),
-                        description: err.message,
-                        type: "error",
-                    });
-                }
-            },
-            mutationKey: keys()
-                .data()
-                .mutation("updateMany")
-                .get(preferLegacyKeys),
-            ...mutationOptions,
-            meta: {
-                ...mutationOptions?.meta,
-                ...getXRay("useUpdateMany", preferLegacyKeys),
-            },
+            }
         },
-    );
+        mutationKey: keys().data().mutation("updateMany").get(preferLegacyKeys),
+        ...mutationOptions,
+        meta: {
+            ...mutationOptions?.meta,
+            ...getXRay("useUpdateMany", preferLegacyKeys),
+        },
+    });
 
     const { elapsedTime } = useLoadingOvertime({
         isLoading: mutation.isLoading,

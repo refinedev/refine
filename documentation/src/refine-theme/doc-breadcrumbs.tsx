@@ -74,7 +74,7 @@ export const DocBreadcrumbs = () => {
                         itemType="https://schema.org/ListItem"
                     >
                         <Link href="/docs" itemProp="item">
-                            <HomeIcon className="text-gray-400 dark:text-gray-400" />
+                            <HomeIcon className="text-gray-400 dark:text-gray-500" />
                             <span className="sr-only" itemProp="name">
                                 Documentation
                             </span>
@@ -86,25 +86,23 @@ export const DocBreadcrumbs = () => {
                     const isLast = idx === breadcrumbs.length - 1;
 
                     return (
-                        <>
+                        <React.Fragment key={idx}>
                             <li
-                                key={idx}
                                 className={clsx(
                                     "flex-row flex-nowrap",
-                                    item.hideOnMobile ? "none" : "flex",
+                                    item.hideOnMobile ? "hidden" : "flex",
                                 )}
                                 itemScope={true}
                                 itemProp="itemListElement"
                                 itemType="https://schema.org/ListItem"
                             >
-                                <ChevronRightIcon className="text-gray-300" />
+                                <ChevronRightIcon className="text-gray-400 dark:text-gray-500" />
                                 {item.href && !isLast ? (
                                     <Link
                                         href={item.href}
                                         className={clsx(
-                                            "text-gray-600 dark:text-gray-400",
-                                            "text-sm",
-                                            "leading-6",
+                                            "text-gray-500 dark:text-gray-400",
+                                            "text-base",
                                         )}
                                         itemProp="item"
                                         itemID={item.href}
@@ -117,10 +115,8 @@ export const DocBreadcrumbs = () => {
                                     <span
                                         className={clsx(
                                             isLast
-                                                ? "text-gray-500"
-                                                : "text-gray-600 dark:text-gray-400",
-                                            "text-sm",
-                                            "leading-6",
+                                                ? "text-gray-400 dark:text-gray-500"
+                                                : "text-gray-500 dark:text-gray-400",
                                         )}
                                         itemProp="item"
                                         itemID="#"
@@ -139,18 +135,17 @@ export const DocBreadcrumbs = () => {
                             breadcrumbList.length > 1 &&
                             renderDots ? (
                                 <li
-                                    key={idx}
                                     className={clsx(
                                         "flex flex-row flex-nowrap",
                                     )}
                                 >
-                                    <ChevronRightIcon className="text-gray-300" />
-                                    <div className="text-gray-600 dark:text-gray-400">
+                                    <ChevronRightIcon className="text-gray-400 dark:text-gray-500" />
+                                    <div className="text-gray-500 dark:text-gray-400">
                                         {hiddenBreadcrumbText}
                                     </div>
                                 </li>
                             ) : null}
-                        </>
+                        </React.Fragment>
                     );
                 })}
             </ul>

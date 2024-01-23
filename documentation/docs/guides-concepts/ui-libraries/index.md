@@ -159,7 +159,7 @@ Pages
 
 > While `swizzle` provides a way to customize the components, it's a one time operation and it may be hard to maintain the changes and keep track of the new features in the future. Swizzling a component will detach it from the related package and it will be your responsibility to keep it up to date.
 
-## Notifications <GuideBadge id="api-reference/core/providers/notification-provider" />
+## Notifications <GuideBadge id="guides-concepts/notifications/" />
 
 One of the most important parts of an application is the notifications and the visual feedbacks. Refine has this built-in notification integration that works automatically when it's needed in cases such as when a request fails or when a form is submitted.
 

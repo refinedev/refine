@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { useSelect } from "@refinedev/antd";
 import { useDelete, useNavigation, useShow, useUpdate } from "@refinedev/core";
+import { GetFields } from "@refinedev/nestjs-query/dist/interfaces";
 
 import {
     CloseOutlined,
@@ -35,11 +35,14 @@ import {
     TextIcon,
 } from "@/components";
 import { TimezoneEnum } from "@/enums";
-import type { Company, Contact, User } from "@/interfaces";
+import type { Contact } from "@/graphql/schema.types";
+import { ContactShowQuery } from "@/graphql/types";
+import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
 
 import { ContactComment, ContactStatus } from "../components";
-
 import styles from "./index.module.css";
+import { CONTACT_SHOW_QUERY } from "./queries";
 
 const timezoneOptions = Object.keys(TimezoneEnum).map((key) => ({
     label: TimezoneEnum[key as keyof typeof TimezoneEnum],
@@ -53,47 +56,20 @@ export const ContactShowPage: React.FC = () => {
     const { list } = useNavigation();
     const { mutate } = useUpdate<Contact>();
     const { mutate: deleteMutation } = useDelete<Contact>();
-    const { queryResult } = useShow<Contact>({
+    const { queryResult } = useShow<GetFields<ContactShowQuery>>({
         meta: {
-            fields: [
-                "id",
-                "name",
-                "email",
-                {
-                    company: ["id", "name", "avatarUrl"],
-                },
-                "jobTitle",
-                "phone",
-                "timezone",
-                "stage",
-                "status",
-                "avatarUrl",
-                {
-                    salesOwner: ["id", "name", "avatarUrl"],
-                },
-            ],
+            gqlQuery: CONTACT_SHOW_QUERY,
         },
     });
     const {
         selectProps: companySelectProps,
         queryResult: companySelectQueryResult,
-    } = useSelect<Company>({
-        resource: "companies",
-        meta: {
-            fields: ["id", "name", "avatarUrl"],
-        },
-        optionLabel: "name",
-    });
+    } = useCompaniesSelect();
+
     const {
         selectProps: usersSelectProps,
         queryResult: usersSelectQueryResult,
-    } = useSelect<User>({
-        resource: "users",
-        meta: {
-            fields: ["id", "name", "avatarUrl"],
-        },
-        optionLabel: "name",
-    });
+    } = useUsersSelect();
 
     const closeModal = () => {
         setActiveForm(undefined);

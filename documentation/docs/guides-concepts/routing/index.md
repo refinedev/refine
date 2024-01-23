@@ -43,11 +43,37 @@ const App = () => (
 [Check out React Router documentation for detailed information](/docs/packages/list-of-packages)
 
 </TabItem>
-<TabItem value="next-js" label="Next.js">
+<TabItem value="nextjs-app" label="Next.js App">
+
+```tsx title="app/layout.tsx"
+"use client";
+import { Refine } from "@refinedev/core";
+// highlight-next-line
+import routerProvider from "@refinedev/nextjs-router/app";
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <Refine
+          // highlight-next-line
+          routerProvider={routerProvider}
+        >
+          {children}
+        </Refine>
+      </body>
+    </html>
+  );
+}
+```
+
+</TabItem>
+<TabItem value="next-js" label="Next.js Pages">
 
 ```tsx title="pages/_app.tsx"
+import { Refine } from "@refinedev/core";
 // highlight-next-line
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/nextjs-router/pages";
 
 export function MyApp({ Component, pageProps }) {
   return (
@@ -480,4 +506,4 @@ These implementations will be provided via `routerProvider` which expects an obj
 
 While all these methods are optional, if you're working on creating a custom router integration, you'll be able to incrementally add more features and adopt more of Refine's features by implementing more of these methods.
 
-To learn more about the `routerProvider` interface, check out the [`Router Provider` section of the Core API Reference](/docs/core/providers/router-provider).
+To learn more about the `routerProvider` interface, check out the [`Router Provider` section of the Core API Reference](/docs/routing/router-provider).

@@ -7,7 +7,7 @@ source: packages/chakra-ui/src/components/pages/auth/index.tsx
 
 `<AuthPage>` component from Refine for **Chakra UI** contains authentication pages that can be used to login, register, forgot password and update password.
 
-Before using the `<AuthPage>` component you need to add [authProvider](/docs/core/providers/auth-provider) that will be used to handle authentication.
+Before using the `<AuthPage>` component you need to add [authProvider](/docs/authentication/auth-provider) that will be used to handle authentication.
 
 :::simple Good to know
 
@@ -262,9 +262,9 @@ render(
 After form submission, the [`login`][login] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // --
   login: async ({ email, password, remember, providerName }) => {
     // You can handle the login process according to your needs.
@@ -357,9 +357,9 @@ render(
 After form submission, the [`register`][register] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // --
   register: async ({ email, password, providerName }) => {
     // You can handle the register process according to your needs.
@@ -453,9 +453,9 @@ render(
 After form submission, the [`forgotPassword`][forgot-password] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // --
   forgotPassword: async ({ email }) => {
     // You can handle the reset password process according to your needs.
@@ -550,9 +550,9 @@ render(
 After form submission, the [`updatePassword`][update-password] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // --
   updatePassword: async ({ password, confirmPassword }) => {
     // You can handle the update password process according to your needs.
@@ -576,7 +576,7 @@ const authProvider: AuthBindings = {
 
 ## Props
 
-### `hideForm`
+### hideForm
 
 When you set `hideForm` to `true`, the form will be hidden. You can use this property to show only providers.
 
@@ -603,7 +603,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `providers`
+### providers
 
 `providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type. Check out the [Interface](#interface) section for more information. This property is only available for types `login` and `register`.
 
@@ -628,7 +628,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `rememberMe`
+### rememberMe
 
 `rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it. This property is only available for type `login`.
 
@@ -638,7 +638,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `loginLink`
+### loginLink
 
 `loginLink` property defines the link to the login page and also you can give a node to render. Default value is `"/login"`. This property is only available for types `register` and `forgotPassword`.
 
@@ -659,7 +659,7 @@ const MyRegisterPage = () => {
 };
 ```
 
-### `registerLink`
+### registerLink
 
 `registerLink` property defines the link to the registration page and also you can give a node to render. Default value is `"/register"`. This property is only available for type `login`.
 
@@ -680,7 +680,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `forgotPasswordLink`
+### forgotPasswordLink
 
 `forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. Default value is `"/forgot-password"`. This property is only available for type `login`.
 
@@ -701,7 +701,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `wrapperProps`
+### wrapperProps
 
 `wrapperProps` is used for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
 
@@ -719,7 +719,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `contentProps`
+### contentProps
 
 `contentProps` is used for passing props to the content component which is the card component. In the example below you can see that the title, header and content styles are changed with `contentProps`.
 
@@ -737,7 +737,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `formProps`
+### formProps
 
 `formProps` is used for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onSubmit` function is changed.
 
@@ -771,7 +771,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `title`
+### title
 
 By default, `AuthPage` uses text with icon on top of page. You can use this property to change the default title.
 
@@ -801,7 +801,7 @@ const MyLoginPage = () => {
 };
 ```
 
-### `renderContent`
+### renderContent
 
 `renderContent` is used to render the form content and [title](#title). You can use this property to render your own content or `renderContent` gives you default content and title you can use to add some extra elements to the content.
 
@@ -873,8 +873,8 @@ interface FormPropsType extends UseFormProps {
 }
 ```
 
-[auth-provider]: /docs/core/providers/auth-provider
-[login]: /docs/core/providers/auth-provider#login-
-[register]: /docs/core/providers/auth-provider#register
-[forgot-password]: /docs/core/providers/auth-provider#forgotpassword
-[update-password]: /docs/core/providers/auth-provider#updatepassword
+[auth-provider]: /docs/authentication/auth-provider
+[login]: /docs/authentication/auth-provider#login-
+[register]: /docs/authentication/auth-provider#register
+[forgot-password]: /docs/authentication/auth-provider#forgotpassword
+[update-password]: /docs/authentication/auth-provider#updatepassword

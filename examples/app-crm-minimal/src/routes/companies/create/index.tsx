@@ -1,10 +1,10 @@
-import React from "react";
-import { CompanyList, CompanyCreateModal } from "../components";
+import { CompanyListPage } from "../list";
+import { CompanyCreateModal } from "../list/create-modal";
 
-export const CompanyCreatePage: React.FC = () => {
-    return (
-        <CompanyList>
-            <CompanyCreateModal />
-        </CompanyList>
-    );
+export const CompanyCreatePage = () => {
+  return (
+    <CompanyListPage>
+      <CompanyCreateModal />
+    </CompanyListPage>
+  );
 };

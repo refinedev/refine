@@ -1,14 +1,17 @@
 import React from "react";
 
 import { useCreateMany, useDelete, useList } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, ModalProps, Popconfirm } from "antd";
 
 import { Text } from "@/components";
-import { EventCategory } from "@/interfaces";
+import { EVENT_CATEGORIES_QUERY } from "@/graphql/queries";
+import { EventCategoriesQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
+import { CALENDAR_CREATE_EVENT_CATEGORIES_MUTATION } from "./queries";
 
 type CalendarManageCategoriesProps = {
     saveSuccces?: () => void;
@@ -18,18 +21,12 @@ export const CalendarManageCategories: React.FC<
     CalendarManageCategoriesProps
 > = ({ saveSuccces, ...rest }) => {
     const [form] = Form.useForm();
-    const { mutate: createManyMutation } = useCreateMany({
-        mutationOptions: {
-            meta: {
-                fields: ["id", "title"],
-            },
-        },
-    });
+    const { mutate: createManyMutation } = useCreateMany();
     const { mutate: deleteMutation } = useDelete();
-    const { data } = useList<EventCategory>({
+    const { data } = useList<GetFieldsFromList<EventCategoriesQuery>>({
         resource: "eventCategories",
         meta: {
-            fields: ["id", "title"],
+            gqlQuery: EVENT_CATEGORIES_QUERY,
         },
     });
 
@@ -100,7 +97,8 @@ export const CalendarManageCategories: React.FC<
                             {
                                 resource: "eventCategories",
                                 meta: {
-                                    fields: ["id", "title"],
+                                    gqlMutation:
+                                        CALENDAR_CREATE_EVENT_CATEGORIES_MUTATION,
                                 },
                                 values,
                                 successNotification: () => ({

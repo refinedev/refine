@@ -101,7 +101,7 @@ function plugin() {
         },
         async contentLoaded({ allContent, actions }) {
             if (!process.env.DISABLE_CHECKLISTS) {
-                console.log("Composing refine tutorial checklists...");
+                console.log("Composing Refine tutorial checklists...");
 
                 const { createData } = actions;
 

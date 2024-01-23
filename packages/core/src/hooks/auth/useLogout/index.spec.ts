@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { act, mockRouterBindings, TestWrapper } from "@test";
+import { act, mockRouterBindings, queryClient, TestWrapper } from "@test";
 
 import { useLogout } from "./";
 import { useCheckError, useOnError } from "../useOnError";
@@ -622,6 +622,73 @@ describe("useLogout Hook", () => {
                 description: "Unhandled error",
             });
         });
+    });
+
+    it("should override `mutationFn` with mutationOptions.mutationFn", async () => {
+        const logoutMock = jest.fn().mockResolvedValue({ data: {} });
+        const mutationFnMock = jest.fn().mockResolvedValue({ data: {} });
+
+        const { result } = renderHook(
+            () =>
+                useLogout({
+                    mutationOptions: {
+                        // mutationFn is omitted in types. So we need to use @ts-ignore test it.
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        mutationFn: mutationFnMock,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    authProvider: {
+                        ...mockAuthProvider,
+                        logout: logoutMock,
+                    },
+                }),
+            },
+        );
+
+        result.current.mutate({});
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(logoutMock).not.toBeCalled();
+        expect(mutationFnMock).toBeCalled();
+    });
+
+    it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
+        const logoutMock = jest.fn().mockResolvedValue({ data: {} });
+
+        const { result } = renderHook(
+            () =>
+                useLogout({
+                    mutationOptions: {
+                        mutationKey: ["foo", "bar"],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    authProvider: {
+                        ...mockAuthProvider,
+                        logout: logoutMock,
+                    },
+                }),
+            },
+        );
+
+        result.current.mutate({});
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(
+            queryClient.getMutationCache().findAll({
+                mutationKey: ["foo", "bar"],
+            }),
+        ).toHaveLength(1);
     });
 });
 

@@ -1,5 +1,23 @@
 # @refinedev/mui
 
+## 5.14.2
+
+### Patch Changes
+
+-   [#5430](https://github.com/refinedev/refine/pull/5430) [`cfe78749ff`](https://github.com/refinedev/refine/commit/cfe78749fff4b969a2fb52d139e66ba064dc57e1) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `useNotification.close("notification-key")` not working. Resolves [#5431](https://github.com/refinedev/refine/issues/5431)
+
+-   [#5465](https://github.com/refinedev/refine/pull/5465) [`00e00cbd98`](https://github.com/refinedev/refine/commit/00e00cbd98c34046ab83b299ede83401ae74fec1) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the type issue between `remark-gfm` and `react-markdown`. #5463
+
+## 5.14.1
+
+### Patch Changes
+
+-   [#5425](https://github.com/refinedev/refine/pull/5425) [`190af9fce2`](https://github.com/refinedev/refine/commit/190af9fce292bc46b169e3e121be6bf1c2a939a5) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@refinedev/core` peer dependencies to latest (`^4.46.1`)
+
+-   Updated dependencies [[`190af9fce2`](https://github.com/refinedev/refine/commit/190af9fce292bc46b169e3e121be6bf1c2a939a5)]:
+    -   @refinedev/react-hook-form@4.8.13
+    -   @refinedev/ui-types@1.22.4
+
 ## 5.14.0
 
 ### Minor Changes

@@ -1,9 +1,12 @@
-import { useForm, useSelect } from "@refinedev/antd";
+import { useForm } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 
 import { Button, Form, Select, Space } from "antd";
 
-import { Task } from "@/interfaces";
+import { Task } from "@/graphql/schema.types";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
+
+import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
 
 type Props = {
     initialValues: {
@@ -21,15 +24,12 @@ export const UsersForm = ({ initialValues, cancelForm }: Props) => {
         onMutationSuccess: () => {
             cancelForm();
         },
+        meta: {
+            gqlMutation: KANBAN_UPDATE_TASK_MUTATION,
+        },
     });
 
-    const { selectProps } = useSelect({
-        resource: "users",
-        meta: {
-            fields: ["name", "id"],
-        },
-        optionLabel: "name",
-    });
+    const { selectProps } = useUsersSelect();
 
     return (
         <div

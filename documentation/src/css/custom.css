@@ -956,6 +956,7 @@ html[data-theme="dark"]:not([data-customized="true"])
 .props-table__description-cell *,
 .props-table__default-value-cell *,
 .props-list__info-item * {
+    @apply 2xl:my-0;
     margin-bottom: 0;
 }
 
@@ -1209,4 +1210,110 @@ form.DocSearch-Form input.DocSearch-Input {
 form.DocSearch-Form label.DocSearch-MagnifierLabel svg.DocSearch-Search-Icon {
     width: 18px;
     height: 18px;
+}
+
+.template-detail-markdown {
+    @apply break-words;
+}
+
+.template-detail-markdown h3 + ul {
+    margin-block-start: -20px;
+}
+
+.template-detail-markdown li > p + p {
+    @apply mt-6;
+}
+
+.template-detail-markdown strong {
+    @apply font-semibold;
+}
+
+.template-detail-markdown a {
+    @apply dark:text-refine-link-dark text-refine-link-light font-semibold;
+}
+
+.template-detail-markdown strong a {
+    @apply font-bold;
+}
+
+.template-detail-markdown h1 {
+    @apply leading-tight border-b text-4xl font-semibold mb-4 mt-6 pb-2;
+}
+
+.template-detail-markdown h2 {
+    @apply leading-tight border-b text-2xl font-semibold mb-4 mt-6 pb-2;
+}
+
+.template-detail-markdown h3 {
+    @apply leading-snug text-lg font-semibold pb-0 mb-0 mt-6;
+}
+
+.template-detail-markdown h4 {
+    @apply leading-none text-base font-semibold mb-4 mt-6;
+}
+
+.template-detail-markdown h5 {
+    @apply leading-tight text-sm font-semibold mb-4 mt-6;
+}
+
+.template-detail-markdown h6 {
+    @apply leading-tight text-sm font-semibold mb-4 mt-6;
+}
+
+.template-detail-markdown blockquote {
+    @apply text-base border-l-4 border-gray-300 pl-4 pr-4;
+}
+
+.template-detail-markdown code {
+    @apply text-sm inline bg-gray-200 rounded px-1 py-[0.125rem];
+}
+
+.template-detail-markdown pre {
+    @apply bg-gray-100 rounded p-4;
+}
+
+.template-detail-markdown pre code {
+    @apply block bg-transparent p-0 overflow-visible rounded-none;
+}
+
+.template-detail-markdown ul {
+    @apply text-base pl-8 list-disc;
+}
+
+.template-detail-markdown ol {
+    @apply text-base pl-8 list-decimal;
+}
+
+.template-detail-markdown kbd {
+    @apply text-xs inline-block rounded border px-1 py-[0.125rem] align-middle font-normal shadow;
+}
+
+.template-detail-markdown table {
+    @apply text-base border-gray-600;
+}
+
+.template-detail-markdown th {
+    @apply border py-1 px-3;
+}
+
+.template-detail-markdown td {
+    @apply border py-1 px-3;
+}
+
+/* Override pygments style background color. */
+.template-detail-markdown .highlight pre {
+    @apply bg-gray-100 !important;
+}
+
+.sandpack-container .sp-layout .resize-handler {
+    @apply bg-no-repeat bg-center bg-[size:12px_28px];
+    @apply w-3 -ml-px;
+    @apply opacity-0 hover:opacity-100;
+    @apply transition-opacity duration-200 ease-in-out;
+
+    background-image: url('data:image/svg+xml,<svg width="12" height="28" viewBox="0 0 12 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="12" height="28" rx="6" fill="%23E3E4E5"/><path d="M8 6.8c0 1-.9 2-2 2a2 2 0 0 1-2-2C4 5.8 4.9 5 6 5a2 2 0 0 1 2 2ZM8 14.5c0 1-.9 1.9-2 1.9a2 2 0 0 1-2-2c0-1 .9-1.9 2-1.9a2 2 0 0 1 2 2ZM6 24a2 2 0 0 0 2-2c0-1-.9-1.8-2-1.8A2 2 0 0 0 4 22c0 1 .9 1.9 2 1.9Z" fill="%23fff"/><path d="M8 6c0 1-.9 1.8-2 1.8A2 2 0 0 1 4 6C4 5 4.9 4 6 4a2 2 0 0 1 2 2ZM8 13.5c0 1.1-.9 2-2 2a2 2 0 0 1-2-2c0-1 .9-1.9 2-1.9a2 2 0 0 1 2 2ZM6 23.1a2 2 0 0 0 2-2c0-1-.9-1.8-2-1.8a2 2 0 0 0-2 1.9c0 1 .9 1.9 2 1.9Z" fill="%2399A1B3"/></svg>');
+}
+
+html[data-theme="dark"] .sandpack-container .sp-layout .resize-handler {
+    background-image: url('data:image/svg+xml,<svg width="12" height="28" viewBox="0 0 12 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="12" height="28" rx="6" fill="%23343A46"/><path d="M8 6.8c0 1-.9 2-2 2a2 2 0 0 1-2-2C4 5.8 4.9 5 6 5a2 2 0 0 1 2 2ZM8 14.5c0 1-.9 1.9-2 1.9a2 2 0 0 1-2-2c0-1 .9-1.9 2-1.9a2 2 0 0 1 2 2ZM6 24a2 2 0 0 0 2-2c0-1-.9-1.8-2-1.8A2 2 0 0 0 4 22c0 1 .9 1.9 2 1.9Z" fill="%23000"/><path d="M8 6c0 1-.9 1.8-2 1.8A2 2 0 0 1 4 6C4 5 4.9 4 6 4a2 2 0 0 1 2 2ZM8 13.5c0 1.1-.9 2-2 2a2 2 0 0 1-2-2c0-1 .9-1.9 2-1.9a2 2 0 0 1 2 2ZM6 23.1a2 2 0 0 0 2-2c0-1-.9-1.8-2-1.8a2 2 0 0 0-2 1.9c0 1 .9 1.9 2 1.9Z" fill="%23667084"/></svg>');
 }

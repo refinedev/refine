@@ -1,6 +1,11 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
+import {
+    MockJSONServer,
+    mockRouterBindings,
+    queryClient,
+    TestWrapper,
+} from "@test";
 
 import * as UseInvalidate from "../invalidate/index";
 import { useCreateMany } from "./useCreateMany";
@@ -671,5 +676,77 @@ describe("useCreateMany Hook", () => {
             expect(result.current.isLoading).toBeFalsy();
             expect(result.current.overtime.elapsedTime).toBeUndefined();
         });
+    });
+
+    it("should override `mutationFn` with mutationOptions.mutationFn", async () => {
+        const createManyMock = jest.fn();
+        const mutationFnMock = jest.fn();
+
+        const { result } = renderHook(
+            () =>
+                useCreateMany({
+                    mutationOptions: {
+                        // mutationFn is omitted in types. So we need to use @ts-ignore test it.
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        mutationFn: mutationFnMock,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            createMany: createManyMock,
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        result.current.mutate({
+            resource: "posts",
+            values: [{}],
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(createManyMock).not.toBeCalled();
+        expect(mutationFnMock).toBeCalled();
+    });
+
+    it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
+        const { result } = renderHook(
+            () =>
+                useCreateMany({
+                    mutationOptions: {
+                        mutationKey: ["foo", "bar"],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        result.current.mutate({
+            resource: "posts",
+            values: [{}],
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(
+            queryClient.getMutationCache().findAll({
+                mutationKey: ["foo", "bar"],
+            }),
+        ).toHaveLength(1);
     });
 });

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { List, useTable } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
     AppstoreOutlined,
@@ -12,11 +13,12 @@ import { Form, Grid, Input, Radio, Space, Spin } from "antd";
 import debounce from "lodash/debounce";
 
 import { ListTitleButton } from "@/components";
-import { Contact } from "@/interfaces";
+import { ContactsListQuery } from "@/graphql/types";
 
 import { CardView, TableView } from "./components";
+import { CONTACTS_LIST_QUERY } from "./queries";
 
-type Props = React.PropsWithChildren<{}>;
+type Props = React.PropsWithChildren;
 type View = "card" | "table";
 
 export const ContactsListPage: React.FC<Props> = ({ children }) => {
@@ -32,7 +34,11 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
         sorters,
         setFilters,
         tableQueryResult,
-    } = useTable<Contact, HttpError, { name: string }>({
+    } = useTable<
+        GetFieldsFromList<ContactsListQuery>,
+        HttpError,
+        { name: string }
+    >({
         pagination: {
             pageSize: 12,
         },
@@ -83,17 +89,7 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
             ];
         },
         meta: {
-            fields: [
-                "id",
-                "name",
-                "email",
-                {
-                    company: ["id", "name", "avatarUrl"],
-                },
-                "jobTitle",
-                "status",
-                "avatarUrl",
-            ],
+            gqlQuery: CONTACTS_LIST_QUERY,
         },
     });
 

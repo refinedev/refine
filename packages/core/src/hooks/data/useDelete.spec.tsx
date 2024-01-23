@@ -1,6 +1,11 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
+import {
+    MockJSONServer,
+    mockRouterBindings,
+    queryClient,
+    TestWrapper,
+} from "@test";
 
 import {
     assertList,
@@ -11,6 +16,7 @@ import {
 } from "@test/mutation-helpers";
 import * as UseInvalidate from "../invalidate/index";
 import { useDelete } from "./useDelete";
+import * as queryKeys from "@definitions/helpers/queryKeys";
 
 describe("useDelete Hook", () => {
     it("should work with pessimistic update", async () => {
@@ -119,7 +125,35 @@ describe("useDelete Hook", () => {
         await assertListLength(useManyResult, 1);
         await assertList(useManyResult, "id", ["2"]);
 
-        assertMutationSuccess(result);
+        await assertMutationSuccess(result);
+    });
+
+    it("should exclude gqlQuery and qqlMutation from query keys", async () => {
+        const catchFn = jest.fn();
+
+        jest.spyOn(queryKeys, "queryKeysReplacement").mockImplementationOnce(
+            () => catchFn,
+        );
+
+        const { result } = renderHook(() => useDelete(), {
+            wrapper: TestWrapper({}),
+        });
+
+        const resource = "posts";
+
+        result.current.mutate({
+            resource,
+            id: 1,
+            meta: {
+                foo: "bar",
+                gqlQuery: "gqlQuery" as any,
+                gqlMutation: "gqlMutation" as any,
+            },
+        });
+
+        await waitFor(() => {
+            expect(catchFn).toBeCalledWith(resource, "default", { foo: "bar" });
+        });
     });
 
     it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
@@ -143,7 +177,11 @@ describe("useDelete Hook", () => {
         result.current.mutate({
             resource: "posts",
             id: "1",
-            meta: { foo: "bar" },
+            meta: {
+                foo: "bar",
+                gqlQuery: "gqlQuery" as any,
+                gqlMutation: "gqlMutation" as any,
+            },
         });
 
         await waitFor(() => {
@@ -155,6 +193,8 @@ describe("useDelete Hook", () => {
                 meta: expect.objectContaining({
                     foo: "bar",
                     baz: "qux",
+                    gqlQuery: "gqlQuery",
+                    gqlMutation: "gqlMutation",
                 }),
             }),
         );
@@ -751,5 +791,78 @@ describe("useDelete Hook", () => {
                 );
             });
         });
+    });
+
+    it("should override `mutationFn` with mutationOptions.mutationFn", async () => {
+        const deleteOneMock = jest.fn();
+        const mutationFnMock = jest.fn();
+
+        const { result } = renderHook(
+            () =>
+                useDelete({
+                    mutationOptions: {
+                        // mutationFn is omitted in types. So we need to use @ts-ignore test it.
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        mutationFn: mutationFnMock,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            deleteOne: deleteOneMock,
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        result.current.mutate({
+            resource: "posts",
+            id: "1",
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(deleteOneMock).not.toBeCalled();
+        expect(mutationFnMock).toBeCalled();
+    });
+
+    it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
+        const { result } = renderHook(
+            () =>
+                useDelete({
+                    mutationOptions: {
+                        mutationKey: ["foo", "bar"],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        result.current.mutate({
+            resource: "posts",
+            id: "1",
+            values: {},
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(
+            queryClient.getMutationCache().findAll({
+                mutationKey: ["foo", "bar"],
+            }),
+        ).toHaveLength(1);
     });
 });

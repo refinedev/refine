@@ -32,8 +32,8 @@ const action = async (
     const projectType =  getProjectType(platform);
 
     const binPath = projectScripts[projectType].getBin("build");
-    const script = projectScripts[projectType].build;
-    const command = [...script, ...args];
+    const command = projectScripts[projectType].getBuild(args);
+
 
     await updateNotifier();
 

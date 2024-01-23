@@ -8,12 +8,14 @@ import {
     useUpdate,
     useUpdateMany,
 } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { ClearOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { DragEndEvent } from "@dnd-kit/core";
 import { MenuProps } from "antd";
 
-import { Task, TaskStage, TaskUpdateInput } from "@/interfaces";
+import { TaskUpdateInput } from "@/graphql/schema.types";
+import { KanbanTasksQuery, KanbanTaskStagesQuery } from "@/graphql/types";
 
 import {
     KanbanAddCardButton,
@@ -26,24 +28,15 @@ import {
     ProjectCardMemo,
     ProjectCardSkeleton,
 } from "../components";
+import { KANBAN_TASK_STAGES_QUERY, KANBAN_TASKS_QUERY } from "./queries";
 
-const taskFragment = [
-    "id",
-    "title",
-    "description",
-    "dueDate",
-    "completed",
-    "stageId",
-    {
-        checklist: ["title", "checked"],
-    },
-    {
-        users: ["id", "name", "avatarUrl"],
-    },
-    {
-        comments: ["totalCount"],
-    },
-];
+type Task = GetFieldsFromList<KanbanTasksQuery>;
+
+type TaskStage = GetFieldsFromList<KanbanTaskStagesQuery>;
+
+type TaskStageColumn = TaskStage & {
+    tasks: Task[];
+};
 
 export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
     const { create, edit, replace } = useNavigation();
@@ -60,7 +53,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
             },
         ],
         meta: {
-            fields: ["id", "title"],
+            gqlQuery: KANBAN_TASK_STAGES_QUERY,
         },
     });
 
@@ -79,7 +72,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
             mode: "off",
         },
         meta: {
-            fields: taskFragment,
+            gqlQuery: KANBAN_TASKS_QUERY,
         },
     });
 
@@ -97,7 +90,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
         );
 
         // prepare unassigned stage
-        const grouped: TaskStage[] = stages.data.map((stage) => ({
+        const grouped = stages.data.map((stage) => ({
             ...stage,
             tasks: tasks.data.filter(
                 (task) => task.stageId?.toString() === stage.id,
@@ -183,7 +176,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
         });
     };
 
-    const getContextMenuItems = ({ column }: { column: TaskStage }) => {
+    const getContextMenuItems = (column: TaskStageColumn) => {
         const hasItems = column.tasks.length > 0;
 
         const items: MenuProps["items"] = [
@@ -249,7 +242,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
                     )}
                 </KanbanColumn>
                 {taskStages.stages?.map((column) => {
-                    const contextMenuItems = getContextMenuItems({ column });
+                    const contextMenuItems = getContextMenuItems(column);
 
                     return (
                         <KanbanColumn

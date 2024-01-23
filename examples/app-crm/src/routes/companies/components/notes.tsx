@@ -9,17 +9,30 @@ import {
     useList,
     useParsed,
 } from "@refinedev/core";
+import { GetFieldsFromList, GetVariables } from "@refinedev/nestjs-query";
 
 import { LoadingOutlined } from "@ant-design/icons";
 import { Button, Card, Form, Input, Space, Typography } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text, TextIcon } from "@/components";
-import { CompanyNote, User } from "@/interfaces";
+import { User } from "@/graphql/schema.types";
+import {
+    CompanyCompanyNotesQuery,
+    CompanyCreateCompanyNoteMutationVariables,
+} from "@/graphql/types";
+
+import {
+    COMPANY_COMPANY_NOTES_QUERY,
+    COMPANY_CREATE_COMPANY_NOTE_MUTATION,
+    COMPANY_UPDATE_COMPANY_NOTE_MUTATION,
+} from "./queries";
 
 type Props = {
     style?: React.CSSProperties;
 };
+
+type CompanyNote = GetFieldsFromList<CompanyCompanyNotesQuery>;
 
 export const CompanyNotes: FC<Props> = ({ style }) => {
     return (
@@ -54,7 +67,11 @@ export const CompanyNoteForm = () => {
 
     const { data: me } = useGetIdentity<User>();
 
-    const { formProps, onFinish, form, formLoading } = useForm<CompanyNote>({
+    const { formProps, onFinish, form, formLoading } = useForm<
+        CompanyNote,
+        HttpError,
+        GetVariables<CompanyCreateCompanyNoteMutationVariables>
+    >({
         action: "create",
         resource: "companyNotes",
         queryOptions: {
@@ -68,9 +85,14 @@ export const CompanyNoteForm = () => {
             description: "Successful",
             type: "success",
         }),
+        meta: {
+            gqlMutation: COMPANY_CREATE_COMPANY_NOTE_MUTATION,
+        },
     });
 
-    const handleOnFinish = async (values: CompanyNote) => {
+    const handleOnFinish = async (
+        values: GetVariables<CompanyCreateCompanyNoteMutationVariables>,
+    ) => {
         if (!companyId) {
             return;
         }
@@ -83,7 +105,7 @@ export const CompanyNoteForm = () => {
         try {
             await onFinish({
                 ...values,
-                companyId: companyId,
+                companyId: companyId as string,
             });
 
             form.resetFields();
@@ -108,7 +130,7 @@ export const CompanyNoteForm = () => {
             <Form
                 {...formProps}
                 style={{ width: "100%" }}
-                onFinish={(values) => handleOnFinish(values as CompanyNote)}
+                onFinish={handleOnFinish}
             >
                 <Form.Item
                     name="note"
@@ -116,9 +138,9 @@ export const CompanyNoteForm = () => {
                     rules={[
                         {
                             required: true,
-                            pattern: new RegExp(
-                                /^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i,
-                            ),
+                            transform(value) {
+                                return value?.trim();
+                            },
                             message: "Please enter a note",
                         },
                     ]}
@@ -149,12 +171,7 @@ export const CompanyNoteList = () => {
         ],
         filters: [{ field: "company.id", operator: "eq", value: params.id }],
         meta: {
-            fields: [
-                "id",
-                "note",
-                "createdAt",
-                { createdBy: ["id", "name", "updatedAt", "avatarUrl"] },
-            ],
+            gqlQuery: COMPANY_COMPANY_NOTES_QUERY,
         },
     });
 
@@ -182,6 +199,9 @@ export const CompanyNoteList = () => {
             description: "Successful",
             type: "success",
         }),
+        meta: {
+            gqlMutation: COMPANY_UPDATE_COMPANY_NOTE_MUTATION,
+        },
     });
 
     const { data: me } = useGetIdentity<User>();
@@ -243,9 +263,9 @@ export const CompanyNoteList = () => {
                                         rules={[
                                             {
                                                 required: true,
-                                                pattern: new RegExp(
-                                                    /^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i,
-                                                ),
+                                                transform(value) {
+                                                    return value?.trim();
+                                                },
                                                 message: "Please enter a note",
                                             },
                                         ]}

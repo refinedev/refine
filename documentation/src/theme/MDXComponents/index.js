@@ -22,8 +22,11 @@ import CommonDetails from "@site/src/refine-theme/common-details";
 import CommonSummary from "@site/src/refine-theme/common-summary";
 import CommonTabItem from "@site/src/refine-theme/common-tab-item";
 import CommonTabs from "@site/src/refine-theme/common-tabs";
+import { Blockquote } from "@site/src/refine-theme/common-blockquote";
 import { Image } from "@site/src/components/image";
-import { Table } from "@site/src/refine-theme/common-table";
+import { Table, FullTable } from "@site/src/refine-theme/common-table";
+import { CreateRefineAppCommand } from "@site/src/partials/npm-scripts/create-refine-app-command.tsx";
+import { InstallPackagesCommand } from "@site/src/partials/npm-scripts/install-packages-commands";
 
 export default {
     ...MDXComponents,
@@ -40,6 +43,7 @@ export default {
     PromotionBanner: PromotionBanner,
     Tabs: CommonTabs,
     TabItem: CommonTabItem,
+    blockquote: Blockquote,
     GeneralConceptsLink,
     CodeSandboxExample,
     ExampleLocalPrompt,
@@ -51,4 +55,7 @@ export default {
     GlobalConfigBadge,
     Image,
     table: Table,
+    CreateRefineAppCommand: CreateRefineAppCommand,
+    InstallPackagesCommand: InstallPackagesCommand,
+    FullTable: FullTable,
 };

@@ -6,7 +6,9 @@ import { HttpError, useInvalidate } from "@refinedev/core";
 import { Form, Skeleton } from "antd";
 
 import { Text } from "@/components";
-import { Task, TaskUpdateInput } from "@/interfaces";
+import { Task, TaskUpdateInput } from "@/graphql/schema.types";
+
+import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
 
 const TitleInput = ({
     value,
@@ -52,6 +54,9 @@ export const TitleForm = ({ initialValues, isLoading }: Props) => {
         },
         onMutationSuccess: () => {
             invalidate({ invalidates: ["list"], resource: "tasks" });
+        },
+        meta: {
+            gqlMutation: KANBAN_UPDATE_TASK_MUTATION,
         },
     });
 

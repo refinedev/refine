@@ -1,5 +1,21 @@
 # @refinedev/devtools
 
+## 1.1.30
+
+### Patch Changes
+
+-   Updated dependencies [[`fda3494215`](https://github.com/refinedev/refine/commit/fda349421509197b5a2be225bd3794adb2a7925c)]:
+    -   @refinedev/cli@2.16.22
+
+## 1.1.29
+
+### Patch Changes
+
+-   [#5425](https://github.com/refinedev/refine/pull/5425) [`190af9fce2`](https://github.com/refinedev/refine/commit/190af9fce292bc46b169e3e121be6bf1c2a939a5) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@refinedev/core` peer dependencies to latest (`^4.46.1`)
+
+-   Updated dependencies [[`190af9fce2`](https://github.com/refinedev/refine/commit/190af9fce292bc46b169e3e121be6bf1c2a939a5)]:
+    -   @refinedev/cli@2.16.21
+
 ## 1.1.28
 
 ### Patch Changes

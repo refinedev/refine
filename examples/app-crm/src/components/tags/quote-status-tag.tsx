@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactElement } from "react";
 
 import {
     CheckCircleOutlined,
@@ -7,9 +7,9 @@ import {
 } from "@ant-design/icons";
 import { Tag } from "antd";
 
-import { QuoteStatus } from "@/interfaces";
+import { QuoteStatus } from "@/graphql/schema.types";
 
-const variant: Record<QuoteStatus, any> = {
+const variant: Record<QuoteStatus, { color: string; icon: ReactElement }> = {
     DRAFT: {
         color: "blue",
         icon: <ExpandOutlined />,

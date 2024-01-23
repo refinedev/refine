@@ -1,5 +1,26 @@
 # @refinedev/mantine
 
+## 4.5.17
+
+### Patch Changes
+
+-   [#5373](https://github.com/refinedev/refine/pull/5373) [`dff476ca41`](https://github.com/refinedev/refine/commit/dff476ca4193fdfa35b73deafa58e75334de9af1) Thanks [@aliemir](https://github.com/aliemir)! - Show and List type inferencers were failing to provide a preview when there's a relational property without a presentational key. Updated generated code blocks to handle fields with no accessor keys and display a placeholder message instead. Fixes #5184
+
+-   [#5373](https://github.com/refinedev/refine/pull/5373) [`dff476ca41`](https://github.com/refinedev/refine/commit/dff476ca4193fdfa35b73deafa58e75334de9af1) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the issue of wrongfully assuming `id` key of relational fields in Chakra UI and Headless edit inferencers. Fixes #5274
+
+-   [#5373](https://github.com/refinedev/refine/pull/5373) [`dff476ca41`](https://github.com/refinedev/refine/commit/dff476ca4193fdfa35b73deafa58e75334de9af1) Thanks [@aliemir](https://github.com/aliemir)! - Even though `id` is required for Refine to work properly, in some list queries there may not be an `id` field. Material UI Datagrid requires an identifier for each row, if there's no `id` field, we're fallbacking to the first key of the row. Fixes the errors thrown for this case in Material UI List inferencers.
+
+-   [#5373](https://github.com/refinedev/refine/pull/5373) [`dff476ca41`](https://github.com/refinedev/refine/commit/dff476ca4193fdfa35b73deafa58e75334de9af1) Thanks [@aliemir](https://github.com/aliemir)! - Updated the object field inferencer to check for fields end with `name` and `label` and use them as the display name for the field. Previously the check was done for a predefined set of properties, now it's done for any property that ends with `name` or `label` which results with more accurate code generation.
+
+-   Updated dependencies [[`75bb61dd3b`](https://github.com/refinedev/refine/commit/75bb61dd3b781e69f198f4e928ccffddb997fdc5), [`93e00fd770`](https://github.com/refinedev/refine/commit/93e00fd7701bce9e7201d04a6dd8f1419baeb68d), [`e5888b6b9c`](https://github.com/refinedev/refine/commit/e5888b6b9c9cc41546152f5b4d9adaf4405aa51c), [`b621223bfb`](https://github.com/refinedev/refine/commit/b621223bfbc2bed569e41766f60b9687ddba9013), [`19ceffbe9f`](https://github.com/refinedev/refine/commit/19ceffbe9f217fd354207b96610c25e8a7f3dcf3)]:
+    -   @refinedev/core@4.46.2
+
+## 4.5.16
+
+### Patch Changes
+
+-   [#5425](https://github.com/refinedev/refine/pull/5425) [`190af9fce2`](https://github.com/refinedev/refine/commit/190af9fce292bc46b169e3e121be6bf1c2a939a5) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@refinedev/core` peer dependencies to latest (`^4.46.1`)
+
 ## 4.5.15
 
 ### Patch Changes

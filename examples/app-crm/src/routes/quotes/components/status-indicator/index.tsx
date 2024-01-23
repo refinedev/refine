@@ -4,10 +4,9 @@ import { HttpError, useUpdate } from "@refinedev/core";
 
 import cn from "classnames";
 
-import { Quote, QuoteUpdateInput } from "@/interfaces";
+import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
 
-import { quotesFragment } from "../quotes-fragment";
-
+import { QUOTES_UPDATE_QUOTE_MUTATION } from "../../queries";
 import styles from "./index.module.css";
 
 interface Props {
@@ -29,7 +28,7 @@ export const StatusIndicator: FC<Props> = ({ id, status, style }) => {
             mutationMode: "optimistic",
             invalidates: [],
             meta: {
-                fields: quotesFragment,
+                gqlMutation: QUOTES_UPDATE_QUOTE_MUTATION,
             },
         });
     };

@@ -13,7 +13,7 @@ tutorial:
 
 1.  Open the `src/pages/blog-posts/list.tsx` file on your editor.
 
-2.  Import the `<DeleteButton/>` component from `@refinedev/antd`:
+2.  Import the `<DeleteButton/>` component from `@refinedev/mantine`:
 
     ```tsx
     import { DeleteButton } from "@refinedev/mantine";
@@ -117,7 +117,7 @@ After setting the `canDelete` property in `meta` to `true`, you will see a delet
 
 You can also use `useDelete` hook provided by Refine to delete a record.
 
-For more information, refer to the [`useDelete` documentation&#8594](/docs/core/hooks/data/use-delete)
+For more information, refer to the [`useDelete` documentation&#8594](/docs/data/hooks/use-delete)
 
 :::
 

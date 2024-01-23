@@ -36,7 +36,7 @@ By using `<ThemedLayoutV2>`, developers can create a consistent look and feel ac
 
 - [`<ThemedHeaderV2>`][themed-header]: displayed at the top of the page and can display the user's name and avatar.
 - [`<ThemedSiderV2>`][themed-sider]: displayed on the left side of the page and can display menu items.
-- [`<ThemedTitleV2V2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
+- [`<ThemedTitleV2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
 - `<Footer>`: displayed at the bottom of the page.
 - `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
 
@@ -115,7 +115,7 @@ Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](
 
 ## Props
 
-### `Sider`
+### Sider
 
 In `<ThemedLayoutV2>`, the sidebar section is rendered using the [`<ThemedSiderV2>`][themed-sider] component by default. This component is specifically designed to generate menu items based on the resources defined in [`<Refine>`][refine-component] components, using the [`useMenu`][use-menu] hook. However, if desired, it's possible to replace the default [`<ThemedSiderV2>`][themed-sider] component by passing a custom component to the `Sider` prop.
 
@@ -181,7 +181,7 @@ const App: React.FC = () => {
 };
 ```
 
-#### `Sider Props`
+#### Sider Props
 
 | Prop                 | Type                                          | Description                                                                     |
 | -------------------- | --------------------------------------------- | ------------------------------------------------------------------------------- |
@@ -199,7 +199,7 @@ type SiderRenderFunction = (props: {
 }) => React.ReactNode;
 ```
 
-### `initialSiderCollapsed`
+### initialSiderCollapsed
 
 This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][themed-sider] component. If it is `true`, It will be collapsed by default.
 
@@ -212,9 +212,9 @@ This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][
 </ThemedLayoutV2>
 ```
 
-### `Header`
+### Header
 
-In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeaderV2>`][themed-header] component by default. It uses [`useGetIdentity`](/docs/core/hooks/auth/use-get-identity) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeaderV2>`][themed-header] component by passing a custom component to the `Header` prop.
+In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeaderV2>`][themed-header] component by default. It uses [`useGetIdentity`](/docs/authentication/hooks/use-get-identity) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeaderV2>`][themed-header] component by passing a custom component to the `Header` prop.
 
 Here is an example of how to replace the default [`<ThemedHeaderV2>`][themed-header] component:
 
@@ -268,16 +268,16 @@ const App: React.FC = () => {
 };
 ```
 
-### `Title`
+### Title
 
-In `<ThemedLayoutV2>`, the title section is rendered using the [`<ThemedTitleV2V2>`][themed-title] component by default. However, if desired, it's possible to replace the default [`<ThemedTitleV2V2>`][themed-title] component by passing a custom component to the `Title` prop.
+In `<ThemedLayoutV2>`, the title section is rendered using the [`<ThemedTitleV2>`][themed-title] component by default. However, if desired, it's possible to replace the default [`<ThemedTitleV2>`][themed-title] component by passing a custom component to the `Title` prop.
 
-Here is an example of how to replace the default [`<ThemedTitleV2V2>`][themed-title] component:
+Here is an example of how to replace the default [`<ThemedTitleV2>`][themed-title] component:
 
 ```tsx
 import { Refine } from "@refinedev/core";
 // highlight-next-line
-import { ThemedLayoutV2, ThemedTitle } from "@refinedev/mui";
+import { ThemedLayoutV2, ThemedTitleV2 } from "@refinedev/mui";
 
 // highlight-next-line
 import { MyLargeIcon, MySmallIcon } from "./MyIcon";
@@ -290,7 +290,7 @@ const App: React.FC = () => {
       <ThemedLayoutV2
         // highlight-start
         Title={({ collapsed }) => (
-          <ThemedTitleV2V2
+          <ThemedTitleV2
             // collapsed is a boolean value that indicates whether the <Sidebar> is collapsed or not
             collapsed={collapsed}
             icon={collapsed ? <MySmallIcon /> : <MyLargeIcon />}
@@ -306,7 +306,7 @@ const App: React.FC = () => {
 };
 ```
 
-### `Footer`
+### Footer
 
 The footer section of the layout is displayed at the bottom of the page. Refine doesn't provide a default footer component. However, you can pass a custom component to the `Footer` prop to display a footer section.
 
@@ -426,7 +426,7 @@ const App: React.FC = () => {
 };
 ```
 
-### `OffLayoutArea`
+### OffLayoutArea
 
 Used to component is rendered outside of the main layout component, allowing it to be placed anywhere on the page while still being part of the overall layout .Refine doesn't provide a default off-layout area component. However, you can pass a custom component to the `OffLayoutArea` prop to display a custom off-layout area.
 

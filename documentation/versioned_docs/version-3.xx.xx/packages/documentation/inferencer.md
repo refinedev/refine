@@ -9,27 +9,7 @@ The package exports components for **List**, **Show**, **Create** and **Edit** v
 
 ## Installation
 
-<Tabs
-defaultValue="npm"
-values={[
-{label: 'use npm', value: 'npm'},
-{label: 'use yarn', value: 'yarn'}
-]}>
-<TabItem value="npm">
-
-```bash
-npm i @pankod/refine-inferencer
-```
-
-  </TabItem>
-    <TabItem value="yarn">
-
-```bash
-yarn add @pankod/refine-inferencer
-```
-
-  </TabItem>
-</Tabs>
+<InstallPackagesCommand args="@pankod/refine-inferencer"/>
 
 ## Available UI Inferencers
 

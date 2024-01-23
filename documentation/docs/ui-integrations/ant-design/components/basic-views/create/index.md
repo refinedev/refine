@@ -116,7 +116,7 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Properties
 
-### `title`
+### title
 
 `title` allows you to add a title inside the `<Create>` component. If you don't pass the title props, it uses the "Create" prefix and the singular resource name by default. For example, for the `/posts/create` resource, it would be "Create post".
 
@@ -155,7 +155,7 @@ render(
 );
 ```
 
-### `saveButtonProps`
+### saveButtonProps
 
 The `<Create>` component has a save button that submits the form by default. If you want to customize this button you can use the `saveButtonProps` property:
 
@@ -196,7 +196,7 @@ render(
 
 > For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/ant-design/components/buttons/save-button)
 
-### `resource`
+### resource
 
 The `<Create>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Create>` component, you can use the `resource` prop:
 
@@ -248,7 +248,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### `goBack`
+### goBack
 
 To customize the back button or to disable it, you can use the `goBack` property:
 
@@ -311,7 +311,7 @@ const PostCreate: React.FC = () => {
 };
 ```
 
-### `isLoading`
+### isLoading
 
 To toggle the loading state of the `<Create/>` component, you can use the `isLoading` property:
 
@@ -350,7 +350,7 @@ render(
 );
 ```
 
-### `breadcrumb` <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
+### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default the `Breadcrumb` component from the `@refinedev/antd` package is used for breadcrumbs.
 
@@ -403,7 +403,7 @@ render(
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/ant-design/components/breadcrumb)
 
-### `wrapperProps`
+### wrapperProps
 
 You can use the `wrapperProps` property if you want to customize the wrapper of the `<Create/>` component. The `@refinedev/antd` wrapper elements are simply `<div/>`s and `wrapperProps` and can get every attribute that `<div/>` can get.
 
@@ -450,7 +450,7 @@ render(
 );
 ```
 
-### `headerProps`
+### headerProps
 
 You can use the `headerProps` property to customize the header of the `<Create/>` component:
 
@@ -500,7 +500,7 @@ render(
 
 > For more information, refer to the [`PageHeader` documentation &#8594](https://procomponents.ant.design/en-US/components/page-header)
 
-### `contentProps`
+### contentProps
 
 You can use the `contentProps` property to customize the content of the `<Create/>` component:
 
@@ -549,7 +549,7 @@ render(
 
 > For more information, refer to the [`Card` documentation &#8594](https://ant.design/components/card/)
 
-### `headerButtons`
+### headerButtons
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
@@ -597,7 +597,7 @@ render(
 );
 ```
 
-### `headerButtonProps`
+### headerButtonProps
 
 You can use the `headerButtonProps` property to customize the wrapper element of the buttons at the header:
 
@@ -648,7 +648,7 @@ render(
 
 > For more information, refer to the [`Space` documentation &#8594](https://ant.design/components/space/)
 
-### `footerButtons`
+### footerButtons
 
 By default, the `<Create/>` component has a [`<SaveButton>`][save-button] at the footer.
 
@@ -744,7 +744,7 @@ render(
 );
 ```
 
-### `footerButtonProps`
+### footerButtonProps
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 

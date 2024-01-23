@@ -15,37 +15,7 @@ The easiest way to create a new project is using the **Refine CLI**. This tool w
 
 1. Launch your terminal and type the following command using your preferred package manager:
 
-   <Tabs
-   defaultValue="npm"
-   values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
-
-   <TabItem value="npm">
-
-   ```bash
-   npm create refine-app@latest -- -o refine-antd tutorial
-   ```
-
-   </TabItem>
-
-   <TabItem value="pnpm">
-
-   ```bash
-   pnpm create refine-app@latest -- -o refine-antd tutorial
-   ```
-
-   </TabItem>
-
-   <TabItem value="yarn">
-
-   ```bash
-   yarn create refine-app -- -o refine-antd tutorial
-   ```
-
-   > Only supports yarn@1 version.
-
-   </TabItem>
-
-   </Tabs>
+   <CreateRefineAppCommand args="-o refine-antd tutorial" />
 
 2. Confirm `y` to installation of `create-refine-app`
 
@@ -107,7 +77,7 @@ You should see confirmation in the terminal that the Refine app is running in de
 
 Your project files contain all the code you need to run your app. To see a preview of your app in the browser:
 
-1. Click on the <a href="http://localhost:3000" rel="noopener noreferrer nofollow">localhost:3000</a> link in the terminal. This will open a new browser tab with your app running in dev mode.
+1. Click on the <a href="http://localhost:5173" rel="noopener noreferrer nofollow">localhost:5173</a> link in the terminal. This will open a new browser tab with your app running in dev mode.
 
 2. You will be redirected to the welcome page as we have not added any pages yet. We will take care of that in the [Next section](/docs/tutorial/getting-started/antd/generate-crud-pages)
 

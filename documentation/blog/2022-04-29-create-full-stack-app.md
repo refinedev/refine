@@ -61,7 +61,7 @@ To learn more about **refine** features, we recommend that you read the [Overvie
 
 ## Create Full Stack App
 
-As we mentioned above, you can easily handle any API and GraphQL queries without writing extra code thanks to the **refine** [Data Provider](/docs/core/providers/data-provider) hooks. If you do not have a custom backend, you can choose one of the following backend providers that work in harmony with **refine**.
+As we mentioned above, you can easily handle any API and GraphQL queries without writing extra code thanks to the **refine** [Data Provider](/docs/data/data-provider) hooks. If you do not have a custom backend, you can choose one of the following backend providers that work in harmony with **refine**.
 
 **refine** includes many out-of-the-box data providers to use in your projects like:
 
@@ -78,14 +78,14 @@ As we mentioned above, you can easily handle any API and GraphQL queries without
 - [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
 - [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
 
-[Refer to the `dataProvider` documentation for detailed usage. &#8594](/docs/core/providers/data-provider)
+[Refer to the `dataProvider` documentation for detailed usage. &#8594](/docs/data/data-provider)
 
 You can develop a full-featured web application by using any your custom backend or the above backend providers with **refine**.
 
 Check out the Full Stack application examples created with **refine** and out-of-the-box data providers:
 
 - [E-commerce Example](/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/)
-- [Invoice Genarator Example | Part I](/blog/refine-react-admin-invoice-genarator/) - [Invoice Genarator Example | Part II](/blog/refine-invoice-generator/)
+- [Invoice Generator Example | Part I](/blog/refine-react-admin-invoice-generator/) - [Invoice Generator Example | Part II](/blog/refine-invoice-generator/)
 - [Windows95 UI Admin Panel](/blog/awesome-react-windows95-ui-with-refine/)
 - [Feedback Admin Panel](/blog/create-a-feedback-admin-panel-with-refine-and-strapi/)
 - [Job Posting Admin Panel](/blog/customizable-admin-panel-with-nestjs/)

@@ -1,6 +1,7 @@
 ---
 id: advanced-tanstack-table
-title: Advanced
+title: Advanced Tables with Tanstack Table
+sidebar_label: Advanced Table
 example-title: Advanced TanStack Table
 example-tags: [table, react-table, tanstack-table]
 ---

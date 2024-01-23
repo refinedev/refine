@@ -9,16 +9,12 @@ title: Next.js
 
 [**nextjs-router**][nextjsrouter] package provided by **refine** must be used for the [`routerProvider`][routerprovider]
 
-```bash
-npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-nextjs-router
-```
+<InstallPackagesCommand args="@refinedev/nextjs-router"/>
 
 :::tip
 We recommend using `create refine-app` to initialize your refine projects. It configures the project according to your needs including SSR with Next.js.
 
-```
-npm create refine-app@latest -- -o refine-nextjs my-refine-nextjs-app
-```
+<CreateRefineAppCommand args="-o refine-nextjs my-refine-nextjs-app" />
 
 :::
 

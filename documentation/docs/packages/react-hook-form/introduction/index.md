@@ -16,39 +16,7 @@ This package exports following hooks to manage your forms:
 
 Install the [`@refinedev/react-hook-form`][refine-react-hook-form] library.
 
-<Tabs
-defaultValue="npm"
-values={[
-{label: 'npm', value: 'npm'},
-{label: 'yarn', value: 'yarn'},
-{label: 'pnpm', value: 'pnpm'}
-]}>
-
-<TabItem value="npm">
-
-```bash
-npm i @refinedev/react-hook-form
-```
-
-</TabItem>
-
-<TabItem value="yarn">
-
-```bash
-yarn add @refinedev/react-hook-form
-```
-
-</TabItem>
-
-<TabItem value="pnpm">
-
-```bash
-pnpm add @refinedev/react-hook-form
-```
-
-</TabItem>
-
-</Tabs>
+<InstallPackagesCommand args="@refinedev/react-hook-form"/>
 
 ## Usage
 
@@ -287,11 +255,11 @@ interface IPost {
 [use-form-react-hook-form]: /docs/packages/list-of-packages
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
-[use-form-core]: /docs/core/hooks/use-form/
+[use-form-core]: /docs/data/hooks/use-form/
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
-[notification-provider]: /docs/core/providers/notification-provider
-[get-one]: /docs/core/providers/data-provider#getone-
-[create]: /docs/core/providers/data-provider#create-
-[update]: /docs/core/providers/data-provider#update-
-[data-provider]: /docs/core/providers/data-provider
+[notification-provider]: /docs/notification/notification-provider
+[get-one]: /docs/data/data-provider#getone-
+[create]: /docs/data/data-provider#create-
+[update]: /docs/data/data-provider#update-
+[data-provider]: /docs/data/data-provider
