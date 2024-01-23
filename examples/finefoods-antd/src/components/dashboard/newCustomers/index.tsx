@@ -26,7 +26,6 @@ export const NewCustomers: React.FC = () => {
             data: data?.data.data || [],
             padding: 0,
             paddingBottom: 5,
-            height: 135,
             xField: "date",
             yField: "value",
             style: {

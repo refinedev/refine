@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import {
     DailyOrders,
     DailyRevenue,
+    DeliveryMap,
     NewCustomers,
     OrderTimeline,
     RecentOrders,
@@ -83,7 +84,7 @@ export const DashboardPage: React.FC = () => {
                         </Text>
                     }
                 >
-                    {/* <DeliveryMap /> */}
+                    <DeliveryMap />
                 </Card>
             </Col>
             <Col xl={7} lg={8} md={24} sm={24} xs={24}>

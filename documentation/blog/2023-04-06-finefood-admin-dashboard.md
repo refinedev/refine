@@ -729,10 +729,9 @@ export const DailyRevenue: React.FC = () => {
     const config = {
       data: data?.data.data || [],
       padding: 0,
-      paddingBottom: 10,
+      paddingBottom: 25,
       xField: "date",
       yField: "value",
-      height: 135,
       shapeField: "smooth",
       style: {
         lineWidth: 4,
@@ -927,7 +926,6 @@ export const DailyOrders: React.FC = () => {
       data: data?.data.data || [],
       padding: 0,
       paddingBottom: 5,
-      height: 135,
       xField: "date",
       yField: "value",
       style: {
@@ -1075,7 +1073,6 @@ export const NewCustomers: React.FC = () => {
       data: data?.data.data || [],
       padding: 0,
       paddingBottom: 5,
-      height: 135,
       xField: "date",
       yField: "value",
       style: {
