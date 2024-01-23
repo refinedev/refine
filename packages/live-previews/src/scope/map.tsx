@@ -52,6 +52,7 @@ export const packageMap: Record<string, string> = {
     "i18next-browser-languagedetector": "I18NextBrowserLanguageDetector",
     "i18next-xhr-backend": "I18NextXhrBackend",
     casbin: "Casbin",
+    "@uiw/react-md-editor": "MDEditor",
 };
 
 export const packageScopeMap: Record<string, RegExp> = {

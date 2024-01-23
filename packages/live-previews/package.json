@@ -31,6 +31,7 @@
         "@refinedev/strapi-v4": "^6.0.0",
         "@refinedev/strapi-graphql": "^6.0.4",
         "@refinedev/supabase": "^5.7.3",
+        "@uiw/react-md-editor": "^3.19.5",
         "react-i18next": "^11.8.11",
         "i18next": "^20.1.0",
         "i18next-browser-languagedetector": "^6.1.1",
