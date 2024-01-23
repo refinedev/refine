@@ -2072,6 +2072,10 @@
     {
       "from": "/docs/further-readings/benchmarks/",
       "to": "/docs"
+    },
+    {
+      "from": "/blog/refine-react-admin-invoice-genarator",
+      "to": "/blog/refine-react-admin-invoice-generator"
     }
   ]
 }
