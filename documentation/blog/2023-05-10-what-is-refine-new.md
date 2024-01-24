@@ -68,10 +68,10 @@ You can download the complete project code and use as a starting point for your 
 
 💥 Yes, it's fully open source and free to use.
 
-View the example refine app built using refine.new from [this link](https://refine.new/preview/ba6256b1-63e3-4f06-b775-bb491b0eda90).
+View the example refine app built using refine.new from [this link](https://refine.new/preview/8606c751-2ea8-47cd-a8fe-b8a01b4a0951).
 
  <div className="centered-image"  >
-<a href="https://refine.new/preview/ba6256b1-63e3-4f06-b775-bb491b0eda90">
+<a href="https://refine.new/preview/8606c751-2ea8-47cd-a8fe-b8a01b4a0951">
   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/antd-intro.png" alt="tutorial antd" />
   </a>
 </div>
