@@ -11,7 +11,13 @@ export const liveProvider = (
     supabaseClient: SupabaseClient<any, any, any>,
 ): LiveProvider => {
     return {
-        subscribe: ({ channel, types, params, callback }): RealtimeChannel => {
+        subscribe: ({
+            channel,
+            types,
+            params,
+            callback,
+            meta,
+        }): RealtimeChannel => {
             const resource = channel.replace("resources/", "");
 
             const listener = (payload: RealtimePostgresChangesPayload<any>) => {
@@ -80,7 +86,7 @@ export const liveProvider = (
                     {
                         event: events[i] as any,
                         schema:
-                            params?.schema ||
+                            meta?.schema ||
                             // @ts-expect-error TS2445 Property rest is protected and only accessible within class SupabaseClient and its subclasses.
                             supabaseClient?.rest?.schemaName ||
                             "public",
