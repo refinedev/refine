@@ -3,7 +3,7 @@ import { SupabaseClient } from "@supabase/supabase-js";
 import { generateFilter, handleError } from "../utils";
 
 export const dataProvider = (
-    supabaseClient: SupabaseClient,
+    supabaseClient: SupabaseClient<any, any, any>,
 ): Required<DataProvider> => {
     return {
         getList: async ({ resource, pagination, filters, sorters, meta }) => {

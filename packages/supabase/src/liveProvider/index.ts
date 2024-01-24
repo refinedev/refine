@@ -7,7 +7,9 @@ import {
 import { liveTypes, supabaseTypes } from "../types";
 import { mapOperator } from "../utils";
 
-export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
+export const liveProvider = (
+    supabaseClient: SupabaseClient<any, any, any>,
+): LiveProvider => {
     return {
         subscribe: ({ channel, types, params, callback }): RealtimeChannel => {
             const resource = channel.replace("resources/", "");
