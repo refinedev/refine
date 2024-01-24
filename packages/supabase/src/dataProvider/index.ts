@@ -17,12 +17,9 @@ export const dataProvider = (
                 ? supabaseClient.schema(meta.schema)
                 : supabaseClient;
 
-            const query = client
-                .schema(meta?.schema ?? "public")
-                .from(resource)
-                .select(meta?.select ?? "*", {
-                    count: meta?.count ?? "exact",
-                });
+            const query = client.from(resource).select(meta?.select ?? "*", {
+                count: meta?.count ?? "exact",
+            });
 
             if (mode === "server") {
                 query.range((current - 1) * pageSize, current * pageSize - 1);
