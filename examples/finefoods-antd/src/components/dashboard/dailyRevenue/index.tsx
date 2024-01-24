@@ -1,19 +1,19 @@
-import { Line, LineConfig } from "@ant-design/charts";
-import { NumberField } from "@refinedev/antd";
-import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
-import { Typography } from "antd";
-import dayjs, { Dayjs } from "dayjs";
 import { useMemo, useState } from "react";
+import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
+import { NumberField } from "@refinedev/antd";
+import { Typography } from "antd";
+import { Line, LineConfig } from "@ant-design/charts";
+import dayjs, { Dayjs } from "dayjs";
 
-import { DecreaseIcon, IncreaseIcon } from "../../../components/icons";
+import { IncreaseIcon, DecreaseIcon } from "../../../components/icons";
 
 import { ISalesChart } from "../../../interfaces";
 import {
     DailyRevenueWrapper,
-    RangePicker,
     TitleAreNumber,
     TitleArea,
     TitleAreaAmount,
+    RangePicker,
 } from "./styled";
 
 export const DailyRevenue: React.FC = () => {
@@ -45,7 +45,7 @@ export const DailyRevenue: React.FC = () => {
     });
 
     const config = useMemo(() => {
-        const config = {
+        const config: LineConfig = {
             data: data?.data.data || [],
             padding: 0,
             paddingBottom: 25,
@@ -60,26 +60,17 @@ export const DailyRevenue: React.FC = () => {
                 x: { label: null, line: null },
                 y: { label: null, grid: null },
             },
-            // todo: problem here
-            // interaction: {
-            //     tooltip: {
-            //         render: (event, options) => {
-            //             console.log("R DATA: ", options.items[0].value);
-            //             return (
-            //                 <div
-            //                     style={{
-            //                         padding: "8px 4px",
-            //                         fontSize: "16px",
-            //                         fontWeight: 600,
-            //                     }}
-            //                 >
-            //                     {options.items[0].value} $
-            //                 </div>
-            //             );
-            //         },
-            //     },
-            // },
-        } as LineConfig;
+            interaction: {
+                tooltip: {
+                    render: (
+                        event: Event,
+                        options: { items: { value: number }[] },
+                    ) => {
+                        return `<div style="font-size:16px; text-align: center; font-weight:600">${options.items[0].value} $</div>`;
+                    },
+                },
+            },
+        };
 
         return config;
     }, [data]);

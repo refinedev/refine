@@ -1,11 +1,11 @@
-import { Card, Col, Row, Typography } from "antd";
+import { Row, Col, Card, Typography } from "antd";
 import { useTranslation } from "react-i18next";
 
 import {
-    DailyOrders,
     DailyRevenue,
-    DeliveryMap,
+    DailyOrders,
     NewCustomers,
+    DeliveryMap,
     OrderTimeline,
     RecentOrders,
     TrendingMenu,

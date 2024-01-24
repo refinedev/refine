@@ -9,7 +9,7 @@ interface ChartProps {
 }
 
 export const TaskChart: React.FC<ChartProps> = ({ data }) => {
-    const config = {
+    const config: PieConfig = {
         data: data,
         angleField: "value",
         colorField: "type",
@@ -19,17 +19,13 @@ export const TaskChart: React.FC<ChartProps> = ({ data }) => {
             fontSize: 14,
             textAlign: "center",
             position: "inside",
-            render: (_, datum) => `${datum.value}`,
-            // render: (_, datum) => {
-            //     const percent = (datum.value / data.length) * 100;
-            //     console.log("percent: ", percent);
-            //     return `${percent.toFixed(2)} %`;
-            // },
+            render: (_: string, datum: { value: number }) => {
+                return `${datum.value}`;
+            },
         },
         interaction: {
-            tooltip: true,
             elementHighlight: true,
         },
-    } as PieConfig;
+    };
     return <Pie {...config} />;
 };

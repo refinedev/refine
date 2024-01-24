@@ -1038,18 +1038,18 @@ Let's see how to add a dashboard page to our project together.
 ## Add Custom Chart
 
 ```tsx title="src/components/task/pie.tsx"
+import { Pie, PieConfig } from "@ant-design/charts";
 import React from "react";
-import { Pie } from "@ant-design/charts";
 
 interface ChartProps {
   data: {
-    type: any;
-    value: any;
+    type: any; // eslint-disable-line
+    value: any; // eslint-disable-line
   }[];
 }
 
 export const TaskChart: React.FC<ChartProps> = ({ data }) => {
-  const config = {
+  const config: PieConfig = {
     data: data,
     angleField: "value",
     colorField: "type",
@@ -1059,13 +1059,14 @@ export const TaskChart: React.FC<ChartProps> = ({ data }) => {
       fontSize: 14,
       textAlign: "center",
       position: "inside",
-      render: (_, datum) => `${datum.value}`,
+      render: (_: string, datum: { value: number }) => {
+        return `${datum.value}`;
+      },
     },
     interaction: {
-      tooltip: true,
       elementHighlight: true,
     },
-  } as PieConfig;
+  };
   return <Pie {...config} />;
 };
 ```

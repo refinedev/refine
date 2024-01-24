@@ -1,9 +1,9 @@
-import { Column, ColumnConfig } from "@ant-design/charts";
+import { useMemo } from "react";
 import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
 import { Typography } from "antd";
-import { useMemo } from "react";
+import { Column, ColumnConfig } from "@ant-design/charts";
 
-import { DecreaseIcon, IncreaseIcon } from "../../../components/icons";
+import { IncreaseIcon, DecreaseIcon } from "../../../components/icons";
 
 import { ISalesChart } from "../../../interfaces";
 import { DailyOrderWrapper, TitleAreNumber, TitleArea } from "./styled";
@@ -22,7 +22,7 @@ export const DailyOrders: React.FC = () => {
     const { Text, Title } = Typography;
 
     const config = useMemo(() => {
-        const config = {
+        const config: ColumnConfig = {
             data: data?.data.data || [],
             padding: 0,
             paddingBottom: 5,
@@ -34,31 +34,21 @@ export const DailyOrders: React.FC = () => {
                 radiusTopRight: 4,
             },
             colorField: "rgba(255, 255, 255, 0.5)",
-            //* here
-            // todo: problem here
-            // interaction: {
-            //     tooltip: {
-            //         render: (event, options) => {
-            //             console.log("R DATA: ", options.items[0].value);
-            //             return (
-            //                 <div
-            //                     style={{
-            //                         padding: "8px 4px",
-            //                         fontSize: "16px",
-            //                         fontWeight: 600,
-            //                     }}
-            //                 >
-            //                     {options.items[0].value} $
-            //                 </div>
-            //             );
-            //         },
-            //     },
-            // },
+            interaction: {
+                tooltip: {
+                    render: (
+                        event: Event,
+                        options: { items: { value: number }[] },
+                    ) => {
+                        return `<div style="font-size:16px; text-align: center; font-weight:600">${options.items[0].value}</div>`;
+                    },
+                },
+            },
             axis: {
                 x: { label: null, line: null, tickLineWidth: 0 },
                 y: { label: null, grid: null, tickLineWidth: 0 },
             },
-        } as ColumnConfig;
+        };
 
         return config;
     }, [data]);

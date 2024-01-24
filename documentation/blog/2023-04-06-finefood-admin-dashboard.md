@@ -687,18 +687,19 @@ Now, we create the dailyRevenue component. create an `index.tsx` file in the `sr
 
 ```tsx title="src/components/dashboard/dailyRevenue/index.tsx"
 import { useMemo, useState } from "react";
-import { useApiUrl, useCustom } from "@refinedev/core";
+import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
 import { NumberField } from "@refinedev/antd";
 import { Typography } from "antd";
-import Line, { LineConfig } from "@ant-design/plots/lib/components/line";
+import { Line, LineConfig } from "@ant-design/charts";
 import dayjs, { Dayjs } from "dayjs";
 
-import { IncreaseIcon, DecreaseIcon } from "components/icons";
+import { IncreaseIcon, DecreaseIcon } from "../../../components/icons";
 
-import { ISalesChart } from "interfaces";
+import { ISalesChart } from "../../../interfaces";
 import { DailyRevenueWrapper, TitleAreNumber, TitleArea, TitleAreaAmount, RangePicker } from "./styled";
 
 export const DailyRevenue: React.FC = () => {
+  const t = useTranslate();
   const API_URL = useApiUrl();
 
   const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
@@ -726,7 +727,7 @@ export const DailyRevenue: React.FC = () => {
   });
 
   const config = useMemo(() => {
-    const config = {
+    const config: LineConfig = {
       data: data?.data.data || [],
       padding: 0,
       paddingBottom: 25,
@@ -741,7 +742,14 @@ export const DailyRevenue: React.FC = () => {
         x: { label: null, line: null },
         y: { label: null, grid: null },
       },
-    } as LineConfig;
+      interaction: {
+        tooltip: {
+          render: (event: Event, options: { items: { value: number }[] }) => {
+            return `<div style="font-size:16px; text-align: center; font-weight:600">${options.items[0].value} $</div>`;
+          },
+        },
+      },
+    };
 
     return config;
   }, [data]);
@@ -752,7 +760,7 @@ export const DailyRevenue: React.FC = () => {
     <DailyRevenueWrapper>
       <TitleArea>
         <TitleAreaAmount>
-          <Typography.Title level={3}>Daily Revenue</Typography.Title>
+          <Typography.Title level={3}>{t("dashboard.dailyRevenue.title")}</Typography.Title>
           <TitleAreNumber>
             <NumberField
               style={{ fontSize: 36 }}
@@ -791,7 +799,7 @@ export const DailyRevenue: React.FC = () => {
           format="YYYY/MM/DD"
         />
       </TitleArea>
-      <Line padding={0} appendPadding={10} height={135} style={{ maxHeight: "135px" }} {...config} />
+      <Line {...config} />
     </DailyRevenueWrapper>
   );
 };
@@ -902,14 +910,17 @@ Now, we create the `dailyOrders` component. Create an `index.tsx` file in the `s
 
 ```tsx title="src/components/dashboard/dailyOrders/index.tsx"
 import { useMemo } from "react";
-import { useApiUrl, useCustom } from "@refinedev/core";
+import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
 import { Typography } from "antd";
-import Column, { ColumnConfig } from "@ant-design/plots/lib/components/column";
-import { IncreaseIcon, DecreaseIcon } from "components/icons";
-import { ISalesChart } from "interfaces";
+import { Column, ColumnConfig } from "@ant-design/charts";
+
+import { IncreaseIcon, DecreaseIcon } from "../../../components/icons";
+
+import { ISalesChart } from "../../../interfaces";
 import { DailyOrderWrapper, TitleAreNumber, TitleArea } from "./styled";
 
 export const DailyOrders: React.FC = () => {
+  const t = useTranslate();
   const API_URL = useApiUrl();
 
   const url = `${API_URL}/dailyOrders`;
@@ -922,7 +933,7 @@ export const DailyOrders: React.FC = () => {
   const { Text, Title } = Typography;
 
   const config = useMemo(() => {
-    const config = {
+    const config: ColumnConfig = {
       data: data?.data.data || [],
       padding: 0,
       paddingBottom: 5,
@@ -934,11 +945,18 @@ export const DailyOrders: React.FC = () => {
         radiusTopRight: 4,
       },
       colorField: "rgba(255, 255, 255, 0.5)",
+      interaction: {
+        tooltip: {
+          render: (event: Event, options: { items: { value: number }[] }) => {
+            return `<div style="font-size:16px; text-align: center; font-weight:600">${options.items[0].value}</div>`;
+          },
+        },
+      },
       axis: {
         x: { label: null, line: null, tickLineWidth: 0 },
         y: { label: null, grid: null, tickLineWidth: 0 },
       },
-    } as ColumnConfig;
+    };
 
     return config;
   }, [data]);
@@ -946,14 +964,14 @@ export const DailyOrders: React.FC = () => {
   return (
     <DailyOrderWrapper>
       <TitleArea>
-        <Title level={3}>Daily Orders</Title>
+        <Title level={3}>{t("dashboard.dailyOrders.title")}</Title>
         <TitleAreNumber>
           <Text strong>{data?.data.total ?? 0} </Text>
 
           {(data?.data?.trend ?? 0) > 0 ? <IncreaseIcon /> : <DecreaseIcon />}
         </TitleAreNumber>
       </TitleArea>
-      <Column style={{ padding: 0, height: 135 }} appendPadding={10} {...config} />
+      <Column {...config} />
     </DailyOrderWrapper>
   );
 };
@@ -1050,9 +1068,11 @@ Now, we create the `newCustomers` component. Create an `index.tsx` file in the `
 import { useMemo } from "react";
 import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
 import { ConfigProvider, theme, Typography } from "antd";
-import Column, { ColumnConfig } from "@ant-design/plots/lib/components/column";
-import { IncreaseIcon, DecreaseIcon } from "components/icons";
-import { ISalesChart } from "interfaces";
+import { Column, ColumnConfig } from "@ant-design/charts";
+
+import { IncreaseIcon, DecreaseIcon } from "../../../components/icons";
+
+import { ISalesChart } from "../../../interfaces";
 import { Header, HeaderNumbers, NewCustomersWrapper } from "./styled";
 
 export const NewCustomers: React.FC = () => {
@@ -1069,7 +1089,7 @@ export const NewCustomers: React.FC = () => {
   const { Text, Title } = Typography;
 
   const config = useMemo(() => {
-    const config = {
+    const config: ColumnConfig = {
       data: data?.data.data || [],
       padding: 0,
       paddingBottom: 5,
@@ -1081,11 +1101,18 @@ export const NewCustomers: React.FC = () => {
         radiusTopRight: 4,
       },
       colorField: "rgba(255, 255, 255, 0.5)",
+      interaction: {
+        tooltip: {
+          render: (event: Event, options: { items: { value: number }[] }) => {
+            return `<div style="font-size:16px; text-align: center; font-weight:600">${options.items[0].value}</div>`;
+          },
+        },
+      },
       axis: {
         x: { label: null, line: null, tickLineWidth: 0 },
         y: { label: null, grid: null, tickLineWidth: 0 },
       },
-    } as ColumnConfig;
+    };
 
     return config;
   }, [data]);
@@ -1098,7 +1125,7 @@ export const NewCustomers: React.FC = () => {
     >
       <NewCustomersWrapper>
         <Header>
-          <Title level={3}>New Customers</Title>
+          <Title level={3}>{t("dashboard.newCustomers.title")}</Title>
           <HeaderNumbers>
             <Text strong>{data?.data.total ?? 0}</Text>
             <div>
