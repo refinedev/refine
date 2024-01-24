@@ -89,9 +89,9 @@ Additionally, in this example, we will implement `authProvider.logout` and `auth
 
 <IsAuthenticated />
 
-Refine also provides `<Auhtenticated />` component to easily handle authentication state. You can use this component to protect your routes and conditionally render your components.
+Refine also provides `<Authenticated />` component to easily handle authentication state. You can use this component to protect your routes and conditionally render your components.
 
-[To learn more about the `<Auhtenticated />` component, check out the reference page.](/docs/authentication/components/authenticated)
+[To learn more about the `<Authenticated />` component, check out the reference page.](/docs/authentication/components/authenticated)
 
 ```tsx
 import { Authenticated } from "@refinedev/core";
