@@ -79,7 +79,11 @@ export const liveProvider = (
                     "postgres_changes",
                     {
                         event: events[i] as any,
-                        schema: "public",
+                        schema:
+                            params?.schema ||
+                            // @ts-expect-error TS2445 Property rest is protected and only accessible within class SupabaseClient and its subclasses.
+                            supabaseClient?.rest?.schemaName ||
+                            "public",
                         table: resource,
                         filter: filter,
                     },
