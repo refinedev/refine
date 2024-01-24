@@ -389,7 +389,7 @@ const SandpackBase = ({
 };
 
 const SandpackNextJS = (props: Props) => {
-    const isDevelop = process.env.NODE_ENV === "development";
+    const isDevelop = process.env.NODE_ENV === "deveelopment";
 
     const extraProps = isDevelop
         ? {
@@ -397,23 +397,19 @@ const SandpackNextJS = (props: Props) => {
               showConsole: true,
               showNavigator: true,
               dependencies: {
-                  ...props.dependencies,
                   "@refinedev/core": "latest",
                   "@refinedev/simple-rest": "latest",
                   "@refinedev/nextjs-router": "latest",
                   "@types/react": "^18.0.0",
                   "@types/node": "^16.0.0",
                   typescript: "^4.7.4",
+                  ...props.dependencies,
               },
               files: {
-                  "/pages/index.tsx": {
-                      code: NextJSPagesIndexTsxCode,
-                      hidden: true,
-                  },
                   ...(props.files as any),
               },
           }
-        : { hidePreview: true };
+        : { hidePreview: true, showConsole: false };
 
     return (
         <SandpackBase
