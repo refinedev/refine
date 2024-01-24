@@ -147,7 +147,7 @@ const SUPABASE_KEY =
 
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
   db: {
-    schema: "public", // this can be overriden by passing `meta.schema` to data hooks.
+    schema: "public", // this can be overridden by passing `meta.schema` to data hooks.
   },
   auth: {
     persistSession: true,
