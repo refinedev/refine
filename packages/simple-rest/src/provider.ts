@@ -2,7 +2,6 @@ import { AxiosInstance } from "axios";
 import { stringify } from "query-string";
 import { DataProvider } from "@refinedev/core";
 import { axiosInstance, generateSort, generateFilter } from "./utils";
-import { urlWithQueryString } from "../../utils";
 
 type MethodTypes = "get" | "delete" | "head" | "options";
 type MethodTypesWithBody = "post" | "put" | "patch";
@@ -47,14 +46,13 @@ export const dataProvider = (
             query._order = _order.join(",");
         }
 
-        const requestUrlWithQuery = urlWithQueryString(
-            url,
-            query,
-            queryFilters,
-        );
+        const combinedQuery = { ...query, ...queryFilters };
+        const urlWithQuery = !!Object.keys(combinedQuery).length
+            ? `${url}?${stringify(combinedQuery)}`
+            : url;
 
         const { data, headers } = await httpClient[requestMethod](
-            requestUrlWithQuery,
+            urlWithQuery,
             {
                 headers: headersFromMeta,
             },
