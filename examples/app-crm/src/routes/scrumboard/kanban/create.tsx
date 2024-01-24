@@ -2,15 +2,23 @@ import { useSearchParams } from "react-router-dom";
 
 import { useModalForm } from "@refinedev/antd";
 import { useNavigation } from "@refinedev/core";
+import { GetFields } from "@refinedev/nestjs-query";
 
 import { Form, Input, Modal } from "antd";
+
+import { KanbanCreateTaskMutation } from "@/graphql/types";
+
+import { KANBAN_CREATE_TASK_MUTATION } from "./queries";
 
 export const KanbanCreatePage = () => {
     const [searchParams] = useSearchParams();
     const { list } = useNavigation();
-    const { formProps, modalProps, close } = useModalForm({
+    const { formProps, modalProps, close } = useModalForm<
+        GetFields<KanbanCreateTaskMutation>
+    >({
         action: "create",
         defaultVisible: true,
+        meta: { gqlMutation: KANBAN_CREATE_TASK_MUTATION },
     });
 
     return (

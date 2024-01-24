@@ -393,9 +393,9 @@ Similarly, `npm create refine-app` bootstraps a refine application with default 
 Of particular interest is the `login` method of the `authProvider`. We will use email and password to log into our application. Be sure the `login` method has the code below.
 
 ```ts title="src/authProvider.ts"
-import type { AuthBindings } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
     const { data, status } = await strapiAuthHelper.login(email, password);
     if (status === 200) {

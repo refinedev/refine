@@ -48,6 +48,8 @@
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.1",
     "cross-env": "^7.0.3",
+    "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "postcss": "^8.1.4",

@@ -7,13 +7,14 @@ import {
     useUpdate,
     useUpdateMany,
 } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { ClearOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { DragEndEvent } from "@dnd-kit/core";
 import { MenuProps } from "antd";
 
 import { Text } from "@/components";
-import { Deal, DealStage } from "@/graphql/schema.types";
+import { SalesDealsQuery, SalesDealStagesQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
 import {
@@ -28,22 +29,17 @@ import {
     KanbanColumnSkeleton,
     KanbanItem,
 } from "../components";
-
-const dealsFragment = [
-    "id",
-    "title",
-    "value",
-    "createdAt",
-    "stageId",
-    {
-        company: ["id", "name", "avatarUrl"],
-    },
-    {
-        dealOwner: ["id", "name", "avatarUrl"],
-    },
-];
+import { SALES_DEAL_STAGES_QUERY, SALES_DEALS_QUERY } from "./queries";
 
 const lastMonth = new Date(new Date().setMonth(new Date().getMonth() - 1));
+
+type DealStage = GetFieldsFromList<SalesDealStagesQuery>;
+
+type Deal = GetFieldsFromList<SalesDealsQuery>;
+
+type DealStageColumn = DealStage & {
+    deals: Deal[];
+};
 
 export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
     const { replace, edit, create } = useNavigation();
@@ -60,17 +56,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
             },
         ],
         meta: {
-            fields: [
-                "id",
-                "title",
-                {
-                    dealsAggregate: [
-                        {
-                            sum: ["value"],
-                        },
-                    ],
-                },
-            ],
+            gqlQuery: SALES_DEAL_STAGES_QUERY,
         },
     });
 
@@ -97,7 +83,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
             mode: "off",
         },
         meta: {
-            fields: dealsFragment,
+            gqlQuery: SALES_DEALS_QUERY,
         },
     });
 
@@ -198,7 +184,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
                 onSuccess: () => {
                     const stage = event.over?.id as undefined | string | null;
                     if (stage === "won" || stage === "lost") {
-                        edit("deals", dealId, "replace");
+                        edit("finalize-deals", dealId, "replace");
                     }
                 },
             },
@@ -245,7 +231,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
         });
     };
 
-    const getContextMenuItems = ({ column }: { column: DealStage }) => {
+    const getContextMenuItems = (column: DealStageColumn) => {
         const hasItems = column.deals.length > 0;
 
         const items: MenuProps["items"] = [
@@ -334,7 +320,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
                 </KanbanColumn>
                 {stageGrouped.stageAll.map((column) => {
                     const sum = column.dealsAggregate?.[0]?.sum?.value || 0;
-                    const contextMenuItems = getContextMenuItems({ column });
+                    const contextMenuItems = getContextMenuItems(column);
 
                     return (
                         <KanbanColumn

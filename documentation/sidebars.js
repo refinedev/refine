@@ -59,6 +59,8 @@ module.exports = {
                 "guides-concepts/multi-tenancy/index",
                 "guides-concepts/import-export/index",
                 "guides-concepts/i18n/index",
+                "guides-concepts/usage-with-existing-projects/index",
+                "guides-concepts/deployment/index",
                 {
                     type: "category",
                     label: "Advanced Tutorials",
@@ -925,7 +927,6 @@ module.exports = {
             className: "category-as-header",
             items: [
                 "further-readings/testing",
-                "further-readings/benchmarks",
                 "further-readings/telemetry",
                 "further-readings/comparison",
                 "further-readings/license",

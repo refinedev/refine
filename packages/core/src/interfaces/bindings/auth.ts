@@ -69,6 +69,8 @@ export type AuthBindings = {
     getIdentity?: (params?: any) => Promise<IdentityResponse>;
 };
 
-export interface IAuthBindingsContext extends Partial<AuthBindings> {
+export interface IAuthBindingsContext extends Partial<AuthProvider> {
     isProvided: boolean;
 }
+
+export type AuthProvider = AuthBindings;

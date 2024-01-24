@@ -19,7 +19,7 @@ import {
     IAuditLogContext,
     RouterBindings,
     IRouterContext,
-    AuthBindings,
+    AuthProvider,
 } from "../src/interfaces";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
@@ -56,7 +56,7 @@ beforeEach(() => {
 
 export interface ITestWrapperProps {
     legacyAuthProvider?: ILegacyAuthContext;
-    authProvider?: AuthBindings;
+    authProvider?: AuthProvider;
     dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
     i18nProvider?: I18nProvider;
     notificationProvider?: INotificationContext;

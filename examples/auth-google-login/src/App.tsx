@@ -1,7 +1,7 @@
 import {
     GitHubBanner,
     Refine,
-    AuthBindings,
+    AuthProvider,
     Authenticated,
 } from "@refinedev/core";
 import {
@@ -41,7 +41,7 @@ axiosInstance.interceptors.request.use((config) => {
 });
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ credential }: CredentialResponse) => {
             const profileObj = credential ? parseJwt(credential) : null;
 

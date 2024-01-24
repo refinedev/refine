@@ -6,12 +6,18 @@ import {
     useList,
     useParsed,
 } from "@refinedev/core";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { Button, Form, Input, Space, Typography } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";
-import { TaskComment, User } from "@/graphql/schema.types";
+import { User } from "@/graphql/schema.types";
+import { KanbanTaskCommentsQuery } from "@/graphql/types";
+
+import { KANBAN_TASK_COMMENTS_QUERY } from "../kanban/queries";
+
+type TaskComment = GetFieldsFromList<KanbanTaskCommentsQuery>;
 
 const CommentListItem = ({ item }: { item: TaskComment }) => {
     const invalidate = useInvalidate();
@@ -85,9 +91,9 @@ const CommentListItem = ({ item }: { item: TaskComment }) => {
                             rules={[
                                 {
                                     required: true,
-                                    pattern: new RegExp(
-                                        /^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i,
-                                    ),
+                                    transform(value) {
+                                        return value?.trim();
+                                    },
                                     message: "Please enter a comment",
                                 },
                             ]}
@@ -177,12 +183,7 @@ export const CommentList = () => {
             mode: "off",
         },
         meta: {
-            fields: [
-                "id",
-                "comment",
-                "createdAt",
-                { createdBy: ["id", "name", "avatarUrl"] },
-            ],
+            gqlQuery: KANBAN_TASK_COMMENTS_QUERY,
         },
     });
 

@@ -2,7 +2,7 @@ import {
     GitHubBanner,
     Refine,
     Authenticated,
-    AuthBindings,
+    AuthProvider,
 } from "@refinedev/core";
 import {
     useNotificationProvider,
@@ -36,7 +36,7 @@ import { Sider } from "./components/sider";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ email }) => {
             if (email) {
                 localStorage.setItem("email", email);
