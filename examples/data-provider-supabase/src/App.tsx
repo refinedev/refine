@@ -217,9 +217,6 @@ const authProvider: AuthProvider = {
         return { error };
     },
     check: async () => {
-        return {
-            authenticated: true,
-        };
         try {
             const { data } = await supabaseClient.auth.getSession();
             const { session } = data;
@@ -342,7 +339,7 @@ const App: React.FC = () => {
                                     key="auth-pages"
                                     fallback={<Outlet />}
                                 >
-                                    <NavigateToResource resource="posts" />
+                                    <NavigateToResource resource="blog_posts" />
                                 </Authenticated>
                             }
                         >
