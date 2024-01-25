@@ -2082,6 +2082,10 @@
       "to": "/docs/guides-concepts/data-fetching"
     },
     {
+      "from": "/docs/examples/data-provider/strapi-graphql/",
+      "to": "/docs/guides-concepts/data-fetching"
+    },
+    {
       "from": "/docs/examples/data-provider/nhost/",
       "to": "/docs/guides-concepts/data-fetching"
     }
