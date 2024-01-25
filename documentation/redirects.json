@@ -2075,15 +2075,15 @@
     },
     {
       "from": "/docs/packages/data-providers/strapi-graphql",
-      "to": "/docs/guides-concepts/data-fetching/#supported-data-providers"
+      "to": "/docs/guides-concepts/data-fetching"
     },
     {
       "from": "/docs/data/packages/strapi-graphql",
-      "to": "/docs/guides-concepts/data-fetching/#supported-data-providers"
+      "to": "/docs/guides-concepts/data-fetching"
     },
     {
       "from": "/docs/examples/data-provider/nhost/",
-      "to": "/docs/guides-concepts/data-fetching/#supported-data-providers"
+      "to": "/docs/guides-concepts/data-fetching"
     }
   ]
 }
