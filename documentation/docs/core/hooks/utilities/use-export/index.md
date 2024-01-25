@@ -130,6 +130,12 @@ useExport({
 
 Whether to generate download of the CSV in browser environments, defaults to `true`.
 
+```ts
+useExport({
+  download: false,
+});
+```
+
 ### unparseConfig
 
 You can pass additional options to the [Papa Parse][papaparse] package by using the `unparseConfig` property.
