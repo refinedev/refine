@@ -72,7 +72,6 @@ As we mentioned above, you can easily handle any API and GraphQL queries without
 - [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
 - [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
 - [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi)
-- [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
 - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
 - [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
 - [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)

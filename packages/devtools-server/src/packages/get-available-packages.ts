@@ -500,29 +500,6 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
             `.trim(),
         ),
     },
-    {
-        name: "@refinedev/strapi-graphql",
-        description: "Strapi GraphQL integration of refine",
-        install: `npm install @refinedev/strapi-graphql`,
-        usage: dedent(
-            `
-            import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
-
-            const client = new GraphQLClient("API_URL");
-
-            const App = () => {
-                return (
-                    <Refine
-                    dataProvider={dataProvider(client)}
-                        /* ... */
-                    >
-                        {/* ... */}
-                    </Refine>
-                );
-            };
-            `.trim(),
-        ),
-    },
 ];
 
 export const getAvailablePackages = async (projectPath?: string) => {

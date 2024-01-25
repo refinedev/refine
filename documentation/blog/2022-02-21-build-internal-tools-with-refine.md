@@ -156,7 +156,6 @@ Refine includes many out-of-the-box data providers to use in your projects like:
 - [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
 - [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
 - [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
-- [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
 - [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
 - [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
 - [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)

@@ -2018,10 +2018,6 @@
       "to": "/docs/data/packages/strapi-v4"
     },
     {
-      "from": "/docs/packages/data-providers/strapi-graphql",
-      "to": "/docs/data/packages/strapi-graphql"
-    },
-    {
       "from": "/docs/packages/data-providers/supabase",
       "to": "/docs/data/packages/supabase"
     },

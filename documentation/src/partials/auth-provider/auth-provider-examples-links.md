@@ -9,7 +9,6 @@ You can use the following auth provider examples as a starting point for your ow
 - [Appwrite](/docs/examples/data-provider/appwrite) - An auth provider example with Appwrite.
 - [Supabase](/docs/examples/data-provider/supabase) - An auth provider example with Supabase.
 - [Strapi](/docs/examples/data-provider/strapi-v4) - An auth provider example with Strapi.
-- [Strapi Graphql](/docs/examples/data-provider/strapi-graphql) - An auth provider example with Strapi Graphql.
 - [Basic with Nextjs](/docs/examples/next-js/) - A basic auth provider example with Nextjs.
 - [Basic with Remix](/docs/examples/remix/remix-headless) - A basic auth provider example with Remix.
 - [Kinde](/docs/examples/auth-provider/kinde) - An auth provider example with Kinde.

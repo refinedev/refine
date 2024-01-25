@@ -148,14 +148,6 @@ export const integrations: IntegrationsType = {
             url: "https://www.npmjs.com/package/@refinedev/medusa",
             status: "stable",
         },
-        {
-            name: "Strapi - GraphQL",
-            icon: Strapi,
-            description:
-                "<strong>Strapi</strong> connector for <strong>GraphQL API</strong>.",
-            url: "https://www.npmjs.com/package/@refinedev/strapi-graphql",
-            status: "stable",
-        },
     ],
     "community-data-provider-packages": [
         {
