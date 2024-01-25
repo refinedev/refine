@@ -124,7 +124,7 @@
 
 -   [#5323](https://github.com/refinedev/refine/pull/5323) [`17aa8c1cd6`](https://github.com/refinedev/refine/commit/17aa8c1cd6858c5a2b0c996c97230047e049bf3b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - ### Breaking changes
 
-    fix: added required `key` prop to `<Auhtenticated />` component to resolve issues of rendering of the unwanted content and wrongful redirections. #4782
+    fix: added required `key` prop to `<Authenticated />` component to resolve issues of rendering of the unwanted content and wrongful redirections. #4782
 
     #### Why is it required?
 
