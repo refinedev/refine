@@ -23,7 +23,6 @@ import {
     Nest,
     NestQuery,
     Nextjs,
-    Nhost,
     React,
     Remix,
     Rest,
@@ -124,14 +123,6 @@ export const integrations: IntegrationsType = {
             description:
                 "Consume <strong>GraphQL API's</strong> built with <strong>Nestjs-Query</strong>.",
             url: "https://www.npmjs.com/package/@refinedev/nestjs-query",
-            status: "stable",
-        },
-        {
-            name: "Nhost",
-            icon: Nhost,
-            description:
-                "<strong>Nhost</strong> data provider. Supports <strong>GraphQL Subscriptions</strong> for <strong>live/realtime</strong> projects.",
-            url: "https://www.npmjs.com/package/@refinedev/nhost",
             status: "stable",
         },
         {

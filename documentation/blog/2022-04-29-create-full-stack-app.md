@@ -42,7 +42,7 @@ With the Data Provider feature it provides, you don't need to think about your A
 
 📦 Out-of-the-box : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, GraphQL, NestJs CRUD, Airtable, Strapi, Strapi v4, Strapi GraphQL, Supabase, Hasura, Nhost, Appwrite, Firebase, and Directus.
+🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, GraphQL, NestJs CRUD, Airtable, Strapi, Strapi v4, Strapi GraphQL, Supabase, Hasura, Appwrite, Firebase, and Directus.
 
 📝 Native Typescript Core : You can always opt out for plain JavaScript.
 
@@ -70,7 +70,6 @@ As we mentioned above, you can easily handle any API and GraphQL queries without
 - [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
 - [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
 - [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
-- [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
 - [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
 - [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi)
 - [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)

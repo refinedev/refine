@@ -599,7 +599,7 @@ GraphQL implementation is the one of the strengths of refine. refine's GraphQL d
 
 On the other hand, react-admin **does not** offer a meaningful GraphQL support. By saying that, we mean that react-admin's way of using GraphQL is a limiting one and doesn't allow the user to define their own queries and mutations properly. Limiting the freedom of GraphQL and forcing it to work like any other REST API doesn't seem like a proper support for GraphQL.
 
-**Tip**: refine provides multiple data providers for GraphQL. Other than the `@refinedev/graphql` package, you can also use the `@refinedev/hasura`, `@refinedev/nhost` or `@refinedev/strapi-graphql` packages to integrate with your GraphQL API or use one of them as a reference to create your own data provider.
+**Tip**: refine provides multiple data providers for GraphQL. Other than the `@refinedev/graphql` package, you can also use the `@refinedev/hasura`, or `@refinedev/strapi-graphql` packages to integrate with your GraphQL API or use one of them as a reference to create your own data provider.
 
 **Tip**: refine also supports realtime updates with GraphQL subscriptions using `liveProvider`.
 

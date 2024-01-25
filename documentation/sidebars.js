@@ -202,7 +202,6 @@ module.exports = {
                         "examples/data-provider/multiple",
                         "examples/data-provider/nestjsxCrud",
                         "examples/data-provider/nestjs-query",
-                        "examples/data-provider/nhost",
                         "examples/data-provider/strapi",
                         "examples/data-provider/strapi-graphql",
                         "examples/data-provider/strapi-v4",

@@ -268,6 +268,5 @@ Data providers that support `or` and `and` filtering logic are as follows:
 - [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
 - [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
 - [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
-- [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
 
 :::
