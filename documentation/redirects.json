@@ -2072,6 +2072,18 @@
     {
       "from": "/blog/refine-react-admin-invoice-genarator",
       "to": "/blog/refine-react-admin-invoice-generator"
+    },
+    {
+      "from": "/docs/packages/data-providers/strapi-graphql",
+      "to": "/docs/guides-concepts/data-fetching/#supported-data-providers"
+    },
+    {
+      "from": "/docs/data/packages/strapi-graphql",
+      "to": "/docs/guides-concepts/data-fetching/#supported-data-providers"
+    },
+    {
+      "from": "/docs/examples/data-provider/nhost/",
+      "to": "/docs/guides-concepts/data-fetching/#supported-data-providers"
     }
   ]
 }
