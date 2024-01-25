@@ -1487,7 +1487,7 @@ const tableProps = useTable<IUser>({
   resource: "posts",
   //highlight-start
   meta: {
-    schema: "private",
+    schema: "foo",
   },
   // highlight-end
 });
