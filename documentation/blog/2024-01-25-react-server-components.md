@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-09-react-serv
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on January 25, 2024 to add more comparison and usecase informations for gRPC vs REST to provide a more clear insight_**
+**_This article was last updated on January 25, 2024 to add new usecases and clear definition for React Server Components_**
 
 ## Introduction
 
