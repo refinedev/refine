@@ -665,7 +665,7 @@ import { ListProducts } from "./list-products";
 import { CreateProduct } from "./create-product";
 
 import { Login } from "./login";
-import { Header } from "./Header";
+import { Header } from "./header";
 
 export default function App(): JSX.Element {
   return (

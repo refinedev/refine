@@ -44,7 +44,7 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
             }}
             finalFiles={{
                 "App.tsx": {
-                    code: AppTsxWithLogoutComponent,
+                    code: AppTsxWithHeaderComponent,
                 },
                 "styles.css": {
                     code: StylesCssCode,
