@@ -77,6 +77,9 @@ const API_URL = "https://api.fake-rest.refine.dev";
 export const dataProvider: DataProvider = {
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -89,6 +92,9 @@ export const dataProvider: DataProvider = {
         "Content-Type": "application/json",
       },
     });
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -153,6 +159,9 @@ const API_URL = "https://api.fake-rest.refine.dev";
 export const dataProvider: DataProvider = {
   getList: async ({ resource, pagination, filters, sorters, meta }) => {
     const response = await fetch(\`\${API_URL}/\${resource}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return {
@@ -162,6 +171,9 @@ export const dataProvider: DataProvider = {
   },
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -174,6 +186,9 @@ export const dataProvider: DataProvider = {
         "Content-Type": "application/json",
       },
     });
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -197,6 +212,9 @@ export const dataProvider: DataProvider = {
     }
 
     const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return {
@@ -206,6 +224,9 @@ export const dataProvider: DataProvider = {
   },
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -218,6 +239,9 @@ export const dataProvider: DataProvider = {
         "Content-Type": "application/json",
       },
     });
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -246,6 +270,9 @@ export const dataProvider: DataProvider = {
     }
 
     const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return {
@@ -255,6 +282,9 @@ export const dataProvider: DataProvider = {
   },
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -267,6 +297,9 @@ export const dataProvider: DataProvider = {
         "Content-Type": "application/json",
       },
     });
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -304,6 +337,9 @@ export const dataProvider: DataProvider = {
     }
 
     const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return {
@@ -313,6 +349,9 @@ export const dataProvider: DataProvider = {
   },
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -325,6 +364,9 @@ export const dataProvider: DataProvider = {
         "Content-Type": "application/json",
       },
     });
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };

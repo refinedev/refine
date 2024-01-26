@@ -172,6 +172,9 @@ const API_URL = "https://api.fake-rest.refine.dev";
 export const dataProvider: DataProvider = {
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -184,6 +187,9 @@ export const dataProvider: DataProvider = {
         "Content-Type": "application/json",
       },
     });
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -196,6 +202,9 @@ export const dataProvider: DataProvider = {
         "Content-Type": "application/json",
       },
     });
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -223,6 +232,9 @@ export const dataProvider: DataProvider = {
     }
 
     const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return {
@@ -456,22 +468,26 @@ export const ListProducts = () => {
     <div>
       <h1>Products</h1>
       <table>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Material</th>
-          <th>Price</th>
-        </tr>
-        {data.data?.map((product) => (
-          <tr key={product.id}>
-            <td>{product.id}</td>
-            <td>{product.name}</td>
-            <td>{product.category?.id}</td>
-            <td>{product.material}</td>
-            <td>{product.price}</td>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Material</th>
+            <th>Price</th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {data?.data?.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.name}</td>
+              <td>{product.category?.id}</td>
+              <td>{product.material}</td>
+              <td>{product.price}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
@@ -503,28 +519,32 @@ export const ListProducts = () => {
     <div>
       <h1>Products</h1>
       <table>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Material</th>
-          <th>Price</th>
-        </tr>
-        {data.data?.map((product) => (
-          <tr key={product.id}>
-            <td>{product.id}</td>
-            <td>{product.name}</td>
-            <td>
-              {
-                categories?.data?.find(
-                  (category) => category.id == product.category?.id,
-                )?.title
-              }
-            </td>
-            <td>{product.material}</td>
-            <td>{product.price}</td>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Material</th>
+            <th>Price</th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {data?.data?.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.name}</td>
+              <td>
+                {
+                  categories?.data?.find(
+                    (category) => category.id == product.category?.id,
+                  )?.title
+                }
+              </td>
+              <td>{product.material}</td>
+              <td>{product.price}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
@@ -547,12 +567,18 @@ export const dataProvider: DataProvider = {
     const response = await fetch(
       \`\${API_URL}/\${resource}?\${params.toString()}\`,
     );
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
   },
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -565,6 +591,9 @@ export const dataProvider: DataProvider = {
         "Content-Type": "application/json",
       },
     });
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -577,6 +606,9 @@ export const dataProvider: DataProvider = {
         "Content-Type": "application/json",
       },
     });
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -604,6 +636,9 @@ export const dataProvider: DataProvider = {
     }
 
     const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return {
@@ -644,6 +679,9 @@ export const dataProvider: DataProvider = {
     }
 
     const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     const total = Number(response.headers.get("x-total-count"));
@@ -663,12 +701,18 @@ export const dataProvider: DataProvider = {
     const response = await fetch(
       \`\${API_URL}/\${resource}?\${params.toString()}\`,
     );
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
   },
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -681,6 +725,9 @@ export const dataProvider: DataProvider = {
         "Content-Type": "application/json",
       },
     });
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -693,6 +740,9 @@ export const dataProvider: DataProvider = {
         "Content-Type": "application/json",
       },
     });
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -745,28 +795,32 @@ export const ListProducts = () => {
     <div>
       <h1>Products</h1>
       <table>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Material</th>
-          <th>Price</th>
-        </tr>
-        {data.data?.map((product) => (
-          <tr key={product.id}>
-            <td>{product.id}</td>
-            <td>{product.name}</td>
-            <td>
-              {
-                categories?.data?.find(
-                  (category) => category.id == product.category?.id,
-                )?.title
-              }
-            </td>
-            <td>{product.material}</td>
-            <td>{product.price}</td>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Material</th>
+            <th>Price</th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {data?.data?.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.name}</td>
+              <td>
+                {
+                  categories?.data?.find(
+                    (category) => category.id == product.category?.id,
+                  )?.title
+                }
+              </td>
+              <td>{product.material}</td>
+              <td>{product.price}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
       <div className="pagination">
         <button type="button" onClick={onPrevious}>
@@ -854,38 +908,42 @@ export const ListProducts = () => {
     <div>
       <h1>Products</h1>
       <table>
-        <tr>
-          <th onClick={() => onSort("id")}>
-            ID {indicator[getSorter("id")]}
-          </th>
-          <th onClick={() => onSort("name")}>
-            Name {indicator[getSorter("name")]}
-          </th>
-          <th>
-            Category
-          </th>
-          <th onClick={() => onSort("material")}>
-            Material {indicator[getSorter("material")]}
-          </th>
-          <th onClick={() => onSort("price")}>
-            Price {indicator[getSorter("price")]}
-          </th>
-        </tr>
-        {data.data?.map((product) => (
-          <tr key={product.id}>
-            <td>{product.id}</td>
-            <td>{product.name}</td>
-            <td>
-              {
-                categories?.data?.find(
-                  (category) => category.id == product.category?.id,
-                )?.title
-              }
-            </td>
-            <td>{product.material}</td>
-            <td>{product.price}</td>
+        <thead>
+          <tr>
+            <th onClick={() => onSort("id")}>
+              ID {indicator[getSorter("id")]}
+            </th>
+            <th onClick={() => onSort("name")}>
+              Name {indicator[getSorter("name")]}
+            </th>
+            <th>
+              Category
+            </th>
+            <th onClick={() => onSort("material")}>
+              Material {indicator[getSorter("material")]}
+            </th>
+            <th onClick={() => onSort("price")}>
+              Price {indicator[getSorter("price")]}
+            </th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {data?.data?.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.name}</td>
+              <td>
+                {
+                  categories?.data?.find(
+                    (category) => category.id == product.category?.id,
+                  )?.title
+                }
+              </td>
+              <td>{product.material}</td>
+              <td>{product.price}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
       <div className="pagination">
         <button type="button" onClick={onPrevious}>

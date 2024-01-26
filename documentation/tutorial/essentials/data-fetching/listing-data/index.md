@@ -35,6 +35,9 @@ export const dataProvider: DataProvider = {
   // highlight-start
   getList: async ({ resource, pagination, filters, sorters, meta }) => {
     const response = await fetch(`${API_URL}/${resource}`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return {
@@ -151,6 +154,9 @@ export const dataProvider: DataProvider = {
 
     const response = await fetch(`${API_URL}/${resource}?${params.toString()}`);
     // highlight-end
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return {
@@ -228,6 +234,9 @@ export const dataProvider: DataProvider = {
     // highlight-end
 
     const response = await fetch(`${API_URL}/${resource}?${params.toString()}`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return {
@@ -319,6 +328,9 @@ export const dataProvider: DataProvider = {
     // highlight-end
 
     const response = await fetch(`${API_URL}/${resource}?${params.toString()}`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return {

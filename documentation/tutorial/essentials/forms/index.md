@@ -47,6 +47,9 @@ export const dataProvider: DataProvider = {
         "Content-Type": "application/json",
       },
     });
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };

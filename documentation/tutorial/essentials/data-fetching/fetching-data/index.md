@@ -31,6 +31,9 @@ export const dataProvider: DataProvider = {
   // highlight-start
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(`${API_URL}/${resource}/${id}`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };

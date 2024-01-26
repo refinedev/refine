@@ -74,24 +74,28 @@ export const ListProducts = () => {
     <div>
       <h1>Products</h1>
       <table>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Material</th>
-          <th>Price</th>
-        </tr>
-        {/* highlight-start */}
-        {data.data?.map((product) => (
-          <tr key={product.id}>
-            <td>{product.id}</td>
-            <td>{product.name}</td>
-            <td>{product.category?.id}</td>
-            <td>{product.material}</td>
-            <td>{product.price}</td>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Material</th>
+            <th>Price</th>
           </tr>
-        ))}
-        {/* highlight-end */}
+        </thead>
+        <tbody>
+          {/* highlight-start */}
+          {data?.data?.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.name}</td>
+              <td>{product.category?.id}</td>
+              <td>{product.material}</td>
+              <td>{product.price}</td>
+            </tr>
+          ))}
+          {/* highlight-end */}
+        </tbody>
       </table>
     </div>
   );
@@ -134,30 +138,34 @@ export const ListProducts = () => {
     <div>
       <h1>Products</h1>
       <table>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Material</th>
-          <th>Price</th>
-        </tr>
-        {data.data?.map((product) => (
-          <tr key={product.id}>
-            <td>{product.id}</td>
-            <td>{product.name}</td>
-            {/* highlight-start */}
-            <td>
-              {
-                categories?.data?.find(
-                  (category) => category.id == product.category?.id,
-                )?.title
-              }
-            </td>
-            {/* highlight-end */}
-            <td>{product.material}</td>
-            <td>{product.price}</td>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Material</th>
+            <th>Price</th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {data?.data?.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.name}</td>
+              {/* highlight-start */}
+              <td>
+                {
+                  categories?.data?.find(
+                    (category) => category.id == product.category?.id,
+                  )?.title
+                }
+              </td>
+              {/* highlight-end */}
+              <td>{product.material}</td>
+              <td>{product.price}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
@@ -193,6 +201,9 @@ export const dataProvider: DataProvider = {
     }
 
     const response = await fetch(`${API_URL}/${resource}?${params.toString()}`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -200,6 +211,9 @@ export const dataProvider: DataProvider = {
   // highlight-end
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(`${API_URL}/${resource}/${id}`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     return { data };
@@ -259,6 +273,9 @@ export const dataProvider: DataProvider = {
     }
 
     const response = await fetch(`${API_URL}/${resource}?${params.toString()}`);
+
+    if (response.status !== 200) throw response;
+
     const data = await response.json();
 
     // highlight-next-line
@@ -348,28 +365,32 @@ export const ListProducts = () => {
     <div>
       <h1>Products</h1>
       <table>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Material</th>
-          <th>Price</th>
-        </tr>
-        {data.data?.map((product) => (
-          <tr key={product.id}>
-            <td>{product.id}</td>
-            <td>{product.name}</td>
-            <td>
-              {
-                categories?.data?.find(
-                  (category) => category.id == product.category?.id,
-                )?.title
-              }
-            </td>
-            <td>{product.material}</td>
-            <td>{product.price}</td>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Material</th>
+            <th>Price</th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {data?.data?.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.name}</td>
+              <td>
+                {
+                  categories?.data?.find(
+                    (category) => category.id == product.category?.id,
+                  )?.title
+                }
+              </td>
+              <td>{product.material}</td>
+              <td>{product.price}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
       {/* highlight-start */}
       <div className="pagination">
@@ -474,26 +495,30 @@ export const ListProducts = () => {
     <div>
       <h1>Products</h1>
       <table>
-        <tr>
-          {/* highlight-start */}
-          <th onClick={() => onSort("id")}>
-            ID {indicator[getSorter("id")]}
-          </th>
-          <th onClick={() => onSort("name")}>
-            Name {indicator[getSorter("name")]}
-          </th>
-          <th>
-            Category
-          </th>
-          <th onClick={() => onSort("material")}>
-            Material {indicator[getSorter("material")]}
-          </th>
-          <th onClick={() => onSort("price")}>
-            Price {indicator[getSorter("price")]}
-          </th>
-          {/* highlight-end */}
-        </tr>
-        {data.data?.map((product) => (/* ... */))}
+        <thead>
+          <tr>
+            {/* highlight-start */}
+            <th onClick={() => onSort("id")}>
+              ID {indicator[getSorter("id")]}
+            </th>
+            <th onClick={() => onSort("name")}>
+              Name {indicator[getSorter("name")]}
+            </th>
+            <th>
+              Category
+            </th>
+            <th onClick={() => onSort("material")}>
+              Material {indicator[getSorter("material")]}
+            </th>
+            <th onClick={() => onSort("price")}>
+              Price {indicator[getSorter("price")]}
+            </th>
+            {/* highlight-end */}
+          </tr>
+        </thead>
+        <tbody>
+          {data?.data?.map((product) => (/* ... */))}
+        </tbody>
       </table>
       <div className="pagination">
         {/* ... */}
