@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 
 import { RefineLayoutThemedTitleProps } from "../types";
 
-const defaultText = "refine Project";
+const defaultText = "Refine Project";
 
 const defaultIcon = (
     <svg

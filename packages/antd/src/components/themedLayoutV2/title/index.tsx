@@ -5,7 +5,7 @@ import { RefineLayoutThemedTitleProps } from "../types";
 
 const { useToken } = theme;
 
-const defaultText = "refine Project";
+const defaultText = "Refine Project";
 
 const defaultIcon = (
     <svg

@@ -3,7 +3,7 @@ import { useRouterContext, useRouterType, useLink } from "@refinedev/core";
 import { Link as ChakraLink, Icon, HStack, Heading } from "@chakra-ui/react";
 import { RefineLayoutThemedTitleProps } from "../types";
 
-const defaultText = "refine Project";
+const defaultText = "Refine Project";
 
 const defaultIcon = (
     <svg
