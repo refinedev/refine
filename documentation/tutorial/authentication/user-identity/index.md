@@ -2,7 +2,7 @@
 title: Using User Identity
 ---
 
-import { Sandpack, AddGetIdentityMethodToAuthProvider, CreateUserGreetingComponentFile, AddUserGreetingToAppTsx, AddUseGetIdentityToUserGreetingComponent } from "./sandpack.tsx";
+import { Sandpack, AddGetIdentityMethodToAuthProvider, AddUseGetIdentityToHeaderComponent } from "./sandpack.tsx";
 
 <Sandpack>
 
@@ -60,73 +60,35 @@ export const authProvider: AuthProvider = {
 
 ## Using the `useGetIdentity` Hook
 
-After implementing the `getIdentity` method, we'll be able to call `useGetIdentity` hook and get the user's identity from our API. Let's create a component called `UserGreeting` and mount it inside our `<Refine />` component.
+After implementing the `getIdentity` method, we'll be able to call `useGetIdentity` hook and get the user's identity from our API. We'll use this hook inside our `<Header />` component to greet the user.
 
-<CreateUserGreetingComponentFile />
+Let's use the `useGetIdentity` hook inside our `<Header />` component.
 
-Then, we'll mount our `<UserGreeting />` component and pass it to the `<Authenticated />` component as the `children` prop in our `src/App.tsx` file.
+Try to add the following lines to your `src/header.tsx` file:
 
-Try to add the following lines to your `src/App.tsx` file:
-
-```tsx title="src/App.tsx"
-import { Refine, Authenticated } from "@refinedev/core";
-
-import { dataProvider } from "./data-provider";
-import { authProvider } from "./auth-provider";
-
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
-
-import { Login } from "./login";
-import { Logout } from "./logout";
-// highlight-next-line
-import { UserGreeting } from "./user-greeting";
-
-export default function App(): JSX.Element {
-  return (
-    <Refine dataProvider={dataProvider} authProvider={authProvider}>
-      <Authenticated key="protected" fallback={<Login />}>
-        {/* highlight-next-line */}
-        <UserGreeting />
-        <Logout />
-        {/* <ShowProduct /> */}
-        {/* <EditProduct /> */}
-        <ListProducts />
-        {/* <CreateProduct /> */}
-      </Authenticated>
-    </Refine>
-  );
-}
-```
-
-<AddUserGreetingToAppTsx />
-
-Finally, we'll import `useGetIdentity` hook and use it inside our `UserGreeting` component to get the user's identity from our API.
-
-Try to add the following lines to your `src/user-greeting.tsx` file:
-
-```tsx title="src/user-greeting.tsx"
+```tsx title="src/header.tsx"
 import React from "react";
-// highlight-next-line
-import { useGetIdentity } from "@refinedev/core";
+import { useLogout, useGetIdentity } from "@refinedev/core";
 
-export const UserGreeting = () => {
-  // highlight-next-line
-  const { data } = useGetIdentity();
+export const Header = () => {
+  const { mutate, isLoading } = useLogout();
+  const { data: identity } = useGetIdentity();
 
   return (
-    <div>
-      {/* highlight-start */}
-      <h2>{`Welcome, ${data?.name ?? "user"}!`}</h2>
-      {/* highlight-end */}
-    </div>
+    <>
+      <h2>
+        <span>Welcome, </span>
+        <span>{identity?.name ?? ""}</span>
+      </h2>
+      <button type="button" disabled={isLoading} onClick={mutate}>
+        Logout
+      </button>
+    </>
   );
 };
 ```
 
-<AddUseGetIdentityToUserGreetingComponent />
+<AddUseGetIdentityToHeaderComponent />
 
 Now when we login, we should be able to see a welcome message with the user's name on our screen.
 

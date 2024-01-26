@@ -12,7 +12,7 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
             }}
             files={{
                 "App.tsx": {
-                    code: AppTsxWithLogoutComponent,
+                    code: AppTsxWithHeaderComponent,
                 },
                 "styles.css": {
                     code: StylesCssCode,
@@ -44,13 +44,13 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
                 "login.tsx": {
                     code: LoginComponentWithUseLogin,
                 },
-                "logout.tsx": {
-                    code: LogoutComponentWithUseLogout,
+                "header.tsx": {
+                    code: HeaderComponentWithUseLogout,
                 },
             }}
             finalFiles={{
                 "App.tsx": {
-                    code: AppTsxWithUserGreetingComponent,
+                    code: AppTsxWithHeaderComponent,
                 },
                 "styles.css": {
                     code: StylesCssCode,
@@ -82,11 +82,8 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
                 "login.tsx": {
                     code: LoginComponentWithUseLogin,
                 },
-                "logout.tsx": {
-                    code: LogoutComponentWithUseLogout,
-                },
-                "user-greeting.tsx": {
-                    code: UserGreetingComponentWithUseGetIdentity,
+                "header.tsx": {
+                    code: HeaderComponentWithUseGetIdentity,
                 },
             }}
         >
@@ -615,7 +612,7 @@ export const Login = () => {
 };
 `.trim();
 
-const AppTsxWithLogoutComponent = /* tsx */ `
+const AppTsxWithHeaderComponent = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 
 import { dataProvider } from "./data-provider";
@@ -627,7 +624,7 @@ import { ListProducts } from "./list-products";
 import { CreateProduct } from "./create-product";
 
 import { Login } from "./login";
-import { Logout } from "./logout";
+import { Header } from "./header";
 
 export default function App(): JSX.Element {
   return (
@@ -639,7 +636,7 @@ export default function App(): JSX.Element {
         key="protected"
         fallback={<Login />}
       >
-        <Logout />
+        <Header />
         {/* <ShowProduct /> */}
         {/* <EditProduct /> */}
         <ListProducts />
@@ -650,22 +647,25 @@ export default function App(): JSX.Element {
 }
 `.trim();
 
-const LogoutComponentWithUseLogout = /* tsx */ `
+const HeaderComponentWithUseLogout = /* tsx */ `
 import React from "react";
 import { useLogout } from "@refinedev/core";
 
-export const Logout = () => {
-    const { mutate, isLoading } = useLogout();
+export const Header = () => {
+  const { mutate, isLoading } = useLogout();
 
-    return (
-        <button
-            type="button"
-            disabled={isLoading}
-            onClick={mutate}
-        >
-            Logout
-        </button>
-    );
+  return (
+    <>
+      <h2>Welcome!</h2>
+      <button
+        type="button"
+        disabled={isLoading}
+        onClick={mutate}
+      >
+        Logout
+      </button>
+    </>
+  );
 };
 `.trim();
 
@@ -728,69 +728,29 @@ export const authProvider: AuthProvider = {
 };
 `.trim();
 
-const UserGreetingComponentBase = /* tsx */ `
+const HeaderComponentWithUseGetIdentity = /* tsx */ `
 import React from "react";
+import { useLogout, useGetIdentity } from "@refinedev/core";
 
-export const UserGreeting = () => {
-    return (
-        <div>
-            <h2>Welcome!</h2>
-        </div>
-    );
-};
-`.trim();
+export const Header = () => {
+  const { mutate, isLoading } = useLogout();
+  const { data: identity } = useGetIdentity();
 
-const AppTsxWithUserGreetingComponent = /* tsx */ `
-import { Refine, Authenticated } from "@refinedev/core";
-
-import { dataProvider } from "./data-provider";
-import { authProvider } from "./auth-provider";
-
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
-
-import { Login } from "./login";
-import { Logout } from "./logout";
-import { UserGreeting } from "./user-greeting";
-
-export default function App(): JSX.Element {
   return (
-    <Refine
-        dataProvider={dataProvider}
-        authProvider={authProvider}
-    >
-      <Authenticated
-        key="protected"
-        fallback={<Login />}
+    <>
+      <h2>
+        <span>Welcome, </span>
+        <span>{identity?.name ?? ""}</span>
+      </h2>
+      <button
+        type="button"
+        disabled={isLoading}
+        onClick={mutate}
       >
-        <UserGreeting />
-        <Logout />
-        {/* <ShowProduct /> */}
-        {/* <EditProduct /> */}
-        <ListProducts />
-        {/* <CreateProduct /> */}
-      </Authenticated>
-    </Refine>
+        Logout
+      </button>
+    </>
   );
-}
-`.trim();
-
-const UserGreetingComponentWithUseGetIdentity = /* tsx */ `
-import React from "react";
-import { useGetIdentity } from "@refinedev/core";
-
-export const UserGreeting = () => {
-    const { data } = useGetIdentity();
-
-    return (
-        <div>
-            <h2>
-              {\`Welcome, \${data?.name ?? "user"}!\`}
-            </h2>
-        </div>
-    );
 };
 `.trim();
 
@@ -814,52 +774,17 @@ export const AddGetIdentityMethodToAuthProvider = () => {
     );
 };
 
-export const CreateUserGreetingComponentFile = () => {
-    const { sandpack } = useSandpack();
-
-    return (
-        <TutorialCreateFileButton
-            onClick={() => {
-                sandpack.addFile({
-                    "/user-greeting.tsx": {
-                        code: UserGreetingComponentBase,
-                    },
-                });
-                sandpack.openFile("/user-greeting.tsx");
-                sandpack.setActiveFile("/user-greeting.tsx");
-            }}
-            name="user-greeting.tsx"
-        />
-    );
-};
-
-export const AddUserGreetingToAppTsx = () => {
+export const AddUseGetIdentityToHeaderComponent = () => {
     const { sandpack } = useSandpack();
 
     return (
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/App.tsx",
-                    AppTsxWithUserGreetingComponent,
+                    "/header.tsx",
+                    HeaderComponentWithUseGetIdentity,
                 );
-                sandpack.setActiveFile("/App.tsx");
-            }}
-        />
-    );
-};
-
-export const AddUseGetIdentityToUserGreetingComponent = () => {
-    const { sandpack } = useSandpack();
-
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/user-greeting.tsx",
-                    UserGreetingComponentWithUseGetIdentity,
-                );
-                sandpack.setActiveFile("/user-greeting.tsx");
+                sandpack.setActiveFile("/header.tsx");
             }}
         />
     );

@@ -2,7 +2,7 @@
 title: Logging In & Out
 ---
 
-import { Sandpack, AddLoginMethodToAuthProvider, CreateLoginComponentFile, AddLoginToAppTsx, AddUseLoginToLoginComponent, AddLogoutMethodToAuthProvider, CreateLogoutComponentFile, AddLogoutToAppTsx, AddUseLogoutToLogoutComponent } from "./sandpack.tsx";
+import { Sandpack, AddLoginMethodToAuthProvider, CreateLoginComponentFile, AddLoginToAppTsx, AddUseLoginToLoginComponent, AddLogoutMethodToAuthProvider, CreateHeaderComponentFile, AddHeaderToAppTsx, AddUseLogoutToHeaderComponent } from "./sandpack.tsx";
 
 <Sandpack>
 
@@ -210,11 +210,11 @@ export const authProvider: AuthProvider = {
 
 ## Using the `useLogout` Hook
 
-After implementing the `logout` method, we'll be able to call `useLogout` hook and logout our users. Let's create a component called `Logout` and mount it inside our `<Refine />` component.
+After implementing the `logout` method, we'll be able to call `useLogout` hook and logout our users. Let's create a component called `Header` and mount it inside our `<Refine />` component.
 
-<CreateLogoutComponentFile />
+<CreateHeaderComponentFile />
 
-Then, we'll mount our `<Logout />` component and pass it to the `<Authenticated />` component as children in our `src/App.tsx` file.
+Then, we'll mount our `<Header />` component and pass it to the `<Authenticated />` component as children in our `src/App.tsx` file.
 
 Try to add the following lines to your `src/App.tsx` file:
 
@@ -231,14 +231,14 @@ import { CreateProduct } from "./create-product";
 
 import { Login } from "./login";
 // highlight-next-line
-import { Logout } from "./logout";
+import { Header } from "./header";
 
 export default function App(): JSX.Element {
   return (
     <Refine dataProvider={dataProvider} authProvider={authProvider}>
       <Authenticated key="protected" fallback={<Login />}>
         {/* highlight-next-line */}
-        <Logout />
+        <Header />
         {/* <ShowProduct /> */}
         {/* <EditProduct /> */}
         <ListProducts />
@@ -249,35 +249,38 @@ export default function App(): JSX.Element {
 }
 ```
 
-<AddLogoutToAppTsx />
+<AddHeaderToAppTsx />
 
-Finally, we'll import `useLogout` hook and use it inside our `Logout` component to logout our users.
+Finally, we'll import `useLogout` hook and use it inside our `Header` component to logout our users.
 
-Try to add the following lines to your `src/logout.tsx` file:
+Try to add the following lines to your `src/header.tsx` file:
 
-```tsx title="src/logout.tsx"
+```tsx title="src/header.tsx"
 import React from "react";
 // highlight-next-line
 import { useLogout } from "@refinedev/core";
 
-export const Logout = () => {
+export const Header = () => {
   // highlight-next-line
   const { mutate, isLoading } = useLogout();
 
   return (
-    <button
-      type="button"
-      disabled={isLoading}
-      // highlight-next-line
-      onClick={mutate}
-    >
-      Logout
-    </button>
+    <>
+      <h2>Welcome!</h2>
+      <button
+        type="button"
+        disabled={isLoading}
+        // highlight-next-line
+        onClick={mutate}
+      >
+        Logout
+      </button>
+    </>
   );
 };
 ```
 
-<AddUseLogoutToLogoutComponent />
+<AddUseLogoutToHeaderComponent />
 
 Now, we'll be able to login and logout our users.
 

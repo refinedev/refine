@@ -76,8 +76,8 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
                 "login.tsx": {
                     code: LoginComponentWithUseLogin,
                 },
-                "logout.tsx": {
-                    code: LogoutComponentWithUseLogout,
+                "header.tsx": {
+                    code: HeaderComponentWithUseLogout,
                 },
             }}
         >
@@ -747,19 +747,22 @@ export const authProvider: AuthProvider = {
 };
 `.trim();
 
-const LogoutComponentBase = /* tsx */ `
+const HeaderComponentBase = /* tsx */ `
 import React from "react";
 
-export const Logout = () => {
+export const Header = () => {
     return (
+      <>
+        <h2>Welcome!</h2>
         <button type="button">
             Logout
         </button>
+      </>
     );
 };
 `.trim();
 
-const AppTsxWithLogoutComponent = /* tsx */ `
+const AppTsxWithHeaderComponent = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 
 import { dataProvider } from "./data-provider";
@@ -771,7 +774,7 @@ import { ListProducts } from "./list-products";
 import { CreateProduct } from "./create-product";
 
 import { Login } from "./login";
-import { Logout } from "./logout";
+import { Header } from "./header";
 
 export default function App(): JSX.Element {
   return (
@@ -783,7 +786,7 @@ export default function App(): JSX.Element {
         key="protected"
         fallback={<Login />}
       >
-        <Logout />
+        <Header />
         {/* <ShowProduct /> */}
         {/* <EditProduct /> */}
         <ListProducts />
@@ -794,22 +797,25 @@ export default function App(): JSX.Element {
 }
 `.trim();
 
-const LogoutComponentWithUseLogout = /* tsx */ `
+const HeaderComponentWithUseLogout = /* tsx */ `
 import React from "react";
 import { useLogout } from "@refinedev/core";
 
-export const Logout = () => {
-    const { mutate, isLoading } = useLogout();
+export const Header = () => {
+  const { mutate, isLoading } = useLogout();
 
-    return (
-        <button
-            type="button"
-            disabled={isLoading}
-            onClick={mutate}
-        >
-            Logout
-        </button>
-    );
+  return (
+    <>
+      <h2>Welcome!</h2>
+      <button
+        type="button"
+        disabled={isLoading}
+        onClick={mutate}
+      >
+        Logout
+      </button>
+    </>
+  );
 };
 `.trim();
 
@@ -894,49 +900,49 @@ export const AddLogoutMethodToAuthProvider = () => {
     );
 };
 
-export const CreateLogoutComponentFile = () => {
+export const CreateHeaderComponentFile = () => {
     const { sandpack } = useSandpack();
 
     return (
         <TutorialCreateFileButton
             onClick={() => {
                 sandpack.addFile({
-                    "/logout.tsx": {
-                        code: LogoutComponentBase,
+                    "/header.tsx": {
+                        code: HeaderComponentBase,
                     },
                 });
-                sandpack.openFile("/logout.tsx");
-                sandpack.setActiveFile("/logout.tsx");
+                sandpack.openFile("/header.tsx");
+                sandpack.setActiveFile("/header.tsx");
             }}
-            name="logout.tsx"
+            name="header.tsx"
         />
     );
 };
 
-export const AddLogoutToAppTsx = () => {
+export const AddHeaderToAppTsx = () => {
     const { sandpack } = useSandpack();
 
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", AppTsxWithLogoutComponent);
+                sandpack.updateFile("/App.tsx", AppTsxWithHeaderComponent);
                 sandpack.setActiveFile("/App.tsx");
             }}
         />
     );
 };
 
-export const AddUseLogoutToLogoutComponent = () => {
+export const AddUseLogoutToHeaderComponent = () => {
     const { sandpack } = useSandpack();
 
     return (
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/logout.tsx",
-                    LogoutComponentWithUseLogout,
+                    "/header.tsx",
+                    HeaderComponentWithUseLogout,
                 );
-                sandpack.setActiveFile("/logout.tsx");
+                sandpack.setActiveFile("/header.tsx");
             }}
         />
     );
