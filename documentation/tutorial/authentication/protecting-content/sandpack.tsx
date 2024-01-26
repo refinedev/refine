@@ -68,7 +68,7 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
                     // hidden: true,
                 },
                 "auth-provider.ts": {
-                    code: AuthProviderTsxWithDummyCheckMethod,
+                    code: AuthProviderTsxWithCheckMethod,
                 },
             }}
         >
@@ -584,15 +584,18 @@ export default function App(): JSX.Element {
 }
 `.trim();
 
-const AuthProviderTsxWithDummyCheckMethod = /* tsx */ `
+const AuthProviderTsxWithCheckMethod = /* tsx */ `
 // TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {
     check: async () => {
-        // We'll check the auth state in the next step.
-        // For now, let's just disallow every check.
-        return { authenticated: false };
+      // When logging in, we'll obtain an access token from our API and store it in the local storage.
+      // Now let's check if the token exists in the local storage.
+      // In the later steps, we'll be implementing the login and logout methods.
+      const token = localStorage.getItem("my_access_token");
+  
+      return { authenticated: Boolean(token) };
     },
     login: async ({ email, password }) => { throw new Error("Not implemented"); },
     logout: async () => { throw new Error("Not implemented"); },
@@ -673,7 +676,7 @@ export const AddAuthProviderToAppTsx = () => {
     );
 };
 
-export const AddDummyCheckMethodToAuthProvider = () => {
+export const AddCheckMethodToAuthProvider = () => {
     const { sandpack } = useSandpack();
 
     return (
@@ -681,7 +684,7 @@ export const AddDummyCheckMethodToAuthProvider = () => {
             onClick={() => {
                 sandpack.updateFile(
                     "/auth-provider.ts",
-                    AuthProviderTsxWithDummyCheckMethod,
+                    AuthProviderTsxWithCheckMethod,
                 );
                 sandpack.setActiveFile("/auth-provider.ts");
             }}

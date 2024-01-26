@@ -39,7 +39,7 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
                     // hidden: true,
                 },
                 "auth-provider.ts": {
-                    code: AuthProviderTsxWithDummyCheckMethod,
+                    code: AuthProviderTsxWithCheckMethod,
                 },
             }}
             finalFiles={{
@@ -525,15 +525,18 @@ export const ListProducts = () => {
 };
 `.trim();
 
-const AuthProviderTsxWithDummyCheckMethod = /* tsx */ `
+const AuthProviderTsxWithCheckMethod = /* tsx */ `
 // TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {
     check: async () => {
-      // We'll check the auth state in the next step.
-      // For now, let's just disallow every check.
-      return { authenticated: false };
+      // When logging in, we'll obtain an access token from our API and store it in the local storage.
+      // Now let's check if the token exists in the local storage.
+      // In the later steps, we'll be implementing the login and logout methods.
+      const token = localStorage.getItem("my_access_token");
+  
+      return { authenticated: Boolean(token) };
     },
     login: async ({ email, password }) => { throw new Error("Not implemented"); },
     logout: async () => { throw new Error("Not implemented"); },
@@ -605,49 +608,9 @@ export const authProvider: AuthProvider = {
         return { success: false };
     },
     check: async () => {
-      // We'll check the auth state in the next step.
-      // For now, let's just disallow every check.
-      return { authenticated: false };
-    },
-    logout: async () => { throw new Error("Not implemented"); },
-    onError: async (error) => { throw new Error("Not implemented"); },
-    // optional methods
-    register: async (params) => { throw new Error("Not implemented"); },
-    forgotPassword: async (params) => { throw new Error("Not implemented"); },
-    updatePassword: async (params) => { throw new Error("Not implemented"); },
-    getIdentity: async () => { throw new Error("Not implemented"); },
-    getPermissions: async () => { throw new Error("Not implemented"); },
-};
-`.trim();
-
-const AuthProviderTsxWithCheckMethod = /* tsx */ `
-// TODO: change this
-import { AuthProvider } from "@refinedev/core";
-
-export const authProvider: AuthProvider = {
-    // login method receives an object with all the values you've provided to the useLogin hook.
-    login: async ({ email, password }) => {
-        const response = await fetch("https://api.fake-rest.refine.dev/auth/login", {
-            method: "POST",
-            body: JSON.stringify({ email, password }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        const data = await response.json();
-
-        if (data.token) {
-            localStorage.setItem("my_access_token", data.token);
-            return { success: true };
-        }
-
-        return { success: false };
-    },
-    check: async () => {
-        const token = localStorage.getItem("my_access_token");
-
-        return { authenticated: Boolean(token) };
+      const token = localStorage.getItem("my_access_token");
+  
+      return { authenticated: Boolean(token) };
     },
     logout: async () => { throw new Error("Not implemented"); },
     onError: async (error) => { throw new Error("Not implemented"); },
@@ -863,22 +826,6 @@ export const AddLoginMethodToAuthProvider = () => {
                 sandpack.updateFile(
                     "/auth-provider.ts",
                     AuthProviderTsxWithLoginMethod,
-                );
-                sandpack.setActiveFile("/auth-provider.ts");
-            }}
-        />
-    );
-};
-
-export const AddProperCheckMethodToAuthProvider = () => {
-    const { sandpack } = useSandpack();
-
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/auth-provider.ts",
-                    AuthProviderTsxWithCheckMethod,
                 );
                 sandpack.setActiveFile("/auth-provider.ts");
             }}

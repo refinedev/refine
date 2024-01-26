@@ -2,7 +2,7 @@
 title: Logging In & Out
 ---
 
-import { Sandpack, AddLoginMethodToAuthProvider, AddProperCheckMethodToAuthProvider, CreateLoginComponentFile, AddLoginToAppTsx, AddUseLoginToLoginComponent, AddLogoutMethodToAuthProvider, CreateLogoutComponentFile, AddLogoutToAppTsx, AddUseLogoutToLogoutComponent } from "./sandpack.tsx";
+import { Sandpack, AddLoginMethodToAuthProvider, CreateLoginComponentFile, AddLoginToAppTsx, AddUseLoginToLoginComponent, AddLogoutMethodToAuthProvider, CreateLogoutComponentFile, AddLogoutToAppTsx, AddUseLogoutToLogoutComponent } from "./sandpack.tsx";
 
 <Sandpack>
 
@@ -48,9 +48,9 @@ export const authProvider: AuthProvider = {
   },
   // highlight-end
   check: async () => {
-    // We'll check the auth state in the next step.
-    // For now, let's just disallow every check.
-    return { authenticated: false };
+    const token = localStorage.getItem("my_access_token");
+
+    return { authenticated: Boolean(token) };
   },
   logout: async () => {
     throw new Error("Not implemented");
@@ -63,57 +63,6 @@ export const authProvider: AuthProvider = {
 ```
 
 <AddLoginMethodToAuthProvider />
-
-In the previous step, we've returned `authenticated: false` from our `check` method. Now, we'll be checking if there's a token stored or not.
-
-Try to add the following lines to your `src/auth-provider.ts` file:
-
-```ts title="src/auth-provider.ts"
-// TODO: change this
-import { AuthProvider } from "@refinedev/core";
-
-export const authProvider: AuthProvider = {
-  // login method receives an object with all the values you've provided to the useLogin hook.
-  login: async ({ email, password }) => {
-    const response = await fetch(
-      "https://api.fake-rest.refine.dev/auth/login",
-      {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-    );
-
-    const data = await response.json();
-
-    if (data.token) {
-      localStorage.setItem("my_access_token", data.token);
-      return { success: true };
-    }
-
-    return { success: false };
-  },
-  // highlight-start
-  check: async () => {
-    // We're checking if there's a token stored or not.
-    const token = localStorage.getItem("my_access_token");
-
-    return { authenticated: Boolean(token) };
-  },
-  // highlight-end
-  logout: async () => {
-    throw new Error("Not implemented");
-  },
-  onError: async (error) => {
-    throw new Error("Not implemented");
-  },
-  // ...
-};
-```
-
-<AddProperCheckMethodToAuthProvider />
 
 ## Using the `useLogin` Hook
 

@@ -2,7 +2,7 @@
 title: Protecting Content
 ---
 
-import { Sandpack, CreateAuthProviderFile, AddAuthProviderToAppTsx, AddDummyCheckMethodToAuthProvider, AddAuthenticatedComponentToAppTsx } from "./sandpack.tsx";
+import { Sandpack, CreateAuthProviderFile, AddAuthProviderToAppTsx, AddCheckMethodToAuthProvider, AddAuthenticatedComponentToAppTsx } from "./sandpack.tsx";
 
 <Sandpack>
 
@@ -62,7 +62,7 @@ If the user is authenticated, the object should contain `authenticated: true` pr
 
 This method is used by the `useIsAuthenticated` hook and the `<Authenticated />` component.
 
-For now, let's just return `authenticated: false` from our `check` method. In the later steps, we'll be implementing a proper authentication flow and update this method accordingly.
+We'll obtain an access token through the `login` method from our API and store it inside the local storage. Now let's check if the token exists in the local storage or not.
 
 Try to add the following lines to your `src/auth-provider.ts` file:
 
@@ -73,9 +73,12 @@ import { AuthProvider } from "@refinedev/core";
 export const authProvider: AuthProvider = {
   // highlight-start
   check: async () => {
-    // We'll check the auth state in the next step.
-    // For now, let's just disallow every check.
-    return { authenticated: false };
+    // When logging in, we'll obtain an access token from our API and store it in the local storage.
+    // Now let's check if the token exists in the local storage.
+    // In the later steps, we'll be implementing the `login` and `logout` methods.
+    const token = localStorage.getItem("my_access_token");
+
+    return { authenticated: Boolean(token) };
   },
   // highlight-end
   login: async ({ email, password }) => {
@@ -91,7 +94,7 @@ export const authProvider: AuthProvider = {
 };
 ```
 
-<AddDummyCheckMethodToAuthProvider />
+<AddCheckMethodToAuthProvider />
 
 ## Using the `<Authenticated />` Component
 
@@ -145,6 +148,6 @@ You can also use the `useIsAuthenticated` hook instead, which the `<Authenticate
 
 :::
 
-In the next step, we'll be implementing the login and logout functionality and update our `check` method accordingly.
+In the next step, we'll be implementing the login and logout functionality and make our `check` method work properly.
 
 </Sandpack>
