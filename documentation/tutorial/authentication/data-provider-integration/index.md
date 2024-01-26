@@ -220,7 +220,7 @@ import { AuthProvider } from "@refinedev/core";
 export const authProvider: AuthProvider = {
   // highlight-start
   onError: async (error) => {
-    if (error?.statusCode === 401) {
+    if (error?.status === 401) {
       return {
         logout: true,
         error: { message: "Unauthorized" },
