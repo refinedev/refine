@@ -2,7 +2,7 @@
 title: Data Provider Integration
 ---
 
-import { Sandpack, AddAuthenticationToDataProvider, AddProtectedProductsResourceToListProducts, AddOnErrorMethodToAuthProvider, AddTokenExpirationToAuthProviderLoginMethod } from "./sandpack.tsx";
+import { Sandpack, AddAuthenticationToDataProvider, AddProtectedProductsResourceToListProducts, AddOnErrorMethodToAuthProvider } from "./sandpack.tsx";
 
 <Sandpack>
 
@@ -246,69 +246,16 @@ export const authProvider: AuthProvider = {
 
 <AddOnErrorMethodToAuthProvider />
 
-## Handling Token Expiration
+Finally, we'll be able to handle the `401 Unauthorized` error thrown from the data providers and trigger a logout operation.
 
-Now we're handling the 401 errors, for demonstration purposes, we'll be setting a short period of time for the token expiration.
+## Summary
 
-Our fake REST API allows us to send a query parameter called `expires` to `/auth/login` endpoint to set the expiration time of the token in seconds.
+Now we have our authentication integrated with Refine, additional methods can be implemented in the same way and used with the respective hooks of Refine.
 
-Let's update our `login` method and set the expiration time to 15 seconds. This will allow us to demonstrate the `onError` method in action. After 15 seconds, the token will expire and any requests to the data provider will throw a 401 error.
+All of the built-in data providers of Refine have the ability to customize the client/fetcher instance. They can be used to handle authentication in the same way as we did in this tutorial without requiring a custom data provider.
 
-:::info
+In the next units, we'll start learning about the routing in Refine and how to integrate routing solutions such as React Router and Next.js.
 
-This step is only for demonstration purposes of a real-world scenario. In a real-world scenario, the expiration time probably won't be determined by the client.
-
-:::
-
-Try to add the following lines to your `src/auth-provider.ts` file:
-
-```ts title="src/auth-provider.ts"
-// TODO: change this
-import { AuthProvider } from "@refinedev/core";
-
-export const authProvider: AuthProvider = {
-  onError: async (error) => {
-    /* ... */
-  },
-  getIdentity: async () => {
-    /* ... */
-  },
-  logout: async () => {
-    /* ... */
-  },
-  login: async ({ email, password }) => {
-    const response = await fetch(
-      // highlight-next-line
-      "https://api.fake-rest.refine.dev/auth/login?expires=15",
-      {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-    );
-
-    const data = await response.json();
-
-    if (data.token) {
-      localStorage.setItem("my_access_token", data.token);
-      return { success: true };
-    }
-
-    return { success: false };
-  },
-  check: async () => {
-    /* ... */
-  },
-  // ...
-};
-```
-
-<AddTokenExpirationToAuthProviderLoginMethod />
-
-Now, after we log in, we should be able to see the products list. After 15 seconds, the token will expire and we'll be logged out automatically.
-
-In the next step, we'll be learning about the `<AuthPage />` components and how to use them.
+Current way of handling authentication will be refactored but the concepts will remain the same.
 
 </Sandpack>
