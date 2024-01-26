@@ -1000,6 +1000,9 @@ describe("useForm Hook", () => {
             const { result } = renderHook(
                 () =>
                     useForm({
+
+
+
                         resource: "posts",
                         action: "edit",
                         onMutationError: onMutationErrorMock,
@@ -1144,5 +1147,40 @@ describe("useForm Hook", () => {
 
             await assertList(useManyResult, "title", initialTitle);
         });
+
+        it("should settle onFinishUpdate promise in pessimistic mutation mode", async () => {
+            const updateMock = jest.fn()
+                 
+            const { result } = renderHook(
+              () =>
+                useForm({
+                  resource: "posts",
+                  action: "edit",
+                  id: "1",
+                  mutationMode: "pessimistic",
+                }),
+              {
+                wrapper: TestWrapper({
+                  dataProvider: {
+                    default: {
+                      ...MockJSONServer.default,
+                      update: updateMock,
+                    },
+                  },
+                  resources: [{ name: "posts" }],
+                }),
+              },
+            );
+          
+            await act(async () => {
+              await result.current.onFinish({
+                title:"foo"
+              }); 
+            });
+
+            await waitFor(() => {
+              expect(updateMock).toBeCalled();
+            });
+        });         
     });
 });
