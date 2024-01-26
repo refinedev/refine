@@ -1,0 +1,339 @@
+---
+title: Logging In & Out
+---
+
+import { Sandpack, AddLoginMethodToAuthProvider, AddProperCheckMethodToAuthProvider, CreateLoginComponentFile, AddLoginToAppTsx, AddUseLoginToLoginComponent, AddLogoutMethodToAuthProvider, CreateLogoutComponentFile, AddLogoutToAppTsx, AddUseLogoutToLogoutComponent } from "./sandpack.tsx";
+
+<Sandpack>
+
+In the previous step, we've added the `<Authenticated />` component to our `src/App.tsx` file to protect our content from unauthenticated users. Now, we'll be implementing the `login` and `logout` methods in our auth provider to enable our users to login and logout.
+
+## Implementing the `login` Method
+
+The `login` method will be used to authenticate the user and other related operations such as storing the token etc. It should return a `Promise` which resolves to an object. The object should contain `success` property to indicate whether the login operation was successful or not.
+
+Our fake REST API requires us to send a `POST` request to `/auth/login` endpoint with the `email` and `password` in the request body. It will return a `token` in the response body.
+
+We'll also be storing the `token` in the `localStorage` for later use.
+
+Try to add the following lines to your `src/auth-provider.ts` file:
+
+```ts title="src/auth-provider.ts"
+// TODO: change this
+import { AuthProvider } from "@refinedev/core";
+
+export const authProvider: AuthProvider = {
+  // highlight-start
+  // login method receives an object with all the values you've provided to the useLogin hook.
+  login: async ({ email, password }) => {
+    const response = await fetch(
+      "https://api.fake-rest.refine.dev/auth/login",
+      {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    const data = await response.json();
+
+    if (data.token) {
+      localStorage.setItem("my_access_token", data.token);
+      return { success: true };
+    }
+
+    return { success: false };
+  },
+  // highlight-end
+  check: async () => {
+    // We'll check the auth state in the next step.
+    // For now, let's just disallow every check.
+    return { authenticated: false };
+  },
+  logout: async () => {
+    throw new Error("Not implemented");
+  },
+  onError: async (error) => {
+    throw new Error("Not implemented");
+  },
+  // ...
+};
+```
+
+<AddLoginMethodToAuthProvider />
+
+In the previous step, we've returned `authenticated: false` from our `check` method. Now, we'll be checking if there's a token stored or not.
+
+Try to add the following lines to your `src/auth-provider.ts` file:
+
+```ts title="src/auth-provider.ts"
+// TODO: change this
+import { AuthProvider } from "@refinedev/core";
+
+export const authProvider: AuthProvider = {
+  // login method receives an object with all the values you've provided to the useLogin hook.
+  login: async ({ email, password }) => {
+    const response = await fetch(
+      "https://api.fake-rest.refine.dev/auth/login",
+      {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    const data = await response.json();
+
+    if (data.token) {
+      localStorage.setItem("my_access_token", data.token);
+      return { success: true };
+    }
+
+    return { success: false };
+  },
+  // highlight-start
+  check: async () => {
+    // We're checking if there's a token stored or not.
+    const token = localStorage.getItem("my_access_token");
+
+    return { authenticated: Boolean(token) };
+  },
+  // highlight-end
+  logout: async () => {
+    throw new Error("Not implemented");
+  },
+  onError: async (error) => {
+    throw new Error("Not implemented");
+  },
+  // ...
+};
+```
+
+<AddProperCheckMethodToAuthProvider />
+
+## Using the `useLogin` Hook
+
+After implementing the `login` method, we'll be able to call `useLogin` hook and login our users. Let's create a component called `Login` and mount it inside our `<Refine />` component.
+
+<CreateLoginComponentFile />
+
+Then, we'll mount our `<Login />` component and pass it to the `<Authenticated />` component as the `fallback` prop in our `src/App.tsx` file.
+
+Try to add the following lines to your `src/App.tsx` file:
+
+```tsx title="src/App.tsx"
+import { Refine, Authenticated } from "@refinedev/core";
+
+import { dataProvider } from "./data-provider";
+import { authProvider } from "./auth-provider";
+
+import { ShowProduct } from "./show-product";
+import { EditProduct } from "./edit-product";
+import { ListProducts } from "./list-products";
+import { CreateProduct } from "./create-product";
+
+// highlight-next-line
+import { Login } from "./login";
+
+export default function App(): JSX.Element {
+  return (
+    <Refine dataProvider={dataProvider} authProvider={authProvider}>
+      <Authenticated
+        key="protected"
+        // highlight-next-line
+        fallback={<Login />}
+      >
+        {/* <ShowProduct /> */}
+        {/* <EditProduct /> */}
+        <ListProducts />
+        {/* <CreateProduct /> */}
+      </Authenticated>
+    </Refine>
+  );
+}
+```
+
+<AddLoginToAppTsx />
+
+Finally, we'll import `useLogin` hook and use it inside our `Login` component to login our users.
+
+Try to add the following lines to your `src/login.tsx` file:
+
+```tsx title="src/login.tsx"
+import React from "react";
+// highlight-next-line
+import { useLogin } from "@refinedev/core";
+
+export const Login = () => {
+  // highlight-next-line
+  const { mutate, isLoading } = useLogin();
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // Using FormData to get the form values and convert it to an object.
+    const data = Object.fromEntries(new FormData(event.target).entries());
+    // Calling mutate to submit with the data we've collected from the form.
+    // highlight-next-line
+    mutate(data);
+  };
+
+  return (
+    <div>
+      <h1>Login</h1>
+      <form onSubmit={onSubmit}>
+        <label htmlFor="email">Email</label>
+        <input type="email" id="email" name="email" />
+
+        <label htmlFor="password">Password</label>
+        <input type="password" id="password" name="password" />
+
+        {isLoading && <span>loading...</span>}
+        <button type="submit" disabled={isLoading}>
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+};
+```
+
+<AddUseLoginToLoginComponent />
+
+## Implementing the `logout` Method
+
+The `logout` method will be used to logout the user and other related operations such as removing the token etc. It should return a `Promise` which resolves to an object. The object should contain `success` property to indicate whether the logout operation was successful or not.
+
+Our fake REST API doesn't require us to send any request to logout the user. We'll just be removing the `token` from the `localStorage`.
+
+Try to add the following lines to your `src/auth-provider.ts` file:
+
+```ts title="src/auth-provider.ts"
+// TODO: change this
+import { AuthProvider } from "@refinedev/core";
+
+export const authProvider: AuthProvider = {
+  // highlight-start
+  logout: async () => {
+    localStorage.removeItem("my_access_token");
+    // We're returning success: true to indicate that the logout operation was successful.
+    return { success: true };
+  },
+  // highlight-end
+  // login method receives an object with all the values you've provided to the useLogin hook.
+  login: async ({ email, password }) => {
+    const response = await fetch(
+      "https://api.fake-rest.refine.dev/auth/login",
+      {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    const data = await response.json();
+
+    if (data.token) {
+      localStorage.setItem("my_access_token", data.token);
+      return { success: true };
+    }
+
+    return { success: false };
+  },
+  check: async () => {
+    const token = localStorage.getItem("my_access_token");
+
+    return { authenticated: Boolean(token) };
+  },
+  onError: async (error) => {
+    throw new Error("Not implemented");
+  },
+  // ...
+};
+```
+
+<AddLogoutMethodToAuthProvider />
+
+## Using the `useLogout` Hook
+
+After implementing the `logout` method, we'll be able to call `useLogout` hook and logout our users. Let's create a component called `Logout` and mount it inside our `<Refine />` component.
+
+<CreateLogoutComponentFile />
+
+Then, we'll mount our `<Logout />` component and pass it to the `<Authenticated />` component as children in our `src/App.tsx` file.
+
+Try to add the following lines to your `src/App.tsx` file:
+
+```tsx title="src/App.tsx"
+import { Refine, Authenticated } from "@refinedev/core";
+
+import { dataProvider } from "./data-provider";
+import { authProvider } from "./auth-provider";
+
+import { ShowProduct } from "./show-product";
+import { EditProduct } from "./edit-product";
+import { ListProducts } from "./list-products";
+import { CreateProduct } from "./create-product";
+
+import { Login } from "./login";
+// highlight-next-line
+import { Logout } from "./logout";
+
+export default function App(): JSX.Element {
+  return (
+    <Refine dataProvider={dataProvider} authProvider={authProvider}>
+      <Authenticated key="protected" fallback={<Login />}>
+        {/* highlight-next-line */}
+        <Logout />
+        {/* <ShowProduct /> */}
+        {/* <EditProduct /> */}
+        <ListProducts />
+        {/* <CreateProduct /> */}
+      </Authenticated>
+    </Refine>
+  );
+}
+```
+
+<AddLogoutToAppTsx />
+
+Finally, we'll import `useLogout` hook and use it inside our `Logout` component to logout our users.
+
+Try to add the following lines to your `src/logout.tsx` file:
+
+```tsx title="src/logout.tsx"
+import React from "react";
+// highlight-next-line
+import { useLogout } from "@refinedev/core";
+
+export const Logout = () => {
+  // highlight-next-line
+  const { mutate, isLoading } = useLogout();
+
+  return (
+    <button
+      type="button"
+      disabled={isLoading}
+      // highlight-next-line
+      onClick={mutate}
+    >
+      Logout
+    </button>
+  );
+};
+```
+
+<AddUseLogoutToLogoutComponent />
+
+Now, we'll be able to login and logout our users.
+
+Notice that after logging in, the `<Authenticated />` component will render our content instead of the `fallback` prop. Same also applies to logging out. Refine will handle the invalidation of the `check` method for us, so we don't need to worry about it.
+
+In the next step, we'll be learning about the user identity and how to use it in our application.
+
+</Sandpack>

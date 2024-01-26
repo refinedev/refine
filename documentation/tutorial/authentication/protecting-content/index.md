@@ -1,11 +1,150 @@
 ---
-title: Protecting Your Content
+title: Protecting Content
 ---
 
-import { Sandpack } from "./sandpack.tsx";
+import { Sandpack, CreateAuthProviderFile, AddAuthProviderToAppTsx, AddDummyCheckMethodToAuthProvider, AddAuthenticatedComponentToAppTsx } from "./sandpack.tsx";
 
 <Sandpack>
 
-Your content here.
+In this step, we'll be implementing a basic `authProvider` with `check` method to validate the user's authentication status. With this, we'll be able to protect our content from unauthenticated users.
+
+Refine can work with any authentication solution with its easy to implement `authProvider` interface. We'll create an implementation for our fake REST API which also provides a simple authentication endpoints.
+
+To learn more about the supported auth providers, refer to the [Supported AuthenticAuthation Providers](/docs/guides-concepts/authentication/#supported-auth-providers) section in the Authentication guide.
+
+## Creating an Auth Provider
+
+We'll be implementing each method one-by-one, ensuring thorough coverage of all details.
+
+First, we'll create a `src/auth-provider.ts` file in our project, which will contain all the methods we need to implement for our auth provider.
+
+<CreateAuthProviderFile />
+
+Then, we'll pass our auth provider to `<Refine />` component in `src/App.tsx` file with the `authProvider` prop.
+
+Try to add the following code to your `src/App.tsx` file:
+
+```tsx title="src/App.tsx"
+import { Refine } from "@refinedev/core";
+
+import { dataProvider } from "./data-provider";
+// highlight-next-line
+import { authProvider } from "./auth-provider";
+
+import { ShowProduct } from "./show-product";
+import { EditProduct } from "./edit-product";
+import { ListProducts } from "./list-products";
+import { CreateProduct } from "./create-product";
+
+export default function App(): JSX.Element {
+  return (
+    <Refine
+      dataProvider={dataProvider}
+      // highlight-next-line
+      authProvider={authProvider}
+    >
+      {/* <ShowProduct /> */}
+      {/* <EditProduct /> */}
+      <ListProducts />
+      {/* <CreateProduct /> */}
+    </Refine>
+  );
+}
+```
+
+<AddAuthProviderToAppTsx />
+
+## Implementing the `check` Method
+
+The `check` method is used to check the user's authentication status. It should return a `Promise` which resolves to an object.
+
+If the user is authenticated, the object should contain `authenticated: true` property. Otherwise, it should contain `authenticated: false` property.
+
+This method is used by the `useIsAuthenticated` hook and the `<Authenticated />` component.
+
+For now, let's just return `authenticated: false` from our `check` method. In the later steps, we'll be implementing a proper authentication flow and update this method accordingly.
+
+Try to add the following lines to your `src/auth-provider.ts` file:
+
+```ts title="src/auth-provider.ts"
+// TODO: change this
+import { AuthProvider } from "@refinedev/core";
+
+export const authProvider: AuthProvider = {
+  // highlight-start
+  check: async () => {
+    // We'll check the auth state in the next step.
+    // For now, let's just disallow every check.
+    return { authenticated: false };
+  },
+  // highlight-end
+  login: async ({ email, password }) => {
+    throw new Error("Not implemented");
+  },
+  logout: async () => {
+    throw new Error("Not implemented");
+  },
+  onError: async (error) => {
+    throw new Error("Not implemented");
+  },
+  // ...
+};
+```
+
+<AddDummyCheckMethodToAuthProvider />
+
+## Using the `<Authenticated />` Component
+
+After implementing the `check` method, we'll be able to use the `<Authenticated />` component to protect our content from unauthenticated users.
+
+Let's add the `<Authenticated />` component to our `src/App.tsx` file and wrap it around our content inside the `<Refine />` component.
+
+Try to add the following lines to your `src/App.tsx` file:
+
+```tsx title="src/App.tsx"
+// highlight-next-line
+import { Refine, Authenticated } from "@refinedev/core";
+
+import { dataProvider } from "./data-provider";
+import { authProvider } from "./auth-provider";
+
+import { ShowProduct } from "./show-product";
+import { EditProduct } from "./edit-product";
+import { ListProducts } from "./list-products";
+import { CreateProduct } from "./create-product";
+
+export default function App(): JSX.Element {
+  return (
+    <Refine dataProvider={dataProvider} authProvider={authProvider}>
+      {/* highlight-start */}
+      <Authenticated key="protected" fallback={<div>Not authenticated</div>}>
+        {/* <ShowProduct /> */}
+        {/* <EditProduct /> */}
+        <ListProducts />
+        {/* <CreateProduct /> */}
+      </Authenticated>
+      {/* highlight-end */}
+    </Refine>
+  );
+}
+```
+
+<AddAuthenticatedComponentToAppTsx />
+
+:::note
+
+Notice that we've added `key` prop to our `<Authenticated />` component. This is required for the component to work properly especially when it's used multiple times in the same render tree.
+
+:::
+
+Now you should be able to see the `<Authenticated />` component in action. Our content will not be rendered and the `fallback` prop will be rendered instead.
+
+:::tip
+
+You can also use the `useIsAuthenticated` hook instead, which the `<Authenticated />` component uses under the hood. You can learn more about it in the [useIsAuthenticated](/docs/authentication/hooks/use-is-authenticated/) hook documentation.
+
+:::
+
+In the next step, we'll be implementing the login and logout functionality and update our `check` method accordingly.
 
 </Sandpack>
