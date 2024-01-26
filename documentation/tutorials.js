@@ -51,19 +51,21 @@ module.exports = {
                 title: "Authentication",
                 id: "authentication",
                 items: [
-                    "authentication/intro/index",
-                    "authentication/auth-provider/index",
-                    "authentication/protecting-content/index",
-                    "authentication/auth-pages/index",
+                    "authentication/intro/index", // intro
+                    "authentication/protecting-content/index", // authProvider, check, useIsAuthenticated, <Authenticated />
+                    "authentication/logging-in-out/index", // useLogin, useLogout, login, logout
+                    "authentication/user-identity/index", // useGetIdentity, getIdentity
+                    "authentication/data-provider-integration/index", // onError, dataProvider
+                    "authentication/auth-pages/index", // refactoring login and logout pages
                 ],
             },
             {
                 title: "Routing",
                 id: "routing",
                 items: [
-                    "routing/intro/index",
-                    "routing/resource-definition/index",
-                    "routing/inferring-parameters/index",
+                    "routing/intro/index", // intro
+                    "routing/resource-definition/index", // router selection should be added
+                    "routing/inferring-parameters/index", // router selection should be added
                     "routing/redirects/:routerSelection/index",
                     "routing/syncing-state/:routerSelection/index",
                     "routing/authentication/:routerSelection/index",
