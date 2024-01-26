@@ -281,7 +281,7 @@ We should be able to see the first 10 products sorted by name on our screen now.
 
 We've added sorting to our `getList` method. But, we're not able to filter the list. Let's add filtering logic to our `getList` method.
 
-`useList`'s `filters` property implements the [`CrudFilters`](#) interface which accepts various operators for fields. To learn more about the operators, you can check the [Filters](#) section of the Data Fetching guide.
+`useList`'s `filters` property implements the [`CrudFilters`](/docs/core/interface-references/#crudfilters) interface which accepts various operators for fields. To learn more about the operators, you can check the [Filters](/docs/guides-concepts/data-fetching/#filters-sorters-and-pagination) section of the Data Fetching guide.
 
 :::simple Implementation Details
 
@@ -374,7 +374,7 @@ export const ListProducts = () => {
 
 In this step, we've learned about the Refine's `useList` hook to fetch a list of records from our API. We've also learned about pagination, sorting and filtering through the `useList` hook.
 
-Refine also offers `useInfiniteList` hook to fetch a list of records with infinite scrolling and `useTable` hook to fetch a list of records with additional features on top of `useList` hook. You can check the [Hooks](#) section of the Data Fetching guide and [Tables](#) guide to learn more about these hooks and their usages.
+Refine also offers `useInfiniteList` hook to fetch a list of records with infinite scrolling and `useTable` hook to fetch a list of records with additional features on top of `useList` hook. You can check the [Hooks](/docs/guides-concepts/data-fetching/#data-hooks) section of the Data Fetching guide and [Tables](/docs/guides-concepts/tables) guide to learn more about these hooks and their usages.
 
 :::simple Implementation Tips
 

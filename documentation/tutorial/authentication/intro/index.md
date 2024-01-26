@@ -12,7 +12,7 @@ Refine provides an easy to manage authentication interface that can be used with
 
 This unit will cover the following topics:
 
-- Learning the [`AuthProvider`](#) interface by creating an authentication provider,
+- Learning the [`AuthProvider`](/docs/authentication/auth-provider) interface by creating an authentication provider,
 - Usage of the auth hooks and components such as `useLogin`, `useIsAuthenticated` hooks as well as `<Authenticated />` and `<AuthPage />` components,
 - Integrating with the data providers.
 
