@@ -552,10 +552,20 @@ export const Login = () => {
             <h1>Login</h1>
             <form onSubmit={onSubmit}>
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email" name="email" />
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  defaultValue="demo@demo.com"
+                />
 
                 <label htmlFor="password">Password</label>
-                <input type="password" id="password" name="password" />
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  defaultValue="demodemo"
+                />
 
                 {isLoading && <span>loading...</span>}
                 <button
